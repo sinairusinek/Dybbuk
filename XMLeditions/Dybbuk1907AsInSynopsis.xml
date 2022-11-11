@@ -24,7 +24,7 @@
                         <pb facs="3153.jpg"/>
                         <fw>I</fw>
                         <head>ערשטער אקט</head>
-                        <div type="tableau">
+                        
                               <stage><supplied reason="binding">ערש</supplied>טער טאבלאו,
                                           <unclear>ארויס,</unclear> מען הערט אַ קאָהר פון צווישין
                                     דיא קאליסטין.) </stage>
@@ -42,10 +42,10 @@
                                     <l>לאָמיר פֿאַר איהם וויינען קלאָגען</l>
                                     <l>דיא ניכֿט גיטע <del>פון אינס</del> צי פֿעריאָגן </l>
                               </sp>
-                        </div>
+                        
                         <lb/>
-                        <div type="scene" n="1">
-                              <head>ערשטע סצענע:</head>
+                        
+                              <span type="scene-head">ערשטע סצענע:</span>
                               <stage>(3 חסידים לויפין דורך דיא גאס)</stage>
                               <sp xml:id="DybbukC_SP0003">
                                     <speaker>ערשטער חסיד.</speaker>
@@ -227,10 +227,10 @@
                                     <p> קום. הא וועל איך זיין אַ טייער הָמָן קלעפיל! </p>
                               </sp>
                               <stage>(אב</stage>
-                        </div>
-                        <div type="scence" n="3">
+                        
+                        
                               <fw>N</fw>
-                              <head>3.סצענע</head>
+                              <span type="scene-head">3.סצענע</span>
                               <note>might refer to the entire deleted section following</note>
                               <p><add>ניט</add></p>
                               <stage>2 (ווייבער מיט בינטין אין דיא הענד אונקיממינדיג פֿינים מאַרק
@@ -329,11 +329,11 @@
                                     <p>דאס פֿיהרט מען דעם הייליגען רעבין צו דער פיסטיר מאויער, קומט
                                           וועלין מיר נאָכֿגעהען.</p>
                               </sp>
-                        </div>
+                        
                         <pb facs="3160.jpg"/>
-                        <div type="scene" n="4">
+                        
                               <fw>8</fw>
-                              <head> 4 סצענע</head>
+                              <span type="scene-head"> 4 סצענע</span>
                               <stage>((מעהרערע חסידים אין נשים צדקניות מיט פֿאָנין <note>add note
                                           referring to Weinstein about the use of flags</note> אין
                                     מיט הבֿדלות</stage>
@@ -355,9 +355,8 @@
                                     <l>וואל אין גוט דעם וואָס איהם זעהט.</l>
                                     <stage>(אַללע אַב)</stage>
                               </sp>
-                        </div>
-                        <div type="tableau">
-                              <stage> 2 טאַבלאוי.</stage>
+                        
+                                                      <span type="tableau"> 2 טאַבלאוי.</span>
                               <stage>(דער באָביס ציממיר)</stage>
                               <stage>ניט גיטע <unclear>אָביקע</unclear>
                                     <hi rend="underlined:true;">סצענע</hi> עס געהט</stage>
@@ -1174,9 +1173,8 @@
                                     <p> וואָס? אַלֶץ? וויא? וויאגיוואלדאַלֶץלץ אַ ניט גיטיר</p>
                               </sp>
                               <stage> (<del>זייא</del> לויפֿין ביידע אים און שרייען) </stage>
-                        </div>
-                        <div type="scene">
-                              <head>סצענע</head>
+                      
+                           <span type="scene-head"></span>
                               <sp who="#Amalia" xml:id="DybbukC_SP0161">
                                     <speaker>אַמאַליע</speaker>
                                     <stage>(לאויפֿט העריין )</stage>
@@ -1837,7 +1835,7 @@
                                           מיט לעאָן</del>
                                     <stage>עטליכֿע מיט פֿאָליקין שלעפין זייא אַרויס, דיא ווייביר
                                           שלעפין אַמאַליע דער פֿאָרהאַנג</stage> פֿעלט)</stage>
-                        </div>
+                        
                   </div>
                   <div xml:id="DybbukC_Act2" type="act" n="2">
                         <fw type="numpage">41</fw>
@@ -2290,8 +2288,7 @@
                         <stage> (אב) </stage>
 
                         <pb facs="3205.jpg"/>
-                        <div type="scene">
-                              <fw type="numpage">49</fw>
+                        <span type="scene-start"></span>                              <fw type="numpage">49</fw>
                               <stage> רבי יאָקיל אַב) סצענע אַמאַליע לעאָן.....</stage>
                               <sp who="#Amalia">
                                     <speaker>מאלי.</speaker>
@@ -2310,9 +2307,8 @@
                                     <speaker>חסידים</speaker>
                                     <p> שטיל אפיקוריס </p>
                               </sp>
-                        </div>
-                        <div type="scene">
-                              <stage>(סצענע יאָקיל)</stage>
+                        
+                              <span type="scene-head">(סצענע יאָקיל)</span>
 
                               <sp who="#Jackl">
                                     <speaker>יאקיל.</speaker>
@@ -2539,9 +2535,9 @@
                                     <stage>פערוואנד</stage>
                                     <l> אין דיא בתולה איז גיבליבין אַ קימפיטאָרין</l>
                               </sp>
-                        </div>
-                        <div type="Tableau">
-                              <head><stage>טאבלאו</stage></head>
+                        
+                        
+                              <span type="tablaeu">טאבלאו</span>
                               <sp>
                                     <speaker>קאהר.</speaker>
                                     <l>אוי וועה</l>
@@ -2709,9 +2705,9 @@
                                                 פֿארזינדיגט</del>
                                           <del>וואס איך ווער אזו ביטיר גישטראפֿט?</del></p>
                               </sp>
-                        </div>
-                        <div type="Scene">
-                              <stage> (סצענע דינער)</stage>
+                        
+                        
+                              <span type="scene-head"> (סצענע דינער)</span>
                               <note>describe deletion from here</note>
                               <sp>
                                     <speaker>דיניר</speaker>
@@ -3098,7 +3094,7 @@
                               </sp>
                               <stage>(באבע פאלט)</stage>
                               <stage>(פֿארהאנג פֿעלט)</stage>
-                        </div>
+                        
                   </div>
                   <div xml:id="DybbukC_Act3" type="act" n="3">
                         <fw type="numpage">65</fw>
@@ -3869,8 +3865,8 @@
                               <speaker>2.</speaker>
                               <p>איך פֿאַהר אויך. </p>
                         </sp>
-                        <div>
-                              <head>(סצענע ב״מ)</head>
+                        
+                              <span type="scene-head">(סצענע ב״מ)</span><note>האם לא צ״ל ב״ע?</note>
                               <sp>
                                     <speaker>ב״ע.</speaker>
                                     <p> הע הע קאטשקיס ווייבער אויף דעם וואגין ארויף וויעה. </p>
@@ -4089,9 +4085,9 @@
                                     <speaker>יאקיל</speaker>
                                     <p> איהר דארפֿט נאך קלעהרין דער רבי אליין איז דאך משיח.</p>
                               </sp>
-                        </div>
-                        <div type="scene">
-                              <head>(סצענע<unclear> פריץ/פֿרייליין</unclear> ליזע)</head>
+                        
+                        
+                              <span type="scene-head">(סצענע פריץ/פֿרייליין ליזע)<note>what is unclear?</note></span>
                               <pb facs="3243.jpg"/>
                               <fw type="numpage">83</fw>
                               <sp>
@@ -4277,9 +4273,8 @@
                                     <p> אין אזאט אין אזאט דער נישט גיטיר דארף אונקימין נישט גישראקין
                                           דער רבי איז מיט אונז </p>
                               </sp>
-                        </div>
-                        <div type="scene">
-                              <head>(סצענע באבי)</head>
+                        
+                                                      <span type="scene-head">(סצענע באבי)</span>
                               <sp who="#Bobe">
                                     <speaker>באבי.</speaker>
                                     <p> הייליגער צדיק פֿון זיין ליבין נאָמין איך בין גיקיממין צו
@@ -4708,7 +4703,6 @@
                                     <l>נויקים זיין זאלין מיר זיך אָן איהם אצינד</l>
                                     <l>דנעמט<unclear> אונ</unclear>ט שנעלער </l>
                               </sp>
-                        </div>
                   </div>
                   <div xml:id="DybbukC_Act5" type="act" n="5">
                         <head>5 אקט</head>
