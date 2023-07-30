@@ -4,7 +4,7 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>The Dybbuk Synoptic Edition 2023-2-5</title>
+        <title>The Dybbuk Synoptic Edition 2023-3-12</title>
       </titleStmt>
       <publicationStmt>
         <p>Publication Information</p>
@@ -3462,7 +3462,7 @@
               <p> אה טהייערע פריינדין (מיר געהט עס ניכט אמבעסטען ווייסטו דיך צי ערינערין וואן וויר
                 האבען ביידע אין שולע געלערענט, וואן אונזער לעהרער האט מיך נאך דאמאלס געליעבט? </p>
             </sp>
-            <sp who="#Young-women">
+              <sp  xml:id="DybbukA_SP0385m_a" who="#Young-women">
               <speaker>מעדכען </speaker>
               <p>נון אונד יעצט? </p>
             </sp>
@@ -3688,11 +3688,11 @@
               <p>וואהיל איז צי אינזערע <choice>
                   <sic> נשמוהת</sic>
                   <corr> נשמות</corr>
-                </choice> (שטעלען זיך בייא זייטע) </p>
+                </choice> <stage>(שטעלען זיך בייא זייטע)</stage> </p>
             </sp>
             <sp who="#Leon" xml:id="DybbukA_SP0408_a">
               <speaker>לעאן</speaker>
-              <p> הערט אויס איהר בתולות (שטיל) ערקענסטו מיך אמאליע? </p>
+              <p> הערט אויס איהר בתולות <stage>(שטיל)</stage> ערקענסטו מיך אמאליע? </p>
             </sp>
             <sp who="#Amalia" xml:id="DybbukA_SP0409_a">
               <speaker>אמאליע</speaker>
@@ -3707,7 +3707,7 @@
               <p>מיטין רבינס כוח קימט ער <choice>
                   <orig>אקלייניגקייט</orig>
                   <reg>א קלייניגקייט</reg>
-                </choice> (ריידען שטיל) </p>
+                </choice><stage> (ריידען שטיל)</stage> </p>
             </sp>
             <sp who="#Leon" xml:id="DybbukA_SP0412_a">
               <speaker>לעאן</speaker>
@@ -3722,9 +3722,9 @@
                   <stage>(הויך) </stage> נוא בתולות זענט איהר מרוצה דער צי? </p>
             </sp>
 
-            <sp who="#Young-women" xml:id="DybbukA_SP0412a_a">
+            <sp who="#Young-women" xml:id="DybbukA_SP0412b_a">
               <speaker>מעדכען</speaker>
-              <p>יאה! </p>
+              <p>יאה!</p>
             </sp>
             <sp who="#Bobe" xml:id="DybbukA_SP0413a_a">
               <speaker>באבע </speaker>
@@ -4262,10 +4262,10 @@
                 </choice> ? וויא זענען דיא שוועבעליך, לאמיך אונצינדען <choice>
                   <orig>אלעכט</orig>
                   <reg>א לעכט</reg>
-                </choice> וועט זיך מיר אויפהערען צו חלו<choice>
-                  <sic> מין - א</sic>
+                </choice> וועט זיך מיר אויפהערען צו  <choice>
+                  <sic> חלומין</sic>
                   <corr> חלומען</corr>
-                </choice> וי איך קען מיך ניט ריהרען. איך ליעג אויף דעם בעט וויא <choice>
+                </choice>- אוי איך קען מיך ניט ריהרען. איך ליעג אויף דעם בעט וויא <choice>
                   <orig>אטויטער</orig>
                   <reg>א טויטער</reg>
                 </choice>
@@ -5736,7 +5736,7 @@
               <p> באבעניא האסט דאך שוין געזעהן וואס פאר <choice>
                   <orig>אשווינדלער</orig>
                   <reg>א שווינדלער</reg>
-                </choice> ער איז <hi>דיא גיטע יודען זענען</hi>. <choice>
+                </choice> ער איז <del>דיא גיטע יודען זענען</del>. <choice>
                   <orig>וואסזשע</orig>
                   <reg>וואס זשע</reg>
                 </choice> נאך ציהט עס דיך צי זייא? </p>
@@ -5996,7 +5996,6 @@
       <text type="DybbukB" xml:id="DybbukB" source="MS1905">
         <body>
           <div xml:id="DybbukB_Act1" type="act" n="1"><div   xml:id="DybbukB_Act1_Scene1" type="scene" n="2">
-
             <pb facs="2005.jpg"/>
             <head>1. טע אַקט</head>
             <stage>(רעטאָרנעלע)</stage>
@@ -6516,7 +6515,7 @@
               <p> נאָר <choice>
                   <orig>אַמין</orig>
                   <reg>אַ מין</reg>
-                </choice> אויסרעכֿינין פֿין מאַליס וועה איז מיר דען נאָך</p>
+                </choice> אויסרעכֿינין פֿין מאַליס וועה איז מיר </p>
             </sp>
 
             <sp who="#Amalia" xml:id="DybbukB_SP0052_a">
@@ -6526,7 +6525,7 @@
                 <choice>
                   <sic>תשיבה </sic>
                   <corr>תּשובֿה</corr>
-                </choice>זאָל איך טיהן באַבינָאָ וואָס האָב איך אַזוינס געזינדיגט אויף דער וועלט:
+                </choice>זאָל איך טיהן באַבינָאָ וואָס האָב איך<add> דען נאָך</add> אַזוינס געזינדיגט אויף דער וועלט:
                 וואָס איז ווייל ער גייט נישט אייראָפּעיש גיקליידיט וואַרט איך וועל <choice>
                   <abbr>אי״ה</abbr>
                   <expan>אם ירצה השם</expan>
@@ -11439,7 +11438,7 @@
               <p>ווייס איך וואָס צי מיינע <choice>
                   <sic>צאָריס </sic>
                   <corr>צרות</corr>
-                </choice>קעהר ער מיר <unclear>אויך</unclear>: אין 2. טענס וויא וועט זיין די
+                </choice>קעהר ער מיר <unclear>אויך</unclear>: אין 2טענס וויא וועט זיין די
                   [<unclear>חתונה</unclear>] <pb facs="2054.jpg"/>
               </p>
             </sp>
@@ -12281,7 +12280,7 @@
                   אַקעגין געקוממין בַתיה בַת פרעה אין פֿרעגט איהם מֵאַין <choice>
                     <sic>באָתאָ</sic>
                     <corr>באַת</corr>
-                  </choice>? ווער ביסטו? האָט זיך דוד המלך אונגעריפֿין מיט גָדולקייט אני שלמה אין
+                  </choice><note>refer to comment from A</note>? ווער ביסטו? האָט זיך דוד המלך אונגעריפֿין מיט גָדולקייט אני שלמה אין
                   דערפֿאַר ווייל ער האָט דאס געזאָגט מיט גָדולקייט האָט איהם דער אַשמְדַאַי
                   אויסגעשפיגין אויף 400 <choice>
                     <sic>מאל </sic>
@@ -14278,7 +14277,7 @@
               <p> שוטה! ער ווייסט גור נישט אז דער פָריץ מיט דעם גאנצין שטעטיל קעהר שון צום רבין.
               </p>
             </sp>
-            <sp who="#Hasidim" xml:id="DybbukC_SP0320m_a">
+            <sp who="#Hasidim" xml:id="DybbukC_SP0320a_a">
               <speaker>חסידים.</speaker>
               <p>
                 <del>וואָס דען! צו וועמין דען גיהערד ניכֿט צום רבין?</del>
@@ -14352,9 +14351,8 @@
                   </choice>ער זאל זיך <choice>
                     <sic>טויבלין </sic>
                     <corr>טובֿלען</corr>
-                  </choice>שי טבילות] כּדי דיא קליפה <add>בעסיר דיא </add>
-                  <add>נשמה </add>זאל פֿון איהם אַר אויס* דערנאך וועט שון דער רבי זאגין וואס מען האט
-                  מיט איהם צו טוהן. </p>
+                  </choice>שי טבילות] כּדי דיא קליפה זאל פֿון איהם אַר אויס*<add>בעסיר דיא נשמה </add> דערנאך וועט שון דער רבי זאגין וואס מען האט
+                  מיט איהם צו טוהן. </p><note>הערה על הפתגם ״במקום שאין איש איז הערינג אויך אַ פֿישבמקום שאין איש איז הערינג אויך אַ פֿיש״. וגם במקום שאין אנשים, השתדל להיות איש (משנה, אבות ב:ה)</note>
               </sp>
               <sp who="#Leon" xml:id="DybbukC_SP0331_a">
                 <speaker>לעאָן.</speaker>
@@ -14433,12 +14431,12 @@
                   </choice>העראויס דעם <choice>
                     <sic>דיביק </sic>
                     <corr>דיבוק</corr>
-                  </choice>פֿון מיין קינד <add>בת מרים יענטע</add>
+                  </choice>פֿון מיין קינד 
                 </p>
               </sp>
               <sp who="#Yokel" xml:id="DybbukC_SP0341_a">
                 <speaker>יאקיל.</speaker>
-                <p> האשה חוה * פֿיהרט אהעם אייער עניקיל דער רבי האט געזאגט אז ער וועט זיע בייא אייך
+                <p> האשה חוה *<add>בת מרים יענטע</add>פֿיהרט אהעם אייער עניקיל דער רבי האט געזאגט אז ער וועט זיע בייא אייך
                   אין דער <choice>
                     <sic>העם </sic>
                     <corr>היים</corr>
@@ -14608,15 +14606,15 @@
                     <sic>אקרה </sic>
                     <corr>עקרה</corr>
                   </choice>איז זעהענדיג <del>געוואָרען</del> אַהיים גיפֿוהרין </l>
-                <stage>פערוואנד</stage>
-                <l> אין דיא בתולה איז גיבליבין אַ קימפיטאָרין</l>
+                                <l> אין דיא בתולה איז גיבליבין אַ קימפיטאָרין</l>
               </sp>
-          <stage>טאבלאו</stage>
+            
               <sp who="#Choir" xml:id="DybbukC_SP0357_a">
                 <speaker>קאהר.</speaker>
                 <l>אוי וועה</l>
               </sp>
-              <stage>(אב)</stage>  </div>
+              <stage>(אב)</stage> <stage><add>פערוואנד</add></stage>
+          <stage><add>טאבלאו</add></stage> </div>
             
             <div type="scene">
               <stage> (צווייטע טאַבלאוי אַמאַליע אויף אַ בעטיל באבי שטעהט</stage>
@@ -14643,8 +14641,8 @@
               <sp who="#Amalia" xml:id="DybbukC_SP0361_a">
                 <speaker>אַמאַליע.</speaker>
                 <p> זיסי באבי ביסט מיר גיקימין <del>שיטין</del> זאַלץ <del>אויף</del> מיינע ווינדין?
-                  איז נאך וועניג וואס איך בין ביז אהער אויס <add>פארגרעסערען</add> געשטאָנין ביסטי
-                  מיר נאָך גיקיממין מיינע בי<del>טירע ו</del>ועטיגן </p>
+                  איז נאך וועניג וואס איך בין ביז אהער אויס געשטאָנין ביסטי
+                  מיר נאָך גיקיממין <add>פארגרעסערען</add>מיינע בי<del>טירע ו</del>ועטיגן </p>
               </sp>
               <sp who="#Bobe" xml:id="DybbukC_SP0362_a">
                 <speaker>באָבי</speaker>
@@ -14659,7 +14657,7 @@
               </sp>
               <sp who="#Bobe" xml:id="DybbukC_SP0364_a">
                 <speaker>באבי.</speaker>
-                <p> אַוועטיג איז דער באבי דורך מיר גור סאדין דיא ביסט ניכֿט ביים ריינעם שכל ווייסטי
+                <p> אַוועטיג איז דער באבי דורך מיר גור <choice><sic>סאדין</sic><corr>סײַדן</corr></choice> דיא ביסט ניכֿט ביים ריינעם שכל ווייסטי
                   דען ניכֿט וויע ליעב איך האב דיך וויע איך מעסט מיך אויס פֿאר דיר וואס דענן איז
                   מיינע גאנצע פלאגע אויף דער וועלט נאר פֿון דאַניט וועגין איך וויל מיר דערלעבין אַ
                   שטיקאָלי <choice>
@@ -15011,11 +15009,11 @@
               </sp>
               <stage>(מעדכין אנטלויפאן)</stage>
               <sp who="#Amalia" xml:id="DybbukC_SP0396n_a">
-                <speaker>אַמלאכי</speaker>
-                <p> גיוואלד וואס איז דאס פֿאר אמלאכי <choice>
-                    <sic>תבלהת</sic>
-                    <corr>תּבֿהלת</corr>
-                  </choice>. </p>
+                <speaker><supplied>מעדכין</supplied></speaker>
+                <p> גיוואלד וואס איז דאס פֿאר <choice><orig>אמלאכי</orig><corr> א מלאכי</corr></choice> <choice>
+                  <sic>תּבֿלהת</sic>
+                    <corr>חבלה</corr>
+                  </choice>.</p>
               </sp>
               <sp who="#Grandmothers" xml:id="DybbukC_SP0396o_a">
                 <speaker>ווייבער.</speaker>
