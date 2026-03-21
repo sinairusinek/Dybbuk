@@ -1,0 +1,50 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run QID triage now",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"scripts/triage_qids.py",
+				"--input",
+				"data/raw/Zylbercweig-Extraction2026-02-05-places.tsv",
+				"--output",
+				"data/working/places_unified.csv",
+				"--legacy-outputs",
+				"--resolved-output",
+				"data/working/resolved_places.csv",
+				"--review-output",
+				"data/working/qid_review_queue.csv",
+				"--ancestor-depth",
+				"6",
+				"--chain-depth",
+				"6"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Refresh QID cache now",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": [
+				"scripts/triage_qids.py",
+				"--input",
+				"data/raw/Zylbercweig-Extraction2026-02-05-places.tsv",
+				"--output",
+				"data/working/places_unified.csv",
+				"--legacy-outputs",
+				"--resolved-output",
+				"data/working/resolved_places.csv",
+				"--review-output",
+				"data/working/qid_review_queue.csv",
+				"--ancestor-depth",
+				"6",
+				"--chain-depth",
+				"6",
+				"--refresh-cache"
+			],
+			"isBackground": false
+		}
+	]
+}

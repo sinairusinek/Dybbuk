@@ -1,0 +1,14 @@
+required_columns:
+  - place
+
+source_place_column: place
+
+normalization:
+  trim_whitespace: true
+  collapse_internal_spaces: true
+
+flags:
+  empty_place_name: true
+  duplicate_exact: true
+  suspicious_characters_regex: "[^\\w\\s\\-\u0590-\u05FF\u0400-\u04FF\u00C0-\u024F']"
+  very_short_threshold: 2

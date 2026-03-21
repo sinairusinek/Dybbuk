@@ -1,0 +1,11 @@
+# Copy to configs/kimatch.yaml and fill in local values.
+kimatch:
+  repo_path: "../kimatch"
+  input_format: "csv"
+  output_format: "jsonl"
+
+reviewer:
+  source_project: "hasidigital"
+  adapter_module: "zibn_shtern.reviewer_adapter"
+  queue_path: "data/working/review_queue.csv"
+  decisions_path: "data/corrected/reviewer_decisions.csv"
