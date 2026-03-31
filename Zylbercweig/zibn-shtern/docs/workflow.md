@@ -53,6 +53,17 @@ This writes:
 Primary reviewer handoff is the unified table filtered to `needs_review = true`.
 Legacy handoff remains `qid_review_queue*.csv` when `--legacy-outputs` is used.
 
+For OpenRefine review sessions, export a dedicated reviewer task TSV:
+
+- `python scripts/export_review_for_openrefine.py --input data/working/qid_review_queue_corrected.csv --output data/working/openrefine_review_queue.tsv`
+
+Recommended OpenRefine workflow:
+
+- Import `openrefine_review_queue.tsv`
+- Reconcile `clustered_value` against Wikidata
+- Fill `ra_qid`, `ra_resolved_category`, and `ra_notes`
+- Export rows as TSV/CSV (or full OpenRefine project archive)
+
 ## 6) Kimatch handoff
 
 After review/corrections are approved:

@@ -1,5 +1,5 @@
 """Tests for zibn_shtern.corrections — fix_death_site_burial, fix_city_state,
-and fix_column_assignment.
+fix_column_assignment, and fix_qid_overrides.
 
 All tests use synthetic DataFrames; no live Wikidata calls are made.
 fix_city_state tests patch the wikidata_client names at the point where
@@ -16,6 +16,7 @@ from zibn_shtern.corrections import (
     fix_city_state,
     fix_column_assignment,
     fix_death_site_burial,
+    fix_qid_overrides,
 )
 from zibn_shtern.triage import UNIFIED_COLUMNS, ensure_unified_schema
 
@@ -280,6 +281,35 @@ class TestFixColumnAssignment:
         assert out.at[0, "source_role"] == "province"
         assert out.at[0, "correction_applied"] == "moved_to_province"
 
+    def test_country_role_settlement_category_moved(self) -> None:
+        """Country-role row whose QID is actually a settlement is reassigned."""
+        df = _make_df(
+            source_role="country",
+            resolved_category="settlement",
+            country="",
+            settlement="Lodz",
+        )
+        out = fix_column_assignment(df, details={})
+        assert out.at[0, "source_role"] == "settlement"
+        assert out.at[0, "correction_applied"] == "moved_to_settlement"
+        assert out.at[0, "country"] == ""
+        assert out.at[0, "settlement"] == "Lodz"
+
+    def test_country_role_other_non_country_type_moved(self) -> None:
+        """Country-role row with explicit non-country other_type is reassigned."""
+        df = _make_df(
+            source_role="country",
+            resolved_category="other",
+            other_type="peninsula",
+            country="",
+            other="Crimea",
+        )
+        out = fix_column_assignment(df, details={})
+        assert out.at[0, "source_role"] == "other"
+        assert out.at[0, "correction_applied"] == "moved_to_other"
+        assert out.at[0, "country"] == ""
+        assert out.at[0, "other"] == "Lodz"
+
     def test_province_role_country_category_moved(self) -> None:
         df = _make_df(
             source_role="province",
@@ -341,4 +371,110 @@ class TestFixColumnAssignment:
         )
         out = fix_column_assignment(df, details={})
         assert out.at[0, "source_role"] == "province"
+        assert out.at[0, "correction_applied"] == ""
+
+
+# ===========================================================================
+# fix_qid_overrides
+# ===========================================================================
+
+# Synthetic Wikidata detail for Q7835 (Crimea)
+_DETAIL_CRIMEA_Q7835: dict = {
+    "label_en": "Crimea",
+    "label_yi": "קרים",
+    "p31": ["Q34763", "Q15239622"],
+    "p17": ["Q212"],
+    "p131": [],
+    "p31_labels": ["peninsula", "disputed territory"],
+    "p17_labels": ["Ukraine"],
+    "p131_labels": [],
+}
+
+
+class TestFixQidOverrides:
+    """QID substitution and category overrides — patches load/save cache."""
+
+    @patch("zibn_shtern.corrections.save_cache")
+    @patch("zibn_shtern.corrections.load_cache", return_value={"Q7835": _DETAIL_CRIMEA_Q7835})
+    def test_cream_tea_replaced_with_crimea(
+        self, mock_load, mock_save
+    ) -> None:
+        """Q1139315 (cream tea) in province role → Q7835 (Crimea), province."""
+        df = _make_df(
+            source_role="province",
+            qid="Q1139315",
+            clustered_value="cream tea",
+            wikidata_label_en="cream tea",
+            resolved_category="other",
+            other_type="unknown",
+            other="cream tea",
+        )
+        details: dict = {}
+        out = fix_qid_overrides(df, details, _MOCK_CACHE_PATH)
+
+        assert out.at[0, "qid"] == "Q7835"
+        assert out.at[0, "wikidata_label_en"] == "Crimea"
+        assert out.at[0, "wikidata_label_yi"] == "קרים"
+        assert out.at[0, "resolved_category"] == "province"
+        assert out.at[0, "source_role"] == "province"
+        assert out.at[0, "correction_applied"] == "qid_override"
+        assert out.at[0, "province"] == "Crimea"
+        assert out.at[0, "other"] == ""
+        assert "Q7835" in details
+
+    @patch("zibn_shtern.corrections.save_cache")
+    @patch("zibn_shtern.corrections.load_cache", return_value={"Q7835": _DETAIL_CRIMEA_Q7835})
+    def test_category_override_existing_crimea(
+        self, mock_load, mock_save
+    ) -> None:
+        """Q7835 already present but classified as other/peninsula → province."""
+        df = _make_df(
+            source_role="country",
+            qid="Q7835",
+            wikidata_label_en="Crimea",
+            resolved_category="other",
+            other_type="peninsula",
+            other="Crimea",
+        )
+        details: dict = {}
+        out = fix_qid_overrides(df, details, _MOCK_CACHE_PATH)
+
+        assert out.at[0, "resolved_category"] == "province"
+        assert out.at[0, "source_role"] == "province"
+        assert out.at[0, "correction_applied"] == "category_override"
+        assert out.at[0, "province"] == "Crimea"
+        assert out.at[0, "other"] == ""
+        assert out.at[0, "other_type"] == ""
+
+    @patch("zibn_shtern.corrections.save_cache")
+    @patch("zibn_shtern.corrections.load_cache", return_value={})
+    def test_already_corrected_row_skipped(
+        self, mock_load, mock_save
+    ) -> None:
+        """Rows with existing correction_applied are not touched."""
+        df = _make_df(
+            source_role="province",
+            qid="Q1139315",
+            correction_applied="state_to_city",
+        )
+        details: dict = {}
+        out = fix_qid_overrides(df, details, _MOCK_CACHE_PATH)
+
+        assert out.at[0, "qid"] == "Q1139315"
+        assert out.at[0, "correction_applied"] == "state_to_city"
+
+    @patch("zibn_shtern.corrections.save_cache")
+    @patch("zibn_shtern.corrections.load_cache", return_value={})
+    def test_non_matching_qid_untouched(
+        self, mock_load, mock_save
+    ) -> None:
+        """A QID not in QID_OVERRIDES or CATEGORY_OVERRIDES is left alone."""
+        df = _make_df(
+            source_role="province",
+            qid="Q999999",
+        )
+        details: dict = {}
+        out = fix_qid_overrides(df, details, _MOCK_CACHE_PATH)
+
+        assert out.at[0, "qid"] == "Q999999"
         assert out.at[0, "correction_applied"] == ""

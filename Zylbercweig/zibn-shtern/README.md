@@ -36,6 +36,8 @@ This repository is organized around four phases:
    - `python scripts/triage_qids.py --input data/raw/Zylbercweig-Extraction2026-02-05-places.tsv --output data/working/places_unified.csv --ancestor-depth 6 --chain-depth 6`
 7. (Optional) also emit legacy resolved/review outputs from the unified table:
    - `python scripts/triage_qids.py --input data/raw/Zylbercweig-Extraction2026-02-05-places.tsv --output data/working/places_unified.csv --legacy-outputs --resolved-output data/working/resolved_places.csv --review-output data/working/qid_review_queue.csv --ancestor-depth 6 --chain-depth 6`
+8. Prepare OpenRefine reviewer task file:
+   - `python scripts/export_review_for_openrefine.py --input data/working/qid_review_queue_corrected.csv --output data/working/openrefine_review_queue.tsv`
 
 ## Current assumptions
 

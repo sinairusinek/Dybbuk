@@ -1,14 +1,17 @@
 """Automated pre-review corrections for the place-triage pipeline.
 
-Three correction functions are applied in order before ``add_review_flags``
+Four correction functions are applied in order before ``add_review_flags``
 re-evaluates the data:
 
-1. ``fix_death_site_burial`` – death and burial site values are mirrored so
-    concentration camps and other death sites can count as both.
-2. ``fix_city_state``        – province-typed QIDs in the place column that
+1. ``fix_qid_overrides``     – known wrong QIDs (e.g. Q1139315 "cream tea"
+   when Crimea Q7835 was intended) are replaced with the correct QID, and
+   category overrides (e.g. peninsula → province for Crimea) are applied.
+2. ``fix_death_site_burial`` – death and burial site values are mirrored so
+   concentration camps and other death sites can count as both.
+3. ``fix_city_state``        – province-typed QIDs in the place column that
    likely represent cities (e.g. "New York" resolved to Q1384) are replaced
    with the correct city QID obtained from the Wikidata search API.
-3. ``fix_column_assignment`` – any remaining non-settlement entries misfiled in
+4. ``fix_column_assignment`` – any remaining non-settlement entries misfiled in
    the place/province/country column are moved to their correct column.
 
 Each function stamps the ``correction_applied`` column for auditability.
@@ -54,6 +57,19 @@ _SETTLEMENT_DESCRIPTION_HINTS = {
     "commune",
     "settlement",
     "capital",
+}
+
+# Known wrong-QID overrides:  (source_role, bad_qid) -> correct_qid
+# Used by fix_qid_overrides to replace reconciliation errors before any
+# other corrections run.
+QID_OVERRIDES: dict[tuple[str, str], str] = {
+    ("province", "Q1139315"): "Q7835",  # "cream tea" → Crimea
+}
+
+# Per-QID category overrides applied after QID substitution and also
+# during fix_column_assignment.  These take precedence over classify_qid.
+CATEGORY_OVERRIDES: dict[str, str] = {
+    "Q7835": "province",  # Crimea – peninsula in Wikidata, province in our schema
 }
 
 
@@ -111,7 +127,107 @@ def _has_settlement_type(description: str, detail: dict[str, Any] | None) -> boo
 
 
 # ---------------------------------------------------------------------------
-# Correction 1: mirror death_site and burial_city values for place rows
+# Correction 1: QID overrides for known reconciliation errors
+# ---------------------------------------------------------------------------
+
+def fix_qid_overrides(
+    df: pd.DataFrame,
+    details: dict[str, dict[str, Any]],
+    cache_path: str | Path,
+) -> pd.DataFrame:
+    """Replace known-wrong QIDs and apply per-QID category overrides.
+
+    Two maps drive the behaviour:
+
+    * ``QID_OVERRIDES`` – keyed by *(source_role, bad_qid)*, maps to the
+      correct QID.  The row's metadata (labels, type, category, category-
+      value columns) is rebuilt from the Wikidata cache entry for the new
+      QID.  Stamps ``correction_applied='qid_override'``.
+
+    * ``CATEGORY_OVERRIDES`` – keyed by *qid*, maps to the desired
+      ``resolved_category``.  Applied to **every** row whose QID appears
+      in the map (including rows that were just substituted above).  The
+      source_role and category-value columns are adjusted accordingly.
+      Stamps ``correction_applied='category_override'`` (only when no
+      earlier stamp exists).
+    """
+    out = df.copy()
+    if "correction_applied" not in out.columns:
+        out["correction_applied"] = ""
+
+    cache = load_cache(cache_path)
+    qid_subs = 0
+    cat_overrides = 0
+
+    # --- Phase A: QID substitution ---
+    for idx, row in out.iterrows():
+        if str(row.get("correction_applied") or ""):
+            continue
+        key = (str(row.get("source_role", "")), str(row.get("qid", "")))
+        new_qid = QID_OVERRIDES.get(key)
+        if new_qid is None:
+            continue
+
+        detail = _enrich_detail(new_qid, cache)
+        if detail is None:
+            continue
+        details[new_qid] = detail
+
+        new_cat, new_other = classify_qid(
+            detail,
+            str(row.get("context", "")),
+            str(row.get("source_role", "")),
+        )
+        # Apply category override if one exists for the new QID.
+        if new_qid in CATEGORY_OVERRIDES:
+            new_cat = CATEGORY_OVERRIDES[new_qid]
+            new_other = ""
+
+        entity_label = detail.get("label_en") or str(row.get("clustered_value", ""))
+
+        out.at[idx, "qid"] = new_qid
+        out.at[idx, "clustered_value"] = entity_label
+        out.at[idx, "wikidata_label_en"] = entity_label
+        out.at[idx, "wikidata_label_yi"] = detail.get("label_yi") or ""
+        out.at[idx, "wikidata_type"] = ", ".join(detail.get("p31_labels", []))
+        out.at[idx, "resolved_category"] = new_cat
+        out.at[idx, "other_type"] = new_other if new_other else ""
+        out.at[idx, "source_role"] = new_cat
+        out.at[idx, "qid_source"] = new_cat
+        _set_category_value(out, idx, new_cat, entity_label)
+        out.at[idx, "correction_applied"] = "qid_override"
+        qid_subs += 1
+
+    # --- Phase B: category-only overrides for correct QIDs ---
+    for idx, row in out.iterrows():
+        if str(row.get("correction_applied") or ""):
+            continue
+        qid = str(row.get("qid", ""))
+        if qid not in CATEGORY_OVERRIDES:
+            continue
+        current_cat = str(row.get("resolved_category", ""))
+        target_cat = CATEGORY_OVERRIDES[qid]
+        if current_cat == target_cat:
+            continue
+
+        entity_label = _label_from_row(row)
+        out.at[idx, "resolved_category"] = target_cat
+        out.at[idx, "other_type"] = ""
+        out.at[idx, "source_role"] = target_cat
+        _set_category_value(out, idx, target_cat, entity_label)
+        out.at[idx, "correction_applied"] = "category_override"
+        cat_overrides += 1
+
+    save_cache(cache_path, cache)
+    print(
+        f"  fix_qid_overrides: {qid_subs} QID substitution(s), "
+        f"{cat_overrides} category override(s)"
+    )
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Correction 2: mirror death_site and burial_city values for place rows
 # ---------------------------------------------------------------------------
 
 def fix_death_site_burial(df: pd.DataFrame) -> pd.DataFrame:
@@ -287,6 +403,7 @@ def fix_column_assignment(
     - place + province-type   -> province
     - place + country-type    -> country
     - country + province-type -> province  (e.g. a US state entered as "country")
+    - country + non-country other-type -> other
     - province + country-type -> country
 
     Does NOT move settlements: a city in the province/country column is left
@@ -322,7 +439,19 @@ def fix_column_assignment(
         elif role == "country":
             if category == "province":
                 new_role = "province"
-            # A country-column entry that is a settlement is left for human review.
+            elif category not in ("country", "other", ""):
+                # If the row resolved to a concrete non-country type, move it to
+                # the matching source column automatically.
+                new_role = category
+                entity_label = _label_from_row(row)
+                _set_category_value(out, idx, category, entity_label)
+            elif category == "other" and other_type not in ("", "country"):
+                # Keep human review for "other" typing, but remove role mismatch
+                # noise when it is explicitly not a country (e.g. peninsula).
+                new_role = "other"
+                entity_label = _label_from_row(row)
+                _set_category_value(out, idx, "other", entity_label)
+            # A country-column entry typed unknown/empty "other" is left for review.
 
         elif role == "province":
             if category == "country" or (category == "other" and other_type == "country"):
