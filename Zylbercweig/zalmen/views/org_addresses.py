@@ -408,7 +408,12 @@ input[aria-label="Address (original script)"] {
         new_roman = gc1.text_input("Romanized address for geocoding",
                                     value=row.get("confirmed_address_romanized",""),
                                     key=f"roman_{cid}", placeholder="e.g. Nalewki 3, Warsaw")
-        new_lat, new_lon = row.get("lat",""), row.get("lon","")
+
+        # Seed lat/lon from saved row, then allow session_state to override
+        # (session_state holds freshly geocoded values that haven't been saved yet).
+        _lat_key, _lon_key = f"_gc_lat_{cid}", f"_gc_lon_{cid}"
+        new_lat = st.session_state.get(_lat_key) or row.get("lat", "")
+        new_lon = st.session_state.get(_lon_key) or row.get("lon", "")
 
         with gc2:
             st.markdown("&nbsp;", unsafe_allow_html=True)
@@ -418,7 +423,8 @@ input[aria-label="Address (original script)"] {
                     with st.spinner("Geocoding…"):
                         res = geocode(q)
                     if res:
-                        new_lat, new_lon = str(res[0]), str(res[1])
+                        new_lat = st.session_state[_lat_key] = str(res[0])
+                        new_lon = st.session_state[_lon_key] = str(res[1])
                         st.success(f"{res[0]}, {res[1]}")
                     else:
                         st.warning("Not found — try a more specific romanized address.")
@@ -445,6 +451,9 @@ input[aria-label="Address (original script)"] {
         rows[row_idx]["reviewer_notes"]               = new_note
         save_orgs(headers, rows)
         load_orgs.clear()
+        # Clear pending geocode values now that they're saved.
+        st.session_state.pop(f"_gc_lat_{cid}", None)
+        st.session_state.pop(f"_gc_lon_{cid}", None)
         st.rerun()
 
 
