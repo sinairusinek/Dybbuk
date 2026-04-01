@@ -3,14 +3,16 @@ A2-Addresses · Org Address Review view.
 
 Features
 --------
-1. Paginated table (50 rows/page) — no per-row expanders.
-2. Detail panel for selected org:
-     a. Extracted settlement/address/venue chips — click to see sample texts.
-     b. "Explode by location" — splits a cluster into per-settlement sub-clusters.
-     c. "Split by location" — same for confirmed non-generic orgs with >1 settlement.
+1. Two-column layout: list on left, detail panel opens in-place on right.
+2. Tabs: Review (active clusters + sub-clusters) / Generic (confirmed generic labels).
+   Exploded parent rows are hidden from both tabs.
+3. Detail panel:
+     a. Extracted settlement/address/venue chips — click to see sample texts
+        with full-entry expander per sample.
+     b. "Explode by location" — auto-split by settlement.
+     c. "Refined split" — manually assign individual mentions to named groups.
      d. Generic flag — marks a name as a label, not one entity.
      e. Confirm location + optional geocoding.
-3. Exploded sub-clusters appear in the table beneath their parent.
 
 Files
 -----
@@ -19,13 +21,15 @@ Reads:   ../organizations/org_addresses_review.tsv
 Writes:  ../organizations/org_addresses_review.tsv  (in-place)
 """
 
-import csv, fcntl, pathlib, sys, time, collections
+import csv, fcntl, pathlib, sys, time, collections, re
+import xml.etree.ElementTree as ET
 import streamlit as st
 
 csv.field_size_limit(sys.maxsize)
 
 ADDR_FILE     = pathlib.Path(__file__).parents[2] / "organizations" / "org_addresses_review.tsv"
 CLUSTER_FILE  = pathlib.Path(__file__).parents[2] / "organizations" / "organizations_clustered.tsv"
+LEXICON_DIR   = pathlib.Path(__file__).parents[2] / "The Lexicon"
 PAGE_SIZE     = 50
 
 # Optional map/geocode deps
@@ -58,6 +62,48 @@ _COL_XMLID    = "_ - xml:id"
 _MISSING = {"", "na", "n/a", "null", "none", "-", "--", "_"}
 def _m(v): return v.strip().lower() in _MISSING
 def _split(s): return [v.strip() for v in s.split("|") if v.strip()]
+
+
+# ── XML entry lookup (reused from org_clusters.py) ───────────────────────────
+
+_JSON_TO_XML = {
+    "Volume5IIIorg.json":   "Structured_Volume5III.xml",
+    "Volume_3IIIorg.json":  "Structured_Volume_3III.xml",
+    "Volume_4IIIorg.json":  "Structured_Volume_4III.xml",
+    "volume6IIIorg.json":   "Structured_volume6III.xml",
+    "volume7IIIorg.json":   "Structured_volume7III.xml",
+    "volume_1IIIorg.json":  "Structured_volume_1III.xml",
+    "volume_2IIIorg.json":  "Structured_volume_2III.xml",
+}
+
+TEI_NS = "http://www.tei-c.org/ns/1.0"
+XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
+
+@st.cache_resource(show_spinner=False)
+def _load_all_xml() -> dict[str, ET.ElementTree]:
+    trees: dict[str, ET.ElementTree] = {}
+    for json_name, xml_name in _JSON_TO_XML.items():
+        xml_path = LEXICON_DIR / xml_name
+        if xml_path.exists():
+            try:
+                trees[json_name] = ET.parse(xml_path)
+            except ET.ParseError:
+                pass
+    return trees
+
+def get_entry_text(json_file: str, xml_id: str) -> str | None:
+    if not json_file or not xml_id:
+        return None
+    tree = _load_all_xml().get(json_file)
+    if tree is None:
+        return None
+    for el in tree.getroot().iter(f"{{{TEI_NS}}}div"):
+        if el.get(XML_ID) == xml_id:
+            text = " ".join(
+                " ".join(e.itertext()).strip() for e in el.iter() if e.text or e.tail
+            )
+            return re.sub(r"\s+", " ", text).strip() or None
+    return None
 
 
 # ── I/O ───────────────────────────────────────────────────────────────────────
@@ -147,8 +193,7 @@ def _new_subcluster_row(headers, parent, settlement, addresses, venues, countrie
 def _build_explode_candidates(parent_cid, all_source_rows):
     """
     From organizations_clustered.tsv rows for this cluster, group by settlement
-    and return a list of dicts ready for _new_subcluster_row.
-    Returns list of (settlement, mentions, addresses, venues, countries).
+    and return a list of (settlement, g) sorted by mentions descending.
     """
     groups: dict[str, dict] = {}
     for r in all_source_rows:
@@ -161,6 +206,7 @@ def _build_explode_candidates(parent_cid, all_source_rows):
             v = r.get(col,"").strip()
             if not _m(v): g[key].add(v)
     return sorted(groups.items(), key=lambda x: -x[1]["mentions"])
+
 
 # ── Main render ───────────────────────────────────────────────────────────────
 
@@ -179,38 +225,79 @@ def render():
     headers, rows = load_orgs(mtime_addr)
     samples       = load_samples(mtime_cluster)
 
-    # pre-build cluster source rows index (from clustered TSV, via samples keys)
-    # We need per-settlement mention counts for explode — load lazily per cluster
-    # (done inside _render_detail to avoid loading 16k rows upfront in cache)
+    # ── Two-column layout ─────────────────────────────────────────────────────
+    left_col, right_col = st.columns([1, 1.8], gap="large")
+
+    with left_col:
+        _render_list(headers, rows, samples)
+
+    with right_col:
+        sel_cid = st.session_state.get("addr_selected")
+        if sel_cid:
+            sel_row = next((r for r in rows if r["cluster_id"] == sel_cid), None)
+            if sel_row:
+                _render_detail(headers, rows, sel_row, samples)
+            else:
+                st.session_state.addr_selected = None
+                st.info("Select an organization from the list.")
+        else:
+            st.info("Select an organization from the list.")
+
+
+# ── List panel ────────────────────────────────────────────────────────────────
+
+def _render_list(headers, rows, samples):
+    # Partition rows into three buckets (before any filtering):
+    #   review  — normal orgs (not generic, not exploded parent, not sub-cluster)
+    #   sub     — sub-clusters (have parent_cluster_id)
+    #   generic — confirmed generic labels
+    # Exploded parents are excluded from both tabs (they still live in the TSV
+    # so un-explode can restore them, but they add no review value).
+    review_rows  = [r for r in rows
+                    if r.get("is_generic") != "TRUE"
+                    and not r.get("parent_cluster_id")
+                    and r.get("is_exploded") != "TRUE"]
+    sub_rows     = [r for r in rows if r.get("parent_cluster_id")]
+    generic_rows = [r for r in rows if r.get("is_generic") == "TRUE"]
+
+    tab_review, tab_generic = st.tabs([
+        f"Review ({len(review_rows) + len(sub_rows)})",
+        f"Generic ({len(generic_rows)})",
+    ])
+
+    with tab_review:
+        _render_tab(headers, review_rows + sub_rows, tab_key="rev")
+
+    with tab_generic:
+        _render_tab(headers, generic_rows, tab_key="gen", read_only_hint=True)
+
+
+def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
+    """Shared filter + pagination + button table for one tab."""
+    if not pool:
+        st.info("Nothing here yet.")
+        return
 
     # ── Filters ───────────────────────────────────────────────────────────────
-    fc1, fc2, fc3 = st.columns([2, 2, 2])
-    with fc1:
-        all_types = sorted({r["org_type"] for r in rows if r["org_type"].strip()})
-        default_t = [t for t in all_types if "theatre" in t.lower() or "טעאַטער" in t]
-        sel_types = st.multiselect("Org type", all_types, default=default_t)
-    with fc2:
-        status_f = st.segmented_control(
-            "Status", ["All", "Unreviewed", "Confirmed", "Geocoded", "Generic", "Exploded"],
-            default="All",
-        )
-    with fc3:
-        sort_m = st.selectbox("Sort", ["Mentions ↓", "Settlements ↓", "Alphabetical"])
+    all_types = sorted({r["org_type"] for r in pool if r["org_type"].strip()})
+    default_t = [t for t in all_types if "theatre" in t.lower() or "טעאַטער" in t]
+    sel_types = st.multiselect("Org type", all_types, default=default_t, key=f"types_{tab_key}")
 
-    show_sub = st.checkbox("Show sub-clusters (from exploded parents)", value=False)
+    status_f = st.segmented_control(
+        "Status", ["All", "Unreviewed", "Confirmed", "Geocoded"],
+        default="All", key=f"status_{tab_key}",
+    )
+    sort_m = st.selectbox("Sort", ["Mentions ↓", "Settlements ↓", "Alphabetical"],
+                          key=f"sort_{tab_key}")
 
-    visible = rows
+    visible = pool
     if sel_types:
         visible = [r for r in visible if r["org_type"] in sel_types]
-    if not show_sub:
-        visible = [r for r in visible if not r.get("parent_cluster_id")]
 
     STATUS_MAP = {
         "Unreviewed": lambda r: not _status(r),
         "Confirmed":  lambda r: _status(r) in ("✏️ confirmed", "📍 geocoded"),
         "Geocoded":   lambda r: bool(r.get("lat") and r.get("lon")),
-        "Generic":    lambda r: r.get("is_generic") == "TRUE",
-        "Exploded":   lambda r: r.get("is_exploded") == "TRUE",
     }
     if status_f in STATUS_MAP:
         visible = [r for r in visible if STATUS_MAP[status_f](r)]
@@ -223,50 +310,53 @@ def render():
         visible = sorted(visible, key=lambda r: -int(r.get("mentions", 0) or 0))
 
     # ── Metrics ───────────────────────────────────────────────────────────────
-    m1,m2,m3,m4,m5 = st.columns(5)
+    m1, m2, m3 = st.columns(3)
     m1.metric("Showing", len(visible))
-    m2.metric("🔶 Generic",  sum(1 for r in visible if r.get("is_generic")  == "TRUE"))
-    m3.metric("💥 Exploded", sum(1 for r in visible if r.get("is_exploded") == "TRUE"))
-    m4.metric("📍 Geocoded", sum(1 for r in visible if r.get("lat") and r.get("lon")))
-    reviewed = sum(1 for r in visible if _status(r) and _status(r) != "💥 exploded")
-    if visible: m5.progress(reviewed / len(visible), text=f"{reviewed}/{len(visible)}")
+    m2.metric("📍 Geocoded", sum(1 for r in visible if r.get("lat") and r.get("lon")))
+    reviewed = sum(1 for r in visible if _status(r) and _status(r) not in ("💥 exploded",))
+    if visible:
+        m3.progress(reviewed / len(visible), text=f"{reviewed}/{len(visible)}")
 
-    st.divider()
+    if read_only_hint:
+        st.caption("Click a row to open its detail and un-generic it if needed.")
+
     if not visible:
         st.info("No organizations match the current filter.")
         return
 
     # ── Pagination ────────────────────────────────────────────────────────────
     total_pages = max(1, (len(visible) + PAGE_SIZE - 1) // PAGE_SIZE)
-    fhash = f"{sel_types}|{status_f}|{sort_m}|{show_sub}"
-    if st.session_state.get("addr_filter_hash") != fhash:
-        st.session_state.addr_page = 0
-        st.session_state.addr_filter_hash = fhash
+    fhash = f"{sel_types}|{status_f}|{sort_m}|{tab_key}"
+    page_key   = f"addr_page_{tab_key}"
+    hash_key   = f"addr_fhash_{tab_key}"
+    if st.session_state.get(hash_key) != fhash:
+        st.session_state[page_key] = 0
+        st.session_state[hash_key] = fhash
         st.session_state.addr_selected = None
 
-    page = st.session_state.get("addr_page", 0)
+    page = st.session_state.get(page_key, 0)
     page_rows = visible[page * PAGE_SIZE : (page + 1) * PAGE_SIZE]
 
     pc1, pc2, pc3 = st.columns([1, 4, 1])
     with pc1:
-        if st.button("◀", disabled=page==0, key="addr_prev"):
-            st.session_state.addr_page -= 1
+        if st.button("◀", disabled=page==0, key=f"prev_{tab_key}"):
+            st.session_state[page_key] -= 1
             st.session_state.addr_selected = None
             st.rerun()
     with pc2:
         st.caption(f"Page {page+1}/{total_pages}  ({len(visible)} orgs)")
     with pc3:
-        if st.button("▶", disabled=page>=total_pages-1, key="addr_next"):
-            st.session_state.addr_page += 1
+        if st.button("▶", disabled=page>=total_pages-1, key=f"next_{tab_key}"):
+            st.session_state[page_key] += 1
             st.session_state.addr_selected = None
             st.rerun()
 
-    # ── Table ─────────────────────────────────────────────────────────────────
+    # ── Buttons ───────────────────────────────────────────────────────────────
     sel_cid = st.session_state.get("addr_selected")
     for row in page_rows:
         cid    = row["cluster_id"]
         status = _status(row)
-        indent = "　" if row.get("parent_cluster_id") else ""  # indent sub-clusters
+        indent = "　" if row.get("parent_cluster_id") else ""
         label  = (
             f"{indent}{status+'  ' if status else ''}"
             f"**{row.get('canonical_yiddish','') or cid}**  "
@@ -274,17 +364,10 @@ def render():
             f"{row.get('mentions','?')}×  "
             f"{row.get('n_settlements','?')} cities"
         )
-        if st.button(label, key=f"sel_{cid}", use_container_width=True,
+        if st.button(label, key=f"sel_{tab_key}_{cid}", use_container_width=True,
                      type="primary" if sel_cid==cid else "secondary"):
             st.session_state.addr_selected = None if sel_cid==cid else cid
             st.rerun()
-
-    # ── Detail panel ──────────────────────────────────────────────────────────
-    if st.session_state.get("addr_selected"):
-        sel_row = next((r for r in rows if r["cluster_id"]==st.session_state.addr_selected), None)
-        if sel_row:
-            st.divider()
-            _render_detail(headers, rows, sel_row, samples)
 
 
 # ── Detail panel ─────────────────────────────────────────────────────────────
@@ -328,10 +411,9 @@ def _render_detail(headers, rows, row, samples):
     if settlements or addresses or venues:
         st.markdown("**Extracted location data** — click a settlement to see sample texts:")
 
-        # Settlement chips
         if settlements:
             chip_cols = st.columns(min(len(settlements), 6))
-            for i, s in enumerate(settlements[:18]):  # cap display at 18
+            for i, s in enumerate(settlements[:18]):
                 count = len(cluster_samples.get(s, []))
                 label = f"{'📍 ' if count else ''}{s}"
                 with chip_cols[i % len(chip_cols)]:
@@ -344,13 +426,11 @@ def _render_detail(headers, rows, row, samples):
             if len(settlements) > 18:
                 st.caption(f"… and {len(settlements)-18} more settlements")
 
-        # Active chip → sample texts
         active_s = st.session_state.get(f"chip_active_{cid}")
         if active_s:
             _render_samples(active_s, cluster_samples.get(active_s, []),
-                            cluster_samples.get("", []))  # "" = no settlement recorded
+                            cluster_samples.get("", []))
 
-        # Addresses / venues summary
         if addresses:
             st.markdown("*Addresses:* " + "  ·  ".join(addresses[:8]))
         if venues and set(venues) - set(addresses):
@@ -373,7 +453,6 @@ def _render_detail(headers, rows, row, samples):
 
     # ── Confirmed location (only for non-generic, non-exploded) ───────────────
     if not new_generic:
-        # Center-aligned labels + RTL-friendly inputs with a subtle tint.
         st.markdown("""<style>
 input[aria-label="Settlement"],
 input[aria-label="Address (original script)"] {
@@ -409,8 +488,6 @@ input[aria-label="Address (original script)"] {
                                     value=row.get("confirmed_address_romanized",""),
                                     key=f"roman_{cid}", placeholder="e.g. Nalewki 3, Warsaw")
 
-        # Seed lat/lon from saved row, then allow session_state to override
-        # (session_state holds freshly geocoded values that haven't been saved yet).
         _lat_key, _lon_key = f"_gc_lat_{cid}", f"_gc_lon_{cid}"
         new_lat = st.session_state.get(_lat_key) or row.get("lat", "")
         new_lon = st.session_state.get(_lon_key) or row.get("lon", "")
@@ -451,7 +528,6 @@ input[aria-label="Address (original script)"] {
         rows[row_idx]["reviewer_notes"]               = new_note
         save_orgs(headers, rows)
         load_orgs.clear()
-        # Clear pending geocode values now that they're saved.
         st.session_state.pop(f"_gc_lat_{cid}", None)
         st.session_state.pop(f"_gc_lon_{cid}", None)
         st.rerun()
@@ -460,29 +536,41 @@ input[aria-label="Address (original script)"] {
 # ── Sample text panel ─────────────────────────────────────────────────────────
 
 def _render_samples(settlement: str, samples: list, no_settle_samples: list):
-    """Show up to 3 sample sentences for a given settlement."""
+    """Show up to 3 sample sentences for a given settlement, each with a full-entry expander."""
     all_samples = samples or no_settle_samples
     if not all_samples:
         st.caption(f"No sample texts found for '{settlement}'.")
         return
     st.markdown(f"**Sample texts for `{settlement}`:**")
     for heading, sent, fle, xid in all_samples[:3]:
-        parts = []
         if heading:
-            parts.append(f"*{heading}*")
+            st.markdown(f"*{heading}*")
         if sent:
-            parts.append(f"<div dir='rtl' style='font-size:0.9em; border-left:3px solid #93c5fd; padding-left:8px; margin:4px 0'>{sent}</div>")
-        if parts:
-            st.markdown("\n".join(parts), unsafe_allow_html=True)
+            st.markdown(
+                f"<div dir='rtl' style='font-size:0.9em; border-left:3px solid #93c5fd; "
+                f"padding-left:8px; margin:4px 0'>{sent}</div>",
+                unsafe_allow_html=True,
+            )
+        if xid and fle:
+            with st.expander(f"📄 Full entry ({xid})", expanded=False):
+                entry_text = get_entry_text(fle, xid)
+                if entry_text:
+                    st.markdown(
+                        f"<div dir='rtl' style='font-size:0.88em; white-space:pre-wrap; "
+                        f"line-height:1.6;'>{entry_text}</div>",
+                        unsafe_allow_html=True,
+                    )
+                else:
+                    st.caption(f"Entry not found ({_JSON_TO_XML.get(fle, fle)}).")
 
 
 # ── Explode panel ─────────────────────────────────────────────────────────────
 
 def _render_explode_panel(headers, rows, parent_row, parent_idx, settlements, countries, is_generic):
-    """Preview and confirm explode/split into per-settlement sub-clusters."""
+    """Preview and confirm explode/split into per-settlement sub-clusters, with optional
+    refined split that lets the reviewer assign individual mentions to named groups."""
     cid = parent_row["cluster_id"]
 
-    # Load source rows for this cluster from clustered TSV to get per-settlement counts
     @st.cache_data(show_spinner=False)
     def _source_rows(cluster_id, mtime):
         result = []
@@ -493,24 +581,168 @@ def _render_explode_panel(headers, rows, parent_row, parent_idx, settlements, co
         return result
 
     source = _source_rows(cid, get_mtime(CLUSTER_FILE))
-    candidates = _build_explode_candidates(cid, source)
 
-    st.markdown(f"**{len(candidates)} proposed sub-clusters** — review and confirm names:")
-    st.caption("Each will become an independent entry. Sub-clusters with unknown location are grouped as '(unknown)'.")
+    # Toggle between auto-explode and refined split
+    refined = st.toggle("🔬 Refined split — assign individual mentions to groups",
+                        key=f"refined_toggle_{cid}", value=False)
 
-    # Editable name per candidate
-    sub_names = {}
-    for i, (settle, g) in enumerate(candidates):
-        col_a, col_b = st.columns([2,1])
-        default_name = f"{parent_row.get('canonical_yiddish','')} ({settle})" if settle != "(unknown)" else parent_row.get("canonical_yiddish","")
-        sub_names[settle] = col_a.text_input(
-            f"Name for '{settle}'", value=default_name, key=f"subname_{cid}_{i}"
+    if refined:
+        _render_refined_split(headers, rows, parent_row, parent_idx, source)
+    else:
+        # ── Auto-explode by settlement ────────────────────────────────────────
+        candidates = _build_explode_candidates(cid, source)
+        st.markdown(f"**{len(candidates)} proposed sub-clusters** — review and confirm names:")
+        st.caption("Each will become an independent entry. Sub-clusters with unknown location are grouped as '(unknown)'.")
+
+        sub_names = {}
+        for i, (settle, g) in enumerate(candidates):
+            col_a, col_b = st.columns([2,1])
+            default_name = f"{parent_row.get('canonical_yiddish','')} ({settle})" if settle != "(unknown)" else parent_row.get("canonical_yiddish","")
+            sub_names[settle] = col_a.text_input(
+                f"Name for '{settle}'", value=default_name, key=f"subname_{cid}_{i}"
+            )
+            col_b.caption(f"{g['mentions']}× · {', '.join(list(g['addresses'])[:2]) or '—'}")
+
+        st.warning("This will mark the current cluster as exploded and create sub-clusters. This can be undone.")
+        if st.button("✅ Confirm explode", key=f"explode_{cid}", type="primary"):
+            _do_explode(headers, rows, parent_row, parent_idx, candidates, sub_names)
+
+
+def _render_refined_split(headers, rows, parent_row, parent_idx, source):
+    """Per-mention assignment UI for refined splitting into reviewer-named groups."""
+    cid = parent_row["cluster_id"]
+    groups_key  = f"refined_groups_{cid}"
+    assign_key  = f"refined_assign_{cid}"
+
+    # Initialise group names in session state
+    if groups_key not in st.session_state:
+        st.session_state[groups_key] = [
+            f"{parent_row.get('canonical_yiddish', 'Group')} 1",
+            f"{parent_row.get('canonical_yiddish', 'Group')} 2",
+        ]
+    if assign_key not in st.session_state:
+        st.session_state[assign_key] = {}
+
+    group_names: list[str] = st.session_state[groups_key]
+
+    # ── Group name editors ────────────────────────────────────────────────────
+    st.markdown("**Groups:**")
+    new_names = []
+    for gi, gname in enumerate(group_names):
+        new_names.append(
+            st.text_input(f"Group {gi+1} name", value=gname, key=f"gname_{cid}_{gi}")
         )
-        col_b.caption(f"{g['mentions']}× · {', '.join(list(g['addresses'])[:2]) or '—'}")
+    st.session_state[groups_key] = new_names
 
-    st.warning("This will mark the current cluster as exploded and create sub-clusters. This can be undone.")
-    if st.button("✅ Confirm explode", key=f"explode_{cid}", type="primary"):
-        _do_explode(headers, rows, parent_row, parent_idx, candidates, sub_names)
+    if st.button("➕ Add group", key=f"addgrp_{cid}"):
+        st.session_state[groups_key].append(f"Group {len(group_names)+1}")
+        st.rerun()
+
+    st.divider()
+
+    # ── Per-mention assignment ────────────────────────────────────────────────
+    st.markdown(f"**Assign {len(source)} mentions:**")
+    options = new_names + ["— exclude —"]
+    assignments: dict[str, str] = st.session_state[assign_key]
+
+    for idx, src_row in enumerate(source):
+        xid     = src_row.get(_COL_XMLID, "").strip() or str(idx)
+        heading = src_row.get(_COL_HEADING, "").strip()
+        settle  = src_row.get(_COL_SETTLE, "").strip()
+        sent    = src_row.get(_COL_SENTENCE, "").strip()
+
+        col_info, col_sel = st.columns([3, 1])
+        with col_info:
+            label_parts = []
+            if heading: label_parts.append(f"*{heading}*")
+            if settle:  label_parts.append(f"📍 {settle}")
+            st.markdown("  ·  ".join(label_parts) or f"Mention {idx+1}")
+            if sent:
+                st.markdown(
+                    f"<div dir='rtl' style='font-size:0.85em; color:#555; "
+                    f"border-left:3px solid #ccc; padding-left:6px; margin:2px 0'>{sent}</div>",
+                    unsafe_allow_html=True,
+                )
+        with col_sel:
+            current_assign = assignments.get(xid, new_names[0] if new_names else options[0])
+            # Ensure current assignment is still a valid option
+            if current_assign not in options:
+                current_assign = options[0]
+            chosen = st.selectbox(
+                "Assign to", options, index=options.index(current_assign),
+                key=f"assign_{cid}_{idx}", label_visibility="collapsed"
+            )
+            assignments[xid] = chosen
+
+    st.session_state[assign_key] = assignments
+
+    st.divider()
+    st.warning("This will replace the current cluster with the groups below. This can be undone.")
+
+    assigned_counts = collections.Counter(v for v in assignments.values() if v != "— exclude —")
+    for gname in new_names:
+        st.caption(f"**{gname}**: {assigned_counts.get(gname, 0)} mentions")
+
+    if st.button("✅ Confirm refined split", key=f"refined_confirm_{cid}", type="primary"):
+        _do_refined_split(headers, rows, parent_row, parent_idx, source, assignments, new_names)
+
+
+def _do_refined_split(headers, rows, parent_row, parent_idx, source, assignments, group_names):
+    """Build sub-cluster rows from reviewer-assigned mention groups."""
+    cid = parent_row["cluster_id"]
+
+    # Aggregate data per group
+    group_data: dict[str, dict] = {
+        gname: {"mentions": 0, "settlements": set(), "addresses": set(),
+                "venues": set(), "countries": set()}
+        for gname in group_names
+    }
+
+    for idx, src_row in enumerate(source):
+        xid   = src_row.get(_COL_XMLID, "").strip() or str(idx)
+        gname = assignments.get(xid, "— exclude —")
+        if gname == "— exclude —" or gname not in group_data:
+            continue
+        g = group_data[gname]
+        g["mentions"] += 1
+        for col, key in (
+            (_COL_SETTLE, "settlements"), (_COL_ADDR, "addresses"),
+            (_COL_VENUE, "venues"),       (_COL_COUNTRY, "countries"),
+        ):
+            v = src_row.get(col, "").strip()
+            if not _m(v): g[key].add(v)
+
+    new_rows = []
+    for i, gname in enumerate(group_names):
+        g = group_data[gname]
+        if g["mentions"] == 0:
+            continue  # skip empty groups
+        sub = _new_subcluster_row(
+            headers, parent_row,
+            " | ".join(sorted(g["settlements"])) or "(unknown)",
+            g["addresses"], g["venues"], g["countries"],
+            g["mentions"], i,
+        )
+        sub["canonical_yiddish"] = gname
+        sub["n_settlements"] = str(len(g["settlements"]))
+        new_rows.append(sub)
+
+    rows[parent_idx]["is_exploded"] = "TRUE"
+    rows[parent_idx]["is_generic"]  = ""
+
+    insert_at = parent_idx + 1
+    for sub in reversed(new_rows):
+        rows.insert(insert_at, sub)
+
+    save_orgs(headers, rows)
+    load_orgs.clear()
+
+    # Clear refined-split session state for this cluster
+    st.session_state.pop(f"refined_groups_{cid}", None)
+    st.session_state.pop(f"refined_assign_{cid}", None)
+
+    st.success(f"Created {len(new_rows)} sub-clusters.")
+    st.rerun()
 
 
 def _do_explode(headers, rows, parent_row, parent_idx, candidates, sub_names):
@@ -527,7 +759,6 @@ def _do_explode(headers, rows, parent_row, parent_idx, candidates, sub_names):
     rows[parent_idx]["is_exploded"] = "TRUE"
     rows[parent_idx]["is_generic"]  = ""
 
-    # Insert sub-clusters right after parent
     insert_at = parent_idx + 1
     for sub in reversed(new_rows):
         rows.insert(insert_at, sub)
