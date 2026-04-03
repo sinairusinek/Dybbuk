@@ -21,16 +21,19 @@ Reads:   ../organizations/org_addresses_review.tsv
 Writes:  ../organizations/org_addresses_review.tsv  (in-place)
 """
 
-import csv, fcntl, pathlib, sys, time, collections, re
+import csv, fcntl, pathlib, subprocess, sys, time, collections, re
 import xml.etree.ElementTree as ET
 import streamlit as st
 
 csv.field_size_limit(sys.maxsize)
 
-ADDR_FILE     = pathlib.Path(__file__).parents[2] / "organizations" / "org_addresses_review.tsv"
-CLUSTER_FILE  = pathlib.Path(__file__).parents[2] / "organizations" / "organizations_clustered.tsv"
-LEXICON_DIR   = pathlib.Path(__file__).parents[2] / "The Lexicon"
-PAGE_SIZE     = 50
+ADDR_FILE      = pathlib.Path(__file__).parents[2] / "organizations" / "org_addresses_review.tsv"
+CLUSTER_FILE   = pathlib.Path(__file__).parents[2] / "organizations" / "organizations_clustered.tsv"
+CORE_DB_FILE   = pathlib.Path(__file__).parents[2] / "organizations" / "core_db.tsv"
+ALIGN_FILE     = pathlib.Path(__file__).parents[2] / "organizations" / "org_alignment_review.tsv"
+EXTRACT_SCRIPT = pathlib.Path(__file__).parents[2] / "organizations" / "extract_addresses.py"
+LEXICON_DIR    = pathlib.Path(__file__).parents[2] / "The Lexicon"
+PAGE_SIZE      = 50
 
 # Optional map/geocode deps
 try:
@@ -114,6 +117,22 @@ def load_orgs(mtime: float):
         r = csv.DictReader(f, delimiter="\t")
         return list(r.fieldnames), list(r)
 
+
+@st.cache_data(show_spinner=False)
+def load_alignment_index(mtime: float) -> dict[str, dict[str, str]]:
+    if not ALIGN_FILE.exists():
+        return {}
+    out: dict[str, dict[str, str]] = {}
+    with open(ALIGN_FILE, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            cid = row.get("cluster_id", "").strip()
+            if cid:
+                out[cid] = {
+                    "decision": row.get("decision", "").strip(),
+                    "aligned_db_id": row.get("aligned_db_id", "").strip(),
+                }
+    return out
+
 @st.cache_data(show_spinner=False)
 def load_samples(mtime: float) -> dict[str, dict[str, list[tuple[str,str,str,str]]]]:
     """
@@ -149,32 +168,79 @@ def save_orgs(headers, rows):
 
 def get_mtime(path=ADDR_FILE): return path.stat().st_mtime if path.exists() else 0.0
 
+def _maybe_regenerate():
+    """Re-run extract_addresses.py if upstream data (alignment/core DB) changed."""
+    if not EXTRACT_SCRIPT.exists() or not CORE_DB_FILE.exists():
+        return
+    upstream_mtime = max(get_mtime(CORE_DB_FILE), get_mtime(ALIGN_FILE), get_mtime(CLUSTER_FILE))
+    if ADDR_FILE.exists() and get_mtime(ADDR_FILE) >= upstream_mtime:
+        return  # already up to date
+    subprocess.run([sys.executable, str(EXTRACT_SCRIPT)], check=True)
+    load_orgs.clear()  # bust cache so Streamlit picks up the new file
+
 # ── Geocoding ─────────────────────────────────────────────────────────────────
 
 @st.cache_data(show_spinner=False, ttl=3600)
 def geocode(query: str):
-    if not HAS_GEOCODE or not query.strip(): return None
-    try:
-        time.sleep(1)
-        loc = _geocoder.geocode(query, timeout=10)
-        if loc: return round(loc.latitude, 6), round(loc.longitude, 6)
-    except GeocoderTimedOut: pass
+    if not HAS_GEOCODE or not query.strip():
+        return None
+    def _try(q):
+        try:
+            time.sleep(1)
+            loc = _geocoder.geocode(q, timeout=10)
+            if loc:
+                return round(loc.latitude, 6), round(loc.longitude, 6)
+        except GeocoderTimedOut:
+            pass
+        return None
+    # Normalise junction patterns: "X and Y" / "X und Y" / "X corner Y" → "X & Y"
+    normalized = re.sub(r'\b(?:and|und|corner(?:\s+of)?)\b', '&', query, flags=re.IGNORECASE)
+    result = _try(normalized)
+    if result:
+        return result
+    # Fallback: try just the first street + everything after the last comma (city)
+    if '&' in normalized:
+        first_street = normalized.split('&')[0].strip().rstrip(',')
+        parts = normalized.rsplit(',', 1)
+        city_part = parts[-1].strip() if len(parts) > 1 else ''
+        if city_part and first_street:
+            result = _try(f"{first_street}, {city_part}")
+            if result:
+                return result
     return None
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
-def _status(row):
-    if row.get("is_exploded") == "TRUE":   return "💥 exploded"
-    if row.get("is_generic")  == "TRUE":   return "🔶 generic"
-    if row.get("lat") and row.get("lon"):  return "📍 geocoded"
-    if row.get("confirmed_settlement") or row.get("confirmed_address"): return "✏️ confirmed"
-    return ""
+def _geo_status(row):
+    has_geolocated = bool(str(row.get("lat", "")).strip()) and bool(str(row.get("lon", "")).strip())
+    has_address = bool(row.get("confirmed_address", "").strip())
+    has_settlement = bool(row.get("confirmed_settlement", "").strip())
+    has_country = bool(row.get("extracted_countries", "").strip())
+
+    if has_geolocated:
+        return "geolocated", "Geolocated", "#2563eb", "🌐"
+    if has_address:
+        return "has_address", "Has address", "#2f855a", "🟢"
+    if has_settlement:
+        return "has_settlement", "Has settlement", "#2b6cb0", "🔵"
+    if has_country:
+        return "has_country", "Has country", "#b7791f", "🟡"
+    return "none", "No location", "#718096", "🔴"
+
+
+def _status_badges(row):
+    badges = []
+    if row.get("is_exploded") == "TRUE":
+        badges.append("💥 exploded")
+    if row.get("is_generic") == "TRUE":
+        badges.append("🔶 generic")
+    return badges
 
 def _new_subcluster_row(headers, parent, settlement, addresses, venues, countries, mentions, idx):
-    """Build one sub-cluster row for the explode/split operation."""
+    """Build one sub-entry row for the explode/split operation."""
     empty = {h: "" for h in headers}
     empty.update({
-        "cluster_id":           f"{parent['cluster_id']}_X{idx:02d}",
+        "db_id":                f"{parent['db_id']}_X{idx:02d}",
         "canonical_yiddish":    parent["canonical_yiddish"],
         "org_type":             parent["org_type"],
         "mentions":             str(mentions),
@@ -185,8 +251,9 @@ def _new_subcluster_row(headers, parent, settlement, addresses, venues, countrie
         "extracted_countries":  " | ".join(sorted(countries)),
         "is_generic":           "",
         "is_exploded":          "",
-        "parent_cluster_id":    parent["cluster_id"],
+        "parent_db_id":         parent["db_id"],
         "confirmed_settlement": settlement,
+        "confirmed_settlement_yiddish": settlement,
     })
     return empty
 
@@ -211,13 +278,16 @@ def _build_explode_candidates(parent_cid, all_source_rows):
 # ── Main render ───────────────────────────────────────────────────────────────
 
 def render():
-    st.header("A2 · Org Address Review")
+    st.header("Geo Cards")
+
+    if not CLUSTER_FILE.exists():
+        st.error(f"`{CLUSTER_FILE}` not found — run `cluster_orgs.py` first.")
+        return
+
+    _maybe_regenerate()
 
     if not ADDR_FILE.exists():
         st.error(f"`{ADDR_FILE}` not found — run `extract_addresses.py` first.")
-        return
-    if not CLUSTER_FILE.exists():
-        st.error(f"`{CLUSTER_FILE}` not found — run `cluster_orgs.py` first.")
         return
 
     mtime_addr    = get_mtime(ADDR_FILE)
@@ -225,82 +295,93 @@ def render():
     headers, rows = load_orgs(mtime_addr)
     samples       = load_samples(mtime_cluster)
 
-    # ── Two-column layout ─────────────────────────────────────────────────────
-    left_col, right_col = st.columns([1, 1.8], gap="large")
-
-    with left_col:
+    sel_cid = st.session_state.get("addr_selected")
+    if not sel_cid:
+        st.markdown("### Cards")
         _render_list(headers, rows, samples)
+        return
 
-    with right_col:
-        sel_cid = st.session_state.get("addr_selected")
-        if sel_cid:
-            sel_row = next((r for r in rows if r["cluster_id"] == sel_cid), None)
-            if sel_row:
-                _render_detail(headers, rows, sel_row, samples)
-            else:
-                st.session_state.addr_selected = None
-                st.info("Select an organization from the list.")
-        else:
-            st.info("Select an organization from the list.")
+    sel_row = next((r for r in rows if r["db_id"] == sel_cid), None)
+    if not sel_row:
+        st.session_state.addr_selected = None
+        st.rerun()
+
+    visible_ids = st.session_state.get("addr_visible_ids_geo", [])
+    try:
+        sel_idx = visible_ids.index(sel_cid)
+    except ValueError:
+        sel_idx = -1
+
+    nav_col1, nav_col2, nav_col3, nav_col4 = st.columns([1.2, 0.8, 3.2, 0.8])
+    if nav_col1.button("← Back to cards", key="back_to_cards"):
+        st.session_state.addr_selected = None
+        st.rerun()
+    if nav_col2.button("←", key="geo_prev_entity", disabled=sel_idx <= 0):
+        prev_idx = sel_idx - 1
+        st.session_state.addr_selected = visible_ids[prev_idx]
+        st.session_state["addr_page_geo"] = prev_idx // PAGE_SIZE
+        st.rerun()
+    nav_col3.markdown("### Selected Entity")
+    if nav_col4.button("→", key="geo_next_entity", disabled=sel_idx < 0 or sel_idx >= len(visible_ids) - 1):
+        next_idx = sel_idx + 1
+        st.session_state.addr_selected = visible_ids[next_idx]
+        st.session_state["addr_page_geo"] = next_idx // PAGE_SIZE
+        st.rerun()
+    _render_detail(headers, rows, sel_row, samples)
 
 
 # ── List panel ────────────────────────────────────────────────────────────────
 
 def _render_list(headers, rows, samples):
-    # Partition rows into three buckets (before any filtering):
-    #   review  — normal orgs (not generic, not exploded parent, not sub-cluster)
-    #   sub     — sub-clusters (have parent_cluster_id)
-    #   generic — confirmed generic labels
-    # Exploded parents are excluded from both tabs (they still live in the TSV
-    # so un-explode can restore them, but they add no review value).
-    review_rows  = [r for r in rows
-                    if r.get("is_generic") != "TRUE"
-                    and not r.get("parent_cluster_id")
-                    and r.get("is_exploded") != "TRUE"]
-    sub_rows     = [r for r in rows if r.get("parent_cluster_id")]
-    generic_rows = [r for r in rows if r.get("is_generic") == "TRUE"]
-
-    tab_review, tab_generic = st.tabs([
-        f"Review ({len(review_rows) + len(sub_rows)})",
-        f"Generic ({len(generic_rows)})",
-    ])
-
-    with tab_review:
-        _render_tab(headers, review_rows + sub_rows, tab_key="rev")
-
-    with tab_generic:
-        _render_tab(headers, generic_rows, tab_key="gen", read_only_hint=True)
+    pool = [r for r in rows if r.get("is_exploded") != "TRUE"]
+    _render_tab(headers, pool, tab_key="geo")
 
 
 def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
-    """Shared filter + pagination + button table for one tab."""
+    """Card-grid queue with geolocation color coding and filters."""
     if not pool:
         st.info("Nothing here yet.")
         return
 
-    # ── Filters ───────────────────────────────────────────────────────────────
     all_types = sorted({r["org_type"] for r in pool if r["org_type"].strip()})
-    default_t = [t for t in all_types if "theatre" in t.lower() or "טעאַטער" in t]
-    sel_types = st.multiselect("Org type", all_types, default=default_t, key=f"types_{tab_key}")
+    col_f1, col_f2, col_f3 = st.columns([2, 1.2, 1])
+    with col_f1:
+        name_q = st.text_input("Search name", key=f"name_q_{tab_key}")
+    with col_f2:
+        status_f = st.selectbox(
+            "Geo status",
+            ["All", "Geolocated", "Has address", "Has settlement", "Has country", "No location"],
+            key=f"status_{tab_key}",
+        )
+    with col_f3:
+        sort_m = st.selectbox("Sort", ["Mentions ↓", "Settlements ↓", "Alphabetical"], key=f"sort_{tab_key}")
 
-    status_f = st.segmented_control(
-        "Status", ["All", "Unreviewed", "Confirmed", "Geocoded"],
-        default="All", key=f"status_{tab_key}",
-    )
-    sort_m = st.selectbox("Sort", ["Mentions ↓", "Settlements ↓", "Alphabetical"],
-                          key=f"sort_{tab_key}")
+    sel_types = st.multiselect("Org type", all_types, key=f"types_{tab_key}")
+    tcol1, tcol2 = st.columns(2)
+    show_generic = tcol1.toggle("Include generic", value=True, key=f"generic_{tab_key}")
+    show_sub = tcol2.toggle("Include sub-clusters", value=True, key=f"sub_{tab_key}")
 
     visible = pool
     if sel_types:
         visible = [r for r in visible if r["org_type"] in sel_types]
+    if name_q.strip():
+        q = name_q.strip().lower()
+        visible = [r for r in visible if q in (r.get("canonical_yiddish", "").lower())]
+    if not show_generic:
+        visible = [r for r in visible if r.get("is_generic") != "TRUE"]
+    if not show_sub:
+        visible = [r for r in visible if not r.get("parent_db_id")]
 
-    STATUS_MAP = {
-        "Unreviewed": lambda r: not _status(r),
-        "Confirmed":  lambda r: _status(r) in ("✏️ confirmed", "📍 geocoded"),
-        "Geocoded":   lambda r: bool(r.get("lat") and r.get("lon")),
+    status_map = {
+        "Geolocated": "geolocated",
+        "Has address": "has_address",
+        "Has settlement": "has_settlement",
+        "Has country": "has_country",
+        "No location": "none",
     }
-    if status_f in STATUS_MAP:
-        visible = [r for r in visible if STATUS_MAP[status_f](r)]
+    if status_f in status_map:
+        wanted = status_map[status_f]
+        visible = [r for r in visible if _geo_status(r)[0] == wanted]
 
     if sort_m == "Settlements ↓":
         visible = sorted(visible, key=lambda r: -int(r.get("n_settlements", 0) or 0))
@@ -309,13 +390,16 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
     else:
         visible = sorted(visible, key=lambda r: -int(r.get("mentions", 0) or 0))
 
+    st.session_state[f"addr_visible_ids_{tab_key}"] = [r["db_id"] for r in visible]
+
     # ── Metrics ───────────────────────────────────────────────────────────────
-    m1, m2, m3 = st.columns(3)
+    m1, m2, m3, m4 = st.columns(4)
     m1.metric("Showing", len(visible))
-    m2.metric("📍 Geocoded", sum(1 for r in visible if r.get("lat") and r.get("lon")))
-    reviewed = sum(1 for r in visible if _status(r) and _status(r) not in ("💥 exploded",))
+    m2.metric("🌐 Geolocated", sum(1 for r in visible if _geo_status(r)[0] == "geolocated"))
+    m3.metric("🟢 Has address", sum(1 for r in visible if _geo_status(r)[0] == "has_address"))
+    reviewed = sum(1 for r in visible if _geo_status(r)[0] != "none")
     if visible:
-        m3.progress(reviewed / len(visible), text=f"{reviewed}/{len(visible)}")
+        m4.progress(reviewed / len(visible), text=f"{reviewed}/{len(visible)}")
 
     if read_only_hint:
         st.caption("Click a row to open its detail and un-generic it if needed.")
@@ -351,38 +435,97 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
             st.session_state.addr_selected = None
             st.rerun()
 
-    # ── Buttons ───────────────────────────────────────────────────────────────
+    # ── Cards ─────────────────────────────────────────────────────────────────
     sel_cid = st.session_state.get("addr_selected")
+    grid_cols = st.columns(3)
+    col_idx = 0
     for row in page_rows:
-        cid    = row["cluster_id"]
-        status = _status(row)
-        indent = "　" if row.get("parent_cluster_id") else ""
-        label  = (
-            f"{indent}{status+'  ' if status else ''}"
-            f"**{row.get('canonical_yiddish','') or cid}**  "
-            f"`{row.get('org_type','')}` "
-            f"{row.get('mentions','?')}×  "
-            f"{row.get('n_settlements','?')} cities"
-        )
-        if st.button(label, key=f"sel_{tab_key}_{cid}", use_container_width=True,
-                     type="primary" if sel_cid==cid else "secondary"):
-            st.session_state.addr_selected = None if sel_cid==cid else cid
-            st.rerun()
+        cid = row["db_id"]
+        name = row.get("canonical_yiddish", "") or cid
+        geo_key, geo_label, geo_color, geo_icon = _geo_status(row)
+        badges = _status_badges(row)
+        badge_txt = " · ".join(badges)
+        sub_hint = f"sub of {row.get('parent_db_id')}" if row.get("parent_db_id") else ""
+
+        with grid_cols[col_idx]:
+            st.markdown(
+                f"<div style='border-left:6px solid {geo_color}; padding:8px 10px; border-radius:6px; background:#f8fafc;'>"
+                f"<div dir='rtl' style='font-size:1.05em; font-weight:700'>{name}</div>"
+                f"<div style='font-size:0.85em; color:#475569'>{geo_icon} {geo_label}</div>"
+                f"<div style='font-size:0.82em; color:#64748b'>{row.get('org_type','')} · {row.get('mentions','?')} mentions · {row.get('n_settlements','?')} settlements</div>"
+                f"<div style='font-size:0.8em; color:#64748b'>{badge_txt or sub_hint}</div>"
+                f"</div>",
+                unsafe_allow_html=True,
+            )
+            if st.button("Open card", key=f"sel_{tab_key}_{cid}", use_container_width=True,
+                         type="primary" if sel_cid == cid else "secondary"):
+                st.session_state.addr_selected = None if sel_cid == cid else cid
+                st.rerun()
+
+        col_idx = (col_idx + 1) % 3
 
 
 # ── Detail panel ─────────────────────────────────────────────────────────────
 
 def _render_detail(headers, rows, row, samples):
-    cid      = row["cluster_id"]
-    row_idx  = next((i for i,r in enumerate(rows) if r["cluster_id"]==cid), None)
+    cid      = row["db_id"]
+    row_idx  = next((i for i,r in enumerate(rows) if r["db_id"]==cid), None)
     canonical = row.get("canonical_yiddish","") or cid
+    align_index = load_alignment_index(get_mtime(ALIGN_FILE))
+    linked_cids = _split(row.get("linked_cluster_ids", ""))
+    linked_a1_cid = next((x for x in linked_cids if x in align_index), "")
 
-    st.subheader(canonical)
-    st.caption(
-        f"{row.get('org_type','')} · {row.get('mentions','?')} mentions · "
-        f"{row.get('n_settlements','?')} distinct settlements"
-        + (f" · sub-cluster of `{row['parent_cluster_id']}`" if row.get("parent_cluster_id") else "")
-    )
+    new_name = st.text_input(
+        "Entity name",
+        value=canonical,
+        key=f"entity_name_{cid}",
+        placeholder="Edit the organization/entity name",
+    ).strip()
+
+    settlements = _split(row.get("extracted_settlements",""))
+    addresses   = _split(row.get("extracted_addresses",""))
+    venues      = _split(row.get("extracted_venues",""))
+    countries   = _split(row.get("extracted_countries",""))
+
+    # Merge samples from all linked clusters for this DB entity
+    cluster_samples: dict[str, list] = {}
+    for _lcid in linked_cids:
+        for _settle, _slist in samples.get(_lcid, {}).items():
+            cluster_samples.setdefault(_settle, []).extend(_slist)
+
+    all_samples = []
+    for settle_key, sample_list in cluster_samples.items():
+        for sample in sample_list:
+            all_samples.append((settle_key, sample))
+
+    show_samples_key = f"show_entity_samples_{cid}"
+    title_col, sample_col = st.columns([4, 1.4])
+    with title_col:
+        st.subheader(new_name or canonical)
+        st.caption(
+            f"{row.get('org_type','')} · {row.get('mentions','?')} mentions · "
+            f"{row.get('n_settlements','?')} distinct settlements"
+            + (f" · sub-entry of `{row['parent_db_id']}`" if row.get("parent_db_id") else "")
+        )
+    with sample_col:
+        show_samples = st.session_state.get(show_samples_key, False)
+        sample_label = "Hide sample texts" if show_samples else "Click to see sample texts"
+        if st.button(sample_label, key=f"toggle_samples_{cid}", disabled=not all_samples, use_container_width=True):
+            st.session_state[show_samples_key] = not show_samples
+            st.rerun()
+
+    if st.session_state.get(show_samples_key, False) and all_samples:
+        _render_all_samples(all_samples, show_title=True)
+
+    if linked_a1_cid:
+        a1_state = align_index.get(linked_a1_cid, {})
+        a1_decision = a1_state.get("decision", "") or "Undecided"
+        nav_col1, nav_col2 = st.columns([3, 2])
+        nav_col1.caption(f"Linked A1 cluster: {linked_a1_cid} · status: {a1_decision}")
+        if nav_col2.button("Open in Entity Review", key=f"open-a1-{cid}"):
+            st.session_state["review_selected_cid"] = linked_a1_cid
+            st.session_state["nav_view_target"] = "Entity Review"
+            st.rerun()
 
     is_exploded = row.get("is_exploded") == "TRUE"
     if is_exploded:
@@ -400,16 +543,11 @@ def _render_detail(headers, rows, row, samples):
              "Use 'Explode' to split into per-city candidates."
     )
 
-    # ── Extracted location chips with sample-text toggle ─────────────────────
-    settlements = _split(row.get("extracted_settlements",""))
-    addresses   = _split(row.get("extracted_addresses",""))
-    venues      = _split(row.get("extracted_venues",""))
-    countries   = _split(row.get("extracted_countries",""))
-
-    cluster_samples = samples.get(cid, {})
-
     if settlements or addresses or venues:
-        st.markdown("**Extracted location data** — click a settlement to see sample texts:")
+        if settlements:
+            st.markdown("**Extracted location data** — click a settlement to see sample texts:")
+        else:
+            st.markdown("**Extracted location data**")
 
         if settlements:
             chip_cols = st.columns(min(len(settlements), 6))
@@ -430,11 +568,17 @@ def _render_detail(headers, rows, row, samples):
         if active_s:
             _render_samples(active_s, cluster_samples.get(active_s, []),
                             cluster_samples.get("", []))
+        elif all_samples:
+            st.caption("No settlement selected — showing mixed entry samples.")
+            _render_all_samples(all_samples, show_title=False)
 
         if addresses:
             st.markdown("*Addresses:* " + "  ·  ".join(addresses[:8]))
         if venues and set(venues) - set(addresses):
             st.markdown("*Venues:* " + "  ·  ".join(v for v in venues[:6] if v not in addresses))
+    elif all_samples:
+        st.markdown("**Entry context samples**")
+        _render_all_samples(all_samples, show_title=False)
 
     st.divider()
 
@@ -483,10 +627,25 @@ input[aria-label="Address (original script)"] {
                 key=f"addr_{cid}", label_visibility="collapsed",
             )
 
+        y1, y2 = st.columns(2)
+        with y1:
+            st.markdown(
+                "<p style='text-align:center;font-weight:600;margin-bottom:0.2rem'>Settlement (Yiddish)</p>",
+                unsafe_allow_html=True,
+            )
+            new_settle_yid = st.text_input(
+                "Settlement (Yiddish)",
+                value=row.get("confirmed_settlement_yiddish", row.get("confirmed_settlement", "")),
+                key=f"settle_yid_{cid}",
+                label_visibility="collapsed",
+            )
+        with y2:
+            st.caption("Romanized settlement in 'Settlement', Yiddish form here.")
+
         gc1, gc2 = st.columns([3,1])
         new_roman = gc1.text_input("Romanized address for geocoding",
                                     value=row.get("confirmed_address_romanized",""),
-                                    key=f"roman_{cid}", placeholder="e.g. Nalewki 3, Warsaw")
+                                    key=f"roman_{cid}", placeholder="Street name and house number, City")
 
         _lat_key, _lon_key = f"_gc_lat_{cid}", f"_gc_lon_{cid}"
         new_lat = st.session_state.get(_lat_key) or row.get("lat", "")
@@ -507,20 +666,26 @@ input[aria-label="Address (original script)"] {
                         st.warning("Not found — try a more specific romanized address.")
 
         if new_lat and new_lon and HAS_MAP:
-            _render_map(cid, canonical, new_lat, new_lon)
+            dragged = _render_map(cid, canonical, new_lat, new_lon)
+            if dragged:
+                new_lat = st.session_state[_lat_key] = str(dragged[0])
+                new_lon = st.session_state[_lon_key] = str(dragged[1])
             lc3, lc4 = st.columns(2)
             new_lat = lc3.text_input("Lat", value=new_lat, key=f"lat_{cid}")
             new_lon = lc4.text_input("Lon", value=new_lon, key=f"lon_{cid}")
     else:
-        new_settle = new_addr = new_roman = new_lat = new_lon = ""
+        new_settle = new_settle_yid = new_addr = new_roman = new_lat = new_lon = ""
 
     new_note = st.text_input("Notes", value=row.get("reviewer_notes",""),
                               key=f"note_{cid}", placeholder="Notes (optional)")
 
     # ── Save ──────────────────────────────────────────────────────────────────
     if st.button("💾 Save", key=f"save_{cid}", type="primary") and row_idx is not None:
+        rows[row_idx]["canonical_yiddish"]            = new_name or canonical
         rows[row_idx]["is_generic"]                  = "TRUE" if new_generic else ""
         rows[row_idx]["confirmed_settlement"]         = "" if new_generic else new_settle
+        if "confirmed_settlement_yiddish" in headers:
+            rows[row_idx]["confirmed_settlement_yiddish"] = "" if new_generic else new_settle_yid
         rows[row_idx]["confirmed_address"]            = "" if new_generic else new_addr
         rows[row_idx]["confirmed_address_romanized"]  = "" if new_generic else new_roman
         rows[row_idx]["lat"]                          = "" if new_generic else new_lat
@@ -564,12 +729,49 @@ def _render_samples(settlement: str, samples: list, no_settle_samples: list):
                     st.caption(f"Entry not found ({_JSON_TO_XML.get(fle, fle)}).")
 
 
+def _render_all_samples(
+    all_samples: list[tuple[str, tuple[str, str, str, str]]],
+    max_items: int = 4,
+    show_title: bool = True,
+):
+    """Show mixed samples across all settlements when no specific settlement is selected."""
+    if not all_samples:
+        return
+    if show_title:
+        st.markdown("**Sample texts (all locations):**")
+    for settle_key, (heading, sent, fle, xid) in all_samples[:max_items]:
+        if heading:
+            st.markdown(f"*{heading}*")
+        if settle_key:
+            st.caption(f"Settlement: {settle_key}")
+        elif not settle_key:
+            st.caption("Settlement: (not extracted)")
+        if sent:
+            st.markdown(
+                f"<div dir='rtl' style='font-size:0.9em; border-left:3px solid #93c5fd; "
+                f"padding-left:8px; margin:4px 0'>{sent}</div>",
+                unsafe_allow_html=True,
+            )
+        if xid and fle:
+            with st.expander(f"📄 Full entry ({xid})", expanded=False):
+                entry_text = get_entry_text(fle, xid)
+                if entry_text:
+                    st.markdown(
+                        f"<div dir='rtl' style='font-size:0.88em; white-space:pre-wrap; "
+                        f"line-height:1.6;'>{entry_text}</div>",
+                        unsafe_allow_html=True,
+                    )
+                else:
+                    st.caption(f"Entry not found ({_JSON_TO_XML.get(fle, fle)}).")
+
+
 # ── Explode panel ─────────────────────────────────────────────────────────────
 
 def _render_explode_panel(headers, rows, parent_row, parent_idx, settlements, countries, is_generic):
     """Preview and confirm explode/split into per-settlement sub-clusters, with optional
     refined split that lets the reviewer assign individual mentions to named groups."""
-    cid = parent_row["cluster_id"]
+    did = parent_row["db_id"]
+    linked_cids = _split(parent_row.get("linked_cluster_ids", ""))
 
     @st.cache_data(show_spinner=False)
     def _source_rows(cluster_id, mtime):
@@ -580,17 +782,19 @@ def _render_explode_panel(headers, rows, parent_row, parent_idx, settlements, co
                     result.append(r)
         return result
 
-    source = _source_rows(cid, get_mtime(CLUSTER_FILE))
+    source = []
+    for _lcid in linked_cids:
+        source.extend(_source_rows(_lcid, get_mtime(CLUSTER_FILE)))
 
     # Toggle between auto-explode and refined split
     refined = st.toggle("🔬 Refined split — assign individual mentions to groups",
-                        key=f"refined_toggle_{cid}", value=False)
+                        key=f"refined_toggle_{did}", value=False)
 
     if refined:
         _render_refined_split(headers, rows, parent_row, parent_idx, source)
     else:
         # ── Auto-explode by settlement ────────────────────────────────────────
-        candidates = _build_explode_candidates(cid, source)
+        candidates = _build_explode_candidates(did, source)
         st.markdown(f"**{len(candidates)} proposed sub-clusters** — review and confirm names:")
         st.caption("Each will become an independent entry. Sub-clusters with unknown location are grouped as '(unknown)'.")
 
@@ -599,18 +803,18 @@ def _render_explode_panel(headers, rows, parent_row, parent_idx, settlements, co
             col_a, col_b = st.columns([2,1])
             default_name = f"{parent_row.get('canonical_yiddish','')} ({settle})" if settle != "(unknown)" else parent_row.get("canonical_yiddish","")
             sub_names[settle] = col_a.text_input(
-                f"Name for '{settle}'", value=default_name, key=f"subname_{cid}_{i}"
+                f"Name for '{settle}'", value=default_name, key=f"subname_{did}_{i}"
             )
             col_b.caption(f"{g['mentions']}× · {', '.join(list(g['addresses'])[:2]) or '—'}")
 
-        st.warning("This will mark the current cluster as exploded and create sub-clusters. This can be undone.")
-        if st.button("✅ Confirm explode", key=f"explode_{cid}", type="primary"):
+        st.warning("This will mark the current entry as exploded and create sub-entries. This can be undone.")
+        if st.button("✅ Confirm explode", key=f"explode_{did}", type="primary"):
             _do_explode(headers, rows, parent_row, parent_idx, candidates, sub_names)
 
 
 def _render_refined_split(headers, rows, parent_row, parent_idx, source):
     """Per-mention assignment UI for refined splitting into reviewer-named groups."""
-    cid = parent_row["cluster_id"]
+    cid = parent_row["db_id"]
     groups_key  = f"refined_groups_{cid}"
     assign_key  = f"refined_assign_{cid}"
 
@@ -688,8 +892,8 @@ def _render_refined_split(headers, rows, parent_row, parent_idx, source):
 
 
 def _do_refined_split(headers, rows, parent_row, parent_idx, source, assignments, group_names):
-    """Build sub-cluster rows from reviewer-assigned mention groups."""
-    cid = parent_row["cluster_id"]
+    """Build sub-entry rows from reviewer-assigned mention groups."""
+    cid = parent_row["db_id"]
 
     # Aggregate data per group
     group_data: dict[str, dict] = {
@@ -770,10 +974,10 @@ def _do_explode(headers, rows, parent_row, parent_idx, candidates, sub_names):
 
 
 def _do_unexplode(headers, rows, parent_cid, parent_idx):
-    """Remove sub-clusters and clear exploded flag on parent."""
-    rows_out = [r for r in rows if r.get("parent_cluster_id") != parent_cid]
+    """Remove sub-entries and clear exploded flag on parent."""
+    rows_out = [r for r in rows if r.get("parent_db_id") != parent_cid]
     for r in rows_out:
-        if r["cluster_id"] == parent_cid:
+        if r["db_id"] == parent_cid:
             r["is_exploded"] = ""
     save_orgs(headers, rows_out)
     load_orgs.clear()
@@ -783,12 +987,23 @@ def _do_unexplode(headers, rows, parent_cid, parent_idx):
 # ── Map helper ────────────────────────────────────────────────────────────────
 
 def _render_map(cid, label, lat_str, lon_str):
-    if not HAS_MAP: return
+    """Render a folium map with a draggable pin. Returns (lat, lon) if pin was dragged, else None."""
+    if not HAS_MAP:
+        return None
     try:
         lat, lon = float(lat_str), float(lon_str)
-        m = folium.Map(location=[lat,lon], zoom_start=15, tiles="CartoDB positron")
-        folium.Marker([lat,lon], popup=label,
-                      icon=folium.Icon(color="blue", icon="star")).add_to(m)
-        st_folium(m, width=None, height=240, key=f"map_{cid}", returned_objects=[])
+        m = folium.Map(location=[lat, lon], zoom_start=15, tiles="OpenStreetMap")
+        folium.Marker(
+            [lat, lon], popup=label, draggable=True,
+            icon=folium.Icon(color="blue", icon="star"),
+        ).add_to(m)
+        map_data = st_folium(
+            m, width=None, height=300, key=f"map_{cid}",
+            returned_objects=["last_object_clicked"],
+        )
+        if map_data and map_data.get("last_object_clicked"):
+            clicked = map_data["last_object_clicked"]
+            return round(clicked["lat"], 6), round(clicked["lng"], 6)
     except (ValueError, TypeError):
         pass
+    return None
