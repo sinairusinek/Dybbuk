@@ -259,14 +259,26 @@ def _remove_mention(cluster_row_idx: int):
     st.rerun()
 
 def _maybe_regenerate():
-    """Re-run extract_addresses.py if upstream data (alignment/core DB) changed."""
+    """Re-run extract_addresses.py if upstream data (alignment/core DB) changed.
+    Skipped on read-only deployments (e.g. Streamlit Cloud at /mount/src)."""
     if not EXTRACT_SCRIPT.exists() or not CORE_DB_FILE.exists():
+        return
+    # Skip if the file system is read-only (Streamlit Cloud mounts sources as read-only)
+    try:
+        ADDR_FILE.parent.stat()
+        import os
+        if not os.access(str(ADDR_FILE.parent), os.W_OK):
+            return
+    except Exception:
         return
     upstream_mtime = max(get_mtime(CORE_DB_FILE), get_mtime(ALIGN_FILE), get_mtime(CLUSTER_FILE))
     if ADDR_FILE.exists() and get_mtime(ADDR_FILE) >= upstream_mtime:
         return  # already up to date
-    subprocess.run([sys.executable, str(EXTRACT_SCRIPT)], check=True)
-    load_orgs.clear()  # bust cache so Streamlit picks up the new file
+    try:
+        subprocess.run([sys.executable, str(EXTRACT_SCRIPT)], check=True)
+        load_orgs.clear()  # bust cache so Streamlit picks up the new file
+    except Exception:
+        pass  # read-only filesystem — silently skip
 
 # ── Geocoding ─────────────────────────────────────────────────────────────────
 
@@ -479,7 +491,7 @@ def render():
         _render_list(headers, rows, samples)
         return
 
-    sel_row = next((r for r in rows if r["db_id"] == sel_cid), None)
+    sel_row = next((r for r in rows if r.get("db_id") == sel_cid), None)
     if not sel_row:
         st.session_state.addr_selected = None
         st.rerun()
@@ -568,6 +580,7 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
     else:
         visible = sorted(visible, key=lambda r: -int(r.get("mentions", 0) or 0))
 
+    visible = [r for r in visible if r.get("db_id")]
     st.session_state[f"addr_visible_ids_{tab_key}"] = [r["db_id"] for r in visible]
 
     # ── Metrics ───────────────────────────────────────────────────────────────
@@ -647,7 +660,7 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
 
 def _render_detail(headers, rows, row, samples):
     cid      = row["db_id"]
-    row_idx  = next((i for i,r in enumerate(rows) if r["db_id"]==cid), None)
+    row_idx  = next((i for i,r in enumerate(rows) if r.get("db_id")==cid), None)
     canonical = row.get("canonical_yiddish","") or cid
     _, align_rows = load_alignment_rows(get_mtime(ALIGN_FILE))
     align_rows_by_cid = {
@@ -1156,7 +1169,7 @@ def _do_unexplode(headers, rows, parent_cid, parent_idx):
     """Remove sub-entries and clear exploded flag on parent."""
     rows_out = [r for r in rows if r.get("parent_db_id") != parent_cid]
     for r in rows_out:
-        if r["db_id"] == parent_cid:
+        if r.get("db_id") == parent_cid:
             r["is_exploded"] = ""
     save_orgs(headers, rows_out)
     load_orgs.clear()
