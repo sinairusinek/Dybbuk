@@ -1,5 +1,5 @@
 """
-Unified Entity Review.
+Unified Organizations matching.
 
 Combines:
 - A1 Org -> DB alignment workflow (cluster-level decisions)
@@ -627,7 +627,7 @@ def _render_similar_clusters(
 						unsafe_allow_html=True,
 					)
 					hcol1.caption(f"{hcid} · {h_type} · {h_size} mentions")
-					hcol2.link_button("Open ↗", _open_url("Entity Review", hcid),
+					hcol2.link_button("Open ↗", _open_url("Organizations matching", hcid),
 									  )
 
 				# Collect checked clusters and show merge button
@@ -673,7 +673,7 @@ def _render_rtl_style() -> None:
 		div[data-testid="stCaptionContainer"] {
 			text-align: right;
 		}
-		/* ── Entity Review panel palette ─────────────────── */
+		/* ── Organizations matching panel palette ─────────────────── */
 		div[data-testid="stVerticalBlockBorderWrapper"]:has(.panel-samples),
 		div[data-testid="stVerticalBlock"]:has(.panel-samples) {
 			background-color: #F1E5CF;
@@ -721,7 +721,7 @@ def _render_rtl_style() -> None:
 
 
 def render() -> None:
-	st.header("Entity Review")
+	st.header("Organizations matching")
 	_render_rtl_style()
 
 	if not ALIGN_FILE.exists():
@@ -889,7 +889,7 @@ def render() -> None:
 			st.rerun()
 
 		new_entity_name = st.text_input(
-			"Entity name",
+			"Organization name",
 			value=selected.get("canonical_yiddish", "").strip(),
 			key=f"review-name-{selected['cluster_id']}",
 			placeholder="Editable canonical name",
@@ -1046,7 +1046,7 @@ def render() -> None:
 					_db_cur_type = db_rows[_db_row_idx].get("org_type", "").strip().lower()
 					_db_type_idx = _ORG_TYPE_OPTIONS.index(_db_cur_type) if _db_cur_type in _ORG_TYPE_OPTIONS else len(_ORG_TYPE_OPTIONS) - 1
 					new_db_type = st.selectbox(
-						"DB entity type",
+						"DB organization type",
 						_ORG_TYPE_OPTIONS,
 						index=_db_type_idx,
 						key=f"review-db-type-{chosen_db_id}",
@@ -1057,8 +1057,8 @@ def render() -> None:
 						load_core_db.clear()
 						st.rerun()
 				if chosen_db_id in addr_db_ids:
-					st.link_button("Open in Entity Cards ↗",
-								   _open_url("Entity Cards", chosen_db_id))
+					st.link_button("Open in Organization Cards ↗",
+								   _open_url("Organization Cards", chosen_db_id))
 
 		with cand_cluster_col:
 			st.markdown("<div class='panel-cluster-cand'></div>", unsafe_allow_html=True)
@@ -1125,7 +1125,7 @@ def render() -> None:
 			st.session_state.pop(choice_key, None)
 			st.rerun()
 
-		if col2.button("New entity"):
+		if col2.button("New organization"):
 			_ensure_alignment_columns()
 			next_id = _next_db_id(db_rows)
 			db_rows.append(

@@ -320,17 +320,17 @@ def render() -> None:
     st.session_state.a1_selected_cid = selected["cluster_id"]
 
     st.divider()
-    st.markdown("### Selected Entity")
+    st.markdown("### Selected Organization")
 
     with st.container():
         st.subheader(selected.get("canonical_yiddish", ""))
         st.caption(f"Cluster: {selected.get('cluster_id','')} · Type: {selected.get('org_type','')} · Mentions: {selected.get('cluster_size','')}")
 
         new_entity_name = st.text_input(
-            "New entity name",
+            "New organization name",
             value=selected.get("canonical_yiddish", "").strip(),
             key=f"new-name-{selected['cluster_id']}",
-            placeholder="Editable name for creating a new DB entity",
+            placeholder="Editable name for creating a new DB organization",
         ).strip()
 
         variants = _split_pipe(selected.get("name_variants", ""))
@@ -439,8 +439,8 @@ def render() -> None:
                 st.caption(f"Selected DB target: {chosen_db_id}")
 
             if chosen_db_id in addr_db_ids:
-                st.link_button("Open in Entity Cards ↗",
-                               _open_url("Entity Cards", chosen_db_id))
+                st.link_button("Open in Organization Cards ↗",
+                               _open_url("Organization Cards", chosen_db_id))
 
         st.divider()
         notes = st.text_area("Reviewer notes", value=selected.get("reviewer_notes", ""), key=f"notes-{selected['cluster_id']}")
@@ -458,7 +458,7 @@ def render() -> None:
             st.session_state.pop(choice_key, None)
             st.rerun()
 
-        if col2.button("New entity"):
+        if col2.button("New organization"):
             next_id = _next_db_id(db_rows)
             db_rows.append(
                 {

@@ -19,11 +19,23 @@ import xml.etree.ElementTree as ET
 
 import streamlit as st
 
+def _open_url(view: str, entity: str = "") -> str:
+    """Build a deep-link URL for opening a specific view+entity in a new tab."""
+    import urllib.parse
+    params: dict[str, str] = {"view": view}
+    if entity:
+        params["entity"] = entity
+    return "?" + urllib.parse.urlencode(params)
+
 csv.field_size_limit(sys.maxsize)
 
 PAIRS_FILE = (
     pathlib.Path(__file__).parents[2] / "organizations" / "cluster_pairs_review.tsv"
 )
+ALIGN_FILE = (
+    pathlib.Path(__file__).parents[2] / "organizations" / "org_alignment_review.tsv"
+)
+CORE_DB_FILE = pathlib.Path(__file__).parents[2] / "organizations" / "core_db.tsv"
 LEXICON_DIR = pathlib.Path(__file__).parents[2] / "The Lexicon"
 
 TEI_NS = "http://www.tei-c.org/ns/1.0"
@@ -113,6 +125,58 @@ def get_mtime() -> float:
     return PAIRS_FILE.stat().st_mtime if PAIRS_FILE.exists() else 0.0
 
 
+@st.cache_data(show_spinner=False)
+def load_alignment(mtime: float) -> tuple[list[str], list[dict]]:
+    if not ALIGN_FILE.exists():
+        return [], []
+    with open(ALIGN_FILE, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f, delimiter="\t")
+        return list(reader.fieldnames), list(reader)
+
+
+@st.cache_data(show_spinner=False)
+def load_alignment_index(mtime: float) -> dict[str, str]:
+    if not ALIGN_FILE.exists():
+        return {}
+    out: dict[str, str] = {}
+    with open(ALIGN_FILE, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            cid = row.get("cluster_id", "").strip()
+            if cid:
+                out[cid] = row.get("decision", "").strip() or "Undecided"
+    return out
+
+
+def save_alignment(headers: list[str], rows: list[dict]) -> None:
+    lock_path = ALIGN_FILE.with_suffix(".lock")
+    with open(lock_path, "w") as lock_fh:
+        fcntl.flock(lock_fh, fcntl.LOCK_EX)
+        try:
+            with open(ALIGN_FILE, "w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
+                writer.writeheader()
+                writer.writerows(rows)
+        finally:
+            fcntl.flock(lock_fh, fcntl.LOCK_UN)
+
+
+def get_align_mtime() -> float:
+    return ALIGN_FILE.stat().st_mtime if ALIGN_FILE.exists() else 0.0
+
+
+@st.cache_data(show_spinner=False)
+def load_core_db(mtime: float) -> tuple[list[str], list[dict]]:
+    if not CORE_DB_FILE.exists():
+        return [], []
+    with open(CORE_DB_FILE, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f, delimiter="\t")
+        return list(reader.fieldnames), list(reader)
+
+
+def get_core_db_mtime() -> float:
+    return CORE_DB_FILE.stat().st_mtime if CORE_DB_FILE.exists() else 0.0
+
+
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 
@@ -128,11 +192,85 @@ def decision_badge(decision: str) -> str:
     return {"MERGE": "🟢", "SPLIT": "🔴", "DEFER": "🟡", "DESCRIPTIVE": "🔵"}.get(decision, "⬜")
 
 
+_TAG_DB_RE = re.compile(r"\[DB:\s*([^\]]+)\]")
+_TAG_NAME_RE = re.compile(r"\[Name:\s*([^\]]+)\]")
+
+
+def _extract_note_tag(note: str, tag: str) -> str:
+    pattern = _TAG_DB_RE if tag == "DB" else _TAG_NAME_RE
+    m = pattern.search(note or "")
+    return m.group(1).strip() if m else ""
+
+
+def _strip_note_tags(note: str) -> str:
+    cleaned = _TAG_DB_RE.sub("", note or "")
+    cleaned = _TAG_NAME_RE.sub("", cleaned)
+    return re.sub(r"\s+", " ", cleaned).strip()
+
+
+def _build_reviewer_note(base_note: str, db_ref: str = "", entity_name: str = "") -> str:
+    parts = []
+    if db_ref.strip():
+        parts.append(f"[DB: {db_ref.strip()}]")
+    if entity_name.strip():
+        parts.append(f"[Name: {entity_name.strip()}]")
+    if base_note.strip():
+        parts.append(base_note.strip())
+    return " ".join(parts).strip()
+
+
+def _render_alignment_requeue_panel() -> None:
+    """Generic/Uncluster items can be sent back to A1 by clearing decision."""
+    if not ALIGN_FILE.exists():
+        return
+
+    a_headers, a_rows = load_alignment(get_align_mtime())
+    if not a_rows:
+        return
+
+    generic = [r for r in a_rows if r.get("decision", "").strip() == "GENERIC"]
+    uncluster = [r for r in a_rows if r.get("decision", "").strip() == "UNCLUSTER"]
+
+    with st.expander("A1 routing: Generic / Uncluster", expanded=False):
+        st.caption("Send items back to A1 by clearing their decision.")
+        c1, c2 = st.columns(2)
+        c1.metric("Generic", len(generic))
+        c2.metric("Uncluster", len(uncluster))
+
+        t1, t2 = st.tabs(["Generic", "Uncluster"])
+        with t1:
+            for row in generic[:100]:
+                cid = row.get("cluster_id", "")
+                name = row.get("canonical_yiddish", "")
+                cols = st.columns([5, 1])
+                cols[0].write(f"{cid} · {name}")
+                if cols[1].button("Send to A1", key=f"rqg-{cid}"):
+                    row["decision"] = ""
+                    row["aligned_db_id"] = ""
+                    save_alignment(a_headers, a_rows)
+                    load_alignment.clear()
+                    st.rerun()
+        with t2:
+            for row in uncluster[:100]:
+                cid = row.get("cluster_id", "")
+                name = row.get("canonical_yiddish", "")
+                cols = st.columns([5, 1])
+                cols[0].write(f"{cid} · {name}")
+                if cols[1].button("Send to A1", key=f"rqu-{cid}"):
+                    row["decision"] = ""
+                    row["aligned_db_id"] = ""
+                    save_alignment(a_headers, a_rows)
+                    load_alignment.clear()
+                    st.rerun()
+
+
 # ── Main render ───────────────────────────────────────────────────────────────
 
 
 def render() -> None:
     st.header("A2 · Org Cluster Review")
+
+    _render_alignment_requeue_panel()
 
     if not PAIRS_FILE.exists():
         st.error(
@@ -255,6 +393,8 @@ def _render_queue(headers, rows, visible):
     st.divider()
     current = pair.get("decision", "").strip()
     note = pair.get("reviewer_notes", "").strip()
+    saved_name = _extract_note_tag(note, "Name")
+    clean_note = _strip_note_tags(note)
 
     dcol1, dcol2, dcol3, dcol4 = st.columns(4)
     merge_clicked = dcol1.button(
@@ -291,7 +431,13 @@ def _render_queue(headers, rows, visible):
             "Address / venue", value=new_address, key=f"addr_{pair_id}"
         )
 
-    new_note = st.text_input("Notes (optional)", value=note, key=f"note_{pair_id}")
+    new_entity_name = st.text_input(
+        "Merged organization name (optional)",
+        value=saved_name,
+        key=f"ename_{pair_id}",
+        placeholder="Editable canonical name when marking MERGE",
+    ).strip()
+    new_note = st.text_input("Notes (optional)", value=clean_note, key=f"note_{pair_id}")
 
     decision = None
     if merge_clicked:
@@ -304,12 +450,19 @@ def _render_queue(headers, rows, visible):
         decision = "DESCRIPTIVE"
 
     if decision and row_idx is not None:
+        db_ref = st.session_state.get(f"cluster_db_ref_{pair_id}", "").strip()
+        combined_note = _build_reviewer_note(
+            new_note,
+            db_ref=db_ref,
+            entity_name=(new_entity_name if decision == "MERGE" else ""),
+        )
         rows[row_idx]["decision"] = decision
         rows[row_idx]["reviewer_settlement"] = new_settlement if decision == "MERGE" else ""
         rows[row_idx]["reviewer_address"] = new_address if decision == "MERGE" else ""
-        rows[row_idx]["reviewer_notes"] = new_note
+        rows[row_idx]["reviewer_notes"] = combined_note
         save_pairs(headers, rows)
         load_pairs.clear()
+        st.session_state.pop(f"cluster_db_ref_{pair_id}", None)
         if pos < len(visible) - 1:
             st.session_state.queue_pos += 1
         st.rerun()
@@ -321,7 +474,9 @@ def _render_queue(headers, rows, visible):
             loc_parts = " · ".join(p for p in parts if p.strip())
             if loc_parts:
                 loc_info = f" · 📍 {loc_parts}"
-        st.info(f"Current decision: **{decision_badge(current)} {current}**{loc_info}")
+        current_name = _extract_note_tag(note, "Name")
+        name_info = f" · 🏷 {current_name}" if current_name else ""
+        st.info(f"Current decision: **{decision_badge(current)} {current}**{loc_info}{name_info}")
 
 
 # ── Table mode ────────────────────────────────────────────────────────────────
@@ -343,41 +498,45 @@ def _render_table(headers, rows, visible):
                 (i for i, r in enumerate(rows) if r.get("pair_id") == pair_id), None
             )
             note = pair.get("reviewer_notes", "").strip()
+            saved_name = _extract_note_tag(note, "Name")
+            clean_note = _strip_note_tags(note)
             t_settle = st.text_input(
                 "Settlement (if MERGE)", value=pair.get("reviewer_settlement",""), key=f"tsettle_{pair_id}"
             )
             t_addr = st.text_input(
                 "Address / venue (if MERGE)", value=pair.get("reviewer_address",""), key=f"taddr_{pair_id}"
             )
-            new_note = st.text_input("Notes", value=note, key=f"tnote_{pair_id}")
+            new_entity_name = st.text_input(
+                "Merged organization name (optional)",
+                value=saved_name,
+                key=f"tename_{pair_id}",
+                placeholder="Editable canonical name when marking MERGE",
+            ).strip()
+            new_note = st.text_input("Notes", value=clean_note, key=f"tnote_{pair_id}")
             tc1, tc2, tc3, tc4 = st.columns(4)
+            def _save_pair_table(decision, settlement="", address=""):
+                db_ref = st.session_state.get(f"cluster_db_ref_{pair_id}", "").strip()
+                combined_note = _build_reviewer_note(
+                    new_note,
+                    db_ref=db_ref,
+                    entity_name=(new_entity_name if decision == "MERGE" else ""),
+                )
+                rows[row_idx]["decision"] = decision
+                rows[row_idx]["reviewer_settlement"] = settlement
+                rows[row_idx]["reviewer_address"] = address
+                rows[row_idx]["reviewer_notes"] = combined_note
+                save_pairs(headers, rows)
+                load_pairs.clear()
+                st.session_state.pop(f"cluster_db_ref_{pair_id}", None)
+                st.rerun()
             if tc1.button("🟢 MERGE", key=f"tm_{pair_id}") and row_idx is not None:
-                rows[row_idx]["decision"] = "MERGE"
-                rows[row_idx]["reviewer_settlement"] = t_settle
-                rows[row_idx]["reviewer_address"] = t_addr
-                rows[row_idx]["reviewer_notes"] = new_note
-                save_pairs(headers, rows)
-                load_pairs.clear()
-                st.rerun()
+                _save_pair_table("MERGE", t_settle, t_addr)
             if tc2.button("🔴 SPLIT", key=f"ts_{pair_id}") and row_idx is not None:
-                rows[row_idx]["decision"] = "SPLIT"
-                rows[row_idx]["reviewer_settlement"] = ""
-                rows[row_idx]["reviewer_address"] = ""
-                rows[row_idx]["reviewer_notes"] = new_note
-                save_pairs(headers, rows)
-                load_pairs.clear()
-                st.rerun()
+                _save_pair_table("SPLIT")
             if tc3.button("🟡 DEFER", key=f"td_{pair_id}") and row_idx is not None:
-                rows[row_idx]["decision"] = "DEFER"
-                rows[row_idx]["reviewer_notes"] = new_note
-                save_pairs(headers, rows)
-                load_pairs.clear()
-                st.rerun()
+                _save_pair_table("DEFER")
             if tc4.button("🔵 DESCRIPTIVE", key=f"tdes_{pair_id}") and row_idx is not None:
-                rows[row_idx]["decision"] = "DESCRIPTIVE"
-                rows[row_idx]["reviewer_settlement"] = ""
-                rows[row_idx]["reviewer_address"] = ""
-                rows[row_idx]["reviewer_notes"] = new_note
+                _save_pair_table("DESCRIPTIVE")
                 save_pairs(headers, rows)
                 load_pairs.clear()
                 st.rerun()
@@ -387,10 +546,14 @@ def _render_table(headers, rows, visible):
 
 
 def _render_pair_card(pair: dict) -> None:
+    pair_id = pair.get("pair_id", "pair")
     sim = float(pair.get("similarity", 0))
     colour = similarity_colour(sim)
     org_type = pair.get("org_type", "—") or "—"
     settlement = pair.get("settlement", "—") or "—"
+    align_index = load_alignment_index(get_align_mtime())
+    cid_i = pair.get("cluster_id_i", "").strip()
+    cid_j = pair.get("cluster_id_j", "").strip()
 
     # ── Shared metadata (defines the matching block) ──────────────────────────
     block_settlement = f"<code>{settlement}</code>" if settlement != "—" else "<i style='color:#aaa'>none in extraction</i>"
@@ -457,3 +620,47 @@ def _render_pair_card(pair: dict) -> None:
                             f"Entry not found in XML "
                             f"({_JSON_TO_XML.get(json_file, json_file)})."
                         )
+
+    nav1, nav2 = st.columns(2)
+    with nav1:
+        if cid_i:
+            st.caption(f"Cluster A: {cid_i} · A1 status: {align_index.get(cid_i, 'Not in A1')}")
+            st.link_button("Open A in Review ↗", _open_url("Organizations matching", cid_i))
+    with nav2:
+        if cid_j:
+            st.caption(f"Cluster B: {cid_j} · A1 status: {align_index.get(cid_j, 'Not in A1')}")
+            st.link_button("Open B in Review ↗", _open_url("Organizations matching", cid_j))
+
+    db_ref_key = f"cluster_db_ref_{pair_id}"
+    chosen_ref = st.session_state.get(db_ref_key, "")
+    if chosen_ref:
+        ref_label = chosen_ref if isinstance(chosen_ref, str) else str(chosen_ref)
+        st.info(f"DB reference noted: **{ref_label}** — this will be saved to reviewer notes when you record a decision.")
+        if st.button("✕ Clear DB reference", key=f"clear_ref_{pair_id}"):
+            st.session_state.pop(db_ref_key, None)
+            st.rerun()
+
+    with st.expander("🔍 Search DB", expanded=False):
+        if not CORE_DB_FILE.exists():
+            st.caption("Core DB not available.")
+        else:
+            st.caption("Look up possible existing entities while deciding merge vs split. Use 'Select' to note a DB reference alongside your decision.")
+            _, db_rows = load_core_db(get_core_db_mtime())
+            q = st.text_input("Search DB by name", key=f"cluster_db_search_{pair_id}")
+            if q.strip():
+                ql = q.strip().lower()
+                hits = [r for r in db_rows if ql in r.get("name", "").lower()][:20]
+                if hits:
+                    st.caption("Search results")
+                    for r in hits:
+                        hit_id = r.get("db_id", "")
+                        hit_name = r.get("name", "")
+                        rc1, rc2 = st.columns([5, 1])
+                        rc1.write(f"{hit_id} · {hit_name}")
+                        if r.get("org_type", "") or r.get("address", ""):
+                            rc1.caption(f"type: {r.get('org_type', '')} · address: {r.get('address', '')}")
+                        if rc2.button("Select", key=f"use_ref_{pair_id}_{hit_id}"):
+                            st.session_state[db_ref_key] = f"{hit_id} · {hit_name}"
+                            st.rerun()
+                else:
+                    st.caption("No DB matches for this query.")

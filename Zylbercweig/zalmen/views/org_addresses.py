@@ -417,7 +417,7 @@ def _render_linked_clusters(db_id: str, linked_cids: list[str], align_rows_by_ci
             info_bits.append(f"{cluster_size} mentions")
         info_col.caption(" · ".join(info_bits))
 
-        open_col.link_button("Open in Review ↗", _open_url("Entity Review", cluster_id),
+        open_col.link_button("Open in Review ↗", _open_url("Organizations matching", cluster_id),
                              use_container_width=True)
 
         if unlink_col.button("Unlink", key=f"unlink-{db_id}-{cluster_id}", use_container_width=True):
@@ -426,7 +426,7 @@ def _render_linked_clusters(db_id: str, linked_cids: list[str], align_rows_by_ci
 
         if st.session_state.get(pending_key) == cluster_id:
             st.warning(
-                f"Unlink {cluster_id} from this entity? The cluster will stay in A1 with its candidates, but it will no longer feed this card."
+                f"Unlink {cluster_id} from this organization? The cluster will stay in A1 with its candidates, but it will no longer feed this card."
             )
             confirm_col, cancel_col = st.columns([1.2, 1])
             if confirm_col.button("Confirm unlink", key=f"confirm-unlink-{db_id}-{cluster_id}", type="primary"):
@@ -490,7 +490,7 @@ def _render_mentions_manager(db_id: str, linked_sources: list[tuple[int, dict[st
 # ── Main render ───────────────────────────────────────────────────────────────
 
 def render():
-    st.header("Entity Cards")
+    st.header("Organization Cards")
 
     if not CLUSTER_FILE.exists():
         st.error(f"`{CLUSTER_FILE}` not found — run `cluster_orgs.py` first.")
@@ -533,7 +533,7 @@ def render():
         st.session_state.addr_selected = visible_ids[prev_idx]
         st.session_state["addr_page_geo"] = prev_idx // PAGE_SIZE
         st.rerun()
-    nav_col3.markdown("### Selected Entity")
+    nav_col3.markdown("### Selected Organization")
     if nav_col4.button("→", key="geo_next_entity", disabled=sel_idx < 0 or sel_idx >= len(visible_ids) - 1):
         next_idx = sel_idx + 1
         st.session_state.addr_selected = visible_ids[next_idx]
@@ -695,10 +695,10 @@ def _render_detail(headers, rows, row, samples):
     linked_sources = _linked_source_rows(linked_cids, cluster_rows)
 
     new_name = st.text_input(
-        "Entity name",
+        "Organization name",
         value=canonical,
         key=f"entity_name_{cid}",
-        placeholder="Edit the organization/entity name",
+        placeholder="Edit the organization name",
     ).strip()
 
     settlements = _split(row.get("extracted_settlements",""))

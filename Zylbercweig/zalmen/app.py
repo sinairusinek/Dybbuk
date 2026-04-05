@@ -34,15 +34,15 @@ if "--view" in _args:
 
 # ── View registry ─────────────────────────────────────────────────────────────
 VIEWS = {
-    "Entity Review":           ("org_review",    "review"),
-    "Entity Cards":            ("org_addresses", "geo"),
+    "Organizations matching":  ("org_review",    "review"),
+    "Organization Cards":      ("org_addresses", "geo"),
     "B1 · Person Dedup":       (None,             "b1"),
     "B2 · Person → External":  (None,             "b2"),
 }
 
 VIEW_STATUS = {
-    "Entity Review":           "✅ Ready",
-    "Entity Cards":            "✅ Ready",
+    "Organizations matching":  "✅ Ready",
+    "Organization Cards":      "✅ Ready",
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → External":  "⏳ Blocked on B1",
 }
@@ -77,9 +77,9 @@ _qp_entity = _qp.get("entity", None)
 if _qp_view and _qp_view in VIEWS:
     st.session_state["main_view"] = _qp_view
     if _qp_entity:
-        if _qp_view == "Entity Review":
+        if _qp_view == "Organizations matching":
             st.session_state["review_selected_cid"] = _qp_entity
-        elif _qp_view == "Entity Cards":
+        elif _qp_view == "Organization Cards":
             st.session_state["addr_selected"] = _qp_entity
     st.query_params.clear()
 
