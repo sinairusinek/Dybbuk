@@ -468,8 +468,18 @@ def _render_similar_clusters(
 	align_rows: list[dict[str, str]],
 ) -> None:
 	cid = selected.get("cluster_id", "")
+	# Deduplicate by pair_id — a pair can appear twice if cid_i == cid_j or pair_id is reused
+	_seen_pids: set[str] = set()
+	_deduped: list[dict[str, str]] = []
+	for _p in pair_index.get(cid, []):
+		_pid = _p.get("pair_id", "")
+		if _pid and _pid not in _seen_pids:
+			_seen_pids.add(_pid)
+			_deduped.append(_p)
+		elif not _pid:
+			_deduped.append(_p)
 	all_linked_pairs = sorted(
-		pair_index.get(cid, []),
+		_deduped,
 		key=lambda pair: float(pair.get("similarity", "0") or "0"),
 		reverse=True,
 	)
