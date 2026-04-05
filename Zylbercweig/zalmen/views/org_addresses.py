@@ -259,26 +259,9 @@ def _remove_mention(cluster_row_idx: int):
     st.rerun()
 
 def _maybe_regenerate():
-    """Re-run extract_addresses.py if upstream data (alignment/core DB) changed.
-    Skipped on read-only deployments (e.g. Streamlit Cloud at /mount/src)."""
-    if not EXTRACT_SCRIPT.exists() or not CORE_DB_FILE.exists():
-        return
-    # Skip if the file system is read-only (Streamlit Cloud mounts sources as read-only)
-    try:
-        ADDR_FILE.parent.stat()
-        import os
-        if not os.access(str(ADDR_FILE.parent), os.W_OK):
-            return
-    except Exception:
-        return
-    upstream_mtime = max(get_mtime(CORE_DB_FILE), get_mtime(ALIGN_FILE), get_mtime(CLUSTER_FILE))
-    if ADDR_FILE.exists() and get_mtime(ADDR_FILE) >= upstream_mtime:
-        return  # already up to date
-    try:
-        subprocess.run([sys.executable, str(EXTRACT_SCRIPT)], check=True)
-        load_orgs.clear()  # bust cache so Streamlit picks up the new file
-    except Exception:
-        pass  # read-only filesystem — silently skip
+    """No-op in deployed app — data files are committed to git and updated locally.
+    Run extract_addresses.py locally and commit the result when upstream data changes."""
+    pass
 
 # ── Geocoding ─────────────────────────────────────────────────────────────────
 
