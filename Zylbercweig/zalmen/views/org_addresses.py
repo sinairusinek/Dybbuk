@@ -26,7 +26,7 @@ Writes:  ../organizations/org_addresses_review.tsv  (in-place)
          ../organizations/organizations_clustered.tsv  (mention removal)
 """
 
-import csv, fcntl, pathlib, subprocess, sys, time, collections, re
+import csv, fcntl, json, pathlib, subprocess, sys, time, collections, re
 from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 import streamlit as st
@@ -79,6 +79,45 @@ _COL_XMLID    = "_ - xml:id"
 _MISSING = {"", "na", "n/a", "null", "none", "-", "--", "_"}
 def _m(v): return v.strip().lower() in _MISSING
 def _split(s): return [v.strip() for v in s.split("|") if v.strip()]
+
+_LOC_FIELDS = ("settlement", "settlement_yiddish", "address", "address_romanized", "lat", "lon")
+
+def _empty_loc() -> dict:
+    return {f: "" for f in _LOC_FIELDS}
+
+def _get_locations(row: dict) -> list[dict]:
+    """Return list of confirmed location dicts. Migrates from old single-location fields."""
+    raw = row.get("confirmed_locations", "").strip()
+    if raw:
+        try:
+            locs = json.loads(raw)
+            if isinstance(locs, list) and locs:
+                return locs
+        except Exception:
+            pass
+    # Migrate from old single-location fields
+    loc = {
+        "settlement":         row.get("confirmed_settlement", ""),
+        "settlement_yiddish": row.get("confirmed_settlement_yiddish", row.get("confirmed_settlement", "")),
+        "address":            row.get("confirmed_address", ""),
+        "address_romanized":  row.get("confirmed_address_romanized", ""),
+        "lat":                row.get("lat", ""),
+        "lon":                row.get("lon", ""),
+    }
+    if any(v.strip() for v in loc.values()):
+        return [loc]
+    return []
+
+def _locs_to_row(row: dict, locs: list[dict]) -> None:
+    """Write locations list back to row, keeping old single-location fields in sync with first entry."""
+    row["confirmed_locations"] = json.dumps(locs, ensure_ascii=False) if locs else ""
+    first = locs[0] if locs else _empty_loc()
+    row["confirmed_settlement"]          = first.get("settlement", "")
+    row["confirmed_settlement_yiddish"]  = first.get("settlement_yiddish", "")
+    row["confirmed_address"]             = first.get("address", "")
+    row["confirmed_address_romanized"]   = first.get("address_romanized", "")
+    row["lat"]                           = first.get("lat", "")
+    row["lon"]                           = first.get("lon", "")
 
 
 # ── XML entry lookup (reused from org_clusters.py) ───────────────────────────
@@ -773,114 +812,104 @@ def _render_detail(headers, rows, row, samples):
 
     st.divider()
 
-    # ── Confirmed location (only for non-generic, non-exploded) ───────────────
-    if not new_generic:
-        st.markdown("""<style>
-input[aria-label="Settlement"],
-input[aria-label="Address (original script)"] {
-    text-align: center !important;
-    direction: rtl !important;
-    background-color: #f5f2ff !important;
-    border-color: #c8b8f0 !important;
-}
-</style>""", unsafe_allow_html=True)
-        st.markdown("**Confirmed location:**")
-        lc1, lc2 = st.columns(2)
-        with lc1:
-            st.markdown(
-                "<p style='text-align:center;font-weight:600;margin-bottom:0.2rem'>Settlement</p>",
-                unsafe_allow_html=True,
-            )
-            new_settle = st.text_input(
-                "Settlement", value=row.get("confirmed_settlement", ""),
-                key=f"settle_{cid}", label_visibility="collapsed",
-            )
-        with lc2:
-            st.markdown(
-                "<p style='text-align:center;font-weight:600;margin-bottom:0.2rem'>Address (original script)</p>",
-                unsafe_allow_html=True,
-            )
-            new_addr = st.text_input(
-                "Address (original script)", value=row.get("confirmed_address", ""),
-                key=f"addr_{cid}", label_visibility="collapsed",
-            )
+    # ── Confirmed locations (multi-location) ──────────────────────────────────
+    if new_generic:
+        st.caption("🔶 Marked as generic — you can still add confirmed locations below if relevant.")
 
-        y1, y2 = st.columns(2)
-        with y1:
-            st.markdown(
-                "<p style='text-align:center;font-weight:600;margin-bottom:0.2rem'>Settlement (Yiddish)</p>",
-                unsafe_allow_html=True,
-            )
-            new_settle_yid = st.text_input(
-                "Settlement (Yiddish)",
-                value=row.get("confirmed_settlement_yiddish", row.get("confirmed_settlement", "")),
-                key=f"settle_yid_{cid}",
-                label_visibility="collapsed",
-            )
-        with y2:
-            st.caption("Romanized settlement in 'Settlement', Yiddish form here.")
+    st.markdown("**Confirmed locations:**")
 
-        gc1, gc2 = st.columns([3,1])
-        new_roman = gc1.text_input("Romanized address for geocoding",
-                                    value=row.get("confirmed_address_romanized",""),
-                                    key=f"roman_{cid}", placeholder="Street name and house number, City")
+    locs_key = f"_locs_{cid}"
+    if locs_key not in st.session_state:
+        st.session_state[locs_key] = _get_locations(row)
+    locs: list[dict] = st.session_state[locs_key]
 
-        _lat_key, _lon_key = f"_gc_lat_{cid}", f"_gc_lon_{cid}"
-        new_lat = st.session_state.get(_lat_key) or row.get("lat", "")
-        new_lon = st.session_state.get(_lon_key) or row.get("lon", "")
+    to_delete = None
+    for idx, loc in enumerate(locs):
+        label = loc.get("settlement") or loc.get("address") or f"Location {idx+1}"
+        with st.expander(f"📍 {label}", expanded=(len(locs) == 1)):
+            fc1, fc2 = st.columns(2)
+            loc["settlement"] = fc1.text_input(
+                "Settlement (romanized)", value=loc.get("settlement", ""),
+                key=f"loc_settle_{cid}_{idx}")
+            loc["address"] = fc2.text_input(
+                "Address (original script)", value=loc.get("address", ""),
+                key=f"loc_addr_{cid}_{idx}")
+            fc3, fc4 = st.columns(2)
+            loc["settlement_yiddish"] = fc3.text_input(
+                "Settlement (Yiddish)", value=loc.get("settlement_yiddish", loc.get("settlement", "")),
+                key=f"loc_settle_yid_{cid}_{idx}")
+            loc["address_romanized"] = fc4.text_input(
+                "Address (romanized, for geocoding)", value=loc.get("address_romanized", ""),
+                key=f"loc_roman_{cid}_{idx}",
+                placeholder="e.g. Leszno 36, Warsaw")
 
-        with gc2:
-            st.markdown("&nbsp;", unsafe_allow_html=True)
-            if HAS_GEOCODE and HAS_MAP:
-                q = new_roman.strip() or f"{new_addr.strip()}, {new_settle.strip()}"
-                if st.button("🌍 Geocode", key=f"gc_{cid}", disabled=not q):
-                    with st.spinner("Geocoding…"):
-                        res = geocode(q)
-                    if res:
-                        new_lat = st.session_state[_lat_key] = str(res[0])
-                        new_lon = st.session_state[_lon_key] = str(res[1])
-                        st.success(f"{res[0]}, {res[1]}")
-                    else:
-                        st.warning("Not found — try a more specific romanized address.")
+            gc_col, del_col = st.columns([3, 1])
+            with gc_col:
+                _lat_key = f"_gc_lat_{cid}_{idx}"
+                _lon_key = f"_gc_lon_{cid}_{idx}"
+                cur_lat = st.session_state.get(_lat_key) or loc.get("lat", "")
+                cur_lon = st.session_state.get(_lon_key) or loc.get("lon", "")
+                gc_q = loc.get("address_romanized", "").strip() or \
+                       f"{loc.get('address','').strip()}, {loc.get('settlement','').strip()}"
+                if HAS_GEOCODE:
+                    if st.button("🌍 Geocode", key=f"gc_{cid}_{idx}", disabled=not gc_q):
+                        with st.spinner("Geocoding…"):
+                            res = geocode(gc_q)
+                        if res:
+                            cur_lat = st.session_state[_lat_key] = str(res[0])
+                            cur_lon = st.session_state[_lon_key] = str(res[1])
+                            st.success(f"{res[0]}, {res[1]}")
+                        else:
+                            st.warning("Not found — try a more specific romanized address.")
+                if cur_lat and cur_lon and HAS_MAP:
+                    dragged = _render_map(f"{cid}_{idx}", label, cur_lat, cur_lon)
+                    if dragged:
+                        cur_lat = st.session_state[_lat_key] = str(dragged[0])
+                        cur_lon = st.session_state[_lon_key] = str(dragged[1])
+                    ll1, ll2 = st.columns(2)
+                    cur_lat = ll1.text_input("Lat", value=cur_lat, key=f"lat_{cid}_{idx}")
+                    cur_lon = ll2.text_input("Lon", value=cur_lon, key=f"lon_{cid}_{idx}")
+                loc["lat"] = cur_lat
+                loc["lon"] = cur_lon
+            with del_col:
+                st.markdown("&nbsp;", unsafe_allow_html=True)
+                if st.button("🗑 Remove", key=f"del_loc_{cid}_{idx}", use_container_width=True):
+                    to_delete = idx
 
-        if new_lat and new_lon and HAS_MAP:
-            dragged = _render_map(cid, canonical, new_lat, new_lon)
-            if dragged:
-                new_lat = st.session_state[_lat_key] = str(dragged[0])
-                new_lon = st.session_state[_lon_key] = str(dragged[1])
-            lc3, lc4 = st.columns(2)
-            new_lat = lc3.text_input("Lat", value=new_lat, key=f"lat_{cid}")
-            new_lon = lc4.text_input("Lon", value=new_lon, key=f"lon_{cid}")
-    else:
-        new_settle = new_settle_yid = new_addr = new_roman = new_lat = new_lon = ""
+    if to_delete is not None:
+        locs.pop(to_delete)
+        st.session_state[locs_key] = locs
+        st.rerun()
+
+    if st.button("＋ Add location", key=f"add_loc_{cid}"):
+        locs.append(_empty_loc())
+        st.session_state[locs_key] = locs
+        st.rerun()
 
     new_note = st.text_input("Notes", value=row.get("reviewer_notes",""),
                               key=f"note_{cid}", placeholder="Notes (optional)")
 
     # ── Save ──────────────────────────────────────────────────────────────────
     if st.button("💾 Save", key=f"save_{cid}", type="primary") and row_idx is not None:
-        # Ensure audit columns exist
-        for _col in ("reviewer", "reviewed_at"):
+        # Ensure audit + locations columns exist
+        for _col in ("reviewer", "reviewed_at", "confirmed_locations"):
             if _col not in headers:
                 headers.append(_col)
                 for _r in rows:
                     _r.setdefault(_col, "")
-        rows[row_idx]["canonical_yiddish"]            = new_name or canonical
-        rows[row_idx]["is_generic"]                  = "TRUE" if new_generic else ""
-        rows[row_idx]["confirmed_settlement"]         = "" if new_generic else new_settle
-        if "confirmed_settlement_yiddish" in headers:
-            rows[row_idx]["confirmed_settlement_yiddish"] = "" if new_generic else new_settle_yid
-        rows[row_idx]["confirmed_address"]            = "" if new_generic else new_addr
-        rows[row_idx]["confirmed_address_romanized"]  = "" if new_generic else new_roman
-        rows[row_idx]["lat"]                          = "" if new_generic else new_lat
-        rows[row_idx]["lon"]                          = "" if new_generic else new_lon
-        rows[row_idx]["reviewer_notes"]               = new_note
-        rows[row_idx]["reviewer"]                     = st.session_state.get("reviewer", "")
-        rows[row_idx]["reviewed_at"]                  = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        rows[row_idx]["canonical_yiddish"] = new_name or canonical
+        rows[row_idx]["is_generic"]        = "TRUE" if new_generic else ""
+        rows[row_idx]["reviewer_notes"]    = new_note
+        rows[row_idx]["reviewer"]          = st.session_state.get("reviewer", "")
+        rows[row_idx]["reviewed_at"]       = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        _locs_to_row(rows[row_idx], st.session_state.get(locs_key, []))
         save_orgs(headers, rows)
         load_orgs.clear()
-        st.session_state.pop(f"_gc_lat_{cid}", None)
-        st.session_state.pop(f"_gc_lon_{cid}", None)
+        st.session_state.pop(locs_key, None)
+        # Clear geocode session state for all location indices
+        for _i in range(20):
+            st.session_state.pop(f"_gc_lat_{cid}_{_i}", None)
+            st.session_state.pop(f"_gc_lon_{cid}_{_i}", None)
         st.rerun()
 
 
