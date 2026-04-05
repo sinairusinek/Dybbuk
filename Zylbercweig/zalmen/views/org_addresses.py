@@ -194,6 +194,7 @@ def load_samples(mtime: float) -> dict[str, dict[str, list[tuple[str,str,str,str
     Max 3 samples per (cluster, settlement).
     """
     idx: dict[str, dict[str, list]] = collections.defaultdict(lambda: collections.defaultdict(list))
+    seen: dict[tuple, set] = collections.defaultdict(set)
     with open(CLUSTER_FILE, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f, delimiter="\t"):
             cid  = row.get(_COL_CID, "").strip()
@@ -203,8 +204,11 @@ def load_samples(mtime: float) -> dict[str, dict[str, list[tuple[str,str,str,str
             head = row.get(_COL_HEADING, "").strip()
             fle  = row.get(_COL_FILE, "").strip()
             xid  = row.get(_COL_XMLID, "").strip()
+            dedup_key = (fle, xid) if (fle or xid) else None
             bucket = idx[cid][s]
-            if len(bucket) < 3 and (sent or head):
+            if len(bucket) < 3 and (sent or head) and (dedup_key is None or dedup_key not in seen[(cid, s)]):
+                if dedup_key:
+                    seen[(cid, s)].add(dedup_key)
                 bucket.append((head, sent, fle, xid))
     return {k: dict(v) for k, v in idx.items()}
 

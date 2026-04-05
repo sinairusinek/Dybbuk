@@ -173,6 +173,7 @@ def load_samples(mtime: float) -> dict[str, dict[str, list]]:
 					"venues": [],
 					"countries": [],
 					"samples": [],
+					"_seen_xids": set(),
 				}
 			bucket = idx[cid]
 			for col, key in (
@@ -188,7 +189,10 @@ def load_samples(mtime: float) -> dict[str, dict[str, list]]:
 			head = row.get(_COL_HEADING, "").strip()
 			fle = row.get(_COL_FILE, "").strip()
 			xid = row.get(_COL_XMLID, "").strip()
-			if sent or head:
+			dedup_key = (fle, xid) if (fle or xid) else None
+			if (sent or head) and (dedup_key is None or dedup_key not in bucket["_seen_xids"]):
+				if dedup_key:
+					bucket["_seen_xids"].add(dedup_key)
 				bucket["samples"].append((head, sent, fle, xid))
 	return idx
 

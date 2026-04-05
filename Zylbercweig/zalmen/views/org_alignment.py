@@ -121,6 +121,7 @@ def load_samples(mtime: float):
                     "venues": set(),
                     "countries": set(),
                     "samples": [],
+                    "_seen_xids": set(),
                 }
             bucket = idx[cid]
             for col, key in ((_COL_SETTLE, "settlements"), (_COL_ADDR, "addresses"), (_COL_VENUE, "venues"), (_COL_COUNTRY, "countries")):
@@ -131,7 +132,10 @@ def load_samples(mtime: float):
             head = row.get(_COL_HEADING, "").strip()
             fle = row.get(_COL_FILE, "").strip()
             xid = row.get(_COL_XMLID, "").strip()
-            if (sent or head) and len(bucket["samples"]) < 4:
+            dedup_key = (fle, xid) if (fle or xid) else None
+            if (sent or head) and len(bucket["samples"]) < 4 and (dedup_key is None or dedup_key not in bucket["_seen_xids"]):
+                if dedup_key:
+                    bucket["_seen_xids"].add(dedup_key)
                 bucket["samples"].append((head, sent, fle, xid))
     return idx
 
