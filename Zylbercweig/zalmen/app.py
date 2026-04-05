@@ -17,6 +17,12 @@ Run:
 import sys
 import streamlit as st
 
+# ── Reviewer list ─────────────────────────────────────────────────────────────
+try:
+    _REVIEWERS: list[str] = list(st.secrets["reviewers"])
+except Exception:
+    _REVIEWERS = ["Sinai", "RA1", "RA2"]
+
 # ── Optional --view argument: pin the app to one view for a specific RA ───────
 # Usage: streamlit run app.py -- --view a2
 _VIEW_ARG: str | None = None
@@ -29,14 +35,14 @@ if "--view" in _args:
 # ── View registry ─────────────────────────────────────────────────────────────
 VIEWS = {
     "Entity Review":           ("org_review",    "review"),
-    "Geo Cards":               ("org_addresses", "geo"),
+    "Entity Cards":            ("org_addresses", "geo"),
     "B1 · Person Dedup":       (None,             "b1"),
     "B2 · Person → External":  (None,             "b2"),
 }
 
 VIEW_STATUS = {
     "Entity Review":           "✅ Ready",
-    "Geo Cards":               "✅ Ready",
+    "Entity Cards":            "✅ Ready",
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → External":  "⏳ Blocked on B1",
 }
@@ -54,6 +60,28 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed" if _pinned_label else "expanded",
 )
+
+# ── Login gate ────────────────────────────────────────────────────────────────
+if "reviewer" not in st.session_state:
+    st.title("Zalmen · Who are you?")
+    choice = st.selectbox("Select your name to continue:", ["— pick one —"] + _REVIEWERS)
+    if st.button("Continue", type="primary", disabled=(choice == "— pick one —")):
+        st.session_state["reviewer"] = choice
+        st.rerun()
+    st.stop()
+
+# ── Query-param deep links (consumed before sidebar renders) ─────────────────
+_qp = st.query_params
+_qp_view = _qp.get("view", None)
+_qp_entity = _qp.get("entity", None)
+if _qp_view and _qp_view in VIEWS:
+    st.session_state["main_view"] = _qp_view
+    if _qp_entity:
+        if _qp_view == "Entity Review":
+            st.session_state["review_selected_cid"] = _qp_entity
+        elif _qp_view == "Entity Cards":
+            st.session_state["addr_selected"] = _qp_entity
+    st.query_params.clear()
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -80,6 +108,11 @@ with st.sidebar:
             format_func=lambda v: f"{v}  {VIEW_STATUS[v]}",
         )
 
+    st.divider()
+    st.caption(f"Logged in as **{st.session_state['reviewer']}**")
+    if st.button("Switch user", use_container_width=True):
+        del st.session_state["reviewer"]
+        st.rerun()
     st.divider()
     st.caption("Zylbercweig Lexicon — Yiddish biographical encyclopedia")
     if not _pinned_label:

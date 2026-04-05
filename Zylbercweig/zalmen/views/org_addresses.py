@@ -9,21 +9,35 @@ Features
 3. Detail panel:
      a. Extracted settlement/address/venue chips — click to see sample texts
         with full-entry expander per sample.
-     b. "Explode by location" — auto-split by settlement.
-     c. "Refined split" — manually assign individual mentions to named groups.
-     d. Generic flag — marks a name as a label, not one entity.
-     e. Confirm location + optional geocoding.
+    b. Linked cluster controls — open linked A1 clusters or unlink them.
+    c. Mention manager — remove specific mentions from a linked cluster.
+    d. "Explode by location" — auto-split by settlement.
+    e. "Refined split" — manually assign individual mentions to named groups.
+    f. Generic flag — marks a name as a label, not one entity.
+    g. Confirm location + optional geocoding.
 
 Files
 -----
 Reads:   ../organizations/org_addresses_review.tsv
+         ../organizations/org_alignment_review.tsv
          ../organizations/organizations_clustered.tsv  (sample text lookup)
 Writes:  ../organizations/org_addresses_review.tsv  (in-place)
+         ../organizations/org_alignment_review.tsv  (cluster unlink)
+         ../organizations/organizations_clustered.tsv  (mention removal)
 """
 
 import csv, fcntl, pathlib, subprocess, sys, time, collections, re
+from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 import streamlit as st
+
+def _open_url(view: str, entity: str = "") -> str:
+    """Build a deep-link URL for opening a specific view+entity in a new tab."""
+    import urllib.parse
+    params: dict[str, str] = {"view": view}
+    if entity:
+        params["entity"] = entity
+    return "?" + urllib.parse.urlencode(params)
 
 csv.field_size_limit(sys.maxsize)
 
@@ -119,19 +133,19 @@ def load_orgs(mtime: float):
 
 
 @st.cache_data(show_spinner=False)
-def load_alignment_index(mtime: float) -> dict[str, dict[str, str]]:
+def load_alignment_rows(mtime: float):
     if not ALIGN_FILE.exists():
-        return {}
-    out: dict[str, dict[str, str]] = {}
+        return [], []
     with open(ALIGN_FILE, newline="", encoding="utf-8") as f:
-        for row in csv.DictReader(f, delimiter="\t"):
-            cid = row.get("cluster_id", "").strip()
-            if cid:
-                out[cid] = {
-                    "decision": row.get("decision", "").strip(),
-                    "aligned_db_id": row.get("aligned_db_id", "").strip(),
-                }
-    return out
+        r = csv.DictReader(f, delimiter="\t")
+        return list(r.fieldnames), list(r)
+
+
+@st.cache_data(show_spinner=False)
+def load_cluster_rows(mtime: float):
+    with open(CLUSTER_FILE, newline="", encoding="utf-8") as f:
+        r = csv.DictReader(f, delimiter="\t")
+        return list(r.fieldnames), list(r)
 
 @st.cache_data(show_spinner=False)
 def load_samples(mtime: float) -> dict[str, dict[str, list[tuple[str,str,str,str]]]]:
@@ -166,7 +180,83 @@ def save_orgs(headers, rows):
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
 
+
+def save_alignment(headers, rows):
+    lock = ALIGN_FILE.with_suffix(".lock")
+    with open(lock, "w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        try:
+            with open(ALIGN_FILE, "w", newline="", encoding="utf-8") as f:
+                w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
+                w.writeheader()
+                w.writerows(rows)
+        finally:
+            fcntl.flock(lf, fcntl.LOCK_UN)
+
+
+def save_cluster_rows(headers, rows):
+    lock = CLUSTER_FILE.with_suffix(".lock")
+    with open(lock, "w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        try:
+            with open(CLUSTER_FILE, "w", newline="", encoding="utf-8") as f:
+                w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
+                w.writeheader()
+                w.writerows(rows)
+        finally:
+            fcntl.flock(lf, fcntl.LOCK_UN)
+
 def get_mtime(path=ADDR_FILE): return path.stat().st_mtime if path.exists() else 0.0
+
+
+def _clear_data_caches():
+    load_orgs.clear()
+    load_alignment_rows.clear()
+    load_cluster_rows.clear()
+    load_samples.clear()
+
+
+def _refresh_after_upstream_change():
+    _clear_data_caches()
+    _maybe_regenerate()
+
+
+def _linked_source_rows(linked_cids: list[str], cluster_rows: list[dict[str, str]]):
+    linked_set = set(linked_cids)
+    return [
+        (idx, row)
+        for idx, row in enumerate(cluster_rows)
+        if row.get(_COL_CID, "").strip() in linked_set
+    ]
+
+
+def _unlink_cluster(cluster_id: str):
+    headers, rows = load_alignment_rows(get_mtime(ALIGN_FILE))
+    if not rows:
+        st.error("Alignment file is not available.")
+        return
+
+    for row in rows:
+        if row.get("cluster_id", "").strip() == cluster_id:
+            row["decision"] = ""
+            row["aligned_db_id"] = ""
+            save_alignment(headers, rows)
+            _refresh_after_upstream_change()
+            st.rerun()
+
+    st.error(f"Could not find alignment row for {cluster_id}.")
+
+
+def _remove_mention(cluster_row_idx: int):
+    headers, rows = load_cluster_rows(get_mtime(CLUSTER_FILE))
+    if cluster_row_idx < 0 or cluster_row_idx >= len(rows):
+        st.error("The selected mention could not be found.")
+        return
+
+    rows[cluster_row_idx][_COL_CID] = ""
+    save_cluster_rows(headers, rows)
+    _refresh_after_upstream_change()
+    st.rerun()
 
 def _maybe_regenerate():
     """Re-run extract_addresses.py if upstream data (alignment/core DB) changed."""
@@ -275,10 +365,98 @@ def _build_explode_candidates(parent_cid, all_source_rows):
     return sorted(groups.items(), key=lambda x: -x[1]["mentions"])
 
 
+def _render_linked_clusters(db_id: str, linked_cids: list[str], align_rows_by_cid: dict[str, dict[str, str]]):
+    if not linked_cids:
+        return
+
+    pending_key = f"pending_cluster_unlink_{db_id}"
+    st.markdown("**Linked clusters**")
+    for cluster_id in linked_cids:
+        row = align_rows_by_cid.get(cluster_id, {})
+        decision = row.get("decision", "").strip() or "Undecided"
+        cluster_name = row.get("canonical_yiddish", "").strip() or cluster_id
+        cluster_size = row.get("cluster_size", "").strip()
+
+        info_col, open_col, unlink_col = st.columns([4.2, 1.3, 1.1])
+        info_bits = [cluster_id, cluster_name, decision]
+        if cluster_size:
+            info_bits.append(f"{cluster_size} mentions")
+        info_col.caption(" · ".join(info_bits))
+
+        open_col.link_button("Open in Review ↗", _open_url("Entity Review", cluster_id),
+                             use_container_width=True)
+
+        if unlink_col.button("Unlink", key=f"unlink-{db_id}-{cluster_id}", use_container_width=True):
+            st.session_state[pending_key] = cluster_id
+            st.rerun()
+
+        if st.session_state.get(pending_key) == cluster_id:
+            st.warning(
+                f"Unlink {cluster_id} from this entity? The cluster will stay in A1 with its candidates, but it will no longer feed this card."
+            )
+            confirm_col, cancel_col = st.columns([1.2, 1])
+            if confirm_col.button("Confirm unlink", key=f"confirm-unlink-{db_id}-{cluster_id}", type="primary"):
+                st.session_state.pop(pending_key, None)
+                _unlink_cluster(cluster_id)
+            if cancel_col.button("Cancel", key=f"cancel-unlink-{db_id}-{cluster_id}"):
+                st.session_state.pop(pending_key, None)
+                st.rerun()
+
+
+def _render_mentions_manager(db_id: str, linked_sources: list[tuple[int, dict[str, str]]]):
+    with st.expander(f"Manage mentions ({len(linked_sources)})", expanded=False):
+        st.caption("Remove a mention to clear its cluster assignment. It will stop contributing to this card until it is reclustered.")
+
+        if not linked_sources:
+            st.caption("No linked mentions found.")
+            return
+
+        pending_key = f"pending_mention_remove_{db_id}"
+        for cluster_row_idx, src_row in linked_sources:
+            cluster_id = src_row.get(_COL_CID, "").strip()
+            heading = src_row.get(_COL_HEADING, "").strip()
+            settle = src_row.get(_COL_SETTLE, "").strip()
+            sent = src_row.get(_COL_SENTENCE, "").strip()
+            fle = src_row.get(_COL_FILE, "").strip()
+            xid = src_row.get(_COL_XMLID, "").strip()
+
+            text_col, action_col = st.columns([5, 1])
+            with text_col:
+                meta = [cluster_id or "(unclustered)"]
+                if settle:
+                    meta.append(settle)
+                if fle or xid:
+                    meta.append(" / ".join(v for v in (fle, xid) if v))
+                st.caption(" · ".join(meta))
+                if heading:
+                    st.markdown(f"*{heading}*")
+                if sent:
+                    st.markdown(
+                        f"<div dir='rtl' style='font-size:0.88em; border-left:3px solid #d1d5db; padding-left:8px; margin:4px 0'>{sent}</div>",
+                        unsafe_allow_html=True,
+                    )
+
+            with action_col:
+                if st.button("Remove", key=f"remove-mention-{db_id}-{cluster_row_idx}", use_container_width=True):
+                    st.session_state[pending_key] = cluster_row_idx
+                    st.rerun()
+
+            if st.session_state.get(pending_key) == cluster_row_idx:
+                st.warning("Remove this mention from its cluster? This clears its cluster_id in the clustered TSV.")
+                confirm_col, cancel_col = st.columns([1.2, 1])
+                if confirm_col.button("Confirm remove", key=f"confirm-remove-{db_id}-{cluster_row_idx}", type="primary"):
+                    st.session_state.pop(pending_key, None)
+                    _remove_mention(cluster_row_idx)
+                if cancel_col.button("Cancel", key=f"cancel-remove-{db_id}-{cluster_row_idx}"):
+                    st.session_state.pop(pending_key, None)
+                    st.rerun()
+            st.divider()
+
+
 # ── Main render ───────────────────────────────────────────────────────────────
 
 def render():
-    st.header("Geo Cards")
+    st.header("Entity Cards")
 
     if not CLUSTER_FILE.exists():
         st.error(f"`{CLUSTER_FILE}` not found — run `cluster_orgs.py` first.")
@@ -471,9 +649,15 @@ def _render_detail(headers, rows, row, samples):
     cid      = row["db_id"]
     row_idx  = next((i for i,r in enumerate(rows) if r["db_id"]==cid), None)
     canonical = row.get("canonical_yiddish","") or cid
-    align_index = load_alignment_index(get_mtime(ALIGN_FILE))
+    _, align_rows = load_alignment_rows(get_mtime(ALIGN_FILE))
+    align_rows_by_cid = {
+        r.get("cluster_id", "").strip(): r
+        for r in align_rows
+        if r.get("cluster_id", "").strip()
+    }
     linked_cids = _split(row.get("linked_cluster_ids", ""))
-    linked_a1_cid = next((x for x in linked_cids if x in align_index), "")
+    _, cluster_rows = load_cluster_rows(get_mtime(CLUSTER_FILE))
+    linked_sources = _linked_source_rows(linked_cids, cluster_rows)
 
     new_name = st.text_input(
         "Entity name",
@@ -517,15 +701,9 @@ def _render_detail(headers, rows, row, samples):
     if st.session_state.get(show_samples_key, False) and all_samples:
         _render_all_samples(all_samples, show_title=True)
 
-    if linked_a1_cid:
-        a1_state = align_index.get(linked_a1_cid, {})
-        a1_decision = a1_state.get("decision", "") or "Undecided"
-        nav_col1, nav_col2 = st.columns([3, 2])
-        nav_col1.caption(f"Linked A1 cluster: {linked_a1_cid} · status: {a1_decision}")
-        if nav_col2.button("Open in Entity Review", key=f"open-a1-{cid}"):
-            st.session_state["review_selected_cid"] = linked_a1_cid
-            st.session_state["nav_view_target"] = "Entity Review"
-            st.rerun()
+    if linked_cids:
+        _render_linked_clusters(cid, linked_cids, align_rows_by_cid)
+        st.divider()
 
     is_exploded = row.get("is_exploded") == "TRUE"
     if is_exploded:
@@ -579,6 +757,10 @@ def _render_detail(headers, rows, row, samples):
     elif all_samples:
         st.markdown("**Entry context samples**")
         _render_all_samples(all_samples, show_title=False)
+
+    st.divider()
+
+    _render_mentions_manager(cid, linked_sources)
 
     st.divider()
 
@@ -681,6 +863,12 @@ input[aria-label="Address (original script)"] {
 
     # ── Save ──────────────────────────────────────────────────────────────────
     if st.button("💾 Save", key=f"save_{cid}", type="primary") and row_idx is not None:
+        # Ensure audit columns exist
+        for _col in ("reviewer", "reviewed_at"):
+            if _col not in headers:
+                headers.append(_col)
+                for _r in rows:
+                    _r.setdefault(_col, "")
         rows[row_idx]["canonical_yiddish"]            = new_name or canonical
         rows[row_idx]["is_generic"]                  = "TRUE" if new_generic else ""
         rows[row_idx]["confirmed_settlement"]         = "" if new_generic else new_settle
@@ -691,6 +879,8 @@ input[aria-label="Address (original script)"] {
         rows[row_idx]["lat"]                          = "" if new_generic else new_lat
         rows[row_idx]["lon"]                          = "" if new_generic else new_lon
         rows[row_idx]["reviewer_notes"]               = new_note
+        rows[row_idx]["reviewer"]                     = st.session_state.get("reviewer", "")
+        rows[row_idx]["reviewed_at"]                  = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         save_orgs(headers, rows)
         load_orgs.clear()
         st.session_state.pop(f"_gc_lat_{cid}", None)
@@ -772,19 +962,8 @@ def _render_explode_panel(headers, rows, parent_row, parent_idx, settlements, co
     refined split that lets the reviewer assign individual mentions to named groups."""
     did = parent_row["db_id"]
     linked_cids = _split(parent_row.get("linked_cluster_ids", ""))
-
-    @st.cache_data(show_spinner=False)
-    def _source_rows(cluster_id, mtime):
-        result = []
-        with open(CLUSTER_FILE, newline="", encoding="utf-8") as f:
-            for r in csv.DictReader(f, delimiter="\t"):
-                if r.get(_COL_CID,"").strip() == cluster_id:
-                    result.append(r)
-        return result
-
-    source = []
-    for _lcid in linked_cids:
-        source.extend(_source_rows(_lcid, get_mtime(CLUSTER_FILE)))
+    _, cluster_rows = load_cluster_rows(get_mtime(CLUSTER_FILE))
+    source = [row for _, row in _linked_source_rows(linked_cids, cluster_rows)]
 
     # Toggle between auto-explode and refined split
     refined = st.toggle("🔬 Refined split — assign individual mentions to groups",

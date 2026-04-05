@@ -15,6 +15,7 @@ import fcntl
 import pathlib
 import re
 import sys
+from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 
 import streamlit as st
@@ -22,6 +23,13 @@ import streamlit as st
 csv.field_size_limit(sys.maxsize)
 
 BASE = pathlib.Path(__file__).parents[2]
+
+# ── Shared Yiddish normalization (for vocalization-insensitive search) ───────
+_BASE_STR = str(BASE)
+if _BASE_STR not in sys.path:
+    sys.path.insert(0, _BASE_STR)
+from organizations.org_normalize import normalize_yiddish as _nrm_yid
+
 ALIGN_FILE = BASE / "organizations" / "org_alignment_review.tsv"
 PAIRS_FILE = BASE / "organizations" / "cluster_pairs_review.tsv"
 CORE_DB_FILE = BASE / "organizations" / "core_db.tsv"
@@ -41,6 +49,17 @@ _COL_XMLID = "_ - xml:id"
 
 PAGE_SIZE = 50
 ATTESTATION_BASE = 6
+
+_ORG_TYPE_OPTIONS = ["theatre", "troupe", "publisher", "school", ""]
+
+
+def _open_url(view: str, entity: str = "") -> str:
+	"""Build a deep-link URL for opening a specific view+entity in a new tab."""
+	import urllib.parse
+	params: dict[str, str] = {"view": view}
+	if entity:
+		params["entity"] = entity
+	return "?" + urllib.parse.urlencode(params)
 
 _JSON_TO_XML = {
 	"Volume5IIIorg.json": "Structured_Volume5III.xml",
@@ -116,6 +135,26 @@ def load_address_db_ids(mtime: float) -> set[str]:
 			db_id = row.get("db_id", "").strip()
 			if db_id:
 				out.add(db_id)
+	return out
+
+
+@st.cache_data(show_spinner=False)
+def load_address_details(mtime: float) -> dict[str, dict[str, str]]:
+	if not ADDR_FILE.exists():
+		return {}
+	out: dict[str, dict[str, str]] = {}
+	with open(ADDR_FILE, newline="", encoding="utf-8") as f:
+		for row in csv.DictReader(f, delimiter="\t"):
+			db_id = row.get("db_id", "").strip()
+			if not db_id:
+				continue
+			out[db_id] = {
+				"confirmed_settlement": row.get("confirmed_settlement", "").strip(),
+				"confirmed_settlement_yiddish": row.get("confirmed_settlement_yiddish", "").strip(),
+				"confirmed_address": row.get("confirmed_address", "").strip(),
+				"lat": row.get("lat", "").strip(),
+				"lon": row.get("lon", "").strip(),
+			}
 	return out
 
 
@@ -211,6 +250,25 @@ def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
 			fcntl.flock(lock_fh, fcntl.LOCK_UN)
 
 
+def _current_reviewer() -> str:
+	return st.session_state.get("reviewer", "")
+
+
+def _stamp(row: dict[str, str]) -> None:
+	"""Stamp reviewer name and ISO timestamp on a row."""
+	row["reviewer"] = _current_reviewer()
+	row["reviewed_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _ensure_audit_cols(headers: list[str], rows: list[dict[str, str]], *cols: str) -> None:
+	"""Add audit columns to headers + rows if not already present."""
+	for col in cols:
+		if col not in headers:
+			headers.append(col)
+			for r in rows:
+				r.setdefault(col, "")
+
+
 def _split_pipe(v: str) -> list[str]:
 	return [x.strip() for x in (v or "").split("|") if x.strip()]
 
@@ -224,15 +282,17 @@ def _status(row: dict[str, str]) -> str:
 		"DISCUSS": "💬 discuss",
 		"GENERIC": "🔶 generic",
 		"UNCLUSTER": "🟥 uncluster",
+		"SPLIT": "🔴 split",
+		"DEFER": "🟡 deferred",
+		"DESCRIPTIVE": "🔵 descriptive",
 	}.get(d, "⬜ undecided")
 
 
 def _pair_badge(decision: str) -> str:
 	return {
 		"MERGE": "🟢 MERGE",
-		"SPLIT": "🔴 SPLIT",
 		"DEFER": "🟡 DEFER",
-		"DESCRIPTIVE": "🔵 DESCRIPTIVE",
+		"DISMISS": "⬛ DISMISS",
 		"": "⬜ undecided",
 	}.get(decision, "⬜ undecided")
 
@@ -331,10 +391,7 @@ def _save_pair_decision(
 	headers: list[str],
 	rows: list[dict[str, str]],
 	decision: str,
-	reviewer_settlement: str,
-	reviewer_address: str,
 	note_text: str,
-	merged_name: str,
 ) -> None:
 	pair_id = pair.get("pair_id", "")
 	row_idx = next((i for i, r in enumerate(rows) if r.get("pair_id") == pair_id), None)
@@ -342,22 +399,64 @@ def _save_pair_decision(
 		st.warning("Pair row not found while saving; reload and try again.")
 		return
 
-	db_ref_key = f"review_pair_db_ref_{pair_id}_{selected_cid}"
-	db_ref = st.session_state.get(db_ref_key, "").strip()
-	combined_note = _build_reviewer_note(
-		note_text,
-		db_ref=db_ref,
-		entity_name=(merged_name if decision == "MERGE" else ""),
-	)
-
+	_ensure_audit_cols(headers, rows, "reviewer", "reviewed_at")
 	rows[row_idx]["decision"] = decision
-	rows[row_idx]["reviewer_settlement"] = reviewer_settlement if decision == "MERGE" else ""
-	rows[row_idx]["reviewer_address"] = reviewer_address if decision == "MERGE" else ""
-	rows[row_idx]["reviewer_notes"] = combined_note
+	rows[row_idx]["reviewer_notes"] = note_text.strip()
+	_stamp(rows[row_idx])
 	save_pairs(headers, rows)
 	load_pairs.clear()
 	load_pair_index.clear()
-	st.session_state.pop(db_ref_key, None)
+	st.rerun()
+
+
+def _merge_clusters_from_search(
+	current_cid: str,
+	current_row: dict[str, str],
+	other_cids_and_rows: list[tuple[str, dict[str, str]]],
+	pair_headers: list[str],
+	pair_rows: list[dict[str, str]],
+) -> None:
+	"""Create/update pair records with MERGE decision for multiple clusters."""
+	max_num = 0
+	for p in pair_rows:
+		pid = p.get("pair_id", "")
+		if pid.startswith("P") and pid[1:].isdigit():
+			max_num = max(max_num, int(pid[1:]))
+
+	_ensure_audit_cols(pair_headers, pair_rows, "reviewer", "reviewed_at")
+	for other_cid, other_row in other_cids_and_rows:
+		# Check if a pair already exists
+		found = False
+		for p in pair_rows:
+			ci = p.get("cluster_id_i", "").strip()
+			cj = p.get("cluster_id_j", "").strip()
+			if {ci, cj} == {current_cid, other_cid}:
+				p["decision"] = "MERGE"
+				p["reviewer_notes"] = "[merged via cluster search]"
+				_stamp(p)
+				found = True
+				break
+		if not found:
+			max_num += 1
+			new_pair = {h: "" for h in pair_headers}
+			new_pair.update({
+				"pair_id": f"P{max_num}",
+				"cluster_id_i": current_cid,
+				"cluster_id_j": other_cid,
+				"name_i": current_row.get("canonical_yiddish", ""),
+				"name_j": other_row.get("canonical_yiddish", ""),
+				"org_type": current_row.get("org_type", ""),
+				"similarity": "1.00",
+				"decision": "MERGE",
+				"reviewer_notes": "[merged via cluster search]",
+				"reviewer": _current_reviewer(),
+				"reviewed_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+			})
+			pair_rows.append(new_pair)
+
+	save_pairs(pair_headers, pair_rows)
+	load_pairs.clear()
+	load_pair_index.clear()
 	st.rerun()
 
 
@@ -369,15 +468,17 @@ def _render_similar_clusters(
 	align_rows: list[dict[str, str]],
 ) -> None:
 	cid = selected.get("cluster_id", "")
-	linked_pairs = sorted(
+	all_linked_pairs = sorted(
 		pair_index.get(cid, []),
 		key=lambda pair: float(pair.get("similarity", "0") or "0"),
 		reverse=True,
 	)
+	linked_pairs = [p for p in all_linked_pairs if p.get("decision", "").strip() != "DISMISS"]
+	dismissed_pairs = [p for p in all_linked_pairs if p.get("decision", "").strip() == "DISMISS"]
 
 	if linked_pairs:
 		st.markdown("**Suggested similar clusters**")
-	else:
+	elif not dismissed_pairs:
 		st.caption("No pre-computed cluster pairs found.")
 
 	for pair in linked_pairs:
@@ -445,123 +546,95 @@ def _render_similar_clusters(
 								unsafe_allow_html=True,
 							)
 
-			db_ref_key = f"review_pair_db_ref_{pair_id}_{cid}"
 			current_note = pair.get("reviewer_notes", "")
-			saved_name = _extract_note_tag(current_note, "Name")
 			clean_note = _strip_note_tags(current_note)
 
-			with st.expander("Search DB for clustering reference", expanded=False):
-				_, db_rows = load_core_db(_mtime(CORE_DB_FILE))
-				q = st.text_input("Search DB by name", key=f"pair-db-search-{pair_id}-{cid}")
-				if q.strip():
-					ql = q.strip().lower()
-					hits = [r for r in db_rows if ql in r.get("name", "").lower()][:20]
-					for hit in hits:
-						hit_id = hit.get("db_id", "")
-						hcol1, hcol2 = st.columns([5, 1])
-						hcol1.write(f"{hit_id} · {hit.get('name', '')}")
-						if hcol2.button("Select", key=f"pair-db-hit-{pair_id}-{cid}-{hit_id}"):
-							st.session_state[db_ref_key] = f"{hit_id} · {hit.get('name', '')}"
-							st.rerun()
-				chosen_ref = st.session_state.get(db_ref_key, "")
-				if chosen_ref:
-					st.info(f"DB reference noted: {chosen_ref}")
-
-			merge_settlement = st.text_input(
-				"Merged settlement (optional)",
-				value=pair.get("reviewer_settlement", ""),
-				key=f"pair-settlement-{pair_id}-{cid}",
-			)
-			merge_address = st.text_input(
-				"Merged address (optional)",
-				value=pair.get("reviewer_address", ""),
-				key=f"pair-address-{pair_id}-{cid}",
-			)
-			merged_name = st.text_input(
-				"Merged entity name (optional)",
-				value=saved_name,
-				key=f"pair-name-{pair_id}-{cid}",
-			)
 			note_text = st.text_input(
 				"Pair notes",
 				value=clean_note,
 				key=f"pair-note-{pair_id}-{cid}",
 			)
 
-			d1, d2, d3, d4 = st.columns(4)
+			if decision == "MERGE":
+				st.success(f"✓ Marked as MERGE")
+			d1, d2, d3 = st.columns(3)
 			if d1.button("🟢 MERGE", key=f"pair-merge-{pair_id}-{cid}", use_container_width=True):
-				_save_pair_decision(
-					cid,
-					pair,
-					pair_headers,
-					pair_rows,
-					"MERGE",
-					merge_settlement,
-					merge_address,
-					note_text,
-					merged_name,
-				)
-			if d2.button("🔴 SPLIT", key=f"pair-split-{pair_id}-{cid}", use_container_width=True):
-				_save_pair_decision(
-					cid,
-					pair,
-					pair_headers,
-					pair_rows,
-					"SPLIT",
-					"",
-					"",
-					note_text,
-					"",
-				)
-			if d3.button("🟡 DEFER", key=f"pair-defer-{pair_id}-{cid}", use_container_width=True):
-				_save_pair_decision(
-					cid,
-					pair,
-					pair_headers,
-					pair_rows,
-					"DEFER",
-					"",
-					"",
-					note_text,
-					"",
-				)
-			if d4.button("🔵 DESCRIPTIVE", key=f"pair-descriptive-{pair_id}-{cid}", use_container_width=True):
-				_save_pair_decision(
-					cid,
-					pair,
-					pair_headers,
-					pair_rows,
-					"DESCRIPTIVE",
-					"",
-					"",
-					note_text,
-					"",
-				)
+				_save_pair_decision(cid, pair, pair_headers, pair_rows, "MERGE", note_text)
+			if d2.button("🟡 DEFER", key=f"pair-defer-{pair_id}-{cid}", use_container_width=True):
+				_save_pair_decision(cid, pair, pair_headers, pair_rows, "DEFER", note_text)
+			if d3.button("⬛ DISMISS", key=f"pair-dismiss-{pair_id}-{cid}", use_container_width=True):
+				_save_pair_decision(cid, pair, pair_headers, pair_rows, "DISMISS", note_text)
 
-	with st.expander("Search clusters by name", expanded=not bool(linked_pairs)):
+	if dismissed_pairs:
+		with st.expander(f"Dismissed pairs ({len(dismissed_pairs)})", expanded=False):
+			for dp in dismissed_pairs:
+				dp_id = dp.get("pair_id", "")
+				dp_other = dp.get("cluster_id_j", "") if dp.get("cluster_id_i", "").strip() == cid else dp.get("cluster_id_i", "")
+				dp_name = dp.get("name_j", "") if dp.get("cluster_id_i", "").strip() == cid else dp.get("name_i", "")
+				rc1, rc2 = st.columns([5, 1])
+				rc1.caption(f"{dp_id} · {dp_other} · {dp_name}")
+				if rc2.button("Restore", key=f"pair-restore-{dp_id}-{cid}", use_container_width=True):
+					_save_pair_decision(cid, dp, pair_headers, pair_rows, "", "")
+
+	with st.expander("Search clusters", expanded=not bool(linked_pairs)):
 		q = st.text_input("Search cluster names", key=f"cluster-search-{cid}",
 						   placeholder="Type part of an organization name")
-		if q.strip():
-			ql = q.strip().lower()
-			hits = [
-				r for r in align_rows
-				if ql in r.get("canonical_yiddish", "").lower() and r.get("cluster_id", "") != cid
-			][:20]
+		loc_q = st.text_input("Search clusters by location", key=f"cluster-loc-search-{cid}",
+							  placeholder="Type part of a settlement, address, or venue name")
+		ql = _nrm_yid(q) if q.strip() else ""
+		loc_norm = _nrm_yid(loc_q) if loc_q.strip() else ""
+		if ql or loc_norm:
+			def _cluster_matches(r, _ql=ql, _loc=loc_norm, _cid=cid):
+				if r.get("cluster_id", "") == _cid:
+					return False
+				name_ok = (not _ql) or _ql in _nrm_yid(r.get("canonical_yiddish", ""))
+				if not _loc:
+					return name_ok
+				loc_fields = " ".join(filter(None, [
+					_nrm_yid(r.get("extracted_settlements", "")),
+					_nrm_yid(r.get("extracted_addresses", "")),
+					_nrm_yid(r.get("extracted_venues", "")),
+					_nrm_yid(r.get("extracted_countries", "")),
+					_nrm_yid(r.get("reviewer_settlement", "")),
+					_nrm_yid(r.get("reviewer_address", "")),
+				]))
+				return name_ok and _loc in loc_fields
+			hits = [r for r in align_rows if _cluster_matches(r)][:20]
 			if hits:
 				for h in hits:
 					hcid = h.get("cluster_id", "")
-					h_decision = h.get("decision", "").strip()
 					h_type = h.get("org_type", "").strip()
 					h_size = h.get("cluster_size", "").strip()
-					hcol1, hcol2 = st.columns([5, 1])
+					hcol0, hcol1, hcol2 = st.columns([0.3, 4.7, 1])
+					with hcol0:
+						st.checkbox(
+							"sel",
+							key=f"merge-sel-{cid}-{hcid}",
+							label_visibility="collapsed",
+						)
 					hcol1.markdown(
 						f"<div class='rtl-block'>{_status(h)}  {h.get('canonical_yiddish', '')}</div>",
 						unsafe_allow_html=True,
 					)
 					hcol1.caption(f"{hcid} · {h_type} · {h_size} mentions")
-					if hcol2.button("Open", key=f"open-hit-{cid}-{hcid}"):
-						st.session_state.review_selected_cid = hcid
-						st.rerun()
+					hcol2.link_button("Open ↗", _open_url("Entity Review", hcid),
+									  )
+
+				# Collect checked clusters and show merge button
+				checked = [
+					(h.get("cluster_id", ""), h)
+					for h in hits
+					if st.session_state.get(f"merge-sel-{cid}-{h.get('cluster_id', '')}")
+				]
+				if checked:
+					names_preview = ", ".join(h.get("canonical_yiddish", "") for _, h in checked[:5])
+					st.caption(f"Selected {len(checked)} cluster(s): {names_preview}")
+					if st.button(f"🟢 Merge {len(checked)} selected", key=f"merge-batch-{cid}", type="primary"):
+						_merge_clusters_from_search(
+							cid, selected,
+							[(c, r) for c, r in checked],
+							pair_headers, pair_rows,
+						)
 			else:
 				st.caption("No cluster matches for this query.")
 
@@ -590,6 +663,47 @@ def _render_rtl_style() -> None:
 		div[data-testid="stCaptionContainer"] {
 			text-align: right;
 		}
+		/* ── Entity Review panel palette ─────────────────── */
+		div[data-testid="stVerticalBlockBorderWrapper"]:has(.panel-samples),
+		div[data-testid="stVerticalBlock"]:has(.panel-samples) {
+			background-color: #F1E5CF;
+			border-color: #D2BE97;
+		}
+		div[data-testid="column"]:has(.panel-db-cand),
+		div[data-testid="stColumn"]:has(.panel-db-cand),
+		div[data-testid="stVerticalBlock"]:has(.panel-db-cand) {
+			background-color: #DCEAD4;
+			border: 1px solid #AFC79F;
+			border-radius: 0.5rem;
+			padding: 0.5rem;
+		}
+		div[data-testid="column"]:has(.panel-cluster-cand),
+		div[data-testid="stColumn"]:has(.panel-cluster-cand),
+		div[data-testid="stVerticalBlock"]:has(.panel-cluster-cand) {
+			background-color: #E3DDEA;
+			border: 1px solid #BFB0D2;
+			border-radius: 0.5rem;
+			padding: 0.5rem;
+		}
+		.section-chip {
+			display: inline-block;
+			padding: 0.2rem 0.55rem;
+			border-radius: 0.4rem;
+			border: 1px solid transparent;
+			margin-bottom: 0.25rem;
+		}
+		.section-chip-samples {
+			background: #F1E5CF;
+			border-color: #D2BE97;
+		}
+		.section-chip-db {
+			background: #DCEAD4;
+			border-color: #AFC79F;
+		}
+		.section-chip-cluster {
+			background: #E3DDEA;
+			border-color: #BFB0D2;
+		}
 		</style>
 		""",
 		unsafe_allow_html=True,
@@ -616,25 +730,23 @@ def render() -> None:
 	samples = load_samples(_mtime(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
 	pair_index = load_pair_index(_mtime(PAIRS_FILE))
 	addr_db_ids = load_address_db_ids(_mtime(ADDR_FILE))
+	addr_details = load_address_details(_mtime(ADDR_FILE))
 
 	total = len(a_rows)
-	by_decision = {
-		"": sum(1 for r in a_rows if not r.get("decision", "").strip()),
-		"ALIGN": sum(1 for r in a_rows if r.get("decision", "").strip() == "ALIGN"),
-		"NEW": sum(1 for r in a_rows if r.get("decision", "").strip() == "NEW"),
-		"DISCUSS": sum(1 for r in a_rows if r.get("decision", "").strip() == "DISCUSS"),
-		"GENERIC": sum(1 for r in a_rows if r.get("decision", "").strip() == "GENERIC"),
-		"UNCLUSTER": sum(1 for r in a_rows if r.get("decision", "").strip() == "UNCLUSTER"),
-	}
+	by_decision: dict[str, int] = {}
+	for r in a_rows:
+		d = r.get("decision", "").strip()
+		by_decision[d] = by_decision.get(d, 0) + 1
+	undecided = by_decision.get("", 0)
 
 	c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
 	c1.metric("Total", total)
-	c2.metric("Undecided", by_decision[""])
-	c3.metric("Aligned", by_decision["ALIGN"])
-	c4.metric("New", by_decision["NEW"])
-	c5.metric("Discuss", by_decision["DISCUSS"])
-	c6.metric("Generic", by_decision["GENERIC"])
-	c7.metric("Uncluster", by_decision["UNCLUSTER"])
+	c2.metric("Undecided", undecided)
+	c3.metric("Aligned", by_decision.get("ALIGN", 0))
+	c4.metric("New", by_decision.get("NEW", 0))
+	c5.metric("Split", by_decision.get("SPLIT", 0))
+	c6.metric("Defer", by_decision.get("DEFER", 0))
+	c7.metric("Descriptive", by_decision.get("DESCRIPTIVE", 0))
 
 	st.divider()
 
@@ -642,7 +754,7 @@ def render() -> None:
 	with f1:
 		status_filter = st.segmented_control(
 			"Show",
-			options=["Undecided", "All", "ALIGN", "NEW", "DISCUSS", "GENERIC", "UNCLUSTER"],
+			options=["Undecided", "All", "ALIGN", "NEW", "SPLIT", "DEFER", "DESCRIPTIVE"],
 			default="Undecided",
 		)
 	with f2:
@@ -684,6 +796,9 @@ def render() -> None:
 
 	_ensure_state(visible)
 
+	# Keep ordered list of visible cluster IDs for prev/next navigation
+	st.session_state["review_visible_ids"] = [r["cluster_id"] for r in visible]
+
 	selected_cid = st.session_state.get("review_selected_cid", "").strip()
 	selected = next((r for r in visible if r.get("cluster_id") == selected_cid), None)
 
@@ -706,21 +821,37 @@ def render() -> None:
 					st.rerun()
 		return
 
-	nav_col1, nav_col2 = st.columns([1.4, 4])
+	vis_ids = st.session_state.get("review_visible_ids", [])
+	cur_idx = vis_ids.index(selected_cid) if selected_cid in vis_ids else -1
+	nav_col1, nav_col2, nav_col3, nav_col4 = st.columns([1.4, 0.5, 0.5, 3])
 	if nav_col1.button("← Back to queue", key="review_back_to_queue"):
 		st.session_state.review_selected_cid = ""
 		st.rerun()
-	nav_col2.markdown("### Selected Entity")
+	if nav_col2.button("←", key="review_prev", disabled=(cur_idx <= 0)):
+		st.session_state.review_selected_cid = vis_ids[cur_idx - 1]
+		st.rerun()
+	if nav_col3.button("→", key="review_next", disabled=(cur_idx < 0 or cur_idx >= len(vis_ids) - 1)):
+		st.session_state.review_selected_cid = vis_ids[cur_idx + 1]
+		st.rerun()
+	nav_col4.caption(f"{cur_idx + 1} / {len(vis_ids)}" if cur_idx >= 0 else "")
 
 	with st.container():
 		sample_rows = samples.get(selected["cluster_id"], {}).get("samples", [])
 		show_samples_key = f"show_cluster_samples_{selected['cluster_id']}"
-		title_col, toggle_col = st.columns([4, 1.4])
+		title_col, action_col, toggle_col = st.columns([3, 2.4, 1.4])
 		with title_col:
 			st.markdown(
 				f"<div class='rtl-title' dir='rtl' style='font-size:1.55rem; font-weight:600'>{selected.get('canonical_yiddish', '')}</div>",
 				unsafe_allow_html=True,
 			)
+		with action_col:
+			qa1, qa2, qa3 = st.columns(3)
+			if qa1.button("🔴 Split", key=f"entity-split-{selected['cluster_id']}", use_container_width=True):
+				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "SPLIT"
+			if qa2.button("🟡 Defer", key=f"entity-defer-{selected['cluster_id']}", use_container_width=True):
+				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "DEFER"
+			if qa3.button("🔵 Descriptive", key=f"entity-descriptive-{selected['cluster_id']}", use_container_width=True):
+				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "DESCRIPTIVE"
 		with toggle_col:
 			show_samples = st.session_state.get(show_samples_key, False)
 			sample_label = "Hide sample texts" if show_samples else "Click to see sample texts"
@@ -728,143 +859,271 @@ def render() -> None:
 				st.session_state[show_samples_key] = not show_samples
 				st.rerun()
 		st.markdown(
-			f"<div class='rtl-block'>Cluster: {selected.get('cluster_id','')} · Type: {selected.get('org_type','')} · Mentions: {selected.get('cluster_size','')}</div>",
+			f"<div class='rtl-block'>Cluster: {selected.get('cluster_id','')} · Mentions: {selected.get('cluster_size','')}</div>",
 			unsafe_allow_html=True,
 		)
+		# org_type selectbox — inline editing
+		_type_row_idx = next((i for i, r in enumerate(a_rows) if r.get("cluster_id") == selected["cluster_id"]), None)
+		_cur_type = selected.get("org_type", "").strip().lower()
+		_type_idx = _ORG_TYPE_OPTIONS.index(_cur_type) if _cur_type in _ORG_TYPE_OPTIONS else len(_ORG_TYPE_OPTIONS) - 1
+		new_type = st.selectbox(
+			"Type",
+			_ORG_TYPE_OPTIONS,
+			index=_type_idx,
+			key=f"review-type-{selected['cluster_id']}",
+		)
+		if _type_row_idx is not None and new_type != _cur_type:
+			a_rows[_type_row_idx]["org_type"] = new_type
+			save_alignment(a_headers, a_rows)
+			load_alignment.clear()
+			st.rerun()
 
-		left_col, right_col = st.columns([1.15, 1.85], gap="large")
+		new_entity_name = st.text_input(
+			"Entity name",
+			value=selected.get("canonical_yiddish", "").strip(),
+			key=f"review-name-{selected['cluster_id']}",
+			placeholder="Editable canonical name",
+		).strip()
 
-		with left_col:
-			if st.session_state.get(show_samples_key, False):
-				with st.container(border=True):
-					st.markdown("<div class='rtl-title'><b>Sample texts</b></div>", unsafe_allow_html=True)
-					_render_attestations(selected, samples)
+		variants = _split_pipe(selected.get("name_variants", ""))
+		if variants:
+			st.markdown("<div class='rtl-title'><b>Name variants</b></div>", unsafe_allow_html=True)
+			st.markdown(f"<div class='rtl-block'>{' | '.join(variants)}</div>", unsafe_allow_html=True)
 
-		with right_col:
-			new_entity_name = st.text_input(
-				"Entity name",
-				value=selected.get("canonical_yiddish", "").strip(),
-				key=f"review-name-{selected['cluster_id']}",
-				placeholder="Editable canonical name",
-			).strip()
+		for label, key in (
+			("Settlements", "extracted_settlements"),
+			("Addresses", "extracted_addresses"),
+			("Venues", "extracted_venues"),
+			("Countries", "extracted_countries"),
+		):
+			val = selected.get(key, "").strip()
+			if val:
+				st.markdown(f"<div class='rtl-title'><b>{label}</b></div>", unsafe_allow_html=True)
+				st.markdown(f"<div class='rtl-block'>{val}</div>", unsafe_allow_html=True)
 
-			variants = _split_pipe(selected.get("name_variants", ""))
-			if variants:
-				st.markdown("<div class='rtl-title'><b>Name variants</b></div>", unsafe_allow_html=True)
-				st.markdown(f"<div class='rtl-block'>{' | '.join(variants)}</div>", unsafe_allow_html=True)
-
-			for label, key in (
-				("Settlements", "extracted_settlements"),
-				("Addresses", "extracted_addresses"),
-				("Venues", "extracted_venues"),
-				("Countries", "extracted_countries"),
-			):
-				val = selected.get(key, "").strip()
-				if val:
-					st.markdown(f"<div class='rtl-title'><b>{label}</b></div>", unsafe_allow_html=True)
-					st.markdown(f"<div class='rtl-block'>{val}</div>", unsafe_allow_html=True)
-
-			st.divider()
-			cand_db_col, cand_cluster_col = st.columns(2, gap="large")
-
-			c_ids = _split_pipe(selected.get("candidate_db_ids", ""))
-			c_scores = _split_pipe(selected.get("candidate_scores", ""))
-			c_methods = _split_pipe(selected.get("candidate_methods", ""))
-			db_by_id = {r.get("db_id", ""): r for r in db_rows}
-
-			choice_key = f"review_choice_{selected['cluster_id']}"
-			default_choice = selected.get("aligned_db_id", "").strip()
-			if choice_key not in st.session_state:
-				st.session_state[choice_key] = default_choice
-			chosen_db_id = st.session_state.get(choice_key, "").strip()
-
-			if len(c_ids) == 1 and not chosen_db_id:
-				st.session_state[choice_key] = c_ids[0]
-				chosen_db_id = c_ids[0]
-
-			with cand_db_col:
-				st.markdown("<div class='rtl-title'><b>DB alignment candidates</b></div>", unsafe_allow_html=True)
-				for i, dbid in enumerate(c_ids):
-					db = db_by_id.get(dbid, {})
-					score_txt = c_scores[i] if i < len(c_scores) else ""
-					method_txt = c_methods[i] if i < len(c_methods) else ""
-					icon = {"exact": "🎯", "phonetic": "🔊", "fuzzy": "🔤"}.get(method_txt, "•")
-					with st.container(border=True):
-						st.markdown(
-							f"<div class='rtl-block'>{icon} {dbid} · {db.get('name', '(missing)')}</div>",
-							unsafe_allow_html=True,
-						)
-						st.caption(f"type: {db.get('org_type','')} · score: {score_txt} · method: {method_txt}")
-						if db.get("address", ""):
-							st.caption(f"address: {db.get('address','')}")
-						if len(c_ids) > 1 and st.button("Select for Align", key=f"review-sel-{selected['cluster_id']}-{dbid}"):
-							st.session_state[choice_key] = dbid
-							st.rerun()
-
-				with st.expander("Search DB candidates", expanded=not bool(c_ids)):
-					search_q = st.text_input(
-						"Search DB by name",
-						key=f"review-db-search-{selected['cluster_id']}",
-						placeholder="Type part of an organization name",
-					)
-					if search_q.strip():
-						q = search_q.strip().lower()
-						hits = [r for r in db_rows if q in r.get("name", "").lower()][:20]
-						if hits:
-							for r in hits:
-								hit_id = r.get("db_id", "")
-								hcol1, hcol2 = st.columns([5, 1])
-								hcol1.markdown(
-									f"<div class='rtl-block'>{hit_id} · {r.get('name','')}</div>",
-									unsafe_allow_html=True,
-								)
-								if hcol2.button("Use", key=f"review-manual-{selected['cluster_id']}-{hit_id}"):
-									st.session_state[choice_key] = hit_id
-									st.rerun()
-						else:
-							st.caption("No DB matches for this query.")
-
-				chosen_db_id = st.session_state.get(choice_key, "").strip()
-				if chosen_db_id:
-					chosen_name = db_by_id.get(chosen_db_id, {}).get("name", "")
-					st.caption(f"Selected DB target: {chosen_db_id}" + (f" · {chosen_name}" if chosen_name else ""))
-					if chosen_db_id in addr_db_ids:
-						if st.button("Open in Geo Cards", key=f"open-geo-{selected['cluster_id']}"):
-							st.session_state["addr_selected"] = chosen_db_id
-							st.session_state["nav_view_target"] = "Geo Cards"
-							st.rerun()
-
-			with cand_cluster_col:
-				st.markdown("<div class='rtl-title'><b>Clustering candidates</b></div>", unsafe_allow_html=True)
-				_render_similar_clusters(selected, pair_index, pair_headers, pair_rows, a_rows)
+		# ── Sample texts (optional, full-width above candidates) ──────────
+		if show_samples:
+			with st.container(border=True):
+				st.markdown("<div class='panel-samples'></div>", unsafe_allow_html=True)
+				st.markdown("<div class='rtl-title section-chip section-chip-samples'><b>Sample texts</b></div>", unsafe_allow_html=True)
+				_render_attestations(selected, samples)
 
 		st.divider()
-		notes = st.text_area(
-			"Reviewer notes",
-			value=selected.get("reviewer_notes", ""),
-			key=f"review-notes-{selected['cluster_id']}",
-		)
+
+		# ── Candidate columns: DB on left, Clustering on right ────────────
+		c_ids = _split_pipe(selected.get("candidate_db_ids", ""))
+		c_scores = _split_pipe(selected.get("candidate_scores", ""))
+		c_methods = _split_pipe(selected.get("candidate_methods", ""))
+		db_by_id = {r.get("db_id", ""): r for r in db_rows}
+
+		choice_key = f"review_choice_{selected['cluster_id']}"
+		default_choice = selected.get("aligned_db_id", "").strip()
+		if choice_key not in st.session_state:
+			st.session_state[choice_key] = default_choice
+		chosen_db_id = st.session_state.get(choice_key, "").strip()
+
+		if len(c_ids) == 1 and not chosen_db_id:
+			st.session_state[choice_key] = c_ids[0]
+			chosen_db_id = c_ids[0]
+
+		cand_db_col, cand_cluster_col = st.columns(2, gap="large")
+
+		with cand_db_col:
+			st.markdown("<div class='panel-db-cand'></div>", unsafe_allow_html=True)
+			st.markdown("<div class='rtl-title section-chip section-chip-db'><b>DB alignment candidates</b></div>", unsafe_allow_html=True)
+			dismiss_key = f"review_dismissed_db_{selected['cluster_id']}"
+			dismissed_db = st.session_state.get(dismiss_key, set())
+			visible_c_ids = [(i, dbid) for i, dbid in enumerate(c_ids) if dbid not in dismissed_db]
+			for i, dbid in visible_c_ids:
+				db = db_by_id.get(dbid, {})
+				score_txt = c_scores[i] if i < len(c_scores) else ""
+				method_txt = c_methods[i] if i < len(c_methods) else ""
+				icon = {
+					"exact": "🎯",
+					"phonetic": "🔊",
+					"ipa_phonetic": "🔉",
+					"fuzzy": "🔤",
+				}.get(method_txt, "•")
+				with st.container(border=True):
+					st.markdown(
+						f"<div class='rtl-block'>{icon} {dbid} · {db.get('name', '(missing)')}</div>",
+						unsafe_allow_html=True,
+					)
+					st.caption(f"type: {db.get('org_type','')} · score: {score_txt} · method: {method_txt}")
+					if db.get("address", ""):
+						st.caption(f"address: {db.get('address','')}")
+					loc = addr_details.get(dbid, {})
+					loc_parts = []
+					if loc.get("confirmed_settlement"):
+						loc_parts.append(loc["confirmed_settlement"])
+					if loc.get("confirmed_address"):
+						loc_parts.append(loc["confirmed_address"])
+					if loc.get("lat") and loc.get("lon"):
+						loc_parts.append(f"({loc['lat']}, {loc['lon']})")
+					if loc_parts:
+						st.caption(f"📍 {' · '.join(loc_parts)}")
+					is_chosen = (chosen_db_id == dbid)
+					if is_chosen:
+						st.success("✓ Selected for alignment")
+					btn_cols = st.columns(2)
+					if btn_cols[0].button("🟢 Align", key=f"review-sel-{selected['cluster_id']}-{dbid}", use_container_width=True, disabled=is_chosen):
+						st.session_state[choice_key] = dbid
+						st.rerun()
+					if btn_cols[1].button("⬛ Dismiss", key=f"review-dismiss-db-{selected['cluster_id']}-{dbid}", use_container_width=True):
+						dismissed_db.add(dbid)
+						st.session_state[dismiss_key] = dismissed_db
+						if chosen_db_id == dbid:
+							st.session_state[choice_key] = ""
+						st.rerun()
+
+			with st.expander("Search DB candidates", expanded=not bool(c_ids)):
+				search_q = st.text_input(
+					"Search DB by name",
+					key=f"review-db-search-{selected['cluster_id']}",
+					placeholder="Type part of an organization name",
+				)
+				loc_q = st.text_input(
+					"Search DB by location",
+					key=f"review-db-loc-search-{selected['cluster_id']}",
+					placeholder="Type part of a settlement, address, or venue name",
+				)
+				q_norm = _nrm_yid(search_q) if search_q.strip() else ""
+				loc_norm = _nrm_yid(loc_q) if loc_q.strip() else ""
+				if q_norm or loc_norm:
+					def _db_matches(r, _q=q_norm, _loc=loc_norm):
+						name_ok = (not _q) or _q in _nrm_yid(r.get("name", ""))
+						if not _loc:
+							return name_ok
+						addr = _nrm_yid(r.get("address", ""))
+						det = addr_details.get(r.get("db_id", ""), {})
+						loc_fields = " ".join(filter(None, [
+							addr,
+							_nrm_yid(det.get("confirmed_settlement", "")),
+							_nrm_yid(det.get("confirmed_settlement_yiddish", "")),
+							_nrm_yid(det.get("confirmed_address", "")),
+						]))
+						return name_ok and _loc in loc_fields
+					hits = [r for r in db_rows if _db_matches(r)][:20]
+					if hits:
+						for r in hits:
+							hit_id = r.get("db_id", "")
+							hcol1, hcol2 = st.columns([5, 1])
+							hcol1.markdown(
+								f"<div class='rtl-block'>{hit_id} · {r.get('name','')}</div>",
+								unsafe_allow_html=True,
+							)
+							loc = addr_details.get(hit_id, {})
+							loc_parts = []
+							if loc.get("confirmed_settlement"):
+								loc_parts.append(loc["confirmed_settlement"])
+							if loc.get("confirmed_address"):
+								loc_parts.append(loc["confirmed_address"])
+							if loc_parts:
+								hcol1.caption(f"📍 {' · '.join(loc_parts)}")
+							if hcol2.button("Use", key=f"review-manual-{selected['cluster_id']}-{hit_id}"):
+								st.session_state[choice_key] = hit_id
+								st.rerun()
+					else:
+						st.caption("No DB matches for this query.")
+
+			chosen_db_id = st.session_state.get(choice_key, "").strip()
+			if chosen_db_id:
+				chosen_name = db_by_id.get(chosen_db_id, {}).get("name", "")
+				st.caption(f"Selected DB target: {chosen_db_id}" + (f" · {chosen_name}" if chosen_name else ""))
+				# org_type selectbox for the chosen DB entity
+				_db_row_idx = next((i for i, r in enumerate(db_rows) if r.get("db_id") == chosen_db_id), None)
+				if _db_row_idx is not None:
+					_db_cur_type = db_rows[_db_row_idx].get("org_type", "").strip().lower()
+					_db_type_idx = _ORG_TYPE_OPTIONS.index(_db_cur_type) if _db_cur_type in _ORG_TYPE_OPTIONS else len(_ORG_TYPE_OPTIONS) - 1
+					new_db_type = st.selectbox(
+						"DB entity type",
+						_ORG_TYPE_OPTIONS,
+						index=_db_type_idx,
+						key=f"review-db-type-{chosen_db_id}",
+					)
+					if new_db_type != _db_cur_type:
+						db_rows[_db_row_idx]["org_type"] = new_db_type
+						save_core_db(db_headers, db_rows)
+						load_core_db.clear()
+						st.rerun()
+				if chosen_db_id in addr_db_ids:
+					st.link_button("Open in Entity Cards ↗",
+								   _open_url("Entity Cards", chosen_db_id))
+
+		with cand_cluster_col:
+			st.markdown("<div class='panel-cluster-cand'></div>", unsafe_allow_html=True)
+			st.markdown("<div class='rtl-title section-chip section-chip-cluster'><b>Clustering candidates</b></div>", unsafe_allow_html=True)
+			_render_similar_clusters(selected, pair_index, pair_headers, pair_rows, a_rows)
+
+		st.divider()
+
+		# ── Unified entity details ────────────────────────────────────────
+		detail_cols = st.columns(3)
+		with detail_cols[0]:
+			review_settlement = st.text_input(
+				"Settlement (optional)",
+				value=selected.get("reviewer_settlement", ""),
+				key=f"review-settlement-{selected['cluster_id']}",
+			)
+		with detail_cols[1]:
+			review_address = st.text_input(
+				"Address (optional)",
+				value=selected.get("reviewer_address", ""),
+				key=f"review-address-{selected['cluster_id']}",
+			)
+		with detail_cols[2]:
+			notes = st.text_area(
+				"Reviewer notes",
+				value=selected.get("reviewer_notes", ""),
+				key=f"review-notes-{selected['cluster_id']}",
+			)
 
 		row_idx = next(i for i, r in enumerate(a_rows) if r.get("cluster_id") == selected["cluster_id"])
-		col1, col2, col3, col4, col5 = st.columns(5)
+
+		# ── Handle entity-level quick actions (Split/Defer/Descriptive from header) ──
+		quick_key = f"entity_quick_{selected['cluster_id']}"
+		quick_action = st.session_state.pop(quick_key, None)
+		if quick_action in ("SPLIT", "DEFER", "DESCRIPTIVE"):
+			_ensure_audit_cols(a_headers, a_rows, "reviewer", "reviewed_at")
+			a_rows[row_idx]["decision"] = quick_action
+			a_rows[row_idx]["aligned_db_id"] = ""
+			a_rows[row_idx]["reviewer_notes"] = notes
+			_stamp(a_rows[row_idx])
+			save_alignment(a_headers, a_rows)
+			load_alignment.clear()
+			st.rerun()
+
+		def _ensure_alignment_columns() -> None:
+			for col in ("reviewer_settlement", "reviewer_address", "reviewer", "reviewed_at"):
+				if col not in a_headers:
+					a_headers.append(col)
+					for r in a_rows:
+						r.setdefault(col, "")
+
+		col1, col2 = st.columns(2)
 
 		if col1.button("Align", type="primary", disabled=not chosen_db_id):
+			_ensure_alignment_columns()
 			a_rows[row_idx]["decision"] = "ALIGN"
 			a_rows[row_idx]["aligned_db_id"] = chosen_db_id
 			a_rows[row_idx]["reviewer_notes"] = notes
+			a_rows[row_idx]["reviewer_settlement"] = review_settlement
+			a_rows[row_idx]["reviewer_address"] = review_address
+			_stamp(a_rows[row_idx])
 			save_alignment(a_headers, a_rows)
 			load_alignment.clear()
 			st.session_state.pop(choice_key, None)
 			st.rerun()
 
 		if col2.button("New entity"):
+			_ensure_alignment_columns()
 			next_id = _next_db_id(db_rows)
 			db_rows.append(
 				{
 					"db_id": str(next_id),
 					"name": new_entity_name or selected.get("canonical_yiddish", "").strip(),
-					"org_type": selected.get("org_type", "").strip().title(),
-					"address": selected.get("extracted_addresses", "").split("|", 1)[0].strip(),
+						"org_type": new_type or selected.get("org_type", "").strip().lower(),
+					"address": review_address or selected.get("extracted_addresses", "").split("|", 1)[0].strip(),
 					"linked_cluster_ids": selected.get("cluster_id", "").strip(),
 				}
 			)
@@ -874,30 +1133,9 @@ def render() -> None:
 			a_rows[row_idx]["decision"] = "NEW"
 			a_rows[row_idx]["aligned_db_id"] = str(next_id)
 			a_rows[row_idx]["reviewer_notes"] = notes
-			save_alignment(a_headers, a_rows)
-			load_alignment.clear()
-			st.rerun()
-
-		if col3.button("Generic"):
-			a_rows[row_idx]["decision"] = "GENERIC"
-			a_rows[row_idx]["aligned_db_id"] = ""
-			a_rows[row_idx]["reviewer_notes"] = notes
-			save_alignment(a_headers, a_rows)
-			load_alignment.clear()
-			st.rerun()
-
-		if col4.button("Uncluster"):
-			a_rows[row_idx]["decision"] = "UNCLUSTER"
-			a_rows[row_idx]["aligned_db_id"] = ""
-			a_rows[row_idx]["reviewer_notes"] = notes
-			save_alignment(a_headers, a_rows)
-			load_alignment.clear()
-			st.rerun()
-
-		if col5.button("Discuss"):
-			a_rows[row_idx]["decision"] = "DISCUSS"
-			a_rows[row_idx]["aligned_db_id"] = ""
-			a_rows[row_idx]["reviewer_notes"] = notes
+			a_rows[row_idx]["reviewer_settlement"] = review_settlement
+			a_rows[row_idx]["reviewer_address"] = review_address
+			_stamp(a_rows[row_idx])
 			save_alignment(a_headers, a_rows)
 			load_alignment.clear()
 			st.rerun()
