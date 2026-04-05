@@ -249,6 +249,15 @@ def render() -> None:
     c6.metric("Generic", by_decision["GENERIC"])
     c7.metric("Uncluster", by_decision["UNCLUSTER"])
 
+    with open(ALIGN_FILE, "rb") as _f:
+        st.download_button(
+            "⬇ Download decisions TSV (commit to git to persist)",
+            data=_f.read(),
+            file_name="org_alignment_review.tsv",
+            mime="text/tab-separated-values",
+            help="Streamlit Cloud resets files on redeploy. Download & commit this file to preserve decisions.",
+        )
+
     st.divider()
 
     f1, f2, f3 = st.columns([2, 1, 1])
