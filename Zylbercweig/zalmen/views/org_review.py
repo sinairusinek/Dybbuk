@@ -226,6 +226,8 @@ def save_alignment(headers: list[str], rows: list[dict[str, str]]) -> None:
 				w.writerows(rows)
 		finally:
 			fcntl.flock(lock_fh, fcntl.LOCK_UN)
+	from zalmen.github_sync import push_file_to_github
+	push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
 
 
 def save_pairs(headers: list[str], rows: list[dict[str, str]]) -> None:
@@ -239,6 +241,8 @@ def save_pairs(headers: list[str], rows: list[dict[str, str]]) -> None:
 				w.writerows(rows)
 		finally:
 			fcntl.flock(lock_fh, fcntl.LOCK_UN)
+	from zalmen.github_sync import push_file_to_github
+	push_file_to_github("Zylbercweig/organizations/cluster_pairs_review.tsv", PAIRS_FILE, "chore: save cluster pair decisions")
 
 
 def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
@@ -252,6 +256,8 @@ def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
 				w.writerows(rows)
 		finally:
 			fcntl.flock(lock_fh, fcntl.LOCK_UN)
+	from zalmen.github_sync import push_file_to_github
+	push_file_to_github("Zylbercweig/organizations/core_db.tsv", CORE_DB_FILE, "chore: save core DB")
 
 
 def _current_reviewer() -> str:

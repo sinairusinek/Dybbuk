@@ -222,6 +222,8 @@ def save_orgs(headers, rows):
                 w.writeheader(); w.writerows(rows)
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
+    from zalmen.github_sync import push_file_to_github
+    push_file_to_github("Zylbercweig/organizations/org_addresses_review.tsv", ADDR_FILE, "chore: save address decisions")
 
 
 def save_alignment(headers, rows):
@@ -235,6 +237,8 @@ def save_alignment(headers, rows):
                 w.writerows(rows)
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
+    from zalmen.github_sync import push_file_to_github
+    push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
 
 
 def save_cluster_rows(headers, rows):

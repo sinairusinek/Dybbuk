@@ -168,6 +168,8 @@ def save_alignment(headers, rows):
                 w.writerows(rows)
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
+    from zalmen.github_sync import push_file_to_github
+    push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
 
 
 def save_core_db(headers, rows):
@@ -181,6 +183,8 @@ def save_core_db(headers, rows):
                 w.writerows(rows)
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
+    from zalmen.github_sync import push_file_to_github
+    push_file_to_github("Zylbercweig/organizations/core_db.tsv", CORE_DB_FILE, "chore: save core DB")
 
 
 def _split_pipe(v: str) -> list[str]:
