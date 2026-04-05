@@ -21,7 +21,7 @@ import streamlit as st
 try:
     _REVIEWERS: list[str] = list(st.secrets["reviewers"])
 except Exception:
-    _REVIEWERS = ["Sinai", "RA1", "RA2"]
+    _REVIEWERS = ["Sinai", "Maaty", "Bella", "Noa", "Judith", "Ruthie"]
 
 # ── Optional --view argument: pin the app to one view for a specific RA ───────
 # Usage: streamlit run app.py -- --view a2
