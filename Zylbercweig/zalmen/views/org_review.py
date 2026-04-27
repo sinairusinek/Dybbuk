@@ -10,6 +10,7 @@ Primary queue unit: one cluster record from org_alignment_review.tsv.
 
 from __future__ import annotations
 
+import collections
 import csv
 import fcntl
 import pathlib
@@ -227,7 +228,9 @@ def save_alignment(headers: list[str], rows: list[dict[str, str]]) -> None:
 		finally:
 			fcntl.flock(lock_fh, fcntl.LOCK_UN)
 	from zalmen.github_sync import push_file_to_github
-	push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
+	ok = push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
+	if not ok:
+		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
 def save_pairs(headers: list[str], rows: list[dict[str, str]]) -> None:
@@ -242,7 +245,9 @@ def save_pairs(headers: list[str], rows: list[dict[str, str]]) -> None:
 		finally:
 			fcntl.flock(lock_fh, fcntl.LOCK_UN)
 	from zalmen.github_sync import push_file_to_github
-	push_file_to_github("Zylbercweig/organizations/cluster_pairs_review.tsv", PAIRS_FILE, "chore: save cluster pair decisions")
+	ok = push_file_to_github("Zylbercweig/organizations/cluster_pairs_review.tsv", PAIRS_FILE, "chore: save cluster pair decisions")
+	if not ok:
+		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
 def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
@@ -257,7 +262,9 @@ def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
 		finally:
 			fcntl.flock(lock_fh, fcntl.LOCK_UN)
 	from zalmen.github_sync import push_file_to_github
-	push_file_to_github("Zylbercweig/organizations/core_db.tsv", CORE_DB_FILE, "chore: save core DB")
+	ok = push_file_to_github("Zylbercweig/organizations/core_db.tsv", CORE_DB_FILE, "chore: save core DB")
+	if not ok:
+		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
 def _current_reviewer() -> str:
@@ -779,7 +786,7 @@ def render() -> None:
 
 	st.divider()
 
-	f1, f2, f3 = st.columns([2, 1, 1])
+	f1, f2 = st.columns([2, 1])
 	with f1:
 		status_filter = st.segmented_control(
 			"Show",
@@ -788,8 +795,25 @@ def render() -> None:
 		)
 	with f2:
 		sort_by = st.selectbox("Sort by", ["Candidate score ↓", "Cluster size ↓", "Name"], index=0)
-	with f3:
-		type_filter = st.text_input("Org type contains", "").strip().lower()
+
+	type_counts: dict[str, int] = collections.Counter()
+	for r in a_rows:
+		t = r.get("org_type", "").strip()
+		if t:
+			type_counts[t.title()] += 1
+	type_options = [t for t, _ in sorted(type_counts.items(), key=lambda x: (-x[1], x[0]))]
+	type_labels = {t: f"{t} ({type_counts[t]})" for t in type_options}
+
+	st.caption("Filter by org type")
+	sel_types = st.pills(
+		"Org type",
+		options=type_options,
+		format_func=lambda t: type_labels[t],
+		selection_mode="multi",
+		key="review_type_pills",
+		label_visibility="collapsed",
+	)
+	sel_types_norm = {t.lower() for t in sel_types}
 
 	def visible_pred(r: dict[str, str]) -> bool:
 		d = r.get("decision", "").strip()
@@ -797,7 +821,7 @@ def render() -> None:
 			return False
 		if status_filter not in ("Undecided", "All") and d != status_filter:
 			return False
-		if type_filter and type_filter not in r.get("org_type", "").lower():
+		if sel_types_norm and r.get("org_type", "").strip().lower() not in sel_types_norm:
 			return False
 		return True
 
