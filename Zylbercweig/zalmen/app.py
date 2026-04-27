@@ -36,6 +36,7 @@ if "--view" in _args:
 VIEWS = {
     "Organizations matching":  ("org_review",    "review"),
     "Organization Cards":      ("org_addresses", "geo"),
+    "Activity":                ("activity",      "activity"),
     "B1 · Person Dedup":       (None,             "b1"),
     "B2 · Person → External":  (None,             "b2"),
 }
@@ -43,6 +44,7 @@ VIEWS = {
 VIEW_STATUS = {
     "Organizations matching":  "✅ Ready",
     "Organization Cards":      "✅ Ready",
+    "Activity":                "📋",
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → External":  "⏳ Blocked on B1",
 }
@@ -60,6 +62,18 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed" if _pinned_label else "expanded",
 )
+
+# ── GitHub sync health check ───────────────────────────────────────────────────
+try:
+    _gh_ok = bool(st.secrets.get("github_token")) and bool(st.secrets.get("github_repo"))
+except Exception:
+    _gh_ok = False
+if not _gh_ok:
+    st.error(
+        "⛔ This app is not connected to its save system. Any decisions you make "
+        "will be lost if the app restarts. Please contact Sinai before starting work.",
+        icon="🔴",
+    )
 
 # ── Login gate ────────────────────────────────────────────────────────────────
 if "reviewer" not in st.session_state:
@@ -129,6 +143,9 @@ if view_module == "org_review":
     render()
 elif view_module == "org_addresses":
     from views.org_addresses import render
+    render()
+elif view_module == "activity":
+    from views.activity import render
     render()
 else:
     st.info(f"**{selected}** is not yet implemented.")
