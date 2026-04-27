@@ -223,7 +223,9 @@ def save_orgs(headers, rows):
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
     from zalmen.github_sync import push_file_to_github
-    push_file_to_github("Zylbercweig/organizations/org_addresses_review.tsv", ADDR_FILE, "chore: save address decisions")
+    ok = push_file_to_github("Zylbercweig/organizations/org_addresses_review.tsv", ADDR_FILE, "chore: save address decisions")
+    if not ok:
+        st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
 def save_alignment(headers, rows):
@@ -238,7 +240,9 @@ def save_alignment(headers, rows):
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
     from zalmen.github_sync import push_file_to_github
-    push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
+    ok = push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
+    if not ok:
+        st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
 def save_cluster_rows(headers, rows):
@@ -563,7 +567,14 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
         st.info("Nothing here yet.")
         return
 
-    all_types = sorted({r["org_type"] for r in pool if r["org_type"].strip()})
+    type_counts: dict[str, int] = collections.Counter()
+    for r in pool:
+        t = r.get("org_type", "").strip()
+        if t:
+            type_counts[t.title()] += 1
+    type_options = [t for t, _ in sorted(type_counts.items(), key=lambda x: (-x[1], x[0]))]
+    type_labels = {t: f"{t} ({type_counts[t]})" for t in type_options}
+
     col_f1, col_f2, col_f3 = st.columns([2, 1.2, 1])
     with col_f1:
         name_q = st.text_input("Search name", key=f"name_q_{tab_key}")
@@ -576,14 +587,23 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
     with col_f3:
         sort_m = st.selectbox("Sort", ["Mentions ↓", "Settlements ↓", "Alphabetical"], key=f"sort_{tab_key}")
 
-    sel_types = st.multiselect("Org type", all_types, key=f"types_{tab_key}")
+    st.caption("Filter by org type")
+    sel_types = st.pills(
+        "Org type",
+        options=type_options,
+        format_func=lambda t: type_labels[t],
+        selection_mode="multi",
+        key=f"types_{tab_key}",
+        label_visibility="collapsed",
+    )
     tcol1, tcol2 = st.columns(2)
     show_generic = tcol1.toggle("Include generic", value=True, key=f"generic_{tab_key}")
     show_sub = tcol2.toggle("Include sub-clusters", value=True, key=f"sub_{tab_key}")
 
     visible = pool
     if sel_types:
-        visible = [r for r in visible if r["org_type"] in sel_types]
+        sel_norm = {t.lower() for t in sel_types}
+        visible = [r for r in visible if r.get("org_type", "").strip().lower() in sel_norm]
     if name_q.strip():
         q = name_q.strip().lower()
         visible = [r for r in visible if q in (r.get("canonical_yiddish", "").lower())]
