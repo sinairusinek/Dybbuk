@@ -145,6 +145,8 @@ if OUT.exists():
                 "parent_db_id":                 row.get("parent_db_id", row.get("parent_cluster_id", "")),
                 "reviewer_notes":               row.get("reviewer_notes", ""),
                 "confirmed_locations":          row.get("confirmed_locations", ""),
+                "reviewer":                     row.get("reviewer", ""),
+                "reviewed_at":                  row.get("reviewed_at", ""),
             }
             if did:
                 existing[did] = data
@@ -176,6 +178,8 @@ headers = [
     "lon",
     "reviewer_notes",
     "confirmed_locations",          # JSON list of {settlement, settlement_yiddish, address, address_romanized, lat, lon}
+    "reviewer",
+    "reviewed_at",
 ]
 
 # Sort: by org_type first (theatre first), then by mentions descending, then name
@@ -218,6 +222,8 @@ with open(OUT, "w", newline="", encoding="utf-8") as f:
             "lon":                          prev.get("lon", ""),
             "reviewer_notes":               prev.get("reviewer_notes", ""),
             "confirmed_locations":          prev.get("confirmed_locations", ""),
+            "reviewer":                     prev.get("reviewer", ""),
+            "reviewed_at":                  prev.get("reviewed_at", ""),
         })
 
 print(f"Wrote {len(sorted_entities)} rows → {OUT.name}")
