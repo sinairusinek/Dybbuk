@@ -267,6 +267,59 @@ def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
 		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
+def append_address_row(db_id: str, name: str, org_type: str, cluster_id: str,
+                       settlement: str = "", address: str = "") -> None:
+	"""Append a row for a newly-created DB org to org_addresses_review.tsv.
+
+	The address TSV is normally regenerated offline by extract_addresses.py,
+	but we append live so cards appear immediately for orgs created in the app.
+	"""
+	if not ADDR_FILE.exists():
+		return
+	lock_path = ADDR_FILE.with_suffix(".lock")
+	with open(lock_path, "w") as lock_fh:
+		fcntl.flock(lock_fh, fcntl.LOCK_EX)
+		try:
+			with open(ADDR_FILE, newline="", encoding="utf-8") as f:
+				reader = csv.DictReader(f, delimiter="\t")
+				headers = list(reader.fieldnames or [])
+				rows = list(reader)
+			if not headers or "db_id" not in headers:
+				return
+			if any(r.get("db_id", "").strip() == str(db_id) for r in rows):
+				return
+			new_row = {h: "" for h in headers}
+			new_row["db_id"] = str(db_id)
+			new_row["canonical_yiddish"] = name
+			new_row["org_type"] = org_type
+			new_row["linked_cluster_ids"] = cluster_id
+			new_row["mentions"] = "0"
+			new_row["n_settlements"] = "0"
+			if "confirmed_settlement" in headers:
+				new_row["confirmed_settlement"] = settlement
+			if "confirmed_address" in headers:
+				new_row["confirmed_address"] = address
+			if "reviewer" in headers:
+				new_row["reviewer"] = _current_reviewer()
+			if "reviewed_at" in headers:
+				new_row["reviewed_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+			rows.append(new_row)
+			with open(ADDR_FILE, "w", newline="", encoding="utf-8") as f:
+				w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
+				w.writeheader()
+				w.writerows(rows)
+		finally:
+			fcntl.flock(lock_fh, fcntl.LOCK_UN)
+	from zalmen.github_sync import push_file_to_github
+	push_file_to_github(
+		"Zylbercweig/organizations/org_addresses_review.tsv",
+		ADDR_FILE,
+		f"chore: append new org {db_id} to addresses",
+	)
+	load_address_db_ids.clear()
+	load_address_details.clear()
+
+
 def _current_reviewer() -> str:
 	return st.session_state.get("reviewer", "")
 
@@ -1182,6 +1235,15 @@ def render() -> None:
 			)
 			save_core_db(db_headers, db_rows)
 			load_core_db.clear()
+
+			append_address_row(
+				db_id=str(next_id),
+				name=new_entity_name or selected.get("canonical_yiddish", "").strip(),
+				org_type=(new_type or selected.get("org_type", "").strip().lower()),
+				cluster_id=selected.get("cluster_id", "").strip(),
+				settlement=review_settlement,
+				address=review_address,
+			)
 
 			a_rows[row_idx]["decision"] = "NEW"
 			a_rows[row_idx]["aligned_db_id"] = str(next_id)
