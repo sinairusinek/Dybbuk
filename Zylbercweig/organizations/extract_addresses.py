@@ -8,8 +8,6 @@ Output: org_addresses_review.tsv — one row per DB entity, with aggregated
 
 All DB entities appear in the output.  Location data is enriched as clusters
 are aligned to DB entities via the A1 alignment view.
-
-Excluded org types: troupe-like / itinerant types.
 """
 
 import csv, sys, pathlib, collections
@@ -21,13 +19,6 @@ CORE_DB = pathlib.Path(__file__).with_name("core_db.tsv")
 SRC = pathlib.Path(__file__).with_name("organizations_clustered.tsv")
 ALIGN = pathlib.Path(__file__).with_name("org_alignment_review.tsv")
 OUT = pathlib.Path(__file__).with_name("org_addresses_review.tsv")
-
-# Org types excluded from address review (itinerant by nature)
-EXCLUDED_TYPES = {
-    "troupe", "טרופּע", "טעאַטער-טרופּע", "travelling company",
-    "traveling company", "army", "ארמיי", "אַרמיי", "אַרמעע",
-    "military", "expedition",
-}
 
 COL_CID        = "cluster_id"
 COL_ORG_TYPE   = "_ - organizations - _ - org_type"
@@ -92,10 +83,6 @@ for db_row in db_rows:
     db_id = db_row.get("db_id", "").strip()
     org_type = db_row.get("org_type", "").strip()
 
-    # Exclude itinerant types
-    if org_type.lower() in EXCLUDED_TYPES:
-        continue
-
     linked_cids = db_to_clusters.get(db_id, set())
 
     entity = {
@@ -132,7 +119,7 @@ for db_row in db_rows:
 
     entities[db_id] = entity
 
-print(f"  {len(entities)} DB entities after excluding itinerant types")
+print(f"  {len(entities)} DB entities aggregated")
 
 # ── Preserve existing reviewer data ──────────────────────────────────────────
 
