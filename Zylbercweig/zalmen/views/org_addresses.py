@@ -82,6 +82,8 @@ def _split(s): return [v.strip() for v in s.split("|") if v.strip()]
 
 _LOC_FIELDS = ("settlement", "settlement_yiddish", "address", "address_romanized", "lat", "lon")
 
+_ORG_TYPE_OPTIONS = ["theatre", "troupe", "publisher", "school", ""]
+
 def _empty_loc() -> dict:
     return {f: "" for f in _LOC_FIELDS}
 
@@ -708,6 +710,63 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
 
 # ── Detail panel ─────────────────────────────────────────────────────────────
 
+def _save_org_type(db_id: str, addr_row: dict, new_type: str,
+                   addr_headers: list[str], addr_rows: list[dict]) -> None:
+    """Propagate an org_type edit from the Cards detail view to all three TSVs.
+
+    Without this, the next extract_addresses.py regen would silently revert the
+    edit, since extract reads org_type from core_db.tsv.
+    """
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    reviewer = st.session_state.get("reviewer", "")
+
+    # 1. org_addresses_review.tsv ────────────────────────────────────────────
+    for _col in ("reviewer", "reviewed_at"):
+        if _col not in addr_headers:
+            addr_headers.append(_col)
+            for _r in addr_rows:
+                _r.setdefault(_col, "")
+    row_idx = next((i for i, r in enumerate(addr_rows) if r.get("db_id") == db_id), None)
+    if row_idx is not None:
+        addr_rows[row_idx]["org_type"]    = new_type
+        addr_rows[row_idx]["reviewer"]    = reviewer
+        addr_rows[row_idx]["reviewed_at"] = now
+    save_orgs(addr_headers, addr_rows)
+    load_orgs.clear()
+
+    # 2. org_alignment_review.tsv ────────────────────────────────────────────
+    linked_cids = _split(addr_row.get("linked_cluster_ids", ""))
+    if linked_cids and ALIGN_FILE.exists():
+        align_headers, align_rows = load_alignment_rows(get_mtime(ALIGN_FILE))
+        align_headers = list(align_headers)
+        align_rows = [dict(r) for r in align_rows]
+        cid_set = set(linked_cids)
+        changed = False
+        for r in align_rows:
+            if r.get("cluster_id", "").strip() in cid_set:
+                r["org_type"] = new_type
+                changed = True
+        if changed:
+            save_alignment(align_headers, align_rows)
+            load_alignment_rows.clear()
+
+    # 3. core_db.tsv ─────────────────────────────────────────────────────────
+    try:
+        from zalmen.views import org_review as _or
+        core_headers, core_rows = _or.load_core_db(_or.CORE_DB_FILE.stat().st_mtime if _or.CORE_DB_FILE.exists() else 0.0)
+        core_headers = list(core_headers)
+        core_rows = [dict(r) for r in core_rows]
+        for r in core_rows:
+            if r.get("db_id", "").strip() == db_id:
+                r["org_type"] = new_type
+                _or.save_core_db(core_headers, core_rows)
+                _or.load_core_db.clear()
+                _or.load_alignment.clear()
+                break
+    except Exception:
+        pass
+
+
 def _render_detail(headers, rows, row, samples):
     cid      = row["db_id"]
     row_idx  = next((i for i,r in enumerate(rows) if r.get("db_id")==cid), None)
@@ -746,14 +805,27 @@ def _render_detail(headers, rows, row, samples):
             all_samples.append((settle_key, sample))
 
     show_samples_key = f"show_entity_samples_{cid}"
-    title_col, sample_col = st.columns([4, 1.4])
+    title_col, type_col, sample_col = st.columns([3.2, 1.4, 1.4])
     with title_col:
         st.subheader(new_name or canonical)
         st.caption(
-            f"{row.get('org_type','')} · {row.get('mentions','?')} mentions · "
+            f"{row.get('mentions','?')} mentions · "
             f"{row.get('n_settlements','?')} distinct settlements"
             + (f" · sub-entry of `{row['parent_db_id']}`" if row.get("parent_db_id") else "")
         )
+    with type_col:
+        cur_type = (row.get("org_type") or "").strip().lower()
+        type_idx = _ORG_TYPE_OPTIONS.index(cur_type) if cur_type in _ORG_TYPE_OPTIONS else len(_ORG_TYPE_OPTIONS) - 1
+        new_type = st.selectbox(
+            "Type",
+            _ORG_TYPE_OPTIONS,
+            index=type_idx,
+            format_func=lambda t: t or "(unset)",
+            key=f"card-type-{cid}",
+        )
+        if new_type != cur_type:
+            _save_org_type(cid, row, new_type, headers, rows)
+            st.rerun()
     with sample_col:
         show_samples = st.session_state.get(show_samples_key, False)
         sample_label = "Hide sample texts" if show_samples else "Click to see sample texts"
