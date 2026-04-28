@@ -708,6 +708,240 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
         col_idx = (col_idx + 1) % 3
 
 
+# ── DB-identity merge ────────────────────────────────────────────────────────
+
+def _count_alignment_refs(loser_db_id: str) -> int:
+    if not ALIGN_FILE.exists() or not loser_db_id:
+        return 0
+    _, align_rows = load_alignment_rows(get_mtime(ALIGN_FILE))
+    return sum(1 for r in align_rows if r.get("aligned_db_id", "").strip() == loser_db_id)
+
+
+def _dedup_pipe(*values: str) -> str:
+    seen: list[str] = []
+    for v in values:
+        for part in _split(v or ""):
+            if part not in seen:
+                seen.append(part)
+    return "|".join(seen)
+
+
+def _merge_locations_lists(a_locs: list[dict], b_locs: list[dict]) -> list[dict]:
+    out: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+    for loc in list(a_locs) + list(b_locs):
+        key = ((loc.get("settlement", "") or "").strip(),
+               (loc.get("address", "") or "").strip())
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(loc)
+    return out
+
+
+def _merge_db_identities(survivor_id: str, loser_id: str) -> dict[str, int]:
+    """Rewrite all references to loser_id → survivor_id across three TSVs.
+
+    Returns counts: {alignment_rewritten, addr_subentries_repointed}.
+    """
+    if not survivor_id or not loser_id or survivor_id == loser_id:
+        return {"alignment_rewritten": 0, "addr_subentries_repointed": 0}
+
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    reviewer = st.session_state.get("reviewer", "")
+
+    # 1. org_addresses_review.tsv ────────────────────────────────────────────
+    addr_headers, addr_rows = load_orgs(get_mtime(ADDR_FILE))
+    addr_headers = list(addr_headers)
+    addr_rows = [dict(r) for r in addr_rows]
+    for _col in ("reviewer", "reviewed_at"):
+        if _col not in addr_headers:
+            addr_headers.append(_col)
+            for _r in addr_rows:
+                _r.setdefault(_col, "")
+
+    survivor_idx = next((i for i, r in enumerate(addr_rows) if r.get("db_id") == survivor_id), None)
+    loser_idx    = next((i for i, r in enumerate(addr_rows) if r.get("db_id") == loser_id), None)
+    addr_subentries_repointed = 0
+
+    if survivor_idx is not None and loser_idx is not None:
+        s = addr_rows[survivor_idx]
+        l = addr_rows[loser_idx]
+
+        s["linked_cluster_ids"] = _dedup_pipe(s.get("linked_cluster_ids", ""), l.get("linked_cluster_ids", ""))
+
+        merged_locs = _merge_locations_lists(_get_locations(s), _get_locations(l))
+        if merged_locs:
+            _locs_to_row(s, merged_locs)
+
+        for _f in ("confirmed_settlement", "confirmed_settlement_yiddish",
+                   "confirmed_address", "confirmed_address_romanized", "lat", "lon"):
+            if not (s.get(_f) or "").strip() and (l.get(_f) or "").strip():
+                s[_f] = l[_f]
+
+        s_note = (s.get("reviewer_notes") or "").strip()
+        l_note = (l.get("reviewer_notes") or "").strip()
+        if l_note:
+            tag = f"[merged from db_id {loser_id}] {l_note}"
+            s["reviewer_notes"] = f"{s_note}\n---\n{tag}" if s_note else tag
+
+        for _f in ("is_generic", "is_exploded"):
+            if (s.get(_f) or "").strip() in ("", "FALSE") and (l.get(_f) or "").strip() == "TRUE":
+                s[_f] = "TRUE"
+
+        s["reviewer"] = reviewer
+        s["reviewed_at"] = now
+
+    # repoint sub-entries (parent_db_id == loser → survivor) and delete loser row
+    new_addr_rows: list[dict] = []
+    for r in addr_rows:
+        if r.get("db_id") == loser_id:
+            continue
+        if r.get("parent_db_id") == loser_id:
+            r["parent_db_id"] = survivor_id
+            addr_subentries_repointed += 1
+        new_addr_rows.append(r)
+
+    save_orgs(addr_headers, new_addr_rows)
+    load_orgs.clear()
+
+    # 2. org_alignment_review.tsv ────────────────────────────────────────────
+    alignment_rewritten = 0
+    if ALIGN_FILE.exists():
+        align_headers, align_rows = load_alignment_rows(get_mtime(ALIGN_FILE))
+        align_headers = list(align_headers)
+        align_rows = [dict(r) for r in align_rows]
+        for r in align_rows:
+            if r.get("aligned_db_id", "").strip() == loser_id:
+                r["aligned_db_id"] = survivor_id
+                alignment_rewritten += 1
+        if alignment_rewritten:
+            save_alignment(align_headers, align_rows)
+        load_alignment_rows.clear()
+
+    # 3. core_db.tsv ─────────────────────────────────────────────────────────
+    try:
+        from zalmen.views import org_review as _or
+        core_mtime = _or.CORE_DB_FILE.stat().st_mtime if _or.CORE_DB_FILE.exists() else 0.0
+        core_headers, core_rows = _or.load_core_db(core_mtime)
+        core_headers = list(core_headers)
+        core_rows = [dict(r) for r in core_rows]
+
+        s_idx = next((i for i, r in enumerate(core_rows) if r.get("db_id") == survivor_id), None)
+        l_idx = next((i for i, r in enumerate(core_rows) if r.get("db_id") == loser_id), None)
+        if s_idx is not None and l_idx is not None:
+            s = core_rows[s_idx]
+            l = core_rows[l_idx]
+            s["linked_cluster_ids"] = _dedup_pipe(s.get("linked_cluster_ids", ""), l.get("linked_cluster_ids", ""))
+            new_core = [r for r in core_rows if r.get("db_id") != loser_id]
+            commit_msg = f"chore: merge db_id {loser_id} into {survivor_id}"
+            # Reuse save_core_db with its standard commit message — extra commit is fine,
+            # the merge is identifiable from the per-file diff.
+            _or.save_core_db(core_headers, new_core)
+            _or.load_core_db.clear()
+            _or.load_alignment.clear()
+    except Exception as e:
+        st.toast(f"⚠️ core_db update failed: {e}", icon="⚠️")
+
+    return {"alignment_rewritten": alignment_rewritten,
+            "addr_subentries_repointed": addr_subentries_repointed}
+
+
+def _render_merge_panel(headers: list[str], rows: list[dict], current_row: dict) -> None:
+    """Picker + preview + confirm UI for merging this DB org into another."""
+    cur_id = current_row["db_id"]
+    open_key = f"merge_open_{cur_id}"
+    pick_key = f"merge_pick_{cur_id}"
+    swap_key = f"merge_swap_{cur_id}"
+
+    with st.expander("🔗 Merge this org into another DB entity…",
+                     expanded=st.session_state.get(open_key, False)):
+        st.session_state[open_key] = True
+
+        addr_headers, addr_rows_all = load_orgs(get_mtime(ADDR_FILE))
+        candidates = [r for r in addr_rows_all if r.get("db_id") and r.get("db_id") != cur_id]
+
+        q = st.text_input("Search by name or db_id",
+                          key=f"merge_search_{cur_id}",
+                          placeholder="Type part of an organization name or db_id")
+        ql = q.strip().lower()
+
+        picked_id = st.session_state.get(pick_key, "")
+        if ql:
+            hits = [r for r in candidates
+                    if ql in (r.get("canonical_yiddish", "") or "").lower()
+                    or ql in (r.get("db_id", "") or "").lower()][:25]
+            if not hits:
+                st.caption("No matches.")
+            for h in hits:
+                hid = h.get("db_id", "")
+                hcols = st.columns([5, 1])
+                hcols[0].markdown(
+                    f"<div dir='rtl'><b>{h.get('canonical_yiddish', '')}</b></div>",
+                    unsafe_allow_html=True,
+                )
+                hcols[0].caption(
+                    f"`{hid}` · {h.get('org_type','')} · {h.get('mentions','?')} mentions · "
+                    f"{len(_split(h.get('linked_cluster_ids', '')))} linked clusters"
+                )
+                if hcols[1].button("Pick", key=f"merge_pick_btn_{cur_id}_{hid}",
+                                   type="primary" if picked_id == hid else "secondary"):
+                    st.session_state[pick_key] = hid
+                    st.rerun()
+
+        if not picked_id:
+            return
+
+        picked_row = next((r for r in candidates if r.get("db_id") == picked_id), None)
+        if not picked_row:
+            st.warning("Picked org no longer in TSV — clear and try again.")
+            return
+
+        # Default: picked = survivor, current = loser. Swap toggle inverts.
+        swapped = st.toggle("Swap (keep this card, merge the picked org into it)",
+                            value=st.session_state.get(swap_key, False),
+                            key=swap_key)
+        if swapped:
+            survivor, loser = current_row, picked_row
+        else:
+            survivor, loser = picked_row, current_row
+
+        st.markdown(f"**Survivor (kept):** `{survivor['db_id']}` — {survivor.get('canonical_yiddish','')}")
+        st.markdown(f"**Loser (deleted):** `{loser['db_id']}` — {loser.get('canonical_yiddish','')}")
+
+        prev_cols = st.columns(2)
+        for col, label, r in [(prev_cols[0], "Survivor", survivor), (prev_cols[1], "Loser", loser)]:
+            with col:
+                st.caption(label)
+                st.write(f"**Type:** {r.get('org_type','')}")
+                st.write(f"**Mentions:** {r.get('mentions','?')}")
+                lcids = _split(r.get("linked_cluster_ids", ""))
+                st.write(f"**Linked clusters ({len(lcids)}):** {', '.join(lcids[:6])}" + (" …" if len(lcids) > 6 else ""))
+                locs = _get_locations(r)
+                st.write(f"**Confirmed locations:** {len(locs)}")
+                if r.get("is_generic") == "TRUE":
+                    st.caption("🔶 generic")
+                if r.get("is_exploded") == "TRUE":
+                    st.caption("💥 exploded")
+
+        align_n = _count_alignment_refs(loser["db_id"])
+        st.caption(f"{align_n} alignment row(s) will be re-pointed from `{loser['db_id']}` to `{survivor['db_id']}`.")
+
+        st.warning("This cannot be undone in-app. Recovery requires `git revert`.")
+        if st.button(f"🟥 Merge `{loser['db_id']}` → `{survivor['db_id']}`",
+                     key=f"merge_confirm_{cur_id}", type="primary"):
+            counts = _merge_db_identities(survivor["db_id"], loser["db_id"])
+            st.session_state[pick_key] = ""
+            st.session_state[open_key] = False
+            st.session_state.addr_selected = survivor["db_id"]
+            st.toast(
+                f"Merged. Alignment rewritten: {counts['alignment_rewritten']}; "
+                f"sub-entries repointed: {counts['addr_subentries_repointed']}.",
+                icon="✅",
+            )
+            st.rerun()
+
+
 # ── Detail panel ─────────────────────────────────────────────────────────────
 
 def _save_org_type(db_id: str, addr_row: dict, new_type: str,
@@ -915,6 +1149,8 @@ def _render_detail(headers, rows, row, samples):
     # ── Confirmed locations (multi-location) ──────────────────────────────────
     if new_generic:
         st.caption("🔶 Marked as generic — you can still add confirmed locations below if relevant.")
+
+    _render_merge_panel(headers, rows, row)
 
     st.markdown("**Confirmed locations:**")
 
