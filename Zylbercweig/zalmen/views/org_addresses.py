@@ -59,7 +59,7 @@ except ImportError:
 
 try:
     from geopy.geocoders import Nominatim
-    from geopy.exc import GeocoderTimedOut
+    from geopy.exc import GeocoderTimedOut, GeocoderRateLimited
     HAS_GEOCODE = True
     _geocoder = Nominatim(user_agent="zalmen-zylbercweig")
 except ImportError:
@@ -328,7 +328,7 @@ def geocode(query: str):
             loc = _geocoder.geocode(q, timeout=10)
             if loc:
                 return round(loc.latitude, 6), round(loc.longitude, 6)
-        except GeocoderTimedOut:
+        except (GeocoderTimedOut, GeocoderRateLimited):
             pass
         return None
     # Normalise junction patterns: "X and Y" / "X und Y" / "X corner Y" → "X & Y"

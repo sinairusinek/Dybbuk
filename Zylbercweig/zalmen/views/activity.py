@@ -117,7 +117,7 @@ def render():
         for s in sources:
             row[s] = by_rev[rev].get(s, 0)
         totals_rows.append(row)
-    st.dataframe(totals_rows, use_container_width=True, hide_index=True)
+    st.dataframe(totals_rows, width="stretch", hide_index=True)
 
     # ── Per-day breakdown ────────────────────────────────────────────────────
     st.subheader("Decisions per day")
@@ -130,7 +130,7 @@ def render():
         for rev in sel_reviewers:
             row[rev] = by_day_rev[day].get(rev, 0)
         day_rows.append(row)
-    st.dataframe(day_rows, use_container_width=True, hide_index=True)
+    st.dataframe(day_rows, width="stretch", hide_index=True)
 
     # ── Recent decisions feed ────────────────────────────────────────────────
     st.subheader("Recent decisions")
@@ -147,4 +147,4 @@ def render():
         }
         for d in recent
     ]
-    st.dataframe(feed_rows, use_container_width=True, hide_index=True)
+    st.dataframe(feed_rows, width="stretch", hide_index=True)
