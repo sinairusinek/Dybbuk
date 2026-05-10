@@ -18,7 +18,7 @@ Output:
   cluster_pairs_review.tsv      — uncertain pairs for Zalmen A2 view
 """
 
-import csv, sys, pathlib, unicodedata, re, collections
+import csv, sys, pathlib, unicodedata, re, collections, functools
 
 csv.field_size_limit(sys.maxsize)
 
@@ -27,6 +27,17 @@ csv.field_size_limit(sys.maxsize)
 _KIMATCH = pathlib.Path("/Users/sinairusinek/Documents/GitHub/Kimatch")
 if _KIMATCH.exists():
     sys.path.insert(0, str(_KIMATCH))
+
+_DYBBUK_PHONETIC = pathlib.Path(__file__).resolve().parents[1] / "dybbuk-phonetic" / "src"
+if _DYBBUK_PHONETIC.exists():
+    sys.path.insert(0, str(_DYBBUK_PHONETIC))
+
+try:
+    from dybbuk_phonetic.bridge import cross_script_similarity
+except Exception:
+    def cross_script_similarity(name_a: str, name_b: str) -> float:
+        return 0.0
+
 try:
     from kimatch.core.normalizers import normalize_name, name_similarity
 except ImportError:
@@ -51,33 +62,40 @@ except ImportError:
             return len(wa & wb) / len(wa | wb) if wa and wb else 0.0
         return len(ta & tb) / len(ta | tb)
 
-# ── Yiddish-specific normalization (applied on top of Kimatch) ────────────────
-# Collapses common orthographic variants before similarity comparison.
-_YIDDISH_NORM = [
-    (re.compile(r"וו"), "ו"),              # double-vov → single
-    (re.compile(r"[\u05DA\u05DB]"), "כ"),  # final kaf → kaf
-    (re.compile(r"[\u05DF\u05E0]"), "נ"),  # final nun → nun
-    (re.compile(r"[\u05E3\u05E4]"), "פ"),  # final pe → pe
-    (re.compile(r"[\u05E5\u05E6]"), "צ"),  # final tsadi → tsadi
-    (re.compile(r"[\u05DD\u05DE]"), "מ"),  # final mem → mem
-]
+# ── Shared normalization (extracted to org_normalize.py) ─────────────────────
+from org_normalize import (
+    normalize_yiddish,
+    organization_name_aliases,
+    _GENERIC_ORG_TOKENS,
+    _OF_TOKENS,
+    normalize_org_type,
+    infer_org_type,
+)
 
 
-def normalize_yiddish(name: str) -> str:
-    """NFD strip-diacritics (Kimatch) + Yiddish spelling normalizations."""
-    s = normalize_name(name)
-    for pat, repl in _YIDDISH_NORM:
-        s = pat.sub(repl, s)
-    return s
+def pair_semantic_key(rec: dict) -> tuple[str, str, str, str, str]:
+    """Order-invariant key for pair-decision carryover across regenerations."""
+    n1 = normalize_yiddish(rec.get("name_i", ""))
+    n2 = normalize_yiddish(rec.get("name_j", ""))
+    names = tuple(sorted((n1, n2)))
+    e1 = (rec.get("entry_id_i", "") or "").strip()
+    e2 = (rec.get("entry_id_j", "") or "").strip()
+    entries = "|".join(sorted((e1, e2)))
+    return (
+        names[0],
+        names[1],
+        (rec.get("org_type", "") or "").strip().lower(),
+        (rec.get("settlement", "") or "").strip().lower(),
+        entries,
+    )
 
 
 # ── Location-aware name helpers ───────────────────────────────────────────────
 
 # Org types that travel; same set as extract_addresses.py EXCLUDED_TYPES.
 _TROUPE_TYPES = {
-    "troupe", "טרופּע", "טעאַטער-טרופּע", "travelling company",
-    "traveling company", "army", "ארמיי", "אַרמיי", "אַרמעע",
-    "military", "expedition",
+    "troupe", "travelling company", "traveling company",
+    "army", "military", "expedition",
 }
 
 def is_stationary_org(org_type: str) -> bool:
@@ -226,25 +244,43 @@ def cluster_location_summary(root: int, member_locs: list[int]) -> str:
 # of distinct organisations in the block, not the number of biographical mentions.
 
 
-def block_key(r: dict) -> tuple[str, str]:
-    org_type = r.get(COL_ORG_TYPE, "").strip().lower()
-    settlement = re.sub(r"\s+", " ", r.get(COL_SETTLEMENT, "").strip()).lower()
-    # For stationary orgs with no settlement field, fall back to the city
-    # qualifier embedded in the name (e.g. "פּיפּלס-טעאַטער (ניו-יאָרקער)").
-    # This prevents orgs with different city qualifiers from landing in the
-    # same ("theatre", "") block and being wrongly merged.
-    if not settlement and is_stationary_org(org_type):
-        _, loc = extract_name_location(best_name(r))
-        if loc:
-            settlement = normalize_location(loc)
-    return (org_type, settlement)
+def _all_trigrams(aliases: "set[str]") -> "set[str]":
+    """Compute union of all 3-grams across a set of alias strings."""
+    result: set[str] = set()
+    for a in aliases:
+        for k in range(len(a) - 2):
+            result.add(a[k : k + 3])
+    return result
+
+
+@functools.lru_cache(maxsize=200_000)
+def _name_similarity_cached(a: str, b: str) -> float:
+    if a == b:
+        return 1.0
+    left, right = (a, b) if a <= b else (b, a)
+    return name_similarity(left, right)
+
+
+@functools.lru_cache(maxsize=200_000)
+def _cross_script_similarity_cached(a: str, b: str) -> float:
+    if a == b:
+        return 1.0
+    left, right = (a, b) if a <= b else (b, a)
+    return cross_script_similarity(left, right)
+
+
+def block_key(r: dict) -> tuple[str]:
+    org_type = normalize_org_type(r.get(COL_ORG_TYPE, ""))
+    if not org_type:
+        org_type = infer_org_type(best_name(r))
+    return (org_type,)
 
 
 blocks: dict[tuple, list[int]] = collections.defaultdict(list)
 for loc_i, (_, r) in enumerate(rows):
     blocks[block_key(r)].append(loc_i)
 
-print(f"Blocks: {len(blocks)} (org_type × settlement)")
+print(f"Blocks: {len(blocks)} (org_type)")
 
 uncertain_pairs: list[dict] = []
 # Deduplicate uncertain pairs by (normalized_name_i, normalized_name_j) order-invariant.
@@ -266,26 +302,53 @@ for bkey, members in blocks.items():
     if len(reps) < 2:
         continue
 
-    for i_idx in range(len(reps)):
-        for j_idx in range(i_idx + 1, len(reps)):
-            li, lj = reps[i_idx], reps[j_idx]
-            ri, rj = rows[li][1], rows[lj][1]
+    # Pre-compute names/aliases/trigrams once per rep (O(N)) to avoid
+    # recomputing them for every pair (O(N²)).
+    rep_entries: list[tuple] = []
+    for loc_r in reps:
+        rr = rows[loc_r][1]
+        b_r, l_loc_r = extract_name_location(best_name(rr))
+        n_r = normalize_yiddish(b_r)
+        if not n_r:
+            continue
+        l_norm_r = normalize_location(l_loc_r)
+        aliases_r = organization_name_aliases(b_r)
+        if not aliases_r:
+            continue
+        tg_r = _all_trigrams(aliases_r)
+        rep_entries.append((loc_r, rr, b_r, n_r, l_norm_r, aliases_r, tg_r))
 
-            # Extract base names and city qualifiers separately so that city
-            # suffixes don't artificially lower similarity scores.
-            bi, li_loc = extract_name_location(best_name(ri))
-            bj, lj_loc = extract_name_location(best_name(rj))
-            ni = normalize_yiddish(bi)
-            nj = normalize_yiddish(bj)
-            if not ni or not nj:
+    for i_idx in range(len(rep_entries)):
+        li, ri, bi, ni, li_norm, aliases_i, tg_i = rep_entries[i_idx]
+        for j_idx in range(i_idx + 1, len(rep_entries)):
+            lj, rj, bj, nj, lj_norm, aliases_j, tg_j = rep_entries[j_idx]
+
+            # Pre-filter: skip pairs with no shared 3-gram across all aliases.
+            if not (tg_i & tg_j):
                 continue
 
-            li_norm = normalize_location(li_loc)
-            lj_norm = normalize_location(lj_loc)
             # True when both names carry explicit but different city qualifiers.
             loc_conflict = bool(li_norm and lj_norm and li_norm != lj_norm)
 
-            sim = 1.0 if ni == nj else name_similarity(ni, nj)
+            trigram_sim = 0.0
+            for ai in aliases_i:
+                for aj in aliases_j:
+                    trigram_sim = max(trigram_sim, _name_similarity_cached(ai, aj))
+                    if trigram_sim == 1.0:
+                        break
+                if trigram_sim == 1.0:
+                    break
+
+            ipa_sim = trigram_sim
+            if ipa_sim < 1.0:
+                for ai in aliases_i:
+                    for aj in aliases_j:
+                        ipa_sim = max(ipa_sim, _cross_script_similarity_cached(ai, aj))
+                        if ipa_sim == 1.0:
+                            break
+                    if ipa_sim == 1.0:
+                        break
+            sim = max(trigram_sim, ipa_sim)
 
             def _pair_record(lc=loc_conflict):
                 return {
@@ -294,7 +357,7 @@ for bkey, members in blocks.items():
                     "name_i": best_name(ri),
                     "name_j": best_name(rj),
                     "org_type": bkey[0],
-                    "settlement": bkey[1],
+                    "settlement": "",
                     "similarity": round(sim, 4),
                     "location_conflict": lc,
                     "entry_id_i": ri.get(COL_XML_ID, ""),
@@ -416,6 +479,21 @@ pair_headers = [
     "reviewer_notes",
 ]
 
+existing_pair_review: dict[tuple[str, str, str, str, str], dict[str, str]] = {}
+if OUT_PAIRS.exists():
+    with open(OUT_PAIRS, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            k = pair_semantic_key(row)
+            if k[0] and k[1]:
+                existing_pair_review[k] = {
+                    "decision": row.get("decision", "").strip(),
+                    "reviewer_settlement": row.get("reviewer_settlement", "").strip(),
+                    "reviewer_address": row.get("reviewer_address", "").strip(),
+                    "reviewer_notes": row.get("reviewer_notes", "").strip(),
+                }
+
+preserved_pair_reviews = 0
+
 with open(OUT_PAIRS, "w", newline="", encoding="utf-8") as f:
     writer = csv.DictWriter(f, fieldnames=pair_headers, delimiter="\t")
     writer.writeheader()
@@ -423,19 +501,30 @@ with open(OUT_PAIRS, "w", newline="", encoding="utf-8") as f:
         sorted(uncertain_pairs, key=lambda p: -p["similarity"])
     ):
         li, lj = pair["loc_i"], pair["loc_j"]
+        out_base = {
+            "name_i": pair["name_i"],
+            "name_j": pair["name_j"],
+            "org_type": pair["org_type"],
+            "settlement": pair["settlement"],
+            "entry_id_i": pair["entry_id_i"],
+            "entry_id_j": pair["entry_id_j"],
+        }
+        existing = existing_pair_review.get(pair_semantic_key(out_base), {})
+        if any(existing.get(k, "") for k in ("decision", "reviewer_settlement", "reviewer_address", "reviewer_notes")):
+            preserved_pair_reviews += 1
         writer.writerow(
             {
                 "pair_id": f"PAIR-{k + 1:05d}",
                 "cluster_id_i": root_to_cid[uf.find(li)],
                 "cluster_id_j": root_to_cid[uf.find(lj)],
-                "name_i": pair["name_i"],
-                "name_j": pair["name_j"],
-                "org_type": pair["org_type"],
-                "settlement": pair["settlement"],
+                "name_i": out_base["name_i"],
+                "name_j": out_base["name_j"],
+                "org_type": out_base["org_type"],
+                "settlement": out_base["settlement"],
                 "similarity": pair["similarity"],
                 "location_conflict": "TRUE" if pair.get("location_conflict") else "",
-                "entry_id_i": pair["entry_id_i"],
-                "entry_id_j": pair["entry_id_j"],
+                "entry_id_i": out_base["entry_id_i"],
+                "entry_id_j": out_base["entry_id_j"],
                 "file_i": pair["file_i"],
                 "file_j": pair["file_j"],
                 "heading_i": pair["heading_i"],
@@ -444,11 +533,12 @@ with open(OUT_PAIRS, "w", newline="", encoding="utf-8") as f:
                 "sentence_j": pair["sentence_j"],
                 "location_i": pair.get("location_i", ""),
                 "location_j": pair.get("location_j", ""),
-                "decision": "",
-                "reviewer_settlement": "",
-                "reviewer_address": "",
-                "reviewer_notes": "",
+                "decision": existing.get("decision", ""),
+                "reviewer_settlement": existing.get("reviewer_settlement", ""),
+                "reviewer_address": existing.get("reviewer_address", ""),
+                "reviewer_notes": existing.get("reviewer_notes", ""),
             }
         )
 
 print(f"Wrote {len(uncertain_pairs)} pairs → {OUT_PAIRS.name}")
+print(f"Preserved {preserved_pair_reviews} existing pair-review decisions/notes")

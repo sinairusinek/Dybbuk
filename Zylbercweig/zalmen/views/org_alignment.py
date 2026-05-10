@@ -169,7 +169,9 @@ def save_alignment(headers, rows):
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
     from zalmen.github_sync import push_file_to_github
-    push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
+    ok = push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
+    if not ok:
+        st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
 def save_core_db(headers, rows):
@@ -184,7 +186,9 @@ def save_core_db(headers, rows):
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
     from zalmen.github_sync import push_file_to_github
-    push_file_to_github("Zylbercweig/organizations/core_db.tsv", CORE_DB_FILE, "chore: save core DB")
+    ok = push_file_to_github("Zylbercweig/organizations/core_db.tsv", CORE_DB_FILE, "chore: save core DB")
+    if not ok:
+        st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
 def _split_pipe(v: str) -> list[str]:

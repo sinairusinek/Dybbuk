@@ -48,7 +48,7 @@ This writes:
 - `data/working/resolved_places_corrected.csv`
 - `data/working/qid_review_queue_corrected.csv`
 
-## 5) Reviewer handoff
+## 5) Reviewer handoff — OpenRefine manual QID correction
 
 Primary reviewer handoff is the unified table filtered to `needs_review = true`.
 Legacy handoff remains `qid_review_queue*.csv` when `--legacy-outputs` is used.
@@ -59,21 +59,97 @@ For OpenRefine review sessions, export a dedicated reviewer task TSV:
 
 Recommended OpenRefine workflow:
 
-- Import `openrefine_review_queue.tsv`
+- Import `openrefine_review_queue.tsv` (1624 rows, auto-reconciled — many QIDs are wrong/disambiguation pages)
 - Reconcile `clustered_value` against Wikidata
 - Fill `ra_qid`, `ra_resolved_category`, and `ra_notes`
 - Export rows as TSV/CSV (or full OpenRefine project archive)
 
-## 6) Kimatch handoff
+**Status (2026-04-09):** Matty has completed a partial review of the OpenRefine queue, producing
+`ZylbercweigPlacesMaaty.tsv` (934 rows with human-verified QIDs). This file is the reviewed
+subset of the OpenRefine queue — it replaces the auto-reconciled QIDs with correct ones.
+The remaining ~690 rows in the queue have not yet been reviewed.
 
-After review/corrections are approved:
+`ZylbercweigPlacesMaaty.tsv` lives at the root of the Zylbercweig folder (sibling of `zibn-shtern/`).
 
-- export Kimatch input using `scripts/export_kimatch_input.py`
-- map fields to Kimatch schema in `src/zibn_shtern/kimatch_bridge.py`
-- keep mapping versioned and documented
+## 6) Kimatch matching — map to Kima Gazetteer
 
-## 7) Reviewer adapter (Hasidigital)
+Run `kimatch_match.py --full` to match all resolved places from `places_unified_corrected.csv`
+against the Kima Gazetteer. The bridge (`kimatch_bridge.py`) extracts `source_role=place` +
+`needs_review=False` rows and passes all relevant fields to the matcher, including
+`resolved_category` (place type) which flows through to the review UI.
 
-- Inspect Hasidigital reviewer schema and event model.
-- Implement schema adapter in `src/zibn_shtern/reviewer_adapter.py`.
-- Preserve immutable source identifiers for roundtrip consistency.
+Matching strategy (in priority order):
+1. Wikidata QID → `db.get_by_wikidata()`
+2. Exact Yiddish name (`source_value`)
+3. Exact Wikidata Yiddish label (`wikidata_yi`)
+4. Exact English/romanized name (`english_name`)
+5. Fuzzy — trigram similarity + **phonetic pass** (DM soundex + cross-script IPA)
+6. No match
+
+The phonetic pass (added 2026-04-09) uses:
+- `dybbuk_phonetic` (`dybbuk-phonetic/src/`) for Yiddish→IPA→DM soundex
+- `abydos.DaitchMokotoff` for the soundex index (built at KimaDB load time)
+- `_best_name_sim()` to score against the core toponym only (strips regional qualifiers
+  like "Jedrzejow (Województwo Świętokrzyskie, Poland)")
+
+```
+python scripts/kimatch_match.py --full
+```
+
+**Current state** (2026-04-09):
+
+Outputs:
+- `data/working/kimatch_input_full.tsv` — 2,689 filtered rows (bridge output)
+- `data/working/kimatch_matched_full.tsv` — 539 confirmed (493 WIKIDATA + 46 NAME_EXACT), 496 new variants
+- `data/working/kimatch_review_full.tsv` — 125 rows for manual review (22 FUZZY + 103 NO_MATCH)
+
+Note: `ZylbercweigPlacesMaaty.tsv` (Matty's manually-reconciled subset) was an earlier partial run.
+Its outputs (`kimatch_matched.tsv`, `kimatch_review.tsv`, `kimatch_decisions.json`) are superseded
+by the full pipeline and kept only as an audit trail.
+
+The ~690 unreviewed OpenRefine rows remain unresolved and are not passed to Kimatch.
+
+## 7) Kimatch review — resolve FUZZY and NO_MATCH
+
+Manually resolve rows in `data/working/kimatch_review_full.tsv` via the Kimatch Streamlit app:
+
+```
+cd /Users/sinairusinek/Documents/GitHub/Kimatch
+streamlit run ui/app.py
+# → 🗺 Zylbercweig Review page
+```
+
+Review queue breakdown:
+- **FUZZY (22 rows)**: fuzzy candidates found — confirm or reject
+- **NO_MATCH (103 rows)**: not found automatically
+  - ~47 American cemeteries: likely not in Kima
+  - ~56 settlements: search manually or mark "No match found"
+
+Filter by place type (sidebar multiselect): cemetery · settlement · death_site · neighborhood
+
+Actions: `map_to:<kima_id>` | `no_match_found` | `ambiguous` (name = multiple places) | `skip`
+
+Decisions saved to `data/working/kimatch_decisions_full.json`.
+
+**Status (2026-04-09):** 9 manual map_to decisions confirmed. 125 rows remain.
+
+## 8) Variant export — contribute back to Kima
+
+After review, regenerate the export:
+
+```
+python scripts/export_kima_variants.py
+```
+
+Sources:
+- `kimatch_matched_full.tsv` — auto-confirmed matches (`is_new_variant=yes`)
+- `kimatch_decisions_full.json` — manually confirmed `map_to:` decisions
+
+Output: `data/working/kima_variants_export.tsv`
+
+**Current state:** ~502 variants (496 auto + 6 manual, pre-completion of review).
+Format: `kima_id | kima_rom | variant | source | attestations | contexts | wikidata_qid | notes`
+
+## 9) Contribute variants to Kima
+
+Submit `kima_variants_export.tsv` to the Kima team for ingestion into the gazetteer.

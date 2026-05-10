@@ -115,7 +115,15 @@ INDEPENDENT (parallel now):        SEQUENTIAL:                CONVERGENCE:
 1. **Type taxonomies**: Org types, relation categories, place types — consistent across extraction and DB
 2. **ID scheme**: Stable internal IDs for persons, orgs, places before DB population
 3. **Transliteration conventions**: One romanization standard across all workstreams
-4. **Streamlit review app**: Multi-view tool for org alignment, person dedup, place reconciliation
+4. **Streamlit review app**: One app (`Zylbercweig/app/`) covering Orgs (A2–A4) and People (B1–B3).
+   Places stay in zibn-shtern (separate repo, separate reviewer pipeline → Kima).
+   Place data flows into the org/people app as resolved reference data (canonical name + Kima/Wikidata ID),
+   not as a review workflow. App views:
+   - **Org clusters** (A2): confirm/reject fuzzy cluster merges
+   - **Org → DB alignment** (A3): review mehdi-er match candidates, confirm/create/defer
+   - **Person dedup** (B1): resolve persons across volumes
+   - **Person → external** (B2): Wikidata/YIVO alignment
+   - Place context is shown as read-only reference in all views once zibn-shtern output is available
 
 ### Recommended work order
 1. **Now**: Org Phases A1-A2 + Places C1
