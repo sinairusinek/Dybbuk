@@ -972,10 +972,13 @@ def render() -> None:
 		# org_type selectbox — inline editing
 		_type_row_idx = next((i for i, r in enumerate(a_rows) if r.get("cluster_id") == selected["cluster_id"]), None)
 		_cur_type = selected.get("org_type", "").strip().lower()
-		_type_idx = _ORG_TYPE_OPTIONS.index(_cur_type) if _cur_type in _ORG_TYPE_OPTIONS else len(_ORG_TYPE_OPTIONS) - 1
+		_type_options = list(_ORG_TYPE_OPTIONS)
+		if _cur_type and _cur_type not in _type_options:
+			_type_options.insert(0, _cur_type)
+		_type_idx = _type_options.index(_cur_type) if _cur_type in _type_options else len(_type_options) - 1
 		new_type = st.selectbox(
 			"Type",
-			_ORG_TYPE_OPTIONS,
+			_type_options,
 			index=_type_idx,
 			key=f"review-type-{selected['cluster_id']}",
 		)
@@ -1141,10 +1144,13 @@ def render() -> None:
 				_db_row_idx = next((i for i, r in enumerate(db_rows) if r.get("db_id") == chosen_db_id), None)
 				if _db_row_idx is not None:
 					_db_cur_type = db_rows[_db_row_idx].get("org_type", "").strip().lower()
-					_db_type_idx = _ORG_TYPE_OPTIONS.index(_db_cur_type) if _db_cur_type in _ORG_TYPE_OPTIONS else len(_ORG_TYPE_OPTIONS) - 1
+					_db_type_options = list(_ORG_TYPE_OPTIONS)
+					if _db_cur_type and _db_cur_type not in _db_type_options:
+						_db_type_options.insert(0, _db_cur_type)
+					_db_type_idx = _db_type_options.index(_db_cur_type) if _db_cur_type in _db_type_options else len(_db_type_options) - 1
 					new_db_type = st.selectbox(
 						"DB organization type",
-						_ORG_TYPE_OPTIONS,
+						_db_type_options,
 						index=_db_type_idx,
 						key=f"review-db-type-{chosen_db_id}",
 					)
