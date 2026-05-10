@@ -92,6 +92,7 @@ def _load_all_xml() -> dict[str, ET.ElementTree]:
 	return trees
 
 
+@st.cache_data(show_spinner=False)
 def get_entry_text(json_file: str, xml_id: str) -> str | None:
 	if not json_file or not xml_id:
 		return None
