@@ -1,0 +1,255 @@
+{
+  "actions" : [ {
+    "description" : "Reindex data",
+    "name" : "reindex"
+  }, {
+    "description" : "Fix ODDs",
+    "name" : "fix-odds"
+  } ],
+  "profiles" : [ "base10", "annotate", "jinntap", "upload", "theme-base10", "workbench" ],
+  "label" : "YiDraCor",
+  "odds" : [ "teipublisher.odd", "annotations.odd" ],
+  "version" : "1.0.0",
+  "id" : "https://e-editiones.org/apps/YiDraCor",
+  "_update" : false,
+  "styles" : [ "resources/css/pico-components.css", "https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/classic.min.css", "resources/css/jinks-theme.css" ],
+  "_noDeploy" : false,
+  "api" : [ {
+    "spec" : "annotations/api.json",
+    "prefix" : "anno",
+    "id" : "http://teipublisher.com/api/annotations",
+    "path" : "annotations/annotations.xql"
+  } ],
+  "depends" : [ "base10", "annotate", "jinntap", "upload" ],
+  "template-suffix" : "\\.tpl",
+  "ignore" : [ "repo.xml", "resources/css/components.css" ],
+  "target" : "/db/apps/jinks/temp/YiDraCor",
+  "menu" : {
+    "language" : true,
+    "delete" : true,
+    "dark-mode" : true,
+    "items" : [ {
+      "url" : "",
+      "id" : "Start"
+    } ],
+    "login" : true,
+    "download" : true,
+    "search" : true
+  },
+  "theme" : {
+    "logo" : {
+      "width" : "140px",
+      "height" : "48px",
+      "dark" : "../images/tei-publisher-logo-contrast-color.svg",
+      "splash" : {
+        "size" : "360px auto",
+        "dark" : "../images/tei-publisher-logo-contrast-color.svg",
+        "light" : "../images/tei-publisher-logo-color.svg"
+      },
+      "light" : "../images/tei-publisher-logo-contrast-color.svg"
+    },
+    "hero" : {
+      "background-color" : "rgba(0, 0, 0, 0.6)",
+      "text-width" : "50rem",
+      "background-size" : "cover",
+      "background-image" : "../images/typewriter.jpg",
+      "background-repeat" : "no-repeat"
+    },
+    "layout" : {
+      "after-width" : "min(30vw, 356px)",
+      "max-width" : "108rem",
+      "before-width" : "min(30vw, 356px)",
+      "class" : "fixed-layout"
+    },
+    "menubar" : {
+      "color" : "#ffffff",
+      "background-image" : null,
+      "font-size" : "14px",
+      "background-color" : "var(--jinks-colors-500)"
+    },
+    "header" : {
+      "background-image" : null
+    },
+    "fonts" : {
+      "toc" : {
+        "size" : "1.125rem"
+      },
+      "footnote" : {
+        "size" : "0.9rem"
+      },
+      "base" : {
+        "family" : "'Inter', 'Noto', sans-serif",
+        "line-height" : "140%",
+        "size" : "16px",
+        "weight" : "400"
+      },
+      "heading" : {
+        "family" : "'Inter', 'Noto', sans-serif",
+        "size" : "1.2rem",
+        "weight" : "400"
+      },
+      "breadcrumbs" : {
+        "size" : "0.9rem"
+      },
+      "content" : {
+        "family" : "JunicodeVF, Georgia, 'Times New Roman', serif",
+        "line-height" : "150%",
+        "size" : "1.25rem",
+        "weight" : "400"
+      }
+    },
+    "texture" : {
+      "background-image" : "../images/jinks-images/paper.jpeg"
+    },
+    "colors" : {
+      "palette" : "neutral"
+    }
+  },
+  "features" : {
+    "collab" : {
+      "server" : "wss://dev.tei-publisher.com/collab",
+      "enable" : false
+    },
+    "browse" : {
+      "sort" : {
+        "options" : [ {
+          "label" : "Category",
+          "value" : "category",
+          "key" : "browse.category"
+        }, {
+          "label" : "Title",
+          "value" : "title",
+          "key" : "browse.title"
+        }, {
+          "label" : "Author",
+          "value" : "author",
+          "key" : "browse.author"
+        } ],
+        "default" : "category"
+      },
+      "field" : {
+        "options" : [ {
+          "label" : "Content",
+          "value" : "text",
+          "key" : "search.content"
+        }, {
+          "label" : "Title",
+          "value" : "title",
+          "key" : "search.title"
+        } ],
+        "default" : "text"
+      }
+    },
+    "menubar" : true,
+    "upload" : {
+      "target" : "annotate",
+      "accept" : ".xml, .tei, .odd, .docx, .md, .mei",
+      "enabled" : true
+    },
+    "jinntap" : {
+      "cdn" : "https://cdn.jsdelivr.net/npm/@jinntec/jinntap",
+      "schema" : "resources/schema/schema.json",
+      "version" : "1.27.0"
+    },
+    "toolbar" : {
+      "zoom" : true,
+      "navigation" : true,
+      "enabled" : true,
+      "progress" : {
+        "subscribe" : "transcription",
+        "enabled" : true
+      }
+    },
+    "hero" : false,
+    "toc" : {
+      "collapse" : false,
+      "enabled" : false
+    }
+  },
+  "indexing" : {
+    "tei" : {
+      "enable" : true,
+      "context" : "div"
+    },
+    "docbook" : {
+      "enable" : true
+    },
+    "jats" : {
+      "enable" : true
+    }
+  },
+  "skipSource" : [ "repo.xml", "expath-pkg.xml", "build.xml" ],
+  "_lastModified" : null,
+  "pkg" : {
+    "website" : "http://tei-publisher.com",
+    "abbrev" : "YiDraCor",
+    "version" : "1.0.0",
+    "dependencies" : [ {
+      "semver" : "1",
+      "package" : "http://e-editiones.org/roaster"
+    }, {
+      "semver" : "4",
+      "package" : "http://existsolutions.com/apps/tei-publisher-lib"
+    }, {
+      "semver" : "1",
+      "package" : "http://tei-publisher.com/library/jinks-templates"
+    }, {
+      "semver" : "6",
+      "package" : "http://expath.org/ns/crypto"
+    }, {
+      "semver" : "2",
+      "package" : "http://existsolutions.com/ns/jwt"
+    } ],
+    "permissions" : "rw-r--r--",
+    "user" : {
+      "password" : "simple",
+      "name" : "tei",
+      "group" : "tei"
+    }
+  },
+  "description" : "A workspace for editing and annotating documents. Includes the Jinntap editor, web-based annotation editor, and an upload facility.",
+  "_dry" : false,
+  "source" : "/db/apps/jinks/profiles/workbench",
+  "type" : "blueprint",
+  "skip" : [ "^doc/.*$", "setup.xql", "config.json" ],
+  "_overwrite" : "quick",
+  "defaults" : {
+    "data" : "data",
+    "address-by-id" : false,
+    "odd-root" : "resources/odd",
+    "upload" : "annotate",
+    "data-default" : "annotate",
+    "direction" : "ltr",
+    "view" : "div",
+    "media" : [ "web", "print", "fo", "latex", "epub" ],
+    "template" : "basic.html",
+    "browse" : "browse.html",
+    "search" : "div",
+    "odd" : "teipublisher.odd",
+    "pagination" : {
+      "fill" : 5,
+      "depth" : 10
+    }
+  },
+  "templating" : {
+    "use" : [ "templates/annotation-blocks.html", "templates/editor-blocks.html", "templates/upload-blocks.html" ],
+    "modules" : {
+      "http://teipublisher.com/ns/templates/browse" : {
+        "at" : "modules/templates/browse.xqm",
+        "prefix" : "browse"
+      },
+      "http://teipublisher.com/ns/templates/page" : {
+        "at" : "modules/templates/page.xqm",
+        "prefix" : "page"
+      }
+    }
+  },
+  "script" : {
+    "custom" : [ ],
+    "webcomponents" : "2.26.0-next-3.16",
+    "extra-components" : [ ],
+    "cdn" : "https://cdn.jsdelivr.net/npm/@teipublisher/pb-components"
+  },
+  "order" : 902,
+  "$schema" : "../../schema/jinks.json"
+}
