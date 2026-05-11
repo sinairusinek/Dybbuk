@@ -1,0 +1,20 @@
+# Binary build artifact — source is in code/tei-publisher/YiDraCor/
+code/tei-publisher/YiDraCor.xar
+
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.ipynb_checkpoints/
+
+# Pipeline intermediate artifacts (regenerated on every run)
+code/vocalization/artifacts/
+code/vocalization/page7_diff.html
+code/vocalization/page7_eval.html
+code/vocalization/page7_phonotactic_flags.json
+code/vocalization/page7_ocr_suspects.json
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp

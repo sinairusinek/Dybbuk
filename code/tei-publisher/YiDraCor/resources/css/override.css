@@ -1,0 +1,26 @@
+/* side-by-side layout on desktop */
+main.annotate-layout {
+  display: flex;
+  gap: 1rem;
+  height: calc(100vh - 6rem); /* adjust if your toolbar is taller */
+}
+
+/* facsimile pane */
+pb-facsimile#facs1 {
+  flex: 1 1 50%;
+  min-width: 320px;
+  height: 100%;
+  display: block;
+}
+
+/* text pane */
+.annotate-text {
+  flex: 1 1 50%;
+  overflow: auto;
+  height: 100%;
+}
+
+/* keep the actual transcription scrollable */
+pb-view-annotate#view1 {
+  display: block;
+}
