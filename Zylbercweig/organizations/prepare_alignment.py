@@ -270,6 +270,10 @@ def main() -> None:
         prev_decision = (prev or {}).get("decision", "").strip()
         prev_aligned = (prev or {}).get("aligned_db_id", "").strip()
         prev_notes = (prev or {}).get("reviewer_notes", "").strip()
+        prev_settlement = (prev or {}).get("reviewer_settlement", "").strip()
+        prev_address = (prev or {}).get("reviewer_address", "").strip()
+        prev_reviewer = (prev or {}).get("reviewer", "").strip()
+        prev_reviewed_at = (prev or {}).get("reviewed_at", "").strip()
         if prev_decision or prev_aligned or prev_notes:
             preserved_count += 1
 
@@ -341,6 +345,10 @@ def main() -> None:
                 "decision": prev_decision,
                 "aligned_db_id": prev_aligned,
                 "reviewer_notes": prev_notes,
+                "reviewer_settlement": prev_settlement,
+                "reviewer_address": prev_address,
+                "reviewer": prev_reviewer,
+                "reviewed_at": prev_reviewed_at,
             }
         )
 
@@ -363,6 +371,10 @@ def main() -> None:
                 "decision",
                 "aligned_db_id",
                 "reviewer_notes",
+                "reviewer_settlement",
+                "reviewer_address",
+                "reviewer",
+                "reviewed_at",
             ],
             delimiter="\t",
         )
