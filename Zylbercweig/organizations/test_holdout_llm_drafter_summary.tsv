@@ -1,0 +1,18 @@
+metric	subset	matches	total	pct
+overall	all	9	44	20.5
+by_confidence	high	9	44	20.5
+by_confidence	medium	0	0	
+by_confidence	low	0	0	
+by_actual_decision	ALIGN	5	10	50.0
+by_actual_decision	NEW	3	33	9.1
+by_actual_decision	SPLIT	1	1	100.0
+
+confusion_matrix				
+actual	drafted	count		
+NEW	ALIGN	30		
+ALIGN	ALIGN	5		
+ALIGN	NEW	3		
+NEW	NEW	3		
+ALIGN	SPLIT	1		
+ALIGN	DISCUSS	1		
+SPLIT	SPLIT	1		
