@@ -275,6 +275,30 @@ def main() -> None:
             }
         )
 
+    # ── Blocking design ─────────────────────────────────────────────────
+    # Block by org_type with explicit equivalence classes for related types.
+    # Empty-type DB rows are "fail-open" — they join every block (so the ~106
+    # untyped DB rows can still match any cluster). Clusters with empty
+    # org_type also fall back to matching against everything.
+    TYPE_EQUIVALENCE_CLASSES = [
+        # Publication-adjacent: a Publisher cluster can match a DB row tagged
+        # Printer/Publisher etc. (this directly addresses the Leksikon miss).
+        frozenset({
+            "Publisher", "Printer", "Printer/Publisher", "Journals/ Newspapers",
+        }),
+    ]
+    _TYPE_TO_BLOCK: dict[str, str] = {}
+    for cls in TYPE_EQUIVALENCE_CLASSES:
+        canonical = min(cls)  # lexicographic representative
+        for t in cls:
+            _TYPE_TO_BLOCK[t] = canonical
+
+    def block_key(org_type: str) -> str:
+        t = (org_type or "").strip()
+        if not t:
+            return ""  # empty -> fail-open pool
+        return _TYPE_TO_BLOCK.get(t, t)
+
     # Precompute DB variants and phonetic codes.
     db_entries: list[dict[str, object]] = []
     for row in core_db_rows:
@@ -303,6 +327,21 @@ def main() -> None:
             }
         )
 
+    # Pre-group DB entries by block + collect the empty-type fail-open pool.
+    db_by_block: dict[str, list[dict[str, object]]] = defaultdict(list)
+    db_any_block: list[dict[str, object]] = []
+    for d in db_entries:
+        bk = block_key(d["org_type"])  # type: ignore[arg-type]
+        if not bk:
+            db_any_block.append(d)
+        else:
+            db_by_block[bk].append(d)
+    print(
+        f"Blocking: {len(db_any_block)} DB rows with empty org_type "
+        f"(fail-open pool), {sum(len(v) for v in db_by_block.values())} typed across "
+        f"{len(db_by_block)} blocks."
+    )
+
     out_rows: list[dict[str, str]] = []
     preserved_count = 0
     for c in sorted(cluster_records, key=lambda x: x["cluster_id"]):
@@ -310,6 +349,13 @@ def main() -> None:
         cnorm = normalize_yiddish(cname)
         caliases = organization_name_aliases(cname)
         cdm = dm_codes(cname)
+
+        # Build the candidate pool for this cluster based on its block.
+        c_block = block_key(c["org_type"])
+        if c_block:
+            candidate_pool = db_by_block.get(c_block, []) + db_any_block
+        else:
+            candidate_pool = db_entries  # empty-type cluster: compare against all
 
         prev = prev_by_cluster_id.get(c["cluster_id"])
         if prev is not None and not preserved_row_matches_cluster(prev, c):
@@ -333,7 +379,7 @@ def main() -> None:
 
         scored: dict[str, tuple[float, str]] = {}
 
-        for d in db_entries:
+        for d in candidate_pool:
             db_id = str(d["db_id"])
             best_score = 0.0
             best_method = ""
