@@ -306,9 +306,16 @@ def main() -> None:
         if not db_id:
             continue
         db_name = row.get("name", "").strip()
+        db_name_yid = row.get("name_yiddish", "").strip()
         variants = split_name_variants(db_name)
         if db_name and db_name not in variants:
             variants.append(db_name)
+        if db_name_yid:
+            for yv in split_name_variants(db_name_yid):
+                if yv and yv not in variants:
+                    variants.append(yv)
+            if db_name_yid not in variants:
+                variants.append(db_name_yid)
         norm_variants = [normalize_yiddish(v) for v in variants if v]
         alias_variants = sorted({a for v in variants for a in organization_name_aliases(v)})
         dm = set()

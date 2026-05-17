@@ -36,6 +36,7 @@ PAIRS_FILE = BASE / "organizations" / "cluster_pairs_review.tsv"
 CORE_DB_FILE = BASE / "organizations" / "core_db.tsv"
 CLUSTER_FILE = BASE / "organizations" / "organizations_clustered.tsv"
 ADDR_FILE = BASE / "organizations" / "org_addresses_review.tsv"
+DRAFTS_FILE = BASE / "organizations" / "org_alignment_drafts.tsv"
 LEXICON_DIR = BASE / "The Lexicon"
 
 _COL_CID = "cluster_id"
@@ -49,6 +50,7 @@ _COL_FILE = "File"
 _COL_XMLID = "_ - xml:id"
 
 PAGE_SIZE = 50
+BATCH_PAGE_SIZE = 25
 ATTESTATION_BASE = 6
 
 _ORG_TYPE_OPTIONS = [
@@ -110,6 +112,11 @@ XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
 
 _TAG_DB_RE = re.compile(r"\[DB:\s*([^\]]+)\]")
 _TAG_NAME_RE = re.compile(r"\[Name:\s*([^\]]+)\]")
+_YID_CHAR_RE = re.compile(r"[֐-׿יִ-ﭏ]")
+
+
+def _has_yiddish(s: str) -> bool:
+	return bool(_YID_CHAR_RE.search(s or ""))
 
 
 @st.cache_resource(show_spinner=False)
@@ -243,6 +250,19 @@ def load_pair_index(mtime: float) -> dict[str, list[dict[str, str]]]:
 				out.setdefault(cid_i, []).append(row)
 			if cid_j:
 				out.setdefault(cid_j, []).append(row)
+	return out
+
+
+@st.cache_data(show_spinner=False)
+def load_drafts(mtime: float) -> dict[str, dict[str, str]]:
+	if not DRAFTS_FILE.exists():
+		return {}
+	out: dict[str, dict[str, str]] = {}
+	with open(DRAFTS_FILE, newline="", encoding="utf-8") as f:
+		for row in csv.DictReader(f, delimiter="\t"):
+			cid = row.get("cluster_id", "").strip()
+			if cid:
+				out[cid] = row
 	return out
 
 
@@ -753,6 +773,188 @@ def _render_similar_clusters(
 				st.caption("No cluster matches for this query.")
 
 
+_DRAFT_DECISIONS = ("ALIGN", "NEW", "GENERIC", "SPLIT", "DEFER", "DESCRIPTIVE", "DISCUSS")
+
+
+def _render_batch_confirm(
+	a_headers: list[str],
+	a_rows: list[dict[str, str]],
+	db_headers: list[str],
+	db_rows: list[dict[str, str]],
+	drafts_by_cid: dict[str, dict[str, str]],
+) -> None:
+	"""Batch-confirm panel: paginated grid of high-confidence drafter proposals."""
+	db_by_id = {r.get("db_id", ""): r for r in db_rows}
+
+	candidates: list[tuple[dict[str, str], dict[str, str]]] = []
+	for r in a_rows:
+		if r.get("decision", "").strip():
+			continue
+		d = drafts_by_cid.get(r.get("cluster_id", "").strip())
+		if not d:
+			continue
+		if d.get("confidence", "").strip().lower() != "high":
+			continue
+		if d.get("draft_decision", "").strip() not in _DRAFT_DECISIONS:
+			continue
+		candidates.append((r, d))
+
+	st.markdown("### Batch confirm — high-confidence drafts")
+	if not candidates:
+		st.info("No high-confidence drafts available for undecided clusters. Run the drafter or switch to Single cluster mode.")
+		return
+
+	# Decision-type filter
+	type_counts: dict[str, int] = collections.Counter()
+	for _r, _d in candidates:
+		type_counts[_d.get("draft_decision", "").strip()] += 1
+	type_opts = sorted(type_counts.keys(), key=lambda t: (-type_counts[t], t))
+	sel_decisions = st.pills(
+		"Filter by proposed decision",
+		options=type_opts,
+		format_func=lambda t: f"{t} ({type_counts[t]})",
+		selection_mode="multi",
+		default=type_opts,
+		key="batch_decision_pills",
+	)
+	sel_decisions_set = set(sel_decisions or type_opts)
+	filtered = [(r, d) for r, d in candidates if d.get("draft_decision", "").strip() in sel_decisions_set]
+
+	st.caption(f"{len(filtered)} candidate(s) match filter · {len(candidates)} total high-confidence drafts")
+	if not filtered:
+		return
+
+	page_count = max(1, (len(filtered) + BATCH_PAGE_SIZE - 1) // BATCH_PAGE_SIZE)
+	page = st.number_input("Page", min_value=1, max_value=page_count, value=1, step=1, key="batch_page")
+	start = (int(page) - 1) * BATCH_PAGE_SIZE
+	page_items = filtered[start : start + BATCH_PAGE_SIZE]
+
+	with st.form("batch_confirm_form", clear_on_submit=False):
+		header = st.columns([0.4, 2.2, 0.9, 0.9, 1.8, 2.4, 0.6])
+		header[0].caption("✓")
+		header[1].caption("Cluster name")
+		header[2].caption("Type")
+		header[3].caption("Decision")
+		header[4].caption("DB target")
+		header[5].caption("Rationale")
+		header[6].caption("Open")
+
+		for r, d in page_items:
+			cid = r.get("cluster_id", "").strip()
+			decision = d.get("draft_decision", "").strip()
+			db_id = d.get("draft_aligned_db_id", "").strip()
+			db_name = db_by_id.get(db_id, {}).get("name", "") if db_id else ""
+			rationale = d.get("rationale", "").strip()
+			row_cols = st.columns([0.4, 2.2, 0.9, 0.9, 1.8, 2.4, 0.6])
+			row_cols[0].checkbox(
+				"accept",
+				value=True,
+				key=f"batch-accept-{cid}",
+				label_visibility="collapsed",
+			)
+			row_cols[1].markdown(
+				f"<div class='rtl-block'>{r.get('canonical_yiddish','')}</div>"
+				f"<div style='font-size:0.8em;color:#666'>{cid}</div>",
+				unsafe_allow_html=True,
+			)
+			row_cols[2].caption(r.get("org_type", ""))
+			badge = {"ALIGN": "🟢", "NEW": "🟣", "GENERIC": "🔶", "SPLIT": "🔴",
+			         "DEFER": "🟡", "DESCRIPTIVE": "🔵", "DISCUSS": "💬"}.get(decision, "·")
+			row_cols[3].markdown(f"{badge} **{decision}**")
+			if db_id:
+				row_cols[4].markdown(f"`{db_id}` {db_name}")
+			else:
+				row_cols[4].caption("—")
+			row_cols[5].caption(rationale[:240] + ("…" if len(rationale) > 240 else ""))
+			row_cols[6].markdown(f"[↗]({_open_url('Organizations matching', cid)})")
+
+		submitted = st.form_submit_button(
+			f"💾 Save accepted on this page",
+			type="primary",
+		)
+
+	if submitted:
+		_apply_batch_accepts(page_items, a_headers, a_rows, db_headers, db_rows)
+
+
+def _apply_batch_accepts(
+	page_items: list[tuple[dict[str, str], dict[str, str]]],
+	a_headers: list[str],
+	a_rows: list[dict[str, str]],
+	db_headers: list[str],
+	db_rows: list[dict[str, str]],
+) -> None:
+	_ensure_audit_cols(a_headers, a_rows, "reviewer", "reviewed_at",
+	                   "reviewer_settlement", "reviewer_address")
+	idx_by_cid = {r.get("cluster_id", "").strip(): i for i, r in enumerate(a_rows)}
+	next_id = _next_db_id(db_rows)
+
+	accepted_aligns = 0
+	accepted_news = 0
+	accepted_other = 0
+	new_core_rows: list[dict[str, str]] = []
+
+	for r, d in page_items:
+		cid = r.get("cluster_id", "").strip()
+		if not st.session_state.get(f"batch-accept-{cid}", False):
+			continue
+		row_idx = idx_by_cid.get(cid)
+		if row_idx is None:
+			continue
+		decision = d.get("draft_decision", "").strip()
+		db_id = d.get("draft_aligned_db_id", "").strip()
+		row = a_rows[row_idx]
+
+		if decision == "ALIGN" and db_id:
+			row["decision"] = "ALIGN"
+			row["aligned_db_id"] = db_id
+			accepted_aligns += 1
+		elif decision == "NEW":
+			row["decision"] = "NEW"
+			row["aligned_db_id"] = str(next_id)
+			_cy = r.get("canonical_yiddish", "").strip()
+			new_core_rows.append({
+				"db_id": str(next_id),
+				"name": _cy,
+				"name_yiddish": _cy if _has_yiddish(_cy) else "",
+				"org_type": r.get("org_type", "").strip().lower(),
+				"address": (r.get("extracted_addresses", "").split("|", 1)[0] or "").strip(),
+				"linked_cluster_ids": cid,
+			})
+			next_id += 1
+			accepted_news += 1
+		else:
+			row["decision"] = decision
+			row["aligned_db_id"] = ""
+			accepted_other += 1
+
+		row["reviewer_notes"] = (d.get("rationale", "").strip()[:500])
+		_stamp(row)
+
+	total = accepted_aligns + accepted_news + accepted_other
+	if total == 0:
+		st.warning("Nothing checked on this page.")
+		return
+
+	# Append any new core_db rows (pad missing columns)
+	if new_core_rows:
+		for new_row in new_core_rows:
+			padded = {h: "" for h in db_headers}
+			padded.update({k: v for k, v in new_row.items() if k in db_headers})
+			db_rows.append(padded)
+		save_core_db(db_headers, db_rows)
+		load_core_db.clear()
+
+	save_alignment(a_headers, a_rows)
+	load_alignment.clear()
+
+	st.success(
+		f"Saved {total} decision(s): {accepted_aligns} ALIGN · {accepted_news} NEW · {accepted_other} other. "
+		"NEW entries got auto-allocated db_ids; add addresses in Single cluster mode."
+	)
+	st.rerun()
+
+
 def _render_rtl_style() -> None:
 	st.markdown(
 		"""
@@ -845,6 +1047,25 @@ def render() -> None:
 	pair_index = load_pair_index(_mtime(PAIRS_FILE))
 	addr_db_ids = load_address_db_ids(_mtime(ADDR_FILE))
 	addr_details = load_address_details(_mtime(ADDR_FILE))
+	drafts_by_cid = load_drafts(_mtime(DRAFTS_FILE))
+
+	with st.sidebar:
+		mode_options = ["Single cluster", "Batch confirm"]
+		mode = st.radio(
+			"Review mode",
+			options=mode_options,
+			index=0,
+			key="org_review_mode",
+			help="Batch mode shows a paginated grid of high-confidence drafter proposals you can accept en masse.",
+		)
+		if drafts_by_cid:
+			st.caption(f"📝 {len(drafts_by_cid)} drafter proposals available")
+		else:
+			st.caption("No drafter proposals yet.")
+
+	if mode == "Batch confirm":
+		_render_batch_confirm(a_headers, a_rows, db_headers, db_rows, drafts_by_cid)
+		return
 
 	total = len(a_rows)
 	by_decision: dict[str, int] = {}
@@ -1050,6 +1271,28 @@ def render() -> None:
 				st.markdown("<div class='panel-samples'></div>", unsafe_allow_html=True)
 				st.markdown("<div class='rtl-title section-chip section-chip-samples'><b>Sample texts</b></div>", unsafe_allow_html=True)
 				_render_attestations(selected, samples)
+
+		# ── Drafter proposal banner (any confidence) ──────────────────────
+		_draft = drafts_by_cid.get(selected.get("cluster_id", "").strip())
+		if _draft:
+			_conf = _draft.get("confidence", "").strip().lower()
+			_dec = _draft.get("draft_decision", "").strip()
+			_did = _draft.get("draft_aligned_db_id", "").strip()
+			_rat = _draft.get("rationale", "").strip()
+			_db_name_hint = ""
+			if _did:
+				_db_name_hint = next(
+					(r.get("name", "") for r in db_rows if r.get("db_id", "") == _did),
+					"",
+				)
+			_target = f"`{_did}` {_db_name_hint}" if _did else "—"
+			_msg = f"**Drafter suggests:** {_dec} · target: {_target} · confidence: **{_conf or 'unknown'}**\n\n_{_rat}_"
+			if _conf == "high":
+				st.success(_msg)
+			elif _conf == "medium":
+				st.warning(_msg)
+			else:
+				st.info(_msg)
 
 		st.divider()
 
@@ -1264,10 +1507,13 @@ def render() -> None:
 		if col2.button("New organization"):
 			_ensure_alignment_columns()
 			next_id = _next_db_id(db_rows)
+			_cluster_yid = selected.get("canonical_yiddish", "").strip()
+			_yid_for_db = _cluster_yid if _has_yiddish(_cluster_yid) else ""
 			db_rows.append(
 				{
 					"db_id": str(next_id),
-					"name": new_entity_name or selected.get("canonical_yiddish", "").strip(),
+					"name": new_entity_name or _cluster_yid,
+					"name_yiddish": _yid_for_db,
 						"org_type": new_type or selected.get("org_type", "").strip().lower(),
 					"address": review_address or selected.get("extracted_addresses", "").split("|", 1)[0].strip(),
 					"linked_cluster_ids": selected.get("cluster_id", "").strip(),

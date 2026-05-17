@@ -14,6 +14,8 @@ Run:
   streamlit run app.py -- --view b1      # jump directly to B1 (for RA)
 """
 
+from __future__ import annotations
+
 import sys
 import streamlit as st
 

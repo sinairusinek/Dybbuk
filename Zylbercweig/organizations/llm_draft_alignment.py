@@ -60,7 +60,14 @@ Decision vocabulary:
 Require strong name agreement AND place/type agreement (or no contradiction) to \
 mark confidence=high.
 - NEW: cluster is a real organization not present in DB; no candidate is a true match.
-- SPLIT: cluster mixes multiple distinct organizations and must be broken up before alignment.
+- SPLIT: cluster mixes multiple distinct organizations and must be broken up before alignment. \
+IMPORTANT — itinerant org types (Traveling Company, Company on Tour, "troupe"/"טרופּע"/\
+"טעאַטער-טרופּע", military/army units, expeditions; see pre_explode_clusters.TROUPE_TYPES \
+for the canonical list) tour by definition: spread across multiple settlements is NOT \
+evidence of multiple organizations and must NOT trigger SPLIT. Only SPLIT an itinerant \
+cluster when the cluster name itself enumerates multiple troupes (plural form like \
+"טרופּעס", "troupes", "companies", OR a serial comma list of distinct proper names). \
+"X און Y טרופּע" is one troupe with co-leaders; do not split it.
 - DISCUSS: genuinely ambiguous; needs PI judgment.
 - UNCLUSTER: cluster is artifactual — the rows shouldn't have been grouped at all.
 - DEFER: insufficient information; come back later.
