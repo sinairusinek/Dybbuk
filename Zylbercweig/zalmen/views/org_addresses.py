@@ -82,7 +82,40 @@ def _split(s): return [v.strip() for v in s.split("|") if v.strip()]
 
 _LOC_FIELDS = ("settlement", "settlement_yiddish", "address", "address_romanized", "lat", "lon")
 
-_ORG_TYPE_OPTIONS = ["theatre", "troupe", "publisher", "school", ""]
+_ORG_TYPE_OPTIONS = [
+	"Theatre",
+	"Traveling Company",
+	"Company on Tour",
+	"Amateur",
+	"Kleinkunst",
+	"Circus",
+	"Theatre education",
+	"Publisher",
+	"Printer",
+	"Printer/Publisher",
+	"Journals/ Newspapers",
+	"Media (Radio/ Film/TV)",
+	"Library",
+	"Heritage Institution",
+	"Education",
+	"Musical organization",
+	"Theatre-related Society/ Union",
+	"Religious institutions/organizations",
+	"Jewish political bodies",
+	"Non-Jewish political bodies",
+	"Welfare/Aid organization",
+	"Trade Union / Professional Association",
+	"Business",
+	"Labour (factory/workshop)",
+	"Health institutions",
+	"Military",
+	"Judenrat",
+	"Sports/Recreation",
+	"Fraternal order",
+	"Not an organization",
+	"OTHER - elaborate!",
+	"",
+]
 
 def _empty_loc() -> dict:
     return {f: "" for f in _LOC_FIELDS}

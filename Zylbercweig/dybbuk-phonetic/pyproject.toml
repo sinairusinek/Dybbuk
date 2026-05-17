@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dybbuk-phonetic"
+version = "0.1.0"
+description = "Shared phonetic utilities for bilingual Yiddish/English matching"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "panphon>=0.20.0",
+  "epitran>=1.26",
+  "regex>=2024.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

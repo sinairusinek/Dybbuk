@@ -11,3 +11,25 @@ Zylbercweig_extraction/
 # TheAlbum project (separate pipeline, not yet ready to commit)
 TheAlbum/
 .streamlit/secrets.toml
+
+# Python bytecode + virtualenvs
+__pycache__/
+*.pyc
+.venv/
+
+# Pipeline lock files (transient)
+*.lock
+
+# Separate sibling projects under Zylbercweig/ — tracked elsewhere or not yet
+Zylbercweig/zibn-shtern/
+Zylbercweig/ZylbercweigPeople/
+Zylbercweig/ZylbercweigPlacesMaaty.tsv
+Zylbercweig/Zylbercweig_Project_Report.md
+
+# Phonetic-similarity research artifacts (PDF/HTML exports of papers)
+Zylbercweig/Utilizing_Phonetic_Similarity*
+
+# Raw vendor data dumps (tracked in Drive)
+Zylbercweig/organizations/Organisations-*.tsv
+Zylbercweig/organizations/Organisations_Report_*.xlsx
+Zylbercweig/organizations/Organisations-*.xlsx

@@ -51,7 +51,40 @@ _COL_XMLID = "_ - xml:id"
 PAGE_SIZE = 50
 ATTESTATION_BASE = 6
 
-_ORG_TYPE_OPTIONS = ["theatre", "troupe", "publisher", "school", ""]
+_ORG_TYPE_OPTIONS = [
+	"Theatre",
+	"Traveling Company",
+	"Company on Tour",
+	"Amateur",
+	"Kleinkunst",
+	"Circus",
+	"Theatre education",
+	"Publisher",
+	"Printer",
+	"Printer/Publisher",
+	"Journals/ Newspapers",
+	"Media (Radio/ Film/TV)",
+	"Library",
+	"Heritage Institution",
+	"Education",
+	"Musical organization",
+	"Theatre-related Society/ Union",
+	"Religious institutions/organizations",
+	"Jewish political bodies",
+	"Non-Jewish political bodies",
+	"Welfare/Aid organization",
+	"Trade Union / Professional Association",
+	"Business",
+	"Labour (factory/workshop)",
+	"Health institutions",
+	"Military",
+	"Judenrat",
+	"Sports/Recreation",
+	"Fraternal order",
+	"Not an organization",
+	"OTHER - elaborate!",
+	"",
+]
 
 
 def _open_url(view: str, entity: str = "") -> str:
