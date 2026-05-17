@@ -133,12 +133,66 @@ def pipe_join_distinct(values: list[str]) -> str:
     return " | ".join(seen.keys())
 
 
+_YIDDISH_RUN = re.compile(r"[֐-׿][֐-׿\s\-ְ-ׇ]*[֐-׿]")
+
+
+def _strip_format_marks(s: str) -> str:
+    """Remove Unicode Cf-category characters (bidi marks, isolates, etc.)
+    that pollute pasted DB names like 'Der Tog⁩ - ⁨דער טאג'."""
+    return "".join(c for c in s if unicodedata.category(c) != "Cf")
+
+
 def split_name_variants(name: str) -> list[str]:
-    # DB Name often includes variants separated by ' - '.
-    parts = [p.strip() for p in re.split(r"\s+-\s+", name or "") if p.strip()]
-    if not parts and name:
-        parts = [name.strip()]
-    return parts
+    """Split a DB name into distinct surface variants.
+
+    - First strips Unicode bidi/format marks (Cf) so pasted DB names don't
+      carry hidden chars into similarity comparisons.
+    - Splits on ' - ' (existing convention).
+    - Strips parentheticals to expose the head name as a clean variant.
+    - Adds each parenthetical body as its own variant.
+    - Within mixed-script text (e.g. inside parens), extracts the longest
+      Yiddish-script run as its own variant so a Yiddish cluster can match
+      the Yiddish form inside a Latin-headed DB row.
+
+    Example:
+        'Leksikon fun yidishn teater (לעקסיקאן פון יידישן טעאטער Lexicon of ...)'
+        -> ['Leksikon fun yidishn teater (לעקסיקאן ...)',  # original
+            'Leksikon fun yidishn teater',                  # paren-stripped head
+            'לעקסיקאן פון יידישן טעאטער Lexicon of ...',     # paren body
+            'לעקסיקאן פון יידישן טעאטער']                    # Yiddish run inside body
+    """
+    if not name:
+        return []
+    name = _strip_format_marks(name)
+    base_parts = [p.strip() for p in re.split(r"\s+-\s+", name) if p.strip()]
+    if not base_parts:
+        base_parts = [name.strip()]
+
+    out: list[str] = []
+    seen: set[str] = set()
+
+    def push(v: str) -> None:
+        v = v.strip()
+        if v and v not in seen:
+            seen.add(v)
+            out.append(v)
+
+    for part in base_parts:
+        push(part)  # keep the original form too
+        # Strip parenthetical(s) to expose the head
+        head = re.sub(r"\s*\([^)]*\)\s*", " ", part).strip()
+        if head:
+            push(head)
+        # Extract each parenthetical body
+        for body in re.findall(r"\(([^)]*)\)", part):
+            body = body.strip()
+            if not body:
+                continue
+            push(body)
+            # If body mixes scripts, also surface the longest Yiddish run
+            for m in _YIDDISH_RUN.findall(body):
+                push(m.strip())
+    return out
 
 
 def latin_only(text: str) -> str:
