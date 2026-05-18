@@ -997,6 +997,9 @@ def _render_settlement_siblings(
 	selected: dict[str, str],
 	choice_key: str,
 	addr_db_ids: set[str],
+	a_rows: list[dict[str, str]],
+	pair_headers: list[str],
+	pair_rows: list[dict[str, str]],
 ) -> None:
 	"""Show same-type, same-settlement DB rows + clusters as alignment/merge candidates.
 
@@ -1013,6 +1016,7 @@ def _render_settlement_siblings(
 	if not buckets:
 		return
 	chosen_db_id = st.session_state.get(choice_key, "").strip()
+	rows_by_cid = {r.get("cluster_id", ""): r for r in a_rows}
 	for bucket in buckets:
 		other_dbs = [d for d in bucket.db_cards]
 		other_clusters = [c for c in bucket.clusters if c.cluster_id != cid]
@@ -1033,25 +1037,33 @@ def _render_settlement_siblings(
 			if other_dbs:
 				st.markdown("**DB rows here**")
 				for d in other_dbs:
-					row_cols = st.columns([5, 1])
 					name = d.name or d.name_yiddish or "(unnamed)"
-					row_cols[0].markdown(
+					st.markdown(
 						f"<div class='rtl-block'>{d.db_id} · {name}"
 						+ (f" · <span dir='rtl'>{d.name_yiddish}</span>" if d.name_yiddish and d.name else "")
 						+ "</div>",
 						unsafe_allow_html=True,
 					)
 					if d.confirmed_settlement:
-						row_cols[0].caption(f"📍 {d.confirmed_settlement}")
+						st.caption(f"📍 {d.confirmed_settlement}")
 					is_chosen = (chosen_db_id == d.db_id)
-					if row_cols[1].button(
-						"✓ chosen" if is_chosen else "Align",
+					btn_cols = st.columns(2)
+					if btn_cols[0].button(
+						"✓ chosen" if is_chosen else "🟢 Align",
 						key=f"sib-db-{cid}-{bucket.qid}-{bucket.org_type}-{d.db_id}",
 						disabled=is_chosen,
 						use_container_width=True,
 					):
 						st.session_state[choice_key] = d.db_id
 						st.rerun()
+					if d.db_id in addr_db_ids:
+						btn_cols[1].link_button(
+							"Open details ↗",
+							_open_url("Organization Cards", d.db_id),
+							use_container_width=True,
+						)
+					else:
+						btn_cols[1].caption("(no address row)")
 			if other_clusters:
 				st.markdown("**Other clusters here** (potential merges / shared DB target)")
 				# Sort: undecided first, then by size desc
@@ -1063,6 +1075,26 @@ def _render_settlement_siblings(
 						if c.aligned_db_id:
 							line += f" → {c.aligned_db_id}"
 					st.markdown(f"<div class='rtl-block'>{line}</div>", unsafe_allow_html=True)
+					btn_cols = st.columns(2)
+					if btn_cols[0].button(
+						"Open ↗",
+						key=f"sib-cl-open-{cid}-{bucket.qid}-{bucket.org_type}-{c.cluster_id}",
+						use_container_width=True,
+					):
+						st.session_state["review_selected_cid"] = c.cluster_id
+						st.rerun()
+					other_row = rows_by_cid.get(c.cluster_id)
+					if btn_cols[1].button(
+						"🔗 Merge",
+						key=f"sib-cl-merge-{cid}-{bucket.qid}-{bucket.org_type}-{c.cluster_id}",
+						disabled=(other_row is None),
+						use_container_width=True,
+					):
+						_merge_clusters_from_search(
+							cid, selected,
+							[(c.cluster_id, other_row)],
+							pair_headers, pair_rows,
+						)
 				if len(other_clusters) > 25:
 					st.caption(f"… and {len(other_clusters) - 25} more")
 
@@ -1555,7 +1587,12 @@ def render() -> None:
 					st.link_button("Open in Organization Cards ↗",
 								   _open_url("Organization Cards", chosen_db_id))
 
-			_render_settlement_siblings(selected, choice_key, addr_db_ids)
+			_render_settlement_siblings(
+				selected, choice_key, addr_db_ids,
+				a_rows=a_rows,
+				pair_headers=pair_headers,
+				pair_rows=pair_rows,
+			)
 
 		with cand_cluster_col:
 			st.markdown("<div class='panel-cluster-cand'></div>", unsafe_allow_html=True)
