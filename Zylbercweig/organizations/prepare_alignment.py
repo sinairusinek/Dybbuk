@@ -307,6 +307,7 @@ def main() -> None:
             continue
         db_name = row.get("name", "").strip()
         db_name_yid = row.get("name_yiddish", "").strip()
+        db_name_yid_translit = row.get("name_yiddish_translit", "").strip()
         variants = split_name_variants(db_name)
         if db_name and db_name not in variants:
             variants.append(db_name)
@@ -316,6 +317,15 @@ def main() -> None:
                     variants.append(yv)
             if db_name_yid not in variants:
                 variants.append(db_name_yid)
+        # name_yiddish_translit is a blocking-only auxiliary Yiddish form
+        # (auto-transliterated from Latin). It surfaces Latin-only DB rows to
+        # Yiddish clusters; it must NEVER be treated as canonical Yiddish.
+        if db_name_yid_translit:
+            for yv in split_name_variants(db_name_yid_translit):
+                if yv and yv not in variants:
+                    variants.append(yv)
+            if db_name_yid_translit not in variants:
+                variants.append(db_name_yid_translit)
         norm_variants = [normalize_yiddish(v) for v in variants if v]
         alias_variants = sorted({a for v in variants for a in organization_name_aliases(v)})
         dm = set()
@@ -427,13 +437,16 @@ def main() -> None:
             if ipa_best > best_score:
                 best_score, best_method = ipa_best, "ipa_phonetic"
 
-            # Keep only plausible candidates.
-            if best_score >= 0.60:
+            # Keep only plausible candidates. Cross-script IPA matches use a
+            # lower floor because the IPA approximation is lossy — without this,
+            # Latin-only DB rows are invisible to Yiddish clusters.
+            min_score = 0.40 if best_method == "ipa_phonetic" else 0.60
+            if best_score >= min_score:
                 prev = scored.get(db_id)
                 if prev is None or best_score > prev[0]:
                     scored[db_id] = (best_score, best_method)
 
-        ranked = sorted(scored.items(), key=lambda kv: kv[1][0], reverse=True)[:5]
+        ranked = sorted(scored.items(), key=lambda kv: kv[1][0], reverse=True)[:10]
 
         out_rows.append(
             {
