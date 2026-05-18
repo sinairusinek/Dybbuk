@@ -23,6 +23,8 @@ import openpyxl
 HERE = Path(__file__).parent
 PEOPLE_XLSX = HERE.parent / "ZylbercweigPeople"
 JSON_REVIEW = PEOPLE_XLSX / "Json Review (8).xlsx"
+NEW_PEOPLE_XLSX = PEOPLE_XLSX / "ZylberberzweigPeople (8).xlsx"
+REPORT_TSV = PEOPLE_XLSX / "ZylbereportPeople.tsv"
 CREDITED = PEOPLE_XLSX / "credited persons.xlsx"
 NAME_VALID = PEOPLE_XLSX / "extracted names validations.xlsx"
 
@@ -38,51 +40,129 @@ def _norm(v):
     return s.replace("\t", " ").replace("\n", " ")
 
 
-def parse_db_keys(json_review_path: Path):
-    """Pull every '{id}|{hebname}|{english}' record we can find across sheets,
-    plus the keyFromDB sheet which is the cleanest source. Returns dict id->row.
+DB_FIELDS = [
+    "db_id", "hebname", "english", "alternative_name", "gender",
+    "date_born", "date_died", "born_in", "died_in",
+    "external_source_id", "external_source",
+    "author_of", "editor_of", "mentioned_in",
+    "professional_role_org", "professional_role_perf", "character_perf",
+    "created_expressions", "name_variants",
+    "probably_not_zylbercweig", "source", "raw",
+]
+
+
+def _hebname_truncated(s: str) -> bool:
+    """DBKey rows are upstream-truncated at first comma inside parens, e.g.
+    'סאמי אוריך (שמאי' (open paren, no close). Detect that pattern so we can
+    prefer Report's fuller hebrew when available."""
+    if not s:
+        return False
+    return s.count("(") > s.count(")")
+
+
+def parse_db_keys(new_xlsx_path: Path, report_tsv_path: Path):
+    """Build the people DB from two sources:
+      * DBKey sheet in ZylberberzweigPeople (8).xlsx — authoritative id universe
+        (~3,476 well-formed ids), format 'English|id|Hebrew'.
+      * ZylbereportPeople.tsv — DiJeSt biographical export (~2,996 ids, all a
+        subset of DBKey).
+    Returns dict id -> row, contradictions list.
     """
-    wb = openpyxl.load_workbook(json_review_path, read_only=True, data_only=True)
+    import csv as _csv
+    _csv.field_size_limit(10 ** 8)
+
     db = {}
-    # keyFromDB sheet is the canonical list
-    if "keyFromDB" in wb.sheetnames:
-        ws = wb["keyFromDB"]
-        for row in ws.iter_rows(min_row=2, values_only=True):
-            key = _norm(row[0] if row else "")
-            if not key:
-                continue
-            # format varies: '1255|Tsvi Ben-Menachem' (id|english) or '1255|heb|english'
-            parts = [p.strip() for p in key.split("|")]
-            if len(parts) >= 2 and parts[0].isdigit():
-                dbid = parts[0]
-                if len(parts) == 2:
-                    db.setdefault(dbid, {"db_id": dbid, "hebname": "", "english": parts[1], "raw": key})
-                else:
-                    db.setdefault(dbid, {"db_id": dbid, "hebname": parts[1], "english": parts[2] if len(parts) > 2 else "", "raw": key})
-    # also harvest DB-ID columns from per-volume sheets (they include richer hebname+english)
-    for sname in wb.sheetnames:
-        ws = wb[sname]
-        header = None
-        for i, row in enumerate(ws.iter_rows(values_only=True)):
-            if i == 0:
-                header = [_norm(c).lower() for c in row]
-                continue
-            if not header:
-                break
-            for col_idx, h in enumerate(header):
-                if h in ("db-id", "dbid"):
-                    val = _norm(row[col_idx] if col_idx < len(row) else "")
-                    m = DB_RE.match(val)
-                    if m:
-                        dbid, heb, eng = m.group(1), m.group(2), m.group(3)
-                        existing = db.get(dbid)
-                        if not existing or not existing.get("hebname"):
-                            db[dbid] = {"db_id": dbid, "hebname": heb, "english": eng, "raw": val}
+    contradictions = []
+
+    # 1) DBKey sheet → spine
+    wb = openpyxl.load_workbook(new_xlsx_path, data_only=True)
+    if "DBKey" not in wb.sheetnames:
+        raise RuntimeError(f"DBKey sheet not found in {new_xlsx_path}")
+    ws = wb["DBKey"]
+    malformed_dbkey = 0
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        v = _norm(row[0] if row else "")
+        if not v:
+            continue
+        parts = [p.strip() for p in v.split("|")]
+        if len(parts) == 3 and parts[1].isdigit():
+            eng, dbid, heb = parts[0], parts[1], parts[2]
+            db[dbid] = {f: "" for f in DB_FIELDS}
+            db[dbid].update({
+                "db_id": dbid, "english": eng, "hebname": heb,
+                "source": "DBKey", "raw": v,
+            })
+        else:
+            malformed_dbkey += 1
     wb.close()
-    return db
+
+    # 2) Report TSV → enrichment
+    enriched = 0
+    only_report = 0
+    with open(report_tsv_path, encoding="utf-8") as fp:
+        reader = _csv.DictReader(fp, delimiter="\t")
+        for r in reader:
+            dbid = _norm(r.get("Id"))
+            if not dbid:
+                continue
+            r_eng = _norm(r.get("English"))
+            r_heb = _norm(r.get("Hebrew"))
+            issue = _norm(r.get("issue"))
+
+            existing = db.get(dbid)
+            if not existing:
+                # report rows not in DBKey — shouldn't happen given current
+                # data (overlap = 100% of report) but handle defensively.
+                only_report += 1
+                db[dbid] = {f: "" for f in DB_FIELDS}
+                db[dbid].update({"db_id": dbid, "english": r_eng, "hebname": r_heb,
+                                 "source": "Report-only", "raw": _norm(r.get("key"))})
+                existing = db[dbid]
+            else:
+                # contradictions
+                if r_eng and existing["english"] and r_eng != existing["english"]:
+                    contradictions.append((dbid, "english", existing["english"], r_eng))
+                # hebrew: prefer Report when DBKey is truncated
+                if r_heb and existing["hebname"] and r_heb != existing["hebname"]:
+                    if _hebname_truncated(existing["hebname"]):
+                        # silent fix — known upstream truncation
+                        existing["hebname"] = r_heb
+                    else:
+                        contradictions.append((dbid, "hebname", existing["hebname"], r_heb))
+                elif r_heb and not existing["hebname"]:
+                    existing["hebname"] = r_heb
+                if r_eng and not existing["english"]:
+                    existing["english"] = r_eng
+                existing["source"] = "DBKey+Report"
+                enriched += 1
+
+            existing.update({
+                "alternative_name": _norm(r.get("Alternative name")),
+                "gender": _norm(r.get("Gender")),
+                "date_born": _norm(r.get("Date Born")),
+                "date_died": _norm(r.get("Date Died")),
+                "born_in": _norm(r.get("Born in")),
+                "died_in": _norm(r.get("Died in")),
+                "external_source_id": _norm(r.get("External Source Id")),
+                "external_source": _norm(r.get("External Source")),
+                "author_of": _norm(r.get("Author of Work")),
+                "editor_of": _norm(r.get("Editor of Edition")),
+                "mentioned_in": _norm(r.get("Mentioned in Edition")),
+                "professional_role_org": _norm(r.get("Professional Role (Organization)")),
+                "professional_role_perf": _norm(r.get("Professional Role (Performance Event)")),
+                "character_perf": _norm(r.get("Character (Performance Event)")),
+                "created_expressions": _norm(r.get("Created expression(s)")),
+                "name_variants": _norm(r.get("Name(s)")),
+                "probably_not_zylbercweig": "1" if "probably not zylbercweig" in issue.lower() else "",
+            })
+
+    print(f"  DBKey: {len(db) - only_report - 0} ids ({malformed_dbkey} malformed skipped)")
+    print(f"  Report enriched: {enriched}, Report-only: {only_report}")
+    print(f"  Contradictions logged: {len(contradictions)}")
+    return db, contradictions
 
 
-def parse_alignment_review(json_review_path: Path):
+def parse_alignment_review(json_review_path: Path, new_xlsx_path: Path = None):
     """Walk per-volume sheets + Duplication Check + alignment sheet, emit per-row
     RA decisions tied to xml_id. We don't try to interpret every column — we keep
     the fields most likely to be ground-truth signal.
@@ -144,6 +224,42 @@ def parse_alignment_review(json_review_path: Path):
                 "decision": d.get("Column", ""),  # used in this sheet for role/cat
             })
     wb.close()
+    # merge Alignment 2 from the newer xlsx
+    if new_xlsx_path and new_xlsx_path.exists():
+        wb2 = openpyxl.load_workbook(new_xlsx_path, data_only=True)
+        if "Alignment 2" in wb2.sheetnames:
+            ws = wb2["Alignment 2"]
+            header = None
+            for i, r in enumerate(ws.iter_rows(values_only=True)):
+                if i == 0:
+                    header = [_norm(c) for c in r]
+                    continue
+                d = {h: _norm(v) for h, v in zip(header, r)}
+                if not d.get("_ - xml:id"):
+                    continue
+                # the DB id col is named verbosely; pick whatever has 'DBKey' in it
+                db_raw = ""
+                for k, v in d.items():
+                    if k and "DBKey" in k:
+                        db_raw = v
+                        break
+                rows.append({
+                    "source_sheet": "Alignment 2",
+                    "volume": d.get("vol", ""),
+                    "xml_id": d.get("_ - xml:id", ""),
+                    "chunk_number": d.get("_ - chunk_number", ""),
+                    "heading": d.get("_ - heading", ""),
+                    "task": "",
+                    "action": d.get("action", ""),
+                    "same_person": "",
+                    "db_id_raw": db_raw,
+                    "duplication_study": "",
+                    "notes": d.get("הערות", ""),
+                    "additional_pages": "",
+                    "additional_volume": "",
+                    "decision": d.get("Resp.", ""),
+                })
+        wb2.close()
     # parse db_id_raw into a numeric id if possible
     for row in rows:
         raw = row["db_id_raw"]
@@ -264,11 +380,19 @@ def write_tsv(path: Path, rows, fieldnames):
 
 
 def main():
-    db = parse_db_keys(JSON_REVIEW)
-    write_tsv(HERE / "people_db.tsv", list(db.values()),
-              ["db_id", "hebname", "english", "raw"])
+    db, contradictions = parse_db_keys(NEW_PEOPLE_XLSX, REPORT_TSV)
+    # sort by numeric id for stable output
+    rows_sorted = sorted(db.values(), key=lambda r: int(r["db_id"]) if r["db_id"].isdigit() else 10**9)
+    write_tsv(HERE / "people_db.tsv", rows_sorted, DB_FIELDS)
 
-    align = parse_alignment_review(JSON_REVIEW)
+    if contradictions:
+        with open(HERE / "people_db_contradictions.tsv", "w", encoding="utf-8") as fp:
+            fp.write("db_id\tfield\tdbkey_value\treport_value\n")
+            for did, field, a, b in contradictions:
+                fp.write(f"{did}\t{field}\t{a}\t{b}\n")
+        print(f"wrote {HERE / 'people_db_contradictions.tsv'} ({len(contradictions)} rows)")
+
+    align = parse_alignment_review(JSON_REVIEW, NEW_PEOPLE_XLSX)
     write_tsv(HERE / "people_alignment_review.tsv", align,
               ["source_sheet", "volume", "xml_id", "chunk_number", "heading",
                "task", "action", "same_person", "decision",

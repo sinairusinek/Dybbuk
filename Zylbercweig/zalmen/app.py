@@ -40,7 +40,7 @@ VIEWS = {
     "Organization Cards":      ("org_addresses", "geo"),
     "Settlement audit":        ("settlement_audit", "audit"),
     "Activity":                ("activity",      "activity"),
-    "B1 · Person Dedup":       (None,             "b1"),
+    "B1 · Person Dedup":       ("person_dedup",   "b1"),
     "B2 · Person → External":  (None,             "b2"),
 }
 
@@ -153,6 +153,9 @@ elif view_module == "settlement_audit":
     render()
 elif view_module == "activity":
     from views.activity import render
+    render()
+elif view_module == "person_dedup":
+    from views.person_dedup import render
     render()
 else:
     st.info(f"**{selected}** is not yet implemented.")

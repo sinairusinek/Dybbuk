@@ -30,6 +30,7 @@ from people_similarity import (  # type: ignore
 PEOPLE_TSV = HERE / "people_extracted.tsv"
 DB_TSV = HERE / "people_db.tsv"
 REVIEW_TSV = HERE / "people_alignment_review.tsv"
+ALIASES_TSV = HERE / "people_aliases.tsv"
 OUT_TSV = HERE / "people_alignment_queue.tsv"
 
 TOP_N = 5
@@ -39,6 +40,22 @@ MIN_SCORE = 0.30  # candidate floor — better to over-recall, drafter filters
 def db_blocking_key(name: str) -> set[str]:
     """Tokens to block by. We add ALL tokens since DB names are short."""
     return {t for t in split_name_tokens(name) if len(t) >= 2}
+
+
+def load_aliases() -> dict[str, list[str]]:
+    """person_id -> list of alias surface forms (heading_bracket, subheading_bracket,
+    names_variant). Used to broaden blocking + scoring for pseudonyms that pure
+    heading-similarity would miss (e.g. שלום-עליכם ↔ שלום ראַבינאָוויטש)."""
+    if not ALIASES_TSV.exists():
+        return {}
+    out: dict[str, list[str]] = defaultdict(list)
+    with open(ALIASES_TSV) as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            pid = r.get("person_id")
+            alias = (r.get("alias_form") or "").strip()
+            if pid and alias:
+                out[pid].append(alias)
+    return out
 
 
 def load_existing_decisions():
@@ -95,6 +112,8 @@ def main():
                 db_blocks[k].append(d)
 
     existing = load_existing_decisions()
+    aliases = load_aliases()
+    n_alias_only_cands = 0
     out_rows = []
     n_with_cand = 0
     total = len(people)
@@ -104,6 +123,7 @@ def main():
         pid = p["person_id"]
         # candidate DB rows: union of blocks for every blocking token of person
         cand_ids: set[str] = set()
+        cand_ids_pre_alias: set[str] = set()
         for tok in db_blocking_key(p["heading"]):
             for d in db_blocks.get(tok, ()):  # noqa: SIM118
                 cand_ids.add(d["db_id"])
@@ -114,12 +134,25 @@ def main():
             for tok in db_blocking_key(v):
                 for d in db_blocks.get(tok, ()):  # noqa: SIM118
                     cand_ids.add(d["db_id"])
+        cand_ids_pre_alias = set(cand_ids)
+        # ALIAS PASS: pseudonyms / bracket-aliases / names_variant entries
+        # surface DB rows that pure-heading blocking would miss
+        # (e.g. שלום-עליכם entry → שלום ראַבינאָוויטש DB row).
+        for alias in aliases.get(pid, ()):
+            for tok in db_blocking_key(alias):
+                for d in db_blocks.get(tok, ()):  # noqa: SIM118
+                    cand_ids.add(d["db_id"])
+        if cand_ids - cand_ids_pre_alias:
+            n_alias_only_cands += 1
         # Cross-script fail-open is intentionally OFF in the initial alignment
         # build — it adds 300+ candidates per Hebrew person and dominates runtime
         # for low marginal recall. Run cross_script_pass.py as a separate step
         # to surface Hebrew↔Latin candidates with the IPA matcher.
 
         pvars = expand_name_variants(p["heading"], p.get("names_variants", ""), p.get("subheading", ""))
+        # fold alias surface forms into the variant set used for scoring
+        for alias in aliases.get(pid, ()):
+            pvars.add(alias)
         scored = []
         for did in cand_ids:
             dvars = db_variants[did]
@@ -167,6 +200,7 @@ def main():
         w.writerows(out_rows)
     print(f"wrote {OUT_TSV} ({len(out_rows)} rows)")
     print(f"  rows with at least one candidate: {n_with_cand}")
+    print(f"  rows that gained candidates from aliases: {n_alias_only_cands}")
     print(f"  rows with carried-over decision:  {sum(1 for r in out_rows if r['decision'])}")
     print(f"  rows with carried-over db_id:     {sum(1 for r in out_rows if r['aligned_db_id'])}")
 

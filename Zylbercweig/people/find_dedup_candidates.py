@@ -35,6 +35,8 @@ from people_similarity import (  # type: ignore
 
 PEOPLE_TSV = HERE / "people_extracted.tsv"
 REVIEW_TSV = HERE / "people_alignment_review.tsv"
+ALIASES_TSV = HERE / "people_aliases.tsv"
+DB_TSV = HERE / "people_db.tsv"
 OUT_TSV = HERE / "people_dedup_candidates.tsv"
 GOLD_EVAL_TSV = HERE / "people_dedup_gold_eval.tsv"
 
@@ -87,6 +89,47 @@ def load_people():
         return list(csv.DictReader(f, delimiter="\t"))
 
 
+def load_db_id_by_xml_id() -> dict[str, str]:
+    """xml_id -> aligned db_id (from carried RA decisions). One xml_id can
+    appear in multiple review rows; we take the first non-empty db_id."""
+    if not REVIEW_TSV.exists():
+        return {}
+    out: dict[str, str] = {}
+    with open(REVIEW_TSV) as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            xml = (r.get("xml_id") or "").strip()
+            did = (r.get("db_id") or "").strip()
+            if xml and did and xml not in out:
+                out[xml] = did
+    return out
+
+
+def load_gender_by_db_id() -> dict[str, str]:
+    if not DB_TSV.exists():
+        return {}
+    out: dict[str, str] = {}
+    with open(DB_TSV) as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            g = (r.get("gender") or "").strip()
+            if g:
+                out[r["db_id"]] = g
+    return out
+
+
+def load_aliases() -> dict[str, list[str]]:
+    """person_id -> list of alias surface forms."""
+    if not ALIASES_TSV.exists():
+        return {}
+    out: dict[str, list[str]] = defaultdict(list)
+    with open(ALIASES_TSV) as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            pid = r.get("person_id")
+            alias = (r.get("alias_form") or "").strip()
+            if pid and alias:
+                out[pid].append(alias)
+    return out
+
+
 def load_gold_pairs():
     """Return set of frozenset({xml_id_a, xml_id_b}) pairs known to be same-person."""
     if not REVIEW_TSV.exists():
@@ -113,18 +156,35 @@ def load_gold_pairs():
 
 def main():
     people = load_people()
-    # build blocking index
+    aliases = load_aliases()
+    db_id_by_xml = load_db_id_by_xml_id()
+    gender_by_db = load_gender_by_db_id()
+    gender_by_xml = {x: gender_by_db[d] for x, d in db_id_by_xml.items() if d in gender_by_db}
+    print(f"  db_id resolved for {len(db_id_by_xml)} xml_ids "
+          f"({100*len(db_id_by_xml)/max(1,len(people)):.0f}% of subject entries)")
+    print(f"  gender resolved for {len(gender_by_xml)} xml_ids")
+    # build blocking index — fold alias tokens into the per-person key set so
+    # pseudonyms surface as candidates even when headings are dissimilar.
     blocks: dict[str, list[dict]] = defaultdict(list)
     for p in people:
-        for k in blocking_key(p["heading"], p.get("names_variants", "")):
+        keys = blocking_key(p["heading"], p.get("names_variants", ""))
+        for alias in aliases.get(p["person_id"], ()):
+            for t in split_name_tokens(alias):
+                if len(t) >= 2:
+                    keys.add(t)
+        for k in keys:
             blocks[k].append(p)
 
-    # precompute variants per person
+    # precompute variants per person — alias forms are folded into the variant
+    # set so person_pair_score can compare alias-to-heading directly.
     variants_cache: dict[str, set[str]] = {}
     for p in people:
-        variants_cache[p["person_id"]] = expand_name_variants(
+        v = expand_name_variants(
             p["heading"], p.get("names_variants", ""), p.get("subheading", "")
         )
+        for alias in aliases.get(p["person_id"], ()):
+            v.add(alias)
+        variants_cache[p["person_id"]] = v
 
     # score pairs, dedupe across blocks
     seen: dict[frozenset, dict] = {}
@@ -176,6 +236,10 @@ def main():
                 "same_volume": int(a["volume"] == b["volume"]),
                 "composite_score": round(score, 3),
                 "blocking_key": k,
+                "a_gender": gender_by_xml.get(a["xml_id"], ""),
+                "b_gender": gender_by_xml.get(b["xml_id"], ""),
+                "a_db_id": db_id_by_xml.get(a["xml_id"], ""),
+                "b_db_id": db_id_by_xml.get(b["xml_id"], ""),
             }
 
     rows = sorted(seen.values(), key=lambda r: -r["composite_score"])
