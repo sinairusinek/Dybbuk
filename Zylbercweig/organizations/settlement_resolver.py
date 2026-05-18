@@ -17,8 +17,15 @@ from pathlib import Path
 csv.field_size_limit(10**9)
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
-_UNIFIED = _REPO_ROOT / "Zylbercweig/zibn-shtern/data/working/places_unified_corrected.csv"
-_KIMATCH = _REPO_ROOT / "Zylbercweig/zibn-shtern/data/working/kimatch_matched_full.tsv"
+# Prefer the tracked snapshot (committed to git, present on Streamlit Cloud).
+# Fall back to the live zibn-shtern working dir for local-only development.
+_SNAPSHOT_DIR = Path(__file__).resolve().parent / "kimatch_snapshot"
+_UNIFIED = _SNAPSHOT_DIR / "places_unified_corrected.csv"
+_KIMATCH = _SNAPSHOT_DIR / "kimatch_matched_full.tsv"
+if not _UNIFIED.exists():
+    _UNIFIED = _REPO_ROOT / "Zylbercweig/zibn-shtern/data/working/places_unified_corrected.csv"
+if not _KIMATCH.exists():
+    _KIMATCH = _REPO_ROOT / "Zylbercweig/zibn-shtern/data/working/kimatch_matched_full.tsv"
 
 # Wikidata categories that represent inhabited places usable as a "settlement"
 # key for org grouping. Cemeteries / death sites / countries / provinces are
