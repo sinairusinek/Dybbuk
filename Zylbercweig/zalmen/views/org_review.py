@@ -30,6 +30,7 @@ _BASE_STR = str(BASE)
 if _BASE_STR not in sys.path:
     sys.path.insert(0, _BASE_STR)
 from organizations.org_normalize import normalize_yiddish as _nrm_yid
+from organizations.settlement_index import get_index as _get_settlement_index
 
 ALIGN_FILE = BASE / "organizations" / "org_alignment_review.tsv"
 PAIRS_FILE = BASE / "organizations" / "cluster_pairs_review.tsv"
@@ -699,6 +700,12 @@ def _render_similar_clusters(
 			if d3.button("⬛ DISMISS", key=f"pair-dismiss-{pair_id}-{cid}", use_container_width=True):
 				_save_pair_decision(cid, pair, pair_headers, pair_rows, "DISMISS", note_text)
 
+			if other_cid:
+				_render_audit_jump_buttons(
+					buckets=_cluster_buckets(other_cid),
+					button_key_prefix=f"audit-from-pair-{pair_id}-{cid}-{other_cid}",
+				)
+
 	if dismissed_pairs:
 		with st.expander(f"Dismissed pairs ({len(dismissed_pairs)})", expanded=False):
 			for dp in dismissed_pairs:
@@ -953,6 +960,111 @@ def _apply_batch_accepts(
 		"NEW entries got auto-allocated db_ids; add addresses in Single cluster mode."
 	)
 	st.rerun()
+
+
+def _db_buckets(db_id: str):
+	try:
+		return _get_settlement_index().siblings_for_db(db_id)
+	except Exception:
+		return []
+
+
+def _cluster_buckets(cluster_id: str):
+	try:
+		return _get_settlement_index().siblings_for_cluster(cluster_id)
+	except Exception:
+		return []
+
+
+def _render_audit_jump_buttons(buckets, button_key_prefix: str) -> None:
+	"""Render a tight row of '🌆 City · Type' buttons that nav to Settlement audit."""
+	if not buckets:
+		return
+	for b in buckets:
+		city_label = b.english or b.yiddish or b.qid
+		if st.button(
+			f"🌆 {city_label} · {b.org_type} ({len(b.db_cards)} DB / {len(b.clusters)} cl)",
+			key=f"{button_key_prefix}-{b.qid}-{b.org_type}",
+			use_container_width=True,
+		):
+			st.session_state["audit_target_qid"] = b.qid
+			st.session_state["audit_target_type"] = b.org_type
+			st.session_state["nav_view_target"] = "Settlement audit"
+			st.rerun()
+
+
+def _render_settlement_siblings(
+	selected: dict[str, str],
+	choice_key: str,
+	addr_db_ids: set[str],
+) -> None:
+	"""Show same-type, same-settlement DB rows + clusters as alignment/merge candidates.
+
+	Itinerant types are excluded by the index. A cluster can sit in multiple
+	settlements — render one expander per (settlement, type) bucket.
+	"""
+	cid = selected.get("cluster_id", "")
+	try:
+		ix = _get_settlement_index()
+	except Exception as exc:  # noqa: BLE001
+		st.caption(f"Siblings index unavailable: {exc}")
+		return
+	buckets = ix.siblings_for_cluster(cid)
+	if not buckets:
+		return
+	chosen_db_id = st.session_state.get(choice_key, "").strip()
+	for bucket in buckets:
+		other_dbs = [d for d in bucket.db_cards]
+		other_clusters = [c for c in bucket.clusters if c.cluster_id != cid]
+		if not other_dbs and not other_clusters:
+			continue
+		city_label = bucket.english or bucket.yiddish or bucket.qid
+		header = f"🌆 Siblings in {city_label} · {bucket.org_type} · {len(other_dbs)} DB · {len(other_clusters)} clusters"
+		with st.expander(header, expanded=False):
+			if st.button(
+				f"Open full audit: {city_label} · {bucket.org_type} ↗",
+				key=f"sib-open-audit-{cid}-{bucket.qid}-{bucket.org_type}",
+				use_container_width=True,
+			):
+				st.session_state["audit_target_qid"] = bucket.qid
+				st.session_state["audit_target_type"] = bucket.org_type
+				st.session_state["nav_view_target"] = "Settlement audit"
+				st.rerun()
+			if other_dbs:
+				st.markdown("**DB rows here**")
+				for d in other_dbs:
+					row_cols = st.columns([5, 1])
+					name = d.name or d.name_yiddish or "(unnamed)"
+					row_cols[0].markdown(
+						f"<div class='rtl-block'>{d.db_id} · {name}"
+						+ (f" · <span dir='rtl'>{d.name_yiddish}</span>" if d.name_yiddish and d.name else "")
+						+ "</div>",
+						unsafe_allow_html=True,
+					)
+					if d.confirmed_settlement:
+						row_cols[0].caption(f"📍 {d.confirmed_settlement}")
+					is_chosen = (chosen_db_id == d.db_id)
+					if row_cols[1].button(
+						"✓ chosen" if is_chosen else "Align",
+						key=f"sib-db-{cid}-{bucket.qid}-{bucket.org_type}-{d.db_id}",
+						disabled=is_chosen,
+						use_container_width=True,
+					):
+						st.session_state[choice_key] = d.db_id
+						st.rerun()
+			if other_clusters:
+				st.markdown("**Other clusters here** (potential merges / shared DB target)")
+				# Sort: undecided first, then by size desc
+				other_clusters.sort(key=lambda c: (bool(c.decision), -c.cluster_size))
+				for c in other_clusters[:25]:
+					line = f"{c.cluster_id} · {c.canonical_yiddish or '(no canonical)'} · n={c.cluster_size}"
+					if c.decision:
+						line += f" · {c.decision}"
+						if c.aligned_db_id:
+							line += f" → {c.aligned_db_id}"
+					st.markdown(f"<div class='rtl-block'>{line}</div>", unsafe_allow_html=True)
+				if len(other_clusters) > 25:
+					st.caption(f"… and {len(other_clusters) - 25} more")
 
 
 def _render_rtl_style() -> None:
@@ -1361,6 +1473,10 @@ def render() -> None:
 						if chosen_db_id == dbid:
 							st.session_state[choice_key] = ""
 						st.rerun()
+					_render_audit_jump_buttons(
+						buckets=_db_buckets(dbid),
+						button_key_prefix=f"audit-from-db-{selected['cluster_id']}-{dbid}",
+					)
 
 			with st.expander("Search DB candidates", expanded=not bool(c_ids)):
 				search_q = st.text_input(
@@ -1438,6 +1554,8 @@ def render() -> None:
 				if chosen_db_id in addr_db_ids:
 					st.link_button("Open in Organization Cards ↗",
 								   _open_url("Organization Cards", chosen_db_id))
+
+			_render_settlement_siblings(selected, choice_key, addr_db_ids)
 
 		with cand_cluster_col:
 			st.markdown("<div class='panel-cluster-cand'></div>", unsafe_allow_html=True)

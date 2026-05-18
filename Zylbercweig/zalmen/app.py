@@ -38,6 +38,7 @@ if "--view" in _args:
 VIEWS = {
     "Organizations matching":  ("org_review",    "review"),
     "Organization Cards":      ("org_addresses", "geo"),
+    "Settlement audit":        ("settlement_audit", "audit"),
     "Activity":                ("activity",      "activity"),
     "B1 · Person Dedup":       (None,             "b1"),
     "B2 · Person → External":  (None,             "b2"),
@@ -46,6 +47,7 @@ VIEWS = {
 VIEW_STATUS = {
     "Organizations matching":  "✅ Ready",
     "Organization Cards":      "✅ Ready",
+    "Settlement audit":        "🌆",
     "Activity":                "📋",
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → External":  "⏳ Blocked on B1",
@@ -145,6 +147,9 @@ if view_module == "org_review":
     render()
 elif view_module == "org_addresses":
     from views.org_addresses import render
+    render()
+elif view_module == "settlement_audit":
+    from views.settlement_audit import render
     render()
 elif view_module == "activity":
     from views.activity import render
