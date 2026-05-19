@@ -27,6 +27,7 @@ NEW_PEOPLE_XLSX = PEOPLE_XLSX / "ZylberberzweigPeople (8).xlsx"
 REPORT_TSV = PEOPLE_XLSX / "ZylbereportPeople.tsv"
 CREDITED = PEOPLE_XLSX / "credited persons.xlsx"
 NAME_VALID = PEOPLE_XLSX / "extracted names validations.xlsx"
+ALIGNMENT3_XLSX = PEOPLE_XLSX / "4ZylbercweigAlignment3 (2).xlsx"
 
 DB_RE = re.compile(r"^\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*$")
 
@@ -160,6 +161,89 @@ def parse_db_keys(new_xlsx_path: Path, report_tsv_path: Path):
     print(f"  Report enriched: {enriched}, Report-only: {only_report}")
     print(f"  Contradictions logged: {len(contradictions)}")
     return db, contradictions
+
+
+def _strip_vol_prefix(xml_id: str) -> str:
+    """Alignment3 uses 'N-facs_...' while everything else uses 'facs_...'."""
+    if xml_id and len(xml_id) > 2 and xml_id[1] == "-" and xml_id[0].isdigit():
+        return xml_id[2:]
+    return xml_id
+
+
+def parse_alignment3(alignment3_path: Path) -> tuple[list[dict], list[dict]]:
+    """Returns (alignment_rows, db_correction_rows).
+
+    'extracted from editions' sheet → subject-entry xml_id → db_id mapping
+    (later round than the alignment+Alignment 2 sheets in Json Review).
+
+    'Sheet1' → manual corrections to existing DB rows (kept aside, NOT applied
+    to people_db.tsv automatically).
+    """
+    if not alignment3_path.exists():
+        return [], []
+    wb = openpyxl.load_workbook(alignment3_path, data_only=True)
+    align_rows = []
+    if "extracted from editions" in wb.sheetnames:
+        ws = wb["extracted from editions"]
+        for r in ws.iter_rows(min_row=2, values_only=True):
+            xid_raw = _norm(r[0] if r and len(r) > 0 else "")
+            db_raw  = _norm(r[1] if r and len(r) > 1 else "")
+            heading = _norm(r[2] if r and len(r) > 2 else "")
+            if not xid_raw:
+                continue
+            xid = _strip_vol_prefix(xid_raw)
+            db_id = ""
+            if db_raw:
+                # 'fromalignment2' is a bare int already
+                db_id = db_raw.split(".")[0] if db_raw.replace(".", "").isdigit() else db_raw
+            align_rows.append({
+                "source_sheet": "alignment3",
+                "volume": "",
+                "xml_id": xid,
+                "chunk_number": "",
+                "heading": heading,
+                "task": "",
+                "action": "",
+                "same_person": "",
+                "decision": "",
+                "db_id": db_id,
+                "db_hebname": "",
+                "db_english": "",
+                "db_id_raw": db_raw,
+                "duplication_study": "",
+                "notes": "",
+                "additional_pages": "",
+                "additional_volume": "",
+            })
+
+    db_correction_rows = []
+    if "Sheet1" in wb.sheetnames:
+        ws = wb["Sheet1"]
+        header = [_norm(c.value) for c in ws[1]]
+        for r in ws.iter_rows(min_row=2, values_only=True):
+            d = {h: _norm(v) for h, v in zip(header, r)}
+            did = d.get("Id", "")
+            if not did:
+                continue
+            # Id arrives as float-ish; normalize to int string
+            did = did.split(".")[0] if did.replace(".", "").isdigit() else did
+            db_correction_rows.append({
+                "db_id": did,
+                "db_hebrew": d.get("Hebrew in DB", ""),
+                "db_english": d.get("English", ""),
+                "name_in_volume": d.get("שם כפי שמופיע בכרך", ""),
+                "additional_appearance": d.get("מופע נוסף אם יש", ""),
+                "notes": d.get("הערות", ""),
+                "where_to_fix": d.get("איפה לתקן", ""),
+                "correct_form": d.get("הערך הנכון (איך צריך להיות)", ""),
+                "gender": d.get("Gender", ""),
+                "external_source_id": d.get("External Source Id", ""),
+                "external_source": d.get("External Source", ""),
+                "name_variants": d.get("Name(s)", ""),
+            })
+
+    wb.close()
+    return align_rows, db_correction_rows
 
 
 def parse_alignment_review(json_review_path: Path, new_xlsx_path: Path = None):
@@ -393,6 +477,65 @@ def main():
         print(f"wrote {HERE / 'people_db_contradictions.tsv'} ({len(contradictions)} rows)")
 
     align = parse_alignment_review(JSON_REVIEW, NEW_PEOPLE_XLSX)
+
+    # Alignment3 (later round) — merge in. Disagreements between old alignment
+    # rounds and alignment3 are dumped to a separate TSV for review; we do NOT
+    # silently pick a winner.
+    align3, db_corrections = parse_alignment3(ALIGNMENT3_XLSX)
+    if align3:
+        # Build the first non-empty db_id per xml_id from the older rounds
+        old_by_xid: dict[str, str] = {}
+        for row in align:
+            xid = row.get("xml_id", "")
+            did = row.get("db_id", "")
+            if xid and did and xid not in old_by_xid:
+                old_by_xid[xid] = did
+        disagreements = []
+        n_agree = n_only_new = n_disagree = 0
+        for row in align3:
+            xid = row.get("xml_id", "")
+            new_did = row.get("db_id", "")
+            if not (xid and new_did):
+                continue
+            prev = old_by_xid.get(xid, "")
+            if not prev:
+                n_only_new += 1
+            elif prev == new_did:
+                n_agree += 1
+            else:
+                n_disagree += 1
+                disagreements.append({
+                    "xml_id": xid,
+                    "heading": row.get("heading", ""),
+                    "older_db_id": prev,
+                    "alignment3_db_id": new_did,
+                })
+        align.extend(align3)
+        print(f"\nalignment3 merge: agree={n_agree}, only_new={n_only_new}, disagree={n_disagree}")
+        if disagreements:
+            with open(HERE / "alignment_disagreements.tsv", "w", encoding="utf-8", newline="") as fp:
+                w = csv.DictWriter(
+                    fp,
+                    fieldnames=["xml_id", "heading", "older_db_id", "alignment3_db_id"],
+                    delimiter="\t",
+                )
+                w.writeheader()
+                w.writerows(disagreements)
+            print(f"wrote {HERE / 'alignment_disagreements.tsv'} ({len(disagreements)} rows)")
+
+    if db_corrections:
+        with open(HERE / "db_correction_annotations.tsv", "w", encoding="utf-8", newline="") as fp:
+            w = csv.DictWriter(
+                fp,
+                fieldnames=["db_id", "db_hebrew", "db_english", "name_in_volume",
+                            "additional_appearance", "notes", "where_to_fix",
+                            "correct_form", "gender", "external_source_id",
+                            "external_source", "name_variants"],
+                delimiter="\t",
+            )
+            w.writeheader()
+            w.writerows(db_corrections)
+        print(f"wrote {HERE / 'db_correction_annotations.tsv'} ({len(db_corrections)} rows)")
     write_tsv(HERE / "people_alignment_review.tsv", align,
               ["source_sheet", "volume", "xml_id", "chunk_number", "heading",
                "task", "action", "same_person", "decision",
