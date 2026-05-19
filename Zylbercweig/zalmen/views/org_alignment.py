@@ -174,7 +174,29 @@ def save_alignment(headers, rows):
         st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
+CORE_DB_CANONICAL_HEADERS = [
+    "db_id", "name", "name_yiddish", "name_yiddish_translit",
+    "org_type", "address", "linked_cluster_ids",
+]
+
+
+def _ensure_core_db_schema(headers, rows):
+    """Defensive guard: a long-running Streamlit Cloud instance may have cached
+    headers from a pre-schema-change boot. Always emit the canonical column
+    set so pipeline-added columns (e.g. name_yiddish_translit) don't get
+    silently dropped by the next save."""
+    out_headers = list(CORE_DB_CANONICAL_HEADERS)
+    for h in headers:
+        if h not in out_headers:
+            out_headers.append(h)
+    for r in rows:
+        for h in out_headers:
+            r.setdefault(h, "")
+    return out_headers, rows
+
+
 def save_core_db(headers, rows):
+    headers, rows = _ensure_core_db_schema(headers, rows)
     lock = CORE_DB_FILE.with_suffix(".lock")
     with open(lock, "w") as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
