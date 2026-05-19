@@ -32,7 +32,7 @@ from settlement_overlay import resolve_anyplace  # noqa: E402
 
 csv.field_size_limit(10**9)
 
-_ALIGN = _HERE / "org_alignment_review.tsv"
+_DEFAULT_ALIGN = _HERE / "org_alignment_review.tsv"
 _COL = "extracted_settlements"
 _SEP = " | "
 
@@ -149,10 +149,17 @@ def main() -> None:
                     help="Write changes back to the TSV (otherwise dry-run).")
     ap.add_argument("--limit", type=int, default=0,
                     help="Print at most N changed clusters in the plan.")
+    ap.add_argument("--input", type=str, default="",
+                    help="Alternative input TSV path (default: org_alignment_review.tsv).")
+    ap.add_argument("--map-out", type=str, default="",
+                    help="Write a (cluster_id, original_variant, collapsed_to, "
+                         "qid, english, source) audit TSV to this path.")
     args = ap.parse_args()
 
-    if _has_conflict_markers(_ALIGN):
-        print(f"ERROR: {_ALIGN} contains git conflict markers. "
+    align_path = Path(args.input) if args.input else _DEFAULT_ALIGN
+
+    if _has_conflict_markers(align_path):
+        print(f"ERROR: {align_path} contains git conflict markers. "
               "Resolve them before running with --apply.", file=sys.stderr)
         if args.apply:
             sys.exit(1)
@@ -162,18 +169,19 @@ def main() -> None:
     # warm its cache so per-string lookups stay fast.
     get_resolver()
 
-    with _ALIGN.open(newline="") as f:
+    with align_path.open(newline="") as f:
         reader = csv.DictReader(f, delimiter="\t")
         fieldnames = list(reader.fieldnames or [])
         rows = list(reader)
 
     if _COL not in fieldnames:
-        print(f"ERROR: column {_COL!r} not found in {_ALIGN}", file=sys.stderr)
+        print(f"ERROR: column {_COL!r} not found in {align_path}", file=sys.stderr)
         sys.exit(1)
 
     changed = 0
     total_collapses = 0
     printed = 0
+    audit_rows: list[dict[str, str]] = []
     for r in rows:
         old = r.get(_COL, "") or ""
         new, collapses = _collapse(old)
@@ -189,25 +197,54 @@ def main() -> None:
                 for canon, variants in collapses:
                     print(f"    · {canon} ⇐ {variants}")
                 printed += 1
+            if args.map_out:
+                cid = r.get("cluster_id", "?")
+                for canon, variants in collapses:
+                    hit = resolve_anyplace(canon)
+                    qid = hit.qid if hit else ""
+                    eng = hit.english if hit else ""
+                    src = hit.source if hit else ""
+                    for v in variants:
+                        audit_rows.append({
+                            "cluster_id": cid,
+                            "original_variant": v,
+                            "collapsed_to": canon,
+                            "qid": qid,
+                            "english": eng,
+                            "source": src,
+                        })
             r[_COL] = new
 
     print("\n" + "─" * 70)
     print(f"Clusters changed         : {changed}")
     print(f"Variant entries removed  : {total_collapses}")
 
+    if args.map_out:
+        out = Path(args.map_out)
+        with out.open("w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(
+                f,
+                fieldnames=["cluster_id", "original_variant", "collapsed_to",
+                            "qid", "english", "source"],
+                delimiter="\t",
+            )
+            w.writeheader()
+            w.writerows(audit_rows)
+        print(f"Wrote audit map to {out} ({len(audit_rows)} rows)")
+
     if not args.apply:
         print("\n(dry run — re-run with --apply to write changes)")
         return
 
-    bak = _ALIGN.with_suffix(_ALIGN.suffix + ".bak")
-    shutil.copy2(_ALIGN, bak)
+    bak = align_path.with_suffix(align_path.suffix + ".bak")
+    shutil.copy2(align_path, bak)
     print(f"Backup written to {bak}")
 
-    with _ALIGN.open("w", newline="") as f:
+    with align_path.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t")
         w.writeheader()
         w.writerows(rows)
-    print(f"Wrote {_ALIGN}")
+    print(f"Wrote {align_path}")
 
 
 if __name__ == "__main__":
