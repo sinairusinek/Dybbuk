@@ -20,9 +20,11 @@ hand-vocalized reference at the time). All numbers refer to that page.
 | G | Consonant before `יי` → patah (/ay/) or tsere (/ey/); lexical | 19+12 / 31 vocalized | 100% inventory, lexical choice |
 | H | `ב` carrying a vowel → dagesh (בּ) | 24/24 | 100% on vocalized |
 | I | `ש` in a vocalized word → shin-dot (שׁ) | 17/19 | 90% |
-| J | Second `ו` of `וו` digraph: usually bare | mostly | strong but not categorical |
+| J | Second `ו` of `וו` digraph: usually bare | mostly | **superseded** — see decision 13 |
 
-For details and the analysis script see `analyze_rules.py`.
+For details and the analysis script see `analyze_rules.py`. Updates from the
+5-page hand-corrected gold (pages 5-9) are recorded in decisions 12-14 below;
+running totals come from `eval_vs_gold.py`.
 
 ## Decision log
 
@@ -103,13 +105,46 @@ Same skip treatment as speakers, by RA convention. Both round and square
 brackets, with both ASCII and full-width variants, are handled
 (`bracket_spans()` in `rules.py`).
 
-### 12. Loshn-koydesh words are *not* given a separate skip pass
-The source already carries hand-vocalized nikkud on most loshn-koydesh
-words; my Yiddish-native rules over-vocalize the rest (`חתן → חָתָן`).
-We could add a stem list, but the RA confirmed source nikkud is the
-authority — easier to let the source pass through than build a Hebrew
-lexicon shim. Comparison with the RA reference showed this gap is
-small in practice.
+### 12. Loshn-koydesh words *are* vocalized, via the dict (revised 2026-05-17)
+Original take: skip loshn-koydesh; trust source nikkud. The 5-page gold
+overturned this — the RA explicitly vocalized `חתן → חָתָן` (4×),
+`דבורה → דְבוֹרֶה` (3×), `מלא → מָלֵא`, etc. With the dict now built
+from all of `page_final/` (decision 14), these words are covered
+automatically; no Hebrew lexicon shim needed.
+
+### 13. The `וו` (double-vav) digraph rule (J) was wrong
+Original Rule J: "second `ו` of `וו` digraph: usually bare." The 5-page
+gold shows that when the digraph carries a following vowel, nikkud goes
+on the **second** vav: `ווֶער` (7×), `ווִי` (6×), `וֶועט` / `ווֶעט` (4×
+each). Bare only when no following vowel in the syllable. We did not
+patch `rules.py` — picking the digraph vowel quality from position alone
+isn't reliable, and all high-frequency digraph words are in the dict
+now, so the rule engine doesn't need to handle them.
+
+### 14. The dictionary is built from `page_final/`, NFC-normalized
+Originally built from page 6 alone (~136 keys). Now built by merging
+every XML in `data/{project}/page_final/` (~390 keys across pages 5-9),
+NFC-normalized so that visual duplicates like precomposed `שׁ` vs
+`ש`+combining-shin-dot collapse into one entry. Leave-one-out eval
+(`eval_vs_gold.py`, 2026-05-17): rules+dict alone hits **78.0%** of
+tokens-needing-vocalization across pages 5-9 — 97.7% on page 6 and
+90.6% on page 9, 60-62% on the harder pages 7-8. The Claude stage
+should be tuned to target the residual on 7/8, not re-do what dict
+already covers.
+
+**Caveat:** `page_final/` is also the default *output* directory of
+`pipeline.py` (`final_dir` in pipeline.py). Re-running the pipeline on
+pages 5-9 will overwrite the gold. Redirect `final_dir` or back up
+`page_final/` before any re-run on those pages. Pages 10+ are safe.
+
+### 15. The RA is internally inconsistent on ~17% of vocabulary keys
+66 of 390 keys in `page_final/` have more than one vocalization. Notable:
+`איהר` 14× `אִיהר` vs 10× `אִיהְר`; `וואס` in 4 variants; `אין` 15×
+hiriq vs 2× tsere (real semantic split: "in" vs "one"); `יאכנע` 7× bare
+vs 1× vocalized (rule A inconsistency). `most_common(1)` is the right
+default, but it means held-out eval has a hard ceiling — some "misses"
+are RA disagreement with themselves, not pipeline errors. Worth
+surfacing the multi-variant list to the RA for canonicalization.
 
 ## Files
 
@@ -123,4 +158,5 @@ ocr_flags.py                deterministic OCR signals (confusable swap, intra-do
 unclear_tags.py             stage 4: write Transkribus <unclear> annotations
 make_eval_html.py           build an HTML evaluation view
 analyze_rules.py            rule-mining utility (one-shot, not part of pipeline)
+eval_vs_gold.py             leave-one-out eval of rules+dict against page_final/
 ```

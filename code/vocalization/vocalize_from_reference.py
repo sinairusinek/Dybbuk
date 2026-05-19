@@ -1,17 +1,20 @@
 """
-Vocalize page 7 of Yudale_der_blinder using:
+Stage 1 vocalizer: rules + reference-page dictionary.
 
   1. Rule A: skip the speaker prefix of each line (line-initial up to ':').
-  2. Dictionary lookup from page 6 (most-frequent vocalization wins).
-  3. Default rules from rules.py for tokens unseen on page 6.
+  2. Dictionary lookup from the reference tree(s) — most-frequent
+     vocalization wins (NFC-normalized).
+  3. Default rules from rules.py for tokens unseen in the dictionary.
   4. Validator pass to log any rule violations on the final output.
 
-Input:  data/Yudale_der_blinder,_Emkroyt1908/page/0006_*.xml  (reference)
-        data/Yudale_der_blinder,_Emkroyt1908/page/0007_*.xml  (target)
-Output: …/0007_*_vocalized.xml
+Inputs and outputs at the bottom of this file are the legacy defaults
+(page 6 → page 7); `pipeline.py` passes its own paths. As of decision
+14 (README-design.md), the dictionary should be sourced from all of
+`data/{project}/page_final/` via `build_dictionary_from_dir`.
 """
 
 import logging
+import unicodedata
 from pathlib import Path
 from collections import Counter, defaultdict
 from lxml import etree
@@ -49,25 +52,74 @@ def iter_unicode(tree):
             yield el
 
 
-def build_dictionary(ref_tree) -> dict[str, str]:
-    """consonant-key → most common vocalized form on page 6."""
+def build_dictionary(ref_trees) -> dict[str, str]:
+    """consonant-key → most common vocalized form across one or more reference trees.
+
+    Accepts either a single tree (legacy) or an iterable of trees. All tokens
+    are NFC-normalized before counting so that visually-equivalent forms
+    (e.g. שׁ as precomposed vs. ש+combining shin-dot, or differing combining-mark
+    order) collapse into one dictionary entry instead of competing variants.
+    Only tokens that carry at least one nikkud mark contribute — bare→bare
+    self-mappings would crowd out the actual vocalized form.
+    """
+    if hasattr(ref_trees, "iter"):
+        ref_trees = [ref_trees]
     cands: dict[str, Counter] = defaultdict(Counter)
-    for el in iter_unicode(ref_tree):
-        if not el.text:
-            continue
-        for tok in WORD_RE.findall(el.text):
-            key = strip_nikkud(tok)
-            if key == tok:
+    for tree in ref_trees:
+        for el in iter_unicode(tree):
+            if not el.text:
                 continue
-            cands[key][tok] += 1
+            text = unicodedata.normalize("NFC", el.text)
+            for tok in WORD_RE.findall(text):
+                key = strip_nikkud(tok)
+                if key == tok:
+                    continue
+                cands[key][tok] += 1
     return {k: c.most_common(1)[0][0] for k, c in cands.items()}
 
 
-def vocalize_line(line: str, vocab: dict[str, str], stats: Counter, trace: list) -> str:
+def build_dictionary_from_dir(gold_dir: Path) -> dict[str, str]:
+    """Build a dictionary by merging every *.xml in `gold_dir`."""
+    trees = [etree.parse(str(p)) for p in sorted(Path(gold_dir).glob("*.xml"))]
+    return build_dictionary(trees)
+
+
+def find_preexisting_rule_violations(tree) -> list[str]:
+    """Return tokens that already carry nikkud in `tree` but fail validate().
+
+    Used by the multi-play vocalizer to honor the rule: if a vocalization sign
+    is already present and contradicts our rules, leave the nikkud alone but
+    flag the token for human review via <unclear>.
+    """
+    from rules import validate
+    violations = []
+    seen = set()
+    for el in iter_unicode(tree):
+        if not el.text:
+            continue
+        for tok in WORD_RE.findall(el.text):
+            if not NIKKUD_RE.search(tok):
+                continue
+            key = strip_nikkud(tok)
+            if key in seen:
+                continue
+            if validate(tok):
+                seen.add(key)
+                violations.append(tok)
+    return violations
+
+
+def vocalize_line(line: str, vocab: dict[str, str], stats: Counter, trace: list,
+                  vocalize_speakers_and_stage: bool = False) -> str:
     """Tokenize a line; per token, decide skip / lookup / rule.
-    Appends (orig, new, source) tuples to `trace`."""
-    sp = speaker_span(line)
-    brackets = bracket_spans(line)
+    Appends (orig, new, source) tuples to `trace`.
+
+    When vocalize_speakers_and_stage=True, treat speaker names and parenthesized
+    stage directions like body text (used by editions where RA vocalizes them,
+    e.g. Das Yudishe Kind).
+    """
+    sp = None if vocalize_speakers_and_stage else speaker_span(line)
+    brackets = [] if vocalize_speakers_and_stage else bracket_spans(line)
 
     def replace(m):
         tok = m.group(0)
@@ -200,16 +252,31 @@ def write_html_diff(line_pairs, traces_by_line, violations,
 
 
 def run(ref_xml: Path, target_xml: Path, out_xml: Path,
-        diff_html: Path | None = None) -> dict:
-    """Run the rule + dictionary stage. Returns stats and OCR signals."""
-    log.info(f"Reference: {ref_xml.name}")
-    log.info(f"Target:    {target_xml.name}")
+        diff_html: Path | None = None,
+        gold_dir: Path | None = None) -> dict:
+    """Run the rule + dictionary stage. Returns stats and OCR signals.
 
-    ref_tree = etree.parse(str(ref_xml))
+    If `gold_dir` is given and contains XML files, the dictionary is built
+    from every file in it (excluding the target page itself to avoid
+    leakage when re-vocalizing a gold page). Otherwise falls back to the
+    single `ref_xml`.
+    """
+    log.info(f"Target:    {target_xml.name}")
     target_tree = etree.parse(str(target_xml))
 
-    vocab = build_dictionary(ref_tree)
-    log.info(f"Dictionary: {len(vocab)} entries from page 6")
+    if gold_dir is not None and Path(gold_dir).exists():
+        gold_xmls = [p for p in sorted(Path(gold_dir).glob("*.xml"))
+                     if p.name != target_xml.name]
+        if gold_xmls:
+            log.info(f"Dictionary source: {len(gold_xmls)} file(s) in {gold_dir}")
+            vocab = build_dictionary([etree.parse(str(p)) for p in gold_xmls])
+        else:
+            log.info(f"Reference: {ref_xml.name} (gold_dir empty)")
+            vocab = build_dictionary(etree.parse(str(ref_xml)))
+    else:
+        log.info(f"Reference: {ref_xml.name}")
+        vocab = build_dictionary(etree.parse(str(ref_xml)))
+    log.info(f"Dictionary: {len(vocab)} entries")
 
     # Learn lexical patah-vs-tsere choice for consonants before יי
     learn_yii_preferences(vocab.values())
