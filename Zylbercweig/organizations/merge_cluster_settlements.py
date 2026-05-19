@@ -28,6 +28,7 @@ _HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(_HERE))
 
 from settlement_resolver import get_resolver  # noqa: E402
+from settlement_overlay import resolve_anyplace  # noqa: E402
 
 csv.field_size_limit(10**9)
 
@@ -84,7 +85,7 @@ def _pick_best_variant(variants: list[str]) -> str:
     )[1]
 
 
-def _collapse(raw: str, R) -> tuple[str, list[tuple[str, list[str]]]]:
+def _collapse(raw: str, _resolver_unused=None) -> tuple[str, list[tuple[str, list[str]]]]:
     """Return (new_value, collapses) where collapses lists groups that were merged.
 
     Resolved entries are grouped by QID; each group is represented by the
@@ -101,8 +102,22 @@ def _collapse(raw: str, R) -> tuple[str, list[tuple[str, list[str]]]]:
     unresolved: list[str] = []
     unresolved_seen: set[str] = set()
 
+    def _resolve_with_adj_fallback(s):
+        hit = resolve_anyplace(s)
+        if hit:
+            return hit
+        # Adjective fallback: וולאָצלאַווקער → וולאָצלאַוועק (Włocławek)
+        for suf in ("עווער", "ערן", "ערס", "ער"):
+            if s.endswith(suf):
+                stem = s[: -len(suf)] + "ע"
+                hit = resolve_anyplace(stem)
+                if hit:
+                    return hit
+                break
+        return None
+
     for s in parts:
-        hit = R.resolve(s)
+        hit = _resolve_with_adj_fallback(s)
         if hit:
             if hit.qid not in seen_qid:
                 seen_qid[hit.qid] = []
@@ -142,7 +157,10 @@ def main() -> None:
         if args.apply:
             sys.exit(1)
 
-    R = get_resolver()
+    # No resolver instance needed at top level — _collapse uses
+    # resolve_anyplace (overlay) directly. Call get_resolver() once to
+    # warm its cache so per-string lookups stay fast.
+    get_resolver()
 
     with _ALIGN.open(newline="") as f:
         reader = csv.DictReader(f, delimiter="\t")
@@ -158,7 +176,7 @@ def main() -> None:
     printed = 0
     for r in rows:
         old = r.get(_COL, "") or ""
-        new, collapses = _collapse(old, R)
+        new, collapses = _collapse(old)
         if new != old:
             changed += 1
             total_collapses += sum(len(v) - 1 for _, v in collapses)
