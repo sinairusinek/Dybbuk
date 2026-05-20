@@ -13,7 +13,6 @@ Itinerant types are excluded by the index.
 from __future__ import annotations
 
 import csv
-import datetime as _dt
 import math
 import pathlib
 import sys
@@ -52,9 +51,11 @@ from views.org_alignment import (
     _JSON_TO_XML,
 )
 
-RESEARCH_QUEUE = BASE / "organizations" / "research_queue.tsv"
-RESEARCH_HEADERS = ["queued_at", "reviewer", "kind", "target_id", "qid", "org_type", "label", "status"]
-ADMIN_REVIEWER = "Sinai"
+from views.research_queue import (
+    ADMIN_REVIEWER,
+    RESEARCH_QUEUE,
+    queue_research as _queue_research,
+)
 
 # Show this many rows per (type, kind) section by default. Each row spawns
 # ~12 widgets (popover body, radio, text input, buttons), so a busy city like
@@ -298,24 +299,6 @@ def _build_research_prompt(
         if linked:
             lines.append(f"- Linked clusters: {linked}")
     return "\n".join(lines)
-
-
-def _queue_research(kind: str, target_id: str, qid: str, org_type: str, label: str, reviewer: str) -> None:
-    is_new = not RESEARCH_QUEUE.exists()
-    with RESEARCH_QUEUE.open("a", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=RESEARCH_HEADERS, delimiter="\t")
-        if is_new:
-            w.writeheader()
-        w.writerow({
-            "queued_at": _dt.datetime.utcnow().isoformat(timespec="seconds") + "Z",
-            "reviewer": reviewer,
-            "kind": kind,
-            "target_id": target_id,
-            "qid": qid,
-            "org_type": org_type,
-            "label": label,
-            "status": "queued",
-        })
 
 
 # ─── detail renderers (unchanged from prior version) ──────────────────────
@@ -652,10 +635,17 @@ def _row_action_menu(
         if reviewer == ADMIN_REVIEWER:
             st.divider()
             st.markdown("**Research**")
+            comment = st.text_area(
+                "Question / focus (optional)",
+                key=f"{key}_research_comment",
+                placeholder="e.g. is this the same theatre as Goldfaden's tour company?",
+                height=70,
+            )
             if st.button("Queue for cluster-research", key=f"{key}_research"):
                 _queue_research(
                     kind=self_kind, target_id=self_id, qid=qid,
                     org_type=bucket.org_type, label=self_label, reviewer=reviewer,
+                    comment=(comment or "").strip(),
                 )
                 st.toast("Queued for cluster-research", icon="🔬")
             st.caption(

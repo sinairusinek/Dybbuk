@@ -153,6 +153,34 @@ def load_address_db_ids(mtime: float) -> set[str]:
     return ids
 
 
+@st.cache_data(show_spinner=False)
+def load_db_settlements(mtime: float) -> dict[str, set[str]]:
+    """db_id → set of normalized settlement names (lowercased, stripped).
+
+    Uses `confirmed_settlement` when present, otherwise the pipe-split
+    `extracted_settlements`. A db_id with no row or no settlements is absent
+    from the result — callers should treat that as "no settlement"."""
+    out: dict[str, set[str]] = {}
+    if not ADDR_FILE.exists():
+        return out
+    with open(ADDR_FILE, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            db_id = row.get("db_id", "").strip()
+            if not db_id:
+                continue
+            settlements: set[str] = set()
+            confirmed = (row.get("confirmed_settlement") or "").strip()
+            if confirmed:
+                settlements.add(confirmed.lower())
+            for piece in (row.get("extracted_settlements") or "").split("|"):
+                piece = piece.strip().lower()
+                if piece:
+                    settlements.add(piece)
+            if settlements:
+                out[db_id] = settlements
+    return out
+
+
 def _mtime(path: pathlib.Path) -> float:
     return path.stat().st_mtime if path.exists() else 0.0
 
@@ -226,6 +254,7 @@ def _status(row: dict[str, str]) -> str:
         "DISCUSS": "💬 discuss",
         "GENERIC": "🔶 generic",
         "UNCLUSTER": "🟥 uncluster",
+        "DEFER": "🔬 deferred",
     }.get(d, "⬜ undecided")
 
 
@@ -259,6 +288,7 @@ def render() -> None:
     db_headers, db_rows = load_core_db(_mtime(CORE_DB_FILE))
     samples = load_samples(_mtime(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
     addr_db_ids = load_address_db_ids(_mtime(ADDR_FILE))
+    db_settlements = load_db_settlements(_mtime(ADDR_FILE))
 
     total = len(a_rows)
     by_decision = {
@@ -268,9 +298,10 @@ def render() -> None:
         "DISCUSS": sum(1 for r in a_rows if r.get("decision", "").strip() == "DISCUSS"),
         "GENERIC": sum(1 for r in a_rows if r.get("decision", "").strip() == "GENERIC"),
         "UNCLUSTER": sum(1 for r in a_rows if r.get("decision", "").strip() == "UNCLUSTER"),
+        "DEFER": sum(1 for r in a_rows if r.get("decision", "").strip() == "DEFER"),
     }
 
-    c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
+    c1, c2, c3, c4, c5, c6, c7, c8 = st.columns(8)
     c1.metric("Total", total)
     c2.metric("Undecided", by_decision[""])
     c3.metric("Aligned", by_decision["ALIGN"])
@@ -278,6 +309,7 @@ def render() -> None:
     c5.metric("Discuss", by_decision["DISCUSS"])
     c6.metric("Generic", by_decision["GENERIC"])
     c7.metric("Uncluster", by_decision["UNCLUSTER"])
+    c8.metric("Deferred", by_decision["DEFER"])
 
     with open(ALIGN_FILE, "rb") as _f:
         st.download_button(
@@ -294,7 +326,7 @@ def render() -> None:
     with f1:
         status_filter = st.segmented_control(
             "Show",
-            options=["Undecided", "All", "ALIGN", "NEW", "DISCUSS", "GENERIC", "UNCLUSTER"],
+            options=["Undecided", "All", "ALIGN", "NEW", "DISCUSS", "GENERIC", "UNCLUSTER", "DEFER"],
             default="Undecided",
         )
     with f2:
@@ -343,13 +375,15 @@ def render() -> None:
         start = (int(page) - 1) * PAGE_SIZE
         page_rows = visible[start : start + PAGE_SIZE]
 
+        detail_open = st.session_state.get("a1_detail_open", False)
         for r in page_rows:
             cid = r["cluster_id"]
-            selected = st.session_state.a1_selected_cid == cid
+            selected = detail_open and st.session_state.a1_selected_cid == cid
             st.markdown(f'<div id="row-{cid}"></div>', unsafe_allow_html=True)
             label = f"{_status(r)}  {r.get('canonical_yiddish','')}"
             if st.button(label, key=f"pick-{cid}", use_container_width=True, type="primary" if selected else "secondary"):
                 st.session_state.a1_selected_cid = cid
+                st.session_state.a1_detail_open = True
                 st.rerun()
 
         # Keep selected row visible in the middle of the list panel.
@@ -358,8 +392,16 @@ def render() -> None:
             height=0,
         )
 
+    if not st.session_state.get("a1_detail_open", False):
+        st.caption("Click an entry above to open its details.")
+        return
+
     selected_cid = st.session_state.a1_selected_cid
-    selected = next((r for r in visible if r.get("cluster_id") == selected_cid), visible[0])
+    selected = next((r for r in visible if r.get("cluster_id") == selected_cid), None)
+    if selected is None:
+        st.session_state.a1_detail_open = False
+        st.caption("Click an entry above to open its details.")
+        return
     st.session_state.a1_selected_cid = selected["cluster_id"]
 
     st.divider()
@@ -417,11 +459,43 @@ def render() -> None:
         st.divider()
 
         st.markdown("**DB candidates**")
-        c_ids = _split_pipe(selected.get("candidate_db_ids", ""))
-        c_scores = _split_pipe(selected.get("candidate_scores", ""))
-        c_methods = _split_pipe(selected.get("candidate_methods", ""))
+        c_ids_all = _split_pipe(selected.get("candidate_db_ids", ""))
+        c_scores_all = _split_pipe(selected.get("candidate_scores", ""))
+        c_methods_all = _split_pipe(selected.get("candidate_methods", ""))
 
         db_by_id = {r.get("db_id", ""): r for r in db_rows}
+
+        # Filter candidates to those plausible given this cluster's settlement
+        # and type: a DB row is shown only when it has no settlement OR shares
+        # one with the cluster, AND its org_type matches the cluster's.
+        cluster_settlements: set[str] = {
+            s.strip().lower()
+            for s in (selected.get("extracted_settlements") or "").split("|")
+            if s.strip()
+        }
+        cluster_type = (selected.get("org_type") or "").strip().lower()
+
+        c_ids: list[str] = []
+        c_scores: list[str] = []
+        c_methods: list[str] = []
+        for i, dbid in enumerate(c_ids_all):
+            db_row = db_by_id.get(dbid, {})
+            db_type = (db_row.get("org_type") or "").strip().lower()
+            if cluster_type and db_type and db_type != cluster_type:
+                continue
+            db_set = db_settlements.get(dbid)
+            if db_set and cluster_settlements and not (db_set & cluster_settlements):
+                continue
+            c_ids.append(dbid)
+            c_scores.append(c_scores_all[i] if i < len(c_scores_all) else "")
+            c_methods.append(c_methods_all[i] if i < len(c_methods_all) else "")
+
+        hidden = len(c_ids_all) - len(c_ids)
+        if hidden:
+            st.caption(
+                f"{hidden} candidate(s) hidden by settlement/type filter "
+                "(different settlement or different org type)."
+            )
 
         choice_key = f"a1_choice_{selected['cluster_id']}"
         default_choice = selected.get("aligned_db_id", "").strip()
@@ -488,9 +562,15 @@ def render() -> None:
         st.divider()
         notes = st.text_area("Reviewer notes", value=selected.get("reviewer_notes", ""), key=f"notes-{selected['cluster_id']}")
 
+        defer_comment = st.text_input(
+            "Research question / focus (for Defer)",
+            key=f"defer-comment-{selected['cluster_id']}",
+            placeholder="e.g. is this Vilner Trupe or a separate amateur group?",
+        )
+
         row_idx = next(i for i, r in enumerate(a_rows) if r.get("cluster_id") == selected["cluster_id"])
 
-        col1, col2, col3, col4, col5 = st.columns(5)
+        col1, col2, col3, col4, col5, col6 = st.columns(6)
 
         if col1.button("Align", type="primary", disabled=not chosen_db_id):
             a_rows[row_idx]["decision"] = "ALIGN"
@@ -499,6 +579,7 @@ def render() -> None:
             save_alignment(a_headers, a_rows)
             load_alignment.clear()
             st.session_state.pop(choice_key, None)
+            st.session_state.a1_detail_open = False
             st.rerun()
 
         if col2.button("New organization"):
@@ -520,6 +601,7 @@ def render() -> None:
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
             load_alignment.clear()
+            st.session_state.a1_detail_open = False
             st.rerun()
 
         if col3.button("Generic"):
@@ -528,6 +610,7 @@ def render() -> None:
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
             load_alignment.clear()
+            st.session_state.a1_detail_open = False
             st.rerun()
 
         if col4.button("Uncluster"):
@@ -536,6 +619,7 @@ def render() -> None:
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
             load_alignment.clear()
+            st.session_state.a1_detail_open = False
             st.rerun()
 
         if col5.button("Discuss"):
@@ -544,4 +628,32 @@ def render() -> None:
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
             load_alignment.clear()
+            st.session_state.a1_detail_open = False
+            st.rerun()
+
+        if col6.button("Defer 🔬", help="Queue for cluster-research and mark DEFER"):
+            from views.research_queue import queue_research
+
+            a_rows[row_idx]["decision"] = "DEFER"
+            a_rows[row_idx]["aligned_db_id"] = ""
+            a_rows[row_idx]["reviewer_notes"] = notes
+            save_alignment(a_headers, a_rows)
+            load_alignment.clear()
+            cluster_qid = ""
+            for s in (selected.get("extracted_settlements") or "").split("|"):
+                s = s.strip()
+                if s:
+                    cluster_qid = s
+                    break
+            queue_research(
+                kind="cluster",
+                target_id=selected["cluster_id"],
+                qid=cluster_qid,
+                org_type=selected.get("org_type", ""),
+                label=selected.get("canonical_yiddish", ""),
+                reviewer=st.session_state.get("reviewer", ""),
+                comment=(defer_comment or "").strip(),
+            )
+            st.toast("Deferred & queued for research", icon="🔬")
+            st.session_state.a1_detail_open = False
             st.rerun()
