@@ -420,6 +420,28 @@ def _split_pipe(v: str) -> list[str]:
 	return [x.strip() for x in (v or "").split("|") if x.strip()]
 
 
+_ITINERANT_TYPES = {
+	"troupe", "טרופּע", "טעאַטער-טרופּע",
+	"travelling company", "traveling company", "company on tour",
+	"army", "ארמיי", "אַרמיי", "אַרמעע",
+	"military", "expedition",
+}
+
+
+def _place_hint(org_type: str, settlements: str) -> str:
+	"""Pipe-joined settlements suffix for the queue label.
+
+	Empty for itinerant org_types (troupes/army/etc.) — for those the city
+	doesn't disambiguate the entity.
+	"""
+	s = (settlements or "").strip()
+	if not s:
+		return ""
+	if (org_type or "").strip().lower() in _ITINERANT_TYPES:
+		return ""
+	return f" — {s}"
+
+
 def _status(row: dict[str, str]) -> str:
 	d = row.get("decision", "").strip()
 	return {
@@ -632,6 +654,7 @@ def _render_similar_clusters(
 	)
 	linked_pairs = [p for p in all_linked_pairs if p.get("decision", "").strip() != "DISMISS"]
 	dismissed_pairs = [p for p in all_linked_pairs if p.get("decision", "").strip() == "DISMISS"]
+	_align_by_cid = {a.get("cluster_id", ""): a for a in align_rows}
 
 	if linked_pairs:
 		st.markdown("**Suggested similar clusters**")
@@ -670,7 +693,9 @@ def _render_similar_clusters(
 			if loc_conflict:
 				st.caption(f"Location conflict flag: {loc_conflict}")
 
-			st.markdown(f"<div dir='rtl' style='font-size:1.08em'>{other_name}</div>", unsafe_allow_html=True)
+			_other_a = _align_by_cid.get(other_cid, {})
+			_other_ph = _place_hint(_other_a.get("org_type", ""), _other_a.get("extracted_settlements", ""))
+			st.markdown(f"<div dir='rtl' style='font-size:1.08em'>{other_name}{_other_ph}</div>", unsafe_allow_html=True)
 
 			col_a, col_b = st.columns(2)
 			with col_a:
@@ -776,7 +801,8 @@ def _render_similar_clusters(
 							label_visibility="collapsed",
 						)
 					hcol1.markdown(
-						f"<div class='rtl-block'>{_status(h)}  {h.get('canonical_yiddish', '')}</div>",
+						f"<div class='rtl-block'>{_status(h)}  {h.get('canonical_yiddish', '')}"
+						f"{_place_hint(h.get('org_type',''), h.get('extracted_settlements',''))}</div>",
 						unsafe_allow_html=True,
 					)
 					hcol1.caption(f"{hcid} · {h_type} · {h_size} mentions")
@@ -790,7 +816,10 @@ def _render_similar_clusters(
 					if st.session_state.get(f"merge-sel-{cid}-{h.get('cluster_id', '')}")
 				]
 				if checked:
-					names_preview = ", ".join(h.get("canonical_yiddish", "") for _, h in checked[:5])
+					names_preview = ", ".join(
+						f"{h.get('canonical_yiddish', '')}{_place_hint(h.get('org_type',''), h.get('extracted_settlements',''))}"
+						for _, h in checked[:5]
+					)
 					st.caption(f"Selected {len(checked)} cluster(s): {names_preview}")
 					if st.button(f"🟢 Merge {len(checked)} selected", key=f"merge-batch-{cid}", type="primary"):
 						_merge_clusters_from_search(
@@ -882,7 +911,8 @@ def _render_batch_confirm(
 				label_visibility="collapsed",
 			)
 			row_cols[1].markdown(
-				f"<div class='rtl-block'>{r.get('canonical_yiddish','')}</div>"
+				f"<div class='rtl-block'>{r.get('canonical_yiddish','')}"
+				f"{_place_hint(r.get('org_type',''), r.get('extracted_settlements',''))}</div>"
 				f"<div style='font-size:0.8em;color:#666'>{cid}</div>",
 				unsafe_allow_html=True,
 			)
@@ -1091,7 +1121,8 @@ def _render_settlement_siblings(
 				# Sort: undecided first, then by size desc
 				other_clusters.sort(key=lambda c: (bool(c.decision), -c.cluster_size))
 				for c in other_clusters[:25]:
-					line = f"{c.cluster_id} · {c.canonical_yiddish or '(no canonical)'} · n={c.cluster_size}"
+					_ph = _place_hint(c.org_type, c.settlement_raw)
+					line = f"{c.cluster_id} · {c.canonical_yiddish or '(no canonical)'}{_ph} · n={c.cluster_size}"
 					if c.decision:
 						line += f" · {c.decision}"
 						if c.aligned_db_id:
@@ -1342,7 +1373,8 @@ def render() -> None:
 				st.markdown(f'<div id="row-{cid}"></div>', unsafe_allow_html=True)
 				linked_pairs = len(pair_index.get(cid, []))
 				pair_hint = f" · {linked_pairs} pair" + ("s" if linked_pairs != 1 else "") if linked_pairs else ""
-				label = f"{_status(r)}  {r.get('canonical_yiddish','')}{pair_hint}"
+				place_hint = _place_hint(r.get("org_type", ""), r.get("extracted_settlements", ""))
+				label = f"{_status(r)}  {r.get('canonical_yiddish','')}{place_hint}{pair_hint}"
 				if st.button(label, key=f"review-pick-{cid}", use_container_width=True, type="secondary"):
 					st.session_state.review_selected_cid = cid
 					st.rerun()
