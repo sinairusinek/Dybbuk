@@ -449,6 +449,7 @@ def _row_action_menu(
     db_headers: list[str],
     a_rows_by_cid: dict[str, dict[str, str]],
     db_by_id: dict[str, dict[str, str]],
+    samples: dict,
     canonical_yiddish: str = "",
 ) -> None:
     # Bucket-content signature scopes popover widget keys to the current state,
@@ -514,7 +515,10 @@ def _row_action_menu(
             label_visibility="collapsed",
         )
         if q and q.strip():
-            results = _search_corpus(q.strip(), db_rows, a_rows, exclude=(self_kind, self_id))[:20]
+            results = _search_corpus(
+                q.strip(), db_rows, a_rows, samples,
+                exclude=(self_kind, self_id),
+            )[:20]
             if not results:
                 st.caption("No matches.")
             for r_kind, r_id, r_label, _score in results:
@@ -551,21 +555,28 @@ def _row_action_menu(
                     org_type=bucket.org_type, label=self_label, reviewer=reviewer,
                 )
                 st.toast("Queued for cluster-research", icon="🔬")
-            st.caption(
-                "Switch to Claude and say: "
-                f"`Use the cluster-research skill on {self_kind} {self_id} "
-                f"in {qid} ({bucket.org_type}).`"
+            prompt = _build_research_prompt(
+                self_kind, self_id, qid, bucket.org_type,
+                canonical_yiddish=canonical_yiddish,
+                self_label=self_label,
+                samples=samples,
+                a_rows_by_cid=a_rows_by_cid,
+                db_rows=db_rows,
             )
+            st.caption("Paste this into Claude:")
+            st.code(prompt, language="markdown")
 
 
 def _search_corpus(
     query: str,
     db_rows: list[dict[str, str]],
     a_rows: list[dict[str, str]],
+    samples: dict,
     exclude: tuple[str, str] = ("", ""),
 ) -> list[tuple[str, str, str, int]]:
     q = query.lower()
     results: list[tuple[str, str, str, int]] = []
+    matched_clusters: set[str] = set()
     for r in db_rows:
         dbid = (r.get("db_id") or "").strip()
         if exclude == ("db", dbid):
@@ -584,6 +595,25 @@ def _search_corpus(
         if idx >= 0:
             label = r.get("canonical_yiddish") or "(no canonical)"
             results.append(("cluster", cid, label, idx))
+            matched_clusters.add(cid)
+    # Also surface clusters whose attestation sentences contain the query.
+    # The result is keyed by the parent cluster; the preview shows the sentence
+    # so the reviewer can see why it matched.
+    a_by_cid = {r.get("cluster_id", ""): r for r in a_rows}
+    for cid, s in (samples or {}).items():
+        if exclude == ("cluster", cid) or cid in matched_clusters:
+            continue
+        for _head, sent, _fle, _xid in (s.get("samples") or []):
+            if not sent:
+                continue
+            idx = sent.lower().find(q)
+            if idx >= 0:
+                canon = (a_by_cid.get(cid, {}).get("canonical_yiddish") or "").strip()
+                preview = sent[: 80].replace("\n", " ")
+                label = f"{canon or '(no canonical)'} — “{preview}…”"
+                results.append(("cluster", cid, label, idx + 1000))
+                matched_clusters.add(cid)
+                break
     results.sort(key=lambda t: t[3])
     return results
 
@@ -608,17 +638,21 @@ def _action_bar(
 
     cols = st.columns([1, 1, 1, 1])
 
-    # Determine org_type for mint — derive from first selected cluster.
-    seed_type = ""
+    # Collect the org_types of every selected cluster so we can refuse to mint
+    # a single DB entity from clusters that disagree on what kind of org it is.
+    selected_types: list[str] = []
     seed_name = ""
     for cid in selected_cluster_ids:
         row = a_rows_by_cid.get(cid)
-        if row:
-            seed_type = (row.get("org_type") or "").strip()
-            if not seed_name and (row.get("canonical_yiddish") or "").strip():
-                seed_name = row["canonical_yiddish"].strip()
-            if seed_type:
-                break
+        if not row:
+            continue
+        t = (row.get("org_type") or "").strip()
+        if t and t not in selected_types:
+            selected_types.append(t)
+        if not seed_name and (row.get("canonical_yiddish") or "").strip():
+            seed_name = row["canonical_yiddish"].strip()
+    seed_type = selected_types[0] if selected_types else ""
+    mixed_types = len(selected_types) > 1
 
     with cols[0]:
         if st.button(
@@ -638,13 +672,19 @@ def _action_bar(
             st.rerun()
 
     with cols[1]:
-        new_disabled = not (n_cl >= 1 and n_db == 0)
+        new_disabled = not (n_cl >= 1 and n_db == 0) or mixed_types
         if new_disabled:
             st.button("Create new DB entity", disabled=True,
                       use_container_width=True,
-                      key=f"{sel_key_prefix}_btn_new_disabled")
+                      key=f"{sel_key_prefix}_btn_new_disabled",
+                      help=(
+                          "Selected clusters have different org_types: "
+                          + ", ".join(selected_types)
+                          + ". Mint requires a single type."
+                      ) if mixed_types else None)
         else:
             with st.popover("Create new DB entity", use_container_width=True):
+                st.caption(f"Org type · **{seed_type or '(unknown)'}**")
                 new_name = st.text_input(
                     "New organization name (Yiddish)", value=seed_name,
                     key=f"{sel_key_prefix}_new_name",
@@ -926,6 +966,7 @@ def render() -> None:
                         db_rows=db_rows, db_headers=db_headers,
                         a_rows_by_cid=a_rows_by_cid,
                         db_by_id=db_by_id,
+                        samples=samples,
                     )
                 with st.expander("Details"):
                     _render_db_details(d, a_rows, db_rows)
@@ -964,6 +1005,7 @@ def render() -> None:
                         db_rows=db_rows, db_headers=db_headers,
                         a_rows_by_cid=a_rows_by_cid,
                         db_by_id=db_by_id,
+                        samples=samples,
                         canonical_yiddish=c.canonical_yiddish,
                     )
                 with st.expander("Details · mentions & candidates"):
