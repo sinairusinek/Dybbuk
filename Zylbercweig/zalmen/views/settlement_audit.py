@@ -703,6 +703,7 @@ def _row_action_menu(
                 label_visibility="collapsed",
             )
             if q and q.strip():
+                from types import SimpleNamespace
                 results = _search_corpus(
                     q.strip(), db_rows, a_rows, samples,
                     exclude=(self_kind, self_id),
@@ -710,13 +711,28 @@ def _row_action_menu(
                 if not results:
                     st.caption("No matches.")
                 for r_kind, r_id, r_label, _score in results:
-                    cols = st.columns([4, 1])
+                    cols = st.columns([3, 1, 1])
                     cols[0].caption(f"{r_kind} · {r_id} · {r_label}")
-                    if cols[1].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
+                    show_key = f"{key}_show_{r_kind}_{r_id}"
+                    cols[1].toggle("Inspect", key=show_key, value=False,
+                                   help="Show variants, settlements & attestations")
+                    if cols[2].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
                         msg = _do_merge([(r_kind, r_id)])
                         if msg:
                             st.toast(msg, icon="✅")
                         st.rerun()
+                    if st.session_state.get(show_key):
+                        with st.container(border=True):
+                            if r_kind == "cluster":
+                                _render_cluster_details(
+                                    SimpleNamespace(cluster_id=r_id),
+                                    a_rows_by_cid, db_by_id, samples,
+                                )
+                            else:
+                                _render_db_details(
+                                    SimpleNamespace(db_id=r_id),
+                                    a_rows, db_rows,
+                                )
 
         # ─── More tab: mint solo + research ───
         with tab_more:
