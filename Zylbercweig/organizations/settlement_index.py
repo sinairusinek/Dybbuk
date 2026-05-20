@@ -124,7 +124,15 @@ class SettlementIndex:
         self._db_keys: dict[str, list[tuple[str, str]]] = defaultdict(list)
         # All distinct cities + types, for the audit-view dropdowns
         self._cities: dict[str, tuple[str, str]] = {}  # qid → (english, yiddish)
+        # Per-city precomputed aggregates (populated by _finalize after _build)
+        # so that the audit view's selectbox format_func and sort comparator
+        # don't re-walk every bucket on every render.
+        self._mentions_by_qid: dict[str, int] = {}
+        self._buckets_by_qid: dict[str, list[CityBucket]] = {}
+        self._dominant_by_qid: dict[str, str] = {}
+        self._types_by_qid: dict[str, list[str]] = {}
         self._build()
+        self._finalize_aggregates()
 
     def _get(self, qid: str, english: str, yiddish: str, org_type: str) -> CityBucket:
         key = (qid, org_type)
@@ -209,6 +217,29 @@ class SettlementIndex:
                         bucket.clusters.append(card)
                         self._cluster_keys[cid].append((r.qid, org_type))
 
+    def _finalize_aggregates(self) -> None:
+        """Single O(N_buckets) pass that fills the per-qid lookup tables used
+        by the audit view, so subsequent calls are O(1).
+        """
+        by_qid: dict[str, list[CityBucket]] = {}
+        for (q, _t), b in self._buckets.items():
+            by_qid.setdefault(q, []).append(b)
+        for q, bs in by_qid.items():
+            bs.sort(key=lambda b: -(len(b.db_cards) + len(b.clusters)))
+            self._buckets_by_qid[q] = bs
+            self._types_by_qid[q] = sorted({b.org_type for b in bs})
+            mentions = 0
+            best_t = ""
+            best_n = 0
+            for b in bs:
+                n = len(b.db_cards) + len(b.clusters)
+                mentions += len(b.db_cards) + sum(max(c.cluster_size, 1) for c in b.clusters)
+                if n > best_n:
+                    best_n = n
+                    best_t = b.org_type
+            self._mentions_by_qid[q] = mentions
+            self._dominant_by_qid[q] = best_t
+
     # ─── Lookup API ───────────────────────────────────────────────────────
     def siblings_for_cluster(self, cluster_id: str) -> list[CityBucket]:
         return [self._buckets[k] for k in self._cluster_keys.get(cluster_id, [])]
@@ -228,31 +259,16 @@ class SettlementIndex:
         )
 
     def org_types_in_city(self, qid: str) -> list[str]:
-        return sorted({t for (q, t) in self._buckets if q == qid})
+        return self._types_by_qid.get(qid, [])
 
     def mentions_in_city(self, qid: str) -> int:
-        total = 0
-        for (q, _t), b in self._buckets.items():
-            if q != qid:
-                continue
-            total += len(b.db_cards)
-            total += sum(max(c.cluster_size, 1) for c in b.clusters)
-        return total
+        return self._mentions_by_qid.get(qid, 0)
 
     def buckets_in_city(self, qid: str) -> list[CityBucket]:
-        out = [b for (q, _t), b in self._buckets.items() if q == qid]
-        out.sort(key=lambda b: -(len(b.db_cards) + len(b.clusters)))
-        return out
+        return self._buckets_by_qid.get(qid, [])
 
     def dominant_org_type(self, qid: str) -> str:
-        best = ""
-        best_n = 0
-        for b in self.buckets_in_city(qid):
-            n = len(b.db_cards) + len(b.clusters)
-            if n > best_n:
-                best_n = n
-                best = b.org_type
-        return best
+        return self._dominant_by_qid.get(qid, "")
 
 
 @lru_cache(maxsize=1)

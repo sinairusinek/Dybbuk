@@ -114,17 +114,28 @@ def _addr_status_for_qid(qid: str, ix, addr_by_dbid: dict[str, dict[str, str]]) 
     return "orange"
 
 
-def _load_addresses() -> dict[str, dict[str, str]]:
-    path = BASE / "organizations" / "org_addresses_review.tsv"
+_ADDR_FILE = BASE / "organizations" / "org_addresses_review.tsv"
+
+
+@st.cache_data(show_spinner=False)
+def _load_addresses_cached(mtime: float) -> dict[str, dict[str, str]]:
+    """Cached on file mtime so we don't re-read 669 rows on every rerun."""
     out: dict[str, dict[str, str]] = {}
-    if not path.exists():
+    if not _ADDR_FILE.exists():
         return out
-    with path.open() as f:
+    with _ADDR_FILE.open() as f:
         for row in csv.DictReader(f, delimiter="\t"):
             dbid = (row.get("db_id") or "").strip()
             if dbid:
                 out[dbid] = row
     return out
+
+
+def _load_addresses() -> dict[str, dict[str, str]]:
+    try:
+        return _load_addresses_cached(_ADDR_FILE.stat().st_mtime if _ADDR_FILE.exists() else 0.0)
+    except FileNotFoundError:
+        return {}
 
 
 # ─── core data mutations (used by both the top action-bar and per-row menus) ──
@@ -448,7 +459,11 @@ def _render_map(ix, addr_by_dbid: dict[str, dict[str, str]]) -> None:
             tooltip=f"{qid}|{label}|{n} mentions",
         ).add_to(m)
 
-    out = st_folium(m, width=None, height=420, returned_objects=["last_object_clicked_tooltip"])
+    out = st_folium(
+        m, width=None, height=420,
+        returned_objects=["last_object_clicked_tooltip"],
+        key="settlement_audit_map",
+    )
     clicked = (out or {}).get("last_object_clicked_tooltip")
     if clicked:
         qid = clicked.split("|", 1)[0].strip()
