@@ -236,3 +236,48 @@ Lowering would catch more true positives but risks new false positives.
 
 ## General comments / things we missed
 >
+
+---
+
+## Multi-place decided clusters (2026-05-20 audit cohort)
+
+After adding the QID-based exploder for **undecided / SPLIT** clusters, the
+following decided non-itinerant clusters still span ≥2 distinct QIDs. The PI's
+guidance on each is needed before we either force-split or accept as a true
+multi-location entity. Full list in
+[decided_multi_place_audit.tsv](decided_multi_place_audit.tsv); these are the
+items Sinai flagged for PI.
+
+### Already actioned this session (no decision needed)
+- `ORG-C00103` ווילנער טרופּע (Vilna Troupe) — retyped DB 551 + cluster + all 178 mentions to **Company on Tour**; PI confirmed.
+- `ORG-C00276` הבימה (Habima) — retyped 32 cluster mentions to **Company on Tour** (DB 266 already correct); PI confirmed.
+- `ORG-C00682` סעקאָנד עוועניו טעאַטער — single anomalous Newark mention (Serebrov entry) was an extraction error; cleared, cluster is NYC-only now.
+- `ORG-C04319` ניו יאָרקער יידישן קונסט-טעאַטער — 2 Vienna mentions were tour/filming **action locations**, not the theatre's home; cleared, cluster is NYC-only.
+- `ORG-C03238` ווינער אוניווערזיטעט — one mis-clustered row was a **Vilna** University mention (ווילנער ≠ ווינער); relabeled to ORG-C03238_Q02 and removed from cluster.
+- `ORG-C00257` פֿאַרווערטס + `ORG-C00831` השומר הצעיר — see "Top-organization / sub-organization schema" below.
+
+### Top-organization / sub-organization schema (PI confirmed 2026-05-20)
+- Added `parent_db_id` column to `core_db.tsv` (empty for existing rows).
+- Forverts (DB 249) and Hashomer Hatzair (DB 602) split per city; new sub-rows allocated db_ids 692–698 with `parent_db_id` pointing at the umbrella. Each city sub-cluster auto-ALIGN'd to its sub-row.
+- Cross-reference: deferred Brewery DB schema TODO ([memory: todo_brewery_db_schema.md]) — this is the same kind of relation modeling and they should converge.
+- Zalmen app does not yet render parent/child. UI work deferred.
+
+### Pending PI decision
+
+Each of the following needs a one-line PI call: **(a)** Keep as multi-location ALIGN/NEW (the entity really had operations in those cities), **(b)** Force-split per city (separate orgs sharing the name), **(c)** Apply the top-organization schema (Forverts-style: umbrella + city sub-rows), or **(d)** Other / discuss.
+
+- [ ] **`ORG-C00145`** גימנאַזיע (DESCRIPTIVE, Education, 21 cities) — generic word; kept DESCRIPTIVE this session. Confirm OK?
+- [ ] **`ORG-C00539`** טאָג (ALIGN, Newspapers, 6 cities: Warsaw / Vilnius / NYC / St. Petersburg / Kraków / Philadelphia) — likely separate "Der Tog" papers per city.
+- [ ] **`ORG-C00752`** אונזער ווינקל (ALIGN, Theatre, 6 cities: Hrodna / Haifa / Kharkiv / Minsk / Kyiv / Tel Aviv) — itinerant company or independent local clubs?
+- [ ] **`ORG-C00005`** פּאַוויליאָן-טעאַטער (UNCLUSTER, Theatre, 4 cities: Warsaw / Chernivtsi / London / Chicago) — already UNCLUSTER; force-split to realize it?
+- [ ] **`ORG-C00390`** לענאָקס-טעאַטער (ALIGN, Theatre, Bronx + Harlem + NYC) — one theatre that may have moved Harlem→Bronx; same operators (Goldberg & Jacobs) throughout. Multi-location borough labels of one NYC theatre. Sinai recommends keep as ALIGN multi-location.
+- [ ] **`ORG-C00595`** פּראָספּעקט-טעאַטער (ALIGN, Theatre, Bronx + NYC) — one Bronx theatre, "Bronx" and "NYC" are interchangeable in the sources (one mention even reads "in NYC (Bronx)"). Sinai recommends keep as ALIGN multi-location.
+- [ ] **`ORG-C00559`** אונדער לעבען (ALIGN, Newspaper, Warsaw + Odessa) — historical question: same "Unzer Lebn" paper that moved, or two? Spelling אונדער is consistent across all 9 mentions (not a per-row typo).
+- [ ] **~12 q=2 Theatre batch** — Boston/Chelsea, Vilnius/Kaunas, Warsaw/NYC, Vilnius/Łódź ×2, Vienna/NYC, Białystok/Minsk, Kharkiv/Samarkand, NYC/Philadelphia. Default-recommended action: force-split each, unless PI knows specific cases that should stay merged.
+- [ ] **~4 q=2 Newspapers batch** — Toronto/London, Warsaw/London, Brest/Rakaŭ, NYC/Philadelphia (Di Varhayt). Default: force-split (separate papers).
+- [ ] **Ghetto pairs kept as ALIGN/NEW** — ORG-C02258 עלדאָראַדאָ Warsaw + Warsaw Ghetto; ORG-C02738 געטאָ-טעאַטער Vilnius + Vilna Ghetto. Same physical space at different periods. Confirm keep?
+
+### Memory pointer
+Cohort decision rules are documented in the session memory note
+`project_settlement_collapse_pipeline.md` and `project_org_matching_drafter.md`.
+

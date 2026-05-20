@@ -47,6 +47,7 @@ TROUPE_TYPES = {
     "טעאַטער-טרופּע",
     "travelling company",
     "traveling company",
+    "company on tour",
     "army",
     "ארמיי",
     "אַרמיי",
