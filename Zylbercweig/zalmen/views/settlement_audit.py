@@ -601,7 +601,10 @@ def _row_action_menu(
             label_visibility="collapsed",
         )
         if q and q.strip():
-            results = _search_corpus(q.strip(), db_rows, a_rows, exclude=(self_kind, self_id))[:20]
+            results = _search_corpus(
+                q.strip(), db_rows, a_rows, samples,
+                exclude=(self_kind, self_id),
+            )[:20]
             if not results:
                 st.caption("No matches.")
             for r_kind, r_id, r_label, _score in results:
