@@ -406,7 +406,11 @@ def _render_db_details(d: DbCard, a_rows, db_rows) -> None:
 
 # ─── map header ───────────────────────────────────────────────────────────
 
-def _render_map(ix, addr_by_dbid: dict[str, dict[str, str]]) -> None:
+def _render_map(
+    ix,
+    addr_by_dbid: dict[str, dict[str, str]],
+    focus_qid: str | None,
+) -> None:
     try:
         import folium  # noqa: F401
         from streamlit_folium import st_folium
@@ -440,8 +444,19 @@ def _render_map(ix, addr_by_dbid: dict[str, dict[str, str]]) -> None:
 
     import folium
 
-    center = st.session_state.get("sa_map_center", (52.0, 19.0, 4))
-    m = folium.Map(location=[center[0], center[1]], zoom_start=center[2], tiles="OpenStreetMap")
+    # The focus city (set by either the picker or a previous map click) drives
+    # both the initial map build AND the dynamic re-centering st_folium does
+    # via its `center` / `zoom` props on each rerun.
+    if focus_qid and focus_qid in coords:
+        flat, flon = coords[focus_qid]
+        focus_center = (flat, flon, 11)
+    else:
+        focus_center = (52.0, 19.0, 4)
+    m = folium.Map(
+        location=[focus_center[0], focus_center[1]],
+        zoom_start=focus_center[2],
+        tiles="OpenStreetMap",
+    )
 
     for qid, en, yi in mappable:
         lat, lon = coords[qid]
@@ -467,18 +482,20 @@ def _render_map(ix, addr_by_dbid: dict[str, dict[str, str]]) -> None:
         ).add_to(m)
 
     out = st_folium(
-        m, width=None, height=420,
+        m,
+        center=[focus_center[0], focus_center[1]],
+        zoom=focus_center[2],
+        width=None, height=420,
         returned_objects=["last_object_clicked_tooltip"],
         key="settlement_audit_map",
     )
     clicked = (out or {}).get("last_object_clicked_tooltip")
     if clicked:
         qid = clicked.split("|", 1)[0].strip()
-        prev = st.session_state.get("sa_last_clicked_qid")
-        if qid and qid != prev:
-            st.session_state["sa_last_clicked_qid"] = qid
-            lat, lon = coords[qid]
-            st.session_state["sa_map_center"] = (lat, lon, 11)
+        if qid and qid != focus_qid:
+            # Route the click through audit_target_qid; render() picks it up at
+            # the top of the next run and syncs settlement_audit_city, so the
+            # picker and the map agree before the map is drawn again.
             st.session_state["audit_target_qid"] = qid
             st.rerun()
 
@@ -844,17 +861,23 @@ def render() -> None:
     reviewer = st.session_state.get("reviewer", "")
     addr_by_dbid = _load_addresses()
 
-    # --- Map header ---
-    with st.container(border=True):
-        _render_map(ix, addr_by_dbid)
-
-    # --- Picker ---
+    # Resolve the focus city BEFORE the map renders, so the map's center matches
+    # this turn's selection (whether the user came via the picker or via a
+    # map-click in the previous turn). Streamlit updates widget session_state
+    # before the script body runs, so settlement_audit_city is already current.
     target_qid = st.session_state.pop("audit_target_qid", None)
     if target_qid:
         match = next((c for c in cities if c[0] == target_qid), None)
         if match is not None:
             st.session_state["settlement_audit_city"] = match
+    focus_city = st.session_state.get("settlement_audit_city")
+    focus_qid = focus_city[0] if focus_city else None
 
+    # --- Map header ---
+    with st.container(border=True):
+        _render_map(ix, addr_by_dbid, focus_qid)
+
+    # --- Picker ---
     sort_col, picker_col = st.columns([1, 3])
     with sort_col:
         sort_mode = st.radio(
@@ -883,17 +906,6 @@ def render() -> None:
     if not city:
         return
     qid = city[0]
-
-    # Keep the map centred on the currently-picked city, whether the user got
-    # here via a map click or via the selectbox. Only update on actual change
-    # so we don't fight the user's manual pan/zoom.
-    last_centered = st.session_state.get("sa_last_centered_qid")
-    if qid != last_centered:
-        coords = load_coords()
-        latlon = coords.get(qid)
-        if latlon is not None:
-            st.session_state["sa_map_center"] = (latlon[0], latlon[1], 11)
-        st.session_state["sa_last_centered_qid"] = qid
 
     # --- Load editable data ---
     a_headers, a_rows = load_alignment(_mtime(ALIGN_FILE))
