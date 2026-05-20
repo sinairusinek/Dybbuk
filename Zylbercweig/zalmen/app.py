@@ -80,11 +80,18 @@ if not _gh_ok:
     )
 
 # ── Login gate ────────────────────────────────────────────────────────────────
+# Auto-login via ?user=Name in URL (bookmark-able per-reviewer)
+if "reviewer" not in st.session_state:
+    _qp_user = st.query_params.get("user")
+    if _qp_user and _qp_user in _REVIEWERS:
+        st.session_state["reviewer"] = _qp_user
+
 if "reviewer" not in st.session_state:
     st.title("Zalmen · Who are you?")
     choice = st.selectbox("Select your name to continue:", ["— pick one —"] + _REVIEWERS)
     if st.button("Continue", type="primary", disabled=(choice == "— pick one —")):
         st.session_state["reviewer"] = choice
+        st.query_params["user"] = choice
         st.rerun()
     st.stop()
 
@@ -99,7 +106,10 @@ if _qp_view and _qp_view in VIEWS:
             st.session_state["review_selected_cid"] = _qp_entity
         elif _qp_view == "Organization Cards":
             st.session_state["addr_selected"] = _qp_entity
+    _preserved_user = st.query_params.get("user")
     st.query_params.clear()
+    if _preserved_user:
+        st.query_params["user"] = _preserved_user
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -130,6 +140,8 @@ with st.sidebar:
     st.caption(f"Logged in as **{st.session_state['reviewer']}**")
     if st.button("Switch user", use_container_width=True):
         del st.session_state["reviewer"]
+        if "user" in st.query_params:
+            del st.query_params["user"]
         st.rerun()
     st.divider()
     st.caption("Zylbercweig Lexicon — Yiddish biographical encyclopedia")
