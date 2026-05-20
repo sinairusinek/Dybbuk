@@ -550,12 +550,16 @@ def _render_map(
         key="settlement_audit_map",
     )
     clicked = (out or {}).get("last_object_clicked_tooltip")
-    if clicked:
+    # st_folium returns the most recent tooltip forever — even after we've
+    # already handled it. Without a dedup guard, every rerun (picker change,
+    # action click, etc.) would replay the old click and snap focus back to
+    # whichever city was clicked last on the map (typically NY). Remember the
+    # tooltip we last acted on and ignore it until a genuinely new click fires.
+    last_handled = st.session_state.get("sa_last_handled_tooltip")
+    if clicked and clicked != last_handled:
+        st.session_state["sa_last_handled_tooltip"] = clicked
         qid = clicked.split("|", 1)[0].strip()
         if qid and qid != focus_qid:
-            # Route the click through audit_target_qid; render() picks it up at
-            # the top of the next run and syncs settlement_audit_city, so the
-            # picker and the map agree before the map is drawn again.
             st.session_state["audit_target_qid"] = qid
             st.rerun()
 
