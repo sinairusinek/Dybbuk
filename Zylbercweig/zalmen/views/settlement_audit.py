@@ -56,6 +56,13 @@ RESEARCH_QUEUE = BASE / "organizations" / "research_queue.tsv"
 RESEARCH_HEADERS = ["queued_at", "reviewer", "kind", "target_id", "qid", "org_type", "label", "status"]
 ADMIN_REVIEWER = "Sinai"
 
+# Show this many rows per (type, kind) section by default. Each row spawns
+# ~12 widgets (popover body, radio, text input, buttons), so a busy city like
+# Warsaw with hundreds of rows × multiple types would otherwise instantiate
+# thousands of widgets per Streamlit rerun — enough to make every picker
+# interaction feel frozen. A "Show all" toggle lifts the cap on demand.
+_ROW_CAP = 20
+
 # Color palette for the dominant-org-type map mode. The typology is ~27 types;
 # we colour the most common ones and lump the long tail as grey.
 _TYPE_COLORS: dict[str, str] = {
@@ -528,6 +535,7 @@ def _row_action_menu(
     db_headers: list[str],
     a_rows_by_cid: dict[str, dict[str, str]],
     db_by_id: dict[str, dict[str, str]],
+    samples: dict,
     canonical_yiddish: str = "",
 ) -> None:
     # Bucket-content signature scopes popover widget keys to the current state,
@@ -991,7 +999,35 @@ def render() -> None:
             if c.aligned_db_id:
                 align_counts[c.aligned_db_id] = align_counts.get(c.aligned_db_id, 0) + 1
 
-        for d in unique_db:
+        cap_key = f"sa_capoff_{qid}_{bucket.org_type}"
+        cap_off = st.session_state.get(cap_key, False)
+        total_rows = len(unique_db) + len(clusters_visible)
+        if total_rows > _ROW_CAP and not cap_off:
+            if st.button(
+                f"Show all {total_rows} rows in this section",
+                key=f"{cap_key}_btn", use_container_width=False,
+            ):
+                st.session_state[cap_key] = True
+                st.rerun()
+            db_to_show = unique_db[:_ROW_CAP]
+            cluster_budget = max(0, _ROW_CAP - len(db_to_show))
+            clusters_to_show = clusters_visible[:cluster_budget]
+            st.caption(
+                f"Showing {len(db_to_show)} DB · {len(clusters_to_show)} clusters "
+                f"(of {len(unique_db)} / {len(clusters_visible)}). Capped for "
+                "responsiveness — expand above to see all."
+            )
+        else:
+            db_to_show = unique_db
+            clusters_to_show = clusters_visible[:200]
+            if cap_off and total_rows > _ROW_CAP:
+                if st.button(
+                    "Re-cap this section", key=f"{cap_key}_recap_btn",
+                ):
+                    st.session_state[cap_key] = False
+                    st.rerun()
+
+        for d in db_to_show:
             with st.container(border=True):
                 head_cols = st.columns([1, 9, 2])
                 with head_cols[0]:
@@ -1026,11 +1062,12 @@ def render() -> None:
                         db_rows=db_rows, db_headers=db_headers,
                         a_rows_by_cid=a_rows_by_cid,
                         db_by_id=db_by_id,
+                        samples=samples,
                     )
                 with st.expander("Details"):
                     _render_db_details(d, a_rows, db_rows)
 
-        for c in clusters_visible[:100]:
+        for c in clusters_to_show:
             with st.container(border=True):
                 head_cols = st.columns([1, 9, 2])
                 with head_cols[0]:
@@ -1064,10 +1101,12 @@ def render() -> None:
                         db_rows=db_rows, db_headers=db_headers,
                         a_rows_by_cid=a_rows_by_cid,
                         db_by_id=db_by_id,
+                        samples=samples,
                         canonical_yiddish=c.canonical_yiddish,
                     )
                 with st.expander("Details · mentions & candidates"):
                     _render_cluster_details(c, a_rows_by_cid, db_by_id, samples)
 
-        if len(clusters_visible) > 100:
-            st.caption(f"… and {len(clusters_visible) - 100} more clusters (refine filters)")
+        omitted = len(clusters_visible) - len(clusters_to_show)
+        if omitted > 0 and cap_off:
+            st.caption(f"… and {omitted} more clusters (refine filters)")
