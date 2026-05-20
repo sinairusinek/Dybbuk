@@ -16,6 +16,7 @@ point to the same place).
 from __future__ import annotations
 
 import csv
+import re
 import sys
 import unicodedata
 from dataclasses import dataclass
@@ -50,9 +51,32 @@ def _norm(s: str) -> str:
     return s
 
 
+_BIDI_MARKS = "‎‏‪‫‬‭‮⁦⁧⁨⁩"
+
+
+def _aggressive_norm(s: str) -> str:
+    """Stronger normalization for the third-pass overlay fallback.
+
+    Drops combining marks, bidi marks, hyphens, whitespace, underscores;
+    collapses Hebrew final letters to medial; lowercases. Lets
+    ניו-יאָרק / ניו יאָרק / ניויאָרק collapse to one key.
+    """
+    if not s:
+        return ""
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = unicodedata.normalize("NFKC", s)
+    s = s.translate({ord(c): None for c in _BIDI_MARKS})
+    s = s.replace("־", "-")
+    s = s.translate(str.maketrans("ךםןףץ", "כמנפצ"))
+    s = re.sub(r"[\s\-_]+", "", s)
+    return s.lower()
+
+
 class _Overlay:
     def __init__(self) -> None:
         self._by_norm: dict[str, ResolvedPlace] = {}
+        self._by_aggressive: dict[str, ResolvedPlace] = {}
         if _PUNCHLIST.exists():
             with _PUNCHLIST.open(newline="", encoding="utf-8") as f:
                 for row in csv.DictReader(f, delimiter="\t"):
@@ -60,16 +84,37 @@ class _Overlay:
                     basis = (row.get("basis") or "").strip()
                     if not qid or basis == "exclude" or basis == "unknown":
                         continue
-                    key = _norm(row.get("yiddish") or "")
+                    yiddish_raw = (row.get("yiddish") or "").strip()
+                    key = _norm(yiddish_raw)
                     if not key:
                         continue
-                    self._by_norm[key] = ResolvedPlace(
+                    place = ResolvedPlace(
                         qid=qid,
                         english=(row.get("suggested_english") or "").strip(),
-                        yiddish=(row.get("yiddish") or "").strip(),
+                        yiddish=yiddish_raw,
                         category=(row.get("suggested_category") or "").strip(),
                         source="punchlist",
                     )
+                    self._by_norm[key] = place
+                    agg = _aggressive_norm(yiddish_raw)
+                    if agg:
+                        self._by_aggressive.setdefault(agg, place)
+
+        # Build aggressive index from kimatch resolver keys too. Reuses the
+        # resolver's already-loaded _by_key dict (post-NFKD/final-letter norm)
+        # and just strips hyphens/whitespace.
+        resolver = get_resolver()
+        for key, hit in getattr(resolver, "_by_key", {}).items():
+            agg = re.sub(r"[\s\-_]+", "", key)
+            if not agg:
+                continue
+            self._by_aggressive.setdefault(
+                agg,
+                ResolvedPlace(
+                    qid=hit.qid, english=hit.english, yiddish=hit.yiddish,
+                    category="settlement", source="kimatch",
+                ),
+            )
 
     def resolve(self, text: str) -> ResolvedPlace | None:
         # 1. Ask kimatch first (settlement/neighborhood only).
@@ -79,8 +124,17 @@ class _Overlay:
                 qid=hit.qid, english=hit.english, yiddish=hit.yiddish,
                 category="settlement", source="kimatch",
             )
-        # 2. Fallback to punchlist (covers everything else).
-        return self._by_norm.get(_norm(text))
+        # 2. Punchlist exact (combining-mark-tolerant) match.
+        cur = self._by_norm.get(_norm(text))
+        if cur:
+            return cur
+        # 3. Aggressive fallback: strip hyphens/whitespace and look up against
+        # the union of curated punchlist + kimatch surface forms. Catches
+        # spacing/hyphen variants like ניו-יאָרק vs ניו יאָרק vs ניויאָרק.
+        agg = _aggressive_norm(text or "")
+        if not agg:
+            return None
+        return self._by_aggressive.get(agg)
 
 
 @lru_cache(maxsize=1)
