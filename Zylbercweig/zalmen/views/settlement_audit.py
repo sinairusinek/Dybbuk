@@ -213,6 +213,83 @@ def _mint_db_from_clusters(
     return next_id, f"Created DB {next_id} from {len(cluster_ids)} cluster(s)"
 
 
+def _consolidate_clusters(
+    cluster_ids: list[str],
+    bucket_org_type: str,
+    seed_name_yiddish: str,
+    seed_name_latin: str,
+    a_rows: list[dict[str, str]],
+    a_headers: list[str],
+    db_rows: list[dict[str, str]],
+    db_headers: list[str],
+) -> tuple[str, str]:
+    """Combine cluster_ids into a single DB row, **reusing** any existing target
+    row one of them already points to instead of minting a fresh one every time.
+
+    This is the fix for the Gdansk-style corruption where five "Confirm merge"
+    clicks on overlapping pairs produced five orphan DB rows. Behaviour:
+      - If any input cluster is already aligned to a DB row, the lowest-id one
+        wins; every other already-targeted DB row's clusters are re-pointed to
+        the winner and the loser rows are deleted.
+      - If no input cluster is aligned anywhere, mint one new DB row.
+      - Clusters keep their existing decision when present (ALIGN stays ALIGN);
+        previously-undecided clusters become NEW.
+    """
+    a_by_cid = {r["cluster_id"]: r for r in a_rows}
+
+    existing_ids: list[str] = []
+    for cid in cluster_ids:
+        row = a_by_cid.get(cid)
+        if not row:
+            continue
+        tid = (row.get("aligned_db_id") or "").strip()
+        dec = (row.get("decision") or "").strip()
+        if tid and dec in ("NEW", "ALIGN") and tid not in existing_ids:
+            existing_ids.append(tid)
+
+    if not existing_ids:
+        return _mint_db_from_clusters(
+            cluster_ids, bucket_org_type, seed_name_yiddish, seed_name_latin,
+            a_rows, a_headers, db_rows, db_headers,
+        )
+
+    def _id_key(x: str) -> int:
+        return int(x) if x.isdigit() else 10**9
+    survivor = sorted(existing_ids, key=_id_key)[0]
+    losers = [x for x in existing_ids if x != survivor]
+
+    survivor_row = next((r for r in db_rows if r.get("db_id") == survivor), None)
+    if survivor_row is None:
+        # The dangling reference is the original bug; fall back to mint.
+        return _mint_db_from_clusters(
+            cluster_ids, bucket_org_type, seed_name_yiddish, seed_name_latin,
+            a_rows, a_headers, db_rows, db_headers,
+        )
+
+    pieces = [survivor_row.get("linked_cluster_ids", "")]
+    for r in db_rows:
+        if r.get("db_id") in losers:
+            pieces.append(r.get("linked_cluster_ids", ""))
+    pieces.extend(cluster_ids)
+    survivor_row["linked_cluster_ids"] = _merge_linked_ids(*pieces)
+
+    in_set = set(cluster_ids)
+    for r in a_rows:
+        cid = r.get("cluster_id", "")
+        cur_target = (r.get("aligned_db_id") or "").strip()
+        if cid in in_set or cur_target in losers:
+            r["aligned_db_id"] = survivor
+            if not (r.get("decision") or "").strip():
+                r["decision"] = "NEW"
+
+    if losers:
+        db_rows[:] = [r for r in db_rows if r.get("db_id") not in losers]
+
+    _persist_and_clear(a_headers, a_rows, db_headers, db_rows)
+    extra = f" (reclaimed {len(losers)} stray row{'s' if len(losers) != 1 else ''})" if losers else ""
+    return survivor, f"Merged {len(cluster_ids)} cluster(s) into DB {survivor}{extra}"
+
+
 def _merge_db_rows_op(
     primary: str,
     secondaries: list[str],
@@ -544,115 +621,138 @@ def _row_action_menu(
     sig = str(abs(hash(tuple(sig_parts))))[:8]
     key = f"sa_act_{qid}_{bucket.org_type}_{self_kind}_{self_id}_{sig}"
 
-    with st.popover("Actions ⋯", use_container_width=False):
-        # --- Mint as new entity (clusters only) ---
+    def _do_merge(partners: list[tuple[str, str]]) -> str | None:
+        """partners = [(kind, id), ...] picked to merge into self. Routes by the
+        4 self/partner combinations; uses _consolidate_clusters so re-running a
+        merge reuses any already-minted target instead of producing orphans."""
+        if not partners:
+            return None
+        partner_clusters = [pid for pk, pid in partners if pk == "cluster"]
+        partner_dbs = [pid for pk, pid in partners if pk == "db"]
         if self_kind == "cluster":
-            if st.button("Mint as new entity", key=f"{key}_mint", type="primary"):
-                new_id, msg = _mint_db_from_clusters(
-                    [self_id], bucket.org_type, canonical_yiddish, "",
-                    a_rows, a_headers, db_rows, db_headers,
+            cluster_ids = [self_id] + partner_clusters
+            if partner_dbs:
+                # Cluster + at least one DB → align all clusters to that DB.
+                target = partner_dbs[0]
+                msg = _align_clusters_to_db(
+                    target, cluster_ids, a_rows, a_headers, db_rows, db_headers,
                 )
-                st.toast(msg, icon="✅")
-                st.rerun()
-
-        # --- Merge here ---
-        st.markdown("**Merge here**")
-        opts = _bucket_options(bucket, self_kind, self_id)
-        if not opts:
-            st.caption("No other items in this bucket.")
+                if len(partner_dbs) > 1:
+                    msg += _merge_db_rows_op(
+                        target, partner_dbs[1:], a_rows, a_headers, db_rows, db_headers,
+                    )
+                return msg
+            _new, msg = _consolidate_clusters(
+                cluster_ids, bucket.org_type, canonical_yiddish, "",
+                a_rows, a_headers, db_rows, db_headers,
+            )
+            return msg
+        # self_kind == "db"
+        if partner_clusters:
+            msg = _align_clusters_to_db(
+                self_id, partner_clusters, a_rows, a_headers, db_rows, db_headers,
+            )
         else:
-            pick = st.radio(
-                "Merge with",
-                options=opts,
-                format_func=lambda t: t[2],
-                key=f"{key}_pick",
+            msg = ""
+        if partner_dbs:
+            msg2 = _merge_db_rows_op(
+                self_id, partner_dbs, a_rows, a_headers, db_rows, db_headers,
+            )
+            msg = (msg + " · " + msg2) if msg else msg2
+        return msg
+
+    with st.popover("Actions ⋯", use_container_width=False):
+        tab_merge, tab_search, tab_more = st.tabs(["Merge", "Search", "More"])
+
+        # ─── Merge tab: multi-select checkboxes, single Confirm ───
+        with tab_merge:
+            opts = _bucket_options(bucket, self_kind, self_id)
+            if not opts:
+                st.caption("No other items in this bucket to combine with.")
+            else:
+                st.caption(
+                    "Tick every row that is the *same entity* as this one. "
+                    "Confirm once — re-running this merge is safe and won't "
+                    "create duplicate DB rows."
+                )
+                picked: list[tuple[str, str]] = []
+                for pk_kind, pk_id, pk_label in opts:
+                    cb_key = f"{key}_mp_{pk_kind}_{pk_id}"
+                    if st.checkbox(pk_label, key=cb_key):
+                        picked.append((pk_kind, pk_id))
+                if st.button(
+                    f"Confirm merge ({len(picked)} selected)",
+                    key=f"{key}_confirm_multi",
+                    type="primary",
+                    disabled=not picked,
+                    use_container_width=True,
+                ):
+                    msg = _do_merge(picked)
+                    for pk_kind, pk_id, _ in opts:
+                        st.session_state.pop(f"{key}_mp_{pk_kind}_{pk_id}", None)
+                    if msg:
+                        st.toast(msg, icon="✅")
+                    st.rerun()
+
+        # ─── Search tab ───
+        with tab_search:
+            st.caption("Search all DB rows + clusters across the whole corpus.")
+            q = st.text_input(
+                "Search", key=f"{key}_q",
+                placeholder="name or fragment...",
                 label_visibility="collapsed",
             )
-            if st.button("Confirm merge", key=f"{key}_confirm", type="primary"):
-                pk_kind, pk_id, _lbl = pick
-                if self_kind == "cluster" and pk_kind == "db":
-                    msg = _align_clusters_to_db(
-                        pk_id, [self_id], a_rows, a_headers, db_rows, db_headers,
-                    )
-                elif self_kind == "cluster" and pk_kind == "cluster":
+            if q and q.strip():
+                results = _search_corpus(
+                    q.strip(), db_rows, a_rows, samples,
+                    exclude=(self_kind, self_id),
+                )[:20]
+                if not results:
+                    st.caption("No matches.")
+                for r_kind, r_id, r_label, _score in results:
+                    cols = st.columns([4, 1])
+                    cols[0].caption(f"{r_kind} · {r_id} · {r_label}")
+                    if cols[1].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
+                        msg = _do_merge([(r_kind, r_id)])
+                        if msg:
+                            st.toast(msg, icon="✅")
+                        st.rerun()
+
+        # ─── More tab: mint solo + research ───
+        with tab_more:
+            if self_kind == "cluster":
+                st.markdown("**Mint solo**")
+                st.caption(
+                    "Create a brand-new DB row for **only** this cluster — "
+                    "use this when nothing else in the bucket should merge with it."
+                )
+                if st.button("Mint as new entity (solo)", key=f"{key}_mint",
+                             use_container_width=True):
                     _new, msg = _mint_db_from_clusters(
-                        [self_id, pk_id], bucket.org_type, canonical_yiddish, "",
+                        [self_id], bucket.org_type, canonical_yiddish, "",
                         a_rows, a_headers, db_rows, db_headers,
                     )
-                elif self_kind == "db" and pk_kind == "cluster":
-                    msg = _align_clusters_to_db(
-                        self_id, [pk_id], a_rows, a_headers, db_rows, db_headers,
-                    )
-                else:  # db + db
-                    msg = _merge_db_rows_op(
-                        self_id, [pk_id], a_rows, a_headers, db_rows, db_headers,
-                    )
-                st.toast(msg, icon="✅")
-                st.rerun()
-
-        st.divider()
-
-        # --- Search more ---
-        st.markdown("**Search more**")
-        st.caption("Search across all DB rows + clusters, not just this bucket.")
-        q = st.text_input(
-            "Search", key=f"{key}_q",
-            placeholder="name or fragment...",
-            label_visibility="collapsed",
-        )
-        if q and q.strip():
-            results = _search_corpus(
-                q.strip(), db_rows, a_rows, samples,
-                exclude=(self_kind, self_id),
-            )[:20]
-            if not results:
-                st.caption("No matches.")
-            for r_kind, r_id, r_label, _score in results:
-                cols = st.columns([4, 1])
-                cols[0].caption(f"{r_kind} · {r_id} · {r_label}")
-                if cols[1].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
-                    if self_kind == "cluster" and r_kind == "db":
-                        msg = _align_clusters_to_db(
-                            r_id, [self_id], a_rows, a_headers, db_rows, db_headers,
-                        )
-                    elif self_kind == "cluster" and r_kind == "cluster":
-                        _new, msg = _mint_db_from_clusters(
-                            [self_id, r_id], bucket.org_type, canonical_yiddish, "",
-                            a_rows, a_headers, db_rows, db_headers,
-                        )
-                    elif self_kind == "db" and r_kind == "cluster":
-                        msg = _align_clusters_to_db(
-                            self_id, [r_id], a_rows, a_headers, db_rows, db_headers,
-                        )
-                    else:
-                        msg = _merge_db_rows_op(
-                            self_id, [r_id], a_rows, a_headers, db_rows, db_headers,
-                        )
                     st.toast(msg, icon="✅")
                     st.rerun()
 
-        # --- Research (Sinai only) ---
-        if reviewer == ADMIN_REVIEWER:
-            st.divider()
-            st.markdown("**Research**")
-            comment = st.text_area(
-                "Question / focus (optional)",
-                key=f"{key}_research_comment",
-                placeholder="e.g. is this the same theatre as Goldfaden's tour company?",
-                height=70,
-            )
-            if st.button("Queue for cluster-research", key=f"{key}_research"):
-                _queue_research(
-                    kind=self_kind, target_id=self_id, qid=qid,
-                    org_type=bucket.org_type, label=self_label, reviewer=reviewer,
-                    comment=(comment or "").strip(),
+            if reviewer == ADMIN_REVIEWER:
+                if self_kind == "cluster":
+                    st.divider()
+                st.markdown("**Research**")
+                comment = st.text_area(
+                    "Question / focus (optional)",
+                    key=f"{key}_research_comment",
+                    placeholder="e.g. is this the same theatre as Goldfaden's tour company?",
+                    height=70,
                 )
-                st.toast("Queued for cluster-research", icon="🔬")
-            st.caption(
-                "Switch to Claude and say: "
-                f"`Use the cluster-research skill on {self_kind} {self_id} "
-                f"in {qid} ({bucket.org_type}).`"
-            )
+                if st.button("Queue for cluster-research", key=f"{key}_research",
+                             use_container_width=True):
+                    _queue_research(
+                        kind=self_kind, target_id=self_id, qid=qid,
+                        org_type=bucket.org_type, label=self_label, reviewer=reviewer,
+                        comment=(comment or "").strip(),
+                    )
+                    st.toast("Queued for cluster-research", icon="🔬")
 
 
 def _search_corpus(
@@ -774,7 +874,7 @@ def _action_bar(
                 if st.button("Confirm: create + align all selected",
                              key=f"{sel_key_prefix}_btn_new_confirm",
                              type="primary"):
-                    _new, msg = _mint_db_from_clusters(
+                    _new, msg = _consolidate_clusters(
                         selected_cluster_ids, seed_type, new_name, new_name_latin,
                         a_rows, a_headers, db_rows, db_headers,
                     )
