@@ -218,6 +218,70 @@ def _merge_db_rows_op(
     return f"Merged {len(secondaries)} row(s) into {primary}"
 
 
+def _build_research_prompt(
+    kind: str,
+    target_id: str,
+    qid: str,
+    org_type: str,
+    *,
+    canonical_yiddish: str,
+    self_label: str,
+    samples: dict,
+    a_rows_by_cid: dict[str, dict[str, str]],
+    db_rows: list[dict[str, str]],
+) -> str:
+    """Compose a self-contained cluster-research prompt with names + attestations
+    so Phase 1 of the skill can start without re-querying the DB.
+    """
+    lines = [
+        f"Use the cluster-research skill on {kind} `{target_id}` "
+        f"in city `{qid}` (org_type: {org_type}).",
+        "",
+    ]
+    if kind == "cluster":
+        row = a_rows_by_cid.get(target_id, {})
+        canon = canonical_yiddish or (row.get("canonical_yiddish") or "").strip()
+        variants = (row.get("name_variants") or "").strip()
+        if canon:
+            lines.append(f"- Canonical (Yiddish): {canon}")
+        if variants:
+            lines.append(f"- Variants: {variants}")
+        for label, key in (
+            ("Settlements", "extracted_settlements"),
+            ("Addresses", "extracted_addresses"),
+            ("Venues", "extracted_venues"),
+        ):
+            v = (row.get(key) or "").strip()
+            if v:
+                lines.append(f"- {label}: {v}")
+        cluster_samples = (samples.get(target_id) or {}).get("samples") or []
+        if cluster_samples:
+            lines.append("")
+            lines.append("Attestations (first 2):")
+            for head, sent, _fle, _xid in cluster_samples[:2]:
+                head_clean = (head or "(no heading)").strip()
+                sent_clean = (sent or "").strip().replace("\n", " ")
+                if sent_clean:
+                    lines.append(f"- **{head_clean}** — {sent_clean}")
+                else:
+                    lines.append(f"- **{head_clean}**")
+    else:  # db
+        db_row = next((r for r in db_rows if r.get("db_id") == target_id), {})
+        name = (db_row.get("name") or "").strip()
+        name_yi = (db_row.get("name_yiddish") or "").strip()
+        address = (db_row.get("address") or "").strip()
+        if name:
+            lines.append(f"- Name (Latin): {name}")
+        if name_yi:
+            lines.append(f"- Name (Yiddish): {name_yi}")
+        if address:
+            lines.append(f"- Address: {address}")
+        linked = (db_row.get("linked_cluster_ids") or "").strip()
+        if linked:
+            lines.append(f"- Linked clusters: {linked}")
+    return "\n".join(lines)
+
+
 def _queue_research(kind: str, target_id: str, qid: str, org_type: str, label: str, reviewer: str) -> None:
     is_new = not RESEARCH_QUEUE.exists()
     with RESEARCH_QUEUE.open("a", newline="") as f:
@@ -562,10 +626,12 @@ def _search_corpus(
     query: str,
     db_rows: list[dict[str, str]],
     a_rows: list[dict[str, str]],
+    samples: dict,
     exclude: tuple[str, str] = ("", ""),
 ) -> list[tuple[str, str, str, int]]:
     q = query.lower()
     results: list[tuple[str, str, str, int]] = []
+    matched_clusters: set[str] = set()
     for r in db_rows:
         dbid = (r.get("db_id") or "").strip()
         if exclude == ("db", dbid):
@@ -584,6 +650,25 @@ def _search_corpus(
         if idx >= 0:
             label = r.get("canonical_yiddish") or "(no canonical)"
             results.append(("cluster", cid, label, idx))
+            matched_clusters.add(cid)
+    # Also surface clusters whose attestation sentences contain the query —
+    # the result is keyed by the parent cluster and the preview shows the
+    # matching sentence so the reviewer can see why it hit.
+    a_by_cid = {r.get("cluster_id", ""): r for r in a_rows}
+    for cid, s in (samples or {}).items():
+        if exclude == ("cluster", cid) or cid in matched_clusters:
+            continue
+        for _head, sent, _fle, _xid in (s.get("samples") or []):
+            if not sent:
+                continue
+            idx = sent.lower().find(q)
+            if idx >= 0:
+                canon = (a_by_cid.get(cid, {}).get("canonical_yiddish") or "").strip()
+                preview = sent[:80].replace("\n", " ")
+                label = f"{canon or '(no canonical)'} — “{preview}…”"
+                results.append(("cluster", cid, label, idx + 1000))
+                matched_clusters.add(cid)
+                break
     results.sort(key=lambda t: t[3])
     return results
 
