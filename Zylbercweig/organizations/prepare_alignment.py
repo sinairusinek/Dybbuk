@@ -359,9 +359,26 @@ def main() -> None:
         f"{len(db_by_block)} blocks."
     )
 
+    # Reviewer tags whose canonical_yiddish in the alignment TSV should
+    # OVERRIDE the upstream kimatch canonical on re-runs. finalize_qid_splits.py
+    # renames _Q## sub-cluster canonicals to include a settlement disambiguator
+    # (e.g. "ברוקלינער האָפּקינסאָן-טעאַטער"); without this, prepare_alignment
+    # would clobber that rename on every re-run.
+    _CANONICAL_OVERRIDE_REVIEWERS = {"auto_finalize_qid"}
+
     out_rows: list[dict[str, str]] = []
     preserved_count = 0
     for c in sorted(cluster_records, key=lambda x: x["cluster_id"]):
+        prev_for_id = prev_by_cluster_id.get(c["cluster_id"])
+        canonical_overridden = False
+        if (
+            prev_for_id is not None
+            and prev_for_id.get("reviewer", "").strip() in _CANONICAL_OVERRIDE_REVIEWERS
+            and prev_for_id.get("canonical_yiddish", "").strip()
+        ):
+            c["canonical_yiddish"] = prev_for_id["canonical_yiddish"].strip()
+            canonical_overridden = True
+
         cname = c["canonical_yiddish"]
         cnorm = normalize_yiddish(cname)
         caliases = organization_name_aliases(cname)
@@ -374,8 +391,12 @@ def main() -> None:
         else:
             candidate_pool = db_entries  # empty-type cluster: compare against all
 
-        prev = prev_by_cluster_id.get(c["cluster_id"])
-        if prev is not None and not preserved_row_matches_cluster(prev, c):
+        prev = prev_for_id
+        if (
+            prev is not None
+            and not canonical_overridden
+            and not preserved_row_matches_cluster(prev, c)
+        ):
             prev = None
         if prev is None:
             sem_key = semantic_identity_key(
