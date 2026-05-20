@@ -1,16 +1,24 @@
-"""Settlement audit — same-city + same-type lens for DB dedup sweeps.
+"""Settlement audit — self-sufficient settlement workbench.
 
-Pick a settlement and an org_type → see every DB row + every cluster in that
-bucket. Select 2+ items to merge DB rows, align clusters to a DB row, or mint
-a new DB entity from clusters — all without leaving the view. Expand any row
-to see its mentions, variants, and DB candidates inline.
+A spatial + categorical lens over the dedup state:
+- Map header: every geo-located settlement as a dot. Color by dominant org
+  type or by address-resolution status. Click a dot = pick that city.
+- Picker: cities sortable by mention count or alphabetically.
+- Per-city: every org_type as its own list (DB rows + clusters interleaved).
+- Per-row action menu: Mint as new entity · Merge here · Search more · Research.
+- "Research" is gated to the Sinai reviewer and queues a cluster-research job.
 
 Itinerant types are excluded by the index.
 """
 from __future__ import annotations
 
+import csv
+import datetime as _dt
+import math
 import pathlib
 import sys
+from dataclasses import dataclass
+from typing import Iterable
 
 import streamlit as st
 
@@ -19,7 +27,14 @@ _BASE_STR = str(BASE)
 if _BASE_STR not in sys.path:
     sys.path.insert(0, _BASE_STR)
 
-from organizations.settlement_index import get_index
+from organizations.settlement_index import (
+    CityBucket,
+    ClusterCard,
+    DbCard,
+    coords_for,
+    get_index,
+    load_coords,
+)
 
 from views.org_alignment import (
     ALIGN_FILE,
@@ -37,13 +52,38 @@ from views.org_alignment import (
     _JSON_TO_XML,
 )
 
+RESEARCH_QUEUE = BASE / "organizations" / "research_queue.tsv"
+RESEARCH_HEADERS = ["queued_at", "reviewer", "kind", "target_id", "qid", "org_type", "label", "status"]
+ADMIN_REVIEWER = "Sinai"
 
-def _open_url(view: str, entity: str = "") -> str:
-    parts = [f"view={view}"]
-    if entity:
-        parts.append(f"entity={entity}")
-    return "?" + "&".join(parts)
+# Color palette for the dominant-org-type map mode. The typology is ~27 types;
+# we colour the most common ones and lump the long tail as grey.
+_TYPE_COLORS: dict[str, str] = {
+    "Theatre": "#e6194B",
+    "Traveling Company": "#f58231",
+    "Company on Tour": "#ffe119",
+    "Amateur": "#bfef45",
+    "Kleinkunst": "#3cb44b",
+    "Publisher": "#42d4f4",
+    "Printer": "#4363d8",
+    "Printer/Publisher": "#911eb4",
+    "Journals/Newspapers": "#f032e6",
+    "Media (Radio/Film/TV)": "#a9a9a9",
+    "Library": "#9A6324",
+    "Heritage Institution": "#800000",
+    "Education": "#469990",
+    "Musical organization": "#000075",
+    "Theatre-related Society/Union": "#808000",
+    "Religious institutions": "#fabed4",
+    "Religious organizations": "#fabed4",
+    "Welfare/Aid": "#dcbeff",
+    "Business": "#aaffc3",
+    "Labour": "#ffd8b1",
+}
+_FALLBACK_COLOR = "#888888"
 
+
+# ─── pure-data helpers ────────────────────────────────────────────────────
 
 def _merge_linked_ids(*values: str) -> str:
     seen: list[str] = []
@@ -54,8 +94,151 @@ def _merge_linked_ids(*values: str) -> str:
     return " | ".join(seen)
 
 
-def _render_cluster_details(c, a_rows_by_cid, db_by_id, samples) -> None:
-    """Inline expander body for a cluster: variants, samples, candidates."""
+def _addr_status_for_qid(qid: str, ix, addr_by_dbid: dict[str, dict[str, str]]) -> str:
+    """green = every DB row in this city has lat+lon, amber = some, red = none."""
+    db_ids: set[str] = set()
+    for b in ix.buckets_in_city(qid):
+        for d in b.db_cards:
+            db_ids.add(d.db_id)
+    if not db_ids:
+        return "gray"
+    n_with = 0
+    for dbid in db_ids:
+        row = addr_by_dbid.get(dbid, {})
+        if (row.get("lat") or "").strip() and (row.get("lon") or "").strip():
+            n_with += 1
+    if n_with == len(db_ids):
+        return "green"
+    if n_with == 0:
+        return "red"
+    return "orange"
+
+
+def _load_addresses() -> dict[str, dict[str, str]]:
+    path = BASE / "organizations" / "org_addresses_review.tsv"
+    out: dict[str, dict[str, str]] = {}
+    if not path.exists():
+        return out
+    with path.open() as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            dbid = (row.get("db_id") or "").strip()
+            if dbid:
+                out[dbid] = row
+    return out
+
+
+# ─── core data mutations (used by both the top action-bar and per-row menus) ──
+
+def _persist_and_clear(a_headers, a_rows, db_headers, db_rows) -> None:
+    save_alignment(a_headers, a_rows)
+    save_core_db(db_headers, db_rows)
+    load_alignment.clear()
+    load_core_db.clear()
+    get_index.cache_clear()
+
+
+def _align_clusters_to_db(
+    target_db: str,
+    cluster_ids: list[str],
+    a_rows: list[dict[str, str]],
+    a_headers: list[str],
+    db_rows: list[dict[str, str]],
+    db_headers: list[str],
+) -> str:
+    a_by_cid = {r["cluster_id"]: r for r in a_rows}
+    for cid in cluster_ids:
+        row = a_by_cid.get(cid)
+        if not row:
+            continue
+        row["decision"] = "ALIGN"
+        row["aligned_db_id"] = target_db
+    for r in db_rows:
+        if r.get("db_id") == target_db:
+            r["linked_cluster_ids"] = _merge_linked_ids(
+                r.get("linked_cluster_ids", ""), *cluster_ids
+            )
+            break
+    _persist_and_clear(a_headers, a_rows, db_headers, db_rows)
+    return f"Aligned {len(cluster_ids)} cluster(s) → {target_db}"
+
+
+def _mint_db_from_clusters(
+    cluster_ids: list[str],
+    bucket_org_type: str,
+    seed_name_yiddish: str,
+    seed_name_latin: str,
+    a_rows: list[dict[str, str]],
+    a_headers: list[str],
+    db_rows: list[dict[str, str]],
+    db_headers: list[str],
+) -> tuple[str, str]:
+    next_id = str(_next_db_id(db_rows))
+    new_row = {h: "" for h in db_headers}
+    new_row.update({
+        "db_id": next_id,
+        "name": (seed_name_latin or "").strip(),
+        "name_yiddish": (seed_name_yiddish or "").strip(),
+        "org_type": (bucket_org_type or "").title(),
+        "address": "",
+        "linked_cluster_ids": _merge_linked_ids(*cluster_ids),
+    })
+    db_rows.append(new_row)
+    a_by_cid = {r["cluster_id"]: r for r in a_rows}
+    for cid in cluster_ids:
+        row = a_by_cid.get(cid)
+        if not row:
+            continue
+        row["decision"] = "NEW"
+        row["aligned_db_id"] = next_id
+    _persist_and_clear(a_headers, a_rows, db_headers, db_rows)
+    return next_id, f"Created DB {next_id} from {len(cluster_ids)} cluster(s)"
+
+
+def _merge_db_rows_op(
+    primary: str,
+    secondaries: list[str],
+    a_rows: list[dict[str, str]],
+    a_headers: list[str],
+    db_rows: list[dict[str, str]],
+    db_headers: list[str],
+) -> str:
+    primary_row = next((r for r in db_rows if r.get("db_id") == primary), None)
+    if primary_row is None:
+        return "Primary row not found"
+    pieces = [primary_row.get("linked_cluster_ids", "")]
+    for r in db_rows:
+        if r.get("db_id") in secondaries:
+            pieces.append(r.get("linked_cluster_ids", ""))
+    primary_row["linked_cluster_ids"] = _merge_linked_ids(*pieces)
+    for r in a_rows:
+        if (r.get("aligned_db_id") or "").strip() in secondaries:
+            r["aligned_db_id"] = primary
+    db_rows[:] = [r for r in db_rows if r.get("db_id") not in secondaries]
+    _persist_and_clear(a_headers, a_rows, db_headers, db_rows)
+    return f"Merged {len(secondaries)} row(s) into {primary}"
+
+
+def _queue_research(kind: str, target_id: str, qid: str, org_type: str, label: str, reviewer: str) -> None:
+    is_new = not RESEARCH_QUEUE.exists()
+    with RESEARCH_QUEUE.open("a", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=RESEARCH_HEADERS, delimiter="\t")
+        if is_new:
+            w.writeheader()
+        w.writerow({
+            "queued_at": _dt.datetime.utcnow().isoformat(timespec="seconds") + "Z",
+            "reviewer": reviewer,
+            "kind": kind,
+            "target_id": target_id,
+            "qid": qid,
+            "org_type": org_type,
+            "label": label,
+            "status": "queued",
+        })
+
+
+# ─── detail renderers (unchanged from prior version) ──────────────────────
+
+def _render_cluster_details(c: ClusterCard, a_rows_by_cid, db_by_id, samples) -> None:
     row = a_rows_by_cid.get(c.cluster_id)
     if row is None:
         st.caption("No alignment row found.")
@@ -116,7 +299,7 @@ def _render_cluster_details(c, a_rows_by_cid, db_by_id, samples) -> None:
         st.markdown(f"**Reviewer notes** · {notes}")
 
 
-def _render_db_details(d, a_rows, db_rows) -> None:
+def _render_db_details(d: DbCard, a_rows, db_rows) -> None:
     db_full = next((r for r in db_rows if r.get("db_id") == d.db_id), {})
     if db_full.get("address"):
         st.markdown(f"**Address** · {db_full['address']}")
@@ -139,11 +322,280 @@ def _render_db_details(d, a_rows, db_rows) -> None:
             )
 
 
+# ─── map header ───────────────────────────────────────────────────────────
+
+def _render_map(ix, addr_by_dbid: dict[str, dict[str, str]]) -> None:
+    try:
+        import folium  # noqa: F401
+        from streamlit_folium import st_folium
+    except ImportError:
+        st.info("Install `folium` + `streamlit-folium` to enable the map header.")
+        return
+
+    coords = load_coords()
+    if not coords:
+        st.info(
+            "No settlement coords cached yet. Run "
+            "`python Zylbercweig/organizations/build_settlement_coords.py` to populate."
+        )
+        return
+
+    color_mode = st.radio(
+        "Map colour",
+        ("Dominant org type", "Address-resolution status"),
+        horizontal=True,
+        key="sa_map_color_mode",
+    )
+
+    cities = ix.cities()
+    mappable = [(qid, en, yi) for (qid, en, yi) in cities if qid in coords]
+    if not mappable:
+        st.caption("No mappable cities in current index.")
+        return
+
+    counts = {qid: ix.mentions_in_city(qid) for qid, _en, _yi in mappable}
+    max_n = max(counts.values()) or 1
+
+    import folium
+
+    center = st.session_state.get("sa_map_center", (52.0, 19.0, 4))
+    m = folium.Map(location=[center[0], center[1]], zoom_start=center[2], tiles="OpenStreetMap")
+
+    for qid, en, yi in mappable:
+        lat, lon = coords[qid]
+        n = counts[qid]
+        radius = 4 + 10 * (math.log1p(n) / math.log1p(max_n))
+        if color_mode == "Dominant org type":
+            dom = ix.dominant_org_type(qid)
+            color = _TYPE_COLORS.get(dom, _FALLBACK_COLOR)
+        else:
+            color = _addr_status_for_qid(qid, ix, addr_by_dbid)
+        label = en or qid
+        if yi and yi != en:
+            label += f" · {yi}"
+        folium.CircleMarker(
+            location=[lat, lon],
+            radius=radius,
+            color=color,
+            weight=1,
+            fill=True,
+            fill_color=color,
+            fill_opacity=0.75,
+            tooltip=f"{qid}|{label}|{n} mentions",
+        ).add_to(m)
+
+    out = st_folium(m, width=None, height=420, returned_objects=["last_object_clicked_tooltip"])
+    clicked = (out or {}).get("last_object_clicked_tooltip")
+    if clicked:
+        qid = clicked.split("|", 1)[0].strip()
+        prev = st.session_state.get("sa_last_clicked_qid")
+        if qid and qid != prev:
+            st.session_state["sa_last_clicked_qid"] = qid
+            lat, lon = coords[qid]
+            st.session_state["sa_map_center"] = (lat, lon, 11)
+            st.session_state["audit_target_qid"] = qid
+            st.rerun()
+
+    # Legend
+    if color_mode == "Dominant org type":
+        bits = " · ".join(
+            f"<span style='color:{c}'>●</span> {t}"
+            for t, c in list(_TYPE_COLORS.items())[:10]
+        )
+        st.caption(bits, unsafe_allow_html=True)
+    else:
+        st.caption(
+            "<span style='color:green'>●</span> all DB rows geocoded · "
+            "<span style='color:orange'>●</span> some · "
+            "<span style='color:red'>●</span> none · "
+            "<span style='color:gray'>●</span> no DB rows",
+            unsafe_allow_html=True,
+        )
+
+
+# ─── per-row action menu ──────────────────────────────────────────────────
+
+def _bucket_options(
+    bucket: CityBucket,
+    self_kind: str,
+    self_id: str,
+) -> list[tuple[str, str, str]]:
+    """Return [(kind, id, label)] for every other item in the bucket."""
+    out: list[tuple[str, str, str]] = []
+    for d in bucket.db_cards:
+        if self_kind == "db" and d.db_id == self_id:
+            continue
+        label = f"DB {d.db_id} · {d.name or d.name_yiddish or '(unnamed)'}"
+        out.append(("db", d.db_id, label))
+    for c in bucket.clusters:
+        if self_kind == "cluster" and c.cluster_id == self_id:
+            continue
+        label = f"cluster {c.cluster_id} · {c.canonical_yiddish or '(no canonical)'} (n={c.cluster_size})"
+        out.append(("cluster", c.cluster_id, label))
+    return out
+
+
+def _row_action_menu(
+    *,
+    self_kind: str,
+    self_id: str,
+    self_label: str,
+    bucket: CityBucket,
+    qid: str,
+    reviewer: str,
+    a_rows: list[dict[str, str]],
+    a_headers: list[str],
+    db_rows: list[dict[str, str]],
+    db_headers: list[str],
+    a_rows_by_cid: dict[str, dict[str, str]],
+    db_by_id: dict[str, dict[str, str]],
+    canonical_yiddish: str = "",
+) -> None:
+    # Bucket-content signature scopes popover widget keys to the current state,
+    # so a stale radio selection from a now-merged row can't linger.
+    sig_parts = [d.db_id for d in bucket.db_cards] + [c.cluster_id for c in bucket.clusters]
+    sig = str(abs(hash(tuple(sig_parts))))[:8]
+    key = f"sa_act_{qid}_{bucket.org_type}_{self_kind}_{self_id}_{sig}"
+
+    with st.popover("Actions ⋯", use_container_width=False):
+        # --- Mint as new entity (clusters only) ---
+        if self_kind == "cluster":
+            if st.button("Mint as new entity", key=f"{key}_mint", type="primary"):
+                new_id, msg = _mint_db_from_clusters(
+                    [self_id], bucket.org_type, canonical_yiddish, "",
+                    a_rows, a_headers, db_rows, db_headers,
+                )
+                st.toast(msg, icon="✅")
+                st.rerun()
+
+        # --- Merge here ---
+        st.markdown("**Merge here**")
+        opts = _bucket_options(bucket, self_kind, self_id)
+        if not opts:
+            st.caption("No other items in this bucket.")
+        else:
+            pick = st.radio(
+                "Merge with",
+                options=opts,
+                format_func=lambda t: t[2],
+                key=f"{key}_pick",
+                label_visibility="collapsed",
+            )
+            if st.button("Confirm merge", key=f"{key}_confirm", type="primary"):
+                pk_kind, pk_id, _lbl = pick
+                if self_kind == "cluster" and pk_kind == "db":
+                    msg = _align_clusters_to_db(
+                        pk_id, [self_id], a_rows, a_headers, db_rows, db_headers,
+                    )
+                elif self_kind == "cluster" and pk_kind == "cluster":
+                    _new, msg = _mint_db_from_clusters(
+                        [self_id, pk_id], bucket.org_type, canonical_yiddish, "",
+                        a_rows, a_headers, db_rows, db_headers,
+                    )
+                elif self_kind == "db" and pk_kind == "cluster":
+                    msg = _align_clusters_to_db(
+                        self_id, [pk_id], a_rows, a_headers, db_rows, db_headers,
+                    )
+                else:  # db + db
+                    msg = _merge_db_rows_op(
+                        self_id, [pk_id], a_rows, a_headers, db_rows, db_headers,
+                    )
+                st.toast(msg, icon="✅")
+                st.rerun()
+
+        st.divider()
+
+        # --- Search more ---
+        st.markdown("**Search more**")
+        st.caption("Search across all DB rows + clusters, not just this bucket.")
+        q = st.text_input(
+            "Search", key=f"{key}_q",
+            placeholder="name or fragment...",
+            label_visibility="collapsed",
+        )
+        if q and q.strip():
+            results = _search_corpus(q.strip(), db_rows, a_rows, exclude=(self_kind, self_id))[:20]
+            if not results:
+                st.caption("No matches.")
+            for r_kind, r_id, r_label, _score in results:
+                cols = st.columns([4, 1])
+                cols[0].caption(f"{r_kind} · {r_id} · {r_label}")
+                if cols[1].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
+                    if self_kind == "cluster" and r_kind == "db":
+                        msg = _align_clusters_to_db(
+                            r_id, [self_id], a_rows, a_headers, db_rows, db_headers,
+                        )
+                    elif self_kind == "cluster" and r_kind == "cluster":
+                        _new, msg = _mint_db_from_clusters(
+                            [self_id, r_id], bucket.org_type, canonical_yiddish, "",
+                            a_rows, a_headers, db_rows, db_headers,
+                        )
+                    elif self_kind == "db" and r_kind == "cluster":
+                        msg = _align_clusters_to_db(
+                            self_id, [r_id], a_rows, a_headers, db_rows, db_headers,
+                        )
+                    else:
+                        msg = _merge_db_rows_op(
+                            self_id, [r_id], a_rows, a_headers, db_rows, db_headers,
+                        )
+                    st.toast(msg, icon="✅")
+                    st.rerun()
+
+        # --- Research (Sinai only) ---
+        if reviewer == ADMIN_REVIEWER:
+            st.divider()
+            st.markdown("**Research**")
+            if st.button("Queue for cluster-research", key=f"{key}_research"):
+                _queue_research(
+                    kind=self_kind, target_id=self_id, qid=qid,
+                    org_type=bucket.org_type, label=self_label, reviewer=reviewer,
+                )
+                st.toast("Queued for cluster-research", icon="🔬")
+            st.caption(
+                "Switch to Claude and say: "
+                f"`Use the cluster-research skill on {self_kind} {self_id} "
+                f"in {qid} ({bucket.org_type}).`"
+            )
+
+
+def _search_corpus(
+    query: str,
+    db_rows: list[dict[str, str]],
+    a_rows: list[dict[str, str]],
+    exclude: tuple[str, str] = ("", ""),
+) -> list[tuple[str, str, str, int]]:
+    q = query.lower()
+    results: list[tuple[str, str, str, int]] = []
+    for r in db_rows:
+        dbid = (r.get("db_id") or "").strip()
+        if exclude == ("db", dbid):
+            continue
+        hay = f"{r.get('name','')} {r.get('name_yiddish','')}".lower()
+        idx = hay.find(q)
+        if idx >= 0:
+            label = r.get("name") or r.get("name_yiddish") or "(unnamed)"
+            results.append(("db", dbid, label, idx))
+    for r in a_rows:
+        cid = (r.get("cluster_id") or "").strip()
+        if exclude == ("cluster", cid):
+            continue
+        hay = f"{r.get('canonical_yiddish','')} {r.get('name_variants','')}".lower()
+        idx = hay.find(q)
+        if idx >= 0:
+            label = r.get("canonical_yiddish") or "(no canonical)"
+            results.append(("cluster", cid, label, idx))
+    results.sort(key=lambda t: t[3])
+    return results
+
+
+# ─── multi-select action bar (top of view, when 2+ items checked) ─────────
+
 def _action_bar(
     selected_db_ids: list[str],
     selected_cluster_ids: list[str],
-    bucket,
+    qid: str,
     db_by_id: dict[str, dict[str, str]],
+    a_rows_by_cid: dict[str, dict[str, str]],
     a_rows: list[dict[str, str]],
     a_headers: list[str],
     db_rows: list[dict[str, str]],
@@ -154,43 +606,37 @@ def _action_bar(
     n_cl = len(selected_cluster_ids)
     st.markdown(f"**Selection** · {n_cl} cluster(s), {n_db} DB row(s)")
 
-    a_rows_by_cid = {r["cluster_id"]: r for r in a_rows}
-
     cols = st.columns([1, 1, 1, 1])
 
-    # --- Align clusters → one DB row -----------------------------------
+    # Determine org_type for mint — derive from first selected cluster.
+    seed_type = ""
+    seed_name = ""
+    for cid in selected_cluster_ids:
+        row = a_rows_by_cid.get(cid)
+        if row:
+            seed_type = (row.get("org_type") or "").strip()
+            if not seed_name and (row.get("canonical_yiddish") or "").strip():
+                seed_name = row["canonical_yiddish"].strip()
+            if seed_type:
+                break
+
     with cols[0]:
-        align_disabled = not (n_cl >= 1 and n_db == 1)
-        if st.button("Align selected → DB row", disabled=align_disabled,
-                     type="primary", use_container_width=True,
-                     key=f"{sel_key_prefix}_btn_align"):
-            target = selected_db_ids[0]
-            for cid in selected_cluster_ids:
-                row = a_rows_by_cid.get(cid)
-                if not row:
-                    continue
-                row["decision"] = "ALIGN"
-                row["aligned_db_id"] = target
-            # Fold cluster ids into the DB row's linked_cluster_ids
-            for r in db_rows:
-                if r.get("db_id") == target:
-                    r["linked_cluster_ids"] = _merge_linked_ids(
-                        r.get("linked_cluster_ids", ""),
-                        *selected_cluster_ids,
-                    )
-                    break
-            save_alignment(a_headers, a_rows)
-            save_core_db(db_headers, db_rows)
-            load_alignment.clear()
-            load_core_db.clear()
-            get_index.cache_clear()
+        if st.button(
+            "Align selected → DB row",
+            disabled=not (n_cl >= 1 and n_db == 1),
+            type="primary", use_container_width=True,
+            key=f"{sel_key_prefix}_btn_align",
+        ):
+            msg = _align_clusters_to_db(
+                selected_db_ids[0], selected_cluster_ids,
+                a_rows, a_headers, db_rows, db_headers,
+            )
             for cid in selected_cluster_ids:
                 st.session_state.pop(f"{sel_key_prefix}_cl_{cid}", None)
-            st.session_state.pop(f"{sel_key_prefix}_db_{target}", None)
-            st.toast(f"Aligned {n_cl} cluster(s) → {target}", icon="✅")
+            st.session_state.pop(f"{sel_key_prefix}_db_{selected_db_ids[0]}", None)
+            st.toast(msg, icon="✅")
             st.rerun()
 
-    # --- Create new DB entity from clusters ---------------------------
     with cols[1]:
         new_disabled = not (n_cl >= 1 and n_db == 0)
         if new_disabled:
@@ -198,14 +644,7 @@ def _action_bar(
                       use_container_width=True,
                       key=f"{sel_key_prefix}_btn_new_disabled")
         else:
-            seed_name = ""
-            for cid in selected_cluster_ids:
-                row = a_rows_by_cid.get(cid)
-                if row and (row.get("canonical_yiddish") or "").strip():
-                    seed_name = row["canonical_yiddish"].strip()
-                    break
-            with st.popover("Create new DB entity",
-                            use_container_width=True):
+            with st.popover("Create new DB entity", use_container_width=True):
                 new_name = st.text_input(
                     "New organization name (Yiddish)", value=seed_name,
                     key=f"{sel_key_prefix}_new_name",
@@ -217,34 +656,15 @@ def _action_bar(
                 if st.button("Confirm: create + align all selected",
                              key=f"{sel_key_prefix}_btn_new_confirm",
                              type="primary"):
-                    next_id = _next_db_id(db_rows)
-                    new_row = {h: "" for h in db_headers}
-                    new_row.update({
-                        "db_id": str(next_id),
-                        "name": new_name_latin.strip(),
-                        "name_yiddish": new_name.strip(),
-                        "org_type": bucket.org_type.title(),
-                        "address": "",
-                        "linked_cluster_ids": _merge_linked_ids(*selected_cluster_ids),
-                    })
-                    db_rows.append(new_row)
-                    for cid in selected_cluster_ids:
-                        row = a_rows_by_cid.get(cid)
-                        if not row:
-                            continue
-                        row["decision"] = "NEW"
-                        row["aligned_db_id"] = str(next_id)
-                    save_core_db(db_headers, db_rows)
-                    save_alignment(a_headers, a_rows)
-                    load_alignment.clear()
-                    load_core_db.clear()
-                    get_index.cache_clear()
+                    _new, msg = _mint_db_from_clusters(
+                        selected_cluster_ids, seed_type, new_name, new_name_latin,
+                        a_rows, a_headers, db_rows, db_headers,
+                    )
                     for cid in selected_cluster_ids:
                         st.session_state.pop(f"{sel_key_prefix}_cl_{cid}", None)
-                    st.toast(f"Created DB {next_id} from {n_cl} cluster(s)", icon="✅")
+                    st.toast(msg, icon="✅")
                     st.rerun()
 
-    # --- Merge DB rows -------------------------------------------------
     with cols[2]:
         merge_disabled = n_db < 2
         if merge_disabled:
@@ -269,33 +689,12 @@ def _action_bar(
                              disabled=not confirm,
                              key=f"{sel_key_prefix}_btn_merge_confirm"):
                     secondaries = [d for d in selected_db_ids if d != primary]
-                    # 1. Collect linked_cluster_ids from all
-                    primary_row = next((r for r in db_rows if r.get("db_id") == primary), None)
-                    if primary_row is None:
-                        st.error("Primary row not found.")
-                        st.stop()
-                    pieces = [primary_row.get("linked_cluster_ids", "")]
-                    for r in db_rows:
-                        if r.get("db_id") in secondaries:
-                            pieces.append(r.get("linked_cluster_ids", ""))
-                    primary_row["linked_cluster_ids"] = _merge_linked_ids(*pieces)
-                    # 2. Re-point alignment rows
-                    for r in a_rows:
-                        if (r.get("aligned_db_id") or "").strip() in secondaries:
-                            r["aligned_db_id"] = primary
-                    # 3. Remove secondary DB rows
-                    db_rows[:] = [r for r in db_rows if r.get("db_id") not in secondaries]
-                    save_core_db(db_headers, db_rows)
-                    save_alignment(a_headers, a_rows)
-                    load_alignment.clear()
-                    load_core_db.clear()
-                    get_index.cache_clear()
+                    msg = _merge_db_rows_op(
+                        primary, secondaries, a_rows, a_headers, db_rows, db_headers,
+                    )
                     for dbid in selected_db_ids:
                         st.session_state.pop(f"{sel_key_prefix}_db_{dbid}", None)
-                    st.toast(
-                        f"Merged {len(secondaries)} row(s) into {primary}",
-                        icon="✅",
-                    )
+                    st.toast(msg, icon="✅")
                     st.rerun()
 
     with cols[3]:
@@ -309,12 +708,14 @@ def _action_bar(
             st.rerun()
 
 
+# ─── view entry point ─────────────────────────────────────────────────────
+
 def render() -> None:
     st.header("Settlement audit")
     st.caption(
-        "Browse all DB rows + clusters by (settlement, type). Select 2+ items "
-        "to merge DB rows, align clusters to a DB row, or mint a new entity. "
-        "Expand any row to see its mentions and candidates. "
+        "Spatial + categorical workbench. Click a city on the map (or pick from "
+        "the list) to see every DB row and cluster grouped by org type. Each row "
+        "has an Actions menu for Mint / Merge here / Search more / Research. "
         "Itinerant types are excluded."
     )
 
@@ -329,116 +730,170 @@ def render() -> None:
         st.warning("No resolved settlements in index — check that kimatch outputs exist.")
         return
 
-    def _city_label(t: tuple[str, str, str]) -> str:
-        qid, en, yi = t
-        bits = en or qid
-        if yi and yi != en:
-            bits += f" · {yi}"
-        return bits
+    reviewer = st.session_state.get("reviewer", "")
+    addr_by_dbid = _load_addresses()
 
+    # --- Map header ---
+    with st.container(border=True):
+        _render_map(ix, addr_by_dbid)
+
+    # --- Picker ---
     target_qid = st.session_state.pop("audit_target_qid", None)
-    target_type = st.session_state.pop("audit_target_type", None)
     if target_qid:
         match = next((c for c in cities if c[0] == target_qid), None)
         if match is not None:
             st.session_state["settlement_audit_city"] = match
 
-    col1, col2 = st.columns([2, 2])
-    with col1:
+    sort_col, picker_col = st.columns([1, 3])
+    with sort_col:
+        sort_mode = st.radio(
+            "Sort cities by",
+            ("Mentions", "Alphabetical"),
+            key="sa_sort_mode",
+        )
+
+    if sort_mode == "Mentions":
+        cities_sorted = sorted(cities, key=lambda t: -ix.mentions_in_city(t[0]))
+    else:
+        cities_sorted = sorted(cities, key=lambda t: (t[1] or t[2]).lower())
+
+    def _city_label(t: tuple[str, str, str]) -> str:
+        qid, en, yi = t
+        head = en or qid
+        if yi and yi != en:
+            head += f" · {yi}"
+        return f"{head}  ·  {ix.mentions_in_city(qid)} mentions"
+
+    with picker_col:
         city = st.selectbox(
-            "Settlement", cities, format_func=_city_label,
+            "Settlement", cities_sorted, format_func=_city_label,
             key="settlement_audit_city",
         )
-    qid = city[0]
-    types_here = ix.org_types_in_city(qid)
-    if target_type and target_type in types_here:
-        st.session_state["settlement_audit_type"] = target_type
-
-    def _type_label(t: str) -> str:
-        b = ix.bucket(qid, t)
-        n_db = len(b.db_cards) if b else 0
-        n_cl = len(b.clusters) if b else 0
-        return f"{t}  ·  {n_db} DB / {n_cl} clusters"
-
-    with col2:
-        org_type = st.selectbox(
-            "Org type", types_here, format_func=_type_label,
-            key="settlement_audit_type",
-        )
-
-    bucket = ix.bucket(qid, org_type)
-    if not bucket:
-        st.info("No entries in this bucket.")
+    if not city:
         return
+    qid = city[0]
 
-    # Load editable data sources (cached on mtime).
+    # Keep the map centred on the currently-picked city, whether the user got
+    # here via a map click or via the selectbox. Only update on actual change
+    # so we don't fight the user's manual pan/zoom.
+    last_centered = st.session_state.get("sa_last_centered_qid")
+    if qid != last_centered:
+        coords = load_coords()
+        latlon = coords.get(qid)
+        if latlon is not None:
+            st.session_state["sa_map_center"] = (latlon[0], latlon[1], 11)
+        st.session_state["sa_last_centered_qid"] = qid
+
+    # --- Load editable data ---
     a_headers, a_rows = load_alignment(_mtime(ALIGN_FILE))
     db_headers, db_rows = load_core_db(_mtime(CORE_DB_FILE))
     samples = load_samples(_mtime(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
     db_by_id = {r.get("db_id", ""): r for r in db_rows}
+    a_rows_by_cid = {r["cluster_id"]: r for r in a_rows}
 
-    sel_key_prefix = f"sa_sel_{qid}_{org_type}"
+    buckets = ix.buckets_in_city(qid)
+    if not buckets:
+        st.info("No entries in this city.")
+        return
 
-    st.divider()
+    sel_key_prefix = f"sa_sel_{qid}"
 
-    top = st.columns(4)
-    top[0].metric("DB rows", len(bucket.db_cards))
-    top[1].metric("Clusters", len(bucket.clusters))
-    n_aligned = sum(1 for c in bucket.clusters if c.decision == "ALIGN")
-    n_undecided = sum(1 for c in bucket.clusters if not c.decision)
-    top[2].metric("Clusters aligned", n_aligned)
-    top[3].metric("Clusters undecided", n_undecided)
+    # --- Global filters (apply across all types) ---
+    with st.expander("Filters", expanded=False):
+        f_col1, f_col2 = st.columns(2)
+        with f_col1:
+            decision_filter = st.multiselect(
+                "Cluster decision",
+                options=["(undecided)", "ALIGN", "NEW", "SPLIT", "DEFER", "DESCRIPTIVE", "DISCUSS"],
+                default=["(undecided)", "ALIGN", "NEW"],
+                key=f"sa_dec_{qid}",
+            )
+            min_size = st.number_input(
+                "Min cluster size", min_value=1, value=1, step=1,
+                key=f"sa_size_{qid}",
+            )
+        with f_col2:
+            type_filter = st.multiselect(
+                "Org types to show",
+                options=[b.org_type for b in buckets],
+                default=[b.org_type for b in buckets],
+                key=f"sa_types_{qid}",
+            )
 
-    # Dedupe DB cards
-    seen: set[str] = set()
-    unique_db = []
-    for d in bucket.db_cards:
-        if d.db_id in seen:
-            continue
-        seen.add(d.db_id)
-        unique_db.append(d)
-    unique_db.sort(key=lambda d: (d.name or d.name_yiddish or "").lower())
-
-    # Collect current selection from session_state (checkboxes persist by key).
-    selected_db_ids = [
-        d.db_id for d in unique_db
-        if st.session_state.get(f"{sel_key_prefix}_db_{d.db_id}")
-    ]
-    selected_cluster_ids = [
-        c.cluster_id for c in bucket.clusters
-        if st.session_state.get(f"{sel_key_prefix}_cl_{c.cluster_id}")
-    ]
+    # --- Selection state ---
+    selected_db_ids: list[str] = []
+    selected_cluster_ids: list[str] = []
+    for b in buckets:
+        for d in b.db_cards:
+            if st.session_state.get(f"{sel_key_prefix}_db_{d.db_id}"):
+                if d.db_id not in selected_db_ids:
+                    selected_db_ids.append(d.db_id)
+        for c in b.clusters:
+            if st.session_state.get(f"{sel_key_prefix}_cl_{c.cluster_id}"):
+                if c.cluster_id not in selected_cluster_ids:
+                    selected_cluster_ids.append(c.cluster_id)
 
     if selected_db_ids or selected_cluster_ids:
         with st.container(border=True):
             _action_bar(
-                selected_db_ids,
-                selected_cluster_ids,
-                bucket,
-                db_by_id,
-                a_rows,
-                a_headers,
-                db_rows,
-                db_headers,
+                selected_db_ids, selected_cluster_ids,
+                qid, db_by_id, a_rows_by_cid,
+                a_rows, a_headers, db_rows, db_headers,
                 sel_key_prefix,
             )
 
-    db_col, cl_col = st.columns(2, gap="large")
+    # --- Top metrics ---
+    total_db = sum(len(b.db_cards) for b in buckets)
+    total_cl = sum(len(b.clusters) for b in buckets)
+    top = st.columns(4)
+    top[0].metric("Types here", len(buckets))
+    top[1].metric("DB rows", total_db)
+    top[2].metric("Clusters", total_cl)
+    top[3].metric("Mentions", ix.mentions_in_city(qid))
 
-    align_counts: dict[str, int] = {}
-    for c in bucket.clusters:
-        if c.aligned_db_id:
-            align_counts[c.aligned_db_id] = align_counts.get(c.aligned_db_id, 0) + 1
+    st.divider()
 
-    with db_col:
-        st.subheader(f"DB rows · {len(unique_db)}")
-        st.caption("Same city + same type. Scan for duplicates.")
-        if not unique_db:
-            st.info("No DB rows for this bucket. Unaligned clusters here are likely NEW candidates.")
+    # --- Per-type sections ---
+    def _cl_passes(c: ClusterCard) -> bool:
+        tag = c.decision or "(undecided)"
+        if decision_filter and tag not in decision_filter:
+            return False
+        if c.cluster_size < min_size:
+            return False
+        return True
+
+    for bucket in buckets:
+        if bucket.org_type not in type_filter:
+            continue
+
+        # Dedupe DB cards within this bucket
+        seen: set[str] = set()
+        unique_db: list[DbCard] = []
+        for d in bucket.db_cards:
+            if d.db_id in seen:
+                continue
+            seen.add(d.db_id)
+            unique_db.append(d)
+        unique_db.sort(key=lambda d: (d.name or d.name_yiddish or "").lower())
+
+        clusters_visible = [c for c in bucket.clusters if _cl_passes(c)]
+        clusters_visible.sort(key=lambda c: (bool(c.decision), -c.cluster_size))
+
+        if not unique_db and not clusters_visible:
+            continue
+
+        st.subheader(
+            f"{bucket.org_type} · {len(unique_db)} DB / {len(clusters_visible)} clusters"
+        )
+
+        align_counts: dict[str, int] = {}
+        for c in bucket.clusters:
+            if c.aligned_db_id:
+                align_counts[c.aligned_db_id] = align_counts.get(c.aligned_db_id, 0) + 1
 
         for d in unique_db:
             with st.container(border=True):
-                head_cols = st.columns([1, 11])
+                head_cols = st.columns([1, 9, 2])
                 with head_cols[0]:
                     st.checkbox(
                         " ", key=f"{sel_key_prefix}_db_{d.db_id}",
@@ -447,7 +902,7 @@ def render() -> None:
                 with head_cols[1]:
                     name = d.name or "(no Latin name)"
                     yi = d.name_yiddish or ""
-                    head = f"**{d.db_id}** · {name}"
+                    head = f"**DB {d.db_id}** · {name}"
                     if yi:
                         head += f"  ·  {yi}"
                     st.markdown(head)
@@ -459,48 +914,25 @@ def render() -> None:
                         meta_bits.append(f"🔗 {aligned_n} cluster{'s' if aligned_n != 1 else ''} aligned")
                     if meta_bits:
                         st.caption(" · ".join(meta_bits))
+                with head_cols[2]:
+                    _row_action_menu(
+                        self_kind="db",
+                        self_id=d.db_id,
+                        self_label=name,
+                        bucket=bucket,
+                        qid=qid,
+                        reviewer=reviewer,
+                        a_rows=a_rows, a_headers=a_headers,
+                        db_rows=db_rows, db_headers=db_headers,
+                        a_rows_by_cid=a_rows_by_cid,
+                        db_by_id=db_by_id,
+                    )
                 with st.expander("Details"):
                     _render_db_details(d, a_rows, db_rows)
-                st.link_button(
-                    "Open in Organization Cards ↗",
-                    _open_url("Organization Cards", d.db_id),
-                )
 
-    with cl_col:
-        st.subheader(f"Clusters · {len(bucket.clusters)}")
-        st.caption("Decision status shown. Undecided clusters first.")
-        f_col1, f_col2 = st.columns(2)
-        with f_col1:
-            decision_filter = st.multiselect(
-                "Decision",
-                options=["(undecided)", "ALIGN", "NEW", "SPLIT", "DEFER", "DESCRIPTIVE", "DISCUSS"],
-                default=["(undecided)", "ALIGN", "NEW"],
-                key=f"sa_dec_{qid}_{org_type}",
-            )
-        with f_col2:
-            min_size = st.number_input(
-                "Min cluster size", min_value=1, value=1, step=1,
-                key=f"sa_size_{qid}_{org_type}",
-            )
-
-        def _show(c) -> bool:
-            tag = c.decision or "(undecided)"
-            if decision_filter and tag not in decision_filter:
-                return False
-            if c.cluster_size < min_size:
-                return False
-            return True
-
-        clusters_visible = [c for c in bucket.clusters if _show(c)]
-        clusters_visible.sort(key=lambda c: (bool(c.decision), -c.cluster_size))
-
-        if not clusters_visible:
-            st.info("No clusters match filter.")
-
-        a_rows_by_cid = {r["cluster_id"]: r for r in a_rows}
         for c in clusters_visible[:100]:
             with st.container(border=True):
-                head_cols = st.columns([1, 11])
+                head_cols = st.columns([1, 9, 2])
                 with head_cols[0]:
                     st.checkbox(
                         " ", key=f"{sel_key_prefix}_cl_{c.cluster_id}",
@@ -508,7 +940,7 @@ def render() -> None:
                     )
                 with head_cols[1]:
                     title = c.canonical_yiddish or "(no canonical)"
-                    badge = f"**{c.cluster_id}** · n={c.cluster_size}"
+                    badge = f"**cluster {c.cluster_id}** · n={c.cluster_size}"
                     if c.decision:
                         badge += f" · {c.decision}"
                         if c.aligned_db_id:
@@ -520,11 +952,22 @@ def render() -> None:
                         f"<div dir='rtl' style='font-size:1.05rem'>{title}</div>",
                         unsafe_allow_html=True,
                     )
+                with head_cols[2]:
+                    _row_action_menu(
+                        self_kind="cluster",
+                        self_id=c.cluster_id,
+                        self_label=title,
+                        bucket=bucket,
+                        qid=qid,
+                        reviewer=reviewer,
+                        a_rows=a_rows, a_headers=a_headers,
+                        db_rows=db_rows, db_headers=db_headers,
+                        a_rows_by_cid=a_rows_by_cid,
+                        db_by_id=db_by_id,
+                        canonical_yiddish=c.canonical_yiddish,
+                    )
                 with st.expander("Details · mentions & candidates"):
                     _render_cluster_details(c, a_rows_by_cid, db_by_id, samples)
-                st.link_button(
-                    "Open in Organizations matching ↗",
-                    _open_url("Organizations matching", c.cluster_id),
-                )
+
         if len(clusters_visible) > 100:
-            st.caption(f"… and {len(clusters_visible) - 100} more (refine filters)")
+            st.caption(f"… and {len(clusters_visible) - 100} more clusters (refine filters)")

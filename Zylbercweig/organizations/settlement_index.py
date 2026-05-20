@@ -29,6 +29,7 @@ _BASE = Path(__file__).resolve().parent
 _CORE_DB = _BASE / "core_db.tsv"
 _ADDRESSES = _BASE / "org_addresses_review.tsv"
 _ALIGNMENT = _BASE / "org_alignment_review.tsv"
+_COORDS = _BASE / "settlement_coords.tsv"
 
 _CLUSTER_SETTLEMENT_COL = "_ - organizations - _ - locations - _ - settlement"
 
@@ -228,6 +229,52 @@ class SettlementIndex:
 
     def org_types_in_city(self, qid: str) -> list[str]:
         return sorted({t for (q, t) in self._buckets if q == qid})
+
+    def mentions_in_city(self, qid: str) -> int:
+        total = 0
+        for (q, _t), b in self._buckets.items():
+            if q != qid:
+                continue
+            total += len(b.db_cards)
+            total += sum(max(c.cluster_size, 1) for c in b.clusters)
+        return total
+
+    def buckets_in_city(self, qid: str) -> list[CityBucket]:
+        out = [b for (q, _t), b in self._buckets.items() if q == qid]
+        out.sort(key=lambda b: -(len(b.db_cards) + len(b.clusters)))
+        return out
+
+    def dominant_org_type(self, qid: str) -> str:
+        best = ""
+        best_n = 0
+        for b in self.buckets_in_city(qid):
+            n = len(b.db_cards) + len(b.clusters)
+            if n > best_n:
+                best_n = n
+                best = b.org_type
+        return best
+
+
+@lru_cache(maxsize=1)
+def load_coords() -> dict[str, tuple[float, float]]:
+    out: dict[str, tuple[float, float]] = {}
+    if not _COORDS.exists():
+        return out
+    with _COORDS.open() as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            qid = (row.get("qid") or "").strip()
+            try:
+                lat = float(row.get("lat") or "")
+                lon = float(row.get("lon") or "")
+            except ValueError:
+                continue
+            if qid:
+                out[qid] = (lat, lon)
+    return out
+
+
+def coords_for(qid: str) -> tuple[float, float] | None:
+    return load_coords().get(qid)
 
 
 @lru_cache(maxsize=1)
