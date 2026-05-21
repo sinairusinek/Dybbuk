@@ -38,7 +38,9 @@ Group-by of linked attestations on `qid`: canonical labels, type, Kima IDs, coor
 `n_attestations` / `n_person` / `n_org` / `n_flagged_mentions`, `fields`, all
 `variants` (`;`-joined), `corpora`, `external_sources` (`wikidata`[`;kima`]).
 Every QID has ≥1 attestation. Only **54** places currently carry org attestations —
-the rest of the org place backlog is still unlinked.
+the rest of the org place backlog is still unlinked. **448/883 places (50%)** are
+linked to Kima (336 from the kimatch pipeline + 112 backfilled by QID via the
+kimatch skill — see `data/working/kima/`).
 
 ### `data/working/toponyms_unlinked.csv` — per unresolved spelling (4,469), DERIVED
 The to-be-linked worklist. One row per distinct spelling, but **every underlying
@@ -60,6 +62,7 @@ filterable; detection is NFKD-normalized so it is point-insensitive),
 | `../organizations/settlement_variant_collapse_audit_2026-05-20.tsv` | org `(cluster_id, variant)` → QID resolution |
 | `../organizations/settlement_coords.tsv` | lat/lon per QID |
 | `../organizations/unresolved_settlements_punchlist.tsv` | `suggested_qid` for unlinked org spellings |
+| `data/working/kima/kima_backfill_confirmed.tsv` | QID-confirmed Kima IDs from the kimatch skill (supplements kimatch, never overrides) |
 
 Notes:
 - 4 malformed "Belarus" rows (country in the place slot) are parked in

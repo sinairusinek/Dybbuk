@@ -50,6 +50,8 @@ COLLAPSE = ORG / "settlement_variant_collapse_audit_2026-05-20.tsv"
 COORDS = ORG / "settlement_coords.tsv"
 ORG_REVIEW = ORG / "org_alignment_review.tsv"
 ORG_PUNCH = ORG / "unresolved_settlements_punchlist.tsv"
+# Kima IDs confirmed by QID via the kimatch skill (supplements kimatch_matched_full).
+KIMA_BACKFILL = WORK / "kima" / "kima_backfill_confirmed.tsv"
 
 ATT_OUT = WORK / "toponyms_attestations.csv"
 GAZ_OUT = WORK / "toponyms_gazetteer.csv"
@@ -138,6 +140,14 @@ def main() -> None:
             kima_by_qid.setdefault(q, {"kima_id": r["kima_id"].strip(),
                                        "kima_rom": r.get("kima_rom", "").strip(),
                                        "kima_heb": r.get("kima_heb", "").strip()})
+    # supplement with QID-confirmed backfill from the kimatch skill (does not override)
+    if KIMA_BACKFILL.exists():
+        for r in rd(KIMA_BACKFILL):
+            q = r["qid"].strip()
+            if is_qid(q) and r.get("kima_id", "").strip():
+                kima_by_qid.setdefault(q, {"kima_id": r["kima_id"].strip(),
+                                           "kima_rom": r.get("kima_rom", "").strip(),
+                                           "kima_heb": r.get("kima_heb", "").strip()})
     coords_by_qid = {r["qid"].strip(): (r["lat"].strip(), r["lon"].strip())
                      for r in coords if is_qid(r["qid"].strip())}
     label_en: dict[str, str] = {}
