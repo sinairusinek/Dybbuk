@@ -53,9 +53,7 @@ See `docs/workflow.md` for process details and `docs/data_dictionary.md` for fie
 - Primary outputs are now unified tables:
    - `data/working/places_unified.csv`
    - `data/working/places_unified_corrected.csv`
-- Legacy files are still supported and are derived views:
+- Legacy files are still supported and are derived views, produced by `triage_qids.py`:
    - `data/working/resolved_places.csv`
    - `data/working/qid_review_queue.csv`
-   - `data/working/resolved_places_corrected.csv`
-   - `data/working/qid_review_queue_corrected.csv`
-- To produce legacy files, pass `--legacy-outputs` (or pass explicit `--resolved-output` / `--review-output` paths).
+- To produce legacy files, run `triage_qids.py` with `--legacy-outputs` (or pass explicit `--resolved-output` / `--review-output` paths). `auto_reclassify.py` emits only the unified corrected table; `places_unified_corrected.csv` is the single source of truth for corrected data.

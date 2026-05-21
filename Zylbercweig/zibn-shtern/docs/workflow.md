@@ -39,19 +39,12 @@ Run corrected pipeline:
 
 - `python scripts/auto_reclassify.py --input data/raw/Zylbercweig-Extraction2026-02-05-places.tsv --output data/working/places_unified_corrected.csv`
 
-Optional legacy corrected outputs:
-
-- `python scripts/auto_reclassify.py --input data/raw/Zylbercweig-Extraction2026-02-05-places.tsv --output data/working/places_unified_corrected.csv --legacy-outputs`
-
-This writes:
-
-- `data/working/resolved_places_corrected.csv`
-- `data/working/qid_review_queue_corrected.csv`
+`auto_reclassify.py` emits only the unified corrected table; `places_unified_corrected.csv` is the single source of truth for corrected data.
 
 ## 5) Reviewer handoff — OpenRefine manual QID correction
 
 Primary reviewer handoff is the unified table filtered to `needs_review = true`.
-Legacy handoff remains `qid_review_queue*.csv` when `--legacy-outputs` is used.
+Legacy handoff remains `qid_review_queue.csv` from `triage_qids.py --legacy-outputs`.
 
 For OpenRefine review sessions, export a dedicated reviewer task TSV:
 

@@ -9,8 +9,7 @@ Usage example
 -------------
 python scripts/auto_reclassify.py \\
     --input  data/raw/Zylbercweig-Extraction2026-02-05-places.tsv \\
-    --output data/working/places_unified_corrected.csv \\
-    --legacy-outputs
+    --output data/working/places_unified_corrected.csv
 
 By default the existing QID cache is reused (no new Wikidata fetches unless
 QID substitution in fix_city_state adds new entries).  Pass --refresh-cache
@@ -25,7 +24,6 @@ from zibn_shtern.corrections import fix_city_state, fix_column_assignment, fix_d
 from zibn_shtern.io import load_places, save_dataframe
 from zibn_shtern.triage import (
     add_review_flags,
-    derive_legacy_outputs,
     derive_review_queue,
     ensure_unified_schema,
     enrich_and_classify,
@@ -71,21 +69,6 @@ def main() -> None:
         help="Unified corrected output file",
     )
     parser.add_argument(
-        "--legacy-outputs",
-        action="store_true",
-        help="Also derive legacy corrected resolved/review outputs from unified data",
-    )
-    parser.add_argument(
-        "--resolved-output",
-        default=None,
-        help="Optional legacy corrected resolved output path (implies legacy output generation)",
-    )
-    parser.add_argument(
-        "--review-output",
-        default=None,
-        help="Optional legacy corrected review output path (implies legacy output generation)",
-    )
-    parser.add_argument(
         "--refresh-cache",
         action="store_true",
         help="Re-fetch Wikidata entities even if already cached",
@@ -93,10 +76,6 @@ def main() -> None:
     parser.add_argument("--ancestor-depth", type=int, default=6)
     parser.add_argument("--chain-depth", type=int, default=6)
     args = parser.parse_args()
-
-    emit_legacy = bool(args.legacy_outputs or args.resolved_output or args.review_output)
-    legacy_resolved_path = args.resolved_output or "data/working/resolved_places_corrected.csv"
-    legacy_review_path = args.review_output or "data/working/qid_review_queue_corrected.csv"
 
     # ------------------------------------------------------------------
     # Step 1: Full triage pipeline (classify_qid ordering fix is live)
@@ -164,13 +143,6 @@ def main() -> None:
     print("\n=== Step 4: Saving outputs ===")
     save_dataframe(unified, args.output)
     print(f"  Unified output  → {args.output}")
-
-    if emit_legacy:
-        resolved_legacy, queue_legacy = derive_legacy_outputs(unified, include_corrections=True)
-        save_dataframe(resolved_legacy, legacy_resolved_path)
-        print(f"  Resolved places → {legacy_resolved_path}")
-        save_dataframe(queue_legacy, legacy_review_path)
-        print(f"  Review queue    → {legacy_review_path}")
 
     print("\nDone.")
 

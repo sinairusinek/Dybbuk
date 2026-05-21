@@ -94,8 +94,8 @@ Legacy files are optional and derivable from the unified table:
 
 - `resolved_places.csv`: full unified rows without correction columns (base mode)
 - `qid_review_queue.csv`: `needs_review = true` subset, reviewer-first column order
-- `resolved_places_corrected.csv`: full rows including correction columns
-- `qid_review_queue_corrected.csv`: review subset including correction columns
+
+Corrected rows (with correction columns) live only in `places_unified_corrected.csv`; the legacy `*_corrected.csv` projections are no longer generated.
 
 No information exists only in legacy files; they are projections of unified data.
 
