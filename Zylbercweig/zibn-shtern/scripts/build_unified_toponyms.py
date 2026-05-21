@@ -52,6 +52,9 @@ ORG_REVIEW = ORG / "org_alignment_review.tsv"
 ORG_PUNCH = ORG / "unresolved_settlements_punchlist.tsv"
 # Kima IDs confirmed by QID via the kimatch skill (supplements kimatch_matched_full).
 KIMA_BACKFILL = WORK / "kima" / "kima_backfill_confirmed.tsv"
+# Maaty alternate QIDs validated as places (Kima membership or Wikidata P31), used to
+# relink attestations whose primary QID is a mis-resolved non-place.
+MAATY_RELINK = WORK / "kima" / "maaty_relink_validated.tsv"
 
 ATT_OUT = WORK / "toponyms_attestations.csv"
 GAZ_OUT = WORK / "toponyms_gazetteer.csv"
@@ -135,7 +138,7 @@ ATT_COLS = [
     "source_field", "context", "source_value", "source_value_script",
     "link_status", "qid", "label_en", "label_yi", "place_type", "category",
     "kima_id", "kima_rom", "kima_heb", "lat", "lon",
-    "maaty_qid", "maaty_qid_conflict", "rejected_qid",
+    "maaty_qid", "maaty_qid_conflict", "rejected_qid", "relink_source",
     "suggested_qid", "suggested_english", "is_descriptor", "review_flags",
 ]
 
@@ -185,6 +188,27 @@ def main() -> None:
         q = r["wikidata_qid"].strip()
         if is_qid(q):
             label_en.setdefault(q, r.get("english_name", "").strip())
+
+    # Validated Maaty relink targets (places). Feed their labels/type/Kima into the
+    # enrichment maps so relinked attestations resolve fully.
+    relink_ok: set[str] = set()
+    if MAATY_RELINK.exists():
+        for r in rd(MAATY_RELINK):
+            q = r["maaty_qid"].strip()
+            if not is_qid(q):
+                continue
+            relink_ok.add(q)
+            if r.get("label_en", "").strip():
+                label_en.setdefault(q, r["label_en"].strip())
+            if r.get("label_yi", "").strip():
+                label_yi.setdefault(q, r["label_yi"].strip())
+            if r.get("place_type", "").strip():
+                ptype.setdefault(q, r["place_type"].strip())
+            category.setdefault(q, "settlement")
+            if r.get("kima_id", "").strip():
+                kima_by_qid.setdefault(q, {"kima_id": r["kima_id"].strip(),
+                                           "kima_rom": r.get("kima_rom", "").strip(),
+                                           "kima_heb": r.get("kima_heb", "").strip()})
 
     # QIDs whose Wikidata type reveals a mis-resolution (person/taxon/disambiguation/…).
     nonplace_qids = {q: nonplace_kind(ptype.get(q, ""), category.get(q, ""))
@@ -247,8 +271,13 @@ def main() -> None:
                    is_descriptor="True" if is_descriptor(val) else "",
                    review_flags=r.get("review_flags", ""))
         if is_qid(q) and q in nonplace_qids:
-            # mis-resolved: keep the Yiddish toponym for re-linking, reject the bad QID
-            row.update(link_status="misresolved", rejected_qid=q)
+            if mq in relink_ok and mq not in nonplace_qids:
+                # rescue via Maaty's validated place QID; keep the bad one for audit
+                enrich(row, mq)
+                row.update(link_status="linked", rejected_qid=q, relink_source="maaty")
+            else:
+                # mis-resolved, no valid alternate: keep the Yiddish toponym for re-linking
+                row.update(link_status="misresolved", rejected_qid=q)
         elif is_qid(q):
             enrich(row, q)
             row["link_status"] = "needs_review" if nr else "linked"

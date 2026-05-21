@@ -26,8 +26,9 @@ Key columns: `attestation_id`, `source_corpus`, `source_record_id`, `org_db_id`,
 flagged — never overwrites), `suggested_qid`/`suggested_english` (for unlinked),
 `is_descriptor`, `review_flags`.
 
-Status spread: 5,136 `linked` + 747 `needs_review` (have a QID, flagged for quality)
-+ 217 `misresolved` (QID is a non-place — see below) + 12,690 `unlinked`.
+Status spread: 5,339 `linked` (incl. 203 relinked via Maaty — `relink_source=maaty`,
+original bad QID kept in `rejected_qid`) + 747 `needs_review` + 14 `misresolved`
+(non-place QID, no valid alternate — see below) + 12,690 `unlinked`.
 
 **Attested vs resolved:** `source_value` is always Yiddish (the attested toponym, for
 both person and LLM-extracted org places); the Latin forms (`label_en`, `kima_rom`)
@@ -42,15 +43,17 @@ the rest of the org place backlog is still unlinked. **448/883 places (50%)** ar
 linked to Kima (336 from the kimatch pipeline + 112 backfilled by QID via the
 kimatch skill — see `data/working/kima/`).
 
-### `data/working/toponyms_misresolved.csv` — per rejected QID (111), DERIVED
-QIDs whose Wikidata type proves they are **not places** (62 persons, 20 disambiguation
-pages, 20 taxa, films/albums) — the Yiddish toponym matched a wrong entity. Surfaced by
-the Kima run; detected in-build by `nonplace_kind()` from `place_type`/`category`. These
-attestations are marked `link_status=misresolved` (QID moved to `rejected_qid`, kept out
-of the gazetteer); the Yiddish `source_value` is preserved for re-linking. Columns:
-`rejected_qid`, `wrong_kind`, `wrong_label_en`, `wrong_type`, `n_attestations`, `corpora`,
-`variants`, `attestation_ids`. **203 of these attestations already carry a Maaty alternate
-QID** that is usually correct — a ready relink source.
+### `data/working/toponyms_misresolved.csv` — per rejected QID (13), DERIVED
+QIDs whose Wikidata type proves they are **not places** — the Yiddish toponym matched a
+wrong entity. Surfaced by the Kima run; detected in-build by `nonplace_kind()` from
+`place_type`/`category`. The attestation is marked `link_status=misresolved` (bad QID
+moved to `rejected_qid`, kept out of the gazetteer); the Yiddish `source_value` is
+preserved for re-linking. Columns: `rejected_qid`, `wrong_kind`, `wrong_label_en`,
+`wrong_type`, `n_attestations`, `corpora`, `variants`, `attestation_ids`.
+
+Originally 111 QIDs / 217 attestations. **203 were relinked** to a Maaty alternate QID
+validated as a place (Kima membership or Wikidata P31 — see `kima/maaty_relink_validated.tsv`),
+leaving only **14 attestations / 13 QIDs** with no valid alternate.
 
 ### `data/working/toponyms_unlinked.csv` — per unresolved spelling (4,469), DERIVED
 The to-be-linked worklist. One row per distinct spelling, but **every underlying
@@ -73,6 +76,7 @@ filterable; detection is NFKD-normalized so it is point-insensitive),
 | `../organizations/settlement_coords.tsv` | lat/lon per QID |
 | `../organizations/unresolved_settlements_punchlist.tsv` | `suggested_qid` for unlinked org spellings |
 | `data/working/kima/kima_backfill_confirmed.tsv` | QID-confirmed Kima IDs from the kimatch skill (supplements kimatch, never overrides) |
+| `data/working/kima/maaty_relink_validated.tsv` | Maaty alternate QIDs validated as places — relink source for mis-resolved attestations (+ Kima IDs for 43) |
 
 Notes:
 - 4 malformed "Belarus" rows (country in the place slot) are parked in
