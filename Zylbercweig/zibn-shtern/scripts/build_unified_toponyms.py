@@ -56,6 +56,7 @@ KIMA_BACKFILL = WORK / "kima" / "kima_backfill_confirmed.tsv"
 ATT_OUT = WORK / "toponyms_attestations.csv"
 GAZ_OUT = WORK / "toponyms_gazetteer.csv"
 UNLINKED_OUT = WORK / "toponyms_unlinked.csv"
+MISRESOLVED_OUT = WORK / "toponyms_misresolved.csv"
 
 _HEB = re.compile(r"[֐-׿יִ-ﭏ]")
 _LAT = re.compile(r"[A-Za-z]")
@@ -79,6 +80,24 @@ def script_of(s: str) -> str:
 
 def _strip_points(s: str) -> str:
     return _POINTS.sub("", unicodedata.normalize("NFKD", s or ""))
+
+
+# Wikidata types that mean the QID is NOT a place — a mis-resolution.
+# 'human settlement' is a place, so 'human' is matched only as a standalone word.
+_NONPLACE_RE = re.compile(
+    r"\b(taxon|genus|species|Wikimedia disambiguation|album|film|written work"
+    r"|given name|family name|surname)\b", re.I)
+
+
+def nonplace_kind(place_type: str, category: str) -> str:
+    """Return the non-place kind for a QID's type strings, or '' if it looks like a place."""
+    t = f"{place_type} | {category}".replace("human settlement", "").replace("human-readable", "")
+    m = _NONPLACE_RE.search(t)
+    if m:
+        return m.group(1).lower()
+    if re.search(r"\bhuman\b", t, re.I):
+        return "human(person)"
+    return ""
 
 
 def is_descriptor(variant: str, note: str = "") -> bool:
@@ -116,7 +135,7 @@ ATT_COLS = [
     "source_field", "context", "source_value", "source_value_script",
     "link_status", "qid", "label_en", "label_yi", "place_type", "category",
     "kima_id", "kima_rom", "kima_heb", "lat", "lon",
-    "maaty_qid", "maaty_qid_conflict",
+    "maaty_qid", "maaty_qid_conflict", "rejected_qid",
     "suggested_qid", "suggested_english", "is_descriptor", "review_flags",
 ]
 
@@ -166,6 +185,11 @@ def main() -> None:
         q = r["wikidata_qid"].strip()
         if is_qid(q):
             label_en.setdefault(q, r.get("english_name", "").strip())
+
+    # QIDs whose Wikidata type reveals a mis-resolution (person/taxon/disambiguation/…).
+    nonplace_qids = {q: nonplace_kind(ptype.get(q, ""), category.get(q, ""))
+                     for q in set(ptype) | set(category)}
+    nonplace_qids = {q: k for q, k in nonplace_qids.items() if k}
 
     # Maaty alternate resolution by mention key
     maaty_by_key = {(r["entry_id"], r["source_role"], r["source_value"].strip()):
@@ -219,12 +243,17 @@ def main() -> None:
         row.update(attestation_id=new_id("P", eid, role), source_corpus="person",
                    source_record_id=eid, source_field=role, context=r.get("context", ""),
                    source_value=val, source_value_script=script_of(val),
-                   link_status="needs_review" if nr else "linked",
                    maaty_qid=mq, maaty_qid_conflict="True" if (mq and is_qid(q) and mq != q) else "",
                    is_descriptor="True" if is_descriptor(val) else "",
                    review_flags=r.get("review_flags", ""))
-        if is_qid(q):
+        if is_qid(q) and q in nonplace_qids:
+            # mis-resolved: keep the Yiddish toponym for re-linking, reject the bad QID
+            row.update(link_status="misresolved", rejected_qid=q)
+        elif is_qid(q):
             enrich(row, q)
+            row["link_status"] = "needs_review" if nr else "linked"
+        else:
+            row["link_status"] = "unlinked"
         att.append(row)
 
     # ---------------------------------------------------------------
@@ -265,7 +294,9 @@ def main() -> None:
                            source_record_id=cid, org_db_id=dbid, source_field=fname,
                            source_value=val, source_value_script=script_of(val),
                            is_descriptor="True" if is_descriptor(val) else "")
-                if resolved:
+                if resolved and resolved[0] in nonplace_qids:
+                    row.update(link_status="misresolved", rejected_qid=resolved[0])
+                elif resolved:
                     enrich(row, resolved[0])
                     row["link_status"] = "linked"
                 else:
@@ -356,6 +387,33 @@ def main() -> None:
     write_csv(UNLINKED_OUT, unlinked_cols, unlinked_rows)
 
     # ---------------------------------------------------------------
+    # DERIVED: misresolved audit (per rejected QID) — relink worklist
+    # ---------------------------------------------------------------
+    m: dict[str, dict] = {}
+    for a in att:
+        if a["link_status"] != "misresolved":
+            continue
+        rq = a["rejected_qid"].strip()
+        e = m.setdefault(rq, {"variants": set(), "att_ids": [], "corpora": set()})
+        if a["source_value"].strip():
+            e["variants"].add(a["source_value"].strip())
+        e["att_ids"].append(a["attestation_id"])
+        e["corpora"].add(a["source_corpus"])
+    mis_cols = ["rejected_qid", "wrong_kind", "wrong_label_en", "wrong_type",
+                "n_attestations", "corpora", "n_variants", "variants", "attestation_ids"]
+    mis_rows = []
+    for rq in sorted(m, key=lambda q: -len(m[q]["att_ids"])):
+        variants = sorted(m[rq]["variants"])
+        mis_rows.append({
+            "rejected_qid": rq, "wrong_kind": nonplace_qids.get(rq, ""),
+            "wrong_label_en": label_en.get(rq, ""), "wrong_type": ptype.get(rq, ""),
+            "n_attestations": len(m[rq]["att_ids"]), "corpora": ";".join(sorted(m[rq]["corpora"])),
+            "n_variants": len(variants), "variants": ";".join(variants),
+            "attestation_ids": ";".join(m[rq]["att_ids"]),
+        })
+    write_csv(MISRESOLVED_OUT, mis_cols, mis_rows)
+
+    # ---------------------------------------------------------------
     from collections import Counter
     print(f"attestations: {len(att)} rows -> {ATT_OUT.name}")
     print(f"  corpus: {dict(Counter(a['source_corpus'] for a in att))}")
@@ -368,6 +426,8 @@ def main() -> None:
     print(f"  corpora: {dict(Counter(r['corpora'] for r in unlinked_rows))}")
     print(f"  descriptors: {sum(1 for r in unlinked_rows if r['is_descriptor'])}"
           f" | with suggested_qid: {sum(1 for r in unlinked_rows if r['suggested_qid'])}")
+    print(f"misresolved:  {len(mis_rows)} rejected QIDs -> {MISRESOLVED_OUT.name}")
+    print(f"  by kind: {dict(Counter(r['wrong_kind'] for r in mis_rows))}")
 
 
 if __name__ == "__main__":
