@@ -15,7 +15,7 @@ ALLOWED_TAGS = {
     "roleDesc": set(),
     "l": {"lg_id"},
     "head": {"lg_id"},
-    "lg": {"n", "continued"},
+    "lg": {"n", "cont"},  # `cont` not `continued`: Transkribus rejects `continued` as a property name; structurer expands cont:yes → continued="yes" in TEI
 }
 
 HEADING_TYPES = {"act", "scene"}

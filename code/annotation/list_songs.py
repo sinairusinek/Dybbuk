@@ -35,7 +35,7 @@ def main():
                 elif tag == "head":
                     by_lg[attrs.get("lg_id", "?")]["head"].append({"page": page_num, "text": txt})
                 elif tag == "lg":
-                    by_lg[attrs.get("n", "?")]["lg_marks"].append({"page": page_num, "continued": attrs.get("continued", "?")})
+                    by_lg[attrs.get("n", "?")]["lg_marks"].append({"page": page_num, "cont": attrs.get("cont", "?")})
 
     songs = []
     for lg_id in sorted(by_lg, key=lambda k: int(k) if str(k).isdigit() else 1e9):
@@ -60,7 +60,7 @@ def main():
     for s in songs:
         pages = ",".join(map(str, s["pages"]))
         head_txt = f"  head={s['head'][0]!r}" if s["head"] else ""
-        cont_pgs = [m["page"] for m in s["lg_marks"] if m["continued"] == "yes"]
+        cont_pgs = [m["page"] for m in s["lg_marks"] if m["cont"] == "yes"]
         cont = f"  continued_on={cont_pgs}" if cont_pgs else ""
         print(f"  lg{s['lg_id']:>3}  pp.{pages:<10}  {s['n_lines']:>3} lines{head_txt}{cont}  → {s['incipit']!r}")
 

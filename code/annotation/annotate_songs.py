@@ -134,7 +134,7 @@ def process_play(play: str, dry_run: bool) -> dict:
     #     section heading (ends with '.' or ':', or is wholly a single character
     #     name like 'ראשעל'). At most 2 leading head lines per lg.
     #   - lg boundary: on each page that an lg appears on, the first line of
-    #     that lg-on-page carries `lg {n:N; continued:no|yes}`. `continued:yes`
+    #     that lg-on-page carries `lg {n:N; cont:no|yes}`. `cont:yes`
     #     means this is the same lg continuing from the previous page.
     from annotation.schema import serialize_custom
 
@@ -162,7 +162,7 @@ def process_play(play: str, dry_run: bool) -> dict:
                 page_num_of[id(line)] = pnum
 
     # Convert leading head-candidate lines from `l` → `head`; mark first line
-    # per page with `lg {n; continued}`.
+    # per page with `lg {n; cont}`.
     for lg, items in lg_streams.items():
         # head detection: scan first 3 leading lines; each independently checked
         for idx in range(min(3, len(items))):
@@ -186,12 +186,14 @@ def process_play(play: str, dry_run: bool) -> dict:
         for pnum, line, _ in items:
             if pnum in seen_pages: continue
             seen_pages.add(pnum)
-            continued = "no" if first_page is None else "yes"
+            # `cont` (not `continued`): Transkribus rejects `continued` as a tag
+            # property name. The TEI structurer expands cont:yes → continued="yes".
+            cont = "no" if first_page is None else "yes"
             if first_page is None: first_page = pnum
             cur = line.get("custom", "")
             # drop any prior lg tag
             kept = [(t, a) for t, a in parse_custom(cur) if t != "lg"]
-            kept.append(("lg", {"n": lg, "continued": continued}))
+            kept.append(("lg", {"n": lg, "cont": cont}))
             line.set("custom", serialize_custom(kept))
 
     # Post-pass: drop lg's that look like prose (lines too long) or meta-marker
