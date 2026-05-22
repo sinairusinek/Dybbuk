@@ -63,6 +63,12 @@ UNLINKED_CONFIRMED = WORK / "kima" / "unlinked_confirmed.tsv"
 ATT_OUT = WORK / "toponyms_attestations.csv"
 GAZ_OUT = WORK / "toponyms_gazetteer.csv"
 UNLINKED_OUT = WORK / "toponyms_unlinked.csv"
+# Unlinked spellings that only ever appear in org venues/addresses fields are venue/
+# institution names (theaters, clubs, societies, addresses), NOT toponyms — they will
+# never match a place gazetteer. Split them out so the unlinked toponym worklist
+# reflects genuine unresolved places. Belong in org/institution authority handling.
+VENUES_OUT = WORK / "venues_unlinked.csv"
+_PLACE_FIELDS = {"settlements", "place", "places", "province", "country", "countries"}
 MISRESOLVED_OUT = WORK / "toponyms_misresolved.csv"
 
 _HEB = re.compile(r"[֐-׿יִ-ﭏ]")
@@ -436,16 +442,21 @@ def main() -> None:
 
     unlinked_cols = ["variant", "script", "corpora", "occurrences", "fields", "contexts",
                      "suggested_qid", "suggested_english", "is_descriptor", "attestation_ids"]
-    unlinked_rows = []
+    unlinked_rows, venue_rows = [], []
     for v, e in sorted(u.items(), key=lambda kv: (-kv[1]["occ"], kv[0])):
-        unlinked_rows.append({
+        row = {
             "variant": v, "script": script_of(v), "corpora": ";".join(sorted(e["corpora"])),
             "occurrences": e["occ"], "fields": ";".join(sorted(e["fields"])),
             "contexts": ";".join(sorted(e["contexts"])), "suggested_qid": e["sugg_qid"],
             "suggested_english": e["sugg_en"], "is_descriptor": "True" if e["desc"] else "",
             "attestation_ids": ";".join(e["att_ids"]),
-        })
+        }
+        # Venue/institution name if it never appears in a place-type field.
+        (venue_rows if not (e["fields"] & _PLACE_FIELDS) else unlinked_rows).append(row)
     write_csv(UNLINKED_OUT, unlinked_cols, unlinked_rows)
+    write_csv(VENUES_OUT, unlinked_cols, venue_rows)
+    print(f"venues:       {len(venue_rows)} venue/institution names -> venues_unlinked.csv "
+          f"(split out of the unlinked toponym worklist)")
 
     # ---------------------------------------------------------------
     # DERIVED: misresolved audit (per rejected QID) — relink worklist
