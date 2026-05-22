@@ -1,35 +1,37 @@
-# Fischer gazetteer → Kima match (baseline run, 2026-05-22)
+# Fischer gazetteer → Kima match + donations (2026-05-22)
 
 Match of the **Fischer gazetteer** (`Expanded-Gaz-TENTATIVE.xlsx`, Sheet1 → 22,932 Hebrew
 spellings across 9,723 places/UIDs) against the Kima Historical Gazetteer, via the `kimatch`
-skill/engine. No priors; A/B/C grading + safety guards on.
+skill/engine, then coordinate-arbitrated resolution and Stage-2 donation export.
+
+## Pipeline (scripts in ../../../scripts/)
+1. `kimatch match` (engine, A/B/C grading + safety guards) → `fischer_matched.csv` (+ grade splits).
+2. `resolve_fischer_all.py` → `fischer_resolved.tsv`: one row per spelling, resolved by Fischer's
+   own lat/lon (the correct Kima place is the candidate nearest Fischer's coords). This single pass
+   recovers fuzzy/ambiguous rows, geo-verifies exact matches (catches cross-border homograph FPs —
+   Wayne NJ for Vienna, Sydney NS for Sydney), and applies a name-aware large-entity rule (a Kima
+   name == Fischer EngName allows country-scale distance up to 1500km, so polygonal countries like
+   Argentina/Brazil aren't false-rejected, while transcontinental homographs still are).
+3. `export_fischer_donations.py` → the three donation files below.
 
 ## Files
+- **fischer_matched.csv** (+ `.A_autolink/.B_review/.C_review.csv`) — raw engine output per spelling.
+- **fischer_resolved.tsv** — unified resolution per spelling. Key cols: `resolved_kima_id`,
+  `dist_km`, `method` (exact_geoverified / coord_rearbitrated / none), `verdict`
+  (KEEP ≤50km or name-confirmed large entity / REVIEW 50–300km / REJECT >300km /
+  NO_CANDIDATE / NO_COORD), `candidates` (alternatives — the per-spelling ambiguity record).
+- **fischer_donations.tsv** / **.json** — NEW HebName variants Kima lacks for confirmed (KEEP)
+  places. **10,885 variants across 3,369 places.** (Includes epithets/calques like Austria +=
+  עיר הדמים — Kima wants these; future TODO is to label `variant_type`.)
+- **fischer_external_id_donations.tsv** — Fischer's KaganID / JGenID / USBGN / YS_id for confirmed
+  places. **9,944 ids** (kagan 2,579 · jewishgen 3,650 · us_bgn 3,636 · ys 79). The live Kima API
+  (2026-05-22) tracks only MAZAL/NAF/VIAF/GeoNames/WikiData, so these are *proposed new id-types*.
+  ⚠ ~3,618 us_bgn values are negative (likely a sign/encoding artifact in the source) — flagged.
+- **fischer_confirmed_decisions.tsv** — confirmed (UID, spelling)→kima_id; reusable as
+  `kimatch match --prior-resolutions`.
 
-- **fischer_matched.csv** — one row per input spelling, with the engine's verdict columns
-  (`_match_status`, `_grade`, `_kima_id`, `_sound_match`, `_flags`, `_distance_km`,
-  `_candidates`). The `.A_autolink.csv` / `.B_review.csv` / `.C_review.csv` are the same rows
-  split into triage queues by grade (only A is auto-link-safe).
-
-- **fischer_matched.by_uid.tsv** — regrouped to one row per place (UID): the anchor Kima id, an
-  all-spellings-agree flag, the alternative candidate ids seen across the UID's spellings
-  (future-ambiguity record), and donatable extra HebName variants.
-
-- **fischer_matched.uid_conflicts.tsv** — the 126 UIDs whose confident spellings disagreed on
-  which Kima place they are (≥1 spelling mismatched).
-
-- **fischer_matched.conflicts_resolved.tsv** — those 126 conflicts arbitrated by Fischer's own
-  lat/lon (the correct Kima place is the candidate nearest the gazetteer's coordinates).
-  `resolution_quality`: `RESOLVED_near` (105, true match — the loser was a duplicate Kima record
-  or a wrong homograph), `RESOLVED_mid` (7), `NO_GOOD_MATCH` (13, no candidate is near → manual
-  search / candidate new place), `NO_COORD` (1).
-
-- **fischer_matched.phonetic_resolved.tsv** — the 136 `phonetic_mismatch` rows (matched by
-  spelling but don't *sound* like the chosen place — the wrong-city homograph class), verdict by
-  distance from Fischer's coords: `REJECT` (60, >300km — clear wrong city, drop the link),
-  `CHECK` (40, 50–300km), `KEEP` (30, ≤50km — sound-check false alarm, the match is fine),
-  `NO_COORD` (6).
-
-## Scripts (in ../../../scripts/)
-- `consolidate_fischer_by_uid.py` — builds the `.by_uid` + `.uid_conflicts` views.
-- `resolve_fischer_conflicts.py` — coord-arbitrates conflicts + phonetic_mismatch rows.
+## Headline numbers
+13,814 confident (KEEP) rows → **4,552 Kima places / 4,733 UIDs anchored**. Coord arbitration
+recovered or corrected 3,640 rows where the nearest candidate beat the engine's pick. 71 UIDs had
+KEEP rows disagreeing on the place (anchor = majority). REJECT/NO_CANDIDATE rows (~7,400 incl.
+4,558 genuinely absent from Kima) are out of scope here — candidates for new Kima places.

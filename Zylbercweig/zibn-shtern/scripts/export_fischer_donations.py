@@ -1,40 +1,38 @@
 #!/usr/bin/env python3
-"""Stage-2 donation export for the Fischer→Kima match (variants only).
+"""Stage-2 donation export for the Fischer→Kima match.
 
-Builds the set of CONFIRMED Fischer place→Kima links, then emits the HebName spellings Kima
-does NOT already carry for those places as new-variant donations.
+Consumes fischer_resolved.tsv (the unified coord-arbitrated resolution) and emits, for every
+CONFIRMED link (verdict == KEEP), three donation streams:
 
-Confirmed = union of
-  - clean grade-A anchors where all spellings of the UID agree (from .by_uid.tsv), and
-  - conflict UIDs the coord-arbiter resolved RESOLVED_near / RESOLVED_mid (from .conflicts_resolved.tsv),
-minus
-  - phonetic_mismatch rows the arbiter marked REJECT (those individual spellings are dropped),
-  - NO_GOOD_MATCH conflicts (whole UID dropped — no good Kima place).
+  1. NEW VARIANTS — HebName spellings Kima does not already carry for the place.
+  2. EXTERNAL IDs — Fischer's KaganID / JGenID / USBGN / YS_id. The live Kima API (checked
+     2026-05-22) exposes only MAZAL/NAF/VIAF/GeoNames/WikiData, so these are *new external-id
+     types* Kima does not yet track — emitted as proposals, flagged for the Kima team to decide.
+  3. CONFIRMED DECISIONS — one row per confirmed (UID, spelling)→kima_id (provenance; reusable
+     as --prior-resolutions).
 
-A HebName is a donation candidate when its normalized form is NOT already in Kima's
-primary_heb + registered variants for that place.
+Per UID the anchor place = the most common KEEP resolution; UIDs whose KEEP rows disagree on the
+place are noted (anchor = majority, but flagged) — these are rare with ground-truth coords.
 
-Outputs (in the fischer dir):
-  - fischer_donations.tsv   flat, one row per (kima_id, new variant) — for spreadsheet review
-  - fischer_donations.json  grouped per Kima place — the hand-off artifact
-  - fischer_confirmed_decisions.tsv  one row per confirmed (UID, spelling) → kima_id (provenance,
-        also reusable as --prior-resolutions for future runs)
+Outputs (fischer dir): fischer_donations.tsv / .json, fischer_external_id_donations.tsv,
+fischer_confirmed_decisions.tsv.
 """
 import csv, sys, os, json
-from collections import defaultdict
+from collections import defaultdict, Counter
 from kimatch.core.normalizers import normalize_name
 
 csv.field_size_limit(sys.maxsize)
-
 KIMA_CSV = "/Users/sinairusinek/Documents/GitHub/Kimatch/20250126KimaPlacesCSVx.csv"
 KIMA_VARIANTS = "/Users/sinairusinek/Documents/GitHub/Kimatch/Kima-Variants-20250929.tsv"
 SOURCE = "Fischer gazetteer (Expanded-Gaz-TENTATIVE)"
+EXT_TYPES = [("KaganID", "kagan_id"), ("JGenID", "jewishgen_id"),
+             ("USBGN", "us_bgn_id"), ("YS_id", "ys_id")]
+EXT_NOTE = ("Kima does not currently track this id-type (live API 2026-05-22 exposes only "
+            "MAZAL/NAF/VIAF/GeoNames/WikiData) — proposed new external-id type")
 
 
 def load_kima_names():
-    """{place_id: set(normalized existing names)} from primary_heb/rom + variants."""
-    existing = defaultdict(set)
-    rom = {}
+    existing, rom = defaultdict(set), {}
     with open(KIMA_CSV, encoding="utf-8") as f:
         for r in csv.DictReader(f):
             kid = r["id"].strip()
@@ -45,93 +43,97 @@ def load_kima_names():
                     existing[kid].add(normalize_name(v))
     with open(KIMA_VARIANTS, encoding="utf-8") as f:
         for r in csv.DictReader(f, delimiter="\t"):
-            kid = (r.get("PlaceId") or "").strip()
-            v = (r.get("variant") or "").strip()
+            kid, v = (r.get("PlaceId") or "").strip(), (r.get("variant") or "").strip()
             if kid and v:
                 existing[kid].add(normalize_name(v))
     return existing, rom
 
 
-def main(matched_csv):
-    d = os.path.dirname(matched_csv)
-    stem = os.path.splitext(matched_csv)[0]
-    rows = list(csv.DictReader(open(matched_csv, encoding="utf-8")))
-    by_uid = csv.DictReader(open(stem + ".by_uid.tsv", encoding="utf-8"), delimiter="\t")
-    conf_res = list(csv.DictReader(open(stem + ".conflicts_resolved.tsv", encoding="utf-8"), delimiter="\t"))
-
-    # 1. anchor per confirmed UID
-    anchor = {}      # uid -> (kima_id, basis)
-    for u in by_uid:
-        if u["anchor_kima_id"] and u["all_agree"] == "Y" and u["anchor_grade"] == "A_autolink":
-            anchor[u["UID"]] = (u["anchor_kima_id"], "grade_A_all_agree")
-    drop_uids = set()
-    for c in conf_res:
-        q = c["resolution_quality"]
-        if q in ("RESOLVED_near", "RESOLVED_mid"):
-            anchor[c["UID"]] = (c["resolved_kima_id"], "coord_arbitrated_" + q)
-        elif q == "NO_GOOD_MATCH":
-            drop_uids.add(c["UID"])
-    for uid in drop_uids:
-        anchor.pop(uid, None)
-
-    # 2. spellings to drop: phonetic REJECT rows (by UID+HebName)
-    reject = set()
-    pres = csv.DictReader(open(stem + ".phonetic_resolved.tsv", encoding="utf-8"), delimiter="\t")
-    for p in pres:
-        if p["verdict"] == "REJECT":
-            reject.add((p["UID"], p["HebName"]))
-
+def main(resolved_tsv):
+    d = os.path.dirname(resolved_tsv)
+    rows = list(csv.DictReader(open(resolved_tsv, encoding="utf-8"), delimiter="\t"))
+    keep = [r for r in rows if r["verdict"] == "KEEP" and r["resolved_kima_id"]]
     existing, rom = load_kima_names()
 
-    # 3. gather confirmed spellings per UID, emit donations + decisions
-    spellings_by_uid = defaultdict(list)  # uid -> list of (HebName, grade, status, sourcing)
-    for r in rows:
-        uid = r["UID"]
-        if uid not in anchor:
-            continue
+    # per-UID anchor = majority KEEP resolution
+    uid_keep = defaultdict(list)
+    for r in keep:
+        uid_keep[r["UID"]].append(r)
+    uid_anchor, uid_split = {}, {}
+    for uid, grp in uid_keep.items():
+        c = Counter(r["resolved_kima_id"] for r in grp)
+        uid_anchor[uid] = c.most_common(1)[0][0]
+        if len(c) > 1:
+            uid_split[uid] = dict(c)
+
+    # 1. variant donations + decisions (only spellings whose own row is KEEP and matches the anchor)
+    donations, decisions = [], []
+    grouped = defaultdict(lambda: {"rom": "", "variants": []})
+    seen_per_place = defaultdict(set)
+    for r in keep:
+        uid, kid = r["UID"], uid_anchor[r["UID"]]
+        if r["resolved_kima_id"] != kid:
+            continue                       # spelling disagrees with its UID's majority anchor
         heb = (r.get("HebName") or "").strip()
-        if not heb or (uid, heb) in reject:
+        decisions.append({"UID": uid, "name": heb, "kima_id": kid,
+                          "method": r["method"], "orig_status": r["orig_status"],
+                          "dist_km": r["dist_km"]})
+        if not heb:
             continue
-        spellings_by_uid[uid].append((heb, r.get("_grade", ""), r.get("_match_status", ""), r.get("Sourcing", "")))
+        n = normalize_name(heb)
+        if n in existing.get(kid, set()) or n in seen_per_place[kid]:
+            continue
+        seen_per_place[kid].add(n)
+        rec = {"kima_id": kid, "kima_rom": rom.get(kid, ""), "variant": heb, "source": SOURCE,
+               "fischer_uid": uid, "method": r["method"], "orig_status": r["orig_status"],
+               "dist_km": r["dist_km"], "sourcing": r.get("Sourcing", "")}
+        donations.append(rec)
+        g = grouped[kid]; g["rom"] = rom.get(kid, "")
+        g["variants"].append({"variant": heb, "source": SOURCE, "fischer_uid": uid,
+                              "provenance": {"method": r["method"], "orig_status": r["orig_status"],
+                                             "dist_km": r["dist_km"], "sourcing": r.get("Sourcing", "")}})
 
-    donations = []     # flat rows
-    grouped = defaultdict(lambda: {"variants": [], "rom": "", "eng": ""})
-    decisions = []
-    for uid, (kid, basis) in anchor.items():
-        seen_norm = set()
-        for heb, grade, status, sourcing in spellings_by_uid.get(uid, []):
-            decisions.append({"UID": uid, "name": heb, "kima_id": kid, "basis": basis,
-                              "grade": grade, "match_status": status})
-            n = normalize_name(heb)
-            if n in existing.get(kid, set()) or n in seen_norm:
-                continue              # Kima already has it (or dup within UID)
-            seen_norm.add(n)
-            donations.append({
-                "kima_id": kid, "kima_rom": rom.get(kid, ""), "variant": heb,
-                "source": SOURCE, "fischer_uid": uid, "match_basis": basis,
-                "match_status": status, "grade": grade, "sourcing": sourcing,
-            })
-            g = grouped[kid]; g["rom"] = rom.get(kid, "")
-            g["variants"].append({"variant": heb, "source": SOURCE, "fischer_uid": uid,
-                                   "provenance": {"basis": basis, "match_status": status, "grade": grade,
-                                                  "sourcing": sourcing}})
+    # 2. external-id donations: per confirmed place, collect distinct ids across its UIDs
+    place_ids = defaultdict(lambda: defaultdict(set))   # kima_id -> id_type -> {(value, uid)}
+    for uid, kid in uid_anchor.items():
+        sample = uid_keep[uid][0]
+        for col, idtype in EXT_TYPES:
+            v = (sample.get(col) or "").strip()
+            if v:
+                place_ids[kid][idtype].add((v, uid))
+    ext_rows = []
+    for kid, types in sorted(place_ids.items()):
+        for idtype, vals in types.items():
+            for v, uid in sorted(vals):
+                note = EXT_NOTE
+                if idtype == "us_bgn_id" and v.lstrip().startswith("-"):
+                    note += " | WARNING: negative value — likely sign/encoding artifact in Fischer source, verify before use"
+                ext_rows.append({"kima_id": kid, "kima_rom": rom.get(kid, ""),
+                                 "id_type": idtype, "id_value": v, "fischer_uid": uid,
+                                 "source": SOURCE, "note": note})
 
-    dcols = ["kima_id", "kima_rom", "variant", "source", "fischer_uid", "match_basis",
-             "match_status", "grade", "sourcing"]
-    with open(os.path.join(d, "fischer_donations.tsv"), "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=dcols, delimiter="\t"); w.writeheader(); w.writerows(donations)
+    # write
+    def w(path, cols, recs, delim="\t"):
+        with open(os.path.join(d, path), "w", newline="", encoding="utf-8") as f:
+            wr = csv.DictWriter(f, fieldnames=cols, delimiter=delim); wr.writeheader(); wr.writerows(recs)
+
+    w("fischer_donations.tsv",
+      ["kima_id", "kima_rom", "variant", "source", "fischer_uid", "method", "orig_status", "dist_km", "sourcing"],
+      donations)
+    w("fischer_external_id_donations.tsv",
+      ["kima_id", "kima_rom", "id_type", "id_value", "fischer_uid", "source", "note"], ext_rows)
+    w("fischer_confirmed_decisions.tsv",
+      ["UID", "name", "kima_id", "method", "orig_status", "dist_km"], decisions)
     with open(os.path.join(d, "fischer_donations.json"), "w", encoding="utf-8") as f:
         json.dump({"source": SOURCE, "contribution_type": "new_variant",
                    "places": [{"kima_id": k, "primary_rom": v["rom"], "new_variants": v["variants"]}
                               for k, v in sorted(grouped.items())]}, f, ensure_ascii=False, indent=2)
-    with open(os.path.join(d, "fischer_confirmed_decisions.tsv"), "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["UID", "name", "kima_id", "basis", "grade", "match_status"],
-                           delimiter="\t"); w.writeheader(); w.writerows(decisions)
 
-    print(f"confirmed places (UIDs): {len(anchor)}  | dropped NO_GOOD_MATCH UIDs: {len(drop_uids)}  | dropped REJECT spellings: {len(reject)}")
-    print(f"confirmed (UID,spelling) decisions: {len(decisions)}")
-    print(f"NEW variant donations (Kima missing): {len(donations)}  across {len(grouped)} Kima places")
-    print(f"  → fischer_donations.tsv / .json / fischer_confirmed_decisions.tsv")
+    print(f"confirmed KEEP rows: {len(keep)} | confirmed places: {len(set(uid_anchor.values()))} | UIDs: {len(uid_anchor)}")
+    print(f"  UIDs whose KEEP rows disagree on place (anchor=majority): {len(uid_split)}")
+    print(f"NEW variant donations: {len(donations)} across {len(grouped)} places")
+    print(f"NEW external-id donations: {len(ext_rows)}  by type: {dict(Counter(r['id_type'] for r in ext_rows))}")
+    print(f"  → fischer_donations.tsv/.json, fischer_external_id_donations.tsv, fischer_confirmed_decisions.tsv")
 
 
 if __name__ == "__main__":
