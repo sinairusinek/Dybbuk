@@ -51,7 +51,7 @@ yiddish	qid	kima_id	kima_rom	kima_heb	lat	lon	label_en	occurrences	fields	method
 דרום-אפריקע	Q258	2394	South Africa	דרום אפריקה	-29.0	24.0	South Africa	20	countries;place;settlements	kima_name_exact
 קעשענעוו	Q21197	399	Chișinău (Moldova)	קישינב (מולדובה)	47.0227777777778	28.8352777777778		18	settlements	kima_name_exact
 ישראל	Q801	697	Israel	ישראל	31.0	35.0		17	countries;venues	kima_name_exact
-אָרץ-ישראל	Q801	697	Israel	ישראל	31.0	35.0	Land of Israel	14	countries;settlements;venues	kima_name_exact
+אָרץ-ישראל	Q155321				31.0	35.0	Land of Israel	14	countries;settlements;venues	audit_corrected
 בראַנקס		10787	Bronx (New York, N.Y.)	ברונקס (ניו יורק, ניו יורק)	40.84676	-73.873207	Bronx	14	addresses;settlements;venues	kima_name_exact
 טשענסטאָכאָוו	Q103217	427	Częstochowa (Poland)	צ'נסטוחובה (פולין)	50.80964	19.12217		13	settlements	kima_name_exact
 מעקסיקאָ	Q1489	7033	Mexico City (Mexico)	מקסיקו סיטי (מקסיקו)	19.419444444444	-99.145555555556	Mexico City	13	countries;settlements	kima_name_exact
@@ -86,7 +86,7 @@ yiddish	qid	kima_id	kima_rom	kima_heb	lat	lon	label_en	occurrences	fields	method
 נואַרק	Q25395				40.7	-74.0	Newark	8	settlements	audit_corrected
 פּשעמישל	Q208473	424	Przemyśl (Poland)	פשמישל (פולין)	49.783333333	22.766666666		8	province;settlements	kima_name_exact
 פֿילאָדעלפֿיע	Q1345	408	Philadelphia (Pa.)	פילדלפיה (פנסילבניה)	39.952777777778	-75.163611111111		8	settlements	kima_name_exact
-ארץ-ישראל	Q801	697	Israel	ישראל	31.0	35.0	Land of Israel	7	countries;settlements	kima_name_exact
+ארץ-ישראל	Q155321				31.0	35.0	Land of Israel	7	countries;settlements	audit_corrected
 באַלטימאָר	Q5092	515	Baltimore (Md.)	בולטימור (מרילנד)	39.286388888889	-76.615		7	settlements	kima_name_exact
 באָברויסק	Q207294	512	Babruĭsk (Belarus)	בוברויסק (בלארוס)	53.15	29.233333333		7	settlements	kima_name_exact
 בריסק	Q140147	576	Brest (Belarus)	בריסק (בלארוס)	52.084722222222	23.656944444444		7	settlements	kima_name_exact
@@ -120,8 +120,8 @@ yiddish	qid	kima_id	kima_rom	kima_heb	lat	lon	label_en	occurrences	fields	method
 קעניגסבערג	Q1829	405	Kaliningrad (Russia)	קלינינגרד (רוסיה)	54.716666666	20.5		5	province;settlements	kima_name_exact
 ראַדאָם	Q104740	636	Radom (Województwo Mazowieckie, Poland)	ראדום (מדינת מזובייצק, פולין)	51.40253	21.14714		5	settlements	kima_name_exact
 USA	Q30	6421	United States	ארצות הברית	39.828175	-98.5795		4	countries	kima_name_exact
-אַרץ ישראל	Q155321	2501	Eretz Israel	ארץ ישראל	31.0	35.0		4	countries	kima_name_exact
-ארץ ישראל	Q155321	2501	Eretz Israel	ארץ ישראל	31.0	35.0		4	countries	kima_name_exact
+אַרץ ישראל	Q155321				31.0	35.0	Land of Israel	4	countries	audit_corrected
+ארץ ישראל	Q155321				31.0	35.0	Land of Israel	4	countries	audit_corrected
 באָלטימאַר	Q5092	515	Baltimore (Md.)	בולטימור (מרילנד)	39.286388888889	-76.615		4	settlements	kima_name_exact
 באָקו	Q9248	507	Baku (Azerbaijan)	באקו (אזרביג'ן)	40.366655555556	49.835183333333	Baku	4	settlements	kima_name_exact
 בוקאָרעסט	Q19660	656	Bucharest (Romania)	בוקרסט (רומניה)	44.4133611111111	26.0977777777778		4	settlements	kima_name_exact
@@ -158,7 +158,7 @@ USA	Q30	6421	United States	ארצות הברית	39.828175	-98.5795		4	countries
 וויטעבּסק	Q102217	942	Vitsebsk (Belarus)	ויטבסק (בלארוס)	55.183333333333	30.166666666667		3	settlements	kima_name_exact
 וולאַצלאַוועק	Q106681	15730	Włocławek (Poland)	ולוצלאווק (פולין)	52.65	19.05	Włocławek	3	settlements	kima_name_exact
 טאַראַנטאָ	Q172	753	Toronto (Ont.)	טורונטו (אונטריו)	43.670277777778	-79.386666666667		3	settlements	kima_name_exact
-טאַרנאָוו	Q102317	398	Kielce (Poland)	קילץ (פולין)	50.8725	20.631944444444	Tarnów	3	settlements	kima_name_exact
+טאַרנאָוו	Q106281				50.8725	20.631944444444	Tarnów	3	settlements	audit_corrected
 טאָמאַשאָוו	Q911009	687	Tomaszów Lubelski (Poland)	טומשוב לובלסקי (פולין)	50.45	23.416666666667		3	settlements	kima_name_exact
 טיפליס	Q994	806	Tʻbilisi (Georgia)	טביליסי (גאורגיה)	41.7225	44.7925	Tbilisi	3	settlements	kima_name_exact
 טשעלסי	Q743535	7129	Chelsea (London, England)	צ'לסי (לונדון, אנגליה)	51.4875	-0.1684	Chelsea	3	settlements	kima_name_exact
@@ -261,7 +261,7 @@ New York	Q3708418	5131	New York (State), Western	ניו יורק (מדינה), �
 אַטלאַנטיק סיטי	Q139564	712	Atlantic City (N.J.)	אטלנטיק סיטי (ניו ג'רזי)	39.3625	-74.425		1	settlements	kima_name_exact
 אַמבו	Q651860	11944	Embu (Brazil)	אמבו (ברזיל)	-23.648888888889	-46.851944444444		1	venues	kima_name_exact
 אַמסטערדאַם	Q727	550	Amsterdam (Netherlands)	אמסטרדם (הולנד)	52.3727777777778	4.89361111111111	Amsterdam	1	settlements	kima_name_exact
-אַרץ-ישראל	Q801	697	Israel	ישראל	31.0	35.0	Land of Israel	1	countries	kima_name_exact
+אַרץ-ישראל	Q155321				31.0	35.0	Land of Israel	1	countries	audit_corrected
 אָדעססא	Q1874	740	Odesa (Ukraine)	אודסה (אוקראינה)	46.47747	30.73262		1	settlements	kima_name_exact
 אָדעססאַ	Q1874	740	Odesa (Ukraine)	אודסה (אוקראינה)	46.47747	30.73262		1	settlements	kima_name_exact
 אָטוואָצק	Q745059	741	Otwock (Poland)	אוטבוצק (פולין)	52.116666666667	21.266666666667		1	settlements	kima_name_exact
@@ -301,7 +301,7 @@ New York	Q3708418	5131	New York (State), Western	ניו יורק (מדינה), �
 בראָנקס		10787	Bronx (New York, N.Y.)	ברונקס (ניו יורק, ניו יורק)	40.84676	-73.873207	Bronx	1	settlements	kima_name_exact
 גראדנע	Q181376	882	Hrodna (Belarus)	גרודנו (בלארוס)	53.666666666667	23.816666666667		1	settlements	kima_name_exact
 דווינסק	Q80021	898	Daugavpils (Latvia)	דוינסק (לטביה)	55.871388888889	26.516111111111		1	settlements	kima_name_exact
-דראָהאָביטש	Q135446	366	Dorogobuzh (Russia)	דראהאביטש (רוסיה)	54.915	33.29722		1	settlements	kima_name_exact
+דראָהאָביטש	Q158821				54.915	33.29722	Drohobych	1	settlements	audit_corrected
 האַנאָווער	Q1715	979	Hannover (Germany)	הנובר (גרמניה)	52.374444444444	9.7386111111111		1	settlements	kima_name_exact
 האָוואַנאַ	Q1563	7527	Havana (Cuba)	הוואנה (קובה)	23.136666666667	-82.358888888889	Havana	1	settlements	kima_name_exact
 האָליוואוּד	Q34006	6953	Hollywood (Los Angeles, Calif.)	הוליווד (לוס אנג'לס, קליפורניה)	34.0983333333333	-118.326666666667	Hollywood	1	settlements	kima_name_exact
@@ -473,7 +473,7 @@ New York	Q3708418	5131	New York (State), Western	ניו יורק (מדינה), �
 כינע	Q148						People's Republic of China	2	countries	qid_map
 סאָוויעט-רוסלאַנד	Q15180						Soviet Union	2	countries	qid_map
 עסטרייך-אונגאָרן	Q28513						Austria–Hungary	2	countries;place	qid_map
-אַרץישראל	Q801						Israel	1	countries	qid_map
+אַרץישראל	Q155321						Land of Israel	1	countries	audit_corrected
 אוקראאינע	Q212						Ukraine	1	countries	qid_map
 דייטשלאַנד	Q183						Germany	1	countries	qid_map
 טשעכאָ-סלאָוואָקייע	Q33946						Czechoslovakia	1	countries	qid_map
