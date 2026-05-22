@@ -76,7 +76,12 @@ _LAT = re.compile(r"[A-Za-z]")
 _POINTS = re.compile(r"[֑-ׇֽֿׁׂׅׄ]")
 _DESCRIPTOR_RE = re.compile(
     r"נעבן|ביים|דארף|שטעטל|פראווינץ|אויפן פראנט|דאָרף ביי|ווייט פון|קליין שטעטל"
+    # relative-location phrases ("near/around/behind X") — not a discrete place
+    r"|\bביי\s|\bארום\s|\bהינטער\s|\bאומגעגנט"
 )
+# Bare generic terms that are descriptors only when they ARE the whole value
+# (e.g. "געטא" alone is generic; "ווילנער געטא" is the specific Vilna Ghetto place).
+_BARE_DESCRIPTORS = {"געטא", "פראווינץ", "געגנט", "דארף", "שטעטל", "פראנט", "פראָנט"}
 _ORG_FIELDS = ("extracted_settlements", "extracted_venues",
                "extracted_addresses", "extracted_countries")
 
@@ -119,6 +124,8 @@ def is_descriptor(variant: str, note: str = "") -> bool:
     v = _strip_points(variant).strip()
     if _DESCRIPTOR_RE.search(v):
         return True
+    if v in _BARE_DESCRIPTORS:
+        return True
     return v.startswith("א ") or bool(re.match(r"^\d", v))
 
 
@@ -150,6 +157,7 @@ ATT_COLS = [
     "kima_id", "kima_rom", "kima_heb", "lat", "lon",
     "maaty_qid", "maaty_qid_conflict", "rejected_qid", "relink_source",
     "suggested_qid", "suggested_english", "is_descriptor", "review_flags",
+    "link_method",
 ]
 
 
@@ -223,6 +231,7 @@ def main() -> None:
     # Previously-unlinked spellings confirmed by exact Kima-variant match. Maps the
     # Yiddish spelling -> QID; feeds labels/Kima/coords so enrich() resolves fully.
     confirmed_by_variant: dict[str, str] = {}
+    method_by_variant: dict[str, str] = {}  # how each spelling was resolved (auditable)
     if UNLINKED_CONFIRMED.exists():
         for r in rd(UNLINKED_CONFIRMED):
             v = r.get("yiddish", "").strip()
@@ -230,6 +239,7 @@ def main() -> None:
             if not v or not is_qid(q):
                 continue  # 12 Kima-only (no QID) rows stay unlinked
             confirmed_by_variant.setdefault(v, q)
+            method_by_variant.setdefault(v, r.get("method", "").strip())
             if r.get("kima_id", "").strip():
                 kima_by_qid.setdefault(q, {"kima_id": r["kima_id"].strip(),
                                            "kima_rom": r.get("kima_rom", "").strip(),
@@ -338,6 +348,7 @@ def main() -> None:
             if cq and cq not in nonplace_qids:
                 enrich(row, cq)
                 row.update(link_status="linked", relink_source="kima_unlinked",
+                           link_method=method_by_variant.get(val, ""),
                            suggested_qid="", suggested_english="")
             att.append(row)
 
@@ -365,7 +376,8 @@ def main() -> None:
                     row["link_status"] = "linked"
                 elif (cq := confirmed_by_variant.get(val)) and cq not in nonplace_qids:
                     enrich(row, cq)
-                    row.update(link_status="linked", relink_source="kima_unlinked")
+                    row.update(link_status="linked", relink_source="kima_unlinked",
+                               link_method=method_by_variant.get(val, ""))
                 else:
                     sq, se, _ = sugg_by_variant.get(val, ("", "", ""))
                     row.update(link_status="unlinked", suggested_qid=sq, suggested_english=se)
