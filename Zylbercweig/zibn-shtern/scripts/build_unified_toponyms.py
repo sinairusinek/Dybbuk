@@ -55,6 +55,10 @@ KIMA_BACKFILL = WORK / "kima" / "kima_backfill_confirmed.tsv"
 # Maaty alternate QIDs validated as places (Kima membership or Wikidata P31), used to
 # relink attestations whose primary QID is a mis-resolved non-place.
 MAATY_RELINK = WORK / "kima" / "maaty_relink_validated.tsv"
+# Previously-unlinked Yiddish spellings resolved by exact Kima-variant match (kimatch
+# full cascade over the unlinked backlog). One row per spelling -> (qid, kima_id).
+# Links both person and org unlinked attestations whose source_value equals the spelling.
+UNLINKED_CONFIRMED = WORK / "kima" / "unlinked_confirmed.tsv"
 
 ATT_OUT = WORK / "toponyms_attestations.csv"
 GAZ_OUT = WORK / "toponyms_gazetteer.csv"
@@ -210,6 +214,26 @@ def main() -> None:
                                            "kima_rom": r.get("kima_rom", "").strip(),
                                            "kima_heb": r.get("kima_heb", "").strip()})
 
+    # Previously-unlinked spellings confirmed by exact Kima-variant match. Maps the
+    # Yiddish spelling -> QID; feeds labels/Kima/coords so enrich() resolves fully.
+    confirmed_by_variant: dict[str, str] = {}
+    if UNLINKED_CONFIRMED.exists():
+        for r in rd(UNLINKED_CONFIRMED):
+            v = r.get("yiddish", "").strip()
+            q = r.get("qid", "").strip()
+            if not v or not is_qid(q):
+                continue  # 12 Kima-only (no QID) rows stay unlinked
+            confirmed_by_variant.setdefault(v, q)
+            if r.get("kima_id", "").strip():
+                kima_by_qid.setdefault(q, {"kima_id": r["kima_id"].strip(),
+                                           "kima_rom": r.get("kima_rom", "").strip(),
+                                           "kima_heb": r.get("kima_heb", "").strip()})
+            # Kima romanized name is a usable English label when Wikidata had none.
+            label_en.setdefault(q, (r.get("label_en") or r.get("kima_rom") or "").strip())
+            category.setdefault(q, "settlement")
+            if r.get("lat", "").strip() and q not in coords_by_qid:
+                coords_by_qid[q] = (r["lat"].strip(), r.get("lon", "").strip())
+
     # QIDs whose Wikidata type reveals a mis-resolution (person/taxon/disambiguation/…).
     nonplace_qids = {q: nonplace_kind(ptype.get(q, ""), category.get(q, ""))
                      for q in set(ptype) | set(category)}
@@ -304,6 +328,11 @@ def main() -> None:
                        source_value=val, source_value_script=script_of(val),
                        link_status="unlinked", suggested_qid=sq, suggested_english=se,
                        is_descriptor="True" if is_descriptor(val) else "")
+            cq = confirmed_by_variant.get(val)
+            if cq and cq not in nonplace_qids:
+                enrich(row, cq)
+                row.update(link_status="linked", relink_source="kima_unlinked",
+                           suggested_qid="", suggested_english="")
             att.append(row)
 
     # ---------------------------------------------------------------
@@ -328,6 +357,9 @@ def main() -> None:
                 elif resolved:
                     enrich(row, resolved[0])
                     row["link_status"] = "linked"
+                elif (cq := confirmed_by_variant.get(val)) and cq not in nonplace_qids:
+                    enrich(row, cq)
+                    row.update(link_status="linked", relink_source="kima_unlinked")
                 else:
                     sq, se, _ = sugg_by_variant.get(val, ("", "", ""))
                     row.update(link_status="unlinked", suggested_qid=sq, suggested_english=se)

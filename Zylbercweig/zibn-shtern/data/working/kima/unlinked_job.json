@@ -1,0 +1,22 @@
+{
+  "input_file": "/Users/sinairusinek/Documents/GitHub/Dybbuk/Zylbercweig/zibn-shtern/data/working/kima/unlinked_kimatch_input.csv",
+  "format": "csv",
+  "kima_places_csv": "/Users/sinairusinek/Documents/GitHub/Kimatch/20250126KimaPlacesCSVx.csv",
+  "kima_variants_tsv": "/Users/sinairusinek/Documents/GitHub/Kimatch/Kima-Variants-20250929.tsv",
+  "script": "auto",
+  "language": "yiddish",
+  "fields": {
+    "id": "unlinked_id",
+    "names": ["label_yi", "label_en"],
+    "name_scripts": { "label_yi": "hebrew", "label_en": "latin" },
+    "name_languages": { "label_yi": "yiddish" },
+    "lat": "lat", "lon": "lon",
+    "wikidata": "qid", "kima_id": ""
+  },
+  "thresholds": { "fuzzy": 0.6, "phonetic": 0.55 },
+  "donate": {
+    "source": "Zylbercweig Leksikon (Dybbuk project) — unlinked backlog",
+    "variant_from": ["label_yi"],
+    "external_ids": { "wikidata": "qid" }
+  }
+}
