@@ -69,6 +69,9 @@ UNLINKED_OUT = WORK / "toponyms_unlinked.csv"
 # reflects genuine unresolved places. Belong in org/institution authority handling.
 VENUES_OUT = WORK / "venues_unlinked.csv"
 _PLACE_FIELDS = {"settlements", "place", "places", "province", "country", "countries"}
+# Institution/venue names that are NOT toponyms even when they land in a place field
+# (cemeteries especially — בית עולם / בית החיים / Friedhof). Routed to venues_unlinked.
+_VENUE_NAME_RE = re.compile(r"בית.{0,2}עולם|בית.?החיים|בית.?הקברות|פרידהאָ?ף|פֿרידהאָ?ף|צמינטאַזש")
 MISRESOLVED_OUT = WORK / "toponyms_misresolved.csv"
 
 _HEB = re.compile(r"[֐-׿יִ-ﭏ]")
@@ -463,8 +466,10 @@ def main() -> None:
             "suggested_english": e["sugg_en"], "is_descriptor": "True" if e["desc"] else "",
             "attestation_ids": ";".join(e["att_ids"]),
         }
-        # Venue/institution name if it never appears in a place-type field.
-        (venue_rows if not (e["fields"] & _PLACE_FIELDS) else unlinked_rows).append(row)
+        # Venue/institution name if it never appears in a place-type field, OR if its
+        # text is a recognized institution name (cemetery etc.) even in a place field.
+        is_venue = not (e["fields"] & _PLACE_FIELDS) or bool(_VENUE_NAME_RE.search(v))
+        (venue_rows if is_venue else unlinked_rows).append(row)
     write_csv(UNLINKED_OUT, unlinked_cols, unlinked_rows)
     write_csv(VENUES_OUT, unlinked_cols, venue_rows)
     print(f"venues:       {len(venue_rows)} venue/institution names -> venues_unlinked.csv "
