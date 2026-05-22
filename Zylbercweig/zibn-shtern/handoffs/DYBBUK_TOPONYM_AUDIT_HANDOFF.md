@@ -13,7 +13,49 @@ all the data in this repo? No — here is exactly what remains.** See
   scripts.
 - New `link_method` provenance column on every attestation → audits are reproducible & scoped.
 
-## What was NOT applied — the gap (with real numbers)
+## UPDATE — session 2026-05-22 (continued): items 1 & 2 done, item 3 graded
+
+The Kima reference data + phonetic venv live in `~/Documents/GitHub/Kimatch/`
+(`20250126KimaPlacesCSVx.csv`, `Kima-Variants-20250929.tsv`, `.venv/bin/kimatch`).
+Run the audit scripts with that venv's python.
+
+**Item 1 (generalize audit to ALL link_methods) — DONE.**
+`scripts/audit_all_links.py` audits every `link_status==linked` attestation (13,606)
+regardless of `link_method`. Two passes: WD-independent **translit-mismatch** (pass A)
+and **Kima-ambiguity** (pass B, rebuilt from the real Kima variant index).
+`scripts/verify_flags_wikidata.py` is the generalized WD yi cross-check (any
+(yiddish,qid) list, not just `kima_name_exact`).
+
+**Item 2 (translit-mismatch detector) — DONE.** Built on the real Yiddish→IPA→DM
+bridge. Key design fix: the oracle is **the linked place's OWN Kima names** (Hebrew
+variants + Latin romanization), not the modern English label — so legit exonyms
+(פּוילן→Poland, לעמבערג→Lviv) and historical renamings (יעקאַטערינאָסלאָוו→Dnipro) pass,
+while a spelling matching none of the linked place's names is flagged.
+Output: `data/working/kima/audit_translit_mismatch.tsv` (197 flags / 127 STRONG).
+
+**Triage + fixes applied (14 distinct corrections, ~60 attestations) across 3 source files:**
+- Class A — person-mention mis-resolution in `places_unified_corrected.csv` (a
+  minority of attestations overrode the correct qid_map entry): רוסלאַנד→Russia,
+  רומעניע→Romania, אונגאַרן→Hungary, פּוילן→Poland, קאָנאָדע→Canada, באָריסאָוו→Barysaw,
+  בריסק ליטאָווסק→Brest(BY), טישמיעניץ→Tysmenytsia, סימפעראָפּאָל/סימפּעראָפּאל→Simferopol.
+- Class B — `kima_name_exact` devocalized-collision FPs in `unlinked_confirmed.tsv`:
+  טאָמסק→Tomsk (was Jericho), דניעפּראָפּיעטראָווסק→Dnipro (was Villeneuve-d'Ascq),
+  האַרלעם→Harlem Q189074 (was Aleppo). Harlem also fixed in the **org collapse** file.
+- All logged in `matching_corrections_log.tsv`; attestations rebuilt & re-verified
+  (residual wrong-qid = 0). Every guessed QID was verified live against Wikidata
+  first (this caught e.g. Tomsk≠Q970/Comoros, Simferopol≠Q3953/Kalmykia).
+- `מעזריטש` (handoff flag) caught by pass B (links to the Ghetto, not the town).
+  `סעלץ`→Frederick and `לונאַ`→Lonavala are `needs_review` (not linked) so they don't
+  pollute linked data — left parked with their wrong suggestions.
+
+**Item 3 — graded, not force-resolved.** New `audit_translit_review_punchlist.tsv`
+(17 uncertain settlement→settlement flags w/ hypotheses + grades A/B/C). The pre-
+existing review queues (`review_disambiguation.tsv`, `review_1_confirm.tsv`, …) are
+genuine human/corpus-judgment calls (Williamsburg/Troy/Newark = design Q-D) and were
+deliberately left for a human rather than guessed. The B-grade punchlist rows
+(Treysk, Neustadt→Novo Mesto, Rzheka, Szczezhets, Izhbits…) remain for cluster-research.
+
+## What was NOT applied — the gap (with real numbers) [original assessment, pre-update]
 Of **1,837** linked toponym spellings, **1,400 were never audited** — everything not linked via
 `kima_name_exact`/`audit_corrected`:
 
