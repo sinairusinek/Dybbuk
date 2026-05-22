@@ -322,7 +322,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 1-facs_402_tr_1739715076	death	place	ניו יאָרק	New York City	Q60	ניו יארק	settlement
 1-facs_404_r_8	death	place	ניו יאָרק	New York City	Q60	ניו יארק	settlement
 1-facs_407_tr_1739715069	death	place	אויפֿן וועג פֿון כאָסטאָן קיין ניו יאָרק	New York City	Q60	ניו יארק	settlement
-1-facs_411_tr_1739715053	death	place	סימפעראָפּאָל	Simferopol	Q43421		settlement
+1-facs_411_tr_1739715053	death	place	סימפעראָפּאָל	Simferopol	Q19566		settlements
 1-facs_411_tr_1739715050	death	place	לאָנדאָן	London	Q84	לאנדאן	settlement
 1-facs_411_tr_1739715062	death	place	פּאַריז	Paris	Q90	פאריז	settlement
 1-facs_414_r_3	death	place	קיעוו	Kyiv	Q1899	קיעוו	settlement
@@ -935,7 +935,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 6-facs_654_r_1	death	place	ניו-יאָרק	New York City	Q60	ניו יארק	settlement
 6-facs_665_r_1	death	place	מעקסיקע סיטי	Mexico City	Q1489	מעקסיקא שטאט	settlement
 6-facs_666_r	death	place	לאָס אַנדזשעלעס	Los Angeles	Q65	לאס אנדזשעלעס	settlement
-7-facs_11_r_2	death	place	סימפּעראָפּאל	Simferopol	Q43421		settlement
+7-facs_11_r_2	death	place	סימפּעראָפּאל	Simferopol	Q19566		settlements
 7-facs_14_r_5	death	place	סאַן פּאַול	São Paulo	Q174	סאו פאולא	settlement
 7-facs_15_r_3	death	place	סאַן פּאַולאָ	São Paulo	Q174	סאו פאולא	settlement
 7-facs_16_r_2	death	place	ווין	Vienna	Q1741	וויען	neighborhood
@@ -1020,7 +1020,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 4-facs_248_tr_1754998565	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
 4-facs_264_tr_1754998383	birth	place	מאָהילעוו אויפֿן דניעסטער	Mohyliv-Podilskyi	Q997469		settlement
 4-facs_270_tr_1754998438	birth	place	קעשענעוו	Chișinău	Q21197	קעשענעוו	settlement
-4-facs_270_tr_1754998433	birth	place	אונגאַרן	Szolnok	Q181276		settlement
+4-facs_270_tr_1754998433	birth	place	אונגאַרן	Szolnok	Q28	אונגארן	countries
 4-facs_270_tr_1754998435	birth	place	בוקאַרעסט	Bucharest	Q19660	בוקארעשט	settlement
 4-facs_274_tr_1754998431	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 4-facs_277_tr_1754998404	birth	place	בוקאַרעסט	Bucharest	Q19660	בוקארעשט	settlement
@@ -1043,7 +1043,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 4-facs_380_tr_1755030217	birth	place	לאַכווע	Lakhva	Q1527795	לאכװע	settlement
 4-facs_381_tr_1755030081	birth	place	קאָמענעץ-פּאָדאָלסק	Kamianets-Podilskyi	Q193965	קאמעניץ	settlement
 4-facs_382_tr_1755030077	birth	place	פּראַגע וואַרשע	Warsaw	Q270	ווארשע	settlement
-4-facs_386_tr_1755029936	birth	place	רוסלאַנד	Kazan	Q900	קאזאן	settlement
+4-facs_386_tr_1755029936	birth	place	רוסלאַנד	Kazan	Q159	רוסלאנד	countries
 4-facs_387_tr_1755030250	birth	place	ברעסט-ליטאָווסק	Brest	Q140147	בריסק	settlement
 4-facs_387_r	birth	place	בודאָפּעסט	Budapest	Q1781	בודאפעשט	settlement
 4-facs_388_tr_1755030259	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
@@ -1111,7 +1111,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 1-facs_251_tr_1741260225	birth	place	לעמבערג	Lviv	Q36036	לעמבערג	settlement
 1-facs_251_tr_1741260233	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
 1-facs_252_tr_1741260223	birth	place	בוקאַרעסט	Bucharest	Q19660	בוקארעשט	settlement
-1-facs_252_tr_1741260224	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+1-facs_252_tr_1741260224	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 1-facs_252_tr_1741260228	birth	place	באָברויסק	Babruysk	Q207294	באברויסק	settlement
 1-facs_253_tr_1741260231	birth	place	לעפּעל	Liepieĺ	Q954132	ליעפּליע	settlement
 1-facs_254_tr_1741260246	birth	place	יעקאַטערינאָסלאָוו	Dnipro	Q48256	דניפרא	settlement
@@ -1220,7 +1220,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 1-facs_309_r_13	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
 1-facs_310_tr_1741260420	birth	place	ראָוואָ-רוסקאָ	Rava-Ruska	Q1048138		settlement
 1-facs_310_tr_1741260423	birth	place	טשערנאָוויץ	Chernivtsi	Q157725	טשערנאוויץ	settlement
-1-facs_310_tr_1741260422	birth	place	טישמיעניץ	Tysmenytsia	Q973977		settlement
+1-facs_310_tr_1741260422	birth	place	טישמיעניץ	Tysmenytsia	Q156588		settlements
 1-facs_311_tr_1741260486	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 1-facs_311_tr_1741260476	birth	place	אָדעם	Odesa	Q1874	אדעס	settlement
 1-facs_312_TextRegion_1708860417410_829	birth	place	סטאַניסלאַוואָוו	Ivano-Frankivsk	Q156726	סטאניסלאװ	settlement
@@ -1398,7 +1398,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 1-facs_47_r_2	birth	place	אָדעס [?]	Odesa	Q1874	אדעס	settlement
 1-facs_47_tr_1740521066	birth	place	וויניצע	Vinnytsia	Q157144	וויניצע	settlement
 1-facs_48_tr_1740521125	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
-1-facs_48_tr_1740521128	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+1-facs_48_tr_1740521128	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 1-facs_48_tr_1740521136	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 1-facs_49_tr_1740521083	birth	place	פּעטערבורג	Saint Petersburg	Q656	פעטערבורג	settlement
 1-facs_49_tr_1740521087	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
@@ -1447,14 +1447,14 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 1-facs_78_tr_1740521049	birth	place	סלוצק	Slutsk	Q201243	סלוצק	settlement
 1-facs_78_tr_1740521048	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
 1-facs_78_tr_1740521046	birth	place	ניו יאָרק	New York City	Q60	ניו יארק	settlement
-1-facs_79_tr_1740520948	birth	place	רוסלאַנד	Kazan	Q900	קאזאן	settlement
+1-facs_79_tr_1740520948	birth	place	רוסלאַנד	Kazan	Q159	רוסלאנד	countries
 1-facs_79_tr_1740520939	birth	place	קאָמענעץ-פּאָדאָלסק	Kamianets-Podilskyi	Q193965	קאמעניץ	settlement
 1-facs_80_tr_1740521116	birth	place	יאָסי	Iași	Q46852	יאס	settlement
 1-facs_80_tr_1740521113	birth	place	לאָסק	Łask	Q324897		settlement
 1-facs_81_tr_1740521165	birth	place	לעמבערג	Lviv	Q36036	לעמבערג	settlement
 1-facs_81_tr_1740521184	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
 1-facs_81_tr_1740521171	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
-1-facs_82_tr_1740520996	birth	place	באָריסאָוו	Barysaw	Q207294	באברויסק	settlement
+1-facs_82_tr_1740520996	birth	place	באָריסאָוו	Barysaw	Q19313	באריסאב	settlements
 1-facs_83_tr_1740521018	birth	place	גאַליציע	Narol	Q2439514	נאראל	settlement
 1-facs_84_tr_1740520941	birth	place	גראָדנע	Hrodna	Q181376	גראדנע	settlement
 1-facs_86_tr_1740521078	birth	place	ביאָליסטאָק	Białystok	Q761	ביאליסטאק	settlement
@@ -1592,7 +1592,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 1-facs_202_tr_1741260239	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
 1-facs_203_tr_1741260185	birth	place	סטאַראָ-קאָנסטאַנטינאָוו	Starokostiantyniv	Q997429		settlement
 1-facs_204_tr_1741260321	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
-1-facs_204_tr_1741260317	birth	place	פּוילן	Płock	Q104725	פלאצק	settlement
+1-facs_204_tr_1741260317	birth	place	פּוילן	Płock	Q36	פוילן	countries
 1-facs_204_tr_1741260315	birth	place	קאָוונאַ	Kaunas	Q4115712	קאוונע	settlement
 2-facs_9_tr_1743943374	birth	place	ניו יאָרק	New York City	Q60	ניו יארק	settlement
 2-facs_9_r_3	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
@@ -1730,7 +1730,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 2-facs_128_tr_1744279152	birth	place	יאַסי	Iași	Q46852	יאס	settlement
 2-facs_128_tr_1744279149	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 2-facs_129_tr_1744279177	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
-2-facs_129_r_4	birth	place	פּוילן	Płock	Q104725	פלאצק	settlement
+2-facs_129_r_4	birth	place	פּוילן	Płock	Q36	פוילן	countries
 2-facs_129_tr_1744279170	birth	place	יאסי	Iași	Q46852	יאס	settlement
 2-facs_131_tr_1744279096	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
 2-facs_132_tr_1744279070	birth	place	וואָלבראָם	Wolbrom	Q1906323	וואָלבראָם	settlement
@@ -1805,7 +1805,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 2-facs_220_tr_1744280762	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 2-facs_221_r_16	birth	place	שאדאָווע	Šeduva	Q2356396	שאַדעווע	settlement
 2-facs_221_tr_1744280749	birth	place	בוקאַרעסט	Bucharest	Q19660	בוקארעשט	settlement
-2-facs_221_r_10	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+2-facs_221_r_10	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 2-facs_222_tr_1744280833	birth	place	מאָסקווע	Moscow	Q649	מאסקווע	settlement
 2-facs_228_tr_1744280784	birth	place	וואָרשע	Warsaw	Q270	ווארשע	settlement
 2-facs_228_r_9	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
@@ -1824,7 +1824,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 2-facs_250_tr_1744280773	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 2-facs_250_tr_1744280775	birth	place	לעכעוויטש	Liachavičy	Q956607	לעכעוויטש	settlement
 2-facs_251_r_13	birth	place	לוקאָוו	Łuków	Q384244	לוּקאָוו	settlement
-2-facs_252_tr_1744280823	birth	place	באָריסאָוו	Barysaw	Q207294	באברויסק	settlement
+2-facs_252_tr_1744280823	birth	place	באָריסאָוו	Barysaw	Q19313	באריסאב	settlements
 2-facs_253_tr_1744280798	birth	place	בענדין	Będzin	Q461513	בענדין	settlement
 2-facs_254_tr_1744280771	birth	place	פּיעטריקאָוו	Piotrków Trybunalski	Q158004	פיעטרקאוו	settlement
 2-facs_254_r_4	birth	place	באָסטאָן	Boston	Q100	באסטאן	settlement
@@ -1861,7 +1861,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 2-facs_292_tr_1744280742	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 2-facs_293_tr_1744280708	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 2-facs_298_tr_1744280755	birth	place	לעמבערג	Lviv	Q36036	לעמבערג	settlement
-2-facs_298_tr_1744280754	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+2-facs_298_tr_1744280754	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 2-facs_300_tr_1744280756	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
 2-facs_300_tr_1744280760	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 2-facs_301_tr_1744365783	birth	place	קעשעניעוו	Chișinău	Q21197	קעשענעוו	settlement
@@ -1919,7 +1919,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 2-facs_350_r	birth	place	פּיאטראנאץ	Piatra Neamț	Q187945		settlement
 2-facs_350_tr_1744365746	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 2-facs_351_tr_1744365735	birth	place	גראָדנע	Hrodna	Q181376	גראדנע	settlement
-2-facs_352_r_2	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+2-facs_352_r_2	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 2-facs_352_tr_1744365751	birth	place	קעשעניעוו	Chișinău	Q21197	קעשענעוו	settlement
 2-facs_352_r_6	birth	place	באָטאַשאַן	Botoșani	Q178855	באטאשאן	settlement
 2-facs_352_tr_1744365752	birth	place	ניו-יאָרק	New York City	Q60	ניו יארק	settlement
@@ -1938,14 +1938,14 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 2-facs_362_tr_1744366876	birth	place	ביאַליסטאָק	Białystok	Q761	ביאליסטאק	settlement
 2-facs_362_tr_1744366866	birth	place	קיעוו	Kyiv	Q1899	קיעוו	settlement
 2-facs_362_tr_1744366871	birth	place	קיעוו	Kyiv	Q1899	קיעוו	settlement
-2-facs_363_tr_1744366852	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+2-facs_363_tr_1744366852	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 2-facs_364_tr_1744366859	birth	place	יאסי	Iași	Q46852	יאס	settlement
 2-facs_365_tr_1744366810	birth	place	יאָסי	Iași	Q46852	יאס	settlement
 2-facs_365_tr_1744366833	birth	place	ניואַרק	Newark	Q25395	נוארק	settlement
 2-facs_365_tr_1744366830	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 2-facs_371_tr_1744366835	birth	place	קעשעניעוו	Chișinău	Q21197	קעשענעוו	settlement
 2-facs_371_tr_1744366832	birth	place	אונגוואַר	Uzhhorod	Q156711	אונגוואר	settlement
-2-facs_371_tr_1744366831	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+2-facs_371_tr_1744366831	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 2-facs_372_tr_1744366832	birth	place	בוקאַרעסט	Bucharest	Q19660	בוקארעשט	settlement
 2-facs_376_tr_1744366801	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
 2-facs_377_tr_1744366871	birth	place	כמעלניק	Chmielnik	Q991973	כמעלניק	settlement
@@ -2068,7 +2068,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 3-facs_279_tr_1755674215	birth	place	ניו יאָרק	New York City	Q60	ניו יארק	settlement
 3-facs_280_r_3	birth	place	מינסק	Minsk	Q2280	מינסק	settlement
 3-facs_280_tr_1755674203	birth	place	דזשורקאָוו	Dzhurkovo	Q2014032		settlement
-3-facs_280_tr_1755674193	birth	place	רוסלאַנד	Kazan	Q900	קאזאן	settlement
+3-facs_280_tr_1755674193	birth	place	רוסלאַנד	Kazan	Q159	רוסלאנד	countries
 3-facs_281_tr_1755674196	birth	place	בערעזיין	Byerazino	Q200833	בערעזין	settlement
 3-facs_282_tr_1755674183	birth	place	באַטאַשאַן	Botoșani	Q178855	באטאשאן	settlement
 3-facs_283_tr_1755674200	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
@@ -2195,7 +2195,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 5-facs_170_tr_1735652620	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 5-facs_171_tr_1736588917	birth	place	לעמבערג	Lviv	Q36036	לעמבערג	settlement
 5-facs_172_tr_1736589034	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
-5-facs_173_tr_1736588922	birth	place	רוסלאַנד	Kazan	Q900	קאזאן	settlement
+5-facs_173_tr_1736588922	birth	place	רוסלאַנד	Kazan	Q159	רוסלאנד	countries
 5-facs_173_r	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 5-facs_174_tr_1736589029	birth	place	ביאַליסטאָק	Białystok	Q761	ביאליסטאק	settlement
 5-facs_175_tr_1736588934	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
@@ -2261,7 +2261,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 5-facs_242_tr_1739221237	birth	place	קראַסנאָסטאַוו	Krasnystaw	Q155088		settlement
 5-facs_243_tr_1739220911	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 5-facs_247_tr_1739222210	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
-5-facs_247_tr_1739222208	birth	place	רוסלאַנד	Kazan	Q900	קאזאן	settlement
+5-facs_247_tr_1739222208	birth	place	רוסלאַנד	Kazan	Q159	רוסלאנד	countries
 5-facs_247_tr_1739222205	birth	place	טשערנאָוויץ	Chernivtsi	Q157725	טשערנאוויץ	settlement
 5-facs_248_tr_1739220762	birth	place	פּלאָצק	Płock	Q104725	פלאצק	settlement
 5-facs_250_tr_1739221688	birth	place	ליפנע	Lipno	Q324922		settlement
@@ -2280,13 +2280,13 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 5-facs_273_tr_1739222335	birth	place	קעשענעוו	Chișinău	Q21197	קעשענעוו	settlement
 5-facs_276_tr_1739221992	birth	place	ביאַלאַ-פּאָדלאַסק	Biała Podlaska	Q209932	ביאלע	settlement
 5-facs_278_tr_1739220808	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
-5-facs_279_tr_1739222367	birth	place	רוסלאַנד	Kazan	Q900	קאזאן	settlement
+5-facs_279_tr_1739222367	birth	place	רוסלאַנד	Kazan	Q159	רוסלאנד	countries
 5-facs_280_r	birth	place	בוקאַרעשט	Bucharest	Q19660	בוקארעשט	settlement
 5-facs_280_tr_1739220952	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
 5-facs_281_tr_1739220611	birth	place	פֿאַלעשטי	Fălești	Q2078085		settlement
 5-facs_281_r_1	birth	place	בריסק	Brest	Q140147	בריסק	settlement
 5-facs_292_tr_1739222004	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
-5-facs_295_tr_1739221311	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+5-facs_295_tr_1739221311	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 5-facs_295_tr_1739221304	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 5-facs_295_r_2	birth	place	לעמבערג	Lviv	Q36036	לעמבערג	settlement
 5-facs_296_tr_1739220884	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
@@ -2306,13 +2306,13 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 5-facs_333_tr_1739220904	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
 5-facs_333_tr_1739220898	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 5-facs_333_tr_1739220890	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
-5-facs_333_tr_1739220886	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
-5-facs_333_tr_1739220896	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+5-facs_333_tr_1739220886	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
+5-facs_333_tr_1739220896	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 5-facs_334_tr_1739221285	birth	place	קראָקע	Kraków	Q31487	קראקע	settlement
 5-facs_334_tr_1739221282	birth	place	קעשענעוו	Chișinău	Q21197	קעשענעוו	settlement
 5-facs_336_tr_1739222350	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 5-facs_336_r	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
-5-facs_344_r	birth	place	רוסלאַנד	Kazan	Q900	קאזאן	settlement
+5-facs_344_r	birth	place	רוסלאַנד	Kazan	Q159	רוסלאנד	countries
 5-facs_346_tr_1739220500	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
 5-facs_347_tr_1739221408	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 5-facs_348_tr_1739220913	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
@@ -2354,7 +2354,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 5-facs_421_tr_1739222376	birth	place	מינסק	Minsk	Q2280	מינסק	settlement
 5-facs_421_tr_1739222380	birth	place	באָגוסלאָוו	Bohuslav	Q1936339	באָסלעוו	settlement
 5-facs_423_r_4	birth	place	כערסאָן	Kherson	Q156732		settlement
-5-facs_423_tr_1739222033	birth	place	באָריסאָוו	Barysaw	Q207294	באברויסק	settlement
+5-facs_423_tr_1739222033	birth	place	באָריסאָוו	Barysaw	Q19313	באריסאב	settlements
 5-facs_430_r	birth	place	יאָסי	Iași	Q46852	יאס	settlement
 5-facs_432_r	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 5-facs_434_tr_1739221694	birth	place	דאַרף ליפּניקע	Lipniki	Q4262636		settlement
@@ -2384,7 +2384,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 5-facs_534_tr_1739222534	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 5-facs_535_tr_1739222170	birth	place	נייעסוויעזש	Niasviž	Q201230	נעזשוויז	settlement
 5-facs_538_tr_1739221977	birth	place	פֿאָלעשטיי	Fălești	Q2078085		settlement
-5-facs_546_tr_1739220662	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+5-facs_546_tr_1739220662	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 5-facs_546_tr_1739220658	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
 5-facs_547_tr_1739222026	birth	place	דאַרף ליפּניקי	Lipniki	Q4262636		settlement
 5-facs_547_tr_1739222033	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
@@ -2420,7 +2420,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 5-facs_593_r_17	birth	place	אָדעס	Odesa	Q1874	אדעס	settlement
 5-facs_595_tr_1739220497	birth	place	מעקסיקע	Mexico City	Q1489	מעקסיקא שטאט	settlement
 5-facs_597_tr_1739222302	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
-5-facs_598_tr_1739222545	birth	place	קאָנאָדע	London	Q92561	לאנדאן	settlement
+5-facs_598_tr_1739222545	birth	place	קאָנאָדע	London	Q16	קאנאדע	countries
 5-facs_598_tr_1739222546	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 5-facs_602_tr_1739222225	birth	place	וולאַשטשאווא	Włoszczowa	Q611784		settlement
 5-facs_604_tr_1739220749	birth	place	קעשענעוו	Chișinău	Q21197	קעשענעוו	settlement
@@ -2524,7 +2524,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 6-facs_142_tr_1747825180	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
 6-facs_144_tr_1747825158	birth	place	קאַידאַנאָוו	Dzyarzhynsk	Q200891	קוידינוב (קוידענאוו)	settlement
 6-facs_147_tr_1747825115	birth	place	בעלץ	Bălți	Q37801	בעלץ	settlement
-6-facs_149_tr_1747825121	birth	place	רומעניע	Vișeu de Sus	Q596609	אויבער-ווישעווע	settlement
+6-facs_149_tr_1747825121	birth	place	רומעניע	Vișeu de Sus	Q218	רומעניע	countries
 6-facs_149_tr_1747825109	birth	place	קעשענעוו	Chișinău	Q21197	קעשענעוו	settlement
 6-facs_150_tr_1747825139	birth	place	יאָסי	Iași	Q46852	יאס	settlement
 6-facs_152_tr_1747825185	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
@@ -2549,7 +2549,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 6-facs_178_tr_1747825078	birth	place	מינסק	Minsk	Q2280	מינסק	settlement
 6-facs_180_tr_1747825079	birth	place	יאָסי	Iași	Q46852	יאס	settlement
 6-facs_181_tr_1747825077	birth	place	ווילנע	Vilnius	Q216	ווילנע	settlement
-6-facs_181_tr_1747825054	birth	place	בריסק ליטאָווסק	Brest	Q12193		settlement
+6-facs_181_tr_1747825054	birth	place	בריסק ליטאָווסק	Brest	Q140147	בריסק	settlements
 6-facs_182_tr_1747825093	birth	place	באָסטאָן	Boston	Q100	באסטאן	settlement
 6-facs_183_tr_1747825124	birth	place	לאָדזש	Łódź	Q580	לאדזש	settlement
 6-facs_185_tr_1747825159	birth	place	בריסק דליטע	Brest	Q140147	בריסק	settlement
@@ -2595,7 +2595,7 @@ entry_id	context	source_role	source_value	english_name	WikidataQID	wikidata_yi	r
 6-facs_435_r	birth	place	קליוולאַנד	Cleveland	Q37320	קליוולאנד	settlement
 6-facs_453_tr_1747930493	birth	place	דאָמבראָוונע	Gmina Dąbrówno	Q554580		settlement
 6-facs_459_tr_1747930174	birth	place	ביאַליסטאָק	Białystok	Q761	ביאליסטאק	settlement
-6-facs_463_tr_1747930281	birth	place	פּוילן	Płock	Q104725	פלאצק	settlement
+6-facs_463_tr_1747930281	birth	place	פּוילן	Płock	Q36	פוילן	countries
 6-facs_463_tr_1747930274	birth	place	וואַרשע	Warsaw	Q270	ווארשע	settlement
 6-facs_464_tr_1747930212	birth	place	בוקאַרעסט	Bucharest	Q19660	בוקארעשט	settlement
 6-facs_465_tr_1747930358	birth	place	ניו יאָרק	New York City	Q60	ניו יארק	settlement

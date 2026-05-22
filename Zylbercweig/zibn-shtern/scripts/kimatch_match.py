@@ -64,8 +64,8 @@ else:
         KIMATCH_REPO = _fallback
 
 try:
-    from kimatch.core.matcher import match_place
-    from kimatch.core.models import InputPlace
+    from kimatch.core.matcher import match_place, grade_result, resolve_max_plausible_km
+    from kimatch.core.models import InputPlace, MatchResult
     from kimatch.data.loader import KimaDB, _normalise_qid
 except ImportError as e:
     sys.exit(f"Cannot import kimatch: {e}\nSet KIMATCH_REPO or configure configs/kimatch.yaml.")
@@ -116,45 +116,41 @@ def existing_variant_strings(db: KimaDB, kima_id: int) -> set[str]:
     return {v.variant for v in db.get_variants(kima_id) if v.variant}
 
 
-def match_group(record: dict, db: KimaDB) -> dict:
+def match_group(record: dict, db: KimaDB, max_plausible_km=None) -> dict:
+    """Resolve one (source_value, QID) group via the fixed Kimatch engine.
+
+    Delegates the whole cascade to match_place so the engine's safety guards apply:
+    ambiguity (NAME_AMBIGUOUS when a spelling hits >1 distinct place), phonetic
+    mismatch (vocalization-aware proxy disagrees with the chosen place), and the
+    geo guard (informational here — Zylbercweig mentions carry no coords). The
+    A/B/C grade decides routing downstream: only GRADE_A is auto-linked; B/C and
+    ambiguous/no-match go to the review queue.
+    """
     sv  = record["source_value"]
     en  = record["english_name"]
     yi  = record.get("wikidata_yi", "")
     qid = record["wikidata_qid"]
 
-    # 1. Wikidata QID
-    if qid:
-        hits = db.get_by_wikidata(qid)
-        if hits:
-            return {**record, "status": "WIKIDATA", "kima_place": hits[0]}
+    names = []
+    for n in (sv, yi, en):                 # priority order; dedup, keep non-empty
+        if n and n not in names:
+            names.append(n)
 
-    # 2. Exact — Yiddish (source_value)
-    if sv:
-        hits = db.search_by_name(sv)
-        if hits:
-            return {**record, "status": "NAME_EXACT", "kima_place": hits[0]}
-
-    # 3. Exact — Wikidata Yiddish label
-    if yi and yi != sv:
-        hits = db.search_by_name(yi)
-        if hits:
-            return {**record, "status": "NAME_EXACT", "kima_place": hits[0]}
-
-    # 4. Exact — English/romanized
-    if en:
-        hits = db.search_by_name(en)
-        if hits:
-            return {**record, "status": "NAME_EXACT", "kima_place": hits[0]}
-
-    # 5. Fuzzy
-    names = [n for n in [sv, yi, en] if n]
-    result = match_place(InputPlace(input_id=qid or sv, names=names), db)
-    if result.status == "fuzzy":
-        return {**record, "status": "FUZZY", "kima_place": None,
-                "candidates": [{"kima_id": c.kima_id, "rom": c.primary_rom, "heb": c.primary_heb}
-                                for c in result.candidates],
-                "confidence": result.confidence}
-    return {**record, "status": "NO_MATCH", "kima_place": None, "candidates": []}
+    result = match_place(
+        InputPlace(input_id=qid or sv, names=names, wikidata_id=qid or ""),
+        db, max_plausible_km=max_plausible_km)
+    result.grade = grade_result(result)
+    return {
+        **record,
+        "status":      result.status,
+        "grade":       result.grade,
+        "flags":       result.flags,
+        "kima_place":  result.kima_place,
+        "candidates":  [{"kima_id": c.kima_id, "rom": c.primary_rom, "heb": c.primary_heb}
+                        for c in (result.candidates or [])],
+        "confidence":  result.confidence,
+        "distance_km": result.distance_km,
+    }
 
 
 # ── main ──────────────────────────────────────────────────────────────────────
@@ -178,11 +174,16 @@ def run(input_tsv: Path, out_matched: Path, out_review: Path) -> None:
     for rec in groups:
         result        = match_group(rec, db)
         status        = result["status"]
+        grade         = result["grade"]
+        flags_str     = "|".join(result["flags"])
         entry_ids_str = "|".join(result["entry_ids"])
         contexts_str  = "|".join(result["contexts"])
+        place         = result["kima_place"]
 
-        if status in ("WIKIDATA", "NAME_EXACT"):
-            place  = result["kima_place"]
+        # Only GRADE_A auto-links into the enrichment file. Flagged (phonetic_mismatch /
+        # geo_implausible) and ambiguous matches grade B/C and go to the review queue —
+        # the engine's safety guards now decide routing, not a bare NAME_EXACT.
+        if grade == MatchResult.GRADE_A and place is not None:
             ev     = existing_variant_strings(db, place.kima_id)
             is_new = result["source_value"] not in ev
             matched_rows.append({
@@ -195,12 +196,19 @@ def run(input_tsv: Path, out_matched: Path, out_review: Path) -> None:
                 "kima_rom":          place.primary_rom,
                 "kima_heb":          place.primary_heb,
                 "match_status":      status,
+                "grade":             grade,
+                "flags":             flags_str,
                 "entry_ids":         entry_ids_str,
                 "contexts":          contexts_str,
                 "is_new_variant":    "yes" if is_new else "no",
                 "source":            SOURCE_LABEL,
             })
         else:
+            # carry the chosen place (if any) + candidates so a reviewer can confirm/pick
+            cands = list(result.get("candidates", []))
+            if place is not None and not cands:
+                cands = [{"kima_id": place.kima_id, "rom": place.primary_rom,
+                          "heb": place.primary_heb}]
             review_rows.append({
                 "source_value":      result["source_value"],
                 "wikidata_yi":       result.get("wikidata_yi", ""),
@@ -208,8 +216,10 @@ def run(input_tsv: Path, out_matched: Path, out_review: Path) -> None:
                 "wikidata_qid":      result["wikidata_qid"],
                 "resolved_category": result.get("resolved_category", ""),
                 "match_status":      status,
-                "fuzzy_candidates":  json.dumps(result.get("candidates", []), ensure_ascii=False),
-                "fuzzy_confidence":  result.get("confidence", ""),
+                "grade":             grade,
+                "flags":             flags_str,
+                "candidates":        json.dumps(cands, ensure_ascii=False),
+                "confidence":        result.get("confidence", ""),
                 "entry_ids":         entry_ids_str,
                 "contexts":          contexts_str,
             })
@@ -218,32 +228,29 @@ def run(input_tsv: Path, out_matched: Path, out_review: Path) -> None:
 
     matched_fields = ["source_value", "wikidata_yi", "english_name", "wikidata_qid",
                       "resolved_category", "kima_id", "kima_rom", "kima_heb",
-                      "match_status", "entry_ids", "contexts", "is_new_variant", "source"]
+                      "match_status", "grade", "flags", "entry_ids", "contexts",
+                      "is_new_variant", "source"]
     with out_matched.open("w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=matched_fields, delimiter="\t")
         w.writeheader()
         w.writerows(matched_rows)
 
     review_fields = ["source_value", "wikidata_yi", "english_name", "wikidata_qid",
-                     "resolved_category", "match_status", "fuzzy_candidates", "fuzzy_confidence",
-                     "entry_ids", "contexts"]
+                     "resolved_category", "match_status", "grade", "flags",
+                     "candidates", "confidence", "entry_ids", "contexts"]
     with out_review.open("w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=review_fields, delimiter="\t")
         w.writeheader()
         w.writerows(review_rows)
 
-    wikidata_n   = sum(1 for r in matched_rows if r["match_status"] == "WIKIDATA")
-    name_exact_n = sum(1 for r in matched_rows if r["match_status"] == "NAME_EXACT")
-    new_var_n    = sum(1 for r in matched_rows if r["is_new_variant"] == "yes")
-    fuzzy_n      = sum(1 for r in review_rows  if r["match_status"] == "FUZZY")
-    no_match_n   = sum(1 for r in review_rows  if r["match_status"] == "NO_MATCH")
-
-    print(f"\nResults:")
-    print(f"  WIKIDATA   : {wikidata_n:>4}  (matched by QID)")
-    print(f"  NAME_EXACT : {name_exact_n:>4}  (matched by name)")
-    print(f"  ─ new variants proposed: {new_var_n}")
-    print(f"  FUZZY      : {fuzzy_n:>4}  → {out_review.name}")
-    print(f"  NO_MATCH   : {no_match_n:>4}  → {out_review.name}")
+    from collections import Counter
+    st = Counter(r["match_status"] for r in matched_rows + review_rows)
+    new_var_n = sum(1 for r in matched_rows if r["is_new_variant"] == "yes")
+    flagged_n = sum(1 for r in review_rows if r["flags"])
+    print(f"\nResults ({len(matched_rows)} auto-link / {len(review_rows)} review):")
+    print(f"  by status : {dict(st)}")
+    print(f"  GRADE_A auto-linked   : {len(matched_rows)}  (new variants: {new_var_n})")
+    print(f"  review (B/C/ambig/no) : {len(review_rows)}  (flagged: {flagged_n})")
     print(f"\nWrote: {out_matched}")
     print(f"Wrote: {out_review}")
 
