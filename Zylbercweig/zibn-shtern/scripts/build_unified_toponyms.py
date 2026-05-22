@@ -84,7 +84,11 @@ _DESCRIPTOR_RE = re.compile(
 )
 # Bare generic terms that are descriptors only when they ARE the whole value
 # (e.g. "געטא" alone is generic; "ווילנער געטא" is the specific Vilna Ghetto place).
-_BARE_DESCRIPTORS = {"געטא", "פראווינץ", "געגנט", "דארף", "שטעטל", "פראנט", "פראָנט"}
+# 'שול' (synagogue) and 'קהלה' (community) are common Yiddish/Hebrew words that
+# coincidentally exact-matched obscure Kima place variants (Šiauliai Ghetto / Kahla) —
+# treat as non-place when standalone.
+_BARE_DESCRIPTORS = {"געטא", "פראווינץ", "געגנט", "דארף", "שטעטל", "פראנט", "פראָנט",
+                     "שול", "קהלה"}
 _ORG_FIELDS = ("extracted_settlements", "extracted_venues",
                "extracted_addresses", "extracted_countries")
 
