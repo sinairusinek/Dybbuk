@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import csv
 import glob
+import json
 import re
 import xml.etree.ElementTree as ET
 from collections import OrderedDict, defaultdict
@@ -47,6 +48,8 @@ _LEXICON  = _ZYLB / "The Lexicon"
 _KIMATCH_LOCAL = Path("/Users/sinairusinek/Documents/GitHub/Kimatch")
 _KIMATCH  = _KIMATCH_LOCAL if _KIMATCH_LOCAL.exists() else Path.cwd()
 _QUEUE    = _KIMATCH / "data" / "zylbercweig" / "kimatch_review_full.tsv"
+_KIMA_CSV = _KIMATCH / "20250126KimaPlacesCSVx.csv"
+_MAX_CANDIDATES = 8
 
 _COLS = [
     "source_value", "wikidata_yi", "english_name", "wikidata_qid",
@@ -114,6 +117,51 @@ def build_attestation_index() -> dict[str, list[str]]:
     return out
 
 
+# ── Kima candidates ──────────────────────────────────────────────────────────────
+def build_kima_places() -> list[dict]:
+    """Minimal Kima place records: id, rom, heb, qid (same CSV the backend loads)."""
+    out = []
+    for row in _read_tsv(_KIMA_CSV, delim=","):
+        out.append({
+            "kima_id": (row.get("id") or "").strip(),
+            "rom":     (row.get("primary_rom_full") or "").strip(),
+            "heb":     (row.get("primary_heb_full") or "").strip(),
+            "qid":     (row.get("WikiData_Id") or "").strip(),
+        })
+    return out
+
+
+_WORD_RE = re.compile(r"[A-Za-z]+")
+
+
+def _english_base(current_link: str, question: str) -> str:
+    """Head place-name token, e.g. 'Q771572/Williamsburg (Brooklyn)' → 'Williamsburg',
+    '(unlinked)' + 'Troy (which?)…' → 'Troy'."""
+    label = current_link.split("/", 1)[1] if "/" in current_link else ""
+    src = label if (label and "unlinked" not in label.lower()) else question
+    m = _WORD_RE.search(src)
+    return m.group(0) if m else ""
+
+
+def kima_candidates(base: str, current_qid: str, places: list[dict]) -> list[dict]:
+    """Kima records whose romanized name contains `base` as a whole word.
+    Currently-linked QID first; capped. Returns [{kima_id, rom, heb}]."""
+    if len(base) < 3:          # too short / diacritic-truncated to search safely
+        return []
+    pat = re.compile(rf"\b{re.escape(base)}\b", re.IGNORECASE)
+    hits = [p for p in places if p["kima_id"] and pat.search(p["rom"])]
+    hits.sort(key=lambda p: (current_qid == "" or p["qid"] != current_qid))
+    seen, out = set(), []
+    for p in hits:
+        if p["kima_id"] in seen:
+            continue
+        seen.add(p["kima_id"])
+        out.append({"kima_id": p["kima_id"], "rom": p["rom"], "heb": p["heb"]})
+        if len(out) >= _MAX_CANDIDATES:
+            break
+    return out
+
+
 # ── context resolution ───────────────────────────────────────────────────────────
 def _entry_ids_for_record(rid: str, clusters: dict[str, list[str]]) -> list[str]:
     """Map a source_record_id to one or more lexicon xml:ids."""
@@ -147,12 +195,13 @@ def resolve_contexts(
 
 
 # ── builders ─────────────────────────────────────────────────────────────────────
-def build_disambiguation_rows(clusters, lex) -> list[dict]:
+def build_disambiguation_rows(clusters, lex, places) -> list[dict]:
     grouped: "OrderedDict[str, dict]" = OrderedDict()
     for r in _read_tsv(_DISAMB):
         yi = r["yiddish"].strip()
         g = grouped.setdefault(yi, {
             "question": r["question"].strip(),
+            "current_link": r["current_link"].strip(),
             "qid": _qid(r["current_link"]),
             "fields": set(),
             "records": [],
@@ -166,6 +215,8 @@ def build_disambiguation_rows(clusters, lex) -> list[dict]:
     rows = []
     for yi, g in grouped.items():
         entry_ids, ctxs = resolve_contexts(g["records"], yi, clusters, lex)
+        base = _english_base(g["current_link"], g["question"])
+        cands = kima_candidates(base, g["qid"], places)
         rows.append({
             "source_value":      yi,
             "wikidata_yi":        "",
@@ -173,7 +224,7 @@ def build_disambiguation_rows(clusters, lex) -> list[dict]:
             "wikidata_qid":       g["qid"],
             "resolved_category":  "country" if g["fields"] & {"countries"} else "settlement",
             "match_status":       "ambiguous",
-            "fuzzy_candidates":   "[]",
+            "fuzzy_candidates":   json.dumps(cands, ensure_ascii=False),
             "fuzzy_confidence":   "",
             "entry_ids":          "|".join(entry_ids),
             "contexts":           "|".join(ctxs),
@@ -181,7 +232,7 @@ def build_disambiguation_rows(clusters, lex) -> list[dict]:
     return rows
 
 
-def build_punchlist_rows(clusters, lex, attest) -> list[dict]:
+def build_punchlist_rows(clusters, lex, attest, places) -> list[dict]:
     rows = []
     for r in _read_tsv(_PUNCH):
         yi = r["yiddish"].strip()
@@ -189,6 +240,8 @@ def build_punchlist_rows(clusters, lex, attest) -> list[dict]:
         entry_ids, ctxs = resolve_contexts(record_ids, yi, clusters, lex)
         note = (f"{yi}: {r['note'].strip()} "
                 f"(grade {r['grade'].strip()}; hypothesis: {r['hypothesis'].strip()})")
+        base = _english_base("", r["linked_label"].strip())
+        cands = kima_candidates(base, r["linked_qid"].strip(), places)
         rows.append({
             "source_value":      yi,
             "wikidata_yi":        "",
@@ -196,7 +249,7 @@ def build_punchlist_rows(clusters, lex, attest) -> list[dict]:
             "wikidata_qid":       r["linked_qid"].strip(),
             "resolved_category":  "settlement",
             "match_status":       "ambiguous",
-            "fuzzy_candidates":   "[]",
+            "fuzzy_candidates":   json.dumps(cands, ensure_ascii=False),
             "fuzzy_confidence":   "",
             "entry_ids":          "|".join(entry_ids),
             "contexts":           "|".join([note, *ctxs]),
@@ -209,37 +262,32 @@ def main() -> None:
     lex      = build_lexicon_index()
     clusters = build_cluster_index()
     attest   = build_attestation_index()
-    print(f"  lexicon entries: {len(lex)}  clusters: {len(clusters)}  attested spellings: {len(attest)}")
+    places   = build_kima_places()
+    print(f"  lexicon entries: {len(lex)}  clusters: {len(clusters)}  "
+          f"attested spellings: {len(attest)}  kima places: {len(places)}")
 
-    existing = _read_tsv(_QUEUE)
-    have = {r["source_value"].strip() for r in existing}
+    new_rows = (build_disambiguation_rows(clusters, lex, places)
+                + build_punchlist_rows(clusters, lex, attest, places))
+    managed = {r["source_value"] for r in new_rows}
 
-    new_rows = (build_disambiguation_rows(clusters, lex)
-                + build_punchlist_rows(clusters, lex, attest))
-
-    added, skipped, no_ctx = [], [], []
-    for row in new_rows:
-        sv = row["source_value"]
-        if sv in have:
-            skipped.append(sv)
-            continue
-        existing.append(row)
-        have.add(sv)
-        added.append(sv)
-        if not row["contexts"].strip():
-            no_ctx.append(sv)
+    # Replace any previously-written managed rows (idempotent); keep everything else.
+    existing = [r for r in _read_tsv(_QUEUE) if r["source_value"].strip() not in managed]
+    kept = len(existing)
+    existing.extend(new_rows)
 
     with _QUEUE.open("w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=_COLS, delimiter="\t", extrasaction="ignore")
         w.writeheader()
         w.writerows(existing)
 
-    print(f"\nQueue now has {len(existing)} rows.")
-    print(f"Added {len(added)}: {', '.join(added)}")
+    no_ctx   = [r["source_value"] for r in new_rows if not r["contexts"].strip()]
+    no_cands = [r["source_value"] for r in new_rows if r["fuzzy_candidates"] == "[]"]
+    print(f"\nQueue now has {len(existing)} rows ({kept} kept + {len(new_rows)} managed).")
+    print(f"Managed rows ({len(new_rows)}): {', '.join(managed)}")
     if no_ctx:
         print(f"  ⚠ no context resolved for: {', '.join(no_ctx)}")
-    if skipped:
-        print(f"Skipped {len(skipped)} (already present): {', '.join(skipped)}")
+    if no_cands:
+        print(f"  ⓘ no Kima candidates surfaced for: {', '.join(no_cands)}")
 
 
 if __name__ == "__main__":
