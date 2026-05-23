@@ -59,6 +59,10 @@ MAATY_RELINK = WORK / "kima" / "maaty_relink_validated.tsv"
 # full cascade over the unlinked backlog). One row per spelling -> (qid, kima_id).
 # Links both person and org unlinked attestations whose source_value equals the spelling.
 UNLINKED_CONFIRMED = WORK / "kima" / "unlinked_confirmed.tsv"
+# Human-confirmed org place decisions from the Kimatch review app (feature A
+# downstream). source_value/record_id -> qid; record_id "*" = flat (all org
+# occurrences of the spelling). Takes precedence over auto org resolution.
+REVIEW_ORG = WORK / "kima" / "review_applied_org_qids.tsv"
 
 ATT_OUT = WORK / "toponyms_attestations.csv"
 GAZ_OUT = WORK / "toponyms_gazetteer.csv"
@@ -284,6 +288,22 @@ def main() -> None:
         elif v and r.get("notes", "").strip():
             sugg_by_variant.setdefault(v, ("", "", r.get("notes", "")))
 
+    # Human-confirmed org placements from the Kimatch review app (highest priority).
+    review_by_record: dict[tuple, str] = {}   # (record_id, source_value) -> qid
+    review_by_value: dict[str, str] = {}      # source_value -> qid (flat, record_id "*")
+    if REVIEW_ORG.exists():
+        for r in rd(REVIEW_ORG):
+            q = r.get("qid", "").strip()
+            v = r.get("source_value", "").strip()
+            rid = r.get("record_id", "").strip()
+            if not (is_qid(q) and v):
+                continue
+            if rid == "*":
+                review_by_value[v] = q
+            else:
+                review_by_record[(rid, v)] = q
+            category.setdefault(q, "settlement")
+
     def enrich(row: dict, q: str) -> None:
         """Attach QID-keyed resolution columns to an attestation row."""
         k = kima_by_qid.get(q, {})
@@ -376,6 +396,12 @@ def main() -> None:
                            source_record_id=cid, org_db_id=dbid, source_field=fname,
                            source_value=val, source_value_script=script_of(val),
                            is_descriptor="True" if is_descriptor(val) else "")
+                review_q = review_by_record.get((cid, val)) or review_by_value.get(val)
+                if review_q and review_q not in nonplace_qids:
+                    enrich(row, review_q)
+                    row.update(link_status="linked", relink_source="kimatch_review")
+                    att.append(row)
+                    continue
                 if resolved and resolved[0] in nonplace_qids:
                     row.update(link_status="misresolved", rejected_qid=resolved[0])
                 elif resolved:
