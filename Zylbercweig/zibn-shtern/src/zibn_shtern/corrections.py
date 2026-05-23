@@ -64,6 +64,16 @@ _SETTLEMENT_DESCRIPTION_HINTS = {
 # other corrections run.
 QID_OVERRIDES: dict[tuple[str, str], str] = {
     ("province", "Q1139315"): "Q7835",  # "cream tea" → Crimea
+    # "New York" in this corpus means New York City (Q60), not the state
+    # (Q1384). Reconciliation resolves it to the state and fix_city_state
+    # only rescues source_role=="place" rows, so burial/birth mentions
+    # (source_role province/country) leaked through to the state. Q1384 is
+    # used exclusively for "New York" here, so remap every role to Q60.
+    # Replaces the older non-reproducible "state_to_city_manual" hand-edit.
+    ("place", "Q1384"): "Q60",
+    ("province", "Q1384"): "Q60",
+    ("country", "Q1384"): "Q60",
+    ("settlement", "Q1384"): "Q60",
 }
 
 # Per-QID category overrides applied after QID substitution and also
