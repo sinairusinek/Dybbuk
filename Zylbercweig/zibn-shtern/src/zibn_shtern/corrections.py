@@ -18,12 +18,13 @@ Each function stamps the ``correction_applied`` column for auditability.
 """
 from __future__ import annotations
 
+import csv
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 
-from .triage import SETTLEMENT_KEYWORDS, classify_qid, is_country
+from .triage import SETTLEMENT_KEYWORDS, classify_qid, is_country, is_nonplace
 from .wikidata_client import (
     fetch_entity_data,
     fetch_qid_labels,
@@ -386,6 +387,133 @@ def fix_city_state(
         f"  fix_city_state: {substitutions} QID(s) substituted with city, "
         f"{skipped} left for column reassignment"
     )
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Correction: unlink QIDs that reconciled to a non-place (Bucket 1)
+# ---------------------------------------------------------------------------
+
+def fix_unlink_nonplace(
+    df: pd.DataFrame,
+    details: dict[str, dict[str, Any]],
+) -> pd.DataFrame:
+    """Clear QIDs that auto-reconciled to a clearly non-geographic entity.
+
+    A QID whose Wikidata p31 type is a known non-place (human, taxon, film,
+    asteroid, theorem, disambiguation page, …) and carries no place-positive
+    type is an extraction/reconciliation error (e.g. סאָמבאָר → Q191851 "vase").
+    The link is undone **corpus-wide** — every place row carrying that QID is
+    cleared, not just the flagged one — so the spelling is re-matched cleanly
+    through kimatch downstream. If kimatch finds nothing the row surfaces as
+    "no match" in the review app.
+
+    Ambiguous "other" types (unknown/empty, river, diocese, railway station,
+    archipelago) are intentionally left for human review rather than unlinked.
+    Stamps ``correction_applied='unlinked_nonplace'``.
+    """
+    out = df.copy()
+    if "correction_applied" not in out.columns:
+        out["correction_applied"] = ""
+
+    place_mask = out["source_role"] == "place"
+    if not place_mask.any():
+        print("  fix_unlink_nonplace: no place rows")
+        return out
+
+    # Bad QIDs are decided once per QID, then cleared everywhere they appear.
+    bad_qids = {
+        qid
+        for qid in out.loc[place_mask, "qid"].dropna().astype(str).unique()
+        if qid and is_nonplace(details.get(qid))
+    }
+    if not bad_qids:
+        print("  fix_unlink_nonplace: no non-place QIDs found")
+        return out
+
+    target = place_mask & out["qid"].astype(str).isin(bad_qids) & out["correction_applied"].eq("")
+    for idx in out.index[target]:
+        out.at[idx, "qid"] = ""
+        out.at[idx, "wikidata_label_en"] = ""
+        out.at[idx, "wikidata_label_yi"] = ""
+        out.at[idx, "wikidata_type"] = ""
+        out.at[idx, "resolved_category"] = "unmatched"
+        out.at[idx, "other_type"] = ""
+        _set_category_value(out, idx, "unmatched", "")  # clears all category cols
+        out.at[idx, "correction_applied"] = "unlinked_nonplace"
+
+    print(
+        f"  fix_unlink_nonplace: {len(bad_qids)} non-place QID(s) cleared "
+        f"on {int(target.sum())} row(s)"
+    )
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Correction: backfill QIDs recovered by the kimatch re-match (step 6)
+# ---------------------------------------------------------------------------
+
+def fix_rematch_backfill(
+    df: pd.DataFrame,
+    details: dict[str, dict[str, Any]],
+    cache_path: str | Path,
+    confirmed_path: str | Path = "data/working/kima/rematch_confirmed.tsv",
+) -> pd.DataFrame:
+    """Backfill QIDs recovered by re-matching unlinked spellings through kimatch.
+
+    ``rematch_confirmed.tsv`` (source_value → QID) holds GRADE_A kima matches for
+    spellings that ``fix_unlink_nonplace`` cleared. For each such place row still
+    lacking a QID, the recovered QID is written in, its Wikidata entity is fetched
+    + cached so downstream flagging sees real p17/p131 (no qid_lookup_missing),
+    and the row is re-classified. Stamps ``correction_applied='rematched_kima'``.
+
+    Reproducible: regenerate the TSV with
+    ``scripts/kimatch_match.py --input …/rematch_unlinked_input.tsv --suffix _rematch``
+    then map kima_id→WikiData_Id. Skips silently if the TSV is absent.
+    """
+    out = df.copy()
+    if "correction_applied" not in out.columns:
+        out["correction_applied"] = ""
+
+    confirmed_path = Path(confirmed_path)
+    if not confirmed_path.exists():
+        print("  fix_rematch_backfill: no confirmed TSV — skipped")
+        return out
+
+    sv_to_qid: dict[str, str] = {}
+    with confirmed_path.open(encoding="utf-8-sig", newline="") as fh:
+        for r in csv.DictReader(fh, delimiter="\t"):
+            sv, qid = (r.get("source_value") or "").strip(), (r.get("qid") or "").strip()
+            if sv and qid:
+                sv_to_qid.setdefault(sv, qid)
+
+    cache = load_cache(cache_path)
+    mask = (
+        (out["source_role"] == "place")
+        & (out["qid"].astype(str).isin(["", "nan"]))
+        & (out["source_value"].isin(sv_to_qid))
+    )
+    backfilled = 0
+    for idx in out.index[mask]:
+        qid = sv_to_qid[str(out.at[idx, "source_value"])]
+        detail = _enrich_detail(qid, cache)
+        if detail is None:
+            continue
+        details[qid] = detail
+        cat, other = classify_qid(detail, str(out.at[idx, "context"]), "place")
+        label = detail.get("label_en") or str(out.at[idx, "clustered_value"] or "")
+        out.at[idx, "qid"] = qid
+        out.at[idx, "wikidata_label_en"] = label
+        out.at[idx, "wikidata_label_yi"] = detail.get("label_yi") or ""
+        out.at[idx, "wikidata_type"] = ", ".join(detail.get("p31_labels", []))
+        out.at[idx, "resolved_category"] = cat
+        out.at[idx, "other_type"] = other or ""
+        _set_category_value(out, idx, cat, label)
+        out.at[idx, "correction_applied"] = "rematched_kima"
+        backfilled += 1
+
+    save_cache(cache_path, cache)
+    print(f"  fix_rematch_backfill: {backfilled} row(s) re-linked from {len(sv_to_qid)} confirmed match(es)")
     return out
 
 

@@ -18,9 +18,13 @@ CEMETERY_KEYWORDS = {
 DEATH_SITE_KEYWORDS = {
     "concentration camp",
     "extermination camp",
+    "death camp",
+    "labor camp",
+    "labour camp",
     "ghetto",
     "massacre",
     "mass grave",
+    "mass murder",
     "killing",
 }
 
@@ -32,6 +36,14 @@ SETTLEMENT_KEYWORDS = {
     "borough",
     "municipality",
     "commune",
+    # Real settlement types that classify_qid previously dropped to "other"
+    # (Bucket 2b — widen the whitelist; see project_zylbercweig_review_triage).
+    "urban-type settlement",
+    "urban settlement",
+    "rural settlement",
+    "ortsteil",
+    "freguesia",
+    "hamlet",
 }
 
 NEIGHBORHOOD_KEYWORDS = {
@@ -54,6 +66,7 @@ PROVINCE_KEYWORDS = {
     "state",
     "guberniya",
     "district",
+    "powiat",
 }
 
 COUNTRY_KEYWORDS = {
@@ -62,6 +75,107 @@ COUNTRY_KEYWORDS = {
     "empire",
     "kingdom",
     "republic",
+}
+
+# Bucket 1 — p31 types that prove a QID is NOT a place at all (auto-reconciliation
+# errors: human, taxon, film, asteroid, theorem, …). Drives fix_unlink_nonplace,
+# which clears the bad QID corpus-wide so it can be re-matched. Deliberately a
+# *denylist*: ambiguous "other" types (unknown, river, diocese, archipelago,
+# railway station) are left for human review rather than unlinked.
+NON_PLACE_KEYWORDS = {
+    "human",
+    "disambiguation",
+    "taxon",
+    "genus",
+    "species",
+    "film",
+    "album",
+    "single",
+    "song",
+    "musical group",
+    "band",
+    "asteroid",
+    "military unit",
+    "university",
+    "college",
+    "sports",
+    "olympic",
+    "theorem",
+    "branch of physics",
+    "mathematic",
+    "automobile",
+    "motorcycle",
+    "vehicle",
+    "written work",
+    "novel",
+    "artillery",
+    "weapon",
+    "software",
+    "vase",
+    "business enterprise",
+    "company",
+    "brand",
+}
+
+# Bucket 2a — historical region (attested as a place's province) → modern
+# country QIDs it may legitimately resolve into. A hierarchy mismatch is
+# auto-resolved ONLY when the place's modern country (p17) is in this set;
+# e.g. Galicia→Poland/Ukraine passes, Galicia→France stays flagged.
+# PI-approved 2026-05-23; see project_zylbercweig_historical_regions.
+# FUTURE: classify these as a historical-region entity type + broaden the list.
+_C = {  # country name → Wikidata QID, for readability below
+    "Poland": "Q36", "Ukraine": "Q212", "Romania": "Q218", "Moldova": "Q217",
+    "Czechia": "Q213", "Germany": "Q183", "Russia": "Q159", "Lithuania": "Q37",
+    "Belarus": "Q184", "Slovakia": "Q214", "Hungary": "Q28", "Serbia": "Q403",
+    "Latvia": "Q211", "Estonia": "Q191", "Austria": "Q40", "Croatia": "Q224",
+    "Slovenia": "Q215", "Italy": "Q38",
+}
+HISTORICAL_REGIONS: dict[str, set[str]] = {
+    region: {_C[c] for c in countries}
+    for region, countries in {
+        "galicia": ["Poland", "Ukraine"],
+        "eastern galicia": ["Poland", "Ukraine"],
+        "western galicia": ["Poland", "Ukraine"],
+        "kingdom of galicia and lodomeria": ["Poland", "Ukraine"],
+        "bukovina": ["Ukraine", "Romania"],
+        "bessarabia": ["Moldova", "Ukraine"],
+        "volhynia": ["Ukraine", "Poland"],
+        "podolia": ["Ukraine"],
+        "congress poland": ["Poland"],
+        "silesia": ["Poland", "Germany", "Czechia"],
+        "pomerania": ["Poland", "Germany"],
+        "east prussia": ["Poland", "Russia", "Lithuania"],
+        "bohemia": ["Czechia"],
+        "moravia": ["Czechia"],
+        "transylvania": ["Hungary", "Romania", "Slovakia", "Ukraine", "Serbia"],
+        "carpathian ruthenia": ["Ukraine", "Slovakia"],
+        "subcarpathia": ["Ukraine", "Slovakia"],
+        "courland": ["Latvia", "Estonia", "Lithuania"],
+        "livonia": ["Latvia", "Estonia", "Lithuania"],
+        "banat": ["Romania", "Serbia", "Hungary"],
+    }.items()
+}
+
+# Bucket 2a (country granularity) — attested *historical sovereign state* (the
+# place's country sibling) → modern country QIDs its former territory covers.
+# Used when no province sibling pins the region: a Galician town attested simply
+# as "Poland" or "Russia". Same guardrail — implausible pairs (→Argentina) fail.
+# PI-approved draft 2026-05-23; see project_zylbercweig_historical_regions.
+HISTORICAL_SOVEREIGNTY: dict[str, set[str]] = {
+    sovereign: {_C[c] for c in countries}
+    for sovereign, countries in {
+        "polish–lithuanian commonwealth": ["Poland", "Ukraine", "Belarus", "Lithuania", "Latvia"],
+        "polish-lithuanian commonwealth": ["Poland", "Ukraine", "Belarus", "Lithuania", "Latvia"],
+        "poland": ["Poland", "Ukraine", "Belarus", "Lithuania"],
+        "russia": ["Russia", "Poland", "Ukraine", "Belarus", "Lithuania", "Latvia", "Estonia", "Moldova"],
+        "russian empire": ["Russia", "Poland", "Ukraine", "Belarus", "Lithuania", "Latvia", "Estonia", "Moldova"],
+        "austria-hungary": ["Austria", "Hungary", "Czechia", "Slovakia", "Poland", "Ukraine", "Romania", "Croatia", "Serbia", "Slovenia", "Italy"],
+        "austrian empire": ["Austria", "Hungary", "Czechia", "Slovakia", "Poland", "Ukraine", "Romania", "Croatia", "Serbia", "Slovenia", "Italy"],
+        "kingdom of hungary": ["Hungary", "Slovakia", "Romania", "Ukraine", "Serbia", "Croatia"],
+        "congress poland": ["Poland", "Lithuania"],
+        "prussia": ["Germany", "Poland", "Russia", "Lithuania"],
+        "german empire": ["Germany", "Poland", "Russia", "Lithuania"],
+    }.items()
 }
 
 UNIFIED_COLUMNS = [
@@ -90,6 +204,7 @@ UNIFIED_COLUMNS = [
     "needs_review",
     "correction_applied",
     "death_burial_conflict",
+    "region_autoresolved",
 ]
 
 _CATEGORY_COLUMNS = [
@@ -131,6 +246,7 @@ def ensure_unified_schema(df: pd.DataFrame) -> pd.DataFrame:
         "place_qid_conflict": False,
         "needs_review": False,
         "death_burial_conflict": False,
+        "region_autoresolved": False,
     }
 
     for col in UNIFIED_COLUMNS:
@@ -216,6 +332,24 @@ def _primary_type(detail: dict[str, Any] | None) -> str:
 def is_country(detail: dict[str, Any] | None) -> bool:
     t = _type_text(detail)
     return any(k in t for k in COUNTRY_KEYWORDS)
+
+
+def is_nonplace(detail: dict[str, Any] | None) -> bool:
+    """True when the QID's p31 type is a known non-place (human, taxon, film…)
+    AND carries no place-positive type. Conservative: an unresolved/empty type
+    returns False (left for review, not unlinked)."""
+    if not detail:
+        return False
+    t = _type_text(detail)
+    if not t:
+        return False
+    place_positive = (
+        SETTLEMENT_KEYWORDS | NEIGHBORHOOD_KEYWORDS | PROVINCE_KEYWORDS
+        | COUNTRY_KEYWORDS | CEMETERY_KEYWORDS | DEATH_SITE_KEYWORDS
+    )
+    if any(k in t for k in place_positive):
+        return False
+    return any(k in t for k in NON_PLACE_KEYWORDS)
 
 
 def _collect_p131_ancestors(start_qid: str, details: dict[str, dict[str, Any]], max_depth: int = 6) -> set[str]:
@@ -428,6 +562,7 @@ def add_review_flags(
 
     out = classified_df.copy()
     flags_by_index: dict[int, set[str]] = defaultdict(set)
+    region_autoresolved: set[int] = set()
 
     # per-row role/type mismatch flags
     for idx, rec in out.iterrows():
@@ -459,6 +594,15 @@ def add_review_flags(
         province_qids = set(province_rows["qid"].dropna().astype(str).tolist())
         country_qids = set(country_rows["qid"].dropna().astype(str).tolist())
 
+        # Bucket 2a: modern countries this entry's attested historical region(s)
+        # may legitimately resolve into (e.g. province "Galicia" → {Poland, Ukraine}).
+        region_ok_countries: set[str] = set()
+        for region_label in province_rows["clustered_value"].dropna().astype(str):
+            region_ok_countries.update(HISTORICAL_REGIONS.get(region_label.strip().lower(), set()))
+        # …and the country-level analog, keyed on the attested historical sovereign.
+        for sov_label in country_rows["clustered_value"].dropna().astype(str):
+            region_ok_countries.update(HISTORICAL_SOVEREIGNTY.get(sov_label.strip().lower(), set()))
+
         # validate province rows against country rows using direct and ancestor-derived country evidence
         for idx, rec in province_rows.iterrows():
             province_qid = str(rec.get("qid"))
@@ -486,20 +630,34 @@ def add_review_flags(
             p131_ancestors = _collect_p131_ancestors(place_qid, details, max_depth=chain_depth)
             place_countries = _collect_country_candidates(place_qid, details, max_depth=chain_depth)
 
-            if country_qids:
-                if place_countries and country_qids.isdisjoint(place_countries):
-                    flags_by_index[idx].add("place_country_mismatch")
-                if not place_countries:
-                    flags_by_index[idx].add("place_country_unresolved")
+            # The place sits in a country its attested historical region permits
+            # (Galicia→Ukraine ✓, Galicia→France ✗): the current-vs-historical
+            # hierarchy disagreement is expected, not an error — suppress it.
+            region_allows = bool(region_ok_countries & (place_countries | p17))
 
+            country_mismatch = bool(country_qids and place_countries and country_qids.isdisjoint(place_countries))
             province_matches = set()
             province_matches.update(p131.intersection(province_qids))
             province_matches.update(p131_ancestors.intersection(province_qids))
-            if province_qids and not province_matches:
+            province_mismatch = bool(province_qids and not province_matches)
+
+            if country_mismatch and not region_allows:
+                flags_by_index[idx].add("place_country_mismatch")
+            if country_qids and not place_countries:
+                flags_by_index[idx].add("place_country_unresolved")
+            if province_mismatch and not region_allows:
                 flags_by_index[idx].add("place_province_mismatch")
+
+            # Audit-only: mark rows where the historical allowance actually
+            # suppressed a mismatch (not merely where it was applicable).
+            if region_allows and (country_mismatch or province_mismatch):
+                region_autoresolved.add(idx)
 
     out["review_flags"] = [";".join(sorted(flags_by_index.get(i, set()))) for i in out.index]
     out["needs_review"] = out["review_flags"].ne("")
+    # Audit-only: rows whose hierarchy mismatch was cleared by the historical-region
+    # rule. Not part of review_flags, so it never sets needs_review.
+    out["region_autoresolved"] = [i in region_autoresolved for i in out.index]
     return out
 
 

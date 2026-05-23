@@ -36,7 +36,20 @@ This repository is organized around four phases:
    - `python scripts/triage_qids.py --input data/raw/Zylbercweig-Extraction2026-02-05-places.tsv --output data/working/places_unified.csv --ancestor-depth 6 --chain-depth 6`
 7. (Optional) also emit legacy resolved/review outputs from the unified table:
    - `python scripts/triage_qids.py --input data/raw/Zylbercweig-Extraction2026-02-05-places.tsv --output data/working/places_unified.csv --legacy-outputs --resolved-output data/working/resolved_places.csv --review-output data/working/qid_review_queue.csv --ancestor-depth 6 --chain-depth 6`
-8. Prepare OpenRefine reviewer task file:
+8. Auto-triage the review queue before any human review (resolve mechanical
+   cases; hand off only judgment calls). `auto_reclassify.py` runs these
+   correction passes in order: `fix_qid_overrides`, `fix_unlink_nonplace`
+   (clear non-place QIDs — human/taxon/film… — corpus-wide), `fix_rematch_backfill`
+   (re-link spellings recovered by the kimatch re-match), `fix_death_site_burial`,
+   `fix_city_state`, `fix_column_assignment`, then `add_review_flags` (which
+   applies the `HISTORICAL_REGIONS` / `HISTORICAL_SOVEREIGNTY` allow-lists to
+   suppress expected historical-vs-current hierarchy conflicts).
+   To recover unlinked spellings (step 6 / re-match):
+   - build the input from the `unlinked_nonplace` rows → `data/working/kima/rematch_unlinked_input.tsv` (clustered_value as `english_name`)
+   - `python scripts/kimatch_match.py --input data/working/kima/rematch_unlinked_input.tsv --suffix _rematch`
+   - map `kima_id`→`WikiData_Id` into `data/working/kima/rematch_confirmed.tsv`, then re-run `auto_reclassify.py`
+9. Prepare OpenRefine reviewer task file from the residual judgment calls
+   (`needs_review` minus rows still pending re-match):
    - `python scripts/export_review_for_openrefine.py --input data/working/qid_review_queue_corrected.csv --output data/working/openrefine_review_queue.tsv`
 
 ## Current assumptions
