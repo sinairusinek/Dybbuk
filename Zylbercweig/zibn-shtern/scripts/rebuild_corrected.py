@@ -10,6 +10,10 @@ by itself leaves the corrected table missing those corrections.
 
 This orchestrator runs, in order:
   1. auto_reclassify.py            → places_unified_corrected.csv  (regenerated)
+  1b. apply_manual_locks.py        → restore ~121 hand-verified per-attestation
+       QID locks from data/reference/manual_qid_locks.csv (otherwise re-derived
+       wrong by the clean regen). Runs before translit/Kimatch so newer review
+       decisions can still override an old lock.
   2. apply_translit_audit_fixes.py → translit false-positive corrections on top
   3. apply_kimatch_review_decisions.py --apply → Kimatch review-app decisions on
        top (person qids + unlink/clear; org placements → review_applied_org_qids.tsv;
@@ -49,8 +53,19 @@ def main() -> None:
                     help="skip auto_reclassify (re-apply corrections + rebuild spine only)")
     args = ap.parse_args()
 
+    # auto_reclassify imports the zibn_shtern package (requires >=3.11); a bare
+    # `python3` is 3.9 here and fails with ModuleNotFoundError mid-run. Fail fast
+    # with the correct invocation instead.
+    if sys.version_info < (3, 11):
+        sys.exit(
+            f"✗ rebuild_corrected needs Python >=3.11 (zibn_shtern); got "
+            f"{sys.version_info.major}.{sys.version_info.minor}. Run as:\n"
+            f"    PYTHONPATH=src python3.11 scripts/rebuild_corrected.py"
+        )
+
     if not args.no_regen:
         _run("auto_reclassify.py", "--input", str(_RAW), "--output", str(_UNIFIED))
+    _run("apply_manual_locks.py")
     _run("apply_translit_audit_fixes.py")
     _run("apply_kimatch_review_decisions.py", "--apply")
     _run("build_unified_toponyms.py")

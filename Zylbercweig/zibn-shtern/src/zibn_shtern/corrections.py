@@ -82,6 +82,21 @@ CATEGORY_OVERRIDES: dict[str, str] = {
     "Q7835": "province",  # Crimea – peninsula in Wikidata, province in our schema
 }
 
+# Deterministic city resolutions for fix_city_state, keyed by the place LABEL
+# (clustered_value).  fix_city_state otherwise picks "the first settlement-typed
+# candidate" returned by the live Wikidata search API, whose ordering is NOT
+# stable across runs — this drifted Kitayhorod between rebuilds and once mapped
+# Simferopol to Richmond, Va.  Pinning the verified city QID here makes the
+# substitution reproducible and roots out the mis-search.  Consulted before the
+# live search; unknown labels still fall through to search_settlement_by_label.
+CITY_STATE_OVERRIDES: dict[str, str] = {
+    "Bershad": "Q827229",
+    "Kamianets-Podilskyi": "Q193965",
+    "Kansas": "Q41819",
+    "Nowy Sącz": "Q802",
+    "Sadagura": "Q2005381",
+}
+
 
 def _label_from_row(row: pd.Series) -> str:
     return str(row.get("wikidata_label_en") or row.get("clustered_value") or "")
@@ -331,6 +346,12 @@ def fix_city_state(
     for label_val in unique_labels:
         label_str = str(label_val).strip()
         if not label_str or label_str in resolved_labels:
+            continue
+
+        # Pinned resolution wins over the (non-deterministic) live search.
+        pinned = CITY_STATE_OVERRIDES.get(label_str)
+        if pinned is not None and _enrich_detail(pinned, cache) is not None:
+            resolved_labels[label_str] = pinned
             continue
 
         candidates = search_settlement_by_label(label_str)
