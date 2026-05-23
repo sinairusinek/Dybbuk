@@ -77,9 +77,11 @@ def _read_tsv(path: Path, delim: str = "\t") -> list[dict]:
 
 
 # ── indexes ─────────────────────────────────────────────────────────────────────
-def build_lexicon_index() -> dict[str, str]:
-    """xml:id → full entry text (whitespace-collapsed; longest wins on dup)."""
-    idx: dict[str, str] = {}
+def build_lexicon_index() -> tuple[dict[str, str], dict[str, str]]:
+    """Returns (texts, heads): xml:id → full entry text, and xml:id → entry
+    heading (the first <ab> lemma, e.g. "גליקמאַן, עליאַס"). Longest text wins on dup."""
+    texts: dict[str, str] = {}
+    heads: dict[str, str] = {}
     for fn in glob.glob(str(_LEXICON / "*.xml")):
         try:
             tree = ET.parse(fn)
@@ -90,9 +92,12 @@ def build_lexicon_index() -> dict[str, str]:
             if not xid:
                 continue
             txt = re.sub(r"\s+", " ", " ".join(el.itertext())).strip()
-            if len(txt) > len(idx.get(xid, "")):
-                idx[xid] = txt
-    return idx
+            if len(txt) > len(texts.get(xid, "")):
+                texts[xid] = txt
+                ab = el.find(f"{{{_TEI}}}ab")
+                if ab is not None:
+                    heads[xid] = re.sub(r"\s+", " ", " ".join(ab.itertext())).strip()
+    return texts, heads
 
 
 def build_cluster_index() -> dict[str, list[str]]:
@@ -141,10 +146,14 @@ def _window(text: str, needle: str, w: int = 180) -> str:
     return ("…" if a > 0 else "") + text[a:b] + ("…" if b < len(text) else "")
 
 
-def build_mentions(sv: str, recs_by_sv, clusters, lex) -> list[dict]:
+_MAX_FULL = 8000   # cap a baked full-entry text (chars) to bound TSV size
+
+
+def build_mentions(sv: str, recs_by_sv, clusters, lex, heads) -> list[dict]:
     """Per-mention breakdown for a spelling, grouped by source_record_id (= org
-    location-variant or person entry). Each mention carries its own windowed
-    Yiddish context + the QID it is currently linked to."""
+    location-variant or person entry). Each mention carries its entry heading,
+    a windowed Yiddish context, the full entry text (for "read more"), and the
+    QID it is currently linked to."""
     grouped: "OrderedDict[str, dict]" = OrderedDict()
     for r in recs_by_sv.get(sv, []):
         rid = (r.get("source_record_id") or "").strip()
@@ -166,20 +175,26 @@ def build_mentions(sv: str, recs_by_sv, clusters, lex) -> list[dict]:
 
     mentions = []
     for rid, g in list(grouped.items())[:_MAX_MENTIONS]:
-        ctx = ""
+        chosen_xid, chosen_txt = "", ""
         for xid in _entry_ids_for_record(rid, clusters):
             txt = lex.get(xid, "")
-            if txt and (sv in txt or not ctx):
-                ctx = _window(txt, sv)
-                if sv in txt:
-                    break
+            if not txt:
+                continue
+            if sv in txt:
+                chosen_xid, chosen_txt = xid, txt
+                break
+            if not chosen_txt:
+                chosen_xid, chosen_txt = xid, txt
+        full = chosen_txt[:_MAX_FULL] + ("…" if len(chosen_txt) > _MAX_FULL else "")
         mentions.append({
             "rid": rid,
             "corpus": g["corpus"],
             "field": "/".join(g["fields"]),
             "n": g["n"],
             "qid": g["qid"],
-            "ctx": ctx,
+            "head": heads.get(chosen_xid, ""),
+            "ctx": _window(chosen_txt, sv) if chosen_txt else "",
+            "full": full,
         })
     return mentions
 
@@ -404,7 +419,7 @@ def merge_by_source_value(source_rows: list[dict]) -> list[dict]:
 
 def main() -> None:
     print("Indexing Lexicon XML…")
-    lex      = build_lexicon_index()
+    lex, heads = build_lexicon_index()
     clusters = build_cluster_index()
     attest   = build_attestation_index()
     recs     = build_attestation_records()
@@ -425,7 +440,7 @@ def main() -> None:
     # Bake per-mention breakdown (feature A) — grouped by source_record_id.
     for r in new_rows:
         r["mentions"] = json.dumps(
-            build_mentions(r["source_value"], recs, clusters, lex), ensure_ascii=False)
+            build_mentions(r["source_value"], recs, clusters, lex, heads), ensure_ascii=False)
     managed = {r["source_value"] for r in new_rows}
 
     # Replace any previously-written managed rows (idempotent); keep everything else.
