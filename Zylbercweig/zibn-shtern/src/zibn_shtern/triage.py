@@ -128,6 +128,7 @@ _C = {  # country name → Wikidata QID, for readability below
     "Czechia": "Q213", "Germany": "Q183", "Russia": "Q159", "Lithuania": "Q37",
     "Belarus": "Q184", "Slovakia": "Q214", "Hungary": "Q28", "Serbia": "Q403",
     "Latvia": "Q211", "Estonia": "Q191", "Austria": "Q40", "Croatia": "Q224",
+    "Slovenia": "Q215", "Italy": "Q38",
 }
 HISTORICAL_REGIONS: dict[str, set[str]] = {
     region: {_C[c] for c in countries}
@@ -152,6 +153,28 @@ HISTORICAL_REGIONS: dict[str, set[str]] = {
         "courland": ["Latvia", "Estonia", "Lithuania"],
         "livonia": ["Latvia", "Estonia", "Lithuania"],
         "banat": ["Romania", "Serbia", "Hungary"],
+    }.items()
+}
+
+# Bucket 2a (country granularity) — attested *historical sovereign state* (the
+# place's country sibling) → modern country QIDs its former territory covers.
+# Used when no province sibling pins the region: a Galician town attested simply
+# as "Poland" or "Russia". Same guardrail — implausible pairs (→Argentina) fail.
+# PI-approved draft 2026-05-23; see project_zylbercweig_historical_regions.
+HISTORICAL_SOVEREIGNTY: dict[str, set[str]] = {
+    sovereign: {_C[c] for c in countries}
+    for sovereign, countries in {
+        "polish–lithuanian commonwealth": ["Poland", "Ukraine", "Belarus", "Lithuania", "Latvia"],
+        "polish-lithuanian commonwealth": ["Poland", "Ukraine", "Belarus", "Lithuania", "Latvia"],
+        "poland": ["Poland", "Ukraine", "Belarus", "Lithuania"],
+        "russia": ["Russia", "Poland", "Ukraine", "Belarus", "Lithuania", "Latvia", "Estonia", "Moldova"],
+        "russian empire": ["Russia", "Poland", "Ukraine", "Belarus", "Lithuania", "Latvia", "Estonia", "Moldova"],
+        "austria-hungary": ["Austria", "Hungary", "Czechia", "Slovakia", "Poland", "Ukraine", "Romania", "Croatia", "Serbia", "Slovenia", "Italy"],
+        "austrian empire": ["Austria", "Hungary", "Czechia", "Slovakia", "Poland", "Ukraine", "Romania", "Croatia", "Serbia", "Slovenia", "Italy"],
+        "kingdom of hungary": ["Hungary", "Slovakia", "Romania", "Ukraine", "Serbia", "Croatia"],
+        "congress poland": ["Poland", "Lithuania"],
+        "prussia": ["Germany", "Poland", "Russia", "Lithuania"],
+        "german empire": ["Germany", "Poland", "Russia", "Lithuania"],
     }.items()
 }
 
@@ -576,6 +599,9 @@ def add_review_flags(
         region_ok_countries: set[str] = set()
         for region_label in province_rows["clustered_value"].dropna().astype(str):
             region_ok_countries.update(HISTORICAL_REGIONS.get(region_label.strip().lower(), set()))
+        # …and the country-level analog, keyed on the attested historical sovereign.
+        for sov_label in country_rows["clustered_value"].dropna().astype(str):
+            region_ok_countries.update(HISTORICAL_SOVEREIGNTY.get(sov_label.strip().lower(), set()))
 
         # validate province rows against country rows using direct and ancestor-derived country evidence
         for idx, rec in province_rows.iterrows():
@@ -608,20 +634,24 @@ def add_review_flags(
             # (Galicia→Ukraine ✓, Galicia→France ✗): the current-vs-historical
             # hierarchy disagreement is expected, not an error — suppress it.
             region_allows = bool(region_ok_countries & (place_countries | p17))
-            if region_allows:
-                region_autoresolved.add(idx)
 
-            if country_qids:
-                if place_countries and country_qids.isdisjoint(place_countries) and not region_allows:
-                    flags_by_index[idx].add("place_country_mismatch")
-                if not place_countries:
-                    flags_by_index[idx].add("place_country_unresolved")
-
+            country_mismatch = bool(country_qids and place_countries and country_qids.isdisjoint(place_countries))
             province_matches = set()
             province_matches.update(p131.intersection(province_qids))
             province_matches.update(p131_ancestors.intersection(province_qids))
-            if province_qids and not province_matches and not region_allows:
+            province_mismatch = bool(province_qids and not province_matches)
+
+            if country_mismatch and not region_allows:
+                flags_by_index[idx].add("place_country_mismatch")
+            if country_qids and not place_countries:
+                flags_by_index[idx].add("place_country_unresolved")
+            if province_mismatch and not region_allows:
                 flags_by_index[idx].add("place_province_mismatch")
+
+            # Audit-only: mark rows where the historical allowance actually
+            # suppressed a mismatch (not merely where it was applicable).
+            if region_allows and (country_mismatch or province_mismatch):
+                region_autoresolved.add(idx)
 
     out["review_flags"] = [";".join(sorted(flags_by_index.get(i, set()))) for i in out.index]
     out["needs_review"] = out["review_flags"].ne("")
