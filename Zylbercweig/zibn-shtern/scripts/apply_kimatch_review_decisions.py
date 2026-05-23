@@ -69,9 +69,15 @@ def kima_qid_index() -> dict[str, str]:
 
 
 def target_qid(action: str, kima_qids: dict[str, str]) -> tuple[str, str]:
-    """Return (qid, kind) where kind ∈ {place, none}. Only map_to/wikidata yield a qid."""
+    """Return (qid, kind) where kind ∈ {place, unlink, none}.
+    map_to/wikidata → place; unlink → unlink; everything else → none."""
+    if action == "unlink":
+        return "", "unlink"
     if action.startswith("map_to:"):
         kid = action.split(":", 1)[1]
+        # Guard: a Wikidata QID stored as map_to:Q… is a wikidata placement. (#2)
+        if kid.upper().startswith("Q") and kid[1:].isdigit():
+            return kid.upper(), "place"
         return kima_qids.get(kid, ""), "place"
     if action.startswith("wikidata:"):
         return action.split(":", 1)[1], "place"
@@ -97,56 +103,68 @@ def main() -> None:
     #   split_rows = [(source_value, record_id)]
     person_by_value: dict[str, str] = {}
     person_by_entry: dict[str, str] = {}
-    org_rows: list[tuple[str, str, str]] = []
+    person_unlink_value: set[str] = set()
+    person_unlink_entry: set[str] = set()
+    org_rows: list[tuple[str, str, str, str]] = []   # (source_value, record_id, qid, action)
     split_rows: list[tuple[str, str]] = []
     log_rows: list[tuple] = []
     stats: Counter = Counter()
     no_qid: list[str] = []
 
+    def route(sv, rid, act, qid, kind, reviewer, scope):
+        is_org = rid.startswith("ORG-")
+        if kind == "unlink":
+            if is_org:
+                org_rows.append((sv, rid, "", "unlink"))
+            elif rid == "*":
+                person_unlink_value.add(sv); org_rows.append((sv, "*", "", "unlink"))
+            else:
+                person_unlink_entry.add(rid)
+            stats["unlink"] += 1
+            log_rows.append((sv, rid, act, "", reviewer, scope))
+            return
+        if is_org:
+            org_rows.append((sv, rid, qid, "link")); stats["org"] += 1
+        elif rid == "*":
+            person_by_value[sv] = qid; org_rows.append((sv, "*", qid, "link")); stats["flat"] += 1
+        else:
+            person_by_entry[rid] = qid; stats["person"] += 1
+        log_rows.append((sv, rid, act, qid, reviewer, scope))
+
     for sv, dec in decisions.items():
         reviewer = dec.get("reviewer", "")
-        if "mentions" in dec:
-            for rid, d in dec["mentions"].items():
-                act = d.get("action", "")
-                if act == "split":
-                    split_rows.append((sv, rid)); stats["split"] += 1
-                    continue
-                qid, kind = target_qid(act, kima_qids)
-                if kind != "place":
-                    stats[act or "unset"] += 1
-                    continue
-                if not qid:
-                    no_qid.append(f"{sv}/{rid} ({act})"); stats["map_no_qid"] += 1
-                    continue
-                if rid.startswith("ORG-"):
-                    org_rows.append((sv, rid, qid)); stats["org"] += 1
-                else:
-                    person_by_entry[rid] = qid; stats["person"] += 1
-                log_rows.append((sv, rid, act, qid, reviewer, "per_mention"))
-        else:
-            act = dec.get("action", "")
-            if act in ("", "ambiguous", "skip", "no_match_found", "no_match"):
-                stats[act or "unset"] += 1
+        mentions = dec["mentions"].items() if "mentions" in dec else [("*", dec)]
+        scope = "per_mention" if "mentions" in dec else "flat"
+        for rid, d in mentions:
+            act = d.get("action", "")
+            if act == "split":
+                split_rows.append((sv, rid)); stats["split"] += 1
                 continue
             qid, kind = target_qid(act, kima_qids)
-            if not qid:
-                no_qid.append(f"{sv} ({act})"); stats["map_no_qid"] += 1
+            if kind == "none":
+                stats[act or "unset"] += 1
                 continue
-            person_by_value[sv] = qid
-            org_rows.append((sv, "*", qid))   # flat → also a handoff for org occurrences
-            stats["flat"] += 1
-            log_rows.append((sv, "*", act, qid, reviewer, "flat"))
+            if kind == "place" and not qid:
+                no_qid.append(f"{sv}/{rid} ({act})"); stats["map_no_qid"] += 1
+                continue
+            route(sv, rid, act, qid, kind, reviewer, scope)
 
     # ── apply to places_unified_corrected.csv (person corpus) ───────────────────
     rows = list(csv.DictReader(_UNIFIED.open(encoding="utf-8")))
     fields = list(rows[0].keys())
-    changed = 0
+    changed = cleared = 0
     for r in rows:
-        new_qid = person_by_entry.get(r["entry_id"].strip()) \
-            or person_by_value.get(r["source_value"].strip())
+        eid, sval = r["entry_id"].strip(), r["source_value"].strip()
+        if eid in person_unlink_entry or sval in person_unlink_value:
+            if r.get("qid", "").strip():           # clear a wrong/region link
+                r["qid"] = ""; r["qid_source"] = _QID_SOURCE
+                if "correction_applied" in r:
+                    r["correction_applied"] = "True"
+                cleared += 1
+            continue
+        new_qid = person_by_entry.get(eid) or person_by_value.get(sval)
         if new_qid and r.get("qid", "").strip() != new_qid:
-            r["qid"] = new_qid
-            r["qid_source"] = _QID_SOURCE
+            r["qid"] = new_qid; r["qid_source"] = _QID_SOURCE
             if "correction_applied" in r:
                 r["correction_applied"] = "True"
             changed += 1
@@ -155,7 +173,7 @@ def main() -> None:
     print("\n=== Kimatch review → canonical apply " +
           ("(APPLY)" if args.apply else "(DRY-RUN)") + " ===")
     print(f"  decisions resolved: {dict(stats)}")
-    print(f"  person rows to update in places_unified_corrected.csv: {changed}")
+    print(f"  person rows: {changed} qid updates, {cleared} cleared (unlink)")
     print(f"  org handoff rows (review_applied_org_qids.tsv): {len(org_rows)}")
     print(f"  split punchlist rows: {len(split_rows)}")
     if no_qid:
@@ -169,7 +187,8 @@ def main() -> None:
     with _UNIFIED.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=fields); w.writeheader(); w.writerows(rows)
     with _ORG_OUT.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh, delimiter="\t"); w.writerow(["source_value", "record_id", "qid"])
+        w = csv.writer(fh, delimiter="\t")
+        w.writerow(["source_value", "record_id", "qid", "action"])
         w.writerows(org_rows)
     with _SPLIT_OUT.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, delimiter="\t"); w.writerow(["source_value", "record_id"])
@@ -180,7 +199,7 @@ def main() -> None:
         if write_header:
             w.writerow(["source_value", "record_id", "action", "qid", "reviewer", "scope"])
         w.writerows(log_rows)
-    print(f"\nWrote {changed} qid updates to {_UNIFIED.name}, "
+    print(f"\nWrote {changed} qid updates + {cleared} clears to {_UNIFIED.name}, "
           f"{len(org_rows)} org rows, {len(split_rows)} split rows; "
           f"logged {len(log_rows)} to {_LOG.name}.")
 
