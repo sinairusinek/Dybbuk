@@ -20,7 +20,13 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 
-from zibn_shtern.corrections import fix_city_state, fix_column_assignment, fix_death_site_burial, fix_qid_overrides
+from zibn_shtern.corrections import (
+    fix_city_state,
+    fix_column_assignment,
+    fix_death_site_burial,
+    fix_qid_overrides,
+    fix_unlink_nonplace,
+)
 from zibn_shtern.io import load_places, save_dataframe
 from zibn_shtern.triage import (
     add_review_flags,
@@ -104,6 +110,7 @@ def main() -> None:
     print("\n=== Step 2: Automated corrections ===")
 
     classified = fix_qid_overrides(classified, details, cache_path=args.cache)
+    classified = fix_unlink_nonplace(classified, details)
     classified = fix_death_site_burial(classified)
     classified = fix_city_state(classified, details, cache_path=args.cache)
 

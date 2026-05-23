@@ -18,9 +18,13 @@ CEMETERY_KEYWORDS = {
 DEATH_SITE_KEYWORDS = {
     "concentration camp",
     "extermination camp",
+    "death camp",
+    "labor camp",
+    "labour camp",
     "ghetto",
     "massacre",
     "mass grave",
+    "mass murder",
     "killing",
 }
 
@@ -32,6 +36,14 @@ SETTLEMENT_KEYWORDS = {
     "borough",
     "municipality",
     "commune",
+    # Real settlement types that classify_qid previously dropped to "other"
+    # (Bucket 2b — widen the whitelist; see project_zylbercweig_review_triage).
+    "urban-type settlement",
+    "urban settlement",
+    "rural settlement",
+    "ortsteil",
+    "freguesia",
+    "hamlet",
 }
 
 NEIGHBORHOOD_KEYWORDS = {
@@ -54,6 +66,7 @@ PROVINCE_KEYWORDS = {
     "state",
     "guberniya",
     "district",
+    "powiat",
 }
 
 COUNTRY_KEYWORDS = {
@@ -62,6 +75,46 @@ COUNTRY_KEYWORDS = {
     "empire",
     "kingdom",
     "republic",
+}
+
+# Bucket 1 — p31 types that prove a QID is NOT a place at all (auto-reconciliation
+# errors: human, taxon, film, asteroid, theorem, …). Drives fix_unlink_nonplace,
+# which clears the bad QID corpus-wide so it can be re-matched. Deliberately a
+# *denylist*: ambiguous "other" types (unknown, river, diocese, archipelago,
+# railway station) are left for human review rather than unlinked.
+NON_PLACE_KEYWORDS = {
+    "human",
+    "disambiguation",
+    "taxon",
+    "genus",
+    "species",
+    "film",
+    "album",
+    "single",
+    "song",
+    "musical group",
+    "band",
+    "asteroid",
+    "military unit",
+    "university",
+    "college",
+    "sports",
+    "olympic",
+    "theorem",
+    "branch of physics",
+    "mathematic",
+    "automobile",
+    "motorcycle",
+    "vehicle",
+    "written work",
+    "novel",
+    "artillery",
+    "weapon",
+    "software",
+    "vase",
+    "business enterprise",
+    "company",
+    "brand",
 }
 
 UNIFIED_COLUMNS = [
@@ -216,6 +269,24 @@ def _primary_type(detail: dict[str, Any] | None) -> str:
 def is_country(detail: dict[str, Any] | None) -> bool:
     t = _type_text(detail)
     return any(k in t for k in COUNTRY_KEYWORDS)
+
+
+def is_nonplace(detail: dict[str, Any] | None) -> bool:
+    """True when the QID's p31 type is a known non-place (human, taxon, film…)
+    AND carries no place-positive type. Conservative: an unresolved/empty type
+    returns False (left for review, not unlinked)."""
+    if not detail:
+        return False
+    t = _type_text(detail)
+    if not t:
+        return False
+    place_positive = (
+        SETTLEMENT_KEYWORDS | NEIGHBORHOOD_KEYWORDS | PROVINCE_KEYWORDS
+        | COUNTRY_KEYWORDS | CEMETERY_KEYWORDS | DEATH_SITE_KEYWORDS
+    )
+    if any(k in t for k in place_positive):
+        return False
+    return any(k in t for k in NON_PLACE_KEYWORDS)
 
 
 def _collect_p131_ancestors(start_qid: str, details: dict[str, dict[str, Any]], max_depth: int = 6) -> set[str]:

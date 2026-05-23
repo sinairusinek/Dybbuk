@@ -23,7 +23,7 @@ from typing import Any
 
 import pandas as pd
 
-from .triage import SETTLEMENT_KEYWORDS, classify_qid, is_country
+from .triage import SETTLEMENT_KEYWORDS, classify_qid, is_country, is_nonplace
 from .wikidata_client import (
     fetch_entity_data,
     fetch_qid_labels,
@@ -385,6 +385,65 @@ def fix_city_state(
     print(
         f"  fix_city_state: {substitutions} QID(s) substituted with city, "
         f"{skipped} left for column reassignment"
+    )
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Correction: unlink QIDs that reconciled to a non-place (Bucket 1)
+# ---------------------------------------------------------------------------
+
+def fix_unlink_nonplace(
+    df: pd.DataFrame,
+    details: dict[str, dict[str, Any]],
+) -> pd.DataFrame:
+    """Clear QIDs that auto-reconciled to a clearly non-geographic entity.
+
+    A QID whose Wikidata p31 type is a known non-place (human, taxon, film,
+    asteroid, theorem, disambiguation page, …) and carries no place-positive
+    type is an extraction/reconciliation error (e.g. סאָמבאָר → Q191851 "vase").
+    The link is undone **corpus-wide** — every place row carrying that QID is
+    cleared, not just the flagged one — so the spelling is re-matched cleanly
+    through kimatch downstream. If kimatch finds nothing the row surfaces as
+    "no match" in the review app.
+
+    Ambiguous "other" types (unknown/empty, river, diocese, railway station,
+    archipelago) are intentionally left for human review rather than unlinked.
+    Stamps ``correction_applied='unlinked_nonplace'``.
+    """
+    out = df.copy()
+    if "correction_applied" not in out.columns:
+        out["correction_applied"] = ""
+
+    place_mask = out["source_role"] == "place"
+    if not place_mask.any():
+        print("  fix_unlink_nonplace: no place rows")
+        return out
+
+    # Bad QIDs are decided once per QID, then cleared everywhere they appear.
+    bad_qids = {
+        qid
+        for qid in out.loc[place_mask, "qid"].dropna().astype(str).unique()
+        if qid and is_nonplace(details.get(qid))
+    }
+    if not bad_qids:
+        print("  fix_unlink_nonplace: no non-place QIDs found")
+        return out
+
+    target = place_mask & out["qid"].astype(str).isin(bad_qids) & out["correction_applied"].eq("")
+    for idx in out.index[target]:
+        out.at[idx, "qid"] = ""
+        out.at[idx, "wikidata_label_en"] = ""
+        out.at[idx, "wikidata_label_yi"] = ""
+        out.at[idx, "wikidata_type"] = ""
+        out.at[idx, "resolved_category"] = "unmatched"
+        out.at[idx, "other_type"] = ""
+        _set_category_value(out, idx, "unmatched", "")  # clears all category cols
+        out.at[idx, "correction_applied"] = "unlinked_nonplace"
+
+    print(
+        f"  fix_unlink_nonplace: {len(bad_qids)} non-place QID(s) cleared "
+        f"on {int(target.sum())} row(s)"
     )
     return out
 
