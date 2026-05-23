@@ -41,6 +41,8 @@ _ZYLB     = _ZIBN.parent
 _WORKING  = _ZIBN / "data" / "working"
 _DISAMB   = _WORKING / "kima" / "review_disambiguation.tsv"
 _PUNCH    = _WORKING / "kima" / "audit_translit_review_punchlist.tsv"
+_NAMEAMB  = _WORKING / "kima" / "audit_name_exact_ambiguous.tsv"
+_AMBALL   = _WORKING / "kima" / "audit_ambiguity_all.tsv"
 _ATTEST   = _WORKING / "toponyms_attestations.csv"
 _CLUSTERS = _ZYLB / "organizations" / "organizations_clustered.tsv"
 _LEXICON  = _ZYLB / "The Lexicon"
@@ -257,6 +259,84 @@ def build_punchlist_rows(clusters, lex, attest, places) -> list[dict]:
     return rows
 
 
+# Candidate option in the ambiguity audits, e.g. "Lublin (Poland)[174→Q37333]"
+# or "Międzyrzec Podlaski (Poland)[223->Q34267]". Arrow may be → or -> or =.
+_OPT_RE = re.compile(r"\[(\d+)\s*[-=>→]+\s*(Q\d+|-)\]")
+
+
+def _parse_options(cell: str) -> list[dict]:
+    cands = []
+    for part in (cell or "").split("|"):
+        part = part.strip()
+        m = _OPT_RE.search(part)
+        if not m:
+            continue
+        cands.append({"kima_id": m.group(1), "rom": part[:m.start()].strip(), "heb": ""})
+    return cands
+
+
+def build_ambiguity_rows(path, options_col, clusters, lex, attest, places) -> list[dict]:
+    """Rows from an ambiguity audit: one Yiddish spelling linked to a name that
+    several Kima places share. Candidates come from the audit's options column."""
+    rows = []
+    for r in _read_tsv(path):
+        yi = r["yiddish"].strip()
+        cands = _parse_options(r.get(options_col, ""))
+        label = r.get("linked_label", "").strip()
+        lqid  = r.get("linked_qid", "").strip()
+        entry_ids, ctxs = resolve_contexts(attest.get(yi, []), yi, clusters, lex)
+        note = (f"{yi}: currently linked to {lqid}/{label}; "
+                f"{len(cands)} Kima places share this name — pick the right one.")
+        rows.append({
+            "source_value":      yi,
+            "wikidata_yi":        "",
+            "english_name":       f"{label} — ambiguous: pick the right Kima place",
+            "wikidata_qid":       lqid,
+            "resolved_category":  "settlement",
+            "match_status":       "ambiguous",
+            "fuzzy_candidates":   json.dumps(cands, ensure_ascii=False),
+            "fuzzy_confidence":   "",
+            "entry_ids":          "|".join(entry_ids),
+            "contexts":           "|".join([note, *ctxs]),
+        })
+    return rows
+
+
+def merge_by_source_value(source_rows: list[dict]) -> list[dict]:
+    """One row per spelling. Scalars: first non-empty wins (source order =
+    priority). Lists (candidates / contexts / entry_ids): unioned."""
+    merged: "OrderedDict[str, dict]" = OrderedDict()
+    for r in source_rows:
+        sv = r["source_value"]
+        if sv not in merged:
+            merged[sv] = {**r, "fuzzy_candidates": json.loads(r["fuzzy_candidates"])}
+            continue
+        m = merged[sv]
+        for col in ("english_name", "wikidata_qid", "wikidata_yi", "resolved_category"):
+            if not m.get(col) and r.get(col):
+                m[col] = r[col]
+        # union candidates by kima_id
+        seen = {c["kima_id"] for c in m["fuzzy_candidates"]}
+        for c in json.loads(r["fuzzy_candidates"]):
+            if c["kima_id"] not in seen:
+                m["fuzzy_candidates"].append(c)
+                seen.add(c["kima_id"])
+        # union contexts / entry_ids (preserve order, dedup)
+        m["contexts"] = "|".join(dict.fromkeys(
+            [c for c in (m["contexts"].split("|") + r["contexts"].split("|")) if c]))
+        m["entry_ids"] = "|".join(dict.fromkeys(
+            [e for e in (m["entry_ids"].split("|") + r["entry_ids"].split("|")) if e]))
+
+    out = []
+    for m in merged.values():
+        m["fuzzy_candidates"] = json.dumps(m["fuzzy_candidates"][:_MAX_CANDIDATES],
+                                           ensure_ascii=False)
+        # cap contexts to what the page renders plus a little headroom
+        m["contexts"] = "|".join(m["contexts"].split("|")[:4])
+        out.append(m)
+    return out
+
+
 def main() -> None:
     print("Indexing Lexicon XML…")
     lex      = build_lexicon_index()
@@ -266,8 +346,16 @@ def main() -> None:
     print(f"  lexicon entries: {len(lex)}  clusters: {len(clusters)}  "
           f"attested spellings: {len(attest)}  kima places: {len(places)}")
 
-    new_rows = (build_disambiguation_rows(clusters, lex, places)
-                + build_punchlist_rows(clusters, lex, attest, places))
+    # Source order = merge priority (disambiguation richest, then punchlist,
+    # then the two ambiguity audits). Overlapping spellings are merged, not
+    # duplicated (union candidates + contexts).
+    source_rows = (
+        build_disambiguation_rows(clusters, lex, places)
+        + build_punchlist_rows(clusters, lex, attest, places)
+        + build_ambiguity_rows(_NAMEAMB, "kima_options", clusters, lex, attest, places)
+        + build_ambiguity_rows(_AMBALL, "options", clusters, lex, attest, places)
+    )
+    new_rows = merge_by_source_value(source_rows)
     managed = {r["source_value"] for r in new_rows}
 
     # Replace any previously-written managed rows (idempotent); keep everything else.
