@@ -239,7 +239,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_130_r_2,death,place,לאָס אַנדזשעלעס,Los Angeles,Q65,initial,False,Los Angeles,לאס אנדזשעלעס,"charter city, city in the United States, city, global city, metropolis, megacity, business cluster, big city, LGBT sanctuary city",settlement,,,,,Los Angeles,,,,,,False,,False,False
 4-facs_132_tr_1754224993,death,place,פֿוירנדעיל,New York City,Q60,dodgy,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 4-facs_137_tr_1754224982,death,place,פֿילאַדעלפיע,Philadelphia,Q1345,initial,False,Philadelphia,פילאדעלפיע,"city of Pennsylvania, county seat, home rule municipality of Pennsylvania, consolidated city-county",settlement,,,,,Philadelphia,,,,,,False,,False,False
-4-facs_138_tr_1754224987,death,place,אַטלאַנטיק סיטי,Atlantic City,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_138_tr_1754224987,death,place,אַטלאַנטיק סיטי,Atlantic City,Q139564,dodgy,False,Atlantic City,אטלאנטיק סיטי,city in New Jersey,settlement,,,,,Atlantic City,,,,,,False,rematched_kima,False,False
 4-facs_141_tr_1754377601,death,place,פּאַריז,Paris,Q90,initial,False,Paris,פאריז,"commune of France, territorial collectivity of France with special status, metropolis, tourist destination, global city, megacity, largest city, college town, big city, primate city, national capital",settlement,,,,,Paris,,,,,,False,,False,False
 4-facs_141_tr_1754377600,death,place,מעקסיקאָ סיטי,Mexico City,Q1489,initial,False,Mexico City,מעקסיקא שטאט,"federative entity of Mexico, big city, city, metropolis, largest city, megacity, federal capital, primate city",settlement,,,,,Mexico City,,,,,,False,,False,False
 4-facs_143_tr_1754377592,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
@@ -364,7 +364,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_299_tr_1741260436,death,place,קראָקע,Kraków,Q31487,initial,False,Kraków,קראקע,"city with powiat rights in Poland, big city, Hanseatic city, tourist destination, former national capital, city or town, place with town rights and privileges",settlement,,,,,Kraków,,,,,,False,,False,False
 1-facs_300_tr_1741260418,death,place,סאָמבאָר,Sombor,Q191851,dodgy,False,vase,,,other,unknown,,,,,,,,vase,needs_manual_type_review;place_province_mismatch,True,,False,False
 1-facs_300_tr_1741260418,death,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-1-facs_301_tr_1741260452,death,place,כאָרבין,Harbin,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_301_tr_1741260452,death,place,כאָרבין,Harbin,Q42956,dodgy,False,Harbin,,"sub-province-level division, city, big city, prefecture-level city",settlement,,,,,Harbin,,,,,,False,rematched_kima,False,False
 1-facs_303_tr_1741260398,death,place,ריאָ דע זשענייראָ,Rio de Janeiro,Q8678,dodgy,False,Rio de Janeiro,ריא דע זשאנערא,"municipality of Brazil, big city, megacity, federal capital, former national capital",settlement,,,,,Rio de Janeiro,,,,,,False,,False,False
 1-facs_303_tr_1741260398,death,country,בראָזיל,Brazil,Q155,country,False,Brazil,בראזיל,"sovereign state, secular state, country, federal republic",country,,,,,,,Brazil,,,,False,,False,False
 1-facs_304_tr_1741260480,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
@@ -486,7 +486,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_150_tr_1740521115,death,place,פֿילאָדעלפיע,Philadelphia,Q1345,initial,False,Philadelphia,פילאדעלפיע,"city of Pennsylvania, county seat, home rule municipality of Pennsylvania, consolidated city-county",settlement,,,,,Philadelphia,,,,,,False,,False,False
 1-facs_150_r,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 1-facs_180_region_1715801037095_458,death,place,ניו-יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
-1-facs_201_tr_1741260327,death,place,כאָרבין,Harbin,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_201_tr_1741260327,death,place,כאָרבין,Harbin,Q42956,dodgy,False,Harbin,,"sub-province-level division, city, big city, prefecture-level city",settlement,,,,,Harbin,,,,,,False,rematched_kima,False,False
 1-facs_201_tr_1741260321,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 1-facs_202_tr_1741260239,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 2-facs_9_r,death,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
@@ -568,7 +568,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_268_tr_1744280822,death,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 2-facs_270_tr_1744280698,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 2-facs_271_tr_1744280771,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
-2-facs_273_tr_1744280704,death,place,זוויעניגראָדקאָ,Zvenyhorodka,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_273_tr_1744280704,death,place,זוויעניגראָדקאָ,Zvenyhorodka,Q219836,dodgy,False,Zvenyhorodka,,city in Ukraine,settlement,,,,,Zvenyhorodka,,,,,,False,rematched_kima,False,False
 2-facs_274_r_2,death,place,אויפֿן וועג קיין יעליסאַוועטגראָד,Kropyvnytskyi,Q158292,dodgy,False,Kropyvnytskyi,יעליסאוועטגראד,"centre of oblast, city of regional significance of Ukraine",settlement,,,,,Kropyvnytskyi,,,,,,False,,False,False
 2-facs_284_tr_1744280792,death,place,קראָקע,Kraków,Q31487,initial,False,Kraków,קראקע,"city with powiat rights in Poland, big city, Hanseatic city, tourist destination, former national capital, city or town, place with town rights and privileges",settlement,,,,,Kraków,,,,,,False,,False,False
 2-facs_287_tr_1744280748,death,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
@@ -733,7 +733,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_146_tr_1733832663,death,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,False
 5-facs_147_tr_1733832799,death,place,טרעבלינקע,Treblinka,Q152010,initial,True,Treblinka extermination camp,טרעבלינקע,"extermination camp, Nazi concentration camp, architectural heritage monument",death_site,,,Treblinka extermination camp,Treblinka extermination camp,,,,,,place_qid_conflict,True,death_burial_mirrored,False,False
 5-facs_148_tr_1733832676,death,place,אַנדידזשאַן,Andijan,Q4397,dodgy,False,South Huron,,"town, lower-tier municipality of Ontario",settlement,,,,,South Huron,,,,,,False,,False,False
-5-facs_153_tr_1735652603,death,place,אָשוויענטשים,Auschwitz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_153_tr_1735652603,death,place,אָשוויענטשים,Auschwitz,Q7342,dodgy,False,Oświęcim,אשפעצין,urban municipality of Poland,settlement,,,,,Oświęcim,,,,,,False,rematched_kima,False,False
 5-facs_154_tr_1735652626,death,place,טאַרנאָפּאָל,Ternopil,Q156743,initial,False,Ternopil,טארנאפאל,city of regional significance of Ukraine,settlement,,,,,Ternopil,,,,,,False,,False,False
 5-facs_158_tr_1735652602,death,place,מאידאַנעק,Majdanek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 5-facs_160_tr_1735652649,death,place,טרעבלינקע אָדער מאַידאַנעק,Lublin-Majdanek concentration camp,Q160135,dodgy,False,Lublin-Majdanek concentration camp,מיידאנעק,"military museum, extermination camp, Nazi concentration camp, architectural heritage monument",death_site,,,Lublin-Majdanek concentration camp,Lublin-Majdanek concentration camp,,,,,,,False,death_burial_mirrored,False,False
@@ -751,7 +751,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_174_tr_1736589025,death,place,בעלזשעץ,Belzec extermination camp,Q160143,initial,False,Belzec extermination camp,בעלזשיץ פארטיליקונג לאגער,"extermination camp, concentration camp",death_site,,,Belzec extermination camp,Belzec extermination camp,,,,,,,False,death_burial_mirrored,False,False
 5-facs_175_tr_1736588934,death,country,בוכאַראַ,Bukhara,Q40342,dodgy,False,.an,,"country code top-level domain, unassigned top-level domain",country,,,,,,,.an,,,,False,moved_to_country,False,False
 5-facs_175_tr_1736588934,death,country,סאָוויעטנפֿאַרבאַנד,Soviet Union,Q15180,country,False,Soviet Union,סאוועטן פארבאנד,"federal republic, socialist state, historical country, sovereign state, communist state, transcontinental country, supranational union, member states of the United Nations, permanent members of the United Nations Security Council, cratonym, state, counterintelligence state, country",country,,,,,,,Soviet Union,,,,False,,False,False
-5-facs_175_tr_1736588953,death,place,אשוויענטשים,Auschwitz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_175_tr_1736588953,death,place,אשוויענטשים,Auschwitz,Q7342,dodgy,False,Oświęcim,אשפעצין,urban municipality of Poland,settlement,,,,,Oświęcim,,,,,,False,rematched_kima,False,False
 5-facs_177_tr_1736589074,death,place,וואַרשעווער געטאָ,Warsaw Ghetto,Q154607,initial,False,Warsaw Ghetto,וואַרשע געטא,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Warsaw Ghetto,Warsaw Ghetto,,,,,,,False,death_burial_mirrored,False,False
 5-facs_178_tr_1736588958,death,place,פּאָנאַר,Aukštieji Paneriai,Q708092,initial,False,Aukštieji Paneriai,פאנאר,"neighborhood, neighborhood of Vilnius",neighborhood,,,,,,,,Aukštieji Paneriai,,,False,,False,False
 5-facs_178_tr_1736588955,death,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -803,7 +803,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_216_tr_1739220872,death,country,פֿראַנקרייך,France,Q142,country,False,France,פראנקרייך,"sovereign state, colonial power, Mediterranean country, republic, country",country,,,,,,,France,,,,False,,False,False
 5-facs_217_tr_1739220726,death,place,יאַנאָווער לאַגער,Janowska concentration camp,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 5-facs_223_tr_1739220900,death,place,טרעבלינקע,Treblinka,Q152010,initial,True,Treblinka extermination camp,טרעבלינקע,"extermination camp, Nazi concentration camp, architectural heritage monument",death_site,,,Treblinka extermination camp,Treblinka extermination camp,,,,,,place_qid_conflict,True,death_burial_mirrored,False,False
-5-facs_225_tr_1739222150,death,place,אָסוויענטשים,Auschwitz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_225_tr_1739222150,death,place,אָסוויענטשים,Auschwitz,Q7342,dodgy,False,Oświęcim,אשפעצין,urban municipality of Poland,settlement,,,,,Oświęcim,,,,,,False,rematched_kima,False,False
 5-facs_229_tr_1739222572,death,country,פֿראַנקרייך,France,Q142,country,False,France,פראנקרייך,"sovereign state, colonial power, Mediterranean country, republic, country",country,,,,,,,France,,,,False,,False,False
 5-facs_230_tr_1739221425,death,place,טרעבלינקע,Treblinka,Q152010,initial,True,Treblinka extermination camp,טרעבלינקע,"extermination camp, Nazi concentration camp, architectural heritage monument",death_site,,,Treblinka extermination camp,Treblinka extermination camp,,,,,,place_qid_conflict,True,death_burial_mirrored,False,False
 5-facs_231_tr_1739221360,death,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,False
@@ -899,7 +899,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_367_tr_1739222548,death,place,מינסקער געטאָ,Minsk Ghetto,Q153336,initial,False,Minsk Ghetto,,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Minsk Ghetto,Minsk Ghetto,,,,,,,False,death_burial_mirrored,False,False
 5-facs_367_tr_1739222551,death,place,וואַרשעווער געטאָ,Warsaw Ghetto,Q154607,initial,False,Warsaw Ghetto,וואַרשע געטא,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Warsaw Ghetto,Warsaw Ghetto,,,,,,,False,death_burial_mirrored,False,False
 5-facs_369_r,death,place,וואַרשעווער געטאָ,Warsaw Ghetto,Q154607,initial,False,Warsaw Ghetto,וואַרשע געטא,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Warsaw Ghetto,Warsaw Ghetto,,,,,,,False,death_burial_mirrored,False,False
-5-facs_371_tr_1739222499,death,place,אשוויענטשים,Auschwitz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_371_tr_1739222499,death,place,אשוויענטשים,Auschwitz,Q7342,dodgy,False,Oświęcim,אשפעצין,urban municipality of Poland,settlement,,,,,Oświęcim,,,,,,False,rematched_kima,False,False
 5-facs_371_r_6,death,place,ריגער געטאָ,Riga Ghetto,Q698342,initial,False,Riga Ghetto,ריגע געטא,ghetto in Nazi-occupied Europe,death_site,,,Riga Ghetto,Riga Ghetto,,,,,,,False,death_burial_mirrored,False,False
 5-facs_371_r_2,death,place,סאַמאַרקאַנד,Samarkand,Q5753,initial,False,Samarkand,סאמארקאנד,"big city, administrative territorial entity",settlement,,,,,Samarkand,,,,,,False,,False,False
 5-facs_372_tr_1739222357,death,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
@@ -929,7 +929,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_438_tr_1739221804,death,place,כאַרקאָוו,Kharkiv,Q42308,initial,False,Kharkiv,כארקעוו,"centre of oblast, city in Ukraine",settlement,,,,,Kharkiv,,,,,,False,,False,False
 5-facs_438_r_2,death,place,מינסקער געטאָ,Minsk Ghetto,Q153336,initial,False,Minsk Ghetto,,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Minsk Ghetto,Minsk Ghetto,,,,,,,False,death_burial_mirrored,False,False
 5-facs_438_r_4,death,place,מאָסקווע,Moscow,Q649,initial,False,Moscow,מאסקווע,"capital of Russia, federal city of Russia, big city, megacity, largest city, largest city, largest city, largest city, city or town, federal subject of Russia, federal capital, human settlement, city/town in Russia",settlement,,,,,Moscow,,,,,,False,,False,False
-5-facs_439_tr_1739220587,death,place,אָשוויענטשים,Auschwitz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_439_tr_1739220587,death,place,אָשוויענטשים,Auschwitz,Q7342,dodgy,False,Oświęcim,אשפעצין,urban municipality of Poland,settlement,,,,,Oświęcim,,,,,,False,rematched_kima,False,False
 5-facs_441_tr_1739220583,death,place,וואַרשעווער געטאָ,Warsaw Ghetto,Q154607,initial,False,Warsaw Ghetto,וואַרשע געטא,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Warsaw Ghetto,Warsaw Ghetto,,,,,,,False,death_burial_mirrored,False,False
 5-facs_442_tr_1739222531,death,place,סטאַראַיאַ רוסאַ,Staraya Russa,Q196479,dodgy,False,Staraya Russa,,city or town,settlement,,,,,Staraya Russa,,,,,,False,,False,False
 5-facs_443_tr_1739220791,death,place,באַבי יאָר,Babi Yar,Q48766,initial,False,Babi Yar,באבי יאר,place of mass murder,death_site,,,Babi Yar,Babi Yar,,,,,,,False,death_burial_mirrored,False,False
@@ -947,7 +947,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_484_r_5,death,place,מאָסקווע,Moscow,Q649,initial,False,Moscow,מאסקווע,"capital of Russia, federal city of Russia, big city, megacity, largest city, largest city, largest city, largest city, city or town, federal subject of Russia, federal capital, human settlement, city/town in Russia",settlement,,,,,Moscow,,,,,,False,,False,False
 5-facs_485_r,death,place,מאידאַנעק,Majdanek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 5-facs_508_tr_1739222134,death,place,וואַרשעווער געטאָ,Warsaw Ghetto,Q154607,initial,False,Warsaw Ghetto,וואַרשע געטא,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Warsaw Ghetto,Warsaw Ghetto,,,,,,,False,death_burial_mirrored,False,False
-5-facs_509_tr_1739221079,death,place,אשוויענטשים,Auschwitz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_509_tr_1739221079,death,place,אשוויענטשים,Auschwitz,Q7342,dodgy,False,Oświęcim,אשפעצין,urban municipality of Poland,settlement,,,,,Oświęcim,,,,,,False,rematched_kima,False,False
 5-facs_529_tr_1739221773,death,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 5-facs_535_tr_1739222178,death,place,באַביי יאָר,Babi Yar,Q48766,initial,False,Babi Yar,באבי יאר,place of mass murder,death_site,,,Babi Yar,Babi Yar,,,,,,,False,death_burial_mirrored,False,False
 5-facs_535_tr_1739222170,death,place,פאָנאַר,Aukštieji Paneriai,Q708092,initial,False,Aukštieji Paneriai,פאנאר,"neighborhood, neighborhood of Vilnius",neighborhood,,,,,,,,Aukštieji Paneriai,,,False,,False,False
@@ -964,13 +964,13 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_558_tr_1739222086,death,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_559_tr_1739222339,death,place,וואַרשעווער געטאָ,Warsaw Ghetto,Q154607,initial,False,Warsaw Ghetto,וואַרשע געטא,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Warsaw Ghetto,Warsaw Ghetto,,,,,,,False,death_burial_mirrored,False,False
 5-facs_560_tr_1739220854,death,place,אוישוויץ,Auschwitz,Q7341,initial,False,Auschwitz,אוישוויץ,"Nazi concentration camp, museum, extermination camp, architectural ensemble",death_site,,,Auschwitz,Auschwitz,,,,,,,False,death_burial_mirrored,False,False
-5-facs_560_tr_1739220846,death,place,אשוויענטשים,Auschwitz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_560_tr_1739220846,death,place,אשוויענטשים,Auschwitz,Q7342,dodgy,False,Oświęcim,אשפעצין,urban municipality of Poland,settlement,,,,,Oświęcim,,,,,,False,rematched_kima,False,False
 5-facs_561_tr_1739222221,death,place,וואַרשעווער געטאָ,Warsaw Ghetto,Q154607,initial,False,Warsaw Ghetto,וואַרשע געטא,"ghetto in Nazi-occupied Europe, Jewish ghetto",death_site,,,Warsaw Ghetto,Warsaw Ghetto,,,,,,,False,death_burial_mirrored,False,False
 5-facs_563_tr_1739221890,death,place,טאַק-מאַק,Tokmak,Q760235,dodgy,False,Tokmak,,"city of regional significance of Ukraine, human settlement, city",settlement,,,,,Tokmak,,,,,place_country_mismatch,True,,False,False
 5-facs_563_tr_1739221890,death,country,קירגיזיע,Kyrgyzstan,Q813,country,False,Kyrgyzstan,קירגיזסטאן,"sovereign state, landlocked country, republic, country",country,,,,,,,Kyrgyzstan,,,,False,,False,False
 5-facs_563_tr_1739221876,death,place,מינסק,Minsk,Q2280,initial,False,Minsk,מינסק,"administrative territorial entity of Belarus, first-level administrative division, city or town, big city",settlement,,,,,Minsk,,,,,,False,,False,False
 5-facs_564_tr_1739222472,death,place,טרעבלינקע,Treblinka,Q152010,initial,True,Treblinka extermination camp,טרעבלינקע,"extermination camp, Nazi concentration camp, architectural heritage monument",death_site,,,Treblinka extermination camp,Treblinka extermination camp,,,,,,place_qid_conflict,True,death_burial_mirrored,False,False
-5-facs_568_tr_1739221639,death,place,אשוויענטשים,Auschwitz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_568_tr_1739221639,death,place,אשוויענטשים,Auschwitz,Q7342,dodgy,False,Oświęcim,אשפעצין,urban municipality of Poland,settlement,,,,,Oświęcim,,,,,,False,rematched_kima,False,False
 5-facs_570_tr_1739221417,death,place,מיידאַנעק,Majdanek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 5-facs_587_tr_1739221101,death,place,אַלמאַ-אַטאָ,Almaty,Q35493,dodgy,False,Almaty,אלמאטיע,"city, largest city, city of republican significance, former national capital",settlement,,,,,Almaty,,,,,,False,,False,False
 5-facs_587_tr_1739221100,death,place,סלאָנים,Slonim,Q863576,initial,False,Slonim,סלאנים,city of raion subordinance,settlement,,,,,Slonim,,,,,,False,,False,False
@@ -1017,7 +1017,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_21_r_2,death,place,ניו יאָָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 6-facs_22_tr_1747746208,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 6-facs_24_r_2,death,place,פאַריז,Paris,Q90,initial,False,Paris,פאריז,"commune of France, territorial collectivity of France with special status, metropolis, tourist destination, global city, megacity, largest city, college town, big city, primate city, national capital",settlement,,,,,Paris,,,,,,False,,False,False
-6-facs_28_r_2,death,place,אַטלאַנטיק סיטי,Atlantic City,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_28_r_2,death,place,אַטלאַנטיק סיטי,Atlantic City,Q139564,dodgy,False,Atlantic City,אטלאנטיק סיטי,city in New Jersey,settlement,,,,,Atlantic City,,,,,,False,rematched_kima,False,False
 6-facs_31_r_1,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 6-facs_35_tr_1747746200,death,place,טאַשקענט,Tashkent,Q269,initial,False,Tashkent,טאשקענט,"city, administrative territorial entity of Uzbekistan, first-level administrative division, capital city",settlement,,,,,Tashkent,,,,,,False,,False,False
 6-facs_41_tr_1747746160,death,place,ניו-יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
@@ -1112,7 +1112,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_199_tr_1747825102,death,province,לאָס אַנדזשעלעס,Los Angeles,Q65,province,False,Los Angeles,לאס אנדזשעלעס,"charter city, city in the United States, city, global city, metropolis, megacity, business cluster, big city, LGBT sanctuary city",settlement,,,,,Los Angeles,,,,,province_role_mismatch,True,,False,False
 6-facs_202_tr_1747928985,death,place,שיקאַגע,Chicago,Q1297,initial,False,Chicago,שיקאגא,"city of Illinois, global city, big city",settlement,,,,,Chicago,,,,,,False,,False,False
 6-facs_203_tr_1747929008,death,place,ניו-יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
-6-facs_210_tr_1747928994,death,place,לאָמזשע,Łomża,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_210_tr_1747928994,death,place,לאָמזשע,Łomża,Q215633,dodgy,False,Łomża,לאָמזע,"city with powiat rights in Poland, city",settlement,,,,,Łomża,,,,,,False,rematched_kima,False,False
 6-facs_224_tr_1747929007,death,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 6-facs_226_tr_1747928986,death,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 6-facs_226_tr_1747928999,death,place,אוראַלסק,Oral,Q487439,dodgy,False,Oral,,"big city, city, city of regional significance",settlement,,,,,Oral,,,,,,False,,False,False
@@ -1209,7 +1209,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 7-facs_62_tr_1756359788,death,place,יאָראָסלאָוו,Jarosław,Q721928,dodgy,False,Jarosław,,urban municipality of Poland,settlement,,,,,Jarosław,,,,,,False,,False,False
 7-facs_62_r_7,death,place,קאָנסטאַנצאַ,Constanța,Q18554,dodgy,False,protection racket,,,other,unknown,,,,,,,,protection racket,needs_manual_type_review;place_country_unresolved,True,,False,False
 7-facs_62_r_7,death,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
-7-facs_63_r_4,death,place,האַמעל,Homiel,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+7-facs_63_r_4,death,place,האַמעל,Homiel,Q2678,dodgy,False,Gomel,האָמל,"city of oblast subordinance, big city",settlement,,,,,Gomel,,,,,,False,rematched_kima,False,False
 7-facs_63_tr_1756359790,death,place,פֿילאָדעלפיע,Philadelphia,Q1345,initial,False,Philadelphia,פילאדעלפיע,"city of Pennsylvania, county seat, home rule municipality of Pennsylvania, consolidated city-county",settlement,,,,,Philadelphia,,,,,,False,,False,False
 7-facs_64_r_4,death,place,לאָס אַנדזשעלעס,Los Angeles,Q65,initial,False,Los Angeles,לאס אנדזשעלעס,"charter city, city in the United States, city, global city, metropolis, megacity, business cluster, big city, LGBT sanctuary city",settlement,,,,,Los Angeles,,,,,,False,,False,False
 7-facs_68_r_4,death,place,בוענאָס איירעס,Buenos Aires,Q1486,initial,False,Buenos Aires,בוענאס איירעס,"city of Argentina, electoral unit, federal district, first-level administrative division, autonomous city, million city, administrative territorial entity, national capital, federal capital, primate city, largest city",settlement,,,,,Buenos Aires,,,,,,False,,False,False
@@ -1219,7 +1219,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 7-facs_71_tr_1757228899,death,place,ניו יאָָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 7-facs_72_r_5,death,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 7-facs_72_tr_1757228897,death,place,ניו-יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
-7-facs_73_r,death,place,זלאַטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+7-facs_73_r,death,place,זלאַטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,False
 7-facs_74_tr_1757228890,death,place,שיקאַגע,Chicago,Q1297,initial,False,Chicago,שיקאגא,"city of Illinois, global city, big city",settlement,,,,,Chicago,,,,,,False,,False,False
 7-facs_77_tr_1757228908,death,place,ריגע,Riga,Q1773,initial,False,Riga,ריגע,"state city of Latvia, Hanseatic city, big city, city under state jurisdiction in Latvia",settlement,,,,,Riga,,,,,,False,,False,False
 7-facs_78_r_1,death,place,ניו-יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
@@ -1283,7 +1283,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_87_tr_1753938277,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_89_tr_1753938268,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
 4-facs_89_tr_1753938268,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-4-facs_91_tr_1753602024,birth,place,סאַנדאָוו ווישניאַ,Sudova Vyshnia,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_91_tr_1753602024,birth,place,סאַנדאָוו ווישניאַ,Sudova Vyshnia,Q1026911,dodgy,False,Sudova Vyshnia,,city in Ukraine,settlement,,,,,Sudova Vyshnia,,,,,,False,rematched_kima,False,True
 4-facs_91_tr_1753602024,birth,province,גאַליציע,Galicia,Q180086,country,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,moved_to_province,False,False
 4-facs_92_r_1,birth,place,גאַלאַץ,Galați,Q170996,dodgy,False,Galați,,"municipality of Romania, capital of county in Romania, big city, border city, port city",settlement,,,,,Galați,,,,,,False,,False,False
 4-facs_92_r_1,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
@@ -1297,12 +1297,12 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_97_tr_1753602022,birth,country,רוסלאַנד,Russia,Q159,country,False,Russia,רוסלאנד,"sovereign state, secular state, country, transcontinental country, federation, successor state",country,,,,,,,Russia,,,,False,,False,False
 4-facs_98_r_2,birth,place,ביאַלע,Biała Podlaska,Q209932,dodgy,False,Biała Podlaska,ביאלע,city with powiat rights in Poland,settlement,,,,,Biała Podlaska,,,,,,False,,False,False
 4-facs_98_r_2,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-4-facs_99_r_2,birth,place,לופץ,Luboml,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_99_r_2,birth,place,לופץ,Luboml,Q974468,dodgy,False,Liuboml,ליבעוונע,city in Ukraine,settlement,,,,,Liuboml,,,,,place_country_mismatch,True,rematched_kima,False,False
 4-facs_99_r_2,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 4-facs_100_r,birth,place,בערלין,Berlin,Q64,initial,False,Berlin,בערלין,"seat of government, metropolis, integrated municipality, Unitary municipality in Germany, urban municipality in Germany, city-state, independent city in Berlin, largest city, big city, federated state of Germany, federal capital, Hanseatic city, town divided by border, town divided by border",settlement,,,,,Berlin,,,,,,False,,False,False
 4-facs_100_r,birth,country,דייטשלאַנד,Germany,Q183,country,False,Germany,דייטשלאנד,"sovereign state, social state, Rechtsstaat, country bordering the Baltic Sea, country",country,,,,,,,Germany,,,,False,,False,False
 4-facs_101_r_1,birth,place,פֿאַלעשט,Fălești,Q2078085,dodgy,False,Fălești,,city,settlement,,,,,Fălești,,,,,,False,,False,False
-4-facs_102_r_1,birth,place,קאָנאַטאָפּ,Konotop,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_102_r_1,birth,place,קאָנאַטאָפּ,Konotop,Q162083,dodgy,False,Konotop,,"city in Ukraine, city of regional significance of Ukraine",settlement,,,,,Konotop,,,,,,False,rematched_kima,False,False
 4-facs_102_r_1,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 4-facs_102_tr_1753681958,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
 4-facs_102_tr_1753681958,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
@@ -1353,7 +1353,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_249_tr_1754998575,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 4-facs_251_tr_1754998368,birth,place,בראָד,Brody,Q465104,initial,False,Brody,בראָד,city in Ukraine,settlement,,,,,Brody,,,,,,False,,False,True
 4-facs_251_tr_1754998368,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-4-facs_252_tr_1754998536,birth,place,זלאָטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_252_tr_1754998536,birth,place,זלאָטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,False
 4-facs_260_tr_1754998378,birth,province,פּאָדואילאָי,Podolia,Q191607,dodgy,False,Podolia,פאדאליע,"Ukrainian historical regions, historical region, ethnographic region, cultural region",province,,,,,,Podolia,,,,province_country_mismatch,True,moved_to_province,False,False
 4-facs_260_tr_1754998378,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
 4-facs_261_tr_1754998424,birth,country,אונגארן,Hungary,Q28,country,False,Hungary,אונגארן,"sovereign state, landlocked country, country, successor state",country,,,,,,,Hungary,,,,False,,False,False
@@ -1380,7 +1380,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_279_tr_1754998499,birth,place,וויטעבסק,Vitebsk,Q102217,initial,False,Vitebsk,וויטעבסק,"city of oblast subordinance, big city",settlement,,,,,Vitebsk,,,,,,False,,False,False
 4-facs_279_tr_1754998499,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 4-facs_320_r_8,birth,place,ביאַליסטאָק,Białystok,Q761,initial,False,Białystok,ביאליסטאק,"city with powiat rights in Poland, city, big city, tourist destination, private town",settlement,,,,,Białystok,,,,,,False,,False,False
-4-facs_321_tr_1754998460,birth,place,טאוסט,Tovste,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_321_tr_1754998460,birth,place,טאוסט,Tovste,Q2919316,dodgy,False,Tovste,,village of Ukraine,settlement,,,,,Tovste,,,,,,False,rematched_kima,False,True
 4-facs_321_tr_1754998460,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 4-facs_322_tr_1754998441,birth,place,קרעמענטשוג,Kremenchuk,Q156724,initial,False,Kremenchuk,,city of regional significance of Ukraine,settlement,,,,,Kremenchuk,,,,,,False,,False,False
 4-facs_322_tr_1754998441,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -1422,7 +1422,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_354_tr_1754998468,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_355_tr_1754998462,birth,place,גראָדעק,Horodok,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 4-facs_355_tr_1754998462,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-4-facs_355_tr_1754998470,birth,place,קאַלושיין,Kałuszyn,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_355_tr_1754998470,birth,place,קאַלושיין,Kałuszyn,Q987160,dodgy,False,Kałuszyn,,city,settlement,,,,,Kałuszyn,,,,,,False,rematched_kima,False,False
 4-facs_355_tr_1754998470,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_356_tr_1754998405,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 4-facs_356_tr_1754998405,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -1454,7 +1454,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_382_tr_1755030077,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_385_tr_1755029934,birth,place,טשעכאַנאָוו,Ciechanów,Q182563,dodgy,False,Ciechanów,,,other,unknown,,,,,,,,Ciechanów,needs_manual_type_review;qid_lookup_missing,True,,False,False
 4-facs_385_tr_1755029934,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-4-facs_386_tr_1755029933,birth,place,קאַנאַטאָפּ,Konotop,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_386_tr_1755029933,birth,place,קאַנאַטאָפּ,Konotop,Q162083,dodgy,False,Konotop,,"city in Ukraine, city of regional significance of Ukraine",settlement,,,,,Konotop,,,,,,False,rematched_kima,False,False
 4-facs_386_tr_1755029933,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 4-facs_386_tr_1755029936,birth,place,רוסלאַנד,Kazan,Q900,dodgy,False,Kazan,קאזאן,"largest city, largest city, city of republic significance, city or town, big city",settlement,,,,,Kazan,,,,,,False,,False,False
 4-facs_387_tr_1755030250,birth,place,ברעסט-ליטאָווסק,Brest,Q140147,dodgy,False,Brest,בריסק,"city of oblast subordinance, border city, big city",settlement,,,,,Brest,,,,,,False,,False,False
@@ -1469,20 +1469,20 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_400_tr_1755030252,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_401_tr_1755030076,birth,place,אָסוויע,Osveia,Q152406,dodgy,False,Kiryat Gat,קרית גת,"city, city council",settlement,,,,,Kiryat Gat,,,,,place_country_mismatch,True,,False,False
 4-facs_401_tr_1755030076,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
-4-facs_404_tr_1755030317,birth,place,קאָלנע,Kolno,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_404_tr_1755030317,birth,place,קאָלנע,Kolno,Q1614791,dodgy,False,Kolno,,urban municipality of Poland,settlement,,,,,Kolno,,,,,,False,rematched_kima,False,False
 4-facs_404_tr_1755030317,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-4-facs_405_tr_1755029979,birth,place,קוטנע,Kutno,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_405_tr_1755029979,birth,place,קוטנע,Kutno,Q202160,dodgy,False,Kutno,,urban municipality of Poland,settlement,,,,,Kutno,,,,,,False,rematched_kima,False,False
 4-facs_405_tr_1755029979,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_406_tr_1755029923,birth,place,סעלץ,Seltsy,Q1023008,dodgy,False,Frederick,,village,settlement,,,,,Frederick,,,,,place_country_mismatch,True,,False,False
 4-facs_406_tr_1755029923,birth,country,פּויליש-ליטע,Polish–Lithuanian Commonwealth,Q172107,country,False,Polish–Lithuanian Commonwealth,פויליש-ליטווישע קאמאנוועלט,"sovereign state, historical country, rump state",country,,,,,,,Polish–Lithuanian Commonwealth,,,,False,,False,False
 4-facs_409_r_1,birth,place,שיקאַגאָ,Chicago,Q1297,initial,False,Chicago,שיקאגא,"city of Illinois, global city, big city",settlement,,,,,Chicago,,,,,,False,,False,False
-4-facs_433_tr_1755030211,birth,place,אַסטראָפּאָליע,Starokostiantyniv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_433_tr_1755030211,birth,place,אַסטראָפּאָליע,Starokostiantyniv,Q997429,dodgy,False,Starokostiantyniv,,"city of regional significance of Ukraine, human settlement",settlement,,,,,Starokostiantyniv,,,,,place_country_mismatch,True,rematched_kima,False,False
 4-facs_433_tr_1755030211,birth,country,רוסלאַנד,Russia,Q159,country,False,Russia,רוסלאנד,"sovereign state, secular state, country, transcontinental country, federation, successor state",country,,,,,,,Russia,,,,False,,False,False
 4-facs_439_tr_1755030088,birth,place,מאָסקוואַ,Moscow,Q649,dodgy,False,Moscow,מאסקווע,"capital of Russia, federal city of Russia, big city, megacity, largest city, largest city, largest city, largest city, city or town, federal subject of Russia, federal capital, human settlement, city/town in Russia",settlement,,,,,Moscow,,,,,,False,,False,False
 4-facs_439_tr_1755030088,birth,country,רוסלאַנד,Russia,Q159,country,False,Russia,רוסלאנד,"sovereign state, secular state, country, transcontinental country, federation, successor state",country,,,,,,,Russia,,,,False,,False,False
 4-facs_445_tr_1755030294,birth,place,בראַסלאָוו,Bratslav,Q903241,dodgy,False,Bratslav,בראסלעוו,urban-type settlement in Ukraine,settlement,,,,,Bratslav,,,,,place_country_mismatch,True,,False,False
 4-facs_445_tr_1755030294,birth,country,רוסלאַנד,Russia,Q159,country,False,Russia,רוסלאנד,"sovereign state, secular state, country, transcontinental country, federation, successor state",country,,,,,,,Russia,,,,False,,False,False
-4-facs_446_tr_1755029997,birth,place,כאָטין,Khotyn,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_446_tr_1755029997,birth,place,כאָטין,Khotyn,Q45883,dodgy,False,Khotyn,,city in Ukraine,settlement,,,,,Khotyn,,,,,,False,rematched_kima,False,False
 4-facs_446_tr_1755029995,birth,place,מיאָדל,Myadziel,Q1116456,dodgy,False,badminton at the 1990 Commonwealth Games,,badminton at the Commonwealth Games,other,badminton at the Commonwealth Games,,,,,,,,badminton at the 1990 Commonwealth Games,needs_manual_type_review,True,,False,False
 4-facs_446_tr_1755029998,birth,place,סלאָוועשנע,Slovechne,Q1023005,dodgy,False,CB Cantabria,,handball team,other,handball team,,,,,,,,CB Cantabria,needs_manual_type_review;place_country_mismatch,True,,False,False
 4-facs_446_tr_1755029998,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -1509,7 +1509,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_597_tr_1755030192,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_598_tr_1755029985,birth,place,באַמבערג,Bamberg,Q3936,initial,False,Bamberg,,"college town, major regional center, urban municipality in Germany, urban district of Bavaria, district capital, urban area",neighborhood,,,,,,,,Bamberg,,,False,,False,False
 4-facs_598_tr_1755029985,birth,country,מערב-דייטשלאַנד,West Germany,Q713750,country,False,West Germany,מערב דייטשלאנד,"state, historical period, historical country, sovereign state",country,,,,,,,West Germany,,,,False,,False,False
-4-facs_599_tr_1755030067,birth,place,זבאַראָוו,Zbarazh,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_599_tr_1755030067,birth,place,זבאַראָוו,Zbarazh,Q1019899,dodgy,False,Zbarazh,זבאראזש,city in Ukraine,settlement,,,,,Zbarazh,,,,,,False,rematched_kima,False,True
 4-facs_599_tr_1755030067,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 4-facs_600_tr_1755030245,birth,place,בראָסלאָוו,Bratslav,Q903241,dodgy,False,Bratslav,בראסלעוו,urban-type settlement in Ukraine,settlement,,,,,Bratslav,,,,,,False,,False,False
 4-facs_601_tr_1755030110,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
@@ -1572,13 +1572,13 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_658_tr_1755030003,birth,place,טשערנאָוויץ,Chernivtsi,Q157725,initial,False,Chernivtsi,טשערנאוויץ,"city of regional significance of Ukraine, big city",settlement,,,,,Chernivtsi,,,,,,False,,False,False
 4-facs_659_tr_1755030149,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 4-facs_659_tr_1755030149,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-4-facs_660_tr_1755030252,birth,place,טשאַרטקאָוו,Chortkiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_660_tr_1755030252,birth,place,טשאַרטקאָוו,Chortkiv,Q148473,dodgy,False,Chortkiv,טשארטקאוו,city in Ukraine,settlement,,,,,Chortkiv,,,,,,False,rematched_kima,False,True
 4-facs_660_tr_1755030252,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 4-facs_660_tr_1755030253,birth,place,קיעוו,Kyiv,Q1899,initial,False,Kyiv,קיעוו,"largest city, city or town, tourist destination, city in Ukraine",settlement,,,,,Kyiv,,,,,,False,,False,False
 4-facs_661_tr_1755030263,birth,place,מאָהילעוופּאָדאָלסק,Mohyliv-Podilskyi,Q997469,initial,False,Mohyliv-Podilskyi,,"city of regional significance of Ukraine, city or town, border city, human settlement",settlement,,,,,Mohyliv-Podilskyi,,,,,,False,,False,False
-4-facs_661_tr_1755030261,birth,place,האַמעל,Homiel,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_661_tr_1755030261,birth,place,האַמעל,Homiel,Q2678,dodgy,False,Gomel,האָמל,"city of oblast subordinance, big city",settlement,,,,,Gomel,,,,,,False,rematched_kima,False,False
 4-facs_661_tr_1755030261,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
-4-facs_662_tr_1755029946,birth,place,זשיראַרדאָוו,Żyrardów,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_662_tr_1755029946,birth,place,זשיראַרדאָוו,Żyrardów,Q393251,dodgy,False,Żyrardów,,urban municipality of Poland,settlement,,,,,Żyrardów,,,,,,False,rematched_kima,False,False
 4-facs_662_tr_1755029946,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_663_tr_1755030299,birth,place,מאָלאַסטאָווקע,Molastovka,Q869806,dodgy,False,Roman Catholic Diocese of Issele-Uku,,diocese of the Catholic Church,other,diocese of the Catholic Church,,,,,,,,Roman Catholic Diocese of Issele-Uku,needs_manual_type_review;place_country_mismatch,True,,False,False
 4-facs_663_tr_1755030299,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
@@ -1596,7 +1596,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 4-facs_667_tr_1755030056,birth,place,קאָרעץ,Korets,Q997398,dodgy,False,Korets,קארעץ,city in Ukraine,settlement,,,,,Korets,,,,,,False,,False,False
 4-facs_667_tr_1755030055,birth,place,סאָסנאָוויץ,Sosnowiec,Q105060,initial,False,Sosnowiec,סאסנאווצע,"city with powiat rights in Poland, city, big city, urban municipality of Poland",settlement,,,,,Sosnowiec,,,,,,False,,False,False
 4-facs_667_tr_1755030055,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-4-facs_668_tr_1755029974,birth,place,לאָמזשע,Łomża,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+4-facs_668_tr_1755029974,birth,place,לאָמזשע,Łomża,Q215633,dodgy,False,Łomża,לאָמזע,"city with powiat rights in Poland, city",settlement,,,,,Łomża,,,,,,False,rematched_kima,False,False
 4-facs_668_tr_1755029974,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 4-facs_668_tr_1755029972,birth,place,נאַראַווליע,Narowlya,Q875097,dodgy,False,Schwelme,,river,other,river,,,,,,,,Schwelme,needs_manual_type_review,True,,False,False
 4-facs_669_tr_1755030279,birth,place,ביאלאָ-פּאָדלאַסקי,Biała Podlaska,Q209932,dodgy,False,Biała Podlaska,ביאלע,city with powiat rights in Poland,settlement,,,,,Biała Podlaska,,,,,,False,,False,False
@@ -1614,7 +1614,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_192_tr_1747825120,birth,place,שיקאַגע,Chicago,Q1297,initial,False,Chicago,שיקאגא,"city of Illinois, global city, big city",settlement,,,,,Chicago,,,,,,False,,False,False
 6-facs_192_tr_1747825120,birth,country,אַמעריקע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
 1-facs_205_tr_1741260274,birth,place,דראָזשנע,Drozdne,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
-1-facs_205_tr_1741260263,birth,place,מלאָוואַ,Mława,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_205_tr_1741260263,birth,place,מלאָוואַ,Mława,Q983868,dodgy,False,Mława,מלאווע,"urban municipality of Poland, city",settlement,,,,,Mława,,,,,,False,rematched_kima,False,False
 1-facs_205_tr_1741260263,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_205_tr_1741260271,birth,place,יאָסי,Iași,Q46852,initial,False,Iași,יאס,"municipality of Romania, capital of county in Romania, big city, college town",settlement,,,,,Iași,,,,,,False,,False,False
 1-facs_205_tr_1741260271,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
@@ -1687,13 +1687,13 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_254_tr_1741260246,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_254_tr_1741260240,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 1-facs_254_tr_1741260240,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_254_tr_1741260243,birth,place,לאָמזשע,Łomża,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_254_tr_1741260243,birth,place,לאָמזשע,Łomża,Q215633,dodgy,False,Łomża,לאָמזע,"city with powiat rights in Poland, city",settlement,,,,,Łomża,,,,,,False,rematched_kima,False,False
 1-facs_254_tr_1741260243,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_254_tr_1741260244,birth,place,ראָדזימין,Radzymin,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_254_tr_1741260244,birth,place,ראָדזימין,Radzymin,Q609246,dodgy,False,Radzymin,,city,settlement,,,,,Radzymin,,,,,,False,rematched_kima,False,False
 1-facs_254_tr_1741260244,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_255_tr_1741260331,birth,place,קיטייגאָראָד,Kitayhorod,Q1022907,dodgy,False,Jatinangor,,kecamatan,other,kecamatan,,,,,,,,Jatinangor,needs_manual_type_review;place_country_mismatch,True,,False,False
 1-facs_255_tr_1741260331,birth,country,אוקראָזינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-1-facs_255_tr_1741260322,birth,place,רואיזנא,Ruzhana,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_255_tr_1741260322,birth,place,רואיזנא,Ruzhana,Q615132,dodgy,False,Ruzhany,ראזשינאי,urban settlement in Belarus,settlement,,,,,Ruzhany,,,,,place_country_mismatch,True,rematched_kima,False,False
 1-facs_255_tr_1741260322,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_256_tr_1741260272,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,False
 1-facs_256_tr_1741260264,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
@@ -1791,7 +1791,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_275_tr_1741260245,birth,place,וויעזשכאָווצע,Wierzbowce,Q990682,dodgy,False,Vic-sur-Aisne,,commune of France,settlement,,,,,Vic-sur-Aisne,,,,,,False,,False,False
 1-facs_276_r,birth,place,שטראָסבורג,Strasbourg,Q6602,dodgy,False,Strasbourg,שטראסבורג,"commune of France, big city, border city, free imperial city, state in the Holy Roman Empire",settlement,,,,,Strasbourg,,,,,,False,,False,False
 1-facs_276_tr_1741260311,birth,place,סטאָניסלאָוו,Stanisławów,Q156726,initial,True,Ivano-Frankivsk,סטאניסלאװ,"city of regional significance of Ukraine, city or town, big city",settlement,,,,,Ivano-Frankivsk,,,,,place_qid_conflict,True,,False,False
-1-facs_276_tr_1741260308,birth,place,קאָלאָמעאָ,Kolomyia,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_276_tr_1741260308,birth,place,קאָלאָמעאָ,Kolomyia,Q52193,dodgy,False,Kolomyia,קאלאמיי,"city of regional significance of Ukraine, human settlement",settlement,,,,,Kolomyia,,,,,,False,rematched_kima,False,False
 1-facs_276_tr_1741260306,birth,place,לובלין,Lublin,Q37333,initial,False,Lublin,לובלין,"city with powiat rights in Poland, city, big city",settlement,,,,,Lublin,,,,,,False,,False,False
 1-facs_276_tr_1741260306,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_276_tr_1741260302,birth,place,באָסטאָן,Boston,Q100,initial,False,Boston,באסטאן,"city in the United States, big city, county seat",settlement,,,,,Boston,,,,,,False,,False,False
@@ -1801,7 +1801,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_277_tr_1741260246,birth,place,באָסטאָן,Boston,Q100,initial,False,Boston,באסטאן,"city in the United States, big city, county seat",settlement,,,,,Boston,,,,,,False,,False,False
 1-facs_277_tr_1741260246,birth,country,אַמעריקע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
 1-facs_277_tr_1741260243,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_277_tr_1741260247,birth,place,לאָמזשע,Łomża,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_277_tr_1741260247,birth,place,לאָמזשע,Łomża,Q215633,dodgy,False,Łomża,לאָמזע,"city with powiat rights in Poland, city",settlement,,,,,Łomża,,,,,,False,rematched_kima,False,False
 1-facs_277_tr_1741260247,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_278_tr_1741260264,birth,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 1-facs_278_tr_1741260264,birth,country,אַמעריקע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
@@ -1809,7 +1809,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_278_tr_1741260263,birth,country,אונגאָרן,Hungary,Q28,country,False,Hungary,אונגארן,"sovereign state, landlocked country, country, successor state",country,,,,,,,Hungary,,,,False,,False,False
 1-facs_278_tr_1741260247,birth,place,בלאַזשאָווא,Błażowa,Q990703,dodgy,False,Ericsson R380s,,product model,other,product model,,,,,,,,Ericsson R380s,needs_manual_type_review;place_province_mismatch,True,,False,False
 1-facs_278_tr_1741260247,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-1-facs_278_r_2,birth,place,אַלענטאָן,Allentown,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_278_r_2,birth,place,אַלענטאָן,Allentown,Q142811,dodgy,False,Allentown,,"city of Pennsylvania, county seat, home rule municipality of Pennsylvania",settlement,,,,,Allentown,,,,,,False,rematched_kima,False,False
 1-facs_278_r_2,birth,country,אַמעריקע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
 1-facs_279_TextRegion_1711971250100_342,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
 1-facs_279_r_9_1,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,False
@@ -1827,7 +1827,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_281_r_7,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,False
 1-facs_281_r_3,birth,place,שקלאָוו,Škłow,Q730175,initial,False,Škłow,שקלאָוו,city of raion subordinance,settlement,,,,,Škłow,,,,,place_country_mismatch,True,,False,False
 1-facs_281_r_3,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-1-facs_282_tr_1741260213,birth,place,קאָלאָמעאַ,Kolomyia,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_282_tr_1741260213,birth,place,קאָלאָמעאַ,Kolomyia,Q52193,dodgy,False,Kolomyia,קאלאמיי,"city of regional significance of Ukraine, human settlement",settlement,,,,,Kolomyia,,,,,,False,rematched_kima,False,True
 1-facs_282_tr_1741260213,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 1-facs_282_tr_1741260226,birth,place,ווענגראָוו,Węgrów,Q200855,dodgy,False,Battle of Vienna,,"battle, relief, Muslim conquests",other,battle,,,,,,,,Battle of Vienna,needs_manual_type_review;place_country_mismatch,True,,False,False
 1-facs_282_tr_1741260226,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -1902,7 +1902,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_294_tr_1741260432,birth,country,אַמעריקע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
 1-facs_294_tr_1741260438,birth,place,שיקאָנאָ,Shykono,Q1023022,dodgy,False,Olive Hill,,city in the United States,settlement,,,,,Olive Hill,,,,,,False,,False,False
 1-facs_294_tr_1741260438,birth,country,אַמעריקע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
-1-facs_294_tr_1741260445,birth,place,האָמעל,Homiel,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_294_tr_1741260445,birth,place,האָמעל,Homiel,Q2678,dodgy,False,Gomel,האָמל,"city of oblast subordinance, big city",settlement,,,,,Gomel,,,,,place_country_mismatch,True,rematched_kima,False,False
 1-facs_294_tr_1741260445,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_294_tr_1741260448,birth,place,קעשעניעוו,Chișinău,Q21197,initial,False,Chișinău,קעשענעוו,"city, big city, municipality",settlement,,,,,Chișinău,,,,,,False,,False,False
 1-facs_295_tr_1741260503,birth,place,ביאַליסטאָק,Białystok,Q761,initial,False,Białystok,ביאליסטאק,"city with powiat rights in Poland, city, big city, tourist destination, private town",settlement,,,,,Białystok,,,,,,False,,False,False
@@ -1926,7 +1926,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_300_tr_1741260426,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,False
 1-facs_300_r_4,birth,place,נזשיבי,Nyzhankovychi,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 1-facs_300_r_4,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-1-facs_300_r_5,birth,place,האָמעל,Homiel,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_300_r_5,birth,place,האָמעל,Homiel,Q2678,dodgy,False,Gomel,האָמל,"city of oblast subordinance, big city",settlement,,,,,Gomel,,,,,,False,rematched_kima,False,False
 1-facs_300_r_5,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 1-facs_300_tr_1741260424,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 1-facs_300_tr_1741260424,birth,country,אוקראָאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -1955,7 +1955,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_305_tr_1741260383,birth,province,בוקאָווינע,Bukovina,Q105206,country,False,Bukovina,בוקאווינא,"region, military district, historical administrative division, Ukrainian historical regions, Historical regions of Romania",province,,,,,,Bukovina,,,,,False,moved_to_province,False,False
 1-facs_305_tr_1741260377,birth,place,זשאָרקי,Zhorky,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 1-facs_305_tr_1741260377,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_306_r_6,birth,place,טשאָרטקאָוו,Chortkiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_306_r_6,birth,place,טשאָרטקאָוו,Chortkiv,Q148473,dodgy,False,Chortkiv,טשארטקאוו,city in Ukraine,settlement,,,,,Chortkiv,,,,,,False,rematched_kima,False,False
 1-facs_306_r_5,birth,place,זלאָטשאָוו,Zolochiv,Q623594,initial,False,Zolochiv,,city in Ukraine,settlement,,,,,Zolochiv,,,,,,False,,False,False
 1-facs_306_tr_1741260485,birth,place,קראָקע,Kraków,Q31487,initial,False,Kraków,קראקע,"city with powiat rights in Poland, big city, Hanseatic city, tourist destination, former national capital, city or town, place with town rights and privileges",settlement,,,,,Kraków,,,,,,False,,False,True
 1-facs_306_tr_1741260485,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
@@ -1971,16 +1971,16 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_307_r_2,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_308_tr_1741260516,birth,place,קאָדימאַ,Kodima,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 1-facs_308_tr_1741260516,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-1-facs_308_tr_1741260512,birth,place,בענדער,Bender,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_308_tr_1741260512,birth,place,בענדער,Bender,Q192176,dodgy,False,Bender,,"city, municipality of Moldova",settlement,,,,,Bender,,,,,,False,rematched_kima,False,False
 1-facs_308_tr_1741260520,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 1-facs_308_tr_1741260520,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-1-facs_309_r_2,birth,place,וולאַצלאָוועק,Włocławek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_309_r_2,birth,place,וולאַצלאָוועק,Włocławek,Q106681,dodgy,False,Włocławek,,"city with powiat rights in Poland, big city",settlement,,,,,Włocławek,,,,,,False,rematched_kima,False,False
 1-facs_309_r_2,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_309_tr_1741260471,birth,place,יאָסי,Iași,Q46852,initial,False,Iași,יאס,"municipality of Romania, capital of county in Romania, big city, college town",settlement,,,,,Iași,,,,,,False,,False,False
 1-facs_309_tr_1741260471,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
 1-facs_309_r_13,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 1-facs_309_r_13,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_310_tr_1741260419,birth,place,טשאָרטקאָוו,Chortkiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_310_tr_1741260419,birth,place,טשאָרטקאָוו,Chortkiv,Q148473,dodgy,False,Chortkiv,טשארטקאוו,city in Ukraine,settlement,,,,,Chortkiv,,,,,,False,rematched_kima,False,False
 1-facs_310_tr_1741260420,birth,place,ראָוואָ-רוסקאָ,Rava-Ruska,Q1048138,dodgy,False,Vitrimont,,commune of France,settlement,,,,,Vitrimont,,,,,,False,,False,False
 1-facs_310_tr_1741260423,birth,place,טשערנאָוויץ,Chernivtsi,Q157725,initial,False,Chernivtsi,טשערנאוויץ,"city of regional significance of Ukraine, big city",settlement,,,,,Chernivtsi,,,,,,False,,False,False
 1-facs_310_tr_1741260422,birth,place,טישמיעניץ,Tysmenytsia,Q973977,dodgy,False,Abirim,,human settlement,settlement,,,,,Abirim,,,,,,False,,False,False
@@ -1997,7 +1997,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_320_tr_1741260426,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 1-facs_320_tr_1741260428,birth,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 1-facs_320_tr_1741260428,birth,country,אָמע'קע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
-1-facs_320_tr_1741260434,birth,place,וואָסילקאָוו,Vasylkiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_320_tr_1741260434,birth,place,וואָסילקאָוו,Vasylkiv,Q997421,dodgy,False,Vasylkiv,,city in Ukraine,settlement,,,,,Vasylkiv,,,,,,False,rematched_kima,False,False
 1-facs_320_tr_1741260434,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_321_tr_1741260500,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 1-facs_321_tr_1741260500,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -2027,12 +2027,12 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_334_tr_1741260429,birth,place,פירט,Fürth,Q3075,initial,False,Fürth,פיורדא,"big city, major regional center, urban municipality in Germany, urban district of Bavaria",neighborhood,,,,,,,,Fürth,,,False,,False,False
 1-facs_335_r_6,birth,place,ליפּנע,Lipne,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 1-facs_335_r_6,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_335_tr_1741260411,birth,place,בערלאָד,Bârlad,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_335_tr_1741260411,birth,place,בערלאָד,Bârlad,Q335868,dodgy,False,Bârlad,,municipality of Romania,settlement,,,,,Bârlad,,,,,,False,rematched_kima,False,False
 1-facs_335_tr_1741260411,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
 1-facs_335_tr_1741260409,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 1-facs_335_tr_1741260409,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_335_tr_1741260410,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_335_tr_1741260385,birth,place,זשיראָרדאָוו,Żyrardów,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_335_tr_1741260385,birth,place,זשיראָרדאָוו,Żyrardów,Q393251,dodgy,False,Żyrardów,,urban municipality of Poland,settlement,,,,,Żyrardów,,,,,,False,rematched_kima,False,False
 1-facs_335_tr_1741260385,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_336_tr_1741260422,birth,place,אָטיניע,Otyniya,Q1022804,dodgy,False,CANaerospace,,,other,unknown,,,,,,,,CANaerospace,needs_manual_type_review,True,,False,False
 1-facs_337_tr_1741260519,birth,place,קאָנסקאָיאָליע,Konskoiyolie,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
@@ -2091,7 +2091,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_350_tr_1741260476,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_350_tr_1741260473,birth,place,וואידיסלאָוו,Władysławów,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 1-facs_350_tr_1741260473,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_350_tr_1741260461,birth,place,אָנטאָפּאָל,Antopol,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_350_tr_1741260461,birth,place,אָנטאָפּאָל,Antopol,Q608888,dodgy,False,Antopaĺ,אנטיפאליע,"urban settlement in Belarus, agrotown",settlement,,,,,Antopaĺ,,,,,place_country_mismatch,True,rematched_kima,False,False
 1-facs_350_tr_1741260461,birth,country,פּויליש-ליטע,Polish–Lithuanian Commonwealth,Q172107,country,False,Polish–Lithuanian Commonwealth,פויליש-ליטווישע קאמאנוועלט,"sovereign state, historical country, rump state",country,,,,,,,Polish–Lithuanian Commonwealth,,,,False,,False,False
 1-facs_350_r_7,birth,place,באָברויסק,Babruysk,Q207294,initial,False,Babruysk,באברויסק,"city of oblast subordinance, big city",settlement,,,,,Babruysk,,,,,,False,,False,False
 1-facs_350_r_7,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
@@ -2129,7 +2129,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_358_tr_1741260404,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_358_tr_1741260405,birth,place,יאָסי,Iași,Q46852,initial,False,Iași,יאס,"municipality of Romania, capital of county in Romania, big city, college town",settlement,,,,,Iași,,,,,,False,,False,False
 1-facs_358_tr_1741260405,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
-1-facs_359_TextRegion_1710852566555_178,birth,place,לאָוויטש,Łowicz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_359_TextRegion_1710852566555_178,birth,place,לאָוויטש,Łowicz,Q109992,dodgy,False,Łowicz,לאָװיטש,urban municipality of Poland,settlement,,,,,Łowicz,,,,,,False,rematched_kima,False,False
 1-facs_359_TextRegion_1710852566555_178,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_359_TextRegion_1710852536774_157,birth,place,בעלז,Belz,Q156565,initial,False,Belz,בעלז,city in Ukraine,settlement,,,,,Belz,,,,,,False,,False,False
 1-facs_359_TextRegion_1710852502307_117,birth,place,באַטאָשאָן,Botoșani,Q178855,initial,False,Botoșani,באטאשאן,"municipality of Romania, capital of county in Romania, big city",settlement,,,,,Botoșani,,,,,,False,,False,False
@@ -2143,7 +2143,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_360_TextRegion_1710852654922_221,birth,place,פּיעטראָקאָוו,Piotrków Trybunalski,Q158004,dodgy,False,Piotrków Trybunalski,פיעטרקאוו,"city with powiat rights in Poland, city",settlement,,,,,Piotrków Trybunalski,,,,,place_country_mismatch,True,,False,False
 1-facs_360_TextRegion_1710852654922_221,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 1-facs_360_TextRegion_1710852639568_206,birth,place,טריסק,Turzysk Ghetto,Q30006805,dodgy,False,Turzysk Ghetto,,ghetto in Nazi-occupied Europe,death_site,,,Turzysk Ghetto,Turzysk Ghetto,,,,,,,False,death_burial_mirrored,False,False
-1-facs_361_TextRegion_1710853887337_347,birth,place,גאָלדינגען,Kuldīga,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_361_TextRegion_1710853887337_347,birth,place,גאָלדינגען,Kuldīga,Q155281,dodgy,False,Kuldīga,,"city under municipality jurisdiction in Latvia, Hanseatic city",settlement,,,,,Kuldīga,,,,,,False,rematched_kima,False,False
 1-facs_361_r_6,birth,place,יאגעלניצא,Yahilnytsia,Q1022819,dodgy,False,Periam,,"village, seat of the local council",settlement,,,,,Periam,,,,,,False,,False,False
 1-facs_361_r_9,birth,place,קרעמעניץ,Kremenets,Q849116,initial,False,Kremenets,קרעמעניץ,"city in Ukraine, Royal city in Polish-Lithuanian Commonwealth",settlement,,,,,Kremenets,,,,,,False,,False,False
 1-facs_362_TextRegion_1710853984376_412,birth,place,דוווינסק,Daugavpils,Q80021,initial,True,Daugavpils,דענענבורג,"state city of Latvia, city under state jurisdiction in Latvia",settlement,,,,,Daugavpils,,,,,place_qid_conflict,True,,False,False
@@ -2228,7 +2228,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_382_tr_1739715272,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_383_tr_1739715269,birth,place,ביאַליסטאָק,Białystok,Q761,initial,False,Białystok,ביאליסטאק,"city with powiat rights in Poland, city, big city, tourist destination, private town",settlement,,,,,Białystok,,,,,,False,,False,False
 1-facs_383_tr_1739715269,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_383_tr_1739715262,birth,place,קאָלאָמעאַ,Kolomyia,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_383_tr_1739715262,birth,place,קאָלאָמעאַ,Kolomyia,Q52193,dodgy,False,Kolomyia,קאלאמיי,"city of regional significance of Ukraine, human settlement",settlement,,,,,Kolomyia,,,,,,False,rematched_kima,False,True
 1-facs_383_tr_1739715262,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 1-facs_383_r_6,birth,place,אָדעם,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 1-facs_383_r_6,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -2251,7 +2251,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_390_tr_1739715034,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 1-facs_390_tr_1739715034,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_391_tr_1739715052,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
-1-facs_391_tr_1739715056,birth,place,האַרבי,Harbin,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_391_tr_1739715056,birth,place,האַרבי,Harbin,Q42956,dodgy,False,Harbin,,"sub-province-level division, city, big city, prefecture-level city",settlement,,,,,Harbin,,,,,place_country_mismatch,True,rematched_kima,False,False
 1-facs_391_tr_1739715056,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_392_tr_1739715078,birth,place,אומאַן,Uman,Q208499,initial,False,Uman,אומאן,city of regional significance of Ukraine,settlement,,,,,Uman,,,,,,False,,False,False
 1-facs_392_tr_1739715078,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -2282,7 +2282,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_401_TextRegion_1710065459895_541,birth,country,עסטרייך,Austria,Q40,country,False,Austria,עסטרייך,"sovereign state, republic, Rechtsstaat, landlocked country, successor state, country",country,,,,,,,Austria,,,,False,,False,False
 1-facs_401_r_14,birth,place,יאַסי,Iași,Q46852,initial,False,Iași,יאס,"municipality of Romania, capital of county in Romania, big city, college town",settlement,,,,,Iași,,,,,,False,,False,False
 1-facs_401_r_14,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
-1-facs_401_r_1,birth,place,קאָלאָמעא,Kolomyia,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_401_r_1,birth,place,קאָלאָמעא,Kolomyia,Q52193,dodgy,False,Kolomyia,קאלאמיי,"city of regional significance of Ukraine, human settlement",settlement,,,,,Kolomyia,,,,,,False,rematched_kima,False,False
 1-facs_401_r_5_1,birth,place,טעפּליק,Teplyk,Q2473433,initial,False,Teplyk,טעפליק,"urban-type settlement in Ukraine, human settlement",settlement,,,,,Teplyk,,,,,,False,,False,False
 1-facs_401_r_5_1,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_402_tr_1739715097,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
@@ -2294,7 +2294,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_404_tr_1739715086,birth,country,פּויליש-ליטע,Polish–Lithuanian Commonwealth,Q172107,country,False,Polish–Lithuanian Commonwealth,פויליש-ליטווישע קאמאנוועלט,"sovereign state, historical country, rump state",country,,,,,,,Polish–Lithuanian Commonwealth,,,,False,,False,False
 1-facs_404_tr_1739715084,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 1-facs_404_tr_1739715084,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_404_r_8,birth,place,סקאָלע,Skole,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_404_r_8,birth,place,סקאָלע,Skole,Q913962,dodgy,False,Skole,,city in Ukraine,settlement,,,,,Skole,,,,,,False,rematched_kima,False,False
 1-facs_404_r,birth,place,טשערנאָוויץ,Chernivtsi,Q157725,initial,False,Chernivtsi,טשערנאוויץ,"city of regional significance of Ukraine, big city",settlement,,,,,Chernivtsi,,,,,,False,,False,False
 1-facs_404_tr_1739715089,birth,place,ביאַליסטאָק,Białystok,Q761,initial,False,Białystok,ביאליסטאק,"city with powiat rights in Poland, city, big city, tourist destination, private town",settlement,,,,,Białystok,,,,,,False,,False,False
 1-facs_404_tr_1739715089,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -2327,11 +2327,11 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_410_tr_1739715084,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_411_tr_1739715053,birth,place,סלאָבאָדקע,Vilijampolė,Q7052783,dodgy,False,Vilijampolė,סלאבאדקע,neighborhood of Kaunas,neighborhood,,,,,,,,Vilijampolė,,,False,,False,False
 1-facs_411_tr_1739715053,birth,country,ליטע,Lithuania,Q37,country,False,Lithuania,ליטע,"sovereign state, unitary state, country bordering the Baltic Sea, country",country,,,,,,,Lithuania,,,,False,,False,False
-1-facs_411_tr_1739715050,birth,place,שעראָדז,Sieradz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_411_tr_1739715050,birth,place,שעראָדז,Sieradz,Q745074,dodgy,False,Sieradz,,urban municipality of Poland,settlement,,,,,Sieradz,,,,,,False,rematched_kima,False,False
 1-facs_411_tr_1739715050,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_411_r,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 1-facs_411_r,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_411_tr_1739715062,birth,place,שעראָדז,Sieradz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_411_tr_1739715062,birth,place,שעראָדז,Sieradz,Q745074,dodgy,False,Sieradz,,urban municipality of Poland,settlement,,,,,Sieradz,,,,,,False,rematched_kima,False,False
 1-facs_411_tr_1739715062,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_412_TextRegion_1710153731052_73,birth,place,אַדזוד,Azoud,Q1251,dodgy,False,Cottian Alps,,alpine section,other,alpine section,,,,,,,,Cottian Alps,needs_manual_type_review;place_country_mismatch,True,,False,False
 1-facs_412_TextRegion_1710153731052_73,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
@@ -2403,7 +2403,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_31_TextRegion_1710063820301_118,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_31_TextRegion_1710063786700_90,birth,place,ניו-יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 1-facs_31_TextRegion_1710063786700_90,birth,country,אַמעריקע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
-1-facs_31_r,birth,place,זוועניגאָראָדקע,Zvenyhorodka,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_31_r,birth,place,זוועניגאָראָדקע,Zvenyhorodka,Q219836,dodgy,False,Zvenyhorodka,,city in Ukraine,settlement,,,,,Zvenyhorodka,,,,,,False,rematched_kima,False,False
 1-facs_31_r,birth,country,אוקראַאיינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_33_tr_1740521056,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 1-facs_33_tr_1740521056,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -2433,7 +2433,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_40_tr_1740521035,birth,place,סובאָלק,Suwałki,Q215107,dodgy,False,2254,,radio program,other,radio program,,,,,,,,2254,needs_manual_type_review,True,,False,False
 1-facs_40_tr_1740521046,birth,place,גראָדנע,Hrodna,Q181376,initial,False,Hrodna,גראדנע,"city or town, big city, city of oblast subordinance",settlement,,,,,Hrodna,,,,,,False,,False,False
 1-facs_41_tr_1740521073,birth,place,קעשעניעוו,Chișinău,Q21197,initial,False,Chișinău,קעשענעוו,"city, big city, municipality",settlement,,,,,Chișinău,,,,,,False,,False,False
-1-facs_41_tr_1740521069,birth,place,טיראָספּאָל,Tiraspol,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_41_tr_1740521069,birth,place,טיראָספּאָל,Tiraspol,Q132572,dodgy,False,Tiraspol,,"municipality of Moldova, city or town, big city",settlement,,,,,Tiraspol,,,,,place_country_mismatch,True,rematched_kima,False,False
 1-facs_41_tr_1740521069,birth,country,אוקראָאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_41_tr_1740521076,birth,place,סטאָניסלאָוו,Stanisławów,Q156726,initial,True,Ivano-Frankivsk,סטאניסלאװ,"city of regional significance of Ukraine, city or town, big city",settlement,,,,,Ivano-Frankivsk,,,,,place_qid_conflict,True,,False,True
 1-facs_41_tr_1740521076,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
@@ -2442,7 +2442,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_42_tr_1740520985,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 1-facs_42_tr_1740520982,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 1-facs_42_tr_1740520982,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_42_tr_1740520988,birth,place,וואָסילקאָוו,Vasylkiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_42_tr_1740520988,birth,place,וואָסילקאָוו,Vasylkiv,Q997421,dodgy,False,Vasylkiv,,city in Ukraine,settlement,,,,,Vasylkiv,,,,,,False,rematched_kima,False,False
 1-facs_42_tr_1740520988,birth,country,אוקראָאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_42_tr_1740520980,birth,place,אַזאָרקאָוו,Ozorków,Q628460,dodgy,False,Ozorków,אזארקאוו,urban municipality of Poland,settlement,,,,,Ozorków,,,,,,False,,False,False
 1-facs_42_tr_1740520980,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -2500,7 +2500,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_51_tr_1740521079,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_52_tr_1740521031,birth,place,וויטעבסק,Vitebsk,Q102217,initial,False,Vitebsk,וויטעבסק,"city of oblast subordinance, big city",settlement,,,,,Vitebsk,,,,,,False,,False,False
 1-facs_56_tr_1740521000,birth,place,קעשעניעוו,Chișinău,Q21197,initial,False,Chișinău,קעשענעוו,"city, big city, municipality",settlement,,,,,Chișinău,,,,,,False,,False,False
-1-facs_57_tr_1740521100,birth,place,מלאָוואָ,Mława,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_57_tr_1740521100,birth,place,מלאָוואָ,Mława,Q983868,dodgy,False,Mława,מלאווע,"urban municipality of Poland, city",settlement,,,,,Mława,,,,,,False,rematched_kima,False,False
 1-facs_57_tr_1740521100,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_57_tr_1740521089,birth,country,פּאַניעוועזש,Panevėžys,Q2277,dodgy,False,Roman Empire,רוימישע אימפעריע,"empire, historical period, historical country",country,,,,,,,Roman Empire,,,,False,moved_to_country,False,False
 1-facs_57_tr_1740521089,birth,country,ליטע,Lithuania,Q37,country,False,Lithuania,ליטע,"sovereign state, unitary state, country bordering the Baltic Sea, country",country,,,,,,,Lithuania,,,,False,,False,False
@@ -2558,7 +2558,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_68_tr_1740521051,birth,country,פּויליש-ליטע,Polish–Lithuanian Commonwealth,Q172107,country,False,Polish–Lithuanian Commonwealth,פויליש-ליטווישע קאמאנוועלט,"sovereign state, historical country, rump state",country,,,,,,,Polish–Lithuanian Commonwealth,,,,False,,False,False
 1-facs_68_tr_1740521052,birth,place,בערדיטשעוו,Berdychiv,Q158799,initial,True,Berdychiv,בערדיטשעוו,"city of regional significance of Ukraine, miasteczko",settlement,,,,,Berdychiv,,,,,place_qid_conflict,True,,False,False
 1-facs_68_tr_1740521052,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-1-facs_69_tr_1740521066,birth,place,קוטנאָ,Kutno,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_69_tr_1740521066,birth,place,קוטנאָ,Kutno,Q202160,dodgy,False,Kutno,,urban municipality of Poland,settlement,,,,,Kutno,,,,,,False,rematched_kima,False,False
 1-facs_69_tr_1740521066,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_72_tr_1740521050,birth,place,פּאַנטשע,Panche,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 1-facs_72_tr_1740521050,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
@@ -2614,8 +2614,8 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_83_tr_1740521029,birth,country,אונגאָרן,Hungary,Q28,country,False,Hungary,אונגארן,"sovereign state, landlocked country, country, successor state",country,,,,,,,Hungary,,,,False,,False,False
 1-facs_84_tr_1740520964,birth,place,אוננאָרן,Unnoron,Q869732,dodgy,False,Heppendorf,,Ortsteil,settlement,,,,,Heppendorf,,,,,,False,,False,False
 1-facs_84_tr_1740520941,birth,place,גראָדנע,Hrodna,Q181376,initial,False,Hrodna,גראדנע,"city or town, big city, city of oblast subordinance",settlement,,,,,Hrodna,,,,,,False,,False,False
-1-facs_84_tr_1740520959,birth,place,זעמבין,Zembin,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
-1-facs_85_r_6,birth,place,קאָנאַטאָפּ,Konotop,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_84_tr_1740520959,birth,place,זעמבין,Zembin,Q2061031,dodgy,False,Zembin,Zembin,agrotown,settlement,,,,,Zembin,,,,,,False,rematched_kima,False,False
+1-facs_85_r_6,birth,place,קאָנאַטאָפּ,Konotop,Q162083,dodgy,False,Konotop,,"city in Ukraine, city of regional significance of Ukraine",settlement,,,,,Konotop,,,,,,False,rematched_kima,False,False
 1-facs_86_tr_1740521078,birth,place,ביאָליסטאָק,Białystok,Q761,initial,False,Białystok,ביאליסטאק,"city with powiat rights in Poland, city, big city, tourist destination, private town",settlement,,,,,Białystok,,,,,,False,,False,False
 1-facs_86_tr_1740521078,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_87_tr_1740520981,birth,place,סיגעט-מאָרמאַראָש,Sighetu Marmației,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
@@ -2651,7 +2651,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_93_tr_1740521091,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 1-facs_93_r_1,birth,place,קאָוונע,Kaunas,Q4115712,initial,False,Kaunas,קאוונע,"city, Hanseatic city, big city",settlement,,,,,Kaunas,,,,,,False,,False,False
 1-facs_93_r_1,birth,country,ליטע,Lithuania,Q37,country,False,Lithuania,ליטע,"sovereign state, unitary state, country bordering the Baltic Sea, country",country,,,,,,,Lithuania,,,,False,,False,False
-1-facs_93_tr_1740521070,birth,place,קאָלאָמעאַ,Kolomyia,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_93_tr_1740521070,birth,place,קאָלאָמעאַ,Kolomyia,Q52193,dodgy,False,Kolomyia,קאלאמיי,"city of regional significance of Ukraine, human settlement",settlement,,,,,Kolomyia,,,,,,False,rematched_kima,False,True
 1-facs_93_tr_1740521070,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 1-facs_94_tr_1740521152,birth,place,דווינסק,Daugavpils,Q80021,initial,True,Daugavpils,דענענבורג,"state city of Latvia, city under state jurisdiction in Latvia",settlement,,,,,Daugavpils,,,,,place_qid_conflict,True,,False,False
 1-facs_94_tr_1740521152,birth,country,לעטלאַנד,Latvia,Q211,country,False,Latvia,לעטלאנד,"sovereign state, country bordering the Baltic Sea, country",country,,,,,,,Latvia,,,,False,,False,False
@@ -2682,7 +2682,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_97_tr_1740520957,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_98_tr_1740520995,birth,place,זשיכלין,Żychlin,Q393228,initial,False,Żychlin,זשיכלין,city,settlement,,,,,Żychlin,,,,,,False,,False,False
 1-facs_98_tr_1740520995,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_98_tr_1740520999,birth,place,קוטנע,Kutno,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_98_tr_1740520999,birth,place,קוטנע,Kutno,Q202160,dodgy,False,Kutno,,urban municipality of Poland,settlement,,,,,Kutno,,,,,,False,rematched_kima,False,False
 1-facs_98_tr_1740520999,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_98_tr_1740520997,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
 1-facs_98_tr_1740520997,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
@@ -2752,7 +2752,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_112_tr_1740521166,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_113_tr_1740521032,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 1-facs_113_tr_1740521032,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-1-facs_113_tr_1740521027,birth,place,סאַראַקי,Soroca,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_113_tr_1740521027,birth,place,סאַראַקי,Soroca,Q853785,dodgy,False,Soroca,,"city, municipality of Moldova",settlement,,,,,Soroca,,,,,,False,rematched_kima,False,False
 1-facs_114_tr_1740520993,birth,place,גראָדזיסק,Grodzisk Mazowiecki,Q198480,dodgy,False,Gugney-aux-Aulx,,commune of France,settlement,,,,,Gugney-aux-Aulx,,,,,place_country_mismatch,True,,False,False
 1-facs_114_tr_1740520993,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_114_tr_1740520997,birth,place,זאַמאָשטש,Zamość,Q145972,initial,False,Zamość,זאמאשטש,"city with powiat rights in Poland, city",settlement,,,,,Zamość,,,,,,False,,False,False
@@ -2825,7 +2825,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_133_tr_1740521125,birth,place,פֿאָלטיטשען,Fălticeni,Q303015,dodgy,False,Fălticeni,,municipality of Romania,settlement,,,,,Fălticeni,,,,,,False,,False,False
 1-facs_133_tr_1740521125,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
 1-facs_133_tr_1740521134,birth,place,פּשעמישל,Przemyśl,Q208473,initial,False,Przemyśl,פשעמישל,"city with powiat rights in Poland, city",settlement,,,,,Przemyśl,,,,,,False,,False,False
-1-facs_134_tr_1740520966,birth,place,קאָלאָמעאַ,Kolomyia,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_134_tr_1740520966,birth,place,קאָלאָמעאַ,Kolomyia,Q52193,dodgy,False,Kolomyia,קאלאמיי,"city of regional significance of Ukraine, human settlement",settlement,,,,,Kolomyia,,,,,,False,rematched_kima,False,True
 1-facs_134_tr_1740520966,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 1-facs_134_tr_1740520965,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,False
 1-facs_134_tr_1740520951,birth,place,ברזשעזשאָן,Brzeżany,Q200963,dodgy,False,Treguaco,,"commune of Chile, city in Chile",settlement,,,,,Treguaco,,,,,place_province_mismatch,True,,False,False
@@ -2838,7 +2838,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_135_r_2,birth,place,ירושלים,Jerusalem,Q1218,initial,False,Jerusalem,ירושלים,"city, holy city of Abrahamic religion, largest city, tourist destination, big city, Roman city, ancient city, disputed territory, national capital, corpus separatum, city council",settlement,,,,,Jerusalem,,,,,,False,,False,False
 1-facs_135_tr_1740521015,birth,place,טאַרנאָפּאָל,Ternopil,Q156743,initial,False,Ternopil,טארנאפאל,city of regional significance of Ukraine,settlement,,,,,Ternopil,,,,,,False,,False,True
 1-facs_135_tr_1740521015,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-1-facs_136_tr_1740521121,birth,place,מאָהילעוו,Mahilyow,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_136_tr_1740521121,birth,place,מאָהילעוו,Mahilyow,Q154835,dodgy,False,Mogilev,מאָהליב,"city of oblast subordinance, big city",settlement,,,,,Mogilev,,,,,,False,rematched_kima,False,False
 1-facs_136_tr_1740521130,birth,place,בערעסלאָוו,Beryslav,Q928716,dodgy,False,Reboleira,,former freguesia of Portugal,settlement,,,,,Reboleira,,,,,place_country_mismatch,True,,False,False
 1-facs_136_tr_1740521130,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_136_tr_1740521127,birth,place,טאַרנאָוו,Tarnów,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
@@ -2876,7 +2876,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_142_tr_1740521045,birth,country,אוקראָאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 1-facs_142_tr_1740521054,birth,place,קיעוו,Kyiv,Q1899,initial,False,Kyiv,קיעוו,"largest city, city or town, tourist destination, city in Ukraine",settlement,,,,,Kyiv,,,,,,False,,False,False
 1-facs_142_tr_1740521054,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-1-facs_142_tr_1740521055,birth,place,אָלט-קאָנסטאָנטיין,Starokostiantyniv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_142_tr_1740521055,birth,place,אָלט-קאָנסטאָנטיין,Starokostiantyniv,Q997429,dodgy,False,Starokostiantyniv,,"city of regional significance of Ukraine, human settlement",settlement,,,,,Starokostiantyniv,,,,,,False,rematched_kima,False,False
 1-facs_144_tr_1740521018,birth,place,גראָדנע,Hrodna,Q181376,initial,False,Hrodna,גראדנע,"city or town, big city, city of oblast subordinance",settlement,,,,,Hrodna,,,,,,False,,False,False
 1-facs_144_tr_1740521019,birth,place,ירושלים,Jerusalem,Q1218,initial,False,Jerusalem,ירושלים,"city, holy city of Abrahamic religion, largest city, tourist destination, big city, Roman city, ancient city, disputed territory, national capital, corpus separatum, city council",settlement,,,,,Jerusalem,,,,,place_province_mismatch,True,,False,False
 1-facs_144_tr_1740521019,birth,province,אַרץ ישראל,Land of Israel,Q155321,country,False,Land of Israel,ארץ ישראל,"region, historical region, biblical concept, term, endonym",province,,,,,,Land of Israel,,,,,False,moved_to_province,False,False
@@ -2911,7 +2911,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_149_tr_1740521034,birth,place,יאָסי,Iași,Q46852,initial,False,Iași,יאס,"municipality of Romania, capital of county in Romania, big city, college town",settlement,,,,,Iași,,,,,,False,,False,False
 1-facs_149_tr_1740521034,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
 1-facs_149_r_8,birth,place,קאָמענעץ-פּאָדאָלסק,Kamianets-Podilskyi,Q193965,dodgy,False,Kamianets-Podilskyi,קאמעניץ,"city of regional significance of Ukraine, city or town, big city",settlement,,,,,Kamianets-Podilskyi,,,,,,False,state_to_city,False,False
-1-facs_150_tr_1740521117,birth,place,קאָלבושאָוו,Kolbuszowa,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+1-facs_150_tr_1740521117,birth,place,קאָלבושאָוו,Kolbuszowa,Q991797,dodgy,False,Kolbuszowa,קאלבאסאוו,city,settlement,,,,,Kolbuszowa,,,,,,False,rematched_kima,False,False
 1-facs_150_tr_1740521115,birth,place,ביאַליסטאָק,Białystok,Q761,initial,False,Białystok,ביאליסטאק,"city with powiat rights in Poland, city, big city, tourist destination, private town",settlement,,,,,Białystok,,,,,,False,,False,False
 1-facs_150_tr_1740521115,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 1-facs_150_tr_1740521123,birth,place,סטרזשיזשאָוו,Strzyzow,Q1049332,dodgy,False,NGC 2488,,"galaxy, astronomical radio source, astrophysical X-ray source, lenticular galaxy",other,galaxy,,,,,,,,NGC 2488,needs_manual_type_review;place_province_mismatch,True,,False,False
@@ -2968,7 +2968,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_33_r,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 2-facs_33_r,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_34_tr_1744131425,birth,place,גראָדנע,Hrodna,Q181376,initial,False,Hrodna,גראדנע,"city or town, big city, city of oblast subordinance",settlement,,,,,Hrodna,,,,,,False,,False,False
-2-facs_34_tr_1744131418,birth,place,קאָלאָמעאַ,Kolomyia,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_34_tr_1744131418,birth,place,קאָלאָמעאַ,Kolomyia,Q52193,dodgy,False,Kolomyia,קאלאמיי,"city of regional significance of Ukraine, human settlement",settlement,,,,,Kolomyia,,,,,,False,rematched_kima,False,True
 2-facs_34_tr_1744131418,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 2-facs_34_tr_1744131414,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 2-facs_34_tr_1744131414,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -3107,7 +3107,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_65_tr_1744131350,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_65_tr_1744131354,birth,place,נאָווידוואָר,Nowy Dwór Mazowiecki,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 2-facs_65_tr_1744131354,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-2-facs_67_tr_1744131421,birth,place,זלאַטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_67_tr_1744131421,birth,place,זלאַטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,False
 2-facs_69_tr_1744131401,birth,place,קרייצבורג,Krustpils,Q745661,initial,False,Krustpils,,neighborhood,neighborhood,,,,,,,,Krustpils,,place_country_mismatch,True,,False,False
 2-facs_69_tr_1744131401,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 2-facs_69_tr_1744131404,birth,place,ריגע,Riga,Q1773,initial,False,Riga,ריגע,"state city of Latvia, Hanseatic city, big city, city under state jurisdiction in Latvia",settlement,,,,,Riga,,,,,,False,,False,False
@@ -3175,7 +3175,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_85_r,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_85_tr_1744131380,birth,place,קלעוואן,Klevan,Q250591,dodgy,False,Klevan,,urban-type settlement in Ukraine,settlement,,,,,Klevan,,,,,place_country_mismatch,True,,False,False
 2-facs_85_tr_1744131380,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-2-facs_86_tr_1744131442,birth,place,לאָוויטש,Łowicz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_86_tr_1744131442,birth,place,לאָוויטש,Łowicz,Q109992,dodgy,False,Łowicz,לאָװיטש,urban municipality of Poland,settlement,,,,,Łowicz,,,,,,False,rematched_kima,False,False
 2-facs_86_tr_1744131442,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_86_tr_1744131447,birth,place,בוקאַרעסט,Bucharest,Q19660,initial,False,Bucharest,בוקארעשט,"municipality of Romania, first-level administrative division, big city, college town, largest city",settlement,,,,,Bucharest,,,,,,False,,False,False
 2-facs_86_tr_1744131447,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
@@ -3226,7 +3226,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_107_r_4,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_107_tr_1744279110,birth,place,זאָלאָצע,Zaliztsi Hromada,Q30966549,dodgy,False,Zaliztsi Hromada,,"amalgamated hromada, hromada",other,amalgamated hromada,,,,,,,,Zaliztsi Hromada,needs_manual_type_review,True,,False,True
 2-facs_107_tr_1744279110,birth,province,גאַליציע,Galicia,Q180086,country,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,moved_to_province,False,False
-2-facs_108_tr_1744279182,birth,place,וולאצלאַוועק,Włocławek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_108_tr_1744279182,birth,place,וולאצלאַוועק,Włocławek,Q106681,dodgy,False,Włocławek,,"city with powiat rights in Poland, big city",settlement,,,,,Włocławek,,,,,,False,rematched_kima,False,False
 2-facs_108_tr_1744279182,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_108_tr_1744279196,birth,place,דונאַיעוו,Dunaiv,Q4170692,dodgy,False,Dunaiv,,village of Ukraine,settlement,,,,,Dunaiv,,,,,,False,,False,False
 2-facs_109_r_2,birth,place,בענדין,Będzin,Q461513,initial,False,Będzin,בענדין,urban municipality of Poland,settlement,,,,,Będzin,,,,,,False,,False,False
@@ -3323,7 +3323,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_134_tr_1744279151,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 2-facs_134_tr_1744279148,birth,place,באריסאָוו,Barysaw,Q207294,dodgy,False,Babruysk,באברויסק,"city of oblast subordinance, big city",settlement,,,,,Babruysk,,,,,,False,,False,False
 2-facs_134_tr_1744279148,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
-2-facs_135_tr_1744279211,birth,place,זלאטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_135_tr_1744279211,birth,place,זלאטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,True
 2-facs_135_tr_1744279211,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 2-facs_135_tr_1744279197,birth,place,הערצא,Hertsa,Q147741,dodgy,False,Hertsa,,city in Ukraine,settlement,,,,,Hertsa,,,,,,False,,False,False
 2-facs_135_tr_1744279197,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
@@ -3396,7 +3396,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_174_r_20,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
 2-facs_174_r_16,birth,place,פּעטריקאָוו,Piotrków Trybunalski,Q158004,initial,False,Piotrków Trybunalski,פיעטרקאוו,"city with powiat rights in Poland, city",settlement,,,,,Piotrków Trybunalski,,,,,place_country_mismatch,True,,False,False
 2-facs_174_r_16,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
-2-facs_175_tr_1744279183,birth,place,האַמעל,Homiel,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_175_tr_1744279183,birth,place,האַמעל,Homiel,Q2678,dodgy,False,Gomel,האָמל,"city of oblast subordinance, big city",settlement,,,,,Gomel,,,,,,False,rematched_kima,False,False
 2-facs_176_tr_1744279118,birth,place,ניקאָלאָיעוו,Mykolaiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 2-facs_176_tr_1744279118,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_176_r_4,birth,place,אָפּט,Opatów,Q275694,initial,False,Opatów,אפטא,city,settlement,,,,,Opatów,,,,,,False,,False,False
@@ -3411,7 +3411,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_177_r_2,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_178_tr_1744279111,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 2-facs_178_tr_1744279111,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-2-facs_178_r_5,birth,place,האָמעל,Homiel,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_178_r_5,birth,place,האָמעל,Homiel,Q2678,dodgy,False,Gomel,האָמל,"city of oblast subordinance, big city",settlement,,,,,Gomel,,,,,,False,rematched_kima,False,False
 2-facs_178_r_5,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 2-facs_179_tr_1744279074,birth,place,קיעוו,Kyiv,Q1899,initial,False,Kyiv,קיעוו,"largest city, city or town, tourist destination, city in Ukraine",settlement,,,,,Kyiv,,,,,,False,,False,False
 2-facs_179_tr_1744279074,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -3451,7 +3451,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_187_tr_1744279120,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_188_tr_1744279090,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 2-facs_188_tr_1744279090,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-2-facs_188_tr_1744279095,birth,place,וולאָצלאַוועק,Włocławek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_188_tr_1744279095,birth,place,וולאָצלאַוועק,Włocławek,Q106681,dodgy,False,Włocławek,,"city with powiat rights in Poland, big city",settlement,,,,,Włocławek,,,,,,False,rematched_kima,False,False
 2-facs_188_tr_1744279095,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_188_tr_1744279091,birth,place,פינסק,Pinsk,Q204150,initial,True,Pinsk,פּינסק,"city of oblast subordinance, big city",settlement,,,,,Pinsk,,,,,place_country_mismatch;place_qid_conflict,True,,False,False
 2-facs_188_tr_1744279091,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -3461,7 +3461,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_189_tr_1744279163,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_189_tr_1744279158,birth,place,בערדיטשעוו,Berdychiv,Q158799,initial,True,Berdychiv,בערדיטשעוו,"city of regional significance of Ukraine, miasteczko",settlement,,,,,Berdychiv,,,,,place_qid_conflict,True,,False,False
 2-facs_189_tr_1744279158,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-2-facs_192_r_8,birth,place,כאָטין,Khotyn,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_192_r_8,birth,place,כאָטין,Khotyn,Q45883,dodgy,False,Khotyn,,city in Ukraine,settlement,,,,,Khotyn,,,,,,False,rematched_kima,False,False
 2-facs_193_r_2,birth,place,בערדיטשעוו,Berdychiv,Q158799,initial,True,Berdychiv,בערדיטשעוו,"city of regional significance of Ukraine, miasteczko",settlement,,,,,Berdychiv,,,,,place_qid_conflict,True,,False,False
 2-facs_193_r_2,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_193_tr_1744279114,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
@@ -3639,7 +3639,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_273_r_4,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_273_r,birth,place,סקידעל,Skidzieĺ,Q958847,dodgy,False,Skidzieĺ,,"city of raion subordinance, urban settlement in Belarus",settlement,,,,,Skidzieĺ,,,,,place_country_mismatch,True,,False,False
 2-facs_273_r,birth,country,פּוילישליטע,Polish–Lithuanian Commonwealth,Q172107,country,False,Polish–Lithuanian Commonwealth,פויליש-ליטווישע קאמאנוועלט,"sovereign state, historical country, rump state",country,,,,,,,Polish–Lithuanian Commonwealth,,,,False,,False,False
-2-facs_273_tr_1744280704,birth,place,זוועניגראָדקאָ,Zvenyhorodka,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_273_tr_1744280704,birth,place,זוועניגראָדקאָ,Zvenyhorodka,Q219836,dodgy,False,Zvenyhorodka,,city in Ukraine,settlement,,,,,Zvenyhorodka,,,,,,False,rematched_kima,False,False
 2-facs_273_tr_1744280704,birth,country,אוקראָאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_274_tr_1744280822,birth,place,ניקאָפּאָל,Nikopol,Q156760,initial,False,Nikopol,,"city of regional significance of Ukraine, big city, human settlement, Hero City of Ukraine",settlement,,,,,Nikopol,,,,,,False,,False,False
 2-facs_274_tr_1744280822,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -3669,7 +3669,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_286_tr_1744280806,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_286_r_2,birth,place,ברעסטליטאָווסק,Brest,Q140147,dodgy,False,Brest,בריסק,"city of oblast subordinance, border city, big city",settlement,,,,,Brest,,,,,place_country_mismatch,True,,False,False
 2-facs_286_r_2,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-2-facs_286_tr_1744280812,birth,place,ראָדזימין,Radzymin,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_286_tr_1744280812,birth,place,ראָדזימין,Radzymin,Q609246,dodgy,False,Radzymin,,city,settlement,,,,,Radzymin,,,,,,False,rematched_kima,False,False
 2-facs_286_tr_1744280812,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_287_tr_1744280761,birth,place,אַזאַרקאָוו,Ozorków,Q628460,dodgy,False,Ozorków,אזארקאוו,urban municipality of Poland,settlement,,,,,Ozorków,,,,,,False,,False,False
 2-facs_287_tr_1744280761,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -3681,10 +3681,10 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_292_tr_1744280742,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_293_tr_1744280708,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 2-facs_293_tr_1744280708,birth,country,פוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-2-facs_293_tr_1744280709,birth,place,זלאָטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_293_tr_1744280709,birth,place,זלאָטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,True
 2-facs_293_tr_1744280709,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-2-facs_295_tr_1744280772,birth,place,זלאָ טשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
-2-facs_296_r,birth,place,זלאָטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_295_tr_1744280772,birth,place,זלאָ טשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,False
+2-facs_296_r,birth,place,זלאָטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,True
 2-facs_296_r,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 2-facs_297_tr_1744280788,birth,place,בערעסלאָוו,Beryslav,Q928716,dodgy,False,Reboleira,,former freguesia of Portugal,settlement,,,,,Reboleira,,,,,place_country_mismatch,True,,False,False
 2-facs_297_tr_1744280788,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -3749,7 +3749,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_316_tr_1744365733,birth,place,כאַטיעוויטש,Khatyevichi,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 2-facs_316_tr_1744365733,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_317_tr_1744365780,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
-2-facs_317_r_3,birth,place,איזשביץ,Izyaslav,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_317_r_3,birth,place,איזשביץ,Izyaslav,Q841029,dodgy,False,Iziaslav,,city in Ukraine,settlement,,,,,Iziaslav,,,,,place_country_mismatch,True,rematched_kima,False,False
 2-facs_317_r_3,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_318_tr_1744365808,birth,place,ביאַליסטאָק,Białystok,Q761,initial,False,Białystok,ביאליסטאק,"city with powiat rights in Poland, city, big city, tourist destination, private town",settlement,,,,,Białystok,,,,,,False,,False,False
 2-facs_318_tr_1744365808,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -3824,7 +3824,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_339_tr_1744365747,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 2-facs_339_tr_1744365749,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 2-facs_339_tr_1744365749,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-2-facs_340_tr_1744365805,birth,place,קוטנע,Kutno,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_340_tr_1744365805,birth,place,קוטנע,Kutno,Q202160,dodgy,False,Kutno,,urban municipality of Poland,settlement,,,,,Kutno,,,,,,False,rematched_kima,False,False
 2-facs_340_tr_1744365805,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_340_tr_1744365809,birth,place,בראָק,Brakel,Q242149,dodgy,False,Brakel,,"Hanseatic city, urban municipality in Germany",settlement,,,,,Brakel,,,,,place_country_mismatch,True,,False,False
 2-facs_340_tr_1744365809,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -3910,7 +3910,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_376_tr_1744366801,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 2-facs_376_tr_1744366815,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,place_country_mismatch,True,,False,False
 2-facs_376_tr_1744366815,birth,country,רוסלאַנד,Russia,Q159,country,False,Russia,רוסלאנד,"sovereign state, secular state, country, transcontinental country, federation, successor state",country,,,,,,,Russia,,,,False,,False,False
-2-facs_377_tr_1744366868,birth,place,זלאַטאָפּאָל,Zlatopol,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_377_tr_1744366868,birth,place,זלאַטאָפּאָל,Zlatopol,Q997478,dodgy,False,Novomyrhorod,,city in Ukraine,settlement,,,,,Novomyrhorod,,,,,,False,rematched_kima,False,False
 2-facs_377_tr_1744366868,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_377_tr_1744366871,birth,place,כמעלניק,Chmielnik,Q991973,initial,False,Chmielnik,כמעלניק,city,settlement,,,,,Chmielnik,,,,,,False,,False,False
 2-facs_377_tr_1744366871,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -3949,7 +3949,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_391_tr_1744366853,birth,place,קיעוו,Kyiv,Q1899,initial,False,Kyiv,קיעוו,"largest city, city or town, tourist destination, city in Ukraine",settlement,,,,,Kyiv,,,,,,False,,False,False
 2-facs_391_tr_1744366853,birth,country,אוקראָאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 2-facs_391_tr_1744366854,birth,place,סקוליען,Sculeni,Q2633540,dodgy,False,Sculeni,סקולען,"village, seat village",settlement,,,,,Sculeni,,,,,,False,,False,False
-2-facs_391_tr_1744366851,birth,place,זשיראָרדאָוו,Żyrardów,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_391_tr_1744366851,birth,place,זשיראָרדאָוו,Żyrardów,Q393251,dodgy,False,Żyrardów,,urban municipality of Poland,settlement,,,,,Żyrardów,,,,,,False,rematched_kima,False,False
 2-facs_391_tr_1744366851,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 2-facs_392_tr_1744366849,birth,place,יאָרמאַלינעץ,Yarmolyntsi Raion,Q2216893,dodgy,False,Yarmolyntsi Raion,,former raion of Ukraine,other,former raion of Ukraine,,,,,,,,Yarmolyntsi Raion,needs_manual_type_review,True,,False,False
 2-facs_392_tr_1744366849,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -3967,7 +3967,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_397_r,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 2-facs_398_tr_1744366863,birth,place,מאָסקווע,Moscow,Q649,initial,False,Moscow,מאסקווע,"capital of Russia, federal city of Russia, big city, megacity, largest city, largest city, largest city, largest city, city or town, federal subject of Russia, federal capital, human settlement, city/town in Russia",settlement,,,,,Moscow,,,,,,False,,False,False
 2-facs_398_tr_1744366863,birth,country,רוסלאַנד,Russia,Q159,country,False,Russia,רוסלאנד,"sovereign state, secular state, country, transcontinental country, federation, successor state",country,,,,,,,Russia,,,,False,,False,False
-2-facs_398_r,birth,place,זלאָטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+2-facs_398_r,birth,place,זלאָטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,True
 2-facs_398_r,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 2-facs_399_tr_1744366854,birth,place,"וואוקיין, נעבן ראָדזין",Vukina,Q135309067,dodgy,False,Vukina,,family name,other,family name,,,,,,,,Vukina,needs_manual_type_review;place_country_unresolved,True,,False,False
 2-facs_399_tr_1744366854,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -4131,7 +4131,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 3-facs_129_tr_1754820306,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 3-facs_130_tr_1754820307,birth,place,ריגע,Riga,Q1773,initial,False,Riga,ריגע,"state city of Latvia, Hanseatic city, big city, city under state jurisdiction in Latvia",settlement,,,,,Riga,,,,,,False,,False,False
 3-facs_130_tr_1754820307,birth,country,לעטלאַנד,Latvia,Q211,country,False,Latvia,לעטלאנד,"sovereign state, country bordering the Baltic Sea, country",country,,,,,,,Latvia,,,,False,,False,False
-3-facs_130_r,birth,place,זלאטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+3-facs_130_r,birth,place,זלאטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,False
 3-facs_132_tr_1755157157,birth,place,לודמיר,Volodymyr,Q33544,initial,False,Volodymyr,לודמיר,"Royal city in Polish-Lithuanian Commonwealth, city in Ukraine",settlement,,,,,Volodymyr,,,,,,False,,False,False
 3-facs_132_tr_1755157159,birth,place,קעשענעוו,Chișinău,Q21197,initial,False,Chișinău,קעשענעוו,"city, big city, municipality",settlement,,,,,Chișinău,,,,,,False,,False,False
 3-facs_133_tr_1755157303,birth,place,פּאָדוואָלאָטשיסק,Pidvolochysk,Q2092533,dodgy,False,Pidvolochysk,,"human settlement, urban-type settlement in Ukraine",settlement,,,,,Pidvolochysk,,,,,,False,,False,False
@@ -4214,7 +4214,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 3-facs_277_tr_1755674189,birth,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
 3-facs_277_tr_1755674189,birth,country,אַמעריקע,United States,Q30,country,False,United States,פאראייניקטע שטאטן פון אמעריקע,"sovereign state, constitutional republic, democratic republic, federal republic, superpower, country, historical unrecognized state",country,,,,,,,United States,,,,False,,False,False
 3-facs_278_tr_1755674210,birth,place,סטאַניסלאַוואָוו,Ivano-Frankivsk,Q156726,dodgy,False,Ivano-Frankivsk,סטאניסלאװ,"city of regional significance of Ukraine, city or town, big city",settlement,,,,,Ivano-Frankivsk,,,,,,False,,False,False
-3-facs_278_tr_1755674209,birth,place,גאָלדינגען,Kuldīga,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+3-facs_278_tr_1755674209,birth,place,גאָלדינגען,Kuldīga,Q155281,dodgy,False,Kuldīga,,"city under municipality jurisdiction in Latvia, Hanseatic city",settlement,,,,,Kuldīga,,,,,,False,rematched_kima,False,False
 3-facs_279_tr_1755674208,birth,place,מאַקאָוו,Makova (Hasidic dynasty),Q6853122,dodgy,False,Makova (Hasidic dynasty),מאקאווא,,other,unknown,,,,,,,,Makova (Hasidic dynasty),needs_manual_type_review;place_country_unresolved,True,,False,False
 3-facs_279_tr_1755674208,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 3-facs_279_tr_1755674215,birth,place,ניו יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
@@ -4309,7 +4309,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 3-facs_333_tr_1756059823,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 3-facs_334_tr_1756105641,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 3-facs_334_tr_1756105641,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-3-facs_336_tr_1756105932,birth,place,גאָלדינגען,Kuldīga,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+3-facs_336_tr_1756105932,birth,place,גאָלדינגען,Kuldīga,Q155281,dodgy,False,Kuldīga,,"city under municipality jurisdiction in Latvia, Hanseatic city",settlement,,,,,Kuldīga,,,,,,False,rematched_kima,False,False
 3-facs_337_tr_1756106065,birth,place,ביאַליסטאָק,Białystok,Q761,initial,False,Białystok,ביאליסטאק,"city with powiat rights in Poland, city, big city, tourist destination, private town",settlement,,,,,Białystok,,,,,,False,,False,False
 3-facs_338_tr_1756106571,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 3-facs_338_tr_1756106571,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -4346,7 +4346,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 3-facs_351_tr_1756108353,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 3-facs_353_r_2,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
 3-facs_353_r_2,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-3-facs_355_tr_1755856094,birth,place,קאָידענאָוו,Dzyarzhynsk,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+3-facs_355_tr_1755856094,birth,place,קאָידענאָוו,Dzyarzhynsk,Q921447,dodgy,False,Dzyarzhynskaya Hara,,hill,other,hill,,,,,,,,Dzyarzhynskaya Hara,needs_manual_type_review,True,rematched_kima,False,False
 3-facs_355_tr_1755856094,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 3-facs_359_tr_1755856144,birth,place,ביעלסק-פּאָדלאָסקאַ,Bielsk Podlaski,Q850714,dodgy,False,Bielsk Podlaski,בילסק,urban municipality of Poland,settlement,,,,,Bielsk Podlaski,,,,,,False,,False,False
 3-facs_359_tr_1755856144,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -4356,7 +4356,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 3-facs_373_tr_1755856146,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 3-facs_373_tr_1755856139,birth,place,אַזאַרקאָוו,Ozorków,Q628460,dodgy,False,Ozorków,אזארקאוו,urban municipality of Poland,settlement,,,,,Ozorków,,,,,,False,,False,False
 3-facs_373_tr_1755856139,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-3-facs_374_tr_1755856111,birth,place,זשיראָרדאָוו,Żyrardów,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+3-facs_374_tr_1755856111,birth,place,זשיראָרדאָוו,Żyrardów,Q393251,dodgy,False,Żyrardów,,urban municipality of Poland,settlement,,,,,Żyrardów,,,,,,False,rematched_kima,False,False
 3-facs_374_tr_1755856111,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 3-facs_374_r_1,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 3-facs_374_r_1,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -4400,7 +4400,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_40_r_105,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_41_tr_1733050381,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 5-facs_41_tr_1733050381,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-5-facs_43_tr_1733050580,birth,place,סאָכאַטשאָוו,Sochaczew,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_43_tr_1733050580,birth,place,סאָכאַטשאָוו,Sochaczew,Q250485,dodgy,False,Sochaczew,סאכאטשאוו,urban municipality of Poland,settlement,,,,,Sochaczew,,,,,,False,rematched_kima,False,False
 5-facs_43_tr_1733050580,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_45_tr_1733050574,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,False
 5-facs_50_tr_1733050548,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
@@ -4478,9 +4478,9 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_108_tr_1733832724,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 5-facs_111_tr_1733832758,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 5-facs_111_tr_1733832758,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-5-facs_112_tr_1733832830,birth,place,זלאָטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_112_tr_1733832830,birth,place,זלאָטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,True
 5-facs_112_tr_1733832830,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-5-facs_112_tr_1733832831,birth,place,איזשביץ,Izyaslav,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_112_tr_1733832831,birth,place,איזשביץ,Izyaslav,Q841029,dodgy,False,Iziaslav,,city in Ukraine,settlement,,,,,Iziaslav,,,,,place_country_mismatch,True,rematched_kima,False,False
 5-facs_112_tr_1733832831,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_114_tr_1733832736,birth,place,זאַבלודאָוואַ,Zabłudów,Q213142,dodgy,False,shilling,,,other,unknown,,,,,,,,shilling,needs_manual_type_review;place_country_unresolved,True,,False,False
 5-facs_114_tr_1733832736,birth,country,פּויליש-ליטע,Polish–Lithuanian Commonwealth,Q172107,country,False,Polish–Lithuanian Commonwealth,פויליש-ליטווישע קאמאנוועלט,"sovereign state, historical country, rump state",country,,,,,,,Polish–Lithuanian Commonwealth,,,,False,,False,False
@@ -4503,7 +4503,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_133_tr_1733832671,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_134_tr_1733832740,birth,place,שיידלאָוויעץ,Szydłowiec,Q213086,dodgy,False,Jaro,,municipality of the Philippines,settlement,,,,,Jaro,,,,,place_country_mismatch,True,,False,False
 5-facs_134_tr_1733832740,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-5-facs_136_tr_1733832804,birth,place,וולאָצלאַוועק,Włocławek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_136_tr_1733832804,birth,place,וולאָצלאַוועק,Włocławek,Q106681,dodgy,False,Włocławek,,"city with powiat rights in Poland, big city",settlement,,,,,Włocławek,,,,,,False,rematched_kima,False,False
 5-facs_136_tr_1733832804,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_143_tr_1733832807,birth,place,לאָדזש,Łódź,Q580,initial,False,Łódź,לאדזש,"big city, city with powiat rights in Poland, city",settlement,,,,,Łódź,,,,,,False,,False,False
 5-facs_143_tr_1733832807,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -4619,7 +4619,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_204_tr_1739220839,birth,place,קרושנעוויץ,Gmina Krośniewice,Q339563,dodgy,False,Gmina Krośniewice,,urban-rural municipality of Poland,settlement,,,,,Gmina Krośniewice,,,,,,False,,False,False
 5-facs_204_tr_1739220839,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_207_tr_1739221937,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
-5-facs_208_tr_1739221724,birth,place,כאָטין,Khotyn,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_208_tr_1739221724,birth,place,כאָטין,Khotyn,Q45883,dodgy,False,Khotyn,,city in Ukraine,settlement,,,,,Khotyn,,,,,,False,rematched_kima,False,False
 5-facs_210_tr_1739220933,birth,place,קאָראָפּיעץ,Koropets,Q1022905,dodgy,False,Sande,,former freguesia of Portugal,settlement,,,,,Sande,,,,,place_province_mismatch,True,,False,False
 5-facs_210_tr_1739220933,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 5-facs_210_tr_1739220936,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
@@ -4804,7 +4804,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_355_tr_1739221117,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 5-facs_355_tr_1739221123,birth,place,מינסק,Minsk,Q2280,initial,False,Minsk,מינסק,"administrative territorial entity of Belarus, first-level administrative division, city or town, big city",settlement,,,,,Minsk,,,,,,False,,False,False
 5-facs_355_tr_1739221123,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
-5-facs_355_r_2,birth,place,שעראָדז,Sieradz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_355_r_2,birth,place,שעראָדז,Sieradz,Q745074,dodgy,False,Sieradz,,urban municipality of Poland,settlement,,,,,Sieradz,,,,,,False,rematched_kima,False,False
 5-facs_355_r_2,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_356_tr_1739222186,birth,place,וואָסלוי,Vasloi,Q12407577,dodgy,False,Vasloi,,,other,unknown,,,,,,,,Vasloi,needs_manual_type_review;place_country_unresolved,True,,False,False
 5-facs_356_tr_1739222186,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
@@ -4840,14 +4840,14 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_371_r_6,birth,country,לעטלאַנד,Latvia,Q211,country,False,Latvia,לעטלאנד,"sovereign state, country bordering the Baltic Sea, country",country,,,,,,,Latvia,,,,False,,False,False
 5-facs_371_tr_1739222498,birth,place,מינסק,Minsk,Q2280,initial,False,Minsk,מינסק,"administrative territorial entity of Belarus, first-level administrative division, city or town, big city",settlement,,,,,Minsk,,,,,,False,,False,False
 5-facs_371_tr_1739222498,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
-5-facs_372_tr_1739222357,birth,place,גאָלדינגען,Kuldīga,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_372_tr_1739222357,birth,place,גאָלדינגען,Kuldīga,Q155281,dodgy,False,Kuldīga,,"city under municipality jurisdiction in Latvia, Hanseatic city",settlement,,,,,Kuldīga,,,,,,False,rematched_kima,False,False
 5-facs_372_tr_1739222351,birth,place,לובלין,Lublin,Q37333,initial,False,Lublin,לובלין,"city with powiat rights in Poland, city, big city",settlement,,,,,Lublin,,,,,,False,,False,False
 5-facs_372_tr_1739222351,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_373_r_2,birth,place,קאָמענעץ-פּאָדאָלסק,Kamianets-Podilskyi,Q193965,dodgy,False,Kamianets-Podilskyi,קאמעניץ,"city of regional significance of Ukraine, city or town, big city",settlement,,,,,Kamianets-Podilskyi,,,,,,False,state_to_city,False,False
 5-facs_373_r_2,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 5-facs_373_r,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 5-facs_373_r,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-5-facs_400_tr_1739220489,birth,place,וואָסילקאָוו,Vasylkiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_400_tr_1739220489,birth,place,וואָסילקאָוו,Vasylkiv,Q997421,dodgy,False,Vasylkiv,,city in Ukraine,settlement,,,,,Vasylkiv,,,,,,False,rematched_kima,False,False
 5-facs_400_tr_1739220489,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 5-facs_400_tr_1739220492,birth,place,וויניצע,Vinnytsia,Q157144,initial,False,Vinnytsia,וויניצע,"centre of oblast, city of regional significance of Ukraine, big city, city or town",settlement,,,,,Vinnytsia,,,,,,False,,False,False
 5-facs_400_tr_1739220492,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -4881,7 +4881,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_430_r,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
 5-facs_431_r,birth,place,לעמבערג,Lviv,Q36036,initial,False,Lviv,לעמבערג,"city in Ukraine, Magdeburg rights",settlement,,,,,Lviv,,,,,,False,,False,True
 5-facs_431_r,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-5-facs_431_tr_1739220740,birth,place,האַמעל,Homiel,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_431_tr_1739220740,birth,place,האַמעל,Homiel,Q2678,dodgy,False,Gomel,האָמל,"city of oblast subordinance, big city",settlement,,,,,Gomel,,,,,,False,rematched_kima,False,False
 5-facs_431_tr_1739220740,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 5-facs_432_r,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 5-facs_432_r,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -4957,7 +4957,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_547_tr_1739222039,birth,country,אוקראַינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 5-facs_548_tr_1739220543,birth,place,טשערעמאַש,Cheremosh River,Q1343217,dodgy,False,Cheremosh River,טשערעמאש טייך,river,other,river,,,,,,,,Cheremosh River,needs_manual_type_review,True,,False,False
 5-facs_548_r_4,birth,place,ביעלאָצערקאָוו,Bila Tserkva,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
-5-facs_548_tr_1739220547,birth,place,ראַדזימין,Radzymin,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_548_tr_1739220547,birth,place,ראַדזימין,Radzymin,Q609246,dodgy,False,Radzymin,,city,settlement,,,,,Radzymin,,,,,,False,rematched_kima,False,False
 5-facs_548_tr_1739220547,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_551_tr_1739221725,birth,place,טשערניאַכאָוו,Cherniakhiv,Q872377,dodgy,False,Cherniakhiv,,urban-type settlement in Ukraine,settlement,,,,,Cherniakhiv,,,,,,False,,False,False
 5-facs_551_tr_1739221725,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -4965,7 +4965,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_556_tr_1739222579,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 5-facs_557_r,birth,place,קאָמאָרנע,Komarne,Q1022906,dodgy,False,Sombrin,,commune of France,settlement,,,,,Sombrin,,,,,place_province_mismatch,True,,False,False
 5-facs_557_r,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
-5-facs_557_tr_1739222013,birth,place,קאַלושין,Kałuszyn,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_557_tr_1739222013,birth,place,קאַלושין,Kałuszyn,Q987160,dodgy,False,Kałuszyn,,city,settlement,,,,,Kałuszyn,,,,,,False,rematched_kima,False,False
 5-facs_557_tr_1739222013,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 5-facs_558_r,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 5-facs_558_tr_1739222068,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
@@ -4991,7 +4991,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_568_r_2,birth,country,פּויליש-ליטע,Polish–Lithuanian Commonwealth,Q172107,country,False,Polish–Lithuanian Commonwealth,פויליש-ליטווישע קאמאנוועלט,"sovereign state, historical country, rump state",country,,,,,,,Polish–Lithuanian Commonwealth,,,,False,,False,False
 5-facs_568_tr_1739221639,birth,place,קעלץ,Kielce,Q102317,initial,False,Kielce,קעלץ,"city with powiat rights in Poland, city, big city",settlement,,,,,Kielce,,,,,,False,,False,False
 5-facs_568_tr_1739221639,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
-5-facs_569_r,birth,place,טיראַספּאָל,Tiraspol,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_569_r,birth,place,טיראַספּאָל,Tiraspol,Q132572,dodgy,False,Tiraspol,,"municipality of Moldova, city or town, big city",settlement,,,,,Tiraspol,,,,,place_country_mismatch,True,rematched_kima,False,False
 5-facs_569_r,birth,country,אוקראַזיינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 5-facs_569_r_9,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 5-facs_569_tr_1739221277,birth,place,טשערנאָוויץ,Chernivtsi,Q157725,initial,False,Chernivtsi,טשערנאוויץ,"city of regional significance of Ukraine, big city",settlement,,,,,Chernivtsi,,,,,,False,,False,False
@@ -5025,7 +5025,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_597_tr_1739222302,birth,country,ליטע,Lithuania,Q37,country,False,Lithuania,ליטע,"sovereign state, unitary state, country bordering the Baltic Sea, country",country,,,,,,,Lithuania,,,,False,,False,False
 5-facs_598_tr_1739222545,birth,place,קאָנאָדע,London,Q92561,dodgy,False,London,לאנדאן,"separated municipality in Ontario, single-tier municipality, city, big city",settlement,,,,,London,,,,,,False,,False,False
 5-facs_598_tr_1739222546,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
-5-facs_600_r_77,birth,place,זשיראַרדאָוו,Żyrardów,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_600_r_77,birth,place,זשיראַרדאָוו,Żyrardów,Q393251,dodgy,False,Żyrardów,,urban municipality of Poland,settlement,,,,,Żyrardów,,,,,,False,rematched_kima,False,False
 5-facs_602_r,birth,place,בערלינעץ,Alain Berlinet,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
 5-facs_602_r,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 5-facs_602_tr_1739222225,birth,place,וולאַשטשאווא,Włoszczowa,Q611784,dodgy,False,Włoszczowa,,city,settlement,,,,,Włoszczowa,,,,,,False,,False,False
@@ -5037,7 +5037,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_605_r_101,birth,place,טשערנאָוויץ,Chernivtsi,Q157725,initial,False,Chernivtsi,טשערנאוויץ,"city of regional significance of Ukraine, big city",settlement,,,,,Chernivtsi,,,,,,False,,False,False
 5-facs_606_r_165,birth,place,בריסל,City of Brussels,Q239,dodgy,False,Brussels,בריסל,"big city, European City, municipality of Belgium, federal capital",settlement,,,,,Brussels,,,,,,False,,False,False
 5-facs_606_r_165,birth,country,בעלגיע,Belgium,Q31,country,False,Belgium,בעלגיע,"sovereign state, federation, country, colonial power, realm",country,,,,,,,Belgium,,,,False,,False,False
-5-facs_606_r,birth,place,זלאַטאָפּאָל,Zlatopol,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+5-facs_606_r,birth,place,זלאַטאָפּאָל,Zlatopol,Q997478,dodgy,False,Novomyrhorod,,city in Ukraine,settlement,,,,,Novomyrhorod,,,,,place_country_mismatch,True,rematched_kima,False,False
 5-facs_606_r,birth,country,רוסלאַנד,Russia,Q159,country,False,Russia,רוסלאנד,"sovereign state, secular state, country, transcontinental country, federation, successor state",country,,,,,,,Russia,,,,False,,False,False
 5-facs_607_tr_1739222280,birth,place,מעקסיקע,Mexico City,Q1489,dodgy,False,Mexico City,מעקסיקא שטאט,"federative entity of Mexico, big city, city, metropolis, largest city, megacity, federal capital, primate city",settlement,,,,,Mexico City,,,,,,False,,False,False
 5-facs_607_tr_1739222280,birth,country,מעקסיקע,Mexico,Q96,country,False,Mexico,מעקסיקא,"sovereign state, country, federal republic, democratic republic, constitutional republic, nation, empire, empire",country,,,,,,,Mexico,,,,False,,False,False
@@ -5130,7 +5130,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_52_tr_1747746168,birth,place,בראָד,Brody,Q465104,initial,False,Brody,בראָד,city in Ukraine,settlement,,,,,Brody,,,,,,False,,False,True
 6-facs_52_tr_1747746168,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 6-facs_53_tr_1747746142,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
-6-facs_53_r_13,birth,place,סאָכאַטשאָוו,Sochaczew,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_53_r_13,birth,place,סאָכאַטשאָוו,Sochaczew,Q250485,dodgy,False,Sochaczew,סאכאטשאוו,urban municipality of Poland,settlement,,,,,Sochaczew,,,,,,False,rematched_kima,False,False
 6-facs_53_r_13,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 6-facs_55_tr_1747746152,birth,place,גרויס ראַדאָמישל,Radomyśl Wielki,Q867431,dodgy,False,Radomyśl Wielki,ראדאמישל,city,settlement,,,,,Radomyśl Wielki,,,,,,False,,False,True
 6-facs_55_tr_1747746152,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
@@ -5173,7 +5173,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_68_tr_1747746105,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 6-facs_69_tr_1747746123,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 6-facs_69_r_13,birth,place,קעשענעוו,Chișinău,Q21197,initial,False,Chișinău,קעשענעוו,"city, big city, municipality",settlement,,,,,Chișinău,,,,,,False,,False,False
-6-facs_70_tr_1747746125,birth,place,וולאַצלאַוועק,Włocławek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_70_tr_1747746125,birth,place,וולאַצלאַוועק,Włocławek,Q106681,dodgy,False,Włocławek,,"city with powiat rights in Poland, big city",settlement,,,,,Włocławek,,,,,,False,rematched_kima,False,False
 6-facs_70_tr_1747746125,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 6-facs_71_r_13,birth,place,קיעוו,Kyiv,Q1899,initial,False,Kyiv,קיעוו,"largest city, city or town, tourist destination, city in Ukraine",settlement,,,,,Kyiv,,,,,,False,,False,False
 6-facs_71_r_13,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -5189,7 +5189,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_76_tr_1747746207,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 6-facs_77_tr_1747746215,birth,place,סמילאָוויטש,Smilavičy,Q278100,dodgy,False,Smilavičy,,urban settlement in Belarus,settlement,,,,,Smilavičy,,,,,,False,,False,False
 6-facs_77_tr_1747746215,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
-6-facs_78_tr_1747746117,birth,place,וולאָצלאַוועק,Włocławek,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_78_tr_1747746117,birth,place,וולאָצלאַוועק,Włocławek,Q106681,dodgy,False,Włocławek,,"city with powiat rights in Poland, big city",settlement,,,,,Włocławek,,,,,,False,rematched_kima,False,False
 6-facs_78_tr_1747746117,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 6-facs_78_tr_1747746119,birth,place,יאָסי,Iași,Q46852,initial,False,Iași,יאס,"municipality of Romania, capital of county in Romania, big city, college town",settlement,,,,,Iași,,,,,,False,,False,False
 6-facs_78_tr_1747746119,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False,False
@@ -5252,7 +5252,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_125_tr_1747825044,birth,place,קרעמענעץ,Kremenets,Q849116,initial,False,Kremenets,קרעמעניץ,"city in Ukraine, Royal city in Polish-Lithuanian Commonwealth",settlement,,,,,Kremenets,,,,,,False,,False,False
 6-facs_126_tr_1747825032,birth,place,כערסאָן,Kherson,Q156732,initial,False,Kherson,,"city of regional significance of Ukraine, city in Ukraine",settlement,,,,,Kherson,,,,,,False,,False,False
 6-facs_126_tr_1747825032,birth,country,אוקראַנע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-6-facs_131_r,birth,place,לאָוויטש,Łowicz,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_131_r,birth,place,לאָוויטש,Łowicz,Q109992,dodgy,False,Łowicz,לאָװיטש,urban municipality of Poland,settlement,,,,,Łowicz,,,,,,False,rematched_kima,False,False
 6-facs_131_r,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 6-facs_132_tr_1747825065,birth,place,בודאַפּעשט,Budapest Ghetto,Q1781,initial,True,Budapest,בודאפעשט,"town in Hungary, enclave, largest city, national capital",settlement,,,,,Budapest,,,,,place_qid_conflict,True,,False,False
 6-facs_132_tr_1747825065,birth,country,אונגאַרן,Hungary,Q28,country,False,Hungary,אונגארן,"sovereign state, landlocked country, country, successor state",country,,,,,,,Hungary,,,,False,,False,False
@@ -5338,7 +5338,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_190_tr_1747825169,birth,place,בוטען,Buteni,Q852398,dodgy,False,Buteni,,"village, seat of the local council",settlement,,,,,Buteni,,,,,place_country_mismatch,True,,False,False
 6-facs_190_tr_1747825169,birth,country,פּויליש-ליטע,Polish–Lithuanian Commonwealth,Q172107,country,False,Polish–Lithuanian Commonwealth,פויליש-ליטווישע קאמאנוועלט,"sovereign state, historical country, rump state",country,,,,,,,Polish–Lithuanian Commonwealth,,,,False,,False,False
 6-facs_193_tr_1747825032,birth,place,סאַדיגוראַ,Sadhora,Q2005381,dodgy,False,Sadhora,סאדיגורא,"posyolok, urban-type settlement, section of populated place, city",settlement,,,,,Sadhora,,,,,,False,,False,False
-6-facs_196_tr_1747825036,birth,place,בענדער,Bender,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_196_tr_1747825036,birth,place,בענדער,Bender,Q192176,dodgy,False,Bender,,"city, municipality of Moldova",settlement,,,,,Bender,,,,,,False,rematched_kima,False,False
 6-facs_196_tr_1747825052,birth,place,ווילנע,Vilnius,Q216,initial,False,Vilnius,ווילנע,"city, big city",settlement,,,,,Vilnius,,,,,,False,,False,False
 6-facs_199_tr_1747825102,birth,place,זאַוואָליע,Завалье,Q21336249,dodgy,False,,,"posyolok, village",settlement,,,,,Завалье,,,,,place_country_mismatch,True,,False,False
 6-facs_199_tr_1747825102,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
@@ -5394,7 +5394,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_269_tr_1747928912,birth,country,אוקראַניע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
 6-facs_271_r_1,birth,place,נעמיראָוו,Nemyriv,Q997335,dodgy,False,Nemyriv,,"city in Ukraine, urban-type settlement in Ukraine, city of district significance",settlement,,,,,Nemyriv,,,,,,False,,False,False
 6-facs_271_r_1,birth,country,אוקראַינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-6-facs_290_tr_1747928961,birth,place,קאַידענאָוו,Dzyarzhynsk,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_290_tr_1747928961,birth,place,קאַידענאָוו,Dzyarzhynsk,Q921447,dodgy,False,Dzyarzhynskaya Hara,,hill,other,hill,,,,,,,,Dzyarzhynskaya Hara,needs_manual_type_review,True,rematched_kima,False,False
 6-facs_290_tr_1747928961,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 6-facs_291_tr_1747928923,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 6-facs_291_tr_1747928923,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
@@ -5411,7 +5411,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_406_tr_1747930314,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 6-facs_406_tr_1747930311,birth,place,ברוסילאָוו,Brusyliv,Q869831,dodgy,False,Oberreut,,Ortsteil,settlement,,,,,Oberreut,,,,,place_country_mismatch,True,,False,False
 6-facs_406_tr_1747930311,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-6-facs_408_tr_1747930566,birth,place,קאָידענאָוו,Dzyarzhynsk,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_408_tr_1747930566,birth,place,קאָידענאָוו,Dzyarzhynsk,Q921447,dodgy,False,Dzyarzhynskaya Hara,,hill,other,hill,,,,,,,,Dzyarzhynskaya Hara,needs_manual_type_review,True,rematched_kima,False,False
 6-facs_408_tr_1747930566,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 6-facs_413_tr_1747930424,birth,place,ליפקאַן,Lipcani,Q2057040,dodgy,False,Lipcani,,,other,unknown,,,,,,,,Lipcani,needs_manual_type_review;qid_lookup_missing,True,,False,False
 6-facs_417_tr_1747930464,birth,place,יאָס,Iași,Q46852,initial,False,Iași,יאס,"municipality of Romania, capital of county in Romania, big city, college town",settlement,,,,,Iași,,,,,,False,,False,False
@@ -5494,7 +5494,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 6-facs_648_tr_1747930316,birth,place,ברעסט ליטאָווסק,Brest,Q140147,dodgy,False,Brest,בריסק,"city of oblast subordinance, border city, big city",settlement,,,,,Brest,,,,,,False,,False,False
 6-facs_649_tr_1747930511,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False,False
 6-facs_649_tr_1747930511,birth,country,אוקראינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-6-facs_651_r,birth,place,זשירארדאָוו,Żyrardów,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+6-facs_651_r,birth,place,זשירארדאָוו,Żyrardów,Q393251,dodgy,False,Żyrardów,,urban municipality of Poland,settlement,,,,,Żyrardów,,,,,,False,rematched_kima,False,False
 6-facs_651_r,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False,False
 6-facs_652_tr_1747931529,birth,place,סאָקאָלאָוו פּאָדלאָסקי,Sokołów Podlaski,Q1613105,dodgy,False,Sokołów Podlaski,,urban municipality of Poland,settlement,,,,,Sokołów Podlaski,,,,,,False,,False,False
 6-facs_652_r,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
@@ -5657,7 +5657,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 7-facs_71_r,birth,place,בריסק דליטע,Brest,Q140147,dodgy,False,Brest,בריסק,"city of oblast subordinance, border city, big city",settlement,,,,,Brest,,,,,,False,,False,False
 7-facs_71_tr_1757228899,birth,place,גאַליציע,Narol,Q2439514,dodgy,False,Narol,נאראל,city,settlement,,,,,Narol,,,,,,False,,False,False
 7-facs_72_r_5,birth,province,פּאָדאָליע,Podolia,Q191607,country,False,Podolia,פאדאליע,"Ukrainian historical regions, historical region, ethnographic region, cultural region",province,,,,,,Podolia,,,,,False,moved_to_province,False,False
-7-facs_72_tr_1757228897,birth,place,זלאָטשעוו,Zolochiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+7-facs_72_tr_1757228897,birth,place,זלאָטשעוו,Zolochiv,Q2010577,dodgy,False,"Zolochiv, Kharkiv Oblast",,urban-type settlement in Ukraine,settlement,,,,,"Zolochiv, Kharkiv Oblast",,,,,,False,rematched_kima,False,True
 7-facs_72_tr_1757228897,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 7-facs_73_r,birth,place,פּאָדקאָמיין,Pidkamin,Q2509983,dodgy,False,Pidkamin,,"urban-type settlement in Ukraine, human settlement",settlement,,,,,Pidkamin,,,,,,False,,False,False
 7-facs_74_r_3,birth,place,ניו-יאָרק,New York City,Q60,initial,False,New York City,ניו יארק,"global city, port city, city in the United States, city, big city, largest city, city in the state of New York, metropolis, megacity",settlement,,,,,New York City,,,,,,False,,False,False
@@ -5680,7 +5680,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 7-facs_83_tr_1757228886,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False,False
 7-facs_84_r_2,birth,place,בערדיטשעוו,Berdychiv,Q158799,initial,True,Berdychiv,בערדיטשעוו,"city of regional significance of Ukraine, miasteczko",settlement,,,,,Berdychiv,,,,,place_qid_conflict,True,,False,False
 7-facs_84_r_2,birth,country,אוקראָינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False,False
-7-facs_84_tr_1757228895,birth,place,טשאַרטקאָוו,Chortkiv,,dodgy,False,,,,unmatched,,,,,,,,,,qid_lookup_missing,True,unlinked_nonplace,False,False
+7-facs_84_tr_1757228895,birth,place,טשאַרטקאָוו,Chortkiv,Q148473,dodgy,False,Chortkiv,טשארטקאוו,city in Ukraine,settlement,,,,,Chortkiv,,,,,,False,rematched_kima,False,True
 7-facs_84_tr_1757228895,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False,False
 7-facs_85_tr_1757228900,birth,place,וואַרשע,Warsaw,Q270,initial,False,Warsaw,ווארשע,"city with powiat rights in Poland, city, seat of government, big city, tourist destination, largest city, administrative territorial entity, metropolis, national capital",settlement,,,,,Warsaw,,,,,,False,,False,False
 7-facs_87_r,birth,place,בערדיטשעוו,Berdychiv,Q158799,initial,True,Berdychiv,בערדיטשעוו,"city of regional significance of Ukraine, miasteczko",settlement,,,,,Berdychiv,,,,,place_qid_conflict,True,,False,False

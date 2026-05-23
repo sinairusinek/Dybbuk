@@ -18,6 +18,7 @@ Each function stamps the ``correction_applied`` column for auditability.
 """
 from __future__ import annotations
 
+import csv
 from pathlib import Path
 from typing import Any
 
@@ -445,6 +446,74 @@ def fix_unlink_nonplace(
         f"  fix_unlink_nonplace: {len(bad_qids)} non-place QID(s) cleared "
         f"on {int(target.sum())} row(s)"
     )
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Correction: backfill QIDs recovered by the kimatch re-match (step 6)
+# ---------------------------------------------------------------------------
+
+def fix_rematch_backfill(
+    df: pd.DataFrame,
+    details: dict[str, dict[str, Any]],
+    cache_path: str | Path,
+    confirmed_path: str | Path = "data/working/kima/rematch_confirmed.tsv",
+) -> pd.DataFrame:
+    """Backfill QIDs recovered by re-matching unlinked spellings through kimatch.
+
+    ``rematch_confirmed.tsv`` (source_value → QID) holds GRADE_A kima matches for
+    spellings that ``fix_unlink_nonplace`` cleared. For each such place row still
+    lacking a QID, the recovered QID is written in, its Wikidata entity is fetched
+    + cached so downstream flagging sees real p17/p131 (no qid_lookup_missing),
+    and the row is re-classified. Stamps ``correction_applied='rematched_kima'``.
+
+    Reproducible: regenerate the TSV with
+    ``scripts/kimatch_match.py --input …/rematch_unlinked_input.tsv --suffix _rematch``
+    then map kima_id→WikiData_Id. Skips silently if the TSV is absent.
+    """
+    out = df.copy()
+    if "correction_applied" not in out.columns:
+        out["correction_applied"] = ""
+
+    confirmed_path = Path(confirmed_path)
+    if not confirmed_path.exists():
+        print("  fix_rematch_backfill: no confirmed TSV — skipped")
+        return out
+
+    sv_to_qid: dict[str, str] = {}
+    with confirmed_path.open(encoding="utf-8-sig", newline="") as fh:
+        for r in csv.DictReader(fh, delimiter="\t"):
+            sv, qid = (r.get("source_value") or "").strip(), (r.get("qid") or "").strip()
+            if sv and qid:
+                sv_to_qid.setdefault(sv, qid)
+
+    cache = load_cache(cache_path)
+    mask = (
+        (out["source_role"] == "place")
+        & (out["qid"].astype(str).isin(["", "nan"]))
+        & (out["source_value"].isin(sv_to_qid))
+    )
+    backfilled = 0
+    for idx in out.index[mask]:
+        qid = sv_to_qid[str(out.at[idx, "source_value"])]
+        detail = _enrich_detail(qid, cache)
+        if detail is None:
+            continue
+        details[qid] = detail
+        cat, other = classify_qid(detail, str(out.at[idx, "context"]), "place")
+        label = detail.get("label_en") or str(out.at[idx, "clustered_value"] or "")
+        out.at[idx, "qid"] = qid
+        out.at[idx, "wikidata_label_en"] = label
+        out.at[idx, "wikidata_label_yi"] = detail.get("label_yi") or ""
+        out.at[idx, "wikidata_type"] = ", ".join(detail.get("p31_labels", []))
+        out.at[idx, "resolved_category"] = cat
+        out.at[idx, "other_type"] = other or ""
+        _set_category_value(out, idx, cat, label)
+        out.at[idx, "correction_applied"] = "rematched_kima"
+        backfilled += 1
+
+    save_cache(cache_path, cache)
+    print(f"  fix_rematch_backfill: {backfilled} row(s) re-linked from {len(sv_to_qid)} confirmed match(es)")
     return out
 
 

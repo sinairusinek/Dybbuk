@@ -25,6 +25,7 @@ from zibn_shtern.corrections import (
     fix_column_assignment,
     fix_death_site_burial,
     fix_qid_overrides,
+    fix_rematch_backfill,
     fix_unlink_nonplace,
 )
 from zibn_shtern.io import load_places, save_dataframe
@@ -111,6 +112,7 @@ def main() -> None:
 
     classified = fix_qid_overrides(classified, details, cache_path=args.cache)
     classified = fix_unlink_nonplace(classified, details)
+    classified = fix_rematch_backfill(classified, details, cache_path=args.cache)
     classified = fix_death_site_burial(classified)
     classified = fix_city_state(classified, details, cache_path=args.cache)
 
