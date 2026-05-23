@@ -35,11 +35,30 @@ These are projections of the unified table (no additional information).
 
 ## 4) Auto-reclassification pass (corrected unified output)
 
-Run corrected pipeline:
+`auto_reclassify.py` REGENERATES `places_unified_corrected.csv` from the raw
+extraction — it is the single source of truth for corrected data, but running it
+**overwrites any manual corrections** previously layered on top.
 
-- `python scripts/auto_reclassify.py --input data/raw/Zylbercweig-Extraction2026-02-05-places.tsv --output data/working/places_unified_corrected.csv`
+**Always regenerate via the orchestrator, not `auto_reclassify.py` alone:**
 
-`auto_reclassify.py` emits only the unified corrected table; `places_unified_corrected.csv` is the single source of truth for corrected data.
+- `python scripts/rebuild_corrected.py`
+
+which runs, in order:
+
+1. `auto_reclassify.py` → `places_unified_corrected.csv` (regenerated)
+2. `apply_translit_audit_fixes.py` → translit false-positive corrections on top
+3. `apply_kimatch_review_decisions.py --apply` → Kimatch review-app decisions on top
+   (person qids + unlink/clear; org placements → `kima/review_applied_org_qids.tsv`;
+   fetches the decision set from the Kima repo `data` branch via `gh`)
+4. `build_unified_toponyms.py` → `toponyms_attestations.csv` spine (+ gazetteer/
+   unlinked/misresolved); also consumes `review_applied_org_qids.tsv` for orgs
+
+Use `--no-regen` to re-apply corrections + rebuild the spine without re-running
+auto_reclassify. The two "corrections on top" scripts are idempotent; the review
+apply writes its own audit log at `kima/kimatch_review_apply_log.tsv` (fresh each
+run), separate from the translit `kima/matching_corrections_log.tsv`.
+
+See `handoffs/KIMATCH_REVIEW_PIPELINE.md` for the full review-app → apply loop.
 
 ## 5) Reviewer handoff — OpenRefine manual QID correction
 

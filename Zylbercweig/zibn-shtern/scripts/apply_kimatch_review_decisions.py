@@ -36,7 +36,9 @@ _ZIBN    = Path(__file__).resolve().parents[1]
 _WORK    = _ZIBN / "data" / "working"
 _KIMA_DIR = _WORK / "kima"
 _UNIFIED = _WORK / "places_unified_corrected.csv"
-_LOG     = _KIMA_DIR / "matching_corrections_log.tsv"
+# Dedicated log (rewritten fresh each run → idempotent). NOT the shared
+# matching_corrections_log.tsv (that one is the translit-audit log).
+_LOG     = _KIMA_DIR / "kimatch_review_apply_log.tsv"
 _ORG_OUT = _KIMA_DIR / "review_applied_org_qids.tsv"
 _SPLIT_OUT = _KIMA_DIR / "review_split_punchlist.tsv"
 
@@ -52,8 +54,19 @@ _QID_SOURCE = "kimatch_review_2026-05-23"
 def load_decisions(path: str | None) -> dict:
     if path:
         return json.loads(Path(path).read_text(encoding="utf-8"))
-    with urllib.request.urlopen(_DECISIONS_URL, timeout=20) as fh:
-        return json.load(fh)
+    # Private repo: the raw URL 404s, so fetch the `data` branch via authenticated gh.
+    try:
+        import base64
+        import subprocess
+        out = subprocess.run(
+            ["gh", "api",
+             "repos/sinairusinek/kimatch/contents/data/zylbercweig/"
+             "kimatch_decisions_full.json?ref=data", "--jq", ".content"],
+            capture_output=True, text=True, check=True).stdout
+        return json.loads(base64.b64decode(out))
+    except Exception:
+        with urllib.request.urlopen(_DECISIONS_URL, timeout=20) as fh:
+            return json.load(fh)
 
 
 def kima_qid_index() -> dict[str, str]:
@@ -193,11 +206,9 @@ def main() -> None:
     with _SPLIT_OUT.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, delimiter="\t"); w.writerow(["source_value", "record_id"])
         w.writerows(split_rows)
-    write_header = not _LOG.exists()
-    with _LOG.open("a", newline="", encoding="utf-8") as fh:
+    with _LOG.open("w", newline="", encoding="utf-8") as fh:   # fresh each run (idempotent)
         w = csv.writer(fh, delimiter="\t")
-        if write_header:
-            w.writerow(["source_value", "record_id", "action", "qid", "reviewer", "scope"])
+        w.writerow(["source_value", "record_id", "action", "qid", "reviewer", "scope"])
         w.writerows(log_rows)
     print(f"\nWrote {changed} qid updates + {cleared} clears to {_UNIFIED.name}, "
           f"{len(org_rows)} org rows, {len(split_rows)} split rows; "
