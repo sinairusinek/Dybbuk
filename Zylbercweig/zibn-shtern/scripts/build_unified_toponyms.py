@@ -291,18 +291,24 @@ def main() -> None:
     # Human-confirmed org placements from the Kimatch review app (highest priority).
     review_by_record: dict[tuple, str] = {}   # (record_id, source_value) -> qid
     review_by_value: dict[str, str] = {}      # source_value -> qid (flat, record_id "*")
+    review_unlink_record: set[tuple] = set()  # (record_id, source_value) -> force unlinked
+    review_unlink_value: set[str] = set()     # source_value -> force unlinked (flat)
     if REVIEW_ORG.exists():
         for r in rd(REVIEW_ORG):
             q = r.get("qid", "").strip()
             v = r.get("source_value", "").strip()
             rid = r.get("record_id", "").strip()
-            if not (is_qid(q) and v):
+            if not v:
                 continue
-            if rid == "*":
-                review_by_value[v] = q
-            else:
-                review_by_record[(rid, v)] = q
-            category.setdefault(q, "settlement")
+            if r.get("action", "link").strip() == "unlink":
+                (review_unlink_value if rid == "*" else review_unlink_record).add(
+                    v if rid == "*" else (rid, v))
+            elif is_qid(q):
+                if rid == "*":
+                    review_by_value[v] = q
+                else:
+                    review_by_record[(rid, v)] = q
+                category.setdefault(q, "settlement")
 
     def enrich(row: dict, q: str) -> None:
         """Attach QID-keyed resolution columns to an attestation row."""
@@ -396,6 +402,10 @@ def main() -> None:
                            source_record_id=cid, org_db_id=dbid, source_field=fname,
                            source_value=val, source_value_script=script_of(val),
                            is_descriptor="True" if is_descriptor(val) else "")
+                if (cid, val) in review_unlink_record or val in review_unlink_value:
+                    row.update(link_status="unlinked", relink_source="kimatch_review")
+                    att.append(row)
+                    continue
                 review_q = review_by_record.get((cid, val)) or review_by_value.get(val)
                 if review_q and review_q not in nonplace_qids:
                     enrich(row, review_q)
