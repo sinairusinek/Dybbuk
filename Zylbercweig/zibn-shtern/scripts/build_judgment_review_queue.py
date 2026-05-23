@@ -56,7 +56,7 @@ _MAX_CANDIDATES = 8
 _COLS = [
     "source_value", "wikidata_yi", "english_name", "wikidata_qid",
     "resolved_category", "match_status", "fuzzy_candidates",
-    "fuzzy_confidence", "entry_ids", "contexts",
+    "fuzzy_confidence", "entry_ids", "contexts", "mentions",
 ]
 
 _TEI   = "http://www.tei-c.org/ns/1.0"
@@ -117,6 +117,71 @@ def build_attestation_index() -> dict[str, list[str]]:
         if sv and rid and rid not in out[sv]:
             out[sv].append(rid)
     return out
+
+
+def build_attestation_records() -> dict[str, list[dict]]:
+    """source_value → [full attestation rows] (for per-mention breakdown)."""
+    out: dict[str, list[dict]] = defaultdict(list)
+    for row in _read_tsv(_ATTEST, delim=","):
+        sv = (row.get("source_value") or "").strip()
+        if sv:
+            out[sv].append(row)
+    return out
+
+
+_MAX_MENTIONS = 20
+
+
+def _window(text: str, needle: str, w: int = 180) -> str:
+    """A ±w-char window around `needle` in `text` (whole text if not found)."""
+    i = text.find(needle)
+    if i < 0:
+        return text[: 2 * w] + ("…" if len(text) > 2 * w else "")
+    a, b = max(0, i - w), min(len(text), i + len(needle) + w)
+    return ("…" if a > 0 else "") + text[a:b] + ("…" if b < len(text) else "")
+
+
+def build_mentions(sv: str, recs_by_sv, clusters, lex) -> list[dict]:
+    """Per-mention breakdown for a spelling, grouped by source_record_id (= org
+    location-variant or person entry). Each mention carries its own windowed
+    Yiddish context + the QID it is currently linked to."""
+    grouped: "OrderedDict[str, dict]" = OrderedDict()
+    for r in recs_by_sv.get(sv, []):
+        rid = (r.get("source_record_id") or "").strip()
+        if not rid:
+            continue
+        g = grouped.setdefault(rid, {
+            "rid": rid,
+            "corpus": (r.get("source_corpus") or "").strip(),
+            "fields": [],
+            "qid": (r.get("qid") or "").strip(),
+            "n": 0,
+        })
+        g["n"] += 1
+        fld = (r.get("source_field") or "").strip()
+        if fld and fld not in g["fields"]:
+            g["fields"].append(fld)
+        if not g["qid"] and r.get("qid"):
+            g["qid"] = r["qid"].strip()
+
+    mentions = []
+    for rid, g in list(grouped.items())[:_MAX_MENTIONS]:
+        ctx = ""
+        for xid in _entry_ids_for_record(rid, clusters):
+            txt = lex.get(xid, "")
+            if txt and (sv in txt or not ctx):
+                ctx = _window(txt, sv)
+                if sv in txt:
+                    break
+        mentions.append({
+            "rid": rid,
+            "corpus": g["corpus"],
+            "field": "/".join(g["fields"]),
+            "n": g["n"],
+            "qid": g["qid"],
+            "ctx": ctx,
+        })
+    return mentions
 
 
 # ── Kima candidates ──────────────────────────────────────────────────────────────
@@ -342,6 +407,7 @@ def main() -> None:
     lex      = build_lexicon_index()
     clusters = build_cluster_index()
     attest   = build_attestation_index()
+    recs     = build_attestation_records()
     places   = build_kima_places()
     print(f"  lexicon entries: {len(lex)}  clusters: {len(clusters)}  "
           f"attested spellings: {len(attest)}  kima places: {len(places)}")
@@ -356,6 +422,10 @@ def main() -> None:
         + build_ambiguity_rows(_AMBALL, "options", clusters, lex, attest, places)
     )
     new_rows = merge_by_source_value(source_rows)
+    # Bake per-mention breakdown (feature A) — grouped by source_record_id.
+    for r in new_rows:
+        r["mentions"] = json.dumps(
+            build_mentions(r["source_value"], recs, clusters, lex), ensure_ascii=False)
     managed = {r["source_value"] for r in new_rows}
 
     # Replace any previously-written managed rows (idempotent); keep everything else.
@@ -370,8 +440,10 @@ def main() -> None:
 
     no_ctx   = [r["source_value"] for r in new_rows if not r["contexts"].strip()]
     no_cands = [r["source_value"] for r in new_rows if r["fuzzy_candidates"] == "[]"]
+    multi    = [r["source_value"] for r in new_rows if len(json.loads(r["mentions"])) > 1]
     print(f"\nQueue now has {len(existing)} rows ({kept} kept + {len(new_rows)} managed).")
     print(f"Managed rows ({len(new_rows)}): {', '.join(managed)}")
+    print(f"  per-mention (>1 mention): {len(multi)} → {', '.join(multi)}")
     if no_ctx:
         print(f"  ⚠ no context resolved for: {', '.join(no_ctx)}")
     if no_cands:
