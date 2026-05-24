@@ -42,6 +42,7 @@ VIEWS = {
     "Activity":                ("activity",      "activity"),
     "B1 · Person Dedup":       ("person_dedup",   "b1"),
     "B2 · Person → External":  (None,             "b2"),
+    "YiDraCor · Annotation flags": ("yidracor_flags", "yd"),
 }
 
 VIEW_STATUS = {
@@ -51,6 +52,7 @@ VIEW_STATUS = {
     "Activity":                "📋",
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → External":  "⏳ Blocked on B1",
+    "YiDraCor · Annotation flags": "✅ Ready",
 }
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -168,6 +170,9 @@ elif view_module == "activity":
     render()
 elif view_module == "person_dedup":
     from views.person_dedup import render
+    render()
+elif view_module == "yidracor_flags":
+    from views.yidracor_flags import render
     render()
 else:
     st.info(f"**{selected}** is not yet implemented.")
