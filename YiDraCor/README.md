@@ -4,9 +4,17 @@ Pipeline for preparing Yiddish theatrical texts for [DraCor](https://dracor.org/
 Two independent strands of work live here:
 
 1. **TEI → DraCor transform** (`code/dracor_transform.py`, `code/preprocessing.py`,
-   `code/util/`) — turns Transkribus-exported PAGE-XML for a play into
-   DraCor-compatible TEI: paginates, normalizes tags, identifies speakers,
-   wraps speeches in `<sp>`, validates `<sp>@who` against `<listPerson>`.
+   `code/util/`) — the original Lateiner_Meshumed flow: turns a `|`-delimited
+   intermediate into `<sp>`-wrapped TEI. Superseded for annotated plays by the
+   structurer below; kept for that one play.
+1b. **Structurer** (`code/structure/build_tei.py`) — the final stage for plays
+   that went through the annotation pipeline. Assembles
+   `data/<play>/page_annotated/*.xml` (with their `custom` spans) +
+   `cast_dict.json` + `editions.json` into one tei_all TEI for the TEI-Publisher
+   app: body acts as `<sp>`/`<stage>`/`<div>`, song supplement in `<back>` with
+   `@corresp`, castList+listPerson from the cast dict. Run:
+   `cd code && python3.11 -m structure.build_tei --play <folder>`.
+   Open work + the DraCor-strict variant are tracked in `docs/TODO-tei-pipeline.md`.
 2. **Yiddish vocalization** (`code/vocalization/`) — adds nikkud (Hebrew vowel
    points) to bare Yiddish text by learning the orthographic conventions of a
    single hand-vocalized reference page and propagating them across the rest

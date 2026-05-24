@@ -1,0 +1,485 @@
+"""
+Structurer: assemble annotated Transkribus PAGE-XML pages into one TEI document
+that validates against tei_all and renders in the YiDraCor TEI-Publisher app.
+
+This is the missing final stage of the YiDraCor pipeline. Upstream stages
+(Transkribus pull -> vocalize -> annotate) leave one PAGE-XML file per page in
+`data/<play>/page_annotated/`, each TextLine carrying inline `custom` spans:
+
+    speaker {offset; length; xmlid:<role>}   -> opens a <sp who="#role">
+    stage   {offset; length; type:<t>}       -> <stage type="t">
+    heading {offset; length; type:act; n:N [; subtype:songGroup]}
+    lg {n:N [; cont:yes]}  l {lg_id:N}  head {lg_id:N}   -> song verse
+    fw {offset; length; type:pageNum}        -> <fw> (printed page number)
+    -- editorial spans (sic/corr, orig/reg, abbr/expan, supplied, ...) are
+       passed through verbatim if a future RA layer adds them. Not generated.
+
+Convention decisions baked in (see memory `diseder_two_part_tei`,
+`annotation-pipeline`, and the 2026-05-24 review against A-Earliest1898.xml):
+  * tei_all.rng (matches the existing TEI-Publisher corpus), not dracor schema.rng.
+  * Two-part model: play acts in <body>, song supplement in <back> linked by
+    @corresp; songs are NOT duplicated inline.
+  * castList in <front> + listPerson in <particDesc>, both from cast_dict.json.
+  * xml:id naming mirrors A-Earliest1898: {PlayId}_Act{n}, {PlayId}_SP{0001}_{a}.
+  * <speaker> holds the printed label slice; the canonical role is on @who.
+
+Usage:
+    python3.11 -m structure.build_tei --play Di_seyder_nakht_Emkroyt_1908
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+from lxml import etree
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from annotation.schema import parse_custom  # reuse the canonical custom parser
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+TEI = "http://www.tei-c.org/ns/1.0"
+XML = "http://www.w3.org/XML/1998/namespace"
+PAGE = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15"
+NSMAP = {None: TEI}
+PNS = {"p": PAGE}
+
+# Editorial choice/critical-apparatus tags we pass through if a future layer
+# adds them as inline spans. Structural tags handled explicitly are excluded.
+EDITORIAL_TAGS = {
+    "sic", "corr", "orig", "reg", "abbr", "expan",
+    "supplied", "add", "del", "gap", "unclear", "note", "foreign", "hi",
+}
+
+# Per-play configuration. Add a block to onboard another edition.
+CONFIG = {
+    "Di_seyder_nakht_Emkroyt_1908": {
+        "play_id": "DiSeder",
+        "out": "tei/Di-Seder-Nakht.xml",
+        "body_last_page": 54,   # play acts pp.5-54; song supplement pp.55+
+        "songs_head": "געזאַנגס־טעקסט",
+    },
+}
+
+PAGENUM_RE = re.compile(r"^[\s—–\-—–]*\d+[\s—–\-—–]*$")
+
+
+def q(tag: str) -> str:
+    return f"{{{TEI}}}{tag}"
+
+
+def set_xmlid(el, value: str) -> None:
+    el.set(f"{{{XML}}}id", value)
+
+
+# --------------------------------------------------------------------------- #
+#  Loading PAGE-XML
+# --------------------------------------------------------------------------- #
+
+def load_pages(play_dir: Path):
+    """Return [(page_nr, image_filename, [line_dicts])] in reading order."""
+    pages = []
+    for f in sorted((play_dir / "page_annotated").glob("*.xml")):
+        tree = etree.parse(str(f))
+        md = tree.find(".//p:TranskribusMetadata", PNS)
+        page_nr = int(md.get("pageNr")) if md is not None and md.get("pageNr") else 0
+        page_el = tree.find(".//p:Page", PNS)
+        img = page_el.get("imageFilename") if page_el is not None else f.stem
+        lines = []
+        for tl in tree.findall(".//p:TextLine", PNS):
+            text = tl.findtext(".//p:Unicode", namespaces=PNS) or ""
+            spans = [(t, a) for (t, a) in parse_custom(tl.get("custom") or "")
+                     if t != "readingOrder"]
+            lines.append({"text": text, "spans": spans})
+        pages.append((page_nr, img, lines))
+    return pages
+
+
+def span_int(attrs: dict, key: str, default=None):
+    v = attrs.get(key)
+    return int(v) if v is not None and str(v).strip().lstrip("-").isdigit() else default
+
+
+# --------------------------------------------------------------------------- #
+#  <p> / mixed-content builder
+# --------------------------------------------------------------------------- #
+
+class Para:
+    """Accumulates text, <lb/>, and inline <stage>/editorial elements into a
+    target element, handling lxml's text/tail model."""
+
+    def __init__(self, target):
+        self.t = target
+        self._last = None  # last child element, for tail appending
+
+    def add_text(self, s: str):
+        if not s:
+            return
+        if self._last is None:
+            self.t.text = (self.t.text or "") + s
+        else:
+            self._last.tail = (self._last.tail or "") + s
+
+    def add_child(self, el):
+        self.t.append(el)
+        self._last = el
+
+    def lb(self):
+        self.add_child(etree.SubElement(self.t, q("lb")))
+
+
+def emit_line_content(para: Para, text: str, spans, skip_speaker=True):
+    """Render one source line's text into `para`, materialising inline stage
+    and editorial spans, with everything else as plain text."""
+    # Collect non-speaker, offset-bearing spans, sorted by offset.
+    inline = []
+    for tag, attrs in spans:
+        if tag == "speaker" and skip_speaker:
+            continue
+        off = span_int(attrs, "offset")
+        length = span_int(attrs, "length")
+        if off is None or length is None:
+            continue
+        if tag == "stage" or tag in EDITORIAL_TAGS:
+            inline.append((off, length, tag, attrs))
+    inline.sort(key=lambda x: x[0])
+
+    cursor = 0
+    for off, length, tag, attrs in inline:
+        if off < cursor:           # overlapping/nested spans: skip the inner one
+            continue
+        para.add_text(text[cursor:off])
+        chunk = text[off:off + length]
+        el = etree.Element(q(tag))
+        if tag == "stage":
+            stype = attrs.get("type")
+            if stype:
+                el.set("type", stype)
+        el.text = chunk
+        para.add_child(el)
+        cursor = off + length
+    para.add_text(text[cursor:])
+
+
+def speaker_slice(text: str, attrs: dict):
+    """Return (label, rest) splitting off the printed speaker label."""
+    length = span_int(attrs, "length", 0)
+    label = text[:length]
+    rest = text[length:]
+    rest = re.sub(r"^\s*[:־\-–—]?\s*", "", rest)  # strip ': ' / maqaf
+    return label.strip(), rest
+
+
+# --------------------------------------------------------------------------- #
+#  teiHeader / front
+# --------------------------------------------------------------------------- #
+
+def find_edition(editions_json: dict, folder: str) -> dict:
+    for r in editions_json.get("editions", editions_json.values()):
+        if isinstance(r, dict) and r.get("folder") == folder:
+            return r
+    raise SystemExit(f"No editions.json record for folder {folder}")
+
+
+def build_header(rec: dict, cast: dict, play_id: str):
+    header = etree.Element(q("teiHeader"))
+    file_desc = etree.SubElement(header, q("fileDesc"))
+
+    title_stmt = etree.SubElement(file_desc, q("titleStmt"))
+    yid = rec.get("catalogue_yiddish_name") or rec.get("title")
+    t_main = etree.SubElement(title_stmt, q("title")); t_main.set("type", "main")
+    t_main.text = yid
+    if rec.get("title"):
+        t_sub = etree.SubElement(title_stmt, q("title")); t_sub.set("type", "sub")
+        t_sub.text = rec["title"]
+    if rec.get("author"):
+        etree.SubElement(title_stmt, q("author")).text = rec["author"]
+
+    pub = etree.SubElement(file_desc, q("publicationStmt"))
+    etree.SubElement(pub, q("publisher")).text = "YiDraCor"
+    etree.SubElement(pub, q("pubPlace")).text = "Jerusalem"
+    etree.SubElement(pub, q("date")).text = "2026"
+
+    src = etree.SubElement(file_desc, q("sourceDesc"))
+    bibl = etree.SubElement(src, q("bibl"))
+    etree.SubElement(bibl, q("title")).text = yid
+    if rec.get("author"):
+        etree.SubElement(bibl, q("author")).text = rec["author"]
+    if rec.get("publisher"):
+        etree.SubElement(bibl, q("publisher")).text = rec["publisher"]
+    if rec.get("publication_place"):
+        etree.SubElement(bibl, q("pubPlace")).text = rec["publication_place"]
+    if rec.get("year_printed"):
+        etree.SubElement(bibl, q("date")).text = str(rec["year_printed"])
+    if rec.get("library"):
+        rp = etree.SubElement(bibl, q("repository")); rp.text = rec["library"]
+        if rec.get("library_signature"):
+            etree.SubElement(bibl, q("idno")).text = rec["library_signature"]
+    if rec.get("transkribus_url"):
+        idno = etree.SubElement(bibl, q("idno")); idno.set("type", "transkribus")
+        idno.text = rec["transkribus_url"]
+
+    # particDesc / listPerson from cast_dict
+    prof = etree.SubElement(header, q("profileDesc"))
+    partic = etree.SubElement(prof, q("particDesc"))
+    list_person = etree.SubElement(partic, q("listPerson"))
+    for xmlid, info in cast.get("roles", {}).items():
+        person = etree.SubElement(list_person, q("person"))
+        set_xmlid(person, xmlid)
+        etree.SubElement(person, q("persName")).text = info.get("form") or info.get("bare", "")
+    return header, set(cast.get("roles", {}).keys())
+
+
+def build_castlist(cast: dict):
+    front = etree.Element(q("front"))
+    cl = etree.SubElement(front, q("castList"))
+    etree.SubElement(cl, q("head")).text = "פּערזאָנען"
+    for xmlid, info in cast.get("roles", {}).items():
+        ci = etree.SubElement(cl, q("castItem"))
+        role = etree.SubElement(ci, q("role")); role.set("corresp", f"#{xmlid}")
+        role.text = info.get("form") or info.get("bare", "")
+    return front
+
+
+# --------------------------------------------------------------------------- #
+#  Body / back assembly
+# --------------------------------------------------------------------------- #
+
+def build_text(pages, cfg, role_ids):
+    play_id = cfg["play_id"]
+    text_el = etree.Element(q("text"))
+    set_xmlid(text_el, play_id)
+    text_el.set("type", play_id)
+
+    body = etree.SubElement(text_el, q("body"))
+    back = None
+
+    state = {
+        "act_div": None,
+        "sp": None,
+        "para": None,
+        "sp_counter": 0,
+        "container": body,        # where divless content/stage attaches
+        "bad_who": [],
+        "in_back": False,
+        "songs_div": None,
+        "actsongs_div": None,
+        "lg": None,
+        "lg_para": None,
+    }
+
+    def close_sp():
+        state["sp"] = None
+        state["para"] = None
+
+    def open_act(n, head_text, songgroup=False):
+        nonlocal back
+        if songgroup:
+            # song-supplement act label -> an actSongs div in <back>, @corresp
+            div = etree.SubElement(state["songs_div"], q("div"))
+            div.set("type", "actSongs"); div.set("n", str(n))
+            div.set("corresp", f"#{play_id}_Act{n}")
+            etree.SubElement(div, q("head")).text = head_text
+            state["actsongs_div"] = div
+            state["container"] = div
+            state["lg"] = None
+        else:
+            close_sp()
+            div = etree.SubElement(body, q("div"))
+            div.set("type", "act"); div.set("n", str(n))
+            set_xmlid(div, f"{play_id}_Act{n}")
+            etree.SubElement(div, q("head")).text = head_text
+            state["act_div"] = div
+            state["container"] = div
+
+    def enter_back():
+        nonlocal back
+        if back is None:
+            back = etree.SubElement(text_el, q("back"))
+            sd = etree.SubElement(back, q("div")); sd.set("type", "songs")
+            etree.SubElement(sd, q("head")).text = cfg.get("songs_head", "")
+            state["songs_div"] = sd
+            state["container"] = sd
+        close_sp()
+        state["in_back"] = True
+        state["act_div"] = None
+
+    for page_nr, img, lines in pages:
+        if page_nr and page_nr > cfg["body_last_page"] and not state["in_back"]:
+            enter_back()
+
+        target = state["container"]
+        pb = etree.SubElement(target, q("pb"))
+        if page_nr:
+            pb.set("n", str(page_nr))
+        pb.set("facs", img)
+
+        for line in lines:
+            text, spans = line["text"], line["spans"]
+            tags = {t for t, _ in spans}
+            stripped = text.strip()
+
+            # printed page number -> <fw>
+            if "fw" in tags or PAGENUM_RE.match(stripped):
+                fw = etree.SubElement(state["container"], q("fw"))
+                fw.set("type", "pageNum")
+                fw.text = stripped
+                continue
+
+            # ---- headings (act / songGroup) ----
+            heading = next((a for t, a in spans if t == "heading"), None)
+            if heading is not None:
+                n = span_int(heading, "n", 1)
+                if heading.get("subtype") == "songGroup":
+                    if not state["in_back"]:
+                        enter_back()
+                    open_act(n, stripped, songgroup=True)
+                else:
+                    open_act(n, stripped, songgroup=False)
+                continue
+
+            # ---- song verse (lg / l / head) ----
+            if not state["in_back"]:
+                pass  # body path below
+            if state["in_back"]:
+                lg_attrs = next((a for t, a in spans if t == "lg"), None)
+                is_head = any(t == "head" for t, _ in spans)
+                is_l = any(t == "l" for t, _ in spans)
+                container = state["actsongs_div"]
+                if container is None:
+                    container = state["songs_div"]
+                if lg_attrs is not None:
+                    lg = etree.SubElement(container, q("lg"))
+                    if lg_attrs.get("n"):
+                        lg.set("n", lg_attrs["n"])
+                    if lg_attrs.get("cont") == "yes":
+                        lg.set("prev", "true")
+                    state["lg"] = lg
+                if is_head:
+                    h = etree.SubElement(state["lg"] if state["lg"] is not None else container, q("head"))
+                    h.text = stripped
+                    continue
+                if is_l or lg_attrs is not None:
+                    if state["lg"] is None:  # defensive: line before any lg marker
+                        state["lg"] = etree.SubElement(container, q("lg"))
+                    l = etree.SubElement(state["lg"], q("l"))
+                    l.text = stripped
+                    continue
+                # speaker label / rubric / plain line inside supplement
+                if stripped:
+                    h = etree.SubElement(container, q("stage"))
+                    h.set("type", "delivery")
+                    h.text = stripped
+                continue
+
+            # ---- body: speaker opens a speech ----
+            speaker = next((a for t, a in spans if t == "speaker"), None)
+            if speaker is not None:
+                close_sp()
+                state["sp_counter"] += 1
+                sp = etree.SubElement(state["container"], q("sp"))
+                xmlid = speaker.get("xmlid", "")
+                if xmlid:
+                    sp.set("who", f"#{xmlid}")
+                    if xmlid not in role_ids:
+                        state["bad_who"].append(xmlid)
+                set_xmlid(sp, f"{play_id}_SP{state['sp_counter']:04d}_a")
+                label, rest = speaker_slice(text, speaker)
+                etree.SubElement(sp, q("speaker")).text = label
+                p = etree.SubElement(sp, q("p"))
+                state["sp"], state["para"] = sp, Para(p)
+                # inline-span offsets are relative to the full line; `rest` was
+                # sliced off the front, so shift them by the removed prefix.
+                shift = len(text) - len(rest)
+                shifted = []
+                for t, a in spans:
+                    if t == "speaker":
+                        continue
+                    a2 = dict(a)
+                    off = span_int(a, "offset")
+                    if off is not None:
+                        if off < shift:
+                            continue  # span fell inside the label/colon
+                        a2["offset"] = str(off - shift)
+                    shifted.append((t, a2))
+                emit_line_content(state["para"], rest, shifted, skip_speaker=True)
+                continue
+
+            # ---- body: standalone stage (no open speech) ----
+            if "stage" in tags and state["sp"] is None:
+                only_stage = [s for s in spans if s[0] == "stage"]
+                # one stage covering the line, or multiple: emit each
+                for _, a in only_stage:
+                    st = etree.SubElement(state["container"], q("stage"))
+                    if a.get("type"):
+                        st.set("type", a["type"])
+                    off = span_int(a, "offset", 0); ln = span_int(a, "length", len(text))
+                    st.text = text[off:off + ln].strip()
+                continue
+
+            # ---- body: continuation of current speech ----
+            if state["para"] is not None:
+                state["para"].lb()
+                emit_line_content(state["para"], text, spans, skip_speaker=True)
+            # else: orphan line between speeches with no role -> dropped silently
+
+    return text_el, state["bad_who"]
+
+
+# --------------------------------------------------------------------------- #
+#  Main
+# --------------------------------------------------------------------------- #
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--play", required=True, help="data/<folder> name")
+    args = ap.parse_args()
+
+    cfg = CONFIG.get(args.play)
+    if not cfg:
+        raise SystemExit(f"No CONFIG block for play {args.play}")
+
+    play_dir = REPO_ROOT / "data" / args.play
+    editions = json.loads((REPO_ROOT / "data" / "editions.json").read_text())
+    cast = json.loads((play_dir / "cast_dict.json").read_text())
+    rec = find_edition(editions, args.play)
+
+    pages = load_pages(play_dir)
+    header, role_ids = build_header(rec, cast, cfg["play_id"])
+    front = build_castlist(cast)
+    text_el, bad_who = build_text(pages, cfg, role_ids)
+    text_el.insert(0, front)  # <front> before <body>
+
+    root = etree.Element(q("TEI"), nsmap=NSMAP)
+    root.append(header)
+    root.append(text_el)
+
+    tree = etree.ElementTree(root)
+    model = ('<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/'
+             'schema/relaxng/tei_all.rng" type="application/xml" '
+             'schematypens="http://relaxng.org/ns/structure/1.0"?>')
+    out_path = REPO_ROOT / cfg["out"]
+    xml_bytes = etree.tostring(tree, pretty_print=True, xml_declaration=True,
+                               encoding="UTF-8")
+    # inject the model PI after the XML declaration
+    head, _, body = xml_bytes.partition(b"\n")
+    out_path.write_bytes(head + b"\n" + model.encode() + b"\n" + body)
+
+    # report
+    n_sp = len(root.findall(f".//{q('sp')}"))
+    n_stage = len(root.findall(f".//{q('stage')}"))
+    n_lg = len(root.findall(f".//{q('lg')}"))
+    acts = root.findall(f".//{q('div')}[@type='act']")
+    print(f"Wrote {out_path}")
+    print(f"  acts={len(acts)} sp={n_sp} stage={n_stage} lg={n_lg} "
+          f"persons={len(role_ids)}")
+    if bad_who:
+        print(f"  WARNING bad @who (not in cast_dict): {sorted(set(bad_who))}")
+    else:
+        print("  all @who reference declared roles")
+
+
+if __name__ == "__main__":
+    main()
