@@ -17,6 +17,7 @@ Usage:
 """
 
 import argparse
+import json
 import logging
 from pathlib import Path
 from lxml import etree
@@ -27,6 +28,7 @@ import phonotactic_check as v_phono
 from unclear_tags import add_unclear_annotations
 from ocr_flags import confusable_swap_scan
 from rules import WORD_RE, strip_nikkud
+from dracor_dict import apply_dracor_filters
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 log = logging.getLogger(__name__)
@@ -34,11 +36,82 @@ log = logging.getLogger(__name__)
 repo_root = Path(__file__).resolve().parents[2]
 DEFAULT_PROJECT = "Yudale_der_blinder,_Emkroyt1908"
 # Yudale's page_final/ is the only fully hand-corrected gold; other plays use
-# it as both the dictionary source and the Claude style reference.
+# it as the Claude style reference page.
 GOLD_PROJECT = "Yudale_der_blinder,_Emkroyt1908"
 GOLD_DIR = repo_root / "data" / GOLD_PROJECT / "page_final"
 GOLD_STYLE_REF = "0006_OTgwNjYwMDE.111007894.xml"  # 97.7% gold page
 artifacts_dir = Path(__file__).parent / "artifacts"
+
+# Phase 4: per-edition lexicon harvested from RA-verified gold only
+# (see [[lexicon-2026-05-21]]). Each <Edition>.json is a flat
+# {bare-consonant-key → vocalized-form} dict; _shared_fallback.json is the
+# 1461-key union used to fill keys an edition's own dict lacks.
+LEXICON_DIR = artifacts_dir / "lexicon_2026-05-21"
+SHARED_FALLBACK = LEXICON_DIR / "_shared_fallback.json"
+
+# project folder under data/ → lexicon filename stem
+EDITION_LEXICON = {
+    "Yudale_der_blinder,_Emkroyt1908": "Yudale",
+    "Di_seyder_nakht_Emkroyt_1908": "DiSeder",
+    "דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete": "DasYudKind",
+    "KidushHashem": "KidushHashem",
+    "AlNaharotBavel-Amkreut&Freund1909": "AlNaharot",
+    "DerManUnterTiff": "DerMann",
+}
+
+_EDITIONS_JSON = repo_root / "data" / "editions.json"
+
+
+def edition_convention(project: str) -> dict:
+    """Look up the per-edition vocalization convention columns from
+    data/editions.json, keyed by the `folder` field. Returns a dict with
+    rafe / vocalization_position / speakers_stage_vocalized (possibly empty
+    strings if RA hasn't filled them)."""
+    try:
+        editions = json.loads(_EDITIONS_JSON.read_text(encoding="utf-8"))["editions"]
+    except Exception as e:
+        log.warning(f"Could not read editions.json conventions: {e}")
+        return {}
+    for e in editions:
+        if e.get("folder") == project:
+            return {
+                "rafe": e.get("rafe", ""),
+                "vocalization_position": e.get("vocalization_position", ""),
+                "speakers_stage_vocalized": e.get("speakers_stage_vocalized", ""),
+            }
+    return {}
+
+
+def load_edition_vocab(project: str) -> tuple[dict[str, str], dict]:
+    """Assemble the Phase-4 vocab for `project`: the shared fallback overlaid
+    by the edition's own lexicon (own wins), with every value normalized to the
+    edition's convention via dracor_dict filters (rafe kept only when the
+    edition uses it; final-letter sheva / sin-dot-on-vav / double-dagesh quirks
+    always cleaned). Returns (vocab, convention)."""
+    conv = edition_convention(project)
+    uses_rafe = conv.get("rafe") == "yes"
+
+    merged: dict[str, str] = {}
+    if SHARED_FALLBACK.exists():
+        merged.update(json.loads(SHARED_FALLBACK.read_text(encoding="utf-8")))
+    stem = EDITION_LEXICON.get(project)
+    own_count = 0
+    if stem:
+        own_path = LEXICON_DIR / f"{stem}.json"
+        if own_path.exists():
+            own = json.loads(own_path.read_text(encoding="utf-8"))
+            own_count = len(own)
+            merged.update(own)  # edition's own gold overrides the fallback
+        else:
+            log.warning(f"No per-edition lexicon {own_path}; using fallback only")
+    else:
+        log.warning(f"No lexicon mapping for project {project!r}; using fallback only")
+
+    vocab = {k: apply_dracor_filters(v, edition_uses_rafe=uses_rafe)
+             for k, v in merged.items()}
+    log.info(f"Lexicon for {project}: {own_count} own + fallback "
+             f"→ {len(vocab)} entries (rafe={'yes' if uses_rafe else 'no'})")
+    return vocab, conv
 
 
 def project_dirs(project: str):
@@ -80,9 +153,15 @@ def run_pipeline(target_n: int, ref_n: int, *,
     suspect_json = artifacts_dir / f"{target_xml.stem}_claude_suspects.json"
 
     log.info(f"=== Stage 1: rules + dict (ref page {ref_n} → target page {target_n})")
-    # Always source the dict from GOLD_DIR (Yudale's hand-corrected pages),
-    # even when re-running on Yudale itself, since it's the only gold we have.
-    v_rules.run(ref_xml, target_xml, rules_xml, gold_dir=GOLD_DIR)
+    # Phase 4: source the dict from the per-edition lexicon (own gold over
+    # shared fallback, normalized to the edition's convention) rather than the
+    # old Yudale-only gold dir. Editions whose convention vocalizes speakers /
+    # stage directions (e.g. Das Yudishe Kind) get those spans vocalized too.
+    vocab, conv = load_edition_vocab(project)
+    voc_speakers = conv.get("speakers_stage_vocalized") in ("yes", "vocalized",
+                                                            "vocalized_untagged")
+    v_rules.run(ref_xml, target_xml, rules_xml,
+                vocab=vocab, vocalize_speakers_and_stage=voc_speakers)
 
     # Pre-existing nikkud that violates our rules: keep the marks (RA may
     # have a reason), but flag the token <unclear> for human review.

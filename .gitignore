@@ -18,3 +18,9 @@ code/vocalization/page7_ocr_suspects.json
 .vscode/
 .idea/
 *.swp
+
+# Dated backup / intermediate snapshot directories (local safety copies; not versioned)
+data/**/*_pre_*/
+data/**/*_backup_*/
+data/**/page_transkribus_pulled_*/
+data/**/page_gt_*/

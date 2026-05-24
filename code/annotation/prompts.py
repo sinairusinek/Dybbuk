@@ -24,14 +24,16 @@ Choose one `page_type` per page:
   - **Multi-line directions:** if a `(` opens on one line and `)` closes on a later line, tag the parenthesized portion on EACH line — including continuation lines that contain only the close `)` (e.g. `גיט איהר)`), and continuation lines that are wholly inside the paren run. To detect this, scan the input lines for unbalanced parens: if a previous line opened `(` without closing, treat the current line as continuation until you see `)`.
   - If parens are unbalanced because of OCR (e.g. line starts with `.(` or ends with `)`), still tag the visible parenthesized text as `stage`.
   - Whole-line action descriptions without parens (e.g. `דערוויל דרעהט ער זיך אום צו סאבעלען און גיט איהר א קוש.`) are also `stage` when they describe action rather than speech — typically lines without a preceding speaker that read as third-person narration.
-  - Attribute `type` (optional but recommended) per TEI <stage>:
-      • `setting`  — opening scene description (room/scenery)
-      • `entrance` — character enters  (`(אויפֿטריט X)`, "אויפֿטריט X")
-      • `exit`     — character exits   (`(אָב)`, `(X אָב)`)
-      • `delivery` — manner of speaking. **REQUIRES parens in source** (`(זינגט)`, `(צו X)`). Never assign `type:delivery` to an unparenthesized line — that's plain speech.
-      • `location` — character's location (`(אין פֿענסטער)`)
-      • `business` — generic action (curtain falls, "they embrace", chases)
-      • `mixed`    — multi-kind block (e.g. set + entrance + business in one span)
+  - Attribute `type` is **REQUIRED on every stage span** (no bare stage) per TEI <stage> (UVic tei_DRSTA). Pick the dominant function; do NOT use `mixed`:
+      • `setting`    — opening scene description (room/scenery)
+      • `entrance`   — character enters  (`(אויפֿטריט X)`, "אויפֿטריט X")
+      • `exit`       — character exits   (`(אָב)`, `(X אָב)`)
+      • `delivery`   — manner of speaking. **REQUIRES parens in source** (`(זינגט)`, `(צו X)`). Never assign `type:delivery` to an unparenthesized line — that's plain speech.
+      • `location`   — character's location (`(אין פֿענסטער)`)
+      • `business`   — generic physical action (curtain falls, "they embrace", chases)
+      • `costume`    — appearance/disguise/dress
+      • `novelistic` — narrative-style third-person descriptive direction
+    When a direction combines functions (e.g. set + entrance), choose the dominant one — we over-used `mixed` earlier; the RA re-typed those to the specific function (usually `business`).
 
 `heading`    — act/scene title. Attributes:
   - `type`: "act" or "scene"

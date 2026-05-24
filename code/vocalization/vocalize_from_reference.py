@@ -253,18 +253,29 @@ def write_html_diff(line_pairs, traces_by_line, violations,
 
 def run(ref_xml: Path, target_xml: Path, out_xml: Path,
         diff_html: Path | None = None,
-        gold_dir: Path | None = None) -> dict:
+        gold_dir: Path | None = None,
+        vocab: dict[str, str] | None = None,
+        vocalize_speakers_and_stage: bool = False) -> dict:
     """Run the rule + dictionary stage. Returns stats and OCR signals.
 
-    If `gold_dir` is given and contains XML files, the dictionary is built
-    from every file in it (excluding the target page itself to avoid
-    leakage when re-vocalizing a gold page). Otherwise falls back to the
-    single `ref_xml`.
+    Dictionary precedence:
+      1. an explicit pre-built `vocab` (e.g. the per-edition lexicon assembled
+         by pipeline.py from artifacts/lexicon_*/<Edition>.json + fallback);
+      2. else, if `gold_dir` is given and contains XML files, build from every
+         file in it (excluding the target page itself to avoid leakage when
+         re-vocalizing a gold page);
+      3. else fall back to the single `ref_xml`.
+
+    `vocalize_speakers_and_stage` is forwarded to vocalize_line for editions
+    whose convention vocalizes speaker names / stage directions (e.g. Das
+    Yudishe Kind).
     """
     log.info(f"Target:    {target_xml.name}")
     target_tree = etree.parse(str(target_xml))
 
-    if gold_dir is not None and Path(gold_dir).exists():
+    if vocab is not None:
+        log.info(f"Dictionary source: pre-built vocab ({len(vocab)} entries)")
+    elif gold_dir is not None and Path(gold_dir).exists():
         gold_xmls = [p for p in sorted(Path(gold_dir).glob("*.xml"))
                      if p.name != target_xml.name]
         if gold_xmls:
@@ -289,7 +300,8 @@ def run(ref_xml: Path, target_xml: Path, out_xml: Path,
         if el.text:
             orig = el.text
             trace: list = []
-            new = vocalize_line(orig, vocab, stats, trace)
+            new = vocalize_line(orig, vocab, stats, trace,
+                                vocalize_speakers_and_stage=vocalize_speakers_and_stage)
             el.text = new
             line_pairs.append((orig, new))
             traces_by_line.append(trace)

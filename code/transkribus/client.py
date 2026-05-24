@@ -75,6 +75,27 @@ class TrpClient:
         r.raise_for_status()
         return r.text
 
+    def fetch_image(self, url: str) -> bytes:
+        """Download a page image. `url` is the per-page `url` field from fulldoc
+        (e.g. https://files.transkribus.eu/Get?fileType=view&id=...)."""
+        r = self.session.get(url, timeout=120)
+        r.raise_for_status()
+        return r.content
+
+    def page_image_map(self, col_id: int, doc_id: int) -> dict[int, dict]:
+        """Map pageNr -> {url, imgFileName, width, height} for a doc."""
+        fd = self.fulldoc(col_id, doc_id)
+        pages = fd.get("pageList", {}).get("pages", [])
+        out: dict[int, dict] = {}
+        for p in pages:
+            out[int(p["pageNr"])] = {
+                "url": p.get("url"),
+                "imgFileName": p.get("imgFileName"),
+                "width": p.get("width"),
+                "height": p.get("height"),
+            }
+        return out
+
     def push_transcript(
         self,
         col_id: int,
