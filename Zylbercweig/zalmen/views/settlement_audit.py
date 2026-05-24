@@ -64,6 +64,17 @@ from views.research_queue import (
 # interaction feel frozen. A "Show all" toggle lifts the cap on demand.
 _ROW_CAP = 20
 
+# Bumped whenever a mutation invalidates the settlement index, so the cached
+# folium map (see `_build_map_cached`) is rebuilt only when the underlying data
+# actually changed — not on every rerun.
+_INDEX_VERSION = 0
+
+
+def _bump_index_version() -> None:
+    global _INDEX_VERSION
+    _INDEX_VERSION += 1
+
+
 # Color palette for the dominant-org-type map mode. The typology is ~27 types;
 # we colour the most common ones and lump the long tail as grey.
 _TYPE_COLORS: dict[str, str] = {
@@ -154,6 +165,7 @@ def _persist_and_clear(a_headers, a_rows, db_headers, db_rows) -> None:
     load_alignment.clear()
     load_core_db.clear()
     get_index.cache_clear()
+    _bump_index_version()
 
 
 def _align_clusters_to_db(
@@ -466,13 +478,63 @@ def _render_db_details(d: DbCard, a_rows, db_rows) -> None:
 
 # ─── map header ───────────────────────────────────────────────────────────
 
+@st.cache_resource(show_spinner=False, max_entries=4)
+def _build_map_cached(color_mode: str, version: int):
+    """Build the folium map once per (color_mode, data-version) and reuse the
+    object across reruns. Reconstructing ~150 CircleMarkers and re-serializing
+    them on every rerun was the dominant cost; caching the figure lets
+    st_folium skip the round-trip when nothing relevant changed. Recentering on
+    a focus city is handled separately via st_folium's `center`/`zoom` props, so
+    the cached figure is always built at the default viewport.
+    """
+    import folium
+
+    ix = get_index()
+    coords = load_coords()
+    addr_by_dbid = _load_addresses()
+
+    mappable = [(qid, en, yi) for (qid, en, yi) in ix.cities() if qid in coords]
+    if not mappable:
+        return None
+
+    counts = {qid: ix.mentions_in_city(qid) for qid, _en, _yi in mappable}
+    max_n = max(counts.values()) or 1
+
+    m = folium.Map(location=[52.0, 19.0], zoom_start=4, tiles="OpenStreetMap")
+    for qid, en, yi in mappable:
+        lat, lon = coords[qid]
+        n = counts[qid]
+        radius = 4 + 10 * (math.log1p(n) / math.log1p(max_n))
+        if color_mode == "Dominant org type":
+            color = _TYPE_COLORS.get(ix.dominant_org_type(qid), _FALLBACK_COLOR)
+        else:
+            color = _addr_status_for_qid(qid, ix, addr_by_dbid)
+        label = en or qid
+        if yi and yi != en:
+            label += f" · {yi}"
+        folium.CircleMarker(
+            location=[lat, lon],
+            radius=radius,
+            color=color,
+            weight=1,
+            fill=True,
+            fill_color=color,
+            fill_opacity=0.75,
+            tooltip=f"{qid}|{label}|{n} mentions",
+        ).add_to(m)
+    return m
+
+
+@st.fragment
 def _render_map(
     ix,
     addr_by_dbid: dict[str, dict[str, str]],
     focus_qid: str | None,
 ) -> None:
+    # Fragment: interacting with the map (colour toggle, click) reruns only this
+    # block, and — crucially — picker/filter/row interactions elsewhere on the
+    # page no longer rebuild or re-serialize the map.
     try:
-        import folium  # noqa: F401
         from streamlit_folium import st_folium
     except ImportError:
         st.info("Install `folium` + `streamlit-folium` to enable the map header.")
@@ -493,53 +555,18 @@ def _render_map(
         key="sa_map_color_mode",
     )
 
-    cities = ix.cities()
-    mappable = [(qid, en, yi) for (qid, en, yi) in cities if qid in coords]
-    if not mappable:
+    m = _build_map_cached(color_mode, _INDEX_VERSION)
+    if m is None:
         st.caption("No mappable cities in current index.")
         return
 
-    counts = {qid: ix.mentions_in_city(qid) for qid, _en, _yi in mappable}
-    max_n = max(counts.values()) or 1
-
-    import folium
-
-    # The focus city (set by either the picker or a previous map click) drives
-    # both the initial map build AND the dynamic re-centering st_folium does
-    # via its `center` / `zoom` props on each rerun.
+    # The focus city (picker selection or a previous map click) drives only the
+    # st_folium viewport props — the cached figure itself is viewport-agnostic.
     if focus_qid and focus_qid in coords:
         flat, flon = coords[focus_qid]
         focus_center = (flat, flon, 11)
     else:
         focus_center = (52.0, 19.0, 4)
-    m = folium.Map(
-        location=[focus_center[0], focus_center[1]],
-        zoom_start=focus_center[2],
-        tiles="OpenStreetMap",
-    )
-
-    for qid, en, yi in mappable:
-        lat, lon = coords[qid]
-        n = counts[qid]
-        radius = 4 + 10 * (math.log1p(n) / math.log1p(max_n))
-        if color_mode == "Dominant org type":
-            dom = ix.dominant_org_type(qid)
-            color = _TYPE_COLORS.get(dom, _FALLBACK_COLOR)
-        else:
-            color = _addr_status_for_qid(qid, ix, addr_by_dbid)
-        label = en or qid
-        if yi and yi != en:
-            label += f" · {yi}"
-        folium.CircleMarker(
-            location=[lat, lon],
-            radius=radius,
-            color=color,
-            weight=1,
-            fill=True,
-            fill_color=color,
-            fill_opacity=0.75,
-            tooltip=f"{qid}|{label}|{n} mentions",
-        ).add_to(m)
 
     out = st_folium(
         m,
@@ -561,7 +588,7 @@ def _render_map(
         qid = clicked.split("|", 1)[0].strip()
         if qid and qid != focus_qid:
             st.session_state["audit_target_qid"] = qid
-            st.rerun()
+            st.rerun(scope="app")
 
     # Legend
     if color_mode == "Dominant org type":
@@ -696,7 +723,7 @@ def _row_action_menu(
                         st.session_state.pop(f"{key}_mp_{pk_kind}_{pk_id}", None)
                     if msg:
                         st.toast(msg, icon="✅")
-                    st.rerun()
+                    st.rerun(scope="app")
 
         # ─── Search tab ───
         with tab_search:
@@ -724,7 +751,7 @@ def _row_action_menu(
                         msg = _do_merge([(r_kind, r_id)])
                         if msg:
                             st.toast(msg, icon="✅")
-                        st.rerun()
+                        st.rerun(scope="app")
                     if st.session_state.get(show_key):
                         with st.container(border=True):
                             if r_kind == "cluster":
@@ -753,7 +780,7 @@ def _row_action_menu(
                         a_rows, a_headers, db_rows, db_headers,
                     )
                     st.toast(msg, icon="✅")
-                    st.rerun()
+                    st.rerun(scope="app")
 
             if reviewer == ADMIN_REVIEWER:
                 if self_kind == "cluster":
@@ -873,7 +900,7 @@ def _action_bar(
                 st.session_state.pop(f"{sel_key_prefix}_cl_{cid}", None)
             st.session_state.pop(f"{sel_key_prefix}_db_{selected_db_ids[0]}", None)
             st.toast(msg, icon="✅")
-            st.rerun()
+            st.rerun(scope="app")
 
     with cols[1]:
         new_disabled = not (n_cl >= 1 and n_db == 0)
@@ -901,7 +928,7 @@ def _action_bar(
                     for cid in selected_cluster_ids:
                         st.session_state.pop(f"{sel_key_prefix}_cl_{cid}", None)
                     st.toast(msg, icon="✅")
-                    st.rerun()
+                    st.rerun(scope="app")
 
     with cols[2]:
         merge_disabled = n_db < 2
@@ -933,7 +960,7 @@ def _action_bar(
                     for dbid in selected_db_ids:
                         st.session_state.pop(f"{sel_key_prefix}_db_{dbid}", None)
                     st.toast(msg, icon="✅")
-                    st.rerun()
+                    st.rerun(scope="app")
 
     with cols[3]:
         if st.button("Clear selection", use_container_width=True,
@@ -987,6 +1014,16 @@ def render() -> None:
     with st.container(border=True):
         _render_map(ix, addr_by_dbid, focus_qid)
 
+    _workbench(ix, addr_by_dbid, reviewer, cities)
+
+
+@st.fragment
+def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
+    # Fragment: the picker, filters, selection action-bar and per-row Actions
+    # menus all rerun in isolation. Ticking a checkbox or opening a popover no
+    # longer triggers a full-page rerun (which would rebuild the map header).
+    # City changes and data mutations escalate to a full app rerun explicitly.
+
     # --- Picker ---
     sort_col, picker_col = st.columns([1, 3])
     with sort_col:
@@ -1016,6 +1053,14 @@ def render() -> None:
     if not city:
         return
     qid = city[0]
+
+    # Picking a new city from the dropdown reruns only this fragment, so the map
+    # header (a separate fragment) wouldn't recenter. Escalate to a full app
+    # rerun once on an actual change so the map follows the selection.
+    prev_focus = st.session_state.get("_sa_focus_qid")
+    st.session_state["_sa_focus_qid"] = qid
+    if prev_focus is not None and prev_focus != qid:
+        st.rerun(scope="app")
 
     # --- Load editable data ---
     a_headers, a_rows = load_alignment(_mtime(ALIGN_FILE))
