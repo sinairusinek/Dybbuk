@@ -1,0 +1,13 @@
+<meta xmlns="http://exist-db.org/xquery/repo" commit-id="@commit-id@" commit-time="@commit-time@">
+    <description>A workspace for editing and annotating documents. Includes the Jinntap editor, web-based annotation editor, and an upload facility.</description>
+    <author>Wolfgang Meier</author>
+    <website>http://tei-publisher.com</website>
+    <status>stable</status>
+    <license>GPLv3</license>
+    <copyright>true</copyright>
+    <type>application</type>
+    <target>YiDraCor</target>
+    <prepare>pre-install.xql</prepare>
+    <finish>post-install.xql</finish>
+    <permissions user="tei" group="tei" mode="rw-rw-r--"/>
+<deployed>2026-01-26T03:59:10.416Z</deployed></meta>
