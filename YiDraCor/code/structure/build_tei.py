@@ -237,6 +237,9 @@ def build_castlist(cast: dict):
     cl = etree.SubElement(front, q("castList"))
     etree.SubElement(cl, q("head")).text = "פּערזאָנען"
     for xmlid, info in cast.get("roles", {}).items():
+        if info.get("collective"):
+            continue  # collective/chorus roles resolve @who via listPerson but
+                      # are not printed in the dramatis personae (PI 2026-05-24)
         ci = etree.SubElement(cl, q("castItem"))
         role = etree.SubElement(ci, q("role")); role.set("corresp", f"#{xmlid}")
         role.text = info.get("form") or info.get("bare", "")
@@ -263,6 +266,7 @@ def build_text(pages, cfg, role_ids):
         "sp_counter": 0,
         "container": body,        # where divless content/stage attaches
         "bad_who": [],
+        "dropped": [],          # orphan body lines not attached to any sp/stage/div
         "in_back": False,
         "songs_div": None,
         "actsongs_div": None,
@@ -447,9 +451,15 @@ def build_text(pages, cfg, role_ids):
             if state["para"] is not None:
                 state["para"].lb()
                 emit_line_content(state["para"], text, spans, skip_speaker=True)
-            # else: orphan line between speeches with no role -> dropped silently
+            elif text.strip() and state["act_div"] is not None:
+                # orphan line INSIDE the play body (an act has opened): no open
+                # speech, no speaker/stage/heading. It would vanish from the TEI
+                # — record it so the linter/RA can see it (this is how untagged
+                # speakers silently disappeared on Di Seder). Front matter before
+                # act 1 is not "lost speech", so it's excluded.
+                state["dropped"].append({"page": page_nr, "text": text.strip()[:60]})
 
-    return text_el, state["bad_who"]
+    return text_el, state["bad_who"], state["dropped"]
 
 
 # --------------------------------------------------------------------------- #
@@ -473,7 +483,7 @@ def main():
     pages = load_pages(play_dir)
     header, role_ids = build_header(rec, cast, cfg["play_id"])
     front = build_castlist(cast)
-    text_el, bad_who = build_text(pages, cfg, role_ids)
+    text_el, bad_who, dropped = build_text(pages, cfg, role_ids)
     text_el.insert(0, front)  # <front> before <body>
 
     root = etree.Element(q("TEI"), nsmap=NSMAP)
@@ -503,6 +513,13 @@ def main():
         print(f"  WARNING bad @who (not in cast_dict): {sorted(set(bad_who))}")
     else:
         print("  all @who reference declared roles")
+    if dropped:
+        print(f"  WARNING {len(dropped)} orphan line(s) dropped (no sp/stage/heading) — "
+              "likely untagged speakers; run lint_pages.py:")
+        for d in dropped[:10]:
+            print(f"    p{d['page']}: {d['text']!r}")
+        if len(dropped) > 10:
+            print(f"    … and {len(dropped) - 10} more")
 
 
 if __name__ == "__main__":
