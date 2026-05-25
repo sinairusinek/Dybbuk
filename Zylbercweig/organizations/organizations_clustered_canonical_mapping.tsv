@@ -394,7 +394,7 @@ ORG-C00338	ליריק-טעאַטער	theatre	Theatre	yes		tag
 ORG-C00339	"„טאָמאַשעווסקיס בראָדוויי""-טעאַטער"	theatre	Theatre	yes		tag						
 ORG-C00180	יידישן קונסט-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C00340	נעשאָנאַל-טעאַטער	theatre	Theatre	yes		tag						
-ORG-C00341	האָליוויד	other	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	Hollywood is a geographic location and industry hub, not a specific organization. It should be classified as 'Not an organization'.	
+ORG-C00341	האָליוויד	other	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	Hollywood is a geographic location and industry hub, not a specific organization. It should be classified as 'Not an organization'.	
 ORG-C00257	פֿאַרווערטס	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C00342	דראַמאַטישער שול פֿון ראָכמאַנינאָי	school	Education	yes		tag						
 ORG-C00343	רוסישן אָדעסער דראַמאַטישן טעאַטער	theatre	Theatre	yes		tag						
@@ -1606,7 +1606,7 @@ ORG-C00338	ליריק-טעאַטער	theatre	Theatre	yes		tag
 ORG-C01132	יידישער קהלה אין זשאָלקיעוו	קהלה	Religious institutions/organizations	yes		tag						
 ORG-C01133	ישיבה אין זשאָלקיעוו	school	Education	yes		tag						
 ORG-C01133	ישיבה אין לעמבערג	school	Education	yes		tag						
-ORG-C01134	השכלה-באַוועגונג	movement	OTHER - elaborate!	yes		llm_verified	llm:shallow_keyword_missed_cue	OTHER - elaborate!	no	shallow_keyword_missed_cue	Haskalah is a broad Jewish cultural/intellectual movement, not a specific organization or a non-Jewish political body.	Historical movement
+ORG-C01134	השכלה-באַוועגונג	movement	Not an organization	yes		pi_override	pi_decision:haskalah_movement_not_org	OTHER - elaborate!	no	shallow_keyword_missed_cue	Haskalah is a broad Jewish cultural/intellectual movement, not a specific organization or a non-Jewish political body.	Historical movement
 ORG-C01135	העברעישע זשורנאַלן	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C01136	הקול	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C01137	שליפערשטיינען אין דער טרופּע	troupe	Traveling Company	yes		tag						
@@ -2155,7 +2155,7 @@ ORG-C01440	מענדל עלקינס דראַמאַטישער שול	school	Educat
 ORG-C00103	ווילנער טרופּע	troupe	Traveling Company	yes		tag						
 ORG-C01441	לעגיטימן ענגלישן טעאַטער	theatre	Theatre	yes		tag						
 ORG-C01178	צו-לאַכ-עס	troupe	Traveling Company	yes		tag						
-ORG-C01442	וו. פ. א.	union	Non-Jewish political bodies	yes		llm_verified	llm:data_quality|pi_accepted	Non-Jewish political bodies	no	data_quality	W.P.A. is the US Works Progress Administration, a government agency. Upstream LLM incorrectly tagged it as a union.	
+ORG-C01442	וו. פ. א.	union	Non-Jewish political bodies	yes		pi_reviewed	pi_reviewed:maati_confirmed	Non-Jewish political bodies	no	data_quality	W.P.A. is the US Works Progress Administration, a government agency. Upstream LLM incorrectly tagged it as a union.	
 ORG-C00682	סעקאָנד עוועניו טעאַטער	theatre	Theatre	yes		tag						
 ORG-C00360	האָפּקינסאָן-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C00295	קעמפּ בויבעריק	other	Education	yes		named_entity		Education	yes	agree	Camp Boiberik is explicitly listed in the policy as an educational/recreational camp mapping to Education.	
@@ -3271,7 +3271,7 @@ ORG-C00273	פרייע אַרבייטער שטימע	newspaper	Journals/ Newspape
 ORG-C02079	מאַקס נ. מייזעל אידישער פערלאַג פֿאַר ליטעראַטור און ווייסענשאַפט	publisher	Publisher	yes		tag						
 ORG-C02080	אונזער געזונד	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C02081	רעסטאָראַן פֿון דוד קישקע	theatre	Theatre	yes		tag						
-ORG-C02082	אברהם קאָפּקע	other	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	Avraham Kopke is a person (an employer/partner), not an organization. The extraction incorrectly identified a person as an organization.	
+ORG-C02082	אברהם קאָפּקע	other	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	Avraham Kopke is a person (an employer/partner), not an organization. The extraction incorrectly identified a person as an organization.	
 ORG-C02083	ב. בערקאָוויץ און לואיס זעלטענער לאָדזש	union	Welfare/Aid organization	yes		llm_verified	llm:shallow_keyword_missed_cue	Welfare/Aid organization	no	shallow_keyword_missed_cue	The entity is a lodge providing a cemetery plot, which falls under Welfare/Aid organization (fraternal/mutual aid), not a theatre union.	
 ORG-C02084	יידישע פֿאָלקס-שול א'נ פֿון שמעון פֿרוג	school	Education	yes		tag						
 ORG-C02085	סאָפיאַ מאַרקאָוונאַס יידישע גימנאַזיע	school	Education	yes		tag						
@@ -3895,7 +3895,7 @@ ORG-C02421	ראַדיקאַלן אַרבעטער-סענטער	theatre	Theatre	ye
 ORG-C02422	קולטור-סענטער	theatre	Theatre	yes		tag						
 ORG-C02423	שפּאַניש-יידישער ענציקלאָפּעדיע	publisher	Publisher	yes		tag						
 ORG-C00908	דער וועג	newspaper	Journals/ Newspapers	yes		tag						
-ORG-C02424	איטא	union	Media (Radio/ Film/TV)	yes		llm_verified	llm:data_quality|pi_accepted	Media (Radio/ Film/TV)	no	data_quality	Original LLM incorrectly tagged 'איטא' (JTA - Jewish Telegraphic Agency) as a union. It is a news agency, which belongs in Media.	
+ORG-C02424	איטא	union	Media (Radio/ Film/TV)	yes		pi_reviewed	pi_reviewed:maati_confirmed	Media (Radio/ Film/TV)	no	data_quality	Original LLM incorrectly tagged 'איטא' (JTA - Jewish Telegraphic Agency) as a union. It is a news agency, which belongs in Media.	
 ORG-C01024	דזשאינט	union	Welfare/Aid organization	yes		named_entity		Welfare/Aid organization	yes	agree	JDC (דזשאינט) is explicitly listed in the policy as a Welfare/Aid organization.	
 ORG-C00067	"ייוו""אָ"	union	Heritage Institution	yes		named_entity		Heritage Institution	yes	agree	YIVO is explicitly listed in the policy as a Heritage Institution.	
 ORG-C02425	יד ושם	union	Heritage Institution	yes		llm_verified	llm:shallow_keyword_missed_cue	Heritage Institution	no	shallow_keyword_missed_cue	Yad Vashem is a Holocaust memorial and archive, fitting Heritage Institution. The upstream tag 'union' caused a misclassification.	
@@ -4144,7 +4144,7 @@ ORG-C02552	פֿאַרייניקטן יידישן קאָמפּיין	organization	
 ORG-C02553	הבונים	organization	Jewish political bodies	yes		llm_verified	llm:shallow_keyword_missed_cue	Jewish political bodies	no	shallow_keyword_missed_cue	Habonim is a Labor Zionist youth movement, which falls under Jewish political bodies according to the policy.	
 ORG-C00718	יידיש נאַציאָנאַלן אַרבעטער-פֿאַרבאַנד	organization	Jewish political bodies	yes		llm_verified	llm:pi_judgement_needed	Jewish political bodies	no	pi_judgement_needed	Yidish-Natsionaler Arbeter-Farband is explicitly listed in the policy as a Jewish political body requiring PI review for its dual fraternal-political identity.	
 ORG-C02554	יידישער וועלפעיר פעדעראַציע	organization	Welfare/Aid organization	yes		context		Welfare/Aid organization	yes	agree	Jewish Welfare Federation clearly falls under Welfare/Aid organization per policy.	
-ORG-C02555	נאַציאָנאלער פֿונדאַציע פֿאַר יידישער קולטור	organization	Jewish political bodies	yes		llm_verified	llm:policy_ambiguous|pi_accepted	Jewish political bodies	no	policy_ambiguous	Policy explicitly subsumes 'Fund/Foundation' into Jewish political bodies, though as a cultural funder it could arguably fit Heritage or Welfare/Aid.	
+ORG-C02555	נאַציאָנאלער פֿונדאַציע פֿאַר יידישער קולטור	organization	Jewish political bodies	yes		pi_reviewed	pi_reviewed:maati_confirmed	Jewish political bodies	no	policy_ambiguous	Policy explicitly subsumes 'Fund/Foundation' into Jewish political bodies, though as a cultural funder it could arguably fit Heritage or Welfare/Aid.	
 ORG-C02556	באָברויסקער ישיבה	school	Education	yes		tag						
 ORG-C00352	פּועלי-ציון	party	Jewish political bodies	yes		named_entity		Jewish political bodies	yes	agree	Poale Zion is explicitly listed in the policy under Jewish political bodies.	
 ORG-C02557	ציוניסטישער אַרבעטער-באַוועגונג	movement	Jewish political bodies	yes		context		Jewish political bodies	yes	agree	Zionist labor movement is explicitly covered under Jewish political bodies in the policy.	
@@ -4973,7 +4973,7 @@ ORG-C02720	ווילנער אָפּערעטן-טרופּע	troupe	Traveling Compa
 ORG-C03009	וואַרשעווער סקאַלאַ-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C02936	יידישער סאָציאַלער אַליינהילף	union	Welfare/Aid organization	yes		named_entity		Welfare/Aid organization	yes	agree	The entity 'יידישער סאָציאַלער אַליינהילף' is explicitly listed in the policy as a Welfare/Aid organization.	
 ORG-C02258	"""עלדאָראַדאָ""-טעאַטער"	theatre	Theatre	yes		tag						
-ORG-C02842	טעבענסעס 'שאַפּ'	etc	etc			unknown_tag	unknown_tag|pi_accepted					
+ORG-C02842	טעבענסעס 'שאַפּ'	etc	OTHER - elaborate!	yes		pi_override	pi_decision:tevenses_is_org_keep_other					
 ORG-C03010	פּראָווינץ- טרופּע א'אַ פֿון רייף	troupe	Traveling Company	yes		tag						
 ORG-C02650	ווענוס	theatre	Theatre	yes		tag						
 ORG-C00108	יידישן אַרטיסטן-פֿאַריין אין פּוילן	union	Theatre-related Society/ Union	yes		context		Theatre-related Society/ Union	yes	agree	Clear theatre/arts cue ('אַרטיסטן') in the union's name correctly routes to Theatre-related Society/ Union.	
@@ -5007,7 +5007,7 @@ ORG-C03020	טרופּע בלומענטאָל-וואַקסמאַן	troupe	Traveli
 ORG-C03021		troupe	Traveling Company	yes		tag						
 ORG-C00873	מיניאַטור-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C03022	ריגער געטאָ	theatre	Theatre	yes		tag						
-ORG-C03023	האַנאָווער בונקער	other	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	A bunker is a physical place or structure, not an organization.	
+ORG-C03023	האַנאָווער בונקער	other	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	A bunker is a physical place or structure, not an organization.	
 ORG-C00145	גימנאַזיע	school	Education	yes		tag						
 ORG-C02134	פאַדאָ	troupe	Traveling Company	yes		tag						
 ORG-C01326	יידישער טעאַטער-געזעלשאַפט	organization	Theatre-related Society/ Union	yes		llm_verified	llm:shallow_keyword_missed_cue	Theatre-related Society/ Union	no	shallow_keyword_missed_cue	The entity name explicitly contains 'theatre society' (טעאַטער-געזעלשאַפט), which maps to Theatre-related Society/ Union. Auto incorrectly assigned Welfare/Aid.	
@@ -6500,7 +6500,7 @@ ORG-C00944	האַיאַס	institution	Welfare/Aid organization	yes		named_entity
 ORG-C03708	די וואָך	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C03709	פערלאָג נ. מאַזיאַ	publisher	Publisher	yes		tag						
 ORG-C03710	פאַרלאַג ש. שרעבערק	publisher	Publisher	yes		tag						
-ORG-C03711	אַנטי-פאַשיסטישער באַוועגונג	union	Non-Jewish political bodies	yes		llm_verified	llm:data_quality|pi_accepted	Non-Jewish political bodies	no	data_quality	LLM mistagged 'movement' (באַוועגונג) as 'union'. It is a political movement, not a theatre society.	
+ORG-C03711	אַנטי-פאַשיסטישער באַוועגונג	union	Not an organization	yes		pi_override	pi_decision:movement_not_org	Non-Jewish political bodies	no	data_quality	LLM mistagged 'movement' (באַוועגונג) as 'union'. It is a political movement, not a theatre society.	
 ORG-C00207	חדר	school	Education	yes		tag						
 ORG-C03063	באַוועגלעכן יידישן מלוכה-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C03712	אָדעסער תלמוד תורה א'אַ	school	Education	yes		tag						
@@ -6707,13 +6707,13 @@ ORG-C03805	אַמעריקאַנער רעגירונג	government	Non-Jewish polit
 ORG-C03806	וועלטפֿאַרבאַנד פֿון די בערגען כעלזענער	union	Welfare/Aid organization	yes		llm_verified	llm:shallow_keyword_missed_cue	Welfare/Aid organization	no	shallow_keyword_missed_cue	This is a Holocaust survivor organization (World Federation of Bergen-Belsen Survivors), functioning as a mutual aid/communal body, not a theatre union.	
 ORG-C04165	יידישע שול	school	Education	yes		tag						
 ORG-C03807	דראָמאַטישע סעקציע	troupe	Traveling Company	yes		tag						
-ORG-C03808	פאַראייניקטער מעמאָריאַל-קאָמיטעט אין לאָס אַנדזשעלעס	union	OTHER - elaborate!	yes		llm_verified	llm:missing_canonical_type|pi_accepted	OTHER - elaborate!	no	missing_canonical_type	It is a Holocaust memorial committee (Bergen-Belsen), which doesn't perfectly fit Heritage or Welfare.	Commemorative Organization
+ORG-C03808	פאַראייניקטער מעמאָריאַל-קאָמיטעט אין לאָס אַנדזשעלעס	union	OTHER - elaborate!	yes		pi_reviewed	pi_reviewed:maati_confirmed	OTHER - elaborate!	no	missing_canonical_type	It is a Holocaust memorial committee (Bergen-Belsen), which doesn't perfectly fit Heritage or Welfare.	Commemorative Organization
 ORG-C03809	סטאַר פּלעיערס-קלוב	troupe	Traveling Company	yes		tag						
 ORG-C02700	פּוילישן סיים	parliament	Non-Jewish political bodies	yes		context		Non-Jewish political bodies	yes	agree	The Polish Sejm is explicitly listed in the policy as an example of a Non-Jewish political body.	
 ORG-C03810	פּאַריזער יידישן טעאַטער א'ד פֿון אבאַ קאָמפּאַנעעץ	theatre	Theatre	yes		tag						
 ORG-C02710	וואַרשעווער אָפּערע	theatre	Theatre	yes		tag						
 ORG-C03811	צאַרישן מיליטער	army	Military	yes		tag						
-ORG-C03812	וואַרשעווער געטאָ-אויפֿשטאַנד	organization	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	The Warsaw Ghetto Uprising is a historical event, not an organization.	
+ORG-C03812	וואַרשעווער געטאָ-אויפֿשטאַנד	organization	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	The Warsaw Ghetto Uprising is a historical event, not an organization.	
 ORG-C03813	ישובה „חכמי לובלין“	school	Education	yes		tag						
 ORG-C03814	פּוילישן פּראָפעסיאנעלן מוזיקער פֿאַריין	union	Theatre-related Society/ Union	yes		llm_verified	llm:shallow_keyword_missed_cue	Theatre-related Society/ Union	no	shallow_keyword_missed_cue	It is a professional musicians union, which falls under industry membership bodies (Theatre-related Society/ Union) per the disambiguation rule for unions.	
 ORG-C03815	קאָמפּאָנעעץ-טעאַטער	theatre	Theatre	yes		tag						
@@ -11551,7 +11551,7 @@ ORG-C01586	אסתר-רחל קאמינסקאַס טרופּע	troupe	Traveling Co
 ORG-C00557	וואַרשעווער צענטראָל-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C00191	וויק'ט	troupe	Traveling Company	yes		tag						
 ORG-C05778	„קראָקעווער יידישער דראָמאָטישער טעאַטער“	theatre	Theatre	yes		tag						
-ORG-C05779	די פּוילישע וועלדער	production	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	The entity is a specific film ('פילם-בילד'), which is a creative work, not an organization. Upstream extraction error.	
+ORG-C05779	די פּוילישע וועלדער	production	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	The entity is a specific film ('פילם-בילד'), which is a creative work, not an organization. Upstream extraction error.	
 ORG-C03694	אוניווערזיטעט	school	Education	yes		tag						
 ORG-C04260	יידישער פּרעסע	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C04319	ניו יאָרקער יידישן קונסט-טעאַטער	theatre	Theatre	yes		tag						
@@ -13190,7 +13190,7 @@ ORG-C06384	אחיאַסף	publisher	Publisher	yes		tag
 ORG-C00829	די אידישע וועלט	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C00065	אידישע צייטונג	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C06385	זאָווילס שול	synagogue	Religious institutions/organizations	yes		tag						
-ORG-C01134	השכלה-באַוועגונג	movement	OTHER - elaborate!	yes		llm_verified	llm:missing_canonical_type|pi_accepted	OTHER - elaborate!	no	missing_canonical_type	The Haskalah (Jewish Enlightenment) is a broad cultural and intellectual movement, not a formal organization or a political body.	Cultural/Intellectual Movement
+ORG-C01134	השכלה-באַוועגונג	movement	Not an organization	yes		pi_override	pi_decision:haskalah_movement_not_org	OTHER - elaborate!	no	missing_canonical_type	The Haskalah (Jewish Enlightenment) is a broad cultural and intellectual movement, not a formal organization or a political body.	Cultural/Intellectual Movement
 ORG-C06386	קרייז פֿון משכילים	group	Heritage Institution	yes		claude_opus_47_in_session	claude:haskalah_intellectual_circle	OTHER - elaborate!	yes	agree	An informal intellectual circle of maskilim does not fit standard organizational categories; 'OTHER' is appropriate.	
 ORG-C01864	פּאָמול ווערדע	theatre	Theatre	yes		tag						
 ORG-C00986	קאָלומביאַ-טעאַטער	theatre	Theatre	yes		tag						
@@ -14587,7 +14587,7 @@ ORG-C01387	יידישן טעאַטער אין לעמבערג	theatre	Theatre	yes
 ORG-C03499	זעליג שאָרס טרופּע	troupe	Traveling Company	yes		tag						
 ORG-C01692	פּיפּלס מוזיק-האָל	theatre	Theatre	yes		tag						
 ORG-C00390	לענאָקס-טעאַטער	theatre	Theatre	yes		tag						
-ORG-C05604	שטראָהלען	literary collection	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	'Shtrahlen' is a literary miscellany (zamelbukh), which is a publication, not an organization.	
+ORG-C05604	שטראָהלען	literary collection	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	'Shtrahlen' is a literary miscellany (zamelbukh), which is a publication, not an organization.	
 ORG-C01403	יידיש	publisher	Publisher	yes		tag						
 ORG-C06835	יידישן טעאַטער-קוואָרטעט פֿון ברידער שטיין	troupe	Traveling Company	yes		tag						
 ORG-C02174	שמ'רס טרופּע	troupe	Traveling Company	yes		tag						
@@ -14836,7 +14836,7 @@ ORG-C06914	"„לובין פילם קאָמפּאַני"""	film_company	Media (R
 ORG-C06915	"„שנאָרער אַסאָסיעישאָן"""	association	Theatre-related Society/ Union	yes		llm_verified	llm:shallow_keyword_missed_cue	Theatre-related Society/ Union	no	shallow_keyword_missed_cue	The 'Schnorrer Association' was a well-known social club for Yiddish actors and writers. It fits Theatre-related Society/ Union.	
 ORG-C06916	„ניי יידיש טעאַטער“	theatre	Theatre	yes		tag						
 ORG-C00718	יידיש נאַציאָנאַלן אַרבעטער-פֿאַרבאַנד	union	Jewish political bodies	yes		llm_verified	llm:pi_judgement_needed	Jewish political bodies	no	pi_judgement_needed	Policy explicitly maps Yidish-Natsionaler Arbeter-Farband to Jewish political bodies with a PI flag for dual identity. Auto missed the named entity.	
-ORG-C06917	אָרבעטער דינג	organization	Jewish political bodies	yes		llm_verified	llm:data_quality|pi_accepted	Jewish political bodies	no	data_quality	Entity 'אָרבעטער דינג' is a typo for Arbeter Ring, which policy explicitly maps to Jewish political bodies.	
+ORG-C06917	אָרבעטער דינג	organization	Jewish political bodies	yes		pi_reviewed	pi_reviewed:maati_confirmed	Jewish political bodies	no	data_quality	Entity 'אָרבעטער דינג' is a typo for Arbeter Ring, which policy explicitly maps to Jewish political bodies.	
 ORG-C01220	דזשואיש וועלפעיר באַאַרד	organization	Welfare/Aid organization	yes		named_entity		Welfare/Aid organization	yes	agree	The Jewish Welfare Board is explicitly listed in the policy under Welfare/Aid organization.	
 ORG-C00180	יידישן קונסט-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C01638	"ס""ס"	party	Jewish political bodies	yes		llm_verified	llm:shallow_keyword_missed_cue	Jewish political bodies	no	shallow_keyword_missed_cue	"ס""ס refers to the Zionist-Socialist Workers Party, a Jewish political movement. Auto-mapper defaulted to non-Jewish based on the generic 'party' tag."	
@@ -15564,7 +15564,7 @@ ORG-C00506	וואַרשעווער קאַמינסקי-טעאַטער	theatre	Thea
 ORG-C07147	ליפּמאַן-פאַמיליע	troupe	Traveling Company	yes		tag						
 ORG-C01903	האַנדלס-שול	school	Education	yes		tag						
 ORG-C07148	זילבערשטיין	company	Business	yes		claude_opus_47_in_session	claude:confirmed_business_manufacturers	Business	yes	agree	The sentence explicitly identifies Zilbershteyn as 'large Jewish manufacturers' (מאַנופאַקטעריסטן), which fits the Business category perfectly.	
-ORG-C07149	משה אהרן ווינער	company	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	Entity is a person (Moshe Aharon Viner), mis-extracted by the upstream LLM as a company.	
+ORG-C07149	משה אהרן ווינער	company	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	Entity is a person (Moshe Aharon Viner), mis-extracted by the upstream LLM as a company.	
 ORG-C00409	סקאַלאַ-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C07150	אַדלערס וואַנדער-טרופּע	troupe	Traveling Company	yes		tag						
 ORG-C01241	פּאַלאַס-טעאַטער	theatre	Theatre	yes		tag						
@@ -15650,7 +15650,7 @@ ORG-C07174	יונגע ליטעראַריש דראַמאַטישע געזעלשא
 ORG-C02322	פּערהיפט	theatre	Theatre	yes		tag						
 ORG-C06947	יידישן צענטער	center	Heritage Institution	yes		llm_verified	llm:shallow_keyword_missed_cue	Heritage Institution	no	shallow_keyword_missed_cue	A 'Yiddish Center' functions as a Yiddish cultural institution, analogous to Leivick House or Sholem-Aleichem Institute, which belong in Heritage Institution.	
 ORG-C03488	מכבי	youth_organization	Sports/Recreation	yes		pi_override	pi_decision:sports_recreation_own_type	Education	yes	pi_judgement_needed	Maccabi is explicitly routed to Education with a PI flag in the policy due to its triple identity (sports/Zionist/youth).	
-ORG-C07175	הסהאָרגאַניזאַציע פון מעדיסאָן	union	Welfare/Aid organization	yes		llm_verified	llm:data_quality|pi_accepted	Welfare/Aid organization	no	data_quality	The entity name contains a typo ('הסה' instead of 'הדסה' - Hadassah), which caused the auto-mapper to miss the explicit policy rule mapping Hadassah to Welfare/Aid organization.	
+ORG-C07175	הסהאָרגאַניזאַציע פון מעדיסאָן	union	Welfare/Aid organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Welfare/Aid organization	no	data_quality	The entity name contains a typo ('הסה' instead of 'הדסה' - Hadassah), which caused the auto-mapper to miss the explicit policy rule mapping Hadassah to Welfare/Aid organization.	
 ORG-C00459	תלמוד-תורה	school	Education	yes		tag						
 ORG-C07176	לעפּהעם פּאַרק צענטער	center	Welfare/Aid organization	yes		llm_verified	llm:shallow_keyword_missed_cue	Welfare/Aid organization	no	shallow_keyword_missed_cue	Lapham Park Center was a social/community center (settlement house) in Milwaukee, which fits the Welfare/Aid organization category.	
 ORG-C00155	פּראָגרעסיוו דראַמאַטיק קלוב	theatre	Theatre	yes		tag						

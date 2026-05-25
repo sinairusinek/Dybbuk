@@ -1132,7 +1132,7 @@ ORG-C01130	קליוולאַנד (מענ. בעני הוירשבערג)	theatre	Th
 ORG-C01131	מאַנהעטן טעאַטער	theatre	Theatre	yes		tag						
 ORG-C01132	יידישער קהלה אין זשאָלקיעוו	קהלה	Religious institutions/organizations	yes		tag						
 ORG-C01133	ישיבה	school	Education	yes		tag						
-ORG-C01134	השכלה-באַוועגונג	movement	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	Haskalah is a broad historical and intellectual movement (the Jewish Enlightenment), not a specific organization. Upstream extraction error.	
+ORG-C01134	השכלה-באַוועגונג	movement	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	Haskalah is a broad historical and intellectual movement (the Jewish Enlightenment), not a specific organization. Upstream extraction error.	
 ORG-C01135	העברעישע זשורנאַלן	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C01136	הקול	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C01137	שליפערשטיינען	troupe	Traveling Company	yes		tag						
@@ -1874,7 +1874,7 @@ ORG-C01872	טרופּע פון סאַמבערג	troupe	Traveling Company	yes		ta
 ORG-C01873	האַרלאַמפּ-קאַניעווסקיס טרופּע	troupe	Traveling Company	yes		tag						
 ORG-C01874	ערשטן יידישן קינסטלער-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C01875	"זשורנאַל ""ברקאי"""	newspaper	Journals/ Newspapers	yes		tag						
-ORG-C01876	פּילנער ביר-ברויעריי	brewery	Business	yes		context_weak	pi_dilemma:brewery_relation_conflict|pi_accepted	Business	yes	pi_judgement_needed	Brewery with missing relation context. Defaulted to Business, but could be Labour if the person was employed there. Flagged for PI review per policy.	
+ORG-C01876	פּילנער ביר-ברויעריי	brewery	Business	yes		pi_reviewed	pi_dilemma:brewery_relation_conflict|pi_accepted	Business	yes	pi_judgement_needed	Brewery with missing relation context. Defaulted to Business, but could be Labour if the person was employed there. Flagged for PI review per policy.	
 ORG-C01877	טרופּע פֿון אייזיק סאָמבערג	troupe	Traveling Company	yes		tag						
 ORG-C01878	טרופּע פֿון חאַרלאַמפּ-קאַניעווסקי	troupe	Traveling Company	yes		tag						
 ORG-C01879	איציקל גאָלדענבערג	troupe	Traveling Company	yes		tag						
@@ -2246,7 +2246,7 @@ ORG-C02244	סאַציאָל דעמאָקראַטישן פֿאַרבאַנד	union
 ORG-C02245	יוסף פּערל-שול	school	Education	yes		tag						
 ORG-C02246	דרוק פ. בענדינער	publisher	Publisher	yes		tag						
 ORG-C02247	טעלזער ישיבה	school	Education	yes		tag						
-ORG-C02248	ליטווישן נאַציאָנאַל-ראַט	union	Non-Jewish political bodies	yes		llm_verified	llm:data_quality|pi_accepted	Non-Jewish political bodies	no	data_quality	'ליטווישן נאַציאָנאַל-ראַט' means Lithuanian National Council. It is a political body, not a union. The upstream LLM tag 'union' is incorrect.	
+ORG-C02248	ליטווישן נאַציאָנאַל-ראַט	union	Jewish political bodies	yes		pi_override	pi_decision:litvish_council_jewish_political	Non-Jewish political bodies	no	data_quality	'ליטווישן נאַציאָנאַל-ראַט' means Lithuanian National Council. It is a political body, not a union. The upstream LLM tag 'union' is incorrect.	
 ORG-C02249	נחלת יצחק	religious_institution	Religious institutions/organizations	yes		tag						
 ORG-C02250	בראַסלאַווער חסיד	religious_group	Religious institutions/organizations	yes		tag						
 ORG-C02251	אָדעסער סוחר פֿון דריטער גילדע	guild	Labour (factory/workshop)	yes		tag						
@@ -2423,7 +2423,7 @@ ORG-C02421	ראַדיקאַלן אַרבעטער-סענטער	theatre	Theatre	ye
 ORG-C02422	קולטור-סענטער	theatre	Theatre	yes		tag						
 ORG-C02423	שפּאַניש-יידישער ענציקלאָפּעדיע	publisher	Publisher	yes		tag						
 ORG-C02424	איטא	union	Theatre-related Society/ Union	yes		llm_redo_union	llm_redo:kept_default	Theatre-related Society/ Union	yes	ambiguous_keep_flag	Acronym 'איטא' could be JTA (news agency) or a theatre association; keeping default but requires human review.	
-ORG-C02425	יד ושם	union	Heritage Institution	yes		llm_verified	llm:data_quality|pi_accepted	Heritage Institution	no	data_quality	Yad Vashem is a Holocaust memorial and archive, fitting Heritage Institution. The original tag 'union' is a severe upstream extraction error.	
+ORG-C02425	יד ושם	union	Heritage Institution	yes		pi_reviewed	pi_reviewed:maati_confirmed	Heritage Institution	no	data_quality	Yad Vashem is a Holocaust memorial and archive, fitting Heritage Institution. The original tag 'union' is a severe upstream extraction error.	
 ORG-C02426	יידישער מוזיי אין ניו-יאָרק	theatre	Theatre	yes		tag						
 ORG-C02427	נאַציאָנאַלן מוזיי אין ירושלים	theatre	Theatre	yes		tag						
 ORG-C02428	רעסטאָראַן „כרמל“	theatre	Theatre	yes		tag						
@@ -2553,7 +2553,7 @@ ORG-C02551	סטעיט באר אין מישיגען	union	Trade Union / Professio
 ORG-C02552	פֿאַרייניקטן יידישן קאָמפּיין	organization	Welfare/Aid organization	yes		llm_verified	llm:shallow_keyword_missed_cue	Welfare/Aid organization	no	shallow_keyword_missed_cue	The entity 'פֿאַרייניקטן יידישן קאָמפּיין' is the United Jewish Campaign, which the policy explicitly maps to Welfare/Aid organization.	
 ORG-C02553	הבונים	organization	Jewish political bodies	yes		llm_verified	llm:shallow_keyword_missed_cue	Jewish political bodies	no	shallow_keyword_missed_cue	Habonim is a well-known Labor Zionist youth movement, which falls under Jewish political bodies according to the policy.	
 ORG-C02554	יידישער וועלפעיר פעדעראַציע	organization	Welfare/Aid organization	yes		context		Welfare/Aid organization	yes	agree	Jewish Welfare Federation clearly falls under Welfare/Aid organization per policy guidelines for philanthropic and communal welfare bodies.	
-ORG-C02555	נאַציאָנאלער פֿונדאַציע פֿאַר יידישער קולטור	organization	Heritage Institution	yes		llm_verified	llm:policy_ambiguous|pi_accepted	Heritage Institution	no	policy_ambiguous	Cultural foundation, not welfare. Fits best under Heritage Institution (cultural institutes), though policy notes funds/foundations are often subsumed under Jewish political bodies.	
+ORG-C02555	נאַציאָנאלער פֿונדאַציע פֿאַר יידישער קולטור	organization	Heritage Institution	yes		pi_reviewed	pi_reviewed:maati_confirmed	Heritage Institution	no	policy_ambiguous	Cultural foundation, not welfare. Fits best under Heritage Institution (cultural institutes), though policy notes funds/foundations are often subsumed under Jewish political bodies.	
 ORG-C02556	באָברויסקער ישיבה	school	Education	yes		tag						
 ORG-C02557	ציוניסטישער אַרבעטער-באַוועגונג	movement	Jewish political bodies	yes		context		Jewish political bodies	yes	agree	The entity is the Zionist labor movement, which perfectly fits the Jewish political bodies category.	
 ORG-C02558	פּועלי-ציון פּאַרטיי	party branch	Jewish political bodies	yes		named_entity		Jewish political bodies	yes	agree	Poale Zion is explicitly listed in the policy under Jewish political bodies.	
@@ -3208,7 +3208,7 @@ ORG-C03206	אומאָפּהענגיקע סאַציאַליסטישע פאַרט�
 ORG-C03207	באָברויסקער סאָוויעטישן מלוכה-טעאַטער	theatre	Theatre	yes		tag						
 ORG-C03208	פּוילישעס טעאַטער	theatre	Theatre	yes		tag						
 ORG-C03209	אָפּערעטן-טרופּע קאַניעווסקאַ-ברייטמאַן	troupe	Traveling Company	yes		tag						
-ORG-C03210	שאַפּ פֿון אַקטיאָר חיים סאַנדלער	union	Business	yes		llm_verified	llm:data_quality|pi_accepted	Business	no	data_quality	Entity is a shop (שאַפּ), not a union. Original LLM tag 'union' is incorrect. Should be Business or Labour; defaulting to Business due to ownership phrasing.	
+ORG-C03210	שאַפּ פֿון אַקטיאָר חיים סאַנדלער	union	Business	yes		pi_reviewed	pi_reviewed:maati_confirmed	Business	no	data_quality	Entity is a shop (שאַפּ), not a union. Original LLM tag 'union' is incorrect. Should be Business or Labour; defaulting to Business due to ownership phrasing.	
 ORG-C03211	קליינע טרופּע פון דילעטאַנטן	troupe	Traveling Company	yes		tag						
 ORG-C03212	גאָלדפלוס	troupe	Traveling Company	yes		tag						
 ORG-C03213	מאַריענבאַדער יידישן וועראַנדע-טעאַטער	theatre	Theatre	yes		tag						
@@ -3404,7 +3404,7 @@ ORG-C03402	יידישער קאָמף-אַרגאַניזאַציע	organization	M
 ORG-C03403	ביאַליסטאָקער געטאָ	ghetto	Not an organization	yes		tag						
 ORG-C03404	סאָקאָלאָווס טעלעגראַף	newspaper	Journals/ Newspapers	yes		tag						
 ORG-C03405	פֿאַר פֿאָלקלאָר און פֿילאָלאָגיע ביי אונז יודען	publication	Journals/ Newspapers	yes		tag						
-ORG-C03406	יאָסער טויבנהאַלע	literary circle	Theatre	yes		llm_verified	llm:data_quality|pi_accepted	Theatre	no	data_quality	Jassyer Taubenhalle was a known theatre venue/hall in Jassy, despite the LLM tagging it as a literary circle.	
+ORG-C03406	יאָסער טויבנהאַלע	literary circle	Theatre	yes		pi_reviewed	pi_reviewed:maati_confirmed	Theatre	no	data_quality	Jassyer Taubenhalle was a known theatre venue/hall in Jassy, despite the LLM tagging it as a literary circle.	
 ORG-C03407	העברעיש-פּוילישע גימנאַזיע פֿון דר. ברוידע	school	Education	yes		tag						
 ORG-C03408	לינקער פּצ-יוגנט-באַוועגונג	union	Jewish political bodies	yes		llm_verified	llm:shallow_keyword_missed_cue	Jewish political bodies	no	shallow_keyword_missed_cue	Entity is the Left Poale Zion youth movement ('PZ' = Poale Zion). It is a Jewish political body, not a theatre union.	
 ORG-C03409	טויז רויט	publisher	Publisher	yes		tag						
@@ -3695,7 +3695,7 @@ ORG-C03693	וויניצער זשיטאָמירער יידישן מלוכה-טע�
 ORG-C03694	אוניווערזיטעט	school	Education	yes		tag						
 ORG-C03695	ערשטע ציוניסטישע יוגנט-אָרגאַניזאַציע אין מערבגאַליציע	organization	Jewish political bodies	yes		context		Jewish political bodies	yes	agree	Entity is explicitly a Zionist youth organization, which falls under Jewish political bodies per the policy for Zionist movements.	
 ORG-C03696	פּ'-פּאַרטיי	party	Jewish political bodies	yes		llm_verified	llm:pi_judgement_needed	Jewish political bodies	no	pi_judgement_needed	'P-party' is highly ambiguous but in this lexicon likely refers to Poale Zion (Jewish political bodies) rather than a non-Jewish party like PPS.	
-ORG-C03697	יידישן נאַציאָנאַלדאַט	organization	Jewish political bodies	yes		llm_verified	llm:data_quality|pi_accepted	Jewish political bodies	no	data_quality	Typo in extraction ('נאַציאָנאַלדאַט' instead of 'נאַציאָנאַלראַט' - Jewish National Council). It is a Jewish political body.	
+ORG-C03697	יידישן נאַציאָנאַלדאַט	organization	Jewish political bodies	yes		pi_reviewed	pi_reviewed:maati_confirmed	Jewish political bodies	no	data_quality	Typo in extraction ('נאַציאָנאַלדאַט' instead of 'נאַציאָנאַלראַט' - Jewish National Council). It is a Jewish political body.	
 ORG-C03698	יידישן זעלבסטשוץ-רעגימענט	organization	Military	yes		named_entity		Military	yes	agree	Jewish self-defense regiment (יידישן זעלבסטשוץ-רעגימענט) is explicitly defined as a Military organization in the policy.	
 ORG-C03699	פּוילישן גרינדונגס-סיים	parliament	Non-Jewish political bodies	yes		context		Non-Jewish political bodies	yes	agree	The Polish Constituent Sejm is a national parliament, explicitly listed in the policy under Non-Jewish political bodies.	
 ORG-C03700	אַלגעמיינע ציוניסטן	party	Jewish political bodies	yes		context		Jewish political bodies	yes	agree	General Zionists (אַלגעמיינע ציוניסטן) is a Zionist political party, which perfectly fits the Jewish political bodies category.	
@@ -3817,7 +3817,7 @@ ORG-C03815	קאָמפּאָנעעץ-טעאַטער	theatre	Theatre	yes		tag
 ORG-C03816	אסתר רחל קאמינסקאַ טעאַטער	theatre	Theatre	yes		tag						
 ORG-C03817	קאָמיטעט פֿון זעלבסט-הילף פֿאָר קינסטלער (מוזיקער, אַקטיאָרן און מאָלער)	קאָמיטעט	Theatre-related Society/ Union	yes		context		Theatre-related Society/ Union	yes	agree	It is a self-help committee specifically for artists, actors, and musicians, fitting the theatre/arts industry society category.	
 ORG-C03818	פאבריק פון י. ל. שערעשעווסקי	factory	Labour (factory/workshop)	yes		tag						
-ORG-C03819	פרדס רוסאטא	farm	Business	yes		context_weak	pi_dilemma:brewery_relation_conflict|pi_accepted	Business	yes	agree	Pardes Rusata is an orchard/farm. Without relation data, Business is an acceptable default for an agricultural enterprise.	
+ORG-C03819	פרדס רוסאטא	farm	Business	yes		pi_reviewed	pi_dilemma:brewery_relation_conflict|pi_accepted	Business	yes	agree	Pardes Rusata is an orchard/farm. Without relation data, Business is an acceptable default for an agricultural enterprise.	
 ORG-C03820	ביי טאָמאַשעווסקין	theatre	Theatre	yes		tag						
 ORG-C03821	קיעטס וואָדעוויל-סוירקייט	theatre	Theatre	yes		tag						
 ORG-C03822	נואַרקער מעטראָפּאָליטאַן-טעאַטער	theatre	Theatre	yes		tag						
@@ -4893,7 +4893,7 @@ ORG-C04891	טרופּע א'א פֿון מרים טרילינג און קאַזש�
 ORG-C04892	קאַזשדאַןס טרופּע	troupe	Traveling Company	yes		tag						
 ORG-C04893	קאָלעקטיוו א'א פֿון מנחם רובין	troupe	Traveling Company	yes		tag						
 ORG-C04894	דער טעגלישער העראָלד	newspaper	Journals/ Newspapers	yes		tag						
-ORG-C04895	נאַקינקאַ	other	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	"""נאַקינקאַ"" appears to be a place name or a person, not an organization. Likely an upstream extraction error."	
+ORG-C04895	נאַקינקאַ	other	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	"""נאַקינקאַ"" appears to be a place name or a person, not an organization. Likely an upstream extraction error."	
 ORG-C04896	פֿ'ג מייזעל	publisher	Publisher	yes		tag						
 ORG-C04897	פֿ'ג פֿון ב. קלעצקין	publisher	Publisher	yes		tag						
 ORG-C04898	וואַשינגטאָן אוירווינג האָי-סקול	school	Education	yes		tag						
@@ -4994,7 +4994,7 @@ ORG-C04992	יידישע טרופּעס פֿון וויינשטאָק, וויינ�
 ORG-C04993	טרופּע גאָלדפאַדען-טאַנצמאַן	troupe	Traveling Company	yes		tag						
 ORG-C04994	גליקמאַנען	troupe	Traveling Company	yes		tag						
 ORG-C04995	בני אַמונה	other	Religious institutions/organizations	yes		llm_verified	llm:shallow_keyword_missed_cue	Religious institutions/organizations	no	shallow_keyword_missed_cue	The name 'בני אַמונה' (Bnei Emunah / Sons of Faith) strongly indicates a synagogue or religious congregation.	
-ORG-C04996	איזראַעל	other	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	"""Israel"" is a geographic region/country, not an organization. It should be classified as 'Not an organization'."	
+ORG-C04996	איזראַעל	other	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	"""Israel"" is a geographic region/country, not an organization. It should be classified as 'Not an organization'."	
 ORG-C04997	לאדזשער פּראָגימנאַזיע פֿון יצחק קאַצענעלסאָן	school	Education	yes		tag						
 ORG-C04998	טעכנישע שול	school	Education	yes		tag						
 ORG-C04999	העפטען פֿאַר ליטעראַטור און קונסט	newspaper	Journals/ Newspapers	yes		tag						
@@ -5157,7 +5157,7 @@ ORG-C05155	מיוראַטי	firm	Business	yes		tag
 ORG-C05156	ווונ'ט	theatre	Theatre	yes		tag						
 ORG-C05157	קריסטאָל פּאַלאַס	theatre	Theatre	yes		tag						
 ORG-C05158	טעאַטער „קאָמעטא“	theatre	Theatre	yes		tag						
-ORG-C05159	די יידן אין רומעניע	other	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	"""The Jews in Romania"" is a demographic group or a book title, not an organization. It should be classified as 'Not an organization'."	
+ORG-C05159	די יידן אין רומעניע	other	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	"""The Jews in Romania"" is a demographic group or a book title, not an organization. It should be classified as 'Not an organization'."	
 ORG-C05160	גאָלדפֿאַדענס טרופּע	troupe	Traveling Company	yes		tag						
 ORG-C05161	דאַטשיאָ	theatre	Theatre	yes		tag						
 ORG-C05162	יידישער טרופּע	troupe	Traveling Company	yes		tag						
@@ -5927,7 +5927,7 @@ ORG-C05925	געבילם דריטן סטריט-טעאַטער	theatre	Theatre	yes	
 ORG-C05926	זאַבלודאָווסקיס שול	synagogue	Religious institutions/organizations	yes		tag						
 ORG-C05927	טעאַטער אָלקאָזאָר	theatre	Theatre	yes		tag						
 ORG-C05928	דיען	newspaper	Journals/ Newspapers	yes		tag						
-ORG-C05929	פאָרם בן-שמן	farm	Education	yes		llm_verified	pi_dilemma:brewery_relation_conflict|pi_accepted	Education	no	shallow_keyword_missed_cue	Ben-Shemen is a well-known agricultural youth village and school in Israel, making it an educational institution rather than a commercial business.	
+ORG-C05929	פאָרם בן-שמן	farm	Education	yes		pi_reviewed	pi_dilemma:brewery_relation_conflict|pi_accepted	Education	no	shallow_keyword_missed_cue	Ben-Shemen is a well-known agricultural youth village and school in Israel, making it an educational institution rather than a commercial business.	
 ORG-C05930	טעאַטער פֿרינטאַנע	theatre	Theatre	yes		tag						
 ORG-C05931	פּאָלטאָווער טעאַטערקאָמיטעט	union	Theatre-related Society/ Union	yes		llm_redo_union	llm_redo:kept_default	Theatre-related Society/ Union	yes	kept_default	Explicitly a theatre committee, which maps directly to Theatre-related Society/Union per policy.	
 ORG-C05932	פּראָווינץ-טרופּע פֿון שיינפעלד	troupe	Traveling Company	yes		tag						
@@ -6454,7 +6454,7 @@ ORG-C06452	האָרטס מעטראָפּאָליטען טעאַטער	theatre	Th
 ORG-C06453	כאָר ביי ווייספעלדן	theatre	Theatre	yes		tag						
 ORG-C06454	רוסישער טרופּע פֿון קאָזאַנצאָוו	troupe	Traveling Company	yes		tag						
 ORG-C06455	רוסישער טרופּע פֿון וולאַסאָוו	troupe	Traveling Company	yes		tag						
-ORG-C06456	האָלס	other	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	"""האָלס"" (Halls) refers to physical venues or buildings, not an organization. This is an upstream extraction error."	
+ORG-C06456	האָלס	other	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	"""האָלס"" (Halls) refers to physical venues or buildings, not an organization. This is an upstream extraction error."	
 ORG-C06457	מעדיקאַל-כירורגישן קאָלעדזש	school	Education	yes		tag						
 ORG-C06458	קעסלער	troupe	Traveling Company	yes		tag						
 ORG-C06459	פּיינסקיס דרוקעריי	דרוקעריי	Printer	yes		tag						
@@ -6479,7 +6479,7 @@ ORG-C06477	שיקאָגאָ'ר יידישער אַקטיאָרן-יוניאָן 
 ORG-C06478	די דראַמאַטישע טרופּע אונטער דער לייטונג פֿון פרץ הירשביין	troupe	Traveling Company	yes		tag						
 ORG-C06479	הילפס-קאָמיטעט	organization	Welfare/Aid organization	yes		llm_verified	llm:shallow_keyword_missed_cue	Welfare/Aid organization	no	shallow_keyword_missed_cue	'הילפס-קאָמיטעט' means Relief Committee. The 'hilfs' (relief/aid) cue dictates it should be classified as a Welfare/Aid organization.	
 ORG-C06480	אגודה „תורה מציון“	school	Education	yes		tag						
-ORG-C06481	פּ	political_party	OTHER - elaborate!	yes		llm_verified	llm:data_quality|pi_accepted	OTHER - elaborate!	no	data_quality	Entity name and sentence are just the letter 'פּ'. This is an upstream LLM extraction error, not a real organization.	
+ORG-C06481	פּ	political_party	Jewish political bodies	yes		pi_override	pi_decision:poalei_zion_political_body	OTHER - elaborate!	no	data_quality	Entity name and sentence are just the letter 'פּ'. This is an upstream LLM extraction error, not a real organization.	
 ORG-C06482	ניו יאָרקער יידישע טעאַטער-געזעלשאַפט	union	Theatre-related Society/ Union	yes		context		Theatre-related Society/ Union	yes	agree	The entity name explicitly states it is a Yiddish theatre society, fitting the Theatre-related Society/ Union category perfectly.	
 ORG-C06483	דר. ברוידעס העברעישע גימנאַזיע	school	Education	yes		tag						
 ORG-C06484	דר. מ. ווייכערטס דראָמאַטישער שול	school	Education	yes		tag						
@@ -6548,7 +6548,7 @@ ORG-C06546	ווילהעלמשולע	school	Education	yes		tag
 ORG-C06547	"„וואָלפסטאָל-קאָפּעליע"""	troupe	Traveling Company	yes		tag						
 ORG-C06548	שאָמשי מולאַטאַ טעאַטער	theatre	Theatre	yes		tag						
 ORG-C06549	אַלעקסאַנדער פּלאַץ-טעאַטער	theatre	Theatre	yes		tag						
-ORG-C06550	„אבאַציא“	other	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	Abbazia (Opatija) is a resort town, a geographic location, not an organization.	
+ORG-C06550	„אבאַציא“	other	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	Abbazia (Opatija) is a resort town, a geographic location, not an organization.	
 ORG-C06551	נאָרל-צענטראָלע אין פּוילן	union	Theatre-related Society/ Union	yes		llm_redo_union	llm_redo:kept_default	Theatre-related Society/ Union	yes	ambiguous_keep_flag	Unclear word 'נאָרל' (typo for כאָרל/choral?); 'צענטראָלע' suggests a central union/body. Keeping default but needs review.	
 ORG-C06552	בית מסחר הספרים של המדפיס אַלאַפּין	publisher	Publisher	yes		tag						
 ORG-C06553	שוואַרץ'ס יידישער טרופּע	troupe	Traveling Company	yes		tag						
@@ -7234,7 +7234,7 @@ ORG-C07232	ש. אַנסקי-קולטור-קלוב	club	Theatre-related Society/ 
 ORG-C07233	נייער דראַמאַטישער שטערן	troupe	Traveling Company	yes		tag						
 ORG-C07234	אַרטער שפּילער-קאָלעקטיוו	troupe	Traveling Company	yes		tag						
 ORG-C07235	יידישער ראַדיאָ-אָפּטיילונג פֿון פֿעדעראַלן טעאַטער	radio	Media (Radio/ Film/TV)	yes		tag						
-ORG-C07236	א. א. א.	organization	Not an organization	yes		llm_verified	llm:data_quality|pi_accepted	Not an organization	no	data_quality	'א. א. א.' is a Yiddish abbreviation for 'and others like it' (etc.), not an organization. Upstream extraction error.	
+ORG-C07236	א. א. א.	organization	Not an organization	yes		pi_reviewed	pi_reviewed:maati_confirmed	Not an organization	no	data_quality	'א. א. א.' is a Yiddish abbreviation for 'and others like it' (etc.), not an organization. Upstream extraction error.	
 ORG-C07237	קאָמיוניטי סענטער	theatre	Theatre	yes		tag						
 ORG-C07238	וועלפעיר דעפּאַרטמענט	government_agency	Non-Jewish political bodies	yes		context		Non-Jewish political bodies	yes	agree	A government welfare department fits the policy's inclusion of government ministries and departments under Non-Jewish political bodies.	
 ORG-C07239	שלום עליכם שול 3	school	Education	yes		tag						
