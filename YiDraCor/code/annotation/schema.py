@@ -7,9 +7,14 @@ PAGE_NS = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15"
 
 PAGE_TYPES = {"titlePage", "castList", "body"}
 
+_NIKUD = re.compile(r"[֑-ׇ]")  # cantillation + vowel points
+
 ALLOWED_TAGS = {
     "speaker": {"xmlid"},
     "stage": {"type"},
+    "trailer": {"type"},  # TEI <trailer>: closing label at the end of a division
+        # (e.g. "ענדע דער X אקט", "ענדע דער פיעססע"). NOT a stage direction — the
+        # 2026-05-24 PI review re-typed these out of `stage`. `type` is OPTIONAL.
     "heading": {"type", "n", "subtype"},  # subtype:songGroup marks song-appendix act labels (not structural acts)
     "role": {"xmlid"},
     "roleDesc": set(),
@@ -19,7 +24,35 @@ ALLOWED_TAGS = {
     "fw": {"type"},  # forme work (TEI <fw>): printed page numbers, running heads, catchwords, signatures. `type` REQUIRED; page numbers are type:pageNum.
 }
 
-HEADING_TYPES = {"act", "scene"}
+# Structural division headings. `epilog` added per the 2026-05-24 PI review:
+# a standalone "עפילאג" line opens an epilogue division parallel to the acts.
+HEADING_TYPES = {"act", "scene", "epilog"}
+
+# Collective / chorus speaker labels that intentionally have NO individual cast
+# entry (PI review 2026-05-24: "confirm collective, no individual entry"). The
+# flag generator must NOT report these as "missing cast member". Matched on the
+# bare (nikud-stripped) consonant skeleton of the speaker label.
+KNOWN_COLLECTIVE = {
+    "אלע",      # alle — all
+    "שטימען",   # shtimen — voices
+    "ביידע",    # beyde — both
+    "מענער",    # mener — men
+    "מעדכען",   # meydkhen — girls
+    "מ_דכען",
+    "קאהר",     # khor — chorus
+    "כאר",
+    "דועט",     # duet
+    "איינער",   # eyner — someone
+    "דאמען",    # damen — ladies
+    "קינדער",   # kinder — children
+    "סאפראן", "אלט", "באס", "טענאר",  # song-supplement voice rubrics
+}
+
+
+def is_collective_label(text: str) -> bool:
+    """True if a speaker label is a known collective/chorus (no cast entry)."""
+    skeleton = _NIKUD.sub("", (text or "").strip()).strip(":־ .")
+    return skeleton in KNOWN_COLLECTIVE
 # TEI <fw> @type values. Page numbers = pageNum (the common case here).
 FW_TYPES = {"pageNum", "header", "footer", "catch", "sig"}
 # TEI <stage> @type values (UVic TEI Drama tei_DRSTA). No `mixed`: pick the dominant

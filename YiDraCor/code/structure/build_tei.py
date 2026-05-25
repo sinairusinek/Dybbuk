@@ -294,6 +294,16 @@ def build_text(pages, cfg, role_ids):
             state["act_div"] = div
             state["container"] = div
 
+    def open_epilog(head_text):
+        # epilogue division parallel to acts (PI review 2026-05-24).
+        close_sp()
+        div = etree.SubElement(body, q("div"))
+        div.set("type", "epilog")
+        set_xmlid(div, f"{play_id}_Epilog")
+        etree.SubElement(div, q("head")).text = head_text
+        state["act_div"] = div
+        state["container"] = div
+
     def enter_back():
         nonlocal back
         if back is None:
@@ -331,6 +341,9 @@ def build_text(pages, cfg, role_ids):
             # ---- headings (act / songGroup) ----
             heading = next((a for t, a in spans if t == "heading"), None)
             if heading is not None:
+                if heading.get("type") == "epilog":
+                    open_epilog(stripped)
+                    continue
                 n = span_int(heading, "n", 1)
                 if heading.get("subtype") == "songGroup":
                     if not state["in_back"]:
@@ -405,6 +418,17 @@ def build_text(pages, cfg, role_ids):
                         a2["offset"] = str(off - shift)
                     shifted.append((t, a2))
                 emit_line_content(state["para"], rest, shifted, skip_speaker=True)
+                continue
+
+            # ---- body: trailer (end-of-division label) ----
+            if "trailer" in tags:
+                close_sp()
+                tr = etree.SubElement(state["container"], q("trailer"))
+                a = next(at for t, at in spans if t == "trailer")
+                if a.get("type"):
+                    tr.set("type", a["type"])
+                off = span_int(a, "offset", 0); ln = span_int(a, "length", len(text))
+                tr.text = text[off:off + ln].strip()
                 continue
 
             # ---- body: standalone stage (no open speech) ----

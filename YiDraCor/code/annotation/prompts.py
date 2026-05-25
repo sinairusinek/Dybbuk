@@ -17,6 +17,13 @@ Choose one `page_type` per page:
   - Inline prefix `ירוחם: רבּשׁ״ע ...` → speaker = "ירוחם" (offset 0, length 5).
   - Often UN-vocalized even when surrounding text is vocalized — that's a strong hint.
   - REQUIRED attribute `xmlid`: the same xml:id used for that character's `role` span in the castList (e.g. `xmlid:sobele`). For OCR variants of a known name (e.g. `אכטשעי` for `יאכטשע`), still use the canonical xml:id. The structurer uses this for `<sp who="#xmlid">`.
+  - **Collective / chorus labels** (`אלע` alle, `קאהר`/`כאר` chorus, `שטימען`
+    voices, `ביידע` both, `מענער` men, `מעדכען` girls, `דועט` duet, `איינער`
+    someone, and the song-supplement voice rubrics `דאמען`/`קינדער`/`סאפראן`/
+    `אלט`/`באס`/`טענאר`): per the 2026-05-24 PI review these are confirmed
+    collective and get **NO individual cast entry**. Tag them as `speaker` with a
+    shared collective xmlid (e.g. `xmlid:alle`, `xmlid:chor`) — do NOT mint a
+    per-character role for them, and they are NOT "missing cast" flags.
 
 `stage`      — stage direction. Spans only within a single line, but a stage direction may continue across lines: tag each line's portion as its own `stage` span.
   - Parenthesized text:  `(זינגט)`, `(אָרים צימער ביי ירוחם).`
@@ -25,20 +32,32 @@ Choose one `page_type` per page:
   - If parens are unbalanced because of OCR (e.g. line starts with `.(` or ends with `)`), still tag the visible parenthesized text as `stage`.
   - Whole-line action descriptions without parens (e.g. `דערוויל דרעהט ער זיך אום צו סאבעלען און גיט איהר א קוש.`) are also `stage` when they describe action rather than speech — typically lines without a preceding speaker that read as third-person narration.
   - Attribute `type` is **REQUIRED on every stage span** (no bare stage) per TEI <stage> (UVic tei_DRSTA). Pick the dominant function; do NOT use `mixed`:
-      • `setting`    — opening scene description (room/scenery)
+      • `setting`    — opening scene description (room/scenery) AND scene-boundary
+                       cues. Per the 2026-05-24 PI review, the recurring boundary
+                       words are `setting`: `פערוואנדלונג` (fervandlung, scene
+                       change) and `פאָרהאַנג` / `פאָרהאַנג פאַלט` (forhang [falt],
+                       curtain [falls]). Do NOT type these as `business`.
       • `entrance`   — character enters  (`(אויפֿטריט X)`, "אויפֿטריט X")
       • `exit`       — character exits   (`(אָב)`, `(X אָב)`)
       • `delivery`   — manner of speaking. **REQUIRES parens in source** (`(זינגט)`, `(צו X)`). Never assign `type:delivery` to an unparenthesized line — that's plain speech.
       • `location`   — character's location (`(אין פֿענסטער)`)
-      • `business`   — generic physical action (curtain falls, "they embrace", chases)
+      • `business`   — generic physical action ("they embrace", chases). NOTE:
+                       curtain cues go to `setting` (above), not here.
       • `costume`    — appearance/disguise/dress
       • `novelistic` — narrative-style third-person descriptive direction
     When a direction combines functions (e.g. set + entrance), choose the dominant one — we over-used `mixed` earlier; the RA re-typed those to the specific function (usually `business`).
+  - **NOT a stage direction** (do not tag as `stage`):
+      • `trailer` — a closing label at the end of a division: `ענדע דער X אקט`
+        (ende der … akt, "end of act X"), `ענדע פונ'ם X אקט`, `ענדע דער פיעססע`
+        (end of the play), or a bare `ענדע`. Tag the whole line as `trailer`
+        (no required attribute). The structurer emits TEI `<trailer>`.
 
-`heading`    — act/scene title. Attributes:
-  - `type`: "act" or "scene"
-  - `n`: arabic numeral as string ("1", "2", ...).
+`heading`    — act/scene/epilogue title. Attributes:
+  - `type`: "act", "scene", or "epilog".
+  - `n`: arabic numeral as string ("1", "2", ...) for act/scene; OMIT for epilog.
   Examples: `ערְשׁטֶער אַקט` → heading type=act n=1.  `סצענע צווייטע` → heading type=scene n=2.
+  A standalone `עפילאג` line → heading type=epilog (opens an epilogue division
+  parallel to the acts; the structurer emits `<div type="epilog">`).
   Tag the whole heading line as a single span.
 
 `role`       — ONLY on castList pages. The character-name portion of a dramatis-personae entry.
