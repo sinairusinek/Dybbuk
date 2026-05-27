@@ -32,6 +32,13 @@ _DIGRAPHS = [
     ("dzh", "דזש"),
     ("sch", "ש"),
     ("sh", "ש"),
+    # Polish digraphs common in Galician/Polish-sourced names (e.g. Fiszon,
+    # Goldfaden's Polish-spelled troupes). Placed before single-char fallback
+    # so 'sz' doesn't degrade to ס+ז etc.
+    ("szcz", "שטש"),
+    ("sz", "ש"),
+    ("cz", "טש"),
+    ("rz", "זש"),
     ("ch", "טש"),
     ("tz", "צ"),
     ("ts", "צ"),

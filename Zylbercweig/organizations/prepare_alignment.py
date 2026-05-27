@@ -94,6 +94,28 @@ from org_normalize import (
     normalize_yiddish,
     organization_name_aliases,
 )
+from translit_latin_to_yiddish import translit_latin_to_yiddish
+
+# Org-type tail keywords used to detect person-named troupes/companies so we
+# can also block on a given-name-stripped surface form. Clusters routinely
+# refer to these as "<Surname>'s troupe" (e.g. פישזאָןס טרופּע) while the DB
+# stores the founder's full name ("Abraham Fiszon Troupe"); the leading given
+# name otherwise dominates the trigram similarity and hides the match.
+_ORG_TAIL_KEYWORDS = {
+    "troupe", "company", "theatre", "theater", "ensemble",
+    "players", "opera", "troup", "troupes",
+}
+
+
+def surname_only_variant(latin_name: str) -> str:
+    """For a Latin '<Given> <Surname...> <OrgKeyword>' name, return the form
+    with the leading given-name token dropped (e.g. 'Abraham Fiszon Troupe' ->
+    'Fiszon Troupe'). Returns '' when the pattern doesn't apply."""
+    head = re.sub(r"\s*\([^)]*\)\s*", " ", latin_name or "").strip()
+    toks = head.split()
+    if len(toks) < 3 or toks[-1].lower().strip(".,") not in _ORG_TAIL_KEYWORDS:
+        return ""
+    return " ".join(toks[1:])
 
 
 def semantic_identity_key(canonical_yiddish: str, org_type: str, name_variants: str) -> tuple[str, str, str]:
@@ -326,6 +348,16 @@ def main() -> None:
                     variants.append(yv)
             if db_name_yid_translit not in variants:
                 variants.append(db_name_yid_translit)
+        # Given-name-stripped surface for person-named troupes/companies. Only
+        # meaningful when the DB row is Latin-only (no human-curated Yiddish);
+        # we add both the Latin "Fiszon Troupe" and its transliteration so the
+        # cluster's "<Surname>'s troupe" form blocks against it.
+        if not db_name_yid:
+            stripped = surname_only_variant(db_name)
+            if stripped:
+                for v in (stripped, translit_latin_to_yiddish(stripped)):
+                    if v and v not in variants:
+                        variants.append(v)
         norm_variants = [normalize_yiddish(v) for v in variants if v]
         alias_variants = sorted({a for v in variants for a in organization_name_aliases(v)})
         dm = set()
