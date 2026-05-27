@@ -93,6 +93,7 @@ except Exception:
 from org_normalize import (
     normalize_yiddish,
     organization_name_aliases,
+    token_key_set,
 )
 from translit_latin_to_yiddish import translit_latin_to_yiddish
 
@@ -205,6 +206,17 @@ def split_name_variants(name: str) -> list[str]:
         head = re.sub(r"\s*\([^)]*\)\s*", " ", part).strip()
         if head:
             push(head)
+        # Top-level mixed-script parts (e.g. 'גאָלדפאדעןס טרופּע -Avraham
+        # Goldfaden Troupe', where the en-dash isn't space-delimited so the
+        # ' - ' split didn't separate the scripts): surface each Yiddish run so
+        # a Yiddish cluster can match the Yiddish form embedded in a Latin-
+        # headed DB name. Mirrors the in-parenthetical extraction below.
+        # matching-core candidate: the script-run extraction itself is generic
+        # (proposed matching_core.normalize.script_runs(text, script), built on
+        # detect_script). The ' - ' split + parenthetical conventions + variant
+        # assembly stay Orgs domain. See LEDGER.md (2026-05-27, script_runs).
+        for m in _YIDDISH_RUN.findall(part):
+            push(m.strip())
         # Extract each parenthetical body
         for body in re.findall(r"\(([^)]*)\)", part):
             body = body.strip()
@@ -360,6 +372,7 @@ def main() -> None:
                         variants.append(v)
         norm_variants = [normalize_yiddish(v) for v in variants if v]
         alias_variants = sorted({a for v in variants for a in organization_name_aliases(v)})
+        token_sets = [ts for ts in {token_key_set(v) for v in variants} if ts]
         dm = set()
         for v in variants:
             dm |= dm_codes(v)
@@ -372,6 +385,7 @@ def main() -> None:
                 "variants": variants,
                 "norm_variants": norm_variants,
                 "alias_variants": alias_variants,
+                "token_sets": token_sets,
                 "dm_codes": dm,
             }
         )
@@ -415,6 +429,12 @@ def main() -> None:
         cnorm = normalize_yiddish(cname)
         caliases = organization_name_aliases(cname)
         cdm = dm_codes(cname)
+        # Token-set keys from the canonical plus each surface variant, so an OCR
+        # variant or a reordered/possessive form can still align via tokens.
+        ctoks_sources = [cname] + [
+            v.strip() for v in (c["name_variants"] or "").split("|") if v.strip()
+        ]
+        ctoken_sets = [ts for ts in {token_key_set(v) for v in ctoks_sources} if ts]
 
         # Build the candidate pool for this cluster based on its block.
         c_block = block_key(c["org_type"])
@@ -503,6 +523,25 @@ def main() -> None:
                         ipa_best = sim
             if ipa_best > best_score:
                 best_score, best_method = ipa_best, "ipa_phonetic"
+
+            # Token-set (order-independent, generic-head / genitive / city-
+            # adjective stripped). Catches reordered + morphological variants
+            # the string/phonetic signals miss: "טרופּעס פֿון מאָגולעסקאָ" ↔
+            # "מאָגולעסקאָס טרופּע", "אוניווערזיטעט פון בערלין" ↔ "בערלינער
+            # אוניווערזיטעט". Compared via the precomputed token_key_set frozensets.
+            ts_best = 0.0
+            for cts in ctoken_sets:
+                for dts in d["token_sets"]:  # type: ignore[index]
+                    if not cts or not dts:
+                        continue
+                    inter = cts & dts
+                    if not inter or not any(len(t) >= 3 for t in inter):
+                        continue
+                    sim = len(inter) / len(cts | dts)
+                    if sim > ts_best:
+                        ts_best = sim
+            if ts_best > best_score:
+                best_score, best_method = ts_best, "token_set"
 
             # Keep only plausible candidates. Cross-script IPA matches use a
             # lower floor because the IPA approximation is lossy — without this,

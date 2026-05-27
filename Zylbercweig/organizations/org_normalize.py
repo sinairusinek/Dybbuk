@@ -122,6 +122,72 @@ def organization_name_aliases(name: str) -> set[str]:
     return {a for a in aliases if a}
 
 
+def token_key_set(name: str) -> frozenset[str]:
+    """Order-independent set of *content* tokens for token-set similarity.
+
+    matching-core boundary: this function is ORGS DOMAIN — it encodes org
+    head-nouns + Yiddish morphology and stays in the Orgs service. The Jaccard
+    over its output (token_set_similarity) is the generic piece; see that note.
+    (Gray area flagged for cross-vetting: the possessive-ס / adjectival-ער /
+    article stripping is Yiddish morphology that People may also want.)
+
+    Drops generic org head-nouns (טרופּע/טעאַטער/…), of-tokens (פֿון/of), and
+    leading articles, then stems each remaining token so morphological and
+    word-order variants collapse onto the same kernel:
+
+    - possessive / plural ``ס`` (and ``׳ס``) is stripped: גאָלדפאדעןס → גאָלדפאדען
+    - known city-adjectives map to the settlement (ניו-יאָרקער → ניו-יאָרק)
+    - an unmapped adjectival ``ער`` suffix is stripped: בערלינער → בערלינ
+
+    So "טרופּעס פֿון מאָגולעסקאָ" and "מאָגולעסקאָס טרופּע" both yield
+    {מאָגולעסקאָ}, and "אוניווערזיטעט פון בערלין" / "בערלינער אוניווערזיטעט"
+    both yield {אוניווערזיטעט, בערלינ}. Used only as a soft candidate-generation
+    signal — never as a canonical identity.
+    """
+    base = normalize_yiddish(name)
+    if not base:
+        return frozenset()
+    out: set[str] = set()
+    for t in re.split(r"\s+", base):
+        if not t or t in _ARTICLES or t in _OF_TOKENS:
+            continue
+        # Strip a trailing possessive/plural ס (and optional geresh) for both
+        # the generic-token test and the retained content stem.
+        stem = t
+        if len(t) > 3 and t.endswith("ס"):
+            stem = re.sub(r"[׳']?ס$", "", t)
+        if t in _GENERIC_ORG_TOKENS or stem in _GENERIC_ORG_TOKENS:
+            continue
+        tok = stem
+        if tok in _CITY_ADJECTIVE_MAP:
+            tok = _CITY_ADJECTIVE_MAP[tok]
+        elif len(tok) > 4 and tok.endswith("ער"):
+            tok = tok[:-2]
+        if len(tok) >= 2:
+            out.add(tok)
+    return frozenset(out)
+
+
+def token_set_similarity(a: str, b: str) -> float:
+    """Jaccard over token_key_set(a) / token_key_set(b). 0.0 when either side
+    has no content tokens or there is no shared substantive (len>=3) token —
+    the latter guard avoids matching on a single short shared kernel.
+
+    matching-core candidate: the order-independent token-set Jaccard is generic
+    (proposed as matching_core.similarity.token_jaccard, a first-class FUZZY-
+    stage signal). Core already has this only as a hidden fallback inside
+    name_similarity. The len>=3 guard is an Orgs-domain wrapper. See LEDGER.md
+    (2026-05-27, token_jaccard promotion). On Phase-3 packaging, the Jaccard
+    comes from core; token_key_set (domain stripping) stays here."""
+    ka, kb = token_key_set(a), token_key_set(b)
+    if not ka or not kb:
+        return 0.0
+    inter = ka & kb
+    if not inter or not any(len(t) >= 3 for t in inter):
+        return 0.0
+    return len(inter) / len(ka | kb)
+
+
 # ── org_type canonicalization ─────────────────────────────────────────────────
 
 _ORG_TYPE_MAP = {
