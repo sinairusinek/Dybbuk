@@ -424,9 +424,23 @@ def main() -> None:
             candidate_pool = db_entries  # empty-type cluster: compare against all
 
         prev = prev_for_id
+        # A human decision is keyed to the stable cluster_id, so never drop it
+        # just because the semantic key diverged (e.g. a reviewer renamed the
+        # canonical on a _Q sub-cluster). The semantic-key gate still applies to
+        # undecided rows, so stale candidate context doesn't ride along when a
+        # cluster's content genuinely changed.
+        prev_has_decision = bool(
+            prev_for_id
+            and (
+                prev_for_id.get("decision", "").strip()
+                or prev_for_id.get("aligned_db_id", "").strip()
+                or prev_for_id.get("reviewer_notes", "").strip()
+            )
+        )
         if (
             prev is not None
             and not canonical_overridden
+            and not prev_has_decision
             and not preserved_row_matches_cluster(prev, c)
         ):
             prev = None
