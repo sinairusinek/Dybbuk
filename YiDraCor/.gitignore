@@ -27,3 +27,8 @@ data/**/page_gt_*/
 
 # Downloaded Transkribus page-image cache (heavy; re-fetchable)
 data/**/page_images/
+
+# RA-correction analysis caches (raw transcript layers pulled from Transkribus;
+# re-fetchable via code/transkribus/{pull_layers,stage_provenance}.py)
+data/**/layer_diff_*/
+data/**/page_latest_*/
