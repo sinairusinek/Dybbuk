@@ -8,6 +8,8 @@ Used by cluster_orgs.py, prepare_alignment.py, and the Zalmen UI search componen
 import re
 import unicodedata
 
+from matching_core import token_jaccard as _core_token_jaccard
+
 
 def normalize_name(name: str) -> str:
     """NFD Unicode normalisation + strip combining marks + lowercase + collapse whitespace.
@@ -169,23 +171,25 @@ def token_key_set(name: str) -> frozenset[str]:
 
 
 def token_set_similarity(a: str, b: str) -> float:
-    """Jaccard over token_key_set(a) / token_key_set(b). 0.0 when either side
-    has no content tokens or there is no shared substantive (len>=3) token —
-    the latter guard avoids matching on a single short shared kernel.
+    """Orgs-domain wrapper over `matching_core.token_jaccard` (core 0.2.0+).
 
-    matching-core candidate: the order-independent token-set Jaccard is generic
-    (proposed as matching_core.similarity.token_jaccard, a first-class FUZZY-
-    stage signal). Core already has this only as a hidden fallback inside
-    name_similarity. The len>=3 guard is an Orgs-domain wrapper. See LEDGER.md
-    (2026-05-27, token_jaccard promotion). On Phase-3 packaging, the Jaccard
-    comes from core; token_key_set (domain stripping) stays here."""
+    Builds the token sets via `token_key_set` (Orgs-domain: drops generic org
+    head-nouns, of-tokens, articles; strips possessive-ס; maps city-adjectives
+    + adjectival-ער). Then delegates the actual Jaccard math to core by joining
+    the stemmed token sets back into space-separated strings — this guarantees
+    Orgs and core stay in lockstep on the Jaccard definition.
+
+    Adds an Orgs-domain precondition: returns 0.0 unless the token sets share
+    a substantive (len ≥ 3) token, to avoid matching on a single short shared
+    kernel.
+    """
     ka, kb = token_key_set(a), token_key_set(b)
     if not ka or not kb:
         return 0.0
     inter = ka & kb
     if not inter or not any(len(t) >= 3 for t in inter):
         return 0.0
-    return len(inter) / len(ka | kb)
+    return _core_token_jaccard(" ".join(sorted(ka)), " ".join(sorted(kb)))
 
 
 # ── org_type canonicalization ─────────────────────────────────────────────────

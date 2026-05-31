@@ -536,7 +536,8 @@ def render() -> None:
         )
         if search_q.strip():
             q = search_q.strip().lower()
-            hits = [r for r in db_rows if q in r.get("name", "").lower()][:20]
+            from zalmen.views.org_review import active_db_rows
+            hits = [r for r in active_db_rows(db_rows) if q in r.get("name", "").lower()][:20]
             if hits:
                 st.caption("Search results")
                 for r in hits:

@@ -156,7 +156,13 @@ def pipe_join_distinct(values: list[str]) -> str:
     return " | ".join(seen.keys())
 
 
-_YIDDISH_RUN = re.compile(r"[֐-׿][֐-׿\s\-ְ-ׇ]*[֐-׿]")
+from matching_core import script_runs as _core_script_runs
+
+def _yiddish_runs(text: str) -> list[str]:
+    """Maximal Hebrew/Yiddish-script runs in `text`, via matching_core.script_runs.
+    Was a local _YIDDISH_RUN regex pre-core-0.2.0; replaced with the shared
+    primitive per LEDGER.md row 18 (closed)."""
+    return _core_script_runs(text, "hebrew") if text else []
 
 
 def _strip_format_marks(s: str) -> str:
@@ -215,7 +221,7 @@ def split_name_variants(name: str) -> list[str]:
         # (proposed matching_core.normalize.script_runs(text, script), built on
         # detect_script). The ' - ' split + parenthetical conventions + variant
         # assembly stay Orgs domain. See LEDGER.md (2026-05-27, script_runs).
-        for m in _YIDDISH_RUN.findall(part):
+        for m in _yiddish_runs(part):
             push(m.strip())
         # Extract each parenthetical body
         for body in re.findall(r"\(([^)]*)\)", part):
@@ -224,7 +230,7 @@ def split_name_variants(name: str) -> list[str]:
                 continue
             push(body)
             # If body mixes scripts, also surface the longest Yiddish run
-            for m in _YIDDISH_RUN.findall(body):
+            for m in _yiddish_runs(body):
                 push(m.strip())
     return out
 

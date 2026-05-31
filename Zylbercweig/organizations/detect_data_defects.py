@@ -27,6 +27,7 @@ from pathlib import Path
 csv.field_size_limit(sys.maxsize)
 HERE = Path(__file__).parent
 
+from matching_core import script_runs as _core_script_runs, detect_script as _core_detect_script
 from org_normalize import normalize_yiddish, token_key_set, token_set_similarity
 
 CORE_DB = HERE / "core_db.tsv"
@@ -35,15 +36,10 @@ OUT_A = HERE / "db_yiddish_contamination_punchlist.tsv"
 OUT_B_DUPS = HERE / "db_duplicate_pairs_punchlist.tsv"
 OUT_B_BUCKETS = HERE / "db_garbage_bucket_punchlist.tsv"
 
-_YIDDISH_RUN = re.compile(r"[֐-׿][֐-׿\s\-ְ-ׇ]*[֐-׿]")
-
-
 def yiddish_runs(text: str) -> list[str]:
-    """All maximal Yiddish-script runs in a string (token_jaccard / script_runs
-    candidate; mirrors prepare_alignment's _YIDDISH_RUN.findall use)."""
-    if not text:
-        return []
-    return [m.strip() for m in _YIDDISH_RUN.findall(text) if m.strip()]
+    """All maximal Yiddish-script runs in a string. Delegates to
+    matching_core.script_runs (core 0.2.0+, see LEDGER row 18)."""
+    return _core_script_runs(text, "hebrew") if text else []
 
 
 def best_token_set(a: str, b: str) -> float:
@@ -106,21 +102,34 @@ for r in db_rows:
     reasons: list[str] = []
     intra_sim: float | None = None
 
-    # (1) internal disagreement (only when BOTH populated)
+    # (1) internal disagreement (only when BOTH populated AND same-script).
+    # Cross-script pairs (English `name` + Yiddish `name_yiddish`) are
+    # translations of the same entity — token-set can't bridge them, so
+    # low_intra_sim there is a false positive (e.g. db151 Tsentral/צענטראַל).
     if name and name_yid:
         intra_sim = best_token_set(name, name_yid)
-        if intra_sim < 0.30:
+        name_script = _core_detect_script(name)
+        yid_script = _core_detect_script(name_yid)
+        same_script = name_script == yid_script and name_script != "unknown"
+        if same_script and intra_sim < 0.30:
             reasons.append(f"low_intra_sim={intra_sim:.2f}")
 
-    # (2) cross-row collision: name_yiddish matches another row's name
+    # (2) cross-row collision: name_yiddish matches another row's name.
+    # EXCEPT: skip the collision when this row's `parent_db_id` points at the
+    # other row — that's an intentional umbrella-with-branches relationship
+    # (e.g. db696 Hashomer Hatzair Vilnius → parent_db_id=602 Hashomer Hatzair).
+    parent_id = (r.get("parent_db_id") or "").strip()
     collisions: list[str] = []
     if name_yid:
         for form in [name_yid] + yiddish_runs(name_yid):
             n = normalize_yiddish(form)
             for tag in norm_to_db.get(n, []):
                 other_db, other_field = tag.split(".")
-                if other_db != db_id and other_field == "name":
-                    collisions.append(f"db{other_db}.name == this.name_yiddish ({form})")
+                if other_db == db_id or other_field != "name":
+                    continue
+                if other_db == parent_id:
+                    continue  # expected: umbrella parent shares the Yiddish name
+                collisions.append(f"db{other_db}.name == this.name_yiddish ({form})")
     collisions = sorted(set(collisions))
     if collisions:
         reasons.append("cross_row_collision")

@@ -307,8 +307,26 @@ def save_pairs(headers: list[str], rows: list[dict[str, str]]) -> None:
 
 CORE_DB_CANONICAL_HEADERS = [
 	"db_id", "name", "name_yiddish", "name_yiddish_translit",
-	"org_type", "address", "linked_cluster_ids",
+	"org_type", "address", "linked_cluster_ids", "parent_db_id",
+	# 2026-05-31: dedup-policy fields. `deprecated="true"` marks a row that has
+	# been merged into `merged_into`; deprecated rows are hidden from candidate
+	# dropdowns and skipped by prepare_alignment / detect_data_defects.
+	"deprecated", "merged_into",
 ]
+
+
+def is_deprecated_db_row(row: dict[str, str]) -> bool:
+	"""True if this core_db row has been marked dedup-deprecated (the
+	`merged_into` column points at the canonical id)."""
+	return (row.get("deprecated", "") or "").strip().lower() == "true"
+
+
+def active_db_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+	"""Filter out deprecated rows for use in candidate dropdowns / search hits.
+	Use this anywhere a user picks a DB target. Don't use it for save_core_db
+	or for resolving an existing alignment's name — deprecated rows must
+	still exist on disk."""
+	return [r for r in rows if not is_deprecated_db_row(r)]
 
 
 def _ensure_core_db_schema(headers, rows):
@@ -1591,7 +1609,7 @@ def render() -> None:
 							_nrm_yid(det.get("confirmed_address", "")),
 						]))
 						return name_ok and _loc in loc_fields
-					hits = [r for r in db_rows if _db_matches(r)][:20]
+					hits = [r for r in active_db_rows(db_rows) if _db_matches(r)][:20]
 					if hits:
 						for r in hits:
 							hit_id = r.get("db_id", "")
