@@ -740,10 +740,10 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 760	אַדלער-סיעראָצקי	אַדלער-סיעראָצקי		traveling company		ORG-C01172			
 761	גלימער	גלימער		traveling company		ORG-C01630			
 762	קלאַראַ יאָנגס טרופּע	קלאַראַ יאָנגס טרופּע		traveling company		ORG-C00128			
-763	קלאַראַ יאָנגס טרופּע	קלאַראַ יאָנגס טרופּע		traveling company		ORG-C00128			
+763	קלאַראַ יאָנגס טרופּע	קלאַראַ יאָנגס טרופּע		traveling company				true	762
 764	יאָנאַס טורקאָווס טרופּע	יאָנאַס טורקאָווס טרופּע		traveling company		ORG-C02678			
 765	טאַנענצאַפּס טרופּע	טאַנענצאַפּס טרופּע		traveling company		ORG-C02607			
-766	טאַנענצאַפּס טרופּע	טאַנענצאַפּס טרופּע		traveling company		ORG-C02607			
+766	טאַנענצאַפּס טרופּע	טאַנענצאַפּס טרופּע		traveling company				true	765
 767	טרופּע פֿון ראָטשטיין	טרופּע פֿון ראָטשטיין		traveling company		ORG-C00140			
 768	טרופּע פון שטשערבאַקאָוו	טרופּע פון שטשערבאַקאָוו		traveling company		ORG-C00139			
 769	טרופּע פֿון קופּערמאַן	טרופּע פֿון קופּערמאַן		traveling company		ORG-C02853			
@@ -762,8 +762,8 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 782	ביבליאָטעק צו פאַרשפּרייטן בילדונג	ביבליאָטעק צו פאַרשפּרייטן בילדונג		library		ORG-C02617			
 783	מכבי (מילוואַקיי)	מכבי (מילוואַקיי)		sports/recreation		ORG-C03488_Q01			
 784	מכבי (קאָוונע)	מכבי (קאָוונע)		sports/recreation		ORG-C03488_Q02			
-785	יידנראָט	יידנראָט		judenrat		ORG-C03181_Q01			
-786	יידנראָט	יידנראָט		judenrat		ORG-C03181_Q02			
+785	Yudenrat (Vilnius)	יידנראָט (ווילנע)		judenrat		ORG-C03181_Q01	849		
+786	Yudenrat (Sventsyan)	יידנראָט (סווענציאַן)		judenrat		ORG-C03181_Q02	849		
 787	יודענראַט (וואַרשעווער געטאָ)	יודענראַט (וואַרשעווער געטאָ)		judenrat		ORG-C02702_Q01			
 788	זילבערטס טרופּע	זילבערטס טרופּע		traveling company		ORG-C06008			
 789	טרופּע פֿון בערמאַן	טרופּע פֿון בערמאַן		traveling company		ORG-C01449			
@@ -826,3 +826,4 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 846	סעם אויערבאַך	סעם אויערבאַך		traveling company		ORG-C00508			
 847	טרופּע פֿון היימי פּריזאַנט	טרופּע פֿון היימי פּריזאַנט		traveling company		ORG-C00228			
 848	שניאור-כאָר	שניאור-כאָר		traveling company		ORG-C00572			
+849		יידנראָט		judenrat					
