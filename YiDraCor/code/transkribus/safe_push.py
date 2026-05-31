@@ -136,6 +136,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--only", help="restrict to one edition label")
+    ap.add_argument("--force", action="store_true",
+                    help="bypass top-owner and density guards (Sinai-authorized override only)")
     ap.add_argument("--report", default=str(REPO_ROOT / "data" / f"safe_push_plan_{_dt.date.today()}.json"))
     args = ap.parse_args()
 
@@ -155,6 +157,9 @@ def main():
             if page is None:
                 print(f"  p{n}: no server page — skip", file=sys.stderr); continue
             a = analyse_page(client, page, lp)
+            if args.force and a["decision"] == "SKIP":
+                a["decision"] = "PUSH"
+                a["reason"] = f"FORCED (was: {a['reason']})"
             a.update({"edition": label, "doc": doc, "page": n, "file": lp.name})
             plan.append(a)
             mark = "PUSH" if a["decision"] == "PUSH" else "skip"
