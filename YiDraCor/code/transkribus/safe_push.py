@@ -52,6 +52,8 @@ JOBS = [
     ("DasYudKind", 828424, "דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete", [2] + list(range(4, 13))),
     ("KidushHashem", 820939, "KidushHashem", list(range(7, 81))),
     ("AlNaharot", 820975, "AlNaharotBavel-Amkreut&Freund1909", list(range(1, 5)) + list(range(12, 69))),
+    ("Ezra", 828481, "Ezra-Emkroyt1908", list(range(3, 38))),
+    ("Blimele", 828455, "Blimele-AhronFaust1903", list(range(5, 66))),
 ]
 
 
