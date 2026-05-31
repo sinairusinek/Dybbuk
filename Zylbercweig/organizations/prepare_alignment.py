@@ -339,6 +339,11 @@ def main() -> None:
         db_id = row.get("db_id", "").strip()
         if not db_id:
             continue
+        # Skip deprecated rows: they've been merged into another db_id and
+        # should not be proposed as candidates. The `merged_into` column on
+        # the deprecated row records the canonical target.
+        if (row.get("deprecated", "") or "").strip().lower() == "true":
+            continue
         db_name = row.get("name", "").strip()
         db_name_yid = row.get("name_yiddish", "").strip()
         db_name_yid_translit = row.get("name_yiddish_translit", "").strip()

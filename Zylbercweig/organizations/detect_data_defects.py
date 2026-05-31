@@ -64,6 +64,9 @@ def best_token_set(a: str, b: str) -> float:
 # ── Load ──────────────────────────────────────────────────────────────────
 with CORE_DB.open(newline="", encoding="utf-8") as f:
     db_rows = list(csv.DictReader(f, delimiter="\t"))
+# Skip already-deprecated rows — they've been merged into another id and
+# shouldn't keep showing up in dedup punchlists every run.
+db_rows = [r for r in db_rows if (r.get("deprecated","") or "").strip().lower() != "true"]
 with ALIGN.open(newline="", encoding="utf-8") as f:
     align_rows = list(csv.DictReader(f, delimiter="\t"))
 
