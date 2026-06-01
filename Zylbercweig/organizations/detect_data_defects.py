@@ -134,15 +134,14 @@ for r in db_rows:
     if collisions:
         reasons.append("cross_row_collision")
 
-    # (3) likely backfilled from an unattributed alignment
-    if name_yid and blank_rev and not name:
-        # name empty but name_yiddish populated, and the aligned clusters that
-        # could have backfilled it have blank reviewer
+    # (3) likely backfilled from an unattributed alignment — kept ONLY as a
+    # CO-signal, not a standalone reason. A 2026-06-01 sample of 8 random
+    # blank-reviewer-backfill rows found 8/8 correctly aligned (token_sim ~1.0
+    # between row's name_yiddish and the aligned cluster's canonical), so this
+    # provenance signal on its own is noise. Worth flagging only when something
+    # else (collision or intra-row disagreement) is already suspicious.
+    if name_yid and blank_rev and not name and reasons:
         reasons.append(f"backfilled_from_blank_reviewer_aligns={len(blank_rev)}")
-    elif name_yid and blank_rev:
-        # weaker signal: name populated, but blank-reviewer aligns exist
-        # that could have driven a backfill
-        pass
 
     if reasons:
         class_a.append({
