@@ -312,6 +312,11 @@ CORE_DB_CANONICAL_HEADERS = [
 	# been merged into `merged_into`; deprecated rows are hidden from candidate
 	# dropdowns and skipped by prepare_alignment / detect_data_defects.
 	"deprecated", "merged_into",
+	# 2026-06-01: Q10 — pipe-separated alternate attested spellings (Yiddish
+	# orthographic/declension variants of the same entity) that aren't the
+	# canonical `name` or `name_yiddish`. Initially empty; populated case by
+	# case as PI/RAs reconcile variant pairs.
+	"name_variants",
 ]
 
 
