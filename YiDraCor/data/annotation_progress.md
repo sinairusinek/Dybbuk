@@ -16,7 +16,7 @@ Living tracker for the GT-restore + full-annotation effort (plan: restore masked
 | Ezra | 828481 | ? | ☐ | ? | ☐ | ☐ | ☐ | Not started. |
 | Blimele | 828455 | ? | ☐ | ? | ☐ | ☐ | ☐ | Not started. |
 | Bas Sheva | 828443 | ? | ☐ | ? | ☐ | ☐ | ☐ | Not started. |
-| Isha Raa | 820937 | ? | ☐ | ? | ☐ | ☐ | ☐ | Not started. |
+| Isha Raa | 820937 | 76 | ☐ | ? | ☐ | ☐ | ☐ | **2026-06-02**: pp.61–73 baseline merge/extend (Galed `line_merge.py`) pulled→processed→pushed IN_PROGRESS on top of LA 0.0.5 layer. Layout-only pages 61–73; rest still NEW or earlier LA. |
 | Hinke Pinke | 820969 | ? | ☐ | ? | ☐ | ☐ | ☐ | Not started. |
 | Sore Sheyndel | 820964 | ? | ☐ | ? | ☐ | ☐ | ☐ | Not started. |
 | Dovid's Fidele | 820845 | ? | ☐ | ? | ☐ | ☐ | ☐ | Not started. |
