@@ -35,6 +35,19 @@ ALIGN = HERE / "org_alignment_review.tsv"
 OUT_A = HERE / "db_yiddish_contamination_punchlist.tsv"
 OUT_B_DUPS = HERE / "db_duplicate_pairs_punchlist.tsv"
 OUT_B_BUCKETS = HERE / "db_garbage_bucket_punchlist.tsv"
+# PI-confirmed benign variant pairs — rows where name and name_yiddish are
+# legitimate orthographic/declension alternates of the same entity, not
+# contamination. Skipped from the Class A low_intra_sim check. Append rows here
+# (one per db_id) when PI confirms a variant pair is benign.
+VARIANT_CONFIRMED = HERE / "name_variant_pairs_confirmed.tsv"
+
+_CONFIRMED_BENIGN: set[str] = set()
+if VARIANT_CONFIRMED.exists():
+    with VARIANT_CONFIRMED.open(newline="", encoding="utf-8") as _f:
+        for _r in csv.DictReader(_f, delimiter="\t"):
+            _did = (_r.get("db_id") or "").strip()
+            if _did:
+                _CONFIRMED_BENIGN.add(_did)
 
 def yiddish_runs(text: str) -> list[str]:
     """All maximal Yiddish-script runs in a string. Delegates to
@@ -102,11 +115,12 @@ for r in db_rows:
     reasons: list[str] = []
     intra_sim: float | None = None
 
-    # (1) internal disagreement (only when BOTH populated AND same-script).
+    # (1) internal disagreement (only when BOTH populated AND same-script,
+    # AND not a PI-confirmed benign variant pair).
     # Cross-script pairs (English `name` + Yiddish `name_yiddish`) are
     # translations of the same entity — token-set can't bridge them, so
     # low_intra_sim there is a false positive (e.g. db151 Tsentral/צענטראַל).
-    if name and name_yid:
+    if name and name_yid and db_id not in _CONFIRMED_BENIGN:
         intra_sim = best_token_set(name, name_yid)
         name_script = _core_detect_script(name)
         yid_script = _core_detect_script(name_yid)
@@ -161,13 +175,13 @@ class_a.sort(key=lambda r: (
     float(r["intra_token_sim"]) if r["intra_token_sim"] else 1.0,
 ))
 
-with OUT_A.open("w", newline="", encoding="utf-8") as f:
-    w = csv.DictWriter(f, fieldnames=list(class_a[0].keys()) if class_a else
-                       ["db_id","name","name_yiddish","intra_token_sim",
-                        "cross_row_collisions","aligned_cluster_count",
-                        "blank_reviewer_aligns","suspect_reasons"],
-                       delimiter="\t", lineterminator="\n")
-    w.writeheader(); w.writerows(class_a)
+if class_a:
+    with OUT_A.open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=list(class_a[0].keys()),
+                           delimiter="\t", lineterminator="\n")
+        w.writeheader(); w.writerows(class_a)
+elif OUT_A.exists():
+    OUT_A.unlink()  # don't leave a stale empty file around
 
 # ── Class B: duplicate pairs ──────────────────────────────────────────────
 # Compute high-similarity pairs (token_set on best form). To keep this O(N^2)
