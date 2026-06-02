@@ -74,8 +74,27 @@ def best_token_set(a: str, b: str) -> float:
 with CORE_DB.open(newline="", encoding="utf-8") as f:
     db_rows = list(csv.DictReader(f, delimiter="\t"))
 # Skip already-deprecated rows — they've been merged into another id and
-# shouldn't keep showing up in dedup punchlists every run.
-db_rows = [r for r in db_rows if (r.get("deprecated","") or "").strip().lower() != "true"]
+# shouldn't keep showing up in dedup punchlists every run. Same for
+# out-of-project rows (modern Israeli publishers, peripheral entities).
+db_rows = [r for r in db_rows
+           if (r.get("deprecated","") or "").strip().lower() != "true"
+           and (r.get("out_of_project","") or "").strip().lower() != "true"]
+
+# PI-confirmed distinct pairs (Class B false positives) — pairs that scored
+# highly on token_set but are different entities (e.g. db26 NY Public Library
+# vs db348 NY Public Theatre). Skipped from the Class B dup punchlist.
+# Also suppress pairs that are already in db_pairs_pending_review.tsv (the
+# human-curated work queue), so the active punchlist surfaces only NEW dups.
+_CONFIRMED_DISTINCT: set[frozenset[str]] = set()
+for _src in ("confirmed_distinct_pairs.tsv", "db_pairs_pending_review.tsv"):
+    _p = HERE / _src
+    if not _p.exists():
+        continue
+    with _p.open(newline="", encoding="utf-8") as _f:
+        for _r in csv.DictReader(_f, delimiter="\t"):
+            a, b = (_r.get("db_a","") or "").strip(), (_r.get("db_b","") or "").strip()
+            if a and b:
+                _CONFIRMED_DISTINCT.add(frozenset({a, b}))
 with ALIGN.open(newline="", encoding="utf-8") as f:
     align_rows = list(csv.DictReader(f, delimiter="\t"))
 
@@ -207,6 +226,17 @@ for a, b in combinations(forms_by_db.keys(), 2):
     fa, fb = forms_by_db[a], forms_by_db[b]
     if not fa or not fb:
         continue
+    # PI-confirmed distinct: skip.
+    if frozenset({a, b}) in _CONFIRMED_DISTINCT:
+        continue
+    # Skip parent-child and sibling-via-parent pairs (umbrella-with-locals,
+    # like Forverts db249 + db692/693/694/695 or Hashomer Hatzair db602 +
+    # db696/697/698). These collide by design, not by error.
+    ra, rb = db_by_id[a], db_by_id[b]
+    pa = (ra.get("parent_db_id","") or "").strip()
+    pb = (rb.get("parent_db_id","") or "").strip()
+    if pa == b or pb == a or (pa and pa == pb):
+        continue
     best = 0.0
     for x in fa:
         for y in fb:
@@ -228,18 +258,34 @@ for a, b in combinations(forms_by_db.keys(), 2):
         })
 
 class_b_pairs.sort(key=lambda r: -float(r["token_set_sim"]))
-with OUT_B_DUPS.open("w", newline="", encoding="utf-8") as f:
-    w = csv.DictWriter(f, fieldnames=list(class_b_pairs[0].keys()) if class_b_pairs else
-                       ["db_a","name_a","name_yid_a","aligns_a","db_b","name_b",
-                        "name_yid_b","aligns_b","token_set_sim"],
-                       delimiter="\t", lineterminator="\n")
-    w.writeheader(); w.writerows(class_b_pairs)
+if class_b_pairs:
+    with OUT_B_DUPS.open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=list(class_b_pairs[0].keys()),
+                           delimiter="\t", lineterminator="\n")
+        w.writeheader(); w.writerows(class_b_pairs)
+elif OUT_B_DUPS.exists():
+    OUT_B_DUPS.unlink()  # don't leave a stale empty file
 
 # ── Class B: garbage-bucket detection ─────────────────────────────────────
 # A db row with ≥3 aligned clusters whose canonicals don't mutually match.
+# PI-confirmed clean buckets (multi-spelling consolidations / post-merge
+# aggregations where the canonical-similarity metric is a false-positive
+# because token-set can't bridge spelling variants of the same entity) are
+# read from confirmed_clean_buckets.tsv and skipped.
+_CONFIRMED_CLEAN_BUCKETS: set[str] = set()
+_CLEAN_BUCKETS_FILE = HERE / "confirmed_clean_buckets.tsv"
+if _CLEAN_BUCKETS_FILE.exists():
+    with _CLEAN_BUCKETS_FILE.open(newline="", encoding="utf-8") as _f:
+        for _r in csv.DictReader(_f, delimiter="\t"):
+            _did = (_r.get("db_id") or "").strip()
+            if _did:
+                _CONFIRMED_CLEAN_BUCKETS.add(_did)
+
 class_b_buckets: list[dict[str, str]] = []
 for db_id, aligned in aligns_by_db.items():
     if len(aligned) < 3:
+        continue
+    if db_id in _CONFIRMED_CLEAN_BUCKETS:
         continue
     canons = [(a["cluster_id"], (a.get("canonical_yiddish") or "").strip()) for a in aligned]
     canons = [(cid, c) for cid, c in canons if c]
@@ -270,12 +316,13 @@ for db_id, aligned in aligns_by_db.items():
         })
 
 class_b_buckets.sort(key=lambda r: float(r["mean_pairwise_sim"]))
-with OUT_B_BUCKETS.open("w", newline="", encoding="utf-8") as f:
-    w = csv.DictWriter(f, fieldnames=list(class_b_buckets[0].keys()) if class_b_buckets else
-                       ["db_id","name","name_yiddish","aligned_cluster_count",
-                        "mean_pairwise_sim","aligned_clusters","lowest_pair_examples"],
-                       delimiter="\t", lineterminator="\n")
-    w.writeheader(); w.writerows(class_b_buckets)
+if class_b_buckets:
+    with OUT_B_BUCKETS.open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=list(class_b_buckets[0].keys()),
+                           delimiter="\t", lineterminator="\n")
+        w.writeheader(); w.writerows(class_b_buckets)
+elif OUT_B_BUCKETS.exists():
+    OUT_B_BUCKETS.unlink()  # don't leave a stale empty file
 
 # ── Summary ───────────────────────────────────────────────────────────────
 print(f"Class A — name_yiddish contamination candidates: {len(class_a)} → {OUT_A.name}")

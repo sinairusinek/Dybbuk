@@ -317,6 +317,10 @@ CORE_DB_CANONICAL_HEADERS = [
 	# canonical `name` or `name_yiddish`. Initially empty; populated case by
 	# case as PI/RAs reconcile variant pairs.
 	"name_variants",
+	# 2026-06-02: rows that exist in the source data but aren't part of the
+	# Zylbercweig corpus's scope (modern Israeli publishers, peripheral
+	# entities). Hidden from candidate dropdowns alongside `deprecated`.
+	"out_of_project",
 ]
 
 
@@ -326,12 +330,20 @@ def is_deprecated_db_row(row: dict[str, str]) -> bool:
 	return (row.get("deprecated", "") or "").strip().lower() == "true"
 
 
+def is_out_of_project_db_row(row: dict[str, str]) -> bool:
+	"""True if this core_db row is out of the Zylbercweig project scope
+	(e.g. modern Israeli publishers). Same hiding behavior as deprecated, but
+	a distinct disposition — not merged into anything."""
+	return (row.get("out_of_project", "") or "").strip().lower() == "true"
+
+
 def active_db_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
-	"""Filter out deprecated rows for use in candidate dropdowns / search hits.
-	Use this anywhere a user picks a DB target. Don't use it for save_core_db
-	or for resolving an existing alignment's name — deprecated rows must
-	still exist on disk."""
-	return [r for r in rows if not is_deprecated_db_row(r)]
+	"""Filter out deprecated AND out-of-project rows for use in candidate
+	dropdowns / search hits. Use this anywhere a user picks a DB target. Don't
+	use it for save_core_db or for resolving an existing alignment's name —
+	the rows must still exist on disk."""
+	return [r for r in rows
+	        if not is_deprecated_db_row(r) and not is_out_of_project_db_row(r)]
 
 
 def _ensure_core_db_schema(headers, rows):

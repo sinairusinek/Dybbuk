@@ -350,6 +350,12 @@ def main() -> None:
         # the deprecated row records the canonical target.
         if (row.get("deprecated", "") or "").strip().lower() == "true":
             continue
+        # Skip out-of-project rows (e.g. modern Israeli publishers like
+        # Zmora-Bitan / Knerot, or peripheral entities like the Hashomer Hatzair
+        # printer דפוס) — these existed in the source data but aren't part of
+        # the Zylbercweig corpus's scope.
+        if (row.get("out_of_project", "") or "").strip().lower() == "true":
+            continue
         db_name = row.get("name", "").strip()
         db_name_yid = row.get("name_yiddish", "").strip()
         db_name_yid_translit = row.get("name_yiddish_translit", "").strip()
