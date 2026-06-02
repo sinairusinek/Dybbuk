@@ -202,9 +202,13 @@ def save_alignment(headers, rows):
         st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
+# Canonical column order for core_db.tsv. Must stay in sync with the same
+# constant in views/org_review.py — that's the authoritative copy (the schema
+# comments live there). Any time a new column is added there, mirror it here.
 CORE_DB_CANONICAL_HEADERS = [
     "db_id", "name", "name_yiddish", "name_yiddish_translit",
-    "org_type", "address", "linked_cluster_ids",
+    "org_type", "address", "linked_cluster_ids", "parent_db_id",
+    "deprecated", "merged_into", "name_variants", "out_of_project",
 ]
 
 
