@@ -1,0 +1,8 @@
+action	source_cluster	source_name	mentions_settlement	target_db_id	target_db_name	notes
+SPLIT_THEN_MERGE	ORG-C02007	יידישן מעוטים-טעאַטער	Kovno (קאָוונע)	518	קאָוונער יידישן מלוכה-טעאַטער	Mention "1933—1934 — אין קאָוונער יידישער מעוטים-טעאַטער" + ORG-C02849 pair-row. Kovno slice of multi-city Minorities cluster.
+SPLIT_THEN_MERGE	ORG-C02007	יידישן מעוטים-טעאַטער	Riga (ריגע)	500	ריגער יידישן מלוכה-טעאַטער	Mentions "דערנאָך אין יידישן מעוטים-טעאַטער אין ריגע" and "צוויי סעזאָנען ... יידישן מיעוטים-טעאַטער". Riga slice of same cluster.
+RETARGET	ORG-C02949	ריגער יידישן מעוטים-טעאַטער (db 536 cluster)	Riga	500	ריגער יידישן מלוכה-טעאַטער	db 536 already merged_into=500 in core_db (2026-06-02); the cluster ORG-C02949 still aligns to 536 and must be re-pointed to 500 so it doesn't reanimate the dead db_id.
+RETARGET	ORG-C03282	מועטים טעאַטער	Riga	500	ריגער יידישן מלוכה-טעאַטער	Phonetic variant (מועטים) of מעוטים. Drafter aligned to 536; should be 500.
+PROPAGATE_DELETION	—	rows 536 + 573 in org_addresses_review.tsv	Riga (Skolas iela 6)	500	—	Both already merged_into=500 in core_db, but org_addresses_review.tsv still carries them as live rows. Propagation gap; remove or mark merged in addresses_review.
+VERIFY_SCOPE	—	—	Vilna	519	ווילנער יידישן מלוכה-טעאַטער	Manual check: scan mentions in cluster_pairs_review for any Vilna Minorities-period references that should fold here. Pre-1940 Vilna was under Polish minority framework, not Latvian/Lithuanian, so apply rule cautiously.
+DO_NOT_MERGE	—	לעטישן מלוכה-טעאַטער (618/619)	Riga (Kronvalda 2)	—	—	Latvian-language National Theatre — different building, different language. Lexical trap; never fold into 500.
