@@ -666,9 +666,9 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 686	גאָלד-טעאַטער	גאָלד-טעאַטער		theatre		ORG-C01841					
 687	דער וועקער	דער וועקער		journals/ newspapers		ORG-C02957					
 688	קאַרל טעאַטער	קאַרל טעאַטער		theatre		ORG-C00896					
-689		שטאָטישע רעגירונגס-שול		Education		ORG-C01561					
-690		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971					
-691		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971 | ORG-C04456					
+689		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971 | ORG-C04456					
+690		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971		true	689		
+691		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971 | ORG-C04456		true	689		
 692	Forverts (New York City)	פֿאַרווערטס		Journals/ Newspapers	New York City		249				
 693	Forverts (Chicago)	פֿאַרווערטס		Journals/ Newspapers	Chicago		249				
 694	Forverts (Philadelphia)	פֿאַרווערטס		Journals/ Newspapers	Philadelphia		249				
@@ -692,8 +692,8 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 712		יידישן טעאַטער אין מאָנטרעאל		Theatre				true	711		
 713	יידיש קונסט טעאַטער	יידיש קונסט טעאַטער				ORG-C00195_Q02					
 714		ביבליאָטעק אין יעליסאַוועטגראָד		Library		ORG-C06748					
-715		ערשטע קאָאָפּעראַטיווע דראָמע		Theatre		ORG-C06515 | ORG-C01724					
-716		ערשטער יידישער קאָאָפּעראַטיווער דראַמע		Theatre		ORG-C01724					
+715		ערשטע קאָאָפּעראַטיווע דראָמע		Theatre		ORG-C06515 | ORG-C01724				ערשטער יידישער קאָאָפּעראַטיווער דראַמע	
+716		ערשטער יידישער קאָאָפּעראַטיווער דראַמע		Theatre		ORG-C01724		true	715		
 717		קינדער-ליבהאָבער-קרייז		Theatre		ORG-C05168					
 718		יעקאַטערינאָסלאָווער זומער-טעאַטער „אָבטשעסטוועננאַיע סאָבראניע“		Theatre		ORG-C04915					
 719		וויסנשאַפט		Publisher		ORG-C04872					
@@ -717,9 +717,9 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 737		"ישיבה „לשכת הרבנים"" אין ירושלים"		Education		ORG-C05317					
 738		לעמעל-שול		Education				true	736		
 739		ביקור חולים (ירושלים)		Health Institutions		ORG-C00792_Q01					
-740		נאַציאָנאַלן מוזיי אין ירושלים		Theatre		ORG-C02427					
+740		נאַציאָנאַלן מוזיי אין ירושלים		Theatre		ORG-C02427		true	742		
 741		יתומים-היים פֿאַר מיידלעך		Welfare/Aid Organization		ORG-C03738					
-742		נאַציאָנאַלן מוזיי		Heritage Institution		ORG-C00560 | ORG-C02427					
+742		נאַציאָנאַלן מוזיי אין ירושלים		Heritage Institution		ORG-C00560 | ORG-C02427				נאַציאָנאַלן מוזיי	
 743		"„דראַמקרייז מ. ווינטשעווסקי"""		Theatre		ORG-C00575					
 744				Theatre				true	747		
 745		מינסקער מעלוכעשער יידישער טעאַטער		Theatre		ORG-C01160 | ORG-C07318					
@@ -771,7 +771,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 791	גערמאָזס טרופּע	גערמאָזס טרופּע		traveling company		ORG-C06237					
 792	קאָליךס טרופּע	קאָליךס טרופּע		traveling company		ORG-C05178					
 793	לאַטיינערס טרופּע	לאַטיינערס טרופּע		traveling company		ORG-C04568					
-794	משה ליפּמאָןס טרופּע	משה ליפּמאָןס טרופּע		traveling company		ORG-C04966					
+794	משה ליפּמאָןס טרופּע	משה ליפּמאָןס טרופּע		traveling company		ORG-C04966 | ORG-C02053				טרופּע פֿון ליפּמאַן	
 795	טעאַטער-סטודיע „קולטור-ליגע“	טעאַטער-סטודיע „קולטור-ליגע“		theatre education		ORG-C00345					
 796	די מאַסקע	די מאַסקע		theatre education		ORG-C03131					
 797	יידישע טעאַטער-סטודיע ביים לאָדזשער „הזמיר“	יידישע טעאַטער-סטודיע ביים לאָדזשער „הזמיר“		theatre education		ORG-C02624					
@@ -798,7 +798,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 818	טרופּע פֿון שטאָקפֿעדער	טרופּע פֿון שטאָקפֿעדער		traveling company		ORG-C02932					
 819	טרופּע פֿון קאַנאַפּאָוו	טרופּע פֿון קאַנאַפּאָוו		traveling company		ORG-C03121					
 820	טרופּע פֿון בלייכמאַן	טרופּע פֿון בלייכמאַן		traveling company		ORG-C03186					
-821	טרופּע פֿון ליפּמאַן	טרופּע פֿון ליפּמאַן		traveling company		ORG-C02053					
+821	טרופּע פֿון ליפּמאַן	טרופּע פֿון ליפּמאַן		traveling company		ORG-C02053		true	794		
 822	טאָמאַשעווסקיס טרופּע	טאָמאַשעווסקיס טרופּע		traveling company		ORG-C03865					
 823	שעהנבערגס טרופּע	שעהנבערגס טרופּע		traveling company		ORG-C06266					
 824	טרופּעס פֿון בעקער	טרופּעס פֿון בעקער		traveling company				true	610		
