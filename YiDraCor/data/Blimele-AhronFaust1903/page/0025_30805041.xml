@@ -3,13 +3,13 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_10:55</Creator>
         <Created>2021-11-21T13:23:19.089+01:00</Created>
-        <LastChange>2026-05-29T05:41:47.586+02:00</LastChange>
+        <LastChange>2026-05-31T19:33:25.888+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828455" pageId="30805041" pageNr="25" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=GDRRJSVUAQEAIUSUMLGJSRQS" imageId="24240305"/>
+        <TranskribusMetadata docId="828455" pageId="30805041" pageNr="25" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=GDRRJSVUAQEAIUSUMLGJSRQS" imageId="24240305"/>
     </Metadata>
     <Page imageFilename="30805041.jpg" imageWidth="2416" imageHeight="3868">
         <PrintSpace>
@@ -18,7 +18,7 @@
         <GraphicRegion id="Graphic_1649536104597_3761" custom="readingOrder {index:0;}">
             <Coords points="1238,2746 1514,2746 1514,2807 1238,2807"/>
         </GraphicRegion>
-        <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649535381791_3018" custom="readingOrder {index:1;} structure {type:paragraph;}">
+        <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649535381791_3018" custom="readingOrder {index:1;} structure {type:body;}">
             <Coords points="1273,303 1382,308 1571,308 1571,375 1273,375"/>
             <TextLine id="line_1649535381841_3021" custom="readingOrder {index:0;}">
                 <Coords points="1263,390 1304,401 1320,393 1352,412 1376,398 1403,404 1436,384 1556,393 1566,390 1568,319 1538,319 1505,297 1425,306 1379,286 1324,299 1264,294"/>
@@ -625,7 +625,7 @@
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649535423991_3090" custom="readingOrder {index:12;} structure {type:paragraph;}">
             <Coords points="969,2303 1397,2303 1397,2500 969,2500"/>
-            <TextLine id="line_1649535424037_3093" custom="readingOrder {index:0;}">
+            <TextLine id="line_1649535424037_3093" custom="readingOrder {index:0;} stage {offset:7; length:11; type:business;}">
                 <Coords points="964,2395 989,2379 1047,2397 1157,2382 1220,2385 1299,2416 1332,2401 1364,2413 1396,2401 1392,2334 1339,2316 1302,2337 1251,2322 1159,2338 1040,2315 958,2325"/>
                 <Baseline points="969,2351 1010,2357 1076,2363 1141,2370 1207,2374 1273,2378 1338,2381 1397,2383"/>
                 <TextEquiv>
@@ -665,7 +665,7 @@
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649535399071_3041" custom="readingOrder {index:14;} structure {type:paragraph;}">
             <Coords points="1098,2564 1670,2564 1670,2630 1098,2630"/>
-            <TextLine id="line_1649535399103_3044" custom="readingOrder {index:0;}">
+            <TextLine id="line_1649535399103_3044" custom="readingOrder {index:0;} trailer {offset:0; length:22;}">
                 <Coords points="1090,2627 1212,2619 1339,2647 1431,2612 1484,2637 1667,2622 1650,2571 1090,2567"/>
                 <Baseline points="1098,2607 1128,2609 1161,2609 1195,2610 1229,2612 1262,2612 1296,2613 1329,2615 1363,2615 1397,2615 1430,2615 1464,2615 1497,2615 1531,2615 1565,2615 1598,2613 1632,2613 1665,2612 1670,2611"/>
                 <TextEquiv>

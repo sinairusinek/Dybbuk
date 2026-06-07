@@ -53,7 +53,7 @@ TURN_RE = re.compile(r"^\s*([^\s:׃]{1,18}(?:\s+[^\s:׃]{1,18}){0,2})\s*[:׃]")
 # Canonical xmlid for each collective surface skeleton (consistent across plays).
 COLLECTIVE_XMLID = {
     "אלע": "alle", "שטימען": "shtimen", "ביידע": "beyde", "מענער": "mener",
-    "מעדכען": "meydkhen", "מ_דכען": "meydkhen", "קאהר": "chor", "כאר": "chor",
+    "מעדכען": "meydkhen", "מ_דכען": "meydkhen", "קאהר": "chor", "כאר": "chor", "קאר": "chor",
     "דועט": "duet", "איינער": "eyner", "דאמען": "damen", "קינדער": "kinder",
     "סאפראן": "sopran", "אלט": "alt", "באס": "bas", "טענאר": "tenor",
 }

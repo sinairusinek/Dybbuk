@@ -79,6 +79,7 @@ def _bump_index_version() -> None:
 # we colour the most common ones and lump the long tail as grey.
 _TYPE_COLORS: dict[str, str] = {
     "Theatre": "#e6194B",
+    "Non-Yiddish Theatre": "#7c1b2b",
     "Traveling Company": "#f58231",
     "Company on Tour": "#ffe119",
     "Amateur": "#bfef45",

@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_06:57</Creator>
         <Created>2021-11-21T13:20:24.907+01:00</Created>
-        <LastChange>2026-05-25T07:46:58.287+02:00</LastChange>
+        <LastChange>2026-06-04T13:11:44.757+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828481" pageId="30807796" pageNr="4" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=NWVXDHYTISWNLRHQFXJFZNMG" imageId="24240662"/>
+        <TranskribusMetadata docId="828481" pageId="30807796" pageNr="4" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=NWVXDHYTISWNLRHQFXJFZNMG" imageId="24240662"/>
     </Metadata>
     <Page imageFilename="30807796.jpg" imageWidth="3637" imageHeight="2763">
         <PrintSpace>
@@ -108,7 +108,7 @@
                     <Unicode>שִׁמְעוֹן</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1638791876978_2739" custom="readingOrder {index:13;}">
+            <TextLine id="line_1638791876978_2739" custom="readingOrder {index:13;} roleDesc {offset:0; length:14;}">
                 <Coords points="2533,1641 2612,1627 2651,1635 2664,1626 2761,1645 2777,1638 2779,1580 2730,1589 2649,1544 2575,1543 2561,1556 2535,1559"/>
                 <Baseline points="2541,1634 2779,1627"/>
                 <TextEquiv>
@@ -136,7 +136,7 @@
                     <Unicode>זִיגִיזְמוּנד פאזשע בּיים קעניג</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1638791906802_2759" custom="readingOrder {index:17;}">
+            <TextLine id="line_1638791906802_2759" custom="readingOrder {index:17;} role {offset:0; length:13; xmlid:polyaken;} role {offset:16; length:7; xmlid:yuden_ensemble;} role {offset:26; length:11; xmlid:pazshen;} role {offset:40; length:10; xmlid:boyern;}">
                 <Coords points="2160,1943 2579,1977 2785,1925 2896,1959 2988,1950 2990,1889 2840,1865 2637,1900 2602,1877 2459,1907 2161,1892"/>
                 <Baseline points="2169,1937 2993,1920"/>
                 <TextEquiv>
@@ -144,7 +144,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
         <TextRegion id="region_1638791688382_2646" custom="readingOrder {index:1;}">
@@ -184,7 +184,7 @@
                     <Unicode>(דעבאָרא מיט א האַרפֿע בּיים פֿענסטער).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1638791968020_2796" custom="readingOrder {index:5;}">
+            <TextLine id="line_1638791968020_2796" custom="readingOrder {index:5;} speaker {offset:0; length:7; xmlid:debora;}">
                 <Coords points="870,958 1247,988 1449,973 1548,1003 1636,970 1635,925 1581,915 1432,939 1379,904 1160,924 1128,900 869,903"/>
                 <Baseline points="879,952 1413,957 1431,970 1640,971"/>
                 <TextEquiv>
@@ -332,7 +332,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
         <GraphicRegion id="Graphic_1638792187504_2962" custom="readingOrder {index:2;}">

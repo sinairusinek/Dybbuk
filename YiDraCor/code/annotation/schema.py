@@ -41,6 +41,7 @@ KNOWN_COLLECTIVE = {
     "מ_דכען",
     "קאהר",     # khor — chorus
     "כאר",
+    "קאר",
     "דועט",     # duet
     "איינער",   # eyner — someone
     "דאמען",    # damen — ladies
