@@ -56,6 +56,7 @@ ATTESTATION_BASE = 6
 
 _ORG_TYPE_OPTIONS = [
 	"Theatre",
+	"Non-Yiddish Theatre",
 	"Traveling Company",
 	"Company on Tour",
 	"Amateur",

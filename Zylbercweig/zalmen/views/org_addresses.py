@@ -84,6 +84,7 @@ _LOC_FIELDS = ("settlement", "settlement_yiddish", "address", "address_romanized
 
 _ORG_TYPE_OPTIONS = [
 	"Theatre",
+	"Non-Yiddish Theatre",
 	"Traveling Company",
 	"Company on Tour",
 	"Amateur",
