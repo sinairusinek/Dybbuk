@@ -31,6 +31,7 @@ if _BASE_STR not in sys.path:
     sys.path.insert(0, _BASE_STR)
 from organizations.org_normalize import normalize_yiddish as _nrm_yid
 from organizations.settlement_index import get_index as _get_settlement_index
+from zalmen.activity_log import log_action
 
 ALIGN_FILE = BASE / "organizations" / "org_alignment_review.tsv"
 PAIRS_FILE = BASE / "organizations" / "cluster_pairs_review.tsv"
@@ -609,6 +610,13 @@ def _save_pair_decision(
 	rows[row_idx]["reviewer_notes"] = note_text.strip()
 	_stamp(rows[row_idx])
 	save_pairs(headers, rows)
+	log_action(
+		"org_review", "pair_decision",
+		target_id=pair_id, decision=decision, note=note_text.strip(),
+		cluster_i=rows[row_idx].get("cluster_id_i", ""),
+		cluster_j=rows[row_idx].get("cluster_id_j", ""),
+		selected_cid=selected_cid,
+	)
 	load_pairs.clear()
 	load_pair_index.clear()
 	st.rerun()
@@ -629,7 +637,9 @@ def _merge_clusters_from_search(
 			max_num = max(max_num, int(pid[1:]))
 
 	_ensure_audit_cols(pair_headers, pair_rows, "reviewer", "reviewed_at")
+	merged_cids: list[str] = []
 	for other_cid, other_row in other_cids_and_rows:
+		merged_cids.append(other_cid)
 		# Check if a pair already exists
 		found = False
 		for p in pair_rows:
@@ -660,6 +670,12 @@ def _merge_clusters_from_search(
 			pair_rows.append(new_pair)
 
 	save_pairs(pair_headers, pair_rows)
+	log_action(
+		"org_review", "merge_via_search",
+		target_id=current_cid, decision="MERGE",
+		note=f"merged with {len(merged_cids)} cluster(s)",
+		merged_with=merged_cids,
+	)
 	load_pairs.clear()
 	load_pair_index.clear()
 	st.rerun()
@@ -1025,6 +1041,12 @@ def _apply_batch_accepts(
 
 		row["reviewer_notes"] = (d.get("rationale", "").strip()[:500])
 		_stamp(row)
+		log_action(
+			"org_review", "alignment_batch_accept",
+			target_id=cid, decision=row["decision"],
+			note=row["reviewer_notes"],
+			aligned_db_id=row.get("aligned_db_id", ""),
+		)
 
 	total = accepted_aligns + accepted_news + accepted_other
 	if total == 0:
@@ -1724,6 +1746,9 @@ def render() -> None:
 			a_rows[row_idx]["reviewer_notes"] = notes
 			_stamp(a_rows[row_idx])
 			save_alignment(a_headers, a_rows)
+			log_action("org_review", "alignment",
+				target_id=selected.get("cluster_id", ""),
+				decision=quick_action, note=notes)
 			load_alignment.clear()
 			st.rerun()
 
@@ -1745,6 +1770,10 @@ def render() -> None:
 			a_rows[row_idx]["reviewer_address"] = review_address
 			_stamp(a_rows[row_idx])
 			save_alignment(a_headers, a_rows)
+			log_action("org_review", "alignment",
+				target_id=selected.get("cluster_id", ""),
+				decision="ALIGN", note=notes,
+				aligned_db_id=chosen_db_id)
 			load_alignment.clear()
 			st.session_state.pop(choice_key, None)
 			st.rerun()
@@ -1783,5 +1812,9 @@ def render() -> None:
 			a_rows[row_idx]["reviewer_address"] = review_address
 			_stamp(a_rows[row_idx])
 			save_alignment(a_headers, a_rows)
+			log_action("org_review", "alignment",
+				target_id=selected.get("cluster_id", ""),
+				decision="NEW", note=notes,
+				aligned_db_id=str(next_id))
 			load_alignment.clear()
 			st.rerun()

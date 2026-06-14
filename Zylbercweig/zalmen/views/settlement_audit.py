@@ -21,6 +21,8 @@ from typing import Iterable
 
 import streamlit as st
 
+from zalmen.activity_log import log_action
+
 BASE = pathlib.Path(__file__).parents[2]
 _BASE_STR = str(BASE)
 if _BASE_STR not in sys.path:
@@ -722,6 +724,13 @@ def _row_action_menu(
                     msg = _do_merge(picked)
                     for pk_kind, pk_id, _ in opts:
                         st.session_state.pop(f"{key}_mp_{pk_kind}_{pk_id}", None)
+                    log_action(
+                        "settlement_audit", "merge",
+                        target_id=f"{self_kind}:{self_id}", decision="MERGE",
+                        note=msg or "",
+                        qid=qid, org_type=bucket.org_type,
+                        partners=[f"{k}:{i}" for k, i in picked],
+                    )
                     if msg:
                         st.toast(msg, icon="✅")
                     st.rerun(scope="app")
@@ -750,6 +759,13 @@ def _row_action_menu(
                                    help="Show variants, settlements & attestations")
                     if cols[2].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
                         msg = _do_merge([(r_kind, r_id)])
+                        log_action(
+                            "settlement_audit", "merge_via_search",
+                            target_id=f"{self_kind}:{self_id}", decision="MERGE",
+                            note=msg or "",
+                            qid=qid, org_type=bucket.org_type,
+                            partner=f"{r_kind}:{r_id}",
+                        )
                         if msg:
                             st.toast(msg, icon="✅")
                         st.rerun(scope="app")
@@ -779,6 +795,13 @@ def _row_action_menu(
                     _new, msg = _mint_db_from_clusters(
                         [self_id], bucket.org_type, canonical_yiddish, "",
                         a_rows, a_headers, db_rows, db_headers,
+                    )
+                    log_action(
+                        "settlement_audit", "mint_solo",
+                        target_id=self_id, decision="MINT",
+                        note=msg or "",
+                        qid=qid, org_type=bucket.org_type,
+                        new_db_id=getattr(_new, "db_id", "") if _new else "",
                     )
                     st.toast(msg, icon="✅")
                     st.rerun(scope="app")

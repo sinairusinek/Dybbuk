@@ -19,6 +19,16 @@ import xml.etree.ElementTree as ET
 
 import streamlit as st
 
+from datetime import datetime, timezone
+from zalmen.activity_log import log_action
+
+
+def _stamp_pair(row: dict) -> None:
+    """Stamp reviewer + reviewed_at on a pair row (matches org_review schema)."""
+    row["reviewer"] = st.session_state.get("reviewer", "")
+    row["reviewed_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def _open_url(view: str, entity: str = "") -> str:
     """Build a deep-link URL for opening a specific view+entity in a new tab."""
     import urllib.parse
@@ -248,6 +258,8 @@ def _render_alignment_requeue_panel() -> None:
                     row["decision"] = ""
                     row["aligned_db_id"] = ""
                     save_alignment(a_headers, a_rows)
+                    log_action("org_clusters", "requeue", target_id=cid,
+                               decision="REQUEUE", note=f"from GENERIC: {name}")
                     load_alignment.clear()
                     st.rerun()
         with t2:
@@ -260,6 +272,8 @@ def _render_alignment_requeue_panel() -> None:
                     row["decision"] = ""
                     row["aligned_db_id"] = ""
                     save_alignment(a_headers, a_rows)
+                    log_action("org_clusters", "requeue", target_id=cid,
+                               decision="REQUEUE", note=f"from UNCLUSTER: {name}")
                     load_alignment.clear()
                     st.rerun()
 
@@ -460,7 +474,14 @@ def _render_queue(headers, rows, visible):
         rows[row_idx]["reviewer_settlement"] = new_settlement if decision == "MERGE" else ""
         rows[row_idx]["reviewer_address"] = new_address if decision == "MERGE" else ""
         rows[row_idx]["reviewer_notes"] = combined_note
+        _stamp_pair(rows[row_idx])
         save_pairs(headers, rows)
+        log_action(
+            "org_clusters", "pair_decision",
+            target_id=pair_id, decision=decision, note=combined_note,
+            cluster_i=rows[row_idx].get("cluster_id_i", ""),
+            cluster_j=rows[row_idx].get("cluster_id_j", ""),
+        )
         load_pairs.clear()
         st.session_state.pop(f"cluster_db_ref_{pair_id}", None)
         if pos < len(visible) - 1:
@@ -525,7 +546,14 @@ def _render_table(headers, rows, visible):
                 rows[row_idx]["reviewer_settlement"] = settlement
                 rows[row_idx]["reviewer_address"] = address
                 rows[row_idx]["reviewer_notes"] = combined_note
+                _stamp_pair(rows[row_idx])
                 save_pairs(headers, rows)
+                log_action(
+                    "org_clusters", "pair_decision",
+                    target_id=pair_id, decision=decision, note=combined_note,
+                    cluster_i=rows[row_idx].get("cluster_id_i", ""),
+                    cluster_j=rows[row_idx].get("cluster_id_j", ""),
+                )
                 load_pairs.clear()
                 st.session_state.pop(f"cluster_db_ref_{pair_id}", None)
                 st.rerun()

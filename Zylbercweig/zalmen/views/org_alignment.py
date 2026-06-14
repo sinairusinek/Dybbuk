@@ -22,6 +22,8 @@ import xml.etree.ElementTree as ET
 
 import streamlit as st
 
+from zalmen.activity_log import log_action
+
 def _open_url(view: str, entity: str = "") -> str:
     """Build a deep-link URL for opening a specific view+entity in a new tab."""
     import urllib.parse
@@ -582,6 +584,7 @@ def render() -> None:
             a_rows[row_idx]["aligned_db_id"] = chosen_db_id
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
+            log_action("org_alignment", "alignment", target_id=selected["cluster_id"], decision="ALIGN", note=notes, aligned_db_id=chosen_db_id)
             load_alignment.clear()
             st.session_state.pop(choice_key, None)
             st.session_state.a1_detail_open = False
@@ -605,6 +608,7 @@ def render() -> None:
             a_rows[row_idx]["aligned_db_id"] = str(next_id)
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
+            log_action("org_alignment", "alignment", target_id=selected["cluster_id"], decision="NEW", note=notes, aligned_db_id=str(next_id))
             load_alignment.clear()
             st.session_state.a1_detail_open = False
             st.rerun()
@@ -614,6 +618,7 @@ def render() -> None:
             a_rows[row_idx]["aligned_db_id"] = ""
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
+            log_action("org_alignment", "alignment", target_id=selected["cluster_id"], decision="GENERIC", note=notes)
             load_alignment.clear()
             st.session_state.a1_detail_open = False
             st.rerun()
@@ -623,6 +628,7 @@ def render() -> None:
             a_rows[row_idx]["aligned_db_id"] = ""
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
+            log_action("org_alignment", "alignment", target_id=selected["cluster_id"], decision="UNCLUSTER", note=notes)
             load_alignment.clear()
             st.session_state.a1_detail_open = False
             st.rerun()
@@ -632,6 +638,7 @@ def render() -> None:
             a_rows[row_idx]["aligned_db_id"] = ""
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
+            log_action("org_alignment", "alignment", target_id=selected["cluster_id"], decision="DISCUSS", note=notes)
             load_alignment.clear()
             st.session_state.a1_detail_open = False
             st.rerun()
@@ -643,6 +650,7 @@ def render() -> None:
             a_rows[row_idx]["aligned_db_id"] = ""
             a_rows[row_idx]["reviewer_notes"] = notes
             save_alignment(a_headers, a_rows)
+            log_action("org_alignment", "alignment", target_id=selected["cluster_id"], decision="DEFER", note=notes)
             load_alignment.clear()
             cluster_qid = ""
             for s in (selected.get("extracted_settlements") or "").split("|"):

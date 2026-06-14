@@ -31,6 +31,8 @@ from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 import streamlit as st
 
+from zalmen.activity_log import log_action
+
 def _open_url(view: str, entity: str = "") -> str:
     """Build a deep-link URL for opening a specific view+entity in a new tab."""
     import urllib.parse
@@ -328,6 +330,8 @@ def _unlink_cluster(cluster_id: str):
             row["decision"] = ""
             row["aligned_db_id"] = ""
             save_alignment(headers, rows)
+            log_action("org_addresses", "unlink_cluster",
+                       target_id=cluster_id, decision="UNLINK")
             _refresh_after_upstream_change()
             st.rerun()
 
@@ -877,6 +881,14 @@ def _merge_db_identities(survivor_id: str, loser_id: str) -> dict[str, int]:
     except Exception as e:
         st.toast(f"⚠️ core_db update failed: {e}", icon="⚠️")
 
+    log_action(
+        "org_addresses", "db_merge",
+        target_id=survivor_id, decision="MERGE_INTO",
+        note=f"merged db_id {loser_id} into {survivor_id}",
+        loser_id=loser_id, survivor_id=survivor_id,
+        alignment_rewritten=alignment_rewritten,
+        addr_subentries_repointed=addr_subentries_repointed,
+    )
     return {"alignment_rewritten": alignment_rewritten,
             "addr_subentries_repointed": addr_subentries_repointed}
 
@@ -1033,6 +1045,12 @@ def _save_org_type(db_id: str, addr_row: dict, new_type: str,
                 break
     except Exception:
         pass
+
+    log_action(
+        "org_addresses", "org_type_change",
+        target_id=db_id, decision="SAVE", note=f"org_type → {new_type}",
+        new_type=new_type,
+    )
 
 
 def _render_detail(headers, rows, row, samples):
@@ -1274,6 +1292,11 @@ def _render_detail(headers, rows, row, samples):
         rows[row_idx]["reviewed_at"]       = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         _locs_to_row(rows[row_idx], st.session_state.get(locs_key, []))
         save_orgs(headers, rows)
+        log_action(
+            "org_addresses", "address_save",
+            target_id=cid, decision="SAVE", note=new_note,
+            n_locations=len(st.session_state.get(locs_key, []) or []),
+        )
         load_orgs.clear()
         st.session_state.pop(locs_key, None)
         # Clear geocode session state for all location indices
