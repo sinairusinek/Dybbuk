@@ -27,6 +27,11 @@ UNICODE_TAG = f"{{{PAGE_NS}}}Unicode"
 
 OPEN_RX_STAGE = re.compile(r"זינגט")  # must occur inside a stage span
 OPEN_RX_TEXT  = re.compile(r"^\s*Nr\.\s*\d|^\s*געזאנגס[־⸗-]?טעקסט")  # header-style markers
+# Noa 2026-06-14: standalone "(ביס)" (refrain/encore mark) appears at the end
+# of song lines and is a robust "we are mid-song" signal. When seen and not
+# already in song mode, treat as song-opener and backfill prior eligible
+# lines on the same page (until a heading, folio, or non-chorus speaker line).
+BIS_RX = re.compile(r"\(\s*ביס\s*\)")
 CHORUS_RX = re.compile(r"^\s*(קאהר|כאר|רעפריין|אלע|ביידע|אלט|טענאר|סאלא)\s*[:׃]?")
 REPO = Path(__file__).resolve().parents[2]
 
@@ -75,17 +80,25 @@ def process_play(play: str, dry_run: bool) -> dict:
 
     for pf, tree in page_trees:
         stats["pages"] += 1
-        for line in tree.iter(LINE_TAG):
+        # collect lines on this page once so we can backfill on a (ביס) hit.
+        page_lines = list(tree.iter(LINE_TAG))
+        page_meta = []  # parallel: (text, has_speaker, has_heading, has_stage, chorus_speaker, has_bis)
+        for line in page_lines:
             text = line_text(line).rstrip()
+            hs = has_tag(line, "speaker")
+            hh = has_tag(line, "heading")
+            hst = has_tag(line, "stage")
+            cs = hs and bool(CHORUS_RX.match(text))
+            hb = bool(BIS_RX.search(text))
+            page_meta.append((text, hs, hh, hst, cs, hb))
+
+        for idx, line in enumerate(page_lines):
+            text, has_speaker, has_heading, has_stage, chorus_speaker, has_bis = page_meta[idx]
             if not text:
                 continue
-            has_speaker = has_tag(line, "speaker")
-            has_heading = has_tag(line, "heading")
-            has_stage   = has_tag(line, "stage")
             stage_blob = stage_text_in_line(line)
 
-            opens_song = bool(OPEN_RX_STAGE.search(stage_blob) or OPEN_RX_TEXT.search(text))
-            chorus_speaker = has_speaker and bool(CHORUS_RX.match(text))
+            opens_song = bool(OPEN_RX_STAGE.search(stage_blob) or OPEN_RX_TEXT.search(text) or has_bis)
 
             if in_song:
                 if has_heading:
@@ -123,8 +136,44 @@ def process_play(play: str, dry_run: bool) -> dict:
                     lg_id += 1
                     stats["lg_opened"] += 1
                     in_song = True
-                    # if this opening line itself has lyric content past the marker, leave it
-                    # (it's typically the (זינגט) stage line, not a verse)
+                    if has_bis:
+                        # Backfill: walk backward on this page over lines that
+                        # look like sung lyrics — no heading, no folio, no
+                        # non-chorus speaker turn — and tag them under the same
+                        # lg. Then tag the current (ביס) line itself.
+                        backfill = []
+                        j = idx - 1
+                        while j >= 0:
+                            t_j, hs_j, hh_j, hst_j, cs_j, _ = page_meta[j]
+                            if not t_j:
+                                j -= 1; continue
+                            if hh_j:
+                                break
+                            if hs_j and not cs_j:
+                                # speaker turn — chorus speaker label belongs
+                                # to the song, others end the backfill.
+                                break
+                            if hst_j and not cs_j:
+                                # pure stage direction inside a song run — skip
+                                # (don't tag, but don't break)
+                                j -= 1; continue
+                            backfill.append((j, page_lines[j], t_j))
+                            j -= 1
+                        for _, bline, btext in reversed(backfill):
+                            bline.set("custom", append_custom(
+                                bline.get("custom", ""),
+                                "l",
+                                {"offset": 0, "length": len(btext), "lg_id": str(lg_id)},
+                            ))
+                            stats["song_lines"] += 1
+                        line.set("custom", append_custom(
+                            line.get("custom", ""),
+                            "l",
+                            {"offset": 0, "length": len(text), "lg_id": str(lg_id)},
+                        ))
+                        stats["song_lines"] += 1
+                    # for the (זינגט) opener, do NOT tag this line — typically a
+                    # stage direction; lyrics start on the next line.
 
     if in_song:
         stats["lg_closed"] += 1  # implicit close at end of play

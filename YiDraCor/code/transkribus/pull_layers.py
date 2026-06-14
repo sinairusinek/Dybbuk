@@ -27,7 +27,7 @@ from typing import Optional
 
 from transkribus.client import TrpClient
 
-DATE = "2026-05-31"
+DATE = "2026-06-14"
 COLLECTION_ID = 2372172
 
 # Tool-name prefixes that identify OUR pipeline pushes (not RA edits).
@@ -114,6 +114,10 @@ def load_plays() -> list[tuple[str, int]]:
         "MishkeMashke-Kultur1910",
         "Yudale_der_blinder,_Emkroyt1908",
         "דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete",
+        "Ezra-Emkroyt1908",
+        "Blimele-AhronFaust1903",
+        "IshahRaah",
+        "Lateiner_Meshumed",
     }
     with editions.open() as f:
         for r in csv.DictReader(f):

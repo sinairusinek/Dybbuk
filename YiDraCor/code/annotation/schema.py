@@ -10,6 +10,9 @@ PAGE_TYPES = {"titlePage", "castList", "body"}
 _NIKUD = re.compile(r"[֑-ׇ]")  # cantillation + vowel points
 
 ALLOWED_TAGS = {
+    # speaker.xmlid: single role for solo turns; space-separated xmlids for
+    # joint/duet turns (Noa 2026-06-14). The structurer expands a multi-xmlid
+    # span into TEI <sp who="#a #b">.
     "speaker": {"xmlid"},
     "stage": {"type"},
     "trailer": {"type"},  # TEI <trailer>: closing label at the end of a division
@@ -56,10 +59,14 @@ def is_collective_label(text: str) -> bool:
     return skeleton in KNOWN_COLLECTIVE
 # TEI <fw> @type values. Page numbers = pageNum (the common case here).
 FW_TYPES = {"pageNum", "header", "footer", "catch", "sig"}
-# TEI <stage> @type values (UVic TEI Drama tei_DRSTA). No `mixed`: pick the dominant
-# function (Noa re-typed our `mixed` → specific). `type` is REQUIRED on every stage.
+# TEI <stage> @type values (UVic TEI Drama tei_DRSTA). `type` is REQUIRED on every stage.
+# `mixed` was deprecated 2026-05-31 (over-used; RA re-typed to specific function),
+# then re-instated 2026-06-14 by Noa for the narrow case where an entrance OR
+# exit cue co-occurs with another action verb in the same direction (e.g.
+# "לעגט וועג דיא האַרפֿע— ערשיינט", "אב, שטורם"). Pure entrance/exit stays
+# `entrance`/`exit`; non-movement combos stay `business`.
 STAGE_TYPES = {"setting", "entrance", "exit", "business",
-               "delivery", "location", "costume", "novelistic"}
+               "delivery", "location", "costume", "novelistic", "mixed"}
 
 
 def parse_custom(s: str) -> list[tuple[str, dict]]:
@@ -92,6 +99,26 @@ def append_custom(existing: str, tag: str, attrs: dict) -> str:
     entries = parse_custom(existing)
     entries.append((tag, attrs))
     return serialize_custom(entries)
+
+
+def dedup_entries(entries: list[tuple[str, dict]]) -> list[tuple[str, dict]]:
+    """For each (tag, offset, length) triple keep only the LAST occurrence —
+    i.e. the most recent decision wins. Used to clean up duplicate spans
+    that accumulate when our pipeline re-pushes on top of a prior push
+    (Transkribus layers spans rather than replacing). readingOrder spans
+    are passed through unchanged. Preserves overall entry order."""
+    # Walk in reverse, keeping first-seen (= last in original order)
+    seen: set[tuple] = set()
+    out_rev: list[tuple[str, dict]] = []
+    for tag, a in reversed(entries):
+        if tag == "readingOrder":
+            out_rev.append((tag, a)); continue
+        key = (tag, a.get("offset", ""), a.get("length", ""))
+        if key in seen:
+            continue
+        seen.add(key)
+        out_rev.append((tag, a))
+    return list(reversed(out_rev))
 
 
 def set_region_structure(existing: str, page_type: str) -> str:

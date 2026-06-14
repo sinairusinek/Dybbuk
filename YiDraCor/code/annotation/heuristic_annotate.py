@@ -78,23 +78,41 @@ def classify_stage(span_text: str) -> str:
     no_period = "." not in span_text
     if len(tokens) == 1 and tokens[0] in EMOTION_ADVERBS:
         return "delivery"
+    has_action = bool(token_set & _COMPOUND_ACTION)
+    has_ersheynt = "ערשיינט" in token_set or "ערשײנט" in token_set
+    has_oyftrit = tokens[0] in {"אויפטריט", "אויפטרעטען", "אויפטרעטן"}
+    has_arayn_kumt = "אריין" in token_set and bool(token_set & {"קומט", "קומען"})
+    has_entrance_cue = has_ersheynt or has_oyftrit or has_arayn_kumt
+    has_ab = "אב" in token_set or "אבּ" in token_set
     if short and no_period and tokens[-1] in {"אב", "אבּ"}:
         prev = tokens[-2] if len(tokens) >= 2 else ""
         if prev in _MODAL_BEFORE_AB:
             return "business"
+        # exit + extra action in same direction → mixed (Noa 2026-06-14).
+        if len(tokens) > 2:
+            return "mixed"
         return "exit"
+    if short and no_period and has_ab and len(tokens) >= 2:
+        # אב not at end but present + another token → mixed (e.g. "אב, שטורם")
+        return "mixed"
     if len(tokens) <= 5:
         if ("פערוואנדלונג" in sk.replace("פֿ", "פ")
+                or "פערווענלונג" in sk.replace("פֿ", "פ")
+                or "פערוואנדעלונג" in sk.replace("פֿ", "פ")
                 or "פארהאנג" in sk.replace("פֿ", "פ")
                 or "פאָרהאַנג" in span_text):
             return "setting"
     if not (short and no_period):
+        # ערשיינט inside a longer/punctuated span is still entrance/mixed.
+        if has_ersheynt:
+            return "mixed" if has_action or len(tokens) > 3 else "entrance"
         return "business"
-    if not (token_set & _COMPOUND_ACTION):
-        if tokens[0] in {"אויפטריט", "אויפטרעטען", "אויפטרעטן"} and len(tokens) <= 5:
-            return "entrance"
-        if "אריין" in token_set and (token_set & {"קומט", "קומען"}):
-            return "entrance"
+    if has_ersheynt and (has_action or len(tokens) >= 4):
+        return "mixed"
+    if has_entrance_cue and has_action:
+        return "mixed"
+    if has_entrance_cue:
+        return "entrance"
     if "צימער" in token_set and len(tokens) <= 5:
         return "setting"
     return "business"
@@ -173,6 +191,8 @@ def find_paren_spans(text: str, open_state: bool):
 def annotate_page(dump: dict, lookup: dict[str, str]) -> dict:
     out_lines = []
     open_state = False
+    expect_setting_next = False  # Noa 2026-06-14: line after act/scene heading
+                                 # establishing the scene location → setting
     for L in dump["lines"]:
         idx = L["line_idx"]; text = L["text"]
         spans: list[dict] = []
@@ -182,21 +202,39 @@ def annotate_page(dump: dict, lookup: dict[str, str]) -> dict:
         if m:
             spans.append({"tag": "heading", "offset": 0, "length": len(text.rstrip()),
                           "attrs": {"type": "act", "n": ACT_ORD[m.group(1)]}})
+            expect_setting_next = True
             out_lines.append({"line_idx": idx, "spans": spans}); continue
         # heading: scene
         m = SCENE_HEAD.match(sk)
         if m:
             spans.append({"tag": "heading", "offset": 0, "length": len(text.rstrip()),
                           "attrs": {"type": "scene", "n": m.group(1)}})
+            expect_setting_next = True
             out_lines.append({"line_idx": idx, "spans": spans}); continue
         # trailer
         if TRAILER_RE.match(sk):
             spans.append({"tag": "trailer", "offset": 0, "length": len(text.rstrip()),
                           "attrs": {}})
+            expect_setting_next = False
             out_lines.append({"line_idx": idx, "spans": spans}); continue
-        # folio-only
+        # folio-only — pass through without consuming the setting expectation
         if FOLIO_RE.fullmatch(text):
             out_lines.append({"line_idx": idx, "spans": []}); continue
+        # post-act/scene-header setting: the next eligible line is the
+        # scene-location description ("זאַל ווילניצקי", "איינע וואלדגעגענד…").
+        # Eligible = not a speaker turn, not parenthesized, non-empty.
+        if expect_setting_next and text.strip():
+            sp = find_speaker(text, lookup)
+            stripped = text.strip()
+            is_paren = stripped.startswith("(")
+            if not sp and not is_paren:
+                spans.append({"tag": "stage", "offset": 0, "length": len(text.rstrip()),
+                              "attrs": {"type": "setting"}})
+                expect_setting_next = False
+                out_lines.append({"line_idx": idx, "spans": spans}); continue
+            # speaker turn or paren stage on this line — give up on the
+            # post-header setting expectation rather than override.
+            expect_setting_next = False
         # speaker + stages
         sp = find_speaker(text, lookup)
         if sp:

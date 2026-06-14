@@ -42,7 +42,7 @@ from lxml import etree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from annotation.schema import (
-    parse_custom, serialize_custom, is_collective_label, validate_span,
+    parse_custom, serialize_custom, dedup_entries, is_collective_label, validate_span,
     STAGE_TYPES, _NIKUD,
 )
 from annotation.lint_pages import (
@@ -76,7 +76,7 @@ def stage_lexicon(text: str):
     """Return ('setting'|'trailer'|'epilog') for a known scene-boundary cue, else None."""
     sk = _NIKUD.sub("", text or "")
     sk = re.sub(r"[()\s.,׃:‐-―\-]", "", sk)
-    if "פערוואנדלונג" in sk or "פארהאנג" in sk:
+    if "פערוואנדלונג" in sk or "פערווענלונג" in sk or "פערוואנדעלונג" in sk or "פארהאנג" in sk:
         return "setting"
     if sk.startswith("ענדע"):
         return "trailer"
@@ -118,22 +118,48 @@ def stage_lexicon_span(span_text: str):
                         "דארף", "דאַרף", "דארפט", "דאַרפט",
                         "קען", "קעהן",
                         "געהט", "גייט", "גיט"}
+    # Entrance/exit cues — Noa 2026-06-14: when an entrance OR exit cue
+    # co-occurs with another action verb in the same direction, type as
+    # `mixed`; pure entrance/exit stays specific.
+    has_action = bool(token_set & _COMPOUND_ACTION)
+    has_ersheynt = "ערשיינט" in token_set or "ערשײנט" in token_set
+    has_oyftrit = tokens and tokens[0] in {"אויפטריט", "אויפטרעטען", "אויפטרעטן"}
+    has_arayn_kumt = "אריין" in token_set and bool(token_set & {"קומט", "קומען"})
+    has_entrance_cue = has_ersheynt or has_oyftrit or has_arayn_kumt
+    has_ab = "אב" in token_set or "אבּ" in token_set
+
     if short and no_period and tokens[-1] in {"אב", "אבּ"}:
         prev = tokens[-2] if len(tokens) >= 2 else ""
         if prev in _MODAL_BEFORE_AB:
             return "business"
+        # exit + extra non-modal action in same direction → mixed
+        # (e.g. "<actor> X אב" where X is another action verb).
+        if len(tokens) > 2:
+            return "mixed"
         return "exit"
+    # exit cue NOT at end-of-span but present elsewhere together with another
+    # token → mixed (e.g. "(אב, שטורם)" = exits + storming).
+    if short and no_period and has_ab and len(tokens) >= 2:
+        return "mixed"
 
     # Beyond this point, compound directions are filtered out.
     if not (short and no_period):
+        # …with one exception: ערשיינט inside a longer/punctuated span
+        # is still entrance/mixed (e.g. "(לעגט וועג דיא האַרפֿע— ערשיינט).").
+        if has_ersheynt:
+            if has_action or len(tokens) > 3:
+                return "mixed"
+            return "entrance"
         return None
 
-    has_action = bool(token_set & _COMPOUND_ACTION)
-    if not has_action:
-        if tokens[0] in {"אויפטריט", "אויפטרעטען", "אויפטרעטן"} and len(tokens) <= 5:
-            return "entrance"
-        if "אריין" in token_set and (token_set & {"קומט", "קומען"}):
-            return "entrance"
+    # Compound entrance: pure "<actor> ערשיינט" is 1-2 tokens; once we have
+    # ≥3 surface tokens before/around the entrance cue, treat as mixed.
+    if has_ersheynt and (has_action or len(tokens) >= 4):
+        return "mixed"
+    if has_entrance_cue and has_action:
+        return "mixed"
+    if has_entrance_cue:
+        return "entrance"
     if "צימער" in token_set and len(tokens) <= 5:
         return "setting"
     return None
@@ -151,6 +177,57 @@ def load_cast_bares(play: str) -> dict[str, str]:
         bare = (info.get("bare") or "").strip()
         if bare and len(bare.split()) > 1:
             out[xmlid] = bare
+    return out
+
+
+def load_speaker_overrides(play: str) -> dict[int, list[dict]]:
+    """Per-scene speaker label overrides — for scenes where the same surface
+    label maps to different cast members in different scenes (the classic
+    case is the gendered duet pronouns ער/זיא, which on one scene mean
+    Zelikel+Tsierele and on another mean Daniel+Blimele).
+
+    File: data/<play>/speaker_overrides.json
+    Schema: {"scenes": [
+        {"pages": [13, 14], "labels": {"ער": "zelikel_mnagen", ...}},
+        {"pages": [61], "lines": [3, 4, 5], "labels": {...}}   # optional `lines`
+                                                                 # narrows to those line indices
+    ]}
+
+    Returns: {page_num -> list of scope-rules}. Each rule is a dict with keys:
+      - `labels`: {label_skeleton -> xmlid}
+      - `lines`: optional set of int line-indices; if absent, applies to all
+        lines on the page.
+    `resolve_line` consults the matching rule(s) for the current page+line.
+    """
+    f = REPO / "data" / play / "speaker_overrides.json"
+    if not f.exists():
+        return {}
+    d = json.loads(f.read_text(encoding="utf-8"))
+    out: dict[int, list[dict]] = {}
+    for scene in d.get("scenes", []):
+        labels = {skel(k): v for k, v in (scene.get("labels") or {}).items()}
+        lines_field = scene.get("lines")
+        lines = set(int(x) for x in lines_field) if lines_field else None
+        for page in scene.get("pages") or []:
+            try:
+                p = int(page)
+            except (TypeError, ValueError):
+                continue
+            out.setdefault(p, []).append({"labels": labels, "lines": lines})
+    return out
+
+
+def overrides_for(page_rules: list[dict] | None, line_idx: int | None) -> dict[str, str]:
+    """Resolve a page's override rules to a flat {label -> xmlid} dict for
+    one specific line index. A rule applies if either it has no `lines`
+    field, or `line_idx` is in its `lines` set."""
+    if not page_rules:
+        return {}
+    out: dict[str, str] = {}
+    for rule in page_rules:
+        if rule.get("lines") is not None and line_idx not in rule["lines"]:
+            continue
+        out.update(rule["labels"])
     return out
 
 
@@ -173,7 +250,7 @@ def fix_stage_type_typo(t: str):
     return clean if clean in STAGE_TYPES else None
 
 
-def resolve_line(text: str, entries, cast_index, cast_bares=None):
+def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides=None):
     """Return (new_entries, [auto_descriptions], [human_issues]).
 
     new_entries is None if nothing auto-changed. Operates on a single line's
@@ -181,8 +258,15 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None):
 
     cast_bares is {xmlid -> multi-word bare form} used to re-anchor a speaker
     span the LLM truncated to the first token (P1, ben_kaspi case).
+
+    page_overrides is {label_skeleton -> xmlid} for THIS page, from
+    `load_speaker_overrides(play)[page_num]`. Used for per-scene speaker
+    label remapping (e.g. duet pronouns ער/זיא that mean different
+    characters in different scenes). Wins over cast_index.
     """
     cast_bares = cast_bares or {}
+    if page_overrides:
+        cast_index = {**cast_index, **page_overrides}
     auto, human = [], []
     out = []
 
@@ -330,6 +414,7 @@ def recheck_live(csv_path: Path):
     by_page: dict[tuple[str, int], list] = defaultdict(list)
     cast_cache: dict[str, dict] = {}
     bares_cache: dict[str, dict] = {}
+    overrides_cache: dict[str, dict] = {}
     for r in rows:
         folder = label_to_folder.get(r["edition"])
         if folder is None:
@@ -340,6 +425,7 @@ def recheck_live(csv_path: Path):
         doc = doc_ids.get(folder)
         cast = cast_cache.setdefault(folder, load_cast(folder)[0])
         bares = bares_cache.setdefault(folder, load_cast_bares(folder))
+        overrides = overrides_cache.setdefault(folder, load_speaker_overrides(folder))
         if doc is None:
             kept.extend(group); continue
         _, _, xml = top_transcript(client, doc, page)
@@ -350,7 +436,8 @@ def recheck_live(csv_path: Path):
             if tl is None:
                 kept.append(r); continue  # can't verify — keep
             body = [e for e in parse_custom(tl.get("custom") or "") if e[0] != "readingOrder"]
-            _, _, human = resolve_line(line_text(tl), body, cast, bares)
+            _, _, human = resolve_line(line_text(tl), body, cast, bares,
+                                        page_overrides=overrides_for(overrides.get(page), None))
             cat = r["category"]
             still = any(h.split(" (")[0] == cat or h.startswith(cat) for h in human)
             if still:
@@ -399,6 +486,7 @@ def main():
     for play in plays:
         cast_index, _ = load_cast(play)
         cast_bares = load_cast_bares(play)
+        speaker_overrides = load_speaker_overrides(play)
         label = editions.get(play, play)
         doc = doc_ids.get(play)
         # Phase 1: local scan → candidate pages (auto edits) + human flags
@@ -410,7 +498,9 @@ def main():
                 txt = line_text(tl)
                 entries = parse_custom(tl.get("custom") or "")
                 # don't raise untagged-speaker on title/cast pages
-                scan = resolve_line(txt, [e for e in entries if e[0] != "readingOrder"], cast_index, cast_bares)
+                scan = resolve_line(txt, [e for e in entries if e[0] != "readingOrder"],
+                                     cast_index, cast_bares,
+                                     page_overrides=overrides_for(speaker_overrides.get(page), None))
                 _, auto, human = scan
                 if ptype in ("titlePage", "castList"):
                     human = [h for h in human if "speaker" not in h]
@@ -440,11 +530,21 @@ def main():
                 entries = parse_custom(tl.get("custom") or "")
                 ro = [e for e in entries if e[0] == "readingOrder"]
                 body = [e for e in entries if e[0] != "readingOrder"]
-                new, auto, _ = resolve_line(line_text(tl), body, cast_index, cast_bares)
-                if new is not None:
-                    tl.set("custom", serialize_custom(ro + new))
-                    page_changed = True; n_auto += len(auto)
-                    print(f"  p{page} {tl.get('id')}: " + ", ".join(auto))
+                # Dedup before resolving — prior layered pushes from Transkribus
+                # often carry duplicate (tag, offset, length) spans. Latest wins.
+                body_dd = dedup_entries(body)
+                deduped_count = len(body) - len(body_dd)
+                new, auto, _ = resolve_line(line_text(tl), body_dd, cast_index, cast_bares,
+                                              page_overrides=overrides_for(speaker_overrides.get(page), None))
+                if new is not None or deduped_count:
+                    final_entries = dedup_entries(ro + (new if new is not None else body_dd))
+                    tl.set("custom", serialize_custom(final_entries))
+                    page_changed = True
+                    if new is not None:
+                        n_auto += len(auto)
+                        print(f"  p{page} {tl.get('id')}: " + ", ".join(auto))
+                    if deduped_count:
+                        print(f"  p{page} {tl.get('id')}: dropped {deduped_count} duplicate span(s)")
             if not page_changed:
                 continue
             if args.dry_run:
