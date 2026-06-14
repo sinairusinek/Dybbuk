@@ -7,9 +7,79 @@ Combined status of (a) the Blimele Q1–Q4 from the 2026-06-04 handoff,
 - `[resolved]` — decision applied to the data; no action needed from you.
 - `[confirmed in data]` — your edits in the 06-14 Transkribus pull already
   apply the rule on Ezra; the pipeline now matches your behavior.
+- `[Sinai confirmed]` — Sinai locked the rule into the pipeline on 2026-06-14.
 - `[open]` — decision needed before next pipeline run.
 
 ---
+
+# Part 1 — Open questions (5)
+
+Please answer these before the next pipeline run on the remaining plays.
+
+## A4. p.64 `דער איינער` ("the one") — ensemble or new role?
+
+Single occurrence on Blimele p.64. Two options:
+- (a) add as `prefix_variant` of collective `eyner`
+- (b) coin a new body-only xmlid for this specific solo speaker
+
+## B6. Post-act-header line → `stage{type:setting}`?
+
+Should the line immediately following an act header (`ערשטער אקט`, …) or
+scene header — when that line is NOT a speaker turn and NOT parenthesized
+— be encoded as a whole-line `stage{type:setting}` describing the scene
+location?
+
+**Concrete cases in Ezra+Blimele:**
+- **Ezra p4** — `ערשטער אקט.` followed by `איינע וואלדגעגענד — רעכטס אַ הייזעל מיט א פענסטער…` (the only unparenthesized post-act-header setting line in either play; all other Ezra act openers — II/III/IV — are followed by a parenthesized stage direction which the existing rule already catches).
+- **Blimele p7** — `I אקט` followed by `(שטעלט פאר בייא ליעפען א סאלאן…)` — already parenthesized, already typed setting by existing rule; B6 doesn't change this.
+
+**Tagging volume if yes:** 1 line in Ezra+Blimele; meaningful only if the
+same pattern recurs in other plays.
+
+## B7. `(ביס)` triggers song mode + same-page backfill?
+
+Every line containing a standalone `(ביס)` marker treated as in-song, AND
+prior eligible lines on the same page (back to the last heading or
+non-chorus speaker change) tagged as song (`l` / `lg_id`) under the same
+musical number?
+
+**(ביס) occurrences in Ezra+Blimele:**
+- **Ezra:** p35 (1 line). Total 1.
+- **Blimele:** p10 (4), p14 (1), p15 (2), p16 (1), p37 (3), p38 (1), p39 (4), p56 (2), p60 (1), p61 (3), p62 (1), p65 (2). Total 25.
+
+If you say yes, these 26 ביס-bearing lines plus their same-page
+predecessors will be re-typed as song lines.
+
+## B8. `(ביס)` cross-page backfill?
+
+Should the `(ביס)` rule also reach BACKWARD across page breaks when the
+preceding page ends with lyric-like content?
+
+**Concrete suspect cross-page bleeds in Blimele:** the ביס clusters span
+consecutive pages (p14→p15→p16, p37→p38→p39, p60→p61→p62) — songs likely
+start a page or two before the first (ביס) marker, so cross-page backfill
+would re-type the lyrics on the leading pages too.
+
+## B9. Mixed rule scope — only for entrance/exit + action?
+
+Should `mixed` be used ONLY for entrance/exit cues combined with other
+action — i.e. directions that combine non-movement functions
+(`set + emotion`, `business + delivery`, etc.) should continue to pick
+the dominant function rather than be retyped as `mixed`?
+
+**Concrete cases to ground the decision** (a few stage directions in
+Ezra+Blimele that combine functions without an entrance/exit cue):
+- Ezra p4 — `(לעגט וועג דיא האַרפֿע— ערשיינט)`: HAS entrance cue, already
+  resolved (B2 below) as `mixed`. Not relevant to B9.
+- General class — directions like `(שטיל, פערקלעהרט)` (emotion adverbs
+  stacked) or `(זינגט, טאנצט)` (delivery + business). Currently the
+  pipeline picks the first function. Should they become `mixed` instead?
+
+*(I haven't enumerated specific page refs for this — happy to if you want.)*
+
+---
+
+# Part 2 — Resolved items (reference)
 
 ## A. Blimele speaker questions (originally from 2026-06-04 handoff)
 
@@ -43,17 +113,13 @@ tagged:
 - p.39 `מאקסים גראף` → `maksim graf_stanislav`
 - p.39 `דאניאל ליעפע זעליקל` → `doktor_daniel liepe zelikel_mnagen`
 
-### A4. Ensemble members speaking solo (3 labels)
+### A4. Ensemble members speaking solo — 2 of 3 resolved
 
 - `[resolved]` p.61 `טויבען` → joint `zelikel_mnagen tsierele` (per stage
   direction, the doves ARE Zelikel + Tsierele in disguise).
 - `[resolved]` p.61 `ציגיינער` → joint `doktor_daniel blimele` (gypsies are
   Daniel + Blimele in disguise).
-- **`[open]` p.64 `דער איינער`** ("the one"). One occurrence. Two options:
-  - (a) add as `prefix_variant` of collective `eyner`
-  - (b) coin a new body-only xmlid for this specific solo speaker
-
----
+- *(p.64 `דער איינער` deferred — see Part 1 above.)*
 
 ## B. Pipeline-rule questions (from 2026-06-14 chat)
 
@@ -80,63 +146,11 @@ tagged:
    `פערוואנדעלונג` direction → `stage{type:setting}` (with or without
    parens/nikud).
 
-6. `[open — please decide]` Should the line immediately following an act
-   header (`ערשטער אקט`, …) or scene header — when that line is NOT a
-   speaker turn and NOT parenthesized — be encoded as a whole-line
-   `stage{type:setting}` describing the scene location?
-
-   **Concrete cases in Ezra+Blimele:**
-   - **Ezra p4** — `ערשטער אקט.` followed by `איינע וואלדגעגענד — רעכטס אַ הייזעל מיט א פענסטער…` (the only unparenthesized post-act-header setting line in either play; all other Ezra act openers — II/III/IV — are followed by a parenthesized stage direction which the existing rule already catches).
-   - **Blimele p7** — `I אקט` followed by `(שטעלט פאר בייא ליעפען א סאלאן…)` — already parenthesized, already typed setting by existing rule; B6 doesn't change this.
-
-   **Tagging volume if yes:** 1 line in Ezra+Blimele; meaningful only if the same pattern recurs in other plays.
-
-### Songs
-
-7. `[open — please decide]` Every line containing a standalone `(ביס)`
-   marker treated as in-song, AND prior eligible lines on the same page
-   (back to the last heading or non-chorus speaker change) tagged as song
-   (`l` / `lg_id`) under the same musical number?
-
-   **(ביס) occurrences in Ezra+Blimele:**
-   - **Ezra:** p35 (1 line). Total 1.
-   - **Blimele:** p10 (4), p14 (1), p15 (2), p16 (1), p37 (3), p38 (1), p39 (4), p56 (2), p60 (1), p61 (3), p62 (1), p65 (2). Total 25.
-
-   If you say yes, these 26 ביס-bearing lines plus their same-page predecessors will be re-typed as song lines.
-
-8. `[open — please decide]` Should the `(ביס)` rule also reach BACKWARD
-   across page breaks when the preceding page ends with lyric-like
-   content?
-
-   **Concrete suspect cross-page bleeds in Blimele:** the ביס clusters span
-   consecutive pages (p14→p15→p16, p37→p38→p39, p60→p61→p62) — songs likely
-   start a page or two before the first (ביס) marker, so cross-page
-   backfill would re-type the lyrics on the leading pages too.
-
-### Mixed rule scope
-
-9. `[open — please decide]` Should `mixed` be used ONLY for entrance/exit
-   cues combined with other action — i.e. directions that combine
-   non-movement functions (`set + emotion`, `business + delivery`, etc.)
-   should continue to pick the dominant function rather than be retyped
-   as `mixed`?
-
-   **Concrete cases to ground the decision** (a few stage directions in
-   Ezra+Blimele that combine functions without an entrance/exit cue):
-   - Ezra p4 — `(לעגט וועג דיא האַרפֿע— ערשיינט)`: HAS entrance cue, already
-     resolved (Q2 above) as `mixed`. Not relevant to B9.
-   - General class — directions like `(שטיל, פערקלעהרט)` (emotion adverbs
-     stacked) or `(זינגט, טאנצט)` (delivery + business). Currently the
-     pipeline picks the first function. Should they become `mixed` instead?
-
-   *(I haven't enumerated specific page refs for this — happy to if you want.)*
-
 ---
 
 ## Summary
 
-- **`[resolved]`**: A1, A2, A3, A4 (partial — 2 of 3 done)
-- **`[confirmed in data]`**: B1, B2, B3 (your prior edits decided these)
-- **`[Sinai confirmed]`**: B4, B5 (locked into the pipeline as of 2026-06-14)
-- **`[open]`**: A4 (`דער איינער`), B6, B7, B8, B9 → **5 questions await
-  your answers**.
+- **Open (5)**: A4 (`דער איינער`), B6, B7, B8, B9
+- **Resolved**: A1, A2, A3, A4 (partial — 2 of 3)
+- **Confirmed by your past edits**: B1, B2, B3
+- **Sinai confirmed 2026-06-14**: B4, B5
