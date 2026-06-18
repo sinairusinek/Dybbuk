@@ -18,6 +18,16 @@ A printed brace ` } זייערע קינדער` covering N stacked names → N se
 
 `א וועכטיר`, `אַ דִיענֶער`, `אַ גַייסט`, `פּרעפעקט`, `אַ ריכטיר…`: tag as individual roles. **Keep the `אַ` / `א` in the bare form** — do NOT strip it. (This reverses an earlier normalization in our cast_dict generator's `bare`-field handling. The harvester preserves whatever the role span contains, so the convention drives the data.)
 
+## F. Profession / relation modifiers → roleDesc always (Noa 2026-06-18)
+
+A profession-noun or relation-noun appearing *alongside* the proper name — "his nephew" (`זיין נעפפע`), "moneylender" (`פּראָצענטניק`), "eye doctor" (`(אויגען דאָקטער)`), "his wife" (`זיין ווייב`), "her uncle" (`איהר פעטער`), "his second wife" (`זיין צוויטע פרוי`) — goes in `roleDesc`, **always**. The `role` span covers only the proper-name portion.
+
+Fused titles that bind to the name as part of the printed identifier — `פּראפעסאר עדעלמאן` (Professor Edelman), `דאן איזראעל` (Don Yisroel), `קעניג בלשצר` (King Belshatsar), `ר' יאָכטשעֶ` (Reb Yokhtshe) — **stay inside the role span**, with the post/parenthetical descriptor going in roleDesc.
+
+Quick test: if the modifier could be dropped without affecting *who* the speaker is, it belongs in `roleDesc`. "Edelman" alone identifies the character; "Professor Edelman" is the same character. "Iser" alone identifies him; "Iser the moneylender" is the same character.
+
+Applied 2026-06-18 to Yudale castList page (lines 65 / 107 / 114). Same pattern should be audited and applied on every other play's castList page going forward; existing entries are mostly correct because the harvester picks up whatever's in the `role` span, but a sweep would catch role spans that currently spill into modifier text.
+
 ## E. Final-line collective enumerations
 
 A castList trailer like `יוּדען, יוּדענעס, געסטע, קאָהר` or `דיענער, מאטראזען, חינעזער, פאסאזשירען`: split by comma, one collective `xml:id` per token (e.g. `yudn`, `yudines`, `geste`, `kor`). Do **not** create one catch-all xmlid. Do **not** tag literary "etc." markers (`אאז"ו`, `עטצ.`) as characters — leave them in surface text but unspanned.
