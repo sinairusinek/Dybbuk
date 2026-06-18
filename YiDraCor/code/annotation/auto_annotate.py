@@ -181,6 +181,7 @@ def annotate_page_body(lines, matchers):
     """Return list of {line_idx, spans} for body pages."""
     out = []
     paren_open = False
+    prev_was_heading = False
     for i, l in enumerate(lines):
         spans = []
         # Heading
@@ -190,7 +191,22 @@ def annotate_page_body(lines, matchers):
             spans.append({"tag": "heading", "offset": off, "length": ln,
                           "attrs": {"type": kind, "n": str(n)}})
             out.append({"line_idx": i, "spans": spans})
+            prev_was_heading = True
             continue
+        # B6 (Noa 2026-06-14): line immediately following an act/scene heading,
+        # not parenthesized and not a speaker turn → whole-line stage{type:setting}
+        # describing the locus of the scene. Guards against empty/whitespace lines.
+        if prev_was_heading and not paren_open and l.strip():
+            sp_check = find_speaker(l, matchers)
+            has_paren = "(" in l
+            if not sp_check and not has_paren:
+                spans.append({"tag": "stage", "offset": 0,
+                              "length": len(l.rstrip()),
+                              "attrs": {"type": "setting"}})
+                out.append({"line_idx": i, "spans": spans})
+                prev_was_heading = False
+                continue
+        prev_was_heading = False
         # Speaker
         sp = find_speaker(l, matchers) if not paren_open else None
         if sp:

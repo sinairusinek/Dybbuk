@@ -78,6 +78,14 @@ def stage_lexicon(text: str):
     sk = re.sub(r"[()\s.,׃:‐-―\-]", "", sk)
     if "פערוואנדלונג" in sk or "פערווענלונג" in sk or "פערוואנדעלונג" in sk or "פארהאנג" in sk:
         return "setting"
+    # Global-A (Noa 2026-06-14): castList-page closing lines that announce
+    # the locus/time of action — "אָרט דער האַנדלונג…" / "דיא געשיכטע האנדעלט זיך…"
+    # Match on de-nikud'd, de-punctuated prefix to tolerate vocalization +
+    # spelling variants (האנדעלונג / האנדלונג, דיא / די).
+    if sk.startswith("ארטדערהאנדלונג") or sk.startswith("ארטהאנדלונג"):
+        return "setting"
+    if sk.startswith("דיגעשיכטעהאנדעלטזיך") or sk.startswith("דיאגעשיכטעהאנדעלטזיך"):
+        return "setting"
     if sk.startswith("ענדע"):
         return "trailer"
     if "עפילאג" in sk or "עפּילאג" in sk:
