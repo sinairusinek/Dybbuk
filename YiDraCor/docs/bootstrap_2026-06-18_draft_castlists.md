@@ -1,5 +1,7 @@
 # Bootstrap pull + draft castList tagging, 2026-06-18
 
+> **Update 2026-06-18 (evening, Claude):** the auto-tagger draft was cleaned up by a per-line decision pass with anchored matching, hand-curated xmlids, brace-group handling, collective splitting per Global E, and Global F (profession/relation modifier → roleDesc) applied. Open judgment calls are now in `handoff_noa_2026-06-18_castlist_review.md` — 10 yes/no/choice questions for Noa. Quality is no longer "draft" — it's "ready for RA verification on the surfaced uncertainties."
+
 5 printed Lateiner plays pulled from Transkribus and given **draft** castList tagging via auto-tagger. **NOT yet pushed to TK** — quality needs review before pushing.
 
 | Play | Doc | Pages pulled | castList page | Roles tagged | Notes |

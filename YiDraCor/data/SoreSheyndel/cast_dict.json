@@ -4,31 +4,31 @@
     {
       "file": "0007_30627459.xml",
       "page": 7,
-      "roles": 9
+      "roles": 10
     }
   ],
   "roles": {
-    "rb": {
-      "form": "רֶב",
-      "bare": "רב",
+    "reb_yontsi": {
+      "form": "רֶב יוחנצי",
+      "bare": "רב יוחנצי",
       "loc": {
         "page": 7,
         "line_id": "line_1650323962705_2695",
         "offset": 0,
-        "length": 3
+        "length": 10
       }
     },
-    "shrh_shyyndel_zyyn_vvb": {
-      "form": "שׂרה שׁיינדעל זיַין ווײַבּ",
-      "bare": "שרה שיינדעל זיין ווײב",
+    "sore_sheyndel": {
+      "form": "שׂרה שׁיינדעל",
+      "bare": "שרה שיינדעל",
       "loc": {
         "page": 7,
         "line_id": "region_1650323892457_2673l5",
         "offset": 0,
-        "length": 26
+        "length": 13
       }
     },
-    "abrhmele": {
+    "avromele": {
       "form": "אברהמעלע",
       "bare": "אברהמעלע",
       "loc": {
@@ -36,16 +36,6 @@
         "line_id": "region_1650323892457_2673l6",
         "offset": 0,
         "length": 8
-      }
-    },
-    "zyyere_kynder": {
-      "form": "זיֵיעֶרע קיִנדעֶר",
-      "bare": "זייערע קינדער",
-      "loc": {
-        "page": 7,
-        "line_id": "region_1650323892457_2673l7",
-        "offset": 0,
-        "length": 17
       }
     },
     "babele": {
@@ -58,7 +48,7 @@
         "length": 6
       }
     },
-    "dzyyk": {
+    "dzeyk": {
       "form": "דזייק",
       "bare": "דזייק",
       "loc": {
@@ -78,7 +68,7 @@
         "length": 3
       }
     },
-    "gympel": {
+    "gimpel": {
       "form": "גימפּעל",
       "bare": "גימפעל",
       "loc": {
@@ -88,21 +78,43 @@
         "length": 7
       }
     },
-    "shapse_shmsh_mshvrrym_avn_palk": {
-      "form": "שׁאַפּסע שׁמשׁ. משׁוררים אוּן פֿאָלק",
-      "bare": "שאפסע שמש. משוררים און פאלק",
+    "shabse": {
+      "form": "שׁאַפּסע",
+      "bare": "שאפסע",
       "loc": {
         "page": 7,
         "line_id": "line_1650323973302_2707",
         "offset": 0,
-        "length": 36
+        "length": 8
+      }
+    },
+    "mshorerim": {
+      "form": "משׁוררים",
+      "bare": "משוררים",
+      "loc": {
+        "page": 7,
+        "line_id": "line_1650323973302_2707",
+        "offset": 16,
+        "length": 8
+      }
+    },
+    "folk": {
+      "form": "פֿאָלק",
+      "bare": "פאלק",
+      "loc": {
+        "page": 7,
+        "line_id": "line_1650323973302_2707",
+        "offset": 30,
+        "length": 6
       }
     }
   },
   "desc_tokens": {
+    "זיין": "זיַין",
+    "ווײב": "ווײַבּ",
     "יוחנציס": "יוֹחנציִס",
     "ברודער": "בּרוּדעֶר",
-    "זיין": "זיַין",
-    "זוהן": "זוּהן"
+    "זוהן": "זוּהן",
+    "שמש": "שׁמשׁ"
   }
 }
