@@ -45,12 +45,18 @@ Choose one `page_type` per page:
                        any direction whose dominant cue is `ערשיינט` ("enters"),
                        e.g. `(ערשיינט)`, `(X ערשיינט)`.
       • `exit`       — character exits   (`(אָב)`, `(X אָב)`)
-      • `mixed`      — entrance OR exit cue co-occurring with another action
-                       verb in the same direction. Examples:
-                       `(לעגט וועג דיא האַרפֿע— ערשיינט)` (puts away the harp —
-                       enters), `אב, שטורם` (exits, storming). Pure
-                       entrance/exit stays `entrance`/`exit`; non-movement
-                       combos stay `business`.
+      • **Compound directions — space-separated multi-token `@type`** (TEI P5
+        spec, 2026-06-18 ratified). When a single stage direction performs
+        multiple functions, emit `@type` with space-separated tokens, e.g.
+        `type="entrance business"`, `type="exit business"`, `type="entrance modifier"`.
+        Examples:
+          - `(לעגט וועג דיא האַרפֿע— ערשיינט)` (puts away the harp — enters)
+            → `type="entrance business"`
+          - `(אב, שטורם)` (exits, storming) → `type="exit business"`
+          - `(ערשיינט, פערקלעהרט)` (enters, lost in thought) → `type="entrance delivery"`
+        Pure entrance/exit stays single-token (`entrance` / `exit`). The
+        literal value `mixed` is a TEI-defined single-value fallback; do
+        NOT use it when the constituent functions can be enumerated.
       • `delivery`   — manner of speaking. **REQUIRES parens in source** (`(זינגט)`, `(צו X)`). Never assign `type:delivery` to an unparenthesized line — that's plain speech.
       • `location`   — character's location (`(אין פֿענסטער)`)
       • `business`   — generic physical action ("they embrace", chases). NOTE:

@@ -1,6 +1,6 @@
 # YiDraCor — Two questions for Noa, 2026-06-18 (follow-up)
 
-> **Update 2026-06-18 (afternoon, Sinai):** Section 1 (Yudale roleDesc) resolved. Section 2 (Ezra p.4 `mixed` vs `entrance`) reframed with TEI-spec evidence — see below; the substantive question for you is narrowed.
+> **Update 2026-06-18 (afternoon, Sinai):** Section 1 (Yudale roleDesc) resolved and applied. Section 2 (Ezra p.4 stage typing) — **option (C) TEI multi-token typing ratified and implemented**; this document is now a record rather than a request. Both sections are closed; included below as a single self-contained record.
 
 ---
 
@@ -59,17 +59,23 @@ This also handles the other 7 current `mixed` tags in the corpus cleanly:
 | DerMan p.18 | 4× dance/song multi-line | mixed | `business delivery` (or just `business`) |
 | DerMan p.18 | `פאָרהאַנג פאַלט.` | mixed | `setting` |
 
-### Your decision
+### Decision: (C) ratified by Sinai 2026-06-18
 
-Three options now, in order of TEI-spec alignment:
+Implemented same-day:
 
-- **(C) — TEI-principled — multi-token `@type`** (Recommended): adopt space-separated multi-token typing for compound directions. Ezra p.4 → `type="entrance business"`. All 7 corpus `mixed` tags get retyped to their actual function pair (table above). The literal `mixed` value drops out of our codebase. Cleanest, future-proof, matches DraCor.
-- **(A) — Keep B2 as-is**: status quo. `mixed` continues to fire for entrance + any other action verb. Diverges from TEI's recommended form but is locally consistent.
-- **(B) — Narrow `mixed` to entrance+exit only**: drop B2, keep `mixed` for the rare entrance/exit co-occurrence case. Other compound directions pick the dominant function. Doesn't take advantage of multi-token typing either.
+- `annotation/schema.py` — `STAGE_TYPES` opened to multi-token; new `_validate_stage_type()` enforces the TEI rule (multi-token allowed; `mixed` must stand alone if used).
+- `annotation/auto_resolve_flags.py` — `stage_lexicon_span()` now emits `"entrance business"` / `"exit business"` instead of `"mixed"`.
+- `annotation/heuristic_annotate.py` — same refactor for the LLM-fallback heuristic path.
+- `annotation/prompts.py` — LLM prompt rewritten to instruct multi-token `@type` for compound directions, with examples; explicitly tells the LLM not to emit literal `mixed` when constituent functions are enumerable.
+- Local `page_annotated/` retype of 7 DerMan corpus `mixed` tags (the actual retypes shipped):
+    - p.11 `(זיי נעהמען זיך אַרוּם, יאכֿטשע ערשיינט).` → `business entrance`
+    - p.11 `(ער בעהאַלט זיך. אויפֿטריט סאבעלע).` → `business entrance`
+    - p.18 `איִן דעֶר צַייט וועֶן מעֶן ענְדיִגט דאָס געזאַנג שפּילט דיִ מוּזיִק` → `business delivery`
+    - p.18 (dance multi-line continuations) → `business`, `business`
+    - p.18 `טוּרְניִווער בּעֶהאַלט איִהם אוּן עֵר זיִנְגְט אוֹי טאָ, טאָ.` → `business delivery`
+    - p.18 `פאָרהאַנג פאַלט.` → `setting`
 
-Your B9 chat reply's intent (strict rule for entrance+exit) is closest to (B), but (C) supersedes the question entirely — it's what the TEI spec actually prescribes.
-
-If you say **(C)**, we update `auto_resolve_flags` to emit multi-token `@type` values and run a one-time retype sweep on the 7 corpus pages. If **(A)** or **(B)**, we stay inside our current vocabulary.
+Ezra p.4 `(לעגט וועג דיא האַרפֿע— ערשיינט)` — your RA-edit set it to `mixed` in Transkribus; a pipeline rerun will retype it to `entrance business`. Transkribus push of the retyped state pending — held until the broader rerun + push pass.
 
 ---
 

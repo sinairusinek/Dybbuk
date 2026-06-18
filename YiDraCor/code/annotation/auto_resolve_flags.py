@@ -126,9 +126,12 @@ def stage_lexicon_span(span_text: str):
                         "דארף", "דאַרף", "דארפט", "דאַרפט",
                         "קען", "קעהן",
                         "געהט", "גייט", "גיט"}
-    # Entrance/exit cues — Noa 2026-06-14: when an entrance OR exit cue
-    # co-occurs with another action verb in the same direction, type as
-    # `mixed`; pure entrance/exit stays specific.
+    # Entrance/exit cues — TEI-principled multi-token typing (Noa 2026-06-18):
+    # when an entrance OR exit cue co-occurs with another action verb in the
+    # same direction, emit space-separated `@type` (e.g. "entrance business",
+    # "exit business"); pure entrance/exit stays single-token.
+    # Per TEI P5 spec, the literal value `mixed` is reserved as a single-value
+    # fallback; we no longer emit it from this lexicon.
     has_action = bool(token_set & _COMPOUND_ACTION)
     has_ersheynt = "ערשיינט" in token_set or "ערשײנט" in token_set
     has_oyftrit = tokens and tokens[0] in {"אויפטריט", "אויפטרעטען", "אויפטרעטן"}
@@ -140,32 +143,33 @@ def stage_lexicon_span(span_text: str):
         prev = tokens[-2] if len(tokens) >= 2 else ""
         if prev in _MODAL_BEFORE_AB:
             return "business"
-        # exit + extra non-modal action in same direction → mixed
+        # exit + extra non-modal action in same direction → "exit business"
         # (e.g. "<actor> X אב" where X is another action verb).
         if len(tokens) > 2:
-            return "mixed"
+            return "exit business"
         return "exit"
     # exit cue NOT at end-of-span but present elsewhere together with another
-    # token → mixed (e.g. "(אב, שטורם)" = exits + storming).
+    # token → "exit business" (e.g. "(אב, שטורם)" = exits + storming).
     if short and no_period and has_ab and len(tokens) >= 2:
-        return "mixed"
+        return "exit business"
 
     # Beyond this point, compound directions are filtered out.
     if not (short and no_period):
         # …with one exception: ערשיינט inside a longer/punctuated span
-        # is still entrance/mixed (e.g. "(לעגט וועג דיא האַרפֿע— ערשיינט).").
+        # is still entrance / entrance+business (e.g.
+        # "(לעגט וועג דיא האַרפֿע— ערשיינט).").
         if has_ersheynt:
             if has_action or len(tokens) > 3:
-                return "mixed"
+                return "entrance business"
             return "entrance"
         return None
 
     # Compound entrance: pure "<actor> ערשיינט" is 1-2 tokens; once we have
-    # ≥3 surface tokens before/around the entrance cue, treat as mixed.
+    # ≥3 surface tokens before/around the entrance cue, treat as compound.
     if has_ersheynt and (has_action or len(tokens) >= 4):
-        return "mixed"
+        return "entrance business"
     if has_entrance_cue and has_action:
-        return "mixed"
+        return "entrance business"
     if has_entrance_cue:
         return "entrance"
     if "צימער" in token_set and len(tokens) <= 5:

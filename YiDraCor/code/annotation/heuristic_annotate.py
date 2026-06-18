@@ -84,17 +84,19 @@ def classify_stage(span_text: str) -> str:
     has_arayn_kumt = "אריין" in token_set and bool(token_set & {"קומט", "קומען"})
     has_entrance_cue = has_ersheynt or has_oyftrit or has_arayn_kumt
     has_ab = "אב" in token_set or "אבּ" in token_set
+    # TEI-principled multi-token typing (Sinai+Noa 2026-06-18 ratified):
+    # compound directions emit space-separated `@type` per TEI P5 spec.
     if short and no_period and tokens[-1] in {"אב", "אבּ"}:
         prev = tokens[-2] if len(tokens) >= 2 else ""
         if prev in _MODAL_BEFORE_AB:
             return "business"
-        # exit + extra action in same direction → mixed (Noa 2026-06-14).
+        # exit + extra action in same direction → "exit business".
         if len(tokens) > 2:
-            return "mixed"
+            return "exit business"
         return "exit"
     if short and no_period and has_ab and len(tokens) >= 2:
-        # אב not at end but present + another token → mixed (e.g. "אב, שטורם")
-        return "mixed"
+        # אב not at end but present + another token → "exit business" (e.g. "אב, שטורם")
+        return "exit business"
     if len(tokens) <= 5:
         if ("פערוואנדלונג" in sk.replace("פֿ", "פ")
                 or "פערווענלונג" in sk.replace("פֿ", "פ")
@@ -103,14 +105,14 @@ def classify_stage(span_text: str) -> str:
                 or "פאָרהאַנג" in span_text):
             return "setting"
     if not (short and no_period):
-        # ערשיינט inside a longer/punctuated span is still entrance/mixed.
+        # ערשיינט inside a longer/punctuated span is still entrance / entrance+business.
         if has_ersheynt:
-            return "mixed" if has_action or len(tokens) > 3 else "entrance"
+            return "entrance business" if has_action or len(tokens) > 3 else "entrance"
         return "business"
     if has_ersheynt and (has_action or len(tokens) >= 4):
-        return "mixed"
+        return "entrance business"
     if has_entrance_cue and has_action:
-        return "mixed"
+        return "entrance business"
     if has_entrance_cue:
         return "entrance"
     if "צימער" in token_set and len(tokens) <= 5:

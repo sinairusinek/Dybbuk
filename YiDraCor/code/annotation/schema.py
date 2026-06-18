@@ -59,14 +59,43 @@ def is_collective_label(text: str) -> bool:
     return skeleton in KNOWN_COLLECTIVE
 # TEI <fw> @type values. Page numbers = pageNum (the common case here).
 FW_TYPES = {"pageNum", "header", "footer", "catch", "sig"}
-# TEI <stage> @type values (UVic TEI Drama tei_DRSTA). `type` is REQUIRED on every stage.
-# `mixed` was deprecated 2026-05-31 (over-used; RA re-typed to specific function),
-# then re-instated 2026-06-14 by Noa for the narrow case where an entrance OR
-# exit cue co-occurs with another action verb in the same direction (e.g.
-# "לעגט וועג דיא האַרפֿע— ערשיינט", "אב, שטורם"). Pure entrance/exit stays
-# `entrance`/`exit`; non-movement combos stay `business`.
-STAGE_TYPES = {"setting", "entrance", "exit", "business",
-               "delivery", "location", "costume", "novelistic", "mixed"}
+# TEI <stage> @type values. `type` is REQUIRED on every stage.
+# Per TEI P5 spec (ref-stage.html), `@type` MAY carry multiple space-separated
+# tokens for a single direction that performs multiple functions, e.g.
+# `type="entrance modifier"`. The literal value `mixed` is a single-value
+# fallback for when constituent functions can't be enumerated — if `mixed` is
+# used it MUST be the only value.
+# History: `mixed` was deprecated 2026-05-31, re-instated 2026-06-14 (Noa
+# narrow rule), then deprecated again 2026-06-18 by Sinai+Noa in favor of
+# TEI-principled space-separated multi-token typing — `(לעגט וועג דיא
+# האַרפֿע— ערשיינט)` is now `type="entrance business"`, not `type="mixed"`.
+# The literal `mixed` remains accepted as a fallback but the pipeline
+# prefers multi-token output.
+STAGE_TOKENS = {"setting", "entrance", "exit", "business",
+                "delivery", "location", "costume", "novelistic", "modifier"}
+# `mixed` is special: when present it must be the only token.
+STAGE_TYPES = STAGE_TOKENS | {"mixed"}
+
+
+def _validate_stage_type(t: str) -> str | None:
+    """Validate a `@type` value on <stage>. Returns error message or None.
+
+    Accepts: a single token from STAGE_TYPES, or space-separated tokens from
+    STAGE_TOKENS (not `mixed`). The literal `mixed` must be the only value.
+    """
+    if t is None or t == "":
+        return "stage span requires a type attribute (no bare stage)"
+    toks = t.split()
+    if not toks:
+        return "stage span requires a non-empty type attribute"
+    if "mixed" in toks and len(toks) > 1:
+        return (f"stage.type {t!r}: per TEI spec, when `mixed` is used "
+                "it must be the only value")
+    bad = [tok for tok in toks if tok not in STAGE_TYPES]
+    if bad:
+        return (f"stage.type tokens not in vocab: {bad!r}; "
+                f"allowed = {sorted(STAGE_TYPES)}")
+    return None
 
 
 def parse_custom(s: str) -> list[tuple[str, dict]]:
@@ -156,11 +185,9 @@ def validate_span(line_text: str, span: dict) -> str | None:
         if t not in HEADING_TYPES:
             return f"heading.type must be one of {HEADING_TYPES}, got {t!r}"
     if tag == "stage":
-        t = attrs.get("type")
-        if t is None:
-            return "stage span requires a type attribute (no bare stage)"
-        if t not in STAGE_TYPES:
-            return f"stage.type must be one of {STAGE_TYPES}, got {t!r}"
+        err = _validate_stage_type(attrs.get("type"))
+        if err:
+            return err
     if tag == "role" and not attrs.get("xmlid"):
         return "role span requires xmlid attribute"
     if tag == "speaker" and not attrs.get("xmlid"):
