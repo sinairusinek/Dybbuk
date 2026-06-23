@@ -1,0 +1,68 @@
+verdict	db	kind	city	type	ts	explicit_n	auto_n	total_size	settlements	reason	target_yi	divergent_examples
+REVERT	1102	NEW_DB	Moscow	Education	2026-06-20T09:25:14	4	16	35	מאָסקווע|מאָסקווער	auto-attached clusters share NO tokens with merged set (5 divergent)	מאָסקווער יידישע טעאַטראַלע שול	ORG-C00423=יידישער מלוכה-סטודיע פֿון ווייס; ORG-C00753=שלום-עליכם-סטוּדיע; ORG-C02576_Q07=יידישער דראָמאַטישער סטודיע
+REVERT	1077	NEW_DB	Vilnius	Heritage Institution	2026-06-20T07:53:52	2	0	25	ווילנע	explicit clusters have low name overlap and no shared head noun	"ייוו""אָ"	
+REVERT	1081	NEW_DB	Vilnius	Education	2026-06-20T08:16:44	3	0	4	ווילנע	explicit clusters have low name overlap and no shared head noun	ווילנער העברעאישער גימנאַזיע	
+REVERT	1098	NEW_DB	Moscow	Theatre	2026-06-20T09:23:08	2	0	2	מאָסקווע|מאָסקווער	explicit clusters have low name overlap and no shared head noun	באָלשאָי טעאַטר	
+REVERT	1099	NEW_DB	Moscow	Theatre	2026-06-20T09:23:31	2	0	2	מאָסקווע	explicit clusters have low name overlap and no shared head noun	זימין אָפּערע	
+REVERT	1106	NEW_DB	St Petersburg	Theatre	2026-06-20T10:01:02	2	0	2	פּעטערבורג	explicit clusters have low name overlap and no shared head noun	טעאַטער פֿון וו. פֿ. קאָמיסאַר-זשעווס	
+REVERT	1109	NEW_DB	Minsk	Theatre	2026-06-20T10:05:48	2	0	2	אָדעס	explicit clusters have low name overlap and no shared head noun	מיניאַטור-טעאַטער „קאָמעטא“	
+REVERT	1138	NEW_DB	Mahilyow(?)	Publisher	2026-06-20T12:49:23	2	0	2	מינסק	explicit clusters have low name overlap and no shared head noun	מינסקער ווייסרוסלענדישן מלוכה-פֿאַרל	
+REVERT	1158	NEW_DB	Kyiv	Education	2026-06-20T14:32:29	2	0	3	קיעוו	explicit clusters have low name overlap and no shared head noun	קיעווער גימנאַזיע	
+REVERT	1314	NEW_DB	Vilnius	Education	2026-06-21T07:11:37	2	0	9	ווילנע	explicit clusters have low name overlap and no shared head noun	רוסישער פֿאָלקס-שול	
+REVERT	1102	INTO_EXISTING	Moscow	Education	2026-06-21T07:50:20	9	0	35	מאָסקווע|מאָסקווער	added cluster(s) share NO tokens with target DB 'מאָסקווער יידישע טעאַטראַלע שו'	יידישער מלוכה-סטודיע פֿון ווייס-רוסל	ORG-C00423=יידישער מלוכה-סטודיע פֿון ווייס; ORG-C02576_Q07=יידישער דראָמאַטישער סטודיע; ORG-C04377=יידישער מלוכה-סטודיע ביים וויי
+REVERT	1315	NEW_DB	Vilnius	Education	2026-06-21T08:03:57	2	0	2	ווילנע	explicit clusters have low name overlap and no shared head noun	ווילנער טעכניקום	
+REVERT	1102	INTO_EXISTING	Moscow	Education	2026-06-21T08:06:52	5	0	35	מאָסקווע|מאָסקווער	added cluster(s) share NO tokens with target DB 'מאָסקווער יידישע טעאַטראַלע שו'	טעאַטראַלן אינסטיטוט	ORG-C03605=טעאַטראַלן אינסטיטוט
+REVERT	1102	INTO_EXISTING	Moscow	Education	2026-06-21T08:17:00	7	0	35	מאָסקווע|מאָסקווער	added cluster(s) share NO tokens with target DB 'מאָסקווער יידישע טעאַטראַלע שו'	טעאַטערסטודיע ביים מאָסקווער יידישן 	ORG-C00753=שלום-עליכם-סטוּדיע
+REVERT	1317	NEW_DB	Moscow	Education	2026-06-21T08:21:59	3	0	3	מאָסקווע	explicit clusters have low name overlap and no shared head noun	מוזיק-שול	
+REVERT	1102	INTO_EXISTING	Moscow	Education	2026-06-21T08:26:16	3	0	35	מאָסקווע|מאָסקווער	added cluster(s) share NO tokens with target DB 'מאָסקווער יידישע טעאַטראַלע שו'	סטוּדיע פֿוּן ראַפאַלסקי	ORG-C04027=סטוּדיע פֿוּן ראַפאַלסקי; ORG-C00423=יידישער מלוכה-סטודיע פֿון ווייס; ORG-C05544=מלוכהשער יידישער טעאַטערסטודיע 
+REVERT	1320	NEW_DB	Moscow	Education	2026-06-21T08:29:11	2	0	2	מאָסקווע	explicit clusters have low name overlap and no shared head noun	מלוכישן העכסטן רעזשיסאַרישן וואַרשט	
+REVERT	1043	INTO_EXISTING	Vilnius	Theatre-related Society/ Union	2026-06-21T08:51:28	3	0	3	ווילנע	added cluster(s) share NO tokens with target DB 'יידישער קונסט-געזעלשאַפֿט'	ווילנער יידישער קונסטגעזעלשאַפט	ORG-C03088=ווילנער יידישער קונסטגעזעלשאַפ; ORG-C03245=יידישער קונסטגעזעלשאַפט
+REVERT	1322	NEW_DB	Vilnius	Publisher	2026-06-21T08:53:50	2	0	2	ווילנע	explicit clusters have low name overlap and no shared head noun	י. ל. מץ	
+REVERT	1323	NEW_DB	Vilnius	Jewish political bodies	2026-06-21T08:58:17	2	0	2	ווילנע	explicit clusters have low name overlap and no shared head noun	יידן-פֿאַרוואַלטונג	
+CHECK	1080	NEW_DB	Vilnius	Theatre-related Society/ Union	2026-06-20T08:06:27	3	0	14	ווילנע	total cluster_size = 14 (sweeps many mentions)	יידישער טעאַטער-געזעלשאַפט (ווילנע)	
+CHECK	427	INTO_EXISTING	Mahilyow(?)	Theatre	2026-06-20T08:52:40	3	0	25	כאַרקאָוו|כאַרקאָווער|כאָרקאָוו|מינסק|קיעוו	5 distinct settlements across clusters	אונזער ווינקל	
+CHECK	1092	NEW_DB	Kyiv	Theatre	2026-06-20T09:08:35	3	0	11	קיעוו|קיעווער	2 distinct settlements across clusters	קיעווער „קונסט-ווינקל“	
+CHECK	1097	NEW_DB	Kyiv	Theatre-related Society/ Union	2026-06-20T09:11:26	2	0	2	קיעוו|קיעווער	2 distinct settlements across clusters	קיעווער „פאַראיין פֿון קונסט-טוער“	
+CHECK	1101	NEW_DB	Moscow	Education	2026-06-20T09:24:24	2	0	4	מאָסקווע|מאָסקווער	2 distinct settlements across clusters	מאָסקווער אוניווערזיטעט	
+CHECK	1103	NEW_DB	St Petersburg	Education	2026-06-20T09:59:36	5	0	12	פּעטערבורג	total cluster_size = 12 (sweeps many mentions)	פּעטערבורגער קאָנסערוואַטאָריע	
+CHECK	1104	NEW_DB	St Petersburg	Education	2026-06-20T10:00:05	2	0	7	לענינגראַד|פּעטערבורג	2 distinct settlements across clusters	פּעטערבורגער אוניווערזיטעט	
+CHECK	1105	NEW_DB	St Petersburg	Education	2026-06-20T10:00:38	2	0	6	לענינגראָד|פּעטראָגראַד|פּעטראָגראָד	3 distinct settlements across clusters	גראַנאָווסקיס סטודיע	
+CHECK	117	INTO_EXISTING	St Petersburg	Theatre	2026-06-20T10:01:47	2	0	14	אָדעס|פּעטראָגראַד|פּעטראָגראָד	3 distinct settlements across clusters		
+CHECK	1107	NEW_DB	Minsk	Education	2026-06-20T10:04:54	3	0	3	אָדעם|אָדעס	2 distinct settlements across clusters	קאָנסערוואַטאָריע	
+CHECK	1108	NEW_DB	Minsk	Theatre	2026-06-20T10:05:20	2	0	4	אָדעם|אָדעס	2 distinct settlements across clusters	טעאַטער נאָווי	
+CHECK	541	INTO_EXISTING	Vilnius	Theatre	2026-06-20T10:54:58	2	0	11	ווילנע|פעלדאַפינג	2 distinct settlements across clusters		
+CHECK	541	INTO_EXISTING	Vilnius	Theatre	2026-06-20T10:57:47	4	0	11	ווילנע|פעלדאַפינג	2 distinct settlements across clusters		
+CHECK	117	INTO_EXISTING	St Petersburg	Theatre	2026-06-20T16:31:59	2	0	14	אָדעס|פּעטראָגראַד|פּעטראָגראָד	3 distinct settlements across clusters	יידישער מלוכהשער קאָמער-טעאַטער	
+CHECK	117	INTO_EXISTING	St Petersburg	Theatre	2026-06-20T16:33:57	2	0	14	אָדעס|פּעטראָגראַד|פּעטראָגראָד	3 distinct settlements across clusters	יידישן קאָמער-טעאַטער	
+KEEP	1085	NEW_DB	Vilnius	Education	2026-06-20T08:30:20	2	1	6	ווילנע	explicit + (no divergent additions)	ווילנער יידישער דראַמאַטישער סטודיע	
+KEEP	1152	NEW_DB	Mahilyow(?)	Jewish political bodies	2026-06-20T12:58:36	1	1	2	מינסק	explicit + (no divergent additions)	קלוב אויפֿן נאָמען גראָסער	
+KEEP	1078	NEW_DB	Vilnius	Heritage Institution	2026-06-20T07:57:40	2	0	2	ווילנע	explicit + (no divergent additions)	טעאַטער-מוזיי א'נ פֿון אסתר רחל קאמי	
+KEEP	1079	NEW_DB	Vilnius	Theatre-related Society/ Union	2026-06-20T08:02:25	2	0	2	ווילנע	explicit + (no divergent additions)	יידישן ליטעראַטן און זשורנאַליסטן-פ	
+KEEP	1082	NEW_DB	Vilnius	Education	2026-06-20T08:25:02	5	0	7	ווילנע	explicit + (no divergent additions)	ווילנער יידישע רעאַל-גימנאַזיע	
+KEEP	1083	NEW_DB	Vilnius	Education	2026-06-20T08:26:32	2	0	5	ווילנע	explicit + (no divergent additions)	יידישן לערער-סעמינאר (ווילנע)	
+KEEP	1084	NEW_DB	Vilnius	Education	2026-06-20T08:28:58	2	0	3	ווילנע	explicit + (no divergent additions)	יידישן מוזיקאַלישן אינסטיטוט	
+KEEP	1086	NEW_DB	Vilnius	Publisher	2026-06-20T08:32:05	2	0	2	ווילנע	explicit + (no divergent additions)	דרוקעריי פֿון שריפֿטזעצער און ראָזע	
+KEEP	1087	NEW_DB	Mahilyow(?)	Journals/ Newspapers	2026-06-20T08:53:13	2	0	6	מינסק	explicit + (no divergent additions)	שטערן	
+KEEP	1088	NEW_DB	Mahilyow(?)	Education	2026-06-20T08:53:45	2	0	2	מינסק	explicit + (no divergent additions)	שטאָטישע שול	
+KEEP	1089	NEW_DB	Mahilyow(?)	Theatre	2026-06-20T08:54:29	2	0	2	מינסק	explicit + (no divergent additions)	שטאָט-טעאַטער	
+KEEP	1090	NEW_DB	Mahilyow(?)	Publisher	2026-06-20T08:55:05	2	0	2	מינסק	explicit + (no divergent additions)	צענטראל-ראט פֿון די פּראָפפאַריינען 	
+KEEP	1091	NEW_DB	Kyiv	Education	2026-06-20T09:07:58	2	0	4	קיעוו	explicit + (no divergent additions)	קיעווער קאָנסערוואַטאָריע	
+KEEP	1093	NEW_DB	Kyiv	Theatre	2026-06-20T09:09:01	2	0	10	קיעוו	explicit + (no divergent additions)	קיעווער יידישן מלוכה-טעאַטער פֿון י	
+KEEP	1094	NEW_DB	Kyiv	Theatre	2026-06-20T09:09:34	3	0	3	קיעוו	explicit + (no divergent additions)	"קיעווער טעאַטער-סטודיע ""אָנהייב"""	
+KEEP	1095	NEW_DB	Kyiv	Theatre	2026-06-20T09:10:03	2	0	2	קיעוו	explicit + (no divergent additions)	יידישן קינדער-טעאַטער (קיעוו)	
+KEEP	1096	NEW_DB	Kyiv	Theatre-related Society/ Union	2026-06-20T09:10:51	3	0	3	קיעוו	explicit + (no divergent additions)	צוזאַמענפֿאָר פֿון די יידישע אַקטיאָר	
+KEEP	1100	NEW_DB	Moscow	Publisher	2026-06-20T09:23:57	2	0	4	מאָסקווע	explicit + (no divergent additions)	פֿאַרלאַג עמעס	
+KEEP	1110	NEW_DB	Minsk	Theatre	2026-06-20T10:06:19	2	0	2	אָדעס	explicit + (no divergent additions)	יידישן קונסט-טעאַטער	
+KEEP	354	INTO_EXISTING	Minsk	Theatre	2026-06-20T10:06:49	2	0	1	אָדעס	explicit + (no divergent additions)		
+KEEP	1112	NEW_DB	Vilnius	Theatre	2026-06-20T11:14:37	3	0	3	ווילנע	explicit + (no divergent additions)	רוסישן טעאַטער	
+KEEP	1171	NEW_DB	Kyiv	Education	2026-06-20T14:48:53	2	0	2	קיעוו	explicit + (no divergent additions)	קיעווער מלוכהשער מוזיקאַלישער שול	
+KEEP	1172	NEW_DB	Kyiv	Education	2026-06-20T14:50:38	2	0	2	קיעוו	explicit + (no divergent additions)	קיעווער דראַמאַטישן אינסטיטוט א'נ ל	
+KEEP	400	INTO_EXISTING	Kyiv	Theatre	2026-06-20T15:00:24	2	0	3	קיעוו	explicit + (no divergent additions)		
+KEEP	1085	INTO_EXISTING	Vilnius	Education	2026-06-21T07:56:17	2	0	6	ווילנע	explicit + (no divergent additions)	ערשטער יידישער דראַמאַטישער שול	
+KEEP	940	INTO_EXISTING	Vilnius	Education	2026-06-21T08:01:11	2	0	3	ווילנע	explicit + (no divergent additions)	טרעסקיןס מוזיק-שול	
+KEEP	1316	NEW_DB	Vilnius	Education	2026-06-21T08:19:18	2	0	2	ווילנע	explicit + (no divergent additions)	קאָנסערוואַטאָריע	
+KEEP	1318	NEW_DB	Vilnius	Education	2026-06-21T08:22:39	3	0	3	ווילנע	explicit + (no divergent additions)	ווילנער לערער-אינסטיטוט	
+KEEP	1319	NEW_DB	Vilnius	Education	2026-06-21T08:26:08	2	0	2	ווילנע	explicit + (no divergent additions)	באַלעט-שול א'ל פֿון העלענאַ לאַשקאָו	
+KEEP	1319	INTO_EXISTING	Vilnius	Education	2026-06-21T08:30:30	2	0	2	ווילנע	explicit + (no divergent additions)	באַלעט-שול א'ל פֿון העלענאַ לאַשקאָו	
+KEEP	1321	NEW_DB	Moscow	Education	2026-06-21T08:30:35	3	0	3	מאָסקווע	explicit + (no divergent additions)	ווייסרוסישן הויך אינסטיטוט פֿון טעאַ	
+KEEP	1100	INTO_EXISTING	Moscow	Publisher	2026-06-21T08:49:51	2	0	4	מאָסקווע	explicit + (no divergent additions)	פֿאַרלאַג עמעס	
