@@ -161,6 +161,11 @@ def _link_count(row: dict) -> int:
     return sum(1 for x in raw.split("|") if x.strip())
 
 
+def _linked_set(row: dict) -> set[str]:
+    raw = (row.get("linked_cluster_ids") or "").strip()
+    return {x.strip() for x in raw.split("|") if x.strip()}
+
+
 def _type_key(row: dict) -> str:
     return (row.get("org_type") or "").strip().casefold()
 
@@ -278,11 +283,22 @@ def main() -> None:
         if a_parens and b_parens and a_parens & b_parens:
             asym_paren = False
 
-        # MERGE only on strong full-surface match (stage 2/3). Surname-only
-        # and phonetic-only matches always go to REVIEW: family-troupe
-        # founder-namesakes (Kaminski/Kaminska) can share surname without
-        # being the same org.
-        if score >= 0.97 and signal in {"trigram_full"} and not asym_paren and type_match:
+        # MERGE on either:
+        # (1) Strong full-surface trigram (≥0.97). Surname-only and phonetic-
+        #     only matches at high score never auto-MERGE because family-troupe
+        #     namesakes (Kaminski/Kaminska, multiple Adlers) share surnames
+        #     without being the same org.
+        # (2) Shared linked_cluster_id (data integrity bug — one cluster
+        #     aligned to two DBs) AND score ≥ 0.80 AND same type AND no asym
+        #     paren. The score floor excludes the genuine "cluster misaligned
+        #     to wrong DB" case (e.g. Minsk State Theatre 501 vs Kiev State
+        #     Theatre 574 share a cluster at score 0.750 — different cities;
+        #     not a merge but a cluster-removal). 0.80 reliably separates the
+        #     two failure modes in current data.
+        shared = _linked_set(a) & _linked_set(b)
+        if score >= 0.97 and signal == "trigram_full" and not asym_paren and type_match:
+            action = "MERGE"
+        elif shared and score >= 0.80 and not asym_paren and type_match:
             action = "MERGE"
         else:
             action = "REVIEW"
