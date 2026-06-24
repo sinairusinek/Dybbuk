@@ -8,17 +8,20 @@
     }
   ],
   "roles": {
-    "toviya": {
-      "form": "טוֹבִיֶה",
-      "bare": "טוביה",
+    "tubih": {
+      "form": "טוֹבִיֶה ",
+      "bare": "טוביה ",
       "loc": {
         "page": 6,
         "line_id": "r1l6",
         "offset": 0,
-        "length": 8
-      }
+        "length": 9
+      },
+      "prefix_variants": [
+        "טובה"
+      ]
     },
-    "yankele": {
+    "ienkele": {
       "form": "יַעֲנְקֶעלֶע",
       "bare": "יענקעלע",
       "loc": {
@@ -26,9 +29,13 @@
         "line_id": "r1l7",
         "offset": 0,
         "length": 12
-      }
+      },
+      "prefix_variants": [
+        "יענקע",
+        "יענקעל"
+      ]
     },
-    "noyekh": {
+    "nkh": {
       "form": "נֹחַ",
       "bare": "נח",
       "loc": {
@@ -36,19 +43,21 @@
         "line_id": "r1l8",
         "offset": 0,
         "length": 4
-      }
+      },
+      "prefix_variants": []
     },
-    "khave": {
-      "form": "חַוָה",
-      "bare": "חוה",
+    "khuh": {
+      "form": "חַוָה ",
+      "bare": "חוה ",
       "loc": {
         "page": 6,
         "line_id": "r1l9",
         "offset": 0,
-        "length": 5
-      }
+        "length": 6
+      },
+      "prefix_variants": []
     },
-    "salaman": {
+    "slmn": {
       "form": "סַאלַאמָאן",
       "bare": "סאלאמאן",
       "loc": {
@@ -56,29 +65,36 @@
         "line_id": "r1l10",
         "offset": 0,
         "length": 10
-      }
+      },
+      "prefix_variants": []
     },
-    "dovid": {
-      "form": "דַאוִויד",
-      "bare": "דאוויד",
+    "dvid_geyger": {
+      "form": "דַאוִויד גֵייגֶער",
+      "bare": "דאוויד גייגער",
       "loc": {
         "page": 6,
         "line_id": "r1l11",
         "offset": 0,
-        "length": 8
-      }
+        "length": 17
+      },
+      "prefix_variants": [
+        "גייגער",
+        "דאוויד",
+        "דוד"
+      ]
     },
-    "tabele": {
-      "form": "טַאבֶּעלֶע",
-      "bare": "טאבעלע",
+    "tbele": {
+      "form": "טַאבֶּעלֶע ",
+      "bare": "טאבעלע ",
       "loc": {
         "page": 6,
         "line_id": "r1l12",
         "offset": 0,
-        "length": 10
-      }
+        "length": 11
+      },
+      "prefix_variants": []
     },
-    "reb_zisse": {
+    "r_zisse": {
       "form": "ר' זִיסְסֶע",
       "bare": "ר' זיססע",
       "loc": {
@@ -86,7 +102,11 @@
         "line_id": "r1l13",
         "offset": 0,
         "length": 11
-      }
+      },
+      "prefix_variants": [
+        "זיססע",
+        "זיסע"
+      ]
     },
     "keyle_beyle": {
       "form": "קֵיילֶע בֵּיילֶע",
@@ -96,9 +116,16 @@
         "line_id": "r1l14",
         "offset": 0,
         "length": 16
-      }
+      },
+      "prefix_variants": [
+        "ביי",
+        "ביילע",
+        "קיי",
+        "קיילע",
+        "קיילע ביי"
+      ]
     },
-    "alterunyu": {
+    "lteruniu": {
       "form": "אַלְטֶערוּנְיוּ",
       "bare": "אלטערוניו",
       "loc": {
@@ -106,9 +133,12 @@
         "line_id": "r1l15",
         "offset": 0,
         "length": 15
-      }
+      },
+      "prefix_variants": [
+        "אלטער"
+      ]
     },
-    "itsele_pipek": {
+    "itsele_fifek": {
       "form": "אִיצֶעלֶע פִּיפֶּעק",
       "bare": "איצעלע פיפעק",
       "loc": {
@@ -116,7 +146,12 @@
         "line_id": "r1l16",
         "offset": 0,
         "length": 19
-      }
+      },
+      "prefix_variants": [
+        "איצע",
+        "איצעלע",
+        "פיפעק"
+      ]
     },
     "tile": {
       "form": "טִילֶע",
@@ -126,7 +161,8 @@
         "line_id": "r1l17",
         "offset": 0,
         "length": 6
-      }
+      },
+      "prefix_variants": []
     }
   },
   "desc_tokens": {

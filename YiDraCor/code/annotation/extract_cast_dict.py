@@ -65,6 +65,35 @@ def _page_num_from_filename(name: str) -> int | None:
     return int(m.group(1)) if m else None
 
 
+_TRANSLIT_DIGRAPHS = [
+    ("וו", "v"), ("וי", "oy"), ("ױ", "oy"), ("ײ", "ey"), ("יי", "ey"),
+    ("אַ", "a"), ("אָ", "o"), ("בּ", "b"), ("בֿ", "v"), ("כּ", "k"),
+    ("פּ", "p"), ("פֿ", "f"), ("שׂ", "s"), ("תּ", "t"), ("וּ", "u"), ("יִ", "i"),
+]
+_TRANSLIT_SINGLE = {
+    "א": "", "ב": "b", "ג": "g", "ד": "d", "ה": "h", "ו": "u", "ז": "z",
+    "ח": "kh", "ט": "t", "י": "i", "כ": "kh", "ך": "kh", "ל": "l", "מ": "m",
+    "ם": "m", "נ": "n", "ן": "n", "ס": "s", "ע": "e", "פ": "f", "ף": "f",
+    "צ": "ts", "ץ": "ts", "ק": "k", "ר": "r", "ש": "sh", "ת": "s",
+}
+
+
+def _auto_xmlid(text: str) -> str:
+    """YIVO-ish translit → safe xmlid token (a-z, 0-9, underscore)."""
+    if not text:
+        return ""
+    s = text.strip().rstrip(",.;:'\"")
+    s = s.replace("'", "").replace("’", "").replace("‘", "")
+    s = re.sub(r"[֑-ׇ]", "", s)  # strip nikud
+    for src, dst in _TRANSLIT_DIGRAPHS:
+        s = s.replace(src, dst)
+    out = "".join(_TRANSLIT_SINGLE.get(ch, ch) for ch in s)
+    out = re.sub(r"\s+", "_", out.strip())
+    out = re.sub(r"[^a-z0-9_]", "", out.lower())
+    out = re.sub(r"_+", "_", out).strip("_")
+    return out
+
+
 def extract_one(path: Path) -> tuple[dict, dict]:
     """Return (roles_for_page, desc_tokens_for_page).
 
@@ -95,7 +124,17 @@ def extract_one(path: Path) -> tuple[dict, dict]:
             if tag == "role":
                 xid = attrs.get("xmlid")
                 if not xid:
-                    continue
+                    # Auto-assign xmlid by transliterating bare consonant skeleton
+                    # (Noa marks role spans on Transkribus without xmlids; this
+                    # turns them into a usable cast_dict.json — 2026-06-24).
+                    bare = strip_niqqud(sub).strip()
+                    xid = _auto_xmlid(bare)
+                    if not xid:
+                        continue
+                    # ensure uniqueness inside the page
+                    base = xid; n = 2
+                    while xid in roles:
+                        xid = f"{base}_{n}"; n += 1
                 roles[xid] = {
                     "form": sub,
                     "bare": strip_niqqud(sub),

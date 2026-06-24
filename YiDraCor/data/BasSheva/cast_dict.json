@@ -4,11 +4,11 @@
     {
       "file": "0006_30804545.xml",
       "page": 6,
-      "roles": 13
+      "roles": 15
     }
   ],
   "roles": {
-    "tsadok": {
+    "tsduk": {
       "form": "צָדוק",
       "bare": "צדוק",
       "loc": {
@@ -16,9 +16,12 @@
         "line_id": "r_5_1l2",
         "offset": 0,
         "length": 5
-      }
+      },
+      "prefix_variants": [
+        "צדיק"
+      ]
     },
-    "bas_sheva": {
+    "bs_shbe": {
       "form": "בַּת שֶׁבַע",
       "bare": "בת שבע",
       "loc": {
@@ -26,9 +29,12 @@
         "line_id": "r_5_1l3",
         "offset": 0,
         "length": 11
-      }
+      },
+      "prefix_variants": [
+        "שבע"
+      ]
     },
-    "shloymiel": {
+    "shlumil": {
       "form": "שְׁלוּמִיאֵל",
       "bare": "שלומיאל",
       "loc": {
@@ -36,9 +42,10 @@
         "line_id": "r_5_1l4",
         "offset": 0,
         "length": 12
-      }
+      },
+      "prefix_variants": []
     },
-    "azarya": {
+    "ezrih": {
       "form": "עֲזַרִיָה",
       "bare": "עזריה",
       "loc": {
@@ -46,9 +53,10 @@
         "line_id": "r_5_1l5",
         "offset": 0,
         "length": 9
-      }
+      },
+      "prefix_variants": []
     },
-    "lemekh": {
+    "lmkh": {
       "form": "לֶמֶך",
       "bare": "למך",
       "loc": {
@@ -56,9 +64,10 @@
         "line_id": "r_5_1l6",
         "offset": 0,
         "length": 5
-      }
+      },
+      "prefix_variants": []
     },
-    "avner": {
+    "bnr": {
       "form": "אַבְנֵר",
       "bare": "אבנר",
       "loc": {
@@ -66,9 +75,10 @@
         "line_id": "r_5_1l7",
         "offset": 0,
         "length": 7
-      }
+      },
+      "prefix_variants": []
     },
-    "binyomin": {
+    "bnimin": {
       "form": "בִּנְיָמִין",
       "bare": "בנימין",
       "loc": {
@@ -76,9 +86,13 @@
         "line_id": "r_5_1l8",
         "offset": 0,
         "length": 11
-      }
+      },
+      "prefix_variants": [
+        "בנימן",
+        "בתשבע"
+      ]
     },
-    "ester": {
+    "ssr": {
       "form": "אֶסְתֶּר",
       "bare": "אסתר",
       "loc": {
@@ -86,9 +100,10 @@
         "line_id": "r_5_1l9",
         "offset": 0,
         "length": 8
-      }
+      },
+      "prefix_variants": []
     },
-    "tayfel": {
+    "teyfel": {
       "form": "טַייפֶֿעל",
       "bare": "טייפעל",
       "loc": {
@@ -96,17 +111,30 @@
         "line_id": "r_5_1l10",
         "offset": 0,
         "length": 9
-      }
+      },
+      "prefix_variants": []
     },
     "shefer": {
-      "form": "שׁעפֿער שׁעפֿעריגען",
-      "bare": "שעפער שעפעריגען",
+      "form": "שׁעפֿער",
+      "bare": "שעפער",
       "loc": {
         "page": 6,
         "line_id": "r_5_1l11",
         "offset": 0,
-        "length": 19
-      }
+        "length": 7
+      },
+      "prefix_variants": []
+    },
+    "sheferigen": {
+      "form": "שׁעפֿעריגען,",
+      "bare": "שעפעריגען,",
+      "loc": {
+        "page": 6,
+        "line_id": "r_5_1l11",
+        "offset": 8,
+        "length": 12
+      },
+      "prefix_variants": []
     },
     "militer": {
       "form": "מיליטער",
@@ -116,19 +144,21 @@
         "line_id": "r_5_1l11",
         "offset": 21,
         "length": 7
-      }
+      },
+      "prefix_variants": []
     },
-    "tayflen": {
-      "form": "טייפֿעל",
-      "bare": "טייפעל",
+    "teyfel_2": {
+      "form": " טייפֿעל,",
+      "bare": " טייפעל,",
       "loc": {
         "page": 6,
         "line_id": "r_5_1l11",
-        "offset": 30,
-        "length": 7
-      }
+        "offset": 29,
+        "length": 9
+      },
+      "prefix_variants": []
     },
-    "boyern": {
+    "boyen": {
       "form": "בּוֹיען",
       "bare": "בויען",
       "loc": {
@@ -136,7 +166,19 @@
         "line_id": "r_5_1l11",
         "offset": 39,
         "length": 7
-      }
+      },
+      "prefix_variants": []
+    },
+    "etts": {
+      "form": "עטצ.",
+      "bare": "עטצ.",
+      "loc": {
+        "page": 6,
+        "line_id": "r_5_1l11",
+        "offset": 48,
+        "length": 4
+      },
+      "prefix_variants": []
     }
   },
   "desc_tokens": {
