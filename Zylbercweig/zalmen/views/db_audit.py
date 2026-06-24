@@ -29,6 +29,13 @@ import pathlib
 
 import streamlit as st
 
+from views.org_review import (
+    CLUSTER_FILE,
+    _open_url,
+    load_samples,
+    render_attestations,
+)
+
 # ── Paths ─────────────────────────────────────────────────────────────────────
 ORG = pathlib.Path(__file__).resolve().parents[2] / "organizations"
 PUNCHLIST = ORG / "db_audit_punchlist.tsv"
@@ -114,10 +121,17 @@ _DECISION_OPTS = ["", "KEEP_IN", "REMOVE", "CHECK"]
 
 
 def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
-               reviewer: str) -> None:
+               reviewer: str, samples: dict[str, dict[str, list]]) -> None:
     db_id = db["db_id"]
     clusters = db.get("_clusters", [])
     sev = db.get("severity_boost", "") or ""
+
+    # If a previous "Keep all in" click queued this DB, pre-fill each cluster's
+    # radio state BEFORE the widgets render. Cleared after consumption so
+    # subsequent manual changes stick.
+    if st.session_state.pop(f"dba_setall_{db_id}", False):
+        for c in clusters:
+            st.session_state[f"dba_{db_id}_{c['cluster_id']}"] = "KEEP_IN"
 
     # Header line
     yi = db.get("db_name_yiddish", "") or "(no canonical Yiddish)"
@@ -126,7 +140,17 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
         f"**DB {db_id}** — :blue[{yi}]",
         f"_{tr}_" if tr else "",
     ]
-    st.markdown(" · ".join(b for b in head_bits if b))
+    head_col, link_col = st.columns([4, 1])
+    with head_col:
+        st.markdown(" · ".join(b for b in head_bits if b))
+    with link_col:
+        st.link_button(
+            "🗂 Full DB entry →",
+            url=_open_url("Organization Cards", db_id),
+            help="Open this DB in the Organization Cards view. Your in-flight "
+                 "radio selections here persist across view-switches.",
+            use_container_width=True,
+        )
 
     # Stats line
     bits = [
@@ -176,14 +200,43 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                 f":blue[{yi_c}]"
                 + (f"  \nvariant: {tv}" if tv and tv != yi_c else "")
             )
+            n_samples = len((samples.get(cid) or {}).get("samples", []))
+            mentions_label = (
+                f"📜 Mentions ({n_samples})" if n_samples
+                else "📜 Mentions (none in clustered TSV)"
+            )
+            with st.expander(mentions_label, expanded=False):
+                if n_samples:
+                    render_attestations({"cluster_id": cid}, samples)
+                else:
+                    st.caption(
+                        "No source mentions found in organizations_clustered.tsv "
+                        f"for `{cid}`."
+                    )
 
-    # Notes + Save
+    # Notes + Save + Keep-all-in shortcut
     notes_key = f"dba_notes_{db_id}"
     save_key = f"dba_save_{db_id}"
+    keepall_key = f"dba_keepall_{db_id}"
     st.text_area("notes (applies to all decisions saved in this block)",
                  key=notes_key, height=68, label_visibility="collapsed",
                  placeholder="notes (optional)")
-    if st.button(f"💾 Save decisions for DB {db_id}", key=save_key, type="primary"):
+    btn_save, btn_keepall, _ = st.columns([2, 2, 3])
+    with btn_keepall:
+        if st.button(
+            f"✅ Keep all in (DB {db_id})", key=keepall_key,
+            help="Pre-fill every cluster in this DB with KEEP_IN. You still "
+                 "need to click Save to commit.",
+            use_container_width=True,
+        ):
+            st.session_state[f"dba_setall_{db_id}"] = True
+            st.rerun()
+    with btn_save:
+        save_clicked = st.button(
+            f"💾 Save decisions for DB {db_id}", key=save_key, type="primary",
+            use_container_width=True,
+        )
+    if save_clicked:
         notes = st.session_state.get(notes_key, "") or ""
         ts = _dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
         recs: list[dict] = []
@@ -247,10 +300,26 @@ def render() -> None:
 
     punchlist = load_punchlist(_mtime(PUNCHLIST))
     decisions = load_decisions(_mtime(DECISIONS))
+    samples = load_samples(_mtime(CLUSTER_FILE))
 
     if not punchlist:
         st.success("No DBs currently flagged. Re-run the audit to refresh.")
         return
+
+    # Hide fully-resolved DBs: every cluster has a saved decision of KEEP_IN or
+    # REMOVE (CHECK keeps the row visible — explicit "come back later" intent).
+    # Decisions persist in db_audit_decisions.tsv across audit refreshes.
+    def _is_resolved(r: dict) -> bool:
+        cs = r.get("_clusters", [])
+        if not cs:
+            return False
+        for c in cs:
+            d = decisions.get((r["db_id"], c["cluster_id"]), {}).get("decision", "")
+            if d not in ("KEEP_IN", "REMOVE"):
+                return False
+        return True
+
+    n_resolved_total = sum(1 for r in punchlist if _is_resolved(r))
 
     # Filters
     col_f, col_s = st.columns([2, 1])
@@ -265,8 +334,8 @@ def render() -> None:
             key="dba_filter_n",
         )
 
-    # Apply filter
-    rows = punchlist
+    # Apply filters: hide resolved first, then severity, then top-N.
+    rows = [r for r in punchlist if not _is_resolved(r)]
     if sev_only:
         rows = [r for r in rows if (r.get("severity_boost") or "").strip()]
     rows = rows[: int(max_show)]
@@ -275,10 +344,11 @@ def render() -> None:
         (r["db_id"], c["cluster_id"]) in decisions for c in r.get("_clusters", [])
     ))
     st.markdown(
-        f"**{len(rows)} DBs shown** (of {len(punchlist)} flagged total). "
-        f"{n_decided} have at least one decision recorded."
+        f"**{len(rows)} DBs shown** (of {len(punchlist)} flagged total; "
+        f"{n_resolved_total} fully resolved and hidden). "
+        f"{n_decided} of the shown DBs have at least one decision recorded."
     )
 
     for i, db in enumerate(rows):
         with st.container(border=True):
-            _render_db(i, db, decisions, reviewer)
+            _render_db(i, db, decisions, reviewer, samples)

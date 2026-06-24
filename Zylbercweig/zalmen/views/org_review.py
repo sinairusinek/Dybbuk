@@ -551,7 +551,7 @@ def _build_reviewer_note(base_note: str, db_ref: str = "", entity_name: str = ""
 	return " ".join(parts).strip()
 
 
-def _render_attestations(selected: dict[str, str], samples: dict[str, dict[str, list]]) -> None:
+def render_attestations(selected: dict[str, str], samples: dict[str, dict[str, list]]) -> None:
 	cid = selected["cluster_id"]
 	sample_rows = samples.get(cid, {}).get("samples", [])
 	if not sample_rows:
@@ -1526,7 +1526,7 @@ def render() -> None:
 			with st.container(border=True):
 				st.markdown("<div class='panel-samples'></div>", unsafe_allow_html=True)
 				st.markdown("<div class='rtl-title section-chip section-chip-samples'><b>Sample texts</b></div>", unsafe_allow_html=True)
-				_render_attestations(selected, samples)
+				render_attestations(selected, samples)
 
 		# ── Drafter proposal banner (any confidence) ──────────────────────
 		_draft = drafts_by_cid.get(selected.get("cluster_id", "").strip())
