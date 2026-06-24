@@ -170,6 +170,9 @@ elif view_module == "settlement_audit":
 elif view_module == "activity":
     from views.activity import render
     render()
+elif view_module == "db_audit":
+    from views.db_audit import render
+    render()
 elif view_module == "person_dedup":
     from views.person_dedup import render
     render()
