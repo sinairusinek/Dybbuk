@@ -46,6 +46,10 @@ DEDUP_REVIEW = ORG / "db_dedup_review.tsv"
 DEDUP_DECISIONS = ORG / "db_dedup_decisions.tsv"
 DEDUP_DECISIONS_REPO_PATH = "Zylbercweig/organizations/db_dedup_decisions.tsv"
 
+DBLALIGN_AUDIT = ORG / "cluster_double_alignment_audit.tsv"
+DBLALIGN_DECISIONS = ORG / "cluster_double_alignment_decisions.tsv"
+DBLALIGN_DECISIONS_REPO_PATH = "Zylbercweig/organizations/cluster_double_alignment_decisions.tsv"
+
 DECISION_HEADERS = [
     "db_id", "cluster_id", "decision", "reviewer_notes",
     "reviewer", "reviewed_at",
@@ -53,6 +57,11 @@ DECISION_HEADERS = [
 
 DEDUP_DECISION_HEADERS = [
     "db_id_a", "db_id_b", "decision", "merge_keep_id",
+    "reviewer_notes", "reviewer", "reviewed_at",
+]
+
+DBLALIGN_DECISION_HEADERS = [
+    "cluster_id", "decision", "remove_from_db_ids",
     "reviewer_notes", "reviewer", "reviewed_at",
 ]
 
@@ -182,10 +191,68 @@ def save_dedup_decisions(records: list[dict]) -> None:
     load_dedup_decisions.clear()
 
 
+# ── Double-alignment loaders / saver ──────────────────────────────────────────
+
+@st.cache_data(show_spinner=False)
+def load_dblalign_audit(mtime: float) -> list[dict]:
+    if not DBLALIGN_AUDIT.exists():
+        return []
+    with open(DBLALIGN_AUDIT, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f, delimiter="\t"))
+
+
+@st.cache_data(show_spinner=False)
+def load_dblalign_decisions(mtime: float) -> dict[str, dict]:
+    out: dict[str, dict] = {}
+    if not DBLALIGN_DECISIONS.exists():
+        return out
+    with open(DBLALIGN_DECISIONS, newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            out[r.get("cluster_id", "")] = r
+    return out
+
+
+def save_dblalign_decisions(records: list[dict]) -> None:
+    if not records:
+        return
+    DBLALIGN_DECISIONS.parent.mkdir(parents=True, exist_ok=True)
+    lock = DBLALIGN_DECISIONS.with_suffix(".lock")
+    with open(lock, "w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        try:
+            existing: dict[str, dict] = {}
+            if DBLALIGN_DECISIONS.exists():
+                with open(DBLALIGN_DECISIONS, newline="", encoding="utf-8") as f:
+                    for row in csv.DictReader(f, delimiter="\t"):
+                        existing[row.get("cluster_id", "")] = row
+            for rec in records:
+                existing[rec["cluster_id"]] = rec
+            with open(DBLALIGN_DECISIONS, "w", newline="", encoding="utf-8") as f:
+                w = csv.DictWriter(f, fieldnames=DBLALIGN_DECISION_HEADERS, delimiter="\t")
+                w.writeheader()
+                for row in existing.values():
+                    w.writerow({k: row.get(k, "") for k in DBLALIGN_DECISION_HEADERS})
+        finally:
+            fcntl.flock(lf, fcntl.LOCK_UN)
+    try:
+        from zalmen.github_sync import push_file_to_github
+        ok = push_file_to_github(
+            DBLALIGN_DECISIONS_REPO_PATH, DBLALIGN_DECISIONS,
+            f"chore: cluster_double_alignment decisions ({len(records)} rows)",
+        )
+    except Exception:  # noqa: BLE001
+        ok = False
+    if not ok:
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
+    load_dblalign_decisions.clear()
+
+
 # ── Render helpers ────────────────────────────────────────────────────────────
 
 _DECISION_OPTS = ["", "KEEP_IN", "REMOVE", "CHECK"]
 _DEDUP_DECISION_OPTS = ["", "MERGE", "KEEP_SEPARATE", "CHECK"]
+_DBLALIGN_DECISION_OPTS = ["", "REMOVE_FROM_DBS", "KEEP_ALL_LINKS",
+                           "WAIT_FOR_MERGE", "CHECK"]
 
 
 def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
@@ -610,6 +677,187 @@ def _render_dedup_tab(reviewer: str) -> None:
             _render_dedup_pair(p, decisions, reviewer)
 
 
+# ── Double-alignment renderer ─────────────────────────────────────────────────
+
+_SUGGESTION_BADGE = {
+    "REMOVE_FROM_ONE": "🛑 REMOVE_FROM_ONE",
+    "INVESTIGATE": "❓ INVESTIGATE",
+    "MERGE_DBS_PENDING_REVIEW": "⏳ MERGE pending review",
+    "MERGE_DBS": "✅ MERGE (auto-resolves)",
+}
+
+
+def _render_dblalign_row(row: dict, decisions: dict[str, dict],
+                         samples: dict[str, dict[str, list]]) -> None:
+    cid = row.get("cluster_id", "")
+    db_ids = [x.strip() for x in (row.get("db_ids") or "").split("|") if x.strip()]
+    db_names_raw = (row.get("db_names") or "").split("||")
+    db_names = [n.strip() for n in db_names_raw] + [""] * (len(db_ids) - len(db_names_raw))
+    suggestion = (row.get("suggested_action") or "").strip()
+    prev = decisions.get(cid, {})
+
+    badge = _SUGGESTION_BADGE.get(suggestion, suggestion)
+    st.markdown(f"**`{cid}`** · {badge}")
+    bits = [
+        f"aligned to **{row.get('n_db_ids','?')}** DBs",
+        f"type_match: **{row.get('type_match','?')}**",
+    ]
+    shared = (row.get("shared_settlement_tokens") or "").strip()
+    if shared:
+        bits.append(f"shared tokens: `{shared}`")
+    st.caption(" · ".join(bits))
+
+    for flag_col, label in (
+        ("dedup_merge_pairs", "dedup MERGE pairs"),
+        ("dedup_review_pairs", "dedup REVIEW pairs"),
+        ("unflagged_pairs", "no dedup pair found"),
+    ):
+        v = (row.get(flag_col) or "").strip()
+        if v:
+            st.caption(f"{label}: {v}")
+
+    # Per-DB row: name + link button + "remove cluster from this DB" checkbox.
+    st.caption("Pick which DBs the cluster should be removed from:")
+    saved_removes = {
+        x.strip() for x in (prev.get("remove_from_db_ids") or "").split("|") if x.strip()
+    }
+    for db_id, name in zip(db_ids, db_names):
+        col_chk, col_name, col_link = st.columns([1, 5, 2])
+        with col_chk:
+            st.checkbox(
+                f"Remove from DB {db_id}",
+                key=f"dba_dblr_{cid}_{db_id}",
+                value=(db_id in saved_removes),
+                label_visibility="collapsed",
+            )
+        with col_name:
+            st.markdown(
+                f"`{db_id}` :blue[{name or '(no name)'}]"
+            )
+        with col_link:
+            st.link_button(
+                f"🗂 DB {db_id} →", url=_open_url("Organization Cards", db_id),
+                use_container_width=True,
+            )
+
+    # Mentions for context — reuse the same widget.
+    n_samples = len((samples.get(cid) or {}).get("samples", []))
+    if n_samples:
+        with st.expander(f"📜 Mentions ({n_samples})", expanded=False):
+            render_attestations({"cluster_id": cid}, samples)
+
+    # Decision + notes + save
+    prev_dec = prev.get("decision", "")
+    try:
+        idx_dec = _DBLALIGN_DECISION_OPTS.index(prev_dec)
+    except ValueError:
+        idx_dec = 0
+    dec_key = f"dba_dbld_{cid}"
+    st.radio(
+        "decision", _DBLALIGN_DECISION_OPTS, index=idx_dec,
+        key=dec_key, horizontal=True, label_visibility="collapsed",
+        help="REMOVE_FROM_DBS: unalign cluster from each DB checked above. "
+             "KEEP_ALL_LINKS: intentional multi-alignment (rare). "
+             "WAIT_FOR_MERGE: cluster resolves when the duplicate DBs are "
+             "merged in the Dedup tab. CHECK: defer.",
+    )
+    notes_key = f"dba_dbln_{cid}"
+    if notes_key not in st.session_state:
+        st.session_state[notes_key] = prev.get("reviewer_notes", "") or ""
+    st.text_area(
+        "notes", key=notes_key, height=68, label_visibility="collapsed",
+        placeholder="notes (optional)",
+    )
+    if st.button(f"💾 Save ({cid})", key=f"dba_dbls_{cid}", type="primary"):
+        choice = st.session_state.get(dec_key, "") or ""
+        if not choice:
+            st.toast("Pick a decision first.", icon="ℹ️")
+            return
+        removes = sorted(
+            db_id for db_id in db_ids
+            if st.session_state.get(f"dba_dblr_{cid}_{db_id}", False)
+        )
+        if choice == "REMOVE_FROM_DBS" and not removes:
+            st.toast("REMOVE_FROM_DBS picked but no DBs checked.", icon="⚠️")
+            return
+        ts = _dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+        rec = {
+            "cluster_id": cid,
+            "decision": choice,
+            "remove_from_db_ids": " | ".join(removes) if choice == "REMOVE_FROM_DBS" else "",
+            "reviewer_notes": st.session_state.get(notes_key, "") or "",
+            "reviewer": st.session_state.get("reviewer", ""),
+            "reviewed_at": ts,
+        }
+        save_dblalign_decisions([rec])
+        try:
+            from zalmen.activity_log import log_action
+            log_action(
+                "db_audit", "double_alignment_decision",
+                target_id=cid, decision=choice,
+                note=rec["reviewer_notes"], push=False,
+            )
+        except Exception:  # noqa: BLE001
+            pass
+        st.toast(f"✅ Saved {cid}: {choice}", icon="✅")
+        st.rerun()
+
+
+def _render_dblalign_tab(reviewer: str, samples: dict[str, dict[str, list]]) -> None:
+    if not DBLALIGN_AUDIT.exists():
+        st.error(
+            "No audit file. Run:\n\n"
+            "```bash\n"
+            "python Zylbercweig/organizations/build_cluster_double_alignment_audit.py\n"
+            "```"
+        )
+        return
+
+    rows_all = load_dblalign_audit(_mtime(DBLALIGN_AUDIT))
+    decisions = load_dblalign_decisions(_mtime(DBLALIGN_DECISIONS))
+
+    if not rows_all:
+        st.success("No clusters double-aligned. Re-run the audit to refresh.")
+        return
+
+    # Resolved = any non-empty + non-CHECK decision saved.
+    def _is_resolved(r: dict) -> bool:
+        d = decisions.get(r.get("cluster_id",""), {}).get("decision", "")
+        return d in ("REMOVE_FROM_DBS", "KEEP_ALL_LINKS", "WAIT_FOR_MERGE")
+
+    n_resolved_total = sum(1 for r in rows_all if _is_resolved(r))
+
+    # Filters
+    suggestions = sorted({(r.get("suggested_action") or "") for r in rows_all if r.get("suggested_action")})
+    default_sel = [s for s in suggestions if s in ("REMOVE_FROM_ONE", "INVESTIGATE")]
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        sel = st.multiselect(
+            "suggested action", suggestions, default=default_sel or suggestions,
+            key="dba_dbl_filter_sugg",
+            help="Default shows the rows that need human triage (REMOVE_FROM_ONE + INVESTIGATE). "
+                 "MERGE_DBS_PENDING_REVIEW and MERGE_DBS auto-resolve when the DB-level merge happens in the Dedup tab.",
+        )
+    with col2:
+        max_show = st.number_input(
+            "Show top N", min_value=5, max_value=200, value=50, step=5,
+            key="dba_dbl_filter_n",
+        )
+
+    rows = [r for r in rows_all if not _is_resolved(r) and (r.get("suggested_action") or "") in sel]
+    # Sort by audit script ordering (REMOVE_FROM_ONE first); already sorted on disk.
+    rows = rows[: int(max_show)]
+
+    st.markdown(
+        f"**{len(rows)} clusters shown** (of {len(rows_all)} total; "
+        f"{n_resolved_total} resolved and hidden)."
+    )
+
+    for r in rows:
+        with st.container(border=True):
+            _render_dblalign_row(r, decisions, samples)
+
+
 # ── Main render ───────────────────────────────────────────────────────────────
 
 def render() -> None:
@@ -621,9 +869,10 @@ def render() -> None:
 
     samples = load_samples(_mtime(CLUSTER_FILE))
 
-    tab_fm, tab_dd = st.tabs([
+    tab_fm, tab_dd, tab_dbl = st.tabs([
         "False-equation merges",
         "Dedup candidates",
+        "Cluster double-alignments",
     ])
     with tab_fm:
         st.caption(
@@ -642,3 +891,12 @@ def render() -> None:
             "Decisions go to db_dedup_decisions.tsv keyed by (db_id_a, db_id_b)."
         )
         _render_dedup_tab(reviewer)
+    with tab_dbl:
+        st.caption(
+            "Clusters that appear in linked_cluster_ids of 2+ DB rows — a data-"
+            "integrity bug. Either the DBs are duplicates (resolves via the "
+            "Dedup tab) or they are distinct entities and the cluster needs to "
+            "be removed from the wrong one. Decisions go to "
+            "cluster_double_alignment_decisions.tsv keyed by cluster_id."
+        )
+        _render_dblalign_tab(reviewer, samples)
