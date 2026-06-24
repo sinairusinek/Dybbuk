@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-11-21T13:24:48.85+01:00</Created>
+        <LastChange>2022-03-31T10:58:35.841+02:00</LastChange>
+        <Comments>
+                Measurement unit: pixel
+                PrimaryLanguage: 
+                Producer: Transkribus
+            </Comments>
+        <TranskribusMetadata docId="828443" pageId="30804532" pageNr="1"/>
+    </Metadata>
+    <Page imageFilename="30804532.jpg" imageWidth="1867" imageHeight="2835">
+        <PrintSpace>
+            <Coords points="0,0 1867,0 1867,2835 0,2835"/>
+        </PrintSpace>
+        <ReadingOrder>
+            <OrderedGroup id="ro_1648717115850" caption="Regions reading order">
+                <RegionRefIndexed index="1" regionRef="r_2_1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <GraphicRegion id="Graphic_1648717047894_305" custom="readingOrder {index:0;}">
+            <Coords points="917,182 1181,182 1181,446 917,446"/>
+        </GraphicRegion>
+        <TextRegion orientation="0.0" type="paragraph" id="r_2_1" custom="readingOrder {index:1;} structure {type:titlePage;}">
+            <Coords points="1359,233 1595,233 1595,308 1359,308"/>
+            <TextLine id="r_2_1l1" custom="readingOrder {index:0;}">
+                <Coords points="1366,343 1391,343 1416,344 1441,344 1466,345 1491,345 1516,346 1541,346 1566,346 1592,346 1592,196 1566,196 1541,196 1516,196 1491,195 1466,195 1441,194 1416,194 1391,193 1366,193"/>
+                <Baseline points="1366,293 1391,293 1416,294 1441,294 1466,295 1491,295 1516,296 1541,296 1566,296 1592,296"/>
+            </TextLine>
+        </TextRegion>
+        <GraphicRegion id="r_14" custom="readingOrder {index:2;}">
+            <Coords points="1098,2422 1704,2422 1704,2736 1098,2736"/>
+        </GraphicRegion>
+    </Page>
+</PcGts>

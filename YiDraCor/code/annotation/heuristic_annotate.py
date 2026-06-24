@@ -53,6 +53,8 @@ EMOTION_ADVERBS = {
     "בייז", "שרייט", "ברוגז", "שפעטיש", "זיגנענד", "אפארט",
     "בעגייסטערט", "פערקלעהרט", "פערקלערט", "פערשעמט",
     "לאכענד", "ערנסט", "שטיל",
+    # Sinai 2026-06-24 general correction #5
+    "וויינט", "לאכט", "וויינענד",
 }
 _COMPOUND_ACTION = {"זעצט", "גיט", "נעמט", "קושט", "שאקעלט", "שטעלט",
                     "הויבט", "דרעהט", "ציהט", "פאלט"}
@@ -79,11 +81,14 @@ def classify_stage(span_text: str) -> str:
     if len(tokens) == 1 and tokens[0] in EMOTION_ADVERBS:
         return "delivery"
     has_action = bool(token_set & _COMPOUND_ACTION)
-    has_ersheynt = "ערשיינט" in token_set or "ערשײנט" in token_set
+    has_ersheynt = bool(token_set & {"ערשיינט", "ערשײנט", "ערשיינען", "ערשײנען"})
     has_oyftrit = tokens[0] in {"אויפטריט", "אויפטרעטען", "אויפטרעטן"}
     has_arayn_kumt = "אריין" in token_set and bool(token_set & {"קומט", "קומען"})
     has_entrance_cue = has_ersheynt or has_oyftrit or has_arayn_kumt
     has_ab = "אב" in token_set or "אבּ" in token_set
+    # Noa 2026-06-24 B9: entrance cue + exit cue in same direction → mixed.
+    if short and no_period and has_ersheynt and has_ab:
+        return "mixed"
     # TEI-principled multi-token typing (Sinai+Noa 2026-06-18 ratified):
     # compound directions emit space-separated `@type` per TEI P5 spec.
     if short and no_period and tokens[-1] in {"אב", "אבּ"}:
@@ -98,10 +103,12 @@ def classify_stage(span_text: str) -> str:
         # אב not at end but present + another token → "exit business" (e.g. "אב, שטורם")
         return "exit business"
     if len(tokens) <= 5:
-        if ("פערוואנדלונג" in sk.replace("פֿ", "פ")
-                or "פערווענלונג" in sk.replace("פֿ", "פ")
-                or "פערוואנדעלונג" in sk.replace("פֿ", "פ")
-                or "פארהאנג" in sk.replace("פֿ", "פ")
+        sk_norm = sk.replace("פֿ", "פ")
+        if ("פערוואנדלונג" in sk_norm
+                or "פערווענלונג" in sk_norm
+                or "פערוואנדעלונג" in sk_norm
+                or "פערענדלונג" in sk_norm  # Sinai 2026-06-24 general correction #2
+                or "פארהאנג" in sk_norm
                 or "פאָרהאַנג" in span_text):
             return "setting"
     if not (short and no_period):

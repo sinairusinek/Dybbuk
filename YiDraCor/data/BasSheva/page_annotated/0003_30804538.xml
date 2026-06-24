@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-11-21T13:24:49.358+01:00</Created>
+        <LastChange>2022-04-02T00:55:01.700+02:00</LastChange>
+        <Comments>
+                Measurement unit: pixel
+                PrimaryLanguage: 
+                Producer: Transkribus
+            </Comments>
+        <TranskribusMetadata docId="828443" pageId="30804538" pageNr="3"/>
+    </Metadata>
+    <Page imageFilename="30804538.jpg" imageWidth="2000" imageHeight="2782">
+        <PrintSpace>
+            <Coords points="0,0 2000,0 2000,2782 0,2782"/>
+        </PrintSpace>
+        <ReadingOrder>
+            <OrderedGroup id="ro_1648853701709" caption="Regions reading order">
+                <RegionRefIndexed index="2" regionRef="region_1648717352992_373"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <GraphicRegion id="Graphic_1648717482948_430" custom="readingOrder {index:0;}">
+            <Coords points="601,1430 1343,1430 1343,1801 601,1801"/>
+        </GraphicRegion>
+        <GraphicRegion id="Graphic_1648717477646_427" custom="readingOrder {index:1;}">
+            <Coords points="629,851 1267,851 1267,1282 629,1282"/>
+        </GraphicRegion>
+        <TextRegion orientation="0.0" id="region_1648717352992_373" custom="readingOrder {index:2;} structure {type:titlePage;}">
+            <Coords points="912,128 1235,128 1235,271 912,271"/>
+            <TextLine id="line_1648717469979_424" custom="readingOrder {index:0;}">
+                <Coords points="925,152 1210,98 1232,100 1232,250 1186,265 1081,287 1029,297 977,303 951,304 925,302"/>
+                <Baseline points="925,252 951,254 977,253 1003,250 1029,247 1055,242 1081,237 1107,230 1133,225 1159,219 1186,215 1210,198 1232,200"/>
+                <TextEquiv>
+                    <Unicode/>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode/>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

@@ -61,6 +61,10 @@ EMOTION_ADVERBS = {
     "בייז", "שרייט", "ברוגז", "שפעטיש", "זיגנענד", "אפארט",
     "בעגייסטערט", "פערקלעהרט", "פערקלערט", "פערשעמט",
     "לאכענד", "ערנסט", "שטיל",
+    # 2026-06-24 (Sinai general correction #5): vocal-performance verbs
+    # in 3sg/participle. וויינט/לאכט were misclassified as `business` in
+    # the Ezra+Blimele pull; וויינענד matches existing -ענד participle pattern.
+    "וויינט", "לאכט", "וויינענד",
 }
 
 # Compound-action verbs that, if present alongside an entrance cue, mean the
@@ -76,7 +80,9 @@ def stage_lexicon(text: str):
     """Return ('setting'|'trailer'|'epilog') for a known scene-boundary cue, else None."""
     sk = _NIKUD.sub("", text or "")
     sk = re.sub(r"[()\s.,׃:‐-―\-]", "", sk)
-    if "פערוואנדלונג" in sk or "פערווענלונג" in sk or "פערוואנדעלונג" in sk or "פארהאנג" in sk:
+    if ("פערוואנדלונג" in sk or "פערווענלונג" in sk or "פערוואנדעלונג" in sk
+            or "פערענדלונג" in sk  # Sinai 2026-06-24 general correction #2
+            or "פארהאנג" in sk):
         return "setting"
     # Global-A (Noa 2026-06-14): castList-page closing lines that announce
     # the locus/time of action — "אָרט דער האַנדלונג…" / "דיא געשיכטע האנדעלט זיך…"
@@ -133,12 +139,21 @@ def stage_lexicon_span(span_text: str):
     # Per TEI P5 spec, the literal value `mixed` is reserved as a single-value
     # fallback; we no longer emit it from this lexicon.
     has_action = bool(token_set & _COMPOUND_ACTION)
-    has_ersheynt = "ערשיינט" in token_set or "ערשײנט" in token_set
+    # 2026-06-24 (Sinai general correction #3): include the infinitive
+    # `ערשיינען` alongside present-tense `ערשיינט` so castList ensemble
+    # entrance lines ("…ערשיינען") are typed correctly.
+    has_ersheynt = bool(token_set & {"ערשיינט", "ערשײנט", "ערשיינען", "ערשײנען"})
     has_oyftrit = tokens and tokens[0] in {"אויפטריט", "אויפטרעטען", "אויפטרעטן"}
     has_arayn_kumt = "אריין" in token_set and bool(token_set & {"קומט", "קומען"})
     has_entrance_cue = has_ersheynt or has_oyftrit or has_arayn_kumt
     has_ab = "אב" in token_set or "אבּ" in token_set
 
+    # Noa 2026-06-24 B9: when an entrance cue AND an exit cue co-occur
+    # in the same direction (e.g. "Miriam exits and Shlomo enters"),
+    # emit literal `mixed` per TEI single-value-fallback convention.
+    # This must short-circuit BEFORE the per-cue branches below.
+    if short and no_period and has_ersheynt and has_ab:
+        return "mixed"
     if short and no_period and tokens[-1] in {"אב", "אבּ"}:
         prev = tokens[-2] if len(tokens) >= 2 else ""
         if prev in _MODAL_BEFORE_AB:
