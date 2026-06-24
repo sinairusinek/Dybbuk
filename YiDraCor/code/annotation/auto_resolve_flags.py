@@ -75,6 +75,17 @@ _COMPOUND_ACTION = {"זעצט", "גיט", "נעמט", "קושט", "שאקעלט"
 
 _HEB_TOKEN = re.compile(r"[א-תװ-ײ']+")
 
+# Canonical xmlid for each collective surface skeleton (same as lint_pages.py
+# COLLECTIVE_XMLID + apply_collective_speakers.py — kept inline to avoid a
+# circular import).
+_COLLECTIVE_XMLID = {
+    "אלע": "alle", "שטימען": "shtimen", "ביידע": "beyde", "מענער": "mener",
+    "מעדכען": "meydkhen", "מ_דכען": "meydkhen",
+    "קאהר": "chor", "כאר": "chor", "קאר": "chor",
+    "דועט": "duet", "איינער": "eyner", "דאמען": "damen", "קינדער": "kinder",
+    "סאפראן": "sopran", "אלט": "alt", "באס": "bas", "טענאר": "tenor",
+}
+
 
 def stage_lexicon(text: str):
     """Return ('setting'|'trailer'|'epilog') for a known scene-boundary cue, else None."""
@@ -370,8 +381,12 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
                 a = dict(a); a["type"] = span_type
                 auto.append(f"stage{{type:{t or '∅'}}}→{span_type} (span-cue)")
                 out.append((tag, a)); continue
-            # 2c. accept valid LLM type
-            if t in STAGE_TYPES:
+            # 2c. accept valid LLM type — includes TEI multi-token types
+            # (e.g. "entrance business", "exit business") per the
+            # 2026-06-18 ratification. Use the full schema validator,
+            # NOT a bare set-membership check which only handles single tokens.
+            from annotation.schema import _validate_stage_type
+            if _validate_stage_type(t) is None:
                 out.append((tag, a)); continue
             # 2d. typo repair / human flag
             fixed = fix_stage_type_typo(t) if t else None
@@ -391,6 +406,13 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
             if label in cast_index:
                 a = dict(a); a["xmlid"] = cast_index[label]
                 auto.append(f"speaker xmlid:{cast_index[label]}")
+            elif label in _COLLECTIVE_XMLID:
+                # Collective speaker (קאר / מענער / דאמען / אלע …):
+                # Noa-tagged speaker spans on body pages legitimately lack a
+                # cast_dict entry; auto-fill with the canonical collective xmlid
+                # (same mapping used by apply_collective_speakers.py).
+                a = dict(a); a["xmlid"] = _COLLECTIVE_XMLID[label]
+                auto.append(f"speaker xmlid:{_COLLECTIVE_XMLID[label]} (collective)")
             else:
                 human.append("speaker missing xmlid (unresolved)")
             out.append((tag, a)); continue
