@@ -829,3 +829,4 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-06-27T17:50:19Z	Maaty	settlement_audit	merge	cluster:ORG-C06044	MERGE	Aligned 1 cluster(s) → 412	"{""qid"": ""Q649"", ""org_type"": ""Theatre"", ""partners"": [""db:412""]}"
 2026-06-27T17:51:30Z	Maaty	settlement_audit	merge	cluster:ORG-C07320	MERGE	Merged 2 cluster(s) into DB 543	"{""qid"": ""Q649"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C00184_Q01""]}"
 2026-06-27T20:10:26Z	Maaty	settlement_audit	merge	cluster:ORG-C05815	MERGE	Merged 2 cluster(s) into DB 412 (reclaimed 1 stray row)	"{""qid"": ""Q649"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C00184_Q01""]}"
+2026-06-27T20:11:41Z	Maaty	settlement_audit	merge	cluster:ORG-C00184_Q01	MERGE	Merged 2 cluster(s) into DB 412	"{""qid"": ""Q649"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C05815""]}"
