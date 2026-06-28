@@ -159,13 +159,39 @@ def load_speaker_lookup(play: str) -> dict[str, str]:
 
 
 def find_speaker(text: str, lookup: dict[str, str]):
-    """Return (offset, length, xmlid) if line starts with `<cast>:`, else None."""
-    m = re.match(r"\s*([^:]{1,30}?)\s*:", text)
+    """Return (offset, length, xmlid) if line starts with `<cast>:`, else None.
+
+    Tolerates a parenthesized stage cue around the name
+    (e.g. `שמואל (לויפט): היי` or `(שטעהט אויף) שמואל: היי`):
+    the returned offset/length cover only the name; the parens get picked up
+    separately as `stage` spans by the caller's paren scan.
+    """
+    m = re.match(r"\s*([^:]{1,60}?)\s*:", text)
     if not m:
         return None
-    label = strip_nikud(m.group(1)).strip()
+    prefix = m.group(1)
+    label = strip_nikud(prefix).strip()
     if label in lookup:
         return (m.start(1), m.end(1) - m.start(1), lookup[label])
+    # Fallback: walk the prefix, skipping `(...)` groups, and look for a
+    # contiguous non-paren run whose nikud-stripped form is in `lookup`.
+    i = 0; n = len(prefix); base = m.start(1)
+    while i < n:
+        if prefix[i] == "(":
+            j = prefix.find(")", i + 1)
+            i = (j + 1) if j >= 0 else n
+            continue
+        if prefix[i].isspace():
+            i += 1; continue
+        j = i
+        while j < n and prefix[j] != "(":
+            j += 1
+        seg = prefix[i:j].rstrip()
+        if seg:
+            key = strip_nikud(seg).strip()
+            if key in lookup:
+                return (base + i, len(seg), lookup[key])
+        i = j
     return None
 
 
@@ -250,6 +276,15 @@ def annotate_page(dump: dict, lookup: dict[str, str]) -> dict:
             spans.append({"tag": "speaker", "offset": sp[0], "length": sp[1],
                           "attrs": {"xmlid": sp[2]}})
             colon = text.find(":", sp[0] + sp[1])
+            # Pre-colon parens (stage cue between speaker and `:`, or before
+            # the name). Scope to text[:colon] so we don't double-count the
+            # post-colon scan.
+            pre_end = colon if colon >= 0 else (sp[0] + sp[1])
+            pre_spans, _ = find_paren_spans(text[:pre_end], False)
+            for off, ln, ty in pre_spans:
+                if off + ln <= sp[0] or off >= sp[0] + sp[1]:
+                    spans.append({"tag": "stage", "offset": off, "length": ln,
+                                  "attrs": {"type": ty}})
             scan_from = colon + 1 if colon >= 0 else sp[0] + sp[1]
             paren_spans, open_state = find_paren_spans(text[scan_from:], open_state)
             for off, ln, ty in paren_spans:

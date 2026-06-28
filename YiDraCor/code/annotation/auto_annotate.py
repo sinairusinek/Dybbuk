@@ -78,7 +78,13 @@ def build_name_matcher(cast_dict_path: Path):
                 else:
                     pieces.append(re.escape(c) + NIKUD.pattern + "*" + r"'?")
             pat = "".join(pieces)
-            rx = re.compile(r"^\s*(" + pat + r")\s*[:׃]")
+            # Allow an optional parenthesized stage cue around the name
+            # (e.g. `שמואל (לויפט):` or `(שטעהט אויף) שמואל:`).
+            # `find_paren_spans` on the full line emits the stage span; the
+            # speaker span (group 1) stays scoped to the name itself.
+            paren_opt = r"(?:\([^)]*\)\s*)*"
+            rx = re.compile(r"^\s*" + paren_opt + r"(" + pat + r")\s*"
+                            + paren_opt + r"[:׃]")
             out.append((rx, xmlid, raw))
     # Longer first so multi-word names match before short prefixes.
     out.sort(key=lambda t: -len(t[2]))

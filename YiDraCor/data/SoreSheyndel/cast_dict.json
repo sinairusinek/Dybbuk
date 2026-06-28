@@ -18,7 +18,8 @@
         "length": 10
       },
       "prefix_variants": [
-        "יוחנצי"
+        "יוחנצי",
+        "יוהנצי"
       ]
     },
     "shrh_sheyndel": {
@@ -32,7 +33,8 @@
       },
       "prefix_variants": [
         "שיינדעל",
-        "שרה"
+        "שרה",
+        "שרה-שיינדעל"
       ]
     },
     "brhmele": {
@@ -45,7 +47,8 @@
         "length": 8
       },
       "prefix_variants": [
-        "אברהמע"
+        "אברהמע",
+        "אברהמלע"
       ]
     },
     "bbele": {
@@ -58,7 +61,8 @@
         "length": 6
       },
       "prefix_variants": [
-        "באבע"
+        "באבע",
+        "באבעיע"
       ]
     },
     "dzeyk": {
@@ -70,7 +74,10 @@
         "offset": 0,
         "length": 5
       },
-      "prefix_variants": []
+      "prefix_variants": [
+        "זייק",
+        "דייק"
+      ]
     },
     "sem": {
       "form": "סעם",
@@ -81,7 +88,10 @@
         "offset": 0,
         "length": 3
       },
-      "prefix_variants": []
+      "prefix_variants": [
+        "סעס",
+        "סער"
+      ]
     },
     "gimfel": {
       "form": "גימפּעל",
@@ -92,7 +102,9 @@
         "offset": 0,
         "length": 7
       },
-      "prefix_variants": []
+      "prefix_variants": [
+        "נימפעל"
+      ]
     },
     "shfse": {
       "form": "שׁאַפּסע",
@@ -119,6 +131,18 @@
         "משוררים",
         "פאלק"
       ]
+    },
+    "khnhle": {
+      "form": "חנהלע",
+      "bare": "חנהלע",
+      "prefix_variants": [
+        "חנה'לע"
+      ]
+    },
+    "dktr": {
+      "form": "דאקטאר",
+      "bare": "דאקטאר",
+      "prefix_variants": []
     }
   },
   "desc_tokens": {
@@ -130,5 +154,9 @@
     "ברודער": "בּרוּדעֶר",
     "זוהן": "זוּהן",
     "שמש": "שׁמשׁ"
-  }
+  },
+  "non_speaker_labels": [
+    "הער אויס",
+    "קשיה"
+  ]
 }
