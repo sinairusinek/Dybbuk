@@ -403,6 +403,11 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
                 label = skel(text[off:off + ln])
             except ValueError:
                 label = ""
+            # Fallback: speaker label includes a parenthesized stage cue
+            # (e.g. `שמואל (לויפט)`). Strip parens and retry the lookup.
+            if label and label not in cast_index and label not in _COLLECTIVE_XMLID \
+                    and "(" in label:
+                label = skel(re.sub(r"\s*\([^)]*\)\s*", " ", label))
             if label in cast_index:
                 a = dict(a); a["xmlid"] = cast_index[label]
                 auto.append(f"speaker xmlid:{cast_index[label]}")
@@ -443,6 +448,46 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
                 out.append(("speaker", {"offset": "0", "length": str(len(label)),
                                         "xmlid": cast_index[k]}))
                 auto.append(f"+speaker xmlid:{cast_index[k]}")
+            elif "(" in label or ")" in label:
+                # Speaker label includes a parenthesized stage cue
+                # (e.g. `שמואל (לויפט):`). Walk the label, skipping `(...)`
+                # groups, and emit a speaker span scoped to the name run
+                # whose nikud-stripped form is in cast_index. The paren
+                # itself is left to the existing stage-tagging pass.
+                lo = m.start(1); hi = m.end(1)
+                prefix = text[lo:hi]
+                placed = False
+                i = 0; nP = len(prefix)
+                while i < nP and not placed:
+                    if prefix[i] == "(":
+                        j = prefix.find(")", i + 1)
+                        i = (j + 1) if j >= 0 else nP
+                        continue
+                    if prefix[i].isspace():
+                        i += 1; continue
+                    j = i
+                    while j < nP and prefix[j] != "(":
+                        j += 1
+                    seg = prefix[i:j].rstrip()
+                    if seg:
+                        kk = skel(seg)
+                        if kk in cast_index:
+                            out.append(("speaker", {"offset": str(lo + i),
+                                                    "length": str(len(seg)),
+                                                    "xmlid": cast_index[kk]}))
+                            auto.append(f"+speaker xmlid:{cast_index[kk]} "
+                                        f"(stripped paren cue)")
+                            placed = True
+                        elif kk in _COLLECTIVE_XMLID:
+                            out.append(("speaker", {"offset": str(lo + i),
+                                                    "length": str(len(seg)),
+                                                    "xmlid": _COLLECTIVE_XMLID[kk]}))
+                            auto.append(f"+speaker xmlid:{_COLLECTIVE_XMLID[kk]} "
+                                        f"(collective, stripped paren cue)")
+                            placed = True
+                    i = j
+                if not placed and (not has_nikud(label)) and has_nikud(text[m.end():]):
+                    human.append(f"untagged speaker (unknown) '{k}'")
             elif (not has_nikud(label)) and has_nikud(text[m.end():]):
                 human.append(f"untagged speaker (unknown) '{k}'")
 
