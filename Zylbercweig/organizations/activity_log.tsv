@@ -831,3 +831,4 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-06-27T20:10:26Z	Maaty	settlement_audit	merge	cluster:ORG-C05815	MERGE	Merged 2 cluster(s) into DB 412 (reclaimed 1 stray row)	"{""qid"": ""Q649"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C00184_Q01""]}"
 2026-06-27T20:11:41Z	Maaty	settlement_audit	merge	cluster:ORG-C00184_Q01	MERGE	Merged 2 cluster(s) into DB 412	"{""qid"": ""Q649"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C05815""]}"
 2026-06-28T06:49:57Z	Maaty	settlement_audit	merge	cluster:ORG-C02576_Q05	MERGE	Created DB 1504 from 2 cluster(s)	"{""qid"": ""Q216"", ""org_type"": ""Education"", ""partners"": [""cluster:ORG-C03137""]}"
+2026-06-28T06:51:12Z	Maaty	settlement_audit	merge	cluster:ORG-C03138	MERGE	Merged 2 cluster(s) into DB 1504	"{""qid"": ""Q216"", ""org_type"": ""Education"", ""partners"": [""cluster:ORG-C02576_Q05""]}"
