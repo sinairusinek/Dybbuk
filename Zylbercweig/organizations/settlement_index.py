@@ -101,6 +101,33 @@ def _resolve_db_settlements(row: dict[str, str]) -> list[ResolvedSettlement]:
     return list(seen.values())
 
 
+def _cluster_settlement_strings(row: dict[str, str]) -> list[str]:
+    """Extract the raw settlement strings from an alignment row's
+    `extracted_settlements` (a JSON list, a JSON scalar, or a plain string)."""
+    raw = (row.get("extracted_settlements") or "").strip()
+    if not raw:
+        return []
+    try:
+        data = json.loads(raw)
+    except Exception:
+        return [raw]
+    if isinstance(data, list):
+        return [str(s) for s in data]
+    if data:
+        return [str(data)]
+    return []
+
+
+def _split_linked_ids(raw: str) -> list[str]:
+    """linked_cluster_ids is pipe- or comma-separated."""
+    out: list[str] = []
+    for piece in (raw or "").replace(",", "|").split("|"):
+        piece = piece.strip()
+        if piece and piece not in out:
+            out.append(piece)
+    return out
+
+
 def _resolve_cluster_settlements(raw: str) -> list[ResolvedSettlement]:
     R = get_resolver()
     seen: dict[str, ResolvedSettlement] = {}
@@ -151,6 +178,23 @@ class SettlementIndex:
                 for row in csv.DictReader(f, delimiter="\t"):
                     addrs[row["db_id"]] = row
 
+        # cluster_id → its resolved settlements. Built first so a freshly-minted
+        # DB row (which has no address yet) can fall back to the settlements of
+        # the clusters it was minted from — otherwise it resolves to nothing and
+        # is dropped from every bucket, making "Mint as new entity" look like a
+        # no-op in the audit view.
+        cluster_resolutions: dict[str, list[ResolvedSettlement]] = {}
+        if _ALIGNMENT.exists():
+            with _ALIGNMENT.open() as f:
+                for row in csv.DictReader(f, delimiter="\t"):
+                    cid = (row.get("cluster_id") or "").strip()
+                    if not cid:
+                        continue
+                    settlement_strs = _cluster_settlement_strings(row)
+                    cluster_resolutions[cid] = _resolve_cluster_settlements(
+                        ";".join(settlement_strs)
+                    )
+
         if _CORE_DB.exists():
             with _CORE_DB.open() as f:
                 for row in csv.DictReader(f, delimiter="\t"):
@@ -160,6 +204,14 @@ class SettlementIndex:
                     db_id = row["db_id"]
                     addr_row = addrs.get(db_id, {})
                     resolutions = _resolve_db_settlements(addr_row)
+                    if not resolutions:
+                        # Fall back to linked clusters' settlements (e.g. a row
+                        # just minted from a cluster, before any address review).
+                        seen: dict[str, ResolvedSettlement] = {}
+                        for cid in _split_linked_ids(row.get("linked_cluster_ids", "")):
+                            for hit in cluster_resolutions.get(cid, ()):
+                                seen.setdefault(hit.qid, hit)
+                        resolutions = list(seen.values())
                     if not resolutions:
                         continue
                     card = DbCard(
@@ -184,21 +236,13 @@ class SettlementIndex:
                     org_type = (row.get("org_type") or "").strip()
                     if not org_type or is_itinerant(org_type):
                         continue
-                    raw = (row.get("extracted_settlements") or "").strip()
-                    settlement_strs: list[str] = []
-                    if raw:
-                        try:
-                            data = json.loads(raw)
-                            if isinstance(data, list):
-                                settlement_strs = [str(s) for s in data]
-                            elif data:
-                                settlement_strs = [str(data)]
-                        except Exception:
-                            settlement_strs = [raw]
-                    resolutions = _resolve_cluster_settlements(";".join(settlement_strs))
+                    cid = row["cluster_id"]
+                    settlement_strs = _cluster_settlement_strings(row)
+                    resolutions = cluster_resolutions.get(
+                        cid
+                    ) or _resolve_cluster_settlements(";".join(settlement_strs))
                     if not resolutions:
                         continue
-                    cid = row["cluster_id"]
                     try:
                         size = int(row.get("cluster_size") or 0)
                     except ValueError:
