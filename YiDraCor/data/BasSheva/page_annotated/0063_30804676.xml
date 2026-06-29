@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:27</Creator>
         <Created>2021-11-21T13:25:04.792+01:00</Created>
-        <LastChange>2026-06-03T06:09:46.565+02:00</LastChange>
+        <LastChange>2026-06-24T17:31:49.580+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804676" pageNr="63" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WQZDFUWGETGWBDAIBMAFSPEJ" imageId="24239944"/>
+        <TranskribusMetadata docId="828443" pageId="30804676" pageNr="63" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WQZDFUWGETGWBDAIBMAFSPEJ" imageId="24239944"/>
     </Metadata>
     <Page imageFilename="30804676.jpg" imageWidth="1958" imageHeight="2811">
         <PrintSpace>
@@ -129,7 +129,7 @@
                     <Unicode>שׁטִירְצֶען אִין אוּנגליק. אוֹיף מַיינֶע פרֵיינְדֶע! קוּמט הֶעלְפט מִיר</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l18" custom="readingOrder {index:16;} stage {offset:26; length:12; type:business;}">
+            <TextLine id="r_1_1l18" custom="readingOrder {index:16;} stage {offset:26; length:12; type:exit business;}">
                 <Coords points="945,1519 1088,1536 1167,1501 1219,1529 1397,1539 1592,1499 1592,1466 1542,1453 1131,1478 1045,1448 945,1470"/>
                 <Baseline points="954,1498 986,1497 1018,1496 1050,1496 1082,1495 1114,1496 1146,1496 1178,1496 1210,1497 1242,1497 1275,1498 1307,1499 1339,1499 1371,1500 1403,1500 1435,1500 1467,1500 1499,1500 1531,1499 1563,1498 1596,1497"/>
                 <TextEquiv>
@@ -221,7 +221,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

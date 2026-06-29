@@ -1585,6 +1585,8 @@ def render() -> None:
 					"phonetic": "🔊",
 					"ipa_phonetic": "🔉",
 					"fuzzy": "🔤",
+					"person": "👤",
+					"person_phonetic": "👤🔉",
 				}.get(method_txt, "•")
 				with st.container(border=True):
 					st.markdown(

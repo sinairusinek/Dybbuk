@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:13.840+02:00</Created>
-        <LastChange>2026-05-27T10:37:45.797+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627205" pageNr="5" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=BCUQKUEOKXZXMUACIKBMZDTC" imageId="24094705"/>
+        <LastChange>2026-06-02T23:01:43.158+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627205" pageNr="5" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=BCUQKUEOKXZXMUACIKBMZDTC" imageId="24094705"/>
     </Metadata>
     <Page imageFilename="30627205.jpg" imageWidth="1760" imageHeight="2711">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
@@ -23,7 +23,7 @@
                     <Unicode>(צימער בייא איזבל, אויפֿטריט מעדכען מיט ראָזען אונד לאָרבערקרענצע).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_4" custom="readingOrder {index:2;}">
+            <TextLine id="tr_1_tl_4" custom="readingOrder {index:2;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="886,831 1087,871 1520,856 1704,897 1699,783 1638,820 1413,786 1279,784 1239,816 884,799"/>
                 <Baseline points="786,835 933,824 974,825 1014,827 1055,831 1095,842 1135,843 1176,843 1217,845 1257,845 1298,845 1339,846 1379,847 1420,849 1461,849 1501,849 1542,854 1583,858 1623,857 1664,859 1705,861"/>
                 <TextEquiv>
@@ -121,7 +121,7 @@
                     <Unicode>נָאך 2 יאהרע קאמְט עֶר וִויעדֶער אִין זֵיינֶע הֵיימַאט צוּריק, יא.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_32" custom="readingOrder {index:16;}">
+            <TextLine id="tr_1_tl_32" custom="readingOrder {index:16;} speaker {offset:0; length:6; xmlid:meydkhen;}">
                 <Coords points="882,1801 947,1803 984,1778 1088,1803 1192,1775 1256,1807 1348,1781 1412,1807 1484,1791 1483,1731 1446,1743 1396,1718 1325,1740 956,1716 881,1731"/>
                 <Baseline points="889,1771 918,1769 948,1771 978,1771 1008,1773 1038,1773 1068,1773 1098,1775 1128,1777 1158,1773 1188,1771 1217,1773 1247,1773 1277,1775 1307,1775 1337,1775 1367,1775 1397,1777 1427,1777 1457,1777 1713,1784"/>
                 <TextEquiv>
@@ -156,7 +156,7 @@
                     <Unicode>שלומית:  הַייט קאמט צוּ אוּנז</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_41" custom="readingOrder {index:21;}">
+            <TextLine id="tr_1_tl_41" custom="readingOrder {index:21;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="1181,2133 1246,2139 1307,2123 1427,2133 1452,2112 1491,2125 1488,2057 1440,2065 1423,2053 1400,2073 1378,2060 1368,2072 1344,2064 1321,2075 1304,2062 1262,2072 1178,2055"/>
                 <Baseline points="1187,2107 1212,2107 1238,2106 1263,2107 1289,2108 1314,2107 1340,2109 1365,2109 1391,2109 1416,2110 1442,2111 1467,2113 1698,2113"/>
                 <TextEquiv>
@@ -170,7 +170,7 @@
                     <Unicode>שלומית: זַיין נָאמֶען אִיזְט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_45" custom="readingOrder {index:23;}">
+            <TextLine id="tr_1_tl_45" custom="readingOrder {index:23;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="1242,2260 1269,2259 1286,2244 1351,2270 1414,2246 1494,2264 1491,2204 1470,2205 1434,2183 1373,2209 1290,2187 1238,2197"/>
                 <Baseline points="1040,2228 1275,2237 1302,2237 1330,2238 1357,2239 1385,2241 1412,2243 1440,2244 1467,2246 1699,2241"/>
                 <TextEquiv>
@@ -199,7 +199,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

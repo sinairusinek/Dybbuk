@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:15.386+02:00</Created>
-        <LastChange>2026-06-01T09:28:29.569+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627225" pageNr="25" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=ACHQAILSBKBOYZUZANNDAFVS" imageId="24094725"/>
+        <LastChange>2026-06-02T23:02:05.278+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627225" pageNr="25" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=ACHQAILSBKBOYZUZANNDAFVS" imageId="24094725"/>
     </Metadata>
     <Page imageFilename="30627225.jpg" imageWidth="1682" imageHeight="2714">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
@@ -16,7 +16,7 @@
                     <Unicode>II. אַקט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_2" custom="readingOrder {index:1;} stage {offset:0; length:33; type:entrance;}">
+            <TextLine id="tr_1_tl_2" custom="readingOrder {index:1;} stage {offset:0; length:33; type:setting;}">
                 <Coords points="595,785 1108,785 1108,701 910,749 875,725 704,739 619,705 596,715"/>
                 <Baseline points="604,774 629,772 654,772 680,772 705,772 731,772 756,772 781,772 807,772 832,773 858,773 883,772 908,772 934,772 959,770 985,770 1010,770 1035,770 1061,769 1086,769 1112,772"/>
                 <TextEquiv>
@@ -206,7 +206,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

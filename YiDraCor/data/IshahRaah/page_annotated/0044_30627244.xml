@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:37</Creator>
         <Created>2021-10-31T16:41:16.546+02:00</Created>
-        <LastChange>2026-06-02T06:51:58.881+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627244" pageNr="44" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=QMFXEBLGAATAILAZUNLTYPRL" imageId="24094744"/>
+        <LastChange>2026-06-18T16:58:25.646+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627244" pageNr="44" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=QMFXEBLGAATAILAZUNLTYPRL" imageId="24094744"/>
     </Metadata>
     <Page imageFilename="30627244.jpg" imageWidth="1789" imageHeight="2720">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
@@ -37,7 +37,7 @@
                     <Unicode>איזבל: פרעכער דיענער! האסט דוא פֶערְגֶעסֶען וֶוער אִיך בּין?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_1" custom="readingOrder {index:4;}">
+            <TextLine id="l_1" custom="readingOrder {index:4;} speaker {offset:0; length:3; xmlid:perets;}">
                 <Coords points="122,591 1355,643 1428,632 1427,560 321,524 121,554"/>
                 <Baseline points="131,580 1433,593 1433,593"/>
                 <TextEquiv>
@@ -227,7 +227,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

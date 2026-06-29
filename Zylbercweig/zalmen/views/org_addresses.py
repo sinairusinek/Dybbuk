@@ -615,9 +615,11 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
     type_options = [t for t, _ in sorted(type_counts.items(), key=lambda x: (-x[1], x[0]))]
     type_labels = {t: f"{t} ({type_counts[t]})" for t in type_options}
 
-    col_f1, col_f2, col_f3 = st.columns([2, 1.2, 1])
+    col_f1, col_f1b, col_f2, col_f3 = st.columns([1.6, 1.2, 1.2, 1])
     with col_f1:
         name_q = st.text_input("Search name", key=f"name_q_{tab_key}")
+    with col_f1b:
+        db_id_q = st.text_input("Search DB ID", key=f"db_id_q_{tab_key}")
     with col_f2:
         status_f = st.selectbox(
             "Geo status",
@@ -646,7 +648,11 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
         visible = [r for r in visible if r.get("org_type", "").strip().lower() in sel_norm]
     if name_q.strip():
         q = name_q.strip().lower()
-        visible = [r for r in visible if q in (r.get("canonical_yiddish", "").lower())]
+        visible = [r for r in visible if q in (r.get("canonical_yiddish", "").lower())
+                                       or q in (r.get("name", "").lower())]
+    if db_id_q.strip():
+        q = db_id_q.strip().lower()
+        visible = [r for r in visible if q in r.get("db_id", "").lower()]
     if not show_generic:
         visible = [r for r in visible if r.get("is_generic") != "TRUE"]
     if not show_sub:

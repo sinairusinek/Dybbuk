@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:15.936+02:00</Created>
-        <LastChange>2026-06-02T06:06:32.180+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627231" pageNr="31" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=JDIWWJQYFWCJORACADBWMAMN" imageId="24094731"/>
+        <LastChange>2026-06-02T23:02:07.606+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627231" pageNr="31" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=JDIWWJQYFWCJORACADBWMAMN" imageId="24094731"/>
     </Metadata>
     <Page imageFilename="30627231.jpg" imageWidth="1716" imageHeight="2714">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
@@ -107,7 +107,7 @@
                     <Unicode>אנטיגנוס: זִיעהֶע, הֶערֶע, אוּנד פֶערְשׁטע.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_33" custom="readingOrder {index:14;}">
+            <TextLine id="tr_1_tl_33" custom="readingOrder {index:14;} speaker {offset:0; length:5; xmlid:kenig_hurknos;}">
                 <Coords points="910,1326 959,1338 1026,1314 1103,1339 1263,1311 1350,1342 1419,1323 1512,1341 1552,1328 1550,1275 1413,1263 1317,1299 1109,1256 908,1275"/>
                 <Baseline points="626,1304 949,1312 981,1308 1013,1308 1045,1308 1077,1308 1109,1310 1141,1310 1173,1309 1205,1308 1237,1308 1268,1309 1300,1310 1332,1311 1364,1317 1396,1318 1428,1320 1460,1320 1492,1322 1524,1322 1556,1320"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

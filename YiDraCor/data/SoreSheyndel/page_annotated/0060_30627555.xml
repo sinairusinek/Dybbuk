@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
@@ -7,7 +7,7 @@
         <TranskribusMetadata docId="820964" pageId="30627555" pageNr="60" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=LTJKNJPHMAOPMKDACEFGTTHV" imageId="24095031"/>
     </Metadata>
     <Page imageFilename="30627555.jpg" imageWidth="1673" imageHeight="2321">
-        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="295,212 295,1918 1376,1918 1376,212"/>
             <TextLine id="r1l2" custom="readingOrder {index:0;}">
                 <Coords points="638,242 735,264 771,247 918,256 953,241 1007,243 1008,206 954,195 891,212 842,185 731,202 693,193 639,226"/>
@@ -192,7 +192,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:55</Creator>
         <Created>2021-10-31T12:59:21.600+02:00</Created>
-        <LastChange>2026-06-08T05:19:23.333+02:00</LastChange>
-        <TranskribusMetadata docId="820845" pageId="30622860" pageNr="66" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WUAUIQGPFFSQFBPYCEQTWYPD" imageId="24090399"/>
+        <LastChange>2026-06-24T17:35:25.890+02:00</LastChange>
+        <TranskribusMetadata docId="820845" pageId="30622860" pageNr="66" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WUAUIQGPFFSQFBPYCEQTWYPD" imageId="24090399"/>
     </Metadata>
     <Page imageFilename="30622860.jpg" imageWidth="1816" imageHeight="2832">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
@@ -121,7 +121,7 @@
                     <Unicode>נוּטצען פאן מִיר האבּען, נוּן האָסְט דוּא דִיך איבּערצייגט?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l39" custom="readingOrder {index:16;}">
+            <TextLine id="r1l39" custom="readingOrder {index:16;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="113,1489 1187,1452 1414,1492 1416,1397 1177,1377 115,1434"/>
                 <Baseline points="122,1462 186,1462 251,1462 316,1461 381,1460 446,1459 511,1458 576,1457 641,1456 706,1455 771,1454 835,1452 900,1452 965,1451 1030,1451 1095,1450 1160,1451 1225,1451 1290,1452 1355,1453 1420,1455"/>
                 <TextEquiv>
@@ -220,7 +220,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

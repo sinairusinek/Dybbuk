@@ -328,7 +328,7 @@ def render() -> None:
 
     st.divider()
 
-    f1, f2, f3 = st.columns([2, 1, 1])
+    f1, f2, f3, f4 = st.columns([2, 1, 1, 1.2])
     with f1:
         status_filter = st.segmented_control(
             "Show",
@@ -339,6 +339,8 @@ def render() -> None:
         sort_by = st.selectbox("Sort by", ["Candidate score ↓", "Cluster size ↓", "Name"], index=0)
     with f3:
         type_filter = st.text_input("Org type contains", "").strip().lower()
+    with f4:
+        name_filter = st.text_input("Name contains", "").strip().lower()
 
     def visible_pred(r: dict[str, str]) -> bool:
         d = r.get("decision", "").strip()
@@ -348,6 +350,15 @@ def render() -> None:
             return False
         if type_filter and type_filter not in r.get("org_type", "").lower():
             return False
+        if name_filter:
+            hay = " ".join((
+                r.get("canonical_yiddish", ""),
+                r.get("name", ""),
+                r.get("name_yiddish", ""),
+                r.get("name_yiddish_translit", ""),
+            )).lower()
+            if name_filter not in hay:
+                return False
         return True
 
     visible = [r for r in a_rows if visible_pred(r)]
@@ -520,7 +531,7 @@ def render() -> None:
             db = db_by_id.get(dbid, {})
             score_txt = c_scores[i] if i < len(c_scores) else ""
             method_txt = c_methods[i] if i < len(c_methods) else ""
-            icon = {"exact": "🎯", "phonetic": "🔊", "fuzzy": "🔤"}.get(method_txt, "•")
+            icon = {"exact": "🎯", "phonetic": "🔊", "ipa_phonetic": "🔉", "fuzzy": "🔤", "person": "👤", "person_phonetic": "👤🔉"}.get(method_txt, "•")
             box = st.container(border=True)
             with box:
                 st.write(f"{icon} {dbid} · {db.get('name','(missing)')}")

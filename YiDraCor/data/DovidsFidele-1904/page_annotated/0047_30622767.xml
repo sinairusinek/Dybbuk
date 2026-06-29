@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:55</Creator>
         <Created>2021-10-31T12:59:20.107+02:00</Created>
-        <LastChange>2026-06-07T21:49:56.485+02:00</LastChange>
-        <TranskribusMetadata docId="820845" pageId="30622767" pageNr="47" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=PPZLSSYAMBPAPSFSNVAHDMTO" imageId="24090306"/>
+        <LastChange>2026-06-24T17:35:16.894+02:00</LastChange>
+        <TranskribusMetadata docId="820845" pageId="30622767" pageNr="47" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=PPZLSSYAMBPAPSFSNVAHDMTO" imageId="24090306"/>
     </Metadata>
     <Page imageFilename="30622767.jpg" imageWidth="1823" imageHeight="2858">
         <GraphicRegion id="Graphic_1654104822405_2583" custom="readingOrder {index:0;}">
@@ -180,7 +180,7 @@
                     <Unicode>אלע: לְחַיִים לְחַיִים.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l35" custom="readingOrder {index:24;}">
+            <TextLine id="r2l35" custom="readingOrder {index:24;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="964,1955 1119,1914 1272,1935 1380,1911 1685,1955 1760,1937 1757,1862 1668,1885 1540,1849 1445,1871 1231,1829 959,1834"/>
                 <Baseline points="969,1896 1008,1896 1048,1895 1088,1895 1127,1895 1167,1896 1207,1896 1246,1897 1286,1899 1326,1900 1366,1901 1405,1903 1445,1905 1485,1908 1524,1910 1564,1912 1604,1915 1643,1918 1683,1921 1723,1924 1763,1928"/>
                 <TextEquiv>
@@ -194,7 +194,7 @@
                     <Unicode>נח: יא אַלעס אִיז פֶערְטִיג!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l38" custom="readingOrder {index:26;}">
+            <TextLine id="r2l38" custom="readingOrder {index:26;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="457,2066 696,2025 1658,2081 1750,2065 1749,1998 454,1950"/>
                 <Baseline points="465,2012 529,2016 594,2021 658,2024 723,2026 787,2028 852,2029 916,2030 981,2030 1045,2031 1110,2031 1174,2032 1239,2032 1303,2033 1368,2035 1432,2037 1497,2040 1561,2043 1626,2047 1690,2052 1755,2058"/>
                 <TextEquiv>
@@ -237,7 +237,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

@@ -1,21 +1,21 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_14:14</Creator>
         <Created>2022-04-11T17:03:33.407+02:00</Created>
-        <LastChange>2026-06-03T11:28:43.996+02:00</LastChange>
+        <LastChange>2026-06-28T15:31:44.712+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="820969" pageId="30627499" pageNr="13" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TZJTMPOQMXQGCLAEHDEWKLTV" imageId="24094975"/>
+        <TranskribusMetadata docId="820969" pageId="30627499" pageNr="13" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TZJTMPOQMXQGCLAEHDEWKLTV" imageId="24094975"/>
     </Metadata>
     <Page imageFilename="30627499.jpg" imageWidth="1592" imageHeight="2504">
         <PrintSpace>
             <Coords points="63,81 1512,81 1512,2384 63,2384"/>
         </PrintSpace>
-        <TextRegion orientation="0.0" type="paragraph" id="r_1_1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" type="paragraph" id="r_1_1" custom="readingOrder {index:0;} structure {type:paragraph;}">
             <Coords points="340,114 1401,114 1388,2289 327,2289"/>
             <TextLine id="r_1_1l1" custom="readingOrder {index:0;}">
                 <Coords points="759,184 809,181 854,214 886,190 907,186 952,202 951,112 938,108 903,113 870,97 841,120 835,116 813,140 794,138 783,149 759,145"/>
@@ -24,14 +24,14 @@
                     <Unicode>— 11—</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l2" custom="readingOrder {index:1;} stage {offset:38; length:16; type:entrance;}">
+            <TextLine id="r_1_1l2" custom="readingOrder {index:1;}">
                 <Coords points="331,299 1301,291 1301,210 898,239 755,201 690,239 505,185 331,225"/>
                 <Baseline points="339,270 387,269 435,269 483,269 532,268 580,268 628,268 676,267 725,267 773,267 821,267 869,267 918,267 966,268 1014,268 1062,269 1111,270 1159,271 1207,273 1255,275 1304,277"/>
                 <TextEquiv>
                     <Unicode>פֿערדע, קאָממט אַללע הערר, אַללע הער! (אויפטריט יענער)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l3" custom="readingOrder {index:2;}">
+            <TextLine id="r_1_1l3" custom="readingOrder {index:2;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="677,351 1055,332 1347,366 1395,344 1395,299 1181,278 1137,303 976,282 677,306"/>
                 <Baseline points="684,336 719,333 755,331 791,330 827,329 862,328 898,328 934,328 970,328 1005,329 1041,330 1077,331 1113,333 1148,334 1184,335 1220,337 1256,339 1291,341 1327,342 1363,344 1399,346"/>
                 <TextEquiv>
@@ -263,7 +263,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

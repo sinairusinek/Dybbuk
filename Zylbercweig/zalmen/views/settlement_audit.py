@@ -446,7 +446,7 @@ def _render_cluster_details(c: ClusterCard, a_rows_by_cid, db_by_id, samples) ->
             db = db_by_id.get(dbid, {})
             score_txt = c_scores[i] if i < len(c_scores) else ""
             method_txt = c_methods[i] if i < len(c_methods) else ""
-            icon = {"exact": "🎯", "phonetic": "🔊", "fuzzy": "🔤"}.get(method_txt, "•")
+            icon = {"exact": "🎯", "phonetic": "🔊", "ipa_phonetic": "🔉", "fuzzy": "🔤", "person": "👤", "person_phonetic": "👤🔉"}.get(method_txt, "•")
             st.caption(
                 f"{icon} {dbid} · {db.get('name','(missing)')} · "
                 f"score {score_txt} · {method_txt}"
