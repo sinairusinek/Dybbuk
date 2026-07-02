@@ -5,8 +5,9 @@ Covers all human review for the Zylbercweig Lexicon pipeline:
   A1  Org → DB align    — align to existing DB / add new / generic / uncluster
   A2  Org clusters      — confirm/reject fuzzy cluster merges
   A2  Org addresses     — confirm addresses/geocoding
-  B1  Person dedup      — resolve persons across volumes (not yet built)
-  B2  Person → external — Wikidata/YIVO alignment (not yet built)
+  B1  Person dedup      — resolve persons across volumes
+  B2  Person → DB       — review LLM alignment drafts (Phase B/C)
+  B3  Mentions by surname — bare-surname mention disambiguation (Phase C)
 
 Run:
   streamlit run app.py                   # full app (all views)
@@ -42,7 +43,9 @@ VIEWS = {
     "DB Audit":                ("db_audit",      "dba"),
     "Activity":                ("activity",      "activity"),
     "B1 · Person Dedup":       ("person_dedup",   "b1"),
-    "B2 · Person → External":  (None,             "b2"),
+    "B2 · Person → DB":        ("person_alignment", "b2"),
+    "B3 · Mentions by surname": ("surname_review", "b3"),
+    "Person Hub":              ("person_hub",     "hub"),
     "YiDraCor · Annotation flags": ("yidracor_flags", "yd"),
 }
 
@@ -53,7 +56,9 @@ VIEW_STATUS = {
     "DB Audit":                "🩺",
     "Activity":                "📋",
     "B1 · Person Dedup":       "✅ Ready",
-    "B2 · Person → External":  "⏳ Blocked on B1",
+    "B2 · Person → DB":        "✅ Ready",
+    "B3 · Mentions by surname": "✅ Ready",
+    "Person Hub":              "🧑",
     "YiDraCor · Annotation flags": "✅ Ready",
 }
 
@@ -175,6 +180,15 @@ elif view_module == "db_audit":
     render()
 elif view_module == "person_dedup":
     from views.person_dedup import render
+    render()
+elif view_module == "person_alignment":
+    from views.person_alignment import render
+    render()
+elif view_module == "surname_review":
+    from views.surname_review import render
+    render()
+elif view_module == "person_hub":
+    from views.person_hub import render
     render()
 elif view_module == "yidracor_flags":
     from views.yidracor_flags import render

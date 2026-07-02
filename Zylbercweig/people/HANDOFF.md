@@ -1,5 +1,9 @@
 # Zalmen People Matcher — Autonomous Scaffold
 
+> **Phase C (2026-07-02) — person hub + draft review + surname disambiguation.**
+> See the "Phase C" section at the bottom; the original scaffold notes below it
+> predate Phases A–C and some counts are stale.
+
 State as of the initial autonomous build. Everything here was produced without your in-the-loop approval, so treat each artifact as a draft to verify and adjust.
 
 ## TL;DR
@@ -110,3 +114,60 @@ python3 Zylbercweig/people/llm_draft_alignment.py --dry-run --limit 3
 ```
 
 Everything is idempotent and writes to fixed paths in `Zylbercweig/people/`.
+
+---
+
+## Phase C (2026-07-02) — person hub + draft review + surname disambiguation
+
+### Entity model
+- `people_common.py` — shared joins: volume-aware xml_id→person_id resolution
+  (30 colliding xml_ids), person_id→db_id via review TSV (excludes the 19
+  `alignment_disagreements.tsv` xml_ids pending PI), heading index.
+- `derive_mention_alignments.py` → `derived_mention_alignments.tsv` (3,446 rows)
+  — materialized mention→heading→db_id chain. **2,902 mention→db_id** (the
+  ~2,950 memory estimate minus rows now correctly excluded: 64 disagreement
+  rows + 15 ambiguous xml_ids). Surname-sheet rows = DOMINANT referent only,
+  used as fame prior; full/initials rows = global lexicon.
+- `build_person_hub.py` → `person_hub.tsv` (2,935 hubs) + `person_hub_members.tsv`
+  + `person_hub_conflicts.tsv`. Union-find over CONFIRMED evidence only
+  (ra_align 2,455 / ra_dup 63 / human_dedup / human_align). 140 multi-entry
+  hubs, 2,313 DB-aligned, **0 multi-db conflicts**. Phase B drafts attach as
+  `pending_drafts` counts, never as edges. Re-run after new B1/B2 decisions.
+
+### Draft review (Zalmen B2 · Person → DB)
+- `zalmen/views/person_alignment.py` — batch-confirm mode (data_editor table,
+  325 ALIGN-high first) + card mode for DISAMBIG/DEFER/medium/low.
+- Decisions → `people_alignment_decisions.tsv` keyed by person_id; consumed by
+  build_person_hub.py as `human_align` evidence.
+
+### Bare-surname mention resolution (job 3, first cut)
+- `resolve_surname_mentions.py` → `mention_surname_resolutions.tsv` (6,441
+  mentions) + `surname_groups.tsv` (1,221 groups). Resolution unit =
+  (surname × host entry): within-entry expansion first, then hard gates
+  (gender, birth-impossibility), then scoring (co-mention lexicon hits,
+  career overlap, fame prior — prior disabled inside family clusters, i.e.
+  ≥2 corpus-famous candidates). Verdicts: RESOLVED 4,816 (within_entry 2,239 /
+  unique 1,950 / scored 627), AMBIGUOUS 1,227, UNKNOWN 398.
+- Candidate universe = heading surnames (comma-aware; comma-less headings drop
+  common given names from BOTH ends — orders are mixed in this corpus) PLUS
+  RA-validated surname-sheet referents (catches given-name/mononym address
+  forms like לייוויק → כאַנוקאָוו).
+- Gold check vs the surname sheet (dominant-referent semantics, so an
+  imperfect yardstick): 72.6% of RESOLVED agree; unique_candidate 91.5%,
+  scored 67.4%, within_entry 57.9% (within-entry deliberately overrides the
+  corpus-dominant referent — spot-checks show mostly correct context reads,
+  with the known hard case: famous-relative collision, e.g.
+  גאָלדפֿאַדען-רעפּערטואָר resolving to the in-entry Naftali instead of Avrom).
+- `zalmen/views/surname_review.py` (B3) — review BY SURNAME: fixed candidate
+  panel, sentence context, resolver suggestion pre-selected, one-click
+  family-level abstain, chips stored for calibration. Decisions →
+  `mention_resolution_decisions.tsv`.
+- `zalmen/views/person_hub.py` — read-only person-centric hub browser.
+
+### Known limitations / next levers
+- Surname candidate matching is exact-token; spelling drift (אזרא/עזרא) needs
+  the same trigram/phonetic fallback as the dedup gate (bliakhar-class misses).
+- `alternative_heading` column of the surnames sheet not yet used as candidates.
+- 29 validated surfaces skipped as cross-hub ambiguous (duplicate headings in
+  different hubs) — they double as dedup leads; see person_hub_conflicts.tsv.
+- Mentions with empty host_xml_id (~NOXID rows) resolve without host features.
