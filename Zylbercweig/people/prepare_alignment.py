@@ -127,7 +127,13 @@ def main():
 
     existing = load_existing_decisions()
     aliases = load_aliases()
+    db_by_id = {d["db_id"]: d for d in db_rows}
+    gender_by_db = {d["db_id"]: (d.get("gender") or "").strip() for d in db_rows}
     n_alias_only_cands = 0
+    # Phase A gates 2-4 (spec: apply where both sides have the field)
+    n_gate_db = 0
+    n_gate_gender = 0
+    n_gate_date = 0
     out_rows = []
     n_with_cand = 0
     total = len(people)
@@ -173,11 +179,41 @@ def main():
         for alias in aliases.get(pid, ()):
             if variant_ok(alias):
                 pvars.add(alias)
+        # ---- Phase A gates 2-4 (subject side fields) ----
+        subj_db = existing.get(p["xml_id"], {}).get("aligned_db_id", "")
+        subj_gender = gender_by_db.get(subj_db, "") if subj_db else ""
+        subj_by = extract_year(p["birth_date"])
+        subj_dy = extract_year(p["death_date"])
+
         scored = []
-        for did in cand_ids:
+        for did in sorted(cand_ids):  # sorted for determinism
             dvars = db_variants[did]
             if not dvars:
                 continue
+            d_row = db_by_id[did]
+            if subj_db and did == subj_db:
+                # RA-confirmed alignment — keep unconditionally (mirror of the
+                # db_agreement exemption in find_dedup_candidates)
+                pass
+            else:
+                # Gate 3: DB-contradiction — subject already aligned elsewhere
+                if subj_db and did != subj_db:
+                    n_gate_db += 1
+                    continue
+                # Gate 2: gender (subject gender is DB-derived; fires only when
+                # a subject db alignment exists, i.e. never past gate 3 — kept
+                # for spec symmetry)
+                d_gender = (d_row.get("gender") or "").strip()
+                if subj_gender and d_gender and subj_gender != d_gender:
+                    n_gate_gender += 1
+                    continue
+                # Gate 4: date contradiction (>3yr on birth or death)
+                d_by = extract_year(d_row.get("date_born") or "")
+                d_dy = extract_year(d_row.get("date_died") or "")
+                if ((subj_by and d_by and abs(subj_by - d_by) > 3)
+                        or (subj_dy and d_dy and abs(subj_dy - d_dy) > 3)):
+                    n_gate_date += 1
+                    continue
             s, _, _ = person_pair_score(pvars, dvars)
             if s >= MIN_SCORE:
                 scored.append((s, did))
@@ -186,7 +222,6 @@ def main():
         if top:
             n_with_cand += 1
 
-        db_by_id = {d["db_id"]: d for d in db_rows}
         cand_ids_str = "|".join(did for _, did in top)
         cand_scores_str = "|".join(f"{s:.3f}" for s, _ in top)
         cand_names_str = "|".join(
@@ -223,6 +258,10 @@ def main():
     print(f"  rows that gained candidates from aliases: {n_alias_only_cands}")
     print(f"  rows with carried-over decision:  {sum(1 for r in out_rows if r['decision'])}")
     print(f"  rows with carried-over db_id:     {sum(1 for r in out_rows if r['aligned_db_id'])}")
+    print(f"  Phase A gate drops (candidate level):")
+    print(f"    db contradiction (subject aligned elsewhere): {n_gate_db}")
+    print(f"    gender contradiction:                          {n_gate_gender}")
+    print(f"    date contradiction (>3yr):                     {n_gate_date}")
 
     # quick gold recall: of carried-over aligned_db_id rows that exist in our
     # DB, how often is the gold id in the top-N candidate list?

@@ -303,9 +303,14 @@ def _surname_tokens(surface: str) -> frozenset[str]:
         return frozenset()
     if len(toks) == 1:
         return frozenset(toks)
-    return frozenset(
-        t for t in toks if _GIVEN_NAME_COUNTS.get(t, 0) < _GIVEN_NAME_THRESHOLD
-    )
+    kept = {t for t in toks if _GIVEN_NAME_COUNTS.get(t, 0) < _GIVEN_NAME_THRESHOLD}
+    # Natural order ('given surname') dominates comma-less multi-token forms
+    # (names_variants, DB hebnames) — the LAST token is the likeliest surname.
+    # Always keep it so a surname that also occurs a few times as a given name
+    # (e.g. היימאן in 'העלענאַ היימאַן') cannot be annihilated by the
+    # common-given filter, which would void the gate for that form.
+    kept.add(toks[-1])
+    return frozenset(kept)
 
 
 def has_surname_overlap(a_variants: set[str], b_variants: set[str]) -> bool:
@@ -313,9 +318,11 @@ def has_surname_overlap(a_variants: set[str], b_variants: set[str]) -> bool:
 
     A pair whose only shared token is a given-part token fails this gate.
     Overlap is exact on normalized tokens first; if that fails, we allow a
-    fuzzy surname match (trigram jaccard >= 0.5 — catches spelling drift like
-    וויגאָדסקי/ווייגאָדסקי) or a cross-script surname match (IPA >= 0.75) so
-    Hebrew↔Latin pairs are not gated out.
+    fuzzy surname match (trigram jaccard >= 0.30 — catches spelling drift like
+    וויגאָדסקי/ווייגאָדסקי or איינהארן/איינהורן; genuinely different surnames
+    score well below this) or a cross-script surname match (IPA >= 0.75) so
+    Hebrew↔Latin pairs are not gated out. This is a GATE, not a scorer —
+    passing it only allows the real similarity scores to count.
 
     Fail-open when either side yields no surname tokens (initials-only etc.).
     """
@@ -331,7 +338,7 @@ def has_surname_overlap(a_variants: set[str], b_variants: set[str]) -> bool:
         return True
     for x in a_sur:
         for y in b_sur:
-            if _trigram_jaccard(x, y) >= 0.5:
+            if _trigram_jaccard(x, y) >= 0.30:
                 return True
             if is_hebrew(x) != is_hebrew(y) and cross_script_similarity(x, y) >= 0.75:
                 return True
