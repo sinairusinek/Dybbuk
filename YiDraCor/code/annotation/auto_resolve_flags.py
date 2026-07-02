@@ -218,6 +218,18 @@ def load_cast_bares(play: str) -> dict[str, str]:
     return out
 
 
+def load_non_speaker_labels(play: str) -> set[str]:
+    """Skeletons of labels Noa marked 'part of the text' / 'do not tag as role'
+    (cast_dict.json `non_speaker_labels`). resolve_line uses this to suppress the
+    'untagged speaker (unknown)' flag for surface strings that look like a
+    `label:` turn but are really running text (e.g. בראווא, געאנטווארטעט)."""
+    f = REPO / "data" / play / "cast_dict.json"
+    if not f.exists():
+        return set()
+    d = json.loads(f.read_text(encoding="utf-8"))
+    return {skel(x) for x in (d.get("non_speaker_labels") or [])}
+
+
 def load_speaker_overrides(play: str) -> dict[int, list[dict]]:
     """Per-scene speaker label overrides — for scenes where the same surface
     label maps to different cast members in different scenes (the classic
@@ -288,7 +300,8 @@ def fix_stage_type_typo(t: str):
     return clean if clean in STAGE_TYPES else None
 
 
-def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides=None):
+def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides=None,
+                 non_speakers=None):
     """Return (new_entries, [auto_descriptions], [human_issues]).
 
     new_entries is None if nothing auto-changed. Operates on a single line's
@@ -303,6 +316,7 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
     characters in different scenes). Wins over cast_index.
     """
     cast_bares = cast_bares or {}
+    non_speakers = non_speakers or set()
     if page_overrides:
         cast_index = {**cast_index, **page_overrides}
     auto, human = [], []
@@ -486,9 +500,29 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
                                         f"(collective, stripped paren cue)")
                             placed = True
                     i = j
-                if not placed and (not has_nikud(label)) and has_nikud(text[m.end():]):
+                # Standalone parenthesized cue as a "turn" — `(שרייט): …` — no
+                # name outside the parens. Noa 2026-06-28: tag as a stage
+                # direction, not a speaker. Emit a stage span over the paren
+                # group and let the span-level lexicon type it (שרייט→delivery).
+                # Only fires when the lexicon resolves a type, so unknown cues
+                # still fall through to the human flag below.
+                if not placed and re.sub(r"\([^)]*\)", "", prefix).strip() == "" \
+                        and "(" in prefix:
+                    po = prefix.find("("); pc = prefix.find(")", po + 1)
+                    if pc > po:
+                        cue = prefix[po:pc + 1]
+                        stype = stage_lexicon_span(cue)
+                        if stype:
+                            out.append(("stage", {"offset": str(lo + po),
+                                                  "length": str(pc - po + 1),
+                                                  "type": stype}))
+                            auto.append(f"+stage{{type:{stype}}} (standalone paren cue)")
+                            placed = True
+                if not placed and (not has_nikud(label)) and has_nikud(text[m.end():]) \
+                        and k not in non_speakers:
                     human.append(f"untagged speaker (unknown) '{k}'")
-            elif (not has_nikud(label)) and has_nikud(text[m.end():]):
+            elif (not has_nikud(label)) and has_nikud(text[m.end():]) \
+                    and k not in non_speakers:
                 human.append(f"untagged speaker (unknown) '{k}'")
 
     changed = bool(auto)
@@ -509,6 +543,7 @@ def recheck_live(csv_path: Path):
     cast_cache: dict[str, dict] = {}
     bares_cache: dict[str, dict] = {}
     overrides_cache: dict[str, dict] = {}
+    nonspk_cache: dict[str, set] = {}
     for r in rows:
         folder = label_to_folder.get(r["edition"])
         if folder is None:
@@ -520,6 +555,7 @@ def recheck_live(csv_path: Path):
         cast = cast_cache.setdefault(folder, load_cast(folder)[0])
         bares = bares_cache.setdefault(folder, load_cast_bares(folder))
         overrides = overrides_cache.setdefault(folder, load_speaker_overrides(folder))
+        nonspk = nonspk_cache.setdefault(folder, load_non_speaker_labels(folder))
         if doc is None:
             kept.extend(group); continue
         _, _, xml = top_transcript(client, doc, page)
@@ -531,7 +567,8 @@ def recheck_live(csv_path: Path):
                 kept.append(r); continue  # can't verify — keep
             body = [e for e in parse_custom(tl.get("custom") or "") if e[0] != "readingOrder"]
             _, _, human = resolve_line(line_text(tl), body, cast, bares,
-                                        page_overrides=overrides_for(overrides.get(page), None))
+                                        page_overrides=overrides_for(overrides.get(page), None),
+                                        non_speakers=nonspk)
             cat = r["category"]
             still = any(h.split(" (")[0] == cat or h.startswith(cat) for h in human)
             if still:
@@ -581,6 +618,7 @@ def main():
         cast_index, _ = load_cast(play)
         cast_bares = load_cast_bares(play)
         speaker_overrides = load_speaker_overrides(play)
+        non_speakers = load_non_speaker_labels(play)
         label = editions.get(play, play)
         doc = doc_ids.get(play)
         # Phase 1: local scan → candidate pages (auto edits) + human flags
@@ -594,7 +632,8 @@ def main():
                 # don't raise untagged-speaker on title/cast pages
                 scan = resolve_line(txt, [e for e in entries if e[0] != "readingOrder"],
                                      cast_index, cast_bares,
-                                     page_overrides=overrides_for(speaker_overrides.get(page), None))
+                                     page_overrides=overrides_for(speaker_overrides.get(page), None),
+                                     non_speakers=non_speakers)
                 _, auto, human = scan
                 if ptype in ("titlePage", "castList"):
                     human = [h for h in human if "speaker" not in h]
@@ -629,7 +668,8 @@ def main():
                 body_dd = dedup_entries(body)
                 deduped_count = len(body) - len(body_dd)
                 new, auto, _ = resolve_line(line_text(tl), body_dd, cast_index, cast_bares,
-                                              page_overrides=overrides_for(speaker_overrides.get(page), None))
+                                              page_overrides=overrides_for(speaker_overrides.get(page), None),
+                                              non_speakers=non_speakers)
                 if new is not None or deduped_count:
                     final_entries = dedup_entries(ro + (new if new is not None else body_dd))
                     tl.set("custom", serialize_custom(final_entries))

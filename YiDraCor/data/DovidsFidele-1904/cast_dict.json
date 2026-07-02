@@ -32,7 +32,10 @@
       },
       "prefix_variants": [
         "יענקע",
-        "יענקעל"
+        "יענקעל",
+        "ענקעל",
+        "יעקעל",
+        "יענקעל טאבעלע"
       ]
     },
     "nkh": {
@@ -44,7 +47,9 @@
         "offset": 0,
         "length": 4
       },
-      "prefix_variants": []
+      "prefix_variants": [
+        "נא"
+      ]
     },
     "khuh": {
       "form": "חַוָה ",
@@ -55,7 +60,10 @@
         "offset": 0,
         "length": 6
       },
-      "prefix_variants": []
+      "prefix_variants": [
+        "הוה",
+        "חיה"
+      ]
     },
     "slmn": {
       "form": "סַאלַאמָאן",
@@ -163,11 +171,27 @@
         "length": 6
       },
       "prefix_variants": []
+    },
+    "mina": {
+      "form": "מינא",
+      "bare": "מינא",
+      "prefix_variants": [],
+      "source": "noa-2026-06-28"
+    },
+    "student": {
+      "form": "סטודענט",
+      "bare": "סטודענט",
+      "prefix_variants": [],
+      "source": "noa-2026-06-28"
     }
   },
   "desc_tokens": {
     "זאהן": "זאָהן",
     "געבער": "געבּער",
     "בן": "בּן"
-  }
+  },
+  "non_speaker_labels": [
+    "בר ככנא",
+    "בריינדיל קאזאק"
+  ]
 }
