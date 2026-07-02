@@ -49,7 +49,11 @@ KNOWN_COLLECTIVE = {
     "איינער",   # eyner — someone
     "דאמען",    # damen — ladies
     "קינדער",   # kinder — children
-    "סאפראן", "אלט", "באס", "טענאר",  # song-supplement voice rubrics
+    # Song-supplement voice rubrics. NOTE (DraCor alignment, 2026-07-02): these
+    # should preferentially resolve to the NAMED singer (see prompts.py + §G of
+    # castlist_tagging_conventions); they remain here only as the abstract-voice
+    # fallback and to suppress spurious "missing cast" flags.
+    "סאפראן", "אלט", "באס", "טענאר",
 }
 
 

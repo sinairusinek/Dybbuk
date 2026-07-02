@@ -17,13 +17,26 @@ Choose one `page_type` per page:
   - Inline prefix `ירוחם: רבּשׁ״ע ...` → speaker = "ירוחם" (offset 0, length 5).
   - Often UN-vocalized even when surrounding text is vocalized — that's a strong hint.
   - REQUIRED attribute `xmlid`: the same xml:id used for that character's `role` span in the castList (e.g. `xmlid:sobele`). For OCR variants of a known name (e.g. `אכטשעי` for `יאכטשע`), still use the canonical xml:id. The structurer uses this for `<sp who="#xmlid">`.
-  - **Collective / chorus labels** (`אלע` alle, `קאהר`/`כאר` chorus, `שטימען`
-    voices, `ביידע` both, `מענער` men, `מעדכען` girls, `דועט` duet, `איינער`
-    someone, and the song-supplement voice rubrics `דאמען`/`קינדער`/`סאפראן`/
-    `אלט`/`באס`/`טענאר`): per the 2026-05-24 PI review these are confirmed
-    collective and get **NO individual cast entry**. Tag them as `speaker` with a
-    shared collective xmlid (e.g. `xmlid:alle`, `xmlid:chor`) — do NOT mint a
-    per-character role for them, and they are NOT "missing cast" flags.
+  - **Collective / chorus GROUP labels** (`אלע` alle, `קאהר`/`כאר` chorus,
+    `שטימען` voices, `ביידע` both, `מענער` men, `מעדכען` girls, `איינער`
+    someone, `דאמען` ladies, `קינדער` children): per the 2026-05-24 PI review
+    these are confirmed collective and get **NO individual cast entry**. Tag them
+    as `speaker` with a shared collective xmlid (e.g. `xmlid:alle`, `xmlid:chor`)
+    — do NOT mint a per-character role for them, and they are NOT "missing cast"
+    flags. The structurer emits these as `<personGrp>` in particDesc.
+  - **Song-supplement voice rubrics** (`סאפראן` soprano, `אלט` alt, `באס` bass,
+    `טענאר` tenor, `דועט` duet) — **resolve to the named singer where
+    identifiable** (DraCor alignment, 2026-07-02). These are speaker attributions,
+    not stage directions:
+      • A named play-role sings → `xmlid:<that role>` (e.g. `xmlid:karl_rizvan`).
+      • A solo rubric that identifiably *is* a character (the "Sopran" of a duet
+        = the heroine) → `xmlid:<that character>`; the printed rubric is kept
+        verbatim as the `<speaker>` label by the structurer.
+      • A duet of two named singers → space-separated `xmlid:<a> <b>`
+        (→ `who="#a #b"`).
+      • Only a genuinely un-attributable voice stays abstract → use a collective
+        voice xmlid (`xmlid:chor` for a group, `xmlid:sopran` for an abstract
+        solo). Do NOT add these to the printed castList.
 
 `stage`      — stage direction. Spans only within a single line, but a stage direction may continue across lines: tag each line's portion as its own `stage` span.
   - Parenthesized text:  `(זינגט)`, `(אָרים צימער ביי ירוחם).`

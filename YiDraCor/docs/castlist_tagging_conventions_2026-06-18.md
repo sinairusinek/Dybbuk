@@ -32,6 +32,52 @@ Applied 2026-06-18 to Yudale castList page (lines 65 / 107 / 114). Same pattern 
 
 A castList trailer like `יוּדען, יוּדענעס, געסטע, קאָהר` or `דיענער, מאטראזען, חינעזער, פאסאזשירען`: split by comma, one collective `xml:id` per token (e.g. `yudn`, `yudines`, `geste`, `kor`). Do **not** create one catch-all xmlid. Do **not** tag literary "etc." markers (`אאז"ו`, `עטצ.`) as characters — leave them in surface text but unspanned.
 
+## G. particDesc / castList / song-voice encoding (DraCor alignment, 2026-07-02)
+
+Ratified after checking our practice against DraCor's Schematron (which validates
+against `particDesc`, not `castList`). Implemented in `structure/build_tei.py`;
+verify any edition with `python3.11 -m structure.check_who tei/<Play>.xml`.
+
+1. **`particDesc/listPerson` is the machine-readable master; `castList` is documentary.**
+   Every role gets a `listPerson` entry (so every `@who` resolves); the printed
+   dramatis-personae is mirrored in `castList` and is **not** padded with voice
+   parts or non-printed collectives. This was already our practice — unchanged.
+
+2. **Collective / chorus speakers are `<personGrp xml:id="…">`, not `<person>`.**
+   Any cast_dict role flagged `"collective": true` (`אלע`/alle, `קאהר`/chorus,
+   `שטימען`, `דאמען`, `קינדער`, …) now emits `<personGrp><name>` instead of
+   `<person><persName>`, matching DraCor corpora so network tooling treats them
+   as group nodes. Same `xml:id`, so `who="#kor"` still resolves. **Data gap to
+   audit:** a chorus role must actually carry `"collective": true` in cast_dict
+   to become a personGrp — e.g. Di Seder's `kor` is currently a plain person and
+   should be flagged collective.
+
+3. **Joint / duet turns use space-separated `@who`.** A speaker span whose
+   `xmlid` is two-or-more space-separated ids (`xmlid:karl_rizvan rashel`,
+   Noa 2026-06-14) now emits `who="#karl_rizvan #rashel"` — each id validated and
+   `#`-prefixed independently (previously it mis-emitted `who="#karl_rizvan rashel"`
+   and was wrongly flagged as an unknown role).
+
+4. **Song-supplement voice parts are speaker attributions, not stage directions.**
+   A printed rubric before sung lines in the `<back>` supplement (`קאָהר:`,
+   `סאלא אלט:`, `סאפראן:`, `דועט קארל און ראשעל:`) opens an `<sp><speaker>…</speaker>`
+   whose sung text goes in an `<lg>/<l>` — **not** a `<stage type="delivery">`, and
+   no longer baked inline into the verse `<l>`. Resolution policy for its `@who`:
+   - **A named play-role sings** → `@who` points to that role's existing id
+     (`karl_rizvan`, `rashel`). Trivial and keeps songs queryable per character.
+   - **A solo voice rubric that identifiably *is* a character** (the "Sopran" of
+     an operetta duet = the heroine) → keep the printed rubric in `<speaker>` but
+     resolve `@who="#mirele"`. Transcription and interpretation in their proper
+     layers.
+   - **A duet/pair of two named singers** → space-separated `@who` (case 3).
+   - **A genuinely abstract voice** (unattributable chorus/solo) → give it a
+     `listPerson` entry — `<personGrp xml:id="chor">` for a group, `<person
+     xml:id="sopran">` for an abstract solo — and point `@who` there.
+   Do **not** add Sopran/Alt/Chor to the printed `castList`; if a human-visible
+   listing is wanted, use a separate editorial `<castGroup>` (not mixed among the
+   printed roles). An un-resolved voice label surfaces as an `<sp>` with no `@who`
+   in `check_who.py` check [2] — that is the RA's to-do list, not an error.
+
 ## Per-play notes locked in by Noa
 
 - **AlNaharotBavel** — `זמרי` is one persistent role; `דער קעניג`/`קעניג בלשצר`/bare `בלשצר` all → `belshatsar`; `דלילה` is a single role (`favoritin` is a roleDesc, not an ensemble label); `בן כספי` bare canonical short. **Do NOT pre-seed a `kor` collective** — tag chorus lines only if they appear in the body.

@@ -20,8 +20,18 @@ Convention decisions baked in (see memory `diseder_two_part_tei`,
   * Two-part model: play acts in <body>, song supplement in <back> linked by
     @corresp; songs are NOT duplicated inline.
   * castList in <front> + listPerson in <particDesc>, both from cast_dict.json.
+    Individual roles -> <person><persName>; collective/chorus roles
+    (`"collective": true`) -> <personGrp><name> (DraCor convention; every
+    collective speaker is a personGrp, and both take xml:id so @who resolves).
   * xml:id naming mirrors A-Earliest1898: {PlayId}_Act{n}, {PlayId}_SP{0001}_{a}.
   * <speaker> holds the printed label slice; the canonical role is on @who.
+    @who takes one pointer for a solo turn and space-separated pointers for a
+    joint/duet turn: `who="#a #b"` (each xmlid split and #-prefixed separately).
+  * Song-supplement voice attributions ("קאָהר:", "סאלא אלט:", "סאפראן:") are
+    speaker labels, not stage directions: they open an <sp><speaker> in <back>
+    with @who resolved to the named singer where identifiable (the printed
+    rubric stays in <speaker>), falling back to an abstract voice personGrp
+    only when the voice is genuinely unattributable.
 
 Usage:
     python3.11 -m structure.build_tei --play Di_seyder_nakht_Emkroyt_1908
@@ -37,7 +47,7 @@ from pathlib import Path
 from lxml import etree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from annotation.schema import parse_custom  # reuse the canonical custom parser
+from annotation.schema import parse_custom, dedup_entries  # canonical custom parser + de-dup
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 TEI = "http://www.tei-c.org/ns/1.0"
@@ -90,8 +100,12 @@ def load_pages(play_dir: Path):
         lines = []
         for tl in tree.findall(".//p:TextLine", PNS):
             text = tl.findtext(".//p:Unicode", namespaces=PNS) or ""
-            spans = [(t, a) for (t, a) in parse_custom(tl.get("custom") or "")
-                     if t != "readingOrder"]
+            # De-dup spans that accumulate when the pipeline re-pushes on top of
+            # a prior push (Transkribus layers spans rather than replacing them);
+            # otherwise duplicate heading/speaker spans emit duplicate <div>/<sp>
+            # and clashing xml:ids. Same tool auto_resolve_flags uses before push.
+            entries = dedup_entries(parse_custom(tl.get("custom") or ""))
+            spans = [(t, a) for (t, a) in entries if t != "readingOrder"]
             lines.append({"text": text, "spans": spans})
         pages.append((page_nr, img, lines))
     return pages
@@ -163,6 +177,32 @@ def emit_line_content(para: Para, text: str, spans, skip_speaker=True):
     para.add_text(text[cursor:])
 
 
+def format_who(xmlid: str, role_ids: set, bad: list) -> str:
+    """Build a TEI @who value from a speaker span's xmlid.
+
+    A solo turn is a single xmlid; a joint/duet turn is space-separated xmlids
+    (Noa 2026-06-14). Each token is validated against the declared roles and
+    #-prefixed independently, so `"a b"` becomes `who="#a #b"` — NOT `"#a b"`.
+    Unknown tokens are recorded in `bad`.
+    """
+    toks = xmlid.split()
+    for tok in toks:
+        if tok not in role_ids:
+            bad.append(tok)
+    return " ".join(f"#{t}" for t in toks)
+
+
+def new_lg(parent, lg_attrs):
+    """Create an <lg> stanza under `parent`, carrying n / continuation."""
+    lg = etree.SubElement(parent, q("lg"))
+    if lg_attrs is not None:
+        if lg_attrs.get("n"):
+            lg.set("n", lg_attrs["n"])
+        if lg_attrs.get("cont") == "yes":
+            lg.set("prev", "true")
+    return lg
+
+
 def speaker_slice(text: str, attrs: dict):
     """Return (label, rest) splitting off the printed speaker label."""
     length = span_int(attrs, "length", 0)
@@ -226,9 +266,18 @@ def build_header(rec: dict, cast: dict, play_id: str):
     partic = etree.SubElement(prof, q("particDesc"))
     list_person = etree.SubElement(partic, q("listPerson"))
     for xmlid, info in cast.get("roles", {}).items():
-        person = etree.SubElement(list_person, q("person"))
-        set_xmlid(person, xmlid)
-        etree.SubElement(person, q("persName")).text = info.get("form") or info.get("bare", "")
+        name_text = info.get("form") or info.get("bare", "")
+        if info.get("collective"):
+            # Collective/chorus speakers are <personGrp> in DraCor corpora, so
+            # network-metric tooling treats them as group nodes. Same xml:id so
+            # @who="#kor" still resolves.
+            grp = etree.SubElement(list_person, q("personGrp"))
+            set_xmlid(grp, xmlid)
+            etree.SubElement(grp, q("name")).text = name_text
+        else:
+            person = etree.SubElement(list_person, q("person"))
+            set_xmlid(person, xmlid)
+            etree.SubElement(person, q("persName")).text = name_text
     return header, set(cast.get("roles", {}).keys())
 
 
@@ -272,6 +321,8 @@ def build_text(pages, cfg, role_ids):
         "actsongs_div": None,
         "lg": None,
         "lg_para": None,
+        "back_sp": None,    # open <sp> inside the song supplement, if any
+        "back_lg": None,    # its <lg> container for continuation verse lines
     }
 
     def close_sp():
@@ -362,29 +413,60 @@ def build_text(pages, cfg, role_ids):
                 pass  # body path below
             if state["in_back"]:
                 lg_attrs = next((a for t, a in spans if t == "lg"), None)
+                speaker = next((a for t, a in spans if t == "speaker"), None)
                 is_head = any(t == "head" for t, _ in spans)
                 is_l = any(t == "l" for t, _ in spans)
                 container = state["actsongs_div"]
                 if container is None:
                     container = state["songs_div"]
-                if lg_attrs is not None:
-                    lg = etree.SubElement(container, q("lg"))
-                    if lg_attrs.get("n"):
-                        lg.set("n", lg_attrs["n"])
-                    if lg_attrs.get("cont") == "yes":
-                        lg.set("prev", "true")
-                    state["lg"] = lg
+
+                # song-supplement speaker attribution -> <sp><speaker>, NOT
+                # <stage>. @who resolves to the named singer carried on the
+                # span (Di Seder: karl_rizvan/rashel/kor); an untagged voice
+                # label yields an <sp> with no @who that the linter surfaces
+                # for an RA to resolve to a named role (or an abstract voice
+                # personGrp). The sung text goes into an <lg> inside the <sp>.
+                if speaker is not None:
+                    state["sp_counter"] += 1
+                    sp = etree.SubElement(container, q("sp"))
+                    xmlid = speaker.get("xmlid", "")
+                    if xmlid:
+                        sp.set("who", format_who(xmlid, role_ids, state["bad_who"]))
+                    set_xmlid(sp, f"{play_id}_SP{state['sp_counter']:04d}_a")
+                    label, rest = speaker_slice(text, speaker)
+                    etree.SubElement(sp, q("speaker")).text = label
+                    lg = new_lg(sp, lg_attrs)
+                    if rest.strip():
+                        etree.SubElement(lg, q("l")).text = rest.strip()
+                    state["back_sp"], state["back_lg"] = sp, lg
+                    state["lg"] = None
+                    continue
+
                 if is_head:
+                    state["back_sp"] = state["back_lg"] = None
                     h = etree.SubElement(state["lg"] if state["lg"] is not None else container, q("head"))
                     h.text = stripped
                     continue
+
                 if is_l or lg_attrs is not None:
-                    if state["lg"] is None:  # defensive: line before any lg marker
-                        state["lg"] = etree.SubElement(container, q("lg"))
+                    # A new <lg> stanza marker starts a fresh block and closes
+                    # any open supplement speech; a bare verse line continues
+                    # the current speaker's stanza when one is open.
+                    if lg_attrs is not None:
+                        state["back_sp"] = state["back_lg"] = None
+                    if state["back_sp"] is not None:
+                        if state["back_lg"] is None:
+                            state["back_lg"] = new_lg(state["back_sp"], None)
+                        etree.SubElement(state["back_lg"], q("l")).text = stripped
+                        continue
+                    if state["lg"] is None or lg_attrs is not None:
+                        state["lg"] = new_lg(container, lg_attrs)
                     l = etree.SubElement(state["lg"], q("l"))
                     l.text = stripped
                     continue
-                # speaker label / rubric / plain line inside supplement
+
+                # rubric / plain line inside supplement -> stage
+                state["back_sp"] = state["back_lg"] = None
                 if stripped:
                     h = etree.SubElement(container, q("stage"))
                     h.set("type", "delivery")
@@ -399,9 +481,7 @@ def build_text(pages, cfg, role_ids):
                 sp = etree.SubElement(state["container"], q("sp"))
                 xmlid = speaker.get("xmlid", "")
                 if xmlid:
-                    sp.set("who", f"#{xmlid}")
-                    if xmlid not in role_ids:
-                        state["bad_who"].append(xmlid)
+                    sp.set("who", format_who(xmlid, role_ids, state["bad_who"]))
                 set_xmlid(sp, f"{play_id}_SP{state['sp_counter']:04d}_a")
                 label, rest = speaker_slice(text, speaker)
                 etree.SubElement(sp, q("speaker")).text = label
