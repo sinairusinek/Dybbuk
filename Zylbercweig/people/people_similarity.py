@@ -203,10 +203,99 @@ def variant_pair_score(a: str, b: str) -> float:
     return max(base, cross)
 
 
-def person_pair_score(a_variants: set[str], b_variants: set[str]) -> tuple[float, str, str]:
+# Surname gate (Phase A) --------------------------------------------------------
+#
+# Corpus given-name frequencies, installed by the callers (find_dedup_candidates,
+# prepare_alignment) via set_given_name_counts(). Tokens that are common given
+# names must not satisfy the surname gate on their own when they appear inside
+# comma-less multi-token forms (variants may be given-first OR surname-first).
+
+_GIVEN_NAME_COUNTS: dict[str, int] = {}
+_GIVEN_NAME_THRESHOLD = 3
+
+
+def set_given_name_counts(counts) -> None:
+    """Install token -> frequency of appearance in the given-name part of
+    headings (the part AFTER the comma). Used by the surname gate."""
+    global _GIVEN_NAME_COUNTS
+    _GIVEN_NAME_COUNTS = dict(counts)
+    _surname_tokens.cache_clear()
+
+
+@lru_cache(maxsize=200_000)
+def _surname_tokens(surface: str) -> frozenset[str]:
+    """Return the surname tokens of a surface form (comma-aware; mirrors the
+    Shidduch person_name_similarity gate — logic copied, not imported).
+
+      - 'surname, given' → tokens of the part BEFORE the first comma
+      - comma-less single token → that token (a surviving single-token alias
+        is surname-bearing by construction: common given names are suppressed
+        upstream)
+      - comma-less multi-token → all tokens EXCEPT common given names
+        (variants may be surname-first or given-first, so we keep every
+        plausible surname token but never let a shared given name pass)
+    """
+    h = _BRACKETS.sub(" ", surface or "").strip()
+    if "," in h:
+        sur_toks = split_name_tokens(h.split(",", 1)[0])
+        return frozenset(t for t in sur_toks if len(t) >= 2)
+    toks = [t for t in split_name_tokens(h) if len(t) >= 2]
+    if not toks:
+        return frozenset()
+    if len(toks) == 1:
+        return frozenset(toks)
+    return frozenset(
+        t for t in toks if _GIVEN_NAME_COUNTS.get(t, 0) < _GIVEN_NAME_THRESHOLD
+    )
+
+
+def has_surname_overlap(a_variants: set[str], b_variants: set[str]) -> bool:
+    """True if the two variant sets overlap on the surname part.
+
+    A pair whose only shared token is a given-part token fails this gate.
+    Overlap is exact on normalized tokens first; if that fails, we allow a
+    fuzzy surname match (trigram jaccard >= 0.5 — catches spelling drift like
+    וויגאָדסקי/ווייגאָדסקי) or a cross-script surname match (IPA >= 0.75) so
+    Hebrew↔Latin pairs are not gated out.
+
+    Fail-open when either side yields no surname tokens (initials-only etc.).
+    """
+    a_sur: set[str] = set()
+    for v in a_variants:
+        a_sur.update(_surname_tokens(v))
+    b_sur: set[str] = set()
+    for v in b_variants:
+        b_sur.update(_surname_tokens(v))
+    if not a_sur or not b_sur:
+        return True
+    if a_sur & b_sur:
+        return True
+    for x in a_sur:
+        for y in b_sur:
+            if _trigram_jaccard(x, y) >= 0.5:
+                return True
+            if is_hebrew(x) != is_hebrew(y) and cross_script_similarity(x, y) >= 0.75:
+                return True
+    return False
+
+
+# backwards-friendly private alias
+_has_surname_overlap = has_surname_overlap
+
+
+def person_pair_score(
+    a_variants: set[str], b_variants: set[str], surname_gate: bool = True
+) -> tuple[float, str, str]:
     """Best pairwise score across all variant combinations.
     Returns (score, best_a_variant, best_b_variant).
+
+    Phase A: surname gate — if the pair has no overlap on the surname part
+    (see has_surname_overlap), return 0.0 immediately: a pair whose only
+    shared token is a given-part token scores 0. Pass surname_gate=False to
+    get the raw ungated score (used for gate-drop accounting).
     """
+    if surname_gate and not has_surname_overlap(a_variants, b_variants):
+        return (0.0, "", "")
     best = (0.0, "", "")
     for x in a_variants:
         for y in b_variants:
