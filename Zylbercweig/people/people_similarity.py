@@ -96,25 +96,64 @@ def heading_to_canonical(heading: str) -> str:
     return h.strip()
 
 
-def expand_name_variants(heading: str, names_variants: str = "", subheading: str = "") -> set[str]:
+def variant_ok(v: str) -> bool:
+    """Phase A fix (rule 1a): reject variants whose normalized form is shorter
+    than 3 characters, or that consist of a single initial-like token (one or
+    two letters + optional period — periods are stripped by normalization, so
+    a length check on the normalized token covers them).
+
+    Examples rejected: 'וו.', 'ג.', 'א. ב' is kept (2 tokens, handled by 1b).
+    """
+    n = normalize_person_name(v)
+    if len(n) < 3:
+        return False
+    toks = n.split()
+    if len(toks) == 1 and len(toks[0]) <= 2:
+        return False
+    return True
+
+
+def expand_name_variants(heading: str, names_variants: str = "", subheading: str = "",
+                         given_name_counts=None, drop_log: list | None = None) -> set[str]:
     """Build the set of surface forms representing this person.
     Includes: heading, canonical flipped form, every '|'-split name variant,
     and any bracketed alias inside the heading or subheading.
+
+    Phase A fix:
+      - rule 1a: forms failing variant_ok (initials / <3 normalized chars) are
+        dropped from the set (logged to drop_log as 'initial_or_short').
+      - rule 1c: single-token forms from names_variants whose token is a common
+        given name (given_name_counts >= 3) are dropped
+        (logged as 'common_given_name').
     """
     out: set[str] = set()
-    def add(x):
+
+    def add(x, check_given: bool = False):
         x = (x or "").strip()
         if not x:
             return
-        out.add(x)
-        # also add bracket-stripped form
+        candidates = [x]
+        # also consider the bracket-stripped form
         stripped = _BRACKETS.sub(" ", x).strip()
         if stripped and stripped != x:
-            out.add(stripped)
+            candidates.append(stripped)
+        for c in candidates:
+            if not variant_ok(c):
+                if drop_log is not None:
+                    drop_log.append((c, "initial_or_short"))
+                continue
+            if check_given and given_name_counts:
+                toks = split_name_tokens(c)
+                if len(toks) == 1 and given_name_counts.get(toks[0], 0) >= _GIVEN_NAME_THRESHOLD:
+                    if drop_log is not None:
+                        drop_log.append((c, "common_given_name"))
+                    continue
+            out.add(c)
+
     add(heading)
     add(heading_to_canonical(heading))
     for v in (names_variants or "").split("|"):
-        add(v.strip())
+        add(v.strip(), check_given=True)
     # extract bracketed alias content (e.g. "[ביילקע קאָלאַך]" in subheading)
     for src in (heading or "", subheading or ""):
         for m in re.finditer(r"[\[\(]([^\]\)]+)[\]\)]", src):
@@ -192,12 +231,32 @@ def _cross_script(a: str, b: str) -> float:
     return max(whole, tokenwise)
 
 
+def _is_full_form(norm: str) -> bool:
+    """Rule 1b qualifier: a normalized form counts as a FULL name form only if
+    it has >= 2 tokens, each >= 3 normalized chars. Preserves the pseudonym
+    pathway (e.g. שלום-עליכם → 'שלום עליכם', 2 tokens) while stopping bare
+    initials ('וו.') and bare surnames from short-circuiting to 1.0."""
+    toks = norm.split()
+    return len(toks) >= 2 and all(len(t) >= 3 for t in toks)
+
+
 def variant_pair_score(a: str, b: str) -> float:
-    """Score one surface form against another."""
+    """Score one surface form against another.
+
+    Phase A fix (rule 1b): the exact-equality → 1.0 short-circuit only fires
+    when the matched normalized form is a full form (>= 2 tokens, each >= 3
+    chars). A single-token exact match (e.g. bare surname) goes through normal
+    scoring capped at 0.6.
+    """
     if not a or not b:
         return 0.0
-    if normalize_person_name(a) == normalize_person_name(b):
-        return 1.0
+    na, nb = normalize_person_name(a), normalize_person_name(b)
+    if na == nb:
+        if _is_full_form(na):
+            return 1.0
+        # single-token / short exact match: normal scoring, capped at 0.6
+        base = _order_invariant_score(a, b)
+        return min(0.6, base)
     base = _order_invariant_score(a, b)
     cross = _cross_script(a, b)
     return max(base, cross)

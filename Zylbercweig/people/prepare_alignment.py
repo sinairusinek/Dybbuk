@@ -23,9 +23,12 @@ HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
 
 from people_similarity import (  # type: ignore
-    expand_name_variants, person_pair_score,
+    expand_name_variants, person_pair_score, variant_ok,
     extract_year, is_hebrew, split_name_tokens, heading_to_canonical,
+    set_given_name_counts,
 )
+from mine_pseudonyms import build_given_name_counts  # type: ignore
+from find_dedup_candidates import is_non_person_heading  # type: ignore
 
 PEOPLE_TSV = HERE / "people_extracted.tsv"
 DB_TSV = HERE / "people_db.tsv"
@@ -89,9 +92,20 @@ def load_existing_decisions():
 
 def main():
     with open(PEOPLE_TSV) as f:
-        people = list(csv.DictReader(f, delimiter="\t"))
+        all_people = list(csv.DictReader(f, delimiter="\t"))
     with open(DB_TSV) as f:
         db_rows = list(csv.DictReader(f, delimiter="\t"))
+
+    # Phase A fix (defect 2): exclude non-person entries (articles/objects,
+    # e.g. "דער געדענק-טאָוול אין מאַריענבאַד"). The exclusion list is written by
+    # find_dedup_candidates.py to non_person_entries_phaseA.tsv.
+    people = [p for p in all_people if not is_non_person_heading(p["heading"])]
+    print(f"  non-person entries excluded: {len(all_people) - len(people)}")
+
+    # Phase A: install corpus given-name frequencies for the surname gate
+    # inside person_pair_score (change 5).
+    given_name_counts = build_given_name_counts(people)
+    set_given_name_counts(given_name_counts)
 
     # build DB blocking index
     db_blocks: dict[str, list[dict]] = defaultdict(list)
@@ -149,10 +163,16 @@ def main():
         # for low marginal recall. Run cross_script_pass.py as a separate step
         # to surface Hebrew↔Latin candidates with the IPA matcher.
 
-        pvars = expand_name_variants(p["heading"], p.get("names_variants", ""), p.get("subheading", ""))
+        # Phase A fix (defect 1): rules 1a/1c applied inside expand_name_variants
+        pvars = expand_name_variants(
+            p["heading"], p.get("names_variants", ""), p.get("subheading", ""),
+            given_name_counts=given_name_counts,
+        )
         # fold alias surface forms into the variant set used for scoring
+        # (rule 1a: skip initial-like / too-short aliases)
         for alias in aliases.get(pid, ()):
-            pvars.add(alias)
+            if variant_ok(alias):
+                pvars.add(alias)
         scored = []
         for did in cand_ids:
             dvars = db_variants[did]

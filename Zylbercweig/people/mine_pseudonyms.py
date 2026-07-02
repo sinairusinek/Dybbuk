@@ -19,7 +19,7 @@ Output columns: person_id, xml_id, heading, primary_form, alias_form, source.
 """
 from __future__ import annotations
 import csv, re, sys, pathlib
-from collections import Counter, defaultdict
+from collections import Counter
 
 HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
@@ -46,21 +46,19 @@ def is_date_phrase(s: str) -> bool:
 def build_given_name_counts(people: list[dict]) -> Counter:
     """Count how often each token appears in the given-name part of headings.
 
-    For headings with a comma ("surname, given_name"), the given part is
-    everything after the first comma. For comma-less headings, every token
-    counts (we can't separate surname from given name, so we treat all tokens
-    as potential given names to be conservative about suppression — single-
-    token comma-less entries contribute their whole form).
+    The given part is everything AFTER the first comma ("surname, given").
+    Comma-less headings are skipped — in this corpus they are surname-first,
+    and counting them would inflate surname tokens into the given-name
+    suppression list (suppressing legitimate surname aliases).
     """
     counts: Counter = Counter()
     for p in people:
         h = (p.get("heading") or "").strip()
         # strip bracketed content from heading for this analysis
         h_plain = BRACKET.sub(" ", h).strip()
-        if "," in h_plain:
-            given_part = h_plain.split(",", 1)[1]
-        else:
-            given_part = h_plain
+        if "," not in h_plain:
+            continue
+        given_part = h_plain.split(",", 1)[1]
         for tok in split_name_tokens(given_part):
             counts[tok] += 1
     return counts

@@ -40,11 +40,13 @@ HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
 
 from people_similarity import (  # type: ignore
-    expand_name_variants, person_pair_score,
+    expand_name_variants, person_pair_score, has_surname_overlap,
+    set_given_name_counts, variant_ok,
     date_overlap_score, place_overlap_score, composite_pair_score,
     heading_to_canonical, normalize_person_name, split_name_tokens,
     extract_year,
 )
+from mine_pseudonyms import build_given_name_counts as _mine_given_counts  # type: ignore
 
 PEOPLE_TSV = HERE / "people_extracted.tsv"
 REVIEW_TSV = HERE / "people_alignment_review.tsv"
@@ -53,6 +55,7 @@ DB_TSV = HERE / "people_db.tsv"
 OUT_TSV = HERE / "people_dedup_candidates.tsv"
 GOLD_EVAL_TSV = HERE / "people_dedup_gold_eval.tsv"
 AUTO_CLOSED_TSV = HERE / "dedup_auto_closed.tsv"
+NON_PERSON_TSV = HERE / "non_person_entries_phaseA.tsv"
 
 SCORE_THRESHOLD = 0.55
 
@@ -60,22 +63,28 @@ SCORE_THRESHOLD = 0.55
 # times or more in the given-name position are suppressed.
 GIVEN_NAME_THRESHOLD = 3
 
+# Phase A fix (defect 2): comma-less headings starting with a Yiddish article /
+# poster word are articles/objects, not person entries. Tokens compared after
+# normalize_person_name (diacritics stripped): דער, די, דאָס→דאס, אַ→א, אַן→אן,
+# אַפיש→אפיש.
+NON_PERSON_FIRST_TOKENS = {"דער", "די", "דאס", "א", "אן", "אפיש"}
+
+
+def is_non_person_heading(heading: str) -> bool:
+    """True if the entry heading looks like an article/object, not a person:
+    NO comma AND first normalized token is a Yiddish article/poster word."""
+    h = (heading or "").strip()
+    if not h or "," in h:
+        return False
+    toks = split_name_tokens(h)
+    return bool(toks) and toks[0] in NON_PERSON_FIRST_TOKENS
+
 
 def build_given_name_counts(people: list[dict]) -> Counter:
-    """Frequency of each token in the given-name part of headings."""
-    import re as _re
-    BRACKET = _re.compile(r"[\[\(].*?[\]\)]")
-    counts: Counter = Counter()
-    for p in people:
-        h = (p.get("heading") or "").strip()
-        h_plain = BRACKET.sub(" ", h).strip()
-        if "," in h_plain:
-            given_part = h_plain.split(",", 1)[1]
-        else:
-            given_part = h_plain
-        for tok in split_name_tokens(given_part):
-            counts[tok] += 1
-    return counts
+    """Frequency of each token in the given-name part of headings (the part
+    AFTER the comma). Delegates to mine_pseudonyms so both scripts share one
+    definition."""
+    return _mine_given_counts(people)
 
 
 def blocking_key(heading: str, names_variants: str, aliases: list[str],
@@ -88,19 +97,31 @@ def blocking_key(heading: str, names_variants: str, aliases: list[str],
       - Heading with a comma → use the part BEFORE the comma (the surname).
       - Heading without a comma → use ALL tokens (we can't tell surname from
         given name reliably for these — better to over-block than miss).
-      - For each `names_variants` entry, add all tokens (variants are noisy and
-        may be surname-first or given-first).
-      - Phase A: alias tokens are added but single-token common given names
-        (given_name_counts >= GIVEN_NAME_THRESHOLD) are suppressed.
+      - Phase A alias hygiene: every alias-like form (heading brackets,
+        names_variants entries, mined aliases) that is a SINGLE token equal to
+        a common given name (given_name_counts >= GIVEN_NAME_THRESHOLD) is
+        suppressed from blocking. Multi-token forms are kept whole.
     """
     keys: set[str] = set()
     import re as _re
+
+    def add_alias_form(form: str) -> None:
+        toks = split_name_tokens(form)
+        if len(toks) == 1:
+            tok = toks[0]
+            if given_name_counts.get(tok, 0) >= GIVEN_NAME_THRESHOLD:
+                return  # Phase A: suppress single-token common given name
+            if len(tok) >= 2:
+                keys.add(tok)
+        else:
+            for t in toks:
+                if len(t) >= 2:  # skip single-letter initials
+                    keys.add(t)
+
     # bracketed aliases in the heading get their tokens added too
     for m in _re.finditer(r"[\[\(]([^\]\)]+)[\]\)]", heading or ""):
-        for t in split_name_tokens(m.group(1)):
-            if len(t) >= 2:
-                keys.add(t)
-    # heading
+        add_alias_form(m.group(1))
+    # heading proper (never suppressed)
     h_stripped = (heading or "").split("[")[0].split("(")[0].strip()
     if "," in h_stripped:
         surname_part = h_stripped.split(",", 1)[0]
@@ -109,28 +130,14 @@ def blocking_key(heading: str, names_variants: str, aliases: list[str],
     else:
         for t in split_name_tokens(h_stripped):
             keys.add(t)
-    # names_variants
+    # names_variants — alias-like forms, same hygiene
     for v in (names_variants or "").split("|"):
         v = v.strip()
-        if not v:
-            continue
-        for t in split_name_tokens(v):
-            if len(t) >= 2:  # skip single-letter initials
-                keys.add(t)
-    # Phase A: alias tokens — suppress single-token common given names
+        if v:
+            add_alias_form(v)
+    # mined aliases (already filtered upstream; defensive filter anyway)
     for alias in aliases:
-        alias_toks = split_name_tokens(alias)
-        if len(alias_toks) == 1:
-            tok = alias_toks[0]
-            if given_name_counts.get(tok, 0) >= GIVEN_NAME_THRESHOLD:
-                continue  # suppress
-            if len(tok) >= 2:
-                keys.add(tok)
-        else:
-            # multi-token alias: add ALL tokens (surname + given)
-            for t in alias_toks:
-                if len(t) >= 2:
-                    keys.add(t)
+        add_alias_form(alias)
     keys.discard("")
     # drop very-short tokens (initials and stop-letters)
     return {k for k in keys if len(k) >= 2}
@@ -208,12 +215,13 @@ def load_gold_pairs():
 
 def score_row(a: dict, b: dict, va: set[str], vb: set[str], k: str,
               gender_by_xml: dict[str, str],
-              db_id_by_xml: dict[str, str]) -> dict | None:
-    """Score a pair of people entries. Returns a dict row or None if gated out.
-    Gating is done externally for the hard-drop gates (gender, db-contradiction,
-    date-contradiction) — this function only scores.
+              db_id_by_xml: dict[str, str], source: str) -> dict | None:
+    """Score a pair of people entries. Returns a dict row or None if below the
+    score floor. NO gating happens here — the ungated score is computed so the
+    caller can attribute drops to individual Phase A gates (surname gate
+    included, hence surname_gate=False).
     """
-    ns, best_a, best_b = person_pair_score(va, vb)
+    ns, best_a, best_b = person_pair_score(va, vb, surname_gate=False)
     if ns < 0.35:
         return None
     ds = date_overlap_score(
@@ -265,28 +273,46 @@ def score_row(a: dict, b: dict, va: set[str], vb: set[str], k: str,
         "a_db_id": a_db,
         "b_db_id": b_db,
         "db_agreement": db_agreement,
-        "source": "heading",
+        "source": source,
     }
 
 
 def main():
-    people = load_people()
+    all_people = load_people()
     aliases = load_aliases()
     db_id_by_xml = load_db_id_by_xml_id()
     gender_by_db = load_gender_by_db_id()
     gender_by_xml = {x: gender_by_db[d] for x, d in db_id_by_xml.items() if d in gender_by_db}
 
-    # Build given_name_counts for alias hygiene (Phase A change 1)
+    # ---- Phase A fix (defect 2): exclude non-person entries ----
+    non_person = [p for p in all_people if is_non_person_heading(p["heading"])]
+    people = [p for p in all_people if not is_non_person_heading(p["heading"])]
+    with open(NON_PERSON_TSV, "w", encoding="utf-8", newline="") as fp:
+        w = csv.writer(fp, delimiter="\t")
+        w.writerow(["xml_id", "heading"])
+        for p in non_person:  # input order (deterministic)
+            w.writerow([p["xml_id"], p["heading"]])
+    print(f"  non-person entries excluded: {len(non_person)} (logged to {NON_PERSON_TSV.name})")
+
+    # Build given_name_counts for alias hygiene (Phase A change 1) and install
+    # them for the surname gate (Phase A change 5).
     given_name_counts = build_given_name_counts(people)
+    set_given_name_counts(given_name_counts)
     print(f"  db_id resolved for {len(db_id_by_xml)} xml_ids "
           f"({100*len(db_id_by_xml)/max(1,len(people)):.0f}% of subject entries)")
     print(f"  gender resolved for {len(gender_by_xml)} xml_ids")
 
     # build blocking index — fold alias tokens into the per-person key set so
     # pseudonyms surface as candidates even when headings are dissimilar.
+    # base_keys (heading + names_variants + heading brackets, no mined aliases)
+    # drive the source=heading/alias provenance tag.
     blocks: dict[str, list[dict]] = defaultdict(list)
+    base_keys: dict[str, set[str]] = {}
     for p in people:
-        p_aliases = aliases.get(p["person_id"], [])
+        pid = p["person_id"]
+        p_aliases = aliases.get(pid, [])
+        base_keys[pid] = blocking_key(p["heading"], p.get("names_variants", ""),
+                                      [], given_name_counts)
         keys = blocking_key(p["heading"], p.get("names_variants", ""), p_aliases,
                             given_name_counts)
         for k in keys:
@@ -294,87 +320,115 @@ def main():
 
     # precompute variants per person — alias forms are folded into the variant
     # set so person_pair_score can compare alias-to-heading directly.
-    # Phase A: suppress single-token common given-name aliases from variant sets.
+    # Phase A fix (defect 1): expand_name_variants now drops initial-like /
+    # too-short forms (rule 1a) and single-token common given names from
+    # names_variants (rule 1c) internally; mined aliases get the same treatment
+    # here before folding.
     variants_cache: dict[str, set[str]] = {}
+    variant_drop_log: list[tuple[str, str]] = []
     for p in people:
         v = expand_name_variants(
-            p["heading"], p.get("names_variants", ""), p.get("subheading", "")
+            p["heading"], p.get("names_variants", ""), p.get("subheading", ""),
+            given_name_counts=given_name_counts, drop_log=variant_drop_log,
         )
         for alias in aliases.get(p["person_id"], ()):
-            alias_toks = split_name_tokens(alias)
-            if len(alias_toks) == 1:
-                tok = alias_toks[0]
-                if given_name_counts.get(tok, 0) >= GIVEN_NAME_THRESHOLD:
-                    continue  # suppress from variant set
+            if not variant_ok(alias):
+                variant_drop_log.append((alias, "initial_or_short"))
+                continue
+            toks = split_name_tokens(alias)
+            if (len(toks) == 1
+                    and given_name_counts.get(toks[0], 0) >= GIVEN_NAME_THRESHOLD):
+                variant_drop_log.append((alias, "common_given_name"))
+                continue
             v.add(alias)
         variants_cache[p["person_id"]] = v
+    n_drop_1a = sum(1 for _, reason in variant_drop_log if reason == "initial_or_short")
+    n_drop_1c = sum(1 for _, reason in variant_drop_log if reason == "common_given_name")
+    print(f"  variant drops — rule 1a (initial/short): {n_drop_1a}   "
+          f"rule 1c (common given name): {n_drop_1c}")
 
-    # Gate counters
-    n_gender_drop = 0
-    n_db_contradiction = 0
-    n_date_contradiction = 0
-    auto_closed_rows = []
-
-    # score pairs, dedupe across blocks
-    seen: dict[frozenset, dict] = {}
-    for k, items in sorted(blocks.items()):  # sorted for determinism
+    # ---- collect candidate pairs (deduped across blocks) with provenance ----
+    people_by_pid = {p["person_id"]: p for p in people}
+    pair_first_key: dict[tuple[str, str], str] = {}
+    for k in sorted(blocks):  # sorted for determinism
+        items = blocks[k]
         if len(items) < 2 or len(items) > 200:
             # skip absurd buckets (e.g. empty key, single-letter)
             if len(items) > 200:
                 print(f"[skip large block] key={k!r} size={len(items)}")
             continue
         for a, b in combinations(sorted(items, key=lambda x: x["person_id"]), 2):
-            key = frozenset((a["person_id"], b["person_id"]))
-            if key in seen:
+            pa, pb = a["person_id"], b["person_id"]
+            key = (pa, pb) if pa < pb else (pb, pa)
+            if key not in pair_first_key:
+                pair_first_key[key] = k
+
+    # ---- score, then gate (Phase A gates 2-5) ----
+    n_would_emit = 0          # pairs passing the score floor before gates
+    n_gender_drop = 0
+    n_db_contradiction = 0
+    n_date_contradiction = 0
+    n_surname_drop = 0
+    auto_closed_rows = []
+    rows = []
+    for pa, pb in sorted(pair_first_key):
+        k = pair_first_key[(pa, pb)]
+        a, b = people_by_pid[pa], people_by_pid[pb]
+        va = variants_cache[pa]
+        vb = variants_cache[pb]
+        source = "heading" if (base_keys[pa] & base_keys[pb]) else "alias"
+        row = score_row(a, b, va, vb, k, gender_by_xml, db_id_by_xml, source)
+        if row is None:
+            continue  # below score floor — never a candidate, not a gate drop
+        n_would_emit += 1
+
+        # ---- Phase A Gate 2: Gender gate (hard drop) ----
+        ag = gender_by_xml.get(a["xml_id"], "")
+        bg = gender_by_xml.get(b["xml_id"], "")
+        if ag and bg and ag != bg:
+            n_gender_drop += 1
+            continue
+
+        # ---- Phase A Gate 3: DB-contradiction auto-close ----
+        a_db = db_id_by_xml.get(a["xml_id"], "")
+        b_db = db_id_by_xml.get(b["xml_id"], "")
+        if a_db and b_db and a_db != b_db:
+            n_db_contradiction += 1
+            auto_closed_rows.append({
+                "a_xml_id": a["xml_id"],
+                "b_xml_id": b["xml_id"],
+                "verdict": "different",
+                "reason": "db_contradiction",
+                "a_db_id": a_db,
+                "b_db_id": b_db,
+                "a_heading": a["heading"],
+                "b_heading": b["heading"],
+            })
+            continue
+
+        # ---- Phase A Gate 4: Date-contradiction hard drop ----
+        # Exception: when both sides share the same db_id (confirmed same
+        # person by RA), date contradiction may reflect OCR errors across
+        # volumes — skip the gate in that case.
+        if not (a_db and b_db and a_db == b_db):
+            ay = extract_year(a["birth_date"])
+            by_ = extract_year(b["birth_date"])
+            ad = extract_year(a["death_date"])
+            bd = extract_year(b["death_date"])
+            if (ay and by_ and abs(ay - by_) > 3) or (ad and bd and abs(ad - bd) > 3):
+                n_date_contradiction += 1
                 continue
-            # Mark as seen early (even if gated) to avoid double-counting drops
-            seen[key] = None  # placeholder
 
-            # ---- Phase A Gate 2: Gender gate ----
-            ag = gender_by_xml.get(a["xml_id"], "")
-            bg = gender_by_xml.get(b["xml_id"], "")
-            if ag and bg and ag != bg:
-                n_gender_drop += 1
+        # ---- Phase A Gate 5: Surname gate ----
+        # Same exemption as gate 4: db-agreement pairs are RA-confirmed same
+        # person ("keep the pair", spec change 3) — never gate them out.
+        if not (a_db and b_db and a_db == b_db):
+            if not has_surname_overlap(va, vb):
+                n_surname_drop += 1
                 continue
 
-            # ---- Phase A Gate 3: DB-contradiction auto-close ----
-            a_db = db_id_by_xml.get(a["xml_id"], "")
-            b_db = db_id_by_xml.get(b["xml_id"], "")
-            if a_db and b_db and a_db != b_db:
-                n_db_contradiction += 1
-                auto_closed_rows.append({
-                    "a_xml_id": a["xml_id"],
-                    "b_xml_id": b["xml_id"],
-                    "verdict": "different",
-                    "reason": "db_contradiction",
-                    "a_db_id": a_db,
-                    "b_db_id": b_db,
-                    "a_heading": a["heading"],
-                    "b_heading": b["heading"],
-                })
-                continue
+        rows.append(row)
 
-            # ---- Phase A Gate 4: Date-contradiction hard drop ----
-            # Exception: when both sides share the same db_id (confirmed same
-            # person by RA), date contradiction may reflect OCR errors across
-            # volumes — skip the gate in that case.
-            if not (a_db and b_db and a_db == b_db):
-                ay = extract_year(a["birth_date"])
-                by_ = extract_year(b["birth_date"])
-                ad = extract_year(a["death_date"])
-                bd = extract_year(b["death_date"])
-                if (ay and by_ and abs(ay - by_) > 3) or (ad and bd and abs(ad - bd) > 3):
-                    n_date_contradiction += 1
-                    continue
-
-            va = variants_cache[a["person_id"]]
-            vb = variants_cache[b["person_id"]]
-            row = score_row(a, b, va, vb, k, gender_by_xml, db_id_by_xml)
-            if row is None:
-                continue
-            seen[key] = row
-
-    rows = [r for r in seen.values() if r is not None]
     rows.sort(key=lambda r: (-r["composite_score"], r["a_xml_id"], r["b_xml_id"]))
 
     with open(OUT_TSV, "w", encoding="utf-8", newline="") as fp:
@@ -391,10 +445,12 @@ def main():
     n_review = sum(1 for r in rows if r["band"] == "review")
     n_low = sum(1 for r in rows if r["band"] == "low")
     print(f"  band high (>=0.85): {n_high}  review (0.65-0.85): {n_review}  low (0.55-0.65): {n_low}")
-    print(f"\n  Gate drops:")
+    print(f"\n  Pairs passing score floor before gates: {n_would_emit}")
+    print(f"  Gate drops (of would-be candidates):")
     print(f"    gender contradiction:  {n_gender_drop}")
     print(f"    db_id contradiction:   {n_db_contradiction}")
     print(f"    date contradiction:    {n_date_contradiction}")
+    print(f"    surname gate:          {n_surname_drop}")
 
     # Write dedup_auto_closed.tsv (Phase A change 3) — sort for determinism
     auto_closed_rows.sort(key=lambda r: (r["a_xml_id"], r["b_xml_id"]))
@@ -410,27 +466,45 @@ def main():
         w.writerows(auto_closed_rows)
     print(f"  wrote {AUTO_CLOSED_TSV} ({len(auto_closed_rows)} auto-closed pairs)")
 
-    # Also regenerate pseudonym_candidates_review.tsv from gated data with real scores
-    # Fold alias-derived pairs into main with source=alias (no fixed 0.7)
+    # Regenerate pseudonym_candidates_review.tsv from the gated alias pathway
+    # with REAL scores (no fixed 0.7 anywhere). Alias-derived pairs are also
+    # folded into the main file above with source=alias.
     alias_rows = [r for r in rows if r.get("source") == "alias"]
     heading_rows = [r for r in rows if r.get("source") == "heading"]
     print(f"  source=heading: {len(heading_rows)}  source=alias: {len(alias_rows)}")
 
-    # Write pseudonym_candidates_review.tsv (now with real scores, source=alias tagged)
-    # Include columns that the Zalmen app expects based on the old format
     pseudo_cols = [
-        "decision", "composite_score", "band", "name_score",
-        "a_heading", "b_heading", "a_xml_id", "b_xml_id",
-        "a_volume", "b_volume", "same_volume",
-        "a_gender", "b_gender", "a_db_id", "b_db_id", "db_agreement", "source",
+        "decision", "band", "composite", "name_score",
+        "a_heading", "b_heading", "a_aliases", "b_aliases",
+        "a_xml_id", "b_xml_id", "a_volume", "b_volume", "same_volume",
+        "a_gender", "b_gender", "a_db_id", "b_db_id", "db_agreement",
     ]
     pseudo_out = HERE / "pseudonym_candidates_review.tsv"
     with open(pseudo_out, "w", encoding="utf-8", newline="") as fp:
-        w = csv.DictWriter(fp, fieldnames=pseudo_cols, delimiter="\t", extrasaction="ignore")
+        w = csv.DictWriter(fp, fieldnames=pseudo_cols, delimiter="\t")
         w.writeheader()
-        for r in rows:
-            w.writerow({c: r.get(c, "") for c in pseudo_cols})
-    print(f"  wrote {pseudo_out} ({len(rows)} pairs, real scores, no fixed 0.7)")
+        for r in alias_rows:
+            w.writerow({
+                "decision": "",
+                "band": r["band"],
+                "composite": r["composite_score"],
+                "name_score": r["name_score"],
+                "a_heading": r["a_heading"],
+                "b_heading": r["b_heading"],
+                "a_aliases": " | ".join(aliases.get(r["a_person_id"], [])),
+                "b_aliases": " | ".join(aliases.get(r["b_person_id"], [])),
+                "a_xml_id": r["a_xml_id"],
+                "b_xml_id": r["b_xml_id"],
+                "a_volume": r["a_volume"],
+                "b_volume": r["b_volume"],
+                "same_volume": r["same_volume"],
+                "a_gender": r["a_gender"],
+                "b_gender": r["b_gender"],
+                "a_db_id": r["a_db_id"],
+                "b_db_id": r["b_db_id"],
+                "db_agreement": r["db_agreement"],
+            })
+    print(f"  wrote {pseudo_out} ({len(alias_rows)} alias-pathway pairs, real scores)")
 
     # gold evaluation
     gold = load_gold_pairs()
@@ -444,8 +518,19 @@ def main():
     print(f"  recovered by candidate pass: {len(tp)} ({100*len(tp)/max(1,len(gold)):.1f}%)")
     print(f"  missed:                       {len(missed)}")
 
-    # write gold eval
-    gold_idx = {r["xml_id"]: r for r in people}
+    # write gold eval — index over ALL entries (incl. non-person-excluded) so
+    # a gold pair killed by the non-person filter reports as a real MISS, not
+    # a phantom.
+    gold_idx = {r["xml_id"]: r for r in all_people}
+    # real gold = both xml_ids resolve to subject entries (phantom pairs carry
+    # malformed xml_ids like "28.0" and can never be recovered)
+    real_gold = {p for p in gold if all(x in gold_idx for x in p)}
+    real_tp = real_gold & cand_pairs
+    print(f"  REAL gold (both xml_ids resolvable): {len(real_tp)}/{len(real_gold)} recovered")
+    for p in sorted((tuple(sorted(x)) for x in (real_gold - cand_pairs))):
+        ha = gold_idx.get(p[0], {}).get("heading", "")
+        hb = gold_idx.get(p[1], {}).get("heading", "")
+        print(f"    MISSED real gold: {p[0]} / {p[1]}   {ha!r} vs {hb!r}")
     with open(GOLD_EVAL_TSV, "w", encoding="utf-8", newline="") as fp:
         w = csv.writer(fp, delimiter="\t")
         w.writerow(["status", "xml_a", "xml_b", "head_a", "head_b", "candidate_score"])
@@ -474,6 +559,11 @@ def main():
                     )))
         survivors = human_diff & cand_pairs
         print(f"\nRegression: {len(survivors)}/{len(human_diff)} human 'different' pairs still emitted")
+        row_by_pair = {frozenset((r["a_xml_id"], r["b_xml_id"])): r for r in rows}
+        for p in sorted((tuple(sorted(x)) for x in survivors)):
+            r = row_by_pair[frozenset(p)]
+            print(f"    survivor [{r['band']} {r['composite_score']}] "
+                  f"{r['a_heading']!r} vs {r['b_heading']!r} (source={r['source']})")
 
 
 if __name__ == "__main__":
