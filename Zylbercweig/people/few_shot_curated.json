@@ -1,0 +1,58 @@
+[
+  {
+    "xml_id": "facs_18_r",
+    "draft_decision": "ALIGN",
+    "draft_aligned_db_id": "1103",
+    "draft_merge_xml_id": "",
+    "confidence": "high",
+    "rationale": "Exact heading match at score 1.0; bracketed birth-name אברהם פּערקאָף equals the DB parenthetical; next candidates score far lower."
+  },
+  {
+    "xml_id": "facs_453_tr_1755030106",
+    "draft_decision": "ALIGN",
+    "draft_aligned_db_id": "383",
+    "draft_merge_xml_id": "",
+    "confidence": "high",
+    "rationale": "The DB itself holds duplicate rows for this person (383, 3492, 3474 all at 1.0); align to 383, the clean form matching the heading, and note the DB duplication."
+  },
+  {
+    "xml_id": "facs_42_tr_1740520980",
+    "draft_decision": "ALIGN",
+    "draft_aligned_db_id": "1554",
+    "draft_merge_xml_id": "",
+    "confidence": "high",
+    "rationale": "Full name exact match to DB hebname at 1.0; other same-surname candidates are different given names at much lower scores."
+  },
+  {
+    "xml_id": "facs_42_tr_1740520982",
+    "draft_decision": "MERGE",
+    "draft_aligned_db_id": "",
+    "draft_merge_xml_id": "facs_333_tr_1739220904",
+    "confidence": "high",
+    "rationale": "Identical name in another volume, same birth year, both point to the same DB person — the Lexicon wrote him up twice."
+  },
+  {
+    "xml_id": "facs_414_tr_1739715068",
+    "draft_decision": "NEW",
+    "draft_aligned_db_id": "",
+    "draft_merge_xml_id": "",
+    "confidence": "medium",
+    "rationale": "Clear personal name with birth year 1880, but no DB candidate above floor and no dedup candidate — likely absent from the DB."
+  },
+  {
+    "xml_id": "facs_438_r_16",
+    "draft_decision": "DISAMBIG",
+    "draft_aligned_db_id": "",
+    "draft_merge_xml_id": "",
+    "confidence": "low",
+    "rationale": "Bare surname; three same-surname DB rows tie at 0.714 and the entry has no given name or dates to discriminate between them."
+  },
+  {
+    "xml_id": "facs_126_tr_1740521024",
+    "draft_decision": "DEFER",
+    "draft_aligned_db_id": "",
+    "draft_merge_xml_id": "",
+    "confidence": "low",
+    "rationale": "Epithet heading without a personal name, dates, variants, or candidates; needs the entry body text for any identification."
+  }
+]

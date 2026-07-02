@@ -170,8 +170,39 @@ def build_dedup_index() -> dict[str, list]:
     return idx
 
 
+CURATED_JSON = HERE / "few_shot_curated.json"
+
+
+def pick_few_shot_curated(db_index, dedup_idx) -> str:
+    """Render hand-curated few-shot examples (few_shot_curated.json).
+
+    Each item names a real queue row by xml_id; the INPUT block is rendered
+    from the live queue so the LLM sees exactly the format it will receive,
+    while the OUTPUT (decision + hand-written rationale) is curated. Falls
+    back to the automatic RA-decision pool when the file is absent.
+    """
+    curated = json.loads(CURATED_JSON.read_text(encoding="utf-8"))
+    queue = load_tsv(QUEUE_TSV)
+    by_xml = {r["xml_id"]: r for r in queue}
+    out = []
+    for ex in curated:
+        q = by_xml.get(ex["xml_id"])
+        if not q:
+            print(f"  [few-shot] WARNING: curated xml_id {ex['xml_id']} not in queue — skipped", file=sys.stderr)
+            continue
+        ex_json = {k: ex.get(k, "") for k in (
+            "draft_decision", "draft_aligned_db_id", "draft_merge_xml_id",
+            "confidence", "rationale")}
+        out.append(f"INPUT:\n{fmt_entry(q, db_index, dedup_idx)}\nOUTPUT: {json.dumps(ex_json, ensure_ascii=False)}")
+    return "\n\n".join(out)
+
+
 def pick_few_shot(db_index, dedup_idx, max_per_type: int = 2) -> str:
     """Draw real decided rows from the imported RA review TSV."""
+    if CURATED_JSON.exists():
+        curated = pick_few_shot_curated(db_index, dedup_idx)
+        if curated:
+            return curated
     review = load_tsv(REVIEW_TSV)
     by_decision = defaultdict(list)
     # Duplication Check rows with same_person=Same → MERGE example
