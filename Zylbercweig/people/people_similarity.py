@@ -203,10 +203,68 @@ def variant_pair_score(a: str, b: str) -> float:
     return max(base, cross)
 
 
-def person_pair_score(a_variants: set[str], b_variants: set[str]) -> tuple[float, str, str]:
+def extract_surname_tokens(variants: set[str]) -> set[str]:
+    """Extract surname-part tokens from a set of name variants.
+
+    Rules (mirroring the comma-aware gate in Shidduch person_name_similarity):
+      - For each variant: normalize first.
+      - If the ORIGINAL variant (before normalization) has a comma:
+          surname_part = part before the comma -> split_name_tokens
+      - Else if multi-token after normalization: [first_token] only
+          (in this corpus headings are surname-first, so first token ~ surname)
+      - Else (single token): [that_token]
+
+    Only tokens of length >= 2 are returned.
+    """
+    out: set[str] = set()
+    for v in variants:
+        if not v:
+            continue
+        if "," in v:
+            # comma-present: surname is the part before the comma
+            before_comma = v.split(",", 1)[0]
+            for t in split_name_tokens(before_comma):
+                if len(t) >= 2:
+                    out.add(t)
+        else:
+            toks = split_name_tokens(v)
+            if len(toks) >= 2:
+                # multi-token, no comma -> first token is the surname proxy
+                t = toks[0]
+                if len(t) >= 2:
+                    out.add(t)
+            elif len(toks) == 1:
+                t = toks[0]
+                if len(t) >= 2:
+                    out.add(t)
+    return out
+
+
+def person_pair_score(
+    a_variants: set[str],
+    b_variants: set[str],
+    require_surname_overlap: bool = False,
+) -> tuple[float, str, str]:
     """Best pairwise score across all variant combinations.
     Returns (score, best_a_variant, best_b_variant).
+
+    When require_surname_overlap=True: if the surname-token sets of the two
+    sides have no intersection, return (0.0, "", "") immediately -- a pair whose
+    only shared token is a given-part token should not score.
     """
+    if require_surname_overlap:
+        sn_a = extract_surname_tokens(a_variants)
+        sn_b = extract_surname_tokens(b_variants)
+        if sn_a and sn_b and not (sn_a & sn_b):
+            # Fuzzy fallback: allow if any surname-token pair has trigram >= 0.4
+            # (catches OCR/spelling variants like בליאכאר vs בליאכער;
+            # random cross-surname pairs peak at ~0.2, so 0.4 is safely above noise)
+            fuzzy_ok = any(
+                _trigram_jaccard(x, y) >= 0.4
+                for x in sn_a for y in sn_b
+            )
+            if not fuzzy_ok:
+                return (0.0, "", "")
     best = (0.0, "", "")
     for x in a_variants:
         for y in b_variants:
