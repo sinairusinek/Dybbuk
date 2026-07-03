@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:37</Creator>
         <Created>2021-10-31T16:41:16.546+02:00</Created>
-        <LastChange>2026-06-02T06:51:58.881+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627244" pageNr="44" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=QMFXEBLGAATAILAZUNLTYPRL" imageId="24094744"/>
+        <LastChange>2026-07-03T08:26:31.119+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627244" pageNr="44" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=QMFXEBLGAATAILAZUNLTYPRL" imageId="24094744"/>
     </Metadata>
     <Page imageFilename="30627244.jpg" imageWidth="1789" imageHeight="2720">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="130,260 130,2393 1434,2393 1434,260"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="674,309 710,303 730,321 739,314 787,319 803,309 816,314 901,298 901,231 853,243 790,199 774,205 739,195 713,204 699,192 674,199"/>
                 <Baseline points="684,280 714,284 744,282 774,282 804,282 834,284 864,282 894,282 904,282"/>
                 <TextEquiv>
@@ -37,7 +37,7 @@
                     <Unicode>איזבל: פרעכער דיענער! האסט דוא פֶערְגֶעסֶען וֶוער אִיך בּין?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_1" custom="readingOrder {index:4;}">
+            <TextLine id="l_1" custom="readingOrder {index:4;} speaker {offset:0; length:3; xmlid:perets;}">
                 <Coords points="122,591 1355,643 1428,632 1427,560 321,524 121,554"/>
                 <Baseline points="131,580 1433,593 1433,593"/>
                 <TextEquiv>
@@ -227,7 +227,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

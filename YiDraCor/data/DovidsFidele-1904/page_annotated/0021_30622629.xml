@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:55</Creator>
         <Created>2021-10-31T12:59:18.445+02:00</Created>
-        <LastChange>2026-06-07T12:38:31.836+02:00</LastChange>
-        <TranskribusMetadata docId="820845" pageId="30622629" pageNr="21" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=NUMPQHGNVURQQZQRJEGXWMDG" imageId="24090168"/>
+        <LastChange>2026-07-03T08:24:59.190+02:00</LastChange>
+        <TranskribusMetadata docId="820845" pageId="30622629" pageNr="21" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=NUMPQHGNVURQQZQRJEGXWMDG" imageId="24090168"/>
     </Metadata>
     <Page imageFilename="30622629.jpg" imageWidth="1844" imageHeight="2859">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="474,280 480,2531 1799,2531 1793,280"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:5; type:pageNum;}">
                 <Coords points="1006,337 1042,330 1051,337 1083,323 1108,338 1131,328 1175,337 1211,325 1238,330 1238,289 1207,288 1175,273 1153,281 1137,265 1116,276 1075,273 1059,284 1046,276 1018,297 1006,294"/>
                 <Baseline points="1015,318 1090,318 1120,319 1150,320 1243,319"/>
                 <TextEquiv>
@@ -23,7 +23,7 @@
                     <Unicode>דוד: בּרוּדער!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1653820040015_1702" custom="readingOrder {index:2;}">
+            <TextLine id="line_1653820040015_1702" custom="readingOrder {index:2;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="469,511 1778,528 1778,441 1742,436 469,454"/>
                 <Baseline points="478,501 531,501 584,501 637,501 690,501 743,501 796,501 850,502 903,502 956,502 1009,502 1062,502 1115,502 1168,502 1222,502 1275,501 1328,500 1381,499 1434,497 1487,495 1541,492 1554,490 1579,495 1604,499 1629,502 1654,503 1680,504 1705,503 1730,503 1755,501 1781,499"/>
                 <TextEquiv>
@@ -220,7 +220,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

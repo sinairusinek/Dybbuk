@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:55</Creator>
         <Created>2021-10-31T12:59:20.053+02:00</Created>
-        <LastChange>2026-06-07T21:47:05.529+02:00</LastChange>
-        <TranskribusMetadata docId="820845" pageId="30622762" pageNr="46" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=SFNTTWERJCWUSGWQQNPKKJJA" imageId="24090301"/>
+        <LastChange>2026-07-03T08:25:09.747+02:00</LastChange>
+        <TranskribusMetadata docId="820845" pageId="30622762" pageNr="46" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=SFNTTWERJCWUSGWQQNPKKJJA" imageId="24090301"/>
     </Metadata>
     <Page imageFilename="30622762.jpg" imageWidth="1803" imageHeight="2838">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
@@ -30,7 +30,7 @@
                     <Unicode>טוּבּיה, חיה, גֶעסט, קֵיילֶע בִּילע, אַלטערוניו, אִיצֶעלֶע, טִילֶע, נח).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l4" custom="readingOrder {index:3;}">
+            <TextLine id="r1l4" custom="readingOrder {index:3;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="327,852 1080,818 1366,860 1415,849 1416,776 327,792"/>
                 <Baseline points="336,821 390,823 444,825 498,825 552,825 606,825 660,824 714,822 768,821 822,819 876,817 930,816 984,814 1038,813 1092,813 1146,813 1200,813 1254,815 1308,818 1362,821 1417,826"/>
                 <TextEquiv>
@@ -206,7 +206,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

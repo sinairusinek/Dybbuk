@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:15.033+02:00</Created>
-        <LastChange>2026-05-29T18:13:12.321+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627216" pageNr="16" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=RCUSKEKHCHZMKBMTKBEHUOVG" imageId="24094716"/>
+        <LastChange>2026-07-03T08:26:18.426+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627216" pageNr="16" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=RCUSKEKHCHZMKBMTKBEHUOVG" imageId="24094716"/>
     </Metadata>
     <Page imageFilename="30627216.jpg" imageWidth="1897" imageHeight="2710">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="192,310 192,2453 1504,2453 1504,310"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:1; length:5; type:pageNum;}">
                 <Coords points="736,372 765,372 788,358 802,369 814,359 831,367 836,359 852,369 867,369 875,359 886,359 883,298 873,298 851,282 764,319 733,313"/>
                 <Baseline points="742,336 771,340 800,342 829,344 858,344 888,344"/>
                 <TextEquiv>
@@ -58,7 +58,7 @@
                     <Unicode>אין דער לופֿט).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_9" custom="readingOrder {index:7;} speaker {offset:0; length:8; xmlid:antignos;} stage {offset:10; length:7; type:business;}">
+            <TextLine id="tr_1_tl_9" custom="readingOrder {index:7;} speaker {offset:0; length:8; xmlid:antignos;} stage {offset:10; length:7; type:delivery;}">
                 <Coords points="195,868 1231,843 1487,875 1487,786 1382,778 195,796"/>
                 <Baseline points="204,842 268,852 332,852 397,852 461,853 526,853 590,848 654,846 719,848 783,846 848,845 912,846 976,847 1041,846 1105,844 1170,842 1234,843 1298,848 1363,850 1427,848 1492,848"/>
                 <TextEquiv>
@@ -135,7 +135,7 @@
                     <Unicode>אנטיגנוס: יֶענֶע בּריעפע ווערְדֶען אַבּנר'ן פָאן דֶער ווֶעלְט וועקשׁאפען</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_21" custom="readingOrder {index:18;} stage {offset:5; length:7; type:business;}">
+            <TextLine id="tr_1_tl_21" custom="readingOrder {index:18;} stage {offset:5; length:7; type:business;} speaker {offset:0; length:3; xmlid:khanokh;}">
                 <Coords points="941,1610 1141,1614 1281,1589 1376,1632 1439,1611 1498,1624 1497,1556 1363,1569 1316,1544 1102,1539 939,1566"/>
                 <Baseline points="950,1588 977,1590 1005,1590 1032,1589 1060,1595 1088,1597 1115,1593 1143,1589 1170,1588 1198,1588 1226,1588 1253,1586 1281,1586 1308,1590 1336,1593 1364,1594 1391,1595 1419,1599 1446,1598 1474,1596 1502,1598"/>
                 <TextEquiv>
@@ -227,7 +227,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

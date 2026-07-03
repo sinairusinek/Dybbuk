@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:55</Creator>
         <Created>2021-10-31T12:59:20.650+02:00</Created>
-        <LastChange>2026-06-07T23:29:41.632+02:00</LastChange>
-        <TranskribusMetadata docId="820845" pageId="30622812" pageNr="56" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=JHDJTXJCXYQCSXNETIGDZJRG" imageId="24090351"/>
+        <LastChange>2026-07-03T08:25:14.141+02:00</LastChange>
+        <TranskribusMetadata docId="820845" pageId="30622812" pageNr="56" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=JHDJTXJCXYQCSXNETIGDZJRG" imageId="24090351"/>
     </Metadata>
     <Page imageFilename="30622812.jpg" imageWidth="1807" imageHeight="2832">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="92,291 92,2433 1425,2433 1425,291"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="639,341 681,351 699,343 723,363 734,355 751,361 778,343 799,363 826,353 859,368 856,265 741,225 636,255"/>
                 <Baseline points="647,316 688,314 717,314 746,316 775,317 804,318 861,322"/>
                 <TextEquiv>
@@ -23,7 +23,7 @@
                     <Unicode>נח: ר' טוביה'ניוּ! מִיר דַאכְט זִיך אַז אִיך ווֵייס וֶוער דאָס הָאט געטהוּן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+            <TextLine id="r1l3" custom="readingOrder {index:2;} speaker {offset:0; length:3; xmlid:alle;}">
                 <Coords points="1042,493 1126,511 1177,498 1220,516 1327,500 1365,509 1415,498 1414,465 1344,435 1295,465 1245,431 1161,450 1126,448 1094,425 1039,438"/>
                 <Baseline points="1051,486 1077,483 1103,482 1129,482 1155,482 1182,484 1208,485 1234,487 1260,489 1286,491 1313,494 1339,495 1365,496 1391,497 1418,496"/>
                 <TextEquiv>
@@ -142,21 +142,21 @@
                     <Unicode>נוּר מִיט לֶעדִיגֶע הֶענְד קֶען אִיך גָאר נִישְט טהוּן עֶס מוּז קאסטֶען גֶעלְד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1654103174496_1643" custom="readingOrder {index:19;}">
+            <TextLine id="line_1654103174496_1643" custom="readingOrder {index:19;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="87,1650 451,1685 673,1648 1410,1663 1410,1587 1280,1577 87,1618"/>
                 <Baseline points="95,1641 135,1642 175,1643 216,1643 256,1644 297,1644 337,1644 378,1645 418,1645 459,1645 499,1645 539,1645 580,1644 620,1644 661,1644 701,1643 742,1642 782,1642 823,1641 863,1640 904,1639 1251,1648 1255,1649 1282,1650 1308,1651 1334,1652 1361,1653 1387,1654 1414,1655"/>
                 <TextEquiv>
                     <Unicode>טוביה: גָאט אַייך מַיין לֶעטצטֶעס, דָאס אִיז נָאך אַלעס וואָס אִיך פֶערְמַאג.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l24" custom="readingOrder {index:20;} stage {offset:17; length:9; type:exit;}">
+            <TextLine id="r1l24" custom="readingOrder {index:20;} stage {offset:17; length:9; type:exit;} speaker {offset:0; length:3; xmlid:alle;}">
                 <Coords points="889,1728 999,1713 1089,1740 1164,1720 1382,1743 1415,1737 1412,1690 1339,1665 1309,1685 1242,1682 1061,1652 887,1698"/>
                 <Baseline points="899,1713 925,1712 951,1711 977,1711 1003,1710 1029,1711 1055,1711 1081,1712 1107,1713 1133,1715 1159,1717 1185,1718 1211,1720 1237,1722 1263,1724 1289,1726 1315,1728 1341,1730 1367,1733 1393,1734 1420,1736"/>
                 <TextEquiv>
                     <Unicode>אלע: קוּמט קוּמט (נח אַב).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l27" custom="readingOrder {index:21;}">
+            <TextLine id="r1l27" custom="readingOrder {index:21;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="88,1807 1016,1792 1414,1833 1399,1733 1255,1767 869,1717 579,1757 461,1710 368,1748 87,1712"/>
                 <Baseline points="96,1785 162,1787 228,1789 294,1791 360,1792 426,1792 492,1792 558,1792 624,1792 690,1791 757,1791 823,1791 889,1790 955,1791 1021,1791 1087,1792 1153,1793 1219,1796 1285,1799 1351,1802 1418,1807"/>
                 <TextEquiv>
@@ -184,7 +184,7 @@
                     <Unicode>געבּליעבּען?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l33" custom="readingOrder {index:25;}">
+            <TextLine id="r1l33" custom="readingOrder {index:25;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="82,2093 420,2133 766,2083 836,2126 1227,2076 1389,2113 1414,2040 83,2006"/>
                 <Baseline points="92,2081 158,2082 224,2082 290,2082 357,2082 423,2081 489,2080 556,2079 622,2078 688,2077 755,2076 821,2075 887,2075 953,2074 1020,2074 1086,2074 1152,2074 1219,2075 1285,2076 1351,2078 1418,2081"/>
                 <TextEquiv>
@@ -205,21 +205,21 @@
                     <Unicode>(אויפֿטריט מינאַ).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l37" custom="readingOrder {index:28;}">
+            <TextLine id="r1l37" custom="readingOrder {index:28;} speaker {offset:0; length:4; xmlid:mina;}">
                 <Coords points="183,2294 1409,2289 1409,2224 1017,2196 914,2238 618,2203 183,2236"/>
                 <Baseline points="192,2275 253,2276 314,2277 375,2277 436,2276 497,2276 558,2275 619,2274 680,2272 741,2271 802,2270 863,2269 924,2268 985,2268 1046,2268 1107,2268 1168,2269 1229,2271 1290,2273 1351,2276 1413,2280"/>
                 <TextEquiv>
                     <Unicode>מינא: פֶערְצַייהֶעט מִיר ר' טובה, אִיהר לָאזְט מִיך צוּ לאַנְג וַוארְטֶען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l38" custom="readingOrder {index:29;}">
+            <TextLine id="r1l38" custom="readingOrder {index:29;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="839,2346 1310,2349 1377,2381 1417,2371 1414,2279 1324,2306 1170,2303 1149,2284 1067,2306 1021,2286 839,2319"/>
                 <Baseline points="849,2340 877,2337 906,2335 934,2333 963,2333 991,2333 1020,2333 1048,2333 1077,2334 1105,2335 1134,2337 1163,2339 1191,2340 1220,2342 1248,2344 1277,2345 1305,2347 1334,2348 1362,2350 1391,2350 1420,2350"/>
                 <TextEquiv>
                     <Unicode>טוביה: וֶועה אִי מִיר!.....</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l40" custom="readingOrder {index:30;}">
+            <TextLine id="r1l40" custom="readingOrder {index:30;} speaker {offset:0; length:4; xmlid:mina;}">
                 <Coords points="463,2418 1127,2448 1207,2408 1419,2473 1402,2369 463,2351"/>
                 <Baseline points="472,2405 519,2408 567,2410 614,2411 662,2411 709,2412 757,2411 804,2410 852,2409 899,2408 947,2408 995,2407 1042,2406 1090,2406 1137,2406 1185,2407 1232,2408 1280,2410 1327,2413 1375,2417 1423,2423"/>
                 <TextEquiv>
@@ -227,7 +227,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

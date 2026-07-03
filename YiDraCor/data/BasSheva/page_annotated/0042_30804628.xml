@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:27</Creator>
         <Created>2021-11-21T13:24:59.436+01:00</Created>
-        <LastChange>2026-06-03T05:34:26.109+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:24.783+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804628" pageNr="42" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=DCPLMBRPYFDLDXZVEJGRYQTX" imageId="24239896"/>
+        <TranskribusMetadata docId="828443" pageId="30804628" pageNr="42" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=DCPLMBRPYFDLDXZVEJGRYQTX" imageId="24239896"/>
     </Metadata>
     <Page imageFilename="30804628.jpg" imageWidth="2034" imageHeight="2805">
         <PrintSpace>
@@ -17,14 +17,14 @@
         </PrintSpace>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648853500581_3988" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="110,352 664,187 890,187 1452,352 1452,2407 110,2407"/>
-            <TextLine id="r_1_1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r_1_1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="640,316 670,331 722,314 770,319 819,301 867,311 869,254 856,259 829,242 789,249 762,234 642,236"/>
                 <Baseline points="650,300 676,300 737,300 764,300 791,299 818,298 845,297 872,296"/>
                 <TextEquiv>
                     <Unicode>— 38 —</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_2_1l1" custom="readingOrder {index:1;} stage {offset:7; length:7; type:business;}">
+            <TextLine id="r_2_1l1" custom="readingOrder {index:1;} stage {offset:7; length:7; type:delivery;}">
                 <Coords points="107,451 311,404 398,435 1439,411 1409,364 1026,343 602,379 488,339 246,379 107,354"/>
                 <Baseline points="116,407 182,405 248,405 315,404 381,402 447,402 514,401 580,399 646,399 713,398 779,398 845,398 912,398 978,398 1044,398 1111,399 1177,401 1243,402 1310,404 1376,407 1443,410"/>
                 <TextEquiv>
@@ -38,7 +38,7 @@
                     <Unicode>אַ מַאן אָט הָאט אִיהר דִי 4 פּרוּטות.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_2_1l3" custom="readingOrder {index:3;} speaker {offset:0; length:6; xmlid:ezrih;} stage {offset:8; length:7; type:business;} stage {offset:52; length:15; type:business;}">
+            <TextLine id="r_2_1l3" custom="readingOrder {index:3;} speaker {offset:0; length:6; xmlid:ezrih;} stage {offset:8; length:7; type:delivery;} stage {offset:52; length:15; type:business;}">
                 <Coords points="114,583 946,553 1076,598 1170,557 1449,592 1449,516 1409,505 114,490"/>
                 <Baseline points="123,549 189,551 255,552 322,554 388,554 455,553 521,552 587,552 654,551 720,549 787,549 853,548 919,546 986,546 1052,545 1119,545 1185,545 1251,545 1318,546 1384,548 1451,551"/>
                 <TextEquiv>
@@ -178,7 +178,7 @@
                     <Unicode>אוּנזער פֶעלְדְמארְשׁאל.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_2_1l23" custom="readingOrder {index:23;} speaker {offset:0; length:6; xmlid:bnimin;} stage {offset:35; length:12; type:exit;}">
+            <TextLine id="r_2_1l23" custom="readingOrder {index:23;} speaker {offset:0; length:6; xmlid:bnimin;} stage {offset:35; length:12; type:business;}">
                 <Coords points="560,1950 1441,1977 1441,1915 1382,1904 1285,1934 637,1900 560,1937"/>
                 <Baseline points="569,1950 612,1950 656,1950 700,1950 744,1950 788,1950 831,1949 875,1949 919,1949 963,1949 1007,1949 1050,1949 1094,1949 1138,1949 1182,1949 1226,1950 1269,1951 1313,1953 1357,1953 1401,1956 1445,1959"/>
                 <TextEquiv>
@@ -228,7 +228,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

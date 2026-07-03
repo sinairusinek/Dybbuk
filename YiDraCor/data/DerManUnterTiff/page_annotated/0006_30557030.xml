@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.3.0:model_id=46003:lm=provided:date=11_09_2023_13:24</Creator>
         <Created>2021-10-30T15:12:24.871+02:00</Created>
-        <LastChange>2026-05-18T13:57:43.468+02:00</LastChange>
+        <LastChange>2026-07-03T08:24:08.919+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="817462" pageId="30557030" pageNr="6" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=GXBWKHKZALZQRBIHUZSXWAEI" imageId="24028225"/>
+        <TranskribusMetadata docId="817462" pageId="30557030" pageNr="6" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=GXBWKHKZALZQRBIHUZSXWAEI" imageId="24028225"/>
     </Metadata>
     <Page imageFilename="0006_Der man untern tish - vodevil in 1 akt - 1911 - 1-BN_45_590_0001pdfAformat_Page_06.tiff" imageWidth="1684" imageHeight="2355">
         <PrintSpace>
@@ -18,7 +18,7 @@
         <Relations/>
         <TextRegion orientation="0.0" type="paragraph" id="r_1_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="220,64 1259,64 1259,2097 220,2097"/>
-            <TextLine id="line_1635599744824_89" custom="readingOrder {index:0;}">
+            <TextLine id="line_1635599744824_89" custom="readingOrder {index:0;} fw {offset:0; length:5; type:pageNum;}">
                 <Coords points="653,121 670,126 678,117 697,120 726,111 770,126 781,117 837,108 837,64 809,60 796,48 777,59 758,56 745,66 726,61 702,77 653,74"/>
                 <Baseline points="661,112 839,115"/>
                 <TextEquiv>
@@ -250,7 +250,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
         <SeparatorRegion id="r_2" custom="readingOrder {index:1;}">

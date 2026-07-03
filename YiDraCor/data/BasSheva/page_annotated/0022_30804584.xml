@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:26</Creator>
         <Created>2021-11-21T13:24:54.583+01:00</Created>
-        <LastChange>2026-06-01T10:22:21.219+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:14.771+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804584" pageNr="22" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=NPLZIHCDWGDILWFEXPBQIEXO" imageId="24239852"/>
+        <TranskribusMetadata docId="828443" pageId="30804584" pageNr="22" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=NPLZIHCDWGDILWFEXPBQIEXO" imageId="24239852"/>
     </Metadata>
     <Page imageFilename="30804584.jpg" imageWidth="2060" imageHeight="2807">
         <PrintSpace>
@@ -34,7 +34,7 @@
                     <Unicode>(אראנשירט ווי דער ערשטער אקט. — שלומיאל, שעפער מיט קרענצע און בלומען).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_5_1l3" custom="readingOrder {index:2;}">
+            <TextLine id="r_5_1l3" custom="readingOrder {index:2;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="486,1166 1197,1154 1532,1190 1532,1131 1462,1108 1296,1146 1110,1096 610,1100 486,1146"/>
                 <Baseline points="495,1163 547,1160 599,1159 651,1157 703,1155 755,1155 807,1154 859,1154 911,1153 963,1152 1015,1152 1067,1154 1119,1154 1171,1154 1223,1155 1275,1157 1327,1157 1379,1158 1431,1160 1483,1161 1536,1163"/>
                 <TextEquiv>
@@ -175,7 +175,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

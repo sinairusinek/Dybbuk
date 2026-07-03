@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:27</Creator>
         <Created>2021-11-21T13:25:03.736+01:00</Created>
-        <LastChange>2026-06-03T06:03:05.733+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:31.770+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804665" pageNr="59" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WBAONWXJISFJJUXJBDSBGVVB" imageId="24239933"/>
+        <TranskribusMetadata docId="828443" pageId="30804665" pageNr="59" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WBAONWXJISFJJUXJBDSBGVVB" imageId="24239933"/>
     </Metadata>
     <Page imageFilename="30804665.jpg" imageWidth="1913" imageHeight="2807">
         <PrintSpace>
@@ -17,7 +17,7 @@
         </PrintSpace>
         <TextRegion orientation="0.0" id="TextRegion_1648847732839_1341" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="436,416 929,311 1179,311 1757,416 1757,2427 436,2427"/>
-            <TextLine id="line_1648847726499_1331" custom="readingOrder {index:0;}">
+            <TextLine id="line_1648847726499_1331" custom="readingOrder {index:0;} fw {offset:0; length:5; type:pageNum;}">
                 <Coords points="953,356 998,373 1014,361 1042,373 1074,371 1108,390 1129,379 1165,386 1163,327 1097,327 1061,298 1043,301 1016,327 987,318 951,334"/>
                 <Baseline points="962,353 988,354 1015,356 1042,357 1069,358 1142,361 1169,359"/>
                 <TextEquiv>
@@ -157,7 +157,7 @@
                     <Unicode>(אויפטריט בנימין, אבנר און אסתר)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l20" custom="readingOrder {index:20;}">
+            <TextLine id="r_1_1l20" custom="readingOrder {index:20;} speaker {offset:0; length:3; xmlid:alle;}">
                 <Coords points="748,1878 1745,1886 1743,1823 1207,1831 995,1785 919,1818 747,1808"/>
                 <Baseline points="758,1853 807,1855 857,1856 906,1857 956,1859 1005,1860 1055,1861 1104,1862 1154,1863 1203,1863 1253,1864 1303,1865 1352,1865 1402,1865 1451,1866 1501,1866 1550,1866 1600,1866 1649,1867 1699,1867 1749,1867"/>
                 <TextEquiv>
@@ -221,7 +221,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

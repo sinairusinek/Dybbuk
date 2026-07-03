@@ -1,29 +1,29 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_17:45</Creator>
         <Created>2021-10-31T12:55:10.047+02:00</Created>
-        <LastChange>2026-06-08T14:39:11.647+02:00</LastChange>
-        <TranskribusMetadata docId="820841" pageId="30622243" pageNr="45" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TXINCIUFZNXHJLDWRKZATIHE" imageId="24089872"/>
+        <LastChange>2026-07-03T08:24:40.517+02:00</LastChange>
+        <TranskribusMetadata docId="820841" pageId="30622243" pageNr="45" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TXINCIUFZNXHJLDWRKZATIHE" imageId="24089872"/>
     </Metadata>
     <Page imageFilename="30622243.jpg" imageWidth="1785" imageHeight="2454">
-        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="428,310 428,2093 1547,2093 1547,310"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="896,366 921,369 948,355 988,380 999,372 1042,380 1053,369 1073,368 1071,266 1032,279 998,278 970,304 939,314 895,293"/>
                 <Baseline points="902,339 976,343 1075,341"/>
                 <TextEquiv>
                     <Unicode>— 43 —</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l2" custom="readingOrder {index:1;} heading {offset:0; length:11; type:act; n:3;}">
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
                 <Coords points="752,559 852,583 896,562 1073,601 1132,601 1203,562 1203,493 1134,506 1084,488 1043,508 932,491 877,513 841,500 752,512"/>
                 <Baseline points="760,554 786,555 812,557 838,558 865,559 891,559 917,560 944,560 970,560 996,560 1022,560 1049,559 1075,559 1101,558 1128,558 1154,557 1180,556 1207,554"/>
                 <TextEquiv>
                     <Unicode>דריטער אקט.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l3" custom="readingOrder {index:2;} stage {offset:0; length:43; type:business;}">
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
                 <Coords points="627,677 1236,703 1357,676 1357,631 1320,627 627,645"/>
                 <Baseline points="635,663 671,664 707,665 743,666 780,666 816,666 852,667 889,667 925,667 961,667 998,667 1034,667 1070,667 1106,667 1143,667 1179,668 1215,668 1252,669 1288,670 1324,671 1361,672"/>
                 <TextEquiv>
@@ -206,7 +206,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

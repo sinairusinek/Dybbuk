@@ -1,13 +1,13 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:16.134+02:00</Created>
-        <LastChange>2026-06-06T19:37:23.368+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627535" pageNr="50" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WYMXCUYWBVJQVPFRDWBSEXUR" imageId="24095011"/>
+        <LastChange>2026-07-03T08:27:07.678+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627535" pageNr="50" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WYMXCUYWBVJQVPFRDWBSEXUR" imageId="24095011"/>
     </Metadata>
     <Page imageFilename="30627535.jpg" imageWidth="1662" imageHeight="2300">
-        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="188,223 188,2124 1350,2124 1350,223"/>
             <TextLine id="r1l2" custom="readingOrder {index:0;}">
                 <Coords points="552,268 718,282 771,260 857,274 905,261 906,212 881,207 830,206 803,223 739,207 641,230 596,213 553,219"/>
@@ -16,7 +16,7 @@
                     <Unicode>שרה שוינְדֶעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l1" custom="readingOrder {index:1;}">
+            <TextLine id="r1l1" custom="readingOrder {index:1;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="1170,258 1183,261 1193,257 1201,262 1208,255 1222,261 1228,257 1233,262 1260,254 1259,195 1240,195 1224,213 1204,198 1187,195 1180,202 1169,199"/>
                 <Baseline points="1177,246 1205,246 1234,247 1263,248"/>
                 <TextEquiv>
@@ -44,7 +44,7 @@
                     <Unicode>אִיהם, עֵר זאָל בּאלד אַרייַן קוּמען מקֵיים זיין סעוּדת-</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l7" custom="readingOrder {index:5;} stage {offset:9; length:15; type:exit;}">
+            <TextLine id="r1l7" custom="readingOrder {index:5;}">
                 <Coords points="188,583 1169,539 1170,491 971,483 189,538"/>
                 <Baseline points="196,560 244,560 293,559 342,557 391,556 440,554 488,552 537,550 586,548 635,546 684,544 732,542 781,539 830,538 879,535 928,534 976,532 1025,531 1074,529 1123,529 1172,528"/>
                 <TextEquiv>
@@ -86,7 +86,7 @@
                     <Unicode>מֶעהר גראָטען זַיין אִין דעם יעהופיצער, זכרונו לברכה.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l13" custom="readingOrder {index:11;} speaker {offset:0; length:8; xmlid:brhmele;} stage {offset:10; length:27; type:entrance;}">
+            <TextLine id="r1l13" custom="readingOrder {index:11;} speaker {offset:0; length:8; xmlid:brhmele;}">
                 <Coords points="199,953 1284,913 1286,851 1200,835 926,878 202,885"/>
                 <Baseline points="208,924 262,923 316,921 370,919 424,917 478,915 532,913 586,910 640,908 694,906 748,903 802,902 856,900 910,898 964,897 1018,895 1072,894 1126,894 1180,893 1234,893 1288,894"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

@@ -1,13 +1,13 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:17.728+02:00</Created>
-        <LastChange>2026-06-06T05:51:20.775+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627555" pageNr="60" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=LTJKNJPHMAOPMKDACEFGTTHV" imageId="24095031"/>
+        <LastChange>2026-07-03T08:27:14.749+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627555" pageNr="60" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=LTJKNJPHMAOPMKDACEFGTTHV" imageId="24095031"/>
     </Metadata>
     <Page imageFilename="30627555.jpg" imageWidth="1673" imageHeight="2321">
-        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="295,212 295,1918 1376,1918 1376,212"/>
             <TextLine id="r1l2" custom="readingOrder {index:0;}">
                 <Coords points="638,242 735,264 771,247 918,256 953,241 1007,243 1008,206 954,195 891,212 842,185 731,202 693,193 639,226"/>
@@ -16,7 +16,7 @@
                     <Unicode>שרה שַׁיינְדֶעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l1" custom="readingOrder {index:1;}">
+            <TextLine id="r1l1" custom="readingOrder {index:1;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="1283,247 1315,249 1321,244 1328,247 1335,243 1343,248 1357,242 1366,250 1373,249 1374,201 1359,201 1354,205 1325,202 1321,206 1309,198 1297,205 1284,202"/>
                 <Baseline points="1289,237 1318,237 1347,236 1376,236"/>
                 <TextEquiv>
@@ -192,7 +192,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:16.285+02:00</Created>
-        <LastChange>2026-06-02T06:40:26.610+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627239" pageNr="39" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=KTAJDGDHSUDSEUURQVKTKCWH" imageId="24094739"/>
+        <LastChange>2026-07-03T08:26:28.964+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627239" pageNr="39" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=KTAJDGDHSUDSEUURQVKTKCWH" imageId="24094739"/>
     </Metadata>
     <Page imageFilename="30627239.jpg" imageWidth="1756" imageHeight="2715">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="321,277 321,2400 1645,2400 1645,277"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:1; length:6; type:pageNum;}">
                 <Coords points="846,323 867,334 934,311 992,318 989,228 962,234 946,250 930,247 917,260 873,239 857,249 844,247"/>
                 <Baseline points="855,301 883,303 911,305 940,305 968,305 997,305"/>
                 <TextEquiv>
@@ -177,7 +177,7 @@
                     <Unicode>חנוך: בּייזער דִיך נִיט ווארען דוא וועֶסְט נָאך עֶרְגֶער מַאכֶען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_37" custom="readingOrder {index:24;} speaker {offset:0; length:8; xmlid:antignos;} stage {offset:10; length:7; type:business;}">
+            <TextLine id="tr_1_tl_37" custom="readingOrder {index:24;} speaker {offset:0; length:8; xmlid:antignos;} stage {offset:10; length:7; type:delivery;}">
                 <Coords points="515,1943 1457,1943 1636,1925 1638,1877 1168,1859 933,1916 828,1872 515,1888"/>
                 <Baseline points="332,1942 578,1937 634,1934 690,1932 746,1929 802,1929 858,1929 914,1931 970,1931 1026,1926 1082,1922 1137,1921 1193,1919 1249,1917 1305,1913 1361,1911 1417,1914 1473,1920 1529,1920 1585,1917 1641,1913"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:26</Creator>
         <Created>2021-11-21T13:24:55.77+01:00</Created>
-        <LastChange>2026-06-01T10:32:41.448+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:17.042+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804596" pageNr="27" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=BOWHGHBMZGNTYLHWKBQRJUVO" imageId="24239864"/>
+        <TranskribusMetadata docId="828443" pageId="30804596" pageNr="27" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=BOWHGHBMZGNTYLHWKBQRJUVO" imageId="24239864"/>
     </Metadata>
     <Page imageFilename="30804596.jpg" imageWidth="1954" imageHeight="2814">
         <PrintSpace>
@@ -20,7 +20,7 @@
         </GraphicRegion>
         <TextRegion orientation="0.0" type="paragraph" id="r_1_1" custom="readingOrder {index:1;} structure {type:body;}">
             <Coords points="652,290 1700,288 1692,2129 644,2131"/>
-            <TextLine id="r_1_1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r_1_1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="871,335 937,359 1021,333 1056,342 1092,332 1091,301 1039,293 1014,272 960,277 942,269 894,279 869,268"/>
                 <Baseline points="877,333 909,330 955,329 982,331 1066,335 1093,332"/>
                 <TextEquiv>
@@ -139,7 +139,7 @@
                     <Unicode>בּיז אִין פִיער וואכֶען גיבּסטוּ מִיר דַיין קִינְד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l18" custom="readingOrder {index:17;} stage {offset:21; length:5; type:business;}">
+            <TextLine id="r_1_1l18" custom="readingOrder {index:17;} stage {offset:21; length:5; type:business;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="955,1591 1077,1619 1132,1589 1276,1587 1647,1619 1647,1552 1520,1559 1424,1518 1163,1556 955,1536"/>
                 <Baseline points="961,1584 995,1584 1030,1584 1064,1585 1099,1585 1133,1585 1168,1585 1202,1585 1237,1585 1271,1585 1306,1585 1340,1585 1375,1585 1409,1586 1444,1587 1478,1587 1513,1588 1547,1589 1582,1591 1616,1592 1651,1595"/>
                 <TextEquiv>
@@ -153,7 +153,7 @@
                     <Unicode>עזריה: יֶעצְט בּין אִיך שׁוֹין געקוּמען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l21" custom="readingOrder {index:19;}">
+            <TextLine id="r_1_1l21" custom="readingOrder {index:19;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="988,1740 1073,1773 1403,1745 1483,1773 1526,1751 1606,1783 1662,1771 1661,1713 1589,1687 1276,1706 1151,1682 988,1719"/>
                 <Baseline points="995,1736 1028,1736 1062,1736 1095,1736 1129,1736 1162,1737 1196,1737 1229,1738 1263,1739 1296,1739 1330,1741 1363,1742 1397,1743 1430,1744 1464,1745 1497,1746 1531,1748 1564,1749 1598,1750 1631,1751 1665,1752"/>
                 <TextEquiv>
@@ -188,7 +188,7 @@
                     <Unicode>מז"ט אַייך חָתָן כלה. (פֿיהרט זיי צוזאמען).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l26" custom="readingOrder {index:24;} stage {offset:18; length:17; type:exit;}">
+            <TextLine id="r_1_1l26" custom="readingOrder {index:24;} stage {offset:18; length:17; type:exit;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="957,2135 1053,2153 1140,2119 1183,2144 1323,2112 1447,2137 1660,2128 1650,2062 957,2086"/>
                 <Baseline points="964,2114 998,2113 1033,2112 1068,2111 1103,2110 1138,2110 1173,2109 1208,2109 1243,2108 1278,2108 1313,2108 1347,2108 1382,2108 1417,2109 1452,2109 1487,2110 1522,2111 1557,2112 1592,2113 1627,2114 1662,2115"/>
                 <TextEquiv>
@@ -196,7 +196,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

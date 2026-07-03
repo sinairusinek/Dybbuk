@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:26</Creator>
         <Created>2021-11-21T13:24:56.802+01:00</Created>
-        <LastChange>2026-05-25T11:26:58.968+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:18.337+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804605" pageNr="31" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=SCWSRSBOHPDLJJTKWXYOWGZV" imageId="24239873"/>
+        <TranskribusMetadata docId="828443" pageId="30804605" pageNr="31" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=SCWSRSBOHPDLJJTKWXYOWGZV" imageId="24239873"/>
     </Metadata>
     <Page imageFilename="30804605.jpg" imageWidth="1954" imageHeight="2812">
         <PrintSpace>
@@ -22,7 +22,7 @@
         </ReadingOrder>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648852747937_3411" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="325,375 852,298 1077,298 1661,375 1661,2461 325,2461"/>
-            <TextLine id="TextRegion_1648852747937_3411l1" custom="readingOrder {index:0;}">
+            <TextLine id="TextRegion_1648852747937_3411l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="839,348 863,348 880,363 923,349 943,359 982,349 1012,366 1055,346 1071,351 1070,265 1051,263 1037,275 1020,266 990,285 963,280 915,316 897,303 839,308"/>
                 <Baseline points="847,340 897,339 922,341 948,341 973,340 1050,342 1076,344"/>
                 <TextEquiv>
@@ -226,7 +226,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

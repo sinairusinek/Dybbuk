@@ -1,16 +1,16 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:14.775+02:00</Created>
-        <LastChange>2026-06-06T17:17:36.681+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627478" pageNr="24" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=LBRKFGQPOENKDTGZCNAEHFLA" imageId="24094954"/>
+        <LastChange>2026-07-03T08:26:56.164+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627478" pageNr="24" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=LBRKFGQPOENKDTGZCNAEHFLA" imageId="24094954"/>
     </Metadata>
     <Page imageFilename="30627478.jpg" imageWidth="1651" imageHeight="2322">
         <SeparatorRegion id="Separator_1653776397460_1926" custom="readingOrder {index:0;}">
             <Coords points="729,2119 947,2119 947,2150 729,2150"/>
         </SeparatorRegion>
-        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="337,206 337,2091 1420,2091 1420,206"/>
             <TextLine id="r1l1" custom="readingOrder {index:0;}">
                 <Coords points="710,227 806,258 839,241 871,248 930,230 996,251 1061,242 1060,195 1046,187 1016,204 925,191 873,207 823,189 709,179"/>
@@ -19,7 +19,7 @@
                     <Unicode>שרה שַׁיינְדֶעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+            <TextLine id="r1l2" custom="readingOrder {index:1;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="1348,299 1368,302 1383,295 1404,302 1417,297 1417,185 1369,186 1348,178"/>
                 <Baseline points="1353,258 1386,260 1419,258"/>
                 <TextEquiv>
@@ -223,7 +223,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
         <SeparatorRegion id="Separator_1653776393588_1923" custom="readingOrder {index:1;}">

@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:26</Creator>
         <Created>2021-11-21T13:24:53.853+01:00</Created>
-        <LastChange>2026-06-01T08:36:16.121+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:13.454+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804577" pageNr="19" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=HYKDYHULXINXLSAEDXLQMLGP" imageId="24239845"/>
+        <TranskribusMetadata docId="828443" pageId="30804577" pageNr="19" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=HYKDYHULXINXLSAEDXLQMLGP" imageId="24239845"/>
     </Metadata>
     <Page imageFilename="30804577.jpg" imageWidth="1971" imageHeight="2807">
         <PrintSpace>
@@ -17,7 +17,7 @@
         </PrintSpace>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648849064746_2080" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="285,420 817,337 1041,337 1579,420 1613,1261 1613,2536 290,2536 285,801"/>
-            <TextLine id="line_1648849046195_2067" custom="readingOrder {index:0;}">
+            <TextLine id="line_1648849046195_2067" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="814,396 841,391 852,399 884,374 925,391 952,382 990,391 1036,379 1038,334 1010,349 983,336 968,343 945,326 922,346 894,339 877,356 837,338 814,344"/>
                 <Baseline points="823,376 853,377 916,378 1007,375 1038,374"/>
                 <TextEquiv>
@@ -164,7 +164,7 @@
                     <Unicode>טייפעל: שקלאווען מַיינֶער מַאכְט, גֶעהארְכֶעט מַיינֶען בּעפעהל, ערְשַׁיין!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1648849000390_2031l22" custom="readingOrder {index:21;} stage {offset:0; length:39; type:business;}">
+            <TextLine id="TextRegion_1648849000390_2031l22" custom="readingOrder {index:21;} stage {offset:0; length:39; type:entrance business;}">
                 <Coords points="798,2012 1493,2016 1494,1968 1435,1950 1352,1969 1210,1950 1149,1973 1096,1948 1001,1981 799,1964"/>
                 <Baseline points="806,2000 840,2002 875,2003 909,2004 944,2005 978,2004 1013,2004 1047,2003 1082,2002 1116,2000 1151,1999 1186,1998 1220,1996 1255,1995 1289,1994 1324,1993 1358,1993 1393,1993 1427,1993 1462,1995 1497,1996"/>
                 <TextEquiv>
@@ -221,7 +221,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:26</Creator>
         <Created>2021-11-21T13:24:49.849+01:00</Created>
-        <LastChange>2026-05-25T11:26:54.826+02:00</LastChange>
+        <LastChange>2026-07-02T11:48:07.668+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
@@ -15,20 +15,10 @@
         <PrintSpace>
             <Coords points="59,279 1665,279 1665,2711 59,2711"/>
         </PrintSpace>
-        <ReadingOrder>
-            <OrderedGroup id="ro_1779700158520" caption="Regions reading order">
-                <RegionRefIndexed index="1" regionRef="r_3_1"/>
-                <RegionRefIndexed index="2" regionRef="r_4_1"/>
-                <RegionRefIndexed index="3" regionRef="r_5_1"/>
-                <RegionRefIndexed index="4" regionRef="TextRegion_1648717711791_460"/>
-                <RegionRefIndexed index="5" regionRef="TextRegion_1648717737372_479"/>
-                <RegionRefIndexed index="6" regionRef="r_12_1"/>
-            </OrderedGroup>
-        </ReadingOrder>
         <SeparatorRegion id="Separator_1648717802668_524" custom="readingOrder {index:0;}">
             <Coords points="403,2327 1610,2301 1610,2344 403,2370"/>
         </SeparatorRegion>
-        <TextRegion orientation="0.0" type="paragraph" id="r_3_1" custom="readingOrder {index:1;} structure {type:body;}">
+        <TextRegion orientation="0.0" type="paragraph" id="r_3_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="540,279 1399,279 1399,571 540,571"/>
             <TextLine id="line_1648717964118_541" custom="readingOrder {index:0;}">
                 <Coords points="529,572 600,574 702,494 935,494 990,456 1086,483 1378,467 1381,318 1164,307 1078,339 958,302 771,347 536,286"/>
@@ -38,10 +28,10 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
-        <TextRegion orientation="0.0" type="paragraph" id="r_4_1" custom="readingOrder {index:2;} structure {type:paragraph;}">
+        <TextRegion orientation="0.0" type="paragraph" id="r_4_1" custom="readingOrder {index:1;} structure {type:paragraph;}">
             <Coords points="889,622 1066,622 1066,676 889,676"/>
             <TextLine id="r_4_1l1" custom="readingOrder {index:0;}">
                 <Coords points="883,676 937,691 954,673 972,671 1014,697 1046,694 1062,687 1063,611 1042,612 1018,600 983,616 964,612 946,624 919,612 902,622 883,620"/>
@@ -51,10 +41,10 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
-        <TextRegion orientation="0.0" type="paragraph" id="r_5_1" custom="readingOrder {index:3;} structure {type:paragraph;}">
+        <TextRegion orientation="0.0" type="paragraph" id="r_5_1" custom="readingOrder {index:2;} structure {type:paragraph;}">
             <Coords points="385,687 1579,687 1579,852 385,852"/>
             <TextLine id="r_5_1l1" custom="readingOrder {index:0;}">
                 <Coords points="382,854 528,831 761,875 953,817 1233,875 1408,817 1565,835 1568,716 1496,697 927,732 774,687 385,735"/>
@@ -64,10 +54,10 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
-        <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648717711791_460" custom="readingOrder {index:4;} structure {type:paragraph;}">
+        <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648717711791_460" custom="readingOrder {index:3;} structure {type:paragraph;}">
             <Coords points="476,927 1525,927 1525,1558 476,1558"/>
             <TextLine id="TextRegion_1648717711791_460l2" custom="readingOrder {index:0;}">
                 <Coords points="478,1073 822,1004 1086,1039 1178,998 1519,1006 1522,916 1472,908 1205,948 483,946"/>
@@ -101,7 +91,7 @@
                 <Coords points="484,1468 753,1527 961,1463 1183,1512 1332,1458 1509,1463 1512,1338 1332,1394 951,1375 838,1420 723,1385 486,1418"/>
                 <Baseline points="494,1469 547,1468 601,1466 654,1465 708,1463 762,1461 815,1460 869,1458 923,1456 976,1455 1030,1453 1083,1452 1137,1451 1191,1450 1244,1449 1298,1448 1352,1447 1405,1447 1459,1447 1513,1447"/>
                 <TextEquiv>
-                    <Unicode>אמְקרוִיט עט פריינד, בּוּכהאַנדלוּנג, פּשעמישל.</Unicode>
+                    <Unicode>אמְקרויט עט פריינד, בּוּכהאַנדלוּנג, פּשעמישל.</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextLine id="TextRegion_1648717711791_460l7" custom="readingOrder {index:5;}">
@@ -112,10 +102,10 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
-        <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648717737372_479" custom="readingOrder {index:5;} structure {type:paragraph;}">
+        <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648717737372_479" custom="readingOrder {index:4;} structure {type:paragraph;}">
             <Coords points="199,1592 921,1594 922,1676 912,1690 908,1751 922,1749 944,1758 1439,1728 1525,1716 1525,1887 444,1887 297,1866 194,1812 184,1637"/>
             <TextLine id="line_1648718015268_560" custom="readingOrder {index:0;}">
                 <Coords points="176,1728 329,1759 472,1719 611,1712 651,1738 769,1695 908,1727 906,1589 697,1618 624,1597 462,1634 374,1597 294,1639 187,1594"/>
@@ -132,10 +122,10 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
-        <TextRegion orientation="0.0" type="paragraph" id="r_12_1" custom="readingOrder {index:6;} structure {type:paragraph;}">
+        <TextRegion orientation="0.0" type="paragraph" id="r_12_1" custom="readingOrder {index:5;} structure {type:paragraph;}">
             <Coords points="371,2040 1665,2040 1665,2283 371,2283"/>
             <TextLine id="r_12_1l1" custom="readingOrder {index:0;}">
                 <Coords points="430,2128 1592,2099 1594,2040 1512,2022 1114,2067 433,2048"/>
@@ -166,7 +156,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

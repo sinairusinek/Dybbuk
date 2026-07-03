@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:41</Creator>
         <Created>2021-10-31T16:41:16.608+02:00</Created>
-        <LastChange>2026-06-02T08:52:15.499+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627246" pageNr="46" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=XOSXHAKRVXKDCZNQJJLKBXLS" imageId="24094746"/>
+        <LastChange>2026-07-03T08:26:32.000+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627246" pageNr="46" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=XOSXHAKRVXKDCZNQJJLKBXLS" imageId="24094746"/>
     </Metadata>
     <Page imageFilename="30627246.jpg" imageWidth="1783" imageHeight="2723">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="265,270 265,2409 1563,2409 1563,270"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="796,315 820,299 843,307 874,291 888,304 921,307 942,325 1025,318 1025,253 981,263 878,239 848,261 796,257"/>
                 <Baseline points="805,293 835,295 865,293 895,293 925,293 955,293 985,293 1015,295 1029,295"/>
                 <TextEquiv>
@@ -86,7 +86,7 @@
                     <Unicode>מילכה: רֶעדֶע!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_11" custom="readingOrder {index:11;}">
+            <TextLine id="tr_1_tl_11" custom="readingOrder {index:11;} speaker {offset:0; length:3; xmlid:perets;}">
                 <Coords points="257,1073 1554,1088 1554,1023 1180,995 995,1039 869,992 257,1021"/>
                 <Baseline points="265,1053 287,1053 317,1053 347,1053 377,1053 407,1053 437,1055 467,1055 497,1055 527,1057 557,1057 587,1057 617,1055 647,1055 677,1053 707,1053 737,1055 767,1053 797,1055 827,1055 857,1055 887,1053 917,1053 947,1055 977,1055 1007,1053 1037,1053 1067,1053 1097,1055 1127,1053 1157,1053 1187,1053 1217,1053 1247,1055 1277,1055 1307,1057 1337,1057 1367,1057 1397,1059 1427,1059 1457,1063 1487,1065 1517,1069 1547,1071 1557,1071"/>
                 <TextEquiv>
@@ -170,7 +170,7 @@
                     <Unicode>מילכה: וואָס?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_24" custom="readingOrder {index:23;}">
+            <TextLine id="tr_1_tl_24" custom="readingOrder {index:23;} speaker {offset:0; length:3; xmlid:perets;}">
                 <Coords points="257,1884 1559,1882 1559,1823 1432,1806 924,1823 640,1768 257,1807"/>
                 <Baseline points="265,1852 283,1853 313,1855 343,1855 373,1855 403,1855 433,1855 463,1855 493,1853 523,1855 553,1855 583,1853 613,1853 643,1853 673,1853 703,1855 733,1851 763,1853 793,1851 823,1853 853,1853 883,1853 913,1853 943,1853 973,1853 1003,1853 1033,1853 1063,1853 1093,1853 1123,1853 1153,1851 1183,1851 1213,1849 1243,1851 1273,1853 1303,1855 1333,1855 1363,1857 1393,1857 1423,1859 1453,1859 1483,1859 1513,1863 1543,1865 1563,1867"/>
                 <TextEquiv>
@@ -191,7 +191,7 @@
                     <Unicode>מילכה: וואָס?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_1" custom="readingOrder {index:26;}">
+            <TextLine id="l_1" custom="readingOrder {index:26;} speaker {offset:0; length:3; xmlid:perets;}">
                 <Coords points="266,2070 1556,2087 1556,2012 1241,1979 1049,2017 266,2013"/>
                 <Baseline points="275,2045 1558,2049"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

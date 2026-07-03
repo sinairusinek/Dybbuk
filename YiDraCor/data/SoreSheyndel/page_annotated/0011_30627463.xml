@@ -1,13 +1,13 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:12.102+02:00</Created>
-        <LastChange>2026-06-05T18:06:25.194+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627463" pageNr="11" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=JOCDEOHZQSIJKEGSBDRICOSM" imageId="24094939"/>
+        <LastChange>2026-07-03T08:26:51.614+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627463" pageNr="11" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=JOCDEOHZQSIJKEGSBDRICOSM" imageId="24094939"/>
     </Metadata>
     <Page imageFilename="30627463.jpg" imageWidth="1620" imageHeight="2313">
-        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="163,186 163,2107 1282,2107 1282,186"/>
             <TextLine id="r1l1" custom="readingOrder {index:0;}">
                 <Coords points="547,220 597,230 624,214 697,226 756,213 804,230 852,213 892,220 891,172 872,166 813,166 773,186 722,172 667,187 546,132"/>
@@ -16,7 +16,7 @@
                     <Unicode>שרה שיינדעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1653774989654_1131" custom="readingOrder {index:1;}">
+            <TextLine id="line_1653774989654_1131" custom="readingOrder {index:1;} fw {offset:0; length:1; type:pageNum;}">
                 <Coords points="201,238 209,238 216,231 220,235 228,236 241,234 242,153 231,151 223,153 220,150 214,153 210,148 202,148"/>
                 <Baseline points="208,225 244,224"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

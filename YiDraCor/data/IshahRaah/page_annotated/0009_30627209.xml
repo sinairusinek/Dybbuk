@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:14.257+02:00</Created>
-        <LastChange>2026-05-28T11:26:06.164+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627209" pageNr="9" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=KBVRCVEGFGZAPROBGHXOTGAS" imageId="24094709"/>
+        <LastChange>2026-07-03T08:26:15.370+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627209" pageNr="9" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=KBVRCVEGFGZAPROBGHXOTGAS" imageId="24094709"/>
     </Metadata>
     <Page imageFilename="30627209.jpg" imageWidth="1710" imageHeight="2721">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="214,222 214,2356 1530,2356 1530,222"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:1; length:5; type:pageNum;}">
                 <Coords points="809,272 834,278 847,267 855,274 873,267 895,282 918,272 942,283 940,162 908,170 895,160 881,175 856,185 830,186 808,176"/>
                 <Baseline points="816,242 841,249 867,249 892,249 918,248 944,246"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

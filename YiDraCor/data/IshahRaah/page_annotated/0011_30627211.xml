@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:14.507+02:00</Created>
-        <LastChange>2026-05-28T15:08:11.663+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627211" pageNr="11" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=MPHVXJPTVCHQRBUUXZCXSYGR" imageId="24094711"/>
+        <LastChange>2026-07-03T08:26:16.263+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627211" pageNr="11" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=MPHVXJPTVCHQRBUUXZCXSYGR" imageId="24094711"/>
     </Metadata>
     <Page imageFilename="30627211.jpg" imageWidth="1726" imageHeight="2730">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="300,227 300,2371 1630,2371 1630,227"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:1; length:5; type:pageNum;}">
                 <Coords points="962,288 979,297 1004,278 1020,284 1033,278 1073,283 1073,181 1057,184 1049,176 1034,176 1018,179 988,199 978,192 962,196"/>
                 <Baseline points="898,262 997,258 1024,256 1051,257 1078,260"/>
                 <TextEquiv>
@@ -177,7 +177,7 @@
                     <Unicode>(אויפֿטריט אנטיגנוס)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_28" custom="readingOrder {index:24;} stage {offset:48; length:13; type:business;}">
+            <TextLine id="tr_1_tl_28" custom="readingOrder {index:24;} stage {offset:48; length:13; type:business;} speaker {offset:0; length:8; xmlid:antignos;}">
                 <Coords points="293,1951 845,1904 1566,1967 1586,1844 1354,1881 289,1833"/>
                 <Baseline points="300,1896 364,1894 429,1897 493,1899 558,1899 623,1900 687,1900 752,1900 816,1902 881,1904 946,1904 1010,1907 1075,1910 1139,1910 1204,1913 1268,1915 1333,1921 1398,1925 1462,1929 1527,1930 1592,1928"/>
                 <TextEquiv>
@@ -227,7 +227,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

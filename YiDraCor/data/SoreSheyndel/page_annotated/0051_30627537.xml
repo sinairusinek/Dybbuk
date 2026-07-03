@@ -1,13 +1,13 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:16.207+02:00</Created>
-        <LastChange>2026-06-06T19:39:30.273+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627537" pageNr="51" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=BXIWPMJHCCXYYUARZBHWXCED" imageId="24095013"/>
+        <LastChange>2026-07-03T08:27:08.108+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627537" pageNr="51" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=BXIWPMJHCCXYYUARZBHWXCED" imageId="24095013"/>
     </Metadata>
     <Page imageFilename="30627537.jpg" imageWidth="1606" imageHeight="2307">
-        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="271,244 271,2142 1387,2142 1387,244"/>
             <TextLine id="r1l1" custom="readingOrder {index:0;}">
                 <Coords points="659,273 734,295 796,270 855,287 887,270 973,283 1010,274 1010,218 972,195 903,231 775,240 729,206 659,191"/>
@@ -16,7 +16,7 @@
                     <Unicode>שרה שיינדעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1653779195875_3488" custom="readingOrder {index:1;}">
+            <TextLine id="line_1653779195875_3488" custom="readingOrder {index:1;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="291,296 298,296 303,301 306,298 316,298 318,295 347,301 347,247 334,248 325,243 321,247 312,243 301,250 291,250"/>
                 <Baseline points="298,291 350,291"/>
                 <TextEquiv>
@@ -198,14 +198,14 @@
                     <Unicode>שרה שיינדעל: יעהופיצער! וואָס שׁווייגסט דוּ?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l31" custom="readingOrder {index:27;} speaker {offset:0; length:6; xmlid:rb_iukhntsi;} stage {offset:66; length:4; type:business;}">
+            <TextLine id="r1l31" custom="readingOrder {index:27;} speaker {offset:0; length:6; xmlid:rb_iukhntsi;}">
                 <Coords points="291,1893 1375,1908 1377,1831 292,1843"/>
                 <Baseline points="299,1878 353,1880 407,1881 461,1881 515,1882 569,1882 623,1882 677,1881 731,1881 785,1880 839,1879 893,1879 947,1878 1001,1878 1055,1878 1109,1878 1163,1878 1217,1879 1271,1880 1325,1881 1379,1883"/>
                 <TextEquiv>
                     <Unicode>יוחנצי: שׁווייג! לאָז מיִר נאָר פרעֶגעֶן אִיהר אַפּאָר ווערְטֶער. (עֶר</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l32" custom="readingOrder {index:28;} stage {offset:0; length:22; type:business;}">
+            <TextLine id="r1l32" custom="readingOrder {index:28;}">
                 <Coords points="292,1961 1275,1954 1249,1887 294,1908"/>
                 <Baseline points="300,1946 348,1946 397,1945 446,1945 495,1944 544,1944 593,1943 642,1943 691,1942 740,1941 789,1941 837,1940 886,1939 935,1939 984,1938 1033,1938 1082,1937 1131,1936 1180,1936 1229,1935 1278,1934"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

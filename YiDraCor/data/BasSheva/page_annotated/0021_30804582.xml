@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:26</Creator>
         <Created>2021-11-21T13:24:54.342+01:00</Created>
-        <LastChange>2026-06-01T08:38:43.367+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:14.334+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804582" pageNr="21" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=YGOFFAPMWNCVUBBUELNWYLZV" imageId="24239850"/>
+        <TranskribusMetadata docId="828443" pageId="30804582" pageNr="21" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=YGOFFAPMWNCVUBBUELNWYLZV" imageId="24239850"/>
     </Metadata>
     <Page imageFilename="30804582.jpg" imageWidth="1918" imageHeight="2807">
         <PrintSpace>
@@ -20,7 +20,7 @@
         </GraphicRegion>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648849522837_2290" custom="readingOrder {index:1;} structure {type:body;}">
             <Coords points="293,412 814,322 1047,320 1604,412 1620,934 1620,1807 355,1807 293,799"/>
-            <TextLine id="TextRegion_1648849522837_2290l1" custom="readingOrder {index:0;}">
+            <TextLine id="TextRegion_1648849522837_2290l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="817,370 861,379 910,375 953,390 988,367 1045,369 1050,291 1021,282 975,298 925,277 873,295 854,283 846,291 821,283"/>
                 <Baseline points="825,374 856,371 1017,363 1049,359"/>
                 <TextEquiv>
@@ -104,7 +104,7 @@
                     <Unicode>בּת שבע, מיֵינֶע בּת שבּע, וַוארְט אִיך קוּם צוּ דִיר,</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1648849522837_2290l13" custom="readingOrder {index:12;}">
+            <TextLine id="TextRegion_1648849522837_2290l13" custom="readingOrder {index:12;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="619,1455 859,1485 1126,1440 1200,1477 1370,1475 1613,1449 1615,1375 619,1426"/>
                 <Baseline points="628,1445 677,1445 726,1445 776,1445 825,1444 875,1443 924,1442 973,1441 1023,1440 1072,1439 1122,1437 1171,1436 1220,1435 1270,1435 1319,1434 1369,1435 1418,1435 1467,1436 1517,1438 1566,1440 1616,1443"/>
                 <TextEquiv>
@@ -140,7 +140,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

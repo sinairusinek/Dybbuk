@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:41</Creator>
         <Created>2021-10-31T16:41:16.737+02:00</Created>
-        <LastChange>2026-06-02T09:02:57.281+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627250" pageNr="50" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WGMCGBPCGSROZBTXWJPWODXE" imageId="24094750"/>
+        <LastChange>2026-06-18T16:58:28.569+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627250" pageNr="50" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WGMCGBPCGSROZBTXWJPWODXE" imageId="24094750"/>
     </Metadata>
     <Page imageFilename="30627250.jpg" imageWidth="1799" imageHeight="2713">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
@@ -135,7 +135,7 @@
                     <Unicode>(אויפֿטריט וועכטער)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_5" custom="readingOrder {index:18;}">
+            <TextLine id="l_5" custom="readingOrder {index:18;} speaker {offset:0; length:7; xmlid:wechtter;}">
                 <Coords points="759,1922 852,1893 1470,1911 1472,1860 1389,1834 1254,1860 1195,1825 1106,1820 1051,1844 916,1826 872,1854 761,1834"/>
                 <Baseline points="768,1886 1475,1880 1475,1880"/>
                 <TextEquiv>
@@ -149,7 +149,7 @@
                     <Unicode>שלומית: אֵיין ארמֶעס בּויערן קִינְד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_4" custom="readingOrder {index:20;}">
+            <TextLine id="l_4" custom="readingOrder {index:20;} speaker {offset:0; length:7; xmlid:wechtter;}">
                 <Coords points="449,2026 855,2049 946,2020 989,2049 1244,2020 1413,2059 1455,2049 1455,1973 714,1978 646,1916 553,1966 447,1950"/>
                 <Baseline points="457,2012 1458,2020"/>
                 <TextEquiv>
@@ -170,7 +170,7 @@
                     <Unicode>איינען בּלינדען צוּ פיהרען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_2" custom="readingOrder {index:23;}">
+            <TextLine id="l_2" custom="readingOrder {index:23;} speaker {offset:0; length:7; xmlid:wechtter;}">
                 <Coords points="680,2234 961,2264 1132,2223 1353,2262 1472,2244 1491,2197 1205,2160 1078,2186 678,2169"/>
                 <Baseline points="688,2201 1494,2214"/>
                 <TextEquiv>
@@ -184,7 +184,7 @@
                     <Unicode>שלומית: יא.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l" custom="readingOrder {index:25;}">
+            <TextLine id="l" custom="readingOrder {index:25;} speaker {offset:0; length:7; xmlid:wechtter;}">
                 <Coords points="446,2352 1485,2381 1485,2319 1285,2324 1150,2278 815,2316 616,2267 446,2322"/>
                 <Baseline points="455,2342 1489,2340"/>
                 <TextEquiv>
@@ -199,7 +199,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

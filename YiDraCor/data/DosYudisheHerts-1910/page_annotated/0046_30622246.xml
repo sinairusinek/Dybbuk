@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_17:45</Creator>
         <Created>2021-10-31T12:55:10.133+02:00</Created>
-        <LastChange>2026-06-08T15:24:10.631+02:00</LastChange>
-        <TranskribusMetadata docId="820841" pageId="30622246" pageNr="46" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=IQQXIWBEGRMAVNIOFDRPNCTY" imageId="24089875"/>
+        <LastChange>2026-07-03T08:24:40.968+02:00</LastChange>
+        <TranskribusMetadata docId="820841" pageId="30622246" pageNr="46" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=IQQXIWBEGRMAVNIOFDRPNCTY" imageId="24089875"/>
     </Metadata>
     <Page imageFilename="30622246.jpg" imageWidth="1860" imageHeight="2455">
-        <TextRegion orientation="0.0" id="TextRegion_1654176053772_431" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" id="TextRegion_1654176053772_431" custom="readingOrder {index:0;}">
             <Coords points="204,323 1344,323 1344,2110 204,2140"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="652,381 682,373 700,381 708,373 738,370 756,376 773,362 828,372 828,298 803,305 790,299 772,309 706,309 675,288 652,290"/>
                 <Baseline points="659,355 731,354 758,353 832,353"/>
                 <TextEquiv>
@@ -205,7 +205,7 @@
                     <Unicode>זען אויִסרעֶדעֶן?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l36" custom="readingOrder {index:28;}">
+            <TextLine id="r1l36" custom="readingOrder {index:28;} speaker {offset:0; length:5; xmlid:serkele;}">
                 <Coords points="215,1932 976,1922 1111,1880 1208,1903 1193,1834 217,1872"/>
                 <Baseline points="223,1906 272,1906 321,1906 371,1906 420,1906 470,1905 519,1904 569,1902 618,1901 668,1899 717,1897 766,1895 816,1893 865,1891 915,1888 964,1886 1014,1883 1063,1881 1113,1878 1162,1876 1212,1873"/>
                 <TextEquiv>
@@ -241,7 +241,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

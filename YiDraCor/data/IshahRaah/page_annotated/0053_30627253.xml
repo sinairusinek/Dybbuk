@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:41</Creator>
         <Created>2021-10-31T16:41:16.800+02:00</Created>
-        <LastChange>2026-06-02T09:19:49.466+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627253" pageNr="53" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=GCAYWBMXITHWDXPFUICJNUDZ" imageId="24094753"/>
+        <LastChange>2026-07-03T08:26:34.610+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627253" pageNr="53" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=GCAYWBMXITHWDXPFUICJNUDZ" imageId="24094753"/>
     </Metadata>
     <Page imageFilename="30627253.jpg" imageWidth="1797" imageHeight="2727">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="285,291 285,2429 1601,2429 1601,291"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="812,309 870,316 888,330 925,325 957,344 986,345 1022,317 1036,317 1034,256 988,265 980,256 962,263 939,255 927,263 896,251 870,261 855,256 828,278 810,279"/>
                 <Baseline points="821,305 851,309 881,309 911,309 941,311 971,313 1001,313 1031,311 1039,313"/>
                 <TextEquiv>
@@ -51,7 +51,7 @@
                     <Unicode>שלומית: (קען זיך ניט בעהערשען) פָאטֶער!!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_7" custom="readingOrder {index:6;}">
+            <TextLine id="tr_1_tl_7" custom="readingOrder {index:6;} speaker {offset:0; length:4; xmlid:avner;}">
                 <Coords points="1108,746 1210,768 1427,746 1468,774 1552,756 1596,768 1594,697 1520,690 1428,713 1333,677 1274,704 1185,689 1106,718"/>
                 <Baseline points="1115,729 1145,729 1175,731 1205,733 1235,733 1265,733 1295,735 1325,735 1355,737 1385,737 1415,739 1445,743 1475,741 1505,741 1535,743 1565,743 1595,745 1601,747"/>
                 <TextEquiv>
@@ -198,14 +198,14 @@
                     <Unicode>שלומית: מַיין פָאטֶער! (אומאַרמונג)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_29" custom="readingOrder {index:27;} stage {offset:0; length:12; type:business;}">
+            <TextLine id="tr_1_tl_29" custom="readingOrder {index:27;} stage {offset:0; length:12; type:setting;}">
                 <Coords points="769,2217 801,2214 827,2193 990,2201 1042,2181 1082,2208 1105,2206 1105,2119 1072,2111 1006,2139 975,2129 769,2152"/>
                 <Baseline points="779,2173 809,2175 839,2175 869,2175 899,2175 929,2175 959,2173 989,2173 1019,2175 1049,2173 1079,2173 1109,2173"/>
                 <TextEquiv>
                     <Unicode>(פאָרהאַנג).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_30" custom="readingOrder {index:28;} stage {offset:0; length:25; type:business;}">
+            <TextLine id="tr_1_tl_30" custom="readingOrder {index:28;} trailer {offset:0; length:25;}">
                 <Coords points="699,2273 802,2298 868,2285 901,2309 1045,2275 1151,2318 1182,2308 1182,2212 1119,2196 1029,2227 958,2209 861,2231 699,2219"/>
                 <Baseline points="707,2271 737,2271 767,2271 797,2269 827,2271 857,2271 887,2271 917,2269 947,2271 977,2269 1007,2267 1037,2267 1067,2267 1097,2267 1127,2267 1157,2267 1185,2271"/>
                 <TextEquiv>
@@ -213,7 +213,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:27</Creator>
         <Created>2021-11-21T13:25:02.144+01:00</Created>
-        <LastChange>2026-05-25T11:27:02.109+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:29.617+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804650" pageNr="53" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=XCYKYFCJNXFHGYAECYNIQZSR" imageId="24239918"/>
+        <TranskribusMetadata docId="828443" pageId="30804650" pageNr="53" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=XCYKYFCJNXFHGYAECYNIQZSR" imageId="24239918"/>
     </Metadata>
     <Page imageFilename="30804650.jpg" imageWidth="1907" imageHeight="2801">
         <PrintSpace>
@@ -22,7 +22,7 @@
         </ReadingOrder>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648848444195_1782" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="329,369 895,292 1120,292 1666,369 1666,1519 329,1519"/>
-            <TextLine id="TextRegion_1648848444195_1782l1" custom="readingOrder {index:0;}">
+            <TextLine id="TextRegion_1648848444195_1782l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="881,377 905,367 946,387 971,368 1005,373 1025,362 1105,352 1103,282 1085,277 1038,277 1018,265 981,285 951,275 926,292 918,285 880,300"/>
                 <Baseline points="889,332 1000,336 1108,337"/>
                 <TextEquiv>
@@ -121,7 +121,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
         <GraphicRegion id="Graphic_1648848324438_1748" custom="readingOrder {index:1;}">

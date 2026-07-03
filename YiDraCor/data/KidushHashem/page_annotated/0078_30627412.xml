@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=DiJeSt for Hebrew Script Languages(htr_id=23005)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/net_tf/LA73_249_0mod360.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/net_tf/LA73_249_0mod360.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-10-31T16:45:15.540+02:00</Created>
+        <LastChange>2022-06-03T17:47:38.833+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="Kidush ha-shem - operete in 5 akten - 1909 -1-BN_63.390_0001_Page_78.jpg" imageWidth="1779" imageHeight="2835">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1654271258840" caption="Regions reading order">
+                <RegionRefIndexed index="1" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <GraphicRegion id="Graphic_1644683278603_88" custom="readingOrder {index:0;}">
+            <Coords points="723,1086 1311,1086 1311,1433 723,1433"/>
+        </GraphicRegion>
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:1;}">
+            <Coords points="791,1153 791,1399 1294,1399 1294,1153"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="786,1190 1128,1190 1172,1217 1224,1194 1273,1212 1274,1150 1239,1131 1193,1150 1047,1146 964,1120 920,1138 878,1110 788,1119"/>
+                <Baseline points="791,1176 816,1176 841,1175 866,1175 891,1176 916,1177 941,1177 966,1179 991,1180 1016,1182 1042,1183 1067,1184 1092,1185 1117,1186 1142,1186 1167,1186 1192,1186 1217,1185 1242,1184 1268,1182"/>
+                <TextEquiv>
+                    <Unicode>לייה-ביבליאטעק</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="895,1217 942,1243 980,1236 997,1253 1049,1233 1071,1250 1113,1240 1150,1257 1175,1250 1178,1221 1144,1209 1088,1218 1011,1186 983,1186 954,1206 932,1193 896,1201"/>
+                <Baseline points="900,1217 927,1219 954,1221 981,1225 1008,1228 1035,1231 1062,1234 1089,1237 1116,1238 1143,1240 1171,1240"/>
+                <TextEquiv>
+                    <Unicode>פן</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+                <Coords points="836,1314 950,1308 1022,1330 1073,1298 1114,1330 1185,1317 1281,1339 1298,1331 1308,1259 1201,1282 1159,1253 1123,1268 1084,1250 1024,1262 904,1222 848,1227"/>
+                <Baseline points="847,1274 873,1274 899,1276 925,1278 952,1281 978,1284 1004,1289 1031,1293 1057,1297 1083,1301 1109,1306 1136,1310 1162,1314 1188,1317 1215,1320 1241,1322 1267,1323 1294,1323"/>
+                <TextEquiv>
+                    <Unicode>א.ברעסלער</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:3;}">
+                <Coords points="786,1367 851,1380 927,1364 980,1379 1002,1364 1043,1390 1071,1372 1130,1410 1194,1410 1263,1394 1268,1342 1194,1319 1137,1335 934,1311 897,1332 853,1310 790,1322"/>
+                <Baseline points="793,1345 818,1347 844,1349 870,1351 896,1354 922,1357 948,1359 974,1361 1000,1363 1026,1367 1051,1369 1077,1371 1103,1373 1129,1376 1155,1378 1181,1380 1207,1382 1233,1384 1259,1386"/>
+                <TextEquiv>
+                    <Unicode>נאלעווקי 52</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>לייה-ביבליאטעק
+פן
+א.ברעסלע
+נאלעווקי 52</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

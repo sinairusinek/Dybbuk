@@ -3,13 +3,13 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_10:55</Creator>
         <Created>2021-11-21T13:23:22.56+01:00</Created>
-        <LastChange>2026-06-20T23:41:21.179+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:55.957+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828455" pageId="30805055" pageNr="39" userId="397914" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=ATILJDPDIVVZFILMHDWGFCKN" imageId="24240319"/>
+        <TranskribusMetadata docId="828455" pageId="30805055" pageNr="41" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=ATILJDPDIVVZFILMHDWGFCKN" imageId="24240319"/>
     </Metadata>
     <Page imageFilename="30805055.jpg" imageWidth="2416" imageHeight="3868">
         <PrintSpace>
@@ -17,7 +17,7 @@
         </PrintSpace>
         <TextRegion orientation="0.0" type="paragraph" id="r_1_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="461,274 2194,274 2200,3241 467,3241"/>
-            <TextLine id="r_1_1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r_1_1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="1171,395 1217,402 1267,378 1369,419 1421,417 1466,406 1469,350 1384,339 1332,317 1271,330 1251,350 1230,352 1210,337 1173,341"/>
                 <Baseline points="1186,378 1211,380 1293,378 1319,378 1344,378 1370,378 1448,378 1474,378"/>
                 <TextEquiv>
@@ -136,7 +136,7 @@
                     <Unicode>יאָ דִיא וואהרְהֵייט זֶעהֶען. (ביס)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l19" custom="readingOrder {index:17;} l {offset:0;length:70;continued:true;}">
+            <TextLine id="r_1_1l19" custom="readingOrder {index:17;} l {offset:0;length:70;continued:true;} speaker {offset:0;length:12;}">
                 <Coords points="554,1934 2186,1925 2186,1853 2099,1825 2051,1862 554,1853"/>
                 <Baseline points="567,1910 648,1906 729,1902 810,1899 892,1896 973,1894 1054,1892 1135,1890 1217,1889 1298,1887 1379,1887 1460,1887 1542,1887 1623,1889 1704,1890 1785,1892 1867,1895 1948,1898 2029,1901 2110,1905 2192,1910"/>
                 <TextEquiv>
@@ -171,7 +171,7 @@
                     <Unicode>גראסער קענִיג בּעווייזע האבּען וִויר דאבּייא.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l24" custom="readingOrder {index:22;} l {offset:0;length:45;continued:true;}">
+            <TextLine id="r_1_1l24" custom="readingOrder {index:22;} l {offset:0; length:45; continued:true;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="1078,2359 1894,2338 2183,2377 2183,2283 1851,2255 1078,2294"/>
                 <Baseline points="1089,2324 1143,2326 1198,2327 1253,2328 1308,2328 1363,2328 1418,2328 1472,2327 1527,2326 1582,2325 1637,2324 1692,2324 1747,2324 1802,2324 1856,2325 1911,2327 1966,2329 2021,2333 2076,2337 2131,2343 2186,2351"/>
                 <TextEquiv>
@@ -192,7 +192,7 @@
                     <Unicode>דאניאל: אָ לאסֶע קֶענִיג אוּנטערזוּכען דיא שוּלד פְרִיהֶער.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l27" custom="readingOrder {index:25;} speaker {offset:0;length:4;} l {offset:0;length:44;continued:true;}">
+            <TextLine id="r_1_1l27" custom="readingOrder {index:25;} speaker {offset:0;length:4;xmlid:chor;} l {offset:0;length:44;continued:true;}">
                 <Coords points="1195,2596 1427,2633 1794,2585 2140,2633 2192,2616 2190,2537 1304,2527 1193,2574"/>
                 <Baseline points="1205,2588 1254,2589 1304,2589 1353,2589 1403,2589 1453,2589 1502,2588 1552,2588 1602,2586 1651,2586 1701,2586 1751,2586 1800,2586 1850,2588 1900,2590 1949,2592 1999,2595 2049,2600 2098,2605 2148,2611 2198,2618"/>
                 <TextEquiv>
@@ -213,7 +213,7 @@
                     <Unicode>דאניאל ליעפע זעליקל: (שרייען) מיִטלייַד קֶענִיג וִויר זִינְד אוּנשוּלדיג.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l30" custom="readingOrder {index:28;} l {offset:0;length:47;continued:true;}">
+            <TextLine id="r_1_1l30" custom="readingOrder {index:28;} l {offset:0; length:47; continued:true;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="1147,2859 1364,2902 1540,2861 2183,2887 2183,2787 1399,2792 1147,2837"/>
                 <Baseline points="1160,2853 1211,2853 1262,2852 1314,2850 1365,2849 1417,2847 1468,2847 1520,2846 1571,2846 1623,2846 1674,2846 1725,2846 1777,2847 1828,2847 1880,2850 1931,2852 1983,2856 2034,2859 2086,2863 2137,2868 2189,2874"/>
                 <TextEquiv>

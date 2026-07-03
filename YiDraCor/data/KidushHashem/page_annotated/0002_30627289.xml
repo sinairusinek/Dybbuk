@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=DiJeSt for Hebrew Script Languages(htr_id=23005)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/net_tf/LA73_249_0mod360.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-10-31T16:45:11.155+02:00</Created>
+        <LastChange>2026-05-18T17:06:12.248+02:00</LastChange>
+        <TranskribusMetadata docId="820939" pageId="30627289" pageNr="2" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TBYKIXPGMGCVYHFISEMEUQRM" imageId="24094789"/>
+    </Metadata>
+    <Page imageFilename="0002_Kidush ha-shem - operete in 5 akten - 1909 -1-BN_63.390_0001_Page_02.jpg" imageWidth="1718" imageHeight="2819">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1778429820931" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+                <RegionRefIndexed index="1" regionRef="region_1644618053441_2352"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:titlePage;}">
+            <Coords points="138,54 138,233 385,233 385,54"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="135,210 191,211 208,201 223,212 237,204 271,214 336,167 356,174 391,164 384,90 345,94 332,106 298,90 255,112 234,106 203,125 148,106 126,110"/>
+                <Baseline points="138,183 165,177 192,173 220,171 247,168 275,167 302,165 330,162 357,160 385,154"/>
+                <TextEquiv>
+                    <Unicode>6443</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Oq69</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion id="region_1644618053441_2352" custom="readingOrder {index:1;}">
+            <Coords points="96,1856 386,1856 386,2525 96,2525"/>
+            <TextLine id="line_1644618060012_2356" custom="readingOrder {index:0;}">
+                <Coords points="394,2508 311,2353 313,2281 272,2197 304,2062 277,2019 279,1958 247,1895 137,1914 153,1977 128,2079 153,2270 117,2408 161,2447 193,2543"/>
+                <Baseline points="365,2508 321,2390 251,1900"/>
+                <TextEquiv>
+                    <Unicode>Berlin</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Jâ€ži</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <GraphicRegion id="Graphic_1644618045580_2349" custom="readingOrder {index:2;}">
+            <Coords points="704,1142 1002,1142 1002,1839 704,1839"/>
+        </GraphicRegion>
+    </Page>
+</PcGts>

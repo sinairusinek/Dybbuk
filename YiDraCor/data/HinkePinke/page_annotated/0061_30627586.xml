@@ -1,23 +1,23 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_14:14</Creator>
         <Created>2022-04-11T17:03:41.64+02:00</Created>
-        <LastChange>2026-06-04T22:48:15.717+02:00</LastChange>
+        <LastChange>2026-07-03T08:26:09.874+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="820969" pageId="30627586" pageNr="61" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=JTKURKFZHMUXUIKIRTRRCUUM" imageId="24095058"/>
+        <TranskribusMetadata docId="820969" pageId="30627586" pageNr="61" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=JTKURKFZHMUXUIKIRTRRCUUM" imageId="24095058"/>
     </Metadata>
     <Page imageFilename="30627586.jpg" imageWidth="1640" imageHeight="2488">
         <PrintSpace>
             <Coords points="64,176 1555,176 1555,2318 64,2318"/>
         </PrintSpace>
-        <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649690803646_1363" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649690803646_1363" custom="readingOrder {index:0;} structure {type:paragraph;}">
             <Coords points="350,257 811,176 1002,176 1435,257 1435,2318 350,2318"/>
-            <TextLine id="TextRegion_1649690803646_1363l1" custom="readingOrder {index:0;}">
+            <TextLine id="TextRegion_1649690803646_1363l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="804,255 846,246 885,264 898,255 910,264 931,249 948,260 999,252 998,191 941,187 889,162 854,190 803,187"/>
                 <Baseline points="810,208 837,211 881,213 908,213 935,214 1000,217"/>
                 <TextEquiv>
@@ -45,7 +45,7 @@
                     <Unicode>האט.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l5" custom="readingOrder {index:4;}">
+            <TextLine id="TextRegion_1649690803646_1363l5" custom="readingOrder {index:4;} speaker {offset:0; length:6; xmlid:rikhter;}">
                 <Coords points="361,505 1431,523 1428,468 1350,445 359,420"/>
                 <Baseline points="367,477 420,478 473,479 526,480 580,481 633,483 686,484 740,486 793,487 846,488 900,490 953,492 1006,494 1059,495 1113,497 1166,499 1219,501 1273,504 1326,505 1379,508 1433,511"/>
                 <TextEquiv>
@@ -73,21 +73,21 @@
                     <Unicode>אוּנטערשריעבּען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l9" custom="readingOrder {index:8;} speaker {offset:0; length:3; xmlid:dr_brhm;}">
+            <TextLine id="TextRegion_1649690803646_1363l9" custom="readingOrder {index:8;} speaker {offset:0; length:3; xmlid:dr_avrohom;}">
                 <Coords points="425,766 1425,755 1424,674 1388,665 1240,704 424,677"/>
                 <Baseline points="431,715 480,717 530,719 580,721 630,722 680,724 730,726 779,727 829,729 879,730 929,731 979,732 1029,733 1079,734 1128,734 1178,735 1228,735 1278,735 1328,735 1378,735 1428,735"/>
                 <TextEquiv>
                     <Unicode>ד"ר: אוּנד וֶוער איִזט דעם הערצאנ'ס שטעל-פערטרעטער.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l10" custom="readingOrder {index:9;}">
+            <TextLine id="TextRegion_1649690803646_1363l10" custom="readingOrder {index:9;} speaker {offset:0; length:6; xmlid:adryan;}">
                 <Coords points="1109,807 1166,807 1191,823 1217,812 1264,828 1306,811 1421,823 1432,819 1431,762 1367,764 1350,751 1251,762 1206,743 1167,764 1124,747 1107,754"/>
                 <Baseline points="1116,795 1142,796 1169,797 1195,798 1222,799 1248,800 1275,801 1301,801 1328,802 1354,802 1381,802 1407,803 1434,803"/>
                 <TextEquiv>
                     <Unicode>אדריאן: איִךְ!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l11" custom="readingOrder {index:10;} speaker {offset:0; length:3; xmlid:dr_brhm;}">
+            <TextLine id="TextRegion_1649690803646_1363l11" custom="readingOrder {index:10;} speaker {offset:0; length:3; xmlid:dr_avrohom;}">
                 <Coords points="355,850 1432,891 1431,820 1369,811 355,796"/>
                 <Baseline points="362,840 415,841 469,842 522,843 576,844 630,845 683,846 737,847 790,849 844,850 898,851 951,852 1005,852 1058,853 1112,853 1166,854 1219,854 1273,853 1326,853 1380,852 1434,851"/>
                 <TextEquiv>
@@ -101,7 +101,7 @@
                     <Unicode>גֶעמאכט?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l13" custom="readingOrder {index:12;}">
+            <TextLine id="TextRegion_1649690803646_1363l13" custom="readingOrder {index:12;} speaker {offset:0; length:6; xmlid:adryan;}">
                 <Coords points="357,976 1423,1003 1420,935 1377,929 356,925"/>
                 <Baseline points="363,958 416,960 469,962 522,964 575,966 628,967 681,968 734,970 787,971 840,972 894,973 947,974 1000,975 1053,977 1106,978 1159,980 1212,982 1265,984 1318,987 1371,990 1425,993"/>
                 <TextEquiv>
@@ -122,7 +122,7 @@
                     <Unicode>איינע הונדע-בּייטשע פֿאָרטיאַגעֶן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l16" custom="readingOrder {index:15;} speaker {offset:0; length:3; xmlid:dr_brhm;}">
+            <TextLine id="TextRegion_1649690803646_1363l16" custom="readingOrder {index:15;} speaker {offset:0; length:3; xmlid:dr_avrohom;}">
                 <Coords points="364,1162 1413,1195 1420,1113 361,1103"/>
                 <Baseline points="370,1141 422,1142 475,1143 528,1144 581,1145 633,1146 686,1148 739,1149 792,1150 844,1151 897,1152 950,1154 1003,1156 1055,1157 1108,1159 1161,1160 1214,1162 1266,1165 1319,1166 1372,1168 1425,1171"/>
                 <TextEquiv>
@@ -143,7 +143,7 @@
                     <Unicode>טער אַנעֶרְקאַנט?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l19" custom="readingOrder {index:18;}">
+            <TextLine id="TextRegion_1649690803646_1363l19" custom="readingOrder {index:18;} speaker {offset:0; length:6; xmlid:rikhter;}">
                 <Coords points="355,1339 1314,1375 1430,1354 1428,1290 353,1297"/>
                 <Baseline points="361,1325 414,1325 468,1325 521,1325 575,1326 628,1327 682,1328 735,1329 789,1331 842,1332 896,1334 949,1336 1003,1338 1056,1340 1110,1342 1163,1344 1217,1346 1270,1348 1324,1349 1377,1352 1431,1353"/>
                 <TextEquiv>
@@ -164,14 +164,14 @@
                     <Unicode>וֶועלְכֶע עֵר האָט איִהם צוּ דיִעזעֶן האָהען ראַנג ערהאַבּעֶן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l22" custom="readingOrder {index:21;}">
+            <TextLine id="TextRegion_1649690803646_1363l22" custom="readingOrder {index:21;} speaker {offset:0; length:6; xmlid:adryan;}">
                 <Coords points="678,1511 792,1539 858,1516 1097,1546 1203,1530 1260,1555 1314,1532 1416,1546 1415,1490 677,1474"/>
                 <Baseline points="685,1507 721,1507 758,1508 795,1509 831,1510 868,1511 905,1512 941,1513 978,1515 1015,1516 1052,1517 1088,1519 1125,1520 1162,1522 1198,1524 1235,1525 1272,1527 1308,1528 1345,1530 1382,1533 1419,1534"/>
                 <TextEquiv>
                     <Unicode>אדריאן: נוּן יוּדע, בּיסט דוּ צוּפריעדען?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l23" custom="readingOrder {index:22;} speaker {offset:0; length:3; xmlid:dr_brhm;} stage {offset:31; length:22; type:business;}">
+            <TextLine id="TextRegion_1649690803646_1363l23" custom="readingOrder {index:22;} speaker {offset:0; length:3; xmlid:dr_avrohom;}">
                 <Coords points="352,1587 1366,1614 1415,1608 1413,1546 677,1537 560,1497 482,1535 349,1500"/>
                 <Baseline points="359,1570 411,1568 464,1566 517,1565 570,1564 623,1564 676,1565 729,1565 782,1566 835,1567 888,1569 940,1571 993,1573 1046,1575 1099,1578 1152,1580 1205,1583 1258,1586 1311,1588 1364,1591 1417,1594"/>
                 <TextEquiv>
@@ -199,28 +199,28 @@
                     <Unicode>אִיזְט אֵיין שופט, איין דיעבּ, איין בּעטריגער!!!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l27" custom="readingOrder {index:26;}">
+            <TextLine id="TextRegion_1649690803646_1363l27" custom="readingOrder {index:26;} speaker {offset:0; length:3; xmlid:alle;}">
                 <Coords points="1082,1826 1180,1829 1201,1842 1239,1826 1291,1848 1340,1840 1390,1851 1421,1832 1417,1775 1342,1787 1274,1773 1247,1792 1202,1773 1129,1779 1103,1802 1079,1792"/>
                 <Baseline points="1089,1816 1114,1816 1140,1818 1166,1819 1192,1821 1218,1824 1244,1826 1269,1828 1295,1830 1321,1832 1347,1833 1373,1834 1399,1834 1425,1834"/>
                 <TextEquiv>
                     <Unicode>אלע: וואַס?!!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l28" custom="readingOrder {index:27;} stage {offset:44; length:10; type:entrance;}">
+            <TextLine id="TextRegion_1649690803646_1363l28" custom="readingOrder {index:27;} speaker {offset:0; length:6; xmlid:adryan;}">
                 <Coords points="342,1874 1416,1901 1407,1845 961,1809 565,1842 463,1810 342,1851"/>
                 <Baseline points="350,1859 403,1861 456,1863 510,1865 563,1867 617,1868 670,1869 724,1870 777,1871 831,1873 884,1874 937,1875 991,1876 1044,1878 1098,1880 1151,1882 1205,1884 1258,1887 1312,1891 1365,1894 1419,1898"/>
                 <TextEquiv>
                     <Unicode>אדריאן: ערגרייפֿט דען פֿערדאמטען יוּדען!!.. (אויפֿטריט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l29" custom="readingOrder {index:28;} stage {offset:0; length:25; type:business;}">
+            <TextLine id="TextRegion_1649690803646_1363l29" custom="readingOrder {index:28;}">
                 <Coords points="900,1933 1019,1932 1059,1953 1122,1936 1147,1956 1187,1947 1224,1963 1319,1944 1317,1899 1298,1891 1252,1914 1231,1898 1199,1911 1055,1882 1041,1895 1014,1883 899,1894"/>
                 <Baseline points="908,1932 933,1930 959,1930 985,1930 1011,1930 1037,1931 1063,1931 1089,1932 1115,1933 1140,1934 1166,1936 1192,1937 1218,1938 1244,1939 1270,1939 1296,1939 1322,1939"/>
                 <TextEquiv>
                     <Unicode>הערצאָג אַלס גייסטליכער).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690803646_1363l30" custom="readingOrder {index:29;} stage {offset:8; length:17; type:business;}">
+            <TextLine id="TextRegion_1649690803646_1363l30" custom="readingOrder {index:29;} speaker {offset:0; length:6; xmlid:hertsog;}">
                 <Coords points="341,1993 1430,2039 1425,1943 340,1939"/>
                 <Baseline points="349,1982 403,1982 457,1982 511,1982 565,1982 619,1983 673,1984 727,1985 781,1986 835,1988 890,1989 944,1992 998,1994 1052,1996 1106,1998 1160,2001 1214,2004 1268,2007 1322,2010 1376,2014 1431,2018"/>
                 <TextEquiv>
@@ -263,7 +263,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

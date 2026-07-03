@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:13.499+02:00</Created>
-        <LastChange>2026-05-27T10:24:39.201+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627203" pageNr="3" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=AJZKROQROYZRLPFRFCRATASI" imageId="24094703"/>
+        <LastChange>2026-07-03T08:26:12.376+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627203" pageNr="3" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=AJZKROQROYZRLPFRFCRATASI" imageId="24094703"/>
     </Metadata>
     <Page imageFilename="30627203.jpg" imageWidth="1860" imageHeight="2706">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="342,112 342,268 414,268 414,112"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:0; length:1; type:pageNum;}">
                 <Coords points="336,199 344,199 369,222 374,220 386,230 400,220 410,222 414,167 394,169 390,173 382,163 372,162 368,156 340,151"/>
                 <Baseline points="342,218 378,217 414,212"/>
                 <TextEquiv>
@@ -17,7 +17,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
         <TextRegion orientation="0.0" id="tr_2" custom="readingOrder {index:1;}">
@@ -121,7 +121,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

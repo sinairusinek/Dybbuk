@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:55</Creator>
         <Created>2021-10-31T12:59:21.600+02:00</Created>
-        <LastChange>2026-06-08T05:19:23.333+02:00</LastChange>
-        <TranskribusMetadata docId="820845" pageId="30622860" pageNr="66" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WUAUIQGPFFSQFBPYCEQTWYPD" imageId="24090399"/>
+        <LastChange>2026-07-03T08:25:18.102+02:00</LastChange>
+        <TranskribusMetadata docId="820845" pageId="30622860" pageNr="66" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WUAUIQGPFFSQFBPYCEQTWYPD" imageId="24090399"/>
     </Metadata>
     <Page imageFilename="30622860.jpg" imageWidth="1816" imageHeight="2832">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="86,260 87,2373 1444,2373 1443,260"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="610,325 654,325 712,303 745,318 765,307 795,312 824,303 855,318 854,235 837,243 800,232 719,240 694,260 685,252 610,275"/>
                 <Baseline points="620,289 646,289 672,289 698,289 725,289 751,289 833,292 860,295"/>
                 <TextEquiv>
@@ -72,7 +72,7 @@
                     <Unicode>טהוּט וואָס אִיהְר וויִלְט וִויא אַייך געֶפֶעלְט!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l23" custom="readingOrder {index:9;}">
+            <TextLine id="r1l23" custom="readingOrder {index:9;} speaker {offset:0; length:5; xmlid:beyde;}">
                 <Coords points="865,947 1042,945 1136,974 1217,940 1261,959 1311,940 1409,954 1407,894 1382,884 1347,902 1307,880 1261,907 1206,880 1089,880 1024,904 972,882 865,889"/>
                 <Baseline points="874,924 900,927 927,929 954,930 981,932 1008,934 1035,935 1062,937 1089,937 1116,939 1143,939 1169,940 1196,940 1223,940 1250,940 1277,940 1304,940 1331,940 1358,939 1385,939 1412,938"/>
                 <TextEquiv>
@@ -121,7 +121,7 @@
                     <Unicode>נוּטצען פאן מִיר האבּען, נוּן האָסְט דוּא דִיך איבּערצייגט?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l39" custom="readingOrder {index:16;}">
+            <TextLine id="r1l39" custom="readingOrder {index:16;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="113,1489 1187,1452 1414,1492 1416,1397 1177,1377 115,1434"/>
                 <Baseline points="122,1462 186,1462 251,1462 316,1461 381,1460 446,1459 511,1458 576,1457 641,1456 706,1455 771,1454 835,1452 900,1452 965,1451 1030,1451 1095,1450 1160,1451 1225,1451 1290,1452 1355,1453 1420,1455"/>
                 <TextEquiv>
@@ -149,7 +149,7 @@
                     <Unicode>(אויפֿטריט איצעלע, קיילע ביילע, אַלטער, טילע, סאלאמאן).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l44" custom="readingOrder {index:20;}">
+            <TextLine id="r1l44" custom="readingOrder {index:20;} speaker {offset:0; length:3; xmlid:alle;}">
                 <Coords points="902,1753 967,1774 1034,1749 1097,1778 1164,1766 1241,1789 1406,1756 1421,1699 1351,1678 1287,1701 1159,1679 900,1689"/>
                 <Baseline points="912,1737 937,1738 963,1738 989,1739 1014,1739 1040,1740 1066,1740 1091,1741 1117,1742 1143,1742 1169,1742 1194,1743 1220,1743 1246,1744 1271,1744 1297,1744 1323,1744 1348,1744 1374,1743 1400,1743 1426,1742"/>
                 <TextEquiv>
@@ -220,7 +220,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

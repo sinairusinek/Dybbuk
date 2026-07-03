@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:55</Creator>
         <Created>2021-10-31T12:59:20.997+02:00</Created>
-        <LastChange>2026-06-08T05:14:13.258+02:00</LastChange>
-        <TranskribusMetadata docId="820845" pageId="30622845" pageNr="63" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=RKQTIJQZNOBMLMJMFMKKJNWV" imageId="24090384"/>
+        <LastChange>2026-07-03T08:25:16.790+02:00</LastChange>
+        <TranskribusMetadata docId="820845" pageId="30622845" pageNr="63" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=RKQTIJQZNOBMLMJMFMKKJNWV" imageId="24090384"/>
     </Metadata>
     <Page imageFilename="30622845.jpg" imageWidth="1813" imageHeight="2855">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="383,231 383,2408 1743,2408 1743,231"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="978,284 1011,291 1037,269 1123,276 1132,268 1155,282 1208,286 1203,208 1170,220 1101,179 1062,194 1008,182 988,200 973,199"/>
                 <Baseline points="986,257 1011,258 1037,260 1062,263 1088,265 1113,268 1139,269 1164,269 1211,267"/>
                 <TextEquiv>
@@ -30,7 +30,7 @@
                     <Unicode>דוד: בּרוּדער! וואָס ווילְסט דוּ טהוּן מַיין אוּנגליקליכער בּרוּדער?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l5" custom="readingOrder {index:3;}">
+            <TextLine id="r1l5" custom="readingOrder {index:3;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="422,484 1740,551 1725,466 420,435"/>
                 <Baseline points="431,465 496,471 562,476 627,480 693,484 759,487 824,489 890,491 955,493 1021,495 1087,497 1152,499 1218,500 1283,502 1349,505 1414,508 1480,511 1546,515 1611,520 1677,525 1743,531"/>
                 <TextEquiv>
@@ -86,7 +86,7 @@
                     <Unicode>גֶעפִיהל מִיט מַיין אוּנגליקליכען בּרוּדער.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l17" custom="readingOrder {index:11;}">
+            <TextLine id="r1l17" custom="readingOrder {index:11;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="412,1067 1641,1111 1725,1100 1723,1042 1364,998 1269,1032 684,977 409,998"/>
                 <Baseline points="420,1031 485,1035 550,1039 616,1042 681,1046 746,1048 812,1050 877,1052 942,1054 1008,1055 1073,1057 1138,1059 1204,1062 1269,1064 1334,1067 1400,1070 1465,1074 1530,1079 1596,1084 1661,1090 1727,1098"/>
                 <TextEquiv>
@@ -219,7 +219,7 @@
                     <Unicode>דאצוּ, דֶען הִיעֶר בּין אִיך אוֹיף מֵיין אייגענטהוּם!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l52" custom="readingOrder {index:30;}">
+            <TextLine id="r1l52" custom="readingOrder {index:30;} speaker {offset:0; length:5; xmlid:tubih;}">
                 <Coords points="1159,2372 1339,2411 1469,2393 1690,2419 1686,2349 1564,2331 1467,2344 1416,2321 1326,2340 1262,2319 1155,2327"/>
                 <Baseline points="1167,2362 1193,2363 1219,2365 1245,2367 1272,2369 1298,2371 1324,2374 1351,2376 1377,2378 1403,2381 1430,2384 1456,2385 1482,2388 1508,2390 1535,2391 1561,2393 1587,2395 1614,2396 1640,2397 1666,2397 1693,2398"/>
                 <TextEquiv>
@@ -227,7 +227,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

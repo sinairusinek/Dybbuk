@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=DiJeSt for Hebrew Script Languages(htr_id=23005)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/net_tf/LA73_249_0mod360.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-10-31T16:45:15.625+02:00</Created>
+        <LastChange>2022-06-03T17:49:00.645+02:00</LastChange>
+        <TranskribusMetadata docId="820939" pageId="30627415" pageNr="80"/>
+    </Metadata>
+    <Page imageFilename="Kidush ha-shem - operete in 5 akten - 1909 -1-BN_63.390_0001_Page_80.jpg" imageWidth="1937" imageHeight="2808">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1654271340653" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1644683209598_55"/>
+                <RegionRefIndexed index="1" regionRef="TextRegion_1644683064304_14"/>
+                <RegionRefIndexed index="2" regionRef="TextRegion_1644683126499_23"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_1644683209598_55" custom="readingOrder {index:0;}">
+            <Coords points="318,236 449,236 449,539 318,539"/>
+            <TextLine id="line_1644683219444_59" custom="readingOrder {index:0;}">
+                <Coords points="264,304 281,325 293,390 325,407 323,449 397,496 396,510 418,520 417,540 504,504 454,447 462,422 438,391 445,366 427,350 428,325 380,287 380,256"/>
+                <Baseline points="318,292 416,530"/>
+                <TextEquiv>
+                    <Unicode>6443</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>0V/9</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1644683064304_14" custom="readingOrder {index:1;}">
+            <Coords points="508,262 868,260 870,454 510,456"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="520,473 549,475 643,399 686,390 744,414 806,378 876,370 852,274 775,291 709,255 697,270 664,255 630,269 500,219 464,236"/>
+                <Baseline points="518,441 577,440 608,381 635,382 662,381 689,379 716,375 743,372 770,369 797,365 824,363 852,362 868,360"/>
+                <TextEquiv>
+                    <Unicode>63.390 II</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>.30</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1644683126499_23" custom="readingOrder {index:2;}">
+            <Coords points="577,956 1430,956 1430,1744 577,1744"/>
+            <TextLine id="line_1644683140830_38" custom="readingOrder {index:0;}">
+                <Coords points="859,1046 935,1014 992,1038 1053,1035 1077,1021 1091,1035 1134,1032 1134,956 1063,953 1048,965 987,956 962,974 921,969 891,951 860,957"/>
+                <Baseline points="865,1019 891,1017 918,1017 944,1018 971,1019 997,1022 1024,1025 1051,1029 1084,1009 1128,1023"/>
+                <TextEquiv>
+                    <Unicode>עם דרוּקט זיך</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:1;}">
+                <Coords points="572,1148 713,1171 1204,1139 1436,1180 1435,1075 1285,1055 1147,1093 990,1067 572,1089"/>
+                <Baseline points="577,1142 619,1143 662,1143 704,1142 747,1142 790,1142 832,1141 875,1141 918,1140 960,1139 1003,1139 1046,1138 1088,1138 1131,1137 1174,1137 1216,1137 1259,1138 1302,1138 1344,1139 1387,1141 1430,1143"/>
+                <TextEquiv>
+                    <Unicode>דָאֵם וָוַעלֶט-בָּעֲרִיהַמֵטֶע מַיִיסְטֶערווערק :</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5" custom="readingOrder {index:2;}">
+                <Coords points="702,1501 811,1490 911,1524 973,1492 1188,1472 1266,1515 1332,1496 1332,1402 944,1378 905,1398 825,1379 702,1405"/>
+                <Baseline points="707,1484 829,1485 856,1486 883,1487 910,1487 937,1487 964,1487 991,1486 1018,1485 1045,1484 1072,1484 1099,1484 1126,1485 1327,1481"/>
+                <TextEquiv>
+                    <Unicode>בַּר כּוֹכְבָא.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6" custom="readingOrder {index:3;}">
+                <Coords points="603,1662 747,1635 1050,1624 1090,1645 1192,1621 1288,1646 1411,1625 1410,1556 1267,1571 1168,1545 1132,1569 950,1572 890,1543 768,1578 602,1573"/>
+                <Baseline points="608,1625 647,1624 686,1622 725,1622 765,1621 804,1621 843,1621 882,1621 922,1621 961,1621 1000,1621 1039,1621 1079,1621 1118,1620 1157,1620 1196,1619 1236,1618 1275,1617 1314,1616 1365,1610 1405,1607"/>
+                <TextEquiv>
+                    <Unicode>היסטאָרישע אָפערעטע אין 5 אַקטען.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7" custom="readingOrder {index:4;}">
+                <Coords points="770,1756 804,1761 860,1735 915,1745 976,1719 1075,1742 1113,1718 1154,1730 1215,1714 1233,1727 1261,1720 1260,1661 1223,1665 1161,1640 1060,1667 1001,1642 942,1670 864,1652 768,1673"/>
+                <Baseline points="774,1721 799,1721 824,1720 850,1720 875,1719 900,1719 926,1719 951,1719 976,1719 1002,1719 1027,1719 1053,1718 1078,1718 1103,1718 1129,1717 1154,1716 1179,1715 1205,1713 1230,1712 1256,1710"/>
+                <TextEquiv>
+                    <Unicode>פון א. גאלדפאדען.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>עם דרוּקט זיך
+דָאֵם וָוַעלֶט-בָּעֲרִיהַמֵטֶע מַיִיסְטֶעַרְוָוְעָרֶק :
+בַּר כּוֹכְבָא.
+היסטאָרישע אָפערעטע אין 5 אַקטען.
+פון א. גאלדפאדען.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

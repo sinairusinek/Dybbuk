@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:41</Creator>
         <Created>2021-10-31T16:41:16.704+02:00</Created>
-        <LastChange>2026-06-02T09:00:40.322+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627249" pageNr="49" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=FSGFYXFCVIBEIAAVLBPSSDFA" imageId="24094749"/>
+        <LastChange>2026-07-03T08:26:33.297+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627249" pageNr="49" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=FSGFYXFCVIBEIAAVLBPSSDFA" imageId="24094749"/>
     </Metadata>
     <Page imageFilename="30627249.jpg" imageWidth="1769" imageHeight="2712">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="344,342 344,2221 1600,2221 1600,342"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="816,408 837,404 865,377 933,390 948,402 970,393 992,398 1019,379 1041,382 1041,316 989,327 933,312 892,330 880,318 837,324 818,313"/>
                 <Baseline points="826,368 856,370 886,374 916,372 946,372 976,374 1006,368 1036,370 1044,372"/>
                 <TextEquiv>
@@ -72,7 +72,7 @@
                     <Unicode>פרץ: וַוייל דָאס ווייבּ פְרֶעסְט אוּמזיסט אִיך אַרבּייט שְׁווער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_10" custom="readingOrder {index:9;}">
+            <TextLine id="tr_1_tl_10" custom="readingOrder {index:9;} speaker {offset:0; length:5; xmlid:beyde;}">
                 <Coords points="905,1028 1077,1007 1128,1031 1182,1011 1596,1029 1594,977 1338,954 1091,969 1006,945 904,979"/>
                 <Baseline points="912,1002 942,1000 972,1002 1002,1000 1032,1000 1062,1000 1092,1000 1122,1000 1152,1002 1182,1000 1212,1000 1242,1002 1272,1002 1302,1000 1332,1004 1362,1004 1392,1006 1422,1008 1452,1008 1482,1010 1512,1012 1542,1012 1572,1012 1600,1012"/>
                 <TextEquiv>
@@ -213,7 +213,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

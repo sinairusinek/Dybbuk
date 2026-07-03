@@ -1,37 +1,37 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_14:14</Creator>
         <Created>2022-04-11T17:03:33.407+02:00</Created>
-        <LastChange>2026-06-03T11:28:43.996+02:00</LastChange>
+        <LastChange>2026-07-03T08:25:48.135+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="820969" pageId="30627499" pageNr="13" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TZJTMPOQMXQGCLAEHDEWKLTV" imageId="24094975"/>
+        <TranskribusMetadata docId="820969" pageId="30627499" pageNr="13" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TZJTMPOQMXQGCLAEHDEWKLTV" imageId="24094975"/>
     </Metadata>
     <Page imageFilename="30627499.jpg" imageWidth="1592" imageHeight="2504">
         <PrintSpace>
             <Coords points="63,81 1512,81 1512,2384 63,2384"/>
         </PrintSpace>
-        <TextRegion orientation="0.0" type="paragraph" id="r_1_1" custom="readingOrder {index:0;} structure {type:body;}">
+        <TextRegion orientation="0.0" type="paragraph" id="r_1_1" custom="readingOrder {index:0;} structure {type:paragraph;}">
             <Coords points="340,114 1401,114 1388,2289 327,2289"/>
-            <TextLine id="r_1_1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r_1_1l1" custom="readingOrder {index:0;} fw {offset:0; length:5; type:pageNum;}">
                 <Coords points="759,184 809,181 854,214 886,190 907,186 952,202 951,112 938,108 903,113 870,97 841,120 835,116 813,140 794,138 783,149 759,145"/>
                 <Baseline points="767,174 814,172 841,175 868,176 895,174 955,176"/>
                 <TextEquiv>
                     <Unicode>— 11—</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l2" custom="readingOrder {index:1;} stage {offset:38; length:16; type:entrance;}">
+            <TextLine id="r_1_1l2" custom="readingOrder {index:1;}">
                 <Coords points="331,299 1301,291 1301,210 898,239 755,201 690,239 505,185 331,225"/>
                 <Baseline points="339,270 387,269 435,269 483,269 532,268 580,268 628,268 676,267 725,267 773,267 821,267 869,267 918,267 966,268 1014,268 1062,269 1111,270 1159,271 1207,273 1255,275 1304,277"/>
                 <TextEquiv>
                     <Unicode>פֿערדע, קאָממט אַללע הערר, אַללע הער! (אויפטריט יענער)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l3" custom="readingOrder {index:2;}">
+            <TextLine id="r_1_1l3" custom="readingOrder {index:2;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="677,351 1055,332 1347,366 1395,344 1395,299 1181,278 1137,303 976,282 677,306"/>
                 <Baseline points="684,336 719,333 755,331 791,330 827,329 862,328 898,328 934,328 970,328 1005,329 1041,330 1077,331 1113,333 1148,334 1184,335 1220,337 1256,339 1291,341 1327,342 1363,344 1399,346"/>
                 <TextEquiv>
@@ -66,7 +66,7 @@
                     <Unicode>פאזש: אֵיין גרוסס, איין פֿריינדליכען גרוסס! איִךְ גיעבּ.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l8" custom="readingOrder {index:7;}">
+            <TextLine id="r_1_1l8" custom="readingOrder {index:7;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="420,636 1315,664 1396,649 1395,596 419,608"/>
                 <Baseline points="428,627 476,628 525,628 573,629 622,629 671,629 719,629 768,629 816,629 865,629 914,630 962,630 1011,631 1059,632 1108,634 1157,635 1205,637 1254,640 1302,643 1351,647 1400,651"/>
                 <TextEquiv>
@@ -80,7 +80,7 @@
                     <Unicode>פאזש: פאַר אַייך, פאַר אייך, נוּר גוּטעֶס טְהוּן, איִך שטרעבּ.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l10" custom="readingOrder {index:9;}">
+            <TextLine id="r_1_1l10" custom="readingOrder {index:9;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="412,785 946,753 1395,785 1394,721 1293,710 411,713"/>
                 <Baseline points="418,746 467,746 516,746 565,746 614,746 663,746 712,746 761,746 810,746 859,747 908,747 957,748 1006,749 1055,750 1104,751 1153,753 1202,756 1251,759 1300,761 1349,765 1398,769"/>
                 <TextEquiv>
@@ -94,7 +94,7 @@
                     <Unicode>פאזש: איִךְ קֶענְגֶע גוּט אַללע הערצאָגס פֿרייַנד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l12" custom="readingOrder {index:11;}">
+            <TextLine id="r_1_1l12" custom="readingOrder {index:11;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="653,882 1313,902 1391,888 1390,843 843,817 652,841"/>
                 <Baseline points="661,866 697,867 734,869 770,870 807,871 844,872 880,872 917,873 954,874 990,874 1027,875 1064,876 1100,877 1137,878 1174,879 1210,880 1247,882 1284,884 1320,886 1357,888 1394,891"/>
                 <TextEquiv>
@@ -115,7 +115,7 @@
                     <Unicode>זַיין פייַנד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l15" custom="readingOrder {index:14;}">
+            <TextLine id="r_1_1l15" custom="readingOrder {index:14;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="392,1055 488,1087 1012,1052 1393,1079 1391,1004 392,1029"/>
                 <Baseline points="400,1048 449,1048 499,1049 549,1049 599,1049 649,1049 698,1049 748,1049 798,1050 848,1050 898,1051 947,1051 997,1052 1047,1053 1097,1055 1147,1056 1196,1059 1246,1061 1296,1064 1346,1067 1396,1071"/>
                 <TextEquiv>
@@ -129,7 +129,7 @@
                     <Unicode>פאזש: נאָ, נאָ, לאַססעט פֿרייַנד, אָה איִךְ שפּאַססע הַיינְט.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l17" custom="readingOrder {index:16;}">
+            <TextLine id="r_1_1l17" custom="readingOrder {index:16;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="527,1194 1001,1174 1379,1220 1393,1138 708,1116 525,1146"/>
                 <Baseline points="532,1169 575,1169 618,1169 661,1169 705,1169 748,1169 791,1169 834,1169 878,1170 921,1170 964,1171 1007,1173 1051,1174 1094,1176 1137,1178 1180,1181 1224,1183 1267,1187 1310,1190 1353,1194 1397,1199"/>
                 <TextEquiv>
@@ -213,7 +213,7 @@
                     <Unicode>נוּר שנעלל אַבּ מארשירען!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l29" custom="readingOrder {index:28;}">
+            <TextLine id="r_1_1l29" custom="readingOrder {index:28;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="758,1919 926,1902 976,1925 1060,1907 1161,1925 1225,1906 1362,1935 1381,1858 1067,1865 1024,1843 882,1865 803,1839 755,1866"/>
                 <Baseline points="764,1892 795,1892 826,1893 857,1893 888,1894 919,1894 950,1895 982,1896 1013,1897 1044,1897 1075,1898 1106,1899 1137,1901 1168,1902 1200,1903 1231,1906 1262,1908 1293,1910 1324,1912 1355,1915 1387,1918"/>
                 <TextEquiv>
@@ -227,7 +227,7 @@
                     <Unicode>פאזש: נוּר שנעֶל מארשירען!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l31" custom="readingOrder {index:30;}">
+            <TextLine id="r_1_1l31" custom="readingOrder {index:30;} speaker {offset:0; length:3; xmlid:chor;}">
                 <Coords points="525,2020 1387,2051 1386,1994 1144,1968 705,1984 612,1956 525,1990"/>
                 <Baseline points="532,2019 577,2019 622,2018 667,2018 712,2017 758,2017 803,2017 848,2017 893,2017 938,2017 984,2018 1029,2018 1074,2019 1119,2021 1164,2022 1210,2024 1255,2027 1300,2029 1345,2033 1391,2037"/>
                 <TextEquiv>
@@ -263,7 +263,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

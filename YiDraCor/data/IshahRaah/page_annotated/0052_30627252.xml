@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:41</Creator>
         <Created>2021-10-31T16:41:16.777+02:00</Created>
-        <LastChange>2026-06-02T09:15:35.870+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627252" pageNr="52" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=FMLZIXIETJNZVAJOLSRTCCGO" imageId="24094752"/>
+        <LastChange>2026-07-03T08:26:34.179+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627252" pageNr="52" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=FMLZIXIETJNZVAJOLSRTCCGO" imageId="24094752"/>
     </Metadata>
     <Page imageFilename="30627252.jpg" imageWidth="1785" imageHeight="2717">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="172,279 172,2408 1492,2408 1492,279"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="746,337 790,351 844,335 864,342 925,335 959,351 959,242 883,236 820,257 808,247 746,239"/>
                 <Baseline points="756,302 786,304 816,302 846,302 876,302 906,302 936,304 964,304"/>
                 <TextEquiv>
@@ -37,7 +37,7 @@
                     <Unicode>אבנר: שלוכצען הער אִיך, וויינְט נִיכְט יעמאנְד?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_1" custom="readingOrder {index:4;}">
+            <TextLine id="l_1" custom="readingOrder {index:4;} speaker {offset:0; length:7; xmlid:wechtter;}">
                 <Coords points="488,595 1514,641 1512,597 1438,571 486,537"/>
                 <Baseline points="497,578 1517,612"/>
                 <TextEquiv>
@@ -51,7 +51,7 @@
                     <Unicode>אבנר: אוּם מִיך? גיבּט עֶס נָאך טרעהנֶען פִיר אַבנר?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_5" custom="readingOrder {index:6;}">
+            <TextLine id="tr_1_tl_5" custom="readingOrder {index:6;} speaker {offset:0; length:7; xmlid:wechtter;}">
                 <Coords points="197,730 1488,776 1485,711 615,685 446,631 368,680 195,683"/>
                 <Baseline points="206,706 236,706 266,708 296,710 326,710 356,710 386,712 416,712 446,714 476,714 506,716 536,718 566,718 596,720 626,720 656,722 686,722 716,722 746,724 776,726 806,726 836,726 866,728 896,730 926,730 956,732 986,734 1016,734 1046,734 1076,736 1106,736 1136,736 1166,736 1196,740 1226,742 1256,744 1286,746 1316,750 1346,754 1376,756 1406,758 1436,758 1466,760 1492,760"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

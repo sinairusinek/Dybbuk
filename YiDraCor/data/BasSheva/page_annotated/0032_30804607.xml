@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:26</Creator>
         <Created>2021-11-21T13:24:57.037+01:00</Created>
-        <LastChange>2026-06-03T05:17:49.022+02:00</LastChange>
+        <LastChange>2026-07-03T08:23:18.769+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828443" pageId="30804607" pageNr="32" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=PTROFXWACAJAZPNIXXAIYITS" imageId="24239875"/>
+        <TranskribusMetadata docId="828443" pageId="30804607" pageNr="32" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=PTROFXWACAJAZPNIXXAIYITS" imageId="24239875"/>
     </Metadata>
     <Page imageFilename="30804607.jpg" imageWidth="1998" imageHeight="2780">
         <PrintSpace>
@@ -17,7 +17,7 @@
         </PrintSpace>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1648852535726_3295" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="115,322 652,236 876,236 1421,331 1459,1658 1460,2310 1460,2365 1311,2387 115,2387"/>
-            <TextLine id="TextRegion_1648852535726_3295l1" custom="readingOrder {index:0;}">
+            <TextLine id="TextRegion_1648852535726_3295l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="644,284 711,276 738,292 790,289 827,272 837,282 868,276 870,200 805,198 771,219 726,219 686,200 645,198"/>
                 <Baseline points="652,275 678,278 755,276 782,275 845,274 872,273"/>
                 <TextEquiv>
@@ -171,7 +171,7 @@
                     <Unicode>אסתר: בּת שבּעס פָאטֶער, דֶער אַלטער צדוק.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1648852535726_3295l27" custom="readingOrder {index:22;}">
+            <TextLine id="TextRegion_1648852535726_3295l27" custom="readingOrder {index:22;} speaker {offset:0; length:6; xmlid:bnimin;}">
                 <Coords points="1077,1840 1132,1863 1183,1850 1208,1866 1236,1851 1279,1881 1299,1864 1454,1861 1450,1797 1426,1792 1394,1813 1198,1785 1160,1807 1125,1800 1076,1818"/>
                 <Baseline points="1087,1837 1113,1837 1140,1838 1166,1839 1193,1841 1219,1842 1246,1844 1272,1845 1299,1847 1325,1849 1352,1851 1378,1852 1405,1854 1431,1855 1458,1856"/>
                 <TextEquiv>
@@ -228,7 +228,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

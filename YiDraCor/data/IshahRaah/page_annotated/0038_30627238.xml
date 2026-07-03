@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:16.254+02:00</Created>
-        <LastChange>2026-06-02T06:38:12.119+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627238" pageNr="38" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=KWMUORZUMGNKXASZMKLWDBDG" imageId="24094738"/>
+        <LastChange>2026-07-02T13:26:02.575+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627238" pageNr="38" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=KWMUORZUMGNKXASZMKLWDBDG" imageId="24094738"/>
     </Metadata>
     <Page imageFilename="30627238.jpg" imageWidth="1770" imageHeight="2727">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
@@ -184,7 +184,7 @@
                     <Unicode>אנטיגנוס: חנוּך? שאָן וִויעדֶער? עֶר? וואָס ווילְסט דוּא?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_37" custom="readingOrder {index:25;}">
+            <TextLine id="tr_1_tl_37" custom="readingOrder {index:25;} speaker {offset:0; length:4; xmlid:khanokh;}">
                 <Coords points="83,2377 698,2405 767,2365 943,2390 994,2349 859,2312 84,2304"/>
                 <Baseline points="91,2361 136,2363 181,2371 226,2364 272,2359 317,2359 362,2361 407,2361 453,2363 498,2366 543,2358 588,2357 634,2359 679,2359 724,2363 769,2361 815,2359 860,2357 905,2361 950,2362 1394,2363"/>
                 <TextEquiv>
@@ -199,7 +199,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

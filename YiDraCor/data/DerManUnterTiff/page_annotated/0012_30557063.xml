@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.3.0:model_id=54996:lm=provided:date=12_09_2023_06:17</Creator>
         <Created>2021-10-30T15:12:26.972+02:00</Created>
-        <LastChange>2026-05-18T14:33:06.642+02:00</LastChange>
+        <LastChange>2026-07-03T08:24:11.591+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="817462" pageId="30557063" pageNr="12" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TGHXLGUYLGLRQHLUOMLHYDCC" imageId="24028258"/>
+        <TranskribusMetadata docId="817462" pageId="30557063" pageNr="12" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TGHXLGUYLGLRQHLUOMLHYDCC" imageId="24028258"/>
     </Metadata>
     <Page imageFilename="0012_Der man untern tish - vodevil in 1 akt - 1911 - 1-BN_45_590_0001pdfAformat_Page_12.tiff" imageWidth="1684" imageHeight="2355">
         <PrintSpace>
@@ -17,7 +17,7 @@
         </PrintSpace>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1635959083477_2694" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="280,446 635,41 1189,41 1330,446 1330,934 1321,2058 285,2058 280,934"/>
-            <TextLine id="line_1635959099369_2697" custom="readingOrder {index:0;}">
+            <TextLine id="line_1635959099369_2697" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="692,76 764,66 809,77 831,69 859,76 867,68 891,68 891,26 872,22 867,28 855,22 846,31 826,23 783,30 770,19 725,30 692,28"/>
                 <Baseline points="699,63 894,67"/>
                 <TextEquiv>
@@ -105,7 +105,7 @@
                 <Coords points="293,817 489,844 1213,823 1213,777 1107,763 1046,797 691,760 293,783"/>
                 <Baseline points="300,812 345,813 391,814 437,815 483,816 529,817 574,818 620,818 666,819 712,819 758,820 803,820 849,820 895,820 941,819 987,819 1032,818 1078,817 1124,817 1170,816 1216,814"/>
                 <TextEquiv>
-                    <Unicode>אוֹי וֶועה, דאָס מייֵנְט זיִ מיִךְ ,נוּ אוּן פאַר גאָט האָט איִהר</Unicode>
+                    <Unicode>אוֹי וֶועה, דאָס מייֵנְט זיִ מיִךְ, נוּ אוּן פאַר גאָט האָט איִהר</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextLine id="r_3_1l7" custom="readingOrder {index:13;}">
@@ -143,14 +143,14 @@
                     <Unicode>אוֹי אוֹי... טאָ געֶהט זַייט מוֹחֵל אוּן פעֶרמאַכֿט דיִ טיִרעֶן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_4_1l5" custom="readingOrder {index:18;} stage {offset:0;length:59;type:business;}">
+            <TextLine id="r_4_1l5" custom="readingOrder {index:18;} stage {offset:0;length:58;type:business;}">
                 <Coords points="327,1170 1275,1179 1275,1131 1136,1122 327,1133"/>
                 <Baseline points="334,1160 381,1161 428,1161 475,1161 522,1162 570,1162 617,1162 664,1162 711,1162 758,1162 806,1162 853,1161 900,1161 947,1161 994,1161 1042,1161 1089,1160 1136,1160 1183,1160 1230,1160 1278,1160"/>
                 <TextEquiv>
-                    <Unicode>(אין דער צייט הייבט זיך אויף יאכֿטשע און נעהמט דעם גאָרטעל)</Unicode>
+                    <Unicode>(אין דער צייט הייבט זיך אויף יאכֿטשע און נעהמט דעם גאָרטעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1635959183252_2748" custom="readingOrder {index:19;} stage {offset:47;length:25;type:exit;}">
+            <TextLine id="line_1635959183252_2748" custom="readingOrder {index:19;} stage {offset:47;length:25;type:exit;} stage {offset:0;length:20;type:business;}">
                 <Coords points="329,1236 1273,1227 1272,1186 1178,1178 328,1183"/>
                 <Baseline points="336,1212 362,1212 388,1212 414,1211 440,1211 466,1211 493,1211 519,1211 545,1211 571,1211 597,1211 623,1211 650,1211 676,1211 702,1211 728,1211 754,1211 781,1211 805,1209 831,1211 857,1213 883,1215 909,1216 936,1216 962,1217 988,1217 1014,1217 1041,1216 1067,1216 1093,1215 1119,1214 1145,1214 1172,1214 1198,1213 1224,1213 1250,1213 1277,1213"/>
                 <TextEquiv>
@@ -178,14 +178,14 @@
                     <Unicode>בַּיי מיִר ר' יאָכֿטשֶעֶן זאָל זיִך דאָס טְרעֶפעֶן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_4_1l11" custom="readingOrder {index:23;} stage {offset:0;length:80;type:business;}">
+            <TextLine id="r_4_1l11" custom="readingOrder {index:23;} stage {offset:0;length:80;type:mixed;}">
                 <Coords points="289,1425 1311,1433 1311,1385 1209,1375 289,1389"/>
                 <Baseline points="296,1416 346,1417 397,1417 448,1417 499,1417 550,1418 601,1418 652,1418 703,1418 754,1418 805,1418 855,1418 906,1418 957,1418 1008,1418 1059,1418 1110,1418 1161,1418 1212,1417 1263,1417 1314,1417"/>
                 <TextEquiv>
                     <Unicode>(אויפֿטריט טוּרְניווער, יאָכֿטשׁע וויל איהם אַרויסיאגען, דער טוּרְניווער לויפְֿט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_4_1l12" custom="readingOrder {index:24;} stage {offset:0;length:75;type:business;}">
+            <TextLine id="r_4_1l12" custom="readingOrder {index:24;} stage {offset:0;length:75;type:mixed;}">
                 <Coords points="288,1495 769,1474 1101,1516 1312,1482 1312,1433 1268,1425 288,1425"/>
                 <Baseline points="295,1468 346,1469 397,1469 448,1470 499,1470 550,1470 601,1470 652,1470 703,1470 754,1470 805,1470 856,1470 907,1470 958,1470 1009,1470 1060,1470 1111,1470 1162,1470 1213,1471 1264,1471 1315,1472"/>
                 <TextEquiv>
