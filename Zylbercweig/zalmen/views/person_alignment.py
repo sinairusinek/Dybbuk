@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import datetime as _dt
+import html
 import pathlib
 import sys
 
@@ -28,6 +29,9 @@ DRAFTS_TSV = PEOPLE_DIR / "people_alignment_drafts.tsv"
 QUEUE_TSV = PEOPLE_DIR / "people_alignment_queue.tsv"
 DB_TSV = PEOPLE_DIR / "people_db.tsv"
 EXTRACTED_TSV = PEOPLE_DIR / "people_extracted.tsv"
+ENTRY_TEXTS_TSV = PEOPLE_DIR / "entry_texts.tsv"
+ENTRY_MENTIONS_TSV = PEOPLE_DIR / "entry_mentions_slim.tsv"
+TEXT_DISPLAY_CAP = 20_000
 DECISIONS_TSV = PEOPLE_DIR / "people_alignment_decisions.tsv"
 REPO_DECISIONS_PATH = "Zylbercweig/people/people_alignment_decisions.tsv"
 
@@ -84,6 +88,73 @@ def _xml_to_pids(mtime: float) -> dict[str, list[str]]:
         for r in csv.DictReader(f, delimiter="\t"):
             idx.setdefault(r["xml_id"], []).append(r["person_id"])
     return idx
+
+
+@st.cache_data
+def _load_entry_texts(mtime: float) -> dict[str, str]:
+    """person_id → full entry text (⏎ = newline). ~30 MB, loaded once."""
+    if not ENTRY_TEXTS_TSV.exists():
+        return {}
+    csv.field_size_limit(sys.maxsize)
+    with open(ENTRY_TEXTS_TSV) as f:
+        return {r["person_id"]: r["entry_text"]
+                for r in csv.DictReader(f, delimiter="\t")}
+
+
+@st.cache_data
+def _load_entry_mentions(mtime: float) -> dict[str, list[dict]]:
+    """person_id → mention rows (name / gender / relation / sentence)."""
+    if not ENTRY_MENTIONS_TSV.exists():
+        return {}
+    out: dict[str, list[dict]] = {}
+    with open(ENTRY_MENTIONS_TSV) as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            pid = r.get("host_person_id", "")
+            if pid:
+                out.setdefault(pid, []).append(r)
+    return out
+
+
+def _render_entry_context(pid: str, texts: dict[str, str],
+                          mentions: dict[str, list[dict]], key: str) -> None:
+    """Expanders with the full entry text + its extracted mentions."""
+    text = texts.get(pid, "")
+    label = f"📜 Full entry text ({len(text):,} chars)" if text else "📜 Full entry text — none on file"
+    with st.expander(label):
+        if text:
+            shown = html.escape(text[:TEXT_DISPLAY_CAP]).replace("⏎", "<br>")
+            st.markdown(_rtl(shown), unsafe_allow_html=True)
+            if len(text) > TEXT_DISPLAY_CAP:
+                st.caption(f"…truncated at {TEXT_DISPLAY_CAP:,} of {len(text):,} chars.")
+    ms = mentions.get(pid, [])
+    with st.expander(f"💬 Mentions in this entry ({len(ms)})"):
+        for m in ms[:150]:
+            line = m["mention_name"]
+            extra = " · ".join(x for x in (m.get("gender"), m.get("relation_category")) if x)
+            if extra:
+                line += f" — {extra}"
+            st.markdown(_rtl(f"<b>{html.escape(line)}</b>"), unsafe_allow_html=True)
+            if m.get("relation_sentence"):
+                st.markdown(_rtl(f"…{html.escape(m['relation_sentence'])}…", 0.9),
+                            unsafe_allow_html=True)
+        if len(ms) > 150:
+            st.caption(f"…{len(ms) - 150} more mentions not shown.")
+
+
+def _render_db_full_fields(row: dict) -> None:
+    """All non-empty fields of a DB row (the DB side's 'full entry')."""
+    if not row:
+        st.caption("No DB row found for this id.")
+        return
+    for k, v in row.items():
+        if k in ("raw", "source") or not (v or "").strip():
+            continue
+        v = v.strip()
+        if any("֐" <= c <= "׿" for c in v):
+            st.markdown(f"**{k}:** <span dir='rtl'>{html.escape(v)}</span>",
+                        unsafe_allow_html=True)
+        else:
+            st.markdown(f"**{k}:** {html.escape(v)}")
 
 
 def _load_decisions() -> dict[str, dict]:
@@ -144,7 +215,9 @@ def _db_label(db: dict) -> str:
 
 # ── batch confirm mode ────────────────────────────────────────────────────────
 def _render_batch(drafts: list[dict], decisions: dict[str, dict],
-                  db: dict[str, dict], xml_idx: dict[str, list[str]]) -> None:
+                  db: dict[str, dict], xml_idx: dict[str, list[str]],
+                  entries: dict[str, dict], texts: dict[str, str],
+                  mentions: dict[str, list[dict]]) -> None:
     c1, c2 = st.columns(2)
     with c1:
         verb = st.selectbox("Draft verdict", ["ALIGN", "NEW", "MERGE", "PSEUDONYM"],
@@ -220,6 +293,39 @@ def _render_batch(drafts: list[dict], decisions: dict[str, dict],
         st.rerun()
     b2.caption("Untick a row to leave it for card review. Unticked rows are NOT saved.")
 
+    # ── inspect: full entry + mentions vs the draft's target, side by side ────
+    st.divider()
+    labels = {f"{d['heading']} · {d['person_id']}": d for d in chunk}
+    pick = st.selectbox("🔍 Inspect a row from this page (full entry ↔ target)",
+                        ["—"] + list(labels), key=f"pa_inspect_{verb}_{conf}_{page}")
+    if pick == "—":
+        return
+    d = labels[pick]
+    pid = d["person_id"]
+    left, right = st.columns(2, gap="large")
+    with left:
+        st.subheader("Entry")
+        _render_entry_card(d, entries.get(pid, {}))
+        _render_entry_context(pid, texts, mentions, key=f"batch_{pid}")
+    with right:
+        if verb == "MERGE":
+            mx = d.get("draft_merge_xml_id", "")
+            other = _resolve_merge_pid(mx, xml_idx)
+            st.subheader(f"Merge target · `{other or mx}`")
+            if other:
+                e = entries.get(other, {})
+                _render_entry_card({"person_id": other,
+                                    "heading": e.get("heading", "?")}, e)
+                _render_entry_context(other, texts, mentions, key=f"batch_t_{pid}")
+            else:
+                st.warning("Merge target xml_id is ambiguous across volumes — "
+                           "review in card mode.")
+        else:
+            db_id = d.get("draft_aligned_db_id", "")
+            st.subheader(f"DB target · `{db_id or '—'}`")
+            with st.container(border=True):
+                _render_db_full_fields(db.get(db_id, {}))
+
 
 # ── card review mode ─────────────────────────────────────────────────────────
 def _render_entry_card(d: dict, entry: dict) -> None:
@@ -263,11 +369,14 @@ def _render_candidates(q: dict, db: dict[str, dict], draft_db: str) -> None:
                     extra.append(f"{label}: {v}")
             if extra:
                 st.caption(" · ".join(extra))
+            with st.expander("all DB fields"):
+                _render_db_full_fields(row)
 
 
 def _render_cards(drafts: list[dict], decisions: dict[str, dict],
                   db: dict[str, dict], queue: dict[str, dict],
-                  entries: dict[str, dict], xml_idx: dict[str, list[str]]) -> None:
+                  entries: dict[str, dict], xml_idx: dict[str, list[str]],
+                  texts: dict[str, str], mentions: dict[str, list[dict]]) -> None:
     verbs = sorted({d["draft_decision"] for d in drafts})
     f1, f2, f3 = st.columns(3)
     with f1:
@@ -323,9 +432,21 @@ def _render_cards(drafts: list[dict], decisions: dict[str, dict],
     with left:
         st.subheader("Entry")
         _render_entry_card(d, entries.get(pid, {}))
+        _render_entry_context(pid, texts, mentions, key=f"card_{pid}")
     with right:
         st.subheader("DB candidates")
         _render_candidates(q, db, d.get("draft_aligned_db_id", ""))
+        mx = (d.get("draft_merge_xml_id") or "").strip()
+        if mx:
+            other = _resolve_merge_pid(mx, xml_idx)
+            st.subheader(f"Merge target · `{other or mx}`")
+            if other:
+                e = entries.get(other, {})
+                _render_entry_card({"person_id": other,
+                                    "heading": e.get("heading", "?")}, e)
+                _render_entry_context(other, texts, mentions, key=f"card_t_{pid}")
+            else:
+                st.warning("Merge target xml_id is ambiguous across volumes.")
 
     st.divider()
     notes = st.text_input("Notes (optional)", key=f"pa_notes_{pid}")
@@ -381,6 +502,8 @@ def render() -> None:
     db = _load_db(_mtime(DB_TSV))
     entries = _load_entries(_mtime(EXTRACTED_TSV))
     xml_idx = _xml_to_pids(_mtime(EXTRACTED_TSV))
+    texts = _load_entry_texts(_mtime(ENTRY_TEXTS_TSV))
+    mentions = _load_entry_mentions(_mtime(ENTRY_MENTIONS_TSV))
     decisions = _load_decisions()
 
     n_done = sum(1 for d in drafts if d["person_id"] in decisions)
@@ -391,6 +514,6 @@ def render() -> None:
                     horizontal=True, key="pa_mode")
     st.divider()
     if mode == "⚡ Batch confirm":
-        _render_batch(drafts, decisions, db, xml_idx)
+        _render_batch(drafts, decisions, db, xml_idx, entries, texts, mentions)
     else:
-        _render_cards(drafts, decisions, db, queue, entries, xml_idx)
+        _render_cards(drafts, decisions, db, queue, entries, xml_idx, texts, mentions)

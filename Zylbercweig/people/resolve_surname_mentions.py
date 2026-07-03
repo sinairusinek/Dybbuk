@@ -32,7 +32,7 @@ if str(HERE) not in sys.path:
 from people_common import (  # noqa: E402
     load_db_rows,
     load_extracted,
-    mention_volume,
+    load_mentions_with_host,
     read_tsv,
     write_tsv,
 )
@@ -45,7 +45,6 @@ from people_similarity import (  # noqa: E402
     variant_pair_score,
 )
 
-MENTIONS_TSV = HERE / "mentions_all.tsv"
 HUB_TSV = HERE / "person_hub.tsv"
 DERIVED_TSV = HERE / "derived_mention_alignments.tsv"
 OUT_TSV = HERE / "mention_surname_resolutions.tsv"
@@ -190,19 +189,23 @@ def mention_year(m: dict) -> int | None:
 
 def main() -> None:
     idx = HubIndex()
-    mentions = read_tsv(MENTIONS_TSV)
+    mentions = load_mentions_with_host()
 
-    # group mentions per host entry — the resolution unit is (surname × entry)
+    # group mentions per host entry — the resolution unit is (surname × entry).
+    # Host identity is forward-filled (see people_common); a row that could
+    # not be filled gets a singleton group so it can never borrow another
+    # entry's within-entry evidence.
     by_host: dict[tuple[str, str], list[dict]] = defaultdict(list)
     for m in mentions:
-        by_host[(mention_volume(m.get("src_file", "")),
-                 (m.get("host_xml_id") or "").strip())].append(m)
+        key = ((m["host_volume"], m["host_person_id"]) if m["host_person_id"]
+               else (m["host_volume"], f"~{m['mention_id']}"))
+        by_host[key].append(m)
 
     out: list[dict] = []
     n_gold = n_gold_agree = 0
 
-    for (vol, host_xml), group in by_host.items():
-        host_pid = f"P-{vol}-{host_xml}" if host_xml else ""
+    for (vol, host_key), group in by_host.items():
+        host_pid = host_key if not host_key.startswith("~") else ""
         host_entry = idx.entry_by_pid.get(host_pid, {})
         host_by = extract_year(host_entry.get("birth_date", ""))
         host_dy = extract_year(host_entry.get("death_date", ""))
@@ -335,9 +338,9 @@ def main() -> None:
             out.append({
                 "mention_id": m.get("mention_id", ""),
                 "volume": vol,
-                "host_xml_id": host_xml,
-                "host_person_id": host_pid if host_entry else "",
-                "host_heading": m.get("host_heading", ""),
+                "host_xml_id": m["host_xml_id_filled"],
+                "host_person_id": host_pid,
+                "host_heading": m["host_heading_filled"],
                 "surname_token": token,
                 "mention_name": name,
                 "verdict": verdict,

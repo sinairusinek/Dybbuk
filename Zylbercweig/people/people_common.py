@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import csv
 import pathlib
+import re
 import sys
 from collections import defaultdict
 
@@ -22,6 +23,7 @@ csv.field_size_limit(sys.maxsize)
 
 HERE = pathlib.Path(__file__).resolve().parent
 
+MENTIONS_ALL_TSV = HERE / "mentions_all.tsv"
 EXTRACTED_TSV = HERE / "people_extracted.tsv"
 REVIEW_TSV = HERE / "people_alignment_review.tsv"
 DISAGREEMENTS_TSV = HERE / "alignment_disagreements.tsv"
@@ -163,3 +165,50 @@ def mention_volume(src_file: str) -> str:
         if ch.isdigit():
             return ch
     return ""
+
+
+def _norm_heading_ws(s: str) -> str:
+    return " ".join((s or "").replace("\xa0", " ").split())
+
+
+def load_mentions_with_host() -> list[dict]:
+    """mentions_all.tsv with host identity FORWARD-FILLED.
+
+    The file has spreadsheet semantics: only the FIRST row of each host-entry
+    block carries host_xml_id / host_heading / host_entry_text (3,078 of
+    38,269 rows); subsequent rows leave them empty, with host_heading_fill as
+    the already-filled heading on every row. Naively reading host_xml_id
+    per-row silently lumps 35k mentions into one pseudo-entry per volume.
+
+    Fill is validated: a row only inherits the running host when its
+    host_heading_fill matches the running host's heading (whitespace/nbsp
+    normalized). host_xml_id values are volume-prefixed ('1-facs_…') — the
+    prefix is stripped into host_volume.
+
+    Adds to every row: host_person_id ('P-<vol>-<xml>' or ''), host_volume,
+    host_xml_id_filled, host_heading_filled.
+    """
+    cur_src = cur_xml = cur_head = ""
+    out = []
+    for r in read_tsv(MENTIONS_ALL_TSV):
+        src = r.get("src_file", "")
+        if src != cur_src:
+            cur_src, cur_xml, cur_head = src, "", ""
+        x = (r.get("host_xml_id") or "").strip()
+        if x:
+            cur_xml = x
+            cur_head = _norm_heading_ws(r.get("host_heading", ""))
+        fill = _norm_heading_ws(r.get("host_heading_fill", ""))
+        vol, xml = mention_volume(src), ""
+        if cur_xml and fill and fill == cur_head:
+            m = re.match(r"^(\d+)-(.+)$", cur_xml)
+            if m:
+                vol, xml = m.group(1), m.group(2)
+            else:
+                xml = cur_xml
+        r["host_volume"] = vol
+        r["host_xml_id_filled"] = xml
+        r["host_person_id"] = f"P-{vol}-{xml}" if xml else ""
+        r["host_heading_filled"] = fill or cur_head
+        out.append(r)
+    return out

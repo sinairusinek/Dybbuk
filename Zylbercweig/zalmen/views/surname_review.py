@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import csv
 import datetime as _dt
+import html
 import pathlib
 import sys
 
@@ -25,8 +26,10 @@ PEOPLE_DIR = BASE / "people"
 RESOLUTIONS_TSV = PEOPLE_DIR / "mention_surname_resolutions.tsv"
 GROUPS_TSV = PEOPLE_DIR / "surname_groups.tsv"
 HUB_TSV = PEOPLE_DIR / "person_hub.tsv"
+ENTRY_TEXTS_TSV = PEOPLE_DIR / "entry_texts.tsv"
 DECISIONS_TSV = PEOPLE_DIR / "mention_resolution_decisions.tsv"
 REPO_DECISIONS_PATH = "Zylbercweig/people/mention_resolution_decisions.tsv"
+TEXT_DISPLAY_CAP = 20_000
 
 PAGE_SIZE = 15
 
@@ -61,6 +64,32 @@ def _load_hubs(mtime: float) -> dict[str, dict]:
         return {r["hub_id"]: r for r in csv.DictReader(f, delimiter="\t")}
 
 
+@st.cache_data
+def _load_entry_texts(mtime: float) -> dict[str, str]:
+    """person_id → full entry text (⏎ = newline). ~30 MB, loaded once."""
+    if not ENTRY_TEXTS_TSV.exists():
+        return {}
+    csv.field_size_limit(sys.maxsize)
+    with open(ENTRY_TEXTS_TSV) as f:
+        return {r["person_id"]: r["entry_text"]
+                for r in csv.DictReader(f, delimiter="\t")}
+
+
+def _entry_text_block(text: str, highlights: list[str]) -> None:
+    """Render an entry text RTL, with the given surfaces <mark>-highlighted."""
+    if not text:
+        st.caption("No entry text on file.")
+        return
+    shown = html.escape(text[:TEXT_DISPLAY_CAP])
+    for surface in sorted(set(highlights), key=len, reverse=True):
+        esc = html.escape(surface)
+        if esc:
+            shown = shown.replace(esc, f"<mark>{esc}</mark>")
+    st.markdown(_rtl(shown.replace("⏎", "<br>")), unsafe_allow_html=True)
+    if len(text) > TEXT_DISPLAY_CAP:
+        st.caption(f"…truncated at {TEXT_DISPLAY_CAP:,} of {len(text):,} chars.")
+
+
 def _load_decisions() -> dict[str, dict]:
     if not DECISIONS_TSV.exists():
         return {}
@@ -91,7 +120,8 @@ def _rtl(text: str, size: float = 1.0, weight: int = 400) -> str:
             f"font-weight:{weight}'>{text}</div>")
 
 
-def _candidate_panel(cand_ids: list[str], hubs: dict[str, dict]) -> dict[str, str]:
+def _candidate_panel(cand_ids: list[str], hubs: dict[str, dict],
+                     texts: dict[str, str], surname: str) -> dict[str, str]:
     """Render fixed candidate cards; return hub_id → short label like '①'."""
     marks = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫"
     label_of: dict[str, str] = {}
@@ -117,6 +147,14 @@ def _candidate_panel(cand_ids: list[str], hubs: dict[str, dict]) -> dict[str, st
                 tops = (h.get("top_surfaces") or "").replace("|", " · ")
                 if tops:
                     st.markdown(_rtl(tops, 0.85), unsafe_allow_html=True)
+                pids = [p for p in (h.get("entry_person_ids") or "").split("|") if p]
+                with_text = [p for p in pids if texts.get(p)]
+                if with_text:
+                    with st.expander("📜 own entry"):
+                        for p in with_text:
+                            if len(with_text) > 1:
+                                st.caption(f"`{p}`")
+                            _entry_text_block(texts[p], [surname])
     return label_of
 
 
@@ -134,6 +172,7 @@ def render() -> None:
     resolutions = _load_resolutions(_mtime(RESOLUTIONS_TSV))
     groups = _load_groups(_mtime(GROUPS_TSV))
     hubs = _load_hubs(_mtime(HUB_TSV))
+    texts = _load_entry_texts(_mtime(ENTRY_TEXTS_TSV))
     decisions = _load_decisions()
 
     # ── surname picker ────────────────────────────────────────────────────────
@@ -165,7 +204,7 @@ def render() -> None:
     if sel["family_cluster"] == "1":
         st.warning("👪 **Family cluster** — fame prior disabled; prefer in-entry "
                    "evidence or abstain to family level.", icon="👪")
-    label_of = _candidate_panel(cand_ids, hubs)
+    label_of = _candidate_panel(cand_ids, hubs, texts, surname)
 
     st.divider()
 
@@ -188,6 +227,10 @@ def render() -> None:
     chunk = visible[page * PAGE_SIZE:(page + 1) * PAGE_SIZE]
 
     FAMILY, OTHER, SKIP = "👪 Family level only", "❓ Other / not listed", "⏭ Skip"
+    surfaces_by_host: dict[str, list[str]] = {}
+    for r in rows:
+        if r["host_person_id"]:
+            surfaces_by_host.setdefault(r["host_person_id"], []).append(r["mention_name"])
     picks: dict[str, str] = {}
     last_host = None
     for r in chunk:
@@ -195,6 +238,11 @@ def render() -> None:
         host = r["host_heading"] or r["host_person_id"] or "(unknown entry)"
         if host != last_host:
             st.markdown(_rtl(f"📖 {host}", 1.05, 600), unsafe_allow_html=True)
+            host_pid = r["host_person_id"]
+            if host_pid and texts.get(host_pid):
+                with st.expander("📜 host entry text (mentions highlighted)"):
+                    _entry_text_block(texts[host_pid],
+                                      surfaces_by_host.get(host_pid, []) + [surname])
             last_host = host
         with st.container(border=True):
             top = st.columns([3, 2])

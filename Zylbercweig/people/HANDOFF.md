@@ -146,25 +146,48 @@ Everything is idempotent and writes to fixed paths in `Zylbercweig/people/`.
   (surname × host entry): within-entry expansion first, then hard gates
   (gender, birth-impossibility), then scoring (co-mention lexicon hits,
   career overlap, fame prior — prior disabled inside family clusters, i.e.
-  ≥2 corpus-famous candidates). Verdicts: RESOLVED 4,816 (within_entry 2,239 /
-  unique 1,950 / scored 627), AMBIGUOUS 1,227, UNKNOWN 398.
+  ≥2 corpus-famous candidates). Verdicts (2026-07-03, after the forward-fill
+  fix below): RESOLVED 4,103 (unique 3,223 / scored 798 / within_entry 82),
+  AMBIGUOUS 1,940, UNKNOWN 398.
+- **mentions_all.tsv forward-fill trap (found 2026-07-03):** only the FIRST
+  row of each host-entry block carries host_xml_id/host_heading/
+  host_entry_text (3,078 of 38,269 rows), and host_xml_id is volume-prefixed
+  (`1-facs_…`). Read it ONLY via `people_common.load_mentions_with_host()`
+  (validated forward-fill; adds host_person_id). The original resolver run
+  silently scoped "within-entry" to whole volumes — 2,157 of its 2,239
+  within_entry hits were contamination.
 - Candidate universe = heading surnames (comma-aware; comma-less headings drop
   common given names from BOTH ends — orders are mixed in this corpus) PLUS
   RA-validated surname-sheet referents (catches given-name/mononym address
   forms like לייוויק → כאַנוקאָוו).
 - Gold check vs the surname sheet (dominant-referent semantics, so an
-  imperfect yardstick): 72.6% of RESOLVED agree; unique_candidate 91.5%,
-  scored 67.4%, within_entry 57.9% (within-entry deliberately overrides the
-  corpus-dominant referent — spot-checks show mostly correct context reads,
-  with the known hard case: famous-relative collision, e.g.
-  גאָלדפֿאַדען-רעפּערטואָר resolving to the in-entry Naftali instead of Avrom).
+  imperfect yardstick): **91.4%** of RESOLVED agree; scored 99.1%,
+  unique_candidate 90.6%, within_entry 32.8% (within-entry deliberately
+  overrides the corpus-dominant referent — the known hard case is
+  famous-relative collision, e.g. גאָלדפֿאַדען-רעפּערטואָר resolving to the
+  in-entry Naftali instead of Avrom; the set is small, B3 review covers it).
 - `zalmen/views/surname_review.py` (B3) — review BY SURNAME: fixed candidate
   panel, sentence context, resolver suggestion pre-selected, one-click
   family-level abstain, chips stored for calibration. Decisions →
   `mention_resolution_decisions.tsv`.
 - `zalmen/views/person_hub.py` — read-only person-centric hub browser.
 
+### Entry context in the views (2026-07-03)
+- `export_entry_context.py` → `entry_texts.tsv` (3,032 entries, ~29 MB;
+  person_id → full entry text, ⏎ = newline) + `entry_mentions_slim.tsv`
+  (38,269 mention rows with host_person_id, no text payload).
+- B2: both sides open fully — entry card gets "📜 full entry text" +
+  "💬 mentions in this entry" expanders; DB candidate cards get an
+  "all DB fields" expander; batch-confirm mode gets an "🔍 Inspect a row"
+  panel (full entry ↔ draft target side by side, MERGE targets included).
+- B3: host entries open with the surname mentions <mark>-highlighted;
+  candidate cards get an "📜 own entry" expander.
+
 ### Known limitations / next levers
+- Within-entry expansion currently uses only OTHER MENTION ROWS of the same
+  entry (82 hits). Scanning the entry TEXT for fuller candidate forms
+  (entry_texts.tsv is now on disk) would recover the rest of the coref
+  signal — next lever for the resolver.
 - Surname candidate matching is exact-token; spelling drift (אזרא/עזרא) needs
   the same trigram/phonetic fallback as the dedup gate (bliakhar-class misses).
 - `alternative_heading` column of the surnames sheet not yet used as candidates.
