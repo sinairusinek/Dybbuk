@@ -446,7 +446,7 @@ def _render_cluster_details(c: ClusterCard, a_rows_by_cid, db_by_id, samples) ->
             db = db_by_id.get(dbid, {})
             score_txt = c_scores[i] if i < len(c_scores) else ""
             method_txt = c_methods[i] if i < len(c_methods) else ""
-            icon = {"exact": "🎯", "phonetic": "🔊", "fuzzy": "🔤"}.get(method_txt, "•")
+            icon = {"exact": "🎯", "phonetic": "🔊", "ipa_phonetic": "🔉", "fuzzy": "🔤", "person": "👤", "person_phonetic": "👤🔉"}.get(method_txt, "•")
             st.caption(
                 f"{icon} {dbid} · {db.get('name','(missing)')} · "
                 f"score {score_txt} · {method_txt}"
@@ -580,17 +580,20 @@ def _render_map(
         key="settlement_audit_map",
     )
     clicked = (out or {}).get("last_object_clicked_tooltip")
-    # st_folium returns the most recent tooltip forever — even after we've
-    # already handled it. Without a dedup guard, every rerun (picker change,
-    # action click, etc.) would replay the old click and snap focus back to
-    # whichever city was clicked last on the map (typically NY). Remember the
-    # tooltip we last acted on and ignore it until a genuinely new click fires.
-    last_handled = st.session_state.get("sa_last_handled_tooltip")
-    if clicked and clicked != last_handled:
-        st.session_state["sa_last_handled_tooltip"] = clicked
-        qid = clicked.split("|", 1)[0].strip()
-        if qid and qid != focus_qid:
-            st.session_state["audit_target_qid"] = qid
+    # st_folium returns the most recent click's tooltip on EVERY rerun — even
+    # reruns triggered by unrelated work (merges, mints, picker changes). We must
+    # dedup on the *clicked QID*, not the raw tooltip string: the tooltip embeds
+    # a live mention count (`qid|label|N mentions`), so any mutation that shifts
+    # a count rebuilds the map and makes st_folium re-emit the same physical
+    # click with a different N. Deduping on the full string let that slip through
+    # and snapped focus back to the last-clicked marker (typically NY) mid-work.
+    # Keying the guard on QID makes a replayed click a no-op regardless of count.
+    clicked_qid = (clicked or "").split("|", 1)[0].strip()
+    last_handled_qid = st.session_state.get("sa_last_handled_qid")
+    if clicked_qid and clicked_qid != last_handled_qid:
+        st.session_state["sa_last_handled_qid"] = clicked_qid
+        if clicked_qid != focus_qid:
+            st.session_state["audit_target_qid"] = clicked_qid
             st.rerun(scope="app")
 
     # Legend
@@ -1070,11 +1073,18 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
         return f"{head}  ·  {ix.mentions_in_city(qid)} mentions"
 
     with picker_col:
+        # index=None so the picker starts empty rather than snapping to the
+        # first option (which, sorted by mentions, is New York). RAs must pick a
+        # city before any results render. Once selected, the value persists in
+        # session_state under this key across reruns and map clicks.
         city = st.selectbox(
             "Settlement", cities_sorted, format_func=_city_label,
             key="settlement_audit_city",
+            index=None,
+            placeholder="Select a city to begin…",
         )
     if not city:
+        st.info("Pick a settlement above to see its DB rows and clusters.")
         return
     qid = city[0]
 
