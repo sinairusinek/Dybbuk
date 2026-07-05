@@ -68,30 +68,13 @@ TEI_NS = "http://www.tei-c.org/ns/1.0"
 XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
 
 
-@st.cache_resource(show_spinner=False)
-def _load_all_xml() -> dict[str, ET.ElementTree]:
-    trees: dict[str, ET.ElementTree] = {}
-    for json_name, xml_name in _JSON_TO_XML.items():
-        xml_path = LEXICON_DIR / xml_name
-        if xml_path.exists():
-            try:
-                trees[json_name] = ET.parse(xml_path)
-            except ET.ParseError:
-                pass
-    return trees
-
-
-def get_entry_text(json_file: str, xml_id: str) -> str | None:
-    if not json_file or not xml_id:
-        return None
-    tree = _load_all_xml().get(json_file)
-    if tree is None:
-        return None
-    for el in tree.getroot().iter(f"{{{TEI_NS}}}div"):
-        if el.get(XML_ID) == xml_id:
-            text = " ".join(" ".join(e.itertext()).strip() for e in el.iter() if e.text or e.tail)
-            return re.sub(r"\s+", " ", text).strip() or None
-    return None
+# XML entry-text lookup now lives in the shared, lazy, per-volume loader
+# (zalmen/lexicon.py). This module used to eagerly parse all seven volumes into
+# memory and pin them via cache_resource — one of four such copies that together
+# risked OOM on Streamlit Cloud and silently dropped whole volumes ("Entry not
+# found in XML"). Re-exported here so existing callers — including
+# settlement_audit, which imports get_entry_text from this module — are unchanged.
+from zalmen.lexicon import get_entry_text  # noqa: E402,F401
 
 
 @st.cache_data(show_spinner=False)
@@ -328,7 +311,7 @@ def render() -> None:
 
     st.divider()
 
-    f1, f2, f3 = st.columns([2, 1, 1])
+    f1, f2, f3, f4 = st.columns([2, 1, 1, 1.2])
     with f1:
         status_filter = st.segmented_control(
             "Show",
@@ -339,6 +322,8 @@ def render() -> None:
         sort_by = st.selectbox("Sort by", ["Candidate score ↓", "Cluster size ↓", "Name"], index=0)
     with f3:
         type_filter = st.text_input("Org type contains", "").strip().lower()
+    with f4:
+        name_filter = st.text_input("Name contains", "").strip().lower()
 
     def visible_pred(r: dict[str, str]) -> bool:
         d = r.get("decision", "").strip()
@@ -348,6 +333,15 @@ def render() -> None:
             return False
         if type_filter and type_filter not in r.get("org_type", "").lower():
             return False
+        if name_filter:
+            hay = " ".join((
+                r.get("canonical_yiddish", ""),
+                r.get("name", ""),
+                r.get("name_yiddish", ""),
+                r.get("name_yiddish_translit", ""),
+            )).lower()
+            if name_filter not in hay:
+                return False
         return True
 
     visible = [r for r in a_rows if visible_pred(r)]
@@ -520,7 +514,7 @@ def render() -> None:
             db = db_by_id.get(dbid, {})
             score_txt = c_scores[i] if i < len(c_scores) else ""
             method_txt = c_methods[i] if i < len(c_methods) else ""
-            icon = {"exact": "🎯", "phonetic": "🔊", "fuzzy": "🔤"}.get(method_txt, "•")
+            icon = {"exact": "🎯", "phonetic": "🔊", "ipa_phonetic": "🔉", "fuzzy": "🔤", "person": "👤", "person_phonetic": "👤🔉"}.get(method_txt, "•")
             box = st.container(border=True)
             with box:
                 st.write(f"{icon} {dbid} · {db.get('name','(missing)')}")

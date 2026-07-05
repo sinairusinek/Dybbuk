@@ -173,31 +173,11 @@ _JSON_TO_XML = {
 TEI_NS = "http://www.tei-c.org/ns/1.0"
 XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
 
-@st.cache_resource(show_spinner=False)
-def _load_all_xml() -> dict[str, ET.ElementTree]:
-    trees: dict[str, ET.ElementTree] = {}
-    for json_name, xml_name in _JSON_TO_XML.items():
-        xml_path = LEXICON_DIR / xml_name
-        if xml_path.exists():
-            try:
-                trees[json_name] = ET.parse(xml_path)
-            except ET.ParseError:
-                pass
-    return trees
-
-def get_entry_text(json_file: str, xml_id: str) -> str | None:
-    if not json_file or not xml_id:
-        return None
-    tree = _load_all_xml().get(json_file)
-    if tree is None:
-        return None
-    for el in tree.getroot().iter(f"{{{TEI_NS}}}div"):
-        if el.get(XML_ID) == xml_id:
-            text = " ".join(
-                " ".join(e.itertext()).strip() for e in el.iter() if e.text or e.tail
-            )
-            return re.sub(r"\s+", " ", text).strip() or None
-    return None
+# XML entry-text lookup now lives in the shared, lazy, per-volume loader
+# (zalmen/lexicon.py) — see the note there. This view previously kept its own
+# eager all-volumes parse pinned via cache_resource, which (times four views)
+# risked OOM on Streamlit Cloud and silently dropped whole volumes.
+from zalmen.lexicon import get_entry_text  # noqa: E402,F401
 
 
 # ── I/O ───────────────────────────────────────────────────────────────────────
@@ -615,9 +595,11 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
     type_options = [t for t, _ in sorted(type_counts.items(), key=lambda x: (-x[1], x[0]))]
     type_labels = {t: f"{t} ({type_counts[t]})" for t in type_options}
 
-    col_f1, col_f2, col_f3 = st.columns([2, 1.2, 1])
+    col_f1, col_f1b, col_f2, col_f3 = st.columns([1.6, 1.2, 1.2, 1])
     with col_f1:
         name_q = st.text_input("Search name", key=f"name_q_{tab_key}")
+    with col_f1b:
+        db_id_q = st.text_input("Search DB ID", key=f"db_id_q_{tab_key}")
     with col_f2:
         status_f = st.selectbox(
             "Geo status",
@@ -646,7 +628,11 @@ def _render_tab(headers, pool, tab_key: str, read_only_hint: bool = False):
         visible = [r for r in visible if r.get("org_type", "").strip().lower() in sel_norm]
     if name_q.strip():
         q = name_q.strip().lower()
-        visible = [r for r in visible if q in (r.get("canonical_yiddish", "").lower())]
+        visible = [r for r in visible if q in (r.get("canonical_yiddish", "").lower())
+                                       or q in (r.get("name", "").lower())]
+    if db_id_q.strip():
+        q = db_id_q.strip().lower()
+        visible = [r for r in visible if q in r.get("db_id", "").lower()]
     if not show_generic:
         visible = [r for r in visible if r.get("is_generic") != "TRUE"]
     if not show_sub:

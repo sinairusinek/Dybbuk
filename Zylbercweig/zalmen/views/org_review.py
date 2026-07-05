@@ -122,31 +122,11 @@ def _has_yiddish(s: str) -> bool:
 	return bool(_YID_CHAR_RE.search(s or ""))
 
 
-@st.cache_resource(show_spinner=False)
-def _load_all_xml() -> dict[str, ET.ElementTree]:
-	trees: dict[str, ET.ElementTree] = {}
-	for json_name, xml_name in _JSON_TO_XML.items():
-		xml_path = LEXICON_DIR / xml_name
-		if xml_path.exists():
-			try:
-				trees[json_name] = ET.parse(xml_path)
-			except ET.ParseError:
-				pass
-	return trees
-
-
-@st.cache_data(show_spinner=False)
-def get_entry_text(json_file: str, xml_id: str) -> str | None:
-	if not json_file or not xml_id:
-		return None
-	tree = _load_all_xml().get(json_file)
-	if tree is None:
-		return None
-	for el in tree.getroot().iter(f"{{{TEI_NS}}}div"):
-		if el.get(XML_ID) == xml_id:
-			text = " ".join(" ".join(e.itertext()).strip() for e in el.iter() if e.text or e.tail)
-			return re.sub(r"\s+", " ", text).strip() or None
-	return None
+# XML entry-text lookup now lives in the shared, lazy, per-volume loader
+# (zalmen/lexicon.py) — see the note there. This view previously kept its own
+# eager all-volumes parse pinned via cache_resource, which (times four views)
+# risked OOM on Streamlit Cloud and silently dropped whole volumes.
+from zalmen.lexicon import get_entry_text  # noqa: E402,F401
 
 
 @st.cache_data(show_spinner=False)
@@ -1585,6 +1565,8 @@ def render() -> None:
 					"phonetic": "🔊",
 					"ipa_phonetic": "🔉",
 					"fuzzy": "🔤",
+					"person": "👤",
+					"person_phonetic": "👤🔉",
 				}.get(method_txt, "•")
 				with st.container(border=True):
 					st.markdown(

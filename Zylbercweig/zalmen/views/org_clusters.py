@@ -66,42 +66,11 @@ _JSON_TO_XML = {
 # ── XML entry lookup ──────────────────────────────────────────────────────────
 
 
-@st.cache_resource(show_spinner=False)
-def _load_all_xml() -> dict[str, ET.ElementTree]:
-    """Parse all Structured XML files once and cache them."""
-    trees: dict[str, ET.ElementTree] = {}
-    for json_name, xml_name in _JSON_TO_XML.items():
-        xml_path = LEXICON_DIR / xml_name
-        if xml_path.exists():
-            try:
-                trees[json_name] = ET.parse(xml_path)
-            except ET.ParseError:
-                pass
-    return trees
-
-
-def get_entry_text(json_file: str, xml_id: str) -> str | None:
-    """Return full entry text for a given xml:id, or None if not found."""
-    if not json_file or not xml_id:
-        return None
-    trees = _load_all_xml()
-    tree = trees.get(json_file)
-    if tree is None:
-        return None
-    root = tree.getroot()
-    # Find the div with this xml:id
-    for el in root.iter(f"{{{TEI_NS}}}div"):
-        if el.get(XML_ID) == xml_id:
-            # Collect all text content
-            text = " ".join(
-                " ".join(e.itertext()).strip()
-                for e in el.iter()
-                if e.text or e.tail
-            )
-            # Collapse whitespace
-            text = re.sub(r"\s+", " ", text).strip()
-            return text or None
-    return None
+# XML entry-text lookup now lives in the shared, lazy, per-volume loader
+# (zalmen/lexicon.py) — see the note there. This view previously kept its own
+# eager all-volumes parse pinned via cache_resource, which (times four views)
+# risked OOM on Streamlit Cloud and silently dropped whole volumes.
+from zalmen.lexicon import get_entry_text  # noqa: E402,F401
 
 
 # ── Data loading / saving ─────────────────────────────────────────────────────
