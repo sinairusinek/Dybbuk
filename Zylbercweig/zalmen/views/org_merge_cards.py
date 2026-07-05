@@ -40,12 +40,14 @@ from views.org_alignment import (  # noqa: E402
     load_alignment,
     load_core_db,
     load_samples,
+    save_alignment,
     get_entry_text,
     _split_pipe,
     _mtime,
     _status,
     _JSON_TO_XML,
 )
+from views.org_review import _ORG_TYPE_OPTIONS  # noqa: E402 — canonical typology
 from views.settlement_audit import (  # noqa: E402
     _align_clusters_to_db,
     _mint_db_from_clusters,
@@ -60,6 +62,18 @@ _DECISION_OPTIONS = [
     "(undecided)", "ALIGN", "NEW", "DESCRIPTIVE", "SPLIT",
     "DEFER", "DISCUSS", "GENERIC", "UNCLUSTER",
 ]
+
+
+def _set_org_type(cid: str, new_type: str, a_rows: list[dict], a_headers: list[str]) -> None:
+    """Update the cluster's org_type in the alignment TSV and persist it. Mirrors
+    org_review's inline type edit (save_alignment + clear the load cache) so both
+    views stay consistent; only the alignment file is touched."""
+    for r in a_rows:
+        if r.get("cluster_id") == cid:
+            r["org_type"] = new_type
+            break
+    save_alignment(a_headers, a_rows)
+    load_alignment.clear()
 
 
 def _settlements_for(row: dict, samples: dict, cid: str) -> list[str]:
@@ -94,7 +108,9 @@ def _card_actions(
 ) -> None:
     key = f"omc_{cid}"
     with st.popover("Actions ⋯", use_container_width=True):
-        tab_align, tab_merge, tab_new = st.tabs(["Align", "Merge", "New entity"])
+        tab_align, tab_merge, tab_new, tab_type = st.tabs(
+            ["Align", "Merge", "New entity", "Type"]
+        )
 
         # ── Align: pick a DB candidate or search the DB ──
         with tab_align:
@@ -200,6 +216,26 @@ def _card_actions(
                 log_action("org_merge_cards", "mint", target_id=cid,
                            decision="NEW", note=msg, new_db_id=new_id)
                 st.toast(msg, icon="✅")
+                st.rerun()
+
+        # ── Type: change the cluster's org_type ──
+        with tab_type:
+            st.caption("Change this cluster's organization type.")
+            cur_type = (row.get("org_type") or "").strip()
+            opts = list(_ORG_TYPE_OPTIONS)
+            if cur_type and cur_type not in opts:
+                opts.insert(0, cur_type)
+            cur_idx = opts.index(cur_type) if cur_type in opts else len(opts) - 1
+            new_type = st.selectbox(
+                "Org type", opts, index=cur_idx, key=f"{key}_type",
+                format_func=lambda t: t or "(blank)",
+            )
+            if st.button("Save type", key=f"{key}_savetype", type="primary",
+                         disabled=(new_type == cur_type), use_container_width=True):
+                _set_org_type(cid, new_type, a_rows, a_headers)
+                log_action("org_merge_cards", "edit_type", target_id=cid,
+                           decision="", note=f"{cur_type or '(blank)'} → {new_type or '(blank)'}")
+                st.toast(f"Type → {new_type or '(blank)'}", icon="✏️")
                 st.rerun()
 
 
