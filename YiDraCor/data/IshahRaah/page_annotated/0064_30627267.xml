@@ -3,13 +3,13 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:59</Creator>
         <Created>2021-10-31T16:41:17.267+02:00</Created>
-        <LastChange>2026-07-05T15:23:27.193+02:00</LastChange>
+        <LastChange>2026-07-05T15:28:41.774+02:00</LastChange>
         <TranskribusMetadata docId="820937" pageId="30627267" pageNr="64" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=CGYNJVZTUKZNVYNXXHKZKVEO" imageId="24094767"/>
     </Metadata>
     <Page imageFilename="30627267.jpg" imageWidth="1695" imageHeight="2714">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="168,251 168,2391 1482,2391 1482,251"/>
-            <TextLine id="tr_1_l1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="159,244 491,289 591,259 769,319 973,275 1447,289 1479,229 1308,202 781,250 272,175 157,210"/>
                 <Baseline points="168,270 730,270 760,276 790,274 820,274 850,276 870,275 902,276 932,278 956,280 1482,280"/>
                 <TextEquiv>
@@ -51,7 +51,7 @@
                     <Unicode>חנוך: אוֹי.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_l7" custom="readingOrder {index:6;} stage {offset:7; length:10; type:business;}">
+            <TextLine id="tr_1_l7" custom="readingOrder {index:6;} stage {offset:7; length:10; type:business;} speaker {offset:0; length:5; xmlid:beyde;}">
                 <Coords points="159,723 352,761 659,719 808,751 913,709 1479,754 1479,681 1210,657 828,696 753,656 614,693 556,659 375,698 159,669"/>
                 <Baseline points="168,710 1008,710 1018,710 1048,714 1078,714 1108,716 1138,716 1168,718 1198,718 1228,720 1258,720 1288,724 1318,726 1348,724 1378,726 1406,732 1437,731 1482,731"/>
                 <TextEquiv>

@@ -3,13 +3,13 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=578749:lm=provided:date=01_06_2026_21:59</Creator>
         <Created>2021-10-31T16:41:17.817+02:00</Created>
-        <LastChange>2026-07-05T15:23:29.817+02:00</LastChange>
+        <LastChange>2026-07-05T15:28:45.876+02:00</LastChange>
         <TranskribusMetadata docId="820937" pageId="30627281" pageNr="73" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=OFZFAVBMDJZVLRZFZYVUJOVB" imageId="24094781"/>
     </Metadata>
     <Page imageFilename="30627281.jpg" imageWidth="1897" imageHeight="2724">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="460,193 460,2408 1784,2408 1784,193"/>
-            <TextLine id="tr_1_l1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="450,215 873,272 1010,235 1184,262 1375,189 1782,227 1711,154 1400,169 1343,131 1148,195 1100,157 1002,195 450,146"/>
                 <Baseline points="460,226 1038,226 1042,224 1072,224 1102,228 1132,228 1162,228 1192,226 1222,226 1252,224 1784,224"/>
                 <TextEquiv>
@@ -44,7 +44,7 @@
                     <Unicode>שלומית: עֶר ערווארְטֶעט פאן דַיינֶער הַאנְד דֶען טאדט.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_l6" custom="readingOrder {index:5;}">
+            <TextLine id="tr_1_l6" custom="readingOrder {index:5;} speaker {offset:0; length:5; xmlid:beyde;}">
                 <Coords points="450,624 543,638 658,583 1784,624 1782,566 1736,555 704,571 449,532"/>
                 <Baseline points="460,584 1396,584 1426,588 1456,590 1486,592 1516,594 1546,598 1576,600 1606,604 1636,604 1666,608 1696,610 1726,608 1756,612 1784,612"/>
                 <TextEquiv>
@@ -163,7 +163,7 @@
                     <Unicode>צוריק געבּען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_l23" custom="readingOrder {index:22;}">
+            <TextLine id="tr_1_l23" custom="readingOrder {index:22;} speaker {offset:0; length:5; xmlid:beyde;}">
                 <Coords points="450,1732 1433,1713 1782,1756 1782,1696 1570,1676 1179,1699 976,1660 568,1701 450,1663"/>
                 <Baseline points="460,1714 1498,1714 1512,1716 1542,1720 1572,1724 1602,1726 1632,1728 1662,1732 1692,1736 1722,1738 1752,1739 1784,1739"/>
                 <TextEquiv>
