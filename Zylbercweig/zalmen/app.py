@@ -38,6 +38,7 @@ if "--view" in _args:
 # ── View registry ─────────────────────────────────────────────────────────────
 VIEWS = {
     "Organizations matching":  ("org_review",    "review"),
+    "Org merge · cards":       ("org_merge_cards", "omc"),
     "Organization Cards":      ("org_addresses", "geo"),
     "Settlement audit":        ("settlement_audit", "audit"),
     "DB Audit":                ("db_audit",      "dba"),
@@ -51,6 +52,7 @@ VIEWS = {
 
 VIEW_STATUS = {
     "Organizations matching":  "✅ Ready",
+    "Org merge · cards":       "🃏",
     "Organization Cards":      "✅ Ready",
     "Settlement audit":        "🌆",
     "DB Audit":                "🩺",
@@ -165,6 +167,9 @@ view_module, _ = VIEWS[selected]
 
 if view_module == "org_review":
     from views.org_review import render
+    render()
+elif view_module == "org_merge_cards":
+    from views.org_merge_cards import render
     render()
 elif view_module == "org_addresses":
     from views.org_addresses import render
