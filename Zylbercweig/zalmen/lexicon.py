@@ -69,8 +69,12 @@ def _entry_index(xml_name: str) -> dict[str, str]:
         xid = el.get(XML_ID)
         if not xid:
             continue
-        text = " ".join(" ".join(e.itertext()).strip() for e in el.iter() if e.text or e.tail)
-        text = re.sub(r"\s+", " ", text).strip()
+        # A single recursive itertext() over the entry <div>. The previous form
+        # (join over el.iter(), calling itertext() on each descendant) emitted
+        # every text node once per ancestor — the div's own itertext() already
+        # covered the whole subtree, so each child re-emitted its portion and
+        # the entry text came out doubled.
+        text = re.sub(r"\s+", " ", " ".join(el.itertext())).strip()
         if text:
             idx[xid] = text
     return idx
