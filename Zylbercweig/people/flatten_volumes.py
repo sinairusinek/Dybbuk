@@ -22,11 +22,11 @@ OUT_MENTIONS = OUT_DIR / "people_mentions_extracted.tsv"
 
 VOLUMES = {
     1: ["volume_1AIII.json", "volume_1BIII.json"],
-    2: ["volume_2III.json"],
+    2: ["volume_2III.json", "volume_2SplitsIII.json"],
     3: ["Volume_3III.json"],
     4: ["Volume_4III.json"],
     5: ["Volume5III.json", "Volume5HartIII.json"],
-    6: ["volume6III.json", "volume6LiliFeinmanIII.json"],
+    6: ["volume6III.json", "volume6LiliFeinmanIII.json", "volume6EisenbergIII.json"],
     7: ["volume7III.json"],
 }
 
