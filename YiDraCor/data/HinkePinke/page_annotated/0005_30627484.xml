@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_14:14</Creator>
         <Created>2022-04-11T16:21:19.905+02:00</Created>
-        <LastChange>2026-06-25T09:33:25.468+02:00</LastChange>
+        <LastChange>2026-07-11T09:32:55.031+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
@@ -25,7 +25,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="r_3_1" custom="readingOrder {index:1;} structure {type:paragraph;}">
@@ -72,7 +72,7 @@
                     <Unicode>אָה, עֶס גיבּט מעהר קיין פּלעזיִר,</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_3_1l7" custom="readingOrder {index:6;}">
+            <TextLine id="r_3_1l7" custom="readingOrder {index:6;} stage {offset:42; length:5; type:repeat;}">
                 <Coords points="415,1183 1286,1163 1286,1119 1187,1097 417,1124"/>
                 <Baseline points="424,1164 467,1162 510,1160 553,1159 596,1158 640,1157 683,1156 726,1155 769,1154 812,1154 856,1153 899,1153 942,1153 985,1152 1028,1152 1072,1152 1115,1152 1158,1152 1201,1151 1244,1151 1288,1151"/>
                 <TextEquiv>
@@ -209,11 +209,11 @@
                 <Coords points="1097,2310 1388,2321 1386,2249 1372,2243 1305,2249 1281,2269 1205,2246 1188,2261 1169,2253 1096,2262"/>
                 <Baseline points="1103,2294 1129,2295 1155,2297 1181,2298 1207,2299 1233,2301 1260,2302 1286,2302 1312,2302 1338,2302 1364,2301 1391,2299"/>
                 <TextEquiv>
-                    <Unicode>אללע: נוּן?</Unicode>
+                    <Unicode>אללע: נוּן? ?</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>

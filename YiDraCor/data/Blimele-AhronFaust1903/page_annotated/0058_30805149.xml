@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_10:55</Creator>
@@ -52,7 +52,7 @@
                     <Unicode>זעה איך דארטען געהען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649022970409_2521l6" custom="readingOrder {index:5;} stage {offset:38;length:5;type:business;}">
+            <TextLine id="TextRegion_1649022970409_2521l6" custom="readingOrder {index:5;} stage {offset:38; length:5; type:repeat;}">
                 <Coords points="240,780 392,813 1297,806 1295,731 1244,725 240,733"/>
                 <Baseline points="252,755 304,760 356,765 408,768 461,770 513,773 565,774 618,774 670,775 722,776 775,776 827,776 879,776 931,776 984,777 1036,777 1088,779 1141,780 1193,782 1245,786 1298,789"/>
                 <TextEquiv>
@@ -242,7 +242,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>
