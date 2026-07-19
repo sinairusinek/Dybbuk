@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.1.0:model_id=54653:lm=provided:date=26_08_2023_16:41</Creator>
@@ -206,7 +206,7 @@
                     <Unicode>הארציליך מאמיליך אוי אוי אוֹי</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1649533352921_1708" custom="readingOrder {index:27;} stage {offset:0;length:6;}">
+            <TextLine id="line_1649533352921_1708" custom="readingOrder {index:27;} stage {offset:0; length:6; type:repeat;}">
                 <Coords points="305,3043 317,3043 328,3035 364,3043 378,3036 410,3034 399,2973 392,2973 385,2981 370,2977 357,2981 345,2973 335,2981 318,2972 293,2979"/>
                 <Baseline points="306,3008 358,3018 411,3027 412,3027"/>
                 <TextEquiv>
@@ -235,7 +235,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>

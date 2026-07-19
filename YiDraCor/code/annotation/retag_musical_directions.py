@@ -25,9 +25,27 @@ PAGE_NS = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15"
 LINE_TAG = f"{{{PAGE_NS}}}TextLine"
 UNICODE_TAG = f"{{{PAGE_NS}}}Unicode"
 
-BIS_RX = re.compile(r"\(\s*ביס\s*\)")
+# `(ביסס)` (doubled ס) is the same repeat mark — 22 of the 31 are in Di Seder,
+# which Noa annotated herself, all in the same end-of-sung-line position.
+# Deliberately NOT matched: `(כער ביס)` (Hinke Pinke p.63), where `כער` is
+# probably an OCR error for `כאר` (chorus), making it a compound voice-rubric +
+# repeat. That one is flagged for Noa/Judith rather than guessed at.
+BIS_RX = re.compile(r"\(\s*ביסס?\s*\)")
 # line-initial rubric, optional colon; capture just the word
 REFRAIN_RX = re.compile(r"^(\s*)(רעפריין)\s*[:׃]?")
+
+# §G.4: a printed voice rubric before sung lines is a SPEAKER attribution, not
+# a verse line and not a stage direction. These are abstract voices (no named
+# singer identifiable on the page), so @who points at a `printed: false` person
+# entry in particDesc — present for @who resolution, absent from the printed
+# castList. `סאלא אלט` = "alto solo" → the same voice as a bare `אַלט`.
+VOICE_RX = re.compile(r"^(\s*)(סאלא\s+אלט|סאָלאָ\s+אלט|אַלט|אלט|סאפראן|סאָפראן"
+                      r"|טענאר|טענאָר|באס|באַס)\s*[:׃]?")
+VOICE_XMLID = {"סאלאאלט": "alt", "סאָלאָאלט": "alt", "אלט": "alt",
+               "סאפראן": "sopran", "סאָפראן": "sopran",
+               "טענאר": "tenor", "טענאָר": "tenor",
+               "באס": "bas", "באַס": "bas"}
+NIKUD_RX = re.compile(r"[֑-ֽֿ-ׇ]")
 
 
 def line_text(el) -> str:
@@ -98,6 +116,33 @@ def retag_line(el) -> list[str]:
                 head["lg_id"] = lg_id
             entries.append(("head", head))
             changes.append(f"רעפריין: → head{' lg_id=' + lg_id if lg_id else ''}")
+
+    # ---- 3. voice rubric → speaker (§G.4) ----------------------------------
+    m = VOICE_RX.match(txt)
+    if m and not REFRAIN_RX.match(txt):
+        lo, hi = m.start(2), m.end(2)
+        rest = m.end()
+        key = NIKUD_RX.sub("", m.group(2)).replace(" ", "")
+        xmlid = VOICE_XMLID.get(key)
+        if xmlid:
+            kept = []
+            for tag, attrs in entries:
+                if tag == "l" and _covers(attrs, lo, hi):
+                    o = int(attrs.get("offset", 0)); ln = int(attrs.get("length", 0))
+                    tail = o + ln - rest
+                    if tail > 0:
+                        attrs["offset"] = str(rest); attrs["length"] = str(tail)
+                        kept.append((tag, attrs))
+                        changes.append(f"voice '{m.group(2)}': l span shrunk to sung tail @{rest}")
+                    else:
+                        changes.append(f"voice '{m.group(2)}': dropped l span (rubric is not a verse line)")
+                    continue
+                kept.append((tag, attrs))
+            entries = kept
+            if not any(t == "speaker" and _covers(a, lo, hi) for t, a in entries):
+                entries.append(("speaker", {"offset": str(lo), "length": str(hi - lo),
+                                            "xmlid": xmlid}))
+                changes.append(f"voice '{m.group(2)}': → speaker xmlid={xmlid}")
 
     if changes:
         el.set("custom", serialize_custom(entries))
