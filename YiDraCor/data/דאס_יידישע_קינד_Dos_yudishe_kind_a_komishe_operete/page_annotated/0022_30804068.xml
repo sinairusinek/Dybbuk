@@ -3,38 +3,38 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_18:18</Creator>
         <Created>2021-11-21T13:26:28.53+01:00</Created>
-        <LastChange>2026-07-03T08:27:29.083+02:00</LastChange>
+        <LastChange>2026-07-04T16:24:14.619+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828424" pageId="30804068" pageNr="22" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=XZDOCJAEZBBEBIFUFQBUKUTR" imageId="24239344"/>
+        <TranskribusMetadata docId="828424" pageId="30804068" pageNr="22" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=XZDOCJAEZBBEBIFUFQBUKUTR" imageId="24239344"/>
     </Metadata>
     <Page imageFilename="30804068.jpg" imageWidth="2440" imageHeight="3656">
         <PrintSpace>
             <Coords points="274,589 2440,589 2440,3540 274,3540"/>
         </PrintSpace>
-        <TextRegion type="paragraph" id="r_1_1" custom="readingOrder {index:0;} structure {type:paragraph;}">
-            <Coords points="1646,589 1728,589 1728,660 1646,660"/>
-            <TextLine id="r_1_1_tl_1" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
-                <Coords points="1597,667 1606,667 1625,649 1638,651 1652,665 1660,656 1678,669 1693,658 1716,671 1734,662 1727,565 1706,567 1688,589 1677,591 1656,582 1643,591 1615,576 1589,584"/>
-                <Baseline points="1605,638 1650,644 1695,647 1739,650 1742,647"/>
-                <TextEquiv>
-                    <Unicode>24</Unicode>
-                </TextEquiv>
-            </TextLine>
-            <TextEquiv>
-                <Unicode></Unicode>
-            </TextEquiv>
-        </TextRegion>
-        <TextRegion type="paragraph" id="r_4_1" custom="readingOrder {index:1;} structure {type:paragraph;}">
+        <TextRegion type="paragraph" id="r_4_1" custom="readingOrder {index:0;} structure {type:paragraph;}">
             <Coords points="743,584 1291,576 1283,694 729,666"/>
             <TextLine id="l" custom="readingOrder {index:0;}">
                 <Coords points="732,660 812,652 838,677 861,656 894,677 974,647 1004,669 1046,645 1087,667 1151,641 1204,662 1281,649 1281,526 915,548 844,520 801,548 730,522"/>
                 <Baseline points="742,622 1286,627"/>
                 <TextEquiv>
                     <Unicode>דאָס יוּדִישֶׁע קִינְד.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode></Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion type="paragraph" id="r_1_1" custom="readingOrder {index:1;} structure {type:paragraph;}">
+            <Coords points="1646,589 1728,589 1728,660 1646,660"/>
+            <TextLine id="r_1_1_tl_1" custom="readingOrder {index:0;} fw {offset:0;length:2;type:pageNum;}">
+                <Coords points="1597,667 1606,667 1625,649 1638,651 1652,665 1660,656 1678,669 1693,658 1716,671 1734,662 1727,565 1706,567 1688,589 1677,591 1656,582 1643,591 1615,576 1589,584"/>
+                <Baseline points="1605,638 1650,644 1695,647 1739,650 1742,647"/>
+                <TextEquiv>
+                    <Unicode>24</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
@@ -50,7 +50,7 @@
                     <Unicode>שׁמֶערְל (אריין).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_5_1_tl_2" custom="readingOrder {index:1;} speaker {offset:0; length:5; xmlid:shmerl;}">
+            <TextLine id="r_5_1_tl_2" custom="readingOrder {index:1;} speaker {offset:0;length:5;xmlid:shmerl;}">
                 <Coords points="268,861 348,892 1606,874 1606,805 1550,796 818,831 268,803"/>
                 <Baseline points="277,853 322,859 367,856 411,853 456,853 501,856 546,856 590,853 635,853 680,856 725,856 769,859 814,862 859,859 904,859 949,859 993,859 1038,856 1083,856 1128,856 1172,856 1217,859 1262,862 1307,862 1351,862 1396,862 1441,862 1486,865 1531,865 1575,865 1611,859"/>
                 <TextEquiv>
@@ -131,7 +131,7 @@
                 <Coords points="258,1634 316,1665 1727,1652 1699,1586 1232,1615 1158,1584 1071,1619 983,1584 257,1582"/>
                 <Baseline points="268,1623 295,1626 340,1626 384,1626 429,1626 474,1629 519,1629 564,1632 608,1632 653,1632 698,1632 743,1626 787,1626 832,1626 877,1629 924,1629 924,1629 969,1635 1014,1635 1059,1635 1104,1635 1149,1635 1193,1635 1238,1632 1283,1635 1328,1635 1372,1638 1417,1641 1462,1641 1507,1641 1551,1638 1596,1638 1641,1641 1686,1641 1731,1641"/>
                 <TextEquiv>
-                    <Unicode>הנְבִּיא אָנווייזען, וואוּ ס'ליגט אַ ״אוצר״, אָדער ״תשעה-באב״, נאָך</Unicode>
+                    <Unicode>הנבִיא אָנווייזען, וואוּ ס'ליגט אַ ״אוצר״, אָדער ״תשעה-באב״, נאָך</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextLine id="r_5_1_tl_19" custom="readingOrder {index:13;}">

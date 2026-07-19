@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_14:14</Creator>
         <Created>2022-04-11T17:03:34.391+02:00</Created>
-        <LastChange>2026-07-11T10:02:27.688+02:00</LastChange>
+        <LastChange>2026-07-19T21:24:39.476+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="820969" pageId="30627510" pageNr="19" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=PQGMPLDZWLYSQIIPWDOROIGJ" imageId="24094986"/>
+        <TranskribusMetadata docId="820969" pageId="30627510" pageNr="19" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=PQGMPLDZWLYSQIIPWDOROIGJ" imageId="24094986"/>
     </Metadata>
     <Page imageFilename="30627510.jpg" imageWidth="1592" imageHeight="2505">
         <PrintSpace>
@@ -150,7 +150,7 @@
                     <Unicode>ביידע: יאָ, יאָ! אוֹי נחת האָבּעֶן וועֶלעֶן מיִר! (טאַנצען אָב)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649690143718_871l19" custom="readingOrder {index:19;} stage {offset:0;length:14;}">
+            <TextLine id="TextRegion_1649690143718_871l19" custom="readingOrder {index:19;} stage {offset:0; length:14; type:setting;}">
                 <Coords points="694,1341 802,1368 811,1360 907,1368 937,1348 958,1350 958,1289 923,1303 892,1291 850,1294 827,1308 787,1291 708,1327 694,1323"/>
                 <Baseline points="701,1335 727,1336 753,1336 779,1336 805,1336 831,1336 857,1336 883,1336 909,1335 935,1335 961,1335"/>
                 <TextEquiv>
@@ -263,7 +263,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

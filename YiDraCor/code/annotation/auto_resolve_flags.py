@@ -301,7 +301,7 @@ def fix_stage_type_typo(t: str):
 
 
 def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides=None,
-                 non_speakers=None):
+                 non_speakers=None, allow_speaker=True):
     """Return (new_entries, [auto_descriptions], [human_issues]).
 
     new_entries is None if nothing auto-changed. Operates on a single line's
@@ -309,6 +309,12 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
 
     cast_bares is {xmlid -> multi-word bare form} used to re-anchor a speaker
     span the LLM truncated to the first token (P1, ben_kaspi case).
+
+    allow_speaker=False suppresses the "untagged turn -> add speaker span" rule.
+    Set it for castList/titlePage pages, where `ד"ר אברהם:` is a ROLE entry, not
+    a speech turn. Until 2026-07-19 the page-type check filtered only the
+    human-facing flags and left the auto-edit unfiltered, so every sweep
+    re-added spurious speaker spans to castList pages.
 
     page_overrides is {label_skeleton -> xmlid} for THIS page, from
     `load_speaker_overrides(play)[page_num]`. Used for per-scene speaker
@@ -452,7 +458,7 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
         out.append((tag, a))
 
     # 4. untagged named speaker turn → add speaker span
-    if not any(t == "speaker" for t, _ in out):
+    if allow_speaker and not any(t == "speaker" for t, _ in out):
         m = TURN_RE.match(text)
         if m:
             label = m.group(1); k = skel(label)
@@ -633,7 +639,8 @@ def main():
                 scan = resolve_line(txt, [e for e in entries if e[0] != "readingOrder"],
                                      cast_index, cast_bares,
                                      page_overrides=overrides_for(speaker_overrides.get(page), None),
-                                     non_speakers=non_speakers)
+                                     non_speakers=non_speakers,
+                                     allow_speaker=ptype not in ("titlePage", "castList"))
                 _, auto, human = scan
                 if ptype in ("titlePage", "castList"):
                     human = [h for h in human if "speaker" not in h]
@@ -658,6 +665,7 @@ def main():
             if xml is None:
                 print(f"  p{page}: no server transcript — skip"); continue
             root = etree.fromstring(xml.encode("utf-8") if isinstance(xml, str) else xml)
+            live_ptype = page_type(root)
             page_changed = False
             for tl in root.iter(NS + "TextLine"):
                 entries = parse_custom(tl.get("custom") or "")
@@ -669,7 +677,8 @@ def main():
                 deduped_count = len(body) - len(body_dd)
                 new, auto, _ = resolve_line(line_text(tl), body_dd, cast_index, cast_bares,
                                               page_overrides=overrides_for(speaker_overrides.get(page), None),
-                                              non_speakers=non_speakers)
+                                              non_speakers=non_speakers,
+                                              allow_speaker=live_ptype not in ("titlePage", "castList"))
                 if new is not None or deduped_count:
                     final_entries = dedup_entries(ro + (new if new is not None else body_dd))
                     tl.set("custom", serialize_custom(final_entries))

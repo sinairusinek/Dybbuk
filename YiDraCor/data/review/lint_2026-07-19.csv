@@ -40,8 +40,18 @@ Bas Sheva,6,r_5_1l11,schema violation,NOA,role span requires xmlid attribute,מ�
 Bas Sheva,6,r_5_1l11,schema violation,NOA,role span requires xmlid attribute," טייפֿעל,",fix per schema
 Bas Sheva,6,r_5_1l11,schema violation,NOA,role span requires xmlid attribute,בּוֹיען,fix per schema
 Bas Sheva,6,r_5_1l11,schema violation,NOA,role span requires xmlid attribute,עטצ.,fix per schema
-Bas Sheva,7,line_1648719077164_902,schema violation,NOA,stage span requires a type attribute (no bare stage),בּיס,fix per schema
+Bas Sheva,8,TextRegion_1648719223107_983l20,untagged speaker (collective),AUTO,collective 'ביידע' — no speaker span,"ביידע: אַך וועלכעס גלִיק,",tag speaker xmlid:beyde
+Bas Sheva,8,line_1648719508136_1026,schema violation,NOA,stage span requires a type attribute (no bare stage),בּיס,fix per schema
+Bas Sheva,8,line_1648719524140_1044,untagged speaker (collective),AUTO,collective 'ביידע' — no speaker span,ביידע: בּיי גָאט!,tag speaker xmlid:beyde
+Bas Sheva,8,line_1648719532402_1059,schema violation,NOA,stage span requires a type attribute (no bare stage),בּיס,fix per schema
+Bas Sheva,8,line_1648719562152_1086,schema violation,NOA,stage span requires a type attribute (no bare stage),ביס,fix per schema
+Bas Sheva,9,line_1648719874324_1139,schema violation,NOA,stage span requires a type attribute (no bare stage),ביס,fix per schema
+Bas Sheva,9,TextRegion_1648719603436_1106l15,schema violation,NOA,stage span requires a type attribute (no bare stage),ביס,fix per schema
+Bas Sheva,9,line_1648720395559_1177,schema violation,NOA,stage span requires a type attribute (no bare stage),בּיס,fix per schema
+Bas Sheva,15,r_2_1l17,untagged speaker (unknown),NOA,"turn-like 'אבנר, בנימין' not in cast (OCR?)","אבנר, בנימין: (לויפ'ן ענטגעגען) צוּריק!",fix OCR / link to a cast xmlid
 Bas Sheva,16,TextRegion_1648725342005_1510l3,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),"אבנר, בנימין",fix per schema
+Bas Sheva,37,r_2_1l11,schema violation,NOA,stage span requires a type attribute (no bare stage),ביס,fix per schema
+Bas Sheva,38,line_1648853118036_3834,schema violation,NOA,stage span requires a type attribute (no bare stage),ביס,fix per schema
 Bas Sheva,—,role:boyen,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,boyen,verify the role is real / find its speeches
 Bas Sheva,—,role:militer,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,militer,verify the role is real / find its speeches
 Bas Sheva,—,role:shefer,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,shefer,verify the role is real / find its speeches
@@ -56,7 +66,6 @@ Blimele (di Perle von Warsha),41,r_1_1l19,schema violation,NOA,speaker span requ
 Der Mann untern Tisch,10,r_2_1l11,schema violation,NOA,stage span requires a type attribute (no bare stage),(טוּר⸗,fix per schema
 Der Mann untern Tisch,10,r_2_1l14,schema violation,NOA,stage span requires a type attribute (no bare stage),(עֵר,fix per schema
 Der Mann untern Tisch,14,r_1_1l26,schema violation,NOA,stage span requires a type attribute (no bare stage),(קלערְט אבּייסיל),fix per schema
-Der Mann untern Tisch,18,r_1_1l3,schema violation,NOA,stage span requires a type attribute (no bare stage),(בּיס),fix per schema
 Di Seder Nakht,5,TextRegion_1647705133639_852l1,schema violation,NOA,span out of range (line len=16),עֶרְשְטֶער אַקט.,fix per schema
 Di Seder Nakht,5,TextRegion_1647705133639_852l13,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,"אַלע: גוּטֶען טַאג הֶערְר רִיזְוַואן, גו",tag speaker xmlid:alle
 Di Seder Nakht,5,TextRegion_1647705133639_852l21,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: יַא יַא יַא.,tag speaker xmlid:alle
@@ -91,26 +100,14 @@ Di Seder Nakht,63,TextRegion_1649533464042_1744l26,untagged speaker (collective)
 Di Seder Nakht,63,line_1649533648504_1825,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: נוּ טאקע נוּ,tag speaker xmlid:alle
 Di Seder Nakht,65,TextRegion_1649533891997_1934l27,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),דער שדכן.,fix per schema
 Di Seder Nakht,65,TextRegion_1649533891997_1934l27,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),דער שדכן.,fix per schema
-Di Seder Nakht,68,line_1649534239728_2228,schema violation,NOA,stage span requires a type attribute (no bare stage),(קאהר - ביסס,fix per schema
 Di Seder Nakht,69,line_1649448420472_1578,untagged speaker (unknown),NOA,turn-like 'רעפריין' not in cast (OCR?),רעפריין: יוּדאלע נישט האָבּ קיין מורה,fix OCR / link to a cast xmlid
 Di Seder Nakht,69,TextRegion_1649448334785_1551l36,schema violation,NOA,stage span requires a type attribute (no bare stage),"רעפריין, א. ז. וו.",fix per schema
 Di Seder Nakht,69,line_1649448420472_1578,untagged speaker (unknown),NOA,turn-like 'רעפריין' not in cast (OCR?),רעפריין: יוּדאלע נישט האָבּ קיין מורה,fix OCR / link to a cast xmlid
 Di Seder Nakht,69,TextRegion_1649448334785_1551l36,schema violation,NOA,stage span requires a type attribute (no bare stage),"רעפריין, א. ז. וו.",fix per schema
-Di Seder Nakht,70,TextRegion_1649421514322_415l8,untagged speaker (collective),AUTO,collective 'אלט' — no speaker span,אלט: אודך אודך בּי עניתני,tag speaker xmlid:alt
 Di Seder Nakht,70,line_1649422034106_480,schema violation,NOA,stage span requires a type attribute (no bare stage),קאָהר ביסס,fix per schema
-Di Seder Nakht,70,TextRegion_1649421514322_415l11,untagged speaker (collective),AUTO,collective 'טענאר' — no speaker span,טענאר: אָבן מאָסוּ הבּוֹנים,tag speaker xmlid:tenor
-Di Seder Nakht,70,TextRegion_1649421514322_415l13,untagged speaker (collective),AUTO,collective 'אלט' — no speaker span,אַלט: אוי אָבן מאָסוּ הבּוֹנִים,tag speaker xmlid:alt
-Di Seder Nakht,70,line_1649422076759_523,untagged speaker (collective),AUTO,collective 'באס' — no speaker span,באס: מאת ה' היתה זאת זאת זאת,tag speaker xmlid:bas
 Di Seder Nakht,70,TextRegion_1649421514322_415l20,untagged speaker (collective),AUTO,collective 'סאפראן' — no speaker span,סאפּראן: זה היום עשה ה',tag speaker xmlid:sopran
-Di Seder Nakht,70,TextRegion_1649421514322_415l21,untagged speaker (collective),AUTO,collective 'אלט' — no speaker span,אַלט: זה היום עשה ה',tag speaker xmlid:alt
-Di Seder Nakht,70,TextRegion_1649421514322_415l22,untagged speaker (collective),AUTO,collective 'טענאר' — no speaker span,טענאר: נגילה ונשמחה בו,tag speaker xmlid:tenor
-Di Seder Nakht,70,TextRegion_1649421514322_415l8,untagged speaker (collective),AUTO,collective 'אלט' — no speaker span,אלט: אודך אודך בּי עניתני,tag speaker xmlid:alt
-Di Seder Nakht,70,TextRegion_1649421514322_415l11,untagged speaker (collective),AUTO,collective 'טענאר' — no speaker span,טענאר: אָבן מאָסוּ הבּוֹנים,tag speaker xmlid:tenor
-Di Seder Nakht,70,TextRegion_1649421514322_415l13,untagged speaker (collective),AUTO,collective 'אלט' — no speaker span,אַלט: אוי אָבן מאָסוּ הבּוֹנִים,tag speaker xmlid:alt
-Di Seder Nakht,70,line_1649422076759_523,untagged speaker (collective),AUTO,collective 'באס' — no speaker span,באס: מאת ה' היתה זאת זאת זאת,tag speaker xmlid:bas
+Di Seder Nakht,70,line_1649422034106_480,schema violation,NOA,stage span requires a type attribute (no bare stage),קאָהר ביסס,fix per schema
 Di Seder Nakht,70,TextRegion_1649421514322_415l20,untagged speaker (collective),AUTO,collective 'סאפראן' — no speaker span,סאפּראן: זה היום עשה ה',tag speaker xmlid:sopran
-Di Seder Nakht,70,TextRegion_1649421514322_415l21,untagged speaker (collective),AUTO,collective 'אלט' — no speaker span,אַלט: זה היום עשה ה',tag speaker xmlid:alt
-Di Seder Nakht,70,TextRegion_1649421514322_415l22,untagged speaker (collective),AUTO,collective 'טענאר' — no speaker span,טענאר: נגילה ונשמחה בו,tag speaker xmlid:tenor
 Dos Yudishe Herts,4,line_1654107496464_4454,schema violation,NOA,role span requires xmlid attribute,למְך,fix per schema
 Dos Yudishe Herts,4,r1l9,schema violation,NOA,role span requires xmlid attribute,סערקעלע,fix per schema
 Dos Yudishe Herts,4,line_1654107499329_4459,schema violation,NOA,role span requires xmlid attribute,דינהלע,fix per schema
@@ -123,10 +120,15 @@ Dos Yudishe Herts,4,r1l21,schema violation,NOA,role span requires xmlid attribut
 Dos Yudishe Herts,4,r1l23,schema violation,NOA,role span requires xmlid attribute,לידאַ,fix per schema
 Dos Yudishe Herts,4,r1l24,schema violation,NOA,role span requires xmlid attribute,קאָמיִסאַר,fix per schema
 Dos Yudishe Herts,4,r1l24,schema violation,NOA,role span requires xmlid attribute,דיִענעֶר,fix per schema
+Dos Yudishe Herts,5,r1l7,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),כאָהר,fix per schema
+Dos Yudishe Herts,5,r1l21,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),פֿרויען,fix per schema
+Dos Yudishe Herts,5,r1l23,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),אַנדערע:,fix per schema
 Dos Yudishe Herts,16,r1l26,untagged speaker (unknown),NOA,turn-like '(שרייט)' not in cast (OCR?),(שרייט): למְך!,fix OCR / link to a cast xmlid
 Dos Yudishe Herts,26,r1l18,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),כאָהר:,fix per schema
+Dos Yudishe Herts,27,r1l18,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),כאָהר,fix per schema
 Dos Yudishe Herts,55,r1l6,untagged speaker (unknown),NOA,turn-like 'רעפריין' not in cast (OCR?),רעפריין: וויפיעל צרוֹת דעֶר יוּדעלע האָט,fix OCR / link to a cast xmlid
-Dos Yudishe Herts,55,r1l28,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),פּאַפּעסקאַ:,fix per schema
+Dos Yudishe Herts,65,r1l10,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ראָזעלע:,fix per schema
+Dos Yudishe Herts,68,r1l3,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ראָזעלע,fix per schema
 Dos Yudishe Herts,—,role:kmisr,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,kmisr,verify the role is real / find its speeches
 Dovid's Fidele,6,r1l6,schema violation,NOA,role span requires xmlid attribute,טוֹבִיֶה ,fix per schema
 Dovid's Fidele,6,r1l7,schema violation,NOA,role span requires xmlid attribute,יַעֲנְקֶעלֶע,fix per schema
@@ -140,10 +142,11 @@ Dovid's Fidele,6,r1l14,schema violation,NOA,role span requires xmlid attribute,�
 Dovid's Fidele,6,r1l15,schema violation,NOA,role span requires xmlid attribute,אַלְטֶערוּנְיוּ,fix per schema
 Dovid's Fidele,6,r1l16,schema violation,NOA,role span requires xmlid attribute,אִיצֶעלֶע פִּיפֶּעק,fix per schema
 Dovid's Fidele,6,r1l17,schema violation,NOA,role span requires xmlid attribute,טִילֶע,fix per schema
+Dovid's Fidele,7,r1l3,schema violation,NOA,stage span requires a type attribute (no bare stage),סאלאמאן).,fix per schema
 Dovid's Fidele,46,r1l2,schema violation,NOA,stage span requires a type attribute (no bare stage),"(רייכער זאאל גֶעדֶעקטֶער טִיש, לינקס אַ שׁרֵייבּטִישֶׁעל מִיט שִׁיפלאד, עֶס זִיטצֶען",fix per schema
 Dovid's Fidele,46,r1l3,schema violation,NOA,stage span requires a type attribute (no bare stage),"טוּבּיה, חיה, גֶעסט, קֵיילֶע בִּילע, אַלטערוניו, אִיצֶעלֶע, טִילֶע, נח).",fix per schema
-Dovid's Fidele,71,r2l4,untagged speaker (unknown),NOA,turn-like 'בר ככנא' not in cast (OCR?),בר ככנא: דִיא באבע מיט דעם אייניקעל: דִי,fix OCR / link to a cast xmlid
-Dovid's Fidele,71,r2l7,untagged speaker (unknown),NOA,turn-like 'טהיילע)' not in cast (OCR?),טהיילע): מליץ יושר ר' יאזעלמאן: משִׁיח'ס,fix OCR / link to a cast xmlid
+Dovid's Fidele,71,r2l4,untagged speaker (unknown),NOA,turn-like 'בר ככבא' not in cast (OCR?),בר ככבא: דִיא באבע מיט דעם אייניקעל: דִי,fix OCR / link to a cast xmlid
+Dovid's Fidele,71,r2l7,untagged speaker (unknown),NOA,turn-like 'טהיילע)' not in cast (OCR?),טהיילע): מליץ יושר ר' יאזעלמאן; משִׁיח'ס,fix OCR / link to a cast xmlid
 Dovid's Fidele,71,r2l24,untagged speaker (unknown),NOA,turn-like 'בריינדיל קאזאק' not in cast (OCR?),בריינדיל קאזאק: נִיעבֶּע נִיעמֶע נִינקוּ,fix OCR / link to a cast xmlid
 Dovid's Fidele,—,role:tile,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,tile,verify the role is real / find its speeches
 Ezra,4,line_1638791957851_2791,schema violation,NOA,stage span requires a type attribute (no bare stage),(דעבאָרא מיט א האַרפֿע בּיים פֿענסטער).,fix per schema
@@ -151,21 +154,15 @@ Ezra,5,line_1638824525750_1938,schema violation,NOA,stage span requires a type a
 Ezra,8,line_1639248760763_356,schema violation,NOA,stage span requires a type attribute (no bare stage),ביסס יאַ ראכע,fix per schema
 Ezra,26,line_1647610015995_1785,schema violation,NOA,stage span requires a type attribute (no bare stage),ביסס,fix per schema
 Ezra,30,TextRegion_1647608799647_1099l12,schema violation,NOA,stage span requires a type attribute (no bare stage),ביבס,fix per schema
+Hinke Pinke,4,r1l3,untagged cast entry,NOA,castList line 'די פערזאנען' has no role/roleDesc span,דִי פֶּערְזָאנֶען:,tag role + roleDesc
 Hinke Pinke,4,r1l4,schema violation,NOA,role span requires xmlid attribute,הֶערְצָאג.,fix per schema
 Hinke Pinke,4,line_1646937088722_2043,schema violation,NOA,role span requires xmlid attribute,"דִ""ר אַבְרָהָם",fix per schema
-Hinke Pinke,4,line_1646937088722_2043,untagged speaker (named),NOA,"label 'ד""ר אברהם' matches cast role","דִ""ר אַבְרָהָם: זַיין לייבּאַרצט",tag speaker xmlid:dr_brhm
 Hinke Pinke,4,line_1646937107110_2052,schema violation,NOA,role span requires xmlid attribute,אַדְרְיַאן:,fix per schema
-Hinke Pinke,4,line_1646937107110_2052,untagged speaker (named),NOA,label 'אדריאן' matches cast role,אַדְרְיַאן: האָפֿמיֵיסטעֶר,tag speaker xmlid:drin
 Hinke Pinke,4,r1l9,schema violation,NOA,role span requires xmlid attribute,גַבְרִיאֵל,fix per schema
-Hinke Pinke,4,r1l9,untagged speaker (named),NOA,label 'גבריאל' matches cast role,גַבְרִיאֵל: מאַלעֶר,tag speaker xmlid:gbril
 Hinke Pinke,4,line_1646937273296_2094,schema violation,NOA,role span requires xmlid attribute,דִינָה ,fix per schema
-Hinke Pinke,4,line_1646937273296_2094,untagged speaker (named),NOA,label 'דינה' matches cast role,דִינָה :זיַינע פֿרוֹי,tag speaker xmlid:dinh
 Hinke Pinke,4,line_1646937284285_2099,schema violation,NOA,role span requires xmlid attribute,פִּינְקֶע,fix per schema
-Hinke Pinke,4,line_1646937284285_2099,untagged speaker (named),NOA,label 'פינקע' matches cast role,פִּינְקֶע: זיַין אָנקעֶל,tag speaker xmlid:finke
 Hinke Pinke,4,r1l10,schema violation,NOA,role span requires xmlid attribute,חִינְקֶע:,fix per schema
-Hinke Pinke,4,r1l10,untagged speaker (named),NOA,label 'חינקע' matches cast role,חִינְקֶע: זיַינע טאַנטעֶ,tag speaker xmlid:khinke
 Hinke Pinke,4,r1l12,schema violation,NOA,role span requires xmlid attribute,פְרִיץ: ,fix per schema
-Hinke Pinke,4,r1l12,untagged speaker (named),NOA,label 'פריץ' matches cast role,פְרִיץ: דעֶר געשיַיטער,tag speaker xmlid:frits
 Hinke Pinke,4,line_1646937329127_2110,schema violation,NOA,role span requires xmlid attribute,פַּאזְשׁ,fix per schema
 Hinke Pinke,4,line_1646937332782_2115,schema violation,NOA,role span requires xmlid attribute,רִיכְטֶער.,fix per schema
 Hinke Pinke,4,r2l1,schema violation,NOA,role span requires xmlid attribute,הֶענְקֶער,fix per schema
@@ -177,61 +174,20 @@ Hinke Pinke,5,r_3_1l26,schema violation,NOA,speaker span requires xmlid attribut
 Hinke Pinke,6,TextRegion_1649687732047_185l2,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),אללע: ,fix per schema
 Hinke Pinke,6,TextRegion_1649687732047_185l4,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),אללע:,fix per schema
 Hinke Pinke,6,TextRegion_1649687732047_185l7,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),אללע:,fix per schema
-Hinke Pinke,14,TextRegion_1649689813479_702l10,schema violation,NOA,stage span requires a type attribute (no bare stage),פערוואַנדלונג.,fix per schema
-Hinke Pinke,34,TextRegion_1649691473659_2244l13,schema violation,NOA,stage span requires a type attribute (no bare stage),פערוואַנדלונג,fix per schema
-Hinke Pinke,38,TextRegion_1649691402453_2107l26,schema violation,NOA,stage span requires a type attribute (no bare stage),פערוואַנדלונג,fix per schema
+Hinke Pinke,30,TextRegion_1649691550551_2379l26,schema violation,NOA,stage span requires a type attribute (no bare stage),צווייטער אקט.,fix per schema
 Hinke Pinke,—,role:boyeren,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,boyeren,verify the role is real / find its speeches
 Hinke Pinke,—,role:henker,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,henker,verify the role is real / find its speeches
 Hinke Pinke,—,role:iener,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,iener,verify the role is real / find its speeches
 Hinke Pinke,—,role:yudn_soldatn,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,yudn_soldatn,verify the role is real / find its speeches
 Isha Raa,4,tr_2_tl_9,schema violation,NOA,span out of range (line len=9),מִילְכָּה,fix per schema
-Isha Raa,5,l,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שלומית:,fix per schema
 Isha Raa,6,tr_1_tl_9,untagged speaker (unknown),NOA,turn-like 'אללע' not in cast (OCR?),אללע: יַא יַא עֶר לעבּע לאַנְג,fix OCR / link to a cast xmlid
-Isha Raa,47,l,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),מילכה:,fix per schema
-Isha Raa,65,tr_2_l27,untagged speaker (unknown),NOA,turn-like 'פון' not in cast (OCR?),פון: וואָס גֶעהט דִיך אָן אַבּנר'ס טאָכְ,fix OCR / link to a cast xmlid
-Isha Raa,66,tr_1_l10,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: וואָס ווילְסט דוּא וִויעדֶער, בּי",tag speaker xmlid:kenig_hurknos
-Isha Raa,66,tr_1_l30,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: שפּריכסט דוּא וַואהְר אַנטיגנוס ?,tag speaker xmlid:kenig_hurknos
-Isha Raa,67,tr_1_l2,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: אוּנְד עֶר אַליין? וואָ אִיזְט עֶ,tag speaker xmlid:kenig_hurknos
-Isha Raa,67,tr_1_l5,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: גָאט אִיך דאַנקע דִיר! וִויא פוּר,tag speaker xmlid:kenig_hurknos
-Isha Raa,67,tr_1_l29,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: וואָס ווילסט דוא?,tag speaker xmlid:kenig_hurknos
-Isha Raa,67,l,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: אִיזבל?,tag speaker xmlid:kenig_hurknos
-Isha Raa,67,tr_1_l33,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: ווארוּם דֶען? (צוּ פוץ) אִיך וִוי,tag speaker xmlid:kenig_hurknos
-Isha Raa,68,tr_1_l4,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: ווארוּם וויינְסְט דוּא?,tag speaker xmlid:kenig_hurknos
-Isha Raa,68,tr_1_l18,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: ווייבּ וואָס אִיזְט דִיר? שפּריך,",tag speaker xmlid:kenig_hurknos
-Isha Raa,68,tr_1_l25,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: רֶעדֶע ווייבּ, רֶעדֶע אבנר'ס פערב",tag speaker xmlid:kenig_hurknos
-Isha Raa,68,tr_1_l27,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: אוּנד זַיינֶע בּריעפע?,tag speaker xmlid:kenig_hurknos
-Isha Raa,68,tr_1_l29,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: אוּנגלִיקלִיכֶע! נוּר אוֹיף דַיינ,tag speaker xmlid:kenig_hurknos
-Isha Raa,69,tr_1_l21,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: נוּן אַנטיגנוס וואָס זאגסט דוּא י,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l2,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: שפריך !,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l5,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: קאם הֶער. (קניעט, פליסטערט איהם א",tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l8,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: גוּט! געה !,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l11,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: אַנטיגנוס דוּא זִיעהסט אִיך האבּ ,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l14,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: דָאך אַנטיגנוס גלֵייך וִוירְד נָא,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l20,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: פִירְכטֶע ניכטס מַיין פרייַנד, דִ",tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l22,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: וִויא אִיזְט דַיין נָאמֶען?,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l24,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: וואָס נָאך? ,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l26,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: ווארוּם וויינְסְט דוא?,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l28,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: אִין וואָס בּעשטעהט דַיין אוּנגלי,tag speaker xmlid:kenig_hurknos
-Isha Raa,70,tr_1_l30,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: (בליקט אויף אנטיגנוס, אפארט) וֶוע",tag speaker xmlid:kenig_hurknos
-Isha Raa,71,tr_1_l5,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: חנוך פִירְכטֶע ניכטס, הֶערֶע וואָ",tag speaker xmlid:kenig_hurknos
-Isha Raa,71,tr_1_l11,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: אבנר'ס שׁטֶעלֶע אבנר'ס טאָכְטֶער?,tag speaker xmlid:kenig_hurknos
-Isha Raa,71,tr_1_l14,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: ערְצֶעהלֶע דַייטליך.,tag speaker xmlid:kenig_hurknos
-Isha Raa,71,tr_1_l20,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: אוּנד וואָס וואר דָארְט געשריעבּע,tag speaker xmlid:kenig_hurknos
-Isha Raa,72,tr_1_l4,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: נוּן אַנטיגנוס הָאסְט גֶעהֶערְט  ,tag speaker xmlid:kenig_hurknos
-Isha Raa,72,tr_1_l7,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: פֶערְשׁטִימֶע! פלוּך ווירְדִיגֶער,tag speaker xmlid:kenig_hurknos
-Isha Raa,72,tr_1_l18,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: קנאבּע וֶוער בּיזט דוא?,tag speaker xmlid:kenig_hurknos
-Isha Raa,72,tr_1_l20,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: שלומית ?,tag speaker xmlid:kenig_hurknos
-Isha Raa,72,tr_1_l22,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: דוּא דֶער אַיינְצִיגֶע פאן אַלע ו,tag speaker xmlid:kenig_hurknos
-Isha Raa,73,tr_1_l2,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: פִיר בּלינדהייט אוּנד פערבּאנוּנג,tag speaker xmlid:kenig_hurknos
-Isha Raa,73,tr_1_l10,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: עֶר וַוייסְט נָאך נִיכְט דאָס זַי,tag speaker xmlid:kenig_hurknos
-Isha Raa,73,tr_1_l17,untagged speaker (named),NOA,label 'קעניג' matches cast role,קעניג: פאר געוויסענסבּיסע אִיזְט זִיא גַ,tag speaker xmlid:kenig_hurknos
-Isha Raa,73,tr_1_l19,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: וויינֶע נִיכְט טהַייערֶעס קִינְד,",tag speaker xmlid:kenig_hurknos
-Isha Raa,73,tr_1_l24,untagged speaker (named),NOA,label 'קעניג' matches cast role,"קעניג: קאם פִיהרֶע מִיך צוּ אִיהם, אוֹיף",tag speaker xmlid:kenig_hurknos
+Isha Raa,23,tr_1_tl_43,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שלומית תלמי קאהר:,fix per schema
+Isha Raa,65,tr_2_l27,untagged speaker (unknown),NOA,turn-like 'פון' not in cast (OCR?),פון: וואָס גֶעהט דִיך אָן אַבנר'ס טאָכְט,fix OCR / link to a cast xmlid
+Isha Raa,70,tr_1_l14,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),עניג:,fix per schema
 Kidush Hashem,8,r1l2,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),טאביאס,fix per schema
 Kidush Hashem,8,r1l4,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),טאביאס:,fix per schema
 Kidush Hashem,12,r1l9,untagged speaker (named),NOA,label 'פיקאלע' matches cast role,פיקאלע: דֶער גרַאף הָאט דָאך נִישְט מֶעה,tag speaker xmlid:pikola
 Kidush Hashem,13,r1l8,untagged speaker (named),NOA,label 'איזראעל' matches cast role,"איזראעל :) גִיבּ מִיר דַיין הַאנְד, מַיִ",tag speaker xmlid:don_yisrael
-Kidush Hashem,22,r1l7,untagged speaker (unknown),NOA,turn-like 'בראווא' not in cast (OCR?),בראווא: דאָס אִיז גֶעווֶען אַ קוּנסטפוּל,fix OCR / link to a cast xmlid
 Kidush Hashem,22,r1l7,untagged speaker (unknown),NOA,turn-like 'בראווא' not in cast (OCR?),בראווא: דאָס אִיז גֶעווֶען אַ קוּנסטפוּל,fix OCR / link to a cast xmlid
 Kidush Hashem,25,r1l26,schema violation,NOA,stage span requires a type attribute (no bare stage),פאָרהאַנג פאלְט.,fix per schema
 Kidush Hashem,25,r1l27,schema violation,NOA,stage span requires a type attribute (no bare stage),עֶנְדֶע דֶער ערְשׁטֶער אַקְט.,fix per schema
@@ -243,6 +199,7 @@ Kidush Hashem,46,r1l40,schema violation,NOA,stage span requires a type attribute
 Kidush Hashem,46,r1l41,schema violation,NOA,stage span requires a type attribute (no bare stage),עֶנְדֶע דֶער צווייטֶער אַקְט.,fix per schema
 Kidush Hashem,51,r1l22,schema violation,NOA,stage span requires a type attribute (no bare stage),פאָרהאַנג פאלְט.,fix per schema
 Kidush Hashem,51,r1l23,schema violation,NOA,stage span requires a type attribute (no bare stage),עֶנְדֶע דֶער דרִיטֶער אַקְט.,fix per schema
+Kidush Hashem,57,r1l1,schema violation,NOA,fw span requires a type attribute (page numbers are type:pageNum),— 53 —,fix per schema
 Kidush Hashem,57,r1l4,untagged speaker (named),NOA,label 'מענדעס' matches cast role,"מענדעס: אַלזא אִין גאטֶעס נָאמֶען, קוּם!",tag speaker xmlid:mendes
 Kidush Hashem,57,r1l22,schema violation,NOA,stage span requires a type attribute (no bare stage),פאָרהאַנג פאלְט.,fix per schema
 Kidush Hashem,58,r1l2,schema violation,NOA,stage span requires a type attribute (no bare stage),פֶערוואנְדְלונְג,fix per schema
@@ -257,27 +214,10 @@ Mishke Mashke,5,line_1638100392044_978,schema violation,NOA,stage span requires 
 Mishke Mashke,5,line_1638100432814_1013,schema violation,NOA,stage span requires a type attribute (no bare stage), (דיענער אָ,fix per schema
 Mishke Mashke,5,line_1638100445226_1028,schema violation,NOA,stage span requires a type attribute (no bare stage),אויפטריט מאָנקאַדושאו,fix per schema
 Mishke Mashke,8,line_1638103811733_2591,untagged speaker (named),NOA,label 'טאדט' matches cast role,"טאדט: אַיינְס, צְוֵויי, דריַיַ, — אונְד ",tag speaker xmlid:todt
-Mishke Mashke,9,line_1638458866484_522,untagged speaker (collective),AUTO,collective 'קאהר' — no speaker span,קאהר: שׁטֶעלְט אַייךְ אוֹיף אַלֶע אִין ד,tag speaker xmlid:chor
-Mishke Mashke,9,line_1638458894633_542,untagged speaker (named),NOA,label 'טיראללע' matches cast role,טיראללע: רוהִיג מַיינֶע הֶערְרֶען! ווִי ,tag speaker xmlid:tirale
 Mishke Mashke,13,line_1638461892541_2397,untagged speaker (named),NOA,label 'עמיליא' matches cast role,"עמיליא : נוּן, וואָס הֶערְט מאַן נײַעס, ",tag speaker xmlid:emilye
 Mishke Mashke,13,line_1638461913391_2412,untagged speaker (named),NOA,label 'עמיליא' matches cast role,"עמיליא: גאָט זַײַ דאַנְק, בּײַ וועהם?",tag speaker xmlid:emilye
 Mishke Mashke,13,line_1638461961111_2444,untagged speaker (named),NOA,label 'עמיליא' matches cast role,עמיליא: מײַן זאָהן אַלְס דִיענֶער! אָה ג,tag speaker xmlid:emilye
 Mishke Mashke,14,line_1638462530360_2948,schema violation,NOA,"stage.type tokens not in vocab: ['deivery']; allowed = ['business', 'costume', 'delivery', 'entrance', 'exit', 'location', 'mixed', 'modifier', 'novelistic', 'repeat', 'setting']",(מִישׁקֶע,fix per schema
-Mishke Mashke,15,line_1638463504332_3521,untagged speaker (collective),AUTO,collective 'ביידע' — no speaker span,"ביידע: אַ משׁקה'לֶע, אַ כּוס'עלע, אַ טאָ",tag speaker xmlid:beyde
-Mishke Mashke,15,line_1638463642717_3596,untagged speaker (named),NOA,label 'שארלאטע' matches cast role,שארלאטע: אַ גוּט יאָהר (צוּ סאַלאַ) זאָג,tag speaker xmlid:sharlata
-Mishke Mashke,15,line_1638463660895_3606,untagged speaker (named),NOA,label 'סאלא' matches cast role,סאלא: אִיךְ האָבּ מִיךְ אַרויפגעחאַפּט א,tag speaker xmlid:sala
-Mishke Mashke,15,line_1638463700500_3631,untagged speaker (named),NOA,label 'שארלאטע' matches cast role,שארלאטע: וואוּ אִיז דאָס מייַן קִינְד דִ,tag speaker xmlid:sharlata
-Mishke Mashke,15,line_1638463757105_3651,untagged speaker (named),NOA,label 'שארלאטע' matches cast role,שארלאטע: קוּם סאַלאַ!,tag speaker xmlid:sharlata
-Mishke Mashke,15,line_1638463913645_3656,untagged speaker (named),NOA,label 'סאלא' matches cast role,סאלא: גֶעה דוּ אַרײַן מוּטֶער אִיךְ וֶוע,tag speaker xmlid:sala
-Mishke Mashke,15,line_1638463926275_3671,untagged speaker (collective),AUTO,collective 'איינער' — no speaker span,איינער: אִיךְ וֶועל זייַן מרְרְכִי.,tag speaker xmlid:eyner
-Mishke Mashke,15,line_1638463994680_3722,untagged speaker (collective),AUTO,collective 'איינער' — no speaker span,איינער: עֶס אִיזְט דאָך מײַן פֶערְד!,tag speaker xmlid:eyner
-Mishke Mashke,15,line_1638464001015_3727,untagged speaker (named),NOA,label 'סאלא' matches cast role,סאלא: עַם אִיזְט דָאךְ מײַן שׁטִיער!,tag speaker xmlid:sala
-Mishke Mashke,15,line_1638464012786_3732,untagged speaker (collective),AUTO,collective 'איינער' — no speaker span,איינער: נוּא זַײַ דוּ מרְדְכִי! אוּן אִי,tag speaker xmlid:eyner
-Mishke Mashke,15,line_1638464901326_3743,untagged speaker (named),NOA,label 'סאלא' matches cast role,סאלא: המְן דֶער שׁלֶעכטֶער יוּנְג,tag speaker xmlid:sala
-Mishke Mashke,15,line_1638464929273_3773,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: מרְדְכִי! מרְדְכִי! אָלרייט!,tag speaker xmlid:alle
-Mishke Mashke,15,line_1638464936583_3778,untagged speaker (named),NOA,label 'סאלא' matches cast role,סאלא: האַ אִין דִי סאַר!,tag speaker xmlid:sala
-Mishke Mashke,15,line_1638464946573_3783,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: המְן המְן אִין סאַר! קוּמְט שׁוֹין ,tag speaker xmlid:alle
-Mishke Mashke,15,line_1638464957677_3788,untagged speaker (named),NOA,label 'סאלא' matches cast role,סאלא: עֶס האָט נִישְׁט לאַנְג גֶעדוִיערְ,tag speaker xmlid:sala
 Mishke Mashke,16,line_1638465145403_3883,schema violation,NOA,stage span requires a type attribute (no bare stage),"דִי בּיִהנע שׁטֶעלְט פאָר, אַ ז",fix per schema
 Mishke Mashke,20,line_1638470109909_6552,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: וואָס?!,tag speaker xmlid:alle
 Mishke Mashke,20,line_1638470188109_6602,untagged speaker (named),NOA,label 'ביסיגג' matches cast role,"ביסיגג: אָה, נֵיין! רוּף מִיךְ נִישְׁט מ",tag speaker xmlid:bising
@@ -295,9 +235,12 @@ Sore Sheyndel,7,region_1650323892457_2673l13,schema violation,NOA,role span requ
 Sore Sheyndel,7,line_1650323973302_2707,schema violation,NOA,role span requires xmlid attribute,שׁאַפּסע,fix per schema
 Sore Sheyndel,7,line_1650323973302_2707,schema violation,NOA,role span requires xmlid attribute,משׁוררים אוּן פֿאָלק,fix per schema
 Sore Sheyndel,12,r1l15,untagged speaker (unknown),NOA,turn-like 'קשיה' not in cast (OCR?),קשיה: פאַר וואָס רוּפט מען שבּת הגדול או,fix OCR / link to a cast xmlid
+Sore Sheyndel,13,line_1653775399742_1237,schema violation,NOA,fw span requires a type attribute (page numbers are type:pageNum),9,fix per schema
+Sore Sheyndel,16,r1l2,schema violation,NOA,fw span requires a type attribute (page numbers are type:pageNum),12,fix per schema
 Sore Sheyndel,16,r1l32,untagged speaker (unknown),NOA,turn-like 'הער אויס' not in cast (OCR?),הער אויס: וֶוען חנְהלֶע מיִט אִיהר מוּטע,fix OCR / link to a cast xmlid
-Sore Sheyndel,28,r1l4,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),כאָר,fix per schema
-Sore Sheyndel,37,r1l17,schema violation,NOA,stage span requires a type attribute (no bare stage),פֶערוואנְדְלונְג,fix per schema
+Sore Sheyndel,17,line_1653775703888_1520,schema violation,NOA,fw span requires a type attribute (page numbers are type:pageNum),13,fix per schema
+Sore Sheyndel,31,r1l30,schema violation,NOA,stage span requires a type attribute (no bare stage),(זינגט).,fix per schema
+Sore Sheyndel,41,r1l1,schema violation,NOA,fw span requires a type attribute (page numbers are type:pageNum),37,fix per schema
 Sore Sheyndel,—,role:mshurrim_un_flk,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,mshurrim_un_flk,verify the role is real / find its speeches
 Yudale der Blinder,6,r23l49,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: נֵיין???,tag speaker xmlid:alle
 Yudale der Blinder,7,r1l8,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: דְבוֹרֶה'לֶע???,tag speaker xmlid:alle
@@ -313,7 +256,6 @@ Yudale der Blinder,15,r1l4,untagged speaker (collective),AUTO,collective 'ביי
 Yudale der Blinder,15,line_1647513264664_336,untagged speaker (collective),AUTO,collective 'ביידע' — no speaker span,ביידע: ווֶער — דִי הִילְפֶע אִיז נוּר עֵ,tag speaker xmlid:beyde
 Yudale der Blinder,20,TextRegion_1648506461053_3149l8,schema violation,NOA,fw span requires a type attribute (page numbers are type:pageNum),אוֹי אוֹי! ווִי הַאלְט מֶען דָאס אויִס,fix per schema
 Yudale der Blinder,20,TextRegion_1648506461053_3149l25,untagged speaker (collective),AUTO,collective 'ביידע' — no speaker span,ביידע: אוֹי אִיז דֶען אַ מוּז לַיידֶען א,tag speaker xmlid:beyde
-Yudale der Blinder,21,TextRegion_1648506293321_3101l12,untagged speaker (collective),AUTO,collective 'ביידע' — no speaker span,"ביידע: אוֹי גוּט אוֹי ווֹאהל, אוֹי עֶס א",tag speaker xmlid:beyde
 Yudale der Blinder,24,TextRegion_1648505709688_2823l2,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: דְבוֹרֶה'לֶע???,tag speaker xmlid:alle
 Yudale der Blinder,24,TextRegion_1648505709688_2823l4,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: זַיין כּלה.,tag speaker xmlid:alle
 Yudale der Blinder,25,TextRegion_1648547718722_1221l17,schema violation,NOA,"stage.type tokens not in vocab: ['trailer']; allowed = ['business', 'costume', 'delivery', 'entrance', 'exit', 'location', 'mixed', 'modifier', 'novelistic', 'repeat', 'setting']",(ענדע פון ערשטען אקט).,fix per schema
@@ -345,9 +287,49 @@ Yudale der Blinder,65,line_1647441957184_1889,untagged speaker (unknown),NOA,tur
 Yudale der Blinder,65,r2l30,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: וואָס?,tag speaker xmlid:alle
 Yudale der Blinder,65,r2l55,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: וואָס?,tag speaker xmlid:alle
 Yudale der Blinder,66,r1l20,untagged speaker (collective),AUTO,collective 'אלע' — no speaker span,אלע: וִויוַואט מֶעל טוֹב!,tag speaker xmlid:alle
+Das Yudishe Kind,2,line_1694599194469_485,schema violation,NOA,role span requires xmlid attribute,"יוּדֶען, גראַפֿעֶן א. ז. וו",fix per schema
 Das Yudishe Kind,12,r_3_1_tl_19,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),רב זִינְגְט:,fix per schema
 Das Yudishe Kind,12,l,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זַיי:,fix per schema
 Das Yudishe Kind,12,r_3_1_tl_29,untagged speaker (collective),AUTO,collective 'ביידע' — no speaker span,בּיידע:,tag speaker xmlid:beyde
+Das Yudishe Kind,19,r_3_1_tl_4,schema violation,NOA,stage span requires a type attribute (no bare stage),(קוּמט מִיט גֶעלְד),fix per schema
+Das Yudishe Kind,21,r_3_1_tl_11,schema violation,NOA,stage span requires a type attribute (no bare stage),(אָבּ).,fix per schema
+Das Yudishe Kind,28,l_4,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זֶעזֶעמִיר:,fix per schema
+Das Yudishe Kind,32,l_10,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי,fix per schema
+Das Yudishe Kind,32,l_8,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ער:,fix per schema
+Das Yudishe Kind,32,l_4,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ער:,fix per schema
+Das Yudishe Kind,32,l_2,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,33,l_3,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,33,r_4_1_tl_4,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,33,l_5,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,38,r_2_1_tl_38,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּרנצע:,fix per schema
+Das Yudishe Kind,39,r_3_1_tl_23,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּריעצע:,fix per schema
 Das Yudishe Kind,45,r_3_1_tl_55,untagged speaker (unknown),NOA,turn-like 'זעזעמיר)' not in cast (OCR?),"זעזעמיר): גראַדע דיִר, מַיין פרייַנד, דא",fix OCR / link to a cast xmlid
+Das Yudishe Kind,48,r_2_1_tl_8,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,48,r_2_1_tl_12,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,48,r_2_1_tl_17,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,48,r_2_1_tl_24,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,49,r_5_1_tl_2,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,49,r_5_1_tl_4,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,49,r_5_1_tl_11,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,49,l_3,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,49,l_1,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,49,r_7_1_tl_1,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר: ,fix per schema
+Das Yudishe Kind,49,r_7_1_tl_7,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,50,l_14,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,50,l_19,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,50,l_25,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
+Das Yudishe Kind,50,l_1,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ער:,fix per schema
+Das Yudishe Kind,50,l_2,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,51,l_3,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ער:,fix per schema
+Das Yudishe Kind,51,l_2,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,51,l_1,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ער:,fix per schema
+Das Yudishe Kind,51,l,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,52,l_6,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ער:,fix per schema
+Das Yudishe Kind,52,l_3,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,52,l_2,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ער:,fix per schema
+Das Yudishe Kind,52,l_1,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),זי:,fix per schema
+Das Yudishe Kind,52,l,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),ער:,fix per schema
+Das Yudishe Kind,53,r_3_1_tl_15,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר: ,fix per schema
+Das Yudishe Kind,53,r_3_1_tl_18,schema violation,NOA,speaker span requires xmlid attribute (link to a role xml:id),שפּר:,fix per schema
 Das Yudishe Kind,—,role:grafn,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,grafn,verify the role is real / find its speeches
 Das Yudishe Kind,—,role:yudn,unreferenced cast,NOA,declared in cast_dict but never used by any speaker,yudn,verify the role is real / find its speeches

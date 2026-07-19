@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:15.136+02:00</Created>
-        <LastChange>2026-07-14T19:55:31.615+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627485" pageNr="27" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=OSXVIWJSUXCSJDMCQKMJXKSN" imageId="24094961"/>
+        <LastChange>2026-07-19T21:25:03.278+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627485" pageNr="27" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=OSXVIWJSUXCSJDMCQKMJXKSN" imageId="24094961"/>
     </Metadata>
     <Page imageFilename="30627485.jpg" imageWidth="1606" imageHeight="2302">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
@@ -184,7 +184,7 @@
                     <Unicode>(מען פיהרט אריין ר' יוחנצין, מיט געזאנג)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l30" custom="readingOrder {index:25;} speaker {offset:0;length:4;}">
+            <TextLine id="r1l30" custom="readingOrder {index:25;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="659,1763 702,1764 717,1754 749,1756 765,1745 791,1752 793,1690 778,1683 760,1688 750,1698 727,1688 681,1701 662,1695"/>
                 <Baseline points="668,1738 693,1738 718,1737 744,1737 769,1736 795,1735"/>
                 <TextEquiv>
@@ -241,7 +241,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

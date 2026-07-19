@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:15.185+02:00</Created>
-        <LastChange>2026-07-14T19:57:13.195+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627487" pageNr="28" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TNQDKUKFXUTBHJMKOFGLHLYT" imageId="24094963"/>
+        <LastChange>2026-07-19T21:25:03.775+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627487" pageNr="28" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=TNQDKUKFXUTBHJMKOFGLHLYT" imageId="24094963"/>
     </Metadata>
     <Page imageFilename="30627487.jpg" imageWidth="1646" imageHeight="2322">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
@@ -23,7 +23,7 @@
                     <Unicode>24</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l4" custom="readingOrder {index:2;} speaker {offset:0;length:4;}">
+            <TextLine id="r1l4" custom="readingOrder {index:2;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="771,347 807,351 814,346 835,359 855,346 865,350 887,337 895,339 898,283 885,284 866,276 844,286 838,279 817,276 783,298 772,299"/>
                 <Baseline points="780,324 809,324 839,324 869,323 899,321"/>
                 <TextEquiv>
@@ -241,7 +241,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

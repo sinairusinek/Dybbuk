@@ -3,13 +3,13 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_17:45</Creator>
         <Created>2021-10-31T12:55:14.293+02:00</Created>
-        <LastChange>2026-07-03T08:24:48.704+02:00</LastChange>
+        <LastChange>2026-07-19T21:24:37.127+02:00</LastChange>
         <TranskribusMetadata docId="820841" pageId="30622283" pageNr="64" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=UAWIHPTCHLVEQREUDKUZRNBT" imageId="24089912"/>
     </Metadata>
     <Page imageFilename="30622283.jpg" imageWidth="1850" imageHeight="2452">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="183,343 183,2094 1315,2094 1315,343"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0;length:6;type:pageNum;}">
                 <Coords points="657,391 698,374 738,393 841,379 841,332 830,329 808,335 799,329 764,331 751,343 698,343 684,356 657,350"/>
                 <Baseline points="665,375 705,372 730,374 756,375 781,375 806,374 844,377"/>
                 <TextEquiv>
@@ -37,7 +37,7 @@
                     <Unicode>אויפטריט למך אוּן הערמאַן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l5" custom="readingOrder {index:4;}">
+            <TextLine id="r1l5" custom="readingOrder {index:4;} speaker {offset:0; length:3; xmlid:lmkh;}">
                 <Coords points="180,691 1183,707 1183,643 1122,625 819,667 315,618 180,643"/>
                 <Baseline points="187,689 239,687 292,686 344,686 397,686 449,686 502,687 555,687 607,688 660,689 712,690 765,691 817,692 870,692 923,693 975,692 1028,692 1080,691 1133,689 1186,687"/>
                 <TextEquiv>
@@ -51,14 +51,14 @@
                     <Unicode>מיין שטוּבּ וִויל איִךְ ניִט העֶרעֶן קללות, שטיל זאָל זיין!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l7" custom="readingOrder {index:6;} speaker {offset:0; length:5; xmlid:serkele;}">
+            <TextLine id="r1l7" custom="readingOrder {index:6;} speaker {offset:0;length:5;xmlid:serkele;}">
                 <Coords points="883,808 939,816 965,806 1002,822 1099,809 1122,822 1183,798 1183,762 1166,757 1117,764 1080,753 1059,769 1020,751 1002,762 957,753 932,764 901,751 883,760"/>
                 <Baseline points="891,796 917,796 944,796 971,796 998,796 1025,797 1052,797 1079,797 1106,797 1133,797 1160,796 1187,795"/>
                 <TextEquiv>
                     <Unicode>סערקע: למך.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l8" custom="readingOrder {index:7;} speaker {offset:0; length:3; xmlid:lmkh;}">
+            <TextLine id="r1l8" custom="readingOrder {index:7;} speaker {offset:0;length:3;xmlid:lmkh;}">
                 <Coords points="181,864 1186,865 1184,798 1067,827 647,771 342,778 180,826"/>
                 <Baseline points="187,839 237,840 287,841 337,842 387,842 437,842 487,843 537,843 587,843 637,843 688,844 738,844 788,844 838,845 888,845 938,846 988,847 1038,848 1088,850 1138,852 1189,854"/>
                 <TextEquiv>
@@ -100,7 +100,7 @@
                     <Unicode>דיִך זעֶהן אָנגעטהוּן! (אַ טופ מיט די פֿיס): נוּ דוּ שְׁטעהסט נאָך?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l14" custom="readingOrder {index:13;} speaker {offset:0; length:5; xmlid:serkele;}">
+            <TextLine id="r1l14" custom="readingOrder {index:13;} speaker {offset:0;length:5;xmlid:serkele;}">
                 <Coords points="184,1186 1194,1175 1081,1123 184,1115"/>
                 <Baseline points="192,1161 242,1162 292,1162 342,1163 393,1163 443,1164 493,1164 543,1164 594,1165 644,1165 694,1165 744,1166 795,1166 845,1166 895,1167 945,1167 996,1167 1046,1168 1096,1168 1146,1169 1197,1170"/>
                 <TextEquiv>
@@ -121,7 +121,7 @@
                     <Unicode>אויפטריט ראָזאַ (אויסגעפוצט).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l17" custom="readingOrder {index:16;} speaker {offset:0; length:4; xmlid:rz;}">
+            <TextLine id="r1l17" custom="readingOrder {index:16;} speaker {offset:0;length:4;xmlid:rz;}">
                 <Coords points="193,1387 1122,1408 1177,1391 1176,1328 191,1335"/>
                 <Baseline points="200,1357 249,1362 298,1366 347,1369 396,1371 445,1373 494,1375 543,1376 592,1376 641,1377 690,1377 739,1377 788,1377 837,1377 886,1377 935,1377 984,1378 1033,1379 1082,1380 1131,1381 1181,1383"/>
                 <TextEquiv>
@@ -156,7 +156,7 @@
                     <Unicode>פֿיהרערין!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l22" custom="readingOrder {index:21;} speaker {offset:0; length:5; xmlid:serkele;}">
+            <TextLine id="r1l22" custom="readingOrder {index:21;} speaker {offset:0;length:5;xmlid:serkele;}">
                 <Coords points="181,1639 1018,1671 1194,1659 1194,1631 674,1568 585,1611 180,1610"/>
                 <Baseline points="189,1633 239,1634 289,1636 340,1637 390,1638 441,1639 491,1640 542,1641 592,1641 643,1642 693,1642 743,1643 794,1643 844,1644 895,1644 945,1645 996,1645 1046,1646 1097,1647 1147,1647 1198,1648"/>
                 <TextEquiv>
@@ -177,7 +177,7 @@
                     <Unicode>איִז נאָר אַ חָלוֹם.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l25" custom="readingOrder {index:24;} speaker {offset:0; length:3; xmlid:feter_mshh;}">
+            <TextLine id="r1l25" custom="readingOrder {index:24;} speaker {offset:0;length:3;xmlid:feter_mshh;}">
                 <Coords points="176,1822 1182,1830 1145,1769 174,1749"/>
                 <Baseline points="183,1795 233,1797 283,1798 333,1800 383,1801 433,1802 483,1802 533,1803 583,1803 633,1803 684,1804 734,1804 784,1804 834,1804 884,1804 934,1804 984,1805 1034,1805 1084,1806 1134,1806 1185,1808"/>
                 <TextEquiv>
@@ -188,17 +188,17 @@
                 <Coords points="504,1871 1201,1872 1254,1899 1286,1887 1286,1834 502,1818"/>
                 <Baseline points="511,1852 549,1852 588,1853 627,1854 666,1854 705,1855 744,1855 783,1856 822,1856 861,1856 900,1857 938,1858 977,1858 1016,1859 1055,1859 1094,1861 1133,1862 1172,1863 1211,1865 1250,1866 1289,1868"/>
                 <TextEquiv>
-                    <Unicode>קלאַפּט נישט געבּלאָזען, אוּן פּלוּצים מחוּתנים.</Unicode>
+                    <Unicode>קלאַפּט-נישט געבּלאָזען, אוּן פּלוּצים מחוּתנים.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l27" custom="readingOrder {index:26;} speaker {offset:0; length:5; xmlid:serkele;}">
+            <TextLine id="r1l27" custom="readingOrder {index:26;} speaker {offset:0;length:5;xmlid:serkele;}">
                 <Coords points="191,1914 1083,1942 1170,1922 1170,1883 374,1878 190,1837"/>
                 <Baseline points="199,1901 247,1901 296,1902 345,1903 394,1904 442,1905 491,1905 540,1906 589,1908 637,1909 686,1910 735,1911 784,1911 832,1912 881,1913 930,1914 979,1914 1027,1914 1076,1914 1125,1914 1174,1914"/>
                 <TextEquiv>
                     <Unicode>סערקע: טאָכטער, דֶערְצֶעהל מיִר אוֹיך, וואָס אִיז דאָ?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l28" custom="readingOrder {index:27;} speaker {offset:0; length:4; xmlid:rz;}">
+            <TextLine id="r1l28" custom="readingOrder {index:27;} speaker {offset:0;length:4;xmlid:rz;}">
                 <Coords points="194,1967 1179,1991 1177,1936 1120,1929 194,1914"/>
                 <Baseline points="201,1958 250,1958 299,1958 348,1958 397,1959 446,1959 495,1960 544,1961 593,1962 642,1963 691,1964 740,1965 789,1966 838,1967 887,1967 936,1968 985,1968 1034,1969 1083,1968 1132,1968 1181,1968"/>
                 <TextEquiv>
@@ -209,7 +209,7 @@
                 <Coords points="181,2014 1288,2035 1271,1989 1018,1973 181,1975"/>
                 <Baseline points="189,2011 244,2011 299,2011 354,2012 409,2012 464,2012 519,2013 574,2014 629,2015 684,2015 740,2016 795,2017 850,2018 905,2019 960,2020 1015,2021 1070,2022 1125,2023 1180,2024 1235,2025 1291,2025"/>
                 <TextEquiv>
-                    <Unicode>אַהיים געֶקוּמעֶן, אוּן זאָגט מיִט איילעֶניִש ראָזעֶלעֶ, שנעֶל טהוּ</Unicode>
+                    <Unicode>אַהיים געֶקוּמעֶן, אוּן זאָגט מיִט איילעֶניִש: ראָזעֶלעֶ, שנעֶל טהוּ</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextLine id="r1l30" custom="readingOrder {index:29;}">

@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:15.708+02:00</Created>
-        <LastChange>2026-07-15T09:43:23.842+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627507" pageNr="37" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=YWFKPNFPVOEVJLQLYEOAXCHI" imageId="24094983"/>
+        <LastChange>2026-07-19T21:25:04.797+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627507" pageNr="37" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=YWFKPNFPVOEVJLQLYEOAXCHI" imageId="24094983"/>
     </Metadata>
     <Page imageFilename="30627507.jpg" imageWidth="1586" imageHeight="2302">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
@@ -121,7 +121,7 @@
                     <Unicode>אוֹי מאַמעניו, קוֹיף מיר דאָס!...</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l17" custom="readingOrder {index:16;} stage {offset:0;length:16;}">
+            <TextLine id="r1l17" custom="readingOrder {index:16;} stage {offset:0; length:16; type:setting;}">
                 <Coords points="576,1363 662,1383 696,1361 780,1389 1011,1383 1008,1289 936,1319 842,1319 743,1288 686,1318 576,1330"/>
                 <Baseline points="584,1348 609,1350 634,1351 659,1352 684,1353 710,1354 735,1354 760,1355 785,1356 811,1357 836,1357 861,1358 886,1358 912,1359 937,1360 962,1360 987,1362 1013,1363"/>
                 <TextEquiv>
@@ -220,7 +220,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

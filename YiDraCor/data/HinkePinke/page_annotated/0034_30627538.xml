@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_14:14</Creator>
         <Created>2022-04-11T17:03:36.945+02:00</Created>
-        <LastChange>2026-07-19T19:18:46.983+02:00</LastChange>
+        <LastChange>2026-07-19T21:24:41.235+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
@@ -108,7 +108,7 @@
                     <Unicode>פערצווייפלונג. פֿאָרהאַנג פֿאַלט)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649691473659_2244l13" custom="readingOrder {index:13;} stage {offset:0;length:13;}">
+            <TextLine id="TextRegion_1649691473659_2244l13" custom="readingOrder {index:13;} stage {offset:0; length:13; type:setting;}">
                 <Coords points="538,975 570,973 628,1003 672,986 712,1007 750,998 795,971 798,913 770,897 746,916 696,905 670,915 539,915"/>
                 <Baseline points="545,965 570,966 595,965 620,965 646,965 671,964 696,963 722,962 747,960 772,958 798,956"/>
                 <TextEquiv>
@@ -256,7 +256,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>

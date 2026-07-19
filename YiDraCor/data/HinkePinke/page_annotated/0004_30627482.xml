@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_07:07</Creator>
         <Created>2021-10-31T17:04:00.454+02:00</Created>
-        <LastChange>2026-06-25T09:30:20.789+02:00</LastChange>
-        <TranskribusMetadata docId="820969" pageId="30627482" pageNr="4" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=LQOVYBOYHVTOQAAVMDHSOEMC" imageId="24094958"/>
+        <LastChange>2026-07-19T21:18:40.548+02:00</LastChange>
+        <TranskribusMetadata docId="820969" pageId="30627482" pageNr="4" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=LQOVYBOYHVTOQAAVMDHSOEMC" imageId="24094958"/>
     </Metadata>
     <Page imageFilename="30627482.jpg" imageWidth="1670" imageHeight="2493">
         <GraphicRegion id="Graphic_1646937361993_2150" custom="readingOrder {index:0;}">
@@ -13,7 +13,7 @@
         <GraphicRegion id="Graphic_1646936929901_1974" custom="readingOrder {index:1;}">
             <Coords points="881,179 1344,179 1344,477 881,477"/>
         </GraphicRegion>
-        <TextRegion orientation="0.0" id="TextRegion_1646936958099_1994" custom="readingOrder {index:2;}">
+        <TextRegion orientation="0.0" id="TextRegion_1646936958099_1994" custom="readingOrder {index:2;} structure {type:castList;}">
             <Coords points="339,371 840,371 838,503 1067,506 1067,1705 339,1705"/>
             <TextLine id="r1l3" custom="readingOrder {index:0;} head {offset:0;length:18;}">
                 <Coords points="467,473 575,445 673,482 702,456 781,433 824,451 826,338 777,330 755,342 732,329 681,353 611,313 573,338 535,316 504,330 471,323"/>
@@ -107,7 +107,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
         <TextRegion orientation="0.0" id="TextRegion_1646936966107_2015" custom="readingOrder {index:3;}">
@@ -120,7 +120,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode/>
+                <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
     </Page>
