@@ -14,18 +14,39 @@ ALLOWED_TAGS = {
     # joint/duet turns (Noa 2026-06-14). The structurer expands a multi-xmlid
     # span into TEI <sp who="#a #b">.
     "speaker": {"xmlid"},
-    "stage": {"type"},
+    "stage": {"type", "continued"},
     "trailer": {"type"},  # TEI <trailer>: closing label at the end of a division
         # (e.g. "ענדע דער X אקט", "ענדע דער פיעססע"). NOT a stage direction — the
         # 2026-05-24 PI review re-typed these out of `stage`. `type` is OPTIONAL.
     "heading": {"type", "n", "subtype"},  # subtype:songGroup marks song-appendix act labels (not structural acts)
     "role": {"xmlid"},
     "roleDesc": set(),
-    "l": {"lg_id"},
-    "head": {"lg_id"},
-    "lg": {"n", "cont"},  # group marker: one per stanza/song. `cont` is OPTIONAL and only ever `yes` (stanza continues from previous page); omit it otherwise (absence = not a continuation). Per-line `lg` spans are wrong — lines are `l {lg_id}`. Structurer expands cont:yes → continued="yes" in TEI.
+    "actor": set(),  # TEI castList <actor>: the performer's name printed beside
+        # a role. Noa tags these routinely (e.g. Bas Sheva p.6). Added 2026-07-19
+        # — it was missing, so every actor span linted as "unknown tag".
+    "l": {"lg_id", "continued"},
+    "head": {"lg_id", "unit-type"},  # `unit-type:act` is a legacy RA form for
+        # act headings, predating heading{type:act}. Accepted so it does not
+        # lint as an error; new annotation should use `heading`.
+    "lg": {"n", "cont", "continued", "type"},  # legacy RA form `continued:true; type:cont` = the modern `cont:yes`.  # group marker: one per stanza/song. `cont` is OPTIONAL and only ever `yes` (stanza continues from previous page); omit it otherwise (absence = not a continuation). Per-line `lg` spans are wrong — lines are `l {lg_id}`. Structurer expands cont:yes → continued="yes" in TEI.
     "fw": {"type"},  # forme work (TEI <fw>): printed page numbers, running heads, catchwords, signatures. `type` REQUIRED; page numbers are type:pageNum.
 }
+
+# TEI editorial/transcription tags the RAs apply in Transkribus. They carry no
+# YiDraCor-specific semantics — `build_tei` passes them through — but they must
+# be *known* here or the linter reports each one as an unknown tag. `unclear`
+# alone accounted for 912 false flags before this was added (2026-07-19).
+EDITORIAL_TAGS = {
+    "unclear", "sic", "corr", "orig", "reg", "abbr", "expan",
+    "supplied", "add", "del", "gap", "note", "foreign", "hi",
+}
+for _t in EDITORIAL_TAGS:
+    ALLOWED_TAGS.setdefault(_t, {"cert", "reason", "resp", "rend", "type"})
+
+# Transkribus-native span types that are not part of our tagset at all. They are
+# emitted by the Transkribus editor itself (styling, layout) and must be ignored
+# by the validator rather than flagged.
+IGNORED_TAGS = {"readingOrder", "textStyle", "Header", "Footer", "structure"}
 
 # Structural division headings. `epilog` added per the 2026-05-24 PI review:
 # a standalone "עפילאג" line opens an epilogue division parallel to the acts.
@@ -180,6 +201,8 @@ def sanitize_xmlid(s: str) -> str:
 def validate_span(line_text: str, span: dict) -> str | None:
     """Return None if valid, else an error string."""
     tag = span.get("tag")
+    if tag in IGNORED_TAGS:
+        return None  # Transkribus-native, not ours to validate
     if tag not in ALLOWED_TAGS:
         return f"unknown tag {tag!r}"
     off = span.get("offset")
