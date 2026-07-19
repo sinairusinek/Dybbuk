@@ -13,7 +13,9 @@ import csv
 import datetime as _dt
 import html
 import pathlib
+import re
 import sys
+import unicodedata
 
 import streamlit as st
 
@@ -118,6 +120,35 @@ def _save_decisions(new_rows: list[dict], commit_msg: str) -> None:
 def _rtl(text: str, size: float = 1.0, weight: int = 400) -> str:
     return (f"<div dir='rtl' style='font-size:{size}rem; "
             f"font-weight:{weight}'>{text}</div>")
+
+
+def _bold_mention(sentence: str, mention: str) -> str:
+    """Escape a sentence for display and bold the mention surface inside it.
+
+    The mention is what's being adjudicated, so it carries the emphasis (the
+    host heading above is left at regular weight). Two Yiddish-specific wrinkles:
+    names inflect in place (טאָמאַשעווסקי → טאָמאַשעווסקין / טאָמאַשעווסקיס), so we match a
+    word PREFIX; and the mention and the running text often disagree on nikkud
+    (אברהם vs אַברהם), so points are treated as optional between letters.
+
+    Both sides are NFD-normalized first: mention surfaces carry precomposed
+    presentation forms (פֿ = U+FB4E) that the running text may spell as base
+    letter + point, and decomposing both is what makes them comparable.
+    """
+    sentence = unicodedata.normalize("NFD", sentence or "")
+    base = "".join(c for c in unicodedata.normalize("NFD", mention or "")
+                   if not unicodedata.combining(c))
+    if not base.strip():
+        return html.escape(sentence)
+    nik = r"[֑-ׇ]*"          # Hebrew points/accents, optional
+    pattern = "".join(re.escape(ch) + nik for ch in base) + r"[\w֑-ׇ]*"
+    out, pos = [], 0
+    for mo in re.finditer(pattern, sentence):
+        out.append(html.escape(sentence[pos:mo.start()]))
+        out.append(f"<strong>{html.escape(mo.group(0))}</strong>")
+        pos = mo.end()
+    out.append(html.escape(sentence[pos:]))
+    return "".join(out)
 
 
 def _candidate_panel(cand_ids: list[str], hubs: dict[str, dict],
@@ -237,7 +268,7 @@ def render() -> None:
         mid = r["mention_id"]
         host = r["host_heading"] or r["host_person_id"] or "(unknown entry)"
         if host != last_host:
-            st.markdown(_rtl(f"📖 {host}", 1.05, 600), unsafe_allow_html=True)
+            st.markdown(_rtl(f"📖 {html.escape(host)}", 1.05), unsafe_allow_html=True)
             host_pid = r["host_person_id"]
             if host_pid and texts.get(host_pid):
                 with st.expander("📜 host entry text (mentions highlighted)"):
@@ -248,9 +279,13 @@ def render() -> None:
             top = st.columns([3, 2])
             with top[0]:
                 if r["sentence"]:
-                    st.markdown(_rtl(f"…{r['sentence']}…"), unsafe_allow_html=True)
+                    st.markdown(
+                        _rtl(f"…{_bold_mention(r['sentence'], r['mention_name'])}…"),
+                        unsafe_allow_html=True)
                 else:
-                    st.markdown(_rtl(r["mention_name"], 1.1), unsafe_allow_html=True)
+                    st.markdown(
+                        _rtl(f"<strong>{html.escape(r['mention_name'])}</strong>", 1.1),
+                        unsafe_allow_html=True)
             with top[1]:
                 chips = r["chips"].replace("|", " · ")
                 sugg = ""
