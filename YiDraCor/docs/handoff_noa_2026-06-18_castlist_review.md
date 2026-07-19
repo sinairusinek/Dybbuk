@@ -152,3 +152,49 @@ Once castLists are confirmed, body-page annotation can run for each play:
 - `auto_resolve_flags` cleans up + pushes.
 
 Estimated time per play after castList confirmation: ~30 minutes of pipeline + push, then queued for RA review.
+
+---
+
+## Noa's castList Review Decisions (2026-06-21)
+
+*Imported 2026-07-19 from the Google Doc (id `1Eh0h8cMdZGfwd04IqoRlvKIifBcpW7wBsIMQIGwIyDQ`),
+where Noa appended them on 2026-06-21. They had never been copied back into the repo.*
+
+1. **BasSheva (page 6)**
+   - Q1.1: (a) Keep as one collective (`xml:id="shefer"`)
+   - Q1.2: (a) Keep separate (`tayfel` [proper] vs. `tayflen` [collective])
+2. **HinkePinke (page 4)**
+   - Q2.1: (a) Yes, it's a collective (`xml:id="yener"`)
+   - Q2.2: **(b)** One unified compound collective: `xml:id="yudn_soldatn"` (Jewish soldiers)
+3. **SoreSheyndel (page 7)**
+   - Q3.1: (a) role=`רֶב יוחנצי`, roleDesc=`דין`
+   - Q3.2: (a) Yes, Reb Yontsi + Sore Sheyndel's children
+   - Q3.3: (a) Three separate items (shabse + mshorerim + folk)
+4. **Dovid's Fidele (page 6)**
+   - Q4.1: (a) Profession → roleDesc. role=`דַאוִויד`, roleDesc=`גֵייגֶער טוביה'ס ברודער`
+   - Q4.2: (a) Part of role (surname/full-name compound: `איצעלע פיפעק`)
+5. **Dos Yudishe Herts (page 4)**
+   - Q5.1: (a) Fused title → stays inside role. role=`פֿעטער משה`
+   - Q5.2: (a) role=`יעקב שטערען`, roleDesc=`אַמאַלעֶר איהר חתן`
+   - Q5.3: (a) Profession → roleDesc. role=`למְך`, roleDesc=`אַקְרעֶטשמעֶר`
+   - Q5.4: (a) Yes, Paula's children (Viktor + Lida)
+
+### Reconciliation against the data (checked 2026-07-19) — NOT yet applied
+
+| Q | Noa's call | Current data | Status |
+|---|---|---|---|
+| Q1.2, Q2.1, Q3.1, Q3.2, Q4.2, Q5.1–Q5.4 | (a) | matches | ✅ already correct |
+| **Q2.2** | (b) one `yudn_soldatn` | `iuden` + `sldten` = two roles | ❌ **fix** — her 06-24 TK spans agree with (b) |
+| **Q3.3** | (a) three items | `שאפסע` + one fused role `משוררים און פאלק` | ❌ **fix** — split into two collectives |
+| **Q4.1** | (a) role=`דאוויד` | role=`דאוויד גייגער`, roleDesc=`טוביה'ס ברודער` | ❌ **fix** — move `גייגער` into roleDesc |
+| **Q1.1** | (a) keep as ONE `shefer` | `shefer` + `sheferigen` = two | ⚠️ **CONTRADICTION — ask Noa** |
+
+**Q1.1 conflict:** her written answer (06-21) says keep `שעפער שעפעריגען` as one
+collective; her Transkribus annotation (06-24, i.e. later) tags them as two separate
+role spans, and the cast_dict followed the annotation. The later action contradicts
+the earlier written call. Do not guess — re-ask.
+
+**Also spotted:** `עטצ.` ("etc.") was coined as a role (`etts`) in BasSheva — junk.
+Trailing punctuation is baked into many `bare` forms across these five plays
+(`sheferigen=שעפעריגען,`, `hertsg=הערצאג.`, `khinke=חינקע:`, `frits=פריץ: `),
+which degrades speaker matching.
