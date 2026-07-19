@@ -224,17 +224,75 @@ def render() -> None:
     rereview = _load_rereview(_mtime(REREVIEW_TSV))
 
     # ── surname picker ────────────────────────────────────────────────────────
-    def _glabel(g: dict) -> str:
-        fam = " 👪" if g["family_cluster"] == "1" else ""
-        return (f"{g['surname']}{fam} — {g['n_ambiguous']} ambiguous / "
-                f"{g['n_mentions']} mentions / {g['n_candidates']} candidates")
+    # Per-surname review progress drives both the label and the "unfinished"
+    # filter, so a group that still has undecided mentions is findable without
+    # opening every group in turn.
+    n_total: dict[str, int] = {}
+    n_done: dict[str, int] = {}
+    for r in resolutions:
+        s = r["surname_token"]
+        n_total[s] = n_total.get(s, 0) + 1
+        if r["mention_id"] in decisions:
+            n_done[s] = n_done.get(s, 0) + 1
 
-    q = st.text_input("Filter surnames", key="sr_filter",
-                      placeholder="type part of a surname…")
+    def _left(g: dict) -> int:
+        s = g["surname"]
+        return n_total.get(s, 0) - n_done.get(s, 0)
+
+    rr_high = {m["surname"] for m in rereview.values() if m["priority"] == "high"}
+
+    def _glabel(g: dict) -> str:
+        s = g["surname"]
+        fam = " 👪" if g["family_cluster"] == "1" else ""
+        rr = " ⚠" if s in rr_high else ""
+        tot, done = n_total.get(s, 0), n_done.get(s, 0)
+        mark = "✅" if tot and done >= tot else ("◑" if done else "○")
+        return (f"{s}{fam}{rr} — {mark} {done}/{tot} decided · "
+                f"{g['n_ambiguous']} ambiguous / {g['n_candidates']} candidates")
+
+    def _status(g: dict) -> str:
+        s = g["surname"]
+        tot, done = n_total.get(s, 0), n_done.get(s, 0)
+        if tot and done >= tot:
+            return "done"
+        return "prog" if done else "none"
+
+    tally = {"prog": 0, "none": 0, "done": 0}
+    for g in groups:
+        tally[_status(g)] += 1
+    # A plain "unfinished" cut is useless here — it matches ~all 1,436 groups,
+    # since most were never opened. The actionable cut is "started but not
+    # finished": a couple of dozen groups with a handful of stragglers each.
+    opts = {"All": None,
+            f"◑ In progress ({tally['prog']})": "prog",
+            f"○ Not started ({tally['none']})": "none",
+            f"✅ Done ({tally['done']})": "done"}
+
+    fc1, fc2 = st.columns([3, 2])
+    with fc1:
+        q = st.text_input("Filter surnames", key="sr_filter",
+                          placeholder="type part of a surname…")
+    with fc2:
+        want = opts[st.selectbox(
+            "Review status", list(opts), key="sr_status",
+            help="◑ In progress = started but not finished — the groups with "
+                 "leftover mentions to mop up.")]
+
     pool = [g for g in groups if not q or q.strip() in g["surname"]]
+    if want:
+        pool = [g for g in pool if _status(g) == want]
+    if want == "prog":
+        pool = sorted(pool, key=_left)   # fewest leftovers first — quick wins
+    st.caption(f"{tally['done']} done · {tally['prog']} in progress · "
+               f"{tally['none']} not started  (of {len(groups)} surname groups)")
     if not pool:
-        st.warning("No surname matches the filter.")
+        st.warning("No surname group matches the current filter."
+                   + (" Every group is fully decided." if unfinished_only else ""))
         return
+    # the stored selection may fall outside a narrowed pool — clear it first, or
+    # the selectbox is asked to render a value that is no longer an option.
+    if st.session_state.get("sr_group") not in pool:
+        st.session_state.pop("sr_group", None)
     sel = st.selectbox("Surname group", pool, format_func=_glabel, key="sr_group")
     surname = sel["surname"]
 
