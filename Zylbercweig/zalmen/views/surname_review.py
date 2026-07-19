@@ -25,6 +25,9 @@ if _BASE_STR not in sys.path:
     sys.path.insert(0, _BASE_STR)
 
 PEOPLE_DIR = BASE / "people"
+if str(PEOPLE_DIR) not in sys.path:
+    sys.path.insert(0, str(PEOPLE_DIR))
+from people_similarity import token_variant_similarity  # noqa: E402
 RESOLUTIONS_TSV = PEOPLE_DIR / "mention_surname_resolutions.tsv"
 GROUPS_TSV = PEOPLE_DIR / "surname_groups.tsv"
 HUB_TSV = PEOPLE_DIR / "person_hub.tsv"
@@ -91,6 +94,91 @@ def _entry_text_block(text: str, highlights: list[str]) -> None:
     st.markdown(_rtl(shown.replace("⏎", "<br>")), unsafe_allow_html=True)
     if len(text) > TEXT_DISPLAY_CAP:
         st.caption(f"…truncated at {TEXT_DISPLAY_CAP:,} of {len(text):,} chars.")
+
+
+FAMILY_MIN = 0.88          # same bar the resolver uses for surname variants
+_FINALS = str.maketrans("ץןםךף", "צנמכפ")
+# post-_definal forms: _definal already maps ן→נ, ם→מ, so the suffixes must be
+# written in their non-final shape or they never match.
+_SUFFIXES = ("עס", "ענ", "ס", "נ")
+
+
+def _definal(tok: str) -> str:
+    """Strip points and normalise word-final letterforms (קאמפאנעעץ → קאמפאנעעצ)."""
+    t = "".join(c for c in unicodedata.normalize("NFD", tok or "")
+                if not unicodedata.combining(c))
+    return t.translate(_FINALS)
+
+
+@st.cache_data
+def _load_families(mtime: float) -> list[dict]:
+    """Collapse surname groups into families of spelling/inflection variants.
+
+    The picker is keyed on the literal surface, so one family fragments into
+    many rows — Kompaneetz alone spans 11 groups and 120 mentions, several of
+    them mere inflections (קאמפאנעעצן, קאמפאנעעצס). Two passes fix that:
+
+    1. Inflection: strip a genitive/plural suffix only when the stripped form is
+       itself an ATTESTED surface. Data-driven, so a name that simply ends in ן
+       (גארדין) is never truncated on suspicion.
+    2. Spelling: leader clustering over the folded forms — surfaces sorted by
+       frequency, each joining the first head it matches at FAMILY_MIN, else
+       becoming a head. Comparing only against heads (never member-to-member)
+       avoids the single-linkage chaining that would otherwise bridge two
+       distinct surnames through one intermediate spelling.
+
+    The most frequent surface becomes the family's display name.
+    """
+    with open(GROUPS_TSV) as f:
+        groups = list(csv.DictReader(f, delimiter="\t"))
+    n_of = {g["surname"]: int(g["n_mentions"] or 0) for g in groups}
+    attested = {_definal(g["surname"]) for g in groups}
+
+    def keys(tok: str) -> set[str]:
+        """Both readings of a surface: as written, and with an inflection removed.
+
+        Committing to a single folded form loses matches — גאלדפאדען strips to the
+        attested גאלדפאדע while גאלדפאדן cannot strip at all, and the two folds then
+        sit at 0.875, just under threshold, splitting one name in two. Keeping
+        both readings lets the unstripped pair (0.889) make the match instead.
+        """
+        t = _definal(tok)
+        out = {t}
+        for suf in _SUFFIXES:
+            if t.endswith(suf) and len(t) - len(suf) >= 4 and t[:-len(suf)] in attested:
+                out.add(t[:-len(suf)])
+                break
+        return out
+
+    head_keys: list[set[str]] = []
+    by_prefix: dict[str, list[int]] = {}       # blocking, so this stays linear-ish
+    members: dict[int, list[dict]] = {}
+    for g in sorted(groups, key=lambda g: (-n_of[g["surname"]], g["surname"])):
+        ks = keys(g["surname"])
+        hit = None
+        for i in sorted({i for k in ks for i in by_prefix.get(k[:2], ())}):
+            hk = head_keys[i]
+            if hk & ks or any(token_variant_similarity(
+                    a, b, floor_indels=False, transpositions=True) >= FAMILY_MIN
+                    for a in hk for b in ks):
+                hit = i
+                break
+        if hit is None:
+            head_keys.append(ks)
+            hit = len(head_keys) - 1
+            for k in ks:
+                by_prefix.setdefault(k[:2], []).append(hit)
+        members.setdefault(hit, []).append(g)
+
+    fams = []
+    for _h, gs in members.items():
+        gs.sort(key=lambda g: -n_of[g["surname"]])
+        fams.append({
+            "head": gs[0]["surname"],                       # most frequent spelling
+            "tokens": [g["surname"] for g in gs],
+            "family_cluster": "1" if any(g["family_cluster"] == "1" for g in gs) else "0",
+        })
+    return fams
 
 
 @st.cache_data
@@ -168,7 +256,7 @@ def _bold_mention(sentence: str, mention: str) -> str:
 
 
 def _candidate_panel(cand_ids: list[str], hubs: dict[str, dict],
-                     texts: dict[str, str], surname: str) -> dict[str, str]:
+                     texts: dict[str, str], surfaces: list[str]) -> dict[str, str]:
     """Render fixed candidate cards; return hub_id → short label like '①'."""
     marks = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫"
     label_of: dict[str, str] = {}
@@ -201,7 +289,7 @@ def _candidate_panel(cand_ids: list[str], hubs: dict[str, dict],
                         for p in with_text:
                             if len(with_text) > 1:
                                 st.caption(f"`{p}`")
-                            _entry_text_block(texts[p], [surname])
+                            _entry_text_block(texts[p], surfaces)
     return label_of
 
 
@@ -227,79 +315,104 @@ def render() -> None:
     # Per-surname review progress drives both the label and the "unfinished"
     # filter, so a group that still has undecided mentions is findable without
     # opening every group in turn.
-    n_total: dict[str, int] = {}
-    n_done: dict[str, int] = {}
+    families = _load_families(_mtime(GROUPS_TSV))
+    fam_of_token = {t: f["head"] for f in families for t in f["tokens"]}
+    rows_by_fam: dict[str, list[dict]] = {}
     for r in resolutions:
-        s = r["surname_token"]
-        n_total[s] = n_total.get(s, 0) + 1
-        if r["mention_id"] in decisions:
-            n_done[s] = n_done.get(s, 0) + 1
+        h = fam_of_token.get(r["surname_token"])
+        if h is not None:
+            rows_by_fam.setdefault(h, []).append(r)
 
-    def _left(g: dict) -> int:
-        s = g["surname"]
-        return n_total.get(s, 0) - n_done.get(s, 0)
+    rr_tokens = {m["surname"] for m in rereview.values() if m["priority"] == "high"}
+    rr_high = {fam_of_token.get(t) for t in rr_tokens}
 
-    rr_high = {m["surname"] for m in rereview.values() if m["priority"] == "high"}
+    stat: dict[str, dict] = {}
+    for f in families:
+        rs = rows_by_fam.get(f["head"], [])
+        done = sum(1 for r in rs if r["mention_id"] in decisions)
+        amb_left = sum(1 for r in rs if r["verdict"] == "AMBIGUOUS"
+                       and r["mention_id"] not in decisions)
+        cands = {h for r in rs for h in r["candidate_hub_ids"].split("|") if h}
+        stat[f["head"]] = {"total": len(rs), "done": done, "amb_left": amb_left,
+                           "cands": len(cands)}
 
-    def _glabel(g: dict) -> str:
-        s = g["surname"]
-        fam = " 👪" if g["family_cluster"] == "1" else ""
-        rr = " ⚠" if s in rr_high else ""
-        tot, done = n_total.get(s, 0), n_done.get(s, 0)
-        mark = "✅" if tot and done >= tot else ("◑" if done else "○")
-        return (f"{s}{fam}{rr} — {mark} {done}/{tot} decided · "
-                f"{g['n_ambiguous']} ambiguous / {g['n_candidates']} candidates")
+    def _left(f: dict) -> int:
+        s = stat[f["head"]]
+        return s["total"] - s["done"]
 
-    def _status(g: dict) -> str:
-        s = g["surname"]
-        tot, done = n_total.get(s, 0), n_done.get(s, 0)
-        if tot and done >= tot:
+    def _glabel(f: dict) -> str:
+        s = stat[f["head"]]
+        fam = " 👪" if f["family_cluster"] == "1" else ""
+        rr = " ⚠" if f["head"] in rr_high else ""
+        mark = "✅" if s["total"] and s["done"] >= s["total"] else ("◑" if s["done"] else "○")
+        # RLM after the Hebrew run: without it the bidi algorithm pulls the
+        # leading digit of the next field to the left of the surname.
+        var = f" (+{len(f['tokens']) - 1} sp.)" if len(f["tokens"]) > 1 else ""
+        return (f"{f['head']}{fam}{rr}{var}‏ — {s['amb_left']} left · "
+                f"{mark} {s['done']}/{s['total']} decided · {s['cands']} candidates")
+
+    def _status(f: dict) -> str:
+        s = stat[f["head"]]
+        if s["total"] and s["done"] >= s["total"]:
             return "done"
-        return "prog" if done else "none"
+        return "prog" if s["done"] else "none"
 
     tally = {"prog": 0, "none": 0, "done": 0}
-    for g in groups:
-        tally[_status(g)] += 1
+    for f in families:
+        tally[_status(f)] += 1
     # A plain "unfinished" cut is useless here — it matches ~all 1,436 groups,
     # since most were never opened. The actionable cut is "started but not
     # finished": a couple of dozen groups with a handful of stragglers each.
-    opts = {"All": None,
-            f"◑ In progress ({tally['prog']})": "prog",
-            f"○ Not started ({tally['none']})": "none",
-            f"✅ Done ({tally['done']})": "done"}
+    # The option VALUES must stay stable: saving decisions changes the tallies,
+    # and if the counts were part of the value the stored selection would stop
+    # matching any option and the filter would silently reset to "all".
+    status_text = {"all": "All",
+                   "prog": f"◑ In progress ({tally['prog']})",
+                   "none": f"○ Not started ({tally['none']})",
+                   "done": f"✅ Done ({tally['done']})"}
 
     fc1, fc2 = st.columns([3, 2])
     with fc1:
         q = st.text_input("Filter surnames", key="sr_filter",
                           placeholder="type part of a surname…")
     with fc2:
-        want = opts[st.selectbox(
-            "Review status", list(opts), key="sr_status",
-            help="◑ In progress = started but not finished — the groups with "
-                 "leftover mentions to mop up.")]
+        want = st.selectbox(
+            "Review status", list(status_text), format_func=status_text.get,
+            key="sr_status",
+            help="◑ In progress = started but not finished — the families with "
+                 "leftover mentions to mop up.")
+    if want == "all":
+        want = None
 
-    pool = [g for g in groups if not q or q.strip() in g["surname"]]
+    pool = [f for f in families
+            if not q or any(q.strip() in t for t in f["tokens"])]
     if want:
-        pool = [g for g in pool if _status(g) == want]
+        pool = [f for f in pool if _status(f) == want]
+    # most undecided-ambiguous first: the families with the most work left.
+    pool = sorted(pool, key=lambda f: (-stat[f["head"]]["amb_left"], f["head"]))
     if want == "prog":
         pool = sorted(pool, key=_left)   # fewest leftovers first — quick wins
     st.caption(f"{tally['done']} done · {tally['prog']} in progress · "
-               f"{tally['none']} not started  (of {len(groups)} surname groups)")
+               f"{tally['none']} not started  (of {len(families)} families, "
+               f"collapsed from {len(groups)} spellings)")
     if not pool:
-        st.warning("No surname group matches the current filter."
-                   + (" Every group is fully decided." if unfinished_only else ""))
+        st.warning("No family matches the current filter."
+                   + (" Every family is fully decided." if want == "prog" else ""))
         return
     # the stored selection may fall outside a narrowed pool — clear it first, or
     # the selectbox is asked to render a value that is no longer an option.
     if st.session_state.get("sr_group") not in pool:
         st.session_state.pop("sr_group", None)
-    sel = st.selectbox("Surname group", pool, format_func=_glabel, key="sr_group")
-    surname = sel["surname"]
+    sel = st.selectbox("Family", pool, format_func=_glabel, key="sr_group")
+    surname = sel["head"]
+    variants = sel["tokens"]
 
-    rows = [r for r in resolutions if r["surname_token"] == surname]
+    rows = rows_by_fam.get(sel["head"], [])
+    if len(variants) > 1:
+        st.caption("spellings folded in: " + " · ".join(variants))
     n_decided = sum(1 for r in rows if r["mention_id"] in decisions)
     st.progress(n_decided / max(len(rows), 1),
-                text=f"{n_decided} / {len(rows)} mentions decided for this surname")
+                text=f"{n_decided} / {len(rows)} mentions decided for this family")
 
     # ── fixed candidate panel ─────────────────────────────────────────────────
     cand_ids: list[str] = []
@@ -310,7 +423,7 @@ def render() -> None:
     if sel["family_cluster"] == "1":
         st.warning("👪 **Family cluster** — fame prior disabled; prefer in-entry "
                    "evidence or abstain to family level.", icon="👪")
-    label_of = _candidate_panel(cand_ids, hubs, texts, surname)
+    label_of = _candidate_panel(cand_ids, hubs, texts, variants)
 
     st.divider()
 
@@ -376,7 +489,7 @@ def render() -> None:
             if host_pid and texts.get(host_pid):
                 with st.expander("📜 host entry text (mentions highlighted)"):
                     _entry_text_block(texts[host_pid],
-                                      surfaces_by_host.get(host_pid, []) + [surname])
+                                      surfaces_by_host.get(host_pid, []) + variants)
             last_host = host
         with st.container(border=True):
             top = st.columns([3, 2])
@@ -451,7 +564,7 @@ def render() -> None:
                 hub_id = next((h for h, m in label_of.items() if m == mark), "")
             out.append({
                 "mention_id": mid,
-                "surname": surname,
+                "surname": r["surname_token"],
                 "host_person_id": r["host_person_id"],
                 "mention_name": r["mention_name"],
                 "decision_kind": kind,

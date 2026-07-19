@@ -167,21 +167,27 @@ def expand_name_variants(heading: str, names_variants: str = "", subheading: str
 
 
 @lru_cache(maxsize=200_000)
-def _edit_distance(a: str, b: str) -> int:
-    """Plain Levenshtein distance."""
+def _edit_distance(a: str, b: str, transpositions: bool = False) -> int:
+    """Levenshtein distance; optionally Damerau (adjacent swap costs 1, not 2)."""
     m, n = len(a), len(b)
     if m < n:
         a, b, m, n = b, a, n, m
+    prev2: list[int] = []
     prev = list(range(n + 1))
     for i, ca in enumerate(a, 1):
         cur = [i]
         for j, cb in enumerate(b, 1):
-            cur.append(min(prev[j] + 1, cur[-1] + 1, prev[j - 1] + (ca != cb)))
-        prev = cur
+            d = min(prev[j] + 1, cur[-1] + 1, prev[j - 1] + (ca != cb))
+            if (transpositions and i > 1 and j > 1
+                    and ca == b[j - 2] and a[i - 2] == cb):
+                d = min(d, prev2[j - 2] + 1)
+            cur.append(d)
+        prev2, prev = prev, cur
     return prev[n]
 
 
-def token_variant_similarity(a: str, b: str) -> float:
+def token_variant_similarity(a: str, b: str, floor_indels: bool = True,
+                             transpositions: bool = False) -> float:
     """Character-level similarity for two SINGLE name tokens (e.g. surnames).
 
     Normalized-Levenshtein, nikkud-stripped. Meant for collapsing OCR/spelling
@@ -192,6 +198,15 @@ def token_variant_similarity(a: str, b: str) -> float:
     variance (קאהן↔קאהען) — is floored to 0.9. A single SUBSTITUTION is NOT
     floored: swapping one consonant far more often yields a DIFFERENT surname
     (פרידמאן/פרישמאן/פריימאן), so it must clear the ratio on its own merit.
+
+    Pass transpositions=True to count an adjacent swap (קאמפאניעעץ↔קאמפאנעיעץ) as
+    one edit rather than two — right for OCR/spelling variance, but off by
+    default so the resolver's candidate lookup is unaffected.
+
+    Pass floor_indels=False to drop that floor and judge on the raw ratio alone.
+    Callers that MERGE review units want this: a trailing-letter difference is
+    often a real distinction (זילבער/זילבערט, סאבסי/סאבסיי) and folding those
+    together silently reviews two surnames as one.
     """
     a = normalize_person_name(a)
     b = normalize_person_name(b)
@@ -199,9 +214,9 @@ def token_variant_similarity(a: str, b: str) -> float:
         return 0.0
     if a == b:
         return 1.0
-    d = _edit_distance(a, b)
+    d = _edit_distance(a, b, transpositions)
     ratio = 1.0 - d / max(len(a), len(b))
-    if d == 1 and len(a) != len(b) and min(len(a), len(b)) >= 4:
+    if floor_indels and d == 1 and len(a) != len(b) and min(len(a), len(b)) >= 4:
         return max(ratio, 0.9)
     return ratio
 
