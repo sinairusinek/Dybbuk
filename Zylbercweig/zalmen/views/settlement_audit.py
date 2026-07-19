@@ -1041,7 +1041,57 @@ def render() -> None:
     with st.container(border=True):
         _render_map(ix, addr_by_dbid, focus_qid)
 
+    _unplaced_panel(ix)
     _workbench(ix, addr_by_dbid, reviewer, cities)
+
+
+def _unplaced_panel(ix) -> None:
+    """Orgs that carry a location but land on no city.
+
+    Without this they are simply absent — the map and picker only show what
+    resolved, so a row recorded as "America" reads as if it had no location at
+    all. Split in two because the halves need different work: country-level
+    values are correctly unresolvable (the lens keys on cities) and want either
+    RA re-coding or acceptance, whereas the rest are spelling variants, leaked
+    street addresses and genuine gazetteer gaps.
+    """
+    country = ix.unplaced(country_level=True)
+    other = ix.unplaced(country_level=False)
+    if not country and not other:
+        return
+
+    n_c = sum(a + b for _v, a, b in country)
+    n_o = sum(a + b for _v, a, b in other)
+    with st.expander(
+        f"⚠️ Not on the map — {n_c} country-level · {n_o} unrecognised", expanded=False
+    ):
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.caption(
+                f"**Country / region only** — {len(country)} values, {n_c} orgs. "
+                "Recorded location is a country, so there is no city to place "
+                "them in. Re-code to a city where the source allows."
+            )
+            for value, n_db, n_cl in country[:40]:
+                st.markdown(
+                    f"<div dir='rtl'>{value} &nbsp;·&nbsp; "
+                    f"{n_db} DB / {n_cl} clusters</div>",
+                    unsafe_allow_html=True,
+                )
+        with col_b:
+            st.caption(
+                f"**Unrecognised** — {len(other)} values, {n_o} orgs. Spelling "
+                "variants, street addresses leaked into a settlement field, and "
+                "places missing from the gazetteer."
+            )
+            for value, n_db, n_cl in other[:40]:
+                st.markdown(
+                    f"<div dir='rtl'>{value[:60]} &nbsp;·&nbsp; "
+                    f"{n_db} DB / {n_cl} clusters</div>",
+                    unsafe_allow_html=True,
+                )
+            if len(other) > 40:
+                st.caption(f"… and {len(other) - 40} more")
 
 
 @st.fragment
@@ -1095,6 +1145,11 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
     # orgs sit invisibly outside a "New York" review.
     children = ix.child_cities(qid)
     parent = ix.parent_city(qid)
+    kind = ix.kind_of(qid)
+    if kind and kind != "settlement":
+        # A ghetto is not a city. It resolves and rolls up into its parent, but
+        # must never read as an ordinary settlement in the UI.
+        st.caption(f"🏷️ this is a **{kind}**, not a settlement")
     rollup = False
     if children:
         child_names = ", ".join(en for _q, en in children)
