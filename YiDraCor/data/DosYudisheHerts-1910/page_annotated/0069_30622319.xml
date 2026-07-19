@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_17:45</Creator>
@@ -121,7 +121,7 @@
                     <Unicode>יאַ, יאַ, יאַ, יאַ,</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1654111589985_6997" custom="readingOrder {index:16;}">
+            <TextLine id="line_1654111589985_6997" custom="readingOrder {index:16;} stage {offset:0; length:5; type:repeat;}">
                 <Coords points="542,1258 698,1250 804,1220 984,1253 984,1196 884,1209 832,1185 792,1210 770,1195 542,1192"/>
                 <Baseline points="549,1223 577,1222 605,1221 633,1221 661,1222 689,1222 717,1221 746,1220 903,1223 931,1218 959,1218 988,1218"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>

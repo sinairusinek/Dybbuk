@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:15.629+02:00</Created>
-        <LastChange>2026-07-03T08:26:22.881+02:00</LastChange>
-        <TranskribusMetadata docId="820937" pageId="30627228" pageNr="28" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=HSDIBDBPGQZSSAHOUYYVQYFH" imageId="24094728"/>
+        <LastChange>2026-07-06T08:25:54.406+02:00</LastChange>
+        <TranskribusMetadata docId="820937" pageId="30627228" pageNr="28" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=HSDIBDBPGQZSSAHOUYYVQYFH" imageId="24094728"/>
     </Metadata>
     <Page imageFilename="30627228.jpg" imageWidth="1773" imageHeight="2717">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="90,338 85,1222 1416,1219 1415,324"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:1; length:6; type:pageNum;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} fw {offset:1;length:6;type:pageNum;}">
                 <Coords points="645,361 669,355 704,371 737,370 749,361 765,365 766,307 751,307 739,297 728,301 697,296 670,300 661,291 646,292"/>
                 <Baseline points="570,360 681,362 710,362 739,360 840,362"/>
                 <TextEquiv>
                     <Unicode> — 26 —</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_2" custom="readingOrder {index:1;} speaker {offset:0; length:6; xmlid:shlomit;}">
-                <Coords points="188,474 1140,495 1139,411 1030,394 785,431 588,395 188,402"/>
-                <Baseline points="194,462 241,460 288,460 336,461 383,461 431,460 478,460 525,462 573,461 620,464 668,464 715,466 762,464 810,463 857,462 905,464 952,465 999,466 1047,463 1094,461 1369,468"/>
-                <TextEquiv>
-                    <Unicode>שלומית: פָאן קֵיינֶען טִיעפסטֶען הֶערְצֶען נֶעהם דאפִיר אֵיינֶען דַאנְק</Unicode>
-                </TextEquiv>
-            </TextLine>
-            <TextLine id="l_2" custom="readingOrder {index:2;} stage {offset:0; length:5; type:business;}">
+            <TextLine id="l_2" custom="readingOrder {index:1;} stage {offset:0; length:5; type:repeat;}">
                 <Coords points="82,476 160,477 160,447 82,446"/>
                 <Baseline points="82,476 160,477"/>
                 <TextEquiv>
                     <Unicode>(ביס)</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="tr_1_tl_2" custom="readingOrder {index:2;} speaker {offset:0;length:6;xmlid:shlomit;}">
+                <Coords points="188,474 1140,495 1139,411 1030,394 785,431 588,395 188,402"/>
+                <Baseline points="194,462 241,460 288,460 336,461 383,461 431,460 478,460 525,462 573,461 620,464 668,464 715,466 762,464 810,463 857,462 905,464 952,465 999,466 1047,463 1094,461 1369,468"/>
+                <TextEquiv>
+                    <Unicode>שלומית: פָאן קֵיינֶען טִיעפסטֶען הֶערְצֶען נֶעהם דאפִיר אֵיינֶען דַאנְק</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextLine id="tr_1_tl_5" custom="readingOrder {index:3;}">
@@ -37,14 +37,14 @@
                     <Unicode>דיינע טרייע שוועסטֶע בּלייבּ אִיך מַיין גאנצעס לעבען לאנג</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_9" custom="readingOrder {index:4;} speaker {offset:0; length:5; xmlid:beyde;}">
+            <TextLine id="tr_1_tl_9" custom="readingOrder {index:4;} speaker {offset:0;length:5;xmlid:beyde;}">
                 <Coords points="436,585 600,628 660,605 708,635 809,616 898,638 1001,630 999,588 712,595 661,549 602,568 518,548 434,561"/>
                 <Baseline points="442,584 470,582 498,589 525,598 553,603 581,603 609,603 637,604 665,605 693,605 722,604 750,604 778,603 806,600 834,604 862,604 890,606 918,606 946,604 974,607 1375,607"/>
                 <TextEquiv>
                     <Unicode>ביידע: גָאט וִוירְד שיטצען אונדזר ליעבּען פַארטער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_10" custom="readingOrder {index:5;} stage {offset:0; length:5; type:business;}">
+            <TextLine id="tr_1_tl_10" custom="readingOrder {index:5;} stage {offset:0; length:5; type:repeat;}">
                 <Coords points="115,651 130,648 134,653 146,650 153,653 159,646 168,651 176,646 181,650 185,646 194,648 188,570 180,570 164,582 146,580 131,592 121,587 110,590"/>
                 <Baseline points="120,634 157,634 194,640"/>
                 <TextEquiv>
@@ -83,7 +83,7 @@
                 <Coords points="142,971 225,936 749,981 1056,936 1131,970 1118,890 954,930 665,923 592,873 469,920 422,876 297,919 141,882"/>
                 <Baseline points="148,928 197,931 246,935 295,930 345,932 394,934 443,936 493,935 542,930 591,928 641,934 690,936 739,936 788,934 838,938 887,939 936,939 986,938 1035,935 1084,940 1134,946"/>
                 <TextEquiv>
-                    <Unicode>טרֵייא בלייבּען גֶעגֶעסֶע פאן אונזער ליעב פאטערלאנד</Unicode>
+                    <Unicode>טרֵייא בלייבּען דעם רעטער פאן אונזער ליעב פאטערלאנד</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextLine id="tr_1_tl_27" custom="readingOrder {index:11;}">
@@ -93,7 +93,7 @@
                     <Unicode>עוויג טרייא....</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_28" custom="readingOrder {index:12;} stage {offset:0; length:10; type:exit;}">
+            <TextLine id="tr_1_tl_28" custom="readingOrder {index:12;} stage {offset:0;length:10;type:exit;}">
                 <Coords points="619,1089 653,1091 663,1082 683,1094 703,1083 771,1096 785,1087 797,1089 798,1044 743,1043 732,1050 704,1044 695,1050 685,1043 663,1046 643,1033 621,1041"/>
                 <Baseline points="626,1078 655,1076 684,1076 713,1076 742,1074 771,1076 800,1074"/>
                 <TextEquiv>
@@ -101,7 +101,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>

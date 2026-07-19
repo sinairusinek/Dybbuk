@@ -131,3 +131,27 @@ class TrpClient:
             return r.json()
         except ValueError:
             return {"status_code": r.status_code, "text": r.text[:400]}
+
+    def delete_doc(self, col_id: int, doc_id: int) -> dict:
+        """Remove a document from a collection (DELETE /collections/{cid}/{did}).
+
+        If the doc exists in other collections too, this is a per-collection
+        removal. If the collection is the doc's only home, the doc is fully
+        deleted from Transkribus. Caller is responsible for confirming intent.
+        """
+        # Try standard endpoints in order until one works.
+        endpoints = [
+            ("DELETE", f"{self.base}/collections/{col_id}/{doc_id}", {}),
+            ("POST", f"{self.base}/collections/{col_id}/removeDocFromCol",
+                {"params": {"id": doc_id}}),
+            ("DELETE", f"{self.base}/collections/{col_id}/list",
+                {"params": {"id": doc_id}}),
+        ]
+        last_err = None
+        for method, url, kwargs in endpoints:
+            r = self.session.request(method, url, timeout=60, **kwargs)
+            if r.status_code < 300:
+                return {"endpoint": url, "status_code": r.status_code,
+                        "text": r.text[:200]}
+            last_err = f"{method} {url} → {r.status_code}: {r.text[:200]}"
+        raise RuntimeError(f"All delete attempts failed. Last: {last_err}")

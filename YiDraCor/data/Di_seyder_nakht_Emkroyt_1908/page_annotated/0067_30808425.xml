@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.1.0:model_id=54653:lm=provided:date=26_08_2023_16:41</Creator>
@@ -66,7 +66,7 @@
                     <Unicode>אוֹי פלאמט מיר מיין פּנים.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649534095026_2112l8" custom="readingOrder {index:7;} l {offset:0;length:8;lg_id:7;}">
+            <TextLine id="TextRegion_1649534095026_2112l8" custom="readingOrder {index:7;} head {offset:0; length:7; lg_id:7;}">
                 <Coords points="1241,1076 1262,1067 1286,1071 1320,1097 1342,1085 1360,1091 1435,1071 1448,1079 1478,1073 1477,1031 1460,1027 1430,1039 1353,1027 1281,1049 1241,1047"/>
                 <Baseline points="1250,1061 1275,1059 1301,1059 1327,1060 1353,1062 1378,1064 1404,1065 1430,1065 1456,1063 1482,1061"/>
                 <TextEquiv>
@@ -270,7 +270,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>

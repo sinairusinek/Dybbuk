@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_10:55</Creator>
@@ -45,7 +45,7 @@
                     <Unicode>דעם געזאנג).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1648914288835_3334l5" custom="readingOrder {index:4;} stage {offset:61; length:5; type:business;} speaker {offset:0; length:3; xmlid:chor;} l {offset:5; length:55;}">
+            <TextLine id="TextRegion_1648914288835_3334l5" custom="readingOrder {index:4;} stage {offset:61; length:5; type:repeat;} speaker {offset:0; length:3; xmlid:chor;} l {offset:5; length:55;}">
                 <Coords points="856,792 1066,773 1193,811 1328,771 2244,845 2242,754 1845,744 1699,695 852,701"/>
                 <Baseline points="866,753 935,756 1004,759 1073,761 1142,763 1211,765 1280,765 1349,767 1418,768 1487,770 1556,771 1625,773 1694,774 1763,777 1832,780 1901,785 1970,788 2039,794 2108,800 2177,807 2246,816"/>
                 <TextEquiv>
@@ -115,7 +115,7 @@
                     <Unicode>דאמען:</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1648914288835_3334l13" custom="readingOrder {index:14;} stage {offset:0;length:5;type:business;}">
+            <TextLine id="TextRegion_1648914288835_3334l13" custom="readingOrder {index:14;} stage {offset:0; length:5; type:repeat;}">
                 <Coords points="564,1411 595,1409 608,1396 629,1413 659,1400 691,1413 727,1405 727,1299 716,1299 699,1284 663,1295 634,1284 587,1316 564,1316"/>
                 <Baseline points="575,1349 601,1350 627,1350 653,1349 679,1349 705,1349 731,1350"/>
                 <TextEquiv>
@@ -277,7 +277,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>
