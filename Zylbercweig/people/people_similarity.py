@@ -167,6 +167,45 @@ def expand_name_variants(heading: str, names_variants: str = "", subheading: str
 
 
 @lru_cache(maxsize=200_000)
+def _edit_distance(a: str, b: str) -> int:
+    """Plain Levenshtein distance."""
+    m, n = len(a), len(b)
+    if m < n:
+        a, b, m, n = b, a, n, m
+    prev = list(range(n + 1))
+    for i, ca in enumerate(a, 1):
+        cur = [i]
+        for j, cb in enumerate(b, 1):
+            cur.append(min(prev[j] + 1, cur[-1] + 1, prev[j - 1] + (ca != cb)))
+        prev = cur
+    return prev[n]
+
+
+def token_variant_similarity(a: str, b: str) -> float:
+    """Character-level similarity for two SINGLE name tokens (e.g. surnames).
+
+    Normalized-Levenshtein, nikkud-stripped. Meant for collapsing OCR/spelling
+    variants of the same surname (קאמפאנעעץ↔קאמפאניעץ ≈ 0.89) while keeping
+    genuinely different surnames apart (גרינבערג↔גרינבוים ≈ 0.63).
+
+    A single INSERTION/DELETION of a letter — the usual Yiddish mater-lectionis
+    variance (קאהן↔קאהען) — is floored to 0.9. A single SUBSTITUTION is NOT
+    floored: swapping one consonant far more often yields a DIFFERENT surname
+    (פרידמאן/פרישמאן/פריימאן), so it must clear the ratio on its own merit.
+    """
+    a = normalize_person_name(a)
+    b = normalize_person_name(b)
+    if not a or not b:
+        return 0.0
+    if a == b:
+        return 1.0
+    d = _edit_distance(a, b)
+    ratio = 1.0 - d / max(len(a), len(b))
+    if d == 1 and len(a) != len(b) and min(len(a), len(b)) >= 4:
+        return max(ratio, 0.9)
+    return ratio
+
+
 def _trigram_jaccard(a: str, b: str) -> float:
     a = normalize_person_name(a)
     b = normalize_person_name(b)

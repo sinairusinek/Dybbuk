@@ -42,6 +42,7 @@ from people_similarity import (  # noqa: E402
     normalize_person_name,
     set_given_name_counts,
     split_name_tokens,
+    token_variant_similarity,
     variant_pair_score,
 )
 
@@ -60,6 +61,12 @@ RESOLVE_MARGIN = 0.20          # top-vs-runner-up margin to auto-resolve
 EXPANSION_MIN = 0.75           # fuller-form ↔ candidate variant score floor
 FAME_DOMINANCE = 4.0           # top surface-prior must be ≥4× runner-up
 FAMILY_FAME_FLOOR = 20         # ≥2 candidates this corpus-famous → family cluster
+W_GENDER_MISMATCH = 0.25       # soft penalty (gender is a cue, not a gate)
+FUZZY_SURNAME_MIN = 0.88       # collapse OCR/spelling variants of a surname
+                               # (0.88 admits Max's 1/9-edit variant but rejects
+                               # 1/7-edit distinct surnames like פרידמאן/פרישמאן)
+CAND_CAP = 25                  # stored candidates/mention — must cover a family
+                               # (Adler ≈ 17) so B3's panel shows every referent
 
 OUT_FIELDS = [
     "mention_id", "volume", "host_xml_id", "host_person_id", "host_heading",
@@ -80,6 +87,23 @@ def build_given_counts(extracted: list[dict]) -> dict[str, int]:
     return dict(counts)
 
 
+def _debracket_variants(heading: str) -> set[str]:
+    """Readings of a heading for surname extraction.
+
+    In-word editorial brackets (טאָמאַשעוו[פ]סקי) mark an uncertain letter — we
+    keep BOTH the drop-content reading (טאָמאַשעווסקי) and the keep-content
+    reading (טאָמאַשעוופסקי) so neither spelling is lost from the index. A naive
+    `[...]`→space substitution instead SPLITS the surname into two junk tokens
+    (טאמאשעוו + סקי), which is why Boris Tomashevsky's own heading never indexed
+    his surname. Space-delimited brackets are glosses/alt names and are dropped.
+    """
+    heading = heading or ""
+    inword_drop = re.sub(r"(?<=\S)[\[\(].*?[\]\)](?=\S)", "", heading)
+    inword_keep = re.sub(r"(?<=\S)[\[\(](.*?)[\]\)](?=\S)", r"\1", heading)
+    return {re.sub(r"[\[\(].*?[\]\)]", " ", v).strip()
+            for v in (inword_drop, inword_keep)}
+
+
 def heading_surname_tokens(heading: str, given_counts: dict[str, int]) -> set[str]:
     """Surname tokens of a HEADING (not a variant/DB form).
 
@@ -91,16 +115,21 @@ def heading_surname_tokens(heading: str, given_counts: dict[str, int]) -> set[st
     Without this, bare given names (אברהם…) flood the surname index and the
     candidate sets are garbage.
     """
-    h = re.sub(r"[\[\(].*?[\]\)]", " ", heading or "").strip()
-    if "," in h:
-        return {t for t in split_name_tokens(h.split(",", 1)[0]) if len(t) >= 3}
-    toks = [t for t in split_name_tokens(h) if len(t) >= 3]
-    if not toks:
-        return set()
-    if len(toks) == 1:
-        return set(toks) if given_counts.get(toks[0], 0) < 3 else set()
-    kept = {t for t in toks if given_counts.get(t, 0) < 3}
-    return kept or {toks[0]}
+    out: set[str] = set()
+    for h in _debracket_variants(heading):
+        if "," in h:
+            out |= {t for t in split_name_tokens(h.split(",", 1)[0]) if len(t) >= 3}
+            continue
+        toks = [t for t in split_name_tokens(h) if len(t) >= 3]
+        if not toks:
+            continue
+        if len(toks) == 1:
+            if given_counts.get(toks[0], 0) < 3:
+                out.add(toks[0])
+            continue
+        kept = {t for t in toks if given_counts.get(t, 0) < 3}
+        out |= (kept or {toks[0]})
+    return out
 
 
 class HubIndex:
@@ -162,6 +191,33 @@ class HubIndex:
                     self.surname_to_hubs[norm].add(hid)
             elif len(norm.split()) >= 2:
                 self.full_lexicon.setdefault(norm, hid)
+
+        # fuzzy-surname blocking: index every surname key by its first 2 chars so
+        # candidate_hubs() only scores same-prefix keys (bounded, cached).
+        self.keys_by_prefix: dict[str, list[str]] = defaultdict(list)
+        for k in self.surname_to_hubs:
+            self.keys_by_prefix[k[:2]].append(k)
+        self._cand_cache: dict[str, list[str]] = {}
+
+    def candidate_hubs(self, token: str) -> list[str]:
+        """Hubs for a mention surname, including OCR/spelling variants.
+
+        Candidate lookup used to be an exact dict hit, so a hub filed under a
+        variant spelling (Max Kompaneetz's קאמפאניעץ vs a mention's קאמפאנעעץ)
+        was invisible. We now also fold in any same-prefix key whose
+        token_variant_similarity clears FUZZY_SURNAME_MIN.
+        """
+        if token in self._cand_cache:
+            return self._cand_cache[token]
+        hubs: set[str] = set(self.surname_to_hubs.get(token, set()))
+        for key in self.keys_by_prefix.get(token[:2], ()):
+            if key == token or abs(len(key) - len(token)) > 3:
+                continue
+            if token_variant_similarity(token, key) >= FUZZY_SURNAME_MIN:
+                hubs |= self.surname_to_hubs[key]
+        result = sorted(hubs)
+        self._cand_cache[token] = result
+        return result
 
     def hub_variants(self, hub_id: str) -> set[str]:
         if hub_id not in self._variants_cache:
@@ -230,7 +286,7 @@ def main() -> None:
             if len(toks) != 1 or len(toks[0]) < 3:
                 continue
             token = toks[0]
-            cands = sorted(idx.surname_to_hubs.get(token, set()))
+            cands = idx.candidate_hubs(token)
             if not cands:
                 continue  # not a known surname — out of this job's universe
 
@@ -238,15 +294,19 @@ def main() -> None:
             mgender = (m.get("gender") or "").strip().lower()
             myear = mention_year(m)
 
-            # hard gates: gender + birth-impossibility
+            # birth-impossibility is a hard gate (physically real); gender is a
+            # SOFT cue — a bare surname in an actor list (אַדלער, טאָמאַשעווסקי…)
+            # is systematically mis-tagged male upstream, so hard-gating on it
+            # erased every actress (Sara/Stella Adler, Bessie Thomashefsky).
             survivors = []
+            gender_mismatch: set[str] = set()
             for hid in cands:
-                hg = idx.hub_gender.get(hid, "")
-                if mgender and hg and mgender != hg:
-                    continue
                 hb = idx.hub_birth.get(hid)
                 if myear and hb and myear < hb + 10:
                     continue
+                hg = idx.hub_gender.get(hid, "")
+                if mgender and hg and mgender != hg:
+                    gender_mismatch.add(hid)
                 survivors.append(hid)
             if mgender:
                 chips.append(f"gender:{mgender}")
@@ -302,6 +362,10 @@ def main() -> None:
                         chips.append("co-mention")
                 if hid == prior_pick:
                     s += W_FAME
+                if hid in gender_mismatch:
+                    s -= W_GENDER_MISMATCH
+                    if "gender-mismatch" not in chips:
+                        chips.append("gender-mismatch")
                 hb, hd = idx.hub_birth.get(hid), idx.hub_death.get(hid)
                 anchor_lo = host_by or (myear and myear - 5)
                 anchor_hi = host_dy or (myear and myear + 5)
@@ -347,9 +411,9 @@ def main() -> None:
                 "method": method,
                 "resolved_hub_id": top,
                 "resolved_heading": idx.heading(top) if top else "",
-                "candidate_hub_ids": "|".join(h for h, _ in ranked[:6]),
-                "candidate_headings": "|".join(idx.heading(h) for h, _ in ranked[:6]),
-                "candidate_scores": "|".join(str(s) for _, s in ranked[:6]),
+                "candidate_hub_ids": "|".join(h for h, _ in ranked[:CAND_CAP]),
+                "candidate_headings": "|".join(idx.heading(h) for h, _ in ranked[:CAND_CAP]),
+                "candidate_scores": "|".join(str(s) for _, s in ranked[:CAND_CAP]),
                 "family_cluster": "1" if family else "0",
                 "chips": "|".join(chips),
                 "gold_hub_id": gold_hub,
