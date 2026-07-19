@@ -19,7 +19,8 @@ from pathlib import Path
 from lxml import etree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from annotation.schema import PAGE_NS, parse_custom, append_custom
+from annotation.schema import (PAGE_NS, parse_custom, append_custom,
+                               serialize_custom)
 
 LINE_TAG = f"{{{PAGE_NS}}}TextLine"
 REGION_TAG = f"{{{PAGE_NS}}}TextRegion"
@@ -27,11 +28,18 @@ UNICODE_TAG = f"{{{PAGE_NS}}}Unicode"
 
 OPEN_RX_STAGE = re.compile(r"זינגט")  # must occur inside a stage span
 OPEN_RX_TEXT  = re.compile(r"^\s*Nr\.\s*\d|^\s*געזאנגס[־⸗-]?טעקסט")  # header-style markers
-# Noa 2026-06-14: standalone "(ביס)" (refrain/encore mark) appears at the end
-# of song lines and is a robust "we are mid-song" signal. When seen and not
-# already in song mode, treat as song-opener and backfill prior eligible
-# lines on the same page (until a heading, folio, or non-chorus speaker line).
-BIS_RX = re.compile(r"\(\s*ביס\s*\)")
+# DISABLED 2026-07-19. This was PROPOSED to Noa as B7/B8 on 2026-06-14 and she
+# DEFERRED it the same day: "A separate detailed report/log specifying the exact
+# page boundaries ... will be provided. Do not apply automated same-page backfill
+# across the board yet." The rule shipped in 7610fcb4 before her answer arrived
+# and was never reverted, and the comment here previously read as if she had
+# approved it. `has_bis` no longer opens a song; `זינגט` and `Nr.`/`געזאנגס`
+# (B1-B3, confirmed by her 06-07 Transkribus edits) remain the only openers.
+# Re-enable only against her page-boundary report.
+BIS_RX = re.compile(r"\(\s*ביסס?\s*\)")
+# Refrain rubric — used by the strip pass to protect `רעפריין` heads, which
+# this module does not recreate. See project-yidracor-musical-directions.
+REFRAIN_RX = re.compile(r"^\s*רעפריין")
 CHORUS_RX = re.compile(r"^\s*(קאהר|כאר|רעפריין|אלע|ביידע|אלט|טענאר|סאלא)\s*[:׃]?")
 REPO = Path(__file__).resolve().parents[2]
 
@@ -71,12 +79,27 @@ def process_play(play: str, dry_run: bool) -> dict:
         tree = etree.parse(str(pf))
         page_trees.append((pf, tree))
 
-    # strip any pre-existing `l` / `head` / `lg` tags so re-runs are idempotent
+    # Strip pre-existing `l` / `head` / `lg` tags so re-runs are idempotent —
+    # but ONLY the ones this module generates. A blanket strip also destroyed
+    # (a) the castList `פערזאנען` head and (b) the `רעפריין` refrain rubrics,
+    # neither of which this module recreates. Preserve any head whose covered
+    # text is a refrain rubric, and any head carrying no lg_id (castList/act
+    # headings). See docs/proposal_musical_directions_2026-07-19.md.
     for pf, tree in page_trees:
         for line in tree.iter(LINE_TAG):
-            cur = line.get("custom", "")
-            cur = re.sub(r"\s*(?:l|head|lg) \{[^}]*\}", "", cur).strip()
-            line.set("custom", cur)
+            txt = line_text(line)
+            kept = []
+            for tag, attrs in parse_custom(line.get("custom", "")):
+                if tag in ("l", "lg"):
+                    continue
+                if tag == "head":
+                    o = int(attrs.get("offset", 0)); ln = int(attrs.get("length", 0))
+                    covered = txt[o:o + ln]
+                    if REFRAIN_RX.match(covered) or attrs.get("lg_id") is None:
+                        kept.append((tag, attrs))
+                    continue
+                kept.append((tag, attrs))
+            line.set("custom", serialize_custom(kept))
 
     for pf, tree in page_trees:
         stats["pages"] += 1
@@ -98,7 +121,8 @@ def process_play(play: str, dry_run: bool) -> dict:
                 continue
             stage_blob = stage_text_in_line(line)
 
-            opens_song = bool(OPEN_RX_STAGE.search(stage_blob) or OPEN_RX_TEXT.search(text) or has_bis)
+            # `has_bis` is deliberately NOT an opener — see BIS_RX note above.
+            opens_song = bool(OPEN_RX_STAGE.search(stage_blob) or OPEN_RX_TEXT.search(text))
 
             if in_song:
                 if has_heading:
@@ -185,8 +209,6 @@ def process_play(play: str, dry_run: bool) -> dict:
     #   - lg boundary: on each page that an lg appears on, the first line of
     #     that lg-on-page carries `lg {n:N; cont:no|yes}`. `cont:yes`
     #     means this is the same lg continuing from the previous page.
-    from annotation.schema import serialize_custom
-
     META_WORDS = re.compile(r"\b(אקט|דועט|קופלעט|קופלעי|טריאָ|טריא|אַריע|ארע|רעפֿריין|רעפריין|פּראלאג|פראלאג)\b")
 
     def is_head_candidate(text: str) -> bool:
