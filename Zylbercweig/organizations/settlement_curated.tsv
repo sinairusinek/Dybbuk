@@ -1,0 +1,25 @@
+#	Curated place entries the gazetteers do not carry, with an explicit `kind`.
+#
+#	`kind` is the entity type. "ghetto" exists because a wartime ghetto is
+#	neither a settlement nor an ordinary neighborhood: it is time-bounded and its
+#	extent changed. Keeping it as its own kind means it can be resolved and
+#	rolled up into its city WITHOUT being counted as a city, and lets the UI
+#	label it honestly. Wikidata models these as P31=Q2583015 (Nazi ghetto).
+#
+#	Containment lives in settlement_parents.tsv, as it does for boroughs — the
+#	parent_qid values there were taken from each entity's P131 on Wikidata, not
+#	inferred.
+#
+#	`variants` is pipe-separated and matched after the resolver's usual
+#	normalisation (niqqud stripped, final letters folded, whitespace collapsed),
+#	so only genuinely distinct spellings need listing.
+#
+#	Columns: qid, kind, english, yiddish, variants, note
+qid	kind	english	yiddish	variants	note
+Q154607	ghetto	Warsaw Ghetto	װאַרשעװער געטאָ	וואַרשעווער געטאָ|געטאָ-וואַרשע|וואַרשער געטאָ	P31=Q2583015, P131=Q270 (verified 2026-07-19)
+Q327895	ghetto	Łódź Ghetto	לאָדזשער געטאָ	לאָדזשער געטאָ|געטאָ-לאָדזש	P31=Q2583015, P131=Q580 (verified 2026-07-19)
+#	TODO — Vilna Ghetto (ווילנער געטאָ, 2 occ) and Riga Ghetto (ריגער געטאָ,
+#	2 occ) also appear in the data. QIDs not added because they were not
+#	supplied and guessing a QID is how Gugney-aux-Aulx happened. Look them up,
+#	add a row here plus a settlement_parents.tsv row, and they will resolve.
+#	A bare "געטאָ" (1 occ) has no city context and is not resolvable.

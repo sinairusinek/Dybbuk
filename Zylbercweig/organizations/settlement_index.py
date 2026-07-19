@@ -23,6 +23,7 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 from pre_explode_clusters import is_itinerant  # noqa: E402
 from settlement_resolver import (  # noqa: E402
     ResolvedSettlement,
+    is_country_level,
     descendants_of,
     get_resolver,
     parent_of,
@@ -70,15 +71,25 @@ class CityBucket:
     clusters: list[ClusterCard] = field(default_factory=list)
 
 
-def _resolve_db_settlements(row: dict[str, str]) -> list[ResolvedSettlement]:
-    """A DB row can sit in multiple cities (multi-location). Resolve all."""
+def _resolve_db_settlements(
+    row: dict[str, str], misses: list[str] | None = None
+) -> list[ResolvedSettlement]:
+    """A DB row can sit in multiple cities (multi-location). Resolve all.
+
+    Pass `misses` to collect the raw values that did NOT resolve — otherwise an
+    org recorded only as "America" is dropped from the lens without trace.
+    """
     R = get_resolver()
     seen: dict[str, ResolvedSettlement] = {}
 
     def add(s: str) -> None:
+        if not (s or "").strip():
+            return
         hit = R.resolve(s)
         if hit:
             seen.setdefault(hit.qid, hit)
+        elif misses is not None:
+            misses.append(s.strip())
 
     add(row.get("confirmed_settlement_yiddish", ""))
     add(row.get("confirmed_settlement", ""))
@@ -162,17 +173,23 @@ class SettlementIndex:
         self._mentions_by_qid: dict[str, int] = {}
         self._buckets_by_qid: dict[str, list[CityBucket]] = {}
         self._dominant_by_qid: dict[str, str] = {}
+        # raw settlement value → [(kind, id)] for rows that resolve to nothing
+        self._unplaced: dict[str, list[tuple[str, str]]] = {}
+        # qid → entity kind ("settlement" | "ghetto"); see settlement_curated.tsv
+        self._kind_by_qid: dict[str, str] = {}
         self._types_by_qid: dict[str, list[str]] = {}
         self._build()
         self._finalize_aggregates()
 
-    def _get(self, qid: str, english: str, yiddish: str, org_type: str) -> CityBucket:
+    def _get(self, qid: str, english: str, yiddish: str, org_type: str,
+             kind: str = "settlement") -> CityBucket:
         key = (qid, org_type)
         b = self._buckets.get(key)
         if b is None:
             b = CityBucket(qid=qid, english=english, yiddish=yiddish, org_type=org_type)
             self._buckets[key] = b
             self._cities.setdefault(qid, (english, yiddish))
+            self._kind_by_qid.setdefault(qid, kind)
         return b
 
     def _build(self) -> None:
@@ -208,7 +225,8 @@ class SettlementIndex:
                         continue
                     db_id = row["db_id"]
                     addr_row = addrs.get(db_id, {})
-                    resolutions = _resolve_db_settlements(addr_row)
+                    misses: list[str] = []
+                    resolutions = _resolve_db_settlements(addr_row, misses)
                     if not resolutions:
                         # Fall back to linked clusters' settlements (e.g. a row
                         # just minted from a cluster, before any address review).
@@ -218,6 +236,10 @@ class SettlementIndex:
                                 seen.setdefault(hit.qid, hit)
                         resolutions = list(seen.values())
                     if not resolutions:
+                        # Nowhere on the map. Record it under its raw value so
+                        # the audit view can show it rather than dropping it.
+                        for m in dict.fromkeys(misses):
+                            self._unplaced.setdefault(m, []).append(("db", db_id))
                         continue
                     card = DbCard(
                         db_id=db_id,
@@ -230,7 +252,7 @@ class SettlementIndex:
                         ),
                     )
                     for r in resolutions:
-                        bucket = self._get(r.qid, r.english, r.yiddish, org_type)
+                        bucket = self._get(r.qid, r.english, r.yiddish, org_type, r.kind)
                         bucket.db_cards.append(card)
                         self._db_keys[db_id].append((r.qid, org_type))
 
@@ -247,6 +269,14 @@ class SettlementIndex:
                         cid
                     ) or _resolve_cluster_settlements(";".join(settlement_strs))
                     if not resolutions:
+                        R = get_resolver()
+                        for raw in settlement_strs:
+                            for sub in raw.replace("|", ";").split(";"):
+                                sub = sub.strip()
+                                if sub and not R.resolve(sub):
+                                    self._unplaced.setdefault(sub, []).append(
+                                        ("cluster", cid)
+                                    )
                         continue
                     try:
                         size = int(row.get("cluster_size") or 0)
@@ -262,7 +292,7 @@ class SettlementIndex:
                         settlement_raw=settlement_strs[0] if settlement_strs else "",
                     )
                     for r in resolutions:
-                        bucket = self._get(r.qid, r.english, r.yiddish, org_type)
+                        bucket = self._get(r.qid, r.english, r.yiddish, org_type, r.kind)
                         bucket.clusters.append(card)
                         self._cluster_keys[cid].append((r.qid, org_type))
 
@@ -347,6 +377,28 @@ class SettlementIndex:
             for c in descendants_of(qid)
             if c in self._buckets_by_qid
         ]
+
+    def unplaced(self, country_level: bool | None = None) -> list[tuple[str, int, int]]:
+        """Settlement values that resolve to nothing, as (value, n_db, n_clusters).
+
+        These orgs are recorded with a location but sit outside the lens, so
+        without this they are invisible rather than merely unplaced. Pass
+        `country_level=True` for values naming a country/region (correctly
+        unresolvable — the lens keys on cities), or False for the residue,
+        which is spelling variants, leaked street addresses and gazetteer gaps.
+        """
+        out: list[tuple[str, int, int]] = []
+        for value, refs in self._unplaced.items():
+            if country_level is not None and is_country_level(value) != country_level:
+                continue
+            n_db = sum(1 for k, _ in refs if k == "db")
+            out.append((value, n_db, len(refs) - n_db))
+        out.sort(key=lambda t: -(t[1] + t[2]))
+        return out
+
+    def kind_of(self, qid: str) -> str:
+        """Entity kind for a qid — "settlement" unless curated otherwise."""
+        return self._kind_by_qid.get(qid, "settlement")
 
     def dominant_org_type(self, qid: str) -> str:
         return self._dominant_by_qid.get(qid, "")

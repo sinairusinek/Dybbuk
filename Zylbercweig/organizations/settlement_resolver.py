@@ -24,6 +24,9 @@ _KIMATCH = _REPO_ROOT / "Zylbercweig/zibn-shtern/data/working/kimatch_matched_fu
 # hand-made and cover spellings kimatch never saw (Bronx, Harlem, Warsaw and
 # Poltava variants).
 _COLLAPSE = _REPO_ROOT / "Zylbercweig/organizations/settlement_variant_collapse_audit_2026-05-20.tsv"
+# Hand-verified entries the gazetteers lack, with an explicit `kind`
+# (currently the wartime ghettos). Loaded FIRST so it wins over everything.
+_CURATED = _REPO_ROOT / "Zylbercweig/organizations/settlement_curated.tsv"
 
 # QIDs that must never become a settlement key, enforced in `_add` across ALL
 # sources. The collapse map needs this because it has no category column, but
@@ -47,6 +50,41 @@ _EXCLUDE_KEYS = {
     "עסטרייך",   # Austria (country) → matched Q260320 Steyr
     "ליטע",      # Lithuania (country) → matched Q450625 Alytus
 }
+
+# Country / region names that appear in settlement fields. They correctly do
+# NOT resolve — the lens keys on cities — but an org whose only recorded
+# location is "America" would otherwise vanish without trace. Used to sort
+# unresolved values into "recorded, but only at country level" versus "not
+# recognised", so the first group can be surfaced rather than silently dropped.
+_COUNTRY_LEVEL = {
+    "אַמעריקע", "אָמעריקע", "אמעריקע", "america", "usa", "u.s.a.",
+    "united states", "פֿאַראייניקטע שטאַטן",
+    "אָרץ-ישראל", "ארץ ישראל", "אַרץ-ישראל", "land of israel", "palestine",
+    "פּוילן", "פוילן", "poland",
+    "רוסלאַנד", "רוסלאנד", "russia",
+    "דײַטשלאַנד", "דייטשלאנד", "germany",
+    "ליטע", "lithuania",
+    "עסטרייך", "austria",
+    "אוקראַינע", "אוקראינע", "ukraine",
+    "רומעניע", "romania",
+    "אונגארן", "אונגאַרן", "hungary",
+    "ענגלאַנד", "england",
+    "פֿראַנקרייך", "פראנקרייך", "france",
+    "אַרגענטינע", "אָרגענטינע", "argentina",
+    "קאַנאַדע", "canada",
+    "בעלגיע", "belgium",
+    "דרום-אַפֿריקע", "south africa",
+    "בעסאַראַביע", "bessarabia",
+    "גאַליציע", "galicia",
+    "פּראָווינץ", "province",
+    "רוסלאַנד און בעסאַראַביע",
+}
+
+
+def is_country_level(value: str) -> bool:
+    """True if `value` names a country or region rather than a settlement."""
+    return _normalize(value) in _COUNTRY_LEVEL_NORMS
+
 
 # Wikidata categories that represent inhabited places usable as a "settlement"
 # key for org grouping. Cemeteries / death sites / countries / provinces are
@@ -83,6 +121,11 @@ class ResolvedSettlement:
     qid: str
     english: str
     yiddish: str
+    # Entity type. "settlement" covers cities and (for now) the gazetteers'
+    # neighborhood rows; "ghetto" is carried separately because a wartime
+    # ghetto is time-bounded and is NOT a city — it resolves and rolls up into
+    # its parent city without being counted as one. See settlement_curated.tsv.
+    kind: str = "settlement"
 
 
 def _normalize(s: str) -> str:
@@ -106,6 +149,7 @@ def _normalize(s: str) -> str:
 
 # Normalized once at import, since _EXCLUDE_KEYS is written in readable form.
 _EXCLUDE_KEY_NORMS = {_normalize(k) for k in _EXCLUDE_KEYS}
+_COUNTRY_LEVEL_NORMS = {_normalize(k) for k in _COUNTRY_LEVEL}
 
 
 class SettlementResolver:
@@ -133,6 +177,28 @@ class SettlementResolver:
             self._by_spaceless.setdefault(k, resolved)
 
     def _load(self) -> None:
+        # Curated entries FIRST: they are hand-verified and must win over any
+        # gazetteer row for the same spelling.
+        if _CURATED.exists():
+            with _CURATED.open() as f:
+                for line in f:
+                    if line.startswith("#") or not line.strip():
+                        continue
+                    parts = line.rstrip("\n").split("\t")
+                    if len(parts) < 4 or parts[0] == "qid":
+                        continue
+                    qid, kind, english, yiddish = (p.strip() for p in parts[:4])
+                    variants = parts[4].strip() if len(parts) > 4 else ""
+                    if not qid:
+                        continue
+                    res = ResolvedSettlement(
+                        qid=qid, english=english, yiddish=yiddish, kind=kind or "settlement"
+                    )
+                    for v in [english, yiddish, *variants.split("|")]:
+                        v = v.strip()
+                        if v:
+                            self._add(v, res)
+
         if _UNIFIED.exists():
             with _UNIFIED.open() as f:
                 for row in csv.DictReader(f):
