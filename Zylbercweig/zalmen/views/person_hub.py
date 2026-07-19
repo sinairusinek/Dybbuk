@@ -18,7 +18,20 @@ HUB_TSV = PEOPLE_DIR / "person_hub.tsv"
 MEMBERS_TSV = PEOPLE_DIR / "person_hub_members.tsv"
 RESOLUTIONS_TSV = PEOPLE_DIR / "mention_surname_resolutions.tsv"
 
-MAX_RESULTS = 25
+PAGE_SIZE = 25
+
+# Alignment and draft state are independent axes: a hub is "aligned" when it has
+# a DB row, "pending" when the drafter proposed something B2 hasn't decided yet.
+# They happen not to overlap today, but don't assume that stays true.
+STATUS_FILTERS = {
+    "All": lambda h: True,
+    "Pending drafts": lambda h: int(h["pending_drafts"] or 0) > 0,
+    "Not aligned": lambda h: int(h["n_db_rows"] or 0) == 0,
+    "Not aligned, no draft": (
+        lambda h: int(h["n_db_rows"] or 0) == 0
+        and int(h["pending_drafts"] or 0) == 0),
+    "Aligned": lambda h: int(h["n_db_rows"] or 0) > 0,
+}
 
 
 def _mtime(p: pathlib.Path) -> float:
@@ -74,18 +87,28 @@ def render() -> None:
     members = _load_members(_mtime(MEMBERS_TSV))
     mention_counts = _mention_counts(_mtime(RESOLUTIONS_TSV))
 
-    m1, m2, m3, m4 = st.columns(4)
+    m1, m2, m3, m4, m5 = st.columns(5)
     m1.metric("Hubs", len(hubs))
     m2.metric("Multi-entry", sum(1 for h in hubs if int(h["n_entries"]) > 1))
     m3.metric("DB-aligned", sum(1 for h in hubs if int(h["n_db_rows"]) > 0))
-    m4.metric("Pending drafts", sum(int(h["pending_drafts"]) for h in hubs))
+    m4.metric("Not aligned", sum(1 for h in hubs if int(h["n_db_rows"]) == 0))
+    m5.metric("Pending drafts",
+              sum(1 for h in hubs if int(h["pending_drafts"]) > 0))
 
     q = (st.text_input("Search (heading, surface, person_id, db_id, hub_id)",
                        key="ph_q") or "").strip()
-    only_multi = st.checkbox("Only multi-entry hubs", value=False, key="ph_multi")
+    c1, c2 = st.columns([2, 1])
+    status = c1.radio(
+        "Status", list(STATUS_FILTERS), horizontal=True, key="ph_status",
+        help="Pending = drafter proposed an alignment that B2 hasn't decided. "
+             "Orphan = unaligned with no draft, so nothing is queued for it.",
+    )
+    only_multi = c2.checkbox("Only multi-entry hubs", value=False, key="ph_multi")
 
     def _match(h: dict) -> bool:
         if only_multi and int(h["n_entries"]) < 2:
+            return False
+        if not STATUS_FILTERS[status](h):
             return False
         if not q:
             return True
@@ -96,10 +119,29 @@ def render() -> None:
         return q in hay
 
     results = [h for h in hubs if _match(h)]
-    st.caption(f"{len(results)} hubs match" + (f" — showing first {MAX_RESULTS}"
-               if len(results) > MAX_RESULTS else ""))
 
-    for h in results[:MAX_RESULTS]:
+    # Page state is keyed by the filter signature so changing any filter resets
+    # to page 1 — otherwise a narrowed result set strands you past the end.
+    sig = (q, status, only_multi)
+    if st.session_state.get("ph_sig") != sig:
+        st.session_state["ph_sig"] = sig
+        st.session_state["ph_page"] = 1
+    n_pages = max(1, -(-len(results) // PAGE_SIZE))
+    page = min(st.session_state.get("ph_page", 1), n_pages)
+
+    p1, p2, p3 = st.columns([1, 2, 1])
+    if p1.button("← Prev", disabled=page <= 1, use_container_width=True):
+        st.session_state["ph_page"] = page - 1
+        st.rerun()
+    if p3.button("Next →", disabled=page >= n_pages, use_container_width=True):
+        st.session_state["ph_page"] = page + 1
+        st.rerun()
+    lo = (page - 1) * PAGE_SIZE
+    shown = results[lo:lo + PAGE_SIZE]
+    p2.caption(f"{len(results)} hubs match · page {page}/{n_pages} · "
+               f"showing {lo + 1}–{lo + len(shown)}" if results else "no matches")
+
+    for h in shown:
         hid = h["hub_id"]
         badge = " 🔀" if int(h["n_entries"]) > 1 else ""
         drafts = f" · 🤖 {h['pending_drafts']} pending draft(s)" if int(h["pending_drafts"]) else ""
