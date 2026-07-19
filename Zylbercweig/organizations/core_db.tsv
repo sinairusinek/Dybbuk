@@ -2,18 +2,18 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 0	עם עובד	עם עולם		Publisher							
 1	כתר			Publisher							
 2	הקיבוץ המאוחד	הקיבוץ המאוחד		Publisher							
-3	זמורה ביתן			Publisher							
-4	כנרת זמורה ביתן			Publisher							
+3	זמורה ביתן			Publisher							true
+4	כנרת זמורה ביתן			Publisher							true
 5	בבל			Publisher							
 6	נ. טברסקי			Publisher							
 7	ספרית מעריב			Publisher							
 8	בימת קדם לספרות			Publisher							
-9	דפוס השומר הצעיר										
+9	דפוס השומר הצעיר										true
 10	הקיבוץ הארצי השומר הצעיר			Jewish political bodies							
 11	ספרי סימן קריאה			Publisher							
 12	ידיעות אחרונות ספרי חמד			Publisher							
-13	כנרת זמורה ביתן דביר			Publisher							
-14	כתר זמורה ביתן			Publisher							
+13	כנרת זמורה ביתן דביר			Publisher							true
+14	כתר זמורה ביתן			Publisher							true
 15	מודן			Publisher							
 16	ספרי עליית הגג			Publisher							
 17	ידיעות אחרונות			Publisher							
@@ -60,7 +60,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 64	בּנימין מונק|Benjamin Munk				Kasimirgasse 16, Lemberg						
 65	דוד ראָטה|D. Roth										
 66	ש. ל. דייטשער| Sh. L. Deytsher			Printer	באזיא ציאלא 10, פודגורזה						
-67	לעווין אפשטיין	לעווין- עפּשטיין			Gęsia  גענשע/ גֶנשה 5, Warsaw						
+67	לעווין אפשטיין	לעווין- עפּשטיין			Gęsia  גענשע/ גֶנשה 5, Warsaw					לעווין אפשטיין	
 68	הצפירה	הצפירה			פייַנסקא 40, וורשה						
 69	ווארשעווער אידישער טעאטר -א.ג. קאמפאניעעץ			Printer/Publisher							
 70	D. Salat| א. סאלאט			Printer							
@@ -87,7 +87,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 91	י. ליפשיטץ [ליפשיץ]| Lipshitz Press										
 92	Baron		באַראָן	Printer							
 93	Chathan Printing		טשאַטאַן פּרינטינג	Printer							
-94	Julius Litwak|Litwack		דזשוליוס ליטוואַק|Litwack	Printer/Publisher	13 delancy - 185 Bowery, Manhattan, NY						
+94	Julius Litwak|Litwack		דזשוליוס ליטוואַק|Litwack	Printer/Publisher	13 delancy - 185 Bowery, Manhattan, NY			true	85		
 95	Dzsheyḳob Gordon| דזשייקאב גארדאן			Printer							
 96	Grayzel & Co. Union Printers		גרייזעל & קאָ. יוניאָן פּרינטערס	Printer	65-67 Suffolk St., NY						
 97	Ḳ. Leṿenshṭeyn ,  ק. לעווענשטיין			Printer/Publisher	60 Whitechappel rd., London						
@@ -245,7 +245,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 261	Goldene pave	גאָלדענע פּאַווע									
 262	Golubok Troupe		גאָלובאָק טרופּע	Traveling Company							
 263	Groyse Teater	גרויסע טעאַטער									
-264	Guzik Troupe	גוזיקס טרופּע									
+264	Guzik Troupe	גוזיקס טרופּע						true	486		
 265	Ha-Asif		האַ-אַסיפֿ								
 266	Habima		האַבימאַ	Company on Tour							
 267	ha-Dor⁩ - ⁨הדור	הדור									
@@ -275,7 +275,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 292	Joseph Kessler Troupe (star tour)		דזשאָסעפֿ קעססלער טרופּע (סטאַר טאור)	Company on Tour							
 293	Julius Adler and H. Serotsky Troupe		דזשוליוס אַדלער און ה. סעראָצקי טרופּע	Traveling Company							
 294	Julius Nathanson Troupe		דזשוליוס נאַטאַנסאָן טרופּע	Traveling Company		ORG-C00678					
-295	Kalmen Juvelier's Theatre Troupe	יאָווילער-טרופּע		Traveling Company							
+295	Kalmen Juvelier's Theatre Troupe	יאָווילער-טרופּע		Traveling Company						יאָוועלירס טרופּע | יאָווילערס טרופּע	
 296	Kamer-teater	קאַמער-טעאַטער									
 297	Kaminska Troupe		קאַמינסקאַ טרופּע	Traveling Company		ORG-C06877					
 298	Karl Zilberman, Max Kurtz, Harry Feinberg, Gazovski and Aba Rosenzweig Toupe		קאַרל זילבערמאַן, מאַקס קורץ, האַררי פֿיינבערג, גאַזאָווסקי און אַבאַ ראָסענזווייג טאופּע	Traveling Company							
@@ -381,7 +381,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 400	theater Solovtsov		טעאַטער סאָלאָווצאָוו	Theatre		ORG-C04089 | ORG-C03664					
 401	Theatre Royal		טעאַטער רויאַל	Theatre							
 402	The Gayety Theatre		די גייעטי טעאַטער	Theatre							
-403	The Hebrew Actors' Union (HAU)		די העברעיש אַקטאָרס יוניאָן (האַו)								
+403	The Hebrew Actors' Union (HAU)		די העברעיש אַקטאָרס יוניאָן (האַו)					true	276		
 404	The Hebrew Dramatic Club		די העברעיש דראַמאַטיש קלוב	Theatre		ORG-C05307 | ORG-C00808 | ORG-C04617 | ORG-C05355 | ORG-C06194 | ORG-C07045 | ORG-C07056					
 405	The Jewish National Workers' Alliance (Farband-Labor Zionist Order)		די ייִדיש נאַציאָנאַל וואָרקערס אַלליאַנקע (פֿאַרבאַנד-לאַבאָר זיאָניסט אָרדער)								
 406	The Lyceum Theatre		די ליקיים טעאַטער	Theatre							
@@ -406,7 +406,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 426	Unzer teater	אונזער טעאַטער				ORG-C00837					
 427	Unzer vinkl (Our Corner)	אונזער ווינקל	ונזער ווינקל (אור קאָרנער)			ORG-C00794 | ORG-C04372 | ORG-C00752 | ORG-C04513 | ORG-C05083 | ORG-C04174 | ORG-C04763					
 428	Vaksman-Spivakovski Troupe		וואַקסמאַן-ספּיוואַקאָווסקי טרופּע	Traveling Company							
-429	Vaksman Troupe		וואַקסמאַן טרופּע	Traveling Company		ORG-C01604					
+429	Vaksman Troupe		וואַקסמאַן טרופּע	Traveling Company		ORG-C01604		true	327		
 430	Varshaver tageblat		וואַרשאַווער טאַגעבלאַט								
 431	Vaynshtoks, Vaynshtayns, and Goldschmidt Troupe		וויינשטאָקס, וויינשטיינס, און גאָלדשמידט טרופּע	Traveling Company							
 432	Victoria Theatre		וויקטאָריאַ טעאַטער	Theatre		ORG-C01727					
@@ -424,7 +424,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 444	Yiddish Dramatic Circle		ייִדיש דראַמאַטיש קירקלע	Amateur							
 445	Yiddish dramatic school		ייִדיש דראַמאַטיש שול	Education							
 446	Yiddish Dramatic Society - דער יידיש דראמגעזעלשאפט	יידיש. דראַמגעזעלשאַפֿט				ORG-C02041 | ORG-C03946					
-447	Yiddish Theatre Society		ייִדיש טעאַטער געזעלשאַפֿט								
+447	Yiddish Theatre Society		ייִדיש טעאַטער געזעלשאַפֿט					true	419		
 448	Yidishe Natsionale Radikale Shul		יידישע נאַציאָנאַלע ראַדיקאַלע שול	Education							
 449	Yidishes ṭogblaṭ⁩ - ⁨יידישעס טאגעבלאט⁩⁩	יידישעס טאָגעבלאַט		Journals/ Newspapers							
 451	Yosef Goldshmidt Troupe		יאָסעפֿ גאָלדשמידט טרופּע	Traveling Company							
@@ -446,7 +446,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 467	בלויען פויגל			Traveling Company		ORG-C00005					
 468	קינדער-קאָלעקטיוו א'ר פֿון מאַרק מייערסאָן	קינדער-קאָלעקטיוו א'ר פֿון מאַרק מייערסאָן		Traveling Company		ORG-C00008					
 469	ראַפּעלס טרופּע	ראָפּעל		Traveling Company	קאַראָוואַ גאַס	ORG-C00009					
-470	שוואַרצבאַרדס טרופּע	שוואַרצבאַרדן		Traveling Company		ORG-C00010					
+470	שוואַרצבאַרדס טרופּע	שוואַרצבאַרדן		Traveling Company		ORG-C00010				שוואַרצבאַרדן	
 471	יידישן מלוכה-טעאַטער אין באָקו			Theatre		ORG-C00011					
 472	אָדעסער יידישן מלוכה-טעאַטער	אָדעסער יידישן טעאַטער				ORG-C00012					
 473	קיעווער יידישן מלוכה-טעאַטער א'נ פון שלום-עליכם					ORG-C00013					
@@ -459,12 +459,12 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 480	יידיש אַרבעטער-טעאַטער (באָקו)					ORG-C00016					
 481	וואַרשעווער יודישען קאָלענדאַר					ORG-C00021					
 482	יודישער האַנדעלס קאַלענדאָר	יודישער האָנדלס-קאמער				ORG-C00022					
-483	טרופּע פֿון ווייספעלד	ווייספעלדן				ORG-C00028					
+483	טרופּע פֿון ווייספעלד	ווייספעלדן				ORG-C00028				טרופּע פֿון ווייספעלד | ווייספעלדן	
 484	אינסטיטוט א'נ פֿון אָסטראָווסקי	אינסטיטוט א'נ פֿון אָסטראָווסקי				ORG-C00036					
-485	קאָמפּאַנעעצס טרופּע	קאָמפּאַניעעצס יידישער טרופּע		Traveling Company		ORG-C00047					
+485	קאָמפּאַנעעצס טרופּע	קאָמפּאַניעעצס יידישער טרופּע		Traveling Company		ORG-C00047				קאָמפּאַנעעצס טרופּע | קאָמפּאַנעיעץס טרופּע | קאָמפּאָנעעץ-טעאַטער | קאָמפּאַנעעץ	
 486	טרופּע פֿון גוזיק	גוזיק		Traveling Company		ORG-C00034					
 487	ירושלימער אוניווערזיטעט	ירושלימער אוניווערזיטעט		Education		ORG-C00040 | ORG-C00039					
-488	אַראַראַט	אַרראַט				ORG-C00055					
+488	אַראַראַט	אַרראַט				ORG-C00055				אַראַראַט | אַררט	
 489	בורג-טעאַטער	בורג-טעאַטער				ORG-C00052					
 490	טרופּע ציפקוס			Traveling Company		ORG-C00050					
 491	טעאַטער „קאָמעדיאָ“	טעאַטער „קאָמעדיאָ“				ORG-C00038					
@@ -479,14 +479,14 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 500	ריגער יידישן מלוכה-טעאַטער	ריגער יידישן טעאַטער				ORG-C05354 | ORG-C05024					
 501	מינסקער יידישן מלוכה-טעאַטער	מינסקער יידישן מלוכה-טעאַטער				ORG-C02284					
 502	בוקאַרעשטער יידישן מלוכה-טעאַטער	בוקאַרעשטער יידישן מלוכה-טעאַטער				ORG-C00293					
-503	צאָלמאַן	צאָלמאַנען		Traveling Company		ORG-C03322					
+503	צאָלמאַן	צאָלמאַנען		Traveling Company		ORG-C03322				צאָלמאַנען	
 504	העבראיקאַ					ORG-C00060					
-505	יאָסער יידישן מלוכה-טעאַטער					ORG-C00305					
+505	יאָסער יידישן מלוכה-טעאַטער					ORG-C00305		true	499		
 506	ביראָ ביאָזשאַנער יידישן מלוכה-טעאַטער	ביראָ ביאָזשאַנער יידישן מלוכה-טעאַטער				ORG-C00317					
 507	נאָוואָשטשי					ORG-C00215					
 508	ווילנער דרוקער-פאַריין			Theatre-related Society/ Union		ORG-C00074					
 509	ווערדי-טעאַטער	טשעלסי-טעאַטער				ORG-C00240					
-510	מאָלדעוואָנישער יידישער מלוכה-טעאַטער	מאָלדאָוואַנישן יידישן מלוכה-טעאַטער				ORG-C00235					
+510	מאָלדעוואָנישער יידישער מלוכה-טעאַטער	מאָלדאָוואַנישן יידישן מלוכה-טעאַטער				ORG-C00235				מאָלדעוואָנישער יידישער מלוכה-טעאַטער	
 511	"""וויסקאָנסין פלעיערס"""			Traveling Company		ORG-C07428					
 512	"""ייד. דראָמ. ליט. געזעל."""					ORG-C05585					
 513	"""49טע סטריט""-טעאַטער"					ORG-C06913					
@@ -511,7 +511,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 533	מעלצערס טרופּע			Traveling Company		ORG-C01796					
 534	וואַרשעווער יידישן מלוכה-טעאַטער					ORG-C01810					
 535	וויניצער יידישן מלוכה-טעאַטער	וויניצער יידישן מלוכהשן טעאַטער		Theatre		ORG-C03447					
-536	ריגער יידישן מעוטים-טעאַטער	מעוטים-טעאַטער				ORG-C02949 | ORG-C02007_Q01 | ORG-C01296 | ORG-C03282					
+536	ריגער יידישן מעוטים-טעאַטער	מעוטים-טעאַטער				ORG-C02949 | ORG-C02007_Q01 | ORG-C01296 | ORG-C03282		true	500		
 537	ווייטעבסקער יידישן מלוכה-טעאַטער			Theatre		ORG-C05084					
 538	זשיטאָמירער יידישן מלוכה-טעאַטער			Theatre		ORG-C00609					
 539	ביאַליסטאָקער יידישן מלוכה-טעאַטער			Theatre		ORG-C02267					
@@ -535,22 +535,22 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 559	ראָזענזאַלס טרופּע			Traveling Company		ORG-C02175					
 560	יונג טעאַטער					ORG-C00928					
 561	בערלינער אוניווערזיטעט					ORG-C01532					
-562	כאַרקאָווער ערשטן יידישן מלוכה-טעאַטער			Theatre		ORG-C04068					
+562	כאַרקאָווער ערשטן יידישן מלוכה-טעאַטער			Theatre		ORG-C04068		true	478		
 563	טרופּע פֿון קאָרש-טעאַטער			Company on Tour		ORG-C04209					
 564	דער יודישער פּאָק					ORG-C00941					
 565	לאָנדאָנער יידישן פֿאָלקס-טעאַטער					ORG-C01362					
-566	יאָוועלירס טרופּע			Traveling Company		ORG-C03015					
+566	יאָוועלירס טרופּע			Traveling Company		ORG-C03015		true	295		
 567	רומענישן יידישן מלוכהטעאַטער					ORG-C00240					
-568	יאָווילערס טרופּע			Traveling Company		ORG-C05645					
+568	יאָווילערס טרופּע			Traveling Company		ORG-C05645		true	295		
 569	טשערנאָוויצער יידישן מלוכה טעאַטער					ORG-C03200					
 570	ווייסרוסישן פֿאָלקס-טעאַטער			Theatre		ORG-C01858					
 571	ווילנער יידישן אָפּערע-טעאַטער					ORG-C03384					
 572	דער יודישער טעלעגראף					ORG-C06043					
-573	ריגער מלוכה-טעאַטער					ORG-C01943					
-574	ערשטן קיעווער יידישן מלוכה-טעאַטער					ORG-C02284					
+573	ריגער מלוכה-טעאַטער					ORG-C01943		true	500		
+574	ערשטן קיעווער יידישן מלוכה-טעאַטער					ORG-C02284		true	515		
 576	בוקאַרעסטער יידישן דראַמאַטישן טעאַטער			Theatre		ORG-C06905					
 577	מוסטער טעאַטער					ORG-C02760					
-578	טרופּע פֿון יאָוועליר			Traveling Company		ORG-C04544					
+578	טרופּע פֿון יאָוועליר			Traveling Company		ORG-C04544		true	295		
 579	נענקערס טרופּע			Traveling Company		ORG-C05551					
 580	"טעאַטער „מיידים"""					ORG-C03441 | ORG-C03097_Q01 | ORG-C01820 | ORG-C03036 | ORG-C03111 | ORG-C03340 | ORG-C03586					
 581	טעאַטער קאָמיקאַ					ORG-C04656					
@@ -563,7 +563,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 588	ווינער אוניווערזיטעט			Education		ORG-C03238					
 589	קראָקעווער אוניווערזיטעט			Education		ORG-C04205					
 590	באָזעלער אוניווערזיטעט			Education		ORG-C06571					
-591	מאָלדאָוואַנישן מלוכה-טעאַטער			Theatre		ORG-C01613					
+591	מאָלדאָוואַנישן מלוכה-טעאַטער			Theatre		ORG-C01613		true	510		
 593	ווייסרוסישן יידישן מלוכה-טעאַטער					ORG-C00490 | ORG-C00567					
 594	אַלאוקראַאינישן מלוכה-טעאַטער			Theatre		ORG-C03879					
 595	קיעוור אוניווערזיטעט			Education		ORG-C03135					
@@ -576,7 +576,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 602	השומר הצעיר					ORG-C00831					
 603	דער טעגלייכער העראָלד					ORG-C04447					
 604	לאָדזשער סקאַלאַ-טעאַטער					ORG-C00579					
-605	סאָוויעטישן מלוכה-טעאַטער			Theatre		ORG-C04920					
+605	סאָוויעטישן מלוכה-טעאַטער			Theatre		ORG-C04920		true	550		
 606	ליטעראַריש-דראַמאַטישע געזעלשאַפט			Theatre		ORG-C01452					
 607	שיקאַגער יידישע דראַמאַטישע געזעלשאַפט					ORG-C01827 | ORG-C03992 | ORG-C04545_Q01					
 608	פּוילישן פאָלקס-טעאַטער			Theatre		ORG-C02897					
@@ -590,14 +590,14 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 616	מאריס-טעאַטער			Theatre		ORG-C00158					
 617	יאָזעף קעסלערס טרופע			Traveling Company		ORG-C00664					
 618	לעטישן מלוכה-טעאַטער			Theatre		ORG-C07378					
-619	לעטישן מלוכה-טעאַטער			Theatre		ORG-C07378					
+619	לעטישן מלוכה-טעאַטער			Theatre		ORG-C07378		true	618		
 620	יידישן אַרבעטער-טעאַטער „יעווקאַמבער“			Theatre		ORG-C01601					
 621	די דאָרטיקע יידישע דראַמאַטישע געזעלשאַפט			Theatre		ORG-C06838					
-622	פּערעגן-טעאָטער	פּעריגען-טעאַטער		Theatre		ORG-C06355					
+622	פּערעגן-טעאָטער	פּעריגען-טעאַטער		Theatre		ORG-C06355				פּערעגן-טעאָטער | פּערעגאן טעאַטער	
 623	פּאַריזער יידישע קונסט-טעאַטער			Theatre		ORG-C00193					
 624	ווילנער יידישן געטאָ-טעאַטער					ORG-C02916					
 625	קינדער-טרופּע			Traveling Company		ORG-C01628					
-626	טרופּע פֿון האָרט			Traveling Company		ORG-C02054					
+626	טרופּע פֿון האָרט			Traveling Company		ORG-C02054		true	269		
 627	לוואָווער טעאַטער			Theatre		ORG-C03607 | ORG-C01725					
 628	געטאָ-טעאַטער					ORG-C02738					
 629	שאַראַוונערס טרופּע	שאַראָוונער'ס טרופּעס		Traveling Company		ORG-C02887					
@@ -625,7 +625,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 651	פּיינסקיס דרוקעריי			printer		ORG-C06459					
 652	סטראַשון-ביבליאָטעק			library		ORG-C04875					
 653	ליטעראַרישע געזעלשאַפֿט			theatre-related society/ union		ORG-C00934					
-654	ליטמאַןס טעאַטער					ORG-C01230					
+654	ליטמאַןס טעאַטער					ORG-C01230		true	325		
 655	שיקאַגער יידישן טעאַטער			theatre		ORG-C04633					
 656	לאָנדאָנער יידישן טעאַטער					ORG-C04528					
 657	בערנער אוניווערזיטעט			education		ORG-C04695					
@@ -636,10 +636,10 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 662	פּאַריזער יידישן טעאַטער	פּאַריזער יידישן טעאַטער				ORG-C05247					
 663	וואַרשעווער יידישן דראַמאַטישן טעאַטער	וואַרשעווער יידישן דראַמאַטישן טעאַטער				ORG-C02750					
 664	לאָדזשער יידישן טעאַטער	לאָדזשער יידישן טעאַטער		theatre		ORG-C01000					
-665	קיעווער יידישן טעאַטער	קיעווער יידישן טעאַטער		theatre		ORG-C03691 | ORG-C01387_Q25					
-666	ווילנער מלוכה-טעאַטער	ווילנער מלוכה-טעאַטער				ORG-C02614					
-667	ווילנער פֿאָלקס-טעאַטער	ווילנער פֿאָלקס-טעאַטער				ORG-C01124					
-668	קיעווער מלוכה-טעאַטער	קיעווער מלוכה-טעאַטער				ORG-C04069					
+665	קיעווער יידישן טעאַטער	קיעווער יידישן טעאַטער		theatre		ORG-C03691 | ORG-C01387_Q25		true	515		
+666	ווילנער מלוכה-טעאַטער	ווילנער מלוכה-טעאַטער				ORG-C02614		true	519		
+667	ווילנער פֿאָלקס-טעאַטער	ווילנער פֿאָלקס-טעאַטער				ORG-C01124		true	541		
+668	קיעווער מלוכה-טעאַטער	קיעווער מלוכה-טעאַטער				ORG-C04069		true	515		
 669	שילער טעאַטער	שילער טעאַטער		theatre		ORG-C04739					
 670	14טע סטריט-טעאַטער	14טע סטריט-טעאַטער		theatre		ORG-C06693					
 671	לאָנדאָנער יידישן פּאַוויליאָן-טעאַטער	לאָנדאָנער יידישן פּאַוויליאָן-טעאַטער				ORG-C03967					
@@ -661,8 +661,8 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 687	דער וועקער	דער וועקער		journals/ newspapers		ORG-C02957					
 688	קאַרל טעאַטער	קאַרל טעאַטער		theatre		ORG-C00896					
 689		שטאָטישע רעגירונגס-שול		Education		ORG-C01561					
-690		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971					
-691		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971 | ORG-C04456 | ORG-C02591_Q03					
+690		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971		true	689		
+691		שטאָטישע רעגירונגס-שול		Education		ORG-C01561 | ORG-C02971 | ORG-C04456 | ORG-C02591_Q03		true	689		
 692	Forverts (New York City)	פֿאַרווערטס		Journals/ Newspapers	New York City		249				
 693	Forverts (Chicago)	פֿאַרווערטס		Journals/ Newspapers	Chicago		249				
 694	Forverts (Philadelphia)	פֿאַרווערטס		Journals/ Newspapers	Philadelphia		249				
@@ -670,7 +670,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 696	Hashomer Hatzair (Vilnius)	השומר הצעיר		Jewish political bodies	Vilnius		602				
 697	Hashomer Hatzair (Toronto)	השומר הצעיר		Jewish political bodies	Toronto		602				
 698	Hashomer Hatzair (Chełm)	השומר הצעיר		Jewish political bodies	Chełm		602				
-699	פּראָגרעסיוו דראַמאַטיק קלוב	פּראָגרעסיוו דראַמאַטיק קלוב				ORG-C00155_Q05					
+699	פּראָגרעסיוו דראַמאַטיק קלוב	פּראָגרעסיוו דראַמאַטיק קלוב				ORG-C00155_Q05		true	363		
 700		מאָזגאָוואָיס פֿארשטעלונגען		Theatre		ORG-C02465					
 701		נעסוויזשער צישאַ-שול		Education		ORG-C02812					
 702		מאַגיסטראַט		Non-Jewish Political Bodies		ORG-C02813_Q01					
@@ -683,11 +683,11 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 709		כאָרשול אין זשיטאָמיר		Education		ORG-C03228					
 710		„ראָוונער וואָכנבלאַט“		Journals/ Newspapers		ORG-C04945					
 711		יידישן טעאַטער אין מאָנטרעאל		Theatre		ORG-C01387_Q12 | ORG-C03871					
-712		יידישן טעאַטער אין מאָנטרעאל		Theatre		ORG-C01387_Q12 | ORG-C06842					
+712		יידישן טעאַטער אין מאָנטרעאל		Theatre		ORG-C01387_Q12 | ORG-C06842		true	711		
 713	יידיש קונסט טעאַטער	יידיש קונסט טעאַטער				ORG-C00195_Q02					
 714		ביבליאָטעק אין יעליסאַוועטגראָד		Library		ORG-C06748					
-715		ערשטע קאָאָפּעראַטיווע דראָמע		Theatre		ORG-C06515 | ORG-C01724					
-716		ערשטער יידישער קאָאָפּעראַטיווער דראַמע		Theatre		ORG-C01724					
+715		ערשטע קאָאָפּעראַטיווע דראָמע		Theatre		ORG-C06515 | ORG-C01724				ערשטער יידישער קאָאָפּעראַטיווער דראַמע	
+716		ערשטער יידישער קאָאָפּעראַטיווער דראַמע		Theatre		ORG-C01724		true	715		
 717		קינדער-ליבהאָבער-קרייז		Theatre		ORG-C05168					
 718		יעקאַטערינאָסלאָווער זומער-טעאַטער „אָבטשעסטוועננאַיע סאָבראניע“		Theatre		ORG-C04915					
 719		וויסנשאַפט		Publisher		ORG-C04872					
@@ -698,9 +698,9 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 724		יידישן דראַמאַטישן קרייז		Theatre		ORG-C02913_Q02					
 725		דאָס יידישע באַוועגלעכע דראַמאַטישע טעאַטער		Theatre		ORG-C01787 | ORG-C02772_Q02					
 726		דאַנציגער יידישן טעאַטער		Theatre		ORG-C03385 | ORG-C02772_Q02					
-727		באַלאַגעניידען		Theatre		ORG-C00051_Q02 | ORG-C02772_Q02					
-728		באַלאַגעניידען		Theatre		ORG-C00051_Q02 | ORG-C01787					
-729		באַלאַגעניידען		Theatre		ORG-C00051_Q02					
+727		באַלאַגעניידען		Theatre		ORG-C00051_Q02 | ORG-C02772_Q02		true	497		
+728		באַלאַגעניידען		Theatre		ORG-C00051_Q02 | ORG-C01787		true	497		
+729		באַלאַגעניידען		Theatre		ORG-C00051_Q02		true	497		
 730		דאַנציגער לעבען		Journals/ Newspapers		ORG-C01784					
 731		דאַנציגער טאָגבלאַט		Journals/ Newspapers		ORG-C01785					
 732		פּרץ-פאַראיין		Trade Union / Professional Association		ORG-C04800					
@@ -709,17 +709,17 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 735		קולטור-סענטער		Theatre		ORG-C02422					
 736		לעמעל-שול		Education		ORG-C04417					
 737		"ישיבה „לשכת הרבנים"" אין ירושלים"		Education		ORG-C05317					
-738		לעמעל-שול		Education		ORG-C04417					
+738		לעמעל-שול		Education		ORG-C04417		true	736		
 739		ביקור חולים (ירושלים)		Health Institutions		ORG-C00792_Q01					
-740		נאַציאָנאַלן מוזיי אין ירושלים		Theatre		ORG-C02427					
+740		נאַציאָנאַלן מוזיי אין ירושלים		Theatre		ORG-C02427		true	742		
 741		יתומים-היים פֿאַר מיידלעך		Welfare/Aid Organization		ORG-C03738					
-742		נאַציאָנאַלן מוזיי		Heritage Institution		ORG-C00560 | ORG-C02427					
+742		נאַציאָנאַלן מוזיי		Heritage Institution		ORG-C00560 | ORG-C02427				נאַציאָנאַלן מוזיי	
 743		"„דראַמקרייז מ. ווינטשעווסקי"""		Theatre		ORG-C00575					
-744		טעאַטער עקסעלסיאָר		Theatre		ORG-C00131_Q01 | ORG-C02464					
+744		טעאַטער עקסעלסיאָר		Theatre		ORG-C00131_Q01 | ORG-C02464		true	747		
 745		מינסקער מעלוכעשער יידישער טעאַטער		Theatre		ORG-C01160 | ORG-C07318 | ORG-C01387_Q38 | ORG-C04693_Q01 | ORG-C00596_Q03					
 746	אָלימפּיאַ טעאַטער	אָלימפּיאַ טעאַטער		theatre		ORG-C00085_Q02					
 747	טעאַטער עקסעלסיאָר	טעאַטער עקסעלסיאָר				ORG-C00131_Q02					
-748	צענטראַל-טעאַטער	צענטראַל-טעאַטער				ORG-C00631_Q02					
+748	צענטראַל-טעאַטער	צענטראַל-טעאַטער				ORG-C00631_Q02		true	151		
 749		זשיגניצע		Theatre		ORG-C00663 | ORG-C00325 | ORG-C00668 | ORG-C03004 | ORG-C03539 | ORG-C04337 | ORG-C05325					
 750		די גרויסע שול אין בּוקאַרעסט		Religious Institutions/Organizations		ORG-C04564_Q03 | ORG-C06669					
 751		קעפּיטל-טעאַטער		Theatre		ORG-C06089 | ORG-C00265_Q02 | ORG-C06463					
@@ -734,10 +734,10 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 760	אַדלער-סיעראָצקי	אַדלער-סיעראָצקי		traveling company		ORG-C01172					
 761	גלימער	גלימער		traveling company		ORG-C01630					
 762	קלאַראַ יאָנגס טרופּע	קלאַראַ יאָנגס טרופּע		traveling company		ORG-C00128					
-763	קלאַראַ יאָנגס טרופּע	קלאַראַ יאָנגס טרופּע		traveling company		ORG-C00128					
+763	קלאַראַ יאָנגס טרופּע	קלאַראַ יאָנגס טרופּע		traveling company		ORG-C00128		true	762		
 764	יאָנאַס טורקאָווס טרופּע	יאָנאַס טורקאָווס טרופּע		traveling company		ORG-C02678					
 765	טאַנענצאַפּס טרופּע	טאַנענצאַפּס טרופּע		traveling company		ORG-C02607					
-766	טאַנענצאַפּס טרופּע	טאַנענצאַפּס טרופּע		traveling company		ORG-C02607					
+766	טאַנענצאַפּס טרופּע	טאַנענצאַפּס טרופּע		traveling company		ORG-C02607		true	765		
 767	טרופּע פֿון ראָטשטיין	טרופּע פֿון ראָטשטיין		traveling company		ORG-C00140					
 768	טרופּע פון שטשערבאַקאָוו	טרופּע פון שטשערבאַקאָוו		traveling company		ORG-C00139					
 769	טרופּע פֿון קופּערמאַן	טרופּע פֿון קופּערמאַן		traveling company		ORG-C02853					
@@ -764,7 +764,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 791	גערמאָזס טרופּע	גערמאָזס טרופּע		traveling company		ORG-C06237					
 792	קאָליךס טרופּע	קאָליךס טרופּע		traveling company		ORG-C05178					
 793	לאַטיינערס טרופּע	לאַטיינערס טרופּע		traveling company		ORG-C04568					
-794	משה ליפּמאָןס טרופּע	משה ליפּמאָןס טרופּע		traveling company		ORG-C04966					
+794	משה ליפּמאָןס טרופּע	משה ליפּמאָןס טרופּע		traveling company		ORG-C04966				טרופּע פֿון ליפּמאַן	
 795	טעאַטער-סטודיע „קולטור-ליגע“	טעאַטער-סטודיע „קולטור-ליגע“		theatre education		ORG-C00345					
 796	די מאַסקע	די מאַסקע		theatre education		ORG-C03131					
 797	יידישע טעאַטער-סטודיע ביים לאָדזשער „הזמיר“	יידישע טעאַטער-סטודיע ביים לאָדזשער „הזמיר“		theatre education		ORG-C02624					
@@ -791,10 +791,10 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 818	טרופּע פֿון שטאָקפֿעדער	טרופּע פֿון שטאָקפֿעדער		traveling company		ORG-C02932					
 819	טרופּע פֿון קאַנאַפּאָוו	טרופּע פֿון קאַנאַפּאָוו		traveling company		ORG-C03121					
 820	טרופּע פֿון בלייכמאַן	טרופּע פֿון בלייכמאַן		traveling company		ORG-C03186					
-821	טרופּע פֿון ליפּמאַן	טרופּע פֿון ליפּמאַן		traveling company		ORG-C02053					
+821	טרופּע פֿון ליפּמאַן	טרופּע פֿון ליפּמאַן		traveling company		ORG-C02053		true	794		
 822	טאָמאַשעווסקיס טרופּע	טאָמאַשעווסקיס טרופּע		traveling company		ORG-C03865					
 823	שעהנבערגס טרופּע	שעהנבערגס טרופּע		traveling company		ORG-C06266					
-824	טרופּעס פֿון בעקער	טרופּעס פֿון בעקער		traveling company		ORG-C04667					
+824	טרופּעס פֿון בעקער	טרופּעס פֿון בעקער		traveling company		ORG-C04667		true	610		
 825	ליאַ לאָרגמאַנס טרופּע	ליאַ לאָרגמאַנס טרופּע		traveling company		ORG-C01383					
 826	טרוּפּע פישזאָןס-געליס	טרוּפּע פישזאָןס-געליס		traveling company		ORG-C04036					
 827	לעווינסאָנס טרופּע	לעווינסאָנס טרופּע		traveling company		ORG-C07168					
@@ -805,14 +805,14 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 832	זילבערמאָזס טרופּע	זילבערמאָזס טרופּע		traveling company		ORG-C05633					
 833	טרופּע פון סאַמבערג	טרופּע פון סאַמבערג		traveling company		ORG-C01872					
 834	טרופּע פֿון קאָכאַנסקי	טרופּע פֿון קאָכאַנסקי		traveling company		ORG-C02759					
-835	שליפערשטייןס טרופּע	שליפערשטייןס טרופּע		traveling company		ORG-C05131					
+835	שליפערשטייןס טרופּע	שליפערשטייןס טרופּע		traveling company		ORG-C05131		true	384		
 836	טרופּע פֿון לאַכטיגער	טרופּע פֿון לאַכטיגער		traveling company		ORG-C01603					
 837	יעקב גאָלדשטייןס טרופּע	יעקב גאָלדשטייןס טרופּע		traveling company		ORG-C04071					
 838	צעלמייסטערס טרופע	צעלמייסטערס טרופע		traveling company		ORG-C02676					
 839	מישע פישזאָנס טרופּע	מישע פישזאָנס טרופּע		traveling company		ORG-C06108					
 840	פרייע יידישע פֿאָלקס-בינע - עסטרייך	פרייע יידישע פֿאָלקס-בינע		theatre		ORG-C00481_Q03					
 841	טרופּע פֿון אָננאַ יאָקובאָוויטש	טרופּע פֿון אָננאַ יאָקובאָוויטש		traveling company		ORG-C00225					
-842	ביעלאַיעווס טרופּע	ביעלאַיעווס טרופּע		traveling company		ORG-C04096					
+842	ביעלאַיעווס טרופּע	ביעלאַיעווס טרופּע		traveling company		ORG-C04096		true	816		
 843	בלייכמאָזס אַרופּע	בלייכמאָזס אַרופּע		traveling company		ORG-C06353					
 844	פּאַטאָצקאַ	פּאַטאָצקאַ		traveling company		ORG-C03123					
 845	חנאַ וואָלפסטאַלס טרופּע	חנאַ וואָלפסטאַלס טרופּע		traveling company		ORG-C02805					
@@ -829,7 +829,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 856	טרופּע פֿון לידיאַ פּאַטאָצקאַ	טרופּע פֿון לידיאַ פּאַטאָצקאַ		traveling company		ORG-C00226					
 857	נייטאן גאָלדבערג	נייטאן גאָלדבערג		traveling company		ORG-C02062					
 858	דזשיגאַן און שומאַכער טרופּע	דזשיגאַן און שומאַכער טרופּע		traveling company		ORG-C02278					
-859	קאַמינסקי און קאָמפּאַנעעץ	קאַמינסקי און קאָמפּאַנעעץ		traveling company		ORG-C02680					
+859	קאַמינסקי און קאָמפּאַנעעץ	קאַמינסקי און קאָמפּאַנעעץ		traveling company		ORG-C02680				יידנראט | Yudenrat	
 860	טרופּע פֿון אַלבערט סעגאַלעסקאָ	טרופּע פֿון אַלבערט סעגאַלעסקאָ		traveling company		ORG-C05065					
 861	טרופּע פֿון ראָזע אַרנשטיין	טרופּע פֿון ראָזע אַרנשטיין		traveling company		ORG-C02727					
 862	צעלמייסטער-פּיקאָן-טרופּע	צעלמייסטער-פּיקאָן-טרופּע		traveling company		ORG-C02651					
