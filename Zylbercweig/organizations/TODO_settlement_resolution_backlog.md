@@ -17,7 +17,48 @@ Numbers are as of 2026-07-19 and will drift — re-measure before acting.
 
 ## Data defects
 
-### 1. db_id 332 — coordinates land in Suffolk County
+### 1. Address pins far from their settlement — ✅ SWEPT 2026-07-19, 9 to fix
+`audit_address_geocode_outliers.py` generalises the db_id 332 case: it treats
+the settlement centroid as ground truth and measures how far each address pin
+fell from it, keeping the nearest settlement for multi-location rows.
+
+    python3.11 audit_address_geocode_outliers.py [--csv out.csv]
+
+Result: **9 of 144 checkable pins** are outliers (186 rows carry a pin; 42 have
+no resolvable settlement centroid). Handoff at
+`address_geocode_outliers_2026-07-19.csv`.
+
+**A clear signature emerged.** Three of the four worst pins sit near Albany
+(42.6–43.0, −73.7 to −74.3) while their addresses read Manhattan — the mark of
+a geocoder falling back to a point in "New York State" when the street match
+fails. Two more land in the wrong NYC-area county:
+
+| db_id | address says | pin actually is | km |
+|---|---|---|---|
+| 137 | Calea Văcărești, **Bucharest** | **Iași** | 329 |
+| 615 | 189 Second Avenue, NY | upstate nr Johnstown | 262 |
+| 344 | Mount Morris | Albany area | 218 |
+| 443 | East 12th St, Manhattan | Albany | 215 |
+| 332 | Pitkin Ave, Brownsville | Suffolk County | 112 |
+| 538 | Zhytomyr, Ukraine | 75 km off | 75 |
+| 535 | Vinnytsia, Ukraine | 38 km off | 38 |
+| 189 | 175 East Broadway, Manhattan | Nassau County | 32 |
+| 123 | 8th St & Third Ave, Manhattan | Staten Island | 19 |
+
+db_id 344 may be the inverse — the Mount Morris Theatre was on Mount Morris
+Park (now Marcus Garvey Park) in **Harlem**, so its "Mount Morris" address may
+have been geocoded to the upstate village of that name. Check the org before
+moving the pin.
+
+All 9 are reviewer-attributed to Maaty, so they came through the confirm flow
+with a Nominatim suggestion accepted — exactly the risk
+`TODO_settlement_vs_address_geocoding.md` names. Worth considering a distance
+guard in the Organization Cards confirm step so the next one is caught at
+entry rather than by audit.
+
+Original note on the single case that started this:
+
+
 `Brownsville Metropolitan Singer Hall` has `lat/lon = 40.921376, -72.6633`.
 Pitkin Avenue, Brownsville is ~`40.665, -73.91`. Almost certainly a geocoder
 hit on a different "Pitkin".
