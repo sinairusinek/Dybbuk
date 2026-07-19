@@ -27,6 +27,28 @@ _SETTLEMENT_CATEGORIES = {"settlement", "neighborhood"}
 
 _BIDI_MARKS = "‎‏‪‫‬‭‮⁦⁧⁨⁩"
 
+# Latin letters NFKD does not decompose (they are distinct letters, not
+# base+combining), so "Lodz" never reaches the gazetteer key "Łódź".
+_LATIN_FOLD = str.maketrans({"ł": "l", "ø": "o", "đ": "d", "ħ": "h", "ŧ": "t"})
+
+# Trailing/leading punctuation that leaks in from address splitting ("Iași,").
+# Parens are deliberately NOT stripped — "new york (n.y.)" is a real key.
+_EDGE_PUNCT = " ,.;:'\"־-"
+
+# Historical / colloquial exonyms → the normalized key the gazetteer actually
+# carries (Wikidata's *current official* label). Values must be already-
+# normalized strings present in `_by_key`; a miss is silently ignored, so a
+# gazetteer change degrades to "unresolved", never to a wrong QID.
+_ALIASES = {
+    "new york": "new york city",
+    "odessa": "odesa",
+    "kiev": "kiev (ukraine)",
+    "vilna": "vilnius",
+    "lemberg": "lviv",
+    "breslau": "wroclaw",
+    "pressburg": "bratislava",
+}
+
 
 @dataclass(frozen=True)
 class ResolvedSettlement:
@@ -49,6 +71,8 @@ def _normalize(s: str) -> str:
     # works ("ברוקלינער" → stem "ברוקלינ" matches kimatch key "ברוקלין").
     s = s.translate(str.maketrans("ךםןףץ", "כמנפצ"))
     s = re.sub(r"[\s\-_]+", " ", s).strip().lower()
+    s = s.translate(_LATIN_FOLD)
+    s = s.strip(_EDGE_PUNCT)
     return s
 
 
@@ -108,6 +132,11 @@ class SettlementResolver:
         hit = self._by_key.get(key)
         if hit:
             return hit
+        alias = _ALIASES.get(key)
+        if alias:
+            hit = self._by_key.get(alias)
+            if hit:
+                return hit
         # Yiddish adjectival suffix: "Xער" / "Xישער" / "Xישע" means "of X".
         # The stem often ends in a consonant while kimatch keys end in a vowel
         # (שיקאַגער → stem שיקאַג; kimatch key שיקאַגאָ). Try stem alone and stem
@@ -126,3 +155,61 @@ class SettlementResolver:
 @lru_cache(maxsize=1)
 def get_resolver() -> SettlementResolver:
     return SettlementResolver()
+
+
+# ─── Sub-city containment ─────────────────────────────────────────────────
+# kimatch's `resolved_category` lumps "neighborhood" in with "settlement"
+# (_SETTLEMENT_CATEGORIES above), so Brownsville and Brooklyn arrive as
+# co-equal top-level buckets. Rather than change that categorisation — which
+# would drop boroughs out of the lens entirely — we keep storage flat and roll
+# up at query time using a small curated parent table.
+
+_PARENTS_FILE = Path(__file__).resolve().parent / "settlement_parents.tsv"
+
+
+@lru_cache(maxsize=1)
+def load_parents() -> dict[str, str]:
+    """qid → parent_qid, from settlement_parents.tsv. Missing file = no
+    containment, which degrades to today's flat behaviour."""
+    out: dict[str, str] = {}
+    if not _PARENTS_FILE.exists():
+        return out
+    with _PARENTS_FILE.open() as f:
+        for line in f:
+            if line.startswith("#") or not line.strip():
+                continue
+            parts = line.rstrip("\n").split("\t")
+            if len(parts) < 2 or parts[0] == "qid":
+                continue
+            qid, parent = parts[0].strip(), parts[1].strip()
+            if qid and parent and qid != parent:
+                out[qid] = parent
+    return out
+
+
+def parent_of(qid: str) -> str | None:
+    return load_parents().get(qid)
+
+
+def ancestors_of(qid: str) -> list[str]:
+    """All containing QIDs, nearest first. Cycle-safe."""
+    out: list[str] = []
+    seen = {qid}
+    cur = load_parents().get(qid)
+    while cur and cur not in seen:
+        out.append(cur)
+        seen.add(cur)
+        cur = load_parents().get(cur)
+    return out
+
+
+def rollup_qid(qid: str) -> str:
+    """The top-level city a QID belongs to (itself if it is one)."""
+    chain = ancestors_of(qid)
+    return chain[-1] if chain else qid
+
+
+def descendants_of(qid: str) -> list[str]:
+    """All QIDs contained in `qid`, at any depth."""
+    parents = load_parents()
+    return [q for q in parents if qid in ancestors_of(q)]

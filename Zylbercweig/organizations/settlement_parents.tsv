@@ -1,0 +1,18 @@
+#	Sub-city containment: a settlement QID → the QID that contains it.
+#
+#	Storage stays FLAT: a Brownsville org keeps its Brownsville QID and its own
+#	bucket. This table is applied at QUERY time (see settlement_index.rollup_qid
+#	/ buckets_in_city(include_children=True)), so a borough is visible both as
+#	itself and under its parent city. Chains are transitive and resolved
+#	depth-first: Brownsville → Brooklyn → New York City.
+#
+#	Hand-curated because the observed problem is 6 QIDs, not a hierarchy crisis.
+#	To generalise later, harvest P131 — wikidata_client.py:103 already extracts
+#	it and currently discards it.
+#
+#	Columns: qid, parent_qid, english, parent_english, note
+qid	parent_qid	english	parent_english	note
+Q18419	Q60	Brooklyn	New York City	borough
+Q18426	Q60	Bronx	New York City	borough; in collapse map (punchlist) but not yet a resolver key
+Q991279	Q18419	Brownsville	Brooklyn	neighborhood; 3-level chain to Q60
+Q189074	Q60	Harlem	New York City	neighborhood of Manhattan; parented direct to Q60 because Manhattan never appears as a settlement value

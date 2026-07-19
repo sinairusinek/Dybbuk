@@ -21,7 +21,12 @@ import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 from pre_explode_clusters import is_itinerant  # noqa: E402
-from settlement_resolver import ResolvedSettlement, get_resolver  # noqa: E402
+from settlement_resolver import (  # noqa: E402
+    ResolvedSettlement,
+    descendants_of,
+    get_resolver,
+    parent_of,
+)
 
 csv.field_size_limit(10**9)
 
@@ -308,8 +313,40 @@ class SettlementIndex:
     def mentions_in_city(self, qid: str) -> int:
         return self._mentions_by_qid.get(qid, 0)
 
-    def buckets_in_city(self, qid: str) -> list[CityBucket]:
-        return self._buckets_by_qid.get(qid, [])
+    def buckets_in_city(self, qid: str, include_children: bool = False) -> list[CityBucket]:
+        """Buckets keyed to `qid`. With include_children, also returns buckets
+        for every settlement contained in it (Brooklyn/Bronx/Brownsville under
+        New York City) — see settlement_parents.tsv. Storage stays flat; this
+        is the query-time rollup, so a borough is reachable both ways."""
+        out = list(self._buckets_by_qid.get(qid, []))
+        if include_children:
+            for child in descendants_of(qid):
+                out.extend(self._buckets_by_qid.get(child, []))
+            out.sort(key=lambda b: -(len(b.db_cards) + len(b.clusters)))
+        return out
+
+    def mentions_in_city_rollup(self, qid: str) -> int:
+        """Mentions in `qid` plus everything it contains."""
+        return self._mentions_by_qid.get(qid, 0) + sum(
+            self._mentions_by_qid.get(c, 0) for c in descendants_of(qid)
+        )
+
+    def parent_city(self, qid: str) -> tuple[str, str] | None:
+        """(parent_qid, parent_english) if this settlement is contained in
+        another, else None. For a "Brooklyn ⊂ New York City" breadcrumb."""
+        p = parent_of(qid)
+        if not p:
+            return None
+        return p, (self._cities.get(p, ("", ""))[0] or p)
+
+    def child_cities(self, qid: str) -> list[tuple[str, str]]:
+        """(qid, english) for each settlement contained in this one that is
+        actually present in the index."""
+        return [
+            (c, self._cities.get(c, ("", ""))[0] or c)
+            for c in descendants_of(qid)
+            if c in self._buckets_by_qid
+        ]
 
     def dominant_org_type(self, qid: str) -> str:
         return self._dominant_by_qid.get(qid, "")
