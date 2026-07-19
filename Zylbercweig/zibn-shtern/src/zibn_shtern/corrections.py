@@ -80,6 +80,25 @@ QID_OVERRIDES: dict[tuple[str, str], str] = {
 # during fix_column_assignment.  These take precedence over classify_qid.
 CATEGORY_OVERRIDES: dict[str, str] = {
     "Q7835": "province",  # Crimea – peninsula in Wikidata, province in our schema
+    # Cities that landed in `neighborhood`. Harmless while consumers accept
+    # both (Dybbuk's settlement_resolver._SETTLEMENT_CATEGORIES does), but it
+    # makes "neighborhood" meaningless and booby-traps any later attempt to
+    # narrow that set — doing so would silently drop Vienna, which carries 16
+    # rows in the org settlement lens. Genuine neighborhoods are deliberately
+    # NOT listed here and keep their category: Brownsville Q991279,
+    # Vilijampolė Q7052783, Aukštieji Paneriai Q2005090, Antakalnis Q570649,
+    # Iļģuciems Q1993731, Jaffa Q180294, Leederville Q3183, and Elberfeld
+    # Q702259 (a borough of Wuppertal).
+    "Q1741": "settlement",    # Vienna
+    "Q2079": "settlement",    # Leipzig
+    "Q1085": "settlement",    # Prague
+    "Q24879": "settlement",   # Bremen
+    "Q1720": "settlement",    # Mainz
+    "Q3936": "settlement",    # Bamberg
+    "Q3075": "settlement",    # Fürth
+    "Q260320": "settlement",  # Steyr
+    "Q745661": "settlement",  # Krustpils
+    "Q118995": "settlement",  # Muş
 }
 
 # Deterministic city resolutions for fix_city_state, keyed by the place LABEL

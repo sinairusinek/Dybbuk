@@ -37,6 +37,17 @@ _EXCLUDE_QIDS = {
                 # Fix upstream in kimatch, then drop this entry.
 }
 
+# Lookup keys that must never resolve, whatever the gazetteer says. Unlike
+# _EXCLUDE_QIDS this bans the *variant*, not the place — Steyr and Alytus stay
+# reachable under their real names. These are country names that kimatch
+# matched to a same-country city, so an org recorded only as "Lithuania" would
+# silently land in Alytus. Unresolved is the correct outcome; see backlog
+# item 8b on surfacing country-level records rather than dropping them.
+_EXCLUDE_KEYS = {
+    "עסטרייך",   # Austria (country) → matched Q260320 Steyr
+    "ליטע",      # Lithuania (country) → matched Q450625 Alytus
+}
+
 # Wikidata categories that represent inhabited places usable as a "settlement"
 # key for org grouping. Cemeteries / death sites / countries / provinces are
 # excluded — we want cities.
@@ -93,19 +104,33 @@ def _normalize(s: str) -> str:
     return s
 
 
+# Normalized once at import, since _EXCLUDE_KEYS is written in readable form.
+_EXCLUDE_KEY_NORMS = {_normalize(k) for k in _EXCLUDE_KEYS}
+
+
 class SettlementResolver:
     def __init__(self) -> None:
         self._by_key: dict[str, ResolvedSettlement] = {}
+        # Same entries re-keyed with all spaces removed. Yiddish transcriptions
+        # split compound names inconsistently — "ניו אַרק" vs the gazetteer's
+        # "ניוארק" — so this is consulted as a fallback tier only, never before
+        # an exact hit.
+        self._by_spaceless: dict[str, ResolvedSettlement] = {}
         self._load()
 
     def _add(self, key: str, resolved: ResolvedSettlement) -> None:
         if resolved.qid in _EXCLUDE_QIDS:
             return
         k = _normalize(key)
-        if not k:
+        if not k or k in _EXCLUDE_KEY_NORMS:
             return
         # First write wins — unified file is loaded first (PI-corrected).
         self._by_key.setdefault(k, resolved)
+        squashed = k.replace(" ", "")
+        if squashed != k:
+            self._by_spaceless.setdefault(squashed, resolved)
+        else:
+            self._by_spaceless.setdefault(k, resolved)
 
     def _load(self) -> None:
         if _UNIFIED.exists():
@@ -182,11 +207,18 @@ class SettlementResolver:
             for suffix in ("ישער", "ישע", "ער"):
                 if key.endswith(suffix) and len(key) > len(suffix) + 2:
                     stem = key[: -len(suffix)]
-                    for tail in ("", "ע", "א", "אָ", "ן", "ין"):
+                    # "עוו" catches קעשענער → קעשענעוו (Chișinău); "וו"/"וווו"
+                    # the same pattern on shorter stems.
+                    for tail in ("", "ע", "א", "אָ", "ן", "ין", "עוו", "וו"):
                         hit = self._by_key.get(stem + tail)
                         if hit:
                             return hit
-        return None
+                        hit = self._by_spaceless.get((stem + tail).replace(" ", ""))
+                        if hit:
+                            return hit
+                    break
+        # Last tier: ignore word breaks entirely ("ניו אַרק" ↔ "ניוארק").
+        return self._by_spaceless.get(key.replace(" ", ""))
 
 
 @lru_cache(maxsize=1)
