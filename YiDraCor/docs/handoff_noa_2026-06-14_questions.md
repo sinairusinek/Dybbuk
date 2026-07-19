@@ -1,7 +1,5 @@
 # YiDraCor — Status for Noa, 2026-06-14
 
-> **Cross-reference note (added 2026-06-18):** the companion file `handoff_2026-06-14_castlists_remaining_plays.md` has its DerMan / Meshumed sections content-swapped — see the correction header in that file. This file (`handoff_noa_*`) is unaffected; the song-span proposals for DerMan (Krakower, Turniover) and the Meshumed "skip until bootstrapped" note are correctly placed. Noa's replies here are valid as-is.
-
 Combined status of (a) the Blimele Q1–Q4 from the 2026-06-04 handoff, (b) the pipeline-rule questions you sent in chat on 2026-06-14.
 
 **Status legend**
