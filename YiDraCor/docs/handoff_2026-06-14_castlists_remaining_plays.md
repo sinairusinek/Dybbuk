@@ -1,15 +1,5 @@
 # YiDraCor — castList questions for Noa, 2026-06-14 (remaining plays)
 
-> **Correction note (added 2026-06-18 by Sinai+Claude):** the **DerManUnterTiff** and **Lateiner\_Meshumed** sections below have their question content SWAPPED. Each section's heading and `castList page:` file path is correct, but every numbered question inside cites roles from the *other* play. Specifically:
->
-> - `DerManUnterTiff` Q2–Q6 actually ask about **Meshumed** roles (`יעקב אייזענשטיין` / `יוסף`–`אסיפ`, `איוואן` / `גרעגואר` / `וואסקא` brace, `געהיים פאליציסט` etc., `ליובאוו אבאולאוונא`, strikethrough `גרעגואר מארקסענעל`).
-> - `Lateiner_Meshumed` Q2–Q5 actually ask about **DerMan** roles (vocalized ages, `קראָקעֶוועֶר` / `טוּרְניִווער` guests, `סאָבּעֶלעֶ` second wife, duplicate vocalized `ר' יאָכטשֶעֶ` lines).
-> - Only `Lateiner_Meshumed` Q1 (page-XML split decision) is correctly Meshumed-specific. `DerManUnterTiff` Q1 (auto-coin cast\_dict from page 4) is generic and applies to whichever play we read page 4 of.
->
-> Noa spotted the swap when replying — her replies carry `[Note: Swapped/Corrected Title]` and are written against the play each question's CONTENT actually describes. So her DerMan-headed replies answer **Meshumed** questions, and her Meshumed-headed replies answer **DerMan** questions.
->
-> **Glitch source:** this file was drafted manually (no generator script; file is untracked git-wise). Two adjacent plays' content got copy/paste-swapped during drafting. No data corruption upstream; the per-play castList XMLs themselves are clean and correctly identified.
-
 Survey of castList pages for the seven plays we have not yet RA-reviewed. Each question is yes/no; "yes" locks the call into the cast\_dict / annotation pipeline. Questions are ordered from most uncertain downward, capped at six per play. Anything you say "no" to, please add a one-line note so we can refine before re-running.
 
 Same conventions as `handoff_noa_2026-06-14_questions.md`:
