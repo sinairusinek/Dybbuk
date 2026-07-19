@@ -286,9 +286,13 @@ def build_castlist(cast: dict):
     cl = etree.SubElement(front, q("castList"))
     etree.SubElement(cl, q("head")).text = "פּערזאָנען"
     for xmlid, info in cast.get("roles", {}).items():
-        if info.get("collective"):
+        if info.get("collective") or info.get("printed") is False:
             continue  # collective/chorus roles resolve @who via listPerson but
-                      # are not printed in the dramatis personae (PI 2026-05-24)
+                      # are not printed in the dramatis personae (PI 2026-05-24).
+                      # `printed: false` does the same for an abstract SOLO voice
+                      # (Alt/Sopran/Bas/Tenor), which §G.4 requires be a <person>
+                      # rather than a <personGrp> — so it can't use `collective`
+                      # to opt out of the printed castList.
         ci = etree.SubElement(cl, q("castItem"))
         role = etree.SubElement(ci, q("role")); role.set("corresp", f"#{xmlid}")
         role.text = info.get("form") or info.get("bare", "")

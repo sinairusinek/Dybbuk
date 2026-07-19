@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.1.0:model_id=54653:lm=provided:date=26_08_2023_16:41</Creator>
@@ -60,7 +60,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
         <TextRegion id="r_1" custom="readingOrder {index:1;} structure {type:paragraph;}">
@@ -73,7 +73,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649532331137_1035" custom="readingOrder {index:2;} structure {type:paragraph;}">
@@ -141,7 +141,7 @@
                     <Unicode>הערט נוּר ווי זי קלינגט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1649532477536_1125" custom="readingOrder {index:9;} l {offset:0;length:5;lg_id:1;}">
+            <TextLine id="line_1649532477536_1125" custom="readingOrder {index:9;} l {offset:0; length:5; lg_id:1;} stage {offset:0; length:6; type:repeat;}">
                 <Coords points="987,1879 1000,1878 1010,1885 1022,1878 1037,1882 1060,1875 1084,1878 1082,1830 1069,1830 1057,1821 1046,1821 1039,1816 1031,1818 1013,1809 985,1812"/>
                 <Baseline points="995,1871 1088,1873"/>
                 <TextEquiv>
@@ -163,7 +163,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="r_5_1" custom="readingOrder {index:3;} structure {type:paragraph;}">
@@ -232,19 +232,19 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649532371978_1045" custom="readingOrder {index:4;} structure {type:paragraph;}">
             <Coords points="405,2097 1720,2100 1716,2392 1279,3130 655,3130 144,2832 147,2423"/>
-            <TextLine id="TextRegion_1649532371978_1045l1" custom="readingOrder {index:0;} speaker {offset:0;length:4;xmlid:kor;} stage {offset:38;length:6;type:business;} l {offset:0;length:45;lg_id:1;}">
+            <TextLine id="TextRegion_1649532371978_1045l1" custom="readingOrder {index:0;} speaker {offset:0; length:4; xmlid:kor;} stage {offset:38; length:6; type:repeat;} l {offset:0; length:45; lg_id:1;}">
                 <Coords points="513,2178 1713,2192 1713,2119 1393,2084 1257,2122 1015,2078 918,2121 828,2078 513,2125"/>
                 <Baseline points="522,2171 581,2169 641,2168 700,2167 760,2166 820,2165 879,2163 939,2162 999,2162 1058,2160 1118,2160 1178,2160 1237,2160 1297,2161 1357,2162 1416,2163 1476,2165 1536,2168 1595,2171 1655,2176 1715,2181"/>
                 <TextEquiv>
                     <Unicode>קאהר: שנעלער שנעלער שנעלער קוּמט שוין (ביסס)!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1649532371978_1045l2" custom="readingOrder {index:1;} l {offset:0;length:39;lg_id:1;} stage {offset:34;length:5;}">
+            <TextLine id="TextRegion_1649532371978_1045l2" custom="readingOrder {index:1;} l {offset:0; length:39; lg_id:1;} stage {offset:34; length:5; type:repeat;}">
                 <Coords points="391,2275 1161,2285 1224,2249 1318,2288 1504,2258 1506,2192 763,2191 391,2258"/>
                 <Baseline points="399,2274 454,2269 509,2265 565,2262 620,2258 676,2255 731,2253 787,2252 842,2250 898,2249 953,2249 1008,2249 1064,2248 1119,2247 1175,2249 1230,2249 1286,2249 1341,2249 1397,2249 1452,2249 1508,2249"/>
                 <TextEquiv>
@@ -279,7 +279,7 @@
                     <Unicode>דיך בּעגריסען אַלע צוּזאמען</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1649532558028_1206" custom="readingOrder {index:6;} l {offset:0;length:5;lg_id:1;}">
+            <TextLine id="line_1649532558028_1206" custom="readingOrder {index:6;} l {offset:0; length:5; lg_id:1;} stage {offset:0; length:6; type:repeat;}">
                 <Coords points="143,2672 166,2672 173,2679 203,2667 213,2675 221,2670 228,2678 239,2676 239,2604 224,2600 215,2609 200,2609 182,2600 167,2612 158,2607 143,2612"/>
                 <Baseline points="152,2663 241,2664"/>
                 <TextEquiv>
@@ -322,7 +322,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>
