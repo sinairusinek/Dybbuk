@@ -130,7 +130,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 140	Lenox Theater		לענאָקס טעאַטער	Theatre	Lenox Ave and 111 street, Manhattan, NY	ORG-C01721					
 141	New Orpheum Theater		ניו אָרפֿיים טעאַטער	Theatre	125 Battery Park and Lexington, Manhattan, NY						
 143	Empire Theatre		עמפּירע טעאַטער	Theatre							
-144	Kessler's Lyric Theatre		קעססלערס ליריק טעאַטער		Siegel Street and Broadway, Brooklyn, NY						
+144	Kessler's Lyric Theatre		קעססלערס ליריק טעאַטער		Siegel Street and Broadway, Brooklyn, NY			true	176		
 145	Grand Opera House		גראַנד אָפּערע האוסע	Theatre							
 146	Metropolitan Theatre		מעטראָפּאָליטאַן טעאַטער	Theatre		ORG-C01546 | ORG-C01438_Q02 | ORG-C02050 | ORG-C05012_Q01					
 147	Kaminski's Theatre		קאַמינסקיס טעאַטער		Ulica Obozna 1-3, Warsaw						
@@ -161,7 +161,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 173	Teater Ermitage	טעאַטער ערמיטאַזש			Bonifraterska street 14, Muranow, Warsaw						
 174	Yiddish theatre on Alexanderplatz		ייִדיש טעאַטער אָן אַלעקסאַנדערפּלאַץ	Theatre	Mokotowska 72, Warsaw						
 175	Sommertheater im botanischen Garten		סאָממערטיטער ים באָטאַנישען גאַרטען	Theatre	Botanic Garden, Vilnius						
-176	Lyric Theatre	ליריק-טעאַטער			Seigel Street 16-18-20, Brooklyn, NY	ORG-C00338_Q03					
+176	Lyric Theatre	ליריק-טעאַטער			Seigel Street 16-18-20, Brooklyn, NY	ORG-C00338_Q03				Kessler's Lyric Theatre	
 177	Oriental Theater (Philadelphia)		אָרינטאַל טעאַטער (פֿילאַדעלפֿיאַ)	Theatre	3טע און גרין סטס., פילאַדעלפיע						
 178	3rd Street Theatre		3רד סטריט טעאַטער								
 179	Aba Shoengold Troupe		אַבאַ שאָענגאָלד טרופּע	Traveling Company							
@@ -1679,7 +1679,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1737	מאָריס שוואַרצס אַנסאַמבל	מאָריס שוואַרצס אַנסאַמבל		traveling company		ORG-C02793					
 1738	זמרה	זמרה		traveling company		ORG-C04052					
 1739	דירעקציע פֿון מאָטיע לייבאָוויטש	דירעקציע פֿון מאָטיע לייבאָוויטש		traveling company		ORG-C01675					
-1740	מענדעלעוויטש טרופע			traveling company		ORG-C04842					
+1740	מענדעלעוויטש טרופע			traveling company							
 1741	מלוכה-קאָלעקטיוו	מלוכה-קאָלעקטיוו		traveling company		ORG-C04716					
 1742	[אָפּערעטעס-טרופּע אונטער דער מוזיקאַלישער לייטונג פֿון משה טשיזשיק [בונעם בדחןס זון	שוואַרץס רוסישער אָפּערע- און אָפּערעטעס-טרופּע		traveling company		ORG-C04670					
 1743	מ. רייש	מ. רייש		traveling company		ORG-C03681					
