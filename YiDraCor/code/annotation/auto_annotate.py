@@ -18,7 +18,8 @@ from pathlib import Path
 from lxml import etree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from annotation.annotate_pages import list_pages, dump_lines, apply_annotation, REPO_ROOT
+from annotation.annotate_pages import (list_pages, dump_lines, apply_annotation,
+                                       StaleSourceError, REPO_ROOT)
 
 NIKUD = re.compile(r"[֑-ֽֿ-ׇ]")
 
@@ -254,6 +255,12 @@ def main():
     ap.add_argument("--force", action="store_true", help="re-annotate even if already in page_annotated/")
     ap.add_argument("--no-songs", action="store_true",
                     help="skip the song (l/head/lg) post-pass")
+    ap.add_argument("--allow-stale-source", action="store_true",
+                    help="overwrite page_annotated/ even when page/ is older "
+                         "than the newest Transkribus pull (dangerous)")
+    ap.add_argument("--redo-manual", action="store_true",
+                    help="also regenerate castList/title pages that already "
+                         "exist in page_annotated/ (they are hand-annotated)")
     args = ap.parse_args()
 
     annotated_dir = REPO_ROOT / "data" / args.play / "page_annotated"
@@ -263,7 +270,8 @@ def main():
 
     pages = [(n, src) for n, src in list_pages(args.play) if args.start <= n <= args.end]
     print(f"plan: {len(pages)} pages in range [{args.start},{args.end}]")
-    totals = {"body": 0, "castList": 0, "titlePage": 0, "skipped_already": 0, "applied": 0}
+    totals = {"body": 0, "castList": 0, "titlePage": 0, "skipped_already": 0,
+              "skipped_manual": 0, "skipped_stale": 0, "applied": 0}
     for n, src in pages:
         if not args.force and src.name in already:
             totals["skipped_already"] += 1
@@ -276,9 +284,22 @@ def main():
         n_spans = sum(len(l["spans"]) for l in ann["lines"])
         totals[ann["page_type"]] += 1
         print(f"  p.{n:3d} type={ann['page_type']:10s} spans={n_spans}")
+        # castList/title pages carry no generated spans — regenerating one only
+        # replaces a hand-annotated file with a bare structure tag. This runs
+        # even under --force, which is how Noa's 2026-06-24 castLists were lost.
+        if ann["page_type"] != "body" and src.name in already and not args.redo_manual:
+            totals["skipped_manual"] += 1
+            print(f"        skip: non-body page already annotated by hand")
+            continue
         if args.dry_run:
             continue
-        result = apply_annotation(args.play, n, ann)
+        try:
+            result = apply_annotation(args.play, n, ann,
+                                      allow_stale_source=args.allow_stale_source)
+        except StaleSourceError as e:
+            totals["skipped_stale"] += 1
+            print(f"        STALE SOURCE, not written: {e}")
+            continue
         totals["applied"] += 1
     print("totals:", totals)
 

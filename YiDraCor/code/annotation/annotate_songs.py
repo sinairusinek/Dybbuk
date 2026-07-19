@@ -273,7 +273,12 @@ def process_play(play: str, dry_run: bool) -> dict:
         for line in tree.iter(LINE_TAG):
             for tag, attrs in parse_custom(line.get("custom", "")):
                 if tag in ("head", "lg"):
-                    lg_seen.add(attrs.get("lg_id") or attrs.get("n"))
+                    # A `head` with no lg_id is not a song heading (castList
+                    # "פערזאנען", act headings, …). Feeding None into lg_seen put
+                    # None in `drop` and deleted every such head in the corpus.
+                    lg = attrs.get("lg_id") or attrs.get("n")
+                    if lg is not None:
+                        lg_seen.add(lg)
     drop |= (lg_seen - lg_has_l)
     if drop:
         for pf, tree in page_trees:
@@ -281,7 +286,8 @@ def process_play(play: str, dry_run: bool) -> dict:
                 cur = line.get("custom", "")
                 kept = []
                 for tag, attrs in parse_custom(cur):
-                    if tag in ("l", "head") and attrs.get("lg_id") in drop:
+                    if (tag in ("l", "head") and attrs.get("lg_id") is not None
+                            and attrs.get("lg_id") in drop):
                         continue
                     if tag == "lg" and attrs.get("n") in drop:
                         continue

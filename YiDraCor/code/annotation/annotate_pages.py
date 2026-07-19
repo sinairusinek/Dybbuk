@@ -22,6 +22,7 @@ import logging
 import re
 import sys
 from pathlib import Path
+from typing import Optional
 
 from lxml import etree
 
@@ -192,6 +193,45 @@ def find_page(play: str, page_num: int) -> Path:
     raise FileNotFoundError(f"page {page_num} not found for {play}")
 
 
+class StaleSourceError(Exception):
+    """Raised when page/ is older than the newest Transkribus pull, so
+    regenerating page_annotated/ from it would bury human annotation."""
+
+
+def _newest_pull(play: str, name: str) -> Optional[Path]:
+    """Newest `page_transkribus_pulled_<date>*/` copy of `name`, if any.
+    Directory names are date-stamped, so lexicographic max == newest."""
+    root = REPO_ROOT / "data" / play
+    cands = sorted(d for d in root.glob("page_transkribus_pulled_*") if d.is_dir())
+    for d in reversed(cands):
+        f = d / name
+        if f.exists():
+            return f
+    return None
+
+
+def check_source_fresh(play: str, src: Path) -> None:
+    """Refuse to overwrite an existing page_annotated/ file when `src` is stale.
+
+    2026-06-24: page/ still held the 06-18 pull while Noa's castList work sat in
+    page_transkribus_pulled_2026-06-24post_castlist/. apply_annotation re-parsed
+    page/ and wrote over page_annotated/, so the push buried her FINAL layer.
+    """
+    out_path = play_out_dir(play) / src.name
+    if not out_path.exists():
+        return  # bootstrap: nothing to lose
+    pull = _newest_pull(play, src.name)
+    if pull is None:
+        return
+    if pull.read_bytes() != src.read_bytes():
+        raise StaleSourceError(
+            f"{src.relative_to(REPO_ROOT)} differs from the newer pull "
+            f"{pull.relative_to(REPO_ROOT)}; refusing to overwrite "
+            f"{out_path.relative_to(REPO_ROOT)}. Resync page/ from the pull first "
+            f"(or pass --allow-stale-source if you know page/ is authoritative)."
+        )
+
+
 def dump_lines(play: str, page_num: int) -> dict:
     """Return the per-page line payload the LLM should annotate."""
     src = find_page(play, page_num)
@@ -207,10 +247,13 @@ def dump_lines(play: str, page_num: int) -> dict:
     }
 
 
-def apply_annotation(play: str, page_num: int, annotation: dict) -> dict:
+def apply_annotation(play: str, page_num: int, annotation: dict,
+                     allow_stale_source: bool = False) -> dict:
     """Apply an annotation dict (page_type + lines+spans) to the page and write
     `page_annotated/<filename>.xml`. Updates and saves rolling context."""
     src = find_page(play, page_num)
+    if not allow_stale_source:
+        check_source_fresh(play, src)
     tree = etree.parse(str(src))
     line_pairs = extract_lines(tree)
 
