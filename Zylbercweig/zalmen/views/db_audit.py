@@ -65,6 +65,47 @@ DBLALIGN_DECISION_HEADERS = [
     "reviewer_notes", "reviewer", "reviewed_at",
 ]
 
+# ── Troupe tags (Ruthie's typology, ratified 2026-07-19) ──────────────────────
+# One flat level of sub-tags for traveling companies. Layer A is the primary
+# structural category (pick one); Layer B is additional characteristics (pick
+# any number). Keyed on db_id alone — tags describe the organization, not the
+# (db_id, cluster_id) pair that db_audit_decisions.tsv is keyed on.
+TROUPE_TAGS = ORG / "troupe_tags.tsv"
+TROUPE_TAGS_REPO_PATH = "Zylbercweig/organizations/troupe_tags.tsv"
+
+TROUPE_TAG_HEADERS = [
+    "db_id", "layer_a", "layer_b", "other_tags",
+    "reviewer_notes", "reviewer", "reviewed_at",
+]
+
+# org_type values that get the tag control. Case-folded before comparison —
+# core_db is inconsistent ("traveling company" vs "Traveling Company").
+# "company on tour" is included so its 5 rows are taggable too; drop it here if
+# the pilot should be strictly Traveling Company.
+TROUPE_ORG_TYPES = {"traveling company", "company on tour"}
+
+_LAYER_A_OPTS = [
+    "",
+    "Family Company",
+    "Impresario Company",
+    "Star Company",
+    "Ensemble Company",
+    "Cooperative Company",
+    "Institutional Company",
+    "Ad Hoc Company",
+]
+
+_LAYER_B_OPTS = [
+    "Children's Company",
+    "Operetta / Opera Company",
+    "German-Jewish Company",
+    "Amateur Company",
+    "Zionist Company",
+    "Socialist Company",
+    "Post-Holocaust Company",
+    "Bilingual Company",
+]
+
 
 def _mtime(p: pathlib.Path) -> float:
     return p.stat().st_mtime if p.exists() else 0.0
@@ -131,6 +172,63 @@ def save_decisions(records: list[dict]) -> None:
     if not ok:
         st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
     load_decisions.clear()
+
+
+# ── Troupe-tag loader / saver ─────────────────────────────────────────────────
+
+@st.cache_data(show_spinner=False)
+def load_troupe_tags(mtime: float) -> dict[str, dict]:
+    """db_id → row. Multi-value columns stay pipe-delimited strings here;
+    _split_tags() parses them at the render site."""
+    out: dict[str, dict] = {}
+    if not TROUPE_TAGS.exists():
+        return out
+    with open(TROUPE_TAGS, newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            out[r.get("db_id", "")] = r
+    return out
+
+
+def _split_tags(raw: str) -> list[str]:
+    """Parse the pipe-delimited multi-value convention used across the app."""
+    return [t.strip() for t in (raw or "").split("|") if t.strip()]
+
+
+def save_troupe_tags(records: list[dict]) -> None:
+    """Upsert N troupe-tag rows (keyed on db_id) under one lock + one push."""
+    if not records:
+        return
+    TROUPE_TAGS.parent.mkdir(parents=True, exist_ok=True)
+    lock = TROUPE_TAGS.with_suffix(".lock")
+    with open(lock, "w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        try:
+            existing: dict[str, dict] = {}
+            if TROUPE_TAGS.exists():
+                with open(TROUPE_TAGS, newline="", encoding="utf-8") as f:
+                    for row in csv.DictReader(f, delimiter="\t"):
+                        existing[row.get("db_id", "")] = row
+            for rec in records:
+                existing[rec["db_id"]] = rec
+            with open(TROUPE_TAGS, "w", newline="", encoding="utf-8") as f:
+                w = csv.DictWriter(f, fieldnames=TROUPE_TAG_HEADERS, delimiter="\t")
+                w.writeheader()
+                for row in existing.values():
+                    w.writerow({k: row.get(k, "") for k in TROUPE_TAG_HEADERS})
+        finally:
+            fcntl.flock(lf, fcntl.LOCK_UN)
+    try:
+        from zalmen.github_sync import push_file_to_github
+        ok = push_file_to_github(
+            TROUPE_TAGS_REPO_PATH, TROUPE_TAGS,
+            f"chore: troupe tags ({len(records)} rows)",
+        )
+    except Exception:  # noqa: BLE001
+        ok = False
+    if not ok:
+        st.toast("⚠️ Tags saved locally but not pushed to GitHub (check secrets).",
+                 icon="⚠️")
+    load_troupe_tags.clear()
 
 
 # ── Dedup loaders / saver ─────────────────────────────────────────────────────
@@ -256,7 +354,8 @@ _DBLALIGN_DECISION_OPTS = ["", "REMOVE_FROM_DBS", "KEEP_ALL_LINKS",
 
 
 def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
-               reviewer: str, samples: dict[str, dict[str, list]]) -> None:
+               reviewer: str, samples: dict[str, dict[str, list]],
+               tags: dict[str, dict]) -> None:
     db_id = db["db_id"]
     clusters = db.get("_clusters", [])
     sev = db.get("severity_boost", "") or ""
@@ -349,6 +448,44 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                         f"for `{cid}`."
                     )
 
+    # Troupe tags — only for traveling companies (Ruthie's typology).
+    is_troupe = (db.get("org_type") or "").strip().lower() in TROUPE_ORG_TYPES
+    if is_troupe:
+        prev_tags = tags.get(db_id, {})
+        prev_a = (prev_tags.get("layer_a", "") or "").strip()
+        try:
+            idx_a = _LAYER_A_OPTS.index(prev_a)
+        except ValueError:
+            idx_a = 0
+        prev_b = [t for t in _split_tags(prev_tags.get("layer_b", ""))
+                  if t in _LAYER_B_OPTS]
+        prev_other = " | ".join(_split_tags(prev_tags.get("other_tags", "")))
+
+        tagged_mark = " ✓" if (prev_a or prev_b or prev_other) else ""
+        with st.expander(f"🏷 Troupe tags (DB {db_id}){tagged_mark}",
+                         expanded=bool(tagged_mark)):
+            col_a, col_b = st.columns([1, 2])
+            with col_a:
+                st.selectbox(
+                    "Layer A — company structure (pick one)",
+                    _LAYER_A_OPTS, index=idx_a, key=f"dba_tag_a_{db_id}",
+                    help="Primary structural category. Leave blank if unclear.",
+                )
+            with col_b:
+                st.multiselect(
+                    "Layer B — additional characteristics (any number)",
+                    _LAYER_B_OPTS, default=prev_b, key=f"dba_tag_b_{db_id}",
+                )
+            st.text_input(
+                "Other tags (not in the lists above)",
+                value=prev_other, key=f"dba_tag_other_{db_id}",
+                placeholder="free text — separate multiple tags with |",
+                help="Anything the vocabulary doesn't cover yet. These get "
+                     "reviewed and may be promoted into Layer A/B later.",
+            )
+            st.caption("Saved by the Save button below, together with the "
+                       "cluster decisions.")
+
     # Notes + Save + Keep-all-in shortcut
     notes_key = f"dba_notes_{db_id}"
     save_key = f"dba_save_{db_id}"
@@ -388,10 +525,32 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                 "reviewer": reviewer,
                 "reviewed_at": ts,
             })
-        if not recs:
-            st.toast("Nothing to save — no decisions picked.", icon="ℹ️")
+        # Troupe tags ride along on the same Save click. A tags-only save (no
+        # cluster decisions touched) is valid — tagging and false-merge review
+        # are independent jobs that happen to share this block.
+        tag_rec: dict | None = None
+        if is_troupe:
+            layer_a = (st.session_state.get(f"dba_tag_a_{db_id}", "") or "").strip()
+            layer_b = st.session_state.get(f"dba_tag_b_{db_id}", []) or []
+            other = _split_tags(st.session_state.get(f"dba_tag_other_{db_id}", ""))
+            if layer_a or layer_b or other:
+                tag_rec = {
+                    "db_id": db_id,
+                    "layer_a": layer_a,
+                    "layer_b": " | ".join(layer_b),
+                    "other_tags": " | ".join(other),
+                    "reviewer_notes": notes,
+                    "reviewer": reviewer,
+                    "reviewed_at": ts,
+                }
+
+        if not recs and not tag_rec:
+            st.toast("Nothing to save — no decisions or tags picked.", icon="ℹ️")
         else:
-            save_decisions(recs)
+            if recs:
+                save_decisions(recs)
+            if tag_rec:
+                save_troupe_tags([tag_rec])
             try:
                 from zalmen.activity_log import log_action
                 for r in recs:
@@ -402,9 +561,25 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                         note=notes,
                         push=False,  # avoid N pushes; the save already pushed the TSV
                     )
+                if tag_rec:
+                    log_action(
+                        "db_audit", "troupe_tags",
+                        target_id=db_id,
+                        decision=" | ".join(
+                            b for b in [tag_rec["layer_a"], tag_rec["layer_b"],
+                                        tag_rec["other_tags"]] if b
+                        ),
+                        note=notes,
+                        push=False,
+                    )
             except Exception:  # noqa: BLE001
                 pass
-            st.toast(f"✅ Saved {len(recs)} decisions for DB {db_id}", icon="✅")
+            parts = []
+            if recs:
+                parts.append(f"{len(recs)} decisions")
+            if tag_rec:
+                parts.append("troupe tags")
+            st.toast(f"✅ Saved {' + '.join(parts)} for DB {db_id}", icon="✅")
             st.rerun()
 
 
@@ -540,6 +715,7 @@ def _render_falsemerge_tab(reviewer: str, samples: dict[str, dict[str, list]]) -
 
     punchlist = load_punchlist(_mtime(PUNCHLIST))
     decisions = load_decisions(_mtime(DECISIONS))
+    tags = load_troupe_tags(_mtime(TROUPE_TAGS))
     samples = load_samples(_mtime(CLUSTER_FILE))
 
     if not punchlist:
@@ -574,24 +750,57 @@ def _render_falsemerge_tab(reviewer: str, samples: dict[str, dict[str, list]]) -
             key="dba_filter_n",
         )
 
+    # Troupe-tagging mode: the tagging job is independent of false-merge review,
+    # so it needs its own worklist. Resolved DBs are shown here — a DB whose
+    # clusters are all decided is still untagged, and would otherwise be hidden.
+    col_t, col_u = st.columns([2, 2])
+    with col_t:
+        troupe_only = st.checkbox(
+            "🏷 Troupe-tagging mode (traveling companies only)",
+            value=False, key="dba_filter_troupe",
+            help="Show only traveling companies, including ones already resolved "
+                 "for false-merge, so they can be tagged.",
+        )
+    with col_u:
+        untagged_only = st.checkbox(
+            "…and only ones not yet tagged", value=False,
+            key="dba_filter_untagged", disabled=not troupe_only,
+        )
+
+    def _is_troupe(r: dict) -> bool:
+        return (r.get("org_type") or "").strip().lower() in TROUPE_ORG_TYPES
+
     # Apply filters: hide resolved first, then severity, then top-N.
-    rows = [r for r in punchlist if not _is_resolved(r)]
+    if troupe_only:
+        rows = [r for r in punchlist if _is_troupe(r)]
+        if untagged_only:
+            rows = [r for r in rows if r["db_id"] not in tags]
+    else:
+        rows = [r for r in punchlist if not _is_resolved(r)]
     if sev_only:
         rows = [r for r in rows if (r.get("severity_boost") or "").strip()]
     rows = rows[: int(max_show)]
 
-    n_decided = sum(1 for r in rows if any(
-        (r["db_id"], c["cluster_id"]) in decisions for c in r.get("_clusters", [])
-    ))
-    st.markdown(
-        f"**{len(rows)} DBs shown** (of {len(punchlist)} flagged total; "
-        f"{n_resolved_total} fully resolved and hidden). "
-        f"{n_decided} of the shown DBs have at least one decision recorded."
-    )
+    if troupe_only:
+        n_troupes = sum(1 for r in punchlist if _is_troupe(r))
+        st.markdown(
+            f"**{len(rows)} traveling companies shown** (of {n_troupes} in the "
+            f"punchlist; {len(tags)} tagged so far). Resolved DBs are included "
+            f"in this mode."
+        )
+    else:
+        n_decided = sum(1 for r in rows if any(
+            (r["db_id"], c["cluster_id"]) in decisions for c in r.get("_clusters", [])
+        ))
+        st.markdown(
+            f"**{len(rows)} DBs shown** (of {len(punchlist)} flagged total; "
+            f"{n_resolved_total} fully resolved and hidden). "
+            f"{n_decided} of the shown DBs have at least one decision recorded."
+        )
 
     for i, db in enumerate(rows):
         with st.container(border=True):
-            _render_db(i, db, decisions, reviewer, samples)
+            _render_db(i, db, decisions, reviewer, samples, tags)
 
 
 def _render_dedup_tab(reviewer: str) -> None:
