@@ -1213,6 +1213,14 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
             return False
         return True
 
+    # Dedupe ACROSS buckets, not just within one. A row attested in several
+    # settlements ("ניו יאָרק | בראַנקס") lands in a bucket for each, and with
+    # rollup on both are rendered in the same view — which duplicated the row
+    # and collided its selection-checkbox key. Buckets are sorted largest-first,
+    # so a row shows up in its most substantial section.
+    claimed_db: set[str] = set()
+    claimed_cl: set[str] = set()
+
     for bucket in buckets:
         if bucket.org_type not in type_filter:
             continue
@@ -1221,14 +1229,20 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
         seen: set[str] = set()
         unique_db: list[DbCard] = []
         for d in bucket.db_cards:
-            if d.db_id in seen:
+            if d.db_id in seen or d.db_id in claimed_db:
                 continue
             seen.add(d.db_id)
             unique_db.append(d)
         unique_db.sort(key=lambda d: (d.name or d.name_yiddish or "").lower())
 
-        clusters_visible = [c for c in bucket.clusters if _cl_passes(c)]
+        clusters_visible = [
+            c for c in bucket.clusters
+            if _cl_passes(c) and c.cluster_id not in claimed_cl
+        ]
         clusters_visible.sort(key=lambda c: (bool(c.decision), -c.cluster_size))
+
+        claimed_db.update(d.db_id for d in unique_db)
+        claimed_cl.update(c.cluster_id for c in clusters_visible)
 
         if not unique_db and not clusters_visible:
             continue

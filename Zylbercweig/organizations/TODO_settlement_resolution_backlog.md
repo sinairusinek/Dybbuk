@@ -41,7 +41,15 @@ the lens. **Fix the categorisation upstream in kimatch before touching that
 set.** kimatch has only 11 `neighborhood` entries total, so this is a small
 manual correction.
 
-### 3. Bronx and Harlem resolve to `None`
+### 3. Bronx and Harlem resolve to `None` — ✅ DONE 2026-07-19
+Fixed by adding `settlement_variant_collapse_audit_2026-05-20.tsv` as a third,
+**last-loaded** resolver source (so it can only ever fill gaps, never override
+the gazetteers). All four boroughs are now live in the lens: Brooklyn 232,
+Bronx 168, Brownsville 41, Harlem 45 mentions. NYC rollup went 3076 → 3293.
+
+Original text kept below for context.
+
+
 Q18426 (Bronx) and Q189074 (Harlem) are in
 `settlement_variant_collapse_audit_2026-05-20.tsv` with `source: punchlist`,
 but that file is **not** one of the resolver's two sources
@@ -52,8 +60,29 @@ Their parent rows are already in `settlement_parents.tsv` and sit inert until
 this is fixed. Either fold punchlist variants into a resolver source, or add
 the punchlist as a third source.
 
+### 3b. kimatch false positive: נאָוואָ-מינסק → a French hamlet
+`נאָוואָ-מינסק` / `נאָוואָמינסק` (Novo-Minsk, i.e. **Mińsk Mazowiecki**,
+Poland) matched to **Q198480 Gugney-aux-Aulx**, a French commune of ~50
+people. Reached the resolver through *both* kimatch and the collapse map.
+
+Suppressed via `settlement_resolver._EXCLUDE_QIDS`, which is enforced in
+`_add()` across all sources — guarding only the new fallback layer left the
+bad match live through kimatch. **That is a band-aid**: fix the match upstream
+in kimatch and give Novo-Minsk its correct QID, then delete the entry.
+
+Worth a sweep for siblings: a Yiddish name matching a tiny Western-European
+commune is a recognisable signature of this failure mode, and the kimatch
+geo-implausibility guard should have caught it.
+
 ### 4. Places absent from the gazetteer entirely
-`Danzig`, `Baku`, `Birobidzhan`, `Mykolaiv`, `Lwów (Lemberg)` — ~16 rows.
+Partly resolved 2026-07-19 — the collapse-map source picked up **Baku**,
+Poltava, Milwaukee, Homel and several Warsaw/Łódź spellings (207 occurrences
+recovered in total).
+
+Still absent, ~60 occurrences: `Danzig`, `Birobidzhan`, `Mykolaiv` /
+`ניקאָלאַיעוו`, `Lwów (Lemberg)`, `וויניפּעג` (Winnipeg), `ליבאַווע` (Liepāja),
+`מעקסיקאָ`, `מינכען` (Munich), `מעץ` (Metz), `אַנטווערפן` (Antwerp),
+`וואַשינגטאָן`, `מעליטאָפּאָל`, `מאָהילעוו` (Mogilev).
 
 Deliberately **not** patched with hardcoded QIDs in `settlement_resolver.py`:
 that file's alias table maps to existing gazetteer keys, so a gazetteer change
@@ -125,15 +154,40 @@ on whoever is at the keyboard remembering. See
 
 ## Cluster side
 
-### 8. 715 of 1037 cluster settlement values unresolved (69%)
-Far worse than the DB side. Dominated by the pipe-joined multi-variant format
-in `org_alignment_review.tsv`: `ניו יאָרק | ניו-יאָרק` (46 rows),
-`וואַרשע | וואַרשעווער` (12), `לאָדזש | לאָדזש` (10).
+### 8. ~~Cluster-side pipe-format bug~~ — ❌ MISDIAGNOSED, no such bug
 
-That last one is **the same string twice** and still fails — a pure format bug.
-`_resolve_cluster_settlements` does split on `|` and `;`, so the fault is
-upstream in `_cluster_settlement_strings`, which returns the pre-joined string
-when JSON parsing fails. Probably the single largest remaining resolution win.
+**This item was wrong. Correcting it rather than deleting it, so the bad
+number does not get re-derived.**
+
+It originally claimed 715/1037 cluster values (69%) failed because of a
+pipe-joined-format bug, citing `לאָדזש | לאָדזש` failing as "the same string
+twice". Three errors:
+
+1. The measurement was taken **before** the exonym aliases landed. `ניו יאָרק`
+   was the single biggest blocker and now resolves.
+2. It counted **distinct values**, not rows — the long tail of one-off
+   spellings dominates distinct counts and badly overstates row impact.
+3. There is no format bug. All 5158 non-empty values are plain pipe-joined
+   strings, and `_resolve_cluster_settlements` splits on both `|` and `;`
+   already. `לאָדזש | לאָדזש` failed simply because that *spelling* of Łódź
+   was not a key.
+
+Actual measured state: cluster rows went **88.9% → 90.6%** resolved with the
+collapse-map source added. The DB side is at 86.7%. What remains is a genuine
+long tail (420 distinct tokens / 623 occurrences), not one systemic bug — see
+items 4 and 8b.
+
+### 8b. Countries and regions used as settlements
+A real category the earlier audit missed. `אַמעריקע` / `אָמעריקע` / `אמעריקע`
+(America, ~26 occurrences), `אָרץ-ישראל` (Land of Israel), `פּראָווינץ`
+("province"), `רוסלאַנד און בעסאַראַביע` ("Russia and Bessarabia").
+
+These are **correctly** unresolved — the resolver deliberately excludes
+countries and provinces. But they are silently dropped, so an org whose only
+recorded location is "America" vanishes from the lens with no trace. Decide
+whether to surface them as an explicit "country-level only" bucket or flag
+them for RA re-coding. Note the collapse map *does* map אַמעריקע → Q30, which
+is why `_EXCLUDE_QIDS` exists.
 
 ### 9. Adjectival `-er`, Latin side
 `resolve()` has a Hebrew adjectival-suffix fallback (`ישער`/`ישע`/`ער` plus

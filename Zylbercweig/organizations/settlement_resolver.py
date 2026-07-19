@@ -19,6 +19,23 @@ csv.field_size_limit(10**9)
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _UNIFIED = _REPO_ROOT / "Zylbercweig/zibn-shtern/data/working/places_unified_corrected.csv"
 _KIMATCH = _REPO_ROOT / "Zylbercweig/zibn-shtern/data/working/kimatch_matched_full.tsv"
+# Curated Yiddish variant → QID map. Loaded LAST, so it is a pure fallback and
+# can never override the two gazetteer sources above. Its `punchlist` rows are
+# hand-made and cover spellings kimatch never saw (Bronx, Harlem, Warsaw and
+# Poltava variants).
+_COLLAPSE = _REPO_ROOT / "Zylbercweig/organizations/settlement_variant_collapse_audit_2026-05-20.tsv"
+
+# QIDs that must never become a settlement key, enforced in `_add` across ALL
+# sources. The collapse map needs this because it has no category column, but
+# the ban is global: Q198480 reaches the resolver through kimatch as well, so
+# guarding only the fallback layer would leave the bad match live.
+_EXCLUDE_QIDS = {
+    "Q30",      # America — a country, not a settlement
+    "Q23793",   # Land of Israel — a region
+    "Q198480",  # Gugney-aux-Aulx (pop. ~50, France) — a false positive for
+                # נאָוואָ-מינסק / נאָוואָמינסק, which is Mińsk Mazowiecki, Poland.
+                # Fix upstream in kimatch, then drop this entry.
+}
 
 # Wikidata categories that represent inhabited places usable as a "settlement"
 # key for org grouping. Cemeteries / death sites / countries / provinces are
@@ -82,6 +99,8 @@ class SettlementResolver:
         self._load()
 
     def _add(self, key: str, resolved: ResolvedSettlement) -> None:
+        if resolved.qid in _EXCLUDE_QIDS:
+            return
         k = _normalize(key)
         if not k:
             return
@@ -121,6 +140,24 @@ class SettlementResolver:
                         yiddish=(row.get("wikidata_yi") or "").strip(),
                     )
                     for field in ("source_value", "english_name", "wikidata_yi", "kima_rom", "kima_heb"):
+                        v = (row.get(field) or "").strip()
+                        if v:
+                            self._add(v, res)
+
+        # Fallback layer — see _COLLAPSE above. Last, so `setdefault` in _add
+        # means the gazetteer sources always win.
+        if _COLLAPSE.exists():
+            with _COLLAPSE.open() as f:
+                for row in csv.DictReader(f, delimiter="\t"):
+                    qid = (row.get("qid") or "").strip()
+                    if not qid:
+                        continue
+                    res = ResolvedSettlement(
+                        qid=qid,
+                        english=(row.get("english") or "").strip(),
+                        yiddish=(row.get("collapsed_to") or "").strip(),
+                    )
+                    for field in ("original_variant", "collapsed_to", "english"):
                         v = (row.get(field) or "").strip()
                         if v:
                             self._add(v, res)
