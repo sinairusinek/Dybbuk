@@ -48,6 +48,7 @@ from people_similarity import (  # noqa: E402
 
 HUB_TSV = HERE / "person_hub.tsv"
 DERIVED_TSV = HERE / "derived_mention_alignments.tsv"
+OVERRIDES_TSV = HERE / "surname_group_overrides.tsv"
 OUT_TSV = HERE / "mention_surname_resolutions.tsv"
 GROUPS_TSV = HERE / "surname_groups.tsv"
 
@@ -199,6 +200,22 @@ class HubIndex:
             self.keys_by_prefix[k[:2]].append(k)
         self._cand_cache: dict[str, list[str]] = {}
 
+        # curated corrections. No heuristic can settle these: a member whose
+        # heading shows a different surname is usually RIGHT (married women are
+        # listed under the married name with the maiden name bracketed —
+        # פינקעל, עמאַ [טאָמאַשעווסקי]; pseudonyms likewise — כאַנוקאָוו, לייוויק), so
+        # only a human can say which cross-surname member is an error.
+        self.excluded: dict[str, set[str]] = defaultdict(set)
+        self.forced: dict[str, set[str]] = defaultdict(set)
+        if OVERRIDES_TSV.exists():
+            for r in read_tsv(OVERRIDES_TSV):
+                tok = normalize_person_name(r.get("surname_token", ""))
+                hid = (r.get("hub_id") or "").strip()
+                if not tok or not hid:
+                    continue
+                act = (r.get("action") or "exclude").strip().lower()
+                (self.forced if act == "include" else self.excluded)[tok].add(hid)
+
     def candidate_hubs(self, token: str) -> list[str]:
         """Hubs for a mention surname, including OCR/spelling variants.
 
@@ -215,6 +232,10 @@ class HubIndex:
                 continue
             if token_variant_similarity(token, key) >= FUZZY_SURNAME_MIN:
                 hubs |= self.surname_to_hubs[key]
+        # curated corrections win over every automatic path, including the
+        # fuzzy expansion that may have pulled the hub in under a variant key.
+        hubs -= self.excluded.get(token, set())
+        hubs |= self.forced.get(token, set())
         result = sorted(hubs)
         self._cand_cache[token] = result
         return result
