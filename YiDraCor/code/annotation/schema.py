@@ -14,7 +14,12 @@ ALLOWED_TAGS = {
     # joint/duet turns (Noa 2026-06-14). The structurer expands a multi-xmlid
     # span into TEI <sp who="#a #b">.
     "speaker": {"xmlid"},
-    "stage": {"type", "continued"},
+    "stage": {"type", "continued", "xmlid"},  # xmlid → TEI <stage who="#id">.
+        # TEI <stage> carries @who via att.ascribed (verified against
+        # ref-stage.html, 2026-07-19). Used for compound directions that name
+        # the party they are addressed to — `(קאהר ביס)` = "chorus, repeat" →
+        # <stage type="repeat" who="#kor">. Same space-separated convention as
+        # speaker.xmlid for joint attribution.
     "trailer": {"type"},  # TEI <trailer>: closing label at the end of a division
         # (e.g. "ענדע דער X אקט", "ענדע דער פיעססע"). NOT a stage direction — the
         # 2026-05-24 PI review re-typed these out of `stage`. `type` is OPTIONAL.

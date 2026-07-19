@@ -30,7 +30,7 @@ Annotation lives in the Transkribus `custom` attribute on each `TextLine`:
 | tag | attributes | notes |
 |---|---|---|
 | `speaker` | `xmlid` **required** | name only; space-separated ids for joint turns |
-| `stage` | `type` **required**, `continued` | see §3 |
+| `stage` | `type` **required**, `continued`, `xmlid` | see §3; `xmlid` → TEI `<stage who="#id">` (att.ascribed) |
 | `trailer` | `type` optional | `ענדע דער X אקט` — **not** a stage direction |
 | `heading` | `type`, `n`, `subtype` | `type` ∈ {act, scene, epilog} |
 | `role` | `xmlid` **required** | castList pages only |
@@ -232,13 +232,38 @@ previous page). Legacy equivalent: `continued:true; type:cont`.
 `Nr. N` / `געזאנגס-טעקסט`. *(B1–B3, confirmed by Noa's 06-07 edits.)*
 ⚠️ `(ביס)` is **not** an opener — see §8.
 
-**M4. `(ביס)` / `(ביסס)` → `stage{type:repeat}`.** The printed repeat mark
-("sing that again"). Not stage business — it is a musical instruction. TEI's
+**M4. The repeat mark → `stage{type:repeat}`.** The printed instruction to
+sing a line again. Not stage business — it is a musical instruction. TEI's
 `stage/@type` list is explicitly open and contains nothing musical, so this is
 a sanctioned extension. Chosen over `<metamark function="repeat">` (purer, but
 would need a new tag in both the Transkribus tagset and `ALLOWED_TAGS`).
-The mark is placed **where printed**; repeat *scope* is not recorded.
-*Applied corpus-wide 2026-07-19: 68 instances. **Awaiting Noa's ratification.***
+
+**Spellings covered** — all are the same mark: `(ביס)`, `(ביסס)` (doubled ס),
+and the **pointed** forms `(בּיס)` / `(בּיסס)`. Match nikud-insensitively; a
+nikud-blind pattern missed 29 instances in the first pass.
+
+**Repeat with a count** — `(ביס 2 מאל)`, `(ביס 4 מאהל)` — is tagged as a plain
+`repeat`; **the number is not recorded** *(Sinai 2026-07-19)*. The mark is
+placed **where printed**; repeat *scope* is not recorded via `@target`.
+
+**M4b. Compound `(קאהר ביס)` → `stage{type:repeat; xmlid:kor}`** → TEI
+`<stage type="repeat" who="#kor">`. A collective named together with the
+repeat instruction ("chorus, repeat"). *Sinai 2026-07-19.*
+- The **whole parenthesis** is one span. It is one editorial unit and one
+  instruction; we don't split character names out of `(ער גייט אב)` either.
+- `<stage>` carries `@who` through **att.ascribed** (verified against the TEI
+  spec, `ref-stage.html`). This is standards-supported, not a coinage.
+- `stage.xmlid` uses the same space-separated convention as `speaker.xmlid`.
+- **`כער` is a spelling variant of `כאר`/`קאהר`, not an OCR error** *(Sinai)* —
+  nine genuine `(קאהר ביס)` in the corpus support the reading.
+- Attested: `(קאהר ביס)` ×9, `(קאהר - ביסס)`, `(כער ביס)` → `#kor`;
+  `(אלע ביס)` → `#alle`.
+
+**False friends — never tag as repeat:** `(אויפטריט ביסינג)` ("enter Bising",
+a character in Mishke Mashke) and `(ערוואכט צו ביסלעך)` ("awakens bit by bit").
+
+*Applied corpus-wide 2026-07-19: 114 marks, 12 of them ascribed.*
+***Awaiting Noa's ratification.***
 
 **M5. `רעפריין` → `head`** (keeping `lg_id`); the enclosing block becomes
 `<lg type="refrain">`. It is a structural rubric, not a verse line, not a

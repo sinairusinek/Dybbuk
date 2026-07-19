@@ -144,7 +144,8 @@ class Para:
         self.add_child(etree.SubElement(self.t, q("lb")))
 
 
-def emit_line_content(para: Para, text: str, spans, skip_speaker=True):
+def emit_line_content(para: Para, text: str, spans, skip_speaker=True,
+                      role_ids=None, bad=None):
     """Render one source line's text into `para`, materialising inline stage
     and editorial spans, with everything else as plain text."""
     # Collect non-speaker, offset-bearing spans, sorted by offset.
@@ -171,6 +172,10 @@ def emit_line_content(para: Para, text: str, spans, skip_speaker=True):
             stype = attrs.get("type")
             if stype:
                 el.set("type", stype)
+            xid = attrs.get("xmlid")
+            if xid:
+                el.set("who", format_who(xid, role_ids or set(),
+                                         bad if bad is not None else []))
         el.text = chunk
         para.add_child(el)
         cursor = off + length
@@ -505,7 +510,8 @@ def build_text(pages, cfg, role_ids):
                             continue  # span fell inside the label/colon
                         a2["offset"] = str(off - shift)
                     shifted.append((t, a2))
-                emit_line_content(state["para"], rest, shifted, skip_speaker=True)
+                emit_line_content(state["para"], rest, shifted, skip_speaker=True,
+                                  role_ids=role_ids, bad=state["bad_who"])
                 continue
 
             # ---- body: trailer (end-of-division label) ----
@@ -527,6 +533,9 @@ def build_text(pages, cfg, role_ids):
                     st = etree.SubElement(state["container"], q("stage"))
                     if a.get("type"):
                         st.set("type", a["type"])
+                    xid = a.get("xmlid")
+                    if xid:  # att.ascribed on <stage>
+                        st.set("who", format_who(xid, role_ids, state["bad_who"]))
                     off = span_int(a, "offset", 0); ln = span_int(a, "length", len(text))
                     st.text = text[off:off + ln].strip()
                 continue
@@ -534,7 +543,8 @@ def build_text(pages, cfg, role_ids):
             # ---- body: continuation of current speech ----
             if state["para"] is not None:
                 state["para"].lb()
-                emit_line_content(state["para"], text, spans, skip_speaker=True)
+                emit_line_content(state["para"], text, spans, skip_speaker=True,
+                                  role_ids=role_ids, bad=state["bad_who"])
             elif text.strip() and state["act_div"] is not None:
                 # orphan line INSIDE the play body (an act has opened): no open
                 # speech, no speaker/stage/heading. It would vanish from the TEI

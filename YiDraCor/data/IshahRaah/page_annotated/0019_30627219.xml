@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
@@ -10,7 +10,7 @@
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="120,1082 120,1238 220,1238 220,1082"/>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
         <TextRegion orientation="0.0" id="tr_2" custom="readingOrder {index:1;}">
@@ -50,7 +50,7 @@
                     <Unicode>זַייא ווילְקאמֶען גראסער קריגער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_2_tl_11" custom="readingOrder {index:5;} stage {offset:0;length:10;type:business;}">
+            <TextLine id="tr_2_tl_11" custom="readingOrder {index:5;} stage {offset:0; length:10; type:repeat; xmlid:kor;}">
                 <Coords points="247,958 260,962 275,955 288,964 329,949 344,956 355,946 423,965 419,883 397,883 366,864 338,878 320,870 297,893 283,896 264,881 244,880"/>
                 <Baseline points="254,926 282,926 310,926 339,928 367,930 395,933 424,934"/>
                 <TextEquiv>
@@ -212,7 +212,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>

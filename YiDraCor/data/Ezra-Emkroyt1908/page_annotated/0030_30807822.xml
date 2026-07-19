@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_10:28</Creator>
@@ -199,21 +199,21 @@
                     <Unicode>קאהר: קאפּף אין די העהע</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1647608824195_1111l27" custom="readingOrder {index:26;} speaker {offset:0;length:9;xmlid:valentin;} stage {offset:27;length:10;type:business;}">
+            <TextLine id="TextRegion_1647608824195_1111l27" custom="readingOrder {index:26;} speaker {offset:0; length:9; xmlid:valentin;} stage {offset:27; length:10; type:repeat; xmlid:kor;}">
                 <Coords points="2503,2069 2704,2092 3006,2073 3087,2117 3261,2081 3260,2012 2747,2010 2715,2035 2559,2009 2502,2033"/>
                 <Baseline points="2513,2063 2550,2061 2588,2060 2625,2058 2663,2057 2701,2057 2738,2055 2776,2055 2814,2055 2851,2057 2889,2057 2927,2057 2964,2058 3002,2060 3040,2061 3077,2061 3115,2063 3153,2065 3190,2067 3228,2069 3266,2070"/>
                 <TextEquiv>
                     <Unicode>וואלענטין: אוֹיגֶען רֶעכטס (קאהר ביס).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1647608824195_1111l28" custom="readingOrder {index:27;} stage {offset:13;length:10;type:business;}">
+            <TextLine id="TextRegion_1647608824195_1111l28" custom="readingOrder {index:27;} stage {offset:13; length:10; type:repeat; xmlid:kor;}">
                 <Coords points="2597,2155 2666,2168 2771,2137 2855,2158 3020,2127 3020,2076 3006,2073 2803,2092 2730,2074 2674,2109 2599,2092"/>
                 <Baseline points="2608,2130 2635,2128 2832,2123 2860,2121 2887,2121 2914,2120 2942,2120 2969,2120 2996,2122 3024,2127"/>
                 <TextEquiv>
                     <Unicode>נאזֶע לינקס  (קאהר ביס).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1647608945147_1184" custom="readingOrder {index:28;} stage {offset:15;length:10;type:business;} stage {offset:37;length:19;type:exit business;}">
+            <TextLine id="line_1647608945147_1184" custom="readingOrder {index:28;} stage {offset:15; length:10; type:repeat; xmlid:kor;} stage {offset:37; length:19; type:exit business;}">
                 <Coords points="1958,2237 3001,2224 3015,2163 1959,2160"/>
                 <Baseline points="1967,2207 1995,2207 2023,2206 2052,2205 2080,2205 2108,2204 2137,2204 2165,2203 2193,2202 2222,2202 2250,2201 2278,2201 2307,2200 2335,2199 2363,2199 2392,2198 2420,2198 2448,2197 2477,2196 2505,2196 2534,2195 2694,2186 2721,2186 2748,2186 2775,2186 2802,2186 2829,2186 2856,2186 2883,2186 2910,2186 2937,2186 2964,2186 2991,2184 3018,2183"/>
                 <TextEquiv>
@@ -242,7 +242,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1647608799647_1099" custom="readingOrder {index:1;} structure {type:paragraph;}">
@@ -472,7 +472,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>

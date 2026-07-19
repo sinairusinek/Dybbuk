@@ -40,9 +40,21 @@ BIS_RX = re.compile(
     rf"\(\s*ב{_N}י{_N}ס{_N}ס?{_N}"            # bis / biss, any pointing
     rf"(?:\s*\d+\s*מ{_N}א{_N}ה?{_N}ל{_N}\s*\.?)?"   # optional " N מאל" count
     rf"\s*\)")
-# Deliberately NOT matched — compound voice-rubric + repeat, pending a decision:
-# `(קאהר ביס)` ×9, `(קאהר - ביסס)`, `(אלע ביס)`, `(כער ביס)`. Nor the false
-# friends `(אויפטריט ביסינג)` (enter Bising, a character) and
+# Compound directions: a collective named together with the repeat instruction —
+# `(קאהר ביס)` "chorus, repeat". Sinai 2026-07-19: encode the WHOLE parenthesis
+# as one direction, `stage{type:repeat}`, and ascribe it with `xmlid` →
+# TEI `<stage type="repeat" who="#kor">`. TEI's <stage> carries @who via
+# att.ascribed (verified against ref-stage.html). Rationale: the parenthesis is
+# one editorial unit and one instruction; we do not split character names out of
+# `(ער גייט אב)` either, so splitting `קאהר` into its own span would be
+# inconsistent. `כער` is treated as a spelling variant of `כאר`/`קאהר`, not OCR
+# (Sinai) — nine genuine `(קאהר ביס)` in the corpus support the reading.
+COMPOUND_RX = re.compile(
+    rf"\(\s*(?P<who>ק{_N}א{_N}ה?{_N}ר|כ{_N}א{_N}ר|כ{_N}ע{_N}ר|א{_N}ל{_N}ע)"
+    rf"\s*[-–—]?\s*ב{_N}י{_N}ס{_N}ס?{_N}\s*\)")
+COMPOUND_XMLID = {"קאהר": "kor", "קאר": "kor", "כאר": "kor", "כער": "kor",
+                  "אלע": "alle"}
+# Not matched, correctly: `(אויפטריט ביסינג)` (enter Bising, a character) and
 # `(ערוואכט צו ביסלעך)` ("bit by bit").
 # line-initial rubric, optional colon; capture just the word
 REFRAIN_RX = re.compile(r"^(\s*)(רעפריין)\s*[:׃]?")
@@ -134,6 +146,25 @@ def retag_line(el) -> list[str]:
                 head["lg_id"] = lg_id
             entries.append(("head", head))
             changes.append(f"רעפריין: → head{' lg_id=' + lg_id if lg_id else ''}")
+
+    # ---- 1b. compound `(קאהר ביס)` → repeat, ascribed to the collective -----
+    for m in COMPOUND_RX.finditer(txt):
+        lo, hi = m.start(), m.end()
+        xmlid = COMPOUND_XMLID.get(NIKUD_RX.sub("", m.group("who")))
+        if not xmlid:
+            continue
+        hit = next((i for i, (tg, a) in enumerate(entries)
+                    if tg == "stage" and _covers(a, lo, hi)), None)
+        if hit is None:
+            entries.append(("stage", {"offset": str(lo), "length": str(hi - lo),
+                                      "type": "repeat", "xmlid": xmlid}))
+            changes.append(f"compound '{m.group(0)}': → stage type:repeat who=#{xmlid}")
+        else:
+            a = entries[hit][1]
+            old = a.get("type")
+            if old != "repeat" or a.get("xmlid") != xmlid:
+                a["type"] = "repeat"; a["xmlid"] = xmlid
+                changes.append(f"compound '{m.group(0)}': stage type {old} → repeat, who=#{xmlid}")
 
     # ---- 2b. a whole-line stage direction is not a verse line ---------------
     # Sinai 2026-07-19. NARROW BY DESIGN: only when a stage span covers the

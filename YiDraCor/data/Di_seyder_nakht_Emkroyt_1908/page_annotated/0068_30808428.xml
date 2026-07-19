@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.1.0:model_id=54653:lm=provided:date=26_08_2023_16:41</Creator>
@@ -171,7 +171,7 @@
                     <Unicode>נאר דערפאר העלפט איהם נאט אַלע מאהל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1649534239728_2228" custom="readingOrder {index:22;} stage {offset:0;length:12;}">
+            <TextLine id="line_1649534239728_2228" custom="readingOrder {index:22;} stage {offset:0; length:12; type:repeat; xmlid:kor;}">
                 <Coords points="216,2297 205,2235 216,2203 198,2134 214,2108 218,2002 126,2003 129,2038 111,2064 129,2089 111,2133 120,2156 105,2236 113,2299"/>
                 <Baseline points="202,2290 207,2000"/>
                 <TextEquiv>
@@ -256,7 +256,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>
