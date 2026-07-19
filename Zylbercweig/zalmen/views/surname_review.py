@@ -30,6 +30,7 @@ GROUPS_TSV = PEOPLE_DIR / "surname_groups.tsv"
 HUB_TSV = PEOPLE_DIR / "person_hub.tsv"
 ENTRY_TEXTS_TSV = PEOPLE_DIR / "entry_texts.tsv"
 DECISIONS_TSV = PEOPLE_DIR / "mention_resolution_decisions.tsv"
+REREVIEW_TSV = PEOPLE_DIR / "mention_rereview_queue.tsv"
 REPO_DECISIONS_PATH = "Zylbercweig/people/mention_resolution_decisions.tsv"
 TEXT_DISPLAY_CAP = 20_000
 
@@ -90,6 +91,21 @@ def _entry_text_block(text: str, highlights: list[str]) -> None:
     st.markdown(_rtl(shown.replace("⏎", "<br>")), unsafe_allow_html=True)
     if len(text) > TEXT_DISPLAY_CAP:
         st.caption(f"…truncated at {TEXT_DISPLAY_CAP:,} of {len(text):,} chars.")
+
+
+@st.cache_data
+def _load_rereview(mtime: float) -> dict[str, dict]:
+    """mention_id → queue row for decisions taken before candidates were repaired.
+
+    Built by build_rereview_queue.py. 'high' = the reviewer abstained while
+    candidates were missing (likely wrong); 'low' = picked a hub, but a better
+    option exists now.
+    """
+    if not REREVIEW_TSV.exists():
+        return {}
+    csv.field_size_limit(sys.maxsize)
+    with open(REREVIEW_TSV) as f:
+        return {r["mention_id"]: r for r in csv.DictReader(f, delimiter="\t")}
 
 
 def _load_decisions() -> dict[str, dict]:
@@ -205,6 +221,7 @@ def render() -> None:
     hubs = _load_hubs(_mtime(HUB_TSV))
     texts = _load_entry_texts(_mtime(ENTRY_TEXTS_TSV))
     decisions = _load_decisions()
+    rereview = _load_rereview(_mtime(REREVIEW_TSV))
 
     # ── surname picker ────────────────────────────────────────────────────────
     def _glabel(g: dict) -> str:
@@ -240,15 +257,43 @@ def render() -> None:
     st.divider()
 
     # ── mention stream ────────────────────────────────────────────────────────
-    f1, f2 = st.columns(2)
+    queue_here = {r["mention_id"] for r in rows if r["mention_id"] in rereview}
+    hi_here = {m for m in queue_here if rereview[m]["priority"] == "high"}
+
+    f1, f2, f3 = st.columns([2, 1, 1.4])
     with f1:
         verdicts = st.multiselect("Show verdicts", ["AMBIGUOUS", "RESOLVED", "UNKNOWN"],
                                   default=["AMBIGUOUS", "UNKNOWN"], key="sr_verdicts")
     with f2:
         show_decided = st.checkbox("Show decided", value=False, key="sr_decided")
+    with f3:
+        only_rereview = st.checkbox(
+            f"⚠ Re-review only ({len(hi_here)})", value=False, key="sr_rereview",
+            disabled=not queue_here,
+            help="Decisions taken BEFORE the candidate set was repaired — the "
+                 "reviewer could not see candidates that exist now.")
+        include_low = False
+        if only_rereview:
+            include_low = st.checkbox(
+                f"…include lower-risk hub picks ({len(queue_here) - len(hi_here)})",
+                value=False, key="sr_rereview_low")
 
-    visible = [r for r in rows if r["verdict"] in verdicts
-               and (show_decided or r["mention_id"] not in decisions)]
+    if only_rereview:
+        wanted = queue_here if include_low else hi_here
+        visible = [r for r in rows if r["mention_id"] in wanted]
+        st.info(
+            f"Re-reviewing {len(visible)} decision(s) made before the candidate "
+            f"set was repaired. Each row shows what was decided then and which "
+            f"candidates were missing at the time; the prior choice is "
+            f"pre-selected, so saving an unchanged row simply reaffirms it.")
+    else:
+        visible = [r for r in rows if r["verdict"] in verdicts
+                   and (show_decided or r["mention_id"] not in decisions)]
+        if hi_here:
+            st.warning(
+                f"⚠ {len(hi_here)} decision(s) on this surname were taken before "
+                f"the candidate set was repaired — tick “Re-review only” to work "
+                f"through them.", icon="⚠️")
     if not visible:
         st.success("Nothing left to review here with current filters.")
         return
@@ -296,6 +341,15 @@ def render() -> None:
                     sugg = "→ 👪 family abstain suggested"
                 st.caption(f"{chips}\n\n🤖 {sugg}" if sugg else chips)
 
+            q = rereview.get(mid)
+            if q:
+                was = {"family": "👪 family level only", "other": "❓ other",
+                       "hub": q["prior_heading"] or q["prior_hub_id"]}.get(
+                           q["prior_decision_kind"], q["prior_decision_kind"])
+                st.caption(
+                    f"⚠ decided {q['reviewed_at'][:10]} as **{was}** — "
+                    f"**not on screen at the time:** {q['added_headings'].replace('|', ' · ')}")
+
             r_cands = [h for h in r["candidate_hub_ids"].split("|") if h]
             options = ([f"{label_of.get(h, '?')} {hubs.get(h, {}).get('canonical_heading', h)}"
                         for h in r_cands] + [FAMILY, OTHER, SKIP])
@@ -304,6 +358,16 @@ def render() -> None:
                 default = r_cands.index(r["resolved_hub_id"])
             elif r["method"] == "family_abstain_suggested":
                 default = len(options) - 3  # FAMILY
+            # a human decision outranks the resolver's suggestion: pre-select what
+            # was chosen before, so re-review starts from the standing answer.
+            prior = decisions.get(mid)
+            if prior:
+                if prior["decision_kind"] == "family":
+                    default = len(options) - 3
+                elif prior["decision_kind"] == "other":
+                    default = len(options) - 2
+                elif prior["resolved_hub_id"] in r_cands:
+                    default = r_cands.index(prior["resolved_hub_id"])
             picks[mid] = st.radio("assign", options, index=default, key=f"sr_pick_{mid}",
                                   horizontal=True, label_visibility="collapsed")
 
