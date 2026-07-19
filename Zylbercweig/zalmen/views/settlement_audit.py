@@ -1088,6 +1088,34 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
         return
     qid = city[0]
 
+    # --- Sub-settlement containment (see settlement_parents.tsv) ---
+    # Storage is flat: a Brooklyn org keeps its own QID and bucket. Containment
+    # is a query-time rollup, so boroughs are reachable both as themselves and
+    # under the parent city. Default ON — leaving it off is what let Brooklyn
+    # orgs sit invisibly outside a "New York" review.
+    children = ix.child_cities(qid)
+    parent = ix.parent_city(qid)
+    rollup = False
+    if children:
+        child_names = ", ".join(en for _q, en in children)
+        rollup = st.checkbox(
+            f"Include sub-settlements ({child_names})",
+            value=True,
+            key=f"sa_rollup_{qid}",
+            help=(
+                "These are contained in this settlement. Their rows are filed "
+                "under their own QID, so they are hidden from this city unless "
+                "rolled up. Sections below are labelled with their settlement."
+            ),
+        )
+    if parent:
+        p_qid, p_en = parent
+        bc_col, bc_btn = st.columns([4, 1])
+        bc_col.caption(f"⊂ part of **{p_en}**")
+        if bc_btn.button("Go to parent", key=f"sa_toparent_{qid}"):
+            st.session_state["audit_target_qid"] = p_qid
+            st.rerun(scope="app")
+
     # Picking a new city from the dropdown reruns only this fragment, so the map
     # header (a separate fragment) wouldn't recenter. Escalate to a full app
     # rerun once on an actual change so the map follows the selection.
@@ -1103,7 +1131,7 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
     db_by_id = {r.get("db_id", ""): r for r in db_rows}
     a_rows_by_cid = {r["cluster_id"]: r for r in a_rows}
 
-    buckets = ix.buckets_in_city(qid)
+    buckets = ix.buckets_in_city(qid, include_children=rollup)
     if not buckets:
         st.info("No entries in this city.")
         return
@@ -1125,10 +1153,13 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
                 key=f"sa_size_{qid}",
             )
         with f_col2:
+            # dict.fromkeys: with rollup on, parent and child both contribute a
+            # "Theatre" bucket, and a multiselect with duplicate options throws.
+            type_opts = list(dict.fromkeys(b.org_type for b in buckets))
             type_filter = st.multiselect(
                 "Org types to show",
-                options=[b.org_type for b in buckets],
-                default=[b.org_type for b in buckets],
+                options=type_opts,
+                default=type_opts,
                 key=f"sa_types_{qid}",
             )
 
@@ -1158,10 +1189,18 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
     total_db = sum(len(b.db_cards) for b in buckets)
     total_cl = sum(len(b.clusters) for b in buckets)
     top = st.columns(4)
-    top[0].metric("Types here", len(buckets))
+    top[0].metric("Types here", len(dict.fromkeys(b.org_type for b in buckets)))
     top[1].metric("DB rows", total_db)
     top[2].metric("Clusters", total_cl)
-    top[3].metric("Mentions", ix.mentions_in_city(qid))
+    top[3].metric(
+        "Mentions",
+        ix.mentions_in_city_rollup(qid) if rollup else ix.mentions_in_city(qid),
+        delta=(
+            f"+{ix.mentions_in_city_rollup(qid) - ix.mentions_in_city(qid)} from sub-settlements"
+            if rollup and children
+            else None
+        ),
+    )
 
     st.divider()
 
@@ -1194,8 +1233,12 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
         if not unique_db and not clusters_visible:
             continue
 
+        # With rollup on, several buckets share an org_type — name the settlement
+        # so a Brooklyn section is never mistaken for a Manhattan one.
+        where = f" · {bucket.english or bucket.qid}" if bucket.qid != qid else ""
         st.subheader(
-            f"{bucket.org_type} · {len(unique_db)} DB / {len(clusters_visible)} clusters"
+            f"{bucket.org_type}{where} · "
+            f"{len(unique_db)} DB / {len(clusters_visible)} clusters"
         )
 
         align_counts: dict[str, int] = {}
@@ -1203,7 +1246,7 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
             if c.aligned_db_id:
                 align_counts[c.aligned_db_id] = align_counts.get(c.aligned_db_id, 0) + 1
 
-        cap_key = f"sa_capoff_{qid}_{bucket.org_type}"
+        cap_key = f"sa_capoff_{bucket.qid}_{bucket.org_type}"
         cap_off = st.session_state.get(cap_key, False)
         total_rows = len(unique_db) + len(clusters_visible)
         if total_rows > _ROW_CAP and not cap_off:
@@ -1260,7 +1303,7 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
                         self_id=d.db_id,
                         self_label=name,
                         bucket=bucket,
-                        qid=qid,
+                        qid=bucket.qid,
                         reviewer=reviewer,
                         a_rows=a_rows, a_headers=a_headers,
                         db_rows=db_rows, db_headers=db_headers,
@@ -1299,7 +1342,7 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
                         self_id=c.cluster_id,
                         self_label=title,
                         bucket=bucket,
-                        qid=qid,
+                        qid=bucket.qid,
                         reviewer=reviewer,
                         a_rows=a_rows, a_headers=a_headers,
                         db_rows=db_rows, db_headers=db_headers,

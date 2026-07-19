@@ -75,6 +75,31 @@ problem. Two options: normalise at write time to the trailing city token, or
 give `resolve()` an address-parsing tier that retries on the last
 comma-separated segment. Prefer the former; the resolver should stay a lookup.
 
+### 5b. `org_type` casing splits every bucket in the lens
+16 `org_type` values in `core_db.tsv` differ only by case, so the lens keys
+`(qid, org_type)` produce two sections for the same type in every city:
+
+| variants | counts |
+|---|---|
+| `Traveling Company` / `traveling company` | 125 / **557** |
+| `Theatre` / `theatre` | 286 / 31 |
+| `Publisher` / `publisher` | 55 / 3 |
+| `Education` / `education` | 160 / 2 |
+| `Jewish political bodies` / `jewish political bodies` / `Jewish Political Bodies` | 5 / 1 / 4 |
+| `Theatre-related Society/ Union` (3 casings) | 1 / 3 / 15 |
+
+…plus Amateur, Business, Circus, Health Institutions, Journals/ Newspapers,
+Library, Media, Musical organization, Printer, Religious Institutions.
+
+**Not** an itinerant-filter bug: `pre_explode_clusters.is_itinerant()` lowercases
+before comparing, so the 557 `traveling company` rows are still correctly
+excluded. The damage is confined to bucket fragmentation — an RA reviewing
+"Theatre in Warsaw" sees two sections and can miss half the worklist.
+
+Fix is a one-time normalisation pass over `core_db.tsv:org_type` against the
+canonical typology, plus enforcing case at write time in the Zalmen `save_*`
+path (see `feedback_zalmen_stale_headers` for the analogous header problem).
+
 ### 6. Sentinel and venue names in settlement fields
 `(unknown)` (4 rows), `Grand Opera House`, `Gradina Lieblich Jigniza`. Venue
 names belong in `extracted_venues`.
