@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_16:22</Creator>
         <Created>2021-10-31T17:02:12.006+02:00</Created>
-        <LastChange>2026-06-28T15:32:06.785+02:00</LastChange>
-        <TranskribusMetadata docId="820964" pageId="30627461" pageNr="9" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=THFCOUFTEOUYWBASIKPSYNMP" imageId="24094937"/>
+        <LastChange>2026-07-14T06:25:22.069+02:00</LastChange>
+        <TranskribusMetadata docId="820964" pageId="30627461" pageNr="9" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=THFCOUFTEOUYWBASIKPSYNMP" imageId="24094937"/>
     </Metadata>
     <Page imageFilename="30627461.jpg" imageWidth="1621" imageHeight="2297">
         <TextRegion id="region_1653774697203_1022" custom="readingOrder {index:0;}">
@@ -17,7 +17,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
         <ImageRegion id="Image_1653774669427_1018" custom="readingOrder {index:1;}">
@@ -74,7 +74,7 @@
                     <Unicode>דעֶן מיִר האָבּען קיין צייט מעהר דאָ צוּ שׁטעהן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l16" custom="readingOrder {index:7;}">
+            <TextLine id="r1l16" custom="readingOrder {index:7;} stage {offset:0; length:6; type:repeat;}">
                 <Coords points="1119,1205 1134,1200 1154,1209 1178,1200 1185,1193 1221,1191 1220,1139 1198,1138 1180,1127 1171,1127 1160,1138 1137,1131 1118,1134"/>
                 <Baseline points="1126,1188 1159,1187 1192,1188 1225,1189"/>
                 <TextEquiv>
@@ -127,7 +127,7 @@
                 <Coords points="641,1629 649,1627 691,1659 723,1661 742,1650 756,1660 779,1657 772,1568 753,1579 728,1579 708,1594 657,1568 637,1571"/>
                 <Baseline points="648,1635 674,1636 701,1637 727,1638 754,1641 781,1644"/>
                 <TextEquiv>
-                    <Unicode>קֶענֶער</Unicode>
+                    <Unicode>מענֶער</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextLine id="r1l25" custom="readingOrder {index:15;}">
@@ -137,7 +137,7 @@
                     <Unicode>וואוּ איז ער?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l26" custom="readingOrder {index:16;}">
+            <TextLine id="r1l26" custom="readingOrder {index:16;} stage {offset:0; length:6; type:repeat;}">
                 <Coords points="1105,1776 1145,1769 1160,1758 1178,1764 1213,1754 1210,1683 1201,1687 1182,1679 1161,1696 1146,1686 1134,1693 1115,1685 1101,1686"/>
                 <Baseline points="1112,1737 1138,1736 1164,1738 1190,1739 1216,1739"/>
                 <TextEquiv>
@@ -158,7 +158,7 @@
                     <Unicode>מיִר וויִלעֶן זיי שׁוֹין זעֶהען!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l29" custom="readingOrder {index:19;} speaker {offset:0; length:5; xmlid:shfse;}">
+            <TextLine id="r1l29" custom="readingOrder {index:19;} speaker {offset:0;length:5;xmlid:shfse;}">
                 <Coords points="165,1991 1220,2011 1261,2004 1260,1896 1011,1954 787,1910 705,1951 164,1915"/>
                 <Baseline points="172,1973 226,1975 281,1976 335,1977 390,1978 445,1979 499,1980 554,1981 608,1981 663,1982 718,1983 772,1984 827,1985 881,1986 936,1987 991,1988 1045,1989 1100,1990 1154,1991 1209,1993 1264,1995"/>
                 <TextEquiv>
@@ -180,7 +180,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>

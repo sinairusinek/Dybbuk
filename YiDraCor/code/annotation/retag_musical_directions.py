@@ -25,12 +25,25 @@ PAGE_NS = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15"
 LINE_TAG = f"{{{PAGE_NS}}}TextLine"
 UNICODE_TAG = f"{{{PAGE_NS}}}Unicode"
 
-# `(ביסס)` (doubled ס) is the same repeat mark — 22 of the 31 are in Di Seder,
-# which Noa annotated herself, all in the same end-of-sung-line position.
-# Deliberately NOT matched: `(כער ביס)` (Hinke Pinke p.63), where `כער` is
-# probably an OCR error for `כאר` (chorus), making it a compound voice-rubric +
-# repeat. That one is flagged for Noa/Judith rather than guessed at.
-BIS_RX = re.compile(r"\(\s*ביסס?\s*\)")
+# The repeat mark, in every attested spelling. Widened 2026-07-19 after an
+# independent audit (matching the bare ב-י-ס skeleton rather than the tagging
+# pattern) found the first pass had missed 29 instances:
+#   - `(בּיס)` / `(בּיסס)` — dagesh. The first regex was nikud-blind, so pages
+#     carrying ONLY these forms never even entered the fetch list.
+#   - `(ביסס)` — doubled ס.
+#   - `(ביס 2 מאל)` / `(ביס 4 מאהל)` — repeat WITH an explicit count. Sinai
+#     2026-07-19: the count is not recorded; `repeat` alone is enough.
+# Lesson: the first "zero missed" check used this same regex, so it could not
+# possibly reveal a pattern gap. Verify coverage with an INDEPENDENT pattern.
+_N = r"[֑-ׇ]*"                      # any nikud/cantillation run
+BIS_RX = re.compile(
+    rf"\(\s*ב{_N}י{_N}ס{_N}ס?{_N}"            # bis / biss, any pointing
+    rf"(?:\s*\d+\s*מ{_N}א{_N}ה?{_N}ל{_N}\s*\.?)?"   # optional " N מאל" count
+    rf"\s*\)")
+# Deliberately NOT matched — compound voice-rubric + repeat, pending a decision:
+# `(קאהר ביס)` ×9, `(קאהר - ביסס)`, `(אלע ביס)`, `(כער ביס)`. Nor the false
+# friends `(אויפטריט ביסינג)` (enter Bising, a character) and
+# `(ערוואכט צו ביסלעך)` ("bit by bit").
 # line-initial rubric, optional colon; capture just the word
 REFRAIN_RX = re.compile(r"^(\s*)(רעפריין)\s*[:׃]?")
 
@@ -39,8 +52,13 @@ REFRAIN_RX = re.compile(r"^(\s*)(רעפריין)\s*[:׃]?")
 # singer identifiable on the page), so @who points at a `printed: false` person
 # entry in particDesc — present for @who resolution, absent from the printed
 # castList. `סאלא אלט` = "alto solo" → the same voice as a bare `אַלט`.
+# The rubric must be the WHOLE line or be immediately followed by a colon.
+# Without that boundary the alternation matched a PREFIX of longer words:
+# `אַלטען גלויבּען` ("old belief") and, far worse, `אלטעריל:` — a real Yudale
+# character — would have been retagged as the alto voice. Caught in dry-run
+# 2026-07-19; keep the `(?:[:׃]|$)` anchor.
 VOICE_RX = re.compile(r"^(\s*)(סאלא\s+אלט|סאָלאָ\s+אלט|אַלט|אלט|סאפראן|סאָפראן"
-                      r"|טענאר|טענאָר|באס|באַס)\s*[:׃]?")
+                      r"|טענאר|טענאָר|באס|באַס)\s*(?:[:׃]|$)")
 VOICE_XMLID = {"סאלאאלט": "alt", "סאָלאָאלט": "alt", "אלט": "alt",
                "סאפראן": "sopran", "סאָפראן": "sopran",
                "טענאר": "tenor", "טענאָר": "tenor",
@@ -116,6 +134,22 @@ def retag_line(el) -> list[str]:
                 head["lg_id"] = lg_id
             entries.append(("head", head))
             changes.append(f"רעפריין: → head{' lg_id=' + lg_id if lg_id else ''}")
+
+    # ---- 2b. a whole-line stage direction is not a verse line ---------------
+    # Sinai 2026-07-19. NARROW BY DESIGN: only when a stage span covers the
+    # entire line. Of 111 lines carrying both `stage` and `l`, 94 are genuine
+    # sung lines with an inline `(ביס)` — dropping `l` there would destroy the
+    # song encoding. Only the 17 whole-line cases (a bare `(ביסס)` or
+    # `(טאנץ).` on its own line) are wrongly marked as verse.
+    stripped = txt.strip()
+    if stripped:
+        widest = max((int(a.get("length", 0)) for t, a in entries if t == "stage"),
+                     default=0)
+        if widest >= len(stripped) - 1:
+            before = len(entries)
+            entries = [(t, a) for t, a in entries if t != "l"]
+            if len(entries) != before:
+                changes.append(f"whole-line stage: dropped {before - len(entries)} l span(s)")
 
     # ---- 3. voice rubric → speaker (§G.4) ----------------------------------
     m = VOICE_RX.match(txt)
