@@ -43,6 +43,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from annotation.lint_pages import REPO
+from annotation.schema import parse_act_heading, parse_scene_heading
 
 NIKUD = re.compile(r"[֑-ׇ]")
 _HEB_TOKEN = re.compile(r"[א-תװ-ײ']+")
@@ -233,17 +234,17 @@ def annotate_page(dump: dict, lookup: dict[str, str]) -> dict:
         spans: list[dict] = []
         sk = strip_nikud(text)
         # heading: act
-        m = ACT_HEAD.match(sk)
-        if m:
+        act_n = parse_act_heading(text)
+        if act_n:
             spans.append({"tag": "heading", "offset": 0, "length": len(text.rstrip()),
-                          "attrs": {"type": "act", "n": ACT_ORD[m.group(1)]}})
+                          "attrs": {"type": "act", "n": str(act_n)}})
             expect_setting_next = True
             out_lines.append({"line_idx": idx, "spans": spans}); continue
         # heading: scene
-        m = SCENE_HEAD.match(sk)
-        if m:
+        scene_n = parse_scene_heading(text)
+        if scene_n:
             spans.append({"tag": "heading", "offset": 0, "length": len(text.rstrip()),
-                          "attrs": {"type": "scene", "n": m.group(1)}})
+                          "attrs": {"type": "scene", "n": scene_n}})
             expect_setting_next = True
             out_lines.append({"line_idx": idx, "spans": spans}); continue
         # trailer

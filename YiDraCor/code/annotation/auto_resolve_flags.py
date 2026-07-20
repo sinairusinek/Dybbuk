@@ -43,7 +43,7 @@ from lxml import etree
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from annotation.schema import (
     parse_custom, serialize_custom, dedup_entries, is_collective_label, validate_span,
-    STAGE_TYPES, _NIKUD,
+    STAGE_TYPES, _NIKUD, parse_act_heading, parse_scene_heading,
 )
 from annotation.lint_pages import (
     NS, REPO, TURN_RE, skel, has_nikud, line_text, page_type, page_files,
@@ -720,6 +720,46 @@ def recheck_live(csv_path: Path):
           f"→ {csv_path}")
 
 
+def apply_missing_headings(root) -> list[str]:
+    """Tag act/scene heading lines that carry no `heading` span.
+
+    Sinai 2026-07-20. The heading matcher only learned Roman numerals today
+    (schema.parse_act_heading), and it runs at ANNOTATE time — so every page
+    annotated before today still has its `I. אַקט` / `אַקט .II` lines untagged.
+    Corpus audit before the fix: 26 tagged, 25 untagged.
+
+    Only ADDS a heading span to a line that has none. A line already carrying
+    `heading` is left alone, as is one carrying `trailer` — `ענדע פון דעם
+    צווייטען אקט.` is an act-END and must never become an act heading.
+    """
+    changed = []
+    for tl in root.iter(NS + "TextLine"):
+        txt = line_text(tl)
+        entries = parse_custom(tl.get("custom") or "")
+        tags = {t for t, _ in entries}
+        if "heading" in tags or "trailer" in tags:
+            continue
+        n = parse_act_heading(txt)
+        kind, val = ("act", str(n)) if n else (None, None)
+        if not kind:
+            s = parse_scene_heading(txt)
+            kind, val = ("scene", s) if s else (None, None)
+        if not kind:
+            continue
+        entries.append(("heading", {"offset": "0", "length": str(len(txt.rstrip())),
+                                    "type": kind, "n": val}))
+        tl.set("custom", serialize_custom(entries))
+        changed.append(f"heading{{type:{kind},n:{val}}} ← {txt.strip()[:32]!r}")
+    return changed
+
+
+def sweep_headings(only: str | None, dry_run: bool) -> int:
+    """Corpus sweep for `apply_missing_headings` — same contract as sweep_openings."""
+    return _sweep(only, dry_run, apply_missing_headings,
+                  f"YiDraCor act-heading sweep {_dt.date.today().isoformat()}",
+                  "heading spans added")
+
+
 def sweep_openings(only: str | None, dry_run: bool) -> int:
     """Corpus sweep for `apply_opening_setting`, independent of the flag queue.
 
@@ -729,33 +769,44 @@ def sweep_openings(only: str | None, dry_run: bool) -> int:
     selects candidates from the local mirror (cheap) but edits the LIVE top
     transcript (correct), the same contract as the main path.
     """
+    return _sweep(only, dry_run, apply_opening_setting,
+                  f"YiDraCor act-opening setting sweep {_dt.date.today().isoformat()}",
+                  "opening spans retyped", mirror_rx=_HEADING_RX)
+
+
+def _sweep(only, dry_run, fn, note, unit, mirror_rx=None) -> int:
+    """Shared harness: pick candidate pages from the mirror, edit the LIVE top.
+
+    `mirror_rx` is a cheap pre-filter over the mirror's serialized XML; None
+    means visit every page. The mirror decides only WHICH pages to look at —
+    every edit is made against the live transcript, so a stale mirror can cost
+    coverage but can never clobber live work.
+    """
     editions, doc_ids = load_editions(), load_doc_ids()
     plays = [only] if only else sorted(
         p.name for p in (REPO / "data").iterdir() if (p / "page_annotated").is_dir())
     client = None
-    note = f"YiDraCor act-opening setting sweep {_dt.date.today().isoformat()}"
     n_edit = n_push = 0
 
     for play in plays:
         doc = doc_ids.get(play)
         if doc is None:
             continue
-        # Cheap local pre-filter: only pages whose mirror shows an act/scene heading.
         pages = sorted({page for page, path in page_files(play)
-                        if _HEADING_RX.search(
+                        if mirror_rx is None or mirror_rx.search(
                             etree.tostring(etree.parse(str(path)), encoding="unicode"))})
         if not pages:
             continue
         if client is None:
             from transkribus.client import TrpClient
             client = TrpClient.from_env()
-        print(f"\n=== {editions.get(play, play)} (doc {doc}) — {len(pages)} heading pages ===")
+        print(f"\n=== {editions.get(play, play)} (doc {doc}) — {len(pages)} candidate pages ===")
         for page in pages:
             tsid, owner, xml = top_transcript(client, doc, page)
             if xml is None:
                 print(f"  p{page}: no server transcript — skip"); continue
             root = etree.fromstring(xml.encode("utf-8") if isinstance(xml, str) else xml)
-            changes = apply_opening_setting(root)
+            changes = fn(root)
             if not changes:
                 continue
             n_edit += len(changes)
@@ -769,7 +820,7 @@ def sweep_openings(only: str | None, dry_run: bool) -> int:
                                    tool_name="YiDraCor-annotation-pipeline")
             n_push += 1; print(f"  p{page}: → pushed (parent {tsid})")
 
-    print(f"\n{'DRY-RUN ' if dry_run else ''}SUMMARY: {n_edit} opening spans retyped "
+    print(f"\n{'DRY-RUN ' if dry_run else ''}SUMMARY: {n_edit} {unit} "
           f"on {n_push} pages {'to push' if dry_run else 'pushed'}")
     return 0
 
@@ -785,10 +836,16 @@ def main():
     ap.add_argument("--sweep-openings", action="store_true",
                     help="apply ONLY apply_opening_setting(), to every page carrying an "
                          "act/scene heading (not just flag-candidate pages), then exit")
+    ap.add_argument("--sweep-headings", action="store_true",
+                    help="tag act/scene headings that carry no heading span "
+                         "(Roman numerals were only learned 2026-07-20), then exit")
     args = ap.parse_args()
 
     if args.sweep_openings:
         return sweep_openings(args.only, args.dry_run)
+
+    if args.sweep_headings:
+        return sweep_headings(args.only, args.dry_run)
 
     if args.recheck:
         recheck_live(Path(args.recheck) if Path(args.recheck).is_absolute()

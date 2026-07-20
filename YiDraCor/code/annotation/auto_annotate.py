@@ -18,6 +18,7 @@ from pathlib import Path
 from lxml import etree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from annotation.schema import parse_act_heading, parse_scene_heading
 from annotation.annotate_pages import (list_pages, dump_lines, apply_annotation,
                                        StaleSourceError, REPO_ROOT)
 
@@ -110,20 +111,14 @@ HEADING_SCENE_RX = re.compile(
 
 
 def find_heading(line: str):
-    bare = strip_nikud(line)
-    m = HEADING_ACT_RX.match(bare)
-    if m:
-        first = bare.split()[0]
-        n = HE_ORDINAL_ACT.get(first)
-        if n:
-            return ("act", n, 0, len(line.rstrip()))
-    m = HEADING_SCENE_RX.match(bare)
-    if m:
-        parts = bare.split()
-        if len(parts) >= 2:
-            n = HE_ORDINAL_ACT.get(parts[1])
-            if n:
-                return ("scene", n, 0, len(line.rstrip()))
+    # Delegates to annotation.schema, which also handles Roman numerals on
+    # either side of `אקט` and a trailing parenthetical. See parse_act_heading.
+    n = parse_act_heading(line)
+    if n:
+        return ("act", n, 0, len(line.rstrip()))
+    n = parse_scene_heading(line)
+    if n:
+        return ("scene", n, 0, len(line.rstrip()))
     return None
 
 

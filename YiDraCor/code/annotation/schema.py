@@ -243,3 +243,64 @@ def validate_span(line_text: str, span: dict) -> str | None:
         if t not in FW_TYPES:
             return f"fw.type must be one of {FW_TYPES}, got {t!r}"
     return None
+
+
+# --- act/scene heading matcher -----------------------------------------------
+# Sinai 2026-07-20. Lived in two copies (auto_annotate.HEADING_ACT_RX and
+# heuristic_annotate.ACT_HEAD), both of which accepted ONLY a Hebrew *word*
+# ordinal before `אקט`, anchored to end of line. Corpus audit: 26 act headings
+# tagged, 25 untagged. The misses were
+#   * Roman numerals, before or after the word — `I. אַקט`, `אַקט .II`,
+#     `V. אַקט.`, `III אַקט` (Blimele, DovidsFidele, Ezra, Isha Raa). The
+#     numeral-after forms are an RTL artifact of how the period is stored.
+#   * content following the heading — Isha Raa p5 `I. אַקְט    (I. Rittornetto)`
+#     failed on the `$` anchor alone, independently of the numeral.
+#   * the ordinal spelling `פיערטער` (BasSheva p54), absent from the table.
+# One matcher now, called by both.
+ACT_ORDINALS = {
+    "ערשטער": 1, "ראשון": 1, "ערשטע": 1, "ערשטען": 1,
+    "צווייטער": 2, "צוייטער": 2, "צווייטע": 2, "צווייטען": 2, "שני": 2,
+    "דריטער": 3, "דריטע": 3, "דריטען": 3, "שלישי": 3,
+    "פערטער": 4, "פערטע": 4, "פיערטער": 4, "פיערטע": 4, "רביעי": 4,
+    "פינפטער": 5, "פינפטע": 5, "חמישי": 5,
+    "זעקסטער": 6, "זעקסטע": 6, "שישי": 6,
+    "זיבעטער": 7, "זיבעטע": 7, "שביעי": 7,
+}
+_ROMAN = {"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7}
+_ORD_ALT = "|".join(sorted(map(re.escape, ACT_ORDINALS), key=len, reverse=True))
+# `אקט` must not be followed by another Hebrew letter — otherwise `אקטען`
+# ("acts") matches, and every title page says `אין 4 אקטען`.
+_AKT = r"אקט(?![א-ת])"
+_ROM = r"(?:VII|VI|IV|V|III|II|I)"
+_TAIL = r"(?:\s*[.,׃:]?\s*(?:\(.*\))?\s*)"
+_ACT_RX = re.compile(
+    rf"^\s*(?:(?P<ord>{_ORD_ALT})\s+{_AKT}"
+    rf"|(?P<rom1>{_ROM})\s*\.?\s*{_AKT}"
+    rf"|{_AKT}\s*\.?\s*(?P<rom2>{_ROM}))"
+    rf"{_TAIL}$"
+)
+_SCENE_RX = re.compile(rf"^\s*סצענע\s+(?P<n>{_ORD_ALT}|{_ROM}|\d+){_TAIL}$")
+
+
+def parse_act_heading(text: str):
+    """Return the act number for an act-heading line, else None.
+
+    Input may carry nikud; it is stripped here. Matches a Hebrew word ordinal
+    or a Roman numeral on either side of `אקט`, tolerating a trailing period
+    and a trailing parenthetical (`I. אַקְט (I. Rittornetto)`).
+    """
+    m = _ACT_RX.match(_NIKUD.sub("", text or ""))
+    if not m:
+        return None
+    if m.group("ord"):
+        return ACT_ORDINALS[m.group("ord")]
+    return _ROMAN[m.group("rom1") or m.group("rom2")]
+
+
+def parse_scene_heading(text: str):
+    """Return the scene number (as a string) for a scene-heading line, else None."""
+    m = _SCENE_RX.match(_NIKUD.sub("", text or ""))
+    if not m:
+        return None
+    n = m.group("n")
+    return str(ACT_ORDINALS.get(n) or _ROMAN.get(n) or n)
