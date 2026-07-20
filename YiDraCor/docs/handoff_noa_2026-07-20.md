@@ -7,19 +7,25 @@ rounds (06-14, 06-18, 06-24, 06-28) are closed or absorbed here.
 
 Two notes before you start:
 
-1. **We lost some of your answers for a while, and that's on us.** Your
-   2026-06-21 castList answers sat in the Google Doc and were never copied back
-   into the repo, so they read as unanswered for four weeks. And on 06-24 a
-   pipeline push buried your castList annotations on Bas Sheva p.6 and Dovid's
-   Fidele p.6 about 35 minutes after you made them. **Both are now recovered
-   and applied** — nothing of yours was lost, and guards are in place so it
-   can't recur. Sorry for the noise.
+1. **We have lost your work three times now, and recovered it each time.**
+   Your 06-21 castList answers sat in the Google Doc unread for four weeks. On
+   06-24 a push buried your castList annotations on Bas Sheva p.6 and Dovid's
+   Fidele p.6. And on **07-19 a push wiped all 32 verse (`l`) spans you had
+   added to Bas Sheva p.8 on 07-11** — we only found it on 07-20, nine days
+   later, because nothing in our checks looks for annotation that has gone
+   missing.
+
+   All of it is restored. As of 07-20 a push that would delete most of a page's
+   annotation is now blocked outright, which is the first safeguard that would
+   actually have caught this one. If you ever see your own work missing, say so
+   immediately — we can recover it from the layer history.
+
 2. **This list is deliberately short.** A first pass produced 1,742 flags for
    you; ~1,630 of those turned out to be gaps in our own tag vocabulary
    (`unclear`, `actor` — *your* tags — and Transkribus-native spans lint-ing as
    errors). We then ran the rule sweep that had been deferred since 06-14,
    back-filled role xmlids from cast_dict, and fixed the mechanical span
-   defects. Corpus flags went **1,825 → 247**. What follows is the genuine
+   defects. Corpus flags went **1,825 → 236**. What follows is the genuine
    residue: the things no rule can decide.
 
 ---
@@ -81,7 +87,7 @@ none of this and has **no song guidance whatsoever** — a *Posse mit Gesang*
 like Nestroy's *Der Talisman* has 38 bare `<lg>` and zero `stage type=`. So
 there is no house style to follow; we're setting the precedent.
 
-**Applied (114 marks corpus-wide):**
+**Applied (132 marks corpus-wide):**
 - `(ביס)` / `(ביסס)` and the pointed `(בּיס)` / `(בּיסס)` → `stage{type:repeat}`
 - `(ביס 2 מאל)` — repeat with a printed count — treated as a plain repeat; the
   number is not recorded *(Sinai)*
@@ -141,20 +147,19 @@ never answered, and dropped out of the 06-28 document. Choose:
 
 *(Blimele p.27 was the sixth — it was `ביס`, now handled by Part 3.)*
 
-**5.2 — 70 bare `stage` spans across the corpus** have no `@type` at all, and
+**5.2 — 60 bare `stage` spans across the corpus** have no `@type` at all, and
 no lexicon cue the rules can act on (the ones that *did* have a cue —
 `(פארהאנג)`, `פערוואנדלונג` — are now typed `setting` automatically).
 
-Al Naharot Bavel **20** · Kidush Hashem **15** · Bas Sheva **8** ·
-Di Seder **6** · Ezra **5** · Mishke Mashke **5** · Der Mann **3** ·
-Dovid's Fidele **3** · Das Yudishe Kind **2** · Blimele / Hinke Pinke /
-Sore Sheyndel **1** each.
+Al Naharot Bavel **20** · Kidush Hashem **15** · Di Seder **6** ·
+Mishke Mashke **5** · Ezra **4** · Der Mann **3** · Dovid's Fidele **3** ·
+Das Yudishe Kind **2** · Hinke Pinke / Sore Sheyndel **1** each.
 
 These are the residue *after* auto-typing everything the lexicon could reach.
 ☐ **Shall we run an LLM pass over them and send you its proposals to correct,
-rather than have you type all 70 from scratch?** →
+rather than have you type all 60 from scratch?** →
 
-Full list: `data/review/lint_2026-07-20.csv`.
+Full list: `data/review/lint_flags_2026-07-20.csv`.
 
 ---
 
@@ -197,13 +202,32 @@ them. →
 
 ## Part 8 — Two small things
 
-☐ **8.1 Mishke Mashke act numbering** — acts run 1, 2, 3, **5**. Is act 4
-missing from the print, mislabelled, or did we mis-tag a heading? →
+~~**8.1 Mishke Mashke act numbering**~~ — **resolved, nothing needed.** Act 4
+is on p.16 and always was; our heading rule didn't recognise the spelling
+`פיערטער`, so it went untagged. Fixed 07-20.
 
 ☐ **8.2 Meshumed `ר' יאָכטשֶעֶ`** — you asked for the exact page of the
 vocalized duplicates before ruling. That's owed to you by Sinai, not the other
 way round; noted here so it isn't forgotten. (Meshumed is a manuscript and now
 sits in a separate track, so this is low priority.)
+
+---
+
+## Part 9 — Das Yudishe Kind is now annotated
+
+49 of its 60 pages had never been through the annotation pass at all (they were
+never pulled from Transkribus, so the tool couldn't see them). Done on 07-20 —
+the play went from 11 annotated pages to 60.
+
+Two speaker labels there need you. Everything else it threw up is ours to fix
+(`שפּר` / `שפּרנצע` / `שפּריעצע` are OCR variants of `שפּרינצע`; `זי` and `ער`
+are the duet pronouns, handled per-scene as you ruled before).
+
+☐ **9.1** `רב זינגט:` — is the speaker `רב`, with "זינגט" a stage/song rubric?
+Or is the whole thing the label? →
+
+☐ **9.2** `זַיי:` ("they") — coin a collective for it, or is it a variant of an
+existing one? →
 
 ---
 
