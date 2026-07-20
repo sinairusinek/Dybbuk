@@ -80,13 +80,37 @@ KNOWN_COLLECTIVE = {
     # castlist_tagging_conventions); they remain here only as the abstract-voice
     # fallback and to suppress spurious "missing cast" flags.
     "סאפראן", "אלט", "באס", "טענאר",
+    # Spelling variants found 2026-07-20 while clearing speakers with no xmlid:
+    # `אללע` (doubled ל, Hinke Pinke ×4) and `כאהר` (Dos Yudishe Herts ×3).
+    # Same class as the `קאר` gap fixed 2026-06-04 — the skeleton match is only
+    # as good as the spellings listed here.
+    "אללע", "כאהר",
 }
+
+# Canonical xmlid per collective skeleton. AUTHORITATIVE — `auto_resolve_flags`
+# and `lint_pages` import this rather than keeping their own copies. They each
+# carried an identical hand-maintained duplicate until 2026-07-20; they had not
+# drifted yet, but the act-heading matcher showed what happens when a rule lives
+# in two places (25 of 51 headings untagged), so this is consolidated before it
+# can.
+COLLECTIVE_XMLID = {
+    "אלע": "alle", "אללע": "alle",
+    "שטימען": "shtimen", "ביידע": "beyde", "מענער": "mener",
+    "מעדכען": "meydkhen", "מ_דכען": "meydkhen",
+    "קאהר": "chor", "כאר": "chor", "קאר": "chor", "כאהר": "chor",
+    "דועט": "duet", "איינער": "eyner", "דאמען": "damen", "קינדער": "kinder",
+    "סאפראן": "sopran", "אלט": "alt", "באס": "bas", "טענאר": "tenor",
+}
+
+
+def collective_skeleton(text: str) -> str:
+    """Nikud-stripped, punctuation-stripped speaker label."""
+    return _NIKUD.sub("", (text or "").strip()).strip(":־ .")
 
 
 def is_collective_label(text: str) -> bool:
     """True if a speaker label is a known collective/chorus (no cast entry)."""
-    skeleton = _NIKUD.sub("", (text or "").strip()).strip(":־ .")
-    return skeleton in KNOWN_COLLECTIVE
+    return collective_skeleton(text) in KNOWN_COLLECTIVE
 # TEI <fw> @type values. Page numbers = pageNum (the common case here).
 FW_TYPES = {"pageNum", "header", "footer", "catch", "sig"}
 # TEI <stage> @type values. `type` is REQUIRED on every stage.

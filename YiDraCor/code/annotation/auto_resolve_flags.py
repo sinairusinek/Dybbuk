@@ -44,6 +44,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from annotation.schema import (
     parse_custom, serialize_custom, dedup_entries, is_collective_label, validate_span,
     STAGE_TYPES, _NIKUD, parse_act_heading, parse_scene_heading,
+    COLLECTIVE_XMLID as _COLLECTIVE_XMLID,
 )
 from annotation.lint_pages import (
     NS, REPO, TURN_RE, skel, has_nikud, line_text, page_type, page_files,
@@ -75,16 +76,8 @@ _COMPOUND_ACTION = {"זעצט", "גיט", "נעמט", "קושט", "שאקעלט"
 
 _HEB_TOKEN = re.compile(r"[א-תװ-ײ']+")
 
-# Canonical xmlid for each collective surface skeleton (same as lint_pages.py
-# COLLECTIVE_XMLID + apply_collective_speakers.py — kept inline to avoid a
-# circular import).
-_COLLECTIVE_XMLID = {
-    "אלע": "alle", "שטימען": "shtimen", "ביידע": "beyde", "מענער": "mener",
-    "מעדכען": "meydkhen", "מ_דכען": "meydkhen",
-    "קאהר": "chor", "כאר": "chor", "קאר": "chor",
-    "דועט": "duet", "איינער": "eyner", "דאמען": "damen", "קינדער": "kinder",
-    "סאפראן": "sopran", "אלט": "alt", "באס": "bas", "טענאר": "tenor",
-}
+# Collective xmlid map now lives in annotation.schema (imported above) —
+# it was an identical hand-maintained duplicate of that one.
 
 
 def _is_global_a(text: str) -> bool:
