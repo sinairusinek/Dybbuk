@@ -1,6 +1,6 @@
 # YiDraCor — Annotation Conventions
 
-**Single source of truth. Last updated 2026-07-19.**
+**Single source of truth. Last updated 2026-07-20.**
 
 Supersedes and absorbs `castlist_tagging_conventions_2026-06-18.md`. Where an
 older handoff contradicts this file, **this file wins** — superseded rules are
@@ -154,6 +154,9 @@ continuation line containing only `)`.
 
 **ST12.** `trailer` is **not** a stage direction. `ענדע דער X אקט`,
 `ענדע פונ'ם X אקט`, `ענדע דער פיעססע`, bare `ענדע` → whole line `trailer`.
+
+**ST13a. `stage{type:trailer}` is wrong** — `trailer` is a TAG, not a stage
+`@type`. `(ענדע פון ערשטען אקט)` is `<trailer>`, per ST12.
 
 **ST13. Emotion adverbs → `delivery`** (`וויינט`, `לאכט`, `וויינענד`, …). The
 rule-based lexicon in `auto_resolve_flags` **overrides** the LLM annotator.

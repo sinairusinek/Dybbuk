@@ -1,4 +1,4 @@
-# YiDraCor — consolidated handoff for Noa, 2026-07-19
+# YiDraCor — consolidated handoff for Noa, 2026-07-20
 
 Everything still open across **all 15 printed plays**, in one place. Previous
 rounds (06-14, 06-18, 06-24, 06-28) are closed or absorbed here.
@@ -17,7 +17,10 @@ Two notes before you start:
 2. **This list is deliberately short.** A first pass produced 1,742 flags for
    you; ~1,630 of those turned out to be gaps in our own tag vocabulary
    (`unclear`, `actor` — *your* tags — and Transkribus-native spans lint-ing as
-   errors). Fixed. What follows is the genuine residue.
+   errors). We then ran the rule sweep that had been deferred since 06-14,
+   back-filled role xmlids from cast_dict, and fixed the mechanical span
+   defects. Corpus flags went **1,825 → 247**. What follows is the genuine
+   residue: the things no rule can decide.
 
 ---
 
@@ -78,17 +81,24 @@ none of this and has **no song guidance whatsoever** — a *Posse mit Gesang*
 like Nestroy's *Der Talisman* has 38 bare `<lg>` and zero `stage type=`. So
 there is no house style to follow; we're setting the precedent.
 
-**Applied (68 instances corpus-wide):**
-- `(ביס)` / `(ביסס)` → `stage{type:repeat}`
+**Applied (114 marks corpus-wide):**
+- `(ביס)` / `(ביסס)` and the pointed `(בּיס)` / `(בּיסס)` → `stage{type:repeat}`
+- `(ביס 2 מאל)` — repeat with a printed count — treated as a plain repeat; the
+  number is not recorded *(Sinai)*
 - `רעפריין` → `head`, enclosing block becomes `<lg type="refrain">`
-- voice rubrics (`סאלא אלט`, `אַלט`, `סאפראן`) → `speaker`, per §G.4
+- voice rubrics (`סאלא אלט`, `אַלט`, `סאפראן`, `טענאר`, `באס`) → `speaker`, §G.4
+- **compound `(קאהר ביס)` ×9, `(קאהר - ביסס)`, `(כער ביס)`, `(אלע ביס)`** →
+  one span over the whole parenthesis, `stage{type:repeat}` ascribed with
+  `@who` → `<stage type="repeat" who="#kor">`. TEI's `<stage>` carries `@who`
+  via att.ascribed, so this is standards-supported. `כער` treated as a spelling
+  variant of `קאהר`, not OCR *(Sinai)* — the nine genuine `(קאהר ביס)` support
+  the reading.
 
 ☐ **3.1** `(ביס)` → `stage{type:repeat}` — agreed? →
 ☐ **3.2** `רעפריין` → `head` in `<lg type="refrain">` — agreed? →
-☐ **3.3** **`(כער ביס)`**, Hinke Pinke p.63:
-`חִינְקֶע! קוּם צוּ דַיין פּנקען. א. ז. וו. (כער ביס)`. We think `כער` is an OCR
-error for `כאר` (chorus), making this a compound voice-rubric + repeat — so we
-left it alone rather than guess. Is that right, and how should it be tagged? →
+☐ **3.3** Compound `(קאהר ביס)` → `<stage type="repeat" who="#kor">` — agreed?
+Or would you rather the chorus rubric were a separate span from the repeat
+mark? →
 
 *Decided by Sinai, no action needed from you: the mark is placed where printed
 (scope not recorded via `@target`); mid-line `(ביס)` is treated the same as
@@ -131,15 +141,20 @@ never answered, and dropped out of the 06-28 document. Choose:
 
 *(Blimele p.27 was the sixth — it was `ביס`, now handled by Part 3.)*
 
-**5.2 — 63 bare `stage` spans across the corpus** have no `@type` at all.
-Concentrated in **Al Naharot Bavel (20)** and **Kidush Hashem (15)**, then
-Di Seder (6), Ezra (5), Mishke Mashke (5), Der Mann (4), Hinke Pinke (3),
-Dovid's Fidele (2), Bas Sheva / Blimele / Sore Sheyndel (1 each).
+**5.2 — 70 bare `stage` spans across the corpus** have no `@type` at all, and
+no lexicon cue the rules can act on (the ones that *did* have a cue —
+`(פארהאנג)`, `פערוואנדלונג` — are now typed `setting` automatically).
 
-Most should be rule-resolvable. ☐ **Shall we auto-type what the lexicon can
-reach and send you only the residue?** →
+Al Naharot Bavel **20** · Kidush Hashem **15** · Bas Sheva **8** ·
+Di Seder **6** · Ezra **5** · Mishke Mashke **5** · Der Mann **3** ·
+Dovid's Fidele **3** · Das Yudishe Kind **2** · Blimele / Hinke Pinke /
+Sore Sheyndel **1** each.
 
-Full list: `data/review/lint_2026-07-19.csv`.
+These are the residue *after* auto-typing everything the lexicon could reach.
+☐ **Shall we run an LLM pass over them and send you its proposals to correct,
+rather than have you type all 70 from scratch?** →
+
+Full list: `data/review/lint_2026-07-20.csv`.
 
 ---
 
@@ -154,26 +169,29 @@ is queued as a code change on our side.
 | Sore Sheyndel | 12 | `קשיה: פאַר וואָס רוּפט מען שבּת הגדול` | → |
 | Sore Sheyndel | 16 | `הער אויס: וֶוען חנְהלֶע מיִט אִיהר מוּטער` | → |
 | Yudale der Blinder | 65 | `דבורה: לאָז מִיך פאַטער, אַזוי וִויל אוֹ` | → |
+| Isha Raa | 6 | `אללע: יַא יַא עֶר לעבּע לאַנְג` | → |
+| Bas Sheva | 15 | `אבנר, בנימין: (לויפ'ן ענטגעגען) צוּריק!` | → |
 
 Options: (a) coin a role · (b) variant of an existing role · (c) OCR error →
 correct form · (d) collective · or "do not tag as a role".
 
 *Our guesses, for what they're worth: `קשיה` and `הער אויס` read like rubrics
-rather than speakers ("question", "listen"); `דבורה` is probably `דבורה'לע`.*
+rather than speakers ("question", "listen"); `דבורה` is probably `דבורה'לע`;
+`אללע` you answered before as `מעדכען (נערות)` — it recurs on Isha Raa p.6 and
+we'd rather confirm than assume. `אבנר, בנימין` is the joint speaker you already
+ruled on ("tag each one as a separate character") — it stays flagged only because
+the comma-split emitter doesn't exist yet; no action needed from you.*
 
 ---
 
 ## Part 7 — Cast entries that never speak
 
-14 roles are declared in cast_dict but never used by any speaker span: **Bas
-Sheva ×5, Hinke Pinke ×4, Dos Yudishe Herts, Dovid's Fidele, Sore Sheyndel,
-Das Yudishe Kind ×2**.
+This was 14 roles; **it is now 2.** Back-filling role xmlids from cast_dict let
+twelve of them match their speakers, which confirms they were our bug rather
+than castList errors. The remaining 2 are in Das Yudishe Kind.
 
-Each is one of: a genuinely silent role (fine — keep), a speaker label we're
-failing to match (our bug), or a mis-read castList entry.
-
-☐ **7.1** Want the itemised list to check, or shall we investigate first and
-only bring you the ones that look like real castList errors? →
+☐ **7.1** Nothing needed unless you want them named — say so and we'll list
+them. →
 
 ---
 
