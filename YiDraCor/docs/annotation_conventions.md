@@ -308,7 +308,8 @@ repeat instruction ("chorus, repeat"). *Sinai 2026-07-19.*
 a character in Mishke Mashke) and `(ערוואכט צו ביסלעך)` ("awakens bit by bit").
 
 *Applied corpus-wide 2026-07-19: 114 marks, 12 of them ascribed; +18 bare
-marks 2026-07-20 = **132**.* ***Awaiting Noa's ratification.***
+marks 2026-07-20 = **132**.* **Ratified by Sinai; Noa informed, no sign-off
+required.**
 
 **M5. `רעפריין` → `head`** (keeping `lg_id`); the enclosing block becomes
 `<lg type="refrain">`. It is a structural rubric, not a verse line, not a
