@@ -147,6 +147,18 @@ def _normalize(s: str) -> str:
     return s
 
 
+def fold_for_search(s: str) -> str:
+    """Public alias of the resolver's normaliser, for free-text search.
+
+    Yiddish is typed without vocalisation far more often than it is stored
+    with it, so a raw substring match fails almost everywhere: in this corpus
+    "טעאַטער" matches 1366 clusters while the unvocalised "טעאטער" matches 6.
+    Folding both sides through here makes search niqqud- and final-letter-
+    insensitive.
+    """
+    return _normalize(s)
+
+
 # Normalized once at import, since _EXCLUDE_KEYS is written in readable form.
 _EXCLUDE_KEY_NORMS = {_normalize(k) for k in _EXCLUDE_KEYS}
 _COUNTRY_LEVEL_NORMS = {_normalize(k) for k in _COUNTRY_LEVEL}

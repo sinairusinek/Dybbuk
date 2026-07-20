@@ -28,6 +28,8 @@ _BASE_STR = str(BASE)
 if _BASE_STR not in sys.path:
     sys.path.insert(0, _BASE_STR)
 
+from organizations.settlement_resolver import fold_for_search
+
 from organizations.settlement_index import (
     CityBucket,
     ClusterCard,
@@ -804,7 +806,10 @@ def _row_action_menu(
                         target_id=self_id, decision="MINT",
                         note=msg or "",
                         qid=qid, org_type=bucket.org_type,
-                        new_db_id=getattr(_new, "db_id", "") if _new else "",
+                        # _mint_db_from_clusters returns (db_id_str, msg), so
+                        # getattr(..., "db_id") on a str always yielded "" and
+                        # the log lost which row had just been minted.
+                        new_db_id=_new or "",
                     )
                     st.toast(msg, icon="✅")
                     st.rerun(scope="app")
@@ -836,14 +841,18 @@ def _search_corpus(
     samples: dict,
     exclude: tuple[str, str] = ("", ""),
 ) -> list[tuple[str, str, str, int]]:
-    q = query.lower()
+    # Fold both sides: Yiddish is typed unvocalised but stored with niqqud, so
+    # a raw substring match silently returns almost nothing. See fold_for_search.
+    q = fold_for_search(query)
+    if not q:
+        return []
     results: list[tuple[str, str, str, int]] = []
     matched_clusters: set[str] = set()
     for r in db_rows:
         dbid = (r.get("db_id") or "").strip()
         if exclude == ("db", dbid):
             continue
-        hay = f"{r.get('name','')} {r.get('name_yiddish','')}".lower()
+        hay = fold_for_search(f"{r.get('name','')} {r.get('name_yiddish','')}")
         idx = hay.find(q)
         if idx >= 0:
             label = r.get("name") or r.get("name_yiddish") or "(unnamed)"
@@ -852,7 +861,7 @@ def _search_corpus(
         cid = (r.get("cluster_id") or "").strip()
         if exclude == ("cluster", cid):
             continue
-        hay = f"{r.get('canonical_yiddish','')} {r.get('name_variants','')}".lower()
+        hay = fold_for_search(f"{r.get('canonical_yiddish','')} {r.get('name_variants','')}")
         idx = hay.find(q)
         if idx >= 0:
             label = r.get("canonical_yiddish") or "(no canonical)"
@@ -868,7 +877,7 @@ def _search_corpus(
         for _head, sent, _fle, _xid in (s.get("samples") or []):
             if not sent:
                 continue
-            idx = sent.lower().find(q)
+            idx = fold_for_search(sent).find(q)
             if idx >= 0:
                 canon = (a_by_cid.get(cid, {}).get("canonical_yiddish") or "").strip()
                 preview = sent[:80].replace("\n", " ")
