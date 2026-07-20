@@ -808,6 +808,56 @@ def apply_l_speaker_scope(root) -> list[str]:
     return changed
 
 
+_SPEAKER_TRAIL = ":׃־ .,"
+
+
+def apply_speaker_colon_scope(root) -> list[str]:
+    """S1: a speaker span covers the NAME only — never the trailing colon.
+
+    Sinai 2026-07-20. 156 of 9,509 spans ended in a colon or other punctuation,
+    concentrated in Das Yudishe Kind (44), Isha Raa (37) and Blimele (26). On
+    Isha Raa p70 ten `קעניג:` spans were (0,6) — colon included — beside one at
+    (0,5) without it, with no editorial logic behind the difference.
+
+    Consequence is cosmetic but real: `build_tei.speaker_slice` puts
+    `text[:length]` in `<speaker>`, so the published TEI carries a trailing
+    colon on some speakers and not others. `<l>` content is unaffected either
+    way, because the leading-colon strip on the remainder catches it — which is
+    why this survived unnoticed, the same way the M9 `l` overlap did.
+    """
+    changed = []
+    for tl in root.iter(NS + "TextLine"):
+        txt = line_text(tl)
+        entries = parse_custom(tl.get("custom") or "")
+        out, hit = [], False
+        for tag, a in entries:
+            if tag != "speaker":
+                out.append((tag, a)); continue
+            try:
+                lo, ln = int(a.get("offset", 0)), int(a.get("length", 0))
+            except (TypeError, ValueError):
+                out.append((tag, a)); continue
+            end = lo + ln
+            while end > lo and end <= len(txt) and txt[end - 1] in _SPEAKER_TRAIL:
+                end -= 1
+            if end == lo or end - lo == ln:      # nothing to trim, or all punct
+                out.append((tag, a)); continue
+            a = dict(a); a["length"] = str(end - lo)
+            out.append(("speaker", a)); hit = True
+            changed.append(f"speaker({lo},{ln})→({lo},{end - lo}) "
+                           f"{txt[lo:end]!r} was {txt[lo:lo + ln]!r}")
+        if hit:
+            tl.set("custom", serialize_custom(out))
+    return changed
+
+
+def sweep_speaker_colon(only: str | None, dry_run: bool) -> int:
+    """Corpus sweep for `apply_speaker_colon_scope`."""
+    return _sweep(only, dry_run, apply_speaker_colon_scope,
+                  f"YiDraCor speaker-span colon trim {_dt.date.today().isoformat()}",
+                  "speaker spans trimmed", mirror_rx=re.compile(r"speaker\s*\{"))
+
+
 def sweep_l_scope(only: str | None, dry_run: bool) -> int:
     """Corpus sweep for `apply_l_speaker_scope`."""
     return _sweep(only, dry_run, apply_l_speaker_scope,
@@ -903,6 +953,8 @@ def main():
                          "(Roman numerals were only learned 2026-07-20), then exit")
     ap.add_argument("--sweep-l-scope", action="store_true",
                     help="shrink `l` spans that swallow the speaker label, then exit")
+    ap.add_argument("--sweep-speaker-colon", action="store_true",
+                    help="trim the trailing colon from speaker spans (S1), then exit")
     args = ap.parse_args()
 
     if args.sweep_openings:
@@ -913,6 +965,9 @@ def main():
 
     if args.sweep_l_scope:
         return sweep_l_scope(args.only, args.dry_run)
+
+    if args.sweep_speaker_colon:
+        return sweep_speaker_colon(args.only, args.dry_run)
 
     if args.recheck:
         recheck_live(Path(args.recheck) if Path(args.recheck).is_absolute()

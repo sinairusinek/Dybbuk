@@ -48,6 +48,48 @@ EDITS = {
     # genuinely entrance+exit; the other 21 are `mixed` standing in for other
     # combinations and need their own enumeration.
     ("DerManUnterTiff", 13, "r_2_1l18", 0): ("settype", "exit entrance"),
+    # --- the other 21 `mixed` spans, enumerated per option C -----------------
+    # `mixed` had been used as a catch-all for any compound direction. Under
+    # ST3 it is reserved for functions that CANNOT be enumerated, and all of
+    # these can. Continuation lines take the parent direction's type, the same
+    # way apply_opening_setting carries a tableau across its lines (ST9).
+    #
+    # entrance + business — "enter X, who then does Y":
+    ("Blimele-AhronFaust1903", 28, "TextRegion_1649021403901_561l3", 0):
+        ("settype", "entrance business"),       # cont. of parent already so typed
+    ("DerManUnterTiff", 7, "r_2_1l18", 0):  ("settype", "entrance business"),
+    ("DerManUnterTiff", 7, "r_2_1l19", 0):  ("settype", "entrance business"),
+    ("DerManUnterTiff", 12, "r_4_1l11", 0): ("settype", "entrance business"),
+    ("DerManUnterTiff", 12, "r_4_1l12", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 17, "r_1_1l22", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 20, "r_2_1l3", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 20, "r_2_1l4", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 20, "r_2_1l5", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 20, "r_2_1l6", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 23, "r_4_1l7", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 23, "r_4_1l8", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 23, "r_4_1l24", 0): ("settype", "entrance business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 23, "r_4_1l25", 0): ("settype", "entrance business"),
+    # exit + business — "X exits, and Y happens":
+    ("Di_seyder_nakht_Emkroyt_1908", 6, "r_2_1l12", 11): ("settype", "exit business"),
+    ("Di_seyder_nakht_Emkroyt_1908", 39, "TextRegion_1649446606027_461l35", 17):
+        ("settype", "exit business"),
+    ("Yudale_der_blinder,_Emkroyt1908", 48, "TextRegion_1648553814193_4366l22", 0):
+        ("settype", "exit business"),          # "…he seizes her, leads her off (אב)"
+    # exit + entrance — Meir Dreyer comes in, runs out mid-song, returns with
+    # David and Miriam. The exit is `לויפט ער ארויס`, not `אב`, which is why the
+    # cue test missed it; option C types by function, not by cue word.
+    ("Di_seyder_nakht_Emkroyt_1908", 18, "TextRegion_1647706671180_1553l20", 0):
+        ("settype", "exit entrance"),
+    ("Di_seyder_nakht_Emkroyt_1908", 18, "TextRegion_1647706671180_1553l21", 0):
+        ("settype", "exit entrance"),
+    # business + delivery — a physical state colouring the speech that follows.
+    ("Yudale_der_blinder,_Emkroyt1908", 39, "TextRegion_1648550742599_2532l10", 8):
+        ("settype", "business delivery"),
+    # Not compound at all: a scene-change tableau, and the line before it is
+    # the `פערוואַנדלונג` cue (ST6).
+    ("Yudale_der_blinder,_Emkroyt1908", 51, "TextRegion_1648548404769_1388l2", 0):
+        ("settype", "setting"),
     # --- defect fixes --------------------------------------------------------
     # A song rubric ("Couplet of Vasilye", after `Nr. 4.`), not a direction.
     ("Di_seyder_nakht_Emkroyt_1908", 61, "TextRegion_1649533051421_1444l5", 0):
