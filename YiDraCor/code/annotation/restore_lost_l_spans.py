@@ -37,6 +37,7 @@ from transkribus.client import TrpClient
 REPO = Path(__file__).resolve().parents[2]
 PAGE_NS = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15"
 NS = f"{{{PAGE_NS}}}"
+MIN_WHOLESALE = 5        # a page with fewer l spans can never qualify as a clobber
 MAX_HISTORY = 8          # layers back to consider; older than this predates annotation
 
 
@@ -73,6 +74,20 @@ def clobber_donor(roots: list, notes: list[str]) -> dict[str, list]:
     one of our own rules doing its job, and must be left alone.
 
     roots/notes are newest→oldest and index-aligned.
+
+    Provenance alone is NOT sufficient, which the corpus dry-run also showed.
+    An unnoted layer is not from this repo — but that includes judithl1's and
+    noashur's own edits in the Transkribus WEB UI, which are the most
+    authoritative edits in the system. Restoring there reverts RA work. The
+    remaining 10 flags were all exactly that: Judith and Noa deliberately
+    removing one or two spans (`רעפריין:` → head, `קאהר`/`ראשעל`/`קארל` voice
+    rubrics → speaker).
+
+    What actually separates the clobber is that it is WHOLESALE — BasSheva p8
+    lost 32 of 32 in a single transition, because the whole file was replaced.
+    A human removes one or two, deliberately. So require an unnoted layer that
+    destroyed essentially every `l` span on a page that had a substantial
+    number of them.
     """
     donor: dict[str, list] = {}
     for newer in range(len(roots) - 1):
@@ -82,6 +97,13 @@ def clobber_donor(roots: list, notes: list[str]) -> dict[str, list]:
         if notes[newer].strip():
             continue                       # produced by one of our tools — legitimate
         before, after = l_spans(roots[older]), l_spans(roots[newer])
+        n_before = sum(len(v) for v in before.values())
+        n_after = sum(len(v) for v in after.values())
+        # Wholesale test. MIN_WHOLESALE keeps a page that legitimately carried
+        # one or two spans from ever qualifying; the 0.2 ratio allows for a
+        # clobber that happens to leave a stray span behind.
+        if n_before < MIN_WHOLESALE or n_after > n_before * 0.2:
+            continue
         for lid, spans in before.items():
             if lid not in after:
                 donor.setdefault(lid, spans)
@@ -176,7 +198,7 @@ def main():
             changes = restore_page(roots[0], donor)
             if not any(c.startswith(("restored l", "clamped l")) for c in changes):
                 continue
-            hits.append((p["pageNr"], tr[0], top, changes))
+            hits.append((p["pageNr"], tr[0], roots[0], changes))
         if not hits:
             continue
         print(f"\n=== {play} (doc {doc}) ===")
