@@ -169,6 +169,21 @@ rule-based lexicon in `auto_resolve_flags` **overrides** the LLM annotator.
 `אָרט דער האַנדלונג…` or `דיא געשיכטע האנדעלט זיך…` are **not** roles → whole
 line `stage{type:setting}`.
 
+**Continuation lines carry the rule.** The statement usually runs over two
+lines and the second carries no cue of its own (`נאך חרבן בית ראשון.`). Every
+following line gets its own whole-line `stage{type:setting}` — spans never
+cross line boundaries (ST9) — until a line bearing a `role` span.
+
+⚠️ **Tagging these `roleDesc` is a silent error.** In the TEI a `roleDesc`
+with no `role` attaches to the preceding castItem, so the locus of the action
+is read as part of the last character's description. It was invisible to every
+check until 2026-07-20: lint flagged only castList lines with *no* role/roleDesc
+span, so a MIS-tagged line counted as tagged. Now `auto_resolve_flags`
+converts them (page-level `apply_global_a`) and lint reports
+`mis-tagged setting line`. Global-C brace labels (`זיינע קינדער`) are a
+legitimate roleDesc-without-role and never match a Global-A prefix, so they
+are untouched.
+
 **Global B — library shelfmarks stay completely untagged** (`II 43.144`,
 `ע63.390`, BN catalogue ids). No stage, no castItem.
 

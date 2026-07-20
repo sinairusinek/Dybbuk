@@ -77,6 +77,20 @@ def line_text(tl) -> str:
     return ""
 
 
+_GLOBAL_A_PREFIXES = ("ארטדערהאנדלונג", "ארטהאנדלונג",
+                      "דיגעשיכטעהאנדעלטזיך", "דיאגעשיכטעהאנדעלטזיך")
+
+
+def _is_global_a_line(text: str) -> bool:
+    sk = re.sub(r"[()\s.,׃:‐-―\-]", "", _NIKUD.sub("", text or ""))
+    return sk.startswith(_GLOBAL_A_PREFIXES)
+
+
+def _has_setting(tl) -> bool:
+    return any(t == "stage" and "setting" in (a.get("type") or "")
+               for t, a in parse_custom(tl.get("custom") or ""))
+
+
 def page_type(tree) -> str | None:
     """Read the region structure{type:...} marker (titlePage/castList/body)."""
     for reg in tree.iter(NS + "TextRegion"):
@@ -191,6 +205,16 @@ def lint_play(play: str, label: str) -> list[dict]:
             if ptype == "castList":
                 if skel(label_txt).startswith("פערזאנען") or skel(label_txt).startswith("פערזאן"):
                     continue  # the "פּערזאָנען:" dramatis-personae header, not an entry
+                # Global A: a locus-of-action closing line is a setting, not a
+                # role. Until 2026-07-20 this was invisible: the check below
+                # only fires on a line with NO role/roleDesc, so a line
+                # MIS-tagged `roleDesc` (Al Naharot p.6) read as tagged.
+                if _is_global_a_line(txt) and not _has_setting(tl):
+                    add(page, tl.get("id"), "mis-tagged setting line", "AUTO",
+                        "Global-A locus-of-action line not tagged "
+                        "stage{type:setting}", txt[:40],
+                        "retag whole line stage{type:setting}")
+                    continue
                 if not ({"role", "roleDesc"} & tags):
                     add(page, tl.get("id"), "untagged cast entry", "NOA",
                         f"castList line '{k}' has no role/roleDesc span", txt[:40],

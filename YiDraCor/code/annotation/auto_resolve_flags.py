@@ -87,6 +87,68 @@ _COLLECTIVE_XMLID = {
 }
 
 
+def _is_global_a(text: str) -> bool:
+    """True for a castList closing line that announces the locus/time of action."""
+    sk = _NIKUD.sub("", text or "")
+    sk = re.sub(r"[()\s.,׃:‐-―\-]", "", sk)
+    return (sk.startswith("ארטדערהאנדלונג") or sk.startswith("ארטהאנדלונג")
+            or sk.startswith("דיגעשיכטעהאנדעלטזיך")
+            or sk.startswith("דיאגעשיכטעהאנדעלטזיך"))
+
+
+def apply_global_a(root) -> list[str]:
+    """Global A (Noa 2026-06-14) as a PAGE-level pass on castList pages.
+
+    A closing line announcing where/when the action happens is not a role — it
+    is a whole-line stage{type:setting}. On Al Naharot p.6 both such lines were
+    tagged `roleDesc`, which attaches them to the preceding castItem (Delilah)
+    in the TEI and is silently invisible to every existing check:
+      * lint only flags a castList line carrying NO role/roleDesc span, so a
+        MIS-tagged line reads as tagged;
+      * `stage_lexicon` answers "what type should this stage span be?", never
+        "should this roleDesc have been a stage span?".
+
+    Continuation matters: the second line (`נאך חרבן בית ראשון.`) carries no cue
+    of its own, so we carry through following lines until one bears a `role`
+    span. Global-C brace labels (`זיינע קינדער`) never match a Global-A prefix,
+    so shared roleDescs are untouched.
+    """
+    if page_type(root) != "castList":
+        return []
+    changed, carrying = [], False
+    for tl in root.iter(NS + "TextLine"):
+        txt = line_text(tl)
+        if not txt.strip():
+            continue
+        entries = parse_custom(tl.get("custom") or "")
+        tags = {t for t, _ in entries}
+        if "role" in tags:
+            carrying = False
+            continue
+        if _is_global_a(txt):
+            carrying = True
+        elif not carrying:
+            continue
+        out, hit = [], False
+        for tag, a in entries:
+            if tag == "roleDesc":
+                out.append(("stage", {"offset": a.get("offset", "0"),
+                                      "length": a.get("length", str(len(txt.rstrip()))),
+                                      "type": "setting"}))
+                hit = True
+            else:
+                out.append((tag, a))
+        if not hit and "stage" not in tags:
+            out.append(("stage", {"offset": "0",
+                                  "length": str(len(txt.rstrip())),
+                                  "type": "setting"}))
+            hit = True
+        if hit:
+            tl.set("custom", serialize_custom(out))
+            changed.append(f"Global-A: → stage{{type:setting}} {txt.strip()[:34]!r}")
+    return changed
+
+
 def stage_lexicon(text: str):
     """Return ('setting'|'trailer'|'epilog') for a known scene-boundary cue, else None."""
     sk = _NIKUD.sub("", text or "")
@@ -642,6 +704,13 @@ def main():
                                      non_speakers=non_speakers,
                                      allow_speaker=ptype not in ("titlePage", "castList"))
                 _, auto, human = scan
+                # A Global-A defect produces no per-line auto edit, so without
+                # this the page never becomes a candidate and the page-level
+                # pass never runs (Al Naharot p.6).
+                if ptype == "castList" and _is_global_a(txt) and not any(
+                        t == "stage" and "setting" in (a.get("type") or "")
+                        for t, a in entries):
+                    candidate_pages.add(page)
                 if ptype in ("titlePage", "castList"):
                     human = [h for h in human if "speaker" not in h]
                 if auto:
@@ -667,6 +736,9 @@ def main():
             root = etree.fromstring(xml.encode("utf-8") if isinstance(xml, str) else xml)
             live_ptype = page_type(root)
             page_changed = False
+            for c in apply_global_a(root):
+                print(f"  p{page}: {c}")
+                page_changed = True
             for tl in root.iter(NS + "TextLine"):
                 entries = parse_custom(tl.get("custom") or "")
                 ro = [e for e in entries if e[0] == "readingOrder"]
