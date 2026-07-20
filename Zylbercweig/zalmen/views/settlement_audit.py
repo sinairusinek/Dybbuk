@@ -700,138 +700,163 @@ def _row_action_menu(
             msg = (msg + " · " + msg2) if msg else msg2
         return msg
 
-    with st.popover("Actions ⋯", use_container_width=False):
-        tab_merge, tab_search, tab_more = st.tabs(["Merge", "Search", "More"])
+    # Streamlit closes a popover on EVERY rerun, and st.tabs snaps back to its
+    # first tab. So typing in Search reran the fragment, shut the popover and
+    # reset to Merge -- which read as "only merge works". Drive the panel from
+    # session_state instead, so it survives reruns and keeps its active tab.
+    open_key = "sa_open_action"
+    if st.button("Actions ⋯", key=f"{key}_open"):
+        st.session_state[open_key] = (
+            None if st.session_state.get(open_key) == key else key
+        )
 
-        # ─── Merge tab: multi-select checkboxes, single Confirm ───
-        with tab_merge:
-            opts = _bucket_options(bucket, self_kind, self_id)
-            if not opts:
-                st.caption("No other items in this bucket to combine with.")
-            else:
-                st.caption(
-                    "Tick every row that is the *same entity* as this one. "
-                    "Confirm once — re-running this merge is safe and won't "
-                    "create duplicate DB rows."
-                )
-                picked: list[tuple[str, str]] = []
-                for pk_kind, pk_id, pk_label in opts:
-                    cb_key = f"{key}_mp_{pk_kind}_{pk_id}"
-                    if st.checkbox(pk_label, key=cb_key):
-                        picked.append((pk_kind, pk_id))
-                if st.button(
-                    f"Confirm merge ({len(picked)} selected)",
-                    key=f"{key}_confirm_multi",
-                    type="primary",
-                    disabled=not picked,
-                    use_container_width=True,
-                ):
-                    msg = _do_merge(picked)
-                    for pk_kind, pk_id, _ in opts:
-                        st.session_state.pop(f"{key}_mp_{pk_kind}_{pk_id}", None)
-                    log_action(
-                        "settlement_audit", "merge",
-                        target_id=f"{self_kind}:{self_id}", decision="MERGE",
-                        note=msg or "",
-                        qid=qid, org_type=bucket.org_type,
-                        partners=[f"{k}:{i}" for k, i in picked],
-                    )
-                    if msg:
-                        st.toast(msg, icon="✅")
-                    st.rerun(scope="app")
-
-        # ─── Search tab ───
-        with tab_search:
-            st.caption("Search all DB rows + clusters across the whole corpus.")
-            q = st.text_input(
-                "Search", key=f"{key}_q",
-                placeholder="name or fragment...",
+    if st.session_state.get(open_key) == key:
+        with st.container(border=True):
+            head_c, close_c = st.columns([5, 1])
+            head_c.markdown(f"**Actions** · {self_label[:44]}")
+            if close_c.button("✕", key=f"{key}_close", help="Close"):
+                # The `if` that opened this container already evaluated above,
+                # so the panel is on screen for this run regardless. Rerun the
+                # fragment so the close takes effect immediately instead of on
+                # the user's next interaction.
+                st.session_state[open_key] = None
+                # Unscoped: scope="fragment" is only legal *during* a fragment
+                # rerun, and this handler also runs on full app runs.
+                st.rerun()
+            # radio, not st.tabs: a tab selection is not persisted across the
+            # rerun that every widget in here triggers.
+            mode = st.radio(
+                "Action", ["Merge", "Search", "More"],
+                key=f"{key}_mode", horizontal=True,
                 label_visibility="collapsed",
             )
-            if q and q.strip():
-                from types import SimpleNamespace
-                results = _search_corpus(
-                    q.strip(), db_rows, a_rows, samples,
-                    exclude=(self_kind, self_id),
-                )[:20]
-                if not results:
-                    st.caption("No matches.")
-                for r_kind, r_id, r_label, _score in results:
-                    cols = st.columns([3, 1, 1])
-                    cols[0].caption(f"{r_kind} · {r_id} · {r_label}")
-                    show_key = f"{key}_show_{r_kind}_{r_id}"
-                    cols[1].toggle("Inspect", key=show_key, value=False,
-                                   help="Show variants, settlements & attestations")
-                    if cols[2].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
-                        msg = _do_merge([(r_kind, r_id)])
+
+            if mode == "Merge":
+                opts = _bucket_options(bucket, self_kind, self_id)
+                if not opts:
+                    st.caption("No other items in this bucket to combine with.")
+                else:
+                    st.caption(
+                        "Tick every row that is the *same entity* as this one. "
+                        "Confirm once — re-running this merge is safe and won't "
+                        "create duplicate DB rows."
+                    )
+                    picked: list[tuple[str, str]] = []
+                    for pk_kind, pk_id, pk_label in opts:
+                        cb_key = f"{key}_mp_{pk_kind}_{pk_id}"
+                        if st.checkbox(pk_label, key=cb_key):
+                            picked.append((pk_kind, pk_id))
+                    if st.button(
+                        f"Confirm merge ({len(picked)} selected)",
+                        key=f"{key}_confirm_multi",
+                        type="primary",
+                        disabled=not picked,
+                        use_container_width=True,
+                    ):
+                        msg = _do_merge(picked)
+                        for pk_kind, pk_id, _ in opts:
+                            st.session_state.pop(f"{key}_mp_{pk_kind}_{pk_id}", None)
                         log_action(
-                            "settlement_audit", "merge_via_search",
+                            "settlement_audit", "merge",
                             target_id=f"{self_kind}:{self_id}", decision="MERGE",
                             note=msg or "",
                             qid=qid, org_type=bucket.org_type,
-                            partner=f"{r_kind}:{r_id}",
+                            partners=[f"{k}:{i}" for k, i in picked],
                         )
                         if msg:
                             st.toast(msg, icon="✅")
                         st.rerun(scope="app")
-                    if st.session_state.get(show_key):
-                        with st.container(border=True):
-                            if r_kind == "cluster":
-                                _render_cluster_details(
-                                    SimpleNamespace(cluster_id=r_id),
-                                    a_rows_by_cid, db_by_id, samples,
-                                )
-                            else:
-                                _render_db_details(
-                                    SimpleNamespace(db_id=r_id),
-                                    a_rows, db_rows,
-                                )
 
-        # ─── More tab: mint solo + research ───
-        with tab_more:
-            if self_kind == "cluster":
-                st.markdown("**Mint solo**")
-                st.caption(
-                    "Create a brand-new DB row for **only** this cluster — "
-                    "use this when nothing else in the bucket should merge with it."
+            elif mode == "Search":
+                st.caption("Search all DB rows + clusters across the whole corpus.")
+                q = st.text_input(
+                    "Search", key=f"{key}_q",
+                    placeholder="name or fragment...",
+                    label_visibility="collapsed",
                 )
-                if st.button("Mint as new entity (solo)", key=f"{key}_mint",
-                             use_container_width=True):
-                    _new, msg = _mint_db_from_clusters(
-                        [self_id], bucket.org_type, canonical_yiddish, "",
-                        a_rows, a_headers, db_rows, db_headers,
-                    )
-                    log_action(
-                        "settlement_audit", "mint_solo",
-                        target_id=self_id, decision="MINT",
-                        note=msg or "",
-                        qid=qid, org_type=bucket.org_type,
-                        # _mint_db_from_clusters returns (db_id_str, msg), so
-                        # getattr(..., "db_id") on a str always yielded "" and
-                        # the log lost which row had just been minted.
-                        new_db_id=_new or "",
-                    )
-                    st.toast(msg, icon="✅")
-                    st.rerun(scope="app")
+                if q and q.strip():
+                    from types import SimpleNamespace
+                    results = _search_corpus(
+                        q.strip(), db_rows, a_rows, samples,
+                        exclude=(self_kind, self_id),
+                    )[:20]
+                    if not results:
+                        st.caption("No matches.")
+                    for r_kind, r_id, r_label, _score in results:
+                        cols = st.columns([3, 1, 1])
+                        cols[0].caption(f"{r_kind} · {r_id} · {r_label}")
+                        show_key = f"{key}_show_{r_kind}_{r_id}"
+                        cols[1].toggle("Inspect", key=show_key, value=False,
+                                       help="Show variants, settlements & attestations")
+                        if cols[2].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
+                            msg = _do_merge([(r_kind, r_id)])
+                            log_action(
+                                "settlement_audit", "merge_via_search",
+                                target_id=f"{self_kind}:{self_id}", decision="MERGE",
+                                note=msg or "",
+                                qid=qid, org_type=bucket.org_type,
+                                partner=f"{r_kind}:{r_id}",
+                            )
+                            if msg:
+                                st.toast(msg, icon="✅")
+                            st.rerun(scope="app")
+                        if st.session_state.get(show_key):
+                            with st.container(border=True):
+                                if r_kind == "cluster":
+                                    _render_cluster_details(
+                                        SimpleNamespace(cluster_id=r_id),
+                                        a_rows_by_cid, db_by_id, samples,
+                                    )
+                                else:
+                                    _render_db_details(
+                                        SimpleNamespace(db_id=r_id),
+                                        a_rows, db_rows,
+                                    )
 
-            if reviewer == ADMIN_REVIEWER:
+            else:  # More
                 if self_kind == "cluster":
-                    st.divider()
-                st.markdown("**Research**")
-                comment = st.text_area(
-                    "Question / focus (optional)",
-                    key=f"{key}_research_comment",
-                    placeholder="e.g. is this the same theatre as Goldfaden's tour company?",
-                    height=70,
-                )
-                if st.button("Queue for cluster-research", key=f"{key}_research",
-                             use_container_width=True):
-                    _queue_research(
-                        kind=self_kind, target_id=self_id, qid=qid,
-                        org_type=bucket.org_type, label=self_label, reviewer=reviewer,
-                        comment=(comment or "").strip(),
+                    st.markdown("**Mint solo**")
+                    st.caption(
+                        "Create a brand-new DB row for **only** this cluster — "
+                        "use this when nothing else in the bucket should merge with it."
                     )
-                    st.toast("Queued for cluster-research", icon="🔬")
+                    if st.button("Mint as new entity (solo)", key=f"{key}_mint",
+                                 use_container_width=True):
+                        _new, msg = _mint_db_from_clusters(
+                            [self_id], bucket.org_type, canonical_yiddish, "",
+                            a_rows, a_headers, db_rows, db_headers,
+                        )
+                        log_action(
+                            "settlement_audit", "mint_solo",
+                            target_id=self_id, decision="MINT",
+                            note=msg or "",
+                            qid=qid, org_type=bucket.org_type,
+                            # _mint_db_from_clusters returns (db_id_str, msg), so
+                            # getattr(..., "db_id") on a str always yielded "" and
+                            # the log lost which row had just been minted.
+                            new_db_id=_new or "",
+                        )
+                        st.toast(msg, icon="✅")
+                        st.rerun(scope="app")
+
+                if reviewer == ADMIN_REVIEWER:
+                    if self_kind == "cluster":
+                        st.divider()
+                    st.markdown("**Research**")
+                    comment = st.text_area(
+                        "Question / focus (optional)",
+                        key=f"{key}_research_comment",
+                        placeholder="e.g. is this the same theatre as Goldfaden's tour company?",
+                        height=70,
+                    )
+                    if st.button("Queue for cluster-research", key=f"{key}_research",
+                                 use_container_width=True):
+                        _queue_research(
+                            kind=self_kind, target_id=self_id, qid=qid,
+                            org_type=bucket.org_type, label=self_label, reviewer=reviewer,
+                            comment=(comment or "").strip(),
+                        )
+                        st.toast("Queued for cluster-research", icon="🔬")
 
 
 def _search_corpus(
