@@ -55,12 +55,41 @@ def l_spans(root) -> dict[str, list]:
     return out
 
 
-def restore_page(top_root, ancestors: list) -> list[str]:
-    """Re-add `l` spans present in any ancestor but missing on top. Returns changes."""
+def clobber_donor(roots: list, notes: list[str]) -> dict[str, list]:
+    """`l` spans destroyed by an UNNOTED layer — the stale-mirror signature.
+
+    First cut of this tool restored every `l` span any ancestor ever had, and
+    the corpus dry-run showed why that is wrong: it wanted to put `l` back on
+    `רעפריין:` (which the ratified refrain rule deliberately converts to
+    `head`), on `קאהר` (converted to a collective `speaker`), and on stanza
+    numbers `I.`/`II.`/`III.`. 69 restorations across 14 pages, most of which
+    would have silently reverted the 2026-07-19 musical-directions pass.
+    Enumerating each rule to guard against is a losing game — the next rule
+    would reopen the hole.
+
+    So discriminate by provenance instead. Every in-repo tool sets a `note` on
+    push; the clobbering layers have none. A drop in `l` count across a
+    transition INTO an unnoted layer is a clobber. A drop into a noted layer is
+    one of our own rules doing its job, and must be left alone.
+
+    roots/notes are newest→oldest and index-aligned.
+    """
     donor: dict[str, list] = {}
-    for anc in ancestors:                      # newest→oldest; first writer wins
-        for lid, spans in l_spans(anc).items():
-            donor.setdefault(lid, spans)
+    for newer in range(len(roots) - 1):
+        older = newer + 1
+        if roots[newer] is None or roots[older] is None:
+            continue
+        if notes[newer].strip():
+            continue                       # produced by one of our tools — legitimate
+        before, after = l_spans(roots[older]), l_spans(roots[newer])
+        for lid, spans in before.items():
+            if lid not in after:
+                donor.setdefault(lid, spans)
+    return donor
+
+
+def restore_page(top_root, donor: dict[str, list]) -> list[str]:
+    """Re-add `l` spans in `donor` that are missing on top. Returns changes."""
     changes = []
     for el in top_root.iter(f"{NS}TextLine"):
         lid = el.get("id")
@@ -131,8 +160,9 @@ def main():
             tr = p["tsList"]["transcripts"][:MAX_HISTORY]
             if len(tr) < 2:
                 continue
-            roots = []
+            roots, notes = [], []
             for t in tr:
+                notes.append(t.get("note") or "")
                 try:
                     roots.append(etree.fromstring(
                         client.fetch_transcript(t["url"]).encode("utf-8")))
@@ -140,15 +170,10 @@ def main():
                     roots.append(None)
             if roots[0] is None:
                 continue
-            top, ancestors = roots[0], [r for r in roots[1:] if r is not None]
-            n_top = sum(len(v) for v in l_spans(top).values())
-            n_best = max([sum(len(v) for v in l_spans(r).values()) for r in ancestors]
-                         or [0])
-            if n_best <= n_top:
+            donor = clobber_donor(roots, notes)
+            if not donor:
                 continue
-            changes = restore_page(top, ancestors)
-            real = [c for c in changes if not c.startswith(("restored l", "")) or
-                    c.startswith("restored l")]
+            changes = restore_page(roots[0], donor)
             if not any(c.startswith(("restored l", "clamped l")) for c in changes):
                 continue
             hits.append((p["pageNr"], tr[0], top, changes))
