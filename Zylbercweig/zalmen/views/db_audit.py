@@ -74,7 +74,7 @@ TROUPE_TAGS = ORG / "troupe_tags.tsv"
 TROUPE_TAGS_REPO_PATH = "Zylbercweig/organizations/troupe_tags.tsv"
 
 TROUPE_TAG_HEADERS = [
-    "db_id", "layer_a", "layer_b", "other_tags",
+    "db_id", "tags", "other_tags",
     "reviewer_notes", "reviewer", "reviewed_at",
 ]
 
@@ -84,8 +84,14 @@ TROUPE_TAG_HEADERS = [
 # the pilot should be strictly Traveling Company.
 TROUPE_ORG_TYPES = {"traveling company", "company on tour"}
 
-_LAYER_A_OPTS = [
-    "",
+# One flat vocabulary — any number of tags may apply to a troupe. The former
+# Layer A / Layer B split was dropped 2026-07-20: its premise was that the
+# structural categories are mutually exclusive, which they are not (a family
+# company can be built around one star; an institutional one can be run
+# cooperatively). The distinction survives as a `layer` column in the
+# definitions TSV, as metadata rather than as a UI constraint.
+_TROUPE_TAG_OPTS = [
+    # structural
     "Family Company",
     "Impresario Company",
     "Star Company",
@@ -93,9 +99,7 @@ _LAYER_A_OPTS = [
     "Cooperative Company",
     "Institutional Company",
     "Ad Hoc Company",
-]
-
-_LAYER_B_OPTS = [
+    # characteristics
     "Children's Company",
     "Operetta / Opera Company",
     "German-Jewish Company",
@@ -452,36 +456,23 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
     is_troupe = (db.get("org_type") or "").strip().lower() in TROUPE_ORG_TYPES
     if is_troupe:
         prev_tags = tags.get(db_id, {})
-        prev_a = (prev_tags.get("layer_a", "") or "").strip()
-        try:
-            idx_a = _LAYER_A_OPTS.index(prev_a)
-        except ValueError:
-            idx_a = 0
-        prev_b = [t for t in _split_tags(prev_tags.get("layer_b", ""))
-                  if t in _LAYER_B_OPTS]
+        prev_sel = [t for t in _split_tags(prev_tags.get("tags", ""))
+                    if t in _TROUPE_TAG_OPTS]
         prev_other = " | ".join(_split_tags(prev_tags.get("other_tags", "")))
 
-        tagged_mark = " ✓" if (prev_a or prev_b or prev_other) else ""
+        tagged_mark = " ✓" if (prev_sel or prev_other) else ""
         with st.expander(f"🏷 Troupe tags (DB {db_id}){tagged_mark}",
                          expanded=bool(tagged_mark)):
-            col_a, col_b = st.columns([1, 2])
-            with col_a:
-                st.selectbox(
-                    "Layer A — company structure (pick one)",
-                    _LAYER_A_OPTS, index=idx_a, key=f"dba_tag_a_{db_id}",
-                    help="Primary structural category. Leave blank if unclear.",
-                )
-            with col_b:
-                st.multiselect(
-                    "Layer B — additional characteristics (any number)",
-                    _LAYER_B_OPTS, default=prev_b, key=f"dba_tag_b_{db_id}",
-                )
+            st.multiselect(
+                "Tags (any number apply)",
+                _TROUPE_TAG_OPTS, default=prev_sel, key=f"dba_tags_{db_id}",
+            )
             st.text_input(
-                "Other tags (not in the lists above)",
+                "Other tags (not in the list above)",
                 value=prev_other, key=f"dba_tag_other_{db_id}",
                 placeholder="free text — separate multiple tags with |",
                 help="Anything the vocabulary doesn't cover yet. These get "
-                     "reviewed and may be promoted into Layer A/B later.",
+                     "reviewed and may be promoted into the list later.",
             )
             st.caption("Saved by the Save button below, together with the "
                        "cluster decisions.")
@@ -530,14 +521,12 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
         # are independent jobs that happen to share this block.
         tag_rec: dict | None = None
         if is_troupe:
-            layer_a = (st.session_state.get(f"dba_tag_a_{db_id}", "") or "").strip()
-            layer_b = st.session_state.get(f"dba_tag_b_{db_id}", []) or []
+            picked = st.session_state.get(f"dba_tags_{db_id}", []) or []
             other = _split_tags(st.session_state.get(f"dba_tag_other_{db_id}", ""))
-            if layer_a or layer_b or other:
+            if picked or other:
                 tag_rec = {
                     "db_id": db_id,
-                    "layer_a": layer_a,
-                    "layer_b": " | ".join(layer_b),
+                    "tags": " | ".join(picked),
                     "other_tags": " | ".join(other),
                     "reviewer_notes": notes,
                     "reviewer": reviewer,
@@ -566,8 +555,7 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                         "db_audit", "troupe_tags",
                         target_id=db_id,
                         decision=" | ".join(
-                            b for b in [tag_rec["layer_a"], tag_rec["layer_b"],
-                                        tag_rec["other_tags"]] if b
+                            b for b in [tag_rec["tags"], tag_rec["other_tags"]] if b
                         ),
                         note=notes,
                         push=False,
