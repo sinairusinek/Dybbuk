@@ -198,6 +198,21 @@ def _split_tags(raw: str) -> list[str]:
     return [t.strip() for t in (raw or "").split("|") if t.strip()]
 
 
+def _coined_other_tags(tags: dict[str, dict], limit: int = 12) -> list[str]:
+    """Distinct free-text tags already coined, most-used first — shown back to
+    the reviewer so the same idea keeps the same spelling. Case-insensitive
+    dedup, keeping the spelling of whichever variant is most frequent."""
+    counts: dict[str, int] = {}
+    forms: dict[str, dict[str, int]] = {}
+    for row in tags.values():
+        for t in _split_tags(row.get("other_tags", "")):
+            k = t.casefold()
+            counts[k] = counts.get(k, 0) + 1
+            forms.setdefault(k, {})[t] = forms.setdefault(k, {}).get(t, 0) + 1
+    ranked = sorted(counts, key=lambda k: (-counts[k], k))[:limit]
+    return [max(forms[k], key=lambda f: (forms[k][f], f)) for k in ranked]
+
+
 def save_troupe_tags(records: list[dict]) -> None:
     """Upsert N troupe-tag rows (keyed on db_id) under one lock + one push."""
     if not records:
@@ -461,11 +476,19 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
         prev_other = " | ".join(_split_tags(prev_tags.get("other_tags", "")))
 
         tagged_mark = " ✓" if (prev_sel or prev_other) else ""
+        # Open by default when the reviewer is here to tag, so the pills are
+        # visible without a click per DB.
+        tagging_mode = bool(st.session_state.get("dba_filter_troupe", False))
         with st.expander(f"🏷 Troupe tags (DB {db_id}){tagged_mark}",
-                         expanded=bool(tagged_mark)):
-            st.multiselect(
-                "Tags (any number apply)",
-                _TROUPE_TAG_OPTS, default=prev_sel, key=f"dba_tags_{db_id}",
+                         expanded=tagging_mode or bool(tagged_mark)):
+            # st.pills (not st.multiselect): shows every option on screen at
+            # once, tick-to-toggle, and stays ONE widget per DB. A checkbox
+            # grid would be 15 widgets × up to 50 DBs per render — Streamlit
+            # instantiates widgets inside collapsed expanders too.
+            st.pills(
+                "Tags (tick any number)",
+                _TROUPE_TAG_OPTS, selection_mode="multi",
+                default=prev_sel, key=f"dba_tags_{db_id}",
             )
             st.text_input(
                 "Other tags (not in the list above)",
@@ -474,6 +497,12 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                 help="Anything the vocabulary doesn't cover yet. These get "
                      "reviewed and may be promoted into the list later.",
             )
+            # Echo back other-tags already coined elsewhere, so the same idea
+            # gets the same spelling and the free-text column stays groupable.
+            coined = _coined_other_tags(tags)
+            if coined:
+                st.caption("already coined — reuse the exact wording if it fits: "
+                           + " · ".join(f"`{t}`" for t in coined))
             st.caption("Saved by the Save button below, together with the "
                        "cluster decisions.")
 
