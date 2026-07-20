@@ -141,6 +141,23 @@ lines `business delivery`; `פאָרהאַנג פאַלט.` → `setting`.
 header that is neither a speaker turn nor parenthesized → whole-line
 `stage{type:setting}`.
 
+**ST7b. The parenthesized act-opening direction → `setting`** *(Sinai
+2026-07-20)*. ST7 covers the *unparenthesized* line after a header; this is its
+parenthesized counterpart — the opening tableau, `(גאַרטען, לינקס צדוק'ס
+הויז…)`. `stage_lexicon` is purely lexical and only fires on a cue word (ST6),
+and an opening tableau has no cue, so the corpus had split by accident of
+wording: 22 openers `setting`, 15 `business`. Position identifies these, not
+vocabulary.
+- The **whole parenthesis is one `setting`**, even where it describes people in
+  motion — the established reading, not a new call: Al Naharot p.51
+  `(דער קעניג זיצט אויף דעם טראהן…)` and p.38 `(… מעדכען זינגענדיג)` are both
+  plain `setting`. No compound `setting business` here.
+- Carries across continuation lines while the parenthesis stays open (ST9).
+- Only retypes `business` or untyped. **`entrance` and `delivery` openers are
+  left for a human** — Kidush Hashem p.47 `(קאהר ווי אנפאנג פונ'ם צווייטען אקט)`
+  sits in opening position but is a musical instruction.
+- `annotation.auto_resolve_flags --sweep-openings`.
+
 **ST8.** `delivery` **requires parentheses** in the source. Never assign it to
 an unparenthesized line.
 
@@ -260,6 +277,16 @@ would need a new tag in both the Transkribus tagset and `ALLOWED_TAGS`).
 and the **pointed** forms `(בּיס)` / `(בּיסס)`. Match nikud-insensitively; a
 nikud-blind pattern missed 29 instances in the first pass.
 
+**Printed without parentheses** *(Sinai 2026-07-20)*. Three plays print the
+mark bare on its own line — Bas Sheva (9), Ezra (6), Blimele (3). Match only
+when the mark is the **whole line** (trailing punctuation allowed): that
+anchoring is what makes it safe without parens, where a substring match would
+hit `ביסלעך`, `ביסינג` and the preposition `ביס` ("until").
+⚠️ The fetch list was itself built from the paren-anchored pattern, so Bas
+Sheva never entered it and no pass of any kind touched the play. Rebuild the
+target list from every marker pattern the tool knows
+(`retag_musical_directions --rebuild-targets`), never from one of them.
+
 **Repeat with a count** — `(ביס 2 מאל)`, `(ביס 4 מאהל)` — is tagged as a plain
 `repeat`; **the number is not recorded** *(Sinai 2026-07-19)*. The mark is
 placed **where printed**; repeat *scope* is not recorded via `@target`.
@@ -280,8 +307,8 @@ repeat instruction ("chorus, repeat"). *Sinai 2026-07-19.*
 **False friends — never tag as repeat:** `(אויפטריט ביסינג)` ("enter Bising",
 a character in Mishke Mashke) and `(ערוואכט צו ביסלעך)` ("awakens bit by bit").
 
-*Applied corpus-wide 2026-07-19: 114 marks, 12 of them ascribed.*
-***Awaiting Noa's ratification.***
+*Applied corpus-wide 2026-07-19: 114 marks, 12 of them ascribed; +18 bare
+marks 2026-07-20 = **132**.* ***Awaiting Noa's ratification.***
 
 **M5. `רעפריין` → `head`** (keeping `lg_id`); the enclosing block becomes
 `<lg type="refrain">`. It is a structural rubric, not a verse line, not a
@@ -305,14 +332,46 @@ speaker, not a stage direction.
 `head` spans — but **preserve** any `head` covering a refrain rubric or
 carrying no `lg_id` (castList `פערזאנען`, act headings).
 
+**M8. A whole-line stage direction is not a verse line** *(Sinai 2026-07-19)*.
+When a `stage` span covers the entire line, drop any `l` on it — a bare
+`(ביסס)` or `(טאנץ).` on its own line inside a song was being marked as verse.
+**Narrow by design:** of 111 lines carrying both `stage` and `l`, 94 are
+genuine sung lines with an *inline* `(ביס)`, and dropping `l` there would
+destroy the song encoding. Require an actual whole-line `stage` span — testing
+"widest stage span ≥ line length − 1" with no stage span present is true for
+any single-character line, which silently deleted the `l` from nine lone `—`
+placeholders filling Blimele p.27's song columns.
+
 ---
 
-## 6. Page furniture
+## 6. Page furniture and act/scene headings
 
 `fw` covers printed page numbers, running heads, catchwords, signatures.
 `type` required; `FW_TYPES = {pageNum, header, footer, catch, sig}`. Page
 numbers are `type:pageNum`. Per-play quirks (spread scans, bare-number plays)
 are handled in `annotation.tag_pagenums_collectives`.
+
+**H1. What counts as an act heading** *(Sinai 2026-07-20)*. One matcher,
+`schema.parse_act_heading` / `parse_scene_heading`, used by both annotators.
+Accepts, with or without nikud:
+- a Hebrew word ordinal before the word — `ערשטער אקט`, and the variant
+  spelling `פיערטער` (Mishke Mashke p.16, Bas Sheva p.54);
+- a **Roman numeral on either side** — `I. אַקט`, `אַקט .II`, `V. אַקט.`,
+  `III אַקט` (the numeral-after forms are how the period is stored in RTL);
+- **trailing content after the heading** — Isha Raa p.5
+  `I. אַקְט (I. Rittornetto)`.
+
+Before this the matcher lived in two copies, took only a Hebrew word ordinal,
+and anchored to end-of-line: 26 headings tagged corpus-wide, **25 untagged**.
+
+**H2. Never an act heading:** `אקט` followed by another Hebrew letter — every
+title page reads `אין 4 אקטען` ("in 4 acts"). Enforced by lookahead. Act *ends*
+are `trailer` (ST12), never `heading`.
+
+**H3.** The matcher runs at annotate time, so fixing it does nothing for pages
+already annotated — sweep them with
+`annotation.auto_resolve_flags --sweep-headings` (adds a `heading` span only to
+a line that has none, skipping `trailer`).
 
 ---
 
@@ -359,6 +418,8 @@ rewrite Noa's Di Seder work; deferred to her report.
 | `(ביס)` opens song mode | §8 — deferred, disabled 2026-07-19 |
 | `רעפריין` as a speaker / verse line | M5 — it is a `head` |
 | Voice rubrics as `stage type="delivery"` or inline verse | M6 / §G.4 |
+| Act-opening parenthetical typed `business` (no cue word) | ST7b — position, not vocabulary (2026-07-20) |
+| Act heading = Hebrew word ordinal only, anchored to line end | H1 — Roman numerals, either side, trailing content allowed (2026-07-20) |
 
 **Open contradiction — B9 vs ST3.** Noa's B9 ruling says entrance+exit
 co-occurring "MUST be explicitly typed `stage{type:mixed}`". But entrance+exit
