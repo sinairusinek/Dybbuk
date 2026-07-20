@@ -149,6 +149,69 @@ def apply_global_a(root) -> list[str]:
     return changed
 
 
+_HEADING_RX = re.compile(r"heading\s*\{[^}]*type:(act|scene)")
+
+
+def apply_opening_setting(root) -> list[str]:
+    """The parenthesised direction opening an act/scene is a `setting`.
+
+    Sinai 2026-07-20 (BasSheva p7). `stage_lexicon` is purely lexical — it types
+    a direction `setting` only on a cue word (פערוואנדלונג / פאָרהאַנג / אָרט
+    דער האַנדלונג). An act-opening tableau names no cue; it just describes the
+    stage. So the corpus split by accident of wording: 22 openers came out
+    `setting`, 15 `business`. Position, not vocabulary, is what identifies these.
+
+    The whole opening parenthesis is ONE `setting`, even where it describes
+    people in motion — that is the established corpus reading, not a new call:
+    Al Naharot p51 `(דער קעניג זיצט אויף דעם טראהן…)` and p38 `(… מעדכען
+    זינגענדיג)` are both plain `setting` today. Hence no compound
+    `type="setting business"` here; compound typing stays for directions that
+    genuinely do two jobs mid-scene.
+
+    Deliberately conservative:
+      * only retypes `business` or an untyped stage span. `entrance` and
+        `delivery` openers are left alone — `(קאהר ווי אנפאנג פונ'ם צווייטען
+        אקט)` on Kidush ha-Shem p47 sits in opening position but is a musical
+        instruction, and only a human should overrule those five.
+      * requires the direction to open with `(`, so an unparenthesised stray
+        line after a heading is not swept up.
+      * carries across continuation lines only while the parenthesis is still
+        unclosed — BasSheva p7's opener runs over two printed lines.
+    """
+    changed, armed, carrying = [], False, False
+    for tl in root.iter(NS + "TextLine"):
+        txt = line_text(tl)
+        if not txt.strip():
+            continue
+        custom = tl.get("custom") or ""
+        if _HEADING_RX.search(custom):
+            armed, carrying = True, False
+            continue
+        if not (armed or carrying):
+            continue
+        entries = parse_custom(custom)
+        tags = {t for t, _ in entries}
+        if "speaker" in tags or "stage" not in tags:
+            armed = carrying = False
+            continue
+        if not carrying and not txt.lstrip().startswith("("):
+            armed = False
+            continue
+        out, hit = [], False
+        for tag, a in entries:
+            if tag == "stage" and (a.get("type") or "business") == "business":
+                a = dict(a); a["type"] = "setting"
+                hit = True
+            out.append((tag, a))
+        if hit:
+            tl.set("custom", serialize_custom(out))
+            changed.append(f"opening: stage→setting {txt.strip()[:40]!r}")
+        # Keep going only while the parenthesis stays open.
+        carrying = txt.count("(") > txt.count(")")
+        armed = False
+    return changed
+
+
 def stage_lexicon(text: str):
     """Return ('setting'|'trailer'|'epilog') for a known scene-boundary cue, else None."""
     sk = _NIKUD.sub("", text or "")
@@ -657,6 +720,60 @@ def recheck_live(csv_path: Path):
           f"→ {csv_path}")
 
 
+def sweep_openings(only: str | None, dry_run: bool) -> int:
+    """Corpus sweep for `apply_opening_setting`, independent of the flag queue.
+
+    The normal run only visits pages that raised a flag, and a `business` opener
+    raises none — it is a perfectly well-formed span, just the wrong type. So
+    the rule would otherwise reach an act-opening only by coincidence. This mode
+    selects candidates from the local mirror (cheap) but edits the LIVE top
+    transcript (correct), the same contract as the main path.
+    """
+    editions, doc_ids = load_editions(), load_doc_ids()
+    plays = [only] if only else sorted(
+        p.name for p in (REPO / "data").iterdir() if (p / "page_annotated").is_dir())
+    client = None
+    note = f"YiDraCor act-opening setting sweep {_dt.date.today().isoformat()}"
+    n_edit = n_push = 0
+
+    for play in plays:
+        doc = doc_ids.get(play)
+        if doc is None:
+            continue
+        # Cheap local pre-filter: only pages whose mirror shows an act/scene heading.
+        pages = sorted({page for page, path in page_files(play)
+                        if _HEADING_RX.search(
+                            etree.tostring(etree.parse(str(path)), encoding="unicode"))})
+        if not pages:
+            continue
+        if client is None:
+            from transkribus.client import TrpClient
+            client = TrpClient.from_env()
+        print(f"\n=== {editions.get(play, play)} (doc {doc}) — {len(pages)} heading pages ===")
+        for page in pages:
+            tsid, owner, xml = top_transcript(client, doc, page)
+            if xml is None:
+                print(f"  p{page}: no server transcript — skip"); continue
+            root = etree.fromstring(xml.encode("utf-8") if isinstance(xml, str) else xml)
+            changes = apply_opening_setting(root)
+            if not changes:
+                continue
+            n_edit += len(changes)
+            for c in changes:
+                print(f"  p{page}: {c}")
+            if dry_run:
+                n_push += 1; print(f"  p{page}: [dry-run] would push (parent {tsid}, top {owner})")
+                continue
+            client.push_transcript(COL, doc, page, etree.tostring(root, encoding="unicode"),
+                                   parent_tsid=tsid, status="IN_PROGRESS", note=note,
+                                   tool_name="YiDraCor-annotation-pipeline")
+            n_push += 1; print(f"  p{page}: → pushed (parent {tsid})")
+
+    print(f"\n{'DRY-RUN ' if dry_run else ''}SUMMARY: {n_edit} opening spans retyped "
+          f"on {n_push} pages {'to push' if dry_run else 'pushed'}")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -665,7 +782,13 @@ def main():
     ap.add_argument("--out", help="trimmed needs-human CSV (default data/review/needs_human_<date>.csv)")
     ap.add_argument("--recheck", metavar="CSV",
                     help="re-validate an existing needs-human CSV against live Transkribus and rewrite it")
+    ap.add_argument("--sweep-openings", action="store_true",
+                    help="apply ONLY apply_opening_setting(), to every page carrying an "
+                         "act/scene heading (not just flag-candidate pages), then exit")
     args = ap.parse_args()
+
+    if args.sweep_openings:
+        return sweep_openings(args.only, args.dry_run)
 
     if args.recheck:
         recheck_live(Path(args.recheck) if Path(args.recheck).is_absolute()

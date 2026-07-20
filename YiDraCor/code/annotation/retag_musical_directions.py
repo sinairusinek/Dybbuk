@@ -40,6 +40,19 @@ BIS_RX = re.compile(
     rf"\(\s*ב{_N}י{_N}ס{_N}ס?{_N}"            # bis / biss, any pointing
     rf"(?:\s*\d+\s*מ{_N}א{_N}ה?{_N}ל{_N}\s*\.?)?"   # optional " N מאל" count
     rf"\s*\)")
+# Bare, UNPARENTHESISED repeat mark standing alone on its own line. Sinai
+# 2026-07-20 (BasSheva p7): three plays print the mark without parentheses, so
+# the paren-anchored BIS_RX above could not see them — and because the fetch
+# list was itself built from BIS_RX, BasSheva never entered `_musical_targets`
+# at all and no pass of any kind ever touched it. 18 lines across BasSheva (9),
+# Ezra (6) and Blimele (3); some already carry an untyped `stage` span, the
+# Ezra ones carry nothing.
+# Anchored to the WHOLE line (after stripping trailing punctuation) — that is
+# what makes it safe without parens. A substring match would hit `ביסלעך`,
+# `ביסינג` and the preposition `ביס` "until"; a whole line that is nothing but
+# ב-י-ס can only be the repeat mark.
+BARE_BIS_RX = re.compile(rf"^\s*ב{_N}י{_N}ס{_N}ס?{_N}\s*[.,׃:]?\s*\Z")
+
 # Compound directions: a collective named together with the repeat instruction —
 # `(קאהר ביס)` "chorus, repeat". Sinai 2026-07-19: encode the WHOLE parenthesis
 # as one direction, `stage{type:repeat}`, and ascribe it with `xmlid` →
@@ -147,6 +160,21 @@ def retag_line(el) -> list[str]:
             entries.append(("head", head))
             changes.append(f"רעפריין: → head{' lg_id=' + lg_id if lg_id else ''}")
 
+    # ---- 1a. bare whole-line `ביס` → repeat --------------------------------
+    if BARE_BIS_RX.match(txt) and not BIS_RX.search(txt):
+        lo = len(txt) - len(txt.lstrip())
+        hi = len(txt.rstrip())
+        hit = next((i for i, (tg, a) in enumerate(entries)
+                    if tg == "stage" and _covers(a, lo, hi)), None)
+        if hit is None:
+            entries.append(("stage", {"offset": str(lo), "length": str(hi - lo),
+                                      "type": "repeat"}))
+            changes.append(f"bare {txt.strip()!r}: untagged → stage type:repeat")
+        elif entries[hit][1].get("type") != "repeat":
+            old = entries[hit][1].get("type")
+            entries[hit][1]["type"] = "repeat"
+            changes.append(f"bare {txt.strip()!r}: stage type {old or '∅'} → repeat")
+
     # ---- 1b. compound `(קאהר ביס)` → repeat, ascribed to the collective -----
     for m in COMPOUND_RX.finditer(txt):
         lo, hi = m.start(), m.end()
@@ -172,10 +200,17 @@ def retag_line(el) -> list[str]:
     # sung lines with an inline `(ביס)` — dropping `l` there would destroy the
     # song encoding. Only the 17 whole-line cases (a bare `(ביסס)` or
     # `(טאנץ).` on its own line) are wrongly marked as verse.
+    #
+    # Sinai 2026-07-20: the `default=0` below used to be reached on lines with
+    # NO stage span at all, and `0 >= len(stripped) - 1` is TRUE for any
+    # single-character line. Blimele p27 fills its song columns with lone `—`
+    # placeholders carrying `l{length:1}`; all nine had their verse span
+    # silently dropped. The play was outside `_musical_targets` until today, so
+    # the bug never fired in the 2026-07-19 run. Require an actual stage span.
     stripped = txt.strip()
-    if stripped:
-        widest = max((int(a.get("length", 0)) for t, a in entries if t == "stage"),
-                     default=0)
+    stage_lengths = [int(a.get("length", 0)) for t, a in entries if t == "stage"]
+    if stripped and stage_lengths:
+        widest = max(stage_lengths)
         if widest >= len(stripped) - 1:
             before = len(entries)
             entries = [(t, a) for t, a in entries if t != "l"]
@@ -214,14 +249,76 @@ def retag_line(el) -> list[str]:
     return changes
 
 
+def rebuild_targets() -> dict:
+    """Regenerate `_musical_targets.json` by scanning the local mirror.
+
+    The original list was hand-built from BIS_RX hits, which made it circular:
+    a play whose repeat marks are printed WITHOUT parentheses could never enter
+    the list, so it was never fetched, so the gap could never surface. BasSheva
+    was invisible for exactly this reason (Sinai 2026-07-20). Deriving the list
+    from every marker pattern the tool knows — and from `page_annotated/`, which
+    `transkribus.refresh_page_annotated` keeps current — removes the circularity.
+    Superset by design: a page listed here but needing no change is a no-op.
+    """
+    ids = {}
+    for e in json.loads((REPO / "data" / "editions.json").read_text())["editions"]:
+        if e.get("folder") and e.get("transkribus_doc_id"):
+            ids[e["folder"]] = (int(e["transkribus_collection_id"]),
+                                int(e["transkribus_doc_id"]))
+    out = {}
+    for play_dir in sorted((REPO / "data").glob("*/page_annotated")):
+        play = play_dir.parent.name
+        if play not in ids:
+            print(f"  !! {play}: no doc id in editions.json — skipped")
+            continue
+        pages = set()
+        for f in play_dir.glob("*.xml"):
+            try:
+                tree = etree.parse(str(f)).getroot()
+            except etree.XMLSyntaxError:
+                print(f"  !! {play}/{f.name}: unparseable — skipped")
+                continue
+            meta = tree.find(f".//{{{PAGE_NS}}}TranskribusMetadata")
+            nr = meta is not None and meta.get("pageNr")
+            if not nr:
+                continue
+            for el in tree.iter(LINE_TAG):
+                t = line_text(el)
+                if (BIS_RX.search(t) or BARE_BIS_RX.match(t)
+                        or COMPOUND_RX.search(t) or REFRAIN_RX.match(t)
+                        or VOICE_RX.match(t)):
+                    pages.add(int(nr))
+                    break
+        if pages:
+            col, doc = ids[play]
+            out[play] = {"col": col, "doc": doc, "pages": sorted(pages)}
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--push", action="store_true")
     ap.add_argument("--only", help="restrict to one play folder")
+    ap.add_argument("--rebuild-targets", action="store_true",
+                    help="regenerate data/_musical_targets.json from page_annotated/, then exit")
     args = ap.parse_args()
 
-    plays = json.loads((REPO / "data" / "_musical_targets.json").read_text())
+    targets = REPO / "data" / "_musical_targets.json"
+    if args.rebuild_targets:
+        old = json.loads(targets.read_text())
+        new = rebuild_targets()
+        for play in sorted(set(new) | set(old)):
+            o = set(old.get(play, {}).get("pages", []))
+            n = set(new.get(play, {}).get("pages", []))
+            if n - o or o - n:
+                print(f"{play}: +{sorted(n - o)} -{sorted(o - n)}")
+        targets.write_text(json.dumps(new, ensure_ascii=False, indent=2) + "\n")
+        print(f"\nwrote {targets} — {len(new)} plays, "
+              f"{sum(len(v['pages']) for v in new.values())} pages")
+        return
+
+    plays = json.loads(targets.read_text())
     client = TrpClient.from_env(); client.login()
     total_pages = total_changes = 0
 
