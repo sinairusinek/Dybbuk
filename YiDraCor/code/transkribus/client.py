@@ -14,12 +14,17 @@ Endpoints used:
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass
 from typing import Optional
 
 import requests
 
 DEFAULT_BASE = "https://transkribus.eu/TrpServer/rest"
+
+
+class SpanLossError(RuntimeError):
+    """A push would destroy most of the live annotation. See _guard_span_loss."""
 
 
 @dataclass
@@ -96,6 +101,41 @@ class TrpClient:
             }
         return out
 
+    _SPAN_RX = re.compile(r"(\w+)\s*\{")
+    MIN_SPANS_TO_GUARD = 5      # below this, a page has too few spans to judge
+    LOSS_RATIO = 0.5            # blocked when more than half the spans vanish
+
+    @staticmethod
+    def _count_spans(page_xml: str) -> int:
+        """Non-readingOrder spans across all TextLine @custom in a PAGE-XML."""
+        n = 0
+        for m in re.finditer(r'custom="([^"]*)"', page_xml):
+            for tag in TrpClient._SPAN_RX.findall(m.group(1)):
+                if tag != "readingOrder":
+                    n += 1
+        return n
+
+    def _guard_span_loss(self, col_id: int, doc_id: int, page_nr: int,
+                         page_xml: str) -> None:
+        """Raise SpanLossError if this push would wipe most of the live spans."""
+        try:
+            doc = self.fulldoc(col_id, doc_id)
+            page = next(p for p in doc["pageList"]["pages"]
+                        if p["pageNr"] == page_nr)
+            live = self.fetch_transcript(page["tsList"]["transcripts"][0]["url"])
+        except Exception:
+            return          # never block a push because the check itself failed
+        before, after = self._count_spans(live), self._count_spans(page_xml)
+        if before >= self.MIN_SPANS_TO_GUARD and after < before * self.LOSS_RATIO:
+            raise SpanLossError(
+                f"refusing to push doc {doc_id} p{page_nr}: it would drop "
+                f"{before - after} of {before} annotation spans (live={before}, "
+                f"payload={after}). This is the signature of a payload built "
+                f"from a stale local copy rather than the live transcript. "
+                f"Refresh from live first (transkribus.refresh_page_annotated), "
+                f"or pass allow_span_loss=True if the removal is intended."
+            )
+
     def push_transcript(
         self,
         col_id: int,
@@ -107,12 +147,31 @@ class TrpClient:
         status: str = "IN_PROGRESS",
         note: Optional[str] = None,
         tool_name: str = "YiDraCor-annotation-pipeline",
+        allow_span_loss: bool = False,
     ) -> dict:
         """Upload a new PAGE-XML transcript layer to an existing page.
 
         Posts to `POST /collections/{col}/{doc}/{pageNr}/text` (legacy API).
         Returns the response JSON (typically the new tsId + url).
+
+        Refuses a WHOLESALE span loss unless `allow_span_loss=True`. Sinai
+        2026-07-20: BasSheva p8 lost all 32 of Noa's `l` spans to a push built
+        from a stale `page_annotated/` mirror, and nothing noticed for nine days
+        — lint validates that spans are well-formed, never that spans which used
+        to exist still do. Galed's `corrections/line_merge.py` is a standing
+        hazard of the same shape: it rebuilds line geometry and sets
+        `custom` to bare `readingOrder` (line 172), destroying every span by
+        construction, and its output is pushed with `transkribus.sync push`.
+        It has been run over 8 YiDraCor plays (page_final/).
+
+        The check is deliberately wholesale-only, because legitimate passes DO
+        remove spans — retag_musical_directions §2b strips `l` from whole-line
+        stage directions, the pageNum sweep replaces `l` with `fw`. Losing a few
+        spans is normal; losing nearly all of them means the payload was built
+        from something other than the current transcript.
         """
+        if not allow_span_loss and parent_tsid is not None:
+            self._guard_span_loss(col_id, doc_id, page_nr, page_xml)
         params: dict = {"toolName": tool_name, "status": status}
         if parent_tsid is not None:
             params["parent"] = parent_tsid
