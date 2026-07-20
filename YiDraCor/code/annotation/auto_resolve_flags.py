@@ -753,6 +753,72 @@ def apply_missing_headings(root) -> list[str]:
     return changed
 
 
+_L_LEAD_RX = re.compile(r"^\s*[:׃־\-–—]?\s*")
+
+
+def apply_l_speaker_scope(root) -> list[str]:
+    """An `l` must cover the spoken text only, never the speaker label.
+
+    Sinai 2026-07-20. In TEI `<speaker>` and `<l>` are siblings inside `<sp>`;
+    the printed label is not part of the verse line. 119 `l` spans corpus-wide
+    began at offset 0 on a line whose speaker label also starts there, so the
+    span swallowed the label; 139 were already correct.
+
+    The published TEI was never wrong — `build_tei.speaker_slice` re-splits the
+    line by the SPEAKER span's length and puts only the remainder in `<l>`, so
+    it ignores the `l` offsets for content. This fixes the annotation layer so
+    the offsets mean what they say, for any consumer that reads the PAGE-XML
+    directly rather than re-deriving.
+
+    Precedent: §G.4/M6 already shrinks `l` to the sung tail after a voice
+    rubric. Same rule, never applied to named speakers.
+
+    Trims the same leading punctuation `speaker_slice` does, so the two agree.
+    A line that is nothing but a label loses its `l` entirely.
+    """
+    changed = []
+    for tl in root.iter(NS + "TextLine"):
+        txt = line_text(tl)
+        entries = parse_custom(tl.get("custom") or "")
+        speakers = [a for t, a in entries if t == "speaker"]
+        if not speakers or not any(t == "l" for t, _ in entries):
+            continue
+        out, hit = [], False
+        for tag, a in entries:
+            if tag != "l":
+                out.append((tag, a)); continue
+            try:
+                lo, ln = int(a.get("offset", 0)), int(a.get("length", 0))
+            except (TypeError, ValueError):
+                out.append((tag, a)); continue
+            end = lo + ln
+            # widest speaker span overlapping this l
+            ov = [(int(s.get("offset", 0)), int(s.get("length", 0))) for s in speakers]
+            ov = [(so, sl) for so, sl in ov if lo < so + sl and end > so]
+            if not ov:
+                out.append((tag, a)); continue
+            new_lo = max(so + sl for so, sl in ov)
+            new_lo += len(_L_LEAD_RX.match(txt[new_lo:]).group(0))
+            new_ln = end - new_lo
+            if new_ln <= 0:
+                changed.append(f"dropped l (label-only line) {txt.strip()[:30]!r}")
+                hit = True
+                continue
+            a = dict(a); a["offset"] = str(new_lo); a["length"] = str(new_ln)
+            out.append(("l", a)); hit = True
+            changed.append(f"l({lo},{ln})→({new_lo},{new_ln}) {txt.strip()[:34]!r}")
+        if hit:
+            tl.set("custom", serialize_custom(out))
+    return changed
+
+
+def sweep_l_scope(only: str | None, dry_run: bool) -> int:
+    """Corpus sweep for `apply_l_speaker_scope`."""
+    return _sweep(only, dry_run, apply_l_speaker_scope,
+                  f"YiDraCor l-span speaker scoping {_dt.date.today().isoformat()}",
+                  "l spans rescoped", mirror_rx=re.compile(r"\bl\s*\{offset"))
+
+
 def sweep_headings(only: str | None, dry_run: bool) -> int:
     """Corpus sweep for `apply_missing_headings` — same contract as sweep_openings."""
     return _sweep(only, dry_run, apply_missing_headings,
@@ -839,6 +905,8 @@ def main():
     ap.add_argument("--sweep-headings", action="store_true",
                     help="tag act/scene headings that carry no heading span "
                          "(Roman numerals were only learned 2026-07-20), then exit")
+    ap.add_argument("--sweep-l-scope", action="store_true",
+                    help="shrink `l` spans that swallow the speaker label, then exit")
     args = ap.parse_args()
 
     if args.sweep_openings:
@@ -846,6 +914,9 @@ def main():
 
     if args.sweep_headings:
         return sweep_headings(args.only, args.dry_run)
+
+    if args.sweep_l_scope:
+        return sweep_l_scope(args.only, args.dry_run)
 
     if args.recheck:
         recheck_live(Path(args.recheck) if Path(args.recheck).is_absolute()

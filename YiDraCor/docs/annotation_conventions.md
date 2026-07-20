@@ -333,6 +333,26 @@ speaker, not a stage direction.
 `head` spans — but **preserve** any `head` covering a refrain rubric or
 carrying no `lg_id` (castList `פערזאנען`, act headings).
 
+**M9. An `l` covers the spoken text only — never the speaker label** *(Sinai
+2026-07-20)*. In TEI `<speaker>` and `<l>` are siblings inside `<sp>`; the
+printed label is not part of the verse line. So on
+`עָזריה: יא טיעף אין זיעזעס…` the `l` starts at offset 8, after the label and
+its colon — not at 0.
+
+Corpus was split 119 wrong / 139 right; the 119 were rescoped 2026-07-20 with
+`auto_resolve_flags --sweep-l-scope`. A line that is nothing but a label loses
+its `l` entirely.
+
+This is the same rule §G.4/M6 already applied to voice rubrics ("shrink the
+`l` to the sung tail"); it had simply never been applied to named speakers.
+
+⚠️ The published TEI was never wrong: `build_tei.speaker_slice` re-splits the
+line by the SPEAKER span's length and emits only the remainder as `<l>`,
+ignoring the `l` offsets for content. The fix is to the annotation layer, so
+the offsets mean what they say for any consumer that reads the PAGE-XML
+directly. Trim the same leading punctuation `speaker_slice` does, or the two
+disagree.
+
 **M8. A whole-line stage direction is not a verse line** *(Sinai 2026-07-19)*.
 When a `stage` span covers the entire line, drop any `l` on it — a bare
 `(ביסס)` or `(טאנץ).` on its own line inside a song was being marked as verse.
@@ -419,6 +439,7 @@ rewrite Noa's Di Seder work; deferred to her report.
 | `(ביס)` opens song mode | §8 — deferred, disabled 2026-07-19 |
 | `רעפריין` as a speaker / verse line | M5 — it is a `head` |
 | Voice rubrics as `stage type="delivery"` or inline verse | M6 / §G.4 |
+| `l` spanning the speaker label as well as the speech | M9 — spoken text only (2026-07-20) |
 | Act-opening parenthetical typed `business` (no cue word) | ST7b — position, not vocabulary (2026-07-20) |
 | Act heading = Hebrew word ordinal only, anchored to line end | H1 — Roman numerals, either side, trailing content allowed (2026-07-20) |
 
