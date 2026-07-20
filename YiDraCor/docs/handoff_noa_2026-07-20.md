@@ -5,28 +5,8 @@ rounds (06-14, 06-18, 06-24, 06-28) are closed or absorbed here.
 
 **Reply format:** write your answer next to each item. Sinai batch-applies.
 
-Two notes before you start:
-
-1. **We have lost your work three times now, and recovered it each time.**
-   Your 06-21 castList answers sat in the Google Doc unread for four weeks. On
-   06-24 a push buried your castList annotations on Bas Sheva p.6 and Dovid's
-   Fidele p.6. And on **07-19 a push wiped all 32 verse (`l`) spans you had
-   added to Bas Sheva p.8 on 07-11** — we only found it on 07-20, nine days
-   later, because nothing in our checks looks for annotation that has gone
-   missing.
-
-   All of it is restored. As of 07-20 a push that would delete most of a page's
-   annotation is now blocked outright, which is the first safeguard that would
-   actually have caught this one. If you ever see your own work missing, say so
-   immediately — we can recover it from the layer history.
-
-2. **This list is deliberately short.** A first pass produced 1,742 flags for
-   you; ~1,630 of those turned out to be gaps in our own tag vocabulary
-   (`unclear`, `actor` — *your* tags — and Transkribus-native spans lint-ing as
-   errors). We then ran the rule sweep that had been deferred since 06-14,
-   back-filled role xmlids from cast_dict, and fixed the mechanical span
-   defects. Corpus flags went **1,825 → 236**. What follows is the genuine
-   residue: the things no rule can decide.
+This list is only what no rule can decide. If you ever find your own
+annotation missing, tell us — we can recover it from the layer history.
 
 ---
 
