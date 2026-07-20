@@ -275,7 +275,12 @@ _ROM = r"(?:VII|VI|IV|V|III|II|I)"
 _TAIL = r"(?:\s*[.,׃:]?\s*(?:\(.*\))?\s*)"
 _ACT_RX = re.compile(
     rf"^\s*(?:(?P<ord>{_ORD_ALT})\s+{_AKT}"
-    rf"|(?P<rom1>{_ROM})\s*\.?\s*{_AKT}"
+    # RTL storage puts the numeral's period on either side of it, and sometimes
+    # at the very START of the line: Dovid's Fidele p.46 stores `III. אקט` as
+    # `.III אַקט`. Found 2026-07-20, after the first sweep had already run —
+    # that page kept only a legacy `head` span and its opening tableau stayed
+    # untyped in consequence. Allow a leading period before the numeral.
+    rf"|\.?\s*(?P<rom1>{_ROM})\s*\.?\s*{_AKT}"
     rf"|{_AKT}\s*\.?\s*(?P<rom2>{_ROM}))"
     rf"{_TAIL}$"
 )

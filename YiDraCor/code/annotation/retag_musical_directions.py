@@ -67,6 +67,16 @@ COMPOUND_RX = re.compile(
     rf"\s*[-–—]?\s*ב{_N}י{_N}ס{_N}ס?{_N}\s*\)")
 COMPOUND_XMLID = {"קאהר": "kor", "קאר": "kor", "כאר": "kor", "כער": "kor",
                   "אלע": "alle"}
+# The compound printed WITHOUT parentheses, alone on its line — Di Seder p70
+# `קאָהר ביסס`. Same paren-anchoring gap as BARE_BIS_RX above, in a second
+# pattern; found 2026-07-20 while listing untyped stage spans, not by the
+# earlier check, because that check reused the paren-anchored regex.
+# One instance corpus-wide, but the line was left as a bare `stage` with no
+# type, which is why it surfaced as work for Noa rather than as a rule hit.
+# Whole-line anchored, like BARE_BIS_RX, so `קאהר` as a speaker label can't match.
+BARE_COMPOUND_RX = re.compile(
+    rf"^\s*(?P<who>ק{_N}א{_N}ה?{_N}ר|כ{_N}א{_N}ר|כ{_N}ע{_N}ר|א{_N}ל{_N}ע)"
+    rf"\s*[-–—]?\s*ב{_N}י{_N}ס{_N}ס?{_N}\s*[.,׃:]?\s*\Z")
 # Not matched, correctly: `(אויפטריט ביסינג)` (enter Bising, a character) and
 # `(ערוואכט צו ביסלעך)` ("bit by bit").
 # line-initial rubric, optional colon; capture just the word
@@ -194,6 +204,27 @@ def retag_line(el) -> list[str]:
                 a["type"] = "repeat"; a["xmlid"] = xmlid
                 changes.append(f"compound '{m.group(0)}': stage type {old} → repeat, who=#{xmlid}")
 
+    # ---- 1c. bare whole-line `קאהר ביס` → repeat, ascribed ------------------
+    m = BARE_COMPOUND_RX.match(txt)
+    if m and not COMPOUND_RX.search(txt):
+        xmlid = COMPOUND_XMLID.get(NIKUD_RX.sub("", m.group("who")))
+        if xmlid:
+            lo, hi = len(txt) - len(txt.lstrip()), len(txt.rstrip())
+            hit = next((i for i, (tg, a) in enumerate(entries)
+                        if tg == "stage" and _covers(a, lo, hi)), None)
+            if hit is None:
+                entries.append(("stage", {"offset": str(lo), "length": str(hi - lo),
+                                          "type": "repeat", "xmlid": xmlid}))
+                changes.append(f"bare compound {txt.strip()!r}: → stage type:repeat "
+                               f"who=#{xmlid}")
+            else:
+                a = entries[hit][1]
+                if a.get("type") != "repeat" or a.get("xmlid") != xmlid:
+                    old = a.get("type")
+                    a["type"] = "repeat"; a["xmlid"] = xmlid
+                    changes.append(f"bare compound {txt.strip()!r}: stage type "
+                                   f"{old or '∅'} → repeat, who=#{xmlid}")
+
     # ---- 2b. a whole-line stage direction is not a verse line ---------------
     # Sinai 2026-07-19. NARROW BY DESIGN: only when a stage span covers the
     # entire line. Of 111 lines carrying both `stage` and `l`, 94 are genuine
@@ -285,8 +316,8 @@ def rebuild_targets() -> dict:
             for el in tree.iter(LINE_TAG):
                 t = line_text(el)
                 if (BIS_RX.search(t) or BARE_BIS_RX.match(t)
-                        or COMPOUND_RX.search(t) or REFRAIN_RX.match(t)
-                        or VOICE_RX.match(t)):
+                        or COMPOUND_RX.search(t) or BARE_COMPOUND_RX.match(t)
+                        or REFRAIN_RX.match(t) or VOICE_RX.match(t)):
                     pages.add(int(nr))
                     break
         if pages:

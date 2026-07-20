@@ -53,13 +53,14 @@ per-page proposal for you to correct? →
 
 ---
 
-## Part 3 — Musical directions: please ratify
+## Part 3 — Musical directions (decided; for your information)
 
 `(ביס)` and `רעפריין` had never been given an encoding. They were being
 handled four incompatible ways (`stage type="business"`, untagged, counted as
 verse lines, and once as a *speaker* — which minted a junk cast role). We
-researched TEI and DraCor practice and applied a convention; **it needs your
-sign-off.** Full reasoning in `docs/proposal_musical_directions_2026-07-19.md`.
+researched TEI and DraCor practice and applied a convention. **Decided by
+Sinai — nothing needed from you**, but flag anything that looks wrong. Full
+reasoning in `docs/proposal_musical_directions_2026-07-19.md`.
 
 Relevant findings: TEI's `stage/@type` list is explicitly open and contains no
 musical value; TEI has no repeat-mark mechanism at all; and DraCor constrains
@@ -80,16 +81,9 @@ there is no house style to follow; we're setting the precedent.
   variant of `קאהר`, not OCR *(Sinai)* — the nine genuine `(קאהר ביס)` support
   the reading.
 
-☐ **3.1** `(ביס)` → `stage{type:repeat}` — agreed? →
-☐ **3.2** `רעפריין` → `head` in `<lg type="refrain">` — agreed? →
-☐ **3.3** Compound `(קאהר ביס)` → `<stage type="repeat" who="#kor">` — agreed?
-Or would you rather the chorus rubric were a separate span from the repeat
-mark? →
-
-*Decided by Sinai, no action needed from you: the mark is placed where printed
-(scope not recorded via `@target`); mid-line `(ביס)` is treated the same as
-end-of-line; and `סאלא אלט` — which you left blank on 06-28 — is resolved by
-§G.4, ratified 07-02 after you answered.*
+Also decided, for the record: the mark is placed where printed (scope not
+recorded via `@target`); mid-line `(ביס)` is treated the same as end-of-line;
+and `סאלא אלט` is resolved by §G.4.
 
 ---
 
@@ -113,33 +107,31 @@ or `type="mixed"` (B9)? →
 
 ## Part 5 — Untyped stage directions
 
-**5.1 — the five that fell through the cracks.** These were asked on 06-24,
-never answered, and dropped out of the 06-28 document. Choose:
-`setting / entrance / exit / business / delivery / mixed` (or multi-token).
+~~**5.1 — the five that fell through the cracks**~~ — **absorbed into 5.2
+below.** Der Mann p.18 and Mishke Mashke p.16 are typed; Der Mann p.10 and
+p.14 and Al Naharot p.9 are in the 5.2 list. Blimele p.27 was `ביס` (Part 3).
 
-| Play | Page | ☐ |
-|---|---|---|
-| Der Mann untern Tisch | 10 | → |
-| Der Mann untern Tisch | 14 | → |
-| Der Mann untern Tisch | 18 | → |
-| Al Naharot Bavel | 9 | → |
-| Mishke Mashke | 16 | → |
+**5.2 — untyped `stage` spans.** This was reported to you as 60. The real
+number is **16**: the rest were duplicate scan-set copies of the same page and
+stale local files, not real work. Of the 16, 8 we have typed, 5 are our own
+defects to fix, and **3 need you**:
 
-*(Blimele p.27 was the sixth — it was `ביס`, now handled by Part 3.)*
+☐ **5.2a** Der Mann untern Tisch p.14 `(קלערְט אבּייסיל)` — "ponders a bit".
+`business` (an action) or `delivery` (it colours the speech that follows)? →
 
-**5.2 — 60 bare `stage` spans across the corpus** have no `@type` at all, and
-no lexicon cue the rules can act on (the ones that *did* have a cue —
-`(פארהאנג)`, `פערוואנדלונג` — are now typed `setting` automatically).
+☐ **5.2b** Di Seder p.55 `(דאָס זינגט דאָס קאָהר אזוי ווי דער פֿאָרהאַנג געהט
+אויף אים ערשטען אקט)` — "the chorus sings this as the curtain rises in act 1".
+A cue note about who sings and when, not stage action. `business`, or does it
+want its own musical treatment? →
 
-Al Naharot Bavel **20** · Kidush Hashem **15** · Di Seder **6** ·
-Mishke Mashke **5** · Ezra **4** · Der Mann **3** · Dovid's Fidele **3** ·
-Das Yudishe Kind **2** · Hinke Pinke / Sore Sheyndel **1** each.
+☐ **5.2c** Di Seder p.69 `רעפריין, א. ז. וו.` — "refrain, etc." at the end of
+a verse line, i.e. *repeat the refrain here*. M5 makes `רעפריין` a `head`, but
+that is for a rubric heading a block; this is an inline instruction. Tag it
+`stage{type:repeat}` instead? →
 
-These are the residue *after* auto-typing everything the lexicon could reach.
-☐ **Shall we run an LLM pass over them and send you its proposals to correct,
-rather than have you type all 60 from scratch?** →
-
-Full list: `data/review/lint_flags_2026-07-20.csv`.
+Our proposals for the other 8, with reasoning, are in
+`data/review/stage_type_proposals_2026-07-20.csv` — correct any you disagree
+with in the `noa_correction` column.
 
 ---
 
