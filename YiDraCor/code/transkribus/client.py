@@ -158,11 +158,9 @@ class TrpClient:
         2026-07-20: BasSheva p8 lost all 32 of Noa's `l` spans to a push built
         from a stale `page_annotated/` mirror, and nothing noticed for nine days
         — lint validates that spans are well-formed, never that spans which used
-        to exist still do. Galed's `corrections/line_merge.py` is a standing
-        hazard of the same shape: it rebuilds line geometry and sets
-        `custom` to bare `readingOrder` (line 172), destroying every span by
-        construction, and its output is pushed with `transkribus.sync push`.
-        It has been run over 8 YiDraCor plays (page_final/).
+        to exist still do. The exact tool behind that push is still
+        unidentified, which is precisely why the guard sits here, at the choke
+        point every push goes through, rather than in any one tool.
 
         The check is deliberately wholesale-only, because legitimate passes DO
         remove spans — retag_musical_directions §2b strips `l` from whole-line
