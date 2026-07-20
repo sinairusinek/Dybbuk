@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.3.0:model_id=54653:lm=provided:date=12_09_2023_11:00</Creator>
         <Created>2021-11-21T13:26:23.687+01:00</Created>
-        <LastChange>2026-05-10T17:38:28.508+02:00</LastChange>
+        <LastChange>2026-07-11T21:45:38.967+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828424" pageId="30804048" pageNr="2" tsid="286756802" status="FINAL" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=HOFZSGHKGSOULOAEBAJFHLMU" xmlUrl="https://files.transkribus.eu/Get?id=ESWVPPKUROUWPZYFMOMXGCVT" imageId="24239324"/>
+        <TranskribusMetadata docId="828424" pageId="30804048" pageNr="2" userId="397914" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=HOFZSGHKGSOULOAEBAJFHLMU" imageId="24239324"/>
     </Metadata>
     <Page imageFilename="0002_OTYyMjEzMDA.97285719.jpg" imageWidth="2440" imageHeight="3656">
         <PrintSpace>
             <Coords points="0,172 2440,172 2440,3542 0,3542"/>
         </PrintSpace>
-        <ReadingOrder>
-            <OrderedGroup id="ro_1779026252733" caption="Regions reading order">
-                <RegionRefIndexed index="0" regionRef="region_1694513721437_739"/>
-                <RegionRefIndexed index="1" regionRef="r_2_1"/>
-            </OrderedGroup>
-        </ReadingOrder>
-        <TextRegion type="paragraph" id="region_1694513721437_739" custom="readingOrder {index:0;} structure {type:paragraph;}">
+        <TextRegion type="paragraph" id="region_1694513721437_739" custom="readingOrder {index:0;} structure {type:castList;}">
             <Coords points="336,437 1958,437 1958,2476 336,2476"/>
             <TextLine id="region_1694513721437_739_tl_2" custom="readingOrder {index:0;}">
                 <Coords points="914,832 964,832 987,849 1141,807 1189,830 1235,813 1284,824 1285,741 1171,718 1150,730 1121,715 1099,728 1015,713 966,738 938,727 915,741"/>
@@ -30,135 +24,120 @@
                     <Unicode>פּערזאנען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_6" custom="readingOrder {index:1;}">
+            <TextLine id="region_1694513721437_739_tl_6" custom="readingOrder {index:1;} role {offset:0;length:12;xmlid:graf_petefi;}">
                 <Coords points="1339,1077 1393,1038 1422,1049 1533,1044 1566,1058 1632,1041 1679,1046 1677,984 1659,980 1602,989 1551,973 1526,992 1446,977 1430,989 1337,982"/>
                 <Baseline points="1343,1017 1384,1026 1429,1020 1474,1020 1519,1023 1563,1026 1608,1026 1653,1029 1680,1032"/>
                 <TextEquiv>
                     <Unicode>גראף פּעטעפי</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1694597316334_996" custom="readingOrder {index:2;}">
+            <TextLine id="line_1694597316334_996" custom="readingOrder {index:2;} role {offset:0;length:12;xmlid:vladislav;} roleDesc {offset:13;length:9;}">
                 <Coords points="1067,1094 1131,1063 1451,1060 1601,1068 1664,1079 1674,1159 1217,1169 1071,1155"/>
                 <Baseline points="1074,1122 1119,1125 1163,1128 1208,1134 1241,1131 1357,1113 1402,1116 1447,1116 1492,1122 1537,1119 1581,1122 1626,1122 1671,1125 1674,1125"/>
                 <TextEquiv>
-                    <Unicode>וולאדיסלאוו זײַן זוּהן </Unicode>
+                    <Unicode>וולאדִיסלאוו זײַן זוּהן</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_10" custom="readingOrder {index:3;}">
+            <TextLine id="region_1694513721437_739_tl_10" custom="readingOrder {index:3;} role {offset:0;length:9;xmlid:zaslavek;} roleDesc {offset:10;length:14;}">
                 <Coords points="898,1255 1433,1270 1500,1227 1558,1238 1581,1225 1618,1229 1630,1241 1663,1238 1662,1171 1641,1171 1621,1152 1607,1159 1585,1148 1567,1163 1546,1158 1507,1175 1484,1162 897,1166"/>
                 <Baseline points="947,1228 1456,1217 1501,1217 1545,1217 1590,1217 1635,1220 1665,1220"/>
                 <TextEquiv>
-                    <Unicode>זאסלאוועק זײַער דיענער</Unicode>
+                    <Unicode>זאסלאוועק זײַער דִיענֶער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_11" custom="readingOrder {index:4;}">
+            <TextLine id="region_1694513721437_739_tl_11" custom="readingOrder {index:4;} role {offset:0;length:10;xmlid:hofnar;}">
                 <Coords points="1461,1327 1497,1329 1537,1318 1564,1331 1578,1323 1658,1329 1655,1273 1601,1274 1570,1259 1550,1265 1535,1254 1490,1267 1458,1260"/>
                 <Baseline points="1465,1304 1510,1304 1554,1310 1599,1313 1644,1310 1659,1310"/>
                 <TextEquiv>
-                    <Unicode>הויפ⸗נאר</Unicode>
+                    <Unicode>הוִיפ⸗נאָר</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_12" custom="readingOrder {index:5;}">
+            <TextLine id="region_1694513721437_739_tl_12" custom="readingOrder {index:5;} role {offset:0;length:15;xmlid:graf_zezemir;}">
                 <Coords points="1306,1411 1419,1435 1470,1424 1547,1461 1575,1447 1613,1459 1661,1452 1659,1330 1637,1322 1577,1361 1310,1360"/>
                 <Baseline points="1322,1398 1360,1396 1405,1402 1453,1401 1501,1402 1545,1396 1590,1399 1635,1405 1662,1405"/>
                 <TextEquiv>
-                    <Unicode>גראף זעזעמיר</Unicode>
+                    <Unicode>גראף זֶעזֶעמִיר</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l" custom="readingOrder {index:6;}">
+            <TextLine id="l" custom="readingOrder {index:6;} role {offset:0;length:2;xmlid:rov;}">
                 <Coords points="1557,1487 1671,1487 1671,1457 1557,1457"/>
                 <Baseline points="1557,1487 1671,1487"/>
                 <TextEquiv>
                     <Unicode>רב</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_14" custom="readingOrder {index:7;}">
+            <TextLine id="region_1694513721437_739_tl_14" custom="readingOrder {index:7;} role {offset:0;length:9;xmlid:henele;} roleDesc {offset:10;length:16;}">
                 <Coords points="952,1601 1476,1601 1492,1614 1508,1603 1541,1615 1570,1599 1608,1610 1622,1599 1637,1605 1652,1599 1651,1556 1592,1535 1580,1544 1573,1539 1535,1547 1514,1532 1474,1552 955,1551"/>
                 <Baseline points="955,1589 1513,1593 1557,1593 1602,1596 1647,1596 1653,1596"/>
                 <TextEquiv>
-                    <Unicode>הענעלע זיין טאכטער</Unicode>
+                    <Unicode>הֶענֶעלֶע זייַן טאָכְֿטֶער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_15" custom="readingOrder {index:8;}">
+            <TextLine id="region_1694513721437_739_tl_15" custom="readingOrder {index:8;} role {offset:0;length:8;xmlid:shmerl;}">
                 <Coords points="1520,1681 1549,1702 1564,1697 1607,1702 1623,1694 1654,1691 1652,1637 1636,1637 1618,1650 1589,1634 1561,1646 1547,1635 1538,1638 1518,1630"/>
                 <Baseline points="1464,1681 1569,1683 1614,1686 1656,1683"/>
                 <TextEquiv>
-                    <Unicode>שמערל</Unicode>
+                    <Unicode>שׁמֶערְל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_17" custom="readingOrder {index:9;}">
+            <TextLine id="region_1694513721437_739_tl_17" custom="readingOrder {index:9;} role {offset:0;length:12;xmlid:shprintse;}">
                 <Coords points="1440,1800 1474,1784 1498,1785 1528,1802 1554,1783 1593,1808 1618,1791 1652,1798 1651,1721 1636,1731 1562,1729 1536,1743 1522,1731 1489,1743 1464,1725 1439,1730"/>
                 <Baseline points="1444,1781 1489,1778 1534,1778 1578,1778 1623,1781 1653,1781"/>
                 <TextEquiv>
-                    <Unicode>שפרינצע</Unicode>
+                    <Unicode>שׁפּרִינְצֶע</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_16" custom="readingOrder {index:10;}">
+            <TextLine id="region_1694513721437_739_tl_16" custom="readingOrder {index:10;} role {offset:0;length:8;xmlid:dyener_rov;} roleDesc {offset:9;length:10;}">
                 <Coords points="861,1751 906,1763 941,1749 1003,1779 1041,1759 1092,1778 1233,1733 1231,1688 1212,1684 1159,1695 1124,1678 981,1683 859,1666"/>
                 <Baseline points="865,1722 910,1722 955,1725 999,1725 1044,1725 1089,1725 1134,1728 1178,1733 1223,1731 1235,1728"/>
                 <TextEquiv>
-                    <Unicode>דיענער בּייַם רב</Unicode>
+                    <Unicode>דִיענֶער בּייַ'ם רב</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1694597453725_1028" custom="readingOrder {index:11;}">
+            <TextLine id="line_1694597453725_1028" custom="readingOrder {index:11;} role {offset:0;length:7;xmlid:marta;} roleDesc {offset:8;length:40;}">
                 <Coords points="534,1816 1626,1823 1652,1829 1654,1883 1639,1890 1096,1901 535,1894"/>
                 <Baseline points="540,1862 584,1856 629,1856 674,1856 719,1856 764,1856 808,1862 853,1862 898,1865 943,1865 987,1865 1032,1868 1077,1868 1122,1865 1166,1868 1211,1868 1250,1871 1438,1868 1483,1868 1528,1871 1572,1874 1617,1874 1656,1874"/>
                 <TextEquiv>
-                    <Unicode>מארטהא אַ גוּבּערנאַנטין בּײַ גראַף פּעטעפי</Unicode>
+                    <Unicode>מארְטהא אַ גוּבּעֶרנאַנטיִן בּײַ גראַף פּעֶטעֶפי</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_20" custom="readingOrder {index:12;}">
+            <TextLine id="region_1694513721437_739_tl_20" custom="readingOrder {index:12;} role {offset:0;length:16;xmlid:kenig_zigmund;}">
                 <Coords points="1350,1983 1381,2000 1411,1983 1474,1997 1503,1979 1609,2007 1650,2001 1646,1905 1602,1930 1507,1930 1470,1915 1433,1928 1348,1920"/>
                 <Baseline points="1354,1963 1399,1963 1444,1966 1489,1966 1534,1969 1578,1972 1623,1972 1650,1969"/>
                 <TextEquiv>
-                    <Unicode>קעניג זיגמוּנד</Unicode>
+                    <Unicode>קֶענִיג זיגמוּנד</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_21" custom="readingOrder {index:13;}">
+            <TextLine id="region_1694513721437_739_tl_21" custom="readingOrder {index:13;} role {offset:0;length:19;xmlid:kerker_meyster;}">
                 <Coords points="1231,2089 1270,2099 1330,2065 1425,2107 1565,2066 1652,2107 1650,2000 1584,1999 1501,2026 1402,1995 1338,2021 1229,2014"/>
                 <Baseline points="1235,2056 1280,2059 1325,2059 1369,2056 1414,2059 1459,2059 1504,2059 1548,2065 1593,2068 1638,2065 1653,2065"/>
                 <TextEquiv>
-                    <Unicode>קערקער⸗מייסטער</Unicode>
+                    <Unicode>קֶערְקֶער⸗מַייסטֶער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_22" custom="readingOrder {index:14;}">
+            <TextLine id="region_1694513721437_739_tl_22" custom="readingOrder {index:14;} role {offset:0;length:11;xmlid:dyener;}">
                 <Coords points="1445,2184 1464,2177 1481,2182 1495,2171 1520,2182 1562,2164 1576,2173 1608,2155 1622,2167 1654,2159 1655,2108 1626,2099 1604,2117 1542,2120 1512,2105 1482,2110 1446,2087"/>
                 <Baseline points="1450,2154 1495,2157 1539,2160 1584,2151 1629,2154 1656,2157"/>
                 <TextEquiv>
-                    <Unicode>א דיענער</Unicode>
+                    <Unicode>אַ דִיענֶער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="region_1694513721437_739_tl_23" custom="readingOrder {index:15;}">
+            <TextLine id="region_1694513721437_739_tl_23" custom="readingOrder {index:15;} role {offset:0;length:9;xmlid:gayst;}">
                 <Coords points="1449,2260 1473,2267 1483,2259 1525,2279 1544,2266 1579,2270 1605,2259 1654,2265 1651,2207 1626,2205 1616,2195 1500,2201 1447,2220"/>
                 <Baseline points="1453,2244 1498,2247 1542,2247 1587,2250 1632,2253 1656,2256"/>
                 <TextEquiv>
-                    <Unicode>א גייסט</Unicode>
+                    <Unicode>אַ גַייסט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1694599194469_485" custom="readingOrder {index:16;}">
+            <TextLine id="line_1694599194469_485" custom="readingOrder {index:16;} role {offset:0;length:27;}">
                 <Coords points="829,2307 1338,2323 1337,2373 828,2357"/>
                 <Baseline points="828,2352 1337,2368"/>
                 <TextEquiv>
-                    <Unicode>יודען, גראפען א. ז. וו.</Unicode>
+                    <Unicode>יוּדֶען, גראַפֿעֶן א. ז. וו.</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode>פּערזאנען.
-גראף פּעטעפי
-וולאדיסלאוו זײַן זוּהן 
-זאסלאוועק זײַער דיענער
-הויפ⸗נאר
-גראף זעזעמיר
-הענעלע זיין טאכטער
-שמערל
-שפרינצע
-דיענער בּייַם רב
-מארטהא אַ גוּבּערנאַנטין בּײַ גראַף פּעטעפי
-קעניג זיגמוּנד
-קערקער⸗מייסטער
-א דיענער
-א גייסט
-יודען, גראפען א. ז. וו.</Unicode>
+                <Unicode>פּערזאנען.גראף פּעטעפיוולאדיסלאוו זײַן זוּהן זאסלאוועק זײַער דיענערהויפ⸗נארגראף זעזעמירהענעלע זיין טאכטערשמערלשפרינצעדיענער בּייַם רבמארטהא אַ גוּבּערנאַנטין בּײַ גראַף פּעטעפיקעניג זיגמוּנדקערקער⸗מייסטערא דיענערא גייסטיודען, גראפען א. ז. וו.</Unicode>
             </TextEquiv>
         </TextRegion>
         <TextRegion type="paragraph" id="r_2_1" custom="readingOrder {index:1;} structure {type:paragraph;}">
@@ -170,7 +149,7 @@
         <SeparatorRegion id="r_3" custom="readingOrder {index:2;}">
             <Coords points="1387,2759 1718,2759 1718,2770 1387,2770"/>
         </SeparatorRegion>
-        <GraphicRegion id="r_26" custom="readingOrder {index:3;}">
+        <GraphicRegion id="r_26" custom="readingOrder {index:2;}">
             <Coords points="2181,1367 2219,1367 2219,1518 2181,1518"/>
         </GraphicRegion>
         <SeparatorRegion id="r_4" custom="readingOrder {index:4;}">

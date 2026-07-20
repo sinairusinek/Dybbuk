@@ -3,13 +3,13 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_18:18</Creator>
         <Created>2021-11-21T13:26:29.977+01:00</Created>
-        <LastChange>2026-07-04T16:39:48.826+02:00</LastChange>
+        <LastChange>2026-07-20T11:08:39.152+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828424" pageId="30804089" pageNr="28" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=ZRPPLIYNQQBNUVZIWWHQMDOG" imageId="24239365"/>
+        <TranskribusMetadata docId="828424" pageId="30804089" pageNr="28" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=ZRPPLIYNQQBNUVZIWWHQMDOG" imageId="24239365"/>
     </Metadata>
     <Page imageFilename="30804089.jpg" imageWidth="2440" imageHeight="3656">
         <PrintSpace>
@@ -106,7 +106,7 @@
                     <Unicode>נאָר הער זִיך צוּ אוּן האַלט זִיך אֵיין פוּן צוּ לאַכען אַ יפֿון קול.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_3_1_tl_10" custom="readingOrder {index:9;}">
+            <TextLine id="r_3_1_tl_10" custom="readingOrder {index:9;} stage {offset:0; length:10; type:business;}">
                 <Coords points="424,1402 519,1431 555,1409 638,1427 667,1407 691,1406 695,1357 667,1358 644,1340 609,1362 597,1349 580,1360 566,1344 531,1364 490,1358 426,1375"/>
                 <Baseline points="435,1393 465,1399 513,1391 593,1387 638,1384 683,1381 698,1381"/>
                 <TextEquiv>
@@ -188,7 +188,7 @@
         </TextRegion>
         <TextRegion type="paragraph" id="r_7_1" custom="readingOrder {index:4;} structure {type:paragraph;}">
             <Coords points="280,2099 1812,2054 1810,3065 224,3080"/>
-            <TextLine id="r_7_1_tl_6" custom="readingOrder {index:0;}">
+            <TextLine id="r_7_1_tl_6" custom="readingOrder {index:0;} stage {offset:0; length:9; type:business;}">
                 <Coords points="1487,2146 1516,2158 1542,2137 1605,2128 1656,2146 1725,2129 1761,2147 1759,2071 1690,2053 1674,2064 1651,2051 1600,2079 1565,2071 1545,2079 1516,2064 1485,2071"/>
                 <Baseline points="1495,2110 1539,2113 1584,2116 1629,2116 1674,2116 1719,2118 1763,2110"/>
                 <TextEquiv>
@@ -265,7 +265,7 @@
                     <Unicode>פֿרייַנד זֶעזֶעמִיר, גֶעהסט אוֹיך מיִט?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_4" custom="readingOrder {index:11;} speaker {offset:0;length:11;}">
+            <TextLine id="l_4" custom="readingOrder {index:11;} speaker {offset:0; length:11;} stage {offset:35; length:21; type:exit;}">
                 <Coords points="310,2929 667,2955 794,2913 1204,2946 1658,2907 1660,2846 1389,2837 312,2878"/>
                 <Baseline points="322,2906 1663,2873"/>
                 <TextEquiv>
