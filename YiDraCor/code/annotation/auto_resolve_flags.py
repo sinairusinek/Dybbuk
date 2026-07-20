@@ -277,12 +277,15 @@ def stage_lexicon_span(span_text: str):
     has_entrance_cue = has_ersheynt or has_oyftrit or has_arayn_kumt
     has_ab = "אב" in token_set or "אבּ" in token_set
 
-    # Noa 2026-06-24 B9: when an entrance cue AND an exit cue co-occur
-    # in the same direction (e.g. "Miriam exits and Shlomo enters"),
-    # emit literal `mixed` per TEI single-value-fallback convention.
+    # Entrance cue AND exit cue in one direction ("Yokhtshe exits, enter
+    # Sabele") → `exit entrance`. Sinai 2026-07-20, resolving the B9-vs-ST3
+    # collision: B9 (2026-06-24) said this MUST be literal `mixed`, but option C
+    # (2026-06-18) reserves `mixed` for functions that CANNOT be enumerated, and
+    # entrance+exit plainly can — the option-C document even lists
+    # `exit entrance` as its example. Option C wins.
     # This must short-circuit BEFORE the per-cue branches below.
     if short and no_period and has_ersheynt and has_ab:
-        return "mixed"
+        return "exit entrance"
     if short and no_period and tokens[-1] in {"אב", "אבּ"}:
         prev = tokens[-2] if len(tokens) >= 2 else ""
         if prev in _MODAL_BEFORE_AB:

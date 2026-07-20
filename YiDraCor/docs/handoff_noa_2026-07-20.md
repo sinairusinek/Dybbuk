@@ -12,20 +12,16 @@ annotation missing, tell us — we can recover it from the layer history.
 
 ## Part 1 — Where your two answers disagree with each other
 
-For these three you answered in prose on 06-21, then tagged the castList by
-hand in Transkribus on 06-24 and tagged it **differently**. The annotation is
-later and you were looking at the image, so it may well supersede — but we
-won't overwrite your written call on a guess. **Which stands?**
+~~For these three you answered in prose on 06-21, then tagged the castList by
+hand differently on 06-24.~~ **Resolved 2026-07-20 (Sinai): the annotation
+stands in all three cases.** No action needed — cast_dict already matched your
+annotation, so nothing had to change.
 
 | | your 06-21 prose | your 06-24 annotation |
 |---|---|---|
 | **1.1 Bas Sheva** `שעפער שעפעריגען` | (a) ONE collective `shefer` | **two** separate role spans |
 | **1.2 Sore Sheyndel** `משוררים און פאלק` | (a) THREE items (shabse + mshorerim + folk) | **two** — `משוררים און פאלק` fused into one role |
 | **1.3 Dovid's Fidele** `דאוויד גייגער` | (a) role=`דאוויד`, roleDesc=`גייגער טוביה'ס ברודער` | role=`דַאוִויד גֵייגֶער`, roleDesc=`טוביה'ס ברודער` |
-
-☐ 1.1 → ☐ 1.2 → ☐ 1.3 →
-
-*(1.3 is the consequential one — `dvid_geyger` is referenced on 18 body pages.)*
 
 Your other ten 06-21 answers matched the data and are applied. Q2.2
 (`יודען סאלדאטען` → one compound `yudn_soldatn`) is now applied too — your
@@ -97,11 +93,12 @@ TEI tokens — `type="entrance business"` — and `mixed` is a single-value
 fallback for when the functions *can't* be enumerated.
 
 Entrance+exit **is** enumerable, so option C implies `type="exit entrance"`
-(the 06-18 doc even lists that as an example). The two rules collide and this
-was never re-asked.
+(the 06-18 doc even lists that as an example).
 
-☐ **4.1** Entrance + exit in one direction → `type="exit entrance"` (option C),
-or `type="mixed"` (B9)? →
+**Resolved 2026-07-20 (Sinai): option C wins — `type="exit entrance"`.** The
+rule is updated and the one span in the corpus that is genuinely entrance+exit
+(Der Mann p.13 `(יאָכטשע אָבּ, אויפטריט סאבּעלע…)`) is retyped. Nothing needed
+from you.
 
 ---
 

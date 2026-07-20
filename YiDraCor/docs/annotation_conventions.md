@@ -443,11 +443,18 @@ rewrite Noa's Di Seder work; deferred to her report.
 | Act-opening parenthetical typed `business` (no cue word) | ST7b — position, not vocabulary (2026-07-20) |
 | Act heading = Hebrew word ordinal only, anchored to line end | H1 — Roman numerals, either side, trailing content allowed (2026-07-20) |
 
-**Open contradiction — B9 vs ST3.** Noa's B9 ruling says entrance+exit
-co-occurring "MUST be explicitly typed `stage{type:mixed}`". But entrance+exit
-is exactly enumerable, so ST3 says `type="exit entrance"` — and the 06-18
-follow-up itself lists `exit entrance` as an example. **Never re-asked. Open
-question for Noa.**
+**B9 vs ST3 — resolved 2026-07-20 (Sinai): ST3/option C wins.** Entrance+exit
+in one direction is `type="exit entrance"`, not `mixed`. B9 (2026-06-24) had
+required literal `mixed`, but option C reserves `mixed` for functions that
+CANNOT be enumerated, and entrance+exit plainly can — the 06-18 document lists
+`exit entrance` as its own example. `auto_resolve_flags` updated.
+
+⚠️ Only ONE span in the corpus was genuinely entrance+exit (Der Mann p.13).
+The other **21** `mixed` spans stand in for other combinations — mostly
+entrance+business and exit+business, several of them continuation lines of a
+multi-line direction (ST9), and at least one that is really a `setting`
+(Yudale p.51, an act-opening tableau). They each need their own enumeration
+and are NOT covered by this decision.
 
 ---
 

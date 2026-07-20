@@ -42,6 +42,12 @@ EDITS = {
         ("settype", "entrance"),
     ("דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete", 21, "r_3_1_tl_11", 70):
         ("settype", "exit"),
+    # --- B9 → option C: entrance+exit is enumerable, so not `mixed` ----------
+    # Sinai 2026-07-20. `(יאָכטשע אָבּ, אויפטריט סאבּעלע…)` — Yokhtshe exits,
+    # enter Sabele. The ONLY one of the 22 `mixed` spans in the corpus that is
+    # genuinely entrance+exit; the other 21 are `mixed` standing in for other
+    # combinations and need their own enumeration.
+    ("DerManUnterTiff", 13, "r_2_1l18", 0): ("settype", "exit entrance"),
     # --- defect fixes --------------------------------------------------------
     # A song rubric ("Couplet of Vasilye", after `Nr. 4.`), not a direction.
     ("Di_seyder_nakht_Emkroyt_1908", 61, "TextRegion_1649533051421_1444l5", 0):
