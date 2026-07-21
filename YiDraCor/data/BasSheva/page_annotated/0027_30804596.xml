@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_11:26</Creator>
@@ -139,7 +139,7 @@
                     <Unicode>בּיז אִין פִיער וואכֶען גיבּסטוּ מִיר דַיין קִינְד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r_1_1l18" custom="readingOrder {index:17;} stage {offset:21;length:5;type:business;} speaker {offset:0;length:4;xmlid:chor;}">
+            <TextLine id="r_1_1l18" custom="readingOrder {index:17;} stage {offset:21; length:5; type:delivery;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="955,1591 1077,1619 1132,1589 1276,1587 1647,1619 1647,1552 1520,1559 1424,1518 1163,1556 955,1536"/>
                 <Baseline points="961,1584 995,1584 1030,1584 1064,1585 1099,1585 1133,1585 1168,1585 1202,1585 1237,1585 1271,1585 1306,1585 1340,1585 1375,1585 1409,1586 1444,1587 1478,1587 1513,1588 1547,1589 1582,1591 1616,1592 1651,1595"/>
                 <TextEquiv>
@@ -196,7 +196,7 @@
                 </TextEquiv>
             </TextLine>
             <TextEquiv>
-                <Unicode></Unicode>
+                <Unicode/>
             </TextEquiv>
         </TextRegion>
     </Page>
