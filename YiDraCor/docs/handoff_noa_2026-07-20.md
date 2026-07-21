@@ -65,14 +65,14 @@ like Nestroy's *Der Talisman* has 38 bare `<lg>` and zero `stage type=`. So
 there is no house style to follow; we're setting the precedent.
 
 **Applied (132 marks corpus-wide):**
-- `(ביס)` / `(ביסס)` and the pointed `(בּיס)` / `(בּיסס)` → `stage{type:repeat}`
+- `(ביס)` / `(ביסס)` and the pointed `(בּיס)` / `(בּיסס)` → `stage{type:delivery}`
 - `(ביס 2 מאל)` — repeat with a printed count — treated as a plain repeat; the
   number is not recorded *(Sinai)*
 - `רעפריין` → `head`, enclosing block becomes `<lg type="refrain">`
 - voice rubrics (`סאלא אלט`, `אַלט`, `סאפראן`, `טענאר`, `באס`) → `speaker`, §G.4
 - **compound `(קאהר ביס)` ×9, `(קאהר - ביסס)`, `(כער ביס)`, `(אלע ביס)`** →
-  one span over the whole parenthesis, `stage{type:repeat}` ascribed with
-  `@who` → `<stage type="repeat" who="#kor">`. TEI's `<stage>` carries `@who`
+  one span over the whole parenthesis, `stage{type:delivery}` ascribed with
+  `@who` → `<stage type="delivery" who="#kor">`. TEI's `<stage>` carries `@who`
   via att.ascribed, so this is standards-supported. `כער` treated as a spelling
   variant of `קאהר`, not OCR *(Sinai)* — the nine genuine `(קאהר ביס)` support
   the reading.
@@ -123,8 +123,8 @@ want its own musical treatment? →
 
 ☐ **5.2c** Di Seder p.69 `רעפריין, א. ז. וו.` — "refrain, etc." at the end of
 a verse line, i.e. *repeat the refrain here*. M5 makes `רעפריין` a `head`, but
-that is for a rubric heading a block; this is an inline instruction. Tag it
-`stage{type:repeat}` instead? →
+that is for a rubric heading a block; this is an inline instruction. Tag it `stage{type:delivery}` (per the
+2026-07-21 decision that `(ביס)` is `delivery`)? →
 
 Our proposals for the other 8, with reasoning, are in
 `data/review/stage_type_proposals_2026-07-20.csv` — correct any you disagree

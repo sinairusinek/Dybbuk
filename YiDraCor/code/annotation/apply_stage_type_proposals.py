@@ -97,10 +97,10 @@ EDITS = {
     # The span sat over the speaker NAME; the direction on the same line is
     # already correctly typed business.
     ("Ezra-Emkroyt1908", 5, "line_1638824525750_1938", 0): ("tospeaker", "valentin"),
-    # `ביסס יאַ ראכע` — only the first word is the repeat mark. Scope the span
-    # to it and type it; the sung remainder is left alone, because song
-    # structure (`l`/`lg`) is deferred pending Noa's boundary report.
-    ("Ezra-Emkroyt1908", 8, "line_1639248760763_356", 0): ("scope", (0, 4, "repeat")),
+    # `ביסס יאַ ראכע` — only the first word is the repeat mark (now typed
+    # `delivery` per the 2026-07-21 decision). Scope the span to it; the sung
+    # remainder is left alone, song structure being deferred to Noa's report.
+    ("Ezra-Emkroyt1908", 8, "line_1639248760763_356", 0): ("scope", (0, 4, "delivery")),
     # An act heading is not a stage direction; the line already carries
     # heading{type:act,n:2} from the 07-20 sweep.
     ("HinkePinke", 30, "TextRegion_1649691550551_2379l26", 0): ("drop", None),

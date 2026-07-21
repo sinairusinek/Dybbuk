@@ -128,14 +128,14 @@ def retag_line(el) -> list[str]:
                 break
         if hit is not None:
             old = entries[hit][1].get("type")
-            if old == "repeat":
+            if old == "delivery":
                 continue
-            entries[hit][1]["type"] = "repeat"
-            changes.append(f"(ביס)@{lo}: stage type {old} → repeat")
+            entries[hit][1]["type"] = "delivery"
+            changes.append(f"(ביס)@{lo}: stage type {old} → delivery")
         else:
             entries.append(("stage", {"offset": str(lo), "length": str(hi - lo),
-                                      "type": "repeat"}))
-            changes.append(f"(ביס)@{lo}: untagged → stage type:repeat")
+                                      "type": "delivery"}))
+            changes.append(f"(ביס)@{lo}: untagged → stage type:delivery")
 
     # ---- 2. רעפריין → head -------------------------------------------------
     m = REFRAIN_RX.match(txt)
@@ -178,12 +178,12 @@ def retag_line(el) -> list[str]:
                     if tg == "stage" and _covers(a, lo, hi)), None)
         if hit is None:
             entries.append(("stage", {"offset": str(lo), "length": str(hi - lo),
-                                      "type": "repeat"}))
-            changes.append(f"bare {txt.strip()!r}: untagged → stage type:repeat")
-        elif entries[hit][1].get("type") != "repeat":
+                                      "type": "delivery"}))
+            changes.append(f"bare {txt.strip()!r}: untagged → stage type:delivery")
+        elif entries[hit][1].get("type") != "delivery":
             old = entries[hit][1].get("type")
-            entries[hit][1]["type"] = "repeat"
-            changes.append(f"bare {txt.strip()!r}: stage type {old or '∅'} → repeat")
+            entries[hit][1]["type"] = "delivery"
+            changes.append(f"bare {txt.strip()!r}: stage type {old or '∅'} → delivery")
 
     # ---- 1b. compound `(קאהר ביס)` → repeat, ascribed to the collective -----
     for m in COMPOUND_RX.finditer(txt):
@@ -195,13 +195,13 @@ def retag_line(el) -> list[str]:
                     if tg == "stage" and _covers(a, lo, hi)), None)
         if hit is None:
             entries.append(("stage", {"offset": str(lo), "length": str(hi - lo),
-                                      "type": "repeat", "xmlid": xmlid}))
-            changes.append(f"compound '{m.group(0)}': → stage type:repeat who=#{xmlid}")
+                                      "type": "delivery", "xmlid": xmlid}))
+            changes.append(f"compound '{m.group(0)}': → stage type:delivery who=#{xmlid}")
         else:
             a = entries[hit][1]
             old = a.get("type")
-            if old != "repeat" or a.get("xmlid") != xmlid:
-                a["type"] = "repeat"; a["xmlid"] = xmlid
+            if old != "delivery" or a.get("xmlid") != xmlid:
+                a["type"] = "delivery"; a["xmlid"] = xmlid
                 changes.append(f"compound '{m.group(0)}': stage type {old} → repeat, who=#{xmlid}")
 
     # ---- 1c. bare whole-line `קאהר ביס` → repeat, ascribed ------------------
@@ -214,14 +214,14 @@ def retag_line(el) -> list[str]:
                         if tg == "stage" and _covers(a, lo, hi)), None)
             if hit is None:
                 entries.append(("stage", {"offset": str(lo), "length": str(hi - lo),
-                                          "type": "repeat", "xmlid": xmlid}))
-                changes.append(f"bare compound {txt.strip()!r}: → stage type:repeat "
+                                          "type": "delivery", "xmlid": xmlid}))
+                changes.append(f"bare compound {txt.strip()!r}: → stage type:delivery "
                                f"who=#{xmlid}")
             else:
                 a = entries[hit][1]
-                if a.get("type") != "repeat" or a.get("xmlid") != xmlid:
+                if a.get("type") != "delivery" or a.get("xmlid") != xmlid:
                     old = a.get("type")
-                    a["type"] = "repeat"; a["xmlid"] = xmlid
+                    a["type"] = "delivery"; a["xmlid"] = xmlid
                     changes.append(f"bare compound {txt.strip()!r}: stage type "
                                    f"{old or '∅'} → repeat, who=#{xmlid}")
 

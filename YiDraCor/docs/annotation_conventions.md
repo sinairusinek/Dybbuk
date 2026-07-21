@@ -119,7 +119,7 @@ aren't (consumed by `auto_resolve_flags` since 2026-07-02).
 **ST1.** `type` is **required** on every `stage` span. No bare stage.
 
 **ST2. Vocabulary:** `setting`, `entrance`, `exit`, `business`, `delivery`,
-`location`, `costume`, `novelistic`, `modifier`, `repeat`, plus the fallback
+`location`, `costume`, `novelistic`, `modifier`, plus the fallback
 `mixed`.
 
 **ST3. Multi-token `@type` for compound directions** *(Sinai + Noa 2026-06-18,
@@ -267,11 +267,13 @@ previous page). Legacy equivalent: `continued:true; type:cont`.
 `Nr. N` / `געזאנגס-טעקסט`. *(B1–B3, confirmed by Noa's 06-07 edits.)*
 ⚠️ `(ביס)` is **not** an opener — see §8.
 
-**M4. The repeat mark → `stage{type:repeat}`.** The printed instruction to
-sing a line again. Not stage business — it is a musical instruction. TEI's
-`stage/@type` list is explicitly open and contains nothing musical, so this is
-a sanctioned extension. Chosen over `<metamark function="repeat">` (purer, but
-would need a new tag in both the Transkribus tagset and `ALLOWED_TAGS`).
+**M4. The repeat mark → `stage{type:delivery}`.** *(Sinai 2026-07-21.)* The
+printed `(ביס)` instruction to sing a line again is a musical performance
+direction, so it is typed `delivery` like the other performance instructions
+(vocal manner, `(זינגט)`), not stage business.
+> Was `type="repeat"` from 2026-07-19 to 2026-07-21. `repeat` is now retired
+> from the vocabulary; the 136 live spans were migrated with
+> `annotation.migrate_repeat_to_delivery`. See §9.
 
 **Spellings covered** — all are the same mark: `(ביס)`, `(ביסס)` (doubled ס),
 and the **pointed** forms `(בּיס)` / `(בּיסס)`. Match nikud-insensitively; a
@@ -288,12 +290,13 @@ target list from every marker pattern the tool knows
 (`retag_musical_directions --rebuild-targets`), never from one of them.
 
 **Repeat with a count** — `(ביס 2 מאל)`, `(ביס 4 מאהל)` — is tagged as a plain
-`repeat`; **the number is not recorded** *(Sinai 2026-07-19)*. The mark is
-placed **where printed**; repeat *scope* is not recorded via `@target`.
+`delivery`; **the number is not recorded** *(Sinai 2026-07-19)*. The mark is
+placed **where printed**; scope is not recorded via `@target`.
 
-**M4b. Compound `(קאהר ביס)` → `stage{type:repeat; xmlid:kor}`** → TEI
-`<stage type="repeat" who="#kor">`. A collective named together with the
-repeat instruction ("chorus, repeat"). *Sinai 2026-07-19.*
+**M4b. Compound `(קאהר ביס)` → `stage{type:delivery; xmlid:kor}`** → TEI
+`<stage type="delivery" who="#kor">`. A collective named together with the
+repeat instruction ("chorus, repeat"). *Sinai 2026-07-19; retyped delivery
+2026-07-21.*
 - The **whole parenthesis** is one span. It is one editorial unit and one
   instruction; we don't split character names out of `(ער גייט אב)` either.
 - `<stage>` carries `@who` through **att.ascribed** (verified against the TEI
@@ -307,8 +310,7 @@ repeat instruction ("chorus, repeat"). *Sinai 2026-07-19.*
 **False friends — never tag as repeat:** `(אויפטריט ביסינג)` ("enter Bising",
 a character in Mishke Mashke) and `(ערוואכט צו ביסלעך)` ("awakens bit by bit").
 
-*Applied corpus-wide 2026-07-19: 114 marks, 12 of them ascribed; +18 bare
-marks 2026-07-20 = **132**.* **Ratified by Sinai; Noa informed, no sign-off
+*Applied corpus-wide: **136** marks, 13 ascribed, all now `delivery`.* **Ratified by Sinai; Noa informed, no sign-off
 required.**
 
 **M5. `רעפריין` → `head`** (keeping `lg_id`); the enclosing block becomes
@@ -441,6 +443,7 @@ rewrite Noa's Di Seder work; deferred to her report.
 | Voice rubrics as `stage type="delivery"` or inline verse | M6 / §G.4 |
 | `l` spanning the speaker label as well as the speech | M9 — spoken text only (2026-07-20) |
 | Act-opening parenthetical typed `business` (no cue word) | ST7b — position, not vocabulary (2026-07-20) |
+| `stage{type:repeat}` for the `(ביס)` mark (2026-07-19) | M4 — retyped `delivery`, `repeat` retired (2026-07-21) |
 | Act heading = Hebrew word ordinal only, anchored to line end | H1 — Roman numerals, either side, trailing content allowed (2026-07-20) |
 
 **B9 vs ST3 — resolved 2026-07-20 (Sinai): ST3/option C wins.** Entrance+exit

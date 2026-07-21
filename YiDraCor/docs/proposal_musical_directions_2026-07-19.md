@@ -1,5 +1,9 @@
 # Proposal — encoding `(ביס)` and `רעפריין` (musical directions)
 
+> **Update 2026-07-21 (Sinai):** `repeat` is retired. The `(ביס)` mark is
+> now typed `delivery` like the other musical performance directions. All
+> `type="repeat"` below now reads `delivery`; the 136 live spans were migrated.
+
 **Date:** 2026-07-19 · **For:** Noa (decision) · **Prepared by:** Sinai + pipeline
 
 Two printed markers have never had an encoding decision and are currently
@@ -53,7 +57,7 @@ Verified against primary sources (see footnotes).
   so a refrain is a canonical `<lg>`. But `<lg>/@type` has **no** suggested-value
   list anywhere in the Guidelines, so `type="refrain"` is legal and idiomatic
   **convention, not a named TEI recommendation**. [2]
-- **TEI has no mechanism for a printed repeat mark.** No `<seg type="repeat">`
+- **TEI has no mechanism for a printed repeat mark.** No `<seg type="delivery">`
   precedent, nothing in the Primary Sources chapter. The closest fit is
   `<metamark>`: *"contains or describes any kind of graphic or written signal
   within a document the function of which is to determine how it should be read
@@ -61,7 +65,7 @@ Verified against primary sources (see footnotes).
   exactly — but `function="repeat"` would be a coinage, and `<metamark>` belongs
   to the manuscript/genetic-transcription tradition. [3]
 - **DraCor imposes nothing.** Its ODD has no `<elementSpec>` for `stage` at all,
-  so `@type` is unconstrained; the strings `song`, `refrain`, `repeat` and
+  so `@type` is unconstrained; the strings `song`, `refrain`, `delivery` and
   `metamark` appear nowhere in it. Checked a *Posse mit Gesang* — Nestroy's *Der
   Talisman* — where all 38 `<lg>` are bare and there are **zero** `stage type=`
   attributes: DraCor does not distinguish sung from spoken text at all. [4]
@@ -72,14 +76,14 @@ Hebrew drama TEI precedent for ביס exists either.
 
 ## 4. Recommendation
 
-### `(ביס)` → `<stage type="repeat">`
+### `(ביס)` → `<stage type="delivery">`
 
 ```xml
 <lg type="refrain">
   <l>אַז דאָס קרִיעגֶעלֶע זאָל זַיין פִיל</l>
   <l>יאַ פִיל!</l>
 </lg>
-<stage type="repeat">ביס</stage>
+<stage type="delivery">ביס</stage>
 ```
 
 **Why this over `<metamark function="repeat">`,** which is the better fit on pure
@@ -124,7 +128,7 @@ Distinguish it from `רעפריין`: **`סאלא אלט` says *who sings*; `ר�
 
 ## 5. Questions for Noa
 
-1. **`(ביס)` → `stage type="repeat")`** — agreed? Or do you want the
+1. **`(ביס)` → `stage type="delivery")`** — agreed? Or do you want the
    semantically-purer `<metamark function="repeat">` despite the workflow cost?
 2. **`רעפריין:` → `head` inside `<lg type="refrain">`** — agreed?
 3. **Scope of the repeat.** `(ביס)` sometimes ends a single line and sometimes
@@ -139,11 +143,11 @@ Distinguish it from `רעפריין`: **`סאלא אלט` says *who sings*; `ר�
 
 ## 6. If approved — implementation
 
-1. `schema.py`: add `repeat` to `STAGE_TOKENS`.
+1. `schema.py`: add `delivery` to `STAGE_TOKENS`.
 2. `annotate_songs.py`: recognise `רעפריין` as a `head` (currently untreated);
    stop `(ביס)` from being typed `business`.
 3. `auto_resolve_flags`: retype the 37 existing `stage type="business"` ביס spans
-   → `repeat`; tag the 14 currently-untagged ones.
+   → `delivery`; tag the 14 currently-untagged ones.
 4. `build_tei.py`: stamp `type="refrain"` on an `<lg>` whose `head` is `רעפריין`.
 5. Drop the junk `refrn` role from `DosYudisheHerts-1910/cast_dict.json`
    (and `etts` from `BasSheva` while we're there — same defect).

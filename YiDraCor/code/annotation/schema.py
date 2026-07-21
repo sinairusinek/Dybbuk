@@ -125,16 +125,12 @@ FW_TYPES = {"pageNum", "header", "footer", "catch", "sig"}
 # האַרפֿע— ערשיינט)` is now `type="entrance business"`, not `type="mixed"`.
 # The literal `mixed` remains accepted as a fallback but the pipeline
 # prefers multi-token output.
-# `repeat` (2026-07-19): the printed `(ביס)` repeat mark — "sing that again".
-# Not stage business; it is a musical instruction. TEI's stage/@type list is
-# explicitly open ("No closed set of values ... is proposed"), and none of its
-# suggested values is musical, so this is a sanctioned extension rather than a
-# hack. Chosen over <metamark function="repeat"> — semantically purer but it
-# would need a new tag in both the Transkribus tagset and ALLOWED_TAGS, whereas
-# a new @type token is free. See docs/proposal_musical_directions_2026-07-19.md.
+# `repeat` was used 2026-07-19 for the printed `(ביס)` mark, then RETIRED
+# 2026-07-21 (Sinai): the mark is now `type="delivery"` like every other
+# musical performance instruction, so `repeat` is no longer a valid token —
+# lint will flag any straggler. History kept so the decision stays legible.
 STAGE_TOKENS = {"setting", "entrance", "exit", "business",
-                "delivery", "location", "costume", "novelistic", "modifier",
-                "repeat"}
+                "delivery", "location", "costume", "novelistic", "modifier"}
 # `mixed` is special: when present it must be the only token.
 STAGE_TYPES = STAGE_TOKENS | {"mixed"}
 
