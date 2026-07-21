@@ -36,8 +36,14 @@ UNICODE_TAG = f"{{{PAGE_NS}}}Unicode"
 # Lesson: the first "zero missed" check used this same regex, so it could not
 # possibly reveal a pattern gap. Verify coverage with an INDEPENDENT pattern.
 _N = r"[֑-ׇ]*"                      # any nikud/cantillation run
+# The bis core, spelled with samekh OR zayin. Sinai 2026-07-20 (Yudale p32):
+# `(קאהר ביז)` with a ZAYIN never matched — the mark is printed both `ביס` and
+# `ביז` (the latter homographic with the preposition "until", which is why the
+# match must stay anchored: parenthesised, or a whole line, or after a chorus
+# name — never a bare substring).
+_BIS = rf"ב{_N}י{_N}[סז]{_N}[סז]?{_N}"
 BIS_RX = re.compile(
-    rf"\(\s*ב{_N}י{_N}ס{_N}ס?{_N}"            # bis / biss, any pointing
+    rf"\(\s*{_BIS}"                          # bis / biss / biz, any pointing
     rf"(?:\s*\d+\s*מ{_N}א{_N}ה?{_N}ל{_N}\s*\.?)?"   # optional " N מאל" count
     rf"\s*\)")
 # Bare, UNPARENTHESISED repeat mark standing alone on its own line. Sinai
@@ -51,7 +57,7 @@ BIS_RX = re.compile(
 # what makes it safe without parens. A substring match would hit `ביסלעך`,
 # `ביסינג` and the preposition `ביס` "until"; a whole line that is nothing but
 # ב-י-ס can only be the repeat mark.
-BARE_BIS_RX = re.compile(rf"^\s*ב{_N}י{_N}ס{_N}ס?{_N}\s*[.,׃:]?\s*\Z")
+BARE_BIS_RX = re.compile(rf"^\s*{_BIS}\s*[.,׃:]?\s*\Z")
 
 # Compound directions: a collective named together with the repeat instruction —
 # `(קאהר ביס)` "chorus, repeat". Sinai 2026-07-19: encode the WHOLE parenthesis
@@ -64,7 +70,7 @@ BARE_BIS_RX = re.compile(rf"^\s*ב{_N}י{_N}ס{_N}ס?{_N}\s*[.,׃:]?\s*\Z")
 # (Sinai) — nine genuine `(קאהר ביס)` in the corpus support the reading.
 COMPOUND_RX = re.compile(
     rf"\(\s*(?P<who>ק{_N}א{_N}ה?{_N}ר|כ{_N}א{_N}ר|כ{_N}ע{_N}ר|א{_N}ל{_N}ע)"
-    rf"\s*[-–—]?\s*ב{_N}י{_N}ס{_N}ס?{_N}\s*\)")
+    rf"\s*[-–—]?\s*{_BIS}\s*\)")
 COMPOUND_XMLID = {"קאהר": "kor", "קאר": "kor", "כאר": "kor", "כער": "kor",
                   "אלע": "alle"}
 # The compound printed WITHOUT parentheses, alone on its line — Di Seder p70
@@ -76,7 +82,7 @@ COMPOUND_XMLID = {"קאהר": "kor", "קאר": "kor", "כאר": "kor", "כער":
 # Whole-line anchored, like BARE_BIS_RX, so `קאהר` as a speaker label can't match.
 BARE_COMPOUND_RX = re.compile(
     rf"^\s*(?P<who>ק{_N}א{_N}ה?{_N}ר|כ{_N}א{_N}ר|כ{_N}ע{_N}ר|א{_N}ל{_N}ע)"
-    rf"\s*[-–—]?\s*ב{_N}י{_N}ס{_N}ס?{_N}\s*[.,׃:]?\s*\Z")
+    rf"\s*[-–—]?\s*{_BIS}\s*[.,׃:]?\s*\Z")
 # Not matched, correctly: `(אויפטריט ביסינג)` (enter Bising, a character) and
 # `(ערוואכט צו ביסלעך)` ("bit by bit").
 # line-initial rubric, optional colon; capture just the word
@@ -202,7 +208,7 @@ def retag_line(el) -> list[str]:
             old = a.get("type")
             if old != "delivery" or a.get("xmlid") != xmlid:
                 a["type"] = "delivery"; a["xmlid"] = xmlid
-                changes.append(f"compound '{m.group(0)}': stage type {old} → repeat, who=#{xmlid}")
+                changes.append(f"compound '{m.group(0)}': stage type {old} → delivery, who=#{xmlid}")
 
     # ---- 1c. bare whole-line `קאהר ביס` → repeat, ascribed ------------------
     m = BARE_COMPOUND_RX.match(txt)
@@ -223,7 +229,7 @@ def retag_line(el) -> list[str]:
                     old = a.get("type")
                     a["type"] = "delivery"; a["xmlid"] = xmlid
                     changes.append(f"bare compound {txt.strip()!r}: stage type "
-                                   f"{old or '∅'} → repeat, who=#{xmlid}")
+                                   f"{old or '∅'} → delivery, who=#{xmlid}")
 
     # ---- 2b. a whole-line stage direction is not a verse line ---------------
     # Sinai 2026-07-19. NARROW BY DESIGN: only when a stage span covers the

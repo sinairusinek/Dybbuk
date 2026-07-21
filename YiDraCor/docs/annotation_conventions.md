@@ -276,8 +276,13 @@ direction, so it is typed `delivery` like the other performance instructions
 > `annotation.migrate_repeat_to_delivery`. See §9.
 
 **Spellings covered** — all are the same mark: `(ביס)`, `(ביסס)` (doubled ס),
-and the **pointed** forms `(בּיס)` / `(בּיסס)`. Match nikud-insensitively; a
-nikud-blind pattern missed 29 instances in the first pass.
+the **pointed** `(בּיס)` / `(בּיסס)`, and the **zayin** spelling `(ביז)` /
+`(קאהר ביז)` *(Sinai 2026-07-20, Yudale p31/p32)*. Match nikud-insensitively.
+⚠️ `ביז` is homographic with the preposition "until", so the zayin form is
+matched **only** when anchored — parenthesised, whole-line, or after a chorus
+name — never as a bare substring. Two independent misses here (nikud-blind in
+the first pass = 29; zayin = 3) are the reminder to verify coverage with a
+pattern INDEPENDENT of the matcher.
 
 **Printed without parentheses** *(Sinai 2026-07-20)*. Three plays print the
 mark bare on its own line — Bas Sheva (9), Ezra (6), Blimele (3). Match only
