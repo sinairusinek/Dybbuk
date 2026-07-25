@@ -108,6 +108,25 @@ def author_comention(norm_text: str, author_db_id: str) -> bool:
     return bool(pat and pat.search(norm_text))
 
 
+_WS = re.compile(r"\s+")
+
+
+def check_evidence(quote: str, *texts: str) -> str:
+    """'yes' if the quote is a verbatim (whitespace-tolerant) substring of any
+    text; 'partial' if it is ellipsis-stitched but every fragment is found;
+    else 'no'."""
+    if not quote:
+        return "no"
+    squashed = [unicodedata.normalize("NFC", _WS.sub(" ", t)) for t in texts if t]
+    q = unicodedata.normalize("NFC", _WS.sub(" ", quote).strip())
+    if any(q in t for t in squashed):
+        return "yes"
+    frags = [f.strip() for f in re.split(r"\.{3}|…", q) if len(f.strip()) >= 6]
+    if frags and all(any(f in t for t in squashed) for f in frags):
+        return "partial"
+    return "no"
+
+
 # Shared schema for every extraction surface (flagship, Gemini drafts,
 # adjudication): one row per (fact, participant). Surface forms only —
 # entity identification happens in link_entities.py, never at extraction.
