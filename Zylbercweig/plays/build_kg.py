@@ -212,78 +212,79 @@ def main() -> None:
         for seg in (p["title_segments_norm"] or "").split("|"):
             if seg:
                 seg_index[seg].append(p)
-    seen_docs = set()
-    ed_rows = pc.read_tsv(pc.YIDRACOR_DATA / "editions.csv")
-    if not ed_rows:
-        with open(pc.YIDRACOR_DATA / "editions.csv", encoding="utf-8-sig") as f:
-            ed_rows = list(csv.DictReader(f))
-    n_ed_links = 0
-    for ed in ed_rows:
-        doc = (ed.get("transkribus_doc_id") or "").strip().split(".")[0]
-        title = (ed.get("title") or "").strip()
-        if not doc or doc in seen_docs:
-            continue
-        seen_docs.add(doc)
-        cand_titles = [ed.get("alt_titles", ""), title]
-        # editions.json carries the Yiddish names for the print editions
-        matches: list[dict] = []
-        for t in cand_titles:
-            for seg in pc.title_segments(t):
-                matches.extend(seg_index.get(seg, []))
-        node_ed = f"edition:tkb_{doc}"
-        ed_author = (ed.get("author") or "").strip()
-        if matches:
-            for p in {m["play_id"]: m for m in matches}.values():
-                author_ok = (("Lateiner" in ed_author and p["author_db_id"] == "683")
-                             or ("Hurwitz" in ed_author and p["author_db_id"] == "684"))
-                g.add_node(node_ed, node_type="edition", label_english=title,
-                           ext_ref_type="transkribus_doc", ext_ref_id=doc,
-                           match_status="matched")
-                g.add_edge(source_id=f"play:{p['play_id']}", target_id=node_ed,
-                           edge_type="published_as",
-                           confidence="high" if author_ok else "low",
-                           match_status="matched" if author_ok else "candidate",
-                           extraction_model="title_join", provenance_fact_ids="",
-                           provenance_person_id="", evidence_sentence="",
-                           role_detail="", character="", date_start="", date_end="",
-                           date_precision="", event_id="", production_key="")
-                n_ed_links += 1
+    # Roman-only manuscript rows have no Yiddish title anywhere in the
+    # registries; these documented overrides supply it.
+    MANUAL_YIDDISH = {"494907": "יעקב ועשיו"}  # Hurwitz Yaakov-Esav manuscript
 
-    # Yiddish titles for print editions live in editions.json.
-    try:
-        ed_json = json.loads((pc.YIDRACOR_DATA / "editions.json").read_text(encoding="utf-8"))
-        for e in ed_json.get("editions", []):
-            doc = str(e.get("transkribus_doc_id") or "")
-            names = [e.get("catalogue_yiddish_name") or "", e.get("title") or ""]
-            matches = []
+    from rapidfuzz import fuzz
+    all_segs = list(seg_index)
+
+    def match_titles(names: list[str]) -> list[tuple[dict, str]]:
+        """[(play_row, method)] for a set of candidate Yiddish titles."""
+        got: dict[str, tuple[dict, str]] = {}
+        for t in names:
+            for seg in pc.title_segments(t):
+                for p in seg_index.get(seg, []):
+                    got.setdefault(p["play_id"], (p, "segment_exact"))
+        if not got:
             for t in names:
                 for seg in pc.title_segments(t):
-                    matches.extend(seg_index.get(seg, []))
-            for p in {m["play_id"]: m for m in matches}.values():
-                node_ed = f"edition:tkb_{doc}"
-                exists = any(ed2["source_id"] == f"play:{p['play_id']}"
-                             and ed2["target_id"] == node_ed
-                             for ed2 in g.edges if ed2["edge_type"] == "published_as")
-                if exists:
-                    continue
-                g.add_node(node_ed, node_type="edition",
-                           label_english=e.get("title", ""),
-                           ext_ref_type="transkribus_doc", ext_ref_id=doc,
-                           secondary_ids=json.dumps(
-                               {"expression_id": e.get("expression_id", "")}),
-                           match_status="matched")
-                author_ok = p["author_db_id"] == "683"  # all print editions are Lateiner
-                g.add_edge(source_id=f"play:{p['play_id']}", target_id=node_ed,
-                           edge_type="published_as",
-                           confidence="high" if author_ok else "low",
-                           match_status="matched" if author_ok else "candidate",
-                           extraction_model="title_join", provenance_fact_ids="",
-                           provenance_person_id="", evidence_sentence="",
-                           role_detail="", character="", date_start="", date_end="",
-                           date_precision="", event_id="", production_key="")
-                n_ed_links += 1
-    except FileNotFoundError:
-        pass
+                    best, best_r = None, 0.0
+                    for cand in all_segs:
+                        r = fuzz.ratio(seg, cand)
+                        if r >= 85 and r > best_r:
+                            best, best_r = cand, r
+                    if best:
+                        for p in seg_index[best]:
+                            got.setdefault(p["play_id"],
+                                           (p, f"segment_fuzzy_{best_r:.0f}"))
+        return list(got.values())
+
+    editions: dict[str, dict] = {}  # doc_id -> {title, author, names, expression_id}
+    with open(pc.YIDRACOR_DATA / "editions.csv", encoding="utf-8-sig") as f:
+        for ed in csv.DictReader(f):
+            doc = (ed.get("transkribus_doc_id") or "").strip().split(".")[0]
+            if not doc or doc in editions:
+                continue
+            editions[doc] = {"title": (ed.get("title") or "").strip(),
+                             "author": (ed.get("author") or "").strip(),
+                             "names": [MANUAL_YIDDISH.get(doc, "")],
+                             "expression_id": ""}
+    ed_json = json.loads((pc.YIDRACOR_DATA / "editions.json").read_text(encoding="utf-8"))
+    for e in ed_json.get("editions", []):
+        doc = str(e.get("transkribus_doc_id") or "")
+        ex = e.get("expression") or {}
+        rec = editions.setdefault(doc, {"title": e.get("title", ""), "author": "Lateiner",
+                                        "names": [], "expression_id": ""})
+        rec["expression_id"] = str(e.get("expression_id") or "")
+        rec["names"] += [ex.get("yiddish_name", "") if isinstance(ex, dict) else "",
+                         e.get("catalogue_yiddish_name") or ""]
+
+    n_ed_links = 0
+    for doc, rec in editions.items():
+        names = [n for n in rec["names"] if n]
+        if not names:
+            continue
+        node_ed = f"edition:tkb_{doc}"
+        for p, method in match_titles(names):
+            ed_author = rec["author"]
+            author_ok = (("Lateiner" in ed_author and p["author_db_id"] == "683")
+                         or ("Hurwitz" in ed_author and p["author_db_id"] == "684"))
+            g.add_node(node_ed, node_type="edition", label_english=rec["title"],
+                       ext_ref_type="transkribus_doc", ext_ref_id=doc,
+                       secondary_ids=(json.dumps({"expression_id": rec["expression_id"]})
+                                      if rec["expression_id"] else ""),
+                       match_status="matched")
+            g.add_edge(source_id=f"play:{p['play_id']}", target_id=node_ed,
+                       edge_type="published_as",
+                       role_detail=method,
+                       confidence="high" if author_ok else "low",
+                       match_status="matched" if author_ok else "candidate",
+                       extraction_model="title_join", provenance_fact_ids="",
+                       provenance_person_id="", evidence_sentence="",
+                       character="", date_start="", date_end="",
+                       date_precision="", event_id="", production_key="")
+            n_ed_links += 1
 
     # ---- facts -> events + edges ----
     ev_by_key: dict[str, dict] = {}

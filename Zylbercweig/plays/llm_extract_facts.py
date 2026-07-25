@@ -246,7 +246,8 @@ def build_few_shot(max_examples: int = 5) -> str:
     return "\n".join(out) if out else "(none available)"
 
 
-def parse_json_array(text: str) -> list[dict]:
+def parse_json_array(text: str) -> list[dict] | None:
+    """None = unparseable; [] = valid empty array."""
     t = text.strip()
     if t.startswith("```"):
         lines = t.split("\n")
@@ -285,7 +286,7 @@ def parse_json_array(text: str) -> list[dict]:
                 except Exception:
                     pass
                 start = -1
-    return out
+    return out if out else None
 
 
 def main() -> None:
@@ -373,12 +374,12 @@ def main() -> None:
                 text = ""
 
             facts = parse_json_array(text)
-            if text and not facts:
+            if text and facts is None:
                 bad_json += 1
             entry_text = entries.get(win["person_id"], {}).get("entry_text", "")
             window_text = "\n".join(b["text"] for b in win["blocks"])
             if not facts:
-                # keep an empty marker row so resume skips this window
+                # keep a marker row so resume skips this window
                 w.writerow({
                     "fact_id": f"{win['window_id']}#0", "person_id": win["person_id"],
                     "xml_id": win["person_id"].split("-", 2)[-1], "source": src_tag,
@@ -386,7 +387,8 @@ def main() -> None:
                     "fact_type": "none", "evidence_ok": "",
                     "model": args.model,
                     "drafted_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                    "notes": "empty_or_unparseable" if text else "api_error",
+                    "notes": ("no_facts" if facts == [] else
+                              "unparseable" if text else "api_error"),
                 })
                 f.flush()
                 continue
