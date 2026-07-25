@@ -75,9 +75,13 @@ def align_plays(plays: list[dict], works: list[dict]):
 
 
 def _author_match(play: dict, work: dict) -> bool:
-    a = (work.get("author") or "").lower()
-    return (play["author_db_id"] == "683" and "lateiner" in a) or \
-           (play["author_db_id"] == "684" and ("hurwitz" in a or "horowitz" in a))
+    # catalogue sheets record the author either by name or by people_db id
+    a = (work.get("author") or "").lower().split(".")[0].strip()
+    if play["author_db_id"] == "683":
+        return a == "683" or "lateiner" in a
+    if play["author_db_id"] == "684":
+        return a == "684" or "hurwitz" in a or "horowitz" in a
+    return False
 
 
 def main() -> None:
@@ -251,6 +255,61 @@ def main() -> None:
                 p["title_yiddish"], f"{person_label} ({e['role_detail']})",
                 hits[0]["person"], e["evidence_sentence"])
 
+    # ---- 4. gold recall + homonym precision (drafts vs hand gold) ----
+    gold_rows = pc.read_tsv(pc.GOLD_DIR / "gold_entries.tsv")
+    coverage = {r["person_id"]: r["status"]
+                for r in pc.read_tsv(pc.GOLD_DIR / "gold_coverage.tsv")}
+    drafts = [r for r in pc.read_tsv(pc.DRAFTS_TSV)
+              if r.get("fact_type") not in ("", "none")]
+    drafts_by_pid = defaultdict(list)
+    for d in drafts:
+        drafts_by_pid[d["person_id"]].append(d)
+
+    def same_play(a: dict, b: dict) -> bool:
+        if a.get("play_id_hint") and a.get("play_id_hint") == b.get("play_id_hint"):
+            return True
+        ta = set(pc.title_segments(a.get("play_title_surface", "")))
+        tb = set(pc.title_segments(b.get("play_title_surface", "")))
+        return bool(ta & tb)
+
+    gold_facts = [g for g in gold_rows
+                  if g["fact_type"] in pc.FACT_TYPES
+                  and coverage.get(g["person_id"]) == "complete"]
+    recall_stats: dict[str, list[int]] = defaultdict(lambda: [0, 0])
+    for g in gold_facts:
+        cand = drafts_by_pid.get(g["person_id"], [])
+        hit = any(same_play(g, d)
+                  and (g["person_surface"] == "[HOST]") == (d["person_surface"] == "[HOST]")
+                  for d in cand)
+        recall_stats[g["fact_type"]][1] += 1
+        if hit:
+            recall_stats[g["fact_type"]][0] += 1
+        else:
+            add("LEXICON_ONLY", "gold_missed", "", g["fact_id"],
+                g.get("play_title_surface", ""),
+                "", f"{g['fact_type']}/{g['person_role']}",
+                g.get("evidence_quote", ""), notes="gold fact not recovered by pipeline")
+    gold_homonyms = [g for g in gold_rows if g["fact_type"] == "excluded_homonym"
+                     and coverage.get(g["person_id"]) == "complete"]
+    n_homonym_viol = 0
+    for g in gold_homonyms:
+        for d in drafts_by_pid.get(g["person_id"], []):
+            if same_play(g, d) and d.get("play_id_hint") \
+                    and d["fact_type"] not in ("mention_only",):
+                n_homonym_viol += 1
+                add("CONTRADICTED", "homonym_false_positive", d["fact_id"],
+                    g["fact_id"], g.get("play_title_surface", ""),
+                    f"{d['fact_type']} -> {d['play_id_hint']}",
+                    "gold: another author's play",
+                    d.get("evidence_quote", ""), notes=g.get("notes", ""))
+    print("\ngold recall (complete entries only):")
+    for ft, (hit, tot) in sorted(recall_stats.items()):
+        print(f"  {ft:24s} {hit}/{tot}")
+    tot_hit = sum(v[0] for v in recall_stats.values())
+    tot_all = sum(v[1] for v in recall_stats.values())
+    print(f"  overall: {tot_hit}/{tot_all}"
+          f"  | homonym false-positives: {n_homonym_viol}/{len(gold_homonyms)}")
+
     counts = Counter(f["bucket"] for f in findings)
     by_aspect = Counter((f["bucket"], f["aspect"]) for f in findings)
     print(f"findings: {len(findings)}  {dict(counts)}")
@@ -260,6 +319,20 @@ def main() -> None:
     if not args.execute:
         print("dry-run — pass --execute to write eval_findings.tsv / eval_report.md")
         return
+
+    # flag attribution conflicts back into the registry (flag only — the
+    # lexicon-derived author assignment is kept; PI adjudicates)
+    conflicted_ids = {f["kg_ref"].removeprefix("play:") for f in findings
+                      if f["bucket"] == "CONTRADICTED" and f["aspect"] == "attribution"}
+    n_flagged = 0
+    for p in plays:
+        if p["play_id"] in conflicted_ids and p["attribution_status"] == "single":
+            p["attribution_status"] = "catalogue_conflict"
+            n_flagged += 1
+    if n_flagged:
+        from build_plays_db import PLAYS_FIELDS
+        pc.write_tsv(pc.PLAYS_DB_TSV, plays, PLAYS_FIELDS)
+        print(f"flagged {n_flagged} plays attribution_status=catalogue_conflict in plays_db")
 
     for i, f in enumerate(findings, 1):
         f["finding_id"] = f"F-{i:04d}"
