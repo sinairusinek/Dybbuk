@@ -84,6 +84,8 @@ Rules:
 - NEVER invent dates, venues, or names not in the context.
 - Copy surface spellings exactly; do not normalize.
 - Every object MUST have a verbatim evidence_quote taken from the given contexts.
+- The evidence_quote must be ONE contiguous span — never stitch distant fragments \
+together with "..." or any ellipsis.
 - If a context mentions a candidate title with no extractable fact, emit one mention_only object.
 - Return [] if nothing is extractable.
 
@@ -94,15 +96,22 @@ Examples from this corpus:
 """
 
 
-def load_hits() -> list[dict]:
+def load_hits(flagship: bool = False) -> list[dict]:
+    """flagship=False -> corpus sweep minus the two playwright entries;
+    flagship=True -> ONLY the two playwright entries (their own hits cover
+    the repertoire sections densely, so hit windows ~ the whole entry)."""
     hits = pc.read_tsv(pc.TITLE_HITS_TSV)
     keep = []
     for h in hits:
-        if h["person_id"] in FLAGSHIP_PERSON_IDS or not h["person_id"]:
+        if not h["person_id"]:
+            continue
+        is_flag = h["person_id"] in FLAGSHIP_PERSON_IDS
+        if is_flag != flagship:
             continue
         # prefix-tier citations are too weak to spend calls on without any
-        # author signal in the entry
-        if h["tier"] == "P" and h["author_comention"] == "none":
+        # author signal in the entry (in the flagship entries the author is
+        # the HOST, so keep everything there)
+        if not flagship and h["tier"] == "P" and h["author_comention"] == "none":
             continue
         keep.append(h)
     return keep
@@ -212,6 +221,9 @@ def fmt_window(w: dict, plays_by_id: dict[str, dict], shuffle: bool = False) -> 
 
 def build_few_shot(max_examples: int = 5) -> str:
     rows = pc.read_tsv(pc.FLAGSHIP_TSV)
+    if not rows:  # bootstrap: verified gold rows share the schema
+        rows = [r for r in pc.read_tsv(pc.GOLD_DIR / "gold_entries.tsv")
+                if r.get("fact_type") in pc.FACT_TYPES]
     picked, seen_types = [], set()
     for r in rows:
         if r.get("evidence_ok") == "no" or not r.get("evidence_quote"):
@@ -241,12 +253,39 @@ def parse_json_array(text: str) -> list[dict]:
         t = "\n".join(lines[1:-1]) if len(lines) >= 3 else t
     i, j = t.find("["), t.rfind("]")
     if i >= 0 and j > i:
-        t = t[i:j + 1]
-    try:
-        data = json.loads(t)
-        return data if isinstance(data, list) else []
-    except Exception:
-        return []
+        try:
+            data = json.loads(t[i:j + 1])
+            if isinstance(data, list):
+                return data
+        except Exception:
+            pass
+    # salvage: a truncated array — pull out each complete top-level object
+    out = []
+    depth, start, in_str, esc = 0, -1, False, False
+    for k, ch in enumerate(t):
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            if depth == 0:
+                start = k
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0 and start >= 0:
+                try:
+                    out.append(json.loads(t[start:k + 1]))
+                except Exception:
+                    pass
+                start = -1
+    return out
 
 
 def main() -> None:
@@ -257,6 +296,9 @@ def main() -> None:
     ap.add_argument("--pass2", action="store_true",
                     help="re-run already-drafted windows (shuffled context order) "
                          "into kg_extraction_drafts_pass2.tsv")
+    ap.add_argument("--flagship", action="store_true",
+                    help="process ONLY the two playwright entries into "
+                         "kg_extraction_flagship.tsv")
     args = ap.parse_args()
 
     api_key = os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY")
@@ -268,25 +310,32 @@ def main() -> None:
 
     plays_by_id = {p["play_id"]: p for p in pc.load_plays_db()}
     entries = load_entry_texts()
-    hits = load_hits()
+    hits = load_hits(flagship=args.flagship)
     windows = build_windows(hits, entries, plays_by_id)
     print(f"hits in scope: {len(hits)}  windows: {len(windows)}  "
           f"entries: {len({w['person_id'] for w in windows})}")
 
-    out_path = PASS2_TSV if args.pass2 else pc.DRAFTS_TSV
-    drafted: set[str] = {r["window_id"] for r in pc.read_tsv(pc.DRAFTS_TSV)}
+    if args.flagship:
+        out_path = pc.FLAGSHIP_TSV
+    elif args.pass2:
+        out_path = PASS2_TSV
+    else:
+        out_path = pc.DRAFTS_TSV
     if args.pass2:
+        drafted = {r["window_id"] for r in pc.read_tsv(pc.DRAFTS_TSV)}
         done2 = {r["window_id"] for r in pc.read_tsv(PASS2_TSV)}
         work = [w for w in windows if w["window_id"] in drafted
                 and w["window_id"] not in done2]
     else:
-        work = [w for w in windows if w["window_id"] not in drafted]
+        done = {r["window_id"] for r in pc.read_tsv(out_path)}
+        work = [w for w in windows if w["window_id"] not in done]
 
     if args.limit:
         if args.stratified:
             random.seed(20260725)
             random.shuffle(work)
         work = work[:args.limit]
+    src_tag = "gemini_flagship" if args.flagship else "gemini_window"
     print(f"to do: {len(work)}  ->  {out_path.name}  model: {args.model}")
     if not work:
         print("nothing to do.")
@@ -312,7 +361,7 @@ def main() -> None:
                     contents=user_msg,
                     config=types.GenerateContentConfig(
                         system_instruction=system_prompt,
-                        max_output_tokens=8192,
+                        max_output_tokens=32768,
                         temperature=0.0,
                         thinking_config=types.ThinkingConfig(thinking_budget=0),
                     ),
@@ -332,7 +381,7 @@ def main() -> None:
                 # keep an empty marker row so resume skips this window
                 w.writerow({
                     "fact_id": f"{win['window_id']}#0", "person_id": win["person_id"],
-                    "xml_id": win["person_id"].split("-", 2)[-1], "source": "gemini_window",
+                    "xml_id": win["person_id"].split("-", 2)[-1], "source": src_tag,
                     "window_id": win["window_id"], "hit_ids": win["hit_ids"],
                     "fact_type": "none", "evidence_ok": "",
                     "model": args.model,
@@ -345,13 +394,13 @@ def main() -> None:
                 if not isinstance(obj, dict):
                     continue
                 quote = str(obj.get("evidence_quote") or "")
-                ok = "yes" if quote and (quote in entry_text or quote in window_text) else "no"
+                ok = pc.check_evidence(quote, entry_text, window_text)
                 row = {k: str(obj.get(k) or "") for k in pc.EXTRACTION_FIELDS}
                 row.update({
                     "fact_id": f"{win['window_id']}#{n}",
                     "person_id": win["person_id"],
                     "xml_id": win["person_id"].split("-", 2)[-1],
-                    "source": "gemini_window",
+                    "source": src_tag,
                     "window_id": win["window_id"],
                     "hit_ids": win["hit_ids"],
                     "evidence_ok": ok,
