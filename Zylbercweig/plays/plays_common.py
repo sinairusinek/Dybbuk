@@ -106,3 +106,22 @@ def load_plays_db() -> list[dict]:
 def author_comention(norm_text: str, author_db_id: str) -> bool:
     pat = AUTHOR_SURNAME_PATTERNS.get(author_db_id)
     return bool(pat and pat.search(norm_text))
+
+
+# Shared schema for every extraction surface (flagship, Gemini drafts,
+# adjudication): one row per (fact, participant). Surface forms only —
+# entity identification happens in link_entities.py, never at extraction.
+EXTRACTION_FIELDS = [
+    "fact_id", "person_id", "xml_id", "source", "window_id", "hit_ids",
+    "play_title_surface", "play_id_hint", "fact_type",
+    "person_surface", "person_role", "character",
+    "org_surface", "venue_surface", "settlement_surface", "country",
+    "date_start", "date_end", "date_precision",
+    "evidence_quote", "evidence_ok", "confidence", "model", "drafted_at", "notes",
+]
+
+FACT_TYPES = ["production", "authorship", "translation_adaptation", "music",
+              "publication", "premiere", "mention_only"]
+PERSON_ROLES = ["actor", "director", "composer", "prompter", "translator",
+                "adapter", "producer", "author", "other"]
+DATE_PRECISIONS = ["day", "month", "year", "circa", "none"]
