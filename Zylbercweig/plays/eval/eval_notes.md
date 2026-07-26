@@ -4,7 +4,22 @@ Companion to the generated `eval_report.md` / `eval_findings.tsv`. Written after
 first full pipeline run; the numbered improvements below are the concrete changes to
 make before scaling to all playwrights.
 
-## Headline finding: the author split of the play lists is scrambled
+## Headline finding — RESOLVED 2026-07-26 (root cause found)
+
+**Update:** the scramble described below was traced to an export bug, not to
+history. `created_expressions` in people_db came from the DiJeSt
+person-report (`ZylbercweigPeople/ZylbereportPeople.tsv`), whose generator
+pooled BOTH playwrights' works into one alphabetical list and split it
+between the two adjacent person rows (Lateiner got 400/א..דניאל, Hurwitz
+דעם..ש). Authorship was rebuilt from the works table (`worksReport`) via
+`fix_authorship_from_worksreport.py` (104 corrected / 118 confirmed), and the
+former curators' `certainty` judgments were applied via
+`apply_sheet_certainty.py` (9 adopted / 18 ascriptions rejected / 24 unvetted
+→ Ruthie, see REVIEW_TASKS.md). The 64-row swap punchlist below is
+**superseded**. Standing caveat: never reuse person-report
+"Created expression(s)" exports.
+
+## Original finding (superseded, kept for the record): the author split of the play lists is scrambled
 
 121 of 271 registry titles that match a catalogue works row sit under the **opposite
 author** (77 lexicon-Hurwitz → catalogue-Lateiner, 46 lexicon-Lateiner →
