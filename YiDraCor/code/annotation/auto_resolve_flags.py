@@ -985,7 +985,7 @@ def main():
     n_auto = n_push = n_human = 0
 
     for play in plays:
-        cast_index, _ = load_cast(play)
+        cast_index, _, _ = load_cast(play)
         cast_bares = load_cast_bares(play)
         speaker_overrides = load_speaker_overrides(play)
         non_speakers = load_non_speaker_labels(play)

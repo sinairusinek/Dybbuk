@@ -105,13 +105,14 @@ def load_editions() -> dict[str, str]:
     return out
 
 
-def load_cast(play: str) -> tuple[dict[str, str], set[str]]:
-    """Return (label_skeleton -> xmlid index, set of declared xmlids)."""
+def load_cast(play: str) -> tuple[dict[str, str], set[str], set[str]]:
+    """Return (label_skeleton -> xmlid index, declared xmlids, non-speaker skels)."""
     f = REPO / "data" / play / "cast_dict.json"
     if not f.exists():
-        return {}, set()
+        return {}, set(), set()
     d = json.loads(f.read_text(encoding="utf-8"))
     roles = d.get("roles", {})
+    non_speakers = {skel(x) for x in (d.get("non_speaker_labels") or [])}
     index: dict[str, str] = {}
     for xmlid, info in roles.items():
         surfaces = [info.get("bare", ""), info.get("form", "")]
@@ -123,7 +124,7 @@ def load_cast(play: str) -> tuple[dict[str, str], set[str]]:
             k = skel(s)
             if k and k not in index:
                 index[k] = xmlid
-    return index, set(roles.keys())
+    return index, set(roles.keys()), non_speakers
 
 
 def page_files(play: str):
@@ -137,7 +138,7 @@ def page_files(play: str):
 
 
 def lint_play(play: str, label: str) -> list[dict]:
-    cast_index, declared = load_cast(play)
+    cast_index, declared, non_speakers = load_cast(play)
     flags: list[dict] = []
     referenced: set[str] = set()
     act_seq: list[tuple[int, int]] = []  # (page, n)
@@ -186,9 +187,10 @@ def lint_play(play: str, label: str) -> list[dict]:
             m = TURN_RE.match(txt)
             if not m:
                 continue
-            # a musical rubric covered by a head span (רעפריין: <sung tail>)
-            # is a song-part heading, not an untagged turn (§G, 2026-07-26)
-            if any(t == "head" and int(a.get("offset", 0)) == 0
+            # a label covered by a head span (רעפריין: — song-part heading)
+            # or a stage span ((שרייט): — ascribed direction) is not an
+            # untagged turn (2026-07-26)
+            if any(t in ("head", "stage") and int(a.get("offset", 0)) == 0
                    for t, a in spans):
                 continue
             label_txt = m.group(1)
@@ -232,6 +234,8 @@ def lint_play(play: str, label: str) -> list[dict]:
                 add(page, tl.get("id"), "untagged speaker (named)", "NOA",
                     f"label '{k}' matches cast role", txt[:40],
                     f"tag speaker xmlid:{cast_index[k]}")
+            elif k in non_speakers:
+                continue  # cast_dict non_speaker_labels: PI/RA said not a turn
             elif turn_signal:
                 add(page, tl.get("id"), "untagged speaker (unknown)", "NOA",
                     f"turn-like '{k}' not in cast (OCR?)", txt[:40],

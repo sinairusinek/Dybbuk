@@ -3,7 +3,7 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_10:28</Creator>
         <Created>2021-11-21T13:20:26.842+01:00</Created>
-        <LastChange>2026-07-21T10:12:35.181+02:00</LastChange>
+        <LastChange>2026-07-26T17:44:57.598+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
@@ -17,7 +17,7 @@
         </PrintSpace>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1647606589108_153" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="1808,396 2339,297 2558,297 3124,396 3124,2650 1808,2650"/>
-            <TextLine id="line_1647606686363_174" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
+            <TextLine id="line_1647606686363_174" custom="readingOrder {index:0;} fw {offset:0;length:6;type:pageNum;}">
                 <Coords points="2334,361 2352,364 2371,349 2385,354 2408,343 2460,348 2498,372 2553,372 2553,290 2522,285 2501,269 2490,279 2455,269 2383,289 2373,280 2334,287"/>
                 <Baseline points="2342,339 2557,339"/>
                 <TextEquiv>
@@ -240,7 +240,7 @@
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1647606584238_147" custom="readingOrder {index:1;} structure {type:paragraph;}">
             <Coords points="410,377 952,328 1176,328 1713,377 1713,833 1706,2499 415,2499 410,833"/>
-            <TextLine id="line_1647606767595_216" custom="readingOrder {index:0;}">
+            <TextLine id="line_1647606767595_216" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="946,392 994,382 1074,390 1094,377 1122,376 1166,405 1164,307 1138,313 1122,302 1087,321 1074,312 1033,312 1010,326 981,310 945,326"/>
                 <Baseline points="956,371 1170,373"/>
                 <TextEquiv>
@@ -352,18 +352,18 @@
                     <Unicode>וואלענטין: נאך קראקוֹי!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1647606584238_147l19" custom="readingOrder {index:16;} speaker {offset:0;length:8;xmlid:katerina;}">
-                <Coords points="1291,1458 1374,1486 1417,1469 1468,1487 1633,1474 1691,1494 1697,1409 1643,1432 1581,1414 1510,1432 1486,1414 1376,1424 1338,1407 1289,1425"/>
-                <Baseline points="1298,1443 1323,1446 1348,1449 1373,1452 1398,1454 1423,1457 1449,1458 1474,1460 1499,1462 1524,1463 1549,1464 1575,1465 1600,1466 1625,1464 1650,1464 1675,1463 1701,1461"/>
-                <TextEquiv>
-                    <Unicode>קאטערינא: קראקוֹי.</Unicode>
-                </TextEquiv>
-            </TextLine>
-            <TextLine id="line_1647606818212_265" custom="readingOrder {index:17;} stage {offset:0; length:4; type:delivery;}">
+            <TextLine id="line_1647606818212_265" custom="readingOrder {index:16;} stage {offset:0;length:4;type:delivery;}">
                 <Coords points="1163,1547 1178,1538 1187,1542 1199,1528 1212,1522 1227,1525 1235,1517 1241,1517 1238,1461 1225,1458 1209,1473 1200,1469 1191,1473 1184,1468 1158,1476"/>
                 <Baseline points="1167,1493 1194,1494 1221,1496 1245,1498"/>
                 <TextEquiv>
                     <Unicode>ביסס</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="TextRegion_1647606584238_147l19" custom="readingOrder {index:17;} speaker {offset:0;length:8;xmlid:katerina;}">
+                <Coords points="1291,1458 1374,1486 1417,1469 1468,1487 1633,1474 1691,1494 1697,1409 1643,1432 1581,1414 1510,1432 1486,1414 1376,1424 1338,1407 1289,1425"/>
+                <Baseline points="1298,1443 1323,1446 1348,1449 1373,1452 1398,1454 1423,1457 1449,1458 1474,1460 1499,1462 1524,1463 1549,1464 1575,1465 1600,1466 1625,1464 1650,1464 1675,1463 1701,1461"/>
+                <TextEquiv>
+                    <Unicode>קאטערינא: קראקוֹי.</Unicode>
                 </TextEquiv>
             </TextLine>
             <TextLine id="line_1647606816569_259" custom="readingOrder {index:18;} speaker {offset:0;length:9;xmlid:valentin;}">
@@ -373,7 +373,7 @@
                     <Unicode>וואלענטין: קראקוֹי.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="TextRegion_1647606584238_147l21" custom="readingOrder {index:19;} speaker {offset:0; length:5; xmlid:beyde;}">
+            <TextLine id="TextRegion_1647606584238_147l21" custom="readingOrder {index:19;} speaker {offset:0;length:5;xmlid:beyde;}">
                 <Coords points="1004,1596 1676,1619 1707,1612 1706,1560 1453,1538 1230,1556 1169,1533 1002,1551"/>
                 <Baseline points="1013,1584 1047,1583 1082,1583 1117,1581 1152,1581 1187,1581 1221,1581 1256,1581 1291,1581 1326,1581 1361,1581 1395,1581 1430,1583 1465,1583 1500,1585 1535,1586 1569,1589 1604,1590 1639,1593 1674,1596 1709,1599"/>
                 <TextEquiv>
