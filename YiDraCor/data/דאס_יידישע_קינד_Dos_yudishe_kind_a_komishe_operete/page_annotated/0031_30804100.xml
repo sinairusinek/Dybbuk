@@ -3,28 +3,37 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_18:18</Creator>
         <Created>2021-11-21T13:26:30.724+01:00</Created>
-        <LastChange>2026-07-20T11:08:40.864+02:00</LastChange>
+        <LastChange>2026-07-26T12:17:20.009+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828424" pageId="30804100" pageNr="31" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=EJIRNHVYMMGBBWGENRVEVHTK" imageId="24239376"/>
+        <TranskribusMetadata docId="828424" pageId="30804100" pageNr="31" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=EJIRNHVYMMGBBWGENRVEVHTK" imageId="24239376"/>
     </Metadata>
     <Page imageFilename="30804100.jpg" imageWidth="2340" imageHeight="3656">
         <PrintSpace>
             <Coords points="65,483 2064,483 2064,3651 65,3651"/>
         </PrintSpace>
-        <TextRegion id="r" custom="readingOrder {index:0;} structure {type:paragraph;}">
-            <Coords points="579,618 579,483 2064,483 2064,618"/>
-            <TextLine id="l_3" custom="readingOrder {index:0;}">
+        <TextRegion id="r_7" custom="readingOrder {index:0;} structure {type:paragraph;}">
+            <Coords points="902,483 2064,483 2064,618 902,618"/>
+            <TextLine id="l" custom="readingOrder {index:0;}">
                 <Coords points="1030,572 1147,559 1257,605 1288,585 1355,613 1474,574 1559,592 1628,572 1626,527 1572,512 1466,525 1424,499 1333,516 1177,492 1130,510 1027,486"/>
                 <Baseline points="1038,537 1083,546 1128,549 1172,552 1217,555 1262,555 1307,552 1351,552 1396,552 1441,552 1486,558 1531,558 1575,558 1620,561 1632,561"/>
                 <TextEquiv>
                     <Unicode>דאָס יוּדִישֶׁע קִינְד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_2" custom="readingOrder {index:1;} fw {offset:0;length:2;type:pageNum;}">
+            <TextEquiv>
+                <Unicode></Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <SeparatorRegion id="r_2" custom="readingOrder {index:1;}">
+            <Coords points="568,3471 1076,3471 1076,3477 568,3477"/>
+        </SeparatorRegion>
+        <TextRegion id="r_8" custom="readingOrder {index:1;} structure {type:paragraph;}">
+            <Coords points="902,618 579,618 579,483 902,483"/>
+            <TextLine id="l_1" custom="readingOrder {index:0;} fw {offset:0;length:2;type:pageNum;}">
                 <Coords points="592,538 616,546 635,538 666,564 689,562 702,549 711,557 724,549 750,559 750,488 731,484 720,492 705,477 687,483 679,473 672,477 644,460 622,475 592,464"/>
                 <Baseline points="602,537 647,540 692,540 737,537 755,537"/>
                 <TextEquiv>
@@ -35,10 +44,7 @@
                 <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
-        <SeparatorRegion id="r_2" custom="readingOrder {index:1;}">
-            <Coords points="568,3471 1076,3471 1076,3477 568,3477"/>
-        </SeparatorRegion>
-        <TextRegion id="r_1" custom="readingOrder {index:1;} structure {type:paragraph;}">
+        <TextRegion id="r_1" custom="readingOrder {index:2;} structure {type:paragraph;}">
             <Coords points="2064,618 2064,3064 579,3064 579,618"/>
             <TextLine id="l_4" custom="readingOrder {index:0;} speaker {offset:0;length:4;xmlid:graf_petefi;}">
                 <Coords points="587,687 1090,755 1292,713 1435,755 1650,707 1951,737 1949,681 1665,618 1517,659 1032,613 978,655 585,592"/>
@@ -138,7 +144,7 @@
                     <Unicode>דֶעם גֶערִיכְט גֶעשׁטֶעלְט וֶוערֶען אַלס צויבּערן, מיִט דֶעם טוִיט בּע⸗</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_18" custom="readingOrder {index:14;} stage {offset:62; length:7; type:exit;}">
+            <TextLine id="l_18" custom="readingOrder {index:14;} stage {offset:62;length:7;type:exit;}">
                 <Coords points="744,1671 1997,1732 2042,1658 742,1624"/>
                 <Baseline points="755,1665 769,1665 814,1665 859,1662 904,1662 949,1668 993,1668 1038,1665 1083,1665 1128,1665 1172,1665 1217,1665 1264,1669 1293,1673 1340,1674 1384,1674 1429,1677 1474,1680 1519,1680 1563,1683 1608,1686 1653,1692 1698,1692 1742,1692 1787,1692 1832,1692 1877,1692 1922,1692 1966,1695 2011,1698 2047,1695"/>
                 <TextEquiv>
@@ -180,14 +186,14 @@
                     <Unicode>ליעבּען אוּן וֶועל אוֹיך מַיין שבועה האַלטען, עֶס זאָל מיִר אוֹיך מַיין</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_24" custom="readingOrder {index:20;} stage {offset:16; length:6; type:exit;}">
+            <TextLine id="l_24" custom="readingOrder {index:20;} stage {offset:16;length:6;type:exit;}">
                 <Coords points="1524,2114 1611,2150 1672,2116 1723,2146 1823,2138 1862,2159 1921,2157 1953,2131 1986,2153 2057,2131 2057,2090 2003,2064 1886,2096 1827,2066 1775,2083 1700,2066 1672,2085 1611,2070 1524,2096"/>
                 <Baseline points="1534,2110 1578,2113 1623,2113 1668,2116 1713,2116 1757,2118 1802,2121 1847,2121 1892,2127 1936,2127 1981,2127 2026,2127 2062,2127"/>
                 <TextEquiv>
                     <Unicode>לעבּען קאָכטען! (אָב).</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_25" custom="readingOrder {index:21;} stage {offset:0; length:45; type:business;}">
+            <TextLine id="l_25" custom="readingOrder {index:21;} stage {offset:0;length:45;type:business;}">
                 <Coords points="845,2228 950,2248 984,2216 1090,2257 1149,2222 1320,2224 1383,2253 1531,2192 1678,2240 1771,2200 1769,2140 1505,2157 1398,2118 1281,2146 915,2114 841,2142"/>
                 <Baseline points="853,2166 898,2169 943,2172 987,2172 1032,2175 1077,2172 1122,2175 1166,2178 1211,2178 1256,2184 1301,2184 1346,2184 1390,2184 1435,2184 1480,2184 1525,2187 1569,2187 1614,2193 1659,2196 1704,2199 1748,2188 1771,2195"/>
                 <TextEquiv>
@@ -222,56 +228,56 @@
                     <Unicode>הֶעניִ:</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_30" custom="readingOrder {index:26;}">
+            <TextLine id="l_30" custom="readingOrder {index:26;} l {offset:0;length:31;} lg {offset:0;length:31;continued:true;type:stanza;}">
                 <Coords points="1281,2550 1459,2539 1546,2573 1671,2543 1747,2576 1892,2550 1890,2508 1841,2484 1728,2500 1672,2474 1635,2489 1474,2463 1416,2493 1346,2473 1279,2493"/>
                 <Baseline points="1289,2530 1334,2527 1378,2530 1423,2527 1468,2521 1513,2518 1557,2518 1602,2524 1647,2530 1692,2530 1736,2536 1781,2542 1826,2545 1871,2545 1895,2542"/>
                 <TextEquiv>
                     <Unicode>נֵיין, איִך בּין קֵיין הֶעקסֶע,</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_31" custom="readingOrder {index:27;}">
+            <TextLine id="l_31" custom="readingOrder {index:27;} l {offset:0;length:37;} lg {offset:0;length:37;continued:true;type:stanza;}">
                 <Coords points="1220,2606 1288,2640 1325,2619 1539,2630 1567,2604 1702,2641 1799,2614 1882,2640 1897,2552 1808,2575 1708,2573 1671,2545 1567,2575 1461,2541 1218,2565"/>
                 <Baseline points="1229,2605 1274,2599 1319,2599 1363,2599 1408,2596 1453,2599 1498,2596 1542,2599 1587,2605 1632,2605 1677,2608 1722,2608 1766,2608 1811,2611 1856,2614 1901,2614 1904,2614"/>
                 <TextEquiv>
                     <Unicode>נוּר אַ קִינְד, דיִ עלְטֶערֶען טרֵיי,</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_32" custom="readingOrder {index:28;}">
+            <TextLine id="l_32" custom="readingOrder {index:28;} l {offset:0;length:27;} lg {offset:0;length:27;continued:true;type:stanza;}">
                 <Coords points="1296,2693 1416,2680 1596,2710 1622,2686 1875,2714 1893,2712 1892,2651 1799,2623 1693,2645 1626,2619 1565,2649 1524,2619 1294,2634"/>
                 <Baseline points="1304,2659 1348,2665 1393,2671 1438,2674 1483,2677 1528,2677 1572,2674 1617,2680 1662,2680 1707,2677 1751,2680 1796,2680 1841,2680 1886,2683 1898,2683"/>
                 <TextEquiv>
                     <Unicode>איִך ווייס פֿון קיין כּשוּף</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_33" custom="readingOrder {index:29;}">
+            <TextLine id="l_33" custom="readingOrder {index:29;} l {offset:0;length:30;} lg {offset:0;length:30;continued:true;type:stanza;}">
                 <Coords points="1292,2762 1344,2775 1411,2745 1502,2773 1593,2781 1658,2758 1808,2784 1903,2758 1901,2718 1841,2695 1723,2712 1621,2688 1593,2710 1556,2693 1487,2714 1411,2686 1375,2708 1288,2697"/>
                 <Baseline points="1301,2730 1346,2733 1390,2736 1435,2739 1480,2739 1503,2737 1503,2737 1548,2742 1593,2742 1638,2748 1683,2748 1728,2751 1772,2751 1817,2751 1862,2754 1907,2751"/>
                 <TextEquiv>
                     <Unicode>אוּן אוֹיך פוּן קיין צויבּעריי</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_34" custom="readingOrder {index:30;}">
+            <TextLine id="l_34" custom="readingOrder {index:30;} l {offset:0;length:45;} lg {offset:0;length:45;continued:true;type:stanza;}">
                 <Coords points="1008,2879 1292,2868 1392,2831 1871,2855 1892,2762 1817,2790 1743,2760 1342,2777 1207,2736 1006,2790"/>
                 <Baseline points="1017,2811 1062,2808 1107,2805 1152,2805 1196,2805 1241,2805 1286,2805 1331,2808 1375,2811 1420,2811 1465,2811 1510,2811 1554,2814 1599,2811 1644,2814 1689,2817 1733,2820 1778,2823 1823,2823 1868,2826 1898,2829"/>
                 <TextEquiv>
                     <Unicode>בּיי גאָט פֿון ישראל שְׁוֶוער איִךְ אַציִנְד,</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_35" custom="readingOrder {index:31;}">
+            <TextLine id="l_35" custom="readingOrder {index:31;} l {offset:0;length:31;} lg {offset:0;length:31;continued:true;type:stanza;}">
                 <Coords points="1290,2885 1461,2918 1596,2899 1706,2927 1901,2905 1901,2872 1736,2836 1654,2836 1628,2859 1585,2834 1472,2851 1437,2833 1290,2862"/>
                 <Baseline points="1301,2880 1346,2880 1390,2880 1435,2880 1480,2883 1525,2877 1569,2874 1614,2874 1659,2883 1704,2886 1748,2888 1793,2891 1838,2894 1883,2894 1904,2891"/>
                 <TextEquiv>
                     <Unicode>אַז איִך בּין ריין פוּן זִינְד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_36" custom="readingOrder {index:32;}">
+            <TextLine id="l_36" custom="readingOrder {index:32;} l {offset:0;length:32;} lg {offset:0;length:32;continued:true;type:stanza;}">
                 <Coords points="1225,2996 1307,2966 1416,2990 1479,2966 1622,2990 1897,2983 1897,2940 1814,2920 1780,2942 1515,2903 1450,2924 1422,2896 1318,2888 1225,2938"/>
                 <Baseline points="1235,2951 1280,2954 1325,2951 1369,2951 1414,2951 1459,2951 1504,2951 1548,2948 1593,2948 1638,2951 1683,2951 1728,2954 1772,2957 1817,2960 1862,2963 1901,2957"/>
                 <TextEquiv>
                     <Unicode>אוּן וֶוען איִך ליעבּ אַ קרִיסט.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l_37" custom="readingOrder {index:33;}">
+            <TextLine id="l_37" custom="readingOrder {index:33;} l {offset:0;length:31;} lg {offset:0;length:31;continued:true;type:stanza;}">
                 <Coords points="1227,3065 1331,3107 1398,3074 1448,3102 1483,3080 1669,3093 1858,3059 1914,3031 1914,2983 1225,2992"/>
                 <Baseline points="1235,3023 1280,3026 1325,3026 1369,3026 1414,3032 1459,3029 1504,3029 1548,3032 1593,3032 1638,3035 1683,3041 1728,3044 1772,3041 1817,3041 1862,3038 1907,3029 1919,3029"/>
                 <TextEquiv>
@@ -282,12 +288,12 @@
                 <Unicode></Unicode>
             </TextEquiv>
         </TextRegion>
-        <GraphicRegion id="r_6" custom="readingOrder {index:2;}">
-            <Coords points="65,3317 122,3317 122,3651 65,3651"/>
-        </GraphicRegion>
         <SeparatorRegion id="r_3" custom="readingOrder {index:3;}">
             <Coords points="154,3469 478,3469 478,3477 154,3477"/>
         </SeparatorRegion>
+        <GraphicRegion id="r_6" custom="readingOrder {index:3;}">
+            <Coords points="65,3317 122,3317 122,3651 65,3651"/>
+        </GraphicRegion>
         <SeparatorRegion id="r_4" custom="readingOrder {index:4;}">
             <Coords points="105,909 126,909 126,1262 105,1262"/>
         </SeparatorRegion>
