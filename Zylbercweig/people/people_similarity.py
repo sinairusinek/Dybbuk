@@ -186,6 +186,18 @@ def _edit_distance(a: str, b: str, transpositions: bool = False) -> int:
     return prev[n]
 
 
+_MATER_LECTIONIS = frozenset("אעויה")
+
+
+def _indel_letter(a: str, b: str) -> str:
+    """The added/dropped letter of a single-indel pair (assumes edit distance 1)."""
+    lo, hi = (a, b) if len(a) < len(b) else (b, a)
+    i = 0
+    while i < len(lo) and lo[i] == hi[i]:
+        i += 1
+    return hi[i] if i < len(hi) else hi[-1]
+
+
 def token_variant_similarity(a: str, b: str, floor_indels: bool = True,
                              transpositions: bool = False) -> float:
     """Character-level similarity for two SINGLE name tokens (e.g. surnames).
@@ -194,19 +206,21 @@ def token_variant_similarity(a: str, b: str, floor_indels: bool = True,
     variants of the same surname (קאמפאנעעץ↔קאמפאניעץ ≈ 0.89) while keeping
     genuinely different surnames apart (גרינבערג↔גרינבוים ≈ 0.63).
 
-    A single INSERTION/DELETION of a letter — the usual Yiddish mater-lectionis
-    variance (קאהן↔קאהען) — is floored to 0.9. A single SUBSTITUTION is NOT
-    floored: swapping one consonant far more often yields a DIFFERENT surname
-    (פרידמאן/פרישמאן/פריימאן), so it must clear the ratio on its own merit.
+    A single INSERTION/DELETION is floored to 0.9 — BUT only when the added
+    letter is a mater lectionis (א/ע/ו/י/ה). That is the real Yiddish spelling
+    variance (קאהן↔קאהען, אקסלרוד↔אקסעלרוד). A single CONSONANT indel is not
+    floored: it far more often marks a DIFFERENT surname (גארדין/גארין,
+    קעסלער/קעלער, גליקמאן/גליקסמאן), so it must clear the ratio on its own merit.
+    A single SUBSTITUTION is likewise never floored (פרידמאן/פרישמאן/פריימאן).
 
     Pass transpositions=True to count an adjacent swap (קאמפאניעעץ↔קאמפאנעיעץ) as
     one edit rather than two — right for OCR/spelling variance, but off by
     default so the resolver's candidate lookup is unaffected.
 
-    Pass floor_indels=False to drop that floor and judge on the raw ratio alone.
-    Callers that MERGE review units want this: a trailing-letter difference is
-    often a real distinction (זילבער/זילבערט, סאבסי/סאבסיי) and folding those
-    together silently reviews two surnames as one.
+    Pass floor_indels=False to drop the floor entirely and judge on the raw
+    ratio alone. Callers that MERGE review units want this: even a vowel-letter
+    difference can be a real distinction (זילבער/זילבערט, סאבסי/סאבסיי) and
+    folding those together silently reviews two surnames as one.
     """
     a = normalize_person_name(a)
     b = normalize_person_name(b)
@@ -216,7 +230,8 @@ def token_variant_similarity(a: str, b: str, floor_indels: bool = True,
         return 1.0
     d = _edit_distance(a, b, transpositions)
     ratio = 1.0 - d / max(len(a), len(b))
-    if floor_indels and d == 1 and len(a) != len(b) and min(len(a), len(b)) >= 4:
+    if (floor_indels and d == 1 and len(a) != len(b) and min(len(a), len(b)) >= 4
+            and _indel_letter(a, b) in _MATER_LECTIONIS):
         return max(ratio, 0.9)
     return ratio
 

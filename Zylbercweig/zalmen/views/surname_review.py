@@ -504,12 +504,20 @@ def render() -> None:
                         unsafe_allow_html=True)
             with top[1]:
                 chips = r["chips"].replace("|", " · ")
-                sugg = ""
+                r_cands0 = [h for h in r["candidate_hub_ids"].split("|") if h]
+                r_scores0 = [s for s in r["candidate_scores"].split("|") if s]
                 if r["verdict"] == "RESOLVED":
                     sugg = (f"→ {label_of.get(r['resolved_hub_id'], '?')} "
                             f"({r['method']})")
                 elif r["method"] == "family_abstain_suggested":
                     sugg = "→ 👪 family abstain suggested"
+                elif r_cands0:
+                    # even when it abstains the resolver still RANKS candidates;
+                    # surface its top lean (with score) so the guess is visible.
+                    sc = f" {r_scores0[0]}" if r_scores0 else ""
+                    sugg = f"leans → {label_of.get(r_cands0[0], '?')}{sc} (abstained)"
+                else:
+                    sugg = ""
                 st.caption(f"{chips}\n\n🤖 {sugg}" if sugg else chips)
 
             q = rereview.get(mid)
@@ -562,6 +570,12 @@ def render() -> None:
                 kind = "hub"
                 mark = pick.split(" ", 1)[0]
                 hub_id = next((h for h, m in label_of.items() if m == mark), "")
+            # the resolver's pick to compare against: its committed hub when it
+            # RESOLVED, else its top-RANKED candidate (it ranks even when it
+            # abstains). Comparing to resolved_hub_id alone made this always "0",
+            # since reviewers only ever see AMBIGUOUS rows where it is empty.
+            r_ranked = [h for h in r["candidate_hub_ids"].split("|") if h]
+            resolver_pick = r["resolved_hub_id"] or (r_ranked[0] if r_ranked else "")
             out.append({
                 "mention_id": mid,
                 "surname": r["surname_token"],
@@ -573,7 +587,7 @@ def render() -> None:
                 "resolver_verdict": r["verdict"],
                 "resolver_method": r["method"],
                 "agrees_with_resolver":
-                    "1" if (kind == "hub" and hub_id == r["resolved_hub_id"]) else "0",
+                    "1" if (kind == "hub" and hub_id == resolver_pick) else "0",
                 "chips": r["chips"],
                 "reviewer": reviewer,
                 "reviewed_at": now,
