@@ -274,10 +274,18 @@ def main() -> None:
         if not names:
             continue
         node_ed = f"edition:tkb_{doc}"
-        for p, method in match_titles(names):
-            ed_author = rec["author"]
-            author_ok = (("Lateiner" in ed_author and p["author_db_id"] == "683")
-                         or ("Hurwitz" in ed_author and p["author_db_id"] == "684"))
+        cands = match_titles(names)
+
+        def _author_ok(p):
+            return (("Lateiner" in rec["author"] and p["author_db_id"] == "683")
+                    or ("Hurwitz" in rec["author"] and p["author_db_id"] == "684"))
+
+        # when the edition has a right-author match, drop cross-author plays
+        # that only share a title segment (same-title-different-play homonyms)
+        if any(_author_ok(p) for p, _ in cands):
+            cands = [(p, m) for p, m in cands if _author_ok(p)]
+        for p, method in cands:
+            author_ok = _author_ok(p)
             g.add_node(node_ed, node_type="edition", label_english=rec["title"],
                        ext_ref_type="transkribus_doc", ext_ref_id=doc,
                        secondary_ids=(json.dumps({"expression_id": rec["expression_id"]})
