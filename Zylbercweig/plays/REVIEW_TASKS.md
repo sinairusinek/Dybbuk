@@ -14,19 +14,33 @@ an arbitrary point: Lateiner got all titles from *400 יאָר* up to *דניא�
 Hurwitz everything from *דעם זייגערמאַכערס* onward. (No real repertoire stops
 mid-alphabet.) The database's own works table is fine and agrees with the
 lexicon entries in every checkable case, so we rebuilt the play authorship
-from it: **104 plays reassigned, 118 confirmed**. Whoever maintains the
-DiJeSt database should know the "Created expression(s)" column in person
-reports is unreliable.
+from it: **104 plays reassigned, 118 confirmed**.
+
+We also found and applied the ascription vetting that the former catalogue
+curators recorded in the `certainty` column of the "Lateiner Plays" /
+"Hurwitz Plays" sheets: 9 plays marked **certain** got their author; 18
+marked **false ascription / error** were detached from Lateiner/Hurwitz in
+the graph (the play stays, the authorship link goes). Since those curators
+are no longer with the project, all remaining catalogue-level judgments come
+to Ruthie below.
+
+*Standing caveat for the whole project: the "Created expression(s)" column
+in DiJeSt person-report exports is corrupt (the pooled-list bug above) — it
+should not be used again for any person.*
 
 ---
 
-## For the PI
+## For Ruthie (PI)
 
-### 1. Confirm the authorship rebuild (done, needs your blessing)
-We replaced the corrupted person-report play lists with the works-table
-authorship (116 Lateiner / 108 Hurwitz). The lexicon entries themselves
-agreed with the works table in all 64 cases where we could check. **OK to
-keep? Anything you'd like spot-checked?**
+### 1. Confirm two applied corrections (done, need your blessing)
+a. Play authorship rebuilt from the works table (116 Lateiner / 108 Hurwitz;
+   the lexicon entries agreed in all 64 checkable cases).
+b. The former curators' certainty judgments applied (9 adopted, 18
+   ascriptions rejected). Among the rejected: **דאס יודישע קינד** is marked
+   "false ascription" in the catalogue **even though our printed 1911
+   edition (a Transkribus edition we work on) names Lateiner on the title
+   page** — if that judgment is right, the edition metadata should carry a
+   note; if it's wrong, say so and we restore the authorship link.
 
 > Answer:
 
@@ -38,14 +52,28 @@ Mishpat Shloyme (two plays), or is the mention in his entry the same
 
 > Answer:
 
-### 3. 51 plays with no author in the works table (background task, no rush)
-These titles are in the works catalogue without an author. They currently
-stay in the graph flagged "unattributed". If any are obviously Lateiner's /
-Hurwitz's / someone else's, mark them here whenever convenient:
+### 3. 24 ascriptions the former curators never vetted (decide or defer)
+These sit in the catalogue's per-author sheets with an empty certainty
+column. Until decided they stay in the graph as plays WITHOUT an authorship
+link. Mark any you can decide (his / not his / leave open); "defer all" is a
+fine answer too.
 
-בוקאַרעשטער פּונגאַש; בעליזאַריע און איזאַבעל; ברכה, אָדער דער יידישער קעניג פון פּוילן אויף איין נאַכט; גבריאל, אָדער די ליבע פֿון אַ ייִדישער פֿרוי; דאָן יאָזעף אברבנל; דאס גאָלדענע קאלב; דאס יודישע קינד; דאס פּוילישע יינגל; דגל מחנה יהודה; דודס פֿידעלע; די וואָרהייט; די וועשין; די ליבע פֿון ירושלים; די לייכטזיניגער; די מאַכט פֿון קונסט; די נייע פרימאַדאָנע; די ערע; די ציגײַנערין; די קאמעליען דאמע; די שנײַדערין; דיא מייא בלומע; ד״ר דניאל; דער בלינדער מוזיקאַנט; דער טיראנישער באַנקער; דער ייִד אין רומעניע; דער ייד אין סאַביעצקי צײַטן; דער ישיבֿה־בחור; דער ליגנער; דער נייער שטערן; דער פֿאַרקויפֿטער שלאָף; דער שבתי צבי; דער שקר; ווילהעלם טעל; וויסטער אינזעל; חכמת נשים; יאַקאָב דער מוזיקאַנט; יהודה וישראל, אדער די קראפט פון שמע ישראל; לומפּאַציוס וואַגאַבונדוס; מאָנטע קריסטאָ; מוטער-ליבע; נחום גענדזעלע; נחמיה קוגל; עוזר לייזער, געציל מיכאל; עזריה; ערשטע ליבע; עתליהו; צוויי שמואל-שמעלקעס; קאָלאָניע שומרון־סאַמאַריע אָדער אוריאל אַקאָסטא אין כאַלאַט; קורחס אוצרות אָדער ממון דער געלדגאָט; קעניג און בויער; שלאמקע און ריקל
+**Claimed for Lateiner (8):** דאס גאָלדענע קאלב; די נייע פרימאַדאָנע; דיא מייא
+בלומע; ד״ר דניאל; ווילהעלם טעל *(marked uncertain)*; יאַקאָב דער מוזיקאַנט;
+עזריה; שלאמקע און ריקל *(marked uncertain)*
 
-> Notes:
+**Claimed for Hurwitz (16):** ברכה, אָדער דער יידישער קעניג פון פּוילן אויף
+איין נאַכט; דאָן יאָזעף אברבנל; דאס פּוילישע יינגל; די וועשין; דער טיראנישער
+באַנקער; דער ייד אין סאַביעצקי צײַטן; דער פֿאַרקויפֿטער שלאָף; דער שבתי צבי;
+וויסטער אינזעל; חכמת נשים; יהודה וישראל, אדער די קראפט פון שמע ישראל; מאָנטע
+קריסטאָ; מוטער-ליבע; עוזר לייזער, געציל מיכאל; עתליהו; קאָלאָניע
+שומרון־סאַמאַריע אָדער אוריאל אַקאָסטא אין כאַלאַט
+
+*(Hint: many of the Hurwitz-claimed ones do appear in Hurwitz's own lexicon
+entry — e.g. דאס פּוילישע יינגל, דער שבתי צבי, עתליהו — which supports the
+ascription.)*
+
+> Answers / notes:
 
 ---
 

@@ -202,6 +202,8 @@ def main() -> None:
                    ext_ref_type="plays_db", ext_ref_id=p["play_id"],
                    match_status="matched",
                    notes=("disputed_attribution" if p["attribution_status"] == "disputed" else ""))
+        if p["attribution_status"] in ("ascription_rejected", "ascription_unvetted"):
+            continue  # curators rejected (or never vetted) the L/H ascription
         author_node = f"person:{p['author_db_id']}"
         pr = people.get(p["author_db_id"], {})
         g.add_node(author_node, node_type="person", label_yiddish=pr.get("hebname", ""),

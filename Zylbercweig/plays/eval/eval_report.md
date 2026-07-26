@@ -2,19 +2,19 @@
 
 findings: 721
 
-- **CORROBORATED**: 346
-- **CONTRADICTED**: 72
+- **CORROBORATED**: 351
+- **CONTRADICTED**: 67
 - **LEXICON_ONLY**: 94
 - **REFERENCE_ONLY**: 209
 
 ## By aspect
 
-- CONTRADICTED / attribution: 21
+- CONTRADICTED / attribution: 16
 - CONTRADICTED / homonym_false_positive: 11
 - CONTRADICTED / premiere_year: 2
 - CONTRADICTED / production_before_premiere: 32
 - CONTRADICTED / venue: 6
-- CORROBORATED / attribution: 252
+- CORROBORATED / attribution: 257
 - CORROBORATED / premiere_year: 3
 - CORROBORATED / venue: 91
 - LEXICON_ONLY / gold_missed: 17
@@ -29,21 +29,16 @@ findings: 721
 - `F-0063` [attribution] דאס פּוילישע יינגל: KG='lexicon author db 683' vs ref='Hurwitz' (play:PL-0063 / W-0153)
 - `F-0083` [attribution] די וועשין: KG='lexicon author db 683' vs ref='Hurwitz' (play:PL-0083 / W-0237)
 - `F-0129` [attribution] דער בלינדער מוזיקאַנט: KG='lexicon author db 684' vs ref='683.0' (play:PL-0129 / W-0021)
-- `F-0140` [attribution] דער ייִד אין רומעניע: KG='lexicon author db 684' vs ref='683.0' (play:PL-0140 / W-0042)
 - `F-0144` [attribution] דער ישיבֿה־בחור: KG='lexicon author db 684' vs ref='683.0' (play:PL-0144 / W-0041)
 - `F-0147` [attribution] דער ליגנער: KG='lexicon author db 684' vs ref='683.0' (play:PL-0147 / W-0029)
 - `F-0152` [attribution] דער נייער שטערן: KG='lexicon author db 684' vs ref='683.0' (play:PL-0152 / W-0032)
 - `F-0166` [attribution] דער שקר: KG='lexicon author db 684' vs ref='683.0' (play:PL-0166 / W-0035)
 - `F-0174` [attribution] ווילהעלם טעל: KG='lexicon author db 684' vs ref='683.0' (play:PL-0174 / W-0135)
 - `F-0189` [attribution] יאַקאָב דער מוזיקאַנט: KG='lexicon author db 684' vs ref='683.0' (play:PL-0189 / W-0144)
-- `F-0209` [attribution] לומפּאַציוס וואַגאַבונדוס: KG='lexicon author db 684' vs ref='683.0' (play:PL-0209 / W-0112)
 - `F-0228` [attribution] נחום גענדזעלע: KG='lexicon author db 684' vs ref='683.0' (play:PL-0228 / W-0122)
 - `F-0229` [attribution] נחמיה קוגל: KG='lexicon author db 684' vs ref='683.0' (play:PL-0229 / W-0121)
 - `F-0235` [attribution] עזריה: KG='lexicon author db 684' vs ref='683.0' (play:PL-0235 / W-0011)
 - `F-0239` [attribution] ערשטע ליבע: KG='lexicon author db 684' vs ref='683.0' (play:PL-0239 / W-0086)
-- `F-0243` [attribution] צוויי שמואל-שמעלקעס: KG='lexicon author db 684' vs ref='683.0' (play:PL-0243 / W-0132)
-- `F-0256` [attribution] קורחס אוצרות אָדער ממון דער געלדגאָט: KG='lexicon author db 684' vs ref='683.0' (play:PL-0256 / W-0110)
-- `F-0261` [attribution] קעניג און בויער: KG='lexicon author db 684' vs ref='683.0' (play:PL-0261 / W-0099)
 - `F-0267` [attribution] שלאמקע און ריקל: KG='lexicon author db 684' vs ref='683.0' (play:PL-0267 / W-0124)
 - `F-0283` [production_before_premiere] טיסא עסלער אָדער די פֿאַרשווערונג: KG='1881' vs ref='1887' (event:EV-0337 / PR-0726;PR-0727;PR-0728)
 - `F-0284` [production_before_premiere] טיסא עסלער אָדער די פֿאַרשווערונג: KG='1882' vs ref='1887' (event:EV-0638 / PR-0726;PR-0727;PR-0728)
