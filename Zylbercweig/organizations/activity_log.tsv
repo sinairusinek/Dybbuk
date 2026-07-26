@@ -1478,3 +1478,16 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-07-26T08:35:15Z	Sinai	db_audit	db_decision	db:859	EDIT	removed stray name_variants 'יידנראט | Yudenrat' — grafted by 2026-07-19 restore onto id 859 after the Judenrat umbrella row was clobbered by app auto-save (see 3c0c5f94/8e3fcbb9)	
 >>>>>>> Stashed changes
 2026-07-26T08:36:43Z	Sinai	org_review	alignment	ORG-C01936_FREIMAN	NEW	coined db 1784 Adolf Freiman's troupe (was DESCRIPTIVE)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C00752	SPLIT	force-split _Q01 Kharkov(10)/_Q02 Kyiv(5)/_Q03 Minsk(1); remainder(3) stays on umbrella 427	"{""new_cluster_ids"": [""ORG-C00752_Q01"", ""ORG-C00752_Q02"", ""ORG-C00752_Q03""]}"
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	db:427	EDIT	umbrella: org_type ''->Theatre; linked_cluster_ids -> ORG-C00752 only (dropped bogus ORG-C00794 = Boiberik camp; city clusters moved to children 1785-1787)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C00752_Q01	ALIGN	-> db 1785 Unzer Vinkl (Kharkov), child of 427	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C00752_Q02	ALIGN	-> db 1786 Unzer Vinkl (Kyiv), child of 427	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C00752_Q03	ALIGN	-> db 1787 Unzer Vinkl (Minsk), child of 427	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C04372	ALIGN	-> db 1785 (Kharkov child; was NEW->427)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C04513	ALIGN	-> db 1785 (Kharkov child; was NEW->427)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C05083	ALIGN	-> db 1785 (Kharkov child; was NEW->427)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C00504	ALIGN	-> db 1786 (Kyiv child; was ALIGN->427)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C04174	ALIGN	-> db 1787 (Minsk child; was NEW->427)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C04763	ALIGN	-> db 1787 (Minsk child; was NEW->427)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C00752_PAL	NEW	coined db 1788 Erets-Yisroel drama circle (homonym)	
+2026-07-26T09:01:50Z	Sinai	org_review	alignment	ORG-C00752_PUB	NEW	coined db 1789 Grodno periodical (homonym)	
