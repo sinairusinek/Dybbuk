@@ -186,6 +186,11 @@ def lint_play(play: str, label: str) -> list[dict]:
             m = TURN_RE.match(txt)
             if not m:
                 continue
+            # a musical rubric covered by a head span (רעפריין: <sung tail>)
+            # is a song-part heading, not an untagged turn (§G, 2026-07-26)
+            if any(t == "head" and int(a.get("offset", 0)) == 0
+                   for t, a in spans):
+                continue
             label_txt = m.group(1)
             k = skel(label_txt)
             rest = txt[m.end():]
@@ -210,6 +215,8 @@ def lint_play(play: str, label: str) -> list[dict]:
                         "stage{type:setting}", txt[:40],
                         "retag whole line stage{type:setting}")
                     continue
+                if _has_setting(tl):
+                    continue  # locus-of-action already tagged — not a cast entry
                 if not ({"role", "roleDesc"} & tags):
                     add(page, tl.get("id"), "untagged cast entry", "NOA",
                         f"castList line '{k}' has no role/roleDesc span", txt[:40],

@@ -3,13 +3,13 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.1.0:model_id=54653:lm=provided:date=26_08_2023_16:41</Creator>
         <Created>2021-11-21T13:17:52.444+01:00</Created>
-        <LastChange>2026-07-25T13:08:11.145+02:00</LastChange>
+        <LastChange>2026-07-26T15:06:28.107+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
                 Producer: Transkribus
             </Comments>
-        <TranskribusMetadata docId="828503" pageId="30808406" pageNr="57" userId="357543" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WSQMWRROJMJMRWCFSAHUILEA" imageId="24241251"/>
+        <TranskribusMetadata docId="828503" pageId="30808406" pageNr="57" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=WSQMWRROJMJMRWCFSAHUILEA" imageId="24241251"/>
     </Metadata>
     <Page imageFilename="0057_OTgwNjMyNTk.111102551.jpg" imageWidth="2336" imageHeight="3592">
         <PrintSpace>
@@ -197,7 +197,7 @@
         </TextRegion>
         <TextRegion orientation="0.0" type="paragraph" id="TextRegion_1649531974009_863" custom="readingOrder {index:2;} structure {type:paragraph;}">
             <Coords points="641,785 1355,785 1355,2507 637,2507"/>
-            <TextLine id="line_1649532119485_953" custom="readingOrder {index:0;} speaker {offset:0;length:5;}">
+            <TextLine id="line_1649532119485_953" custom="readingOrder {index:0;} speaker {offset:0; length:5; xmlid:kor;}">
                 <Coords points="817,840 883,856 900,846 935,865 969,856 988,869 1014,871 1011,766 984,766 969,752 941,745 900,752 875,738 814,748"/>
                 <Baseline points="825,822 852,831 879,834 907,835 934,834 962,833 989,833 1017,836"/>
                 <TextEquiv>
@@ -231,7 +231,7 @@
         </TextRegion>
         <TextRegion id="r" custom="readingOrder {index:3;} structure {type:paragraph;}">
             <Coords points="635,2774 637,2507 2330,2507 2328,2774"/>
-            <TextLine id="l" custom="readingOrder {index:0;} speaker {offset:0;length:8;}">
+            <TextLine id="l" custom="readingOrder {index:0;} head {offset:0; length:7; lg_id:1;}">
                 <Coords points="1140,2592 1494,2594 1559,2559 1557,2515 1459,2525 1367,2490 1287,2500 1252,2531 1139,2534"/>
                 <Baseline points="1149,2567 1174,2568 1200,2568 1226,2570 1252,2571 1278,2572 1304,2573 1330,2574 1356,2574 1381,2574 1407,2574 1433,2574 1459,2574 1485,2574 1511,2573 1537,2571 1563,2570"/>
                 <TextEquiv>
@@ -258,7 +258,7 @@
         </TextRegion>
         <TextRegion id="r_1" custom="readingOrder {index:4;} structure {type:paragraph;}">
             <Coords points="2328,2774 2328,2846 635,2846 635,2774"/>
-            <TextLine id="l_3" custom="readingOrder {index:0;} speaker {offset:0;length:4;}">
+            <TextLine id="l_3" custom="readingOrder {index:0;} speaker {offset:0; length:4; xmlid:duet;}">
                 <Coords points="1200,2819 1307,2832 1331,2848 1366,2829 1486,2838 1486,2769 1440,2753 1398,2771 1366,2762 1310,2780 1272,2753 1224,2780 1200,2774"/>
                 <Baseline points="1208,2819 1233,2820 1259,2822 1284,2823 1310,2823 1336,2823 1361,2823 1387,2823 1413,2823 1438,2822 1464,2820 1490,2819"/>
                 <TextEquiv>
