@@ -1404,6 +1404,7 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-07-25T15:10:15Z	Maaty	settlement_audit	merge	db:1773	MERGE	Aligned 3 cluster(s) → 1773	"{""qid"": ""Q18419"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C00157_Q02"", ""cluster:ORG-C00592"", ""cluster:ORG-C03903_Q02""]}"
 2026-07-25T16:32:57Z	Sinai	org_review	alignment	ORG-C01936	SPLIT	Freiman-Anna mention split out to ORG-C01936_FREIMAN (Adolf Freiman's troupe, not Lerman's); ALIGN 641 kept for Lerman mention	"{""new_cluster_id"": ""ORG-C01936_FREIMAN""}"
 2026-07-25T16:32:57Z	Sinai	org_review	alignment	ORG-C01936_FREIMAN	DESCRIPTIVE	generic anaphoric phrase; referent = Adolf Freiman's troupe (Argentina 1912)	
+<<<<<<< Updated upstream
 2026-07-25T18:01:57Z	Maaty	settlement_audit	merge	db:1776	MERGE	Aligned 2 cluster(s) → 1776	"{""qid"": ""Q991279"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C00157_Q03"", ""cluster:ORG-C05689""]}"
 2026-07-25T18:06:16Z	Maaty	settlement_audit	merge	db:1775	MERGE	Aligned 5 cluster(s) → 1775	"{""qid"": ""Q991279"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C01838_Q02"", ""cluster:ORG-C04831"", ""cluster:ORG-C05397"", ""cluster:ORG-C06006_Q02"", ""cluster:ORG-C06086""]}"
 2026-07-25T20:35:31Z	Maaty	settlement_audit	merge	db:623	MERGE	Aligned 2 cluster(s) → 623	"{""qid"": ""Q90"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C00193"", ""cluster:ORG-C00979""]}"
@@ -1473,3 +1474,7 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-07-26T07:25:35Z	Maaty	settlement_audit	merge	cluster:ORG-C03500	MERGE	Created DB 1781 from 3 cluster(s)	"{""qid"": ""Q84"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C04545_Q03"", ""cluster:ORG-C05650""]}"
 2026-07-26T07:27:54Z	Maaty	settlement_audit	merge	cluster:ORG-C00639_Q02	MERGE	Created DB 1782 from 2 cluster(s)	"{""qid"": ""Q84"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C06938""]}"
 2026-07-26T07:29:39Z	Maaty	settlement_audit	merge	cluster:ORG-C01933	MERGE	Created DB 1783 from 3 cluster(s)	"{""qid"": ""Q84"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C04133"", ""cluster:ORG-C06562""]}"
+=======
+2026-07-26T08:35:15Z	Sinai	db_audit	db_decision	db:859	EDIT	removed stray name_variants 'יידנראט | Yudenrat' — grafted by 2026-07-19 restore onto id 859 after the Judenrat umbrella row was clobbered by app auto-save (see 3c0c5f94/8e3fcbb9)	
+>>>>>>> Stashed changes
+2026-07-26T08:36:43Z	Sinai	org_review	alignment	ORG-C01936_FREIMAN	NEW	coined db 1784 Adolf Freiman's troupe (was DESCRIPTIVE)	
