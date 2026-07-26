@@ -112,10 +112,16 @@ def resolve_with_adjudication(row: dict, slot: str, review: dict) -> tuple[str, 
                 "venue": "venue_surface", "place": "settlement_surface",
                 "play": "play_title_surface"}[slot]
     dec = review.get((slot, row.get(surf_col, "")))
-    if dec and dec.get("decision") == "ALIGN" and dec.get("decided_link"):
+    if not dec:
+        return link, status
+    d = dec.get("decision", "")
+    if d in ("ALIGN", "AUTO_ACCEPT", "AUTO_CLUSTER", "GEMINI_ACCEPT") \
+            and dec.get("decided_link"):
         return dec["decided_link"], "matched"
-    if dec and dec.get("decision") == "REJECT":
-        return "", "unmatched"
+    if d in ("REJECT", "GEMINI_REJECT", "GEMINI_NEW_PLAY", "AUTO_NEW"):
+        return "", "unmatched"       # mint a new unlinked node
+    if d == "GEMINI_NOT_ENTITY":
+        return "", "not_entity"      # suppress the slot entirely
     return link, status
 
 
@@ -153,6 +159,8 @@ def ensure_endpoint(g: Graph, link: str, status: str, slot: str, surface: str,
         elif ns == "play":
             return link  # play nodes are added from the registry
         return link
+    if status == "not_entity":
+        return ""  # adjudicated: not an entity of this kind — no node, no edge
     # unmatched (or multi-candidate, which stays unresolved) -> mint
     if not surface.strip():
         return ""

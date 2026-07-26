@@ -3,23 +3,23 @@
 findings: 725
 
 - **CORROBORATED**: 245
-- **CONTRADICTED**: 183
+- **CONTRADICTED**: 172
 - **LEXICON_ONLY**: 96
-- **REFERENCE_ONLY**: 201
+- **REFERENCE_ONLY**: 212
 
 ## By aspect
 
 - CONTRADICTED / attribution: 121
 - CONTRADICTED / homonym_false_positive: 11
 - CONTRADICTED / premiere_year: 2
-- CONTRADICTED / production_before_premiere: 43
+- CONTRADICTED / production_before_premiere: 32
 - CONTRADICTED / venue: 6
 - CORROBORATED / attribution: 152
 - CORROBORATED / premiere_year: 3
 - CORROBORATED / venue: 90
 - LEXICON_ONLY / gold_missed: 17
 - LEXICON_ONLY / venue: 79
-- REFERENCE_ONLY / production: 195
+- REFERENCE_ONLY / production: 206
 - REFERENCE_ONLY / work_coverage: 6
 
 ## Contradictions requiring adjudication
@@ -145,57 +145,46 @@ findings: 725
 - `F-0268` [attribution] שלום-בית: KG='lexicon author db 684' vs ref='683.0' (play:PL-0268 / W-0126)
 - `F-0269` [attribution] שלמה גאָרגל: KG='lexicon author db 684' vs ref='683.0' (play:PL-0269 / W-0125)
 - `F-0271` [attribution] שלמה ערליך: KG='lexicon author db 684' vs ref='683.0' (play:PL-0271 / W-0123)
-- `F-0285` [production_before_premiere] טיסא עסלער אָדער די פֿאַרשווערונג: KG='1881' vs ref='1887' (event:EV-0339 / PR-0726;PR-0727;PR-0728)
-- `F-0286` [production_before_premiere] טיסא עסלער אָדער די פֿאַרשווערונג: KG='1882' vs ref='1887' (event:EV-0640 / PR-0726;PR-0727;PR-0728)
-- `F-0291` [production_before_premiere] שלמה המלך: KG='1876' vs ref='1887' (event:EV-0434 / PR-0836;PR-0837;PR-0838)
-- `F-0294` [production_before_premiere] שלמה המלך: KG='1880' vs ref='1887' (event:EV-0684 / PR-0836;PR-0837;PR-0838)
-- `F-0302` [production_before_premiere] דער שבתי צבי: KG='1860' vs ref='1887' (event:EV-0120 / PR-0684;PR-0233)
-- `F-0335` [production_before_premiere] צוויי תנאים: KG='1900' vs ref='1902' (event:EV-0478 / PR-0276;PR-0277)
-- `F-0337` [production_before_premiere] די עמיגראַציאָן נאָך אַמעריקע: KG='1884' vs ref='1886' (event:EV-0020 / PR-0604;PR-0605;PR-0606)
-- `F-0338` [production_before_premiere] די געהיימניסע פֿון ניו-יאָרק: KG='1884' vs ref='1888' (event:EV-0021 / PR-0583;PR-0584;PR-0032)
-- `F-0339` [production_before_premiere] דוד בן ישי: KG='1884' vs ref='1887,1890' (event:EV-0022 / PR-0571;PR-0572;PR-0573)
-- `F-0348` [production_before_premiere] יהודה המכּבי: KG='1883' vs ref='1888' (event:EV-0131 / PR-0735;PR-0035)
-- `F-0356` [production_before_premiere] דניאל אין לייבנגרוב: KG='1889' vs ref='1891' (event:EV-0616 / PR-0045;PR-0050;PR-0051)
-- `F-0366` [premiere_year] אליהו הנביא, אָדער דער מיליאָנער און בעטלער פאַנטאַסטישע אָפּערעטע אין 5 אַקטן און פּראָלאָג: KG='1895' vs ref='1889' (event:EV-0680 / PR-0413;PR-0414;PR-0250)
-- `F-0373` [production_before_premiere] שמשון הגיבור: KG='1880' vs ref='1890' (event:EV-0681 / PR-0841;PR-0320)
-- `F-0376` [production_before_premiere] בית יעקב אבינו, אָדער שמעון און לוי אחים: KG='1893' vs ref='1897' (event:EV-0194 / PR-0431;PR-0189)
-- `F-0377` [production_before_premiere] נקדימון בן גוריון, אָדער דער גליקליכער פּאַסטוך: KG='1892' vs ref='1899' (event:EV-0346 / PR-0792;PR-0355)
-- `F-0378` [venue] אשת-חיל: KG='Roumanian Opera House|Central Theatre' vs ref='The Roumanian Opera Company' (event:EV-0239 / PR-0047)
-- `F-0384` [production_before_premiere] אלכּסנדר אָדער קרוינפּרינץ פֿון ירושלים: KG='1890' vs ref='1892' (event:EV-0488 / PR-0416;PR-0055)
-- `F-0398` [production_before_premiere] די פֿאַרבלאָנדזשעטע נשמה: KG='1888' vs ref='1891' (event:EV-0180 / PR-0611;PR-0861;PR-0862)
-- `F-0403` [premiere_year] דער אוצר: KG='1912' vs ref='1896' (event:EV-0438 / PR-0635;PR-0080)
-- `F-0404` [production_before_premiere] דער אוצר: KG='1880' vs ref='1896' (event:EV-0619 / PR-0635;PR-0080)
-- `F-0407` [production_before_premiere] דודס פֿידעלע: KG='1880' vs ref='1897' (event:EV-0683 / PR-0577;PR-0867;PR-0087)
-- `F-0412` [venue] ייִדעלע, אָדער דער אמת און דער שקר: KG='Windsor Theatre' vs ref="People's Theatre NY" (event:EV-0093 / PR-0746)
-- `F-0413` [venue] ייִדעלע, אָדער דער אמת און דער שקר: KG='Windsor Theatre' vs ref="People's Theatre NY" (event:EV-0093 / PR-0848)
-- `F-0414` [venue] ייִדעלע, אָדער דער אמת און דער שקר: KG='Windsor Theatre' vs ref="People's Theatre NY" (event:EV-0093 / PR-0095)
-- `F-0415` [production_before_premiere] חכמת שלמה: KG='1888' vs ref='1898,1899' (event:EV-0404 / PR-0723;PR-0096)
-- `F-0416` [production_before_premiere] חכמת שלמה: KG='1876' vs ref='1898,1899' (event:EV-0433 / PR-0723;PR-0096)
-- `F-0438` [production_before_premiere] דאָס ייִדישע האַרץ: KG='1903' vs ref='1908' (event:EV-0391 / PR-0558;PR-0868;PR-0130)
-- `F-0441` [production_before_premiere] יום-החופּה: KG='1908' vs ref='1910' (event:EV-0342 / PR-0740;PR-0131)
-- `F-0446` [production_before_premiere] אַ מאַמע פֿון יענער וועלט: KG='1899' vs ref='1914' (event:EV-0196 / PR-0400;PR-0401;PR-0142)
-- `F-0453` [production_before_premiere] אַ קרבן פֿון ליבע: KG='1907' vs ref='1916' (event:EV-0201 / PR-0404;PR-0146)
-- `F-0456` [venue] די מחותנים, אׁדער דאָס שפּיל פֿון לעבן: KG='National Theatre' vs ref='Thomashefsky Theatre' (event:EV-0259 / PR-0599)
-- `F-0457` [venue] די מחותנים, אׁדער דאָס שפּיל פֿון לעבן: KG='National Theatre' vs ref='Thomashefsky Theatre' (event:EV-0259 / PR-0150)
-- `F-0458` [production_before_premiere] די מחותנים, אׁדער דאָס שפּיל פֿון לעבן: KG='1915' vs ref='1918' (event:EV-0469 / PR-0599;PR-0150)
-- `F-0459` [production_before_premiere] די מחותנים, אׁדער דאָס שפּיל פֿון לעבן: KG='1915' vs ref='1918' (event:EV-0525 / PR-0599;PR-0150)
-- `F-0464` [production_before_premiere] שלום-בית: KG='1905' vs ref='1923' (event:EV-0449 / PR-0833;PR-0156)
-- `F-0465` [production_before_premiere] שלום-בית: KG='1907' vs ref='1923' (event:EV-0666 / PR-0833;PR-0156)
-- `F-0478` [production_before_premiere] איר לעצטע טאנץ: KG='1927' vs ref='1930' (event:EV-0123 / PR-0175;PR-0412)
-- `F-0479` [production_before_premiere] איר לעצטע טאנץ: KG='1927' vs ref='1930' (event:EV-0124 / PR-0175;PR-0412)
-- `F-0480` [production_before_premiere] קאָלאָניע שומרון־סאַמאַריע אָדער אוריאל אַקאָסטא אין כאַלאַט: KG='1883' vs ref='1895' (event:EV-0130 / PR-0813;PR-0310;PR-0360)
-- `F-0481` [production_before_premiere] קאָלאָניע שומרון־סאַמאַריע אָדער אוריאל אַקאָסטא אין כאַלאַט: KG='1884' vs ref='1895' (event:EV-0271 / PR-0813;PR-0310;PR-0360)
-- `F-0482` [production_before_premiere] קאָלאָניע שומרון־סאַמאַריע אָדער אוריאל אַקאָסטא אין כאַלאַט: KG='1886' vs ref='1895' (event:EV-0272 / PR-0813;PR-0310;PR-0360)
-- `F-0483` [production_before_premiere] קאָלאָניע שומרון־סאַמאַריע אָדער אוריאל אַקאָסטא אין כאַלאַט: KG='1890' vs ref='1895' (event:EV-0476 / PR-0813;PR-0310;PR-0360)
-- `F-0492` [production_before_premiere] דער גאט פון גערעכטיקייט: KG='1892' vs ref='1919' (event:EV-0134 / PR-0641;PR-0152)
-- `F-0493` [production_before_premiere] קאַפּיטן דרײַפוס: KG='1888' vs ref='1898' (event:EV-0326 / PR-0816;PR-0817;PR-0267)
-- `F-0494` [production_before_premiere] קאַפּיטן דרײַפוס: KG='1888' vs ref='1898' (event:EV-0551 / PR-0816;PR-0817;PR-0267)
-- `F-0495` [production_before_premiere] מאַן און ווײַב: KG='1890' vs ref='1906,1908' (event:EV-0191 / PR-0774;PR-0775;PR-0123)
-- `F-0498` [production_before_premiere] חתן-כּלה: KG='1889' vs ref='1907' (event:EV-0304 / PR-0724;PR-0125)
-- `F-0499` [production_before_premiere] רש"י: KG='1889' vs ref='1897' (event:EV-0614 / PR-0311)
-- `F-0500` [production_before_premiere] רש"י: KG='1889' vs ref='1897' (event:EV-0615 / PR-0311)
-- `F-0501` [production_before_premiere] דער שטורם וינד: KG='1892' vs ref='1895' (event:EV-0463 / PR-0686;PR-0076)
-- `F-0502` [production_before_premiere] דאָס לעבן אין ניו-יאָרק: KG='1890' vs ref='1893' (event:EV-0546 / PR-0559;PR-0062)
+- `F-0285` [production_before_premiere] טיסא עסלער אָדער די פֿאַרשווערונג: KG='1881' vs ref='1887' (event:EV-0337 / PR-0726;PR-0727;PR-0728)
+- `F-0286` [production_before_premiere] טיסא עסלער אָדער די פֿאַרשווערונג: KG='1882' vs ref='1887' (event:EV-0638 / PR-0726;PR-0727;PR-0728)
+- `F-0291` [production_before_premiere] שלמה המלך: KG='1876' vs ref='1887' (event:EV-0432 / PR-0836;PR-0837;PR-0838)
+- `F-0294` [production_before_premiere] שלמה המלך: KG='1880' vs ref='1887' (event:EV-0681 / PR-0836;PR-0837;PR-0838)
+- `F-0334` [production_before_premiere] צוויי תנאים: KG='1900' vs ref='1902' (event:EV-0476 / PR-0276;PR-0277)
+- `F-0336` [production_before_premiere] די עמיגראַציאָן נאָך אַמעריקע: KG='1884' vs ref='1886' (event:EV-0020 / PR-0604;PR-0605;PR-0606)
+- `F-0337` [production_before_premiere] די געהיימניסע פֿון ניו-יאָרק: KG='1884' vs ref='1888' (event:EV-0021 / PR-0583;PR-0584;PR-0032)
+- `F-0338` [production_before_premiere] דוד בן ישי: KG='1884' vs ref='1887,1890' (event:EV-0022 / PR-0571;PR-0572;PR-0573)
+- `F-0347` [production_before_premiere] יהודה המכּבי: KG='1883' vs ref='1888' (event:EV-0131 / PR-0735;PR-0035)
+- `F-0355` [production_before_premiere] דניאל אין לייבנגרוב: KG='1889' vs ref='1891' (event:EV-0616 / PR-0045;PR-0050;PR-0051)
+- `F-0365` [premiere_year] אליהו הנביא, אָדער דער מיליאָנער און בעטלער פאַנטאַסטישע אָפּערעטע אין 5 אַקטן און פּראָלאָג: KG='1895' vs ref='1889' (event:EV-0677 / PR-0413;PR-0414;PR-0250)
+- `F-0372` [production_before_premiere] שמשון הגיבור: KG='1880' vs ref='1890' (event:EV-0678 / PR-0841;PR-0320)
+- `F-0375` [production_before_premiere] בית יעקב אבינו, אָדער שמעון און לוי אחים: KG='1893' vs ref='1897' (event:EV-0193 / PR-0431;PR-0189)
+- `F-0376` [production_before_premiere] נקדימון בן גוריון, אָדער דער גליקליכער פּאַסטוך: KG='1892' vs ref='1899' (event:EV-0344 / PR-0792;PR-0355)
+- `F-0377` [venue] אשת-חיל: KG='Roumanian Opera House|Central Theatre' vs ref='The Roumanian Opera Company' (event:EV-0238 / PR-0047)
+- `F-0383` [production_before_premiere] אלכּסנדר אָדער קרוינפּרינץ פֿון ירושלים: KG='1890' vs ref='1892' (event:EV-0487 / PR-0416;PR-0055)
+- `F-0397` [production_before_premiere] די פֿאַרבלאָנדזשעטע נשמה: KG='1888' vs ref='1891' (event:EV-0179 / PR-0611;PR-0861;PR-0862)
+- `F-0402` [premiere_year] דער אוצר: KG='1912' vs ref='1896' (event:EV-0436 / PR-0635;PR-0080)
+- `F-0403` [production_before_premiere] דער אוצר: KG='1880' vs ref='1896' (event:EV-0619 / PR-0635;PR-0080)
+- `F-0406` [production_before_premiere] דודס פֿידעלע: KG='1880' vs ref='1897' (event:EV-0680 / PR-0577;PR-0867;PR-0087)
+- `F-0411` [venue] ייִדעלע, אָדער דער אמת און דער שקר: KG='Windsor Theatre' vs ref="People's Theatre NY" (event:EV-0093 / PR-0746)
+- `F-0412` [venue] ייִדעלע, אָדער דער אמת און דער שקר: KG='Windsor Theatre' vs ref="People's Theatre NY" (event:EV-0093 / PR-0848)
+- `F-0413` [venue] ייִדעלע, אָדער דער אמת און דער שקר: KG='Windsor Theatre' vs ref="People's Theatre NY" (event:EV-0093 / PR-0095)
+- `F-0414` [production_before_premiere] חכמת שלמה: KG='1876' vs ref='1898,1899' (event:EV-0431 / PR-0723;PR-0096)
+- `F-0436` [production_before_premiere] דאָס ייִדישע האַרץ: KG='1903' vs ref='1908' (event:EV-0389 / PR-0558;PR-0868;PR-0130)
+- `F-0439` [production_before_premiere] יום-החופּה: KG='1908' vs ref='1910' (event:EV-0340 / PR-0740;PR-0131)
+- `F-0452` [venue] די מחותנים, אׁדער דאָס שפּיל פֿון לעבן: KG='National Theatre' vs ref='Thomashefsky Theatre' (event:EV-0258 / PR-0599)
+- `F-0453` [venue] די מחותנים, אׁדער דאָס שפּיל פֿון לעבן: KG='National Theatre' vs ref='Thomashefsky Theatre' (event:EV-0258 / PR-0150)
+- `F-0458` [production_before_premiere] שלום-בית: KG='1905' vs ref='1923' (event:EV-0447 / PR-0833;PR-0156)
+- `F-0459` [production_before_premiere] שלום-בית: KG='1907' vs ref='1923' (event:EV-0664 / PR-0833;PR-0156)
+- `F-0472` [production_before_premiere] איר לעצטע טאנץ: KG='1927' vs ref='1930' (event:EV-0123 / PR-0175;PR-0412)
+- `F-0473` [production_before_premiere] איר לעצטע טאנץ: KG='1927' vs ref='1930' (event:EV-0124 / PR-0175;PR-0412)
+- `F-0482` [production_before_premiere] דער גאט פון גערעכטיקייט: KG='1892' vs ref='1919' (event:EV-0134 / PR-0641;PR-0152)
+- `F-0483` [production_before_premiere] קאַפּיטן דרײַפוס: KG='1888' vs ref='1898' (event:EV-0324 / PR-0816;PR-0817;PR-0267)
+- `F-0484` [production_before_premiere] קאַפּיטן דרײַפוס: KG='1888' vs ref='1898' (event:EV-0551 / PR-0816;PR-0817;PR-0267)
+- `F-0485` [production_before_premiere] מאַן און ווײַב: KG='1890' vs ref='1906,1908' (event:EV-0190 / PR-0774;PR-0775;PR-0123)
+- `F-0488` [production_before_premiere] רש"י: KG='1889' vs ref='1897' (event:EV-0614 / PR-0311)
+- `F-0489` [production_before_premiere] רש"י: KG='1889' vs ref='1897' (event:EV-0615 / PR-0311)
+- `F-0490` [production_before_premiere] דער שטורם וינד: KG='1892' vs ref='1895' (event:EV-0461 / PR-0686;PR-0076)
+- `F-0491` [production_before_premiere] דאָס לעבן אין ניו-יאָרק: KG='1890' vs ref='1893' (event:EV-0546 / PR-0559;PR-0062)
 - `F-0715` [homonym_false_positive] דאָס יידישע האַרץ: KG='production -> PL-0052' vs ref="gold: another author's play" (P-1-facs_261_tr_1741260190:1#3 / GOLD#011)
 - `F-0716` [homonym_false_positive] דאָס יידישע האַרץ: KG='music -> PL-0052' vs ref="gold: another author's play" (P-1-facs_261_tr_1741260190:1#4 / GOLD#011)
 - `F-0717` [homonym_false_positive] דאָס גאָלדענע קאַלב: KG='production -> PL-0059' vs ref="gold: another author's play" (P-1-facs_261_tr_1741260190:1#5 / GOLD#012)
