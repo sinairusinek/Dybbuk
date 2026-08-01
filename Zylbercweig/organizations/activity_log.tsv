@@ -1512,3 +1512,4 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-08-01T12:52:14Z	Maaty	settlement_audit	mint_solo	ORG-C01633	MINT	Created DB 1802 from 1 cluster(s)	"{""qid"": ""Q580"", ""org_type"": ""Theatre"", ""new_db_id"": ""1802""}"
 2026-08-01T12:54:08Z	Maaty	settlement_audit	mint_solo	ORG-C01629	MINT	Created DB 1803 from 1 cluster(s)	"{""qid"": ""Q580"", ""org_type"": ""Theatre"", ""new_db_id"": ""1803""}"
 2026-08-01T12:56:34Z	Maaty	settlement_audit	merge	cluster:ORG-C01629	MERGE	Merged 3 cluster(s) into DB 1801 (reclaimed 2 stray rows)	"{""qid"": ""Q580"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C01627"", ""cluster:ORG-C01633""]}"
+2026-08-01T13:00:18Z	Maaty	settlement_audit	merge	cluster:ORG-C02939	MERGE	Merged 5 cluster(s) into DB 631	"{""qid"": ""Q580"", ""org_type"": ""Theatre"", ""partners"": [""cluster:ORG-C04098"", ""cluster:ORG-C05352"", ""cluster:ORG-C06776"", ""cluster:ORG-C06829""]}"
