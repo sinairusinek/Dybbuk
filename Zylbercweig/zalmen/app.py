@@ -48,6 +48,7 @@ VIEWS = {
     "B3 · Mentions by surname": ("surname_review", "b3"),
     "Person Hub":              ("person_hub",     "hub"),
     "YiDraCor · Annotation flags": ("yidracor_flags", "yd"),
+    "Plays KG · Explorer":         ("plays_kg", "kg"),
 }
 
 VIEW_STATUS = {
@@ -62,6 +63,7 @@ VIEW_STATUS = {
     "B3 · Mentions by surname": "✅ Ready",
     "Person Hub":              "🧑",
     "YiDraCor · Annotation flags": "✅ Ready",
+    "Plays KG · Explorer":         "📊",
 }
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -197,6 +199,9 @@ elif view_module == "person_hub":
     render()
 elif view_module == "yidracor_flags":
     from views.yidracor_flags import render
+    render()
+elif view_module == "plays_kg":
+    from views.plays_kg import render
     render()
 else:
     st.info(f"**{selected}** is not yet implemented.")
