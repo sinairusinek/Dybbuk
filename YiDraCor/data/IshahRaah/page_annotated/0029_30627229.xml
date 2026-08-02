@@ -3,13 +3,13 @@
     <Metadata>
         <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=574469:lm=provided:date=25_05_2026_12:43</Creator>
         <Created>2021-10-31T16:41:15.828+02:00</Created>
-        <LastChange>2026-07-26T17:45:27.927+02:00</LastChange>
+        <LastChange>2026-08-02T13:36:15.563+02:00</LastChange>
         <TranskribusMetadata docId="820937" pageId="30627229" pageNr="29" userId="2180" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=IPBDDOAVNULVWCZVZBBQMHVW" imageId="24094729"/>
     </Metadata>
     <Page imageFilename="30627229.jpg" imageWidth="1678" imageHeight="2714">
         <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;} structure {type:body;}">
             <Coords points="216,600 216,2419 1502,2419 1502,600"/>
-            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
+            <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;} stage {offset:0; length:14; type:setting;}">
                 <Coords points="718,635 745,630 764,643 812,627 843,656 890,632 925,656 960,640 1004,651 1002,563 929,555 870,560 853,573 821,559 716,565"/>
                 <Baseline points="726,620 751,620 777,621 802,622 828,623 854,624 879,624 905,626 931,624 956,624 982,625 1008,626"/>
                 <TextEquiv>
@@ -23,42 +23,42 @@
                     <Unicode>(איין רייכער זאאל, אויפֿטריט סנהדרין, קעניג לינקס אנטיגנוס רעכטס)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_3" custom="readingOrder {index:2;} stage {offset:0;length:17;type:business;}">
+            <TextLine id="tr_1_tl_3" custom="readingOrder {index:2;} head {offset:0; length:17;}">
                 <Coords points="737,780 757,788 770,775 780,784 807,775 823,783 845,770 883,773 897,786 925,769 966,781 998,775 996,722 975,711 958,726 907,716 897,727 867,708 842,726 805,714 735,719"/>
                 <Baseline points="744,758 769,761 795,762 821,763 847,764 873,764 898,764 924,764 950,766 976,766 1002,768"/>
                 <TextEquiv>
                     <Unicode>(II. Ritt. Nr. 8)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_5" custom="readingOrder {index:3;} speaker {offset:0;length:5;xmlid:kenig_hurknos;}">
-                <Coords points="681,843 1209,837 1478,877 1491,764 1138,784 1077,759 960,821 679,786"/>
-                <Baseline points="690,824 730,825 770,828 810,832 851,833 891,834 931,834 972,832 1012,831 1052,834 1093,833 1133,834 1173,834 1213,833 1254,832 1294,838 1334,840 1375,846 1415,848 1455,850 1496,848"/>
-                <TextEquiv>
-                    <Unicode>קעניג: הִימְלִישֶׁער רִיכְטֶער העלפע העלפע מיר</Unicode>
-                </TextEquiv>
-            </TextLine>
-            <TextLine id="tr_1_tl_7" custom="readingOrder {index:4;}">
-                <Coords points="810,878 1014,920 1241,904 1341,920 1338,847 880,855 808,835"/>
-                <Baseline points="584,902 844,876 870,879 895,889 921,894 948,896 974,896 1000,898 1027,896 1053,895 1080,895 1106,896 1132,896 1159,896 1185,894 1212,896 1238,899 1264,903 1291,903 1317,905 1344,910"/>
-                <TextEquiv>
-                    <Unicode>עפנֶע אוּנז דִיא אוֹיגֶען דִיא וואהרהייט צו זעהן</Unicode>
-                </TextEquiv>
-            </TextLine>
-            <TextLine id="tr_1_tl_8" custom="readingOrder {index:5;} stage {offset:0; length:10; type:delivery; xmlid:chor;}">
+            <TextLine id="tr_1_tl_8" custom="readingOrder {index:3;} stage {offset:0;length:10;type:delivery;xmlid:chor;}">
                 <Coords points="321,952 331,950 342,960 356,956 380,971 414,955 431,966 466,956 489,966 503,963 501,902 482,905 460,896 438,909 406,886 361,891 353,883 331,896 320,894"/>
                 <Baseline points="330,942 355,940 380,940 405,940 430,941 455,942 480,944 506,944"/>
                 <TextEquiv>
                     <Unicode>(קאהר ביס)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_9" custom="readingOrder {index:6;}">
+            <TextLine id="tr_1_tl_5" custom="readingOrder {index:4;} speaker {offset:0;length:5;xmlid:kenig_hurknos;} l {offset:7;length:39;} lg {offset:7;length:39;continued:true;type:stanza;}">
+                <Coords points="681,843 1209,837 1478,877 1491,764 1138,784 1077,759 960,821 679,786"/>
+                <Baseline points="690,824 730,825 770,828 810,832 851,833 891,834 931,834 972,832 1012,831 1052,834 1093,833 1133,834 1173,834 1213,833 1254,832 1294,838 1334,840 1375,846 1415,848 1455,850 1496,848"/>
+                <TextEquiv>
+                    <Unicode>קעניג: הִימְלִישֶׁער רִיכְטֶער העלפע העלפע מיר</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="tr_1_tl_7" custom="readingOrder {index:5;} l {offset:0;length:48;} lg {offset:0;length:48;continued:true;type:stanza;}">
+                <Coords points="810,878 1014,920 1241,904 1341,920 1338,847 880,855 808,835"/>
+                <Baseline points="584,902 844,876 870,879 895,889 921,894 948,896 974,896 1000,898 1027,896 1053,895 1080,895 1106,896 1132,896 1159,896 1185,894 1212,896 1238,899 1264,903 1291,903 1317,905 1344,910"/>
+                <TextEquiv>
+                    <Unicode>עפנֶע אוּנז דִיא אוֹיגֶען דִיא וואהרהייט צו זעהן</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="tr_1_tl_9" custom="readingOrder {index:6;} l {offset:0;length:39;} lg {offset:0;length:39;continued:true;type:stanza;}">
                 <Coords points="594,1004 686,967 719,988 967,964 1006,988 1340,983 1340,918 592,917"/>
                 <Baseline points="600,970 637,960 674,957 711,952 748,960 786,960 823,962 860,958 897,955 934,957 972,962 1009,964 1046,962 1083,962 1120,962 1158,962 1195,964 1232,963 1269,965 1306,966 1344,976"/>
                 <TextEquiv>
                     <Unicode>אמת אמת יא נוּר אמת זאָל דער משפּט זיין</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="tr_1_tl_11" custom="readingOrder {index:7;}">
+            <TextLine id="tr_1_tl_11" custom="readingOrder {index:7;} l {offset:0;length:36;} lg {offset:0;length:36;continued:true;type:stanza;}">
                 <Coords points="679,1053 777,1071 858,1037 1080,1063 1168,1041 1341,1063 1340,983 1055,969 886,1020 678,983"/>
                 <Baseline points="686,1026 719,1028 752,1028 785,1027 818,1027 851,1030 884,1032 917,1033 950,1031 983,1028 1016,1028 1049,1028 1082,1028 1115,1029 1148,1030 1181,1031 1214,1031 1247,1031 1280,1034 1313,1036 1346,1040"/>
                 <TextEquiv>

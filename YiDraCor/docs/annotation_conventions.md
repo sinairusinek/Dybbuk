@@ -128,6 +128,12 @@ value**. `(לעגט וועג דיא האַרפֿע— ערשיינט)` → `type
 Other shipped retypes: Der Mann p.11 `business entrance`; p.18 dance/song
 lines `business delivery`; `פאָרהאַנג פאַלט.` → `setting`.
 
+**ST3b. Exit + entry of *different* persons → `mixed`** *(Noa via Sinai
+2026-08-02)*. When one direction has X leaving and Y arriving —
+`(יאכטשע אב, אויפטריט סאבעלע)`, `(אַלע, אב, עזרא … ערשיינט)` — the type is
+`mixed`, not `exit entrance`. Multi-token stays for compounds of ONE
+person's movement (`exit business`, `entrance business`).
+
 **ST4.** `ערשיינט` (and infinitive `ערשיינען`) alone → `entrance`.
 
 **ST5.** Bare `(אב)` / `(<actor> אב)` → `exit`. Modal intent
@@ -157,6 +163,12 @@ vocabulary.
   left for a human** — Kidush Hashem p.47 `(קאהר ווי אנפאנג פונ'ם צווייטען אקט)`
   sits in opening position but is a musical instruction.
 - `annotation.auto_resolve_flags --sweep-openings`.
+- *(Noa via Sinai 2026-08-02)* the trigger is not only an act/scene header:
+  the same rule fires **directly after a `פערוואנדלונג`** (mid-act
+  transformation) — the description lines that follow are `setting` even
+  when they enumerate the people on stage (Yudale p.38). `location` spans
+  in that position retype too. Excluded: song-supplement context notes and
+  music cues (`Ritt.` / `Nr.`), which are not scene descriptions.
 
 **ST8.** `delivery` **requires parentheses** in the source. Never assign it to
 an unparenthesized line.
