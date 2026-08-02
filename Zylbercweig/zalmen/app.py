@@ -51,6 +51,17 @@ VIEWS = {
     "Plays KG · Explorer":         ("plays_kg", "kg"),
 }
 
+def _remember_view() -> None:
+    """Persist the radio's choice as the authoritative view.
+
+    Routing reads `active_view`, not the radio's own widget state, so a stray
+    component rerun (see the note by the sidebar radio) that snaps the widget
+    back to its first option cannot silently switch the routed view. Only a real
+    radio interaction fires this callback, so only a real interaction changes it.
+    """
+    st.session_state["active_view"] = st.session_state["main_view"]
+
+
 VIEW_STATUS = {
     "Organizations matching":  "✅ Ready",
     "Org merge · cards":       "🃏",
@@ -113,7 +124,7 @@ _qp = st.query_params
 _qp_view = _qp.get("view", None)
 _qp_entity = _qp.get("entity", None)
 if _qp_view and _qp_view in VIEWS:
-    st.session_state["main_view"] = _qp_view
+    st.session_state["active_view"] = _qp_view
     if _qp_entity:
         if _qp_view == "Organizations matching":
             st.session_state["review_selected_cid"] = _qp_entity
@@ -136,18 +147,29 @@ with st.sidebar:
         st.caption("Pinned view — navigation disabled.")
         selected = _pinned_label
     else:
+        if "active_view" not in st.session_state:
+            st.session_state["active_view"] = list(VIEWS.keys())[0]
         nav_target = st.session_state.pop("nav_view_target", None)
         if nav_target in VIEWS:
-            st.session_state["main_view"] = nav_target
-        elif "main_view" not in st.session_state:
-            st.session_state["main_view"] = list(VIEWS.keys())[0]
+            st.session_state["active_view"] = nav_target
 
-        selected = st.radio(
+        # Re-pin the radio to the authoritative selection every run, and route
+        # off `active_view` rather than the radio's return value. The Settlement
+        # audit map (st_folium) re-emits on every rerun and forces a full app
+        # rerun; that class of component rerun can snap a keyed sidebar radio
+        # back to its first option ("Organizations matching"), which used to drag
+        # the routed view along with it mid-work. `active_view` only changes on a
+        # genuine radio interaction (via on_change), so a stray rerun can't move
+        # it.
+        st.session_state["main_view"] = st.session_state["active_view"]
+        st.radio(
             "View",
             list(VIEWS.keys()),
             key="main_view",
+            on_change=_remember_view,
             format_func=lambda v: f"{v}  {VIEW_STATUS[v]}",
         )
+        selected = st.session_state["active_view"]
 
     st.divider()
     st.caption(f"Logged in as **{st.session_state['reviewer']}**")
