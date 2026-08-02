@@ -22,7 +22,7 @@
         "יוהנצי"
       ]
     },
-    "shrh_sheyndel": {
+    "sore_sheyndel": {
       "form": "שׂרה שׁיינדעל",
       "bare": "שרה שיינדעל",
       "loc": {
@@ -35,9 +35,12 @@
         "שיינדעל",
         "שרה",
         "שרה-שיינדעל"
+      ],
+      "notes": [
+        "pre-TEI fixes 2026-08-02 (Sore id merge, collectives, opening blocks): canonical id (merged duplicate shrh_sheyndel)"
       ]
     },
-    "brhmele": {
+    "avromele": {
       "form": "אברהמעלע",
       "bare": "אברהמעלע",
       "loc": {
@@ -49,9 +52,12 @@
       "prefix_variants": [
         "אברהמע",
         "אברהמלע"
+      ],
+      "notes": [
+        "pre-TEI fixes 2026-08-02 (Sore id merge, collectives, opening blocks): canonical id (merged duplicate brhmele)"
       ]
     },
-    "bbele": {
+    "babele": {
       "form": "באבעלע",
       "bare": "באבעלע",
       "loc": {
@@ -63,6 +69,9 @@
       "prefix_variants": [
         "באבע",
         "באבעיע"
+      ],
+      "notes": [
+        "pre-TEI fixes 2026-08-02 (Sore id merge, collectives, opening blocks): canonical id (merged duplicate bbele)"
       ]
     },
     "dzeyk": {
@@ -93,7 +102,7 @@
         "סער"
       ]
     },
-    "gimfel": {
+    "gimpel": {
       "form": "גימפּעל",
       "bare": "גימפעל",
       "loc": {
@@ -104,9 +113,12 @@
       },
       "prefix_variants": [
         "נימפעל"
+      ],
+      "notes": [
+        "pre-TEI fixes 2026-08-02 (Sore id merge, collectives, opening blocks): canonical id (merged duplicate gimfel)"
       ]
     },
-    "shfse": {
+    "shabse": {
       "form": "שׁאַפּסע",
       "bare": "שאפסע",
       "loc": {
@@ -115,7 +127,10 @@
         "offset": 0,
         "length": 8
       },
-      "prefix_variants": []
+      "prefix_variants": [],
+      "notes": [
+        "pre-TEI fixes 2026-08-02 (Sore id merge, collectives, opening blocks): canonical id (merged duplicate shfse)"
+      ]
     },
     "mshurrim_un_flk": {
       "form": "משׁוררים אוּן פֿאָלק",
@@ -161,6 +176,18 @@
       "bare": "פרויען",
       "collective": true,
       "source": "final residuals 2026-08-02"
+    },
+    "mener": {
+      "form": "מענער",
+      "bare": "מענער",
+      "collective": true,
+      "source": "pre-TEI fixes 2026-08-02 (Sore id merge, collectives, opening blocks)"
+    },
+    "chor": {
+      "form": "כאר",
+      "bare": "כאר",
+      "collective": true,
+      "source": "pre-TEI fixes 2026-08-02 (Sore id merge, collectives, opening blocks)"
     }
   },
   "desc_tokens": {

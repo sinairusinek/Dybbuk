@@ -64,6 +64,10 @@ EDITORIAL_TAGS = {
 }
 
 # Per-play configuration. Add a block to onboard another edition.
+# body_last_page: pages after it go to <back> as the song supplement — only
+# Di Seder has one (apply_collective_speakers.SONG_SUPPLEMENT_FROM, verified
+# 2026-07-03 that all other plays' late pages are body). NO_BACK = body-only.
+NO_BACK = 10_000
 CONFIG = {
     "Di_seyder_nakht_Emkroyt_1908": {
         "play_id": "DiSeder",
@@ -71,6 +75,51 @@ CONFIG = {
         "body_last_page": 54,   # play acts pp.5-54; song supplement pp.55+
         "songs_head": "געזאַנגס־טעקסט",
     },
+    "AlNaharotBavel-Amkreut&Freund1909": {
+        "play_id": "AlNaharot", "out": "tei/Al-Naharot-Bavel.xml",
+        "body_last_page": NO_BACK},
+    "BasSheva": {
+        "play_id": "BasSheva", "out": "tei/Bas-Sheva.xml",
+        "body_last_page": NO_BACK},
+    "Blimele-AhronFaust1903": {
+        "play_id": "Blimele", "out": "tei/Blimele.xml",
+        "body_last_page": NO_BACK},
+    "DerManUnterTiff": {
+        "play_id": "DerMan", "out": "tei/Der-Man-Untern-Tisch.xml",
+        "body_last_page": NO_BACK},
+    "DosYudisheHerts-1910": {
+        "play_id": "YudisheHerts", "out": "tei/Dos-Yudishe-Herts.xml",
+        "body_last_page": NO_BACK},
+    "DovidsFidele-1904": {
+        "play_id": "DovidsFidele", "out": "tei/Dovids-Fidele.xml",
+        "body_last_page": NO_BACK,
+        # p71 = the publisher's catalogue ad (Noa 06-28: promotional,
+        # non-theatrical); its stray spans must not emit post-trailer content
+        "skip_pages": {71}},
+    "Ezra-Emkroyt1908": {
+        "play_id": "Ezra", "out": "tei/Ezra.xml",
+        "body_last_page": NO_BACK},
+    "HinkePinke": {
+        "play_id": "HinkePinke", "out": "tei/Hinke-Pinke.xml",
+        "body_last_page": NO_BACK},
+    "IshahRaah": {
+        "play_id": "IshaRaa", "out": "tei/Isha-Raa.xml",
+        "body_last_page": NO_BACK},
+    "KidushHashem": {
+        "play_id": "KidushHashem", "out": "tei/Kidush-Hashem.xml",
+        "body_last_page": NO_BACK},
+    "MishkeMashke-Kultur1910": {
+        "play_id": "MishkeMashke", "out": "tei/Mishke-Mashke.xml",
+        "body_last_page": NO_BACK},
+    "SoreSheyndel": {
+        "play_id": "SoreSheyndel", "out": "tei/Sore-Sheyndel.xml",
+        "body_last_page": NO_BACK},
+    "Yudale_der_blinder,_Emkroyt1908": {
+        "play_id": "Yudale", "out": "tei/Yudale-der-Blinder.xml",
+        "body_last_page": NO_BACK},
+    "דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete": {
+        "play_id": "YudisheKind", "out": "tei/Dos-Yudishe-Kind.xml",
+        "body_last_page": NO_BACK},
 }
 
 PAGENUM_RE = re.compile(r"^[\s—–\-—–]*\d+[\s—–\-—–]*$")
@@ -197,14 +246,17 @@ def format_who(xmlid: str, role_ids: set, bad: list) -> str:
     return " ".join(f"#{t}" for t in toks)
 
 
-def new_lg(parent, lg_attrs):
-    """Create an <lg> stanza under `parent`, carrying n / continuation."""
+def new_lg(parent, lg_attrs, pending=None):
+    """Create an <lg> stanza under `parent`, carrying n / continuation.
+    `pending` is a stashed song-head text that becomes the lg's <head>."""
     lg = etree.SubElement(parent, q("lg"))
     if lg_attrs is not None:
         if lg_attrs.get("n"):
             lg.set("n", lg_attrs["n"])
         if lg_attrs.get("cont") == "yes":
             lg.set("prev", "true")
+    if pending:
+        etree.SubElement(lg, q("head")).text = pending
     return lg
 
 
@@ -259,7 +311,10 @@ def build_header(rec: dict, cast: dict, play_id: str):
     if rec.get("year_printed"):
         etree.SubElement(bibl, q("date")).text = str(rec["year_printed"])
     if rec.get("library"):
-        rp = etree.SubElement(bibl, q("repository")); rp.text = rec["library"]
+        # <repository> is msDesc-only; inside <bibl> the holding library is a
+        # typed note (tei_all violation found on first corpus build 2026-08-02)
+        rp = etree.SubElement(bibl, q("note")); rp.set("type", "repository")
+        rp.text = rec["library"]
         if rec.get("library_signature"):
             etree.SubElement(bibl, q("idno")).text = rec["library_signature"]
     if rec.get("transkribus_url"):
@@ -332,14 +387,33 @@ def build_text(pages, cfg, role_ids):
         "lg_para": None,
         "back_sp": None,    # open <sp> inside the song supplement, if any
         "back_lg": None,    # its <lg> container for continuation verse lines
+        "body_lg": None,      # open <lg> for an inline body song
+        "trailer_el": None,   # last emitted <trailer> in the open div
+        "pending_head": None,  # song head text awaiting its <lg>
     }
 
     def close_sp():
         state["sp"] = None
         state["para"] = None
+        state["body_lg"] = None
+
+    def flush_pending_head():
+        """A stashed song-head with no song following it is a standalone
+        musical cue ((II. Ritt. Nr. 13)) -> <stage type="delivery">, matching
+        the supplement path's treatment of bare rubrics."""
+        if state["pending_head"] is None:
+            return
+        target = state["sp"] if state["sp"] is not None else state["container"]
+        tag = "label" if state["in_back"] else "stage"
+        st = etree.SubElement(target, q(tag))
+        if tag == "stage":
+            st.set("type", "delivery")
+        st.text = state["pending_head"]
+        state["pending_head"] = None
 
     def open_act(n, head_text, songgroup=False):
         nonlocal back
+        flush_pending_head()
         if songgroup:
             # song-supplement act label -> an actSongs div in <back>, @corresp
             div = etree.SubElement(state["songs_div"], q("div"))
@@ -351,6 +425,7 @@ def build_text(pages, cfg, role_ids):
             state["lg"] = None
         else:
             close_sp()
+            state["trailer_el"] = None
             div = etree.SubElement(body, q("div"))
             div.set("type", "act"); div.set("n", str(n))
             set_xmlid(div, f"{play_id}_Act{n}")
@@ -370,6 +445,7 @@ def build_text(pages, cfg, role_ids):
 
     def enter_back():
         nonlocal back
+        flush_pending_head()
         if back is None:
             back = etree.SubElement(text_el, q("back"))
             sd = etree.SubElement(back, q("div")); sd.set("type", "songs")
@@ -381,6 +457,8 @@ def build_text(pages, cfg, role_ids):
         state["act_div"] = None
 
     for page_nr, img, lines in pages:
+        if page_nr in cfg.get("skip_pages", ()):
+            continue
         if page_nr and page_nr > cfg["body_last_page"] and not state["in_back"]:
             enter_back()
 
@@ -444,23 +522,41 @@ def build_text(pages, cfg, role_ids):
                     set_xmlid(sp, f"{play_id}_SP{state['sp_counter']:04d}_a")
                     label, rest = speaker_slice(text, speaker)
                     etree.SubElement(sp, q("speaker")).text = label
-                    lg = new_lg(sp, lg_attrs)
                     if rest.strip():
+                        lg = new_lg(sp, lg_attrs, state.pop("pending_head", None) or None)
+                        state["pending_head"] = None
                         etree.SubElement(lg, q("l")).text = rest.strip()
-                    state["back_sp"], state["back_lg"] = sp, lg
+                        state["back_lg"] = lg
+                    else:
+                        # label-only rubric: the <lg> opens lazily with the
+                        # first verse line, else it validates as empty
+                        state["back_lg"] = None
+                    state["back_sp"] = sp
                     state["lg"] = None
                     continue
 
                 if is_head:
+                    # a song head opens the NEXT <lg> — appending it to the
+                    # open stanza puts <head> after <l>, which tei_all rejects
                     state["back_sp"] = state["back_lg"] = None
-                    h = etree.SubElement(state["lg"] if state["lg"] is not None else container, q("head"))
-                    h.text = stripped
+                    state["lg"] = None
+                    if state["pending_head"] is not None:
+                        lab = etree.SubElement(container, q("label"))
+                        lab.text = state["pending_head"]
+                    state["pending_head"] = stripped
                     continue
 
                 if is_l or lg_attrs is not None:
-                    # A new <lg> stanza marker starts a fresh block and closes
-                    # any open supplement speech; a bare verse line continues
-                    # the current speaker's stanza when one is open.
+                    # A stanza marker right after a label-only rubric <sp>
+                    # opens the song INSIDE that speech; otherwise it starts a
+                    # fresh block and closes any open supplement speech.
+                    if lg_attrs is not None and state["back_sp"] is not None \
+                            and state["back_lg"] is None:
+                        state["back_lg"] = new_lg(state["back_sp"], lg_attrs,
+                                                  state["pending_head"])
+                        state["pending_head"] = None
+                        etree.SubElement(state["back_lg"], q("l")).text = stripped
+                        continue
                     if lg_attrs is not None:
                         state["back_sp"] = state["back_lg"] = None
                     if state["back_sp"] is not None:
@@ -469,7 +565,9 @@ def build_text(pages, cfg, role_ids):
                         etree.SubElement(state["back_lg"], q("l")).text = stripped
                         continue
                     if state["lg"] is None or lg_attrs is not None:
-                        state["lg"] = new_lg(container, lg_attrs)
+                        state["lg"] = new_lg(container, lg_attrs,
+                                             state["pending_head"])
+                        state["pending_head"] = None
                     l = etree.SubElement(state["lg"], q("l"))
                     l.text = stripped
                     continue
@@ -482,9 +580,36 @@ def build_text(pages, cfg, role_ids):
                     h.text = stripped
                 continue
 
+            # ---- post-trailer content: nothing but the curtain may follow a
+            # trailer inside a div. The curtain slips in front of it; anything
+            # else (HinkePinke's appended couplet) opens a sibling addendum div.
+            if state.get("trailer_el") is not None and text.strip() and \
+                    any(t in ("stage", "l", "lg", "speaker", "head") for t, _ in spans):
+                is_curtain = ("stage" in tags and "פארהאנג" in
+                              re.sub(r"[֑-ׇ]", "", text))
+                if is_curtain:
+                    a = next(at for t, at in spans if t == "stage")
+                    st = etree.Element(q("stage"))
+                    if a.get("type"):
+                        st.set("type", a["type"])
+                    st.text = text.strip()
+                    state["trailer_el"].addprevious(st)
+                    continue
+                div = etree.SubElement(body, q("div"))
+                div.set("type", "addendum")
+                state["container"] = div
+                state["act_div"] = div
+                state["trailer_el"] = None
+                # fall through: the line itself is then handled normally below
+
+
             # ---- body: speaker opens a speech ----
             speaker = next((a for t, a in spans if t == "speaker"), None)
+            body_l = next((a for t, a in spans if t == "l"), None)
+            body_lg_attrs = next((a for t, a in spans if t == "lg"), None)
+            body_head = any(t == "head" for t, _ in spans)
             if speaker is not None:
+                flush_pending_head()
                 close_sp()
                 state["sp_counter"] += 1
                 sp = etree.SubElement(state["container"], q("sp"))
@@ -494,6 +619,14 @@ def build_text(pages, cfg, role_ids):
                 set_xmlid(sp, f"{play_id}_SP{state['sp_counter']:04d}_a")
                 label, rest = speaker_slice(text, speaker)
                 etree.SubElement(sp, q("speaker")).text = label
+                if body_l is not None:
+                    # sung opening line: the speech is verse, not prose
+                    lg = new_lg(sp, body_lg_attrs)
+                    if rest.strip():
+                        etree.SubElement(lg, q("l")).text = rest.strip()
+                    state["sp"], state["para"] = sp, None
+                    state["body_lg"] = lg
+                    continue
                 p = etree.SubElement(sp, q("p"))
                 state["sp"], state["para"] = sp, Para(p)
                 # inline-span offsets are relative to the full line; `rest` was
@@ -514,8 +647,66 @@ def build_text(pages, cfg, role_ids):
                                   role_ids=role_ids, bad=state["bad_who"])
                 continue
 
+            # ---- body: inline song (l / lg / head spans on a body page) ----
+            # Judith's corpus-wide song sweep tags sung lines `l` (+`lg`
+            # stanza markers, `head` song titles) inline in the acts, not in
+            # a supplement. Emit them as <lg>/<l>; without this branch these
+            # lines rendered as prose or dropped (found 2026-08-02, first
+            # corpus-wide build).
+            if body_head and body_l is None and speaker is None:
+                # song head: attaches to the next <lg>; a headless cue is
+                # flushed as a musical stage direction later
+                flush_pending_head()
+                state["pending_head"] = stripped
+                state["body_lg"] = None
+                continue
+            if body_l is not None or body_lg_attrs is not None:
+                container = state["sp"] if state["sp"] is not None else state["container"]
+                if state["body_lg"] is None or body_lg_attrs is not None:
+                    state["body_lg"] = new_lg(container, body_lg_attrs)
+                    if state["pending_head"] is not None:
+                        h = etree.Element(q("head"))
+                        h.text = state["pending_head"]
+                        state["body_lg"].insert(0, h)
+                        state["pending_head"] = None
+                if body_l is not None:
+                    off = span_int(body_l, "offset", 0)
+                    ln = span_int(body_l, "length", len(text))
+                    etree.SubElement(state["body_lg"], q("l")).text = \
+                        text[off:off + ln].strip()
+                # inline stage on a sung line ((ביס) etc.) -> sibling in the lg
+                for t, a in spans:
+                    if t == "stage":
+                        st = etree.SubElement(state["body_lg"], q("stage"))
+                        if a.get("type"):
+                            st.set("type", a["type"])
+                        if a.get("xmlid"):
+                            st.set("who", format_who(a["xmlid"], role_ids,
+                                                     state["bad_who"]))
+                        soff = span_int(a, "offset", 0)
+                        sln = span_int(a, "length", len(text))
+                        st.text = text[soff:soff + sln].strip()
+                continue
+            # stage-only line while an inline song is open: keep it inside
+            # the <lg> ((בּיסס), chorus cues between stanzas)
+            if "stage" in tags and state["body_lg"] is not None \
+                    and speaker is None:
+                for t, a in spans:
+                    if t != "stage":
+                        continue
+                    st = etree.SubElement(state["body_lg"], q("stage"))
+                    if a.get("type"):
+                        st.set("type", a["type"])
+                    if a.get("xmlid"):
+                        st.set("who", format_who(a["xmlid"], role_ids,
+                                                 state["bad_who"]))
+                    off = span_int(a, "offset", 0); ln = span_int(a, "length", len(text))
+                    st.text = text[off:off + ln].strip()
+                continue
+
             # ---- body: trailer (end-of-division label) ----
             if "trailer" in tags:
+                flush_pending_head()
                 close_sp()
                 tr = etree.SubElement(state["container"], q("trailer"))
                 a = next(at for t, at in spans if t == "trailer")
@@ -523,10 +714,12 @@ def build_text(pages, cfg, role_ids):
                     tr.set("type", a["type"])
                 off = span_int(a, "offset", 0); ln = span_int(a, "length", len(text))
                 tr.text = text[off:off + ln].strip()
+                state["trailer_el"] = tr
                 continue
 
             # ---- body: standalone stage (no open speech) ----
             if "stage" in tags and state["sp"] is None:
+                flush_pending_head()
                 only_stage = [s for s in spans if s[0] == "stage"]
                 # one stage covering the line, or multiple: emit each
                 for _, a in only_stage:
@@ -541,7 +734,14 @@ def build_text(pages, cfg, role_ids):
                 continue
 
             # ---- body: continuation of current speech ----
-            if state["para"] is not None:
+            if state["para"] is None and state["sp"] is not None and text.strip():
+                # spoken line after a sung opening: open a <p> after the <lg>
+                state["body_lg"] = None
+                p = etree.SubElement(state["sp"], q("p"))
+                state["para"] = Para(p)
+                emit_line_content(state["para"], text, spans, skip_speaker=True,
+                                  role_ids=role_ids, bad=state["bad_who"])
+            elif state["para"] is not None:
                 state["para"].lb()
                 emit_line_content(state["para"], text, spans, skip_speaker=True,
                                   role_ids=role_ids, bad=state["bad_who"])
@@ -553,6 +753,19 @@ def build_text(pages, cfg, role_ids):
                 # act 1 is not "lost speech", so it's excluded.
                 state["dropped"].append({"page": page_nr, "text": text.strip()[:60]})
 
+    flush_pending_head()
+    # prune structurally-empty verse groups (a label-only <sp> whose song
+    # never arrived, a stray stanza marker): an <lg> without <l> is invalid
+    for lg in text_el.findall(f".//{q('lg')}"):
+        if lg.find(q("l")) is None and lg.find(q("lg")) is None:
+            head = lg.find(q("head"))
+            parent = lg.getparent()
+            if head is not None and head.text:
+                lab = etree.Element(q("label"))
+                lab.text = head.text
+                parent.replace(lg, lab)
+            else:
+                parent.remove(lg)
     return text_el, state["bad_who"], state["dropped"]
 
 
@@ -581,6 +794,9 @@ def main():
     text_el.insert(0, front)  # <front> before <body>
 
     root = etree.Element(q("TEI"), nsmap=NSMAP)
+    # DraCor requires TEI/@xml:id; prefixed edition slug — bare slugs like
+    # "blimele"/"ezra" collide with the character xml:ids of the same name
+    set_xmlid(root, f"yid-{Path(cfg['out']).stem.lower()}")
     root.append(header)
     root.append(text_el)
 
@@ -594,6 +810,18 @@ def main():
     # inject the model PI after the XML declaration
     head, _, body = xml_bytes.partition(b"\n")
     out_path.write_bytes(head + b"\n" + model.encode() + b"\n" + body)
+
+    # DraCor variant: identical except <fw> stripped (printed page furniture —
+    # dracor.rng forbids it; the canonical tei_all edition keeps it)
+    import copy
+    droot = copy.deepcopy(root)
+    for fw in droot.findall(f".//{q('fw')}"):
+        fw.getparent().remove(fw)
+    dr_path = REPO_ROOT / "tei" / "dracor" / Path(cfg["out"]).name
+    dr_path.parent.mkdir(exist_ok=True)
+    dr_path.write_bytes(etree.tostring(etree.ElementTree(droot), pretty_print=True,
+                                       xml_declaration=True, encoding="UTF-8"))
+    print(f"Wrote {dr_path} (DraCor variant)")
 
     # report
     n_sp = len(root.findall(f".//{q('sp')}"))

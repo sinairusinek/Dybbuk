@@ -1,0 +1,2392 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-al-naharot-bavel">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">alnaharotbavel</title>
+        <title type="sub">Al Naharot Bavel</title>
+        <author>Joseph Lateiner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>alnaharotbavel</title>
+          <author>Joseph Lateiner</author>
+          <publisher>Amkraut &amp; Freund Buchhandlung</publisher>
+          <pubPlace>Przemyśl</pubPlace>
+          <date>1909</date>
+          <note type="repository">Biblioteka Narodowa (Polona)</note>
+          <idno>II 63.436</idno>
+          <idno type="transkribus">https://app.transkribus.org/collection/18874/doc/820975</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="daniel">
+            <persName>דָנִיאֵל</persName>
+          </person>
+          <person xml:id="zerubavel">
+            <persName>זְרוּבָּבֶל</persName>
+          </person>
+          <person xml:id="elyakim">
+            <persName>אֶלְיָקים</persName>
+          </person>
+          <person xml:id="yehudis">
+            <persName>יְהוּדִית</persName>
+          </person>
+          <person xml:id="zimri">
+            <persName>זִמְרִי</persName>
+          </person>
+          <person xml:id="palmira">
+            <persName>פַּאלֶמִירַא</persName>
+          </person>
+          <person xml:id="ben_kaspi">
+            <persName>בֶּן כַּסְפִּי</persName>
+          </person>
+          <person xml:id="dovid">
+            <persName>דָוִד</persName>
+          </person>
+          <person xml:id="belshatsar">
+            <persName>בַּלְשֶׁצֶר</persName>
+          </person>
+          <person xml:id="opetes">
+            <persName>אָפֶּעטֶעס</persName>
+          </person>
+          <person xml:id="kulyan">
+            <persName>קוּלְיַאן</persName>
+          </person>
+          <person xml:id="delila">
+            <persName>דְלִילָה</persName>
+          </person>
+          <person xml:id="hoyptman">
+            <persName>הויפטמאן</persName>
+          </person>
+          <personGrp xml:id="alle">
+            <name>אלע</name>
+          </personGrp>
+          <personGrp xml:id="beyde">
+            <name>ביידע</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="AlNaharot" type="AlNaharot">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#daniel">דָנִיאֵל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#zerubavel">זְרוּבָּבֶל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#elyakim">אֶלְיָקים</role>
+        </castItem>
+        <castItem>
+          <role corresp="#yehudis">יְהוּדִית</role>
+        </castItem>
+        <castItem>
+          <role corresp="#zimri">זִמְרִי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#palmira">פַּאלֶמִירַא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ben_kaspi">בֶּן כַּסְפִּי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dovid">דָוִד</role>
+        </castItem>
+        <castItem>
+          <role corresp="#belshatsar">בַּלְשֶׁצֶר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#opetes">אָפֶּעטֶעס</role>
+        </castItem>
+        <castItem>
+          <role corresp="#kulyan">קוּלְיַאן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#delila">דְלִילָה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#hoyptman">הויפטמאן</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="0001_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_01.jpg"/>
+      <pb n="2" facs="0002_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_02.jpg"/>
+      <pb n="3" facs="0003_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_03.jpg"/>
+      <pb n="4" facs="0004_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_04.jpg"/>
+      <pb n="5" facs="0005_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_05.jpg"/>
+      <pb n="6" facs="0006_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_06.jpg"/>
+      <stage type="delivery">פֶּּערְזָאנֶען:</stage>
+      <stage type="setting">אָרט דער האַנדלונג באַבילאָן, אין דעם 70-טען יאהר</stage>
+      <stage type="setting">נאך חרבן בית ראשון</stage>
+      <pb n="7" facs="30627619.jpg"/>
+      <div type="act" n="1" xml:id="AlNaharot_Act1">
+        <head>עֶרְשְׁטֶער אַקְט.</head>
+        <stage type="setting">(א שעהן רייך פערציערטער זאאל ביי דניאל, אויף דער וואנד, איבער דער</stage>
+        <stage type="setting">מיטעלטהיר אים הינטערגרונד איז מיט גרויסע בוכשטאבען אויפגעשריעבען</stage>
+        <stage type="setting">„אם אשכחך ירושלים תשכח ימיני“. — געדעקטער טיש בעלייכטעט, מיט</stage>
+        <stage type="setting">פריכטע. — געסט, דניאלס צעגלינגע, אויבען אן זיצט דניאל,</stage>
+        <stage type="setting">צו זיינער רעכטען זרבבל, לינקס עזרא הסופר, יהושוע בן יהוצדק</stage>
+        <stage type="setting">כהן גדול.</stage>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0001_a">
+          <speaker>אליקים</speaker>
+          <p>לְחַיִים אוּנְזֶער גַאסְטְגֶעבֶּער, מִשְנֱה למֶלֶךְ דָנִיאֵל! שְרֵייט<lb/>קִינְדֶערְלֶעךְ מִיט חֵשְק, יְחִי הַמִשְנֶה לַמֶלֶך דָנִיאֵל!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0002_a">
+          <speaker>אלע</speaker>
+          <p>יְחִי הַמִשְנֶה למֶלֶך דָנִיאֵל.<lb/><stage type="business">(מוזיק טוש).</stage></p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0003_a">
+          <speaker>אליקים</speaker>
+          <p>לְחַיִים דֶעם צְוִוייגֶעלֶע פוּן מַלְכוּת בֵּית דָוִד, דָאס אֵיינִיקֶעל פוּן<lb/>יְכֶנְיָה מֶלֶך יְהוּדָה זְרֻבָּבֶל בֶּן שְׁאַלְתִּיאֵל! שְׁרֵייט קִינְדֶערְלֶעךְ מִיט<lb/>פִּיסְקֶעס יְחִי הַבֶּן מֶלֶך זְרֻבָּבֶל!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0004_a">
+          <speaker>אלע</speaker>
+          <p>יְחִי הַבֶּן מֶלֶך זְרֻבָּבֶל!<lb/><stage type="business">(מוזיק טוש).</stage></p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0005_a">
+          <speaker>אליקים</speaker>
+          <p>אַחֲרוֹן אַחֲרוֹן חָבִיב! לְחַיִים כָּל יִשְׂרָאֵל, לְחַיִים!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0006_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(אין א מאנטעל געהילט, בעז צו אליקים)</stage>, וֶועט עֶס דֶען נָאר קיין עֶנְדֶע<lb/>נִישְט נֶעהמֶען? לְחַיִים אוּן לְחַיִים אוּן וִוידֶער לְחַיִים, צוּם טַייפֶעל, עֶס<lb/>מַאכְט דָאך אֵיינֶעם נֶערְוָועז.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0007_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(קוקט איהם אין פנים)</stage> וֶוער אִיז דֶער לֵץ? זַיין צוּרָה אִיז מִיר ַגַאנְץ<lb/>פְרֶעמְד, מִיר דַאכְט זִיך אַז דוּ בִּיסְט דָא אֵיין אָהנְגְעבֶּעטֶענֶער גַאסְט?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0008_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(שטויסט איהם אוועק פון זיך)</stage> גֶעה צוּ דִי הֶעלֶע!</p>
+        </sp>
+        <pb n="8" facs="30627620.jpg"/>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0009_a">
+          <speaker>אליקים</speaker>
+          <p>אָט אָ דֶעם בֶּעכֶער וֵויין הֵייבּ אִיךְ אוֹיף אוּן שְרֵיי בְּקוֹל רָם<lb/>לְחַיִים יוּדֶען! הַיינְט אִיז דָנִיאֵלס געבּורְטְסְטָאג אוּן דֶער טָאג אִיז בַּיי<lb/>אוּנְז אַ יוֹם טוֹב! <stage type="business">(צו זמרי)</stage> אוּן פוּן מֵיינֶעטְוֶועגֶען מֶעגְסְטו זַיין נֶערְוֶועז, אוּן<lb/>אֲפִילוּ מְשוּגֶע וֶוערֶען וֶועל אִיךְ נְִישט אוֹיפְהֶערֶען צוּ שְׁרֵייעֶן לְחִַיִים<lb/>יוּדֶען! אַז ווֹאהל אִיז צוּ מַיין נְשָמָה וָואס אִיךְ לֶעבּ אִין אֵיין דוֹר מִיט<lb/>אַזַא גְרוֹיסֶען דָנִיאֵל, מיִט אַזַא צַדִיק וִוי דׁנִיאֵל, מִיט אַזַא חָכָם וִוי<lb/>דָנֹיאֵל, אוְן לְחַיִיט יוּדֶען, <stage type="business">(טרינקט)</stage> לְחַיִים!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0010_a">
+          <speaker>אלע</speaker>
+          <p>לְחַיִים, לְחִיִים!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0011_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(וועלכער האט וועהרענד. אביגער סצענע שטיל געשפראכען מיט דניאל און</stage><lb/><stage type="business">מיט די אנדערע, גיט א זיפץ)</stage> יאָ, יאָ, אַזוֹי אִיז עֶס! „וַיָקָם מֶלֶך חָדָש”,<lb/>גְרַאדֶע וִוי אִין מִצְרַיִם הָאט דֶער נַייעֶר קֶענִיג פַּרְעֹה נִישְט גֶעוָואלְט<lb/>וִויסֶען אוּן גֶעדֶענְקֶען וָואס דֶער גֶעוֶועזֶענֶער וִויצֶע קֶענִיג יוסֵף הָאט<lb/>פַאר זַיין לַאנְד גְעטְהוּן, אַזוֹי אוֹיךְ דָא אִין בַּאבִּילָאן! וִוי אִיז גֶעוְוארֶען<lb/>פְרִיהֶער דָנִיאֵל'ס גֶעבּורְטְסְּטָאג גֶעפֵייעֶרְט, וֶוען נְבוּכַדְנֶצַר הָאט נָאךְ<lb/>גֶעלֶעבְּט? אוּן דָנִיאֵל אִיז גֶעווֶען זַיינֵע רֶעכְטֶע הַאנּד! יֶעצְט אָבֶּער זֵייט<lb/>דֶער יֶעצְטִיגֶע קֶענִיג בַּלְשֶצֶר הָאט דֶעם טְרָאהן בֱּעשְטִיעגֶען אִיז<lb/>דָנִיאֵל פֶערְגֶעסֶען, אוּן וֶוער וֵוייסְט וָואס אוּנְזער אוּנְגְלִיקְלִיך פָאלְק<lb/>דַארְף נָאך פוּן אַזוֹי אַ קֶענִיג עֶרְוַוארְטֶען?</p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0012_a">
+          <speaker>דניאל</speaker>
+          <p>זרֻבָּבֶל! נִישְט נוּר אֵיינְמָאל הָאבֶּען מִיר פוּן דֶעם גֶעשֶפְּרָאכֶען, אוּן<lb/>אִיך הָאבּ עֶס דִיר דֵייטְלִיך בֶּעוִויזֶען אָן אוּנְזֶערֶע אֵיינְצִיגֶע יְשוּעָה<lb/>בֶּעשְטֶעהֶט נוּר אִין דֶעם אַיינֶעם וָוארְּט „צִיוֹן”...</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0013_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(בעגייסטערט אייבערשרייענד)</stage> יאָ צִיוֹן, דוּ זִיסֶע הֵיילִיגֶע הֵיימַאטְה!<lb/>וִוי וָואלְט אִיךְ גֶעקִישְט יֶעדֶעם קְערִינְדִיל זַאמַד פוּן דַיין הֵיילִיגֶע עֶרְד<lb/>וואוּ מיֵינֶע עֶלְטֶערְן שְלָאפֶען! אָה, מַיין שְוַואכֶעס קְרַאנְקֶעס פָאלְק!<lb/>וֶוען וִוילְסְטוּ אוֹיפְמַאכֶען דַיינֵע פֶעסְטְגֶעשְלָאסֶענֶע אוֹיגֶען, מַיין<lb/>פֶערְטְרִיעבֱּען פָאלְק? וֶוען וֶועסְטוּ וִויעדֶער שְטֶעהן אוֹיף פֶעסְטֶע פִיס<lb/>אוֹיף דַיין אַייגֶענֶער עֶרְד? אָה וֶוען? אָה וֶוען?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0014_a">
+          <speaker>זמרי</speaker>
+          <p>נִיעמַאלְס!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0015_a">
+          <speaker>אלע</speaker>
+          <p><stage type="business">(ערשטוינט)</stage> אָה?!</p>
+        </sp>
+        <pb n="9" facs="30627621.jpg"/>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0016_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(לויפט צו צו איהם)</stage> וֶוער אִיז דֶער לֶץ? פוּן אָנְהֵייבּ אָן אִיז עֶר מִיר<lb/>נִישְט גֶעפֶעלֶען.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0017_a">
+          <speaker>זמרי</speaker>
+          <p>איןִ צִיוֹן פֶערְגֶעסְט! דָאס לַאנְד אִיז נִישְט מֵעהר אַייעֶרְס אוּן קֶען<lb/>אוֹיךְ נִיעמַאלְס אַייעֶרְס וֶוערֶען. אָבֶּער וֶוער זָאגְט דֶען דָאס יוּדֶען<lb/>מוּזֶען אֵיין אֵייגֶען לַאנְד בֶּעזִיטְצֶען? קֶענְט אִיהר דֶען נִישְט הָאבּען<lb/>אַייער אֶרֶץ יִשְרָאֵל דָא אִין בַּאבּילָאן? יָא עֶס אִיז וֶואהר! דִי כַלְדֶעעֶר<lb/>הַאסֶען דִי יוּדֶען אָבֶּער וֶוער אִיז דֶען שוּלְדִיג אִין דֶעם? וֶוער אִיז דֶען<lb/>שוּלְדִיג אִין אַלֶע צָרוֹת וָואס יוּדֶען לֵיידֶען אִיבֶּערַאל? וֶוער? וֶוען<lb/>נִישְט דִי יוּדֶען זֶעלְבְּסְט?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0018_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="delivery">(וויטהענד)</stage> פַארְשְטְאפּ דִיר דַיין פִּיסְק מִיט אַ הֵייס שְטִיק אַייזֶען.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0019_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(נישט אכטענד רעדט ווייטער)</stage> יׁא זָאג אִיךְ, אִיהר אַלֵיין זֶענְט אִין אַלֶעס<lb/>שׁוּלְדִיג, פַארְוָואס לֶעבְּט אִיהר אָבְּגֶעזוּנְדֶערְט פוּן אַלֶע אַנְדֶערֶע<lb/>מֶענְשֶען? פְּרָאבִּיערְט אוּן פֶערְמַענְגְט אַייך מִיט דִי פֶעלְקֶער אוּנְטֶער<lb/>וֶועלְכֶע אִיהר לֶעבְּט, עֶסְט אַלֶעס וָואס זֵיי עֶסְען, זֵייעֶרֶע יָמִים טוֹבִים<lb/>זָאלֶען אוֹיך דִי אַייעֶרֶע זַיין, זֵייט אַייךְ מִיט זֵײ מְשַדֵך אוּן....</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0020_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(אונטערברעכענד)</stage> הַאלְט אַיין! <stage type="business">(צו אליקים)</stage> אֶלִיָקִים וֶוער אִיז דִיעזֶער<lb/>מַאן? אַ יוּד? אָדֶער אַ כַלְדֶעעֶר?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0021_a">
+          <speaker>אליקים</speaker>
+          <p>אִיךְ זָאל אַזוֹי וִויסֶען פוּן אִיהם!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0022_a">
+          <speaker>זמרי</speaker>
+          <p>אֵיין יְהוּדִי בִּין אִיךְ, אַיין גֶעבֹּארֶענֶער יְהוּדִי אַזוֹי וִוי אִיהר אַלֶע<lb/>אָבֶּער נִישְט אַזוֹי פֶערְפִיהרְט אוּן פַאנַאטִיש.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0023_a">
+          <speaker>אליקים</speaker>
+          <p>יִמַח שְמוֹנִיק, וֶוער בִּיזְטוּ <stage type="business">(וויל איהם אנגרייפען, זמרי שטויסט איהם אוועק)</stage></p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0024_a">
+          <speaker>דניאל</speaker>
+          <p><stage type="business">(ווינקט צו אלקים אויעקצוגעהן)</stage> אַיין יְהוּדִי בִּיזְטוּ? דוּ גִיבְּסְט אוּנְז אַיין<lb/>רַאטְה מִיר זָאלֶען זִיךְ אוֹיסְמִישֶען מִיט דִי גַעטְצֶענְדִיענֶער, מִיט דִי<lb/>הֵיֶידֶען? אַז אוּנְזֶערֶע קִינְדֶער זָאלֶען שְׁפֶּעטֶער נִישְט וִויסְען וֶוער עֶס<lb/>שְטַאמְט פוֹן יַעֲקֹב אוּן וֶוער פוּן עֵשָו? און דוּ זָאגְסְט אַז דוּ בִּיזְט<lb/>אַיין יְהוּדִי?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0025_a">
+          <speaker>זמרי</speaker>
+          <p>אִיבְּרִיגֶענְס גֶעהט אַייך קֵיין אֶרֶץ יִשְרָאֵל אוֹיבּ אִיהר קֶענְט. חַ חַ חַ חַ<lb/>פְּלֶענֶע צוּ מַאכֶען בַּיי דֶעם בֶּעכֶער וַויין אִיז זֶעהר לֵייכְט, אָבֶּער<lb/>אַזֶעלְכֶע פְּלֶענֶער אוֹיסְצוּפִיהרֶען חַ חַ חַ חַ דָאס אִיז אֵיין<lb/>אַנְדֶערֶע זַאךְ.</p>
+        </sp>
+        <pb n="10" facs="0010_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_10.jpg"/>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0026_a">
+          <speaker>זרובבל</speaker>
+          <p>דאָס מִיר ווֶעלֶען שְׁוֶוערִיקֵייטֶען הָאבֶּען דָאַס וֵוייסֶען מִיר זֶעהר<lb/>גוּט, אָבֶּער לָאסְט זִיך דֶען אֵיין מֶענְשׁ פוּן שְׁוֶוערִיגְקֵייטֶען אָבְּשְרֶעקֶען<lb/>דָארְט וואוּ עֶס הַאנְדֶעלְט זִיך אוּם זַיין לֶעבֶּען? אוּנְזֶער לֶעבֶּען<lb/>אַלְס פָאלְק בֶּעשְטֶעהט נוּר אִין אוּנְזֶער לַאנְד, אוּן אָהן לַאנְד זֶענֶען<lb/>מִיר הֶפְקֶר, עֶרְגֶער אַלְס בְּהֵמוֹת! אַיין אָקְס הָאט אוִיך אַ שְטַאל,<lb/>יֶעדֶע בְּהֵמֶה הָאט אִיהרֶען בֶּעשְטֶענְדִיגֶען רוּהפְּלַאטְץ, נוּר מִיר זֶענֶען<lb/>נָע וְנָד אִין דֶער פְרֶעמְד ווִי בֶּעטְלֶער <stage type="delivery">(בעגייסטערט)</stage> אוֹיף מַיין פָאלְק!<lb/>אוּם דִיעזֶען הַיילִיגֶען שְׁרִיט צוּ מַאכֶען זאָל דִיר קֵיין אָפְּפֶער צוּ<lb/>שְׁוֶוער זַיין, מִיט פֶעסְטֶען וִוילֶען, מִיט פֶערְשְׁטַאנְד אוּן מִיט עֶנֶערְגִיע,<lb/>מוּזֶען מִיר אוּן ווֶעלֶען אוֹיך אוּנְזֶער הֵיילִיגֶען צְוֶועק ערְרֵייכֶען!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0027_a">
+          <speaker>אלע</speaker>
+          <p>אָמֵן! אָמֵן!</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0028_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="delivery">(בעגייסטערט)</stage> אָמֵן! אָמֵן! אָמֵן! אוּן לְחַיִים יוּדֶען! <stage type="business">(צו זמרי)</stage> נִישְׁט<lb/>פַאר דִיר גֶעזָאגְט.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0029_a">
+          <speaker>זמרי</speaker>
+          <p>נוּן אָבֶּער אִיז עֶס גֶענוּג, פוּן דֶעם אַלֶעם וָׁואס אִיךְ הָאבּ דָא הַיינְט<lb/>עֶרְפַאהרֶען אִיז עֶס מִיר גֶענוּג בֶּעוִויזֶען דָאס אִיהר זֶענְט רֶעבֶּעלֶען.<lb/>מוֹרְדִים בְּמַלְכוּת.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0030_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(אויסער זיך)</stage> בִּיזְט דָא אַלְזָא נִישְׁט מֶעהר אַלְס אַ גֶעמֵיינֶער שְׁפִּיאָן?<lb/>אֵיין פֶערְאַכטְעֶטֶער מָסוּר <stage type="business">(פאקט איהם)</stage> נֵיין, נֵיין! דוּ גֶעהסְט קֵיין<lb/>שְׁרִיט פוּן דַאנֶען בִּיז דוּ הָאסְט מִיר נִישְׁט גֶעזָאָגְט דַיין נָאמֶען אוּן<lb/>דַיין שְׁטַאנְד, ווֶער בִּיזְטוּ?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0031_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(ווארפט אראב די קאפוצע, דעמאסקירט זיך)</stage> דֶער אָבֶּערְבֶּעפֶעהלְסְהַאבֶּער<lb/>פוּן קֶענִיג בַּלְשֶצֶר!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0032_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="delivery">(אפארט ערציטערט)</stage> פַּאלְמִירַאס פָאטֶער!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0033_a">
+          <speaker>אלע</speaker>
+          <p><stage type="business">(איינע וויילע ווי בעשטירצט)</stage>.</p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0034_a">
+          <speaker>דניאל</speaker>
+          <p><stage type="business">(קוקט איהם שארף אן)</stage> דִיעזֶעס גֶעזִיכְט... דוּ הָאסְט פְרִיהֶער גֶעזָאגְט<lb/>אַז דוּ בִּיזְט אַ גֶעבּוֹירֶענֶער יהוּדי?...</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0035_a">
+          <speaker>זמרי</speaker>
+          <p>חַ חַ חַ חַ הָאט שׁוֹין דָנִיאֵל פֶערְגֶעסֶען זַיין בּעסְטֶען תַּלְמוּד, ווֶעלְכֶען<lb/>עֶר הָאט מִיט אַיינִיגֶע צְוָואנְצִיג יָאהר צוּרִיק גֶעהַאט?</p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0036_a">
+          <speaker>דניאל</speaker>
+          <p><stage type="business">(ערקענט איהם)</stage> זמְרִי? דוּ בִּיזְט עֶם? דוּ וֶועלְכֶער הָאסְט נוּר<lb/>דֶערְפַאר אַזוֹי גוּט גֶעלֶערְנְט אוּם צוּ וִויסֶען ווִי אַלֶעס פֶערְקֶעהרְט צוּ<lb/>טְהוּן? דוּ מוּמָר לְהַכֶעִיס.</p>
+        </sp>
+        <pb n="11" facs="0011_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_11.jpg"/>
+        <sp who="#zimri" xml:id="AlNaharot_SP0037_a">
+          <speaker>זמרי</speaker>
+          <p>עֶרִינֶערְסְט דוּ דִיךְ מִיט וֶועלְכֶער שַׁאנְדֶע דוּ הָאסְט מִיךְ אוֹיס דַיין<lb/>יְשִׁיבָה ווִי אוֹיךְ אוֹיס דֶער גֶעמַיינְדֶע אוִיסְגֶעשְׁטוֹיסֶען?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0038_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(ערקענט איהם)</stage> דָאס בִּיזְטוּ, דוּ ימְח שְׁמוֹ'נִיק? געדֶענְקְסְטוּ נָאךְ דִי<lb/>39 מַלְקוּת וָואס אִיךְ האָבּ דִיר אָבְּגֶעצֶעהלְט? לִיעגֶען זֵיי דִיר נָאךְ אִין<lb/>טַעַם פוּן דְעמָאלְט אָן?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0039_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(מיט ביטערן האס)</stage> אָה קֵיינְמָאל אִין מַיין לֶעבֶּען וֶועל אִיךְ יֶענֶעם<lb/>טָאג פֶערְגֶעסֶען, גֶעשׁווארֶען הָאבּ אִיךְ דַאמָאלְס מִיךְ אִין אַייך וִוילְדֶע<lb/>פַאנַאטִיקֶער אַזוֹי נוֹקֵם צוּ זַיין ווִי אִיהר הָאט אַייךְ אִין מִיר נוֹקֵם<lb/>גֶעוֶוען אוּן דִי צַייט פוּן מַיין נְקָמָה אִיז עֶנְדְלִיךְ גֶעקוּמֶען, נְקָמָה, דָאס<lb/>קֵיין גָאט וֶועט אַייךְ נִישְׁט קֶענֶען הֶעלְפֶען, אַ מְשוּמָד בִּין אִיךְ אוּן ווִי<lb/>אַ מְשוּמָד וֶועל אִיךְ אַייךְ דִיענֶען! <stage type="exit">(אב)</stage></p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0040_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="delivery">(אפארט, שמערצליך)</stage> אוּן אַזוֹי אַיינֶער מוּז אִיהר פַאטֶער זייַן.</p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0041_a">
+          <speaker>דניאל</speaker>
+          <p><stage type="business">(שמערצליך אויפשרייענד)</stage> "מְהַרְסַיִךְ וּמְחַרְבַיִךְ מִמֶךְ יֵצֵאו", דַיינֶע<lb/>פֶערְדֶערְבֶּער אוּן דַיינֶע פֶערְנִיכְטֶער שְׁטַאמֶען אוֹיס דִיר <stage type="business">(וויינט, לעגט די</stage><lb/><stage type="business">הענד צום געזיכט)</stage> מַיין פָאלְק! <stage type="business">(קוקט צום הימעל פערקלעהרט)</stage> דָאךְ נֵיין!<lb/>הָאט נִישְׁט מוֹרָא מַיינֶע בְּרִידעֶר, דֶער טָאג דֶער עֶרְלֶעזוּנְג אִיז נִישְׁט<lb/>מֶעהר וַוייט, יאָ אִיךְ זֶעה אִיהם יֶענֶעם גְלִיקְלִיכֶען טָאג. ,,שְׂאִי סָבִיב<lb/>עֵינַיִךְ וּרְאִי כּוּלָם נִקְבְּצוּ בָּאוּ לָךְ", עֶרְהֶעבֶּע צִיוֹן דַיינֶע אוֹיגֶען אוּן זֶעה<lb/>דַיינֶע קִינְדֶער, זַיי קוּמֶען צוּ דִיר פוּן אַרְבַּע פִּינוֹת הָעולָם, זַיי פְלִיהֶען<lb/>צוּ דִיר צוּרִיק ווִי פַייגֶעלֶעךְ אִין זֵייערֶע נֶעסְטֶער, נוּר קְלֵיין וֶועט דִי<lb/>צָאהל זַיין פוּן דִי אוֹיסְוַואנְדֶערֶער נָאךְ דֶעם אָרֶץ הַקְדוֹשָׁה, אָבֶּער<lb/>אַזוֹי ווִי אִין אֵיין פְלוּס אִיז בֵּיים אַנְפַאנג נוּר אַיינֶע קְלֵיינֶע אוּנְבֶּעדִייטֶענְ⸗<lb/>דֶע קְוֶועלֶע, אוּן וָואס וֵוייטֶער זִי פְלִיעסְט וֶוערְט זִי אִימֶער בְּרֵייטֶער<lb/>אִימֶער שְׁטֶערְקֶער, בִּיז זִי וֶוערְט צוּ אַיינֶעם רֵייסֶענְדֶעם שְׁטְרָאם<lb/>אוֹיף ווֶעלְכֶען טוֹיזֶענְדֶע שִׁיפֶען שְׁפַּאצִיערֶען, אַזוֹי וֶועט אוִיךְ מַיין<lb/>פָאלְק מִיט דֶער צַייט וִויעדֶער אוֹיפְבְּלִיהֶען אוּן אִימֶער ווַאקְסֶען, בִּיז<lb/>עֶס וֶועט וִויעדֶער ווִי אַ מָאהל אֵיין שְׁטַארְקֶע מֶעכְטִיגֶע נַאצְיָאן זַײן!</p>
+        </sp>
+        <pb n="12" facs="0012_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_12.jpg"/>
+        <sp who="#alle" xml:id="AlNaharot_SP0042_a">
+          <speaker>אלע</speaker>
+          <p>הַיילִיגֶער נבִיא!</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0043_a">
+          <speaker>אליקים</speaker>
+          <p>אוּן אַז דניאַל זאָגְט עֶס, אִיז עֶס אַזוֹי הַיילִיג ווִי תּורת משֶׁה.<lb/>רבּשׁ"ע! לשׁנְה הבּאָה בּירוּשלים.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0044_a">
+          <speaker>אלע</speaker>
+          <p>לשׁנה הבּאָה בּירוּשלים!<lb/><stage type="setting">פערוואנדלונג.</stage><lb/><stage type="setting">(א שטראסע).</stage></p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0045_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(רופט פון דרויסען)</stage> יהוּדית! יהוּדית! <stage type="entrance">(ערשיינט)</stage> דָא זֶעה אִיךְ זִי אוִיך<lb/>נִישְׁט וואוּ האָבּ אִיךְ זִי ערְגִיץ פֶערְלוירֶען?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0046_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(רופט פון דרויסען)</stage> דוד! דוד'ל!</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0047_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(ערפרייט)</stage> יהוּדית, <stage type="business">(לויפט ארויס און קומט צוזאמען אויין מיט איהר)</stage> מַיין זִיעס<lb/>יהוּדית'ל! ווִי אַזוֹי בִּיזְטוּ מִיר אַזוֹי פּלוּצלינג פֶערְלוִירֶען גֶעגַאנְגֶען?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0048_a">
+          <speaker>יהודית</speaker>
+          <p>דֶער צונאמֶענְלויף דאָרְט פוּן דֶעם פאלְק הָאט אוּנְז בֵּיידֶע<lb/>צֶעטהַיילְט אוּן מִיר הָאַבֶּען אַיינער דֶעם אַנדערן פֶערְלוירֶען<lb/>פונ'ם אויג.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0049_a">
+          <speaker>דוד</speaker>
+          <p>אָבֶּער פאַר וואָס אִיז פּלוּצלינג גֶעווֶארֶען אַזַא צוזאמֶענְגֶעלויף?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0050_a">
+          <speaker>יהודית</speaker>
+          <p>האָסְטוּ דֶען נִישְׁט גֶעזֶעהן?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0051_a">
+          <speaker>דוד</speaker>
+          <p>אִיךְ האָבּ נוּר גֶעזֶעהן אַז דוּ פֶעהלְסט מִיר, וֵוייטֶער הָאט מִיךְ גָאר<lb/>נִישְׁט גֶעקִימֶערְט.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0052_a">
+          <speaker>יהודית</speaker>
+          <p>דֶער קֶענִיג בּלשצר האָט דָארְט פארבּייפּאסירט, אוּן ווֵייסְטוּ צוּ<lb/>ווֶעמֶען? צוּ זמְרִי אִין זַיין פּאלאסט!</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0053_a">
+          <speaker>דוד</speaker>
+          <p>צוּ ווֶעמֶען? צוּ דֶעם שונא ישראָל? צוּ דֶעם משוּמד?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0054_a">
+          <speaker>יהודית</speaker>
+          <p>יאָ דוד'ל, שְׁטֶעל דִיר פאַר וואָס פאַר אַ גדוּלה אַזַא משוּמד הָאט<lb/>דערלעבּט אַז דֶער קֶענִיג קוּמְט צוּ אִיהם אַהֵיים אַ וויזִיט מַאַכֶען.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0055_a">
+          <speaker>דוד</speaker>
+          <p>צוזֶעצט אוּן צוּפּיקעט זאָל עֵר וֶוערֶען, אַ גְלִיק פוּן אַ משוּמד? נוּר<lb/>יהודית'ל וואָס גֶעהט אוּנְז אָן דֶער קֶענִיג צִי דֶער משוּמד, זָאָלֶען זַיי<lb/>זַיין בּיידע דִי כּפּרה פַאר דַיין מִינְדְסטֶען נאגֶעל! קִישׁט אִיהר דֶעם פִינְגֶער<lb/>אוּן וִויל זִי אומארְמֶען).</p>
+        </sp>
+        <pb n="13" facs="0013_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_13.jpg"/>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0056_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(קוקט ארויס און ערשרעקט)</stage> אוֹי דוד'ל, זֶעה נוּר דָארְט...</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0057_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(קוּקט)</stage> מַיין פָאטֶער אוּן דַיין פָאטֶער.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0058_a">
+          <speaker>יהודית</speaker>
+          <p>מִיט וואָס פַאר אַ כֶעס בּיידע טֶענְה'ען אַיינער צוּם אַנדערן.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0059_a">
+          <speaker>דוד</speaker>
+          <p>איבּער וואַס קֶען זִיך מַיין פָאטֶער קרִיעגֶען מִיט דַיין פָאטֶער?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0060_a">
+          <speaker>יהודית</speaker>
+          <p>איבּער געֶשֶׁעפטעֶן גֶעוויס נִישְט! דֶען דַיין פָאטֶער אִיז בֶּן כספּי,<lb/>דֶער גרֶעסטֶער עושר פוּן דַאנֶען, אוּן מַיין פָאטֶער אִיז אֶלְיָקים דֶער<lb/>גרֶעסטֶער קַבְּצָן פוּן דַאנֶען, איבּער וָואסְזְשֶע דֶען קֶענֶען זֵײַ זִיך<lb/>קרִיעגֶען?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0061_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(קוּקט)</stage> גֶעוויס נִישְט איבּער עפּיס אַנדערש ווִי איבּער פּאליטיק.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0062_a">
+          <speaker>יהודית</speaker>
+          <p>ווִי הַייסְט?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0063_a">
+          <speaker>דוד</speaker>
+          <p>אִיך מַיין איבּער דִי יֶעצְטִיגֶע פראגֶע פוּן אָרץ ישראַל.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0064_a">
+          <speaker>יהודית</speaker>
+          <p>אָפְשֵר האסטוּ רֶעכט? דֶען ווִי מֶען גֶעהט אוּן ווִי מֶען שְׁטֶעהט<lb/>זֶעהט מֶען אַלץ פּארלעך, אוּן רעֶדעֶן נִישְט פוּן עפּיס אַנדערש ווִי<lb/>נאָר דֶערְפון.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0065_a">
+          <speaker>דוד</speaker>
+          <p>אוּן דִי פראגֶע אִיז יֶעצְט גֶעוְוארֶען אַזא הֵייסֶע פראגֶע, אַזא בּרענענדיגע<lb/>אַז צווישֶׁען אַ סך פּארלעך זֶענֶען שׁוֹין אוֹיך גֶעפלוִיגֶען פּעטש.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0066_a">
+          <speaker>יהודית</speaker>
+          <p>אוֹי וֶועה אִיז מִיר דוד'ל זֶעה נוּר... אִיך האבּ מוֹרָא אַז צווישֶׁען<lb/>אוּנזערע פֶעטֶער ווֶעלֶען אוֹיך בּאלד פְלִיהֶען פּעטש, קוּם צוּ.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0067_a">
+          <speaker>דוד</speaker>
+          <p>נֵיין נֵיין יהוּדית'ל, צווישֶׁען עֶלְטֶערֶע מֶענְשֶען דאַרפען מִיר זִיך נִישְט<lb/>אַריין מִישֶׁען.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0068_a">
+          <speaker>יהודית</speaker>
+          <p>אָבּער דוד'ל, ווילסטוּ דֶען צוּלאזען אַז אוּנְזֶערֶע פֶעטֶער זָאלֶען,<lb/>זִיך פּאטשען?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0069_a">
+          <speaker>דוד</speaker>
+          <p>וָואסְזְשֶע קֶענֶען מִיר הֶעלְפֶען? לאזֶען זֵײַ זִיך פּאטשען אוּן מִיר<lb/>ווֶעלֶען זיךְ קִישֶׁען, קוּם <stage type="exit business">(ציהט זי מיט זיך אב)</stage>.<lb/><stage type="entrance">(אויפטריט אליקים, בן כספי (אַ פעטען קארג).</stage></p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0070_a">
+          <speaker>אליקים</speaker>
+          <p>כּל ישראָל.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0071_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>מְשוּגֶע זֶענְט אִיהר אַלע אוּן אַ שׁגֶעון אִיז אַייער אִידֶעֶע. נאַ דִיר<lb/>פּלוצים אֶרֶץ יִשְרָאֵל! שׁוֹין אַזוי פִיעל יָאהר אַז מִיר האַבּען זִיך<lb/>בּעזעצט דָא אִין באבּילאן, יֶעדֶער אִיז זִיך שׁוֹין גֶעוואהנְט צוּ זֵײַן<lb/>אַרבּייט, יֶעדֶער האַט זִיך שׁוֹין זַיין פּרנסה, זאַלען מִיר זִיך אויפס נֵיי<lb/>צוּ בּרעכען? אויפ'ס נייַ אויסוואנְדֶערְן? אוּן ווִי אַהין? אִין דֶעם<lb/>פֶערוויסטֶעטֶען אָרץ יִשְרָאֵל? אִין דֶער חורְבּה? מִיר זָאלֶען דאָרט<lb/>וִויעדֶער אָנהייבּען צוּ זוּכען נֵייֶע פּרנסות בּיז מִיר ווֶעלֶען אַלע דאָרט<lb/>אויסשטארבּען פַאר הונְגֶער? נֵיין, זָאג אִיך! אִיך וֶועל עֶס נִישְט<lb/>דֶערְלאזֶען!</p>
+        </sp>
+        <pb n="14" facs="0014_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_14.jpg"/>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0072_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="delivery">(בייז)</stage> אִיך פֶערְשְׁטֶעה נִישְט, וֶוער שלעפּט דִיך דֶען מִיט גֶעוָואלְט<lb/>אַוועק פוּן דאַנען? דוּ ווילְסט נִישְט? בּלייבּ דָא, אָבּער וואָס געֶהן<lb/>דִיך אָן אַנדערע? וואַס הַייסְט דוּ וֶועסְט נִישְט דֶערְלאזֶען? וֶוער בּיזטוּ?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0073_a">
+          <speaker>בֶּן כּספּי</speaker>
+          <p>אָליקים זֵיי קֵיין שגץ נִישְט!</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0074_a">
+          <speaker>אליקים</speaker>
+          <p>בּן כּספּי, אִיך הֶער דִיך ווִי דֶעם הוּנד וואָס האבּ אִיך מוֹרָא פַאר<lb/>דִיר? וַוייל דוּ בּיזט אֵיין עושר? אַז פארוויסט אוּן פארְפִינְצטֶערְט אִיז<lb/>דַיין לעבּען גֶעוְוארֶען מִיט דַיין גַאנְץ עשִׁירות, וואָס פאַר אַ לעבּען<lb/>פִיהרֶען מִיר דָא? <stage type="business">(צעוויינט זיך)</stage> מֶען וואשט זִיך אִין אוּנְזֶער בּלוּט, מֶען<lb/>טַייט אוּנְז נָאך מִיט דִי פִינְגֶער, אוּן מֶען מַאכְט פוּן אוּנְז חוֹזֶק, וָואס<lb/>אִיז? זֶענֶען מִיר נִישְט אַזוינע מיוּחסים ווִי דִי כַלְדֶעעֶר? אוּן אָפְשֵר<lb/>נָאך גרֶעסֶערֶע? חוֹזֶק פוּן אוּנז? פאַר וָואס? ווייסטוּ פאַר וואָס?<lb/>וַוייל זֵיי האָבּען אַ הֵיים אוּן מִיר? מִיר וואַלגערן זִיך אַרוּם ווִי<lb/>דִי הִינְד <stage type="business">(חליפעט)</stage>.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0075_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(קאלט)</stage> מִילא נוּ? וואָס זְשֶׁע קֶען מֶען מַאכֶען? מן הסתּם וִויל<lb/>גָאט אַזוי. אוּן אויבּ דֶער אייבּערשטער וֶועט ווֶעלֶען אַ מאל אוּנז צוּריק<lb/>פִיהרֶען קֵיין אֶרֶץ יִשְרָאֵל וֶועט עֶס מן הסתּם גֶעשֶׁעהן דוּרךְ נסִים, נָאר<lb/>לאָמיִר געדוּלדיג וואַרטען בּין גָאט וֶועט אוּנז דִי נסִים בּעווייזען.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0076_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(וויטהענד)</stage> אִיהר הֶערְט עפּיס? עֶר וִויל זִיך עֶרְשְׁט אַנידערזעטצען<lb/>אוּן וַוארְטֶען אוֹיף נסִים.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0077_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>מִיט נסִים הָאט אוּנז גָאט בּ"ה אוֹיסְגֶעלֵייזְט פוּן מִצְרַיִם, אוּן מִיט<lb/>נסִים וֶועט עֶר אוּנז גֶעוויס אוֹיך פוּן דֶעם גלוּת אוִיסלֵייזֶען, דֶערְפַאר<lb/>זאָג אִיך וַוארְטֶען, נאָר וַוארְטֶען.</p>
+        </sp>
+        <pb n="15" facs="0015_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_15.jpg"/>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0078_a">
+          <speaker>אליקים</speaker>
+          <p>קוּם אַהער צוּ מִיר בּן כּספּי, דוּ בּיזט דָאך אֵיין עהרְלִיכֶער יוּד.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0079_a">
+          <speaker>בּן כַּסְפִּי</speaker>
+          <p>אִיך מַיין אוֹיך אַזוי.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0080_a">
+          <speaker>אליקים</speaker>
+          <p>אוּן גלייבּסט מן הסתּם אַז אָהן גאטס וִוילֶען קֶען קֵיין שוּם זַאך<lb/>נִישְט גֶעשֶׁעהן?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0081_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>חָלִילָה!</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0082_a">
+          <speaker>אליקים</speaker>
+          <p>נוּ ענְפֶערְזשֶׁע מִיר, וֶוען למְשׁל דִיך זאָל אַנידערלעגען אַ קרֶענְק,<lb/>וִויל דָאך גָאט אַז דוּ זאלְסט קְרֶענְקֶען, אוּן פוּן דֶעסטוועגֶען וועסטוּ דֶען<lb/>נִישְט זוּכען קֵיין רפוּאה צוּ דַיין קרֶענְק? וועסטוּ דֶען לִיעגֶען אוּן<lb/>קְרֶענְקֶען אוּן וַוארְטֶען אוֹיף נסִים? פאַר וָואסְזְשֶע הייסטוּ אוּנְז וַוארְטֶען<lb/>אוֹיף נסִים?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0083_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>וַוייל דִי גאַנצע אִידֶעֶע אִיז אַ פּוּסטע פאנְטאזִיע, אַ רֵיינֶער<lb/>שׁגֶעון! ארץ ישראַל בּעזעצען? חַ חַ חַ חַ אִיז עפּיס אַ הֶפְקֶר ווֶעלְט<lb/>וֵוייסְט אִיהר נִישְט אַז מ'וועט אַייך שְׁלָאָגעֶן איבּער דִי הֶענְד חַ חַ חַ חַ?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0084_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(קרומט איהם נאך)</stage> חַ חַ חַ חַ אַז אַך אוּן וֶועה אִיז צוּ דַיין גֶעלֶעכטֶער!<lb/>מיינסטוּ דֶען נִישְט אַז דניאַל אִיז אַזא חָכָם ווִי דוּ? אוּן וֶוען אַזא<lb/>הֵיילִיגֶער גֶעטלִיכֶער דָנִיאֵל רֶעדְט פוּן אַ זַאך הָאט עֶר נִישְט אַלעס<lb/>בּעקלעהרט פְרִיהֶער, יעדֶען פּלאן איבּערגעלעגט? וָואלְט אַזא מַאן<lb/>ווִי עֶר גֶערֶעדְט פוּן אַ זַאך וֶוען דִי זַאך זָאל נִישְט האבּען קֵיין זִין אוּן<lb/>קֵיין ממְשׁות? <stage type="delivery">(בייז)</stage> קוּמט אַזא לאשִׁיק ווִי דוּ אוּן זָאגְט אַז עֶס אִיז<lb/>אַ שׁגֶעון.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0085_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>גראבּיאַן?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0086_a">
+          <speaker>אליקים</speaker>
+          <p>אִיך האבּ דִיך אִין דר'ערְד! וֶוער וֵוייסְט עֶס דֶען נִישְט פַאר וָואס<lb/>דוּ בּיזט אַזאַ גֶעגנֶער פוּן דֶער אִידֶעֶע? וַוייל דוּ הָאסְט מוֹרָא אַז אוּנְזֶער<lb/>אויסוואַנדערוּנג וֶועט דִיר שׁטֶערֶען דַיינֶע מסחרִים, דוּ וֶועסְט נִישְט<lb/>האבּען פוּן ווֶעמֶען צוּ שִׁינְדֶען דִי הויט, דוּ בּיזט אַיינֶער פוּן דִי<lb/>פרוּמע יוּדען וואָס זַייער עולֶם הזה אוּן עולֶם הבּא, אִיז גֶעלְד, שפּייא<lb/>אִיהם אָן אַ פוּל פּנים אַבּי גֶעלְד! אַ כּפּרה כּבֿוד, מֶענְשׁלִיכקֵייט<lb/>יֶעדֶעם נאַציאָנאלע גֶעפִיהל, אַבּי גֶעלְד, נֵיין! אַזויינע יוּדען מעֶגעֶן<lb/>וֵוייטֶער בּלייבּען דָא, פַאר אַזוינע יוּדען האָבּ אִיך נוּר דרֵיי גֶעוועהלְטֶע<lb/>ווערְטֶער, טפו, טפוּ, טפו, אוּן שְׁרֵייעֶן לְחַיִים! לְחַיִים יוּדען! <stage type="exit">(אב)</stage>.</p>
+        </sp>
+        <pb n="16" facs="0016_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_16.jpg"/>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0087_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(שרייט איהם נאך)</stage> שגץ! עזוּת מחוּצף פּנים... חַ חַ חַ חַ סְ'אִיז<lb/>אוּמזיסט אַייער מיִה! וֶוען מִיר עשִׁירִים זֶענֶען גֶעגֶען דֶער אִידֶעֶע וֶועט<lb/>עֶס גֶעוויס בּלייבּען, נֵיין <stage type="business">(געהענד)</stage> אַנא חוּצפּה פוּן אַ קַבְּצָן <stage type="exit">(אב)</stage>.<lb/><stage type="entrance">(אויפטריט דוד, יהודית)</stage></p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0088_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(אויפגערעגט, הין און אהער געהענד)</stage> נוּ וואָס זאָגסטוּ עפּיס צוּ דַיין טאטֶען?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0089_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(שטעהט טרויריג)</stage> אוּן וָואס זאָגסטוּ עפּיס צוּ דַיין טאטֶען?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0090_a">
+          <speaker>דוד</speaker>
+          <p>עֶס טהוּט מִיר לֵייד, אָבּער אִיך מוּז דִיר זָאָגען אַז דַיין טַאטֶע אִיז<lb/>אֵיין עזוּת פּנים.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0091_a">
+          <speaker>יהודית</speaker>
+          <p>אוּן דַיין טַאטֶע אִיז אַ גראבּיאן.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0092_a">
+          <speaker>דוד</speaker>
+          <p><stage type="delivery">(בייז)</stage> אַזוי רעדסטוּ פוּן דַיין מחוּתן?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0093_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="delivery">(וויינענד)</stage> אוּן ווִי אַזוי רעדסטוּ פוּן דַיין מחוּתן <stage type="business">(שלוכצט)</stage> דֶער נגִיד<lb/>מֶעג? נָאר אַ מִצְוָה, אַ מִצְוָה אוֹיף מִיר, אִיך האבּ פְרִיהֶער גֶעזאלְט<lb/>וִויסֶען אַז מִיר בּיידע זֶענֶען נִישְט קֵיין גלֵייך פּאריל, אַ מִצְוָה<lb/>אַ מִצְוָה אוֹיף מִיר <stage type="delivery">(וויינט)</stage>.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0094_a">
+          <speaker>דוד</speaker>
+          <p>קוּם אַהער יהוּדית'ל <stage type="business">(וויל איהר האנד נעהמען)</stage>.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0095_a">
+          <speaker>יהודית</speaker>
+          <p>לאָז מִיך צוּרוּה... וואָס האסטוּ גֶעוָואלְט פוּן מִיר האבּען? מִיר<lb/>פּאסען נִישְט אַיינְס פאר'ס אַנדערע, לאָז מִיך, <stage type="business">(געהט וויינענד)</stage>. אוֹי מַיין<lb/>צעבּראכען הארְץ.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0096_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(פערהאלט זי)</stage> וואָרט אוֹיס יהודִית'ל, זאָג מִיר דֶעם אמְת, אבּער גַאנְץ<lb/>אוּנפּארטייאיש, שׁטֶעל דִיר פַאר אַז בּן כּספּי אִיז נִישְט מַיין פָאטֶער<lb/>אוּן אֶלְיָקים אִיז נִישְט דַיין פָאטֶער, נאָר מִיר האבּען דָא גֶעהֶערְט<lb/>צְוֵויי מֶענְשֶען זִיך אוִיסטֶענְה'ען וֶוער פוּן זֵיי בּיידע אִיז גֶערֶעכט,<lb/>בּן בּספּי אָדער אֶליקים?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0097_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="delivery">(וויינענד)</stage> אַדרבּה, וֶוער אַז נִישְט אָליקים?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0098_a">
+          <speaker>דוד</speaker>
+          <p><stage type="delivery">(בּייז)</stage> אַזוי?... אֶלְיָקים אִיז גֶערֶעכט? דאָס הַייסְט אַז דוּ ווילְסט אוֹיך<lb/>וֶוערֶען אַיין אָרץ ישראָל יוּדענע? אוּן וֶוען אִיך דַיין מַאן וִויל נִישְט<lb/>געֶהן קֵיין אָרץ ישראָל, וָואסְזְשֶע וֶועט וֶוערֶען פוּן אוּנְז בּיידע?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0099_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(שלוּכצענד)</stage> גאָר נִישְט!</p>
+        </sp>
+        <pb n="17" facs="0017_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_17.jpg"/>
+        <sp who="#dovid" xml:id="AlNaharot_SP0100_a">
+          <speaker>דוד</speaker>
+          <p>גאָר נִישְט? <stage type="delivery">(וויינט)</stage> שלאגסטוּ מִיך אַ כּפּרה פאַר אָרץ ישראַל? אוּן<lb/>דאָס הַייסְט בּיי דִיר ליעבּ גֶעהַאט?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0101_a">
+          <speaker>יהודית</speaker>
+          <p>דוד'ל, פַאר וואַס פרעגסטוּ נִישְט פוּן וָואס דָא אִיז אַ רֶעדֶע? דָא<lb/>הַאנְדֶעלְט זיךְ יֶעצְט פוּן אַ ישוּעה אוֹיף דֶעם כּלל יִשְרָאֵל, <stage type="business">(פֿרום)</stage> גָאט<lb/>בּ"ה וִויל אוּנז פוּן דֶעם גלוּת אוִיסלֵייזֶען אוּן הָאט מן הסתּם דֶעם צַדִיק<lb/>דניאָל אָנגעוויזען אַ וועג ווִי אַזוי, אוּן וֶוער נאָר עֶס הָאט אַ פִינְק פוּן<lb/>יודִישׁקֵייט אִין זַיין העֶרץ דֶער דַארְף אִין זִיך אַליין פארְגֶעסֶען, מקרִיב<lb/>זַיין דַארְפֶען מִיר אַלסדינג וָואס אוּנז אִיז ליעבּ, אוּן וֶוען עֶס אִיז נֶעטהִיג<lb/>מוּזֶען מִיר אַפילוּ אוּנזער לעבּען בּרענגען פאַר אַ קרבּן, אַבּי צוּ<lb/>הֶעלְפֶען דֶעם כּלל יִשְרָאֵל!</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0102_a">
+          <speaker>דוד</speaker>
+          <p><stage type="delivery">(בּעגייסטערט)</stage> נוּ ווִי אַזוי לאָזט מֶען פוּן זִיך אַוועק אַזאַ הֵיילִיג מלאכ'ל?<lb/>נוּ, וואַסעשע טהוּ אִיך אָבּער מִיט מַיין טאטֶען? נֵיין אִיך מַיין<lb/>פארְקֶעהרְט וָואס וֶועט מַיין טַאטֶע טְהוּן מִיט מִיר? <stage type="delivery">(וויינענד)</stage> רבּש"ע!<lb/>גיבּ מִיר אֵיין עצה וואָס זָאל אִיך טְהוּן?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0103_a">
+          <speaker>יהודית</speaker>
+          <p>...דוד'ל! גָאט וֵוייסְט דֶעם אמְת אַז אִיך וֶועל אָן דִיר נִישְט<lb/>קֶענֶען לעבּען, אָבּער אַז דוּ קֶענְסט נִישְט געֶהן מִיט מִיר קֵיין אֶרֶץ<lb/>יִשְרָאֵל, מן הסתּם זֶענֶען מִיר נִישְט קֵיין זוויג!</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0104_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(וויינט אויף איהר האלדז)</stage> אִיך האבּ דָאך דִיך אבּער ליעבּ, אִיך וֶועל<lb/>אָהן דִיר שטאַרבּען.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0105_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(חליפעט)</stage> וֵויין נִישְט דוד'ל, אִיך וֶועל דָארְט אִין אֶרֶץ הַקְדוֹשָׁה<lb/>פַאר דִיר גָאט בֶּעטֶען, אִיך וֶועל געֶהן אַלע טָאג צוּ דֶער מֶערת<lb/>המְכפלה, וֶועל פאלֶען וויינֶענְדִיג אוֹיף דִי הֵיילִיגֶע קברִים פוּן אַברהם<lb/>יצחק יַעֲקֹב שׁרה רבקה רחל ולאה. וֵויין נִישְט דוד'ל, וֵויין נִישְט!<lb/><stage type="business">(שלוכצענד פאלען זיי זיך אויף די העלזער)</stage>.<lb/><stage type="setting">פֶערוואנְדְלונְג.</stage><lb/><stage type="setting">(בַּיי זִמְרִי, פאוויליאָן זֶעהר רֵייך פֿערציערט מִיט סטאַטוען אוּן פֿיגורען, בּלומֶען,</stage><lb/><stage type="setting">וואַזען, פאַלמענבייטער, שׁפרִינְגבּרונֶען, עטצ. עצט.</stage><lb/><stage type="entrance">(זמרי, פריסטער קוליאן).</stage></p>
+        </sp>
+        <pb n="18" facs="0018_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_18.jpg"/>
+        <sp who="#zimri" xml:id="AlNaharot_SP0106_a">
+          <speaker>זמרי</speaker>
+          <p>חַ חַ חַ חַ, טריוּמפּף! טריוּמפּף! אָה פּריסטער קוּליאן, אַזוי אַ גלִיק<lb/>וואָלט אִיך מִיר קֵיינְמָאל נִישְט פארְגֶעשׁטֶעלְט.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0107_a">
+          <speaker>פריסטער</speaker>
+          <p>דֶער קֶענִיג זאגסטוּ? דֶער קֶענִיג אַליין האַט עֶס דִיר גֶעזאנְט?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0108_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(ווייזט איהם אין קוליס)</stage> דָא קוּק אַהין, זֶעה ווִי דֶער קֶענִיג שפּאציערט.<lb/>דָארְט אִין גארְטֶען אָרעם אוּן אָרעם מִיט מַיין טאָכְטֶער... זֶעה מִיט<lb/>וֶועלְכֶע פערליעבּטע אוֹיגֶען עָר קוּקט אוֹיף אִיהר.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0109_a">
+          <speaker>פריסטער</speaker>
+          <p>יאה, דאם דֶער קֶענִיג אִיז אִין דַיין טאָכטער שׁוֹין לאַנְג<lb/>פערליעבּט, דָאס אִיז קֵיין גֶעהֵיימְנִיס מֶעהר, אָבּער דאַס עֶר זָאל זִי<lb/>פַאר אַ פרוֹי פֶערְלאנְגֶען דאַס עֶר זָאל זִי ווֶעלֶען פאַר אַ קֶענִיגִין<lb/>ערהעבּען?...</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0110_a">
+          <speaker>זמרי</speaker>
+          <p>דאַס הָאט עֶר מִיר אַליין שׁוֹין עֶרְשְׁט נִישְט לאַנְג בּיי דֶעם טאפֶעל<lb/>ענְטדֶעקט, חַ חַ חַ. נוּן פּריסטער קוּליאן, דֶענְק דִיר יֶעצְט מַיין מַאכְט<lb/>אוּן מיֵינֶע גרֶעסֶע, בּלשצר דֶער קֶענִיג פוּן באבּילאן מַיין שׁוויגֶער⸗<lb/>זאהן חַ חַ חַ.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0111_a">
+          <speaker>פריסטער</speaker>
+          <p>דָאן זִמְרִי מַיין פְרֵיינְד, דָאן ווינְשֶׁע אִיך דִיר גלִיק <stage type="business">(זינגענד)</stage> דֶער<lb/>זֶעגֶען פוּן דִי הֵיילִיגֶע גֶעטֶער זאָל אויִסגעֶהן צוּ דַיין קאפּ, אָמֵן אָמֵן.<lb/><stage type="entrance">(אויפטריט קעניג, כאהר, פאלמירא)</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0112_a">
+          <speaker>קעניג</speaker>
+          <p>נוּן זִמְרִי מַיין פְרֵיינְד! אֵיין גנאדֶע וואלְסט דוּ פוּן מִיר ערבּעטען,<lb/>הָאסְט דוּ מִיר פְרִיהֶער גֶעזָאגְט, שפּריך, יעדֶען וואוּנש בּין אִיך<lb/>בּערייט דִיר צוּ ערְפִילֶען.</p>
+        </sp>
+        <pb n="19" facs="0019_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_19.jpg"/>
+        <sp who="#zimri" xml:id="AlNaharot_SP0113_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(זיך פערנייגענד)</stage> מַיין קֶענִיג! אַלע מיֵינֶע ווינְשֶׁע אוּן אַלע מיֵינֶע<lb/>זארְגֶען צִיעלֶען נוּר צוּ דִיעזֶען אֵיינֶען פּוּנקט דַיין טהֵייער לעבּען<lb/>זִיכֶער צוּ וִויסֶען.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0114_a">
+          <speaker>קעניג</speaker>
+          <p>אִיז דֶען מַיין לעבּען אִין גֶעפאהר?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0115_a">
+          <speaker>זמרי</speaker>
+          <p>נִישְט נוּר דַיין לעבּען, זוּנדערן אוֹיך דאָס לעבּען פוּן אַלע כַלְדֶעעֶר,<lb/>יאָ, אוּנזער גַאנְץ לַאנְד שוועבּט אִין גְרויס גֶעפאהר!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0116_a">
+          <speaker>קעניג</speaker>
+          <p>מיינסטוּ פִיעלֵייכט דֶעם קרִיעג וֶועלְכֶער דראהט אוּנְז פוּן יֶענֶע<lb/>צְוֵויי קֶענִיגֶע כורְשׁ אוּן דריושׁ?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0117_a">
+          <speaker>זמרי</speaker>
+          <p>נֵיין מַיין קֶענִיג, מִיר כַלְדֶעעֶר זֶענֶען שְׁטַארְק גענוּג אוּם יֶענֶע צְוֵויי<lb/>פֵיינְדֶע כורְשׁ אוּן דרִיושׁ צוּ בּעזיעגען, אִיך רֶעד נִישְט פוּן דִי פֵיינְדֶע<lb/>פוּן דרוִיסֶען, זוּנדערן פוּן דִי פֵיינְדֶע וֶועלְכֶע זֶענֶען אִין אוּנזער לַאנְד<lb/>פערבּרייטעט, אִיך מַיין דִי יוּדען, וֶועלְכֶע זוִיגֶען אוֹיס לאנְגזאם<lb/>אוּנזער בּלוּט ווִי דִי בּלוּטאַייגעל.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0118_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(אפאַרט ערציטערט)</stage> דַארְף אִיך מיֵינֶע אוִיערֶען טרויען? אִיז עֶס<lb/>מַיין פָאטֶער וָואס רֶעדְט אַזוי?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0119_a">
+          <speaker>זמרי</speaker>
+          <p>דָנִיאֵל וֶועלְכֶער אִיז יֶעצְט דֶער קאפּ פוּן גַאנְצעֶן יוּדענטהוּם, עֶר<lb/>הַייסְט זַיינֵע בּרידער זִיך האַלטען בּערייט זַייער גֶעוֶועזֶען לַאנְד וִוידֶער<lb/>צוּ בּעזעצען, עֶס אִיז אַלזא מֶעהר אַלס זִיכֶער דאָס דִיעזֶער דָנִיאֵל<lb/>אוּנטערהאנדעלט אִין גֶעהֵיים מִיט אוּנְזֶערֶע פֵיינְדֶע אוּם אוּנְז צוּ<lb/>פֶעראטֶען, צוּ פֶערְקוִיפֶען, אוּן אַלס לאהן וִויעדֶער צוּריק צוּ בּעקוּמען<lb/>דָאס יוּדִישֶׁע לַאנְד, זֶעה דִיך דארוּם פַאר מַיין קֶענִיג, זֶעה דִיך פַאר<lb/>בּעפאַר עֶס וֶוערְט צוּ שפּעט.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0120_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(אויסער זיך)</stage> אוּן אֵיין זאלְכֶעס פָאלְק לעבּט אוּנְטֶער מַיין שוּטץ?<lb/>אַך, וֶועלְכֶע שׁטראפֶע ווערֶע גוּט פַאר אַזעלכע פֶערְרֶעטֶער?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0121_a">
+          <speaker>פאלמירא</speaker>
+          <p>וִויל דֶער קֶענִיג אוֹיך מיֵינֶע מיינוּנג הֶערֶען?</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0122_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צערטליך)</stage> שפּריך מיֵינֶע ליעבּע. וָואס ווערֶע דַיין רַאטְה אִין<lb/>דִיעזֶעם פאל?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0123_a">
+          <speaker>פאלמירא</speaker>
+          <p>גֶערֶעכט צוּ זַיין.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0124_a">
+          <speaker>קעניג</speaker>
+          <p>יאָ דָאס וִויל אִיך, אוּן דִי גֶערֶעכטִיגקֵייט געבּיעטעט מִיר אַיינֶע<lb/>אוּנערהערטע שׁטראפֶע אויסצוּדענקען פַאר דִיעזֶע יוּדען דִי פֶערְרֶעטֶער!<lb/>זאָג מיֵינֶע ליעבּע וואָס פאַר אַ שׁטראפֶע האסטוּ פאַר זֵיי אוֹיס⸗<lb/>געפוּנדען.</p>
+        </sp>
+        <pb n="20" facs="0020_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_20.jpg"/>
+        <sp who="#palmira" xml:id="AlNaharot_SP0125_a">
+          <speaker>פאלמירא</speaker>
+          <p>מַיין קֶענִיג! וֶוען דוּ ווילְסט גֶערֶעכט זַיין דארפסטוּ פוּן שׁטראפֶע<lb/>נָאך גָאר נִישְט רעֶדעֶן.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0126_a">
+          <speaker>קעניג</speaker>
+          <p>נִישְט? ווארוּם?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0127_a">
+          <speaker>פאלמירא</speaker>
+          <p>וַוייל אוִיסגֶעהֶערְט האסטוּ נוּר דֶעם אַנקלעגער, אָבּער וואוּ<lb/>אִיז דֶער אַנגעקלאגטער?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0128_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="delivery">(אפארט)</stage> וואָס אִיז דָאס?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0129_a">
+          <speaker>פאלמירא</speaker>
+          <p>אָה קֶענִיג! האָבּ אִיך אִין דַיינֶע אוֹיגֶען געפוּנען גנאדֶע? אַזוי<lb/>בּעט אִיך דִיך, הֶער נִישְט אוֹיס מַיין פָאטֶער, דֶען אוֹיס אִיהם שפּריכט<lb/>נוּר פּערזעגליכער האס אוֹיף זַיינֵע גֶעוועזֶענֶע גלויבּענסבּרידער. דוּ<lb/>אָבּער, דוּ בּיזט קֶענִיג אוּן קֶענִיגלִיך מוּז דַיין בּעהאַנדלוּנג זייַן.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0130_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(אויסער זיך)</stage> ווא... וואָס? וואָס הַייסְט דָאס? אָה מַיין קֶענִיג! פֶערְצַייהֶע,<lb/>מיֵינֶע טאָכְטֶער שַׁיינְט אונוואהל צוּ זַיין.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0131_a">
+          <speaker>פריסטער</speaker>
+          <p>אַזוי זֶעהט עֶס אוֹיס, זִי אִיז פיבּעריש, דֶען זִי רֶעדְט פוּן הִיטץ<lb/><stage type="business">(בענטשט זי)</stage> דֶער זֶעגֶען פוּן דִי הֵיילִיגֶע גֶעטֶער זָאל אויִסגעֶהן צוּ דַיין<lb/>קָאפְּף...</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0132_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(ווענדעט זיך פון איהם אוועק פערעכטליך)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0133_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צערטליך)</stage> זֵיי רוּהיג מיֵינֶע ליעבּע! אִיך האבּ דִיר מַיין וָוארְּט<lb/>געגעבּען גֶערֶעכט צוּ זַיין, אוּן מַיין וָוארְּט וִויל אִיך הַאלְטֶען!<lb/><stage type="business">(צו זמרי)</stage> לאָז אַלע מיֵינֶע רֶעטהֶע זאפארְט פֶערְזאמְלֶען אִין מַיין<lb/>פּאלאסט, אוּם איבּער דִיעזֶע וויכטִיגֶע יוּדענפראגע צוּ פֶערְהאנְדְלֶען.<lb/><stage type="business">(צו אלע)</stage> פאלְגט מִיך! <stage type="exit business">(אלע אב אויסער פאלמירא און זמרי)</stage>.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0134_a">
+          <speaker>זמרי</speaker>
+          <p>טאָכְטֶער וואָס גֶעהט מִיט דִיר פַאר, דוּ נֶעמְסט פּארטיי פַאר דִי<lb/>יוּדען? האסטוּ דֶען פֶערְגֶעסֶען וֶוער דוּ בּיזט?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0135_a">
+          <speaker>פאלמירא</speaker>
+          <p>נֵיין! קֵיין אויגענבּליק וֶועל אִיך פֶערְגֶעסֶען דָאס אִיך בּין<lb/>אַ יוּדיש קִינְד געבּארען! אָה פֶערְגֶעסֶען זָאל אִיך מיֵינֶע רֶעכְטֶע הַאנּד<lb/>אויבּ אִיך וֶועל פֶערְגֶעסֶען מיֵינֶע פרוּמע יוּדִישֶׁע מוּטֶער, מיֵינֶע מוּטער<lb/>וֶועלְכֶע אִיז דוּרך דִיר פאַר דֶער צַייט געשטארבּען וֶוען דוּ בּיזט<lb/>אוּנטריי גֶעוְוארֶען דֶעם יודִישֶׁען גלויבּען! <stage type="delivery">(וויינט)</stage> דָאך, מוּטער, זִיסֶע<lb/>מוּטֶער מיֵינֶע! שלאף רוּהיג אִין דַיין קבר, דֶען אַזוי ווִי דוּ, אַזוי וֶועל<lb/>אוֹיך אִיך דַיין טאָכְטֶער פֶעסט הַאלְטֶען אָן דֶעם גלויבּען פוּן<lb/>אוּנזערער עֶלְטֶערְן!</p>
+        </sp>
+        <pb n="21" facs="0021_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_21.jpg"/>
+        <sp who="#zimri" xml:id="AlNaharot_SP0136_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(אויפגערעגט)</stage> טהוּט מִיר הנאה!... פרֵייט מִיך זֶעהר! אַך מיֵינֶע שׁולְד!<lb/>עֶס אִיז מַיין אַייגענע שׁולְד, אִיהר מוּטער אִיז גֶעווֶען אֵיין אַנפערוואנדטע<lb/>פוּן זרוּבּבל אוּן דאדוּרך אִיז דָא גֶעווֶען זרוּבּבל אֵיין גַאַנְצעֶר הוִיז-⸗<lb/>פְרֵיינְד, אוּן עֶר נוּר עֶר הָאט פוּן זַיין קִינְד אַזוי אַ הֵייסֶע יוּדישע<lb/>פּאטריאטיין גֶעמאכט אָה אִיך בּלינדער, אִיך בּלינדער!... <stage type="business">(צֶערְטלִיך צוּ</stage><lb/><stage type="business">אִיהר)</stage> פאַלמירא! טאָכְטֶער! לאזֶען מִיר דִי יוּדענפראגע בַּיי זַייטֶע,<lb/>זאָג מִיר, ווייסטוּ וועלְכֶעס גלִיק דִיר בּעפארשטעהט!</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0137_a">
+          <speaker>פאלמירא</speaker>
+          <p>גלִיק?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0138_a">
+          <speaker>זמרי</speaker>
+          <p>יאָ טאָכְטֶער, אֵיין גלִיק אוּם וועלְכֶעס דִי גַאנְצֶע ווֶעלְט וֶועט דִיך<lb/>בּעניידען.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0139_a">
+          <speaker>פאלמירא</speaker>
+          <p>אִיך ווֵייס נִישְט וָואס דוּ מַיינְסט.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0140_a">
+          <speaker>זמרי</speaker>
+          <p>אָבּער קִינְד, האסטוּ דֶען נִישְט גֶעזֶעהְן דאָס דֶער קֶענִיג אִיז אִין דִיר<lb/>לֵיידֶענְשׁאפטלִיך פערליעבּט?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0141_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(גלייכגילטיג)</stage> אָבּער אִיך האבּ אִיהם נִישְט ליעבּ.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0142_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(אויסער זיך)</stage> הֶערֶע ווֶעלְט אוּן שׁטוינֶע! מִיט ווֶעלְכֶען גלֵייכגִילְטִיגֶען<lb/>טאן זִי רֶעדְט וֶוען אִיהר ווינְקט אֵיין קֶענִיגלִיכֶע קרוִין.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0143_a">
+          <speaker>פאלמירא</speaker>
+          <p>דִי קרוין הָאט פַאר מִיר קֵיין רֵייץ נִישְט.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0144_a">
+          <speaker>זמרי</speaker>
+          <p>בּיזטוּ פוּן זיִנעֶן?... <stage type="business">(פלוצלינג פון אַ געדאנק ערפאסט)</stage> אָה... יֶעצְט עֶרְשְׁט<lb/>גֶעהט מִיר אוֹיף אֵיין ליכְט... טאָכְטֶער דִי וואהרְהֵייט... בּיז צוּם<lb/>טויט פוּן דַיין מוּטער אִיז זרוּבּבל דָא גֶעווֶען אֵיין גאַנצער בּן בּית...<lb/>אִיז פִיעלֵייכט צווישֶׁען דִיר אוּן אִיהם עֶטְוַואס? אַך, אִיך וואגֶע עֶס<lb/>קוִים אויסצוּרעדען... נוּן? אַנטווארטע! ווִי? דוּ שְׁוַוייגְסְט? אונְגלִיקלִיכֶע,<lb/>וואָס האסטוּ דִיר איינגעבּילדעט?עֶר איז שׁוויעגֶערְזאהן? אֵיין יוּדע?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0145_a">
+          <speaker>פאלמירא</speaker>
+          <p>אוּן וֶוער בּיזטוּ?</p>
+        </sp>
+        <pb n="22" facs="0022_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_22.jpg"/>
+        <sp who="#zimri" xml:id="AlNaharot_SP0146_a">
+          <speaker>זמרי</speaker>
+          <p>שְׁווייג! עראִינֶער מִיך נִישְט אָן מַיין יוּדישע געבּורט, מִיר אִיז עֶס<lb/>אַ שַׁאנְדֶע דאָס אִיך פוּן יוּדִישֶׁע עֶלְטֶערְן אָבּשטאמע.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0147_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(בייטער)</stage> אָה מיֵינֶע בּעדויערנסווערטהע גראסֶעלְטֶערְן! אִיהר<lb/>דרעֶהט אַייך יֶעצְט גֶעוויס אַרוּם אִין גרוּבּ, אָבּער טרֵייסט אַייך, דֶען<lb/>אַזוי ווִי אַייער זוּהן שֶׁעהמְט זִיך מִיט אַייך אַזוי שֶׁעהמְט זִיך זַיין<lb/>טאָכְטֶער מִיט אִיהם!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0148_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(ווילד אויפשרייענד)</stage> אָה!... אִיז דָאס דַיין לאהן צוּ דַיין פָאטֶער פַאר<lb/>זַיינֵע גרֶענְצֶענְלאזֶע ליעבּע צוּ דִיר.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0149_a">
+          <speaker>פאלמירא</speaker>
+          <p>בּיזטוּ מִיר אֵיין פָאטֶער?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0150_a">
+          <speaker>זמרי</speaker>
+          <p>צווייפֶעלְסט דָא דאראן?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0151_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="delivery">(וויינט)</stage> נֵיין! נִישְט אָן דֶעם צווייפֶעל אִיך, דֶען מיֵינֶע מוּטער אִיז<lb/>גֶעווֶען צוּ עהרְלִיך, צוּ גאטספִירְכטִיג, אָבּער בּיזטוּ מִיר אֵיין פָאטֶער<lb/>אַזוי לאָז אִין דַיין פאטֶערְהֶערְץ איינדרוּנגען דִי ווערְטֶער וֶועלְכֶע קוּמען<lb/>אוֹיס דֶעם הֶערְצֶען פוּן דַיין קִינְד, לאָז דִי טרֶעהרֶען וֶועלְכֶע פלִיסֶען<lb/>אוֹיס מיֵינֶע אוֹיגֶען יֶעצְט צֶערְשׁמֶעלְצֶען דֶעם האָרטען שׁטַיין אִין דַיין<lb/>בּרוּסט. פָאטֶער, אִיך פרעֶג דִיך נִישְט ווארוּם דוּ הָאסְט דַיין גלויבּען<lb/>גֶעוועקסֶעלְט אָבּער דָאס וִויל אִיך דִיך פְרֶעגֶען, הָאסְט דוּ מִיט דַיין<lb/>גלויבּען אָבּגעלענט יֶעדֶעם מֶענְשׁלִיכֶע גֶעפִיהל? פָאטֶער! דַיין<lb/>אוּננאטירליכען האס גֶעגֶען דַיינֶע גֶעוועזֶענֶע גלויבּענסבּרידער הָאט<lb/>דִיר נוּר אֵיין דֶעמאן אֵיין טַייפֶעל איינגעגעבּען, אֵיין בּייזער גַייסט<lb/>וֶועלְכֶער וִויל דִיך פֶערְפִיהרֶען אִין דֶעם שאול תּחתּיה, קֶעהר צוּריק<lb/>פָאטֶער פוּן דִיעזֶען פִינְסטֶערְן וועג <stage type="business">(קניעט, קישט זיין קניע)</stage> לאָז מִיך דַיין<lb/>קנִיע אוּמקלאמערן, אוֹיס מיִטלייַד מִיט דַיין קִינְד קֶעהר צוּריק.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0152_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(שמייסט זי צוויק)</stage> גענוּג! אוֹיס דִיר שפּריכט דֶער יוּד זרוּבּבל, אָבּער<lb/>בּיי אַלע גֶעטֶער, מַיין שׁוויעגֶערְזאהן וֶועט קֵיין אַנדערער זַיין אַלס<lb/>דֶער קֶענִיג!</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0153_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(שפרינגט אויך)</stage> אַזוי?... <stage type="business">(פויזע)</stage> זאָג מִיר פָאטֶער, האסטוּ אויסֶער<lb/>מִיר נָאך אַיינֶע טאָכְטֶער?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0154_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(ווילד)</stage> וויטצִיג? ...וויטצִיג בּיזטוּ וֶוען אִין מִיר קאכט דאָס בּלוּט?<lb/>אַזוי הֶער יֶעצְט מַיין שׁבועה! בּיי אַלע גֶעטֶער פוּן בּאבּילאן, דָאס<lb/>אִיך וֶועל נִישְט רוּהען בּיז אִיך בּרענג דַיין זרוּבּבל אוֹיף דֶעם<lb/>שַׁייטֶערְהוִיפֶען!</p>
+        </sp>
+        <pb n="23" facs="0023_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_23.jpg"/>
+        <sp who="#palmira" xml:id="AlNaharot_SP0155_a">
+          <speaker>פאלמירא</speaker>
+          <p>אַזוי הֶער אוֹיך יֶעצְט מַיין שבוּעה! בּיים אַיינְצִיגֶען גָאט<lb/>ווֶעלְכֶען דוּ הָאסְט פֶערְלֵייקֶענְט, דָאס מִיט זרוּבּבל וֶועל אִיך ליעבּער<lb/>בּעשטייגען דֶעם שַׁייטֶערְהוִיפֶען, אַלס מִיט דַיין קֶענִיג דֶעם טְרָאהן! <stage type="exit">(אב)</stage>.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0156_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(פערבליפט, קוּקט איהר נאך)</stage> נוּן, וואָס טהוּט מֶען יֶעצְט? טַייפֶעל אוּן<lb/>הֶעלֶע, זִי מַאכְט מִיר צוּ שַׁאנְדֶע אַלע מיֵינֶע פּלענע!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0157_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(זינגט)</stage>.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0158_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="exit">(לוישט, מומיקורט... אַב)</stage>.<lb/><stage type="entrance business">(געזאנג, ערשיינט פאלמירא, לויפט אַ קעגען און קומט מיט זרובבל).</stage></p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0159_a">
+          <speaker>פאלמירא</speaker>
+          <p>אָה ווִי הָאט זִיך מַיין העֶרץ נָאך דִיר גֶעזֶעהנְט, מַיין זרוּבּבל!<lb/>ווייסטוּ וֶועלְכֶע שׁווארְצֶע וואלְקֶען עֶס דראהֶען, אונְזֶערְן לוִיטֶערְן<lb/>הִימֶעל צוּ פערדוּנקלען? <stage type="delivery">(וויינט)</stage>.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0160_a">
+          <speaker>זרובבל</speaker>
+          <p>אִיך ווֵייס אַלֶעס, אָבּער ווארוּם דֶען פֶערְצווייפלֶען? ווארוּם<lb/>וויִיִנעֶן וֶוען דוּ רוּהסט אוֹיף דֶער בּרוּסט פוּן דַיין צוּקינפטיגען מַאן?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0161_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(שלוכצט)</stage> אַך מַיין זרוּבּבל! בּין אִיך דֶען ווערְטה דַיינֶע צוּ<lb/>וֶוערֶען? יְכֶנְיָה מֶלֶך יהוּדה אִיז גֶעווֶען דַיין גראספאטֶער, דֶער ווֶעלְט<lb/>בּעריהמטער דניאַל אִיז דַיין ערְצִיעהֶער אוּן לֶעהרֶער, אִיך אָבּער<lb/>וועמֶענְס קִינְד בּין אִיך?</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0162_a">
+          <speaker>זרובבל</speaker>
+          <p>אֵיין ענְגֶעל פוּן גאטס הִימֶעל בּיזטוּ מִיר אוּן אִיך פרעֶג נִישְט<lb/>וֵוייטֶער.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0163_a">
+          <speaker>פאלמירא</speaker>
+          <p>זרוּבּבל! מַיין פָאטֶער זוּכט אַייער פערדערבּען.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0164_a">
+          <speaker>זרובבל</speaker>
+          <p>אִיך ווֵייס עֶס.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0165_a">
+          <speaker>פאלמירא</speaker>
+          <p>אוּן דָאס זאָגסטוּ מִיט אַזוי אַ גלֵייכגִילְטִיגֶען טהאן? ווייסטוּ ווִי<lb/>הוִיך מַיין פָאטֶער שְׁטֶעהט בּיים קֶענִיג?</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0166_a">
+          <speaker>זרובבל</speaker>
+          <p>אוּן דֶער קֶענִיג זעלבּסט וֶוער גאראנְטִירְט מִיר דֶען פַאר זַיינֵע<lb/>הֶעהֶע? אִיז דֶען קֶענִיג בּלשצר זִיכֶערֶער אוֹיף טְרָאהן אַלס זַיין<lb/>גראספאטֶער נבּכדְנצר? נבּכדְנצר וֶועלְכֶער הָאט אוּנזער בּית המקדשׁ<lb/>פערבּרענט, אוּנזער לַאנְד פֶערוויסט אוּן אוּנזער פָאלְק אִין גלוּת<lb/>געטריבּען. דֶער זעלבּער נבּכדְנצר אִיז שפּעטער זעלבּסט פוּן דֶער<lb/>מֶענְשׁהֵייט אוִיסגֶעשׁלאסֶען גֶעוְוארֶען, פֶערוואנְדֶעלְט הָאט אִיהם<lb/>גָאט אִין אֵיין ווילְד טהִיער אוּן גלֵייך מִיט אַלע טהִיערֶע אִיז עֶר אִין<lb/>דִי וִוילְדֶע וועלְדֶער אַרוּמגעלאפען, דניאַל, יאה דֶער גֶעטלִיכֶער<lb/>דניאָל, הָאט אִיהם דִיעזֶע פוּרכבּארע שׁטראפֶע פאראוִיס גֶעזָאגְט,<lb/>אוּן יֶעדֶעם וָוארְּט פוּן אִיהם אִיז בּוּכשטעבּליך אֵיין ערפילוּנג געֶגַאַנְגעֶן,<lb/><stage type="delivery">(בעגייסטערט)</stage> אוּן וֶוען דערזעלבּער הָאט יֶעצְט פַאר זַיין פָאלְק דִי<lb/>ערלעזוּנג פוּן דֶעם גלוּת פראפֶעצַייעט אַזוי מֶעג אוֹיך אֵיין ווֶעלְט מִיט<lb/>פֵיינְדֶע זִיך גֶעגֶען אוּנְז ערהעבּען, מעֶגעֶן אוֹיך גאַנצע בּערג מִיט<lb/>הִינְדֶערְנִיסֶע אוּנז אִין דֶעם וועג גֶעלֶעגט וֶוערֶען, מִיר ווֶעלֶען דָאך קוּמען<lb/>צוּ אוּנזער צִיעל! יאה דָאס אָרץ הַקְדוֹשָׁה, דִי מתּנה פוּן גָאט צוּ<lb/>אוּנְזֶערֶע עֶלְטֶערְן מוּז אוּן וֶועט וִוידֶער אוּנְזֶער זֵײַן!</p>
+        </sp>
+        <pb n="24" facs="0024_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_24.jpg"/>
+        <sp who="#palmira" xml:id="AlNaharot_SP0167_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(מיט די אויגען צום הימעל)</stage> אָמֵן! רוּף אִיך פוּן מַיין טִיעפסטֶען<lb/>הֶערְצֶען! יאָ, אַזוי זָאל עֶס אוֹיך וֵוייטֶער בּלייבּען אָרץ יִשְרָאֵל!<lb/><stage type="business">(פאלט אויף זיין ברוסט)</stage> אוּן דוּ מַיין זרוּבּבל דוּ ווערְסט אוּנְזֶער אַנפיהרער<lb/>אוּנְזֶער משִׁיח!<lb/><stage type="entrance">(אויפטריט זמרי ווילד).</stage></p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0168_a">
+          <speaker>זמרי</speaker>
+          <p>אַזוי? דָאס אִיז אַלְזָא דֶער מאנְגֶעט וֶועלְכֶער ציִהט מיֵינֶע טאָכְטֶער<lb/>צוּ דִי יוּדען צוּריק? דוּ הָאסְט מִיר מַיין קִינְד ענְטפרֶעמְדֶעט אוּן הָאסְט<lb/>דִיך גֶעוואגט מַיין שוועל איבּערצוּטרעטען? אבּער בּיי אַלע גֶעטֶער<lb/>לעבּענדיג פֶערְלאזט דוּ נִישְט מֶעהר דִיעזֶעס הוִיז! <stage type="business">(ציהט די זעבעל)</stage>.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0169_a">
+          <speaker>פאלמירא</speaker>
+          <p>... פָאטֶער!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0170_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(שמייסט זי אוועק און פערפאלגט זרובבל'ן)</stage>.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0171_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(ווייכט איהם אויס)</stage> פֵייגלִינְג! גֶעגֶען אֵיין אוּנבּעוואפענטען?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0172_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(צווישען ביידע)</stage> פָאטֶער! ווילסטוּ אֵיין מארְד בּעגעהן? פָאטֶער!<lb/>נִישְט אֵיין סעקוּנדע וֶועל אִיך אִיהם איבּערלעבּען, פָאטֶער,<lb/>הֶער מִיך!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0173_a">
+          <speaker>זמרי</speaker>
+          <p>אַוועֶק! בּלוּטיגע ראכֶע שְׁוֶוער אִיך אָן זֶעמְטלִיכֶע יוּדען או דִיעזער<lb/>דָא זאָל דאָס ערְשׁטֶע אפּפער פוּן מַיין ראכֶע זַייי! <stage type="business">(פערפאלגט איהם)</stage>.</p>
+        </sp>
+        <pb n="25" facs="0025_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_25.jpg"/>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0174_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(ביז יעצט זיך געוועהרט, ווענדט זיך פלעטצליך העלדיש)</stage> נֵיין דָאס וועסטוּ<lb/>נִישְט ערלעבּען, משוּמד! <stage type="business">(ענטרייסט איהם דעם זעבעל, דראהט איהם...)</stage></p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0175_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(ווארפט זיך אויף זרובבל שרייענד)</stage> זרוּבּבל! עֶס אִיז מַיין פָאטֶער!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0176_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(זיך דערמאנענדיג, צעברעכט דעם זעבעל שמייסט אוועק די שטיקער מיט לערם)</stage>.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0177_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(שלוכצט אויף זיין ברוסט)</stage>.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0178_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(ציטערט)</stage>.<lb/><stage type="setting">פאָרהאַנג.</stage></p>
+        </sp>
+        <trailer>עֶנְדֶע פונ'ם עֶרְשְׁטעֶן אַקט.</trailer>
+        <pb n="26" facs="0026_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_26.jpg"/>
+      </div>
+      <div type="act" n="2" xml:id="AlNaharot_Act2">
+        <head>צווייטֶער אַקט.</head>
+        <stage type="setting">(אֵיין צימער אִין צווייען גֶעטהֵיילְט. — רֶעכטס אַ דִיוואן אוֹיף ווֶעלְכֶען עֶס</stage>
+        <stage type="setting">שלאפט אֶלְיָקים געבּען אִיהם אַ בֶּענְקִיל מִיט זַיינֵע אבֶּערְקלֵיידֶער. — לִינְקס</stage>
+        <stage type="setting">אֵיין צִימֶערִיל מִיט אַ טִישֶׁעל אוּן זֶעסֶעל. — פֿאָרענט אֵיין שׁפִיגרֶעדֶעל בַּיי</stage>
+        <stage type="setting">ווֶעלְכֶען יְהוּדִית זִיצְט אוּן ארְבֵּייט. — אויפ'ן טִישֶׁעל אַ טֶעלֶער מִיט</stage>
+        <stage type="setting">צורִיקגֶעבּלִיבֶּענֶע שׁפֵייזֶען).</stage>
+        <stage type="entrance business">(דוד קומט שטיל, גיט איהר א קוש, זי ערשרעקט).</stage>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0179_a">
+          <speaker>יהודית</speaker>
+          <p>אָה!</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0180_a">
+          <speaker>דוד</speaker>
+          <p>פַארְוָואס אָה? דֶערְקֶענְסט נִישְט מֶעהר דֶעם הֵייסֶען קוּש פוּן דַיין חָתָן?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0181_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(זיפצט)</stage> אוֹי אַז אָך אוּן וֶועה אִיז צוּ מִיר מִיט מַיין חָתָן.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0182_a">
+          <speaker>דוד</speaker>
+          <p>וָואס אִיז דָאס פַאר אֵיין מַזָל טוֹב?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0183_a">
+          <speaker>יהודית</speaker>
+          <p>דוד'ל, דוּ וֵוייסְט נָאך נִישְט פוּן אוּנזער אוּנגליק.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0184_a">
+          <speaker>דוד</speaker>
+          <p>פוּן אוּנְזֶער אוּנגליק?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0185_a">
+          <speaker>יהודית</speaker>
+          <p>אִיך האבּ דֶערְצֶעהלְט מַיין טאטֶען פוּן אוּנְז בּיידע.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0186_a">
+          <speaker>דוד</speaker>
+          <p>צוּ וָואס האסטוּ אִיהם שׁוֹין דֶערְצֶעהלְט? וֶוער הָאט דִיך געֶהייֵסעֶן?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0187_a">
+          <speaker>יהודית</speaker>
+          <p>וֶוער עֶס הָאט מִיך געֶהייֵסעֶן? וָואס דֶען? אִיך זָאל האבּען סודות<lb/>פַאר מַיין טאטֶען <stage type="business">(פארשעמט)</stage> בּפרט נָאך אַזא זַאך.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0188_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(אויפגערעגט)</stage> צדִיקת מיֵינֶע! מִיט דֶעם פרוּמקייט וועסטוּ אוּנְז נָאך<lb/>בּרענגען אִין גן עדְן פַאר דֶער צַייט, הַכְּלַל וָואסְזְשֶע הָאט דַיין טַאטֶע<lb/>גֶעֶענְטפֶערְט?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0189_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="delivery">(וויינענד)</stage> גֶעֶענְטפֶערְט הָאט עֶר גָאר נִישְט, עֶר הָאט נָאר געגעבּען<lb/>אַ גֶעשׁרֵיי גלֵייך ווִי אִיך וָואלְט אִיהם אבּגעבּריהט.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0190_a">
+          <speaker>דוד</speaker>
+          <p>דָאס הַייסְט אִיך גֶעפֶעל אִיהם נִישְט?</p>
+        </sp>
+        <pb n="27" facs="0027_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_27.jpg"/>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0191_a">
+          <speaker>יהודית</speaker>
+          <p>דוּ אַליין וואלְסט אִיהם שׁוֹין יאה גֶעפֶעלֶען אָבּער דַיין טַאטֶע.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0192_a">
+          <speaker>דוד</speaker>
+          <p>נוּ וָואס מַיין טַאטֶע?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0193_a">
+          <speaker>יהודית</speaker>
+          <p>דַיין טַאטֶע שְׁטֶעהט מַיין טאטֶען נִישְט אָהן פאַר אַ מחוּתן.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0194_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(בעליידיגט)</stage> נָאך אַ מאל! מַיין טַאטֶע דֶער עושר שְׁטֶעהט דַיין<lb/>טאטֶען דֶעם קַבְּצָן נִישְט אָן פַאר אַ מחוּתן?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0195_a">
+          <speaker>יהודית</speaker>
+          <p>נֵיין!</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0196_a">
+          <speaker>דוד</speaker>
+          <p>נֵיין?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0197_a">
+          <speaker>יהודית</speaker>
+          <p>נֵיין! וַוייל דַיין טַאטֶע אִיז אַזא שׁטארְקֶער גֶעגנֶער אוּנז צִיונִיסטֶען.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0198_a">
+          <speaker>דוד</speaker>
+          <p>הֶער מִיך אוֹיס יהוּדית'ל, לאָמיִר אַוועֶק שְׁטעֶלעֶן דִי טאטֶעס אוּן<lb/>זִיך נֶעהמֶען צוּ דִי קִינְדֶער.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0199_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(ערשראקען)</stage> אוֹי וֶועה אִיז מִיר וואָס רעדסטוּ? וואָס הַייסְט, מֶען<lb/>זָאל אַוועקשטעלען דִי טאטֶעס?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0200_a">
+          <speaker>דוד</speaker>
+          <p>וואָס זְשֶׁע דֶען? פרעֶג דַיין טאטֶען, צִי שְׁטֶעהט אִיהם נִישְט אָן מַיין<lb/>טַאטֶע, פרעֶג מַיין טאטֶען צִי שְׁטֶעהט אִיהם נִישְט אָן דַיין טַאטֶע<lb/>דֶערְפַאר זאָג אִיך פרעֶג נִישְט מַיין טאטֶען אוּן פרעֶג נִישְט דַיין<lb/>טאטֶען, נוּר מִיר בּיידע אַליין דַארְפֶען זִיך פְרֶעגֶען, יהוּדית'ל! מִיר<lb/>וִוילֶען זיךְ יאה אָדֶער מִיר וִוילֶען זִיך נִישְט?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0201_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(וויינט אויף זיין בּרוסט)</stage> מִיר וִוילֶען זִיך.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0202_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(קישט זי)</stage> נוּ, אִיז דָאך גוּט יהודִית'ל, פַאר וָואסְזְשֶע וויינסטוּ?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0203_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="delivery">(וויינט)</stage> וַוייל וָואס קוּמט אַרויס וָואס מִיר וִוילֶען זִיך אַז גָאט בּ"ה<lb/>וִויל נִישְט?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0204_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(עררעגט)</stage> אָט האָסטוּ נָאך אַ מחוּתן! אָבּער זָאג מִיר צדִיקת'ל פוּן<lb/>וואַנען ווייסטוּ אַז גאַט בּ"ה וִויל נִישְט?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0205_a">
+          <speaker>יהודית</speaker>
+          <p>אִיך זֶעה דָאך!</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0206_a">
+          <speaker>דוד</speaker>
+          <p><stage type="delivery">(לאכט)</stage> מַיין יהוּדית'ל, דאַס מאל זעהסטוּ נִישְט קלאהר, ווייסטוּ וָואס<lb/>שׁלְמְה המְלְך הָאט גֶעזָאגְט? אַז דִי ליעבּע אִיז אַ פִינְק פוּן גָאט,<lb/>אִיך פִיהל אִיהם דֶעם פִינְק, אוּן דוּ יהוּדית'ל?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0207_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(צייגט אויפ'ן הארץ, זיפצט)</stage> אוֹי פרעֶג גאָר נִישְט.</p>
+        </sp>
+        <pb n="28" facs="0028_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_28.jpg"/>
+        <sp who="#dovid" xml:id="AlNaharot_SP0208_a">
+          <speaker>דוד</speaker>
+          <p>אַ יאָ זעהסטוּ שׁוֹין אַז גָאט בּ"ה אַליין אִיז גֶעווֶען אוּנזער שַׁדְכָן, וִויל<lb/>עֶר דָאך יאָ דֶעם שידוּך!</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0209_a">
+          <speaker>יהודית</speaker>
+          <p>אָפְשֵר האסטוּ רֶעכט.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0210_a">
+          <speaker>דוד</speaker>
+          <p>גֶעדֶענְק'זשֶׁע, אִיך וִויל, דוּ ווילְסט, גָאט בּ"ה וִויל, זֶענֶען מִיר דרֵיי<lb/>אוּן אוּנזערע בּיידע טאַטעס וִוילֶען נִישְט? זייַ זֶענֶען אָבּער נוּר צְוֵויי<lb/>אוּן דרֵיי גֶעגֶען צְוֵויי וֶוער גֶעוויינְט? דִי דרֵיי! נוּ, שׁרֵייט'זשֶׁע מַזָל<lb/>טוֹב! <stage type="business">(ווארפֿט אַ טעלער צו באָדען)</stage>.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0211_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(אין א אנדערע זייט ביהנע חאפט זיך אויף פֿערשלאפען, רעדט פונ'ם שלאָף)</stage><lb/>מז"ַט, מז"ַט, עֶס זָאל זַיין מִיט גלִיק אוּן מִיט בּרכה... אָה, עֶס אִיז נוּר<lb/>אַ חָלוֹם, <stage type="business">(געניצט, רוּפט)</stage> יהוּדית'ל! טאָכְטֶער! אָה זִי ענְפֶערְט נִישְט?<lb/>זִי מוּז אַ וַדְאִי שְלָאפֶען פַאר הִיטץ... יאָ, עֶס אִיז הַיינְט אַ הֵייסֶער טָאג,<lb/>נֵיין לאמִיך זִי נִישְט שׁטֶערֶען. יהוּדית'ל! שלאף דארְטֶען יהוּדית'ל<lb/>שלאף גֶעזונְדֶערְהֵייט, אִיך וֶועל מִיך אַליין אונְטהון, עֶס אִיז הַיינְט אֵיין<lb/>אסִיפה בּיי דָנִיאֵל... מֶען דַארְף שׁוֹין געֶהן אַהין. <stage type="business">(נעהמט זיך אונטהוּן)</stage><lb/><stage type="entrance">(אויפטריט בן כספי).</stage></p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0212_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(האלב אונגעטהון)</stage> אָה, וועהמֶען זֶעה אִיך בּיי מִיר אִין שטיעבּ?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0213_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(שטאלץ)</stage> דוּ מַיינְסט אַז דֶער רֵייכֶער בּן כּספּי אִיז צוּ דִיר געקוּ⸗<lb/>מֶען צוטהֵיילֶען כבוד מִיט אֵיין וויזִיט? האסטוּ אַ גְרוֹיסֶען טֶעות, דֶען<lb/>אַזאַ גְרוֹיסֶען כּבוד ווִי מִיך צוּ זעֶהן אִין דַיין שְׁטִיעבּ...</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0214_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(אונטערבּרעכענד)</stage> וָוארְּט! רֶעד נִישְט וֵוייטֶער! וועהמֶען דארפסטוּ?<lb/>וָואס ווילסטוּ וָואס בּיזטו געקוּמען? וֶוער הָאט נָאך דִיר גֶעשִׁיקט?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0215_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>מַיין זוּהן מַיין דוד'ל ווִי אִיז עֶר?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0216_a">
+          <speaker>אֶלְיָקים</speaker>
+          <p>מִיך קוּמסטוּ פְרֶעגֶען אוֹיף דַיין זוּהן?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0217_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>יאָ, אִיך בּין גֶעוואהר גֶעוְוארֶען, אַז עֶר קוּמט אַלע מאל צוּליעבּ<lb/>דַיין מויד.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0218_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="delivery">(בּייז)</stage> זאָל עֶר עֶס נוּר וואגֶען דֶער שקץ, דֶעם קאפּ וואָלט אִיך<lb/>אִיהם געשפּאַלטען, וֶוען עֶר זאָל מַיין יהוּדית'ל נוּר מִיט אֵיין פִינְגֶער<lb/>אוּנריהרען.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0219_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(אין א אנדערע זייט ביהנע צו יהודית'ל, דריקט זי צו)</stage> יאָ, מַיין בּיזטוּ אוּן מַיין<lb/>בלייבּסטוּ, קֵיין מַאכְט אוֹיף דֶער ווֶעלְט וֶועט אוּנז נִישְט צוּשיידען.<lb/><stage type="business">(ביידע געארעמט, קישען זיך)</stage>.</p>
+        </sp>
+        <pb n="29" facs="0029_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_29.jpg"/>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0220_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(זוכט בייז אין אלע זייטען)</stage> אִיך ווֵייס אבּער פוּן אַ זִיכֶערֶע קְוֶועלֶע,<lb/>אַז עֶר קוּמט פאָרט אַהער, נִישְט אַנדערש נוּר דוּ הָאסְט אִיהם פאַר<lb/>מִיר בּעהאַלטען, האסטוּ דִיר אָפְשֵר אַיינגערעד מַיין קִינְד פאר'ן אֵיין<lb/>אַיידעֶם? אָה דָאס וועסטוּ נִישְט דערלעבּען.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0221_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(שפרינגט אונטער פאר כעס)</stage> וואָס? מַיין טאָכְטֶער? מַיין יהוּדית'ל<lb/>זאָל אִיך דִיר געבּען פַאר אַ שׁנִיער? פּרעה'ס מכּות וֶועל אִיך<lb/>דִיר געבּען.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0222_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(שפעטיש לאכענד)</stage> קוּק נוּר אָן אַ שׁטֶעל פוּן אַ קַבְּצָן חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0223_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(עבענזאָ שפעטיש)</stage> חַ חַ חַ חַ קוּק נוּר אָן וועהמֶען אִיך זָאל דָא<lb/> נֶעהמֶען פאַר אַ מחותן?  חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0224_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0225_a">
+          <speaker>אליקים</speaker>
+          <p>חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0226_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="setting">(פוּנ'ם אנדערען צימער)</stage> וואָס זאגסטוּ, דוד'ל נָאך אַיידער מִיר ווֶעלֶען<lb/>אוִיסוואנְדֶערְן קֵיין אֶרֶץ יִשְרָאֵל?<lb/>דיך: גֶעוויס יהוּדית'ל, פְרִיהֶער חתוּנה האבּען אוּן קֵיין אֶרֶץ יִשְרָאֵל זָאלֶען<lb/>מִיר שׁוֹין קוּמען אַלס מַאן אוּן וַוייבּ.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0227_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(פארשעמט און גליקליך)</stage> אוֹי גאטעניוּ!</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0228_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(בייז צו בן כספי וועלכער זוּכט)</stage> וואָס נָאך זוּכסטוּ? אִיך מוּן אַוועק⸗<lb/>געֶהן, בּיי אוּנזער דניאַל אִיז הַיינְט אֵיין אסִיפה, קוּם אָפְשֵר ווילסטוּ<lb/>אוֹיך געֶהן? קוּם ווֶעלֶען מִיר זִיך שׁוֹין אוֹיף דֶעם וועג אוִיס'טֶענְה'ן.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0229_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>צוּ אִיך גֶעה צוּ דֶער אסִיפה פְרֶעגְט עֶר? אוּן נָאך ווִי אַזוֹי, נִישְט<lb/>נוּר אִיך, נוּר אַלע עשִׁירִים אוּן גְרויִסעֶ לֵייט פוּן דַאנֶען, אַלע געֶהן מִיר<lb/>הַיינְט אוּם דניאַל'ן אָבּצוּזעטצֶען פוּן פארְשׁטֶעהֶער.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0230_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(אויסער זיך)</stage> דנִיאל'ן? דנִיאל'ן אבּזעטצען? אוִיסזֶעטצֶען ווֶעלֶען<lb/>מִיר אַייך דִי צַיין, אקֶעגֶען וועהמֶען גֶעהט אִיהר דָא?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0231_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(שרייענד)</stage> אוֹיס! מִיר וִוילֶען אִיהם נִישְט מֶעהר פַאר קֵיין ראש.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0232_a">
+          <speaker>אליקים</speaker>
+          <p>מִיר? וֶוער מִיר?</p>
+        </sp>
+        <pb n="30" facs="0030_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_30.jpg"/>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0233_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(שטאָלץ)</stage> מִיר, מִיר גְרויִסעֶ לֵייט, מִיר דִי אמְת'דִיגֶע<lb/>פּאטריאטען פוּן אוּנְזֶער פָאלְק, מִיר ווֶעלֶען נִישְט דֶערְלאזֶען אַז עֶר<lb/>זָאל אוּנזער פָאלְק פֶערְפִיהרֶען אִין שאול תּחתּית. וָואס אִיז? הָאט זִיך<lb/>אָפשר פֶערְגלִיסט דנִיאל'ן צוּ וֶוערֶען אַ מֶלֶך איבּער יִשְרָאֵל?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0234_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(האלט זיך צוּ די אויערען, שפרינגט פאר כעס)</stage> אוֹי וֶועה אִיז מִיר? וֶועה<lb/>אִיז צוּ מיֵינֶע אוירֶען, מִיט וָואס פַאר אַ לָשׁוֹן רעדסטוּ פוּן אַזַא<lb/>הַיילִיגֶען דָנִיאֵל?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0235_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="delivery">(שפעטיש)</stage> הֵיילִיגֶער דָנִיאֵל אֵיין עובֵר בּטל אִיז עֶר, אַ חסר<lb/>דֶעה, אַ משׁוגֶע'נֶער.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0236_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(גיט איהם א פאטש)</stage> נַא!</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0237_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(חאפט איהם ביי דער בארד)</stage> חוּצפּה'ניק.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0238_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(חאפט איהם אויך ביי דער בארד)</stage> כּלב שבּכל הכּלבים! <stage type="business">(בּיידע הַאלְטֶען</stage><lb/><stage type="business">זִיך בּיז דִי בֶּערְד אוּן קוּקעֶן זִיך אָן וויטֶענְד)</stage>.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0239_a">
+          <speaker>דוד</speaker>
+          <p><stage type="business">(זייער געשפרעך פארטזעטצענד)</stage> נַא? דַארְפְסְט נָאך האבּען אַבּעסערן<lb/>בּעווייז אַז מִיר זֶענֶען אַ זווּג מן השׁמִים.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0240_a">
+          <speaker>יהודית</speaker>
+          <p>הָאסְט רֶעכט דוד'ל. <stage type="business">(פרום)</stage> אוֹי גאטעניוּ! מַיין ליעבּ דוד'ל.</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0241_a">
+          <speaker>דוד</speaker>
+          <p>מַיין קרוין פוּן דֶעם קאפּ.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0242_a">
+          <speaker>יהודית</speaker>
+          <p>מַיין גַאנְצֶע ווֶעלְט <stage type="business">(אומארמען זיך)</stage>.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0243_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>אָה...</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0244_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(עבעגזאָ)</stage> אָה... <stage type="business">(פאַלען בֵּיידע אוֹיף דֶער עֶרְד, ראנְגלֶען זִיך אוּן קרִיעגֶען זִיך</stage><lb/><stage type="exit business">בִּיז אַלֶעס אַב)</stage>.<lb/><stage type="business">(בֶּן כַּסְפִּי, אֶלְיָקים פערפאָלגען זִיך אַייגאנְדֶער אוּן קרִיעגֶען זִיך בּיז</stage><lb/><stage type="business">בֵּיידע אַב. — דָוִד, יְהוּדִית אריינטאַנצענד זיִנְגעֶן בִּיז אַב)</stage>.<lb/><stage type="setting">פערוואַנדלונג.</stage><lb/><stage type="setting">(דֶער טֶעמְפֶעל. — פָאלְק פוּן בֵּיידע זַייטעֶן. — אוֹיף דִי טרֶעפ פונ'ם ארון</stage><lb/><stage type="setting">קוֹדשׁ שְׁטֶעהט דָנִיאֵל).</stage></p>
+        </sp>
+        <pb n="31" facs="0031_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_31.jpg"/>
+        <sp who="#daniel" xml:id="AlNaharot_SP0245_a">
+          <speaker>דניאל</speaker>
+          <p>וועהמֶען פוּן אַייך, מיֵינֶע בּרידער, אִיז דֶען נִישְט בּעקאנט דִי<lb/>וואונדערבּארע גֶעשִׁיכטֶע פוּן דִי דרֵיי פִירְסטֶענְקִינְדֶער חנְנִיה, מִישׁאל<lb/>וֶעזרִיה? וַוייל זֵיי זֶענֶען טרֵיי געבּליעבּען זַייער גָאט, האָט זֵיי נְבוּכַדְנֶצַר<lb/>אִין אֵיין בּרענענדען פֵייער גֶעלאזט פארבּרענען, אָבּער דִי דרֵיי<lb/>הֵיילֵייגֶע, האבּען שפּאציערט אִין מִיטֶען פֵייער ווִי אִין אֵיין לוסטגארְטֶען<lb/>נִישְט אַ מאל דֶער רִיח פוּנ'ם פֵייער אִיז אִין זֵיי געקוּמען, אִיך דֶערְמאן<lb/>אַייך דעריבּער אִין דִיעזֶען וואוּנדערבּארען עראַייגנִיס, וַוייל אוֹיך יֶעצְט<lb/>רוּהען נִישְט דִי שׁונאִי ישראָל. יאָ, פֶערְלֵיימְדֶעט הָאט מֶען אוּנז בּיים<lb/>קֶענִיג אוּן וֶוער וֵוייסְט? אָפְשֵר וֶועט מֶען אוֹיך אוּנז ווֶעלֶען צווינְגֶען<lb/>אוּנזער נאט אונְטרֵיי צוּ וֶוערֶען? זֵייט אַלְזָא גֶעפאסט מיֵינֶע בּרידער<lb/>אַזוי ווִי יֶענֶע הֵיילִיגֶע חנְנִיה מִישׁאל וֶעזרִיה, זָאלֶען אוֹיך מִיר מוּטהיג<lb/>אוּן פרֵיידִיג זַיין פֶערְטִיג אִין פֵייער צוּ געֶהן פאַר דִי וואהרְהֵייט,<lb/>שטערבּען פַאר אוּנזערע איבּערצייגוּנג.<lb/><stage type="entrance">(אויפטריט בן כספי און מעתרערע מיט לערם).</stage></p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0246_a">
+          <speaker>בּן כַּסְפִּי</speaker>
+          <p>אַ שֶׁעהנֶעם דַאנְק דִיר דָנִיאֵל פַאר דַיין עצה. אִיך האָבּ עֶס<lb/>שׁוֹין לאַנְג גֶעזָאגְט אַז דוּ אוּן דַיין פִיהרֶעכץ וֶועט אוּנְז נָאך פֶערְפִיהרֶען<lb/>אִין דֶער שאול תּחתּיה, פַאר וָואס האבּען דִי שׁונאִי יִשְרָאֵל אוּנז בּיז<lb/>יֶעצְט צוּרוּה גֶעלאזט? דָאס האבּען דַיינֶע רעוואלוּציאנערע פּלענע זֵיי<lb/>גֶעגֶען אוּנְז אוִיפגֶעהֶעצט אוּן אַזוי אַיינער ווִי דוּ בּיזט אוּנְזֶער פַאר⸗<lb/>שׁטֶעהֶער? הָאט אִיהר גֶעהֶערְט יוּדען, וָואס פַאר אֵיין עצה עֶר הָאט<lb/>אוּנז געגעבּען? אִין פֵייער הַייסְט עֶר אוּנז געֶהן, שטארבּען הַייסְט עֶר<lb/>אוּנז, נֶעכטֶען הָאט עֶר אוּנז געֶהייֵסעֶן געֶהן קֵיין אֶרֶץ יִשְרָאֵל אוּן הַיינְט<lb/>הַייסְט עֶר אוּנז געֶהן אִין דר'ערְד אַריין. נוּן זָאג אִיך זאלְכֶע<lb/>פארְשׁטֶעהֶער וִוילֶען מִיר נִישְט האבּען, וועק מִיט דנִיאל'ן. <stage type="business">(בּן כַּסְפִּי אוּן</stage><lb/><stage type="business">זַיינֵע רייַכע וִוילֶען צוּ געֶהן צוּ דנִיאל'ן)</stage>.</p>
+        </sp>
+        <pb n="32" facs="0032_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_32.jpg"/>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0247_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(שפרינגט אריין אין מיטען, צערווארפט זיי, שיצט דניאל'ן)</stage> וֶועה אִיז מִיר,<lb/>יוּדען שִׁיצט אוּנְזֶער דניאָל'ן! אַרויס מִיט אַייך כּלבים! אוֹיך אוֹיף<lb/>משה רבּינוּ הָאט זִיך אַמָאל אַ גַאנְצֶע בּאנדע אויפגעהויבּען קרח מִיט<lb/>זַיין עדְה, אוּן זַייער סוֹף אִיז גֶעוֶועזֶען אַז דִי עֶרְד הָאט זִיך אוּנטער זֵיי<lb/>געשפּאַלטען אוּן זֵיי זֶענֶען אַיינגעזוּנקען גֶעוְוארֶען! אָבּער בּיז דִי עֶרְד<lb/>וֶועט זִיך אַמאל אוּנטער אַייך שפּאַלטען ווֶעלֶען מִיר אַייך דעֶרְוַוייל<lb/>אַייערע קעפּ שפּאלטען, אַרויס פוּן דֶעם מקום קִדוּש, אַרויס!</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0248_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(מיט די רייכע)</stage> אַרוּנטער מִיט דָנִיאֵל!<lb/><stage type="business">(ביידע פארטייען שרייענד, לערמענד הייבּען זיך אן צו שלאגען).</stage><lb/><stage type="entrance">(זרובבל, לויפט אריין פערצווייפעלט).</stage></p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0249_a">
+          <speaker>זרובבל</speaker>
+          <p>הַאלְט אֵיין! הַאלְט אַייך צוּרִיק! וֶועה, וָואס מוּז אִיך דערלעבּען<lb/><stage type="business">(דאַגערט)</stage> צוּריק! <stage type="business">(עס ווירד שטיל, צוּ דניאל'ן)</stage> יאָ וָואס אִיך האָבּ<lb/>גֶעפִירְכטֶעט דאַס האַט גֶעטראפֶען! אונאַיינִיגקֵייט דאַס אִיז דִי קְרַאנְק⸗<lb/>הַייט פוּן אוּנְזֶער פָאלְק זֵייט אייבּיגע צַייטֶען! אונאַייניגקייט הָאט<lb/>אוּנזער בּית המְקךשׁ חרוב גֶעמאכט, אוּנאייניגקייט הָאט אוּנז אוֹיס<lb/>אוּנזערעם לאַנדע פערטריעבּען! אוּן אונאַיינִיגקֵייט מַאכְט אוּנז צוּ<lb/>שַׁאנְדֶע אוּן צוּ שפּאט פַאר דִי פֶעלְקֶער אִין אוּנְזֶער גלוּת! <stage type="business">(פויזע)</stage><lb/>אַנשטאט אוּנְזֶערֶע קרֶעפטֶע צוּ פֶעראַיינִיגֶען אוּנְזֶערֶע פֵיינְדֶע צוּ<lb/>בּעקעמפּפען וֶועלְכֶע זוּכען אוּנז אַלע צוּ פֶערְנִיכטֶען האבּען מִיר נָאך<lb/>אִין אוּנזער אַייגֶענֶער מִיטֶע שׁונְאִים, אַייגֶענֶע שׁונְאִים וֶועלְכֶע זֶענֶען אוּנְז<lb/>נָאך פִיעל מֶעהר גֶעפֶעהרְלִיכֶער <stage type="business">(צוּ בּן כספי)</stage> וָואס וויִלְט אִיהר? אַייך<lb/>עשִׁירִים גֶעהט עֶס דָא גוּט, ווענִיגסטֶענְס מַיינְט אִיהר אַזוֹי, דערוּם<lb/>קִימֶערֶען אַייך נִישְט דִי צָרוֹת פוּן אַנדערע! אַייער עשִׁירות אִיז בּיי<lb/>אַייך טהֵייערֶער פוּן אַייער פאלְקס גלִיק? נוּן וֶוער ווֶעהרְט אַייך דֶען<lb/>וֵוייטֶער דָא צוּ בּלייבּען דאָס וואָס אִיהר זֶענְט? קנֶעכט בּיי אַייערע<lb/>שׁונְאִים אִין דֶער פְרֶעמְד, ווארוּם שְׁטֶעהט אִיהר אוּנז אִין וועג? מִיר!<lb/>מִיר, וֶועלְכֶע שטרעבּען פרֵייע בּירגער צוּ וֶוערֶען אִין אוּנזערער<lb/>אַייגֶענֶען הֵיימַאטְה?</p>
+        </sp>
+        <pb n="33" facs="0033_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_33.jpg"/>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0250_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>וַוייל אִיהר זוּכט נָאר אַייערע אַייגֶענֶע אִינְטֶערֶעסֶען! יאָ דוּ<lb/>זְרוּבָּבֶל בּיזט אַנ'אייניקעל פוּן יְכֶנְיָה מֶלֶך יהוּדא הָאסְט דוּ דִיך<lb/>פערבּענקט נָאך אַ קֶענִיגלִיכֶער קרוין? דניאַל אִיז אַמאל גֶעוֶועזֶען<lb/>מִינִיסטֶער בּיי נבוּכדנצר הָאט זִיך אִיהם פארְגלִיסט אִיצט נָאך זֵײַן<lb/>פרִיהֶערְדִיגֶעס אַמט, אָט דָאס אִיז אַייער צְוֶועק אוּן נָאר צוּליעבּ דֶעם<lb/>וויִלְט אִיהר רִיזִיקִירֶען מִיט דֶעם לעבּען אוּן מִיט דֶער עקזִיסטֶענְץ פוּן<lb/>אוּנזער פָאלְק? נֵיין מיֵינֶע בּרוּדער! לָאזְט אַייך נִישְט אַייערע קעפּ<lb/>פֶערְדְרֶעהֶען, לאָזט אַייך נִישְט!</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0251_a">
+          <speaker>אליקים</speaker>
+          <p>אַז לאזֶען זאלְסט דוּ דַיין טרִיפה'נֶע נְשָמָה <stage type="business">(וויל צוּ צוּ איהם)</stage>.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0252_a">
+          <speaker>זרובבל</speaker>
+          <p>לָאזְט אִיהם רעֶדעֶן.</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0253_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p>ליעבּע בּרוּדער! בּעדענקט וָואס פַאר אַ גלִיק האבּען דֶען<lb/>אוּנזערע עֶלְטֶערְן אִין גַאנְצעֶן גֶעהַאט אִין אֶרֶץ יִשְרָאֵל? שׁטעֶנְדיִג נָאר<lb/>מלְחמות גֶעפִיהרְט, שוֹנאים פוּן אַלע זַייטעֶן האבּען אוּנזער בּלוּט ווִי<lb/>וואַסער פֶערְגאסֶען, וַוייל צוּ זַיין אַ פָאלְק פַאר זִיך אַלֵיין זֶענֶען מִיר צוּ<lb/>שוואך אוּן צוּ קְלֵיין, פאַר וָואסְזְשֶע זָאלֶען מִיר בּעסער נִישְט בּלייבּען<lb/>אֵיין קלֵיינֶער טהֵייל פוּן אַ גְרויִסעֶר מעֶכטִיגעֶר נַאצְיָאן פוּן דִי כַלְדֶעעֶר<lb/>דָא אִין בּבל דָא וואוּ מִיר לעבּען זִיך רוהִיג, דָא וואוּ מִיר גֶענִיעסֶען<lb/>אַלע פרֵייהֵייטֶען?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0254_a">
+          <speaker>אליקים</speaker>
+          <p>אַזַא מַזָל אוֹיף דִיר מִיט אוּנזערע פרֵייהֵייטֶען.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0255_a">
+          <speaker>זרובבל</speaker>
+          <p>מלְחמות בּן כּספּי? מִיט מלְחמות שׁרֶעקסט דוּ אוּנְז? נוּ אוּן דָא<lb/>אִין דֶער פְרֶעמְד ווערְד דֶען ווענִיג אוּנְזֶער בּלוּט פֶערְגאסֶען? ווענִיג פוּן<lb/>אוּנזערע בּרידער אָפְּפֶערן זַייער לעבּען איבּעראל אִין יֶעדֶעם לַאנְד<lb/>אִין פרֶעמְדֶע מלְחמות? אוּן וָואס ערְרֵייכֶען מִיר דַאמיט פרֶעמְדֶע<lb/>זֶענֶען מִיר אוּן פרֶעמְדֶע בּלייבּען מִיר צוּ קְלֵיין זָאגְסְט דוּ זֶענֶען מִיר<lb/>אוּם אֵיין פָאלְק צוּ זַיין? יאָ עֶס אִיז וֶואהר מִיר זֶענֶען ווענִיג, אָבּער קֵיין<lb/>פָאלְק אִין דֶער ווֶעלְט קֶאן זִיך רִיהמֶען מִיט אַזוי אֵיינֶען שׁטארְקֶען<lb/>גַייסט מִיט אַזוי אַיינֶער עֶנֶערְגִיע וואוּ מִיר בּעזיצען, אוּן דָאס אִיז דִי<lb/>הויפּטזאכע! נֵיין מַיין בּרידער לָאזְט אַייך דֶעם מוּטה נִישְט רויבּען<lb/>דוּרך דִיעזֶען שונא צִיוֹן! מִיר וֵוייסֶען עֶס גַאנְץ גוּט דָאס מִיר ווֶעלֶען<lb/>דארְטֶען אִין אֶרֶץ יִשְרָאֵל נִישְט געפוּנען פֶערְטִיגֶע פּאלאצען אוּם זֵיי<lb/>שׁוֹין צוּ בּעזעצען, מִיר וֵוייסֶען עֶס דָאס אוּנזער לַאנְד אִיז פֶערוויסטֶעט,<lb/>אָבּער שׁטַיינֶער זֶענֶען דאָרט גֶענוּג דָא, אוּן גֶעזונְדֶע הֶענְדֶע האבּען מִיר,<lb/>דאָס אִיז אוּנז גענוּג! יאָ בּרידער גְרויס אוּן שְׁוֶוער אִיז אוּנְזֶער אויפגאבּע<lb/>אָבּער ווֹאהל דֶעם וֶועלְכֶער וֶועט דֶעם עֶרְשְׁטעֶן פוּנדאמענט לֶעגֶען צוּ<lb/>דִי גְרויִסעֶ געבּיידע וועלְכֶעס דִי ווֶעלְט וֶועט שפּעטער בּעוואוּנדערען!<lb/><stage type="business">(אויפשרייענד)</stage> הזורעִים בּדמעה בּרינה יקצורוּ.</p>
+        </sp>
+        <pb n="34" facs="0034_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_34.jpg"/>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0256_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(מיט אלע)</stage> הזורעִים בּדמעה בּרינה יקצורוּ.<lb/><stage type="business">(טראמפעטענסיגנאל)</stage></p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0257_a">
+          <speaker>זרובבל</speaker>
+          <p>וָואס בּעדייטעט דָאס? <stage type="business">(אלע מורמלן)</stage>.<lb/><stage type="entrance">(אויפטריט הויפטמאן, זמרי, מיליטער).</stage></p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0258_a">
+          <speaker>הויפטמאן</speaker>
+          <p><stage type="business">(און מיטען ביהנע)</stage> אִים נָאמֶען פוּן קֶענִיג בּלשצר הֶערְט מִיך<lb/>אוֹיס! פֶערְקלאגט הָאט מֶען אַייך בּיים קֶענִיג דָאס אִיהר זֶענְט<lb/>פֶערְרֶעטהֶער, טרֵיילאזֶע אונְטֶערְטהאנֶען, פֵיינְדְלִיך דֶעם לַאנְד אוּן<lb/>אונְטרֵיי דֶעם קֶענִיג, אוֹיף אוּנזערע גֶעזֶעצֶע וויִלְט אִיהר נִישְט אַכטען,<lb/>אוּן אוּנזערע גֶעטֶער פֶערְלאכט אוּן פערשפּאטעט אִיהר, דארוּם לָאזְט<lb/>דֶער קֶענִיג דוּרך מַיינֶען מוּנד אַייך פְרֶעגֶען, אִיז דִי קלאגֶע גֶעגֶען אַייך,<lb/>וואהרְהֵייט? אָדֶער נָאר פערליימדוּנג?<lb/><stage type="business">(אַלע שווייגען).</stage></p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0259_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(שפאטיש)</stage> פערליימדוּנג! גֶעוויס אִיז דִי קלאגֶע גֶעגֶען דִי יוּדען נָאר<lb/>פֶערְלֵיימְדונְג! חַ חַ חַ חַ , דָאך רֶעדֶע וֵוייטֶער.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0260_a">
+          <speaker>הויפטמאן</speaker>
+          <p>וֶוען נָאר פערליימדוּנג בּעווייזט עֶס אִיצט, אַזוי אִיז דֶער<lb/>בּעפעהל פוּן קֶענִיג אוּן צוואר <stage type="business">(געהט צו דער טהיר רופט נאר מיט דער האנד)</stage>.<lb/><stage type="entrance">(אויפטריט זִינְגֶענְד פּריסטער קוּלְיַאן מִיט אַנְדֶערֶע פִיער, בּרענגען אַ גֶעצֶעלֶע</stage><lb/><stage type="entrance">אוֹיף אַ טארְמֶע שְׁטעֶלעֶן עֶס אִין דֶערְמִיט בִּיהנֶע).</stage></p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0261_a">
+          <speaker>דניאל</speaker>
+          <p>אל אלְהִי יִשְרָאֵל, פֶערְלאז אוּנז נִישְט!</p>
+        </sp>
+        <pb n="35" facs="0035_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_35.jpg"/>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0262_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(צוּ בן כספי וויינענד)</stage> נוּ וָואס זאגסטוּ צוּ דִי פרֵייהֵייטֶען וואַס מִיר<lb/>גֶענִיעסֶען דָא? <stage type="business">(ווייזט אויף דעם געטצעל)</stage></p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0263_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="delivery">(בייז)</stage> דאַס אִיז אַלץ דוּרך אַייך!</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0264_a">
+          <speaker>הויפטמאן</speaker>
+          <p>אוּן נוּן הֶערְט דֶעם קֶענִיגס פאדערוּנג! אוּם צוּ בּעווייזען דָאס<lb/>אִיהר זֶענְט טרֵייע אונְטרְטהאנֶען, דאָס אִיהר ליעבּט דֶעם קֶענִיג, זַיינֵע<lb/>בּעפעהלע רעספּעקטירט, זאָל אַיינֶער פוּן אַייך דָא אִין טעמפּעל אִין<lb/>גֶעגֶענווארְט פוּן אַייך אַלֶע צוּ דִיעזֶעם גָאט אֵיין אפּפער בּרענגען, אוּן<lb/>דֶערִיענִיגֶער דֶער עֶס טהוּט דֶער בּעקוּמט דאָס הֶעבּסטֶע עהרֶענאמְט<lb/>אִין לַאנְד, אַלזא וֶוער פוּן אַייך וִויל דֶער אויסֶערוועהלְטֶער זַיין?<lb/><stage type="business">(אַלע קוקען זיך אן בעשטירצט און שווייגען)</stage>.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0265_a">
+          <speaker>הויפטמאן</speaker>
+          <p>אִיהר שווייגט?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0266_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(טריומפיערענד)</stage> חַ חַ חַ חַ אִיך האבּ עֶס פאראוִיס געזאַגט! וֶוער נָאך<lb/>קֶען דִי יוּדען אַזוי גוּט ווִי אִיך?</p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0267_a">
+          <speaker>דניאל</speaker>
+          <p><stage type="business">(אויסער זיך)</stage> פֶערווארְפֶענֶער מְשוּמָד! דָאס אִיז גֶעווֶען אַלְזָא דַיין<lb/>שׁלויער פּלאן? דאָס האסטוּ דֶעם קֶענִיג אַזוי אֵיין רַאטְה געגעבּען,<lb/>אַז עֶר זאָל אוּנזער טרֵיישׁאפט צוּ אִיהם אוֹיף אַזאלכע פּראבּע<lb/>שְׁטעֶלעֶן? דֶען דוּ גֶעוֶועזֶענֶער יוּד, דוּ קֶענְסט דָאך אוּנזערע<lb/>גֶעזֶעטצֶע? דוּ וֵוייסְט וואָס עֶס הַייסְט בּיי אוּנז עבּודְה זרְה? מִיר ווֶעלֶען<lb/>זִיך ליעבּער לעבּענדיג פארבּרענען לאזֶען אַיידֶער אַזַא חילוּל הַשֵם<lb/>צוּ בּעגעהן!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0268_a">
+          <speaker>זמרי</speaker>
+          <p>מִיר זֶענֶען נִישְט אַהערגעקוּמען צוּ דיספּוטירען, וויִלְט אִיהר דִיעזֶעס<lb/>בּעפעהל גֶעהארְכֶען אָדֶער נִישְט.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0269_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(קלאפט זיך אין הארץ)</stage> הַאלְט אַיין מַיין העֶרץ, הַאלְט דִיך צוּריק!</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0270_a">
+          <speaker>הויפטמאן</speaker>
+          <p>פִיעלֵייכט וויִלְט אִיהר בּעדענק צַייט? זָאגְט מִיר, עֶס אִיז<lb/>דָאך בּעסער אִיהר זאָלט עֶס טהוּן אוֹיס פרֵייען וִוילֶען אוּן נִישְט<lb/>וַוארְטֶען בּיז מִיר ווֶעלֶען אַייך דאצוּ צווינְגֶען.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0271_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(אויפשרייענד)</stage> צווינְגֶען? צווינְגֶען האסטוּ גֶעזָאגְט? גֶעה פרעֶג דַיין<lb/>קֶענִיג אויבּ עֶר קֶען דִי שׁטֶערֶען פוּן הִימֶעל צווינְגֶען זֵיי זָאלֶען אָבּווייכען<lb/>פוּן זַייער רֶעגֶעלְמֶעסִיגֶען גאנְג? אַזוי קֶען עֶר אוּנְז צווינְגֶען אוּנְזֶער<lb/>רֶעכטֶען וועג צוּ פֶערְלאזֶען.</p>
+        </sp>
+        <pb n="36" facs="0036_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_36.jpg"/>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0272_a">
+          <speaker>הויפטמאן</speaker>
+          <p>דָאן אִיז עֶס בּעוויזען דאָס דִי קלאגֶע גֶעגֶען אַייך אִיז אֵיין<lb/>גֶערֶעכטֶע, יאָ אִיהר זֶענְט אַלע פֶערְרֶעטהֶער!</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0273_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(שפרינגט צו)</stage> אַלֶע? נֵיין נִישְט אַלֶע! דֶען אִיך אוּן דִי איבּריגע<lb/>גְרויִסעֶ לֵייט מִיר זֶענֶען דִי גרֶעסטֶע גֶעגנֶער פוּן דָנִיאֵל מִיט זַיין גאַנצער<lb/>סוויטֶע, מִיר זֶענֶען דֶעם גנֶעדִיגֶען קֶענִיג בּלשצר טרֵייע אונְטֶערְטאנֶען.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0274_a">
+          <speaker>הויפטמאן</speaker>
+          <p>בּעווייז עֶס! ווילְסט דוּ דֶער אוִיסֶערוועהלְטֶער זַיין דֶעם<lb/>קֶענִיגס בּעפעהל אויסצוּפיהרען אוּן דאפִיר דָאס גרֶעסטֶע אמְט צוּ<lb/>בּעקוּמען?</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0275_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="delivery">(בעגייסטערט)</stage> יאָ אִיך בּין בּערייט!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0276_a">
+          <speaker>אלע</speaker>
+          <p><stage type="business">(ערציטערט אויפשרייענד)</stage> בּן כּספּי! בּן כּספּי!</p>
+        </sp>
+        <sp who="#ben_kaspi" xml:id="AlNaharot_SP0277_a">
+          <speaker>בֶּן כַּסְפִּי</speaker>
+          <p><stage type="business">(צוּ אלע)</stage> צוּליעבּ אַייך מיֵינֶע בּרידער! דָנִיאֵל אַייער גֶעוֶועזֶענֶער<lb/>פארְשׁטֶעהֶער הַייסְט אַייך שטערבּען, אִיך אבּער, אִיך אַייער<lb/>צוּקינפטיגער עלְטֶעסטֶער, אִיך וִויל אַייך רֶעטֶען.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0278_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(אויפשרייענד)</stage> וֶוער בּעהט פוּן דִיר טובות דִי פּושעי בּאלקי יִשְרָאֵל?<lb/><stage type="business">(וויל צוּ צוּ איהם)</stage> אָט האָסט דוּ דִיר פרֵייהֵייטֶען.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0279_a">
+          <speaker>הויפטמאן</speaker>
+          <p><stage type="business">(שטויסט איהם אוועק)</stage> צוּריק! וֶוער עֶס וואגט אִיהם צוּ שׁטֶערֶען<lb/>דֶער שטירבּט</p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0280_a">
+          <speaker>דניאל</speaker>
+          <p><stage type="business">(אויפשלוכצענד)</stage> גָאט פוּן יִשְרָאֵל! שלאג מיֵינֶע אוֹיגֶען מִיט בּלינדהייט<lb/>אוּם דִיעזֶע שׁאנְדְטהאט נִישְט צוּזעהן צוּ מוּזען!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0281_a">
+          <speaker>זרובבל</speaker>
+          <p>אַזוי וֶואהר ווִי עֶס לעבּט אֵיין גָאט אִים הִימֶעל וֶוער עֶס בּעגעהט<lb/>דֶעם חילוּל הַשֵם דֶער זָאל נִישְט לעבּען.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0282_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="delivery">(וויינענד)</stage> יוּדישע קִינְדֶער רֵייסט קרִיעה! <stage type="business">(אלע טהון עס)</stage>.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0283_a">
+          <speaker>הויפטמאן</speaker>
+          <p>אִים נָאמֶען פוּן קֶענִיג גענוּג! פּריסטער קוּליאן בּעגינע!<lb/><stage type="business">(מען פיהרט צו בן כספי)</stage>.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0284_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(מיט אלע קרעפטע)</stage> נֵיין! אַזוי ווִי פּנחס בּן אָלעזר בּן אַהרן הכּהן אַזוי<lb/>וִויל אִיך אוֹיך אִיצט מקֵיים זַיין קנאת ד' צבאות! <stage type="business">(רֵייסט אַרויס אַ זאלְדאט</stage><lb/><stage type="business">דֶעם זֶעבֶּעל)</stage> כּופר בּעיקר שטארבּ! <stage type="business">(עֶר שׁטֶעכט בֶּן כַּסְפִּי, כַּסְפִּי פאַלט, מֶען</stage><lb/><stage type="business">פִיהרְט אִיהם אַרויס)</stage></p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0285_a">
+          <speaker>הויפטמאן</speaker>
+          <p>וואָס הָאסְט דוּ געטהוּן?</p>
+        </sp>
+        <pb n="37" facs="0037_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_37.jpg"/>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0286_a">
+          <speaker>זרובבל</speaker>
+          <p>פַאר מַיין גָאט וואגֶע אִיך אַלֶעס! פַאר דֶעם גאָט וֶועלְכֶער הָאט<lb/>אוּנז געבּאטען ,,אָנכי ד' אָלקיךְ לא יהִיה לָך אלְקִים אַחרים עָל פּני"<lb/><stage type="business">(ער צערברעכט דעם געטצען)</stage> אַוועק מִיט דֶעם גֶעטצֶען!</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0287_a">
+          <speaker>הויפטמאן</speaker>
+          <p>אוּנגליקליכער! צִיטֶער פַאר דֶעם צארֶען פוּן קֶענִיג!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0288_a">
+          <speaker>זרובבל</speaker>
+          <p>לאָז דַיין קֶענִיג קוּמען עֶר זאָל זִיך צורִיקנֶעמֶען זַיין צערבּראכענען<lb/>גָאט.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0289_a">
+          <speaker>הויפטמאן</speaker>
+          <p><stage type="business">(צוּ דיא זאלדאטען)</stage> אוּמרינגט אַלע יוּדען! אונטערגיבּט אַייך!<lb/>אִיהר זֶענְט מיֵינֶע גֶעפאנְגֶענֶע!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0290_a">
+          <speaker>זרובבל</speaker>
+          <p>בּרידער! רֵייסט אַרויס דִי שׁטַיינֶער אוֹיס דִי ווענְד אוּן צֶער⸗<lb/>שׁמֶעטֶערְט זֵיי זֵייעֶרֶע קעפּ! <stage type="business">(ווילד אויסשרייענד)</stage> ,,תּמות נפשִׁי עֶם פּלשתּים"<lb/><stage type="business">(ווארפט זיך אויף דעם הויפטמאן און די זאָלדאטען)</stage>.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0291_a">
+          <speaker>אֶלְיָקים אוּן אַלֶע</speaker>
+          <p>תּמות נפשִׁי עֶם פּלשתים! <stage type="business">(אָלגעמיינער ווירוואר אוּן גֶעשׁלֶעג</stage><lb/><stage type="business">דָנִיאֵל בּלֵייבּט בֵּיים ארון קוֹדשׁ מִיט געפאַלטעטע הֶענְד אוּן דִי אוֹיגֶען צוּם הִימֶעל,</stage><lb/><stage type="business">מוּזיק שׁטורְם, זִמְרִי שׁפרִינְגט אוֹיף צוּ דנִיאל'ן אוּן וִויל אִיהם גֶעפאנְגֶען נעהמֶען,</stage><lb/><stage type="business">אֶלְיָקים לויִפְט אִיהם נָאך חַאפְּט אִיהם פוּן אונְטֶען, ראַנגלען זִיך, ווַאַרְפעֶן זִיך אִים</stage><lb/><stage type="business">אלְגֶעמַיינֶער ווירוואר אוּן גֶעשׁלֶעג, דִי בִּיהנֶע וֶוערְט בֶּעלֵייכטֶעט בֶּענְגאלִישׁ)</stage><lb/><stage type="setting">(פארהאנג).</stage></p>
+        </sp>
+        <trailer>(ענדע פונ'ם צווייטען אקט).</trailer>
+        <pb n="38" facs="0038_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_38.jpg"/>
+      </div>
+      <div type="act" n="3" xml:id="AlNaharot_Act3">
+        <head>דרִיטֶער אַקְט.</head>
+        <stage type="setting">(דער טראהן פון קעניג. — פריסטער קוליאן. — מעדכען זינגענד פֿוּן)</stage>
+        <stage type="setting">דרויסֶען אוּן קוּמֶען ארִיענְטאלִישׁ בּעוועגענד — דלִילְה'ס שׁטִימֶע דאַן</stage>
+        <stage type="entrance">ערְשַׁיינְט זִי).</stage>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0292_a">
+          <speaker>פריסטער</speaker>
+          <p>אָה דוּ בּיזט עֶס דְלִילָה? דֶער זֶענֶען פוּן דִי הֵיילִיגֶע גֶעטֶער<lb/>זאָל אויִסגעֶהן צוּ דַיין קאפּ <stage type="business">(קנאפט זי אין דער באק)</stage>.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0293_a">
+          <speaker>דלילה</speaker>
+          <p>לאָז מִיך! זאָג מִיר קוּמסט דוּ פוּן קֶענִיג? פאַרוואַס וֶוער אִיך צוּ<lb/>אִיהם נִישְט צוגעלאָזט? פַארְוָואס אִיז דֶער קֶענִיג הַיינְט אַזוֹי שְׁלעֶכְט<lb/>גֶעלוִינְט?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0294_a">
+          <speaker>פריסטער</speaker>
+          <p>הָאסְט דוּ דֶען נָאך נִישְט גֶעהֶערְט פוּן אוּנְזֶער אונְגלִיק?</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0295_a">
+          <speaker>דלילה</speaker>
+          <p>אוּנגליק? וועלְכֶעס אונְגלִיק?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0296_a">
+          <speaker>פריסטער</speaker>
+          <p>אוּנְזֶערֶע צְוֵויי פֵיינְד כּורש אוּן דריָוֵש זֶענֶען שׁוֹין נִישְט וַוייט<lb/>פוּן באבּילאן.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0297_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="business">(ערשראקען)</stage> וואָס זָאגְסְט דוּ? נוּן אוּנזערע בּראווע זאלְדאטֶען?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0298_a">
+          <speaker>פריסטער</speaker>
+          <p><stage type="business">(וויינענדיג)</stage> הָאט מֶען אונְטֶערְגֶעהאקט דִי זַייטעֶן.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0299_a">
+          <speaker>דלילה</speaker>
+          <p>אוּן דֶער קֶענִיג שווייגט?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0300_a">
+          <speaker>פריסטער</speaker>
+          <p>אָה נֵיין! שׁווייגֶען שווייגט עֶר נִישְט.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0301_a">
+          <speaker>דלילה</speaker>
+          <p>וואַס טהוּט עֶר?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0302_a">
+          <speaker>פריסטער</speaker>
+          <p>עֶר קרֶעכצט.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0303_a">
+          <speaker>דלילה</speaker>
+          <p>וֶוער הָאט אַזעלכעס ערווארְטֶעט? אוּנְזֶערֶע טאפּפערע כַלְדֶעעֶר<lb/>זָאלֶען זִיך לאזֶען בּעזיעגען.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0304_a">
+          <speaker>פריסטער</speaker>
+          <p>עֶם וואוּנְדֶערְט אז דָאס אִיז דֶערְפַאר וַוייל דִי גֶעטֶער זֶענֶען<lb/>אוֹיף אוּנְז בּייז, וַוייל מִיר האבּען זִיך נָאך נִישְט נוֹקֵם גֶעוֶועזֶען אִין דִי<lb/>יוּדען! עִפִּיס אַ קלֵיינִינְקֵייט וָואס דִי יוּדען האבּען אוּנְז געטהוּן? זֵיי<lb/>האבּען אוּנְז דֶער'הרְג'ט אַ גָאט, שׁטֶעל דִיר פַאר אַז פַאר אַ מֶענְשׁ<lb/>הרְג'ענֶען קוּמט דֶער טוֹידֶט, וָואסְזְשֶע פַאר אַ שׁטראפֶע קֶאן שׁוֹין זֵײַן<lb/>פַאר הרְג'ענֶען אַ גָאט? אַם עֶנְדֶע אִיז נָאך בּיז אִיצט קֵיין אַיינציגער יוּד<lb/>נִישְט פארבּרענט גֶעוְוארֶען, נִישְט גֶעהאנְגֶען, נִישְט גֶעשׁטאכֶען, נִישְט<lb/>גֶעשׁאסֶען, גארְנִישׁט, נָאר עֶטְלִיכֶע פוּן זֵייעֶרֶע עלְטֶערֶען זִיטצֶען אִין<lb/>געפענגנִיש, אוּן דֶער הויפּטשוּלדיגער דֶער זרוּבּבל דֶעם הָאט מֶען נָאך<lb/>גאָר נִישְט געחאפּט!</p>
+        </sp>
+        <pb n="39" facs="0039_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_39.jpg"/>
+        <sp who="#delila" xml:id="AlNaharot_SP0305_a">
+          <speaker>דלילה</speaker>
+          <p>אַך מַיין אַרמער קֶענִיג! ערְגֶערְנִיסֶע אוּן קרענקוּנג פוּן אַלע זַייטעֶן<lb/><stage type="business">(צו די מעדכען)</stage> קוּמט מִיט מִיר!</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0306_a">
+          <speaker>פריסטער</speaker>
+          <p>וואוהִין?</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0307_a">
+          <speaker>דלילה</speaker>
+          <p>צוּם קֶענִיג אוּם אִיהם מִיט מַיין געזאַנג צוּ צֶערְשׁטרֵייען אַזוי ווִי עֶר<lb/>אִיז עֶס אִימֶער גֶעוואהנְט!</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0308_a">
+          <speaker>פריסטער</speaker>
+          <p>פאלְג מִיך אוּן גֶעה נִישְט.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0309_a">
+          <speaker>דלילה</speaker>
+          <p>פַארְוָואס?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0310_a">
+          <speaker>פריסטער</speaker>
+          <p>וַוייל עֶר וֶועט דִיך הֵייסֶען אַרויסווארפען.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0311_a">
+          <speaker>דלילה</speaker>
+          <p>מִיך? זַיין געליעבּטע דְלִילָה?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0312_a">
+          <speaker>פריסטער</speaker>
+          <p>אַהא!!!</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0313_a">
+          <speaker>דלילה</speaker>
+          <p>וָואס?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0314_a">
+          <speaker>פריסטער</speaker>
+          <p>זֵײַן געליעבּטע הַייסְט נִישְט מֶעהר דְלִילָה נָאר פּאלמירא!</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0315_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="business">(וויטהענד)</stage> וֶוער? דִיעזֶע יודִין</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0316_a">
+          <speaker>פריסטער</speaker>
+          <p>נַא וָואס וואונְדֶערְטס דוּ דִיך? אַ מֶענְשׁ מוּז האַבּען אַבּ⸗<lb/>וועקסלוּנג חַ חַ חַ  <stage type="exit">(אב)</stage>.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0317_a">
+          <speaker>דלילה</speaker>
+          <p>נֵיין! דוּ זָאגְסְט לִיגֶענְט! בּאלד וֶועל אִיך דִיר בּעווייזען דָאס דֶער<lb/>קֶענִיג וֶועט וִוידֶער צוּ מיֵינֶע פִיס לִיעגֶען ווִי אִימֶער!<lb/><stage type="entrance">(אויפֿטריט קעניג, האפלייטע, פריסטער).</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0318_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(בּייז צו דלילה)</stage> וָואס אִיז דָאס? וֶוער הָאט דִיר דָאס ערלויבּט?</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0319_a">
+          <speaker>דלילה</speaker>
+          <p>מַיין גנֶעדִיגֶער קֶענִיג! מַיין געליעבּטער <stage type="business">(וויל פאַלען אויף זיין בּרוּסט)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0320_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(שליידערט זי וועק)</stage> אוֹיס מַיין אויג! פאָרט!</p>
+        </sp>
+        <pb n="40" facs="0040_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_40.jpg"/>
+        <sp who="#delila" xml:id="AlNaharot_SP0321_a">
+          <speaker>דלילה</speaker>
+          <p>צוּ קֶאן אֵיין פערפלוּכטע יוּדין אַזוי דַיין העֶרץ אוּמוואנדלען?</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0322_a">
+          <speaker>קעניג</speaker>
+          <p>פאָרט זָאג אִיך, אָדער ווילסטוּ דִי פּייטשע?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0323_a">
+          <speaker>פריסטער</speaker>
+          <p><stage type="business">(צוּ איהר)</stage> טראג דִיך אבּ!</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0324_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="delivery">(וויינענד)</stage> אָה גֶעטֶער! נוּר אִיהר קֶענְט מִיר הֶעלְפֶען.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0325_a">
+          <speaker>פריסטער</speaker>
+          <p>ווִי אַ טוִיטֶען בּאנקעס <stage type="exit business">(פיהרט זי אב)</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0326_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(וויטהענד)</stage> אַזוי? אַזוי? כּורש אוּן דרִיושׁ זֶענֶען נִישְט מֶעהר וַוייט<lb/>פוּן בּאבּילאן? אוּן דִי דרֵיי פֶעלְדְהֶערֶען, וֶועלְכֶע אִיך האבּ דֶעם<lb/>פֵיינְד ענְטגֶעגֶענְגֶעשִׁיקט. האבּען אִיהְרֶע אַרמעען אִין שׁטִיך<lb/>גֶעלאזט? אוּן האַבּען נוּר זִיך זעלבּסט גֶערֶעטֶעט? אָה וֶועלְכֶע שמאך!<lb/>וֶועלְכֶע שַׁאנְדֶע!</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0327_a">
+          <speaker>הויפטמאן</speaker>
+          <p><stage type="business">(קומט האסטיג)</stage> דֶער קֶענִיג זָאל עוויג לעבּען! עֶס אִיז אוּנְז עֶנְדְלִיך<lb/>געלוּנגען דֶען יוּדען זרוּבבל לעבּעדיג צוּ פאנְגֶען אבּער לֵיידֶער הָאט<lb/>עֶס געמוּזט פִיעל בּלוּט קאסטֶען.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0328_a">
+          <speaker>קעניג</speaker>
+          <p>דוּרך דֶער נאכרִיט פוּן קריעגסשויפּלאץ האבּ אִיך כּמעט אָן<lb/>זרוּבּבל פֶערְגֶעסֶען, וואָס זאגסטוּ? עֶס הָאט געמוּזט פִיעל בּלוּט<lb/>קאסטֶען אוּם אִיהם צוּ פאנְגֶען?</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0329_a">
+          <speaker>הויפטמאן</speaker>
+          <p>זֶעלְטֶען מַיין קֶענִיג האבּ אִיך נָאך זַיינְס גלֵייכֶען גֶעזֶעהְן, מִיט<lb/>אַזוי פִיעל מוּטה אוּן רִיזֶענְקראפט, בּלויז מִיט אַיינֶער קלֵיינֶער צָאהל<lb/>פוּן זַיינֵע גלויבּענסבּרידער הָאט עֶר זִיך בּעפעסטיגט אוּן פוּן זייֵנעֶר<lb/>קונְסטפאלֶען בּעפעסטיגוּנג הָאט עֶר אוֹיף דִי אונְזֶערִיגֶען טויט אוּן<lb/>פערדערבּען גֶעשׁלֵיידֶערְט, עֶרְשְׁט נאכדֶעם אִיך האבּ אַ בּעפעהל<lb/>געגעבּען, פרוִיען אוּן קִינְדֶער פוּן יוּדען פַאר זַיינֵע אוֹיגֶען הינצוּשלאכטען<lb/>עֶרְשְׁט דָאס הָאט אוֹיף אַיהם גֶעווירְקט, דֶען בּאלד הָאט עֶר<lb/>אויסגערוּפען, לָאזְט דִי אונשוּלדיגע אפּפער אִין רוּהע, אִיך<lb/>אונטערגעבּ מִיך.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0330_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(קלאפט איהם אויף די שולטער שפּעטיש)</stage> בּראווא הויפּטמאן! אֵיין שֶׁעהן<lb/>הֶעלְדֶענְשׁטִיק האסטוּ בּעוויזען אַלזא נוּר אוֹיף דִיעזֶער אָרט אִיז<lb/>עֶם דִיר גֶעלונְגֶען אִיהם לעבּעדיג צוּ פאנְגֶען? אוּם יֶענֶע שוּצלאזע<lb/>געשעפּפט צוּ רֶעטֶען, האָט עֶר זִיך זֶעלְבְּסְט געאפּפערט? האסטוּ<lb/>אִיהם אַהערגעבּרענגט? אִיך וִויל אִיהם זֶעהֶען דֶעם עדֶעל⸗<lb/>מוטהִיגֶען הֶעלְד.</p>
+        </sp>
+        <pb n="41" facs="0041_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_41.jpg"/>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0331_a">
+          <speaker>הויפטמאן</speaker>
+          <p>זאפארְט מַיין קֶענִיג. <stage type="exit">(אב)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0332_a">
+          <speaker>קעניג</speaker>
+          <p>זִיך זֶעלְבְּסְט פאַר דִי זַיינִיגֶען געאפּפערט, אָה! אֵיין זאלְכֶער<lb/>הֶעֶערְפִיהרֶער ווִי דִיעזֶער זרוּבּבל וָואלְט זַיינֵע סאלְדאטֶען נִישְט<lb/>צורִיקגֶעלאזט אוֹיף דֶעם בּלוטיגען שׁלאכטפֶעלְד, אוּם זַיין לעבּען צוּ<lb/>רֶעטֶען, אָה גיבּט מִיר זאלְכֶע פֶעלְדְהֶערֶען ווִי אַזוֹי אֵיין זרוּבּבל אוּן אִיך<lb/>וָואלְט מִיר אונְטֶערווארְפֶען דִי גַאנְצֶע ווֶעלְט.<lb/><stage type="entrance">(זרובבל ווירד אַריינגעפיהרט פון הויפטמאן אין קעטען).</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0333_a">
+          <speaker>קעניג</speaker>
+          <p>זרוּבּבל, פַאר דײַן שְׁוֶוער פערבּרעכען זאלסטוּ שְׁוֶוער, זֶעהר<lb/>שְׁוֶוער, בּעשטראפט ווערְדֶען, אבּער דַיין זֶעלְטֶענֶער העלדענמוּטה<lb/>הָאט מִיר אֵיין זאלְכֶע בּעוואוּנדערוּנג פַאר דִיר אַיינגעפלעסט דָאס<lb/>אִיך בּין בּערייט, נִישְט נוּר דִיך צוּ בּעגנאדיגען, זאנְדֶערְן אוֹיך דִיך צוּ<lb/>אַיינֶער הוִיכֶען ראנְגֶע צוּ ערהעבּען, אַלעס וָואס אִיך פֶערְלַאנְג פוּן דִיר<lb/>אִיז נוּר דָאס דוּ זאלְסט דַיין פערבּרעכען אַלס גאטֶעסשֶׁענְדֶער<lb/>וִוידֶער גוּט מַאכֶען, דאמִיט דוּ זאלְסט אוּנְזֶער גלויבּען אנְנֶעהמֶען פאלְג<lb/>מַיין רַאטְה, זְרוּבָּבֶל אוּן אַזוֹי גְרויס ווִי דָנִיאֵל אִיז אמאהל גֶעווֶען בּיי<lb/>מַיין גראספאטֶער נבוּכדנצר, אַזוֹי גְרויס וֶועסְט דוּ אוֹיך בּיי מִיר<lb/>זַיין. <stage type="business">(פויזע — שווייגענד)</stage> אוּן ווארוּם גיבּסטוּ מִיר קֵיין אַנטווארט?</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0334_a">
+          <speaker>זרובבל</speaker>
+          <p>מַיין אנְטווארְט הָאסְט דוּ שׁוֹין גֶעהַאט וֶוען דוּ הָאסְט דַיינֶע<lb/>גֶעטצֶען אִין אונְזֶערְן יוּדישען טעמפּעל גֶעשִׁיקט בּיי דערזעלבּען<lb/>אנְטווארְט בּלייבּ אִיך אוֹיך וֵוייטֶער אוּן קֵיינְמָאל וֶועל אִיך אַנְדֶערְש<lb/>נִישְט אַנטווארטען.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0335_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(וויטהענד)</stage> אָה, גֶעטֶער! נָאך קֵיינְמָאל הָאט צוּ מִיר יעמאנְד אַזוֹי<lb/>פרֶעך געשפּראכען ווִי דֶער פֶערוועגֶענֶער יוּד, לאזֶען דִי קֶעטֶען דִיך<lb/>ערִינֶערְן אִין וֶועלְכֶער לאַגע דוּ דִיך בּעפינדעסט.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0336_a">
+          <speaker>זרובבל</speaker>
+          <p>דִי קֶעטֶען, וֶועלְכֶע אִיך האבּ מִיר פרֵייווילִיג גֶעלאזט אנְלֶעגֶען<lb/>אוּם שוּלדלאזע פרויען אוּן קִינְדֶער צוּ רֶעטֶען, דִי אַייזֶערְנֶע קֶעטֶען<lb/>מַאכֶען מִיר מֶעהר עהרֶע ווִי דִיר דַיין גאלְדֶענֶע קראהן!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0337_a">
+          <speaker>קעניג</speaker>
+          <p>אונְגלִיקלִיכֶער! דוּ וֵוייסְט נִישְט וָואס דִיך ערווארְטֶעט?</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0338_a">
+          <speaker>זרובבל</speaker>
+          <p>אוּן וֶוען עֶס וָואלְט אוֹיך דֶער גרויזאמְסטֶער טוִיד גֶעוֶועזֶען אֵיין<lb/>שֶׁענֶערֶען טויד ווִי דִיעזֶער וִויל אִיך מִיר נִישְט ווינְשֶׁען.</p>
+        </sp>
+        <pb n="42" facs="0042_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_42.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0339_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(נאָך אַ פויזע)</stage> הֶער זרוּבבל מַיין לֶעצטֶעס וָוארְּט, אִיך האבּ מִיט<lb/>דִיר מיִטלייַד, בּיזט דוּ דֶען נִישְט אֵיין קֶענִיגסקִינְד? אֵיין פּרינץ אִין<lb/>דֶער גֶעפאנְגֶענְשׁאפט? יאָ, אִיך וִויל דִיך גֶעגֶען דַיין וִוילֶען גלִיקלִיך<lb/>מַאכֶען, אִיך פֶערְלַאנְג פוּן דִיר נִישְט דוּ זאלְסט דַיין גלויבּען גֶענְצלִיך<lb/>ענְטזאגֶען, בּלייבּ אִין שׁטִילֶען וֵוייטֶער אַ יוּד, אוּן נָאר צוּם שַׁיין<lb/>בּעקעהר דִיך עפֶענְטלִיך צוּ אונְזֶערְן גלויבּען, אוּם נָאר דָאס פָאלְק<lb/>צוּ מַאכֶען גלויבּען, דאַס דוּ בּערייעסט דַיין פערבּרעכען.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0340_a">
+          <speaker>זרובבל</speaker>
+          <p>מַיין קֶענִיג! אַזוי ווִי אִיך דֶענְק, אַזוֹי רֶעד אִיך, אוּן אַזוֹי האַנדעל<lb/>אִיך, פֶערְשׁטלונְגֶען אוּן הֵייכֶעלֵיי זֶענֶען מִיר פְרֶעמְד, אוּן מעגסטוּ מִיר<lb/>דָאס גרֶעסטֶע גלִיק פערשפּרעכען, מֶעגסט דוּ מִיך מִיט דֶער<lb/>שׁווערְסטֶער שׁטראפֶע שׁרֶעקֶען, אִיך בּלייבּ דֶער זעלבּער דֶער אִיך בּין.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0341_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(אווסער זיך)</stage> האכמוטהִיגֶער יוּדע! אַזוי גנֶעדִיג ווִי צוּ דִיר בּין אִיך<lb/>נָאך בּיז יֶעצְט נִישְט גֶעווֶען צוּ קֵיין מֶענְשׁ? אוּן דוּ? דוּ טרֶעטסט מַיין<lb/>גִיטֶע מִיט דִי פִיס? אַזוי זאלְסט דוּ יֶעצְט אִין מִיר דֶעם טִיראן קֶענֶען<lb/>לֶערְנֶען, דֶעם טויט ערווארְטסט דוּ! אָה נֵיין, צוּ ווענִיג! דִיך<lb/>ערְנִידְרִיגֶען וִויל אִיך פְרִיהֶער! דֶעם יוּדישען פּרינץ וִויל אִיך צוּם<lb/>שפּאט אוּן גֶעלֶעכטֶער מַאכֶען? דֶער שׁטאלְצֶער הֶעלְד זאָל בּיז<lb/>צוּם טִיער אַראבּזינקען! הויפּטמאן לאָז דִיעזֶען הֶעלְד איינשפּאנען<lb/>דָארְט בֵּיים מִיהלְשׁטַיין מִיט דֶעם אקסֶענִיאך אוֹיף זַיין האלְז, לאָז<lb/>אִיהם דאראן זַיין הֶעלְדֶענְקראפט פּרוּבּירען, לאָז אוֹיך דָאס פָאלְק<lb/>דאָרט אַהין צוזאמֶען קוּמען דָאס זֵיי זָאלֶען עֶס צוזֶעהן אוּן זַייער פרֵיידֶע<lb/>האבּען אָן דִיעזֶען יוּדישען קֶענִיגסזוהן חַ חַ חַ חַ <stage type="exit business">(לאכט שפעטיש ביז אב)</stage>.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0342_a">
+          <speaker>פריסטער</speaker>
+          <p><stage type="delivery">(שפּעטיש)</stage> אֵיין יודִישֶׁער קֶענִינְסזוהן מִיט אֵיין אָקסעניאך אוֹיף<lb/>זַיין האַלז, חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0343_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(מיט די קייטען קלירענד אויפשרייענד)</stage> אָה... <stage type="business">(פאסט זִיך בּאלְד דֶעמִיטהִיג מִיט</stage><lb/><stage type="business">דִי אוֹיגֶען צוּם הִימֶעל)</stage> נֵיין, נֵיין! אִיך פרעֶג דִיך נִישְט מַיין נאט ווארוּם<lb/>עֶם קוּמט מִיר! עֶס אִיז דַיין הײלִיגֶער ווילֶע אִיך בּין עֶס מקבּל<lb/>בּאַהבה! <stage type="exit">(אב)</stage>.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0344_a">
+          <speaker>אלע</speaker>
+          <p><stage type="business">(איהם פאלגענד שפעטיש)</stage> חַ חַ חַ חַ <stage type="exit">(אב)</stage>.<lb/><stage type="setting">פערוואַנדלונג</stage><lb/><stage type="setting">(דָאס מִיהלְהוִיז. — אִין דֶער מִיט אֵיין רונְד גְרוִיס ראד אנְגֶעשׁפאנְט אַ גְרויִסעֶר</stage><lb/><stage type="setting">מִיהלְשׁטַיין מִיט אַ שׁטאנְג דאראן. — אויפטריט פָאלְק דְלִילָה, מֶעדְכֶען—</stage><lb/><stage type="entrance business">זְרוּבָּבֶל זִינְגְט פוּן דרוִיסֶען סאָלאָ, ערְשַׁיינְט מִיט אֵיין אקסעניאָך אויפ'ן</stage><lb/><stage type="setting">האלְז, עָר וֶוערְט בֶּעפֶעסטִיגט צוּ דֶעם שׁטאנְג. — הויפּטמאן מִיט אַ בֵּייטשׁ</stage><lb/><stage type="setting">שׁמַייסט אִיהם שׁנֶעלֶער צוּ געֶהן — אַלֶע לאכֶען, פרֵייען זִיך, בּיז זְרוּבָּבֶל</stage><lb/><stage type="setting">בּרֶעכט צוזאמֶען.</stage> — <stage type="entrance">אויפטריט קֶענִיג</stage>).</p>
+        </sp>
+        <pb n="43" facs="0043_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_43.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0345_a">
+          <speaker>קעניג</speaker>
+          <p>פרֶעגט אִיהם וִויעדֶער אויבּ עֶר וִויל זִיך צוּם כלְדֶעאִישֶׁען גלויבּען<lb/>בּעקעהרען.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0346_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(מיט די אויגען צום הימעל)</stage> עֶס אִיז דַיין ווילֶע מַיין גָאט! שׁמֶע יִשְרָאֵל<lb/>ד' אלקינוּ ד' אחד!<lb/><stage type="setting">פערוואַנדלונג.</stage><lb/><stage type="setting">(פארזאל ביים קעניג, זמרי).</stage></p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0347_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(טריוּמפירענד)</stage> חַ ה חַ חַ, זָאג מִיר דוּ יוּדישער נאט, וואוּ בּיזטוּ? האסטוּ<lb/>דֶען אַיינְגֶעשׁלאפֶען? ווארוּם קוּמסט דוּ דֶען נִישְט צוּ הִילְף דַיין<lb/>אוִיסֶערוועהלְטֶען פָאלְק? חַ חַ חַ אִין וֶועלְכֶע לאגֶע געֶפיִנְט זִיך<lb/>נעבּיך דֶער יוּדישער בּן מֶלֶך זרוּבּבל, אוּן דֶער גֶעטלִיכֶער דָנִיאֵל אוּן<lb/>דִי איבּריגע גדולי יִשְרָאֵל שׁמאכטֶען אִין גֶעפֶענְגנִיס אוּן עֶרְוַוארְטֶען<lb/>גֶעוויס דֶעם טוִיט אוּן דָאס אַלֶעס האבּען זֵיי מִיר צוּ פֶערְדאנְקֶען,<lb/>חַ חַ חַ חַ! <stage type="business">(שטאלץ)</stage> קֵיין מֶענְשׁ אִין גַאנְצעֶן לַאנְד אִיז נָאך בּין יֶעצְט<lb/>נִישְט אַזוֹי הוִיך גֶעשׁטאנֶען בּיים קֶענִיג ווִי אִיך, אוּן אוּם מַיין גלִיק צוּ<lb/>פֶערְפאלְשׁטֶענְדִיגֶען הָאט מִיר נוּר אַיינְס גֶעפֶעהלְט דָאס מיֵינֶע טאָכטער<lb/>וֶועלְכֶע אִיך האבּ ליעבּ איבּער אַלֶעס אִין דֶער ווֶעלְט, דָאס זִי זָאל<lb/>אִיהְרֶע קִינְדִישֶׁע פאנְטאזִיען פֶערְגֶעסֶען, אוּן אַזוֹי אֵיין זֶעלְטֶען גלִיק פוּן<lb/>זִיך נִישְט פֶערְשׁטוִיסֶען. <stage type="business">(פרעהליך)</stage> אוּן הַיינְט עֶנְדְלִיך, הַיינְט הָאט זִי זִיך<lb/>איבּערלעגט, אוּן אִיז שׁוֹין זאגאר דָא בּיים קֶענִיג אִין פּאלאסט, יאָ<lb/>עֶס אִיז מֶעגלִיך דָאס נָאך הַיינְט וֶועל אִיך, אִיהר פָאטֶער, דֶער<lb/>עֶרְשְׁטֶער זַיין, מַיין קִינְד אַלְס קֶענִיגִין פוּן בּאבּילאן צוּ בּעגריסען!<lb/><stage type="business">(בליקט אויף)</stage> אָה דָארְט זֶעה אִיך זִי קוּמען, אִין געשפּרעך מִיט דֶעם<lb/>קֶענִיג, אִיך וֶועל מִיך צוּריקציהען אוּן געדוּלדיג אָבּווארטען דֶעם<lb/>גְלִיקְלִיכֶען מאמֶענְט פוּן מַיין לעבּען, אָה טריוּמפּף, טריוּמפּף! <stage type="exit">(אב)</stage>.<lb/><stage type="entrance">(אויפטריט קעניג, פאלמירא).</stage></p>
+        </sp>
+        <pb n="44" facs="0044_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_44.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0348_a">
+          <speaker>קעניג</speaker>
+          <p>אָה, ווארוּם האסטוּ מִיר קֵיין גֶעלֶעגֶענְהֵייט געגעבּען דיךְ אַזוֹי צוּ<lb/>עמפּפאנגען ווִי עֶס אֵיין צוּקינפטיגע קֶענִינִין געבּיהרט? אבּער פּאלמירא!<lb/>ווארוּם דֶען אַזוֹי עֶרְנְסט, אַזוי נִידֶערְגֶעשׁלאגֶען?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0349_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="delivery">(וויינט)</stage> מַיין קֶענִיג! זֶעה מִיך צוּ דַיינֶע פִיס אַלְס אַיינֶע<lb/>בּעטענדע! <stage type="business">(קניעט)</stage></p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0350_a">
+          <speaker>פאלמירא</speaker>
+          <p/>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0351_a">
+          <speaker>קעניג</speaker>
+          <p>נֵיין, נִישְט אויפשׁטֶעהן וִויל אִיך פְרִיהֶער בּיז דוּ הָאסְט מיֵינֶע<lb/>בּיטע ערְהֶערְט, אָה קֶענִיג! אִיך בּיטע אוּם גנאדֶע פַאר דִי יוּדישע<lb/>גֶעפאנְגֶענֶע.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0352_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צארניג)</stage> ווִי? פאַר אזאלְכֶע פערבּרעכער אִיז פּאלמירא געקוּמען<lb/>בּעטען?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0353_a">
+          <speaker>פאלמירא</speaker>
+          <p>נֵיין, פַאר דִי אונשוּלד אִיז מַיין געבּעט! מִיט מַיין לעבּען<lb/>גאראנְטִיער אִיך פַאר זַייער עהרְלִיכקֵייט, פַאר זַייער טרֵייע, נָאר<lb/>צווינְג זֵיי נִישְט אַנצוּבּעטען דאם וָואס אִיז גֶעגֶען זַייער גלויבּען לאָז<lb/>זֵיי אונְגֶעשׁטֶערְט וֵוייטֶער בּעטען צוּ זַייער נאט, אָה! גלויבּ עֶס מִיר,<lb/>אַזוי אֵיין הֶערְשֶׁער וֶועלְכֶער אוּנטערדריקט אֵיין פָאלְק צוּליעבּ דֶעם<lb/>גלויבּען, אַזוי אֵיין הֶערְשֶׁער אִיז נָאר אֵיין פלוּך פַאר זַיין לַאנְד,<lb/>אוּן אֵיין שמאך פַאר דִי גַאנְצֶע מֶענְשׁהֵייט!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0354_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(קוקט פערליעבט צו איהר)</stage> אָה ווִי בּעצויבּערט שׁטֶעה אִיך דָא פוּן<lb/>דַיינֶע רֵייצֶענְדֶע בּליקען, פּאלמירא, ענְגֶעל, וֶוער קֶאן דִיר וִוידֶער⸗<lb/>שְטֶעהן <stage type="business">(הייבט זי צערטליך אויף)</stage>.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0355_a">
+          <speaker>פאלמירא</speaker>
+          <p>אַזוי הָאסְט דוּ מַיין בּיטע דֶערְהֶערְט?</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0356_a">
+          <speaker>קעניג</speaker>
+          <p>הֶער מִיך פּאלמירא! מַיין צארְן גֶעגֶען דִי יוּדען אִיז גֶעווֶען אַזוי<lb/>גְרוִיס דָאס אִיך בּין גֶעווֶען ענְטשׁלאסֶען אַלֶעס אויסצוּראטען, אַלעס<lb/>וָואס עֶס טְראָגְט נָאר דֶעם נָאמֶען יוּד, דוּ אבּער מַיין גוּטער ענְגֶעל, דוּ<lb/>הָאסְט אִיצט מַיין צארְן אוֹיף מיִטלייַד פֶערוואנְדֶעלְט.</p>
+        </sp>
+        <pb n="45" facs="0045_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_45.jpg"/>
+        <sp who="#palmira" xml:id="AlNaharot_SP0357_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(קישט די האנד)</stage> אָה ווִי דַאנְקֶע אִיך דִיר מַיין קֶענִיג!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0358_a">
+          <speaker>קעניג</speaker>
+          <p>אוּן נָאר אַיינִיגֶע וֶועלְכֶע אִיך האבּ דָא אוֹיף דֶער לִיסטֶע <stage type="business">(ווייזט איהר)</stage><lb/>נָאר דִיעזֶע אַליין מוּזֶען מִיט דֶעם טוֹידֶט בּעשטראפט וֶוערֶען!</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0359_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(ערציטערט)</stage> הֵיילִינֶער גָאט!...</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0360_a">
+          <speaker>קעניג</speaker>
+          <p>אִיך מוּז! שׁוֹין דֶעם פָאלְק אַלֵיין צוּליעבּ, אָבּער שׁרֶעק דיךְ נִישְט<lb/>עֶס זֶענֶען נִישְט פִיעל, קוִים אַ פּאר דוטצֶענְד! דָא הָאסְט דוּ זֵיי אַלֶע<lb/>אוֹיף דֶער לִיסטֶע <stage type="business">(לעזט)</stage> דָנִיאֵל — עזרא הסופר — ישוּע כהן גדול —<lb/>מרְדְכִי — זרוּבּבל...<lb/><stage type="business">(פַּאלֶמִירַא, בּיז יעדֶען נָאמֶען אוִיסרופֶען צִיטֶערְט — ווִי זִי דֶערְהֶערְט זרובבל'ס</stage><lb/><stage type="business">נָאמֶען, שְרֵייט אוֹיס, וִויל פאלֶען).</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0361_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(חאפט זי, בּליקט זי פארשענד אן)</stage> פַארְוָואס הָאסְט דוּ גְרַאדֶע בּיי דֶעם<lb/>נָאמֶען אַזוי שׁמֶערְצלִיך אוִיסגֶעשׁרִיגֶען? <stage type="business">(מיסטרויאיש)</stage> אִיז עֶר דַיין פֶער⸗<lb/>וואנְדְטֶער? אָדֶער...?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0362_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(שלוכצענד)</stage> מַיין יונֶענְדְפרֵיינְד אִיז עֶר! צוזאמֶען אוִיפגֶעוואקסֶען<lb/>זֶענֶען מִיר בּיידע, אוּן זֵייט אוּנזערער קִינְדְהֵייט זֶענֶען מִיר צוּ אַיינאנְדֶער<lb/><stage type="business">(צעגערט)</stage> שׁוועסטֶער אוּן בּרוּדער!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0363_a">
+          <speaker>קעניג</speaker>
+          <p>עֶס טהוּט מִיר לֵייד, עֶס טהוּט מִיר ווירְקלִיך לֵייד! דֶען גְרַאדֶע<lb/>פַאר דֶעם זרוּבּבל האבּ אִיך בּעשטימט דֶען קוואהלְפאלְסטֶען טוֹידֶט!</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0364_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(קניעט, וויינט)</stage> אָה נֵיין נֵיין! אַזוי גרויזאם וֶועסְט דוּ נִישְט זַיין!...<lb/>אַך קֶענִיג! וֶוען דַיינֶע אוֹיגֶען קוּקען אוֹיף מִיר נָאר פרֵיינְדְלִיך לאָז מִיך<lb/>נִישְט אוּמזיסט קנִיען אוּן בּעטען, דוּ בּיזט אַזוֹי מֶעכטִיג, זֵיי אוֹיך גנֶעדִיג!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0365_a">
+          <speaker>קעניג</speaker>
+          <p>אוּמזיסט פּאלמירא! אִיך בּיטע דִיך פֶערְלִיערֶע מֶעהר קֵיין וָוארְּט<lb/>דאריבּער! דָנִיאֵל, זרוּבּבל אוּן אַלֶע וָואס זֶענֶען דָא אוֹיף דֶער לִיסטֶע<lb/>האבּ אִיך דֶעם טוֹידֶט גֶעווייהֶעט, בּיי מַיינֶער קֶענִיגלִיכֶע קרוִין האבּ<lb/>אִיך עֶס גֶעשׁווארֶען, אוּן קֵיין גאט קֶאן זֵיי מֶעהר נִישְט רֶעטֶען, גענוּג<lb/>לאזֶען מִיר דִי טוידְטֶע רוהֶען! <stage type="business">(ווידער צערטליך)</stage> פּאלמירא! דוּ בּיזט דָאך<lb/>נִישְט בּלויז ווֶעגֶען דִיעזֶען יוּד געקוּמען? פּאלמירא! וֵוייסְט דוּ ווִי<lb/>גֶעזֶעהנְט אִיך האָבּ מִיך נָאך דִיר? אָה זָאג עֶנְדְלִיך אַרויס דָאס וָוארְּט<lb/>אוֹיף ווֶעלְכֶען אִיך וָוארְּט שׁוֹין אַזוֹי לאַנגעֶ! קוּם רֵייכֶע מִיר דַיין<lb/>העֶרץ אוּן הַאנּד! <stage type="business">(וויל זי אומארמען)</stage>.</p>
+        </sp>
+        <pb n="46" facs="0046_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_46.jpg"/>
+        <sp who="#palmira" xml:id="AlNaharot_SP0366_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(ענטרייסט זיך איהם)</stage> צוּריק!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0367_a">
+          <speaker>קעניג</speaker>
+          <p>ווִי?! דִי הַאנּד וִויל דִיך אוֹיף דֶען קֶענִיגלִיכֶען טְרָאהן ערהעבּען<lb/>דִיעזֶע הַאנּד שׁטויסט דוּ צוּריק?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0368_a">
+          <speaker>פאלמירא</speaker>
+          <p>שׁוֹין זֶעה אִיך פלִיעסֶען דָאס בּלוּט פוּן דִי גרֶעסטֶע מֶענֶער פוּן<lb/>מַיין פָאלְק דַיין הַאנּד הָאט דִיעזֶעם עדְלֶע בּלוט פֶערְגאסֶען אוּן אֵיין<lb/>זאלְכֶע מערדערהאַנד וִויל מִיך אוֹיף דֶען טְרָאהן זֶעטצֶען? וָואס<lb/>אַייגֶענְטלִיך זאָל אִיך דֶען טהוּן אוֹיף דֶעם בּלוטיגען טְרָאהן נעבּען<lb/>דִיר? זָאל אִיך צוּזעהן ווִי מַיין אוּנְגְלִיקְלִיך פָאלְק וֶוערְט פוּן דִיר<lb/>מִיסהאנְדֶעלְט אוּן גֶעשֶׁענְדֶעט אוּן אִיך זָאל נִישְט קאנֶען הֶעלְפֶען? אָה<lb/>פֶערוועלְקֶען זָאל מַיין הַאנּד אויבּ זִי וֶועט אַמָאל אִין דִי דַיינִיגֶע רוהֶען!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0369_a">
+          <speaker>קעניג</speaker>
+          <p>פּאלמירא!</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0370_a">
+          <speaker>פאלמירא</speaker>
+          <p>דוּ ליעבּסט? חַ חַ חַ חַ וֶועלְכֶע ענטווייהוּנג פוּן דֶעם הֵיילִיגסטֶען<lb/>מֶענְשֶׁענְגֶעפִיהל! קאלְט אוּן גרויזאם גֶעהסְט דוּ מארְדֶען מיֵינֶע בּרידער<lb/>אוּן דָאס רוּפסט דוּ לִיעבֶּע?</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0371_a">
+          <speaker>קעניג</speaker>
+          <p>קוים בֶּעצוואונְגֶע אִיך מַיין צארְן פערבּלענדעטע, ווילְסט דוּ דֶען<lb/>מַיין ליעבּע צוּ דִיר אִין האס אוּמוואנדלען?</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0372_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(בּיטער לאכענד)</stage> חַ חַ חַ חַ זַיין ליעבּע צוּ מִיר! הֶערֶע ווֶעלְט וָואס<lb/>בּיי אַיינֶעם טִיראן הַייסְט ליעבּע!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0373_a">
+          <speaker>קעניג</speaker>
+          <p>וואהנְזִינִיגֶע נֶעם דִיך אֵיין אכט! דֶען דִיעזֶע האַנד וֶועלְכֶע וִויל דִיך<lb/>ערהעבּען, דִיעזֶע האַנד קֶען דִיך אוֹיך צֶערְשׁמֶעטֶערְן, זרוּבּבל זָאל דִיר<lb/>אוֹיך אַלְס בּיישפּיעל דִיענֶען, אֵיין געבּארענער פּרינץ אִיז עֶר אוּן אִיך<lb/>האבּ אִיהם ערְנִיעדְרִינְט בּיז צוּם אקסֶען!</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0374_a">
+          <speaker>פאלמירא</speaker>
+          <p>זרוּבּבל מִיט דֶעם אקסֶענִיאך אוֹיף זַיין האלְז בלייבּט דָאך<lb/>זרוּבּבל אַיינֶער פוּן דִי גרֶעסטֶע מֶענֶער דֶער ווֶעלְט, וֶועלְכֶער נָאמֶען<lb/>וֶועט אונשטערבּליך בלייבּען, אוּן דַיין שׁאמְלאזֶע האנדלוּנג ערְנִיעדְרִיגט<lb/>נִישְט אִיהם נוּר דִיך! דוּ הָאסְט יֶעצְט בּעוויזען דָאס טראצדֶעם דוּ<lb/>טראגסט אַ קרוין בּיזטוּ נִישְט בּעסער אַלְס אַיינֶע וִוילְדֶע בּעסטיע!</p>
+        </sp>
+        <pb n="47" facs="0047_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_47.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0375_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="delivery">(לויפט ארוּם ווי וואהנזיניג, אפארט)</stage> אוּן אִיהר פָאטֶער הָאט מִיר דִי<lb/>גַאנְצֶע צַייט פארגעפּלוישט דָאס זִי ליעבּט מִיך, <stage type="business">(ביטער לאכענד)</stage> חַ חַ חַ חַ<lb/>זִי ליעבּט מִיך... אַיינֶע שֶׁעהנֶע ליעבּעסערקלעהרוּנג הָאט זִי מִיר דָא<lb/>גֶעמאכט, זִי ליעבּט מִיך הָאט עֶר מִיר גֶעזָאגְט, וואוּ אִיז עֶר דֶער<lb/>פֶערְדאמְטֶער בּעטריעגער? דֶער שופט, <stage type="business">(רופט)</stage> הֶע דָא, וואכֶע!<lb/><stage type="entrance">(אויפטריט הויפטמאן).</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0376_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צוּ פאַלמירא)</stage> דוּ מַיינְסט גֶעוויס אִיך וֶועל דִיך לאזֶען טֶעדְטֶען? אָה<lb/>נֵיין! דִיעזֶעס פֶערְגְנִיגֶען וֶועל אִיך דִיר אַזוֹי שנעֶל נִישְט צוּטהיילען,<lb/><stage type="business">(צום הויפטמאן)</stage> הַאלְט זִי גֶעפאנְגֶען אוּן ערווארְטֶע מיֵינֶע ווייטֶערֶע<lb/>בּעפעהלע! <stage type="business">(געהענד)</stage> זִי ליעבּט מִיך הָאט עֶר מִיר אַיינְגֶערֶעדְט, חַ חַ חַ חַ<lb/><stage type="exit business">(ביטער לאכענד ביז אב)</stage>.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0377_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(פאלט אויף די קניע מיט אויסגעשפרייטע הענד)</stage> זרוּבּבל רֶעטֶען קֶען<lb/>אִיך נִישְט, דארוּם וִויל אִיך אוֹיך ווִי דוּ לֵיידֶען אוּן מִיט דִיר צוּזאמען<lb/>אוֹיך שׁטאַרבּעֶן! <stage type="business">(שטעהט אויף)</stage> קוּם! זאָל מֶען מִיט מִיר טהוּן וָואס<lb/>מֶען וִויל, אַזוי ווִי מַיין זרוּבּבל אַזוֹי וִויל אִיך אוֹיך אַלֶעס מקבּל זַיין<lb/>בּאַהבה <stage type="exit business">(אב מיט דעם הויפטמאן)</stage>.<lb/><stage type="entrance">(אויפטריט זמרי, בליקט אין אַלע זייטען).</stage></p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0378_a">
+          <speaker>זמרי</speaker>
+          <p>אַזוי ווִי אוֹיף גֶעגלִיהטֶע קוילֶען אַזוֹי אוּנגעדוּלדיג בּין אִיך דָארְט<lb/>גֶעשׁטאנֶען מִיט דֶער ערווארטוּנג גערוּפען צוּ וֶוערֶען, אוּם עֶנְדְלִיך<lb/>מיֵינֶע טאָכְטֶער אַלְס קֶענִיגִין פוּן באבּילאן צוּ בּעגריסען, אבּער נִיעמאנְד<lb/>אִיז געקוּמען אוּן נִיעמאנְד הָאט מִיך גערוּפען? דָאך ווארוּם זָאל אִיך<lb/>מִיך וואוּנְדֶערְן? אִין אַזוֹי אֵיין מאמֶענְט ווִי מֶען בּלייבּט אַלֵיין אוּנטער<lb/>פִיער אוֹיגֶען אוּן מֶען ענְטדֶעקט אַיינֶער דֶעם אנְדֶערְן דָאס הֶערְצֶעלֶע<lb/>חַ חַ חַ, אִין אַזוֹי אֵיין מאמֶענְט פֶערְגֶעסְט מֶען דָאך אָן דֶער גַאַנְצעֶר<lb/>ווֶעלְט גֶעוויס! אַזוֹי אִיז עֶס, דָאס איבּערגליקליכע ליעבּעספּאר אִיז<lb/>יֶעצְט צוּ פִיעל מִיט זִיך זעלבּסט בּעשעפטיגט אוּן דארום האבּען זֵיי<lb/>פֶערְגֶעסֶען אָן מִיר, דֶעם הויפּטמחוּתן, נוּן נוּן שׁאדְט נִישְט, <stage type="business">(הֵייבּט אוֹיף</stage><lb/><stage type="business">דִי הֶענְד צוּם זֶעגֶען)</stage> אִיך געבּ אַייך פוּן ווייטֶען מַיין פֶעטֶערְלִיכֶען זֶעגֶען צוּ<lb/>אַייערְן גְלִיקְלִיכֶען בּוּנד!<lb/><stage type="entrance">(אויפטריט קעניג פערטיעפט אין געדאנקען, ערבליקט זמרי)</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0379_a">
+          <speaker>קעניג</speaker>
+          <p>אָה דוּ בּיסט עֶס? אִיך האבּ גֶעוָואלְט דִיך עבּען לאזֶען רוּפען.</p>
+        </sp>
+        <pb n="48" facs="0048_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_48.jpg"/>
+        <sp who="#zimri" xml:id="AlNaharot_SP0380_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="delivery">(אפארט)</stage> אהא, עֶר הָאט זִיך דָאך עראִינֶערְט אָן זֵײַן צוּקינפטיגען<lb/>שׁוויעגֶערְפאטֶער.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0381_a">
+          <speaker>קעניג</speaker>
+          <p>ווִי דוּ זֶעהסט בּין אִיך אַ בּיסעל אויפגֶערֶעגט...</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0382_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="delivery">(אפארט)</stage> אַ ווינְדֶער נוּ, נָאך אַיינֶער ליעבּעסערקלעהרוּנג אוּנטער פִיער<lb/>אוֹיגֶען נִישְט צוּ זַיין אוִיפגֶערֶעגט...</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0383_a">
+          <speaker>קעניג</speaker>
+          <p>אִיך מֶעכטֶע דַיין רַאטְה הֶערֶען ווֶעגֶען אַיינֶע פֶערְזאן... נוּן דֶעם<lb/>נָאמֶען וִויל אִיך דִיר נִישְט זָאָגען, דאמִיט דוּ זאלְסט אונְפארְטַייאִישׁ<lb/>אוּרטיילען! אַלְזָא דֶענְק דִיך אַיינֶע פּערזאן וֶועלְכֶע אִיך האבּ גֶעוָואלְט<lb/>הויך בּעגליקען, אִיז גֶעווֶען אַזוֹי פרֶעך מיֵינֶע הֶערְצֶענְסגִיטֶע מִיט שימפּף<lb/>צוּרִיק צוּ ווייזעֶן, וָואס וָואלְט גֶעווֶען דַיין אוּרטייל איבּער אַזוֹי אַיינֶע<lb/>פֶערְזאן?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0384_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="delivery">(אפארט)</stage> זרוּבּבל מַיינְט עֶר, יאָ! מֶען האַט מִיר ערְצֶעהלְט וועלְכֶעס<lb/>גלִיק דֶער קֶענִיג הָאט אִיהם פארְגֶעשׁלאגֶען אוּן ווִי פרֶעך עֶר הָאט<lb/>אַלֶעס צורִיקגֶעוויזֶען.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0385_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(בּלייבט נעבען איהם שטעהן)</stage> נוּן! דוּ שׁווייגסט?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0386_a">
+          <speaker>זמרי</speaker>
+          <p>אִיך דֶענְק נָאך מַיין קֶענִיג! אִיך זוּךְ נָאך אֵיין שׁטראפֶע וֶועלְכֶע זָאל<lb/>פּאסענד זַיין פַאר אַזוֹי אֵיין פערבּרעכען.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0387_a">
+          <speaker>קעניג</speaker>
+          <p>אוּן דִי אִיז?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0388_a">
+          <speaker>זמרי</speaker>
+          <p>דָאס דִי פּערזאן וֶועלְכֶע דוּ מַיין קֶענִיג הָאסְט גֶעוָואלְט ערהעבּען<lb/>זָאל יֶעצְט ערְנִיעדְרִיגט וֶוערֶען צוּם שפּאט אַלֶע מֶענְשֶען! אֵיין זאלְכֶע<lb/>פרֶעכֶע פּערזאן וֶועלְכֶע הָאט דַיינֶע גִיטֶע מִיט דִי פִיס גֶעטרֶעטֶען זָאל<lb/>זעלבּסט ווִי אֵיין ווארְם מִיט דִי פִיס גֶעטרֶעטֶען וֶוערֶען.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0389_a">
+          <speaker>קעניג</speaker>
+          <p>בּראווא זִמְרִי! דַיין אוּרטייל געֶפֶעלְט מִיר! אוּן צוּם דַאנְק דאפִיר<lb/>וִויל אִיך, דאַם דוּ וֶועלְכֶער האַסט דִיעזֶעס אוּרטייל אויסגעשפּראכען,<lb/>דוּ זעלבּסט זאלְסט אָן דִיעזֶער פּערזאן דַיין אוּרטייל פאלְשׁטרֶעקֶען<lb/><stage type="business exit">(בליקט אויף איהם מיט שאדענפריידע, געהט לאנגזאם אב)</stage>.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0390_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(פערבּליפט)</stage> אִיך? בּין אִיך דֶען אֵיין הֶענְקֶער? אוּן ווארוּם הָאט עֶר מִיך<lb/>אַזוי זאנדערבּאר אנגעבּליקט וועהרֶענְד עֶר הָאט דָאס אויסגעשפּראכען?<lb/>אִיז דָאס אַלֶעס וָואס עֶר הָאט מִיר צוּזאגען? נוּן אוּן פוּן מַיין קִינְד האַט<lb/>הָאט עֶר מִיר גָאר קֵיין וָוארְּט גֶעזָאגְט? וָואס גֶעהט דָא אַייגֶענְטלִיך<lb/>פַאר? <stage type="business">(ציטערנד)</stage> וָואס אִיז דָאס פַאר אֵיין פארְגֶעפִיהל וועלְכֶעס מאַכט<lb/>מַיין בּלוט אִין מיֵינֶע אדֶערְן ערְפרִיערֶען? <stage type="business">(קוּקט זיך אום ענגסטליך)</stage> מיֵינֶע<lb/>פּאלמירא מַיין געליעבּטעס קִינְד וואוּ אִיז זִי? <stage type="business">(עֶר הֶערְט אוּנְטֶער דִי קולִיסֶען</stage><lb/><stage type="business">פּריסטער, הויפּטמאן לאכֶען, לוישֶׁענְד הִינְבּלִיקֶענְד)</stage> וָואס אִיז דָאס?!... דֶער<lb/>פּריסטער אוּן דֶער הויפּטמאן מיֵינֶע צְוֵויי בּעסטע פְרֵיינְד <stage type="business">(לוישט)</stage> זֵיי<lb/>רעֶדעֶן פוּן מִיר אוּן פוּן מַיין קִינְד אוּן לאכֶען? אַזֶעלְכֶע אִינְטִימֶע פְרֵיינְד<lb/>ווִי זֵיי בּיידע זֶענֶען מִיר... וואלְטֶען זֵיי דֶען אַזוֹי לוסטיִג גֶעלאכט וֶוען<lb/>מִיר זָאל אנ'אוּנגליק בּעפארשטעהען? נֵיין! וואהרְהאפטִיג אִיך<lb/>קוועהלֶע מִיך אוּמזָאגסט!... זֵיי קוּמען דָא אַהער! אִיך ווערְדֶע אוּנ⸗<lb/>בּעמערקט זֵיי בּעלוישען אוּן מִיך זעלבּסט איבּערצייגען וָואס פַאר<lb/>אַ נָאר אִיך בּין! <stage type="business">(ציהט זיך צוריק אין הינטערגרונד לוישענד)</stage>.<lb/><stage type="entrance">(אויפטריט פריסטער, הויפטמאן)</stage></p>
+        </sp>
+        <pb n="49" facs="0049_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_49.jpg"/>
+        <sp who="#beyde" xml:id="AlNaharot_SP0391_a">
+          <speaker>ביידע</speaker>
+          <p><stage type="business">(לאכען)</stage> חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0392_a">
+          <speaker>פריסטער</speaker>
+          <p>דוּ זאלְסט גֶעווֶען הֶערֶען מִיט וָואס פַאר אַ שׁטאלְץ עֶר הָאט<lb/>דִי ווערְטֶער אויסגעשפּראכען <stage type="business">(זמרי נאכאמענד)</stage> דֶענְקֶע דִיר יֶעצְט מיֵינֶע<lb/>מַאכְט אוּן מיֵינֶע גרֶעסֶע! קֶענִיג בַּלְשֶצֶר מַיין שׁוויגֶערְזאהן חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0393_a">
+          <speaker>הויפטמאן</speaker>
+          <p>חַ חַ חַ חַ שׁוֹין הָאט עֶר געגלויבּט דָאס דֶער קֶענִיג וֶועט אִין<lb/>זייֵנעֶר הַאנּד ווִי אַיינֶע פּוּפע זַיין, דָאס אִין בּאבּילאן וֶועט שׁוֹין אַצינד<lb/>נָאר זַיין וִוילֶען אַלֵיין גֶעלְטֶען! <stage type="delivery">(שפעטיש)</stage> אָה!... אַ יוּדישער קאפּף!<lb/><stage type="business">(בעז)</stage> דֶען אִין ווירְקלִיכקֵייט וֶוער אִיז עֶר דֶען? דָאך נָאר אֵיין יוּד!</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0394_a">
+          <speaker>פריסטער</speaker>
+          <p>גֶעוויס! אוּן וֶוען עֶר זָאל זִיך אכטצֶעהן מאל איבּערקעהרען,<lb/>אֵיין יוּד בּלייבּט עֶר דָאך!</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0395_a">
+          <speaker>הויפטמאן</speaker>
+          <p>גַאנְץ נאטִירְלִיך! אַך ווִי פרֵייט מִיך זֵײַן שׁרֶעקלִיכֶע נִידֶערְלאגֶע!</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0396_a">
+          <speaker>פריסטער</speaker>
+          <p>חַ חַ חַ חַ חַ דָאס הַייסְט אַ פאל אראבּ פוּן דֶעם זיעבּעטען<lb/>הִימֶעל בּיז טִיעף אִין דרֶ'ערְד אַרײַן!</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0397_a">
+          <speaker>הויפטמאן</speaker>
+          <p>אוּן ווִי געֶפֶעלְט דִיר זֵײַן אורְטהֵייל וָואס זַיינֵע אַייגֶענֶע לִיפֶען<lb/>האבּען אויסגעשפּראכען?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0398_a">
+          <speaker>פריסטער</speaker>
+          <p>אוּן איבּער ווֶעמֶען? איבּער זַיינֵע אַייגֶענֶע טאָכְטֶער.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0399_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(דִי גַאנְצֶע צַייט מִיט זִיך קעמפפֿענד אוּן זִיך בֶּעהֶערְשֶׁענְד שׁפרִינְגט אִיצט צוּ זֵיי צוּ</stage><lb/><stage type="business">ווילְד אויפשׁרֵייענְד)</stage> נֵיין, אוּנמעגליך! לִיגנֶער! מיֵינֶע טאָכְטֶער זָאגְט אִיהר?<lb/>מַיין קִינְד הָאט דֶער קֶענִיג גֶעמַיינְט? פאַלש אִיז עֶס, יאָ אַזוֹי פאַלש ווִי<lb/>אַייעֶרֶע פרֵיינְדְשׁאפט, עלֶענְדֶע שׁורְקֶען! אִיך האבּ אַייך בּעלוישט, יאָ<lb/>אֵיין יֶעדֶעם וָוארְּט פוּן אַייך האבּ אִיך גֶעהֶערְט.</p>
+        </sp>
+        <pb n="50" facs="0050_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_50.jpg"/>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0400_a">
+          <speaker>פריסטער</speaker>
+          <p><stage type="business">(שפעטיש לאכענד)</stage> נוּ וֶוער עֶס שְׁטֶעהט אוּנְטֶער דֶער וואַנד דֶער<lb/>הֶערְט זַיין אַייגֶענֶע שׁאנְד <stage type="exit">(ביידע שפעטיש לאכענד ביז... אב)</stage>.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0401_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(קוקט זיי נאך פערבּליפט, ציטערט)</stage> לעבּ אִיך? אִיז דָאס אַלֶעס ווירְקלִיכ⸗<lb/>קֵייט? אוּנמעגליך! אָה נֵיין! עֶס אִיז בּלויז אַזוֹי אֵיין טרוימערשיינוּנג!<lb/>מִיך קוועהלְט נָאר אַזוֹי אֵיין פִירְכטֶערְלִיכֶער טרוים!... <stage type="business">(עֶר הֶערְט</stage><lb/><stage type="business">פאלְמִירא'ס שׁטומֶע)</stage> דִיעזֶע שׁטִימֶע!... דִיעזֶע יאמֶערְנְדֶע טהֶענֶער... <stage type="business">(ווילד)</stage><lb/>יאָ עֶס אִיז מַיין קִינְד! מַיין קִינְד וועלְכֶעס וִוירְד אַצִינְד גֶעמארְטֶערְט,<lb/>מִיסהאנְדֶעלְט, אוּן אִיך אִיהר אַייגֶענֶער פָאטֶער האבּ זִי דֶערְצו פֶער⸗<lb/>אוּרטיילט!... אָה פערפלוּכט זֵייט אִיהר ליפּען וֶועלְכֶע קאנֶען אַזוֹי אֵיין<lb/>שֶׁענְדְלִיכֶעס אוּרטייל אויסשפּרעכען! <stage type="business">(מיט הערצרייסענדע שטימע)</stage> אַזוֹי<lb/>אַזוֹי... גיבּט עֶס אַלְזָא דָאך אֵיין עוויגֶער רִיכְטֶער? אוּן דערוּם<lb/>הָאסְט דוּ מִיט מִיר אַזוֹי לאַנְג גֶעווארְט אוּם עֶס מִיר אַצִינְד מִיט צִינְזֶען<lb/>צוּ בּעצאהלען? אַזוי גִיעסט עֶר אוֹיף מִיר אוֹיס זַיין צארְן דוּ אל קנא<lb/>ונוקם! אוֹיף מִיר נָאר אַלֵיין! אִיך האבּ עֶס פֶערְדִיענְט, אִיך מְשוּמָד,<lb/>אִיך מוּמר לְהַכֶעִיס, אבּער וָואס הָאסְט דוּ צוּ מַיין קִינְד? וָואס הָאט<lb/>מַיין קִינְד גֶעזִינְדִיגט? ווארוּם זָאל דִיעזֶער גוּטער ענְגֶעל לֵיידֶען דוּרך<lb/>מיֵינֶע זִינְד? ווארוּם? ווארוּם?... <stage type="business">(שטירצט ארויס יאָמערנד שלוכצענד)</stage><lb/><stage type="setting">פֶערוואנְדְלונְג.</stage><lb/><stage type="setting">(פרֵייער פלאץ — אִין דֶערְמִיט אַיינֶע שׁאנְדְזַיילֶע מִיט אֵיין שׁטַיין בעפאָר,</stage><lb/><stage type="setting">פאַלמיראַ שְׁטֶעהט אויפ'ן שׁטַיין מִיט דִי הֶענְד ארונְטֶערְגֶעבּונְדֶען צוּ דֶער</stage><lb/><stage type="setting">שׁאנְדְזַיילֶע, זִינְגֶענְד, קלאגֶענְד, — פָאלְק פוּן בֵּיידע זַייטעֶן שׁפֶעטִישׁ צַייגֶענְד</stage><lb/><stage type="setting">אוֹיף אִיהר. — דְלִילָה וויטהֶענְד מִיט אַ בֵּייטשׁ, ערְהֶעבּט זִי אוּם פאלְמִירא'ן</stage><lb/><stage type="setting">צוּ פֵייטשֶׁען. — זִמְרִי שׁטִירְצט אַרַיין, ערְבּלִיקט עֶס, וִויל פאלֶען דלִילְה'ן אִין</stage><lb/><stage type="setting">דֶער הַאנּד אוּם אִיהר דִי בֵּייטשׁ צוּ ענְטרֵייסֶען אוּן פאַלט מִיט דֶעם גַאנְצעֶן קֶערְפֶער</stage><lb/><stage type="setting">צוּ דֶער עֶרְד אַניִדעֶר פַאר פאלְמִיר'ס פִיס. — בִּיהנֶע בֶּעלֵייכטֶעט בֶּענְגאלִישׁ).</stage><lb/><stage type="setting">פאָרהאַנג.</stage></p>
+        </sp>
+        <pb n="51" facs="0051_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_51.jpg"/>
+      </div>
+      <div type="act" n="4" xml:id="AlNaharot_Act4">
+        <head>פִיערְטֶער אַקְט.</head>
+        <stage type="setting">(דֶער קֶענִיג זִיצְט אוֹיף דֶעם טְרָאהן, געבּען אִיהם דְלִילָה, הויפּטמאן.</stage>
+        <stage type="setting">האפֿלייטע, פאזשֶׁען עטצ. אַלֶעס מִיט בֶּעכֶער וֵויין אִין דִי הֶענְד).</stage>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0402_a">
+          <speaker>הויפטמאן</speaker>
+          <p>דִיעזֶען בּעכער וֵויין ערהעבּע אִיך צוּ עהרֶען אוּנְזֶערֶע טאפּפערע<lb/>כַלְדֶעעֶר דִי זִיעגֶער וֶועלְכֶע האבּען אוּנְזֶערֶע פֵיינְדֶע דִי פּערזער וַוייט<lb/>צוריקגעטריעבּען פוּן דִי מויערֶען פוּן בּאבּילאן!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0403_a">
+          <speaker>אלע</speaker>
+          <p>הֵייל! הֵייל! הֵייל!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0404_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(האלב בעטרונקען)</stage> אוּן וֶוער הָאט דֶען נוּר אֵיין מינוּט אָן אונְזֶערֶער<lb/>שׁטֶערְקֶע גֶעצווייפֶעלְט? יאָ, דִי מויערְן אוּם בּאבּילאן זֶענֶען אַזוֹי<lb/>שְׁטַארְק בּעפעסטיגט דָאס נִישְט אַמָאל אֵיין ווֶעלְט מִיט פֵיינְדֶע וֶועט<lb/>אַמָאל אִים שׁטאנְדֶע זַיין אוּנְזֶער בּאבּילאן צוּ עראבּערן.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0405_a">
+          <speaker>הויפטמאן</speaker>
+          <p>הֵייל אונְזֶערְן קֶענִיג בּלשצר דֶער זִיעגֶער!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0406_a">
+          <speaker>אלע</speaker>
+          <p>הֵייל! הֵייל! הֵייל!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0407_a">
+          <speaker>קעניג</speaker>
+          <p>דְלִילָה זִינְג עפּיס.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0408_a">
+          <speaker>אלע</speaker>
+          <p>גֶעה דְלִילָה זִינְג.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0409_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="business">(מיט איין בּעכער וויין זינגט)</stage>.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0410_a">
+          <speaker>אלע</speaker>
+          <p><stage type="business">(אפלוידירען)</stage> בּראווא!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0411_a">
+          <speaker>קעניג</speaker>
+          <p>דְלִילָה!</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0412_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="business">(לויפט צו איהם קאקעט)</stage> מַיין קֶענִיג!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0413_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(שוין בערוישט, אומארמט זי)</stage> מַיין פֵייגֶעלֶע, מַיין טאבּעלע! ווִי פֶער⸗<lb/>זִינְדִיגט האבּ אִיך מִיך גֶעגֶען דִיר, אִין דִיר האבּ אִיך געֶקעֶנְט פֶערְגֶעסֶען?<lb/>דִיך מַיין קֶעצֶעלֶע דִיך האבּ אִיך געֶקעֶנְט פֶערְשׁטויסֶען? <stage type="business">(וויטהענד)</stage> אוּן<lb/>צוּליעבּ ווֶעמֶען? צוּליעבּ אַיינֶע יוּדין? מַיין קרוִין האבּ אִיך אִיהר<lb/>אַנגעבּאטען אוּן זִי? זִי הָאט מִיט שימפּף מִיך צורִיקגֶעוויעזֶען <stage type="business">(שׁרֶעקלִיך</stage><lb/><stage type="business">וויטהעָנד)</stage> וואוּ אִיז זִי?</p>
+        </sp>
+        <pb n="52" facs="0052_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_52.jpg"/>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0414_a">
+          <speaker>הויפטמאן</speaker>
+          <p>דָא מַיין קֶענִיג! דָא וֶוערְט זִי געבּראכט ווִי דוּ הָאסְט<lb/>בּעפאהלען.<lb/><stage type="business">(מֶען בּרעֶנגט פַּאלֶמִירַא בלאס, אַלֶע צַייגֶען מִיט דִי פונְגֶער אוֹיף אִיהר שׁטִיל</stage><lb/><stage type="business">רֶעדֶענְד, דָאן בּרעֶנגט מַאן זִמְרִי ווִי וואהנְזִינִיג, בֵּיידע גֶעקלֵיידֶעט מִיט קוטֶעס).</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0415_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(נאך פויזע)</stage> דְלִילָה!...</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0416_a">
+          <speaker>דלילה</speaker>
+          <p>מַיין קֶענִיג!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0417_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צייגט אויף פאלמירא)</stage> זֶעהסט דוּ? דאָס אִיז זִי צוּליעבּ וֶועלְכֶער אִיך<lb/>האבּ דיךְ צוּם טַייפֶעל גֶעשִׁיקט! דִיעזֶע שׁטאלְצֶע יוּדין וֶועלְכֶע הָאט<lb/>נִישְט גֶעוָואלְט מיֵינֶע קֶענִיגִין זַיין, דִי זאָל יֶעצְט דַיינֶע שקלאווין זֵײַן!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0418_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(ערציטערט, וויל פאלען)</stage>..</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0419_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צוּ זמרי)</stage> אוּן דוּ פּאסע אוֹיף! געבּט אִיהם אַיינֶע פּייטשע <stage type="business">(געשיהט)</stage><lb/><stage type="business">(ער נעהמט זי מעכאניש)</stage> יעדֶעס מאַל וֶוען דוּ זֶעהסט פוּן אִיהר אֵיין<lb/>פֶעהלֶער, אַזוי געבּרויכע דִי פּייטשע, האַסטוּ מִיך פֶערְשׁטאנֶען?<lb/>דְלִילָה! מאכֶע אֵיין געבּרויך פוּן דַיין אייגענטהוּם <stage type="business">(ווייזט אויף פאלמירא)</stage></p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0420_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="business">(שטאלץ)</stage> הִיעהֶער צוּ מִיר שקלאווין.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0421_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(געהט לאנגזאם צו)</stage>.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0422_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="business">(בעפעהלענד)</stage> אֵיין בּעכער וֵויין שנעֶל.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0423_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(זוכט מיט די אויגען נאך דעם וויין)</stage>.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0424_a">
+          <speaker>דְלִילָה</speaker>
+          <p><stage type="business">(אונגעדולדיג)</stage> נוּן? ווִי לאַנְג וֶועסְט דוּ מִיך לאזֶען וַוארְטֶען? האסטוּ<lb/>נָאך הַיינְט נִישְט גֶעגֶעסֶען? וואוּ אִיז מַיין בּעכער וֵויין? <stage type="business">(ווַארְפְט אִיהר</stage><lb/><stage type="business">אַ בֶּעכֶער)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0425_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(מיט שאדענפריידע לאכענד)</stage> חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0426_a">
+          <speaker>אלע</speaker>
+          <p>חַ חַ חַ חַ.<lb/><stage type="business">(זִמְרִי פֶערְלִיערְט דִי פֵייטשֶׁע פוּן דֶער הַאנּד, בֵּייסט דִי לִיפֶען, צִיטֶערְט, אוּן</stage><lb/><stage type="business">בּאלְט דִי פויסטֶען פאַר וואוטה, פַּאלֶמִירַא האַט געפוּנען וֵויין אַיינְגֶעשֶׁענְקט</stage><lb/><stage type="business">גיִט דלִילְה'ן).</stage></p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0427_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="delivery">(שרייט)</stage> פארְזִיכטִיג <stage type="business">(היט זיך דאס קלייד)</stage> נֶעם דִיך אִין אכט ווֶעמֶען דוּ<lb/>בּעדיענסט. <stage type="business">(נעמט דעם בעכער)</stage> יֶעצְט פאָרט אוֹיס מיֵינֶע אוַיינֶען!</p>
+        </sp>
+        <pb n="53" facs="0053_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_53.jpg"/>
+        <sp who="#palmira" xml:id="AlNaharot_SP0428_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(וויל אב)</stage>.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0429_a">
+          <speaker>דלילה</speaker>
+          <p>וואוּהין שקלאווין? הִיעהֶער צוּ מִיר! נוּן רִיהר דִיך, בּינד מִיר<lb/>פֶעסטֶער צוּ מיֵינֶע סאנְדאלֶען <stage type="business">(שׁטרֶעקט אוֹיס אֵיין פוס. פַּאלֶמִירַא קנִיעט אוּן</stage><lb/><stage type="business">פאנְגט אָן צוּ בִּינְדֶען)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0430_a">
+          <speaker>קעניג</speaker>
+          <p>בּראווא דְלִילָה! חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0431_a">
+          <speaker>אלע</speaker>
+          <p>חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0432_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(שטיל וויינענד)</stage> ווִי ערגעבּען, ווִי שׁטִיל, ווִי פרוּם אוּן געדוּלדיג זִי<lb/>ערגיבּט זִיך אִיהר שִׁיקזאל! <stage type="business">(שלוכצט)</stage> אָה בּין אִיך דֶען ווערְטה<lb/>אַזוי אֵיין טאָכְטֶער צוּ בּעזיצען? דוּ רֵיינֶער, דוּ הֵיילִיגֶער מַלְאָך פוּן<lb/>דֶעם הִימֶעל <stage type="business">(בליקט מיט וועהמוטה אויף איהר)</stage>.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0433_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="business">(שרייט פלעצליך אויף)</stage> אָה... נִישְט אַזוֹי שְׁטַארְק <stage type="business">(וויטהענד)</stage> טהוּסטוּ<lb/>דאָס צוּפלייס מִיר וֶועה צוּ טְהוּן, דוּ פֶערְדאמְטֶע שקלאווין? <stage type="business">(אַלֶע לאכֶען</stage><lb/><stage type="business">זִי גיִט אִיהר מִיטְ'ן פוס אַ זֶעטץ דָאס פַּאלֶמִירַא פאלְט רִיקווערְטס צור עֶרְד. זִמְרִי</stage><lb/><stage type="business">טְהוּט אֵיין ערְשׁטִיקטֶען שׁמֶערְצֶענְסשׁרֵיי)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0434_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צוּ זמרי)</stage> נוּן ווארוּם טהוּסטוּ נִישְט דַיינֶע פּפליכט ווארוּם מַאכְסְט<lb/>דוּ קֵיין געבּרויך פוּן דֶער פּייטשע? <stage type="business">(ווייזט אויף פאלמירא)</stage>.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0435_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(ווי וואהנזיניג אויפשרייענד)</stage> דִי פּייטשע? יאה, <stage type="business">(הייבט זי אויף)</stage> געבּרויכען<lb/>וִויל אִיך דִי פּייטשע, אבּער נָאר פַאר אַזוֹי אֵיינֶען טאלֶען הוּנד ווִי דוּ<lb/>בּיזט... <stage type="business">(וויל זי איבּער'ן קעניג אויפהייבען)</stage>.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0436_a">
+          <speaker>אלע</speaker>
+          <p><stage type="business">(אויפשרייענד)</stage> אָה! <stage type="business">(מען פאלט איבער איהם שלאגענד און בינדענד)</stage>.</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0437_a">
+          <speaker>פאלמירא</speaker>
+          <p>אָה מַיין פָאטֶער! מַיין ארְמֶער פָאטֶער! אַזוֹי פִיעל אוּנרעכט<lb/>עָר אִיז אִין זַיין לעבּען בּעגאנגען אבּער מַיין פָאטֶער אִיז עֶר דָאך,<lb/>דָאס אִיז גֶעוויס אוּנְזֶער לֶעצטֶעס צוזאמֶען זַיין אוֹיף דִיעזֶער עֶרְד,<lb/>לאו דַיין קִינְד דִיך אוּמארמען, צוּם לֶעצטֶען, צוּם לֶעצטֶען מאל!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0438_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(שלוכצענד)</stage> נֵיין, נִישְט אָן דַיין בּרוּסט, נִישְט אָן דַיין רֵיין עדֶעל הארְץ<lb/>דארפסטוּ צודְרִיקֶען דִיעזֶען אונווירְדִיגֶען! <stage type="business">(ווַארְפְט זִיך אוֹיף דֶער עֶרְד פַאר</stage><lb/><stage type="business">אִיהְרֶע פִיס)</stage> דָא אִין שטויבּ פַאר דַיינֶע פִיס לאָז מִיך לִיעגֶען דוּ הֵיילִיגֶע<lb/>מֶערְטִירֶערִין.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0439_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צארניג)</stage> פאָרט מִיט אִיהם!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0440_a">
+          <speaker>זמרי</speaker>
+          <p>נֵיין קֶענִיג בּלשצר! טריוּמפיערע נָאך נִישְט, לאָז מַיין עֶנְדֶע אוֹיך דִיר<lb/>אַלס ווארנוּנג דִיענֶען, אוֹיך אִיך האבּ איבּער מַיין גָאט אוּן איבּער<lb/>מיֵינֶע ארְמֶע בּרידער אַזוי שפּעטיש גֶעלאכט ווִי דוּ יֶעצְט איבּער מִיר,<lb/>אבּער זֶעה, זֶעה מַיין שֶׁענְדְלִיך מַיין בּיטער עֶנְדֶע, אוּן צִיטֶער אוֹיך דוּ<lb/>פַאר דַיין עֶנְדֶע! <stage type="business">(אבגעפיהרט פון סאלדאטען. פאלמירא בעגלייט איהם שלוכצענד)</stage>.</p>
+        </sp>
+        <pb n="54" facs="0054_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_54.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0441_a">
+          <speaker>קעניג</speaker>
+          <p>וואוהִין שקלאווין? געבּט אַיינֶע הארְפֶע, מַיין גראספאטֶער<lb/>נְבוּכַדְנֶצַר וֶוען עֶר הָאט דִי יוּדען בּעזיעגט הָאט עֶר פוּן זֵײַער בּית<lb/>המקדשׁ פִיעל קאסטבּארע זאכֶען מִיט זִיך אַהערגעבּראכט, אָבּער זֵייט<lb/>דַאמָאלְס לִיעגֶען זֵיי אוּנבּעריהרט אוּן קֵיינֶער הָאט פוּן זֵיי נִישְט אֵיין<lb/>געבּרויך גֶעמאכט, אִיך אבּער, אִיך וִויל עֶס יֶעצְט טהוּן, אִיך וִויל<lb/>איינמאַל זעֶהן וָואס דֶער יוּדישער גאט וֶועט דאצו זָאָגען וֶוען פוּן דִי<lb/>הֵיילֵייגֶע כּלים פוּן בּית המקדשׁ, פוּן דִי זעלבּע כּלים זָאל מיֵינֶע<lb/>מֶעטרֶעסֶע וֵויין טְריִנְקעֶן! הָא נִישְט וֶואהר מַיין דְלִילָה? חַ חַ חַ חַ .</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0442_a">
+          <speaker>אלע</speaker>
+          <p>חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0443_a">
+          <speaker>הויפטמאן</speaker>
+          <p><stage type="business">(צוּ אייניגע פאזשען)</stage> קוּמט! <stage type="exit business">(אב מיט זיי)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0444_a">
+          <speaker>קעניג</speaker>
+          <p>אוּן וועהרֶענְד מִיר פוּן דִיעזֶע יוּדִישֶׁע גֶעפֶעסֶע טְריִנְקעֶן, זָאלֶען מִיר<lb/>אוֹיך יוּדִישֶׁע מוּזיק הֶערֶען נִישְט וֶואהר חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0445_a">
+          <speaker>אלע</speaker>
+          <p>חַ חַ חַ חַ.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0446_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(צו פאלמירא'ן)</stage> שקלאווין! טראג אוּנְז פַאר אֵיין שֶׁעהנֶעם לִיעד<lb/>פוּן צִיוֹן...</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0447_a">
+          <speaker>אלע</speaker>
+          <p>בּראווא!<lb/><stage type="business">(וועהרֶענְד זֵיי זיִנְגעֶן וִוירְד הֶערֵיינְגֶעבּראכט ערְשׁטֶענְס דִיא מנורְה, דָאן פֶער⸗</stage><lb/><stage type="business">שִׁועדֶענֶע גֶעפֶעסֶע אַלֶע נָאך פארְשׁרִיפט דֶער בִּיבֶּעל פֶערְפֶערְטִיגט. קֶענִיג</stage><lb/><stage type="business">אוּן דְלִילָה טְריִנְקעֶן דארויס וֵויין).</stage></p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0448_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(שמייסט אוועק די הארפע אויסשרייענד)</stage> גָאט פוּן יִשְרָאֵל! ווארוּם<lb/>לָאסְט דוּ דֶען פֵיינְד דַיין הַיילִיגֶען נָאמֶען אַזוֹי לֶעסטֶערְן? "למְה יאמרוּ<lb/>הגוִים אַיה אלֹקִיהם“ <stage type="business">(אויין פורְכטבּארֶער דאגערְשׁלאג, עֶס וִוירְד מִיט אמאהל</stage><lb/><stage type="entrance business">פִינְסטֶער. — אִים הינטערגרוּנד ערְשַׁיינְט אֵיין בּלויזע האנְדְשׁרֵייבֶּענְד אָדֶער אַ טאפֶעל</stage><lb/><stage type="business">לָאזְט זִיך אראב מִיט פֵייערִיגֶע בּוכשׁטאבֶּען „מנִי מנא תקל ופרְסִין" אַלֶע שְׁרֵייעֶן</stage><lb/><stage type="business">ערְשׁאקֶען אוֹיף, צַייגֶען אוֹיף דִי בּוכשטאבען)</stage>. — דֶער קֶענִיג לִיעגט אוֹיף דֶער עֶרְד<lb/>אוּן צִיטֶערְט).</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0449_a">
+          <speaker>הויפטמאן</speaker>
+          <p>זֶעהט אוּנְזֶער קֶענִיג!</p>
+        </sp>
+        <pb n="55" facs="0055_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_55.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0450_a">
+          <speaker>קעניג</speaker>
+          <p>ווִי זָאל אִיך מִיר דָאס רֶעטהזֶעל ערְקלֶעהרֶען? רוּפט מִיר הֶער<lb/>מיֵינֶע שׁטֶערְנְזֶעהֶער, מיֵינֶע וואהרְזאגֶער, מיֵינֶע פּריסטער, שנעֶל!</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0451_a">
+          <speaker>הויפטמאן</speaker>
+          <p>מַיין קֶענִיג ווִי אִיך האבּ גֶעהֶערְט הָאט נָאך אִין נבוּכדנצר'ס<lb/>צַייטֶען דֶער יוּד דָנִיאֵל זִיך אִין זאלְכֶע זאכֶען בּעריהמט גֶעמאכט.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0452_a">
+          <speaker>קעניג</speaker>
+          <p>לאָז אוֹיך דֶער יוּך דָנִיאֵל אַהער קוּמען <stage type="exit">(הויפטמאן אב)</stage> רוּפט אוֹיס<lb/>אִין מַיין נָאמֶען, דָאס וֶוער עֶס וֶועט מִיר דִי שׁרִיפט לֶעזֶען אוּן דַייטֶען,<lb/>דֶעם וֶועל אִיך לאזֶען קלֵיידֶען אִין פּוּרפּוּר אוּן מִיט אֵיין גאלְדֶענֶע קֵייט<lb/>אוֹיף זַיין האלְז, אוּן אִיך שֶׁענְק אִיהם אֵיין דרִיטֶעל פוּן מַיין רֵייך.<lb/><stage type="business">(ערבּליקט פאלמירא'ן)</stage> אָה! אִין דִיר פַּאלֶמִירַא האבּ אִיך אִין גַאנְצעֶן<lb/>פֶערְגֶעסֶען, <stage type="business">(ביטענד)</stage> קוּם נֶעהֶער פּאלמירא, דוּ בּיט דָאך יאָ אֵיין קִינְד<lb/>אוֹיס דֶעם יוּדישען פָאלְק, קאנסטוּ מִיר דָאס רֶעטהזֶעל אוִיפלֶעזֶען?<lb/>טהוּע עֶם פּאלמירא, אִיך בּעט דִיך!</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0453_a">
+          <speaker>פאלמירא</speaker>
+          <p>חַ חַ חַ חַ <stage type="business">(טריוּמפיערענד)</stage> דוּ בּיזט דָאס קֶענִיג בּלשצר? וֶואהר⸗<lb/>האפטִיג, אִיך דֶערְקאן דִיך נִישְט מֶעהר, אִיז דָאס דערזעלבּער בּלשצר<lb/>וֶועלְכֶער הָאט עֶרְשְׁט פַאר אַיינִיגֶע מינוּטען אַזוֹי אויסגֶעלאסֶען אוּן<lb/>אַזוֹי שפּעטיש גֶעלאכט איבּער דֶעם יוּדישען גָאט? יֶעצְט לאכסט דוּ<lb/>נִישְט מֶעהר? אַזוי לאך דוּ יֶעצְט מַיין פָאלְק, לאך אוּן פרֵייע דִיך דֶען<lb/>זֶעהֶע, איבּער דִיר וואכט נָאך אִימֶער דַיין גָאט דַיין הִימְלִישֶׁער פָאטֶער!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0454_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(וויטהענד)</stage> אָה פערפלוּכטעס ווייבּ! גלויבּסט דוּ אִיך בּין שׁוֹין<lb/>גֶעפאלֶען אוּן דוּ טריוּמפיערסט שׁוֹין איבּער דֶען גֶעפאלֶענֶען פֵיינְד?<lb/>נֵיין, אַזוֹי אֵיין פרֵיידֶע זאלְסט דוּ נִישְט דערלעבּען! לָאזְט זִי<lb/>פערבּרענען בּיים לעבּענדיגען לייבּ!</p>
+        </sp>
+        <sp who="#palmira" xml:id="AlNaharot_SP0455_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(אומרינגט פון סאלדאטען)</stage> אוּן מִיטֶען אִין דֶען פֵייערְפלאמֶען אַזוֹי<lb/>לאַנְג מַיין אטהֶעם וֶועט מִיר דִיענֶען, וֶועל אִיך נִישְט אוֹיפְהֶערֶען צוּ<lb/>שְׁרֵייעֶן ,,הנְה לא ינוּם ולא יישן שׁומְר ישראַל".<lb/><stage type="entrance">(אויפטריט הויפטמאן, מעלדעט).</stage></p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0456_a">
+          <speaker>הויפטמאן</speaker>
+          <p>דִי פּריסטער אוּן דִי שׁטֶערֶענְזֶעהֶער!<lb/><stage type="entrance">(אויפטריט פריסטער קוליאן, שטערענזעהער).</stage></p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0457_a">
+          <speaker>פריסטער</speaker>
+          <p><stage type="business">(הייבט די הענד)</stage> דֶער זֶעגֶען פוּן דִי גֶעטֶער זָאל אויִסגעֶהן צוּ דַיין<lb/>קאפּ אוּן צוּ אַלֶע אַייעֶרֶע קעפּ...</p>
+        </sp>
+        <pb n="56" facs="0056_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_56.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0458_a">
+          <speaker>קעניג</speaker>
+          <p>הָאט אִיהר מַיין בּעפעהל פֶערְנאמֶען? קאנְט אִיהר דָאס לֶעזֶען אוּן<lb/>דַייטֶען?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0459_a">
+          <speaker>פריסטער</speaker>
+          <p>וָואס קֶאן דַיין הֵיילִיגֶער פּריסטער דֶען נִישְט? <stage type="business">(גֶעהט צור שׁרִיפט</stage><lb/><stage type="business">— רײבט זִיך דִי אוֹיגֶען — שׁטעלְט זִיך אַלֶע מאל אִין אֵיין אנְדֶערֶער זֵייט.</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0460_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(אונגעדולדיג)</stage> נוּן?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0461_a">
+          <speaker>פריסטער</speaker>
+          <p><stage type="delivery">(פערדריסליך אפארט)</stage> נוּ? קֶאן מֶען נִישְט פּלאצען? אַזַא גְרוֹיסֶען<lb/>לאהן צוּ בּעקוּמען פַאר אַזַא קְלֵיינִיגְקֵייט? אוּן אַזַא קְלֵיינִיגְקֵייט נִישְט<lb/>צוּ קאנֶען?</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0462_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(בעז)</stage> ווארוּם שְׁוַוייגְסְט דוּ?</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0463_a">
+          <speaker>פריסטער</speaker>
+          <p><stage type="business">(ערשראַקען געהט צו איהם)</stage> דֶער זֶעגֶען פוּן דִי הֵיילִיגֶע גֶעטֶער<lb/>זָאל...</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0464_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(ווייטהענד)</stage> צור הֶעלֶע מִיט דִיר! <stage type="business">(פריסטער שפרינגט צוריק ערשראקען)</stage>.<lb/><stage type="entrance business">(אויפטריט הויפטמאן, מעלדעט).</stage></p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0465_a">
+          <speaker>הויפטמאן</speaker>
+          <p>דֶער יוּדע דָנִיאֵל!<lb/><stage type="entrance">(אויפטריט דניאל).</stage></p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0466_a">
+          <speaker>קעניג</speaker>
+          <p>דָנִיאֵל! אִיז דִיר מַיין בּעפעהל בּעקאנט?</p>
+        </sp>
+        <sp who="#daniel" xml:id="AlNaharot_SP0467_a">
+          <speaker>דניאל</speaker>
+          <p>מַיין קֶענִיג! דַיינֶע גֶעשֶׁענְקֶע מֶעגסט דוּ פַאר דִיר בּעהאלטען, יעדאך<lb/>דִי שׁרִיפט לֶעזֶען אוּן דַייטֶען וֶועל אִיך דִיר אוּנענטגעלטליך, <stage type="business">(פראפעטיש)</stage><lb/>הֶערֶע מִיך בּלשצר! נִישְט פְרֶעמְד אִיז דִיר דִי פוּרכטבּארע שׁטראפֶע<lb/>וֶועלְכֶע דַיין גרויספאטֶער נבוּכדנצר הָאט ערְלִיטֶען בּיז עֶר הָאט<lb/>אנֶערְקֶענְט דָאס עֶס הֶערְשׁט אוֹיף דֶער ווֶעלְט אַיינֶער וֶועלְכֶער קֶאן<lb/>אוֹיך מִיט קֶענִיגֶע טהוּן וָואס עֶר וִויל! אוּן דֶענְנאך הָאסְט דוּ גֶעהַאט דִי<lb/>פרֶעכהֵייט דִיעזֶען אֵיינֶען וואהרֶען גָאט צוּ לֶעסטֶערְן, זֵײַן פָאלְק<lb/>צוּ מִיסהאנְדְלֶען, אוּן דִיעזֶע הֵיילֵייגֶע כּלים פוּן זֵײַן טעמפּעל צוּ<lb/>ענְטווייהֶען! דארוּם לָאזְט דִיך גָאט דַיין שִׁיקזאל וִויסֶען דוּרך דִיעזֶע<lb/>שׁרִיפט! <stage type="business">(צייגענד)</stage> מנא מנא גֶעצֶעהלְט הָאט גָאט דִי יָאָהרעֶן פוּן דַיין<lb/>רעגיערוּנג אוּן מַאכְט אִיהר אַצִינְד אֵיין עֶנְדֶע! תּקל גֶעוואגֶען הָאט גָאט<lb/>דַיינֶע טהאטֶען אוּן דָאך צוּ לֵייכְט גֶעפונְדֶען! וּפרסין צוּטיילט וִוירְד<lb/>דַיין קֶענִיגרֵייך צווישֶׁען דַיינֶע צְוֵויי פֵיינְדֶע כּורש אוּן דרִיושׁ! <stage type="business">(טראמ⸗</stage><lb/><stage type="business">פֶעטֶענְשׁאל מִיט פויקֶען אוּן גֶעשׁרֵיי)</stage>.</p>
+        </sp>
+        <pb n="57" facs="0057_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_57.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0468_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(און אלע ערשרעקען)</stage> וָואס אִיז דָאס?</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0469_a">
+          <speaker>הויפטמאן</speaker>
+          <p><stage type="business">(שטירצט אריין יאמערנד)</stage> רֶעטֶעט אַייך!</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0470_a">
+          <speaker>אלע</speaker>
+          <p>וָואס?</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0471_a">
+          <speaker>הויפטמאן</speaker>
+          <p>כּורש הָאט אוּנְז פּלעצליך איבּערראשט! בּאבּילאן אִיז<lb/>גֶעפאלֶען.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0472_a">
+          <speaker>קעניג</speaker>
+          <p>ווִי?</p>
+        </sp>
+        <sp who="#hoyptman" xml:id="AlNaharot_SP0473_a">
+          <speaker>הויפטמאן</speaker>
+          <p>מִיר זֶענֶען בּעזיענט! מִיר זֶענֶען פֶערְלארֶען. <stage type="business">(אַלֶע לֶערְמֶענְד אוּ</stage><lb/><stage type="exit business">שׁרֵייענְד אִין פֶערְשִׁיעדֶענֶע זַייטעֶן אַב)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0474_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(בלייבט אליין ווי געלעהמט אויס איבערראשונג)</stage> נֵיין! נֵיין! נֵיין זָאג אִיך!<lb/>דאַס אִיז נָאר נִישְט מֶעגלִיך! <stage type="delivery">(שרייט)</stage> לאָזט אַלע זאַמלען צוּם<lb/>קאמפּף! אַלֶע אהנֶע אוִיסנאהמֶען! מוּטה מיֵינֶע בּראווע כַלְדֶעעֶר,<lb/>כּורש מוּז נָאך פַאר מיֵינֶע פִיס לִיעגֶען! <stage type="business">(וִויל אַב, עֶס קוּמְט אִיהם אַ קֶעגֶען</stage><lb/><stage type="business">זִמְרִי אבּגֶערִיסֶען, עֶס שׁלֶעפט זִיך אִיהם נָאך דִי שׁטִיקֶער קֶעטֶען)</stage>.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0475_a">
+          <speaker>זמרי</speaker>
+          <p>דָאס ערלעבּסט דוּ נִישְט מֶעהר!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0476_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(ערשראקען)</stage> וֶוער בּיזט דוּ? הָאט דִיך דִי הֶעלֶע אויסגעשפּיגען?</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0477_a">
+          <speaker>זמרי</speaker>
+          <p>יאָ דֶען דָאס פוּרכטבּארע גֶעפֶענְגנִיס אִין וֶועלְכֶער דוּ הָאסְט מִיך<lb/>גֶעלאזט אַרַיין ווַאַרְפעֶן אִיז גֶעראדֶע ווִי דִי הֶעלֶע! אבּער נִישְט אוּמזיסט<lb/>הָאט מִיר נָאך גָאט אזוִיפִיעל קראפט געגעבּען אוּם מִיך גֶעוואלְטזאם<lb/>דארויס צוּ בּעפרייען! נָאך אַיינֶע גוּטע טהאט בּעגעהען צוּ קאנֶען<lb/>פַאר מַיין טוֹידֶט האבּ אִיך מִיך בּיי גָאט געבּעטען אוּן עֶר הָאט מַיין<lb/>געבּעט דֶערְהֶערְט נָאך אַיינֶע גוּטֶע טהאט — דִי לֶעצְטֶע! דִי לֶעצְטֶע!<lb/><stage type="business">(ווארפט איהם צום דער ערד, ווארגט איהם)</stage>.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0478_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(וועהרט זיך)</stage> פערפלוּכטער יוּד לאָז מִיך צוּרוּה!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0479_a">
+          <speaker>זמרי</speaker>
+          <p>וואוּ אִיז מַיין קִינְד? אִיז עֶס וֶואהר דָאס דוּ הָאסְט בּעפאהלען זִי<lb/>צוּ לאזֶען פערבּרענען? אִיז עֶם וֶואהר?</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0480_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(ערשטיקט)</stage> לוִיף... שנעֶל... נָאך... קֶענֶען... רֶעטֶען... לוִיף... שנעֶל!</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0481_a">
+          <speaker>זמרי</speaker>
+          <p>חַ חַ חַ חַ אַזוי ענְגסטלִיך בּיזט דוּ אוּם אִיהְרֶע רֶעטונְג? דֶענְקסט דוּ<lb/>דיךְ אַזוי פוּן מִיר צוּ בּעפרייען? יאָ אִיך לויף, אבּער נִישְט פְרִיהֶער<lb/>בּיז דוּ וֶועסְט דַיין לֶעצטֶען אטֶעם אויסגֶעהוִיכט האבּען! <stage type="business">(ציִהט דֶען קֶענִיגס</stage><lb/><stage type="business">זעבּעל אוּן שׁטֶעכט אִיהם מֶעהרֶערֶע מאל)</stage> אַזוֹי אַזוֹי... חַ חַ חַ חַ ,,כן יאָבדוּ כּל<lb/>אויביך ד' אוּן אַצינד צוּ מַיין קִינְד, צוּ מַיין קִינְד <stage type="business">(מִיט דֶעם זֶעבֶּעל אִין דֶער</stage><lb/><stage type="exit">הַאנּד, אַב)</stage>.</p>
+        </sp>
+        <pb n="58" facs="0058_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_58.jpg"/>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0482_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(אויף דער ערד זיך וועלצענד)</stage> הִילְפֶע! הִילְפֶע! וואוּ זֶענְט אִיהר אַלֶע?<lb/><stage type="entrance">(אויפטריט דלילה. מעדכען).</stage></p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0483_a">
+          <speaker>דלילה</speaker>
+          <p>שנעֶל מִיר נָאך! דָארְט אִיז אֵיין אונְטֶעראִירְדְשֶׁער גאנְג דָארְט<lb/>קאנֶען מִיר פַאר דֶען פֵיינְד ענְטרִינֶען, קוּמט!</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0484_a">
+          <speaker>קעניג</speaker>
+          <p>דְלִילָה... קוּם אַהער צוּ מִיר! הֶעלְפֶע דַיין קֶענִיג.</p>
+        </sp>
+        <sp who="#delila" xml:id="AlNaharot_SP0485_a">
+          <speaker>דלילה</speaker>
+          <p><stage type="business">(פון ווייטען)</stage> מַיין לעבּען אִיז מִיר ליעבּער <stage type="exit business">(אב מיט די מעדכען)</stage>.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0486_a">
+          <speaker>פּריסטער</speaker>
+          <p><stage type="business">(לויפט זיי נאך)</stage> דְלִילָה! דְלִילָה נוּ וָוארְּט אוֹיף מִיר דֶען הַיילִיגֶען<lb/>פּריסטער.</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0487_a">
+          <speaker>קעניג</speaker>
+          <p>פּריסטער... הֶעלְף מִיר אוִיפשׁטֶעהן אִיך בּין טֶעדְטלִיך פֶערוואונְדֶעט.</p>
+        </sp>
+        <sp who="#kulyan" xml:id="AlNaharot_SP0488_a">
+          <speaker>פריסטער</speaker>
+          <p>אִיך האבּ דִיך אִין דר'ערְד <stage type="delivery">(שרייט)</stage> דְלִילָה... דלִילְה'נִיו <stage type="exit">(אב)</stage>.<lb/><stage type="business">(טראמפעטענשאל מיט פויקען. אליקים'ס שטימע פון דרויסען).</stage></p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0489_a">
+          <speaker>אליקים</speaker>
+          <p>יְחִי המְלְך כּורש.</p>
+        </sp>
+        <sp who="#alle" xml:id="AlNaharot_SP0490_a">
+          <speaker>שטימען</speaker>
+          <p>הידד! הידד!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0491_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(פון דרויסען)</stage> בּעזעצט אַלֶע טוירֶען בּעוואכט אַלע אויסגֶענְגֶע, לָאזְט<lb/>נִיעמאנְדֶען ענְטרִינֶען <stage type="entrance business">(ערשיינט געפֿאלגט פון פערזער)</stage> דָא, דָא אִיז דֶער<lb/>טִיראן!... שטערבּענד? אִיז שׁוֹין אֵיין אנְדֶערֶער מִיר צוּפאר געקוּמען?<lb/>אוּן מיֵינֶע פּאלמירא? <stage type="business">(זוכט אין אלע זייטען)</stage>. וָואס אִיז אוֹיס מַיין פּאלמירא<lb/>גֶעוְוארֶען?</p>
+        </sp>
+        <sp who="#belshatsar" xml:id="AlNaharot_SP0492_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(מיט לעצטער קראפט)</stage> דַיינֶע פּאלמירא? דַיינֶע? חַ חַ חַ חַ דָאן האבּ<lb/>אִיך ווענִיגסטֶענְס מיֵינֶע ראכֶע! הֶערֶע יוּדע אוּן שׁוידֶערֶע! דַיינֶע<lb/>פּאלמירא אִיז שׁוֹין אַצִינְד אֵיין הוִיפֶען אַשע.</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0493_a">
+          <speaker>זמרי</speaker>
+          <p><stage type="business">(פון דרויסען שרייענד)</stage> נֵיין טִיראן דוּ לִיענְסט <stage type="business">(שׁטִירְצט אַרַיין, דִי קלֵיידֶער</stage><lb/><stage type="business">צורִיסֶען דָאס גֶעזִיכְט מִיט בּלוטִיגֶע וואוּנְדֶען עֶר הַאלְט דִי אהנְמֶעכטִיגֶע פַּאלֶמִירַא</stage><lb/><stage type="business">אוֹיף דִי הֶענְד, מִיט לֶעצטֶער קראפּט אַייכשׁרֵייענְד אוּן וויינֶענְד פאַר פרֵיידֶע דָא אִין</stage><lb/><stage type="business">מַיין קִינְד גֶערֶעטֶעט! (בריכט צוזאמען פאלט צו זרובבל'ס פיס)</stage></p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0494_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(ערגרייפט פאלמירא)</stage> פּאלמירא! מַיין ענְגֶעל! מַיין זִיסֶעס ווייבּ!...<lb/>דרִיקט זִי צוּ דֶער בּרוסט קִישֶׁענְד).</p>
+        </sp>
+        <pb n="59" facs="0059_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_59.jpg"/>
+        <sp who="#palmira" xml:id="AlNaharot_SP0495_a">
+          <speaker>פאלמירא</speaker>
+          <p><stage type="business">(ערוואכט, דערזעהט זמרי)</stage> מַיין פָאטֶער... רֶעטֶע מַיינֶען פָאטֶער!<lb/>זֶעהֶע זַיינֵע וואוּנדען! זַיין לעבּען הָאט עֶר פַאר מַיינֶעם געאפּפערט....</p>
+        </sp>
+        <sp who="#zimri" xml:id="AlNaharot_SP0496_a">
+          <speaker>זמרי</speaker>
+          <p>מיֵינֶע לֶעצְטֶע טהאט... מיֵינֶע לֶעצְטֶע... גוּטע... טהאט... לעבּט<lb/>גלִיקלִיך מיֵינֶע קִינְדֶער... גֶעדֶענְקְט צוּם גוּטֶען אַייערְן פָאטֶער!<lb/><stage type="business">(שטארכט)</stage>.<lb/><stage type="business">(גראסער קראך, דער הינטערגרוּנד פערשווינדעט מען זעהט איינען פרייען פלאטץ).</stage><lb/><stage type="setting">פאָרהאַנג.</stage></p>
+        </sp>
+        <pb n="60" facs="0060_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_60.jpg"/>
+      </div>
+      <div type="epilog" xml:id="AlNaharot_Epilog">
+        <head>עֶפִּילָאג</head>
+        <stage type="setting">(אלִיקִים'ס הויז. — אֶלְיָקים קוּמְט זִיגֶענְדִיג טאנְצֶענְד הַאלְט בַּיי דֶער הַאנּד</stage>
+        <stage type="setting">יְהוּדִית).</stage>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0497_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(אונמיטען טאַנצען)</stage> אבּער יהוּדית'ל, דִי טַאנְצְט נִישְט? דִי שלאפסט<lb/>מִיט חֵשְק! <stage type="business">(טאנצט מיט איהר שטארקער און איין פערגאמענט פאלט ארויס פון ביזעם)</stage>.</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0498_a">
+          <speaker>יהודית</speaker>
+          <p>טאטעניוּ הָאסְט עפּיס פארְלוִירֶען <stage type="business">(הייבט אויף)</stage> וָואס אִיז דָאס?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0499_a">
+          <speaker>אליקים</speaker>
+          <p>האבּ אִיך דִיר נָאך נִישְט דֶערְצֶעהלְט? הֶער טֶעכטֶערִיל, <stage type="business">(לעזט)</stage><lb/>,,כה אָמר כורְשׁ מֶלֶך פּרס“ אַזוי זָאגְט כּורש דֶער קֶענִיג פוּן פּערזיען!<lb/>אַלע קֶענִיגרֵייבֶּע דֶער ווֶעלְט הָאט מִיר גָאט געגעבּען אוּן עֶר הָאט מִיר<lb/>געבּאטען פַאר אִיהם אֵיין הויז צוּ בּויען אִין ירוּשלים אִין דֶעם לַאנְד<lb/>יהוּדא! <stage type="business">(צוּ איהר פרעהליך)</stage> דָאס מַיינְט עֶר אַ נֵיי בּית המְקדְשׁ! וֶוער פוּן<lb/>אַייך פוּן דֶעם יוּדישען פָאלְק עֶם וִויל נָאך ירוּשלים צוּריקגעהן זָאל<lb/>געֶהן מִיט גָאט! וֶוער אבּער עֶס וִויל דָא צוּרִיק בלייבּען, זָאל מִיט⸗<lb/>שׁטַייערְן גאלְד אוּן זילבּער, אוּן פוּן אַלֶעס וָואס עֶר פֶערְמַאגְט, אוּם<lb/>מיטצוּהעלפען גאטס הויז וִוידֶער אויפצוּבּויען! <stage type="business">(שְרֵייט אוֹיס אוִיסֶער זִיך</stage><lb/><stage type="business">פַאר שׁמְחה)</stage> גֶעוָואלְט! געוואָלט שְרֵיי אִיך! אִיך האבּ מוֹרָא אִיך זָאל<lb/>חלֹילה נִישְט משוּגע וֶוערֶען פַאר שׁמְחה, מִיט חֵשְק טֶעכטֶערִיל <stage type="business">(טאנצט)</stage><lb/>אָה וָואס אִיז דָאס? אַזוֹי פרייסטוּ דִיך אוֹיף דֶער בּשוּרה טוֹבָה?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0500_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(הליבעט)</stage> וואָס דֶען אִיך פרֵיי מִיך נִישְט? גֶעוויס טאטעניוּ, גֶעוויס<lb/>אִיז אוֹיף מִיך אוֹיך אֵיין שׁמְחה <stage type="business">(חליבעט)</stage>.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0501_a">
+          <speaker>אליקים</speaker>
+          <p>אַ שׁמְחה מִיט דֶעם ניגוּן פוּן קִינות?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0502_a">
+          <speaker>יהודית</speaker>
+          <p>אוֹי טאטעניוּ! אִיך האבּ מוֹרָא אַז אִיך וֶועל דִי שׁמְחה חָלִילָה<lb/>נִישְט דערלעבּען.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0503_a">
+          <speaker>אליקים</speaker>
+          <p>אוֹי וֶועה אִיז דִיר קינדעניוּ, גָאט אִיז מִיט דִיר! וָואס רעדסטוּ?<lb/>פיהלסטוּ דיךְ חָלִילָה קְרַאנְק?</p>
+        </sp>
+        <pb n="61" facs="0061_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_61.jpg"/>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0504_a">
+          <speaker>יהודית</speaker>
+          <p>אִיך ווֵייס נִישְט!</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0505_a">
+          <speaker>אליקים</speaker>
+          <p>וָואס הַייסְט? דִי וֵוייסְט גָאר נִישְט צוּ דִי בּיזט קְרַאנְק?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0506_a">
+          <speaker>יהודית</speaker>
+          <p>אִיך ווֵייס נִישְט טאטעניוּ צִי דָאס וָואס אִיך פִיהל צִי הַייסְט דָאס<lb/>אַ קרֶענְק צוּ נֵיין.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0507_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(ענגסטליך)</stage> וואָסזשע פיהלסטוּ? יהוּדית'ל נֶעהם מִיר נִישְט אַרויס<lb/>דִי נְשָמָה, זָאג דַיין טאטֶען וָואס דוּ פִיהלְסט?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0508_a">
+          <speaker>יהודית</speaker>
+          <p>עֶס בּרענט מִיך אִים הארְץ.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0509_a">
+          <speaker>אליקים</speaker>
+          <p>זָאל אִיך דִיר געבּען וואסֶער?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0510_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="delivery">(וויינט)</stage> אָה נִישְט אַלֶע וואסֶערְן דֶער ווֶעלְט קֶענֶען לֶעשֶׁען אַזַא<lb/>פֵייער.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0511_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(קוקט זי אן)</stage> אָה? מיינסטוּ נִישְט אָפשר בּן כּספּיס זוּנדעל? אִיז<lb/>עֶר דֶער מַאכעֶר?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0512_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(זיפצט)</stage> אוֹי דוד'ל....</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0513_a">
+          <speaker>אליקים</speaker>
+          <p>הָאבּ אִיך דִיר נִישְט אנְגֶעזאגט אַז דוּ זאלְסט דִיר אִיהם אַרויס⸗<lb/>שְׁלָאָגעֶן פוּן דַיינֶע גֶעדאנְקֶען? אַזוי פאלגסטוּ אַ טאטֶען?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0514_a">
+          <speaker>יהודית</speaker>
+          <p>גֶעוויס פאלְג אִיך דִיך, אִיך הַאלְט אִיהם אִין ארויסשׁלאגֶען פוּן<lb/>מיֵינֶע גֶעדאנְקֶען.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0515_a">
+          <speaker>אליקים</speaker>
+          <p>נוּ?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0516_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="delivery">(וויינט)</stage> עֶר הָאט זִיך אראנְגֶעצוִיגֶען אוּן וִויל נִישְט אַרויס!<lb/><stage type="entrance">(אויפטריט זרובבל)</stage></p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0517_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(דערזעהט איהם שרייט אויף)</stage> גֶעווַאלְד! וָואס פַאר אַ טהֵייערְן גַאסְט<lb/>זֶעה אִיך בּיי מִיר אִין שטוּבּ <stage type="business">(פערנייגט זיך)</stage> בּרוּך הבּא... וֶועה אִיז מִיר<lb/>בּרוּך הבּא הוּנְדֶערְט טוֹיזֶענְד מִילִיאנֶען מָאהל בּרוּך הבּא, טֶעכטֶערִיל,<lb/>שנעֶל אַ בּענקיל! זֵיי מִיר טוֹיזֶענְד מָאהל מוֹחֵל ערהאַבּענער זְרוּבָּבֶל!<lb/>זֵיי מִיר מוֹחֵל וָואס אִיך שׁטֶעל דִיר נִישְט אַגאלדענע שטוהל, הש"י<lb/>אִיז יודֶע האמְת אִיך האבּ נִישְט.<lb/><stage type="business">(יְהוּדִית בּרעֶנגט אַ הִילְצֶערְן בֶּענְקִיל, אֶלְיָקים פראשֶׁעט אוּן ווישט עֶס</stage><lb/><stage type="business">אפ אוּן שׁטעלְט עֶס זרובבל'ן)</stage>.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0518_a">
+          <speaker>אליקים</speaker>
+          <p>אוֹי אִיך פִינְסטֶערֶער דלוּת! מִיט וָואס נֶעהם אִיך אוֹיף אַזַא<lb/>טהֵייערְן גַאסְט... <stage type="business">(פראשעט אפ דעם שטויב פון זיינע קליידער קישט זיין מאנטעל)</stage>.</p>
+        </sp>
+        <pb n="62" facs="0062_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_62.jpg"/>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0519_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(גוטמוטהיג לאכענד)</stage> נִישְט אַזוֹי איבּעראשט אֶלְיָקים, אַיינֶע וויכ⸗<lb/>טִיגֶע זאכֶע האַט מִיך צוּ דִיר געבּראכט.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0520_a">
+          <speaker>אליקים</speaker>
+          <p>צוּ מִיר? צוּ דֶעם קַבְּצָן צוּ דֶעם גָאר נִישְט?</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0521_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(גלעט יהודית'ל)</stage> אִיז זִי דַיין טאָכְטֶער?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0522_a">
+          <speaker>אליקים</speaker>
+          <p>אַיינְס אוּן אַ רֶעכטס! <stage type="business">(שטיל צו איהם)</stage> אַ כּשרה נְשָמָה! אַ צדְקת!<lb/>אַזַא יָאהר אוֹיף דֶעם טאטֶען <stage type="business">(שטיל צו איהר)</stage> דָאס אִיז דָאך זְרוּבָּבֶל!<lb/>דֶער גְרויִסעֶר זְרוּבָּבֶל!</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0523_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(ברימט צו זרוּבבל)</stage> בּרוּך הבּא בּשם ד'!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0524_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(קישט איהר שטערן)</stage> זָאג מִיר אֶלְיָקים בּעפאר מִיר פֶערְלאסֶען בּא⸗<lb/>בּילאן אוּם נָאך אֶרֶץ יִשְרָאֵל אוִיסצואוואנְדֶערְן וועסטוּ נִישְט ווילִיג<lb/>זַיין דַיין טֶעכטֶערִיל צוּ פֶערְזארְגֶען?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0525_a">
+          <speaker>אליקים</speaker>
+          <p>יהוּדית'ל גֶעה אַרויס.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0526_a">
+          <speaker>זרובבל</speaker>
+          <p>אָה נֵיין אִים גֶעגֶענְטהֵייל! זִי זָאל דאבּיי זַיין, אוּן אוֹיך אִיהְרֶע<lb/>איינוויליגוּנג געבּען צוּ דֶעם חָתָן ווֶעלְכֶען אִיך וִויל אִיהר געבּען.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0527_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(אויסער זיך)</stage> וואַס טהוּט זִיך מִיט מִיר?... דֶער גְרויִסעֶר זְרוּבָּבֶל<lb/>קוּמְט צוּ מִיר אִין מַיין קבּצנ'ישֶׁער שטיעבּ מִיט אַ חָתָן פַאר מײַן<lb/>טֶעכטֶערִיל? גאטעניוּ מַיין פֶערְשְׁטַאנְד שְׁטֶעהט מִיר שׁטִיל!</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0528_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="delivery">(לאכט)</stage> וַוייל דֶער חָתָן אִיז מַיין זוּהן.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0529_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(קוּקט איהם אן פערוואונדערט)</stage> אָה?!...</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0530_a">
+          <speaker>זרובבל</speaker>
+          <p>דָאס הַייסְט מַיין אדאפּטיערטער זוּהן, עֶר אִיז אַ יתום אוּן אִיך בּין<lb/>דוּרך גֶעוויסֶע אוּרזאכען פערפּפליכטעט פַאר אִיהם צוּ זארְגֶען אוּן בּיי<lb/>אִיהם פאטֶערְשׁטֶעלֶע צוּ פֶערְטרֶעטֶען! הכּלל זָאג מִיר אֶלְיָקים ווילְסט<lb/>דוּ מִיך האַבּען פַאר אַ מחוּתן?</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0531_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(אויסשרייענד)</stage> גֶעווַאלְד אויבּ אִיך וִויל דֶעם בּעריהמטען זרוּבּבל<lb/>פַאר מַיין מחוּתן? גיבּ מִיר אַ שׁטֶעקֶען אוּן זָאג דֶער שׁטֶעקֶען זָאל זֵײַן<lb/>דַיין אַיידעֶם! וואָס זָאגְסְט דוּ טאָכְטֶער?</p>
+        </sp>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0532_a">
+          <speaker>יהודית</speaker>
+          <p><stage type="business">(פרום וויינענדיג)</stage> אַז אַ טַאטֶע הַייסְט נעֶמעֶן אַ שׁטֶעקֶען מוּז מֶען נעֶמעֶן<lb/>אַ שׁטֶעקֶען.</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0533_a">
+          <speaker>זרובבל</speaker>
+          <p>אָה נֵיין מַיין קִינְד! עֶס אִיז וֶואהר אֵיינֶען פָאטֶער מוּז מֶען<lb/>גֶעהארְכֶען, אבּער אִין דִיעזֶעם פאל הַייסְט עֶס „נקרא לנֶערה ונְשׁאלְה<lb/>את פּיה" הַכְּלַל פְרִיהֶער וִויל אִיך דִיר דֶען חָתָן פארְשׁטֶעלֶען, אוּן דָאן<lb/>הֶערֶען אויבּ עֶר געֶפֶעלְט דִיר <stage type="business">(רופט)</stage> חָתָן דומְה למֶלֶך!<lb/><stage type="entrance">(אויפטריט דוד'ל).</stage></p>
+        </sp>
+        <pb n="63" facs="0063_Al naharot Bavel - biblishes muzikdrama in 4 akten zamt epilog -1909 -1-BN_63.436_0001_Page_63.jpg"/>
+        <sp who="#yehudis" xml:id="AlNaharot_SP0534_a">
+          <speaker>יהודית</speaker>
+          <p>דוד'ל?....</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0535_a">
+          <speaker>דוד</speaker>
+          <p>יהוּדית?!... <stage type="business">(אומארמונג)</stage>.</p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0536_a">
+          <speaker>אליקים</speaker>
+          <p><stage type="business">(ערשטוינט)</stage> עֶר נָאר? בּן כּספּי'ס זוּהנ'דל?</p>
+        </sp>
+        <sp who="#zerubavel" xml:id="AlNaharot_SP0537_a">
+          <speaker>זרובבל</speaker>
+          <p><stage type="business">(טרויריג)</stage> אִיך האבּ אִיהם צוּם יתום גֶעמאכט אוּן עֶר אִיז אַצִינְד<lb/>קִינְד <stage type="business">(נעמט אליקימ'ן געהען ביידע צו די קינדער לעגען די הענד און זענגען זיי)</stage></p>
+        </sp>
+        <sp who="#elyakim" xml:id="AlNaharot_SP0538_a">
+          <speaker>אֶלְיָקים</speaker>
+          <p>זָאג נוּר דוּ שקוּץ! געהסטוּ אוֹיך מִיט אוּנז קֵיין אֶרֶץ יִשְרָאֵל?</p>
+        </sp>
+        <sp who="#dovid" xml:id="AlNaharot_SP0539_a">
+          <speaker>דוד</speaker>
+          <p>אפילוּ אִין דֶער מדבּר, אַפילוּ אִין עק ווֶעלְט, נוּר מִיט מַיין יהוּדית'ל.<lb/><stage type="business">(אֶלְיָקים זְרוּבָּבֶל גֶעהֶען שׁטִיל רֶעדֶענְד אַב, דָוִד אוּן יהודִית'ל קֶעהרֶען זִיך</stage><lb/><stage type="business">צוּרִיק אוּם אֶלְיָקים אוֹיך)</stage>.<lb/><stage type="setting">פערוואַנדלונג.</stage><lb/><stage type="setting">(פרֵייער פלאטץ, אִים הינטערגרוּנדע דֶער פראכט פונ'ם טעמפּעל פֶערְגאלְדֶעטֶע</stage><lb/><stage type="setting">טהִירֶען מִיט שׁנִיטצֶערֵיי עפֶעקטפאל בֶּעלֵייכטֶעט, איבּער דִי טהִירֶען אוִיפגֶע⸗</stage><lb/><stage type="setting">שׁרִיעבֶּען ,,זה השער לד' צדִיקִים יבואו בו", יוּדֶען, פרויען, קִינְדֶער, קאמֶעלֶען</stage><lb/><stage type="setting">טהֵיילווייזֶע גאלְדֶענֶע מִיט גֶעפֶעק, דָנִיאֵל קוּמְט אַרויס פונ'ם טֶעמְפֶעל אִין</stage><lb/><stage type="setting">אַ טלִית, אַליקים דָוִד יְהוּדִית יוּדֶען אַלֶע מִיט ספרִי תורות אִין דֶער</stage><lb/><stage type="entrance business">האַנד דָנִיאֵל זֶעגֶענְט זֵיי, צוּם שלוס ערְשַׁיינְט זְרוּבָּבֶל פאַלמירא מִיט</stage><lb/><stage type="setting">פאהנֶען פָאן וַוייסֶער זַיידֶע, מִיט אֵיין גאלְדֶענֶען מגן דָוִד אִין דֶער מִיטֶע דָאס</stage><lb/><stage type="setting">וָוארְּט צִיוֹן).</stage><lb/><stage type="setting">פאָרהאַנג.</stage></p>
+        </sp>
+        <trailer>עֶנְדֶע.</trailer>
+        <pb n="64" facs="30627681.jpg"/>
+        <pb n="65" facs="30627686.jpg"/>
+        <pb n="66" facs="30627687.jpg"/>
+        <pb n="67" facs="30627688.jpg"/>
+        <pb n="68" facs="30627689.jpg"/>
+      </div>
+    </body>
+  </text>
+</TEI>

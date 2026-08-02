@@ -1,0 +1,2219 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-mishke-mashke">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">מישקע מאשקע</title>
+        <title type="sub">Mishke Mashke</title>
+        <author>Joseph Lateiner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>מישקע מאשקע</title>
+          <author>Joseph Lateiner</author>
+          <publisher>Farlag "Kultur" (Dzika 13)</publisher>
+          <pubPlace>Warsaw</pubPlace>
+          <date>1911</date>
+          <note type="repository">Biblioteka Narodowa (Polona)</note>
+          <idno>II 65.675</idno>
+          <idno type="transkribus">https://app.transkribus.org/collection/18874/doc/828537</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="bising">
+            <persName>ביסינג</persName>
+          </person>
+          <person xml:id="monkadshu">
+            <persName>מאנקאדזשאו</persName>
+          </person>
+          <person xml:id="natanzon">
+            <persName>נאטאנזאהן</persName>
+          </person>
+          <person xml:id="emilye">
+            <persName>עמיליע</persName>
+          </person>
+          <person xml:id="karl">
+            <persName>קארל</persName>
+          </person>
+          <person xml:id="sharlata">
+            <persName>שארלאטא</persName>
+          </person>
+          <person xml:id="mashke">
+            <persName>מאשקע</persName>
+          </person>
+          <person xml:id="mishke">
+            <persName>מישקע</persName>
+          </person>
+          <person xml:id="lieberman">
+            <persName>ליעבערמאן</persName>
+          </person>
+          <person xml:id="mina">
+            <persName>מינא</persName>
+          </person>
+          <person xml:id="sala">
+            <persName>סאלא</persName>
+          </person>
+          <person xml:id="tirale">
+            <persName>טיראללע</persName>
+          </person>
+          <person xml:id="todt">
+            <persName>טאדט</persName>
+          </person>
+          <personGrp xml:id="chinezer">
+            <name>חינעזער</name>
+          </personGrp>
+          <personGrp xml:id="diener">
+            <name>דיענער</name>
+          </personGrp>
+          <personGrp xml:id="matrozen">
+            <name>מאטראזען</name>
+          </personGrp>
+          <personGrp xml:id="pasazhiren">
+            <name>פאסאזשירען</name>
+          </personGrp>
+          <person xml:id="rus">
+            <persName>רוס</persName>
+          </person>
+          <personGrp xml:id="alle">
+            <name>אלע</name>
+          </personGrp>
+          <personGrp xml:id="beyde">
+            <name>ביידע</name>
+          </personGrp>
+          <personGrp xml:id="chor">
+            <name>כאר</name>
+          </personGrp>
+          <personGrp xml:id="eyner">
+            <name>איינער</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="MishkeMashke" type="MishkeMashke">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#bising">ביסינג</role>
+        </castItem>
+        <castItem>
+          <role corresp="#monkadshu">מאנקאדזשאו</role>
+        </castItem>
+        <castItem>
+          <role corresp="#natanzon">נאטאנזאהן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#emilye">עמיליע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#karl">קארל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#sharlata">שארלאטא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mashke">מאשקע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mishke">מישקע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#lieberman">ליעבערמאן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mina">מינא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#sala">סאלא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#tirale">טיראללע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#todt">טאדט</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="0001_NTU4MTU1.558044.jpg"/>
+      <fw type="pageNum">65675</fw>
+      <fw type="pageNum">30001001990334</fw>
+      <pb n="2" facs="0002_NTU4MTU1.558047.jpg"/>
+      <pb n="3" facs="0003_NTU4MTU1.558052.jpg"/>
+      <pb n="4" facs="0004_NTU4MTU1.558055.jpg"/>
+      <pb n="5" facs="0005_NTU4MTU1.558059.jpg"/>
+      <stage type="delivery">פערזאנען:</stage>
+      <div type="act" n="1" xml:id="MishkeMashke_Act1">
+        <head>עֶרשְׁטֶער אַקְט.</head>
+        <stage type="setting">דִי בּיִהנע שׁטֶעלְט פאָר בּיִסינג'ס אַ קאַנטאָר</stage>
+        <sp who="#bising" xml:id="MishkeMashke_SP0001_a">
+          <speaker>בּיסינג</speaker>
+          <p>אִיךְ בִּין רוּאיגירט! אִיךְ בִּין געבּראָכען, מייַן דֶעפִיצִיט אִיזְט<lb/>בִּיז 65,000 דאָלאַר אוּנד מייַן גאַנצעס פֶערְמֶעגֶען בּעשטעהט נוּר<lb/>פוּן 13 טוִיזֶענְד... אונְד דאַ האַבּע אִיךְ קייַן אֵיינציגען גוּטֶען פְרֵיינְד מִיט<lb/>וועהם אִיךְ זאָל מִיךְ קֶענֶען בּעראַטהען וואַס צוּ טְהוּן... רעגוּלירען<lb/>אִיזְט אוּנְמֶעגְלִיך, אוּנד ווִי וֶוערְדֶען זִיך מֵייַנֶע פייַנדע פרֶעהֶען אַלְס דִי<lb/>וֶוערְדֶען מייַן בּאַנקראָט ערְהֶערֶען... נֵיין, דאַס זָאָלֶען דִי נימאַלס<lb/>עָרלעבּען! היִער בְּלַייַבֶּען אִיזְט אַבּער אוִיך קייַן פְּלאַן, מֵייַנֶע גלויבּיגער<lb/>וֶוערְדֶען דאָך מִיךְ ערְשׁטִיקֶען... פאָרט מוּס מַאן פאָן הִיער! אַבּער<lb/>וואָ, נאַך האַוואַנאַ? נֵיין, נאַך קֶענֶעדֶע! זֶעהר רֶעכְט קֶענֶעדֶע, דאָרְט<lb/>ניעמאַנד קאַן מִיךְ אוּנד ניעמאַנד ווֵייס מִיךְ, אִיךְ וֶוערְדֶע אוִיפ'ס נייַ<lb/>אַנפאַנגען שפּעקוּלירען!...<lb/><stage type="business">(מאָנקאַדזשאו פון הינטער די קוליסען פייַפט)</stage>.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0002_a">
+          <speaker>ביסינג</speaker>
+          <p>ווֶער קאַן דאַס זאָ שפּעֶט זִינְגֶען בּייַ מִיר אִין קאַנטאָר?!<lb/>דִיענֶער! <stage type="entrance">(אויפטריט דיענער)</stage> ווֶער אִיזְט דאַס בּייַ מִיר זאָ<lb/>שפּעֶט אִין קאַנטאָר?</p>
+        </sp>
+        <sp who="#diener" xml:id="MishkeMashke_SP0003_a">
+          <speaker>דיענער</speaker>
+          <p>דֶער בּוּכְהַאַלְטֶער מאָנקאַדזשאוּ.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0004_a">
+          <speaker>ביסינג</speaker>
+          <p>ווֶער? מאָנקאַדזשאוּ?! וואַס מאַכְט עֵר בּייַ מִיר זאָ שפּעֶט<lb/>אִין קאַנטאָר?</p>
+        </sp>
+        <sp who="#diener" xml:id="MishkeMashke_SP0005_a">
+          <speaker>דיענער</speaker>
+          <p>עֵר זִינְגְט אונְד פייַפט אוּנד נִישׁטֶערְט דִי בִּיכֶער, עֵר שיַיַנט<lb/>בּעזויפען צוּ זייַן...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0006_a">
+          <speaker>ביסינג</speaker>
+          <p>זאָל עֵר הֶערֵיין קאָמען! <stage type="exit">(דיענער אָבּ)</stage> זאָל עֵר פִילֵייכְט מייַן<lb/>גֶעהַיימְנִיס ערפאַהרען הָאַבֶּען; מאַן מוּס אִיהם זֶעהן פאָן<lb/>הִיער צוּ טראַנספאָרטירען!...<lb/><stage type="entrance">(אויפטריט מאָנקאַדזשאו)</stage>.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0007_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>וֶועל באָס אַייעם, הִיער בִּין אִיךְ דאַ.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0008_a">
+          <speaker>בּיסינג</speaker>
+          <p>מאָנקאַדזשאוּ. וואַס מַאַכֶען זִי זאָ שפּעֶט בּייַ מִיר אִין<lb/>קאַנטאָר?</p>
+        </sp>
+        <pb n="6" facs="0006_NTU4MTU1.558065.jpg"/>
+        <fw type="pageNum">— 4 —</fw>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0009_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אִיךְ אַרבּייטע!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0010_a">
+          <speaker>ביסינג</speaker>
+          <p>ווֶער פערלאַנגט דֶען פוּן אִיהנֶען איבּערשטונדען, זִי<lb/>פוֹילְענדער!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0011_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>זֶעהֶען זִי, מִיסטֶער באָס, ווייַל זִי האַלטון מִיךְ<lb/>שְׁטֶעטְס פִיר אַיינֶעם פוּן דִי פוִילְסטֶען בּוּכְהַאַלְטֶער,<lb/>האַבּ אִיךְ מִיר צוּם זאַטץ גֶעמְהכט פוּן הַייטֶע אוּנד וֵוייַטֶער יעדֶעם טאַג<lb/>אֵיין פּאַר אֵיבּערשׁטוּנדען צוּ אַרבּייטען.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0012_a">
+          <speaker>ביסינג</speaker>
+          <p>פִיר הַייטֶע אִיסט גֶענוּג! גוּט נֵייט!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0013_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>גוּט אונִינְג, מִיסטֶער בּיסינג.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0014_a">
+          <speaker>ביסינג</speaker>
+          <p>וואַס אִיזְט דאַס פִיר אוּמפערשעמטהייַט?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0015_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>חאַ, חאַ, חאַ... פִילײַכט וִוילֶען זִי אַיין בּיסכען<lb/>שנאַפּס?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0016_a">
+          <speaker>ביסינג</speaker>
+          <p>מאָנקאַדזשאוּ! זאָפאָרט פערלאַסען זִי מײַן הוִיז!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0017_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>חאַ. חאַ, חאַ... אִיךְ האבּע שׁוֹין קֵיינֶע זַייטֶען פוּן<lb/>לַאַכֶען. בּראַוואָ! בּראַוואָ! מִיסטֶער בּיסינג! זִי<lb/>שפּיעלען אִיהרֶע ראָלע זֶעהר גוּט! אִיךְ הֶעטֶע זִי געראַטהען זִיך אַנגאַ⸗<lb/>זשִׁירֶען צוּ לַאַסֶען אִין אֵיינעס פוּן דִי נִיו=יאָרקער טהעאַטערע אַלְס<lb/>אַקטיאָר!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0018_a">
+          <speaker>ביסינג</speaker>
+          <p>וואַס שׁפרִיכט דאַ דֶער קֶערְל, פאָן טהעאַטער, פאָן אַקטיאָר?<lb/>בִּיסְט דוּ פֶערְרִיקט מאָנקאַדזשאוּ?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0019_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אָה, נֵיין סֶער! מאָנקאַדזשאוּ אִיזְט נִיכְט פֶערְרִיקט,<lb/>מאָנקאַדזשאוּ האַט שאַרפע בּליקע, אִין אַיינע מִינוּטֶע<lb/>האַבּע אִיךְ אַלֶע אִיהרֶע בּיכערן דוּרְך-גֶעזֶעהן, זאָגאַר דִי טאַשען, אִיךְ<lb/>ווֵייס... אִיךְ ווֵייס...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0020_a">
+          <speaker>ביסינג</speaker>
+          <p>וואַס וַוייסְט דוּ?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0021_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אִיךְ ווֵייס דאָס אִיהר זייַט מְחִילְָה אִין דֶער סוּפ,<lb/>דאָס הַייסְט מִיט דֶעם קאָפּ אִין דֶער עֶרְד, הֵייַטֶע<lb/>אָדֶער מָאָרְגֶען מוסֶען זִי בּאַנקראָטירען.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0022_a">
+          <speaker>בּיסינג:</speaker>
+          <p>מאָנקאַדזשאוּ! אִיךְ ראַטע דִיךְ מויל צוּ הַאַלְטֶען!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0023_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>יאַ, ווֶען אִיךְ וֶוערְדֶע בּעפרידיגט וֶוערְדֶען, דאַן<lb/>בּלייַבּ אִיךְ שטוּס ווִי דִי וואַנד!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0024_a">
+          <speaker>ביסינג</speaker>
+          <p>וואַס הַייסְט בּעפרידיגען?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0025_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>דאָס הַייסְט דִי אַפּותיקע לא יחרְץ גֶעלְד, דוּ<lb/>מַמְתַּקִים...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0026_a">
+          <speaker>ביסינג</speaker>
+          <p>קֵיין וואָרְט מֶעהר! מִיר שיַיַנט דאַס יֶעמַאַנְד קוּמְט....<lb/><stage type="entrance">(אויפּטריט נאַטאַנזאָהן)</stage></p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0027_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>גוּטֶען אַבענד, הֶערְר בּיסינג!</p>
+        </sp>
+        <fw type="pageNum">— 5 —</fw>
+        <sp who="#bising" xml:id="MishkeMashke_SP0028_a">
+          <speaker>ביסינג</speaker>
+          <p>גוּטֶען אַבּעָנד, העָרר נאַטאַנזאָהן! ווִי גֶעהטס? אָה, אֵיין<lb/>גאַסט, בּיטטע, נֶעהמֶען זִי פּלאַץ!</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0029_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>צוּ אַלֶעם עֶרְשְׁטֶען מוּסען זִי מִיר גראַטוּלירען אונְד<lb/>גְלִיק ווינְשֶׁען!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0030_a">
+          <speaker>ביסינג</speaker>
+          <p>גראַטוּלירען אִיסט צוּ יֶעדֶע ציַיַט גוּט!</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0031_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>אִיךְ וֶועָרְדֶע אַייך ערְצֶעהלֶען דִי אוּרְזַאַכֶע פוּן מַיינֶען<lb/>היִרהעָר קוּמֶען: מֵייַנֶער, אֵיין רייַכער אָנְקֶעל אִיסט<lb/>געשטאָרבּען אוּנד האַט אֵיין גרוִיסֶעס פֶערְמֶעגֶען איבּערלאַסען, הֵייַטֶע<lb/>האַט זִיך דאַס פראָצעס געעֶנדיגט אוּנד אוֹיף מייַן טהַייל בּעטרעפט<lb/>50000 דאָלאַר, וֶועלְכֶע אִיךְ הֵייַטֶע עֶרְהַאַלְטֶען האַבּע...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0032_a">
+          <speaker>ביסינג</speaker>
+          <p>אַה, אִיךְ גראַטוּלירע אונְד ווינְשֶׁע גְלִיק מִיסטֶער<lb/>נאַטאַנזאָהן!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0033_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>דאָס הַייסְט אֵיין גְלִיק פוּן אֵיין גרינהאָרן, קוּמְט<lb/>נאָךְ אַמֶערִיקַאַ אונְד. לֶעגט דִי האַנְד אוֹיף 50000<lb/>דאָלאַר! אִיךְ עכטֶער אַמעריקאַנער עכטֶער יענְקִי נִיכְט אִיךְ האַבּע הִיער<lb/>אֵיינֶען פֶּעטֶער, נִיכְט עָר נֶעהמְט אַיין אַ מִיתה מְשׁוּנָה, נִיכְט אִיךְ בּעקאָם<lb/>50000 דאָלאַר.</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0034_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>דאַרוּם אִיזְט מִיר אַיינגעפאַלען אֵיין פְּלאַן, בִּיז אִיךְ וֶוערְדֶע<lb/>מִיר אֵיין גֶעשֶׁעפט פִינְדֶען זאָל אִיךְ מייַן גֶעלְד בײַ<lb/>אִיהנֶען דעפּאָנירען...</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0035_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>וואַס טְהוּט עֵר?</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0036_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>דֶען קֵיינֶע בּעסערע האַנְד פִינְדֶע אִיךְ נִיכְט!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0037_a">
+          <speaker>ביסינג</speaker>
+          <p>אִיךְ דַאַנְקֶע!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0038_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נִישְׁט דאָ פאַר וואָס...</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0039_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>זִי וויִסֶעֶן דאָך, דאַם אִיךְ בִּין נאָך אַיין גרינהאָרן...</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0040_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נאָך וואָס פִיר אֵיין גרינהאָרן, אֵיין גרִינֶער גרִינ⸗<lb/>האָרן אוֹיף דרייַ עטאַזש דִי הוִיך!</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0041_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>אִיךְ האַבּע שׁאָן נאַך מַיינֶע פְרוִי אונְד קִינְדֶער גֶע⸗<lb/>שִׁיקְט. דִי זִינְד שׁאָן גֶעוִויס הערויסגעפאַהרען; אִיךְ<lb/>האָפפע מִיסטֶער בּיסינג דאַס זִי וֶוערְדֶען מִיר גֶעוִויִס אַן דֶער<lb/>האַנְד גֶעהן!...</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0042_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>יאַ מִיט דֶער האַנְד אִיבֶּער דֶער טַאַשֶׁע.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0043_a">
+          <speaker>ביסינג</speaker>
+          <p>זִי קֶענֶען גאַנְץ זִיכֶער זַיין, מִיסטֶער נאַטאַנזאָהן, דאַס אִיךְ<lb/>וֶוערְדֶע זִי דִיענֶען מִיט ראַטה אוּנד טהאַט.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0044_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>מִיט ראַטה אונְד טהאַט, דאַס הַייסְט מִיט נֶעהמֶען<lb/>אוּנד נִיכְט אָבּגֶעבֶּען.</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0045_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>בּיטטע, העָרר בּיסינג, דאַ אִיסט דאַס גֶעלְד...</p>
+        </sp>
+        <pb n="7" facs="0007_NTU4MTU1.558069.jpg"/>
+        <fw type="pageNum">— 6 —</fw>
+        <sp who="#bising" xml:id="MishkeMashke_SP0046_a">
+          <speaker>ביסינג</speaker>
+          <p>מאָנקאַדזשאוּ! שְׁטֶעלֶען זִי אויס אֵיין רֶעסִיט אוֹיף 50000<lb/>דאָלאַר.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0047_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אָלרייט! אָט האָט עֵר גֶעמַאַכְט אַיין תּכלית פוּן<lb/>דֶער ירוּשה; רֶעסִיט פִיר מִיסטֶער, אַד יוּא נאַם?</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0048_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>וואַס זאַגְט עֵר?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0049_a">
+          <speaker>ביסינג</speaker>
+          <p>ווִי אִיזְט אִיהר נָאַמֶען?</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0050_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>נאַטאַן נאַטאַנזאהן.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0051_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נאַטאַן נאַטאַנזאָהן... געדאפּעלט, דאַס הייַסט נאַטאַן<lb/>האָט געֶנוּמעֶן אונְד נאַטאַנזאָהן האָט דאָס וֵוייַטֶער<lb/>וועקגֶעגֶעבֶּען דֶעם הֶערְרְן בִּיסִינְג מִיט מאָנקאַדזשאוּ בשוּתפוּת, יתגדְל<lb/>וִיתקדְשׁ שׁמִיה רבא, מִיסטֶער נאַטאַנזאָהן וִוירְד בְּלַייַבֶּען בּייַם שׁטִיקכֶען<lb/>פּאַפּיעֵר אוּנד בּיסינג מִיט דֶעם הֶערְר מאָנקאַדזשאוּ בּייַם גֶעלְד, אוּן<lb/>50000 דאָלאַר פערפאַלען מֶעתה וֶעד עוֹלְָם אָמֵן סלְה!... פֶערְטִיג<lb/>בּאָס! שריַיַבּען זִי אוּנטעֶר. <stage type="business">(בּיסינג שריַיַבּט)</stage> דֶעד שלאַק זאָל אִיהם<lb/>טְרֶעפֶען, דִי האַנְד צִיטֶערְט אִיהם זאָגאַר נִיט בּייַס אוּנטערשרייַכען!...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0052_a">
+          <speaker>ביסינג</speaker>
+          <p>בּיטטע מִיסטֶער נאַטאַנזאהן, דאַ אִיסט דֶער רֶעסִיט.</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0053_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>אִיךְ דַאַנְקֶע!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0054_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נִיכְט דאַ פִיר וואַס!</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0055_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>גוּט נאַכְט, הֶערְר בּיסינג!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0056_a">
+          <speaker>ביסינג</speaker>
+          <p>גוּט נאַכְט, מִיסטֶער נאַטאַנזאָהן! זִי קֶענֶען יאַ גאַנְץ<lb/>רוּהיג שְׁלָאַפֶען, אִיהר גֶעלְד אִיסט גאַנְץ זִיכֶער...<lb/><stage type="exit">(נאַטאַנזאָהן אָב)</stage>.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0057_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>גוּט נאַכְט, מִיסטֶער, נאַטאַנזאָהן! גוּט נאַכְט 50<lb/>טוִיזֶענְד דאָלאַר! זֶעהֶען זִי מִיסטֶער בּיסינג, יֶעצְט<lb/>הָאַבֶּען זִי גאַנְץ גוּט גֶעזָאַגְט, עֵר קאַן שׁוֹין רוּהיג שְׁלָאַפֶען, עֵר דאַרְף<lb/>שׁוֹין קייַן אַנגסט הָאַבֶּען פִיר דיעבּע, דאַס דִי זָאָלֶען בּייַ אִיהם דאַס<lb/>גֶעלְד וועקשטאָהלען, נוּן וֶועל פּאַרטנער, ווִי גֶעהֶען דִי גֶעשֶׁעפטֶען?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0058_a">
+          <speaker>ביסינג</speaker>
+          <p>מאָנקאַדזשאוּ, וואַס אִיזְט דאַס פִיר אוּמפערשעמטהייַט, וואַס<lb/>וִוילְסְט דוּ?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0059_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>וואָס הייַסט, וואָס אִיךְ וִויל? דִי אַפּותיקע! לא-<lb/>יחרְץ גֶעלְד, דִי ממתּקים.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0060_a">
+          <speaker>ביסינג</speaker>
+          <p>דוּ בּעקוּמסט פוּן מִיר 5 טוִיזֶענְד דאָלאַר, אָבֶּער דוּ זאָלְסְט<lb/>מויל הַאַלְטֶען!...</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0061_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>וואַס? זאָ טיראַניש וואָלען זִי מִיךְ בּעהאַנדלען?<lb/>ווִי האַבּט אִיהר פִיר גאָט קייַן אַנגסט, עֵר וִוירְד<lb/>אַייך דֶען שווײַגען? אַייך פִיל אַיינע געבּראַטענע טוֹיבּ אִינ'ם מוּנד אוּנד<lb/>מִיר וִוילֶען זִי זאָגאַר דִי קנאָכען נִיכְט גֶעבֶּען אַבּצוּלעקען?</p>
+        </sp>
+        <fw type="pageNum">— 7 —</fw>
+        <sp who="#bising" xml:id="MishkeMashke_SP0062_a">
+          <speaker>ביסינג</speaker>
+          <p>דוּ בּעקוּמסט דאָך פוּן מִיר 5 טויזֶענְד דאָלאַר...</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0063_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>בּלייַבט דאָך אִיהנֶען 45 טוִיזֶענְד; וואָלען וִויר פראַ⸗<lb/>גֶען צְוֵויי קלֵיינֶע קִינְדֶער, וואַן דיעבּען בּעפאַלען<lb/>אַיינֶען מֶענְשֶׁען, אַיינֶער האַלְט אִיהם צוּ דֶען מוּנד אוּנד דֶער צְוֵוייטֶער<lb/>נֶעהמְט אִיהם דאַס גֶעלְד הֶערוִיס, טהַיילֶען זִי זִיך נִיכְט גְלַייךְ? זִינְד זִי<lb/>קֵייַנֶע גלֵייכֶע קאָמפּאַניאנען?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0064_a">
+          <speaker>ביסינג</speaker>
+          <p>לוּמפּ, וואַס אִיזְט דאַס פִיר אַיינֶע שְׁפְּרַאַכֶע??</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0065_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>דאַס אִיזְט אַיינע שְׁפְּרַאַכֶע פאָן אַיינֶען הוֹיפְּט אָר⸗<lb/>רֶענְטלִיכֶען דִיעכ...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0066_a">
+          <speaker>ביסינג</speaker>
+          <p>מאַרש! הֶעָרוֹיס, דוּ וואַגאַבּוּנד!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0067_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>מאַרש אִיז מאַרש; אִיךְ וֶוערְדֶע גֶעהן אונְד זָאַגֶען<lb/>דֶען שׁלִימְזל'דִיגֶען יורְֵשׁ אִין וואַס פִירְה עֶנְדֶע עֵר האַט<lb/>זייַן גֶעלְד איבּערגעלאַסען...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0068_a">
+          <speaker>ביסינג</speaker>
+          <p>דוּ קאַנְסְט גֶעהן!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0069_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>זאָ! אִיהר וויִלְט דאַס אִיךְ זאָל וועקגֶעהן אוּנד<lb/>אִיהר וִוירְד אוּנטערדעסען מַאַכֶען דִי פּליטה!<lb/>נֵיין, סטאָפּ הִיער, פאָן הִיער גֶעה אִיךְ נִיכְט וֶועק.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0070_a">
+          <speaker>ביסינג</speaker>
+          <p>דוּ בּעקוּמסט פוּן מִיר 5 טוִיזֶענְד דאָלאַר, וויִלְסְט דוּ אִיזְט<lb/>רֶעכְט, זאָנְסְט קאַנְסְט דוּ מַאַכֶען ווִי דוּ פֶערְשְׁטֶעהסְט.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0071_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>לאָס אִיךְ נוּר נִיכְט וועקגֶעהן פוּן מייַן פרִינְצִיפ;<lb/>מייַן פּרינציפּ אִיזְט „לֶעולְם תּקח“: לֶעולְם נֶעהם,<lb/>אוּן תּקח ווירְסט דוּ וֵוייַטֶער נֶעהמֶען... אַהעֶר קֶעשׁ!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0072_a">
+          <speaker>בּיסינג</speaker>
+          <p>ששש... מִיר שייַנט עֶס קאָמט שׁאָן וִויעדֶער יֶעמַאַנְד ...</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0073_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>דעַר טיַיַפעל זאָל דאָס נֶעהמֶען: ווִי עֶס קוּמְט גֶעלְד<lb/>נֶעהמֶען שְׁלאָגְט מאַן מִיר אִיבֶּער...<lb/><stage type="entrance">(אויפטריט נאַטאַנזאָהן)</stage></p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0074_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>זֶעהר גוּט וואַס אִיךְ האַבּע זִי נאָך גֶעטְרָאָפֶען... זִי<lb/>וֶוערְדֶען מִיר עֶנְטְשׁוּלְדִיגֶען, מִיסטֶער בּיסינג! אִיךְ<lb/>האַבּע מַיין בּעשלוּס גֶעֶענְדֶערְט אוּנד פערלאַנגע מייַן גֶעלְד צוּרִיק.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0075_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>דִי קָאָמֶעדִיע פאַנגט אָן דראַמאַטיש צוּ וֶוערְדֶען!...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0076_a">
+          <speaker>ביסינג</speaker>
+          <p>ווִי קאָמט עֶס זאָ פְּלֶעצְלִיך ה' נאַטאַנזאָהן?</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0077_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>אִיךְ וֶוערְדֶע אִיהנֶען דִי וואַהרהייַט זָאַגֶען, זאָ ווִי אִיךְ<lb/>בִּין פוּן הִיער הערויסגעגאַנגען האַבּע אִיךְ גֶעטְרָאָפֶען<lb/>מֶענְשֶׁען, וֶועלְכֶע זַיי הָאַבֶּען מִיר גֶעזָאַגְט דאַס זִי שְׁטֶעהֶען זֶעהר שְׁלֶעכְט,<lb/>הֵייַטֶע אָדֶער מָאָרְגֶען מוסֶען זִי באַנקראָטירען.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0078_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>זאָ! ווֵייס מאַן שׁאָן דאַס גֶעהַיימְנִיס אָהנֶע מִיךְ?<lb/>בִּין אִיךְ דאָך שׁאָן מֶעהר קייַן סֶעקרֶעט⸗מַייסטֶער!</p>
+        </sp>
+        <pb n="8" facs="0008_NTU4MTU1.558074.jpg"/>
+        <fw type="pageNum">— 8 —</fw>
+        <sp who="#bising" xml:id="MishkeMashke_SP0079_a">
+          <speaker>ביסינג</speaker>
+          <p>וואָס לֵייטֶע זָאַגֶען לֶעגֶע אִיךְ קֵיינֶע גֶעוויכטֶע דאַרויף!</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0080_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>אִיךְ לֶעגֶע אַבּער יאַ גֶעוויכטֶע דאַרויף! דאַ הָאַבֶּען<lb/>זִי אִיהרֶען רעָסִיט אוּנד גֶעבֶּעָן זִי מִיר מִיַיַן גֶעלְד !</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0081_a">
+          <speaker>ביסינג</speaker>
+          <p>נוּ, גוּט! גוּט! קאָמען זִי מָאָרְגֶען וֶוערְדֶע אִיךְ אִיהנֶען<lb/>דאַס גֶעלְד צוריקגעבּען.</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0082_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>וואַס, מָאָרְגֶען זאָל אִיךְ קאָמען? זִי גְלוֹיבֶּען, אִיךְ<lb/>פֶערְשְׁטֶעה נִיכְט אִיהר אונְמֶענְשׁלִיכֶען פְּלאַן מִיט<lb/>מִיר? זִי וִוילֶען דאַס אִיךְ זאָל קאָמען מָאָרְגֶען אונְד הַייטֶע בּיַיַ נאַכְט<lb/>וֶוערְדֶען זִי דוּרְך-גֶעהן! נֵיין! הַייטֶע מוסֶען זִי מִיר דאָס גֶעלְד צוּרִיק⸗<lb/>גֶעבֶּעָן!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0083_a">
+          <speaker>ביסינג</speaker>
+          <p>אַך, זִי. אונְפֶערְשֶׁעמְטֶער! האָבּ אִיךְ זִי דֶען גֶעזָאָגְט דאָס<lb/>אִיךְ וִויל אִיהנֶען דאַס גֶעלְד נִיכְט צורִיקגֶעכֶען? זאָנדערן<lb/>בְּיַיַ נאַכְט גִיבּ אֵיךְ קְיֵין גֶעלְד.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0084_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>עֵר האַט דאָך רֶעכְט, גֶעוִויס!</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0085_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>וואַרוּם הָאַבֶּען זִי דֶען בַּיי נאַכְט בַּיי מִיר דאָס<lb/>גֶעלְד גענאָמען?<lb/>מאנקאדזשאוּ; אוֹיבּ זאָ האָט עֵר, שׁאָן רֶעכְט!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0086_a">
+          <speaker>ביסינג</speaker>
+          <p>נוּן גוּט! וָואַרְטֶען זִי הִיער 5 מִינוטֶען וֶוערְדֶע אִיךְ אִיהנֶען<lb/>דאָס גֶעלְד צוריקגעבּען.</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0087_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>נֵיין, מֶערְדֶער! דוּ גֶעהסט נִיכְט פוּן הִיער! מייַן<lb/>גֶעלְד זאָל מִיר זייַן.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0088_a">
+          <speaker>ביסינג</speaker>
+          <p>נאַ דוּ בּלעדי פֶּערְנֶע <stage type="business">(גיט איהם אַ קלאַפּ אין קאָפ)</stage>.</p>
+        </sp>
+        <sp who="#natanzon" xml:id="MishkeMashke_SP0089_a">
+          <speaker>נאטאנזאהן</speaker>
+          <p>מֵייַנֶע פְרוֹי אונְד קִינְדֶער <stage type="business">(שטאַרבּט)</stage>.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0090_a">
+          <speaker>ביסינג</speaker>
+          <p>אִיךְ גֶעהֶע נאַך אַיינֶען אַרצְט. <stage type="business">(וויל געהן)</stage></p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0091_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>סטאָפּ! מאַן דאַרְף נִיכְט.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0092_a">
+          <speaker>ביסינג</speaker>
+          <p>פִילֵייכְט אֵיין בּיסכען וַואַסֶער?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0093_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>עֶס וִוירְד אִיהם שׁאָן נִיכְט הֶעלְפֶען, דֶער מאַן<lb/>אִיסט טאָדט!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0094_a">
+          <speaker>ביסינג</speaker>
+          <p>וואַס טאָדט? וואָהער וַוייסְט דוּ עֶס?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0095_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אַהאַ, אִיךְ בִּין שׁאָן אַ גֶענִיטֶער בּעל שִׁׂמְחָה אִין<lb/>דִיעזֶע זאַכען; מיַיַנע עֶלְטֶערֶע 2 בּריִדעֶר זִינְד אוִיך<lb/>געשטאָרבּען מִיט זאָ אֵיין טאָדט, דאָס אִיזְט אֵיין גאַנְץ לֵייכטֶער</p>
+        </sp>
+        <sp who="#todt" xml:id="MishkeMashke_SP0096_a">
+          <speaker>טאדט</speaker>
+          <p>אַיינְס, צְוֵויי, דריַיַ, — אונְד דֶער שלאַק האַט אַייךְ שׁאָן<lb/>גֶעטְרָאָפֶען.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0097_a">
+          <speaker>ביסינג</speaker>
+          <p>מאנקאַדזשאוּ, יֶעצְט אִיז קֵיין צַייט צוּ שפּאַסען; גִיבּ מִיר<lb/>אֵיין ראַטה וואָס זאָל אִיךְ טְהוּן, פִילֵייכְט קוּמְט יֶעמַאַנְד<lb/>בִּיז אִיךְ דאָך אוּנְגְלִיקְלִיך.</p>
+        </sp>
+        <fw type="pageNum">— 9 —</fw>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0098_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>ממְתקִים ! דִי אַפּוֹתיקע!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0099_a">
+          <speaker>ביסינג</speaker>
+          <p>דאָ האָסְט דוּ גֶעלְד.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0100_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אוֹיף דִי שטראַסע אִיזְט יֶעצְט שׁטִירְמִישׁ פִינְסְטֶער,<lb/>גֶעהט הֶערוִיס אונְד זֶעהט אוֹיבּ עֶס אִיזְט ניעמאַנד<lb/>דאַ, וֶוערְדֶען וִויר אִיהם הערויסטראַגען אוֹיף דִי שטראַסע, אונְד מָאָרְגֶען<lb/>וואַן מאַן וִוירְד אִיהם פִינְדֶען, וִוירְד מאַן גְלוֹיבֶּען דאָס שטראַסען-מֶערְדֶער<lb/>הָאַבֶּען אִיהם ערמאָרדעט זָא ווִי עֶס פּאַסירט אָפְט אִין אַמֶערִיקַאַ; נוּן<lb/>דאַרפט אִיהר נאָך פאַהרען נאַך קֶענֶעדֶע?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0101_a">
+          <speaker>ביסינג</speaker>
+          <p>זֶעהר גוּט, לֶעשֶׁע דִי לִיכְט אוֹיס! <stage type="exit">(אָב)</stage>.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0102_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>חאַ, חאַ, חאַ... דוּ אוּנפּראַקטישער דיעבּ! אויס<lb/>גְרויס אַיילע האָט עֵר דֶען רֶעסִיט פֶערְגֶעסֶען;<lb/>אָה, דֶער רֶעסִיט וִוירְד דאָך יֶעצְט זַיין מַיין לֶעבֶּען, מַיין רֶעטונְגס-עֶנְגֶעל,<lb/>אִיךְ וֶוערְדֶע אִיהם דִי הויט הֶערונְטֶער⸗שִׁינְדֶען, אִיךְ וֶוערְדֶע פאָן אִיהם<lb/>זאָ פִיעל גֶעלְד צִיהֶען, גְרַאַדֶע ווִי אֵיין מאַגיקער צִיהט בּענדער אוִיס<lb/>דֶען מוּנד.<lb/><stage type="entrance">(אויפטריט ביסינג)</stage></p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0103_a">
+          <speaker>ביסינג</speaker>
+          <p>אוֹיף דִי שטראַססע אִיזְט ניעמאַנד דאַ, וואָלען וִויר אִיהם<lb/>נֶעהמֶען.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0104_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נוּן, שׁלִימְזל'דִיגֶער יורְֵשׁ? דאַרְף מֶען הָאָבֶּען גְלִיק,<lb/>וְעָן מֶען האָט נִישְׁט קֵיין יאָהרָעָן?... <stage type="business">(טְרָאָגֶען אִיהם צוּם</stage><lb/><stage type="business">טהִן בֵּיידֶע)</stage> יושב בסתר עלִיון...<lb/><stage type="setting">(פאַרהאַנג)</stage>.</p>
+        </sp>
+        <pb n="9" facs="0009_NTU4MTU1.558078.jpg"/>
+      </div>
+      <div type="act" n="2" xml:id="MishkeMashke_Act2">
+        <head>צְוֵוייטֶער אַקְט.</head>
+        <stage type="setting">(שׁטֶעלְט פאָר אֵיין שִׁיף מִיט מאַטראָזען, שִׁיפס⸗קאַפּיטאַנען אוּן</stage>
+        <stage type="setting">אוִיך פִיעל פאסאזשִׁירֶען. זִינְגֶען)</stage>
+        <sp who="#chor" xml:id="MishkeMashke_SP0105_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>שׁטֶעלְט אַייךְ אוֹיף אַלֶע אִין דִי רֵייהֶע! אַלֶע אִין דִי רֵייהֶען</l>
+          </lg>
+          <lg>
+            <l>אַיינְס צְוֵויי דריַיַ! טאַנצעֶן זִינְגֶען לוסטִיג אִין דֶער רֵייהֶע!</l>
+            <stage type="delivery">(בּיסס)</stage>
+          </lg>
+          <lg>
+            <l>לוסטִיג גֶעהט, אוֹיף דִי רֵייזֶע אֵיין קוס! אֵיין קוּס!</l>
+            <stage type="delivery">(בּיסס)</stage>
+          </lg>
+          <lg>
+            <l>טראַלאַלאַ טראַלאַלאַ</l>
+          </lg>
+        </sp>
+        <sp who="#tirale" xml:id="MishkeMashke_SP0106_a">
+          <speaker>טיראללע</speaker>
+          <lg>
+            <l>רוהִיג מַיינֶע הֶערְרֶען! ווִי אויך רוהִיג מַיינֶע דאַמעֶן,</l>
+          </lg>
+          <lg>
+            <l>רוהִיג זאָלְט אִיהר זייַן וֶועט אִיהר הֶערֶען אֵיין קאָנטראַס</l>
+          </lg>
+          <lg>
+            <l>פאַן מִיר! אֵיין קאָנטראַס פוּן מִיר: אֵיין טיראָללער בִּין אִיךְ פוּן צוּ הוִיז,</l>
+          </lg>
+          <lg>
+            <l>טאַנצעֶן קאָן אִיךְ זֶעהר גְרוִיס</l>
+            <stage type="business">(בּיסס. קאָהר וויעדערהאָלט עס)</stage>
+          </lg>
+          <lg>
+            <l>פְרֵיינְדֶע, קאָם נוּר הֶער, לאָס מִיךְ הֶערֶען דַיינֶע שְׁטִימֶע, טראַגע אוּנְז</l>
+          </lg>
+          <lg>
+            <l>עֶטְווָאָס פאָר פאָן רוסלאַנד, פאָן רוסלאַנד!</l>
+          </lg>
+        </sp>
+        <pb n="10" facs="0010_NTU4MTU1.558080.jpg"/>
+        <fw type="pageNum">— 14 —</fw>
+        <sp who="#chor" xml:id="MishkeMashke_SP0107_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>יאַ יאַ יאַ יאַ.</l>
+          </lg>
+        </sp>
+        <sp who="#rus" xml:id="MishkeMashke_SP0108_a">
+          <speaker>רוס</speaker>
+          <lg>
+            <l>רוּסע טו מאַטוּשקאַ, טִי מאָיאַ גאָלוּבּישקאַ, שְׁוֶוער אִיז מִיר פאָן</l>
+          </lg>
+          <lg>
+            <l>דִיר צוּ שַׁיידֶען, יעָדוּ בּראַט פּראָשצייא</l>
+            <stage type="business">(קאָהר וויעדערהאַלט)</stage>
+          </lg>
+          <lg>
+            <l>הֶע הוּ הֶע! עָס טְהוּט מִיר זֶעהר וֶועה; פֶערְלָאָזְט מַיין שְׁטאַנְד</l>
+          </lg>
+          <lg>
+            <l>מײַן פאַטערלאַנד, יעדוּ בּראַט פּראָשציאי</l>
+            <stage type="business">(קאָהר וויעדערהאַלט)</stage>
+          </lg>
+        </sp>
+        <sp who="#tirale" xml:id="MishkeMashke_SP0109_a">
+          <speaker>טיראללע</speaker>
+          <lg>
+            <l>יֶעצְט מַיינֶע לִיעבֶּע פְרֵיינְד, קוּמְט נוּר אַהֶער, טְראָגְט אוּנְז</l>
+          </lg>
+          <lg>
+            <l>עֶטְווָאָס פאָר פאָן חינאַ⸗לאַנד, פאָן חינאַ⸗לאַנד!</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="MishkeMashke_SP0110_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>יאַ יאַ יאַ יאַ!</l>
+          </lg>
+        </sp>
+        <sp who="#chinezer" xml:id="MishkeMashke_SP0111_a">
+          <speaker>חינעזע</speaker>
+          <lg>
+            <l>אַנגעלעטשיאַ! אַנגעלעטשיאַ (ביסס. וֵוייטֶער וויעדֶעהאלְט</l>
+            <stage type="business">דאָסזעלבע)</stage>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="MishkeMashke_SP0112_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>בּראַוואָ ! בּראַוואָ! בּראַוואָ: בּראַוואָ ! (מען קלינגט)</l>
+          </lg>
+        </sp>
+        <sp who="#eyner" xml:id="MishkeMashke_SP0113_a">
+          <speaker>איינער</speaker>
+          <lg>
+            <l>צוּם מִיטָאָג! צוּם מִיטָאָג!</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="MishkeMashke_SP0114_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>יֶעצְט גֶעהֶען וִויר צוּם מִיטָאָג צוּם מִיטָאַג! (ביסס)</l>
+            <stage type="entrance business">(נאַטאַנזאהן'ס פרוי און סאַלע ערשיינען)</stage>
+          </lg>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0115_a">
+          <speaker>סאלע</speaker>
+          <lg>
+            <l>מאַמאַ, ס'אִיזט וואַהר דאָס דֶער פּאַפּאַ האָט אָבְּגֶענוּמֶען</l>
+          </lg>
+          <lg>
+            <l>אֵין ערבּ⸗טהַייל פאָן 50 טוִיזֶענְד דאַלאַר?</l>
+          </lg>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0116_a">
+          <speaker>עמיליא</speaker>
+          <lg>
+            <l>יאָ, מַיין קִינְד! דֶער פּאַפּאַ האַט אַבּגענאָמען אֵיין ערבּ⸗</l>
+          </lg>
+          <lg>
+            <l>טהַייל פאן 50 טויזֶענְד דאָלאַר</l>
+          </lg>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0117_a">
+          <speaker>סאלע</speaker>
+          <lg>
+            <l>מאַמאַ, וואַן וֶוערְדֶען וִויר זייַן אִין אַמֶערִיקַאַ?</l>
+          </lg>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0118_a">
+          <speaker>עמיליא</speaker>
+          <lg>
+            <l>דֶער קאַפּיטאַן האַט געזאַנט דאָס הֵייַטֶע וֶוערְדֶען וִויר זייַן</l>
+          </lg>
+          <lg>
+            <l>אִין קאָסטיל גאַרדען</l>
+          </lg>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0119_a">
+          <speaker>סאלע</speaker>
+          <lg>
+            <l>מאַמאַ זֶעה נוּר, דאָרְט גֶעהט קאַרל מִיט פרייַליין לִיעבֶּער⸗</l>
+          </lg>
+          <lg>
+            <l>מאַן. עֵר וִוירְד זִי הֵיירַאַטֶען?</l>
+          </lg>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0120_a">
+          <speaker>עמיליא</speaker>
+          <lg>
+            <l>פוי! עֶס אִיזְט נִיכְט שֶׁעהן פִיר דִיךְ זאָ וואָס צוּ</l>
+          </lg>
+          <lg>
+            <l>פראַגען!...</l>
+            <stage type="entrance">(אויפטריט קאַרל מיט שאַרלאָטאַ)</stage>
+          </lg>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0121_a">
+          <speaker>קארל</speaker>
+          <p>גוּט מָאָרְגֶען, לִיעבֶּע מוּטֶער!</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0122_a">
+          <speaker>שארלאטא</speaker>
+          <p>ווִי גֶעהט עֶס מאַדאַם נאַטאַנזאָהן?</p>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0123_a">
+          <speaker>עמיליא</speaker>
+          <p>גאָט זַײַ דאַנְק!</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0124_a">
+          <speaker>שארלאטא</speaker>
+          <p>מאַדאַם נאַטאַנזאהן, הָאַבֶּען וִויר נאָך לאַנגעֶ צוּ<lb/>פאָהרֶעֶן?</p>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0125_a">
+          <speaker>עמיליא</speaker>
+          <p>דֶער קאַפּיטאַן האַט גֶעזָאָגְט, דאָס נאָך הַייטֶע וֶוערְדֶען וִויר<lb/>זייַן אִין קאָסטיל גאַרדען.</p>
+        </sp>
+        <fw type="pageNum">— 15 —</fw>
+        <sp who="#karl" xml:id="MishkeMashke_SP0126_a">
+          <speaker>קארל</speaker>
+          <p>מִיד שײַנט דאָס אַיינֶע קלֵיינֶע שִׁיפלײַן קאָמט אַן, דאַס מוּס<lb/>גֶעוִויס פוּן נִיו⸗יאָרק זַײַן, קאָס מוּטֶער, וֶוערְדֶען וִויר נײַעס<lb/>ערְפאהרֶען.</p>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0127_a">
+          <speaker>עמיליא</speaker>
+          <p>אַך, מַיין הֶערְץ אִיזְט מִיר זאָ שְׁוֶוער, גֶעבֶּע גאָט עֶס<lb/>זאָל צוּם גוּטֶען זַײַן. <stage type="exit">(אַלע אָבּ)</stage><lb/><stage type="entrance">(אויפטריט מישקע מיט מאָשקען)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0128_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0129_a">
+          <speaker>מאשקע</speaker>
+          <p>וֶועה!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0130_a">
+          <speaker>מישקע</speaker>
+          <p>מאָשקע, אִיךְ וִויל שׁוֹין ווײַטער.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0131_a">
+          <speaker>מאשקע</speaker>
+          <p>אַי, נִישְׁט גֶעדָאַכְט זאָלְסְטוּ דוּ וֶוערֶען, זֶעה ווִי אַלֶע מֶענְשֶׁען<lb/>גֶעהֶען שפּאַציִרעֶן, עֶס אִיז אֵיין פֶערְגֶענִיגֶען צוּ זֶעהן אוּן דוּ<lb/>האַלסט אִין אֵיין מֶעקֶען אוּן אִין אֵיין בּעקען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0132_a">
+          <speaker>מישקע</speaker>
+          <p>אָט האָסְט דוּ אִיהם, אִיךְ בּעקע גאָר, מאָשקע, אִיךְ וִויל<lb/>שׁוֹין ווײַטער.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0133_a">
+          <speaker>מאשקע</speaker>
+          <p>מִישׁקֶע לֶעבּעֶן, האַלְט דִיךְ אֵיין!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0134_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי! מאשׁקֶע לֶעבֶּען, אִיךְ שטאַרבּ</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0135_a">
+          <speaker>מאשקע</speaker>
+          <p>עט, דאָס זאָגְסְט דוּ נאָר אַזוֹי!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0136_a">
+          <speaker>מישקע</speaker>
+          <p>וואָס, דוּ גְלוֹיבְּסְט מִיר נִישְׁט?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0137_a">
+          <speaker>מאשקע</speaker>
+          <p>נוּן, גְלוֹיבּ אִיךְ דִיר, וואָס זְשֶׁע וִוילְסְט דוּ? זאָל אִיךְ מִיט<lb/>דִיר, ודוּי זָאָגֶען?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0138_a">
+          <speaker>מישקע</speaker>
+          <p>אַז ודוּי זאָל אִיךְ שׁוֹין זָאָגֶען נאָך דִיר, טַאַטֶע גֶעטרײַער!<lb/>מאָשקע, אִיךְ וִויל שׁוֹין ווײַטער...</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0139_a">
+          <speaker>מאשקע</speaker>
+          <p>האַלְט דִיךְ אֵיין, מִישׁקֶע לֶעבֶּען!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0140_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי, מאשׁקֶע. אִיךְ שטאַרבּ!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0141_a">
+          <speaker>מאשקע</speaker>
+          <p>שטאַרבּ, שטאַרבּ, דוּ מַיינְסט, אַז דוּ וֶועסְט שטאַרבּען<lb/>וֶועט מֶען דִיךְ דאָ בּעגראָבּען, אָבֶּער גאָר לא, מֶען וֶועט דִיךְ<lb/>אַריינוואַרפען אִין ים אַרײַן אוּן אַלֶע ים⸗קאָטערס ווֶעלֶען זִיך רײַסען<lb/>אִיבֶּער דִיר</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0142_a">
+          <speaker>מישקע</speaker>
+          <p>ווֶער שׁוֹין פאַרשטומט צוּ אַלדע שוואַרץ יאָהר! אִיךְ פֶער⸗<lb/>שְׁטֶעה דַיין מַיין, דוּ כָּל-בּוניק, דוּ מַיינְסט, אַז אִיךְ וֶועל<lb/>שטאַרבּען וֶועסְט דוּ קֶענֶען חֲתוּנְָה הָאָבֶּען מִיט אַ יונְגֶע מוֹיד? אַזוֹי לאַנְג<lb/>קרֶענְקסט דוּ, ווִי לאַנְג אִיךְ וֶועל נִישְׁט שטאַרבּען, דִיר אוֹיף צוּ זֶעצֶענִישׁ<lb/>וֶועל אִיךְ נוּר הַאַלְטֶען אִין אֵיין לֶעבֶּען, אוּן אִין אֵיין מֶעקֶען... מאשׁקֶע!<lb/>אִיךְ וִויל שׁוֹין ווײַטער!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0143_a">
+          <speaker>מאשקע</speaker>
+          <p>האַלְט דִיךְ אֵיין מִישׁקֶע לֶעבֶּען, אָט גֶעהט קאַרל.<lb/><stage type="entrance">(אויפטריט קאַרל)</stage></p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0144_a">
+          <speaker>קארל</speaker>
+          <p>אַה, אָנְקֶעל, טאַנטע! אִיהר זַייט נאָך אַלץ זֶעֶע-קְראַנְק?</p>
+        </sp>
+        <pb n="11" facs="0011_NTU4MTU1.558085.jpg"/>
+        <fw type="pageNum">— 16 —</fw>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0145_a">
+          <speaker>מישקע</speaker>
+          <p>וואָס מִיר זֶעה⸗קְראַנְק? צִי זֶעה אִיךְ דֶען נִישְׁט חָלִילְָה אוֹיף<lb/>מײַנע אוִֹיגֶען? דאָס אִיז אַ מִין קִישׁקֶע⸗קראַנקהײַט! אוֹי מײַנע<lb/>קִישׁקֶעס!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0146_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס פֶערְשְׁטֶעהסְט דוּ נִישְׁט קאַרל? זִי האָט שׁוֹין נִישְׁט מִיט<lb/>וואָס צוּ בְּרֶעכֶען, בְּרֶעכְט זִי מִיט דֶער תּוכחה...</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0147_a">
+          <speaker>מישקע</speaker>
+          <p>אומְשׁטַיינְס גֶעזָאָגְט, אַז מֶען פֶערְלָאָזְט זִיך אוֹיף אַייךְ מֶענֶער<lb/>קוּמְט שׁטֶענְדִיג אַזוֹי אַרוֹיס! האָסְט דוּ דֶען נִישְׁט גֶעקֶענְט<lb/>אויסקלויבּען אַ שִׁיף פאַר אוּנְזֶער גֶעלְד, ווִי עֶס גֶעהֶערִיג אִיז? נֵיין! האָט<lb/>זִיך אִיהם פֶערְגלוסט אַ מִין הוִידֶעלְקֶע, אִיךְ זאָל נִישְׁט זִינְדִיגֶען מִיט דִי<lb/>רֵייד, טַאַטֶע גֶעטרײַער!... אַז הוִידְלֶען אוּן שאָקלען זאָל זִיך שׁוֹין פוּן<lb/>אִיהם, טַאַטֶע געטרייַער!...</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0148_a">
+          <speaker>קארל</speaker>
+          <p>אַבּער וואָס שפּריכט דִי טאַנטע? דִיעזֶע שִׁיפפֶע אִיזְט דאָך אַיינֶע<lb/>פאָן דִי בּעסטע שִׁיפֶען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0149_a">
+          <speaker>מישקע</speaker>
+          <p>אַ שִׁיף אִיז דאָס? דאָס אִיז דאָך אַ וויעג! אַ מִין לאָקשעֶן⸗<lb/>בּרעט...</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0150_a">
+          <speaker>קארל</speaker>
+          <p>גֶעהט טאַנטע אַ בִּיסכֶען אַרײַן צוּ מַיינֶע מוּטֶער, פִילְלײַכט וִוירְד<lb/>אִיהנֶען בֶּעסֶער וֶוערֶען.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0151_a">
+          <speaker>מאשקע</speaker>
+          <p>יאָ, יאָ, מִישׁקֶע לֶעבֶּען ! גֶעה אַ בִּיסֶעל אַרײַן צוּ דִי שווע⸗<lb/>גֶערִין, פְעֶרדרעה אִיהר אַ בַּיִסְעַל דֶעם קאָפּ!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0152_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי עֶס אִיז דאָך נִישְׁט אויסצוהאַלטען, אַז אוִיסגֶענִיקֶערְט<lb/>זָאָלֶען זַיי וֶוערֶען! <stage type="exit">(אָב)</stage></p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0153_a">
+          <speaker>קארל</speaker>
+          <p>נוּן אונְד אִיהר אָנְקֶעל, אִיהר זַײַט גאָר נִיכְט גֶעוֶועזֶען זֶעֶע⸗<lb/>קְראַנְק?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0154_a">
+          <speaker>מאשקע</speaker>
+          <p>ווִי האָבּ אִיךְ דֶען צייַט צוּ זַײַן קְראַנְק? אַז אִיךְ בִּין אַלץ<lb/>פֶערְנוּמֶען מִיט מַיין מִישׁקֶען <stage type="business">(מענשען לויפען דורך די ביהנע)</stage><lb/>זאָג דאָך מִיר קאַרל. וואוּ לוִיפֶען דאָס דִי מֶענְשֶׁען?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0155_a">
+          <speaker>קארל</speaker>
+          <p>דִי גֶעהֶען זִיך אִימְפֶען שְׁטֶעלֶען.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0156_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס אִיז דאָס אִין מִיטֶען דֶערִינֶען פּאָקען?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0157_a">
+          <speaker>קארל</speaker>
+          <p>אִין אַמֶערִיקַאַ אִיז אַזאַ גֶעזֶעץ. יֶעדֶער נײַער מֶענְשׁ וואַס<lb/>קוּמְט גֶעפאהרֶען מוּס זִיך שְׁטֶעלֶען לַאַסֶען אִימְפֶען; אִיךְ<lb/>גֶעה צוּ דֶער מוּטֶער <stage type="exit">(אָב)</stage><lb/><stage type="entrance">(אויפטריט מישקע)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0158_a">
+          <speaker>מישקע</speaker>
+          <p>גֶעוַואַלְד, מאָשקע! דִי שִׁיף גֶעהט אונְטֶער.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0159_a">
+          <speaker>מאשקע</speaker>
+          <p>שְׁטֶעה דאָך, אַז דוּ וֶועסְט אַזוֹי לוִיפֶען וֶועסְט דוּ אַרײַנפאַלען<lb/>אִין ים אַרײַן. דִי שִׁיף שְׁטֶעהט דאָך אוֹיף אֵיין אָרט.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0160_a">
+          <speaker>מישקע</speaker>
+          <p>וואוּ זְשֶׁע דֶען לוִיפֶען עַם דִי מֶענְשֶׁען?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0161_a">
+          <speaker>מאשקע</speaker>
+          <p>זַיי גֶעהֶען זִיך שְׁטֶעלֶען פּאָקען!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0162_a">
+          <speaker>מישקע</speaker>
+          <p>וואָס אִיז עֶפִּיס אִין מִיטֶען פּאָקען?</p>
+        </sp>
+        <fw type="pageNum">— 17 —</fw>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0163_a">
+          <speaker>מאשקע</speaker>
+          <p>אַמֶערִיקַאַ אִיז אַ נײַע לאַנד אוּן ווֶער עֶס קוּמְט נאָך אַמע⸗<lb/>ריקאַ אִיז דאָך אַ נײַער מֶענְשׁ דאַרְף מֶען אִיהם שְׁטֶעלֶען<lb/>נײַע פּאָקען, נוּ קוּם!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0164_a">
+          <speaker>מישקע</speaker>
+          <p>וואוּהִין?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0165_a">
+          <speaker>מאשקע</speaker>
+          <p>פּאַקען שְׁטֶעלֶען!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0166_a">
+          <speaker>מישקע</speaker>
+          <p>וואָס?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0167_a">
+          <speaker>מאשקע</speaker>
+          <p>פּאָקען שְׁטֶעלֶען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0168_a">
+          <speaker>מישקע</speaker>
+          <p>מאָשקע!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0169_a">
+          <speaker>מאשקע</speaker>
+          <p>נֵיין, דָאָרְטֶען שׁטֶעלְט מֶען פּאָקען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0170_a">
+          <speaker>מישקע</speaker>
+          <p>מאָשקע, הַייס אוִיסדְרֶעהֶען דִי הוִידֶעלְקֶע צוּרִיק אִין<lb/>קעשענאָוו!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0171_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס רֶעדְסְט דוּ, בִּיסְט אַ פָּנִים מְשׁוּגֶע?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0172_a">
+          <speaker>מישקע</speaker>
+          <p>זאָלְסְט מִיךְ גאָר נִישְׁט איבּערפרעגען וואָס אִיךְ רֶעד,<lb/>נאָר דוּ זאָלְסְט אַרײַנגעהן צוּ דֶעם, וואָס מִיט'ן רוִיטֶען<lb/>קאַשקעטעל!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0173_a">
+          <speaker>מאשקע</speaker>
+          <p>צוּם קאַפּיטאַן מַיינְסט דוּ?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0174_a">
+          <speaker>מישקע</speaker>
+          <p>יאָ צוּם קַבְּצָן אוּן זאָלְסְט אִיהם זָאָגֶען: וִויל עֵר אוּנְז<lb/>הוִידֶען קײַן מאַלעריקאַ, ווִי עֶס גֶעהֶער צוּ זַיין, אִיז גוּט,<lb/>אֶלֹא נִישְׁט...</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0175_a">
+          <speaker>מאשקע</speaker>
+          <p>אֶלא נִישְׁט?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0176_a">
+          <speaker>מישקע</speaker>
+          <p>אֶלא נִישְׁט! וֶועל אִיךְ אוֹיסְלָאָזֶען אַלֶע בֵּייזֶע חֲלוֹמוֹת צוּ<lb/>דײַן קאָפּ.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0177_a">
+          <speaker>מאשקע</speaker>
+          <p>ס'הַייסט צוּ זַײַן קאָפּ.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0178_a">
+          <speaker>מישקע</speaker>
+          <p>יאָ! אִיךְ מַיין עֶס טַאַקִי צוּ זַײַן קאָפּ; האָבּ אִיךְ דֶען נִישְׁט<lb/>בּעצאָהלט מײַן פערהאָרעוועט גֶעלְד, אַז אוִיסקרֶענְקֶען<lb/>זאָלְסְט דוּ עֶס!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0179_a">
+          <speaker>מאשקע</speaker>
+          <p>ס'הַייסט עֵר זאָל עֶס אוִיסקרֶענְקֶען!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0180_a">
+          <speaker>מישקע</speaker>
+          <p>עֶס אִיז מִיר אַלץ אַיינְס, זאָל עֵר דאָס אוִיסקרֶענְקֶען מִיט דִיר<lb/>צוּזַאַמֶען! וואָס אִיז עֶפִּיס אִין מִיטֶען דרִינֶען פּאָקען?!<lb/>וואָס בִּין אִיךְ עֶפִּיס אַ ילְד פּעטרוּס? וואָס האָבּ אִיךְ דֶען נִישְׁט קלֵיינֶער⸗<lb/>הַייד געפּאָקט אוּן געמאָזעלט?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0181_a">
+          <speaker>מאשקע</speaker>
+          <p>מִילא, פאַר מִיר אִיז דֶער תּירוּץ זֶעהר גוּט. אָבֶּער דאָס<lb/>וֶועסְט דוּ נִישְׁט אוִיספִיהרֶען! דאָ אַז מֶען זאָגְט פּאָקען אִיז<lb/>פּאָקען! אַזוֹי אִיז דֶער דִין אִין אַמֶערִיקַאַ.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0182_a">
+          <speaker>מאשקע</speaker>
+          <p>אִיךְ דאַרְף דִיר אוֹיף כּפּרות מִיט גאַנְץ אַמֶערִיקַאַ.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0183_a">
+          <speaker>מישקע</speaker>
+          <p>אָט האָט זִי גֶעמַאַכְט אַ תּכלית אִין אֵיין מִינוּט פוּן<lb/>גאַנְץ אַמֶערִיקַאַ! קוּם, מִישׁקֶע לֶעבּעֶן, וֶועל אִיךְ דִיר<lb/>עֶפִּיס ווײַזען; דוּ זֶעהסְט וואָס דאָ אִיז אויפגעשריבּען?</p>
+        </sp>
+        <pb n="12" facs="0012_NTU4MTU1.558090.jpg"/>
+        <fw type="pageNum">—18 —</fw>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0184_a">
+          <speaker>מישקע</speaker>
+          <p>נֵיין, אִיךְ פֶערְשְׁטֶעה נִישְׁט.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0185_a">
+          <speaker>מאשקע</speaker>
+          <p>דאָ אִיז אויפגעשריבּען, אַז ווֶער עֶס לאָזְט זִיך נִישְׁט שׁטֶע⸗<lb/>לֶען קײַן פּאָקען אוֹיף דֶער האַנְד, דֶעם שׁטֶעלְט מֶען אוֹיף<lb/>דֶעם צונְג.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0186_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי אַנ'אַכטיג האָט מִיר גֶעטְרָאָפֶען, וואָס טְהוּט מֶען?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0187_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס מֶען טְהוּט? מֶען דאַרְף גאָר נִישְׁט רֵיידֶען; עַם קוּמְט<lb/>אַרֵיין דֶער דאָקְטאָר אוּן שאַרט אַרוֹיף דֶעם אַרבּעל אוּן<lb/>נֶעהמְט אַרוֹיס אַ קלֵיין מֶעסֶערְל אוּן מאַכְט... פּיק, פּיק.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0188_a">
+          <speaker>מישקע</speaker>
+          <p>אַזוֹי לאַנְג קרֶענְקסט דוּ מִיט'ן דאָקְטאָר צוּזַאַמֶען, ווִי לאַנְג<lb/>אִיךְ וֶועל מִיךְ נִישְׁט לָאָזֶען מַאַכֶען פּיק, פּיק, אוּן טְהוּ<lb/>מִיר עֶפִּיס!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0189_a">
+          <speaker>מאשקע</speaker>
+          <p>אִיךְ וֶועל דִיר גאָר נִישְׁט טְהוּן, נאָר אָהן פּאָקען וֶועט מֶען<lb/>דִיךְ נִישְׁט אַרײַנלאָזען אִין אַמֶערִיקַאַ; זֶעה ווִי אַלֶע מֶענְשֶׁען<lb/>שְׁפַּאַצִיערֶען, עֶס אִיז אַ פֶערְגֶענִיגֶען, דוּ זֶעהסְט מֶען האָט זַיי שׁוֹין גֶע⸗<lb/>שׁטֶעלְט פּאָקען אוּן זַיי זֶענֶען שׁוֹין גֶעזוּנְד.<lb/><stage type="business">(אַלע זינגען)</stage>.<lb/><stage type="setting">(פאָרהאַנג)</stage></p>
+        </sp>
+      </div>
+      <div type="act" n="3" xml:id="MishkeMashke_Act3">
+        <head>דרִיטֶער אַקְט.</head>
+        <stage type="setting">(אַ איינפאַכער צימער, מישקע וועלגערט לאָקשען)</stage>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0190_a">
+          <speaker>מישקע</speaker>
+          <p>נאַ, אָט האָסְט דוּ דִיר מאַלעדיקאַ אוֹיף מַיין קאָפּ! מֶען<lb/>קֶען דאָ עִפִּיס קרִיגֶען? טאָמעֶר האָבּ אִיךְ גֶעוָואָלְט קאָכען<lb/>אַ בּיסעל בּאָרשט, אִיז וואוּ בִּין אִיךְ שׁוֹין נִישְׁט אוִיס גֶעוֶוען? גאַנְץ<lb/>נאַדעל⸗סטרִיט, גאַנְץ עסִיג סטרִיט אוּן חאָטְשׁ ווֶער דִי כּפּרה קרִיגט<lb/>מֶען נִישְׁט אוֹיף אַ בִּיסֶעל בּאָרשט, אוֹי אוִיסגֶענִיקֶערְט זאָל עֵר מִיר וֶוערֶען,<lb/>דֶער כָּל-בּוניק מאָשקע, וואָס עֵר האָט מִיךְ צוגֶערֶעדְט, אַז אִיךְ זאָל פאָה⸗<lb/>רֶען אִין מאַלעריקאַ. <stage type="exit">(אָב)</stage><lb/><stage type="entrance">(אויפטריט קאַרל)</stage></p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0191_a">
+          <speaker>קארל</speaker>
+          <p>אַך, מַיין גאָט! וואוּ זִינְד דִי שֶׁעהנֶע פאַנטאַזיען, וואָס אִיךְ<lb/>האַבּע מִיר פָאָרְגֶעשְׁטֶעלְט? וואוּ זִינְד דִי גאָלדענע לוּפְט⸗<lb/>שׁלֶעסֶער, וואָס אִיךְ האַבּע מִיר געבּויט? גֶעסטֶערְן אַלְס אִיךְ בִּין העריַיַן<lb/>אִין אֵיין קאַנטאָר אַיינֶע שׁטֶעלֶע בּיטען אִיזְט דאָרְט גֶעזֶעסֶען פרייליַיִן<lb/>ליעבּערמאַן; מַיין הֶערְץ אִיזְט מִיר געפּרעסט גֶעוָואָרֶען, מײַן צונְג אִיזְט<lb/>מִיר פֶערְטרִיקֶענְס גֶעוָואָרֶען, זאָ דאַס אִיךְ קאַנטע קֵיין אַיינְצִיגֶעס וואָרְט<lb/>אויסשפּרעכען. אִיךְ האַבּע בּעמערקט דאַס פרֵיילֵיין ליבּערמאַן, וואָלטע<lb/>צוּ מִיר וואָס שפּרעכען, אָבֶּער זִי קאַנטע אוִיך נִיכְט אונְד יֶעצְט מוסטֶע<lb/>אִיךְ מִיךְ בְּעֶשֶליסען אַלְס דִיענֶער זִיך אַנגאַזשירען לַאַסֶען. אִיךְ אַלְס<lb/>דִיענֶער?! אָה, גאָט! וואַרוּם שטראַפסט דוּ מִיךְ זאָ?<lb/><stage type="entrance">(אויפטריט מישקע)</stage></p>
+        </sp>
+        <pb n="13" facs="0013_NTU4MTU1.558094.jpg"/>
+        <fw type="pageNum">— 20 —</fw>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0192_a">
+          <speaker>מישקע</speaker>
+          <p>קאַרל לֶעבֶּען דוּ שלאָפסט? זֶעה, וואָס אִיךְ האָבּ דִיר<lb/>גֶעוָואָלְט בֶּעטֶען, אִיךְ האָבּ דאָ גֶעקוִיפְט אִין מאַרְק<lb/>קֶעקֶעטשׁ...</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0193_a">
+          <speaker>קארל</speaker>
+          <p>וואָס?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0194_a">
+          <speaker>מישקע</speaker>
+          <p>קֶעקֶעטשׁ!</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0195_a">
+          <speaker>קארל</speaker>
+          <p>וואָס אִיזְט דֶען דאַס?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0196_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי, וויסטֶער גרינהאָרן! אִין קֶעשֶׁענִיעוו אִיז עֵר גֶעוֶוען אֵיין<lb/>גַאַנְצֶער בּוֹיך האַלטער! אוּן דאָ קֶען עֵר קײַן אֵיין<lb/>וואָרְט נִישְׁט מאַלעריקאַניש... וואָס בּייַ אוּנְז אִיז קרוִיט<lb/>אִיז דאָ קֶעקֶעטשׁ.</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0197_a">
+          <speaker>קארל</speaker>
+          <p>קרוִיט אִיז דאָך קעבּעטש.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0198_a">
+          <speaker>מישקע</speaker>
+          <p>קעבּעטש אִיז דאָך אַ וָואָגֶען.</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0199_a">
+          <speaker>קארל</speaker>
+          <p>אַ וָואָגֶען אִיזְט קֶערֶעטשׁ.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0200_a">
+          <speaker>מישקע</speaker>
+          <p>אָבֶּער שׁטֶענְדִיג מוּז עֵר מִיךְ איבּערשפּאַרען. אַז אַ מוּהמע<lb/>זאָגְט קֶעקֶעטשׁ אִיז קֶעקֶעטשׁ. נאָר נִישְׁט דאָס בִּין אִיךְ<lb/>אוִיסֶען, זֶעהסְט דוּ? פאַר דִי 2 קלֵיינֶע קעקעטשלאַך האָבּ אִיךְ בעצאָהלט<lb/>7 סקרֶענְט.</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0201_a">
+          <speaker>קארל</speaker>
+          <p>סֶענְט, וואָלען זִי זָאַגֶען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0202_a">
+          <speaker>מישקע</speaker>
+          <p>דוּ שפּאַרסט מִיךְ שׁוֹין וֵוייטֶער אִיבֶּער? יאָ, האָבּ אִיךְ דִיךְ<lb/>גֶעוָואָלְט בֶּעטֶען. נֶעהם אַ שׁטִיקֶעל קרײַד אוּן צובּרֶעך דִי<lb/>7 סקרֶענְט אוֹיף אוּנְזֶער שפּראַך, וִויפִיעל מאַכְט דאָס אוִיס?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0203_a">
+          <speaker>קארל</speaker>
+          <p>14 קאָפּעקען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0204_a">
+          <speaker>מישקע</speaker>
+          <p>אוּן וִויפִיעל גְרָאָשֶׁען?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0205_a">
+          <speaker>קארל</speaker>
+          <p>28 גְרָאָשֶׁען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0206_a">
+          <speaker>מישקע</speaker>
+          <p>28 גְרָאָשֶׁען פאַר אַזעלכע 2 קלֵיינֶע קעקעטשלאַך ? אוֹי אוִיס⸗<lb/>גֶעחַאַפּט זָאָלֶען שׁוֹין וֶוערֶען גאַנְץ מאַלעריקאַ, 28 גְרָאָשֶׁען<lb/>פאַר אַזעלכע 2 קלֵיינֶע קעקעטשלאַך; קאַרל לֶעבֶּען. אַז דִי מַאַמֶע וֶועט<lb/>קוּמֶען, זאָלְסְט דוּ אִיהר זָאָגֶען, אַז אִיךְ בִּין אִין קִישֶׁען.</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0207_a">
+          <speaker>קארל</speaker>
+          <p>וואוּ?</p>
+        </sp>
+        <fw type="pageNum">— 21 —</fw>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0208_a">
+          <speaker>מישקע</speaker>
+          <p>אִין קִישֶׁען, אִין קִיך!</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0209_a">
+          <speaker>קארל</speaker>
+          <p>אִין קִיטשֶׁען, וואָלען זִי זָאַגֶען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0210_a">
+          <speaker>מישקע</speaker>
+          <p>דוּ שפּאַרסט שׁוֹין ווײַטער, אִיבֶּער? אִיךְ האָבּ דאָך דִיר<lb/>שׁוֹין 10 מאָל גֶעזָאָגְט, אַז דאָ אִיז דִי פּאַלע אִיז דאָרְט דִי<lb/>קִישֶׁען! 28 גְרָאָשֶׁען פאַר אַזעלכע 2 קלֵיינֶע קעקעטשלאַך ! <stage type="exit">(אָב)</stage></p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0211_a">
+          <speaker>קארל</speaker>
+          <p>אִיךְ ווֵייס גאַר נִיכְט וואָס אִיךְ זאָל מַיינֶע מוּטֶער זָאַגֶען,<lb/>אִיךְ ווֵייס בּעשטימט דאָס זִי וִוירְד דִיעזֶען קלאַפּ נִיכְט<lb/>העריבּערטראַגען.<lb/><stage type="entrance">(אויפטריט עמיליאַ)</stage></p>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0212_a">
+          <speaker>עמיליא</speaker>
+          <p>נוּן, וואָס הֶערְט מאַן נײַעס, מײַן לִיעבֶּער זאָהן?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0213_a">
+          <speaker>קארל</speaker>
+          <p>לִיעבֶּע מוּטֶער, דוּ ווירְסט זָא גוּט זַײַן אונְד מִיר דִי וועשֶׁע<lb/>איינפּאַקען. אִיךְ האַבּע שׁאָן אַיינֶע שׁטֶעלֶע בּעקאָמען.</p>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0214_a">
+          <speaker>עמיליא</speaker>
+          <p>גאָט זַײַ דאַנְק, בּײַ וועהם?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0215_a">
+          <speaker>קארל</speaker>
+          <p>בּײַ אֵיין גֶעוויסֶען בּאַנקיר וואָלף בִּיסִינג, אַלְס דִיענֶער...</p>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0216_a">
+          <speaker>עמיליא</speaker>
+          <p>מײַן זאָהן אַלְס דִיענֶער! אָה גאָט, וואַרוּם שטראַפּסט דוּ<lb/>מִיךְ זאָ שְׁוֶוער?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0217_a">
+          <speaker>קארל</speaker>
+          <p>זאָרגע נִיכְט, לִיעבֶּע מוּטֶער! דֶער גאָט וֶועלְכֶער האָט אוּנְז<lb/>אִין טִיעפסטֶען אָבּגרונד גֶעשׁלײַדערט דֶער וֶועט אוּנְז נאָך<lb/>הֶעלְפֶען. <stage type="exit">(ביידע אָב)</stage><lb/><stage type="entrance">(אויפטריט מאָשקע)</stage></p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0218_a">
+          <speaker>מאשקע</speaker>
+          <p>אָה, אִיז אִין דְרוִיסֶען אַ פראָסט, אַז עֶס אִיז אֵיין עבּרְה אַ<lb/>הוּנְד אַרוֹיסְצוּלָאָזֶען, אוּן דאָ בִּין אִיךְ הונְגֶערִיג אוִיפ'ן גַאַנְצֶען<lb/>מאָנען, וואוּ אִיז ערְגִיץ מִישׁקֶע? אַהאַ, זִי דאַרְף אַוודאי זַײַן פֶער⸗<lb/>נומֶען אִין קִיך, הַיינְט אִיז דאָך עֶפִּיס פוּרים! מִישׁקֶע לֶעבֶּען! מִישׁקֶע<lb/>לֶעבֶּען!!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0219_a">
+          <speaker>מישקע</speaker>
+          <p><stage type="business">(הינטער די קוליסען)</stage> וואָס אִיז מאָשקע לֶעבֶּען?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0220_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס אִיז? קוּם אַרײַן אִין שְׁטוּבּ וֶועסְט דוּ עֶפִּיס גֶעבֶּען<lb/>עֶסֶעֶן, וואָרוּם אִיךְ בִּין זֶעהר הונְגֶערִיג.<lb/><stage type="entrance">(אויפטריט מישקע)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0221_a">
+          <speaker>מישקע</speaker>
+          <p>אָה. מאָשקע לֶעבֶּען! אַ גוּטֶען פּוּרים אוֹיף אוּנְז אוּן אוֹיף<lb/>אַלֶע יוּדֶען, אָמֵן סלְה.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0222_a">
+          <speaker>מאשקע</speaker>
+          <p>אָמֵן סלְה, האָסְט עֶפִּיס צוּ עֶסֶעֶן מִישׁקֶע לֶעבּעֶן, וואָרוּם<lb/>אִיךְ בִּין זֶעהר הונְגֶערִיג. אִיךְ פֶערְשְׁטֶעה מִישׁקֶע לֶעבּעֶן<lb/>לְכָּבוֹד פּורים האָסְט דוּ אַודאי געֶקאָכט אַ גוּטֶע יויך!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0223_a">
+          <speaker>מישקע</speaker>
+          <p>יויך זאָל אִיךְ דִיר קאָכען? האָסְט מִיר אַ סך אִיבֶּער⸗<lb/>גֶעלָאָזְט אוֹיף יויך? דוּ וַוייסְט דאָך, אַז מֶען דאַרְף הָאָבֶּען<lb/>פאַר דִי יויך אוּן אונְטֶער דִי יויך אַ פאַסאָלקע, אַ פּיעטרוּשקע, אַ צִיבֶּעלֶע,<lb/>אַ ריבּקע. האָסְט מִיר אַ סך פערגעלאָזט גֶעלְר אוֹיף...</p>
+        </sp>
+        <pb n="14" facs="0014_NTU4MTU1.558098.jpg"/>
+        <fw type="pageNum">— 22 —</fw>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0224_a">
+          <speaker>מאשקע</speaker>
+          <p>אַהאַ, דוּ האָסְט אַודאי געֶקאָכט אַ גוּטֶען בּאָרשט מִיט<lb/>אַ פֶעטֶען מאַרך-בּיין.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0225_a">
+          <speaker>מישקע</speaker>
+          <p>מִישׁטַיינְס גֶעזָאָגְט, אִין אַמֶערִיקַאַ וִויל עֵר עֶסֶעֶן בּאָרשט,<lb/>אַז מֶען וִויל עָסען בּאָרשט מוּז מֶען פאָהרעֶן אִין קֶעשֶׁע⸗<lb/>ניעָוו. וואוּ בִּין אִיךְ דעָן נִישְׁט אויסגעפאַלען? גאַנְץ עסִיג-סטרִיט, גאַנְץ<lb/>נאָדעל-סטרִיט אוּן חאָטש ווֶער דִי כּפּרה קרִיגט מֶענ נִישְׁט אוֹיף אַ<lb/>בּיסעָל בּאָרשט.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0226_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס דֶען האָסְט דוּ געֶקאָכט?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0227_a">
+          <speaker>מישקע</speaker>
+          <p>גְלוֹיבּ מִיר מאָשקע אִיךְ האָבּ דִיר געֶקאָכט אַ מאכל, אִיז<lb/>אַ כּפּרה דִי יויך!...</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0228_a">
+          <speaker>מאשקע</speaker>
+          <p>נוּן, זאָג שׁוֹין וואָס?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0229_a">
+          <speaker>מישקע</speaker>
+          <p>אִיךְ האָבּ דִיר געֶקאָכט קֶעקֶעטשׁ.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0230_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס אִיז דאָס אַזוינס, צוּם עֶסֶעֶן?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0231_a">
+          <speaker>מישקע</speaker>
+          <p>וואָס דעָן צוּם טְרִינְקֶען?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0232_a">
+          <speaker>מאשקע</speaker>
+          <p>אַבִּי צוּם עָסען; נוּן גִיבּ שׁוֹין אַהעָר.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0233_a">
+          <speaker>מישקע</speaker>
+          <p>נוּן, אוּן דִי מגִילְה?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0234_a">
+          <speaker>מאשקע</speaker>
+          <p>צוּ וואָס דאַרְפְסְט דוּ דִי מגִילְה?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0235_a">
+          <speaker>מישקע</speaker>
+          <p>ס'טײַטש! דוּ האָסְט פֶערְגֶעסֶען, וואָס פאַר אַ יוֹם הדִין<lb/>מִיר הָאָבֶּען הײַנט? הײַנט אִיז דאָך עֶפִּיס פּוּרים.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0236_a">
+          <speaker>מאשקע</speaker>
+          <p>אִיךְ האָבּ גֶעהֶעָרְט דִי מגִילְה, בִּיסְט דוּ שׁוֹין יוצא.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0237_a">
+          <speaker>מישקע</speaker>
+          <p>אוּן אִיךְ האָבּ שׁוֹין גֶעגֶעסֶען, בִּיסְט דוּ שׁוֹין אויך יוצא.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0238_a">
+          <speaker>מאשקע</speaker>
+          <p>מִישׁקֶע, גִיבּ מִיר עֶסֶעֶן, וואָרוּם אִיךְ שטאַרבּ פוּן הוּנגער...</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0239_a">
+          <speaker>מישקע</speaker>
+          <p>מאָשקע, דִי מגִילְה זאָל מִיר זַײַן! אַז ניִשט בּעקוּמסט דוּ<lb/>נִיִשְׁט אַ שׁטִיקֶעל קֶעקֶעטשׁ...</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0240_a">
+          <speaker>מאשקע</speaker>
+          <p>אִיךְ ווֵייס נִישְׁט צִי אִיז מִיר נאָך גֶעבְּלִיִבֶּען אַ מגִילְה? אַהאַ,<lb/>ס'אִיז נאָך דאָ אַ קלֵיין מגִילְהלֶע.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0241_a">
+          <speaker>מישקע</speaker>
+          <p>מאָשקע, דוּ זאָלְסְט מִיר אוִיסלֶערְנֶען פוּן דֶעשׁקֶע לרֶעשׁקֶע!<lb/>אַפילוּ דֶער יוּנגסטער זוּהן המְן'ס ויזתא, זאָל אוֹיך נִישְׁט<lb/>פֶעהלֶען!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0242_a">
+          <speaker>מאשקע</speaker>
+          <p>העָר זִיךְ אֵיין: וִיהִי בּימי אַחשורש, הוּא אַחשורש <stage type="business">(מִישׁקֶע</stage><lb/><stage type="delivery">וויִינְט)</stage> מיִשקע, וואָס וויינְסט דוּ?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0243_a">
+          <speaker>מישקע</speaker>
+          <p>פאַר וואָס זאָל אִיךְ נִישְׁט וויינֶען, אוּן פאַר וואָס זאָל אִיךְ<lb/>נִישְׁט קלאָגען, אַז אִין קֶעשֶׁענִיעוו פלֶעגסט דוּ זאַך צולֶעגֶען<lb/>מִיט דִי מגִילְה אִיז זִי גֶעוֶוען אַזוֹי לאַנְג אוּן אַזוֹי בּרייט אוּן דאָ האָסְט דוּ<lb/>אַוועקגעלעגט אַ מִין בּענטשערל, נִישְׁט זִינְדִיגֶען זאָל אִיךְ מִיט דִי רֵייד,<lb/>טַאַטֶע גֶעטרײַער!</p>
+        </sp>
+        <fw type="pageNum">— 23 —</fw>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0244_a">
+          <speaker>מאשקע</speaker>
+          <p>פאַר וואָס אִין קֶעשׁנֶיעוו, אַז עט פלֶעגט קוּמֶען דֶער<lb/>הַיילִיגֶער פּוּרִים פלעֶנסט דוּ אַרוֹיפלייגען אַ פּוּרִים⸗קוֹילעטש,<lb/>אִיז עֵר גֶעוֶוען אַזוֹי גְרוִיס אוּן אַזוֹי בּרייט אוּן דאָ גיִבּסט דוּ מִיר<lb/>קֶעקֶעטשׁ! —</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0245_a">
+          <speaker>מישקע</speaker>
+          <p>נוּן, לֵייען וֵוייטֶער!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0246_a">
+          <speaker>מאשקע</speaker>
+          <p>אחר הדְברִים האלה גִידל המְלְך אחשורוש אֶת המְן. —</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0247_a">
+          <speaker>מישקע</speaker>
+          <p>שְׁטֶעה, אִיךְ האָבּ דִיךְ געפּאַקט! וואָס האָסְט דוּ גֶעזָאָגְט?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0248_a">
+          <speaker>מאשקע</speaker>
+          <p>גִידְל המְלְך אחשורוש אֶת המְן.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0249_a">
+          <speaker>מישקע</speaker>
+          <p>נוּן, אוּן אֵיין גרֶעגֶער?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0250_a">
+          <speaker>מאשקע</speaker>
+          <p>דוּ בִּיסְט דֶען אַ קלֵיינֶער גרֶעגֶער?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0251_a">
+          <speaker>מישקע</speaker>
+          <p>מאָשקע! אַ גרֶעגֶער זאָל מִיר זייַן, וועָן נִישְׁט בּעקוּמסט דוּ<lb/>ניִשט אַ שטיִקְעָל קֶעקֶעטשׁ!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0252_a">
+          <speaker>מאשקע</speaker>
+          <p>נאָך אַ גְלִיק וואָס עֶס אִיז מִיר פערבּליבּען אַ גרֶעגֶער. נאַ<lb/>דִיר דאָ האָסְט דוּ שׁוֹין אַ גרֶעגֶער; אִיש היה בּשוּשן הבּירה<lb/>ושמו מרְדְכִי בֶּן יאִיר בֶּן שׁמֶעִי בֶּן קִישׁ...</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0253_a">
+          <speaker>מישקע</speaker>
+          <p>עָר זאָל זייַן אַ כּפּרה פאַר מִיר אוּן פאַר כָּל ישראל,<lb/>אָמֵן סלְה!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0254_a">
+          <speaker>מאשקע</speaker>
+          <p>אָמֵן סלְה! גִיבּ אַהֶער דֶעם קֶעקֶעטשׁ!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0255_a">
+          <speaker>מישקע</speaker>
+          <p>וואָס אִיז עֶפִּיס אַזוֹי גִיך?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0256_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס פֶערְשְׁטֶעהסְט דוּ נִישְׁט, מִישׁקֶע לֶעבֶּען? אִין אַמֶערִיקַאַ<lb/>גֶעהט אַלֶעס אוֹיף פאַרע, גֶעהט דִי מגִילְה אוִיך אוֹיף<lb/>פאַרע.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0257_a">
+          <speaker>מישקע</speaker>
+          <p>נוּן, וֶועסְט דוּ בּייַ מִיר עֶסֶעֶן אוִיך אוֹיף פּאַרע.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0258_a">
+          <speaker>מאשקע</speaker>
+          <p>גִיבּ מִיר עֶפִּיס עֶסֶעֶן וואָרוּם אִיךְ שטאַרבּ דאָ פאַר<lb/>הונְגֶער.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0259_a">
+          <speaker>מישקע</speaker>
+          <p>נוּן, גֶעה שׁוֹין אַרײַן דוּ כָּל⸗בּוניק אִין קִישֶׁען וועָסְט דוּ<lb/>דאָרְט דִיר נֶעהמֶען עָסען!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0260_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס שִׁיקסט דוּ מִיר עֶפִּיס שְׁלָאָפֶען, וִויל אִיךְ דֶען שְׁלָאָפֶען?<lb/>אִיךְ וִויל עֶסֶעֶן.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0261_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי וויסטֶער גרינהאָרן, נאָך וַוייסְט דוּ נִישְׁט, אַז דאָ אִיז דִי<lb/>פּאַלע אִיז דָאָרְטֶען דִי קִישֶׁען.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0262_a">
+          <speaker>מאשקע</speaker>
+          <p>טְפוּי אוֹיף דִיר, קִיטשֶׁען האָסְט דוּ בֶּעדַאַרְפְט זָאָגֶען .<stage type="exit">(אָבּ)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0263_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי כָּל-בּוֹנִיק. כָּל-בּוֹניק! עָס האָט זִיךְ אִיהם פעֶרגלוּסט<lb/>מאַלעריקע, דאָרְט ווֶעלֶען מִיר שאַרען גאָלְד האָט עֵר<lb/>געָזאָגְט צוּם סוֹף שאַרט עֵר אַפילוּ קייַן בּרוֹיט אוִיך נִישְׁט. אוֹי קעשעניאָוו,<lb/>קעָשעניאָוו... מאָשקע!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0264_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס אִיז שׁוֹין וִויעדֶער מִישׁקֶעלֶע?</p>
+        </sp>
+        <pb n="15" facs="0015_NTU4MTU1.558101.jpg"/>
+        <fw type="pageNum">— 24 —</fw>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0265_a">
+          <speaker>מישקע</speaker>
+          <p>אוּן שָׁלוּחַ מנות?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0266_a">
+          <speaker>מאשקע</speaker>
+          <p>שָׁלוּחַ מנות זֶעהסְט דוּ מִישׁקֶעלֶע וֶוערְד דאָ גֶעזוּנְגֶען נִישְׁט<lb/>גֶעשִׁיקְט!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0267_a">
+          <speaker>מישקע</speaker>
+          <p>נוּ לאָז שׁוֹין זַיין גֶעזוּנְגֶען, נוּ זִינְג שׁוֹין!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0268_a">
+          <speaker>מאשקע</speaker>
+          <lg>
+            <l>דאָס ערְשׁטֶע שָׁלוּחַ מנות</l>
+          </lg>
+          <lg>
+            <l>וואָס גאָט האָט אוּנְז גֶעשִׁיקְט</l>
+          </lg>
+          <lg>
+            <l>עֵר האָט אוּנְז אוֹיסְגֶעלֵייזְט פוּן גלוּת</l>
+          </lg>
+          <lg>
+            <l>אוּן אִין דִי מדבּר אַרײַן גֶעשִׁיקְט.</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="MishkeMashke_SP0269_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>אַ משׁקה'לֶע, אַ כּוס'עלע, אַ טאָרטעלע, אַ צוּקערלע,</l>
+          </lg>
+          <lg>
+            <l>אוֹי ווִי צוּקעַר זִיס!</l>
+          </lg>
+          <lg>
+            <l>אַ המְן'דֶעל, אַנ'אסתּר'ל, אַ מרְדְכִי'לֶע, אַ שׁוועסטֶער'ל,</l>
+          </lg>
+          <lg>
+            <l>אוֹי ווִי צוּקֶער זִיס! אוֹי ווִי צוּקֶער זִיס!</l>
+          </lg>
+          <lg>
+            <l>שִׁיקְט שׁוֹין אַלֶע שָׁלוּחַ מנות</l>
+          </lg>
+          <lg>
+            <l>אֵיינֶעֵר דֶעם צְוֵוייטֶען גְרויסֶע מתּנות</l>
+          </lg>
+          <lg>
+            <l>אוֹי ווִי צוּקֶער זִיס!</l>
+          </lg>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0270_a">
+          <speaker>מישקע</speaker>
+          <lg>
+            <l>נוּ קוּם אוִיך אַרײַן אִין קִישֶׁען!</l>
+          </lg>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0271_a">
+          <speaker>מאשקע</speaker>
+          <lg>
+            <l>נאָך וואָס טוִיג מִיר אַ קִישֶׁען!</l>
+          </lg>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0272_a">
+          <speaker>מישקע</speaker>
+          <lg>
+            <l>נאָך וַוייסְט דוּ אַלְס נִישְׁט אַז דאָ אִיז דִי פאַלע אוּן</l>
+          </lg>
+          <lg>
+            <l>דאָרְט אִיז דֶער קִישֶׁען! נוּר לאָז שׁוֹין דאָ זַײַן דִי פאַלע אוּן</l>
+          </lg>
+          <lg>
+            <l>דאָ דעָר קִישֶׁען!</l>
+          </lg>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0273_a">
+          <speaker>מאשקע</speaker>
+          <p>נוּ, ווֶען וֶועסְט דוּ מִיר שׁוֹין גֶעבֶּען דֶעם קֶעקֶעטשׁ?<lb/><stage type="entrance">(שאַרלאָטע סאַלאַ ערשיינען)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0274_a">
+          <speaker>מישקע</speaker>
+          <p>אַ גוּטֶען פּוּרים שׁוועגֶערִין.</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0275_a">
+          <speaker>שארלאטע</speaker>
+          <p>אַ גוּט יאָהר <stage type="delivery">(צוּ סאַלאַ)</stage> זאָג נוּר מייַן קִינְד וואוּ האָסְט דוּ<lb/>געָנוּמען דאָס גֶעלְד?</p>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0276_a">
+          <speaker>סאלא</speaker>
+          <p>אִיךְ האָבּ מִיךְ אַרויפגעחאַפּט אויפ'ן טראַנוויי אִיז גֶעקוּמֶען<lb/>אֵיין פּאָליסמאַן אוּן עֵר האָט מִיר גֶעגֶעבֶּען אַ קלאַפּ האָבּ אִיךְ<lb/>שְׁטאַרְק גֶעוויינְט; אִיז עֵר גֶעקוּמֶען אַהעָר אוּן עֵר האָט מִיר גֶעגֶעבֶּען<lb/>גֶעלְד אִיךְ זאָל נִישְׁט וויינֶען! מוּטֶער! אִיךְ וֶועל דִיר שׁוֹין אַלֶע טאָג<lb/>בּרעָנגעָן גֶעלְד אַהֵיים!</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0277_a">
+          <speaker>שארלאטע</speaker>
+          <p>וואוּ אִיז דאָס מייַן קִינְד דִי האַנְד אַזוֹי גֶעוָואָרֶען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0278_a">
+          <speaker>מישקע</speaker>
+          <p>לאָז עָר אוִיפלֵייגֶען אַ טִיכֶעל מִיט קאַלט וַואַסֶער! <stage type="business">(עֵר</stage><lb/><stage type="business">לֵייגט אוֹיף)</stage></p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0279_a">
+          <speaker>מאשקע</speaker>
+          <p>קוּם שְׁווֶעסְטֶער אַרײַן וועָסְט דוּ עֶפִּיס גֶענִיסֶען פוּן פּוּרים.</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0280_a">
+          <speaker>שארלאטע</speaker>
+          <p>קוּם סאַלאַ!</p>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0281_a">
+          <speaker>סאלא</speaker>
+          <p>גֶעה דוּ אַרײַן מוּטֶער אִיךְ וֶועל מִיךְ דאָ שפּיעלען מִיט דִי<lb/>קִינְדֶערְלֶעך.<lb/>קוּמְט אַרײַן קִינְדֶערְלֶעך! <stage type="entrance">(קינדער ערשײַנען)</stage></p>
+        </sp>
+        <sp who="#eyner" xml:id="MishkeMashke_SP0282_a">
+          <speaker>איינער</speaker>
+          <p>אִיךְ וֶועל זייַן מרְרְכִי.</p>
+        </sp>
+        <fw type="pageNum">— 25 —</fw>
+        <sp who="#eyner" xml:id="MishkeMashke_SP0283_a">
+          <speaker>איינער</speaker>
+          <p>עֶס אִיזְט דאָך מײַן פֶערְד!</p>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0284_a">
+          <speaker>סאלא</speaker>
+          <p>עַם אִיזְט דָאךְ מײַן שׁטִיער!</p>
+        </sp>
+        <sp who="#eyner" xml:id="MishkeMashke_SP0285_a">
+          <speaker>איינער</speaker>
+          <lg>
+            <l>נוּא זַײַ דוּ מרְדְכִי! אוּן אִיךְ המְן! (אַלע זינגען)</l>
+          </lg>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0286_a">
+          <speaker>סאלא</speaker>
+          <lg>
+            <l>המְן דֶער שׁלֶעכטֶער יוּנְג</l>
+          </lg>
+          <lg>
+            <l>האָט גֶעוָואָלְט מִיט זַײַן בּייזען צוּנג</l>
+          </lg>
+          <lg>
+            <l>אוּמבּרענגען דִי יוּדֶען אָהנֶע צאָהל!</l>
+          </lg>
+          <lg>
+            <l>האָט מרְדְכִי מִיט זַײַן גֶעוויין</l>
+          </lg>
+          <lg>
+            <l>עמַאַכְט עֶס זאָל גאָר נִישְׁט זַײַן</l>
+          </lg>
+          <lg>
+            <l>אוּנד אַללעס אִיז גֶעוֶוען אָלרייט</l>
+            <stage type="delivery">(בּיסס)</stage>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="MishkeMashke_SP0287_a">
+          <speaker>אלע</speaker>
+          <lg>
+            <l>מרְדְכִי! מרְדְכִי! אָלרייט!</l>
+          </lg>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0288_a">
+          <speaker>סאלא</speaker>
+          <lg>
+            <l>האַ אִין דִי סאַר!</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="MishkeMashke_SP0289_a">
+          <speaker>אלע</speaker>
+          <lg>
+            <l>המְן המְן אִין סאַר! קוּמְט שׁוֹין קִינְדֶער! (3 מאָל)</l>
+          </lg>
+        </sp>
+        <sp who="#sala" xml:id="MishkeMashke_SP0290_a">
+          <speaker>סאלא</speaker>
+          <lg>
+            <l>עֶס האָט נִישְׁט לאַנְג גֶעדוִיערְט</l>
+          </lg>
+          <lg>
+            <l>האָט המְן אַ תּליה אוֹיף געבּויט</l>
+          </lg>
+          <lg>
+            <l>אוּן עֵר האָט זִיך דאַבּייַ זֶעהר גֶעפרֵייט.</l>
+          </lg>
+          <lg>
+            <l>אַז פוּן יוּדֶען וֶועט זייַן אַ סוֹף.</l>
+            <stage type="setting">(פאָרהאַנג)</stage>
+          </lg>
+        </sp>
+        <pb n="16" facs="0016_NTU4MTU1.558106.jpg"/>
+        <fw type="pageNum">— 27 —</fw>
+      </div>
+      <div type="act" n="4" xml:id="MishkeMashke_Act4">
+        <head>פִיערְטֶער אַקְט.</head>
+        <stage type="setting">דִי בּיִהנע שׁטֶעלְט פאָר אַ זאַל.</stage>
+        <sp who="#mina" xml:id="MishkeMashke_SP0291_a">
+          <speaker>מינא</speaker>
+          <p>לִיעבֶּע שאַרלאָטאַ, אִיךְ קאַן דִיךְ גאַר נִיכְט פֶערְשְׁטֶעהן, דוּ<lb/>נֶעהמְסט דאָך זאָ אַיינֶען רַייַכֶען בְּרוֹיטִיגַאַס, אַיינֶע אַנְדֶערֶע<lb/>אוֹיף דייַנען פלאַץ הֶעטֶע זִיך גְלִיקְלִיך שֶׁעטצֶען זאָ אַיינֶען מאַן צוּ הָאַבֶּען<lb/>אונְד דוּ בִּיזְט אִימְמֶער טרוִיערִיג.</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0292_a">
+          <speaker>שארלאטא</speaker>
+          <p>נִיכְט אַלֶעס אִיזְט גאָלְד, וואַס עֶס שײַנט.</p>
+        </sp>
+        <sp who="#mina" xml:id="MishkeMashke_SP0293_a">
+          <speaker>מינא</speaker>
+          <p>אִיךְ פֶערְשְׁטֶעה דִיךְ נִיכְט, ערְקלֶערֶע דאָך מִיר אַלֶעס.</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0294_a">
+          <speaker>שארלאטא</speaker>
+          <p>דוּ וַוייסְט דאָך גאַנְץ גוּט לִיעבֶּע מינאַ, דאַס דֶער<lb/>הֶערְר ליעבּערמאַן אִיזְט נִיכְט מייַן רִיכטִיגֶער פָאַטֶער,<lb/>עֵר אִיזְט נוּר מייַן ערציהוּנגס⸗פָאַטֶער, רִיכטִיגֶע עֶלְטֶערְן קאַנטע אִיךְ נִיכְט,<lb/>דֶען אַלְס אִיךְ וואַר נאָך אֵיין קלֵיינֶעם קִינְד האַט מִיךְ דֶער הֶערְר לִיע⸗<lb/>בֶּערְמַאַן צוּ זִיך גֶענאמֶען, נוּר דאַס ווֵייס אִיךְ, דאַס אִיךְ בִּין קֵיינֶע גֶע⸗<lb/>בּאָרענע אַמעָריקאַנערין, זאָנדערן אוִיס רוּסלאַנד. מִיט אֵיין יאַהר צוּרִיק<lb/>האַבּעָ אִיך גֶעבֶּעטֶען דֶעם הֶערְרְן ליעבּערמאַן דאַס עֵר זאָל מִיר ערלויבּען<lb/>נאַך רוּסלאַנד פאַהרען מײַנע רִיכטִיגֶע עֶלְטֶערְן אוֹיפזוּכעֶן. דֶער הֶערְר<lb/>ליעבּערמאַן האַט עֶס מִיר ערלויבּט אוּנד אִיךְ בִּין נאַך רוּסלאַנד געפאַה⸗<lb/>רֶען. אִיךְ האַבּע אִין מײַנער געבּורטס⸗שטאַדט געזוּכט, נאַכגעפראַגט.<lb/>פִילֵייכְט לֶעבְּט נאָך מײַנע מוּטֶער אָדֶער פָאַטֶער, לֵיידֶער וואַר שׁאָן<lb/>ניעמאַנד פוּן מֵייַנֶע פרײַנדע ווִי אוִיך פאָן מײַנע פערוואַנדטע; אִיךְ בִּין<lb/>נאַטירליךְ צוּרִיק געפאַהרען נאַך ניוּ-יאָרק, אוּנד ווערֶענְד דֶער רֵייזֶע אוֹיף<lb/>דֶער שִׁיפפֶע האַבּע אִיךְ מִיךְ מִיט אַיינֶען יוּנגען מאַן בֶּעקַאַנְט. אַך מינאַ, אַיין<lb/>מוסטֶער דֶער טוגֶענְד! זייַן עדֶעלֶעס בֶּענֶעהמֶען קאַן יֶעדֶען בֶּעצוֹיבֶּערְן;<lb/>אִיךְ האַבּע מִיךְ אִין אִיהם שטערבּליך פֶערְלִיעבְּט אוּנד וִויר הָאַבֶּען אוּנְז<lb/>עִוִויגֶע לִיעבֶּע געשוואָהרען. יֶעצְט שׁטֶעלְלֶע דִיךְ פאָר מֵייַנֶע שְׁמֶערְצְֶען,<lb/>דאַס פאָן דֶער גַאַנְצֶער צייַט וואַס אִיךְ בִּין הִיער אִין ניוּ⸗יאָרק האַבּע אִיךְ<lb/>אִיהם נוּר אֵיין מאַל גֶעזֶעהן בּייַ בּיסינג אִין קאַנטאָר, אַבּער אִיךְ קאַנטע<lb/>דאַן מִיט אִיהם נִיכְט שפּרעכען; יֶעצְט צווינְגט מאַן מִיךְ דאַס אִיךְ זאָל<lb/>הֵיירַאַטֶען דֶעם הֶערְר בּיסינג, דאַס הַייסְט עֶסֶעֶן זאָ וואַס, וואַס נִיכְט<lb/>שׁמֶעקֶען קאַן. נוּן זאַגע מינאַ, קאַנְסְט דוּ מִיךְ פִיר גְלִיקְלִיך רֶעכֶענֶען?</p>
+        </sp>
+        <sp who="#mina" xml:id="MishkeMashke_SP0295_a">
+          <speaker>מינא</speaker>
+          <p>אִיךְ הֶערֶע שׁרִיטטֶע, עֶס קאָמט יֶעמַאַנְד, פאַססע דִיךְ לִיעבֶּע<lb/>שאַרלאָטאַ, גאָט וִוירְד דִיךְ נִיכְט פערלאַסען.<lb/><stage type="entrance">(אויפֿטריט בִּיסִינְג אונְד ליעבערמאַ</stage>ן)</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0296_a">
+          <speaker>ביסינג</speaker>
+          <p>לִיעבֶּע שאַרלאָטאַ, וואַרוּם זִיצסט דוּ הִיער? וואַרוּם גֶעהסט<lb/>דוּ נִיכְט צוּ דִי גֶעסטֶע זִיך אַטוּזירען.</p>
+        </sp>
+        <pb n="17" facs="0017_NTU4MTU1.558111.jpg"/>
+        <fw type="pageNum">— 28 —</fw>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0297_a">
+          <speaker>שארלאטא</speaker>
+          <p>אִיךְ קאַן נִיכְט, עֶס אִיזְט מִיר עַטְוואַס איבּעל.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0298_a">
+          <speaker>ביסינג</speaker>
+          <p>איבּעל? דִיענֶער! שׁנֶעלְל וַואַסֶער, וואַס אִיזְט מִיט דִיר<lb/>גֶעשֶׁעהן, פִילֵייכְט רוּפֶען אַיינֶען דאָקְטאָר?!..<lb/><stage type="entrance">(אויפטריט קאַרל מיט וואַסער)</stage></p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0299_a">
+          <speaker>קארל</speaker>
+          <p>מײַן גאָט! שאַרלאָטאַ! <stage type="exit">(אָב)</stage></p>
+        </sp>
+        <sp who="#lieberman" xml:id="MishkeMashke_SP0300_a">
+          <speaker>ליעבערמאן</speaker>
+          <p>קאָם מײַן קִינְד אִין גָאַרְטֶען, פִילײַכט וִוירְד דִיר<lb/>בֶּעסֶער וֶוערְדֶען!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0301_a">
+          <speaker>ביסינג</speaker>
+          <p>האַנץ! <stage type="entrance">(אויפטריט האַנץ)</stage> דאַ האַסְט דוּ אַיינֶען דאָלאַר, גֶעבֶּע<lb/>דֶען נײַען דִיענֶער אוּנד זאַגע אִיהם דאַס עֵר זאָל זאָפאָרט<lb/>מײַן הוֹיז פערלאַסען!</p>
+        </sp>
+        <sp who="#diener" xml:id="MishkeMashke_SP0302_a">
+          <speaker>דיענער</speaker>
+          <p>שֶׁעהן! <stage type="exit">(אָב)</stage></p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0303_a">
+          <speaker>ביסינג</speaker>
+          <p>דִי גֶעשִׁיכטֶע קאָמט מִיר זֶעהר פֶערְדֶעכטִיג פאָר <stage type="entrance">(אויפֿטריט</stage><lb/><stage type="business">ליעבערמאַן)</stage> מיִסטער ליעבּערמאַן! אִיךְ האַבּע אִיהנֶען עהר⸗<lb/>לִיכֶע דאָללאַרס געצאַהלט אוּנד זִי לִיפֶערְן מִיר פַאַלְשֶׁע וואַאַרע!</p>
+        </sp>
+        <sp who="#lieberman" xml:id="MishkeMashke_SP0304_a">
+          <speaker>ליעבערמאן</speaker>
+          <p>וואַס מַיינֶען זִי דַאַמִיט?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0305_a">
+          <speaker>ביסינג</speaker>
+          <p>גאַנְץ איינפאַך! הָאַבֶּען זִי דֶען נִיכְט דִי לֶעצְטֶע סצֶענֶע<lb/>מִיט דֶען נייַען דִיענֶער בּעמערקט? מִיר שײַנט דאַס עֵר<lb/>אִיזְט גֶעוִויס אֵיהר גֶעלִיעבְּטֶער.</p>
+        </sp>
+        <sp who="#lieberman" xml:id="MishkeMashke_SP0306_a">
+          <speaker>ליעבערמאן</speaker>
+          <p>גֶעוֶועזֶען! שאַרלאָטאַ האַט מִיר אַלֶעס עֶרְצֶעהלְט. נִיכְט<lb/>יֶעדֶער מֶענְשׁ וֶוערְט מִיט זַײַנען שיקזאַל געבּאָרען;<lb/>דִיעזֶער יוּנְגֶער מאַן אִיזְט נאַך אַמֶערִיקַאַ מִיט גאַנְץ אַנְדֶערֶע אוִיסזִיכטֶען<lb/>געקאָמען, אַבּער דאַס שיקזאַל האַט אִיהם גֶעפִיהרְט בּײַ אַייךְ אֵיין<lb/>דִיענֶער צוּ וֶוערֶען, גְרַאַדֶע ווִי מִיךְ מײַנע טָאָכְטֶער אִיהנֶען צוּר פְרוִי<lb/>צוּ גֶעבֶּען, אַבּער אוּנְזֶער האַנדעל אִיזְט נאָך נִיכְט פֶעסט געשלאָסען, זִי<lb/>קֶענֶען נאָך אִיהר וואָרְט צוּרִיק נֶעהמֶען.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0307_a">
+          <speaker>ביסינג</speaker>
+          <p>גאָט בּעוואַהרע! דאַס ניעמאַלס. וואַן אִיךְ האַבּע מײַן<lb/>וואָרְט גֶעגֶעבֶּען וִוירְד שׁאָן זאָ בּלײַבּען.</p>
+        </sp>
+        <sp who="#lieberman" xml:id="MishkeMashke_SP0308_a">
+          <speaker>ליעבערמאן</speaker>
+          <p>אִיךְ געֵה צוּ מַיינֶע טָאָכְטֶער. <stage type="exit">(אָב)</stage></p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0309_a">
+          <speaker>ביסינג</speaker>
+          <p>אַך, וואַן אִיךְ זאָל מִיט 25 יאַהר יוּנְגֶער זַײַן, דאַ הֶעטֶען<lb/>זִיך דִי לֵייטֶע מִיט מִיר נִיכְט זאָ הערוּמגעשמיסען, אַבּער<lb/>זאָ פֶעהלְט מִיר אוִיך גאַר נִיכְט, אִיךְ בִּין גאָט זייַ דאַנְק רײַך, אוּנד<lb/>שאַרלאָטאַ וִוירְד מוּסען מֵייַנֶע פְרוִי בּלײַבּען! יאַ! אוּנד פִיר דֶען אַיינֶען<lb/>וואַגאַבונד מאָנקאַדזשאוּ, פִיר ווֶעלְכֶען אִיךְ אִימְמֶער געשראָקען האַבּע<lb/><stage type="entrance">(אויפטריט מאָנקאַדזשאוּ)</stage> דֶער אִיסט שׁאָן גֶעוִויס געשטאָרבּען, עֵר אִיסט<lb/>שׁאָן גֶעוִויס אִין קֶערְקֶער פֶערְפוִילְט גֶעבְּלִיבֶּען.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0310_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נֵיין סֶער, מאָנקאַדזשאוּ לֶעבְּט אונְד אִיזְט הִיער.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0311_a">
+          <speaker>ביסינג</speaker>
+          <p>מאָנקאַדזשאוּ? דוּ הִיער? דוּ לעבּסט?</p>
+        </sp>
+        <fw type="pageNum">— 29 —</fw>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0312_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>יאַ סֶער, אִיךְ לעבּע, אוּם אִיהנֶען צוּ בּעגראַבּען.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0313_a">
+          <speaker>ביסינג</speaker>
+          <p>וואָהעָר קאָמסט דוּ יֶעצְט מאָנקאַדזשאוּ?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0314_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>פאָן דִי האָהע פֶענְסטֶער וואָ אַלֶע אָרענטליכע לֵייטֶע<lb/>זִיטצֶען.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0315_a">
+          <speaker>ביסינג</speaker>
+          <p>אַך, וואַרוּם בִּיסְט דוּ הֶערוִיס!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0316_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אוּם אִיךְ זאָל קֶענֶען אִיהנֶען טראַנספאָרטירען.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0317_a">
+          <speaker>ביסינג</speaker>
+          <p>מאָנקאַדזשאוּ, וואַס פֶערְלַאַנְגְסְט דוּ?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0318_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>מאָני. דֶען פאָן יֶענֶעם גֶעלְד אִיסט מִיר שׁאָן<lb/>גאַר נִיכְט גֶעבְּלִיעבֶּען, אוּנד אִיהר שְׁטֶעהט נאָך<lb/>זֶעהר גוּט.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0319_a">
+          <speaker>ביסינג</speaker>
+          <p>מאָנקאַדזשאוּ! אִיךְ ראַטהע דִיר מוּנד צוּ הַאַלְטֶען. זאָנְסְט<lb/>פּאַקע אִיךְ דִיךְ הֶערֵיין דאָרְט וואָהער דוּ בִּיסְט יֶעצְט<lb/>געקאָמען.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0320_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נֵיין סֶער, אָהנֶע זִי וֶוערְדֶע אִיךְ שׁאָן נִיכְט<lb/>גֶעהן.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0321_a">
+          <speaker>ביסינג</speaker>
+          <p>מאָנקאַדזשאוּ!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0322_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>סטאָפּ! מאָנקאַדזשאוּ קֶען בֶּעסֶער פײַטען, אִיהר<lb/>גלוֹיבּט דאַס עַם וִוירְד מִיר שְׁוֶוער זַײַן צוּ ערְצֶעהלֶען<lb/>דִי גֶעשִׁיכטֶע מִיט דֶעם שׁלִימְמְזלְדִיגֶען יורשׁ?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0323_a">
+          <speaker>ביסינג</speaker>
+          <p>ווֶער וִוירְד דֶען גְלוֹיבֶּען זאָ אַיין וואַגאַבּוּנד ווִי דוּ בִּיסְט?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0324_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>יאַ, דאַס הָאַבֶּען זִי רֶעכְט. מִיר וִוירְד מאַן נִיכְט<lb/>גְלוֹיבֶּעָן, אַבּעֶר דֶער רֶעסִיט לעֶבּט.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0325_a">
+          <speaker>ביסינג</speaker>
+          <p>וואַס, דֶער רֶעסִיט אִיזְט בּײַ דִיר?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0326_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>וואַס דֶען, בּײַ אַייך אִיזְט עֵר?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0327_a">
+          <speaker>ביסינג</speaker>
+          <p>ווִי זאָ קאָמט עֵר צוּ דִיר?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0328_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אִיהר גֶעדֶענְקְט דִי גֶעשִׁיכטֶע מִיט דֶעם שׁלִימ⸗<lb/>מזל'דִיגֶען יורְֵשׁ דאַן בּייַ אַייך אִין קאַנטאָר? ווֶען עֵר<lb/>האַט דֶען שלאַק בּעקאָממען, האַט עֵר דֶען רֶעסִיט וועקגֶעלֶעגט אוֹיף<lb/>דֶעם טִישׁ.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0329_a">
+          <speaker>ביסינג</speaker>
+          <p>נוּן, האַסְט דוּ גֶעוַואַגְט דײַנע האַנְד צוּ לֶעגֶען אוֹיף אִיהם?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0330_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>פּאַרדאָן! אִיךְ האַבּע בֵּיידֶע הֶענְדֶע גֶעלֶענְט אוֹיף<lb/>אִיהם, אִיךְ האַבּע מִיךְ אינגאַנצען הֶערוִיפגֶעלֶעגט<lb/>אוֹיף אִיהם.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0331_a">
+          <speaker>ביסינג</speaker>
+          <p>גִיבּ מִיר דֶען רֶעסִיט!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0332_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>גִיבּ מִיר מאָני.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0333_a">
+          <speaker>ביסינג</speaker>
+          <p>הַייטֶע האַבּ אִיךְ קײַן גֶעלְד; מָאָרְגֶען וויִרסט דוּ קאָמען צוּ<lb/>מִיר וֶוערְדֶע אִיךְ דִיר גֶעלְד גֶעבֶּען אונְד דוּ ווירְסט מִיר דֶען<lb/>רֶעסִיט גֶעָבֶּען.</p>
+        </sp>
+        <pb n="18" facs="0018_NTU4MTU1.558116.jpg"/>
+        <fw type="pageNum">— 30 —</fw>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0334_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נֵיין, מָאָרְגֶען וֶוערְדֶען זִי זאָ פרײַנדליך זַײַן אונְד<lb/>קאָמען צוּ מִיר.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0335_a">
+          <speaker>ביסינג</speaker>
+          <p>וואַס, אִיךְ זאָל קאָמען צוּ דִיר?</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0336_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>וואַס, עֶס פאַסט אִיהנֶען נִיכְט? זִינְד וִויר דֶען<lb/>קֵיינֶע גלייַכע קאָמפּאַניאָנען? הַייטֶע האַבּע אִיךְ<lb/>זִי בּעעהרט מִיט אֵיין וויזִיט אונְד מָאָרְגֶען וֶוערְדֶען זִי מִיךְ בּעָעהרען<lb/>מִיט אֵיין וויזִיט.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0337_a">
+          <speaker>ביסינג</speaker>
+          <p>נוּן גוּט, לאַססע מִיר דַייַנֶע אַדרעססע אִיבֶּער, וֶוערְדֶע אִיךְ<lb/>מָאָרְגֶען זַײַ בּײַ דִיר.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0338_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אִיךְ האַבּע לֵיידֶער קֵיינֶע וויזִיט-קאַרטען, דֶען דֶער<lb/>דרוקֶער גִיבְּט נִיכְט אָהנֶע גֶעלְד, נוּר זִי הָאַבֶּען<lb/>דאָך פוּן אַלטע צײַטען אַיינֶען גוּטֶען קָאפּ, אִיךְ וֶוערְדֶע אִיהנֶען זָאַגֶען<lb/>מֵייַנֶע אַדרעסע, וֶוערְדֶען זִי שׁאָן טְרֶעפֶען. אִיךְ וואָהנע בֶּעקטשׁטֶעטשׁלֵיין<lb/>סטרִיט נו' 100 אוֹיף דֶעם 10-טֶען טאַפּפלאָר, וואַן זִי וֶוערְדֶען הֶערוִיפגֶעהן<lb/>אוֹיף דִי טרעפּ, וֶוערְדֶען זִי זֶעהן אוֹיף אַיינֶע ראָטהע טְהִיר<lb/>אִיזְט אויפגעשריִבען מִיט גרִינֶע קרֵיידֶע, הִיער וואהנְט מִיסטֶער<lb/>מאָנקאַדזשאו.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0339_a">
+          <speaker>ביסינג</speaker>
+          <p>נוּן, גוּט, מָאָרְגֶען אוּם 12 אוהר בִּין אִיךְ בּײַ דִיר.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0340_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אַבּער בּעשטימט אוּם 12 אוּהר, נוּן אַדיע!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0341_a">
+          <speaker>ביסינג</speaker>
+          <p>נוּן, גֶעה דאָך שׁאָן!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0342_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נוּן, גִיבְּט דאָך מִיר שׁאָן אַייעֶר האַנְד,<lb/>אַדיע! <stage type="exit">(אָבּ)</stage></p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0343_a">
+          <speaker>ביסינג</speaker>
+          <p>אַך, גאָט זַײַ דאַנְק, וואַס אִיךְ בִּין דִיעזֶען וואַגאַבּוּנד לוִיז<lb/>געוואָרדען! אִיךְ וֶוערְדֶע מאַל נאַכזעהען וואַס מִיט מײַנע<lb/>שאַרלאָטאַ גֶעשֶׁעָהֶעֵן אִיזְט. <stage type="exit">(אָבּ)</stage><lb/><stage type="entrance">(אויפטריט מאָנקאַדזשאו)</stage></p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0344_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>עה, מִיסטֶער! מִיסטֶער! עֵר אִיזְט שׁאָן וֶועק?<lb/>אִיךְ וואָלטע בּײַ אִיהם נֶעהמֶען עֶטְווָאַס האַנְד-גֶעלְד,<lb/>אַבּער זאָ וֶוערְדֶע אִיךְ שׁאָן מוּסען וָואַרְטֶען בִּיז מָאָרְגֶען. אַבּער פִילײַכט<lb/>וִוירְד עֵר מָאָרְגֶען אוִיך נִיכְט קאָמען? אַבּער דאַס קאַן נִיכְט זַײַן, עֵר<lb/>אִיז דָאךְ אֵיין עהרֶען⸗מאַן! יאַ זָאָלְכֶע עהרֶען=מֶענֶער קאַן מאַן אַלֶע<lb/>אוֹיף אַיין גאַלגען אוִיפהֶענְגֶען.<lb/><stage type="setting">(פאָרהאַנג)</stage>.</p>
+        </sp>
+        <fw type="pageNum">— 31—</fw>
+      </div>
+      <div type="act" n="5" xml:id="MishkeMashke_Act5">
+        <head>פִינְפטֶער אַקְט.</head>
+        <sp who="#karl" xml:id="MishkeMashke_SP0345_a">
+          <speaker>קארְל</speaker>
+          <p>הַייטֶע אִיזְט דֶער טאַג פאָן מײַנער שאַרלאָטאַ'ס האָכצײַט!<lb/>הַייטֶע אִיזְט דֶער טאַג אִין ווֶעלְכֶען מאַן רײַסט מִיר דאַס<lb/>ליעבּסטע פאָן מײַנעם הֶערְצֶען וֶועק! הַייטֶע פִיהרְט מאַן מײַנע שאַרלאָטאַ<lb/>צוּם עשאַפאָט אוּנד אִיךְ מוּס דאַס אַלֶעס צוּזעהן... אָה, נֵיין! לֶענְגֶער<lb/>וֶוערְדֶע אִיךְ שׁאָן הִיער נִיכְט בְּלַייַבֶּען, פאָרט מוּס אִיךְ פאָן הִיער...<lb/>אַדיע שאַרלאָטאַ! אַדיע!<lb/><stage type="entrance">(אויפטריט שאַרלאָטאַ)</stage></p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0346_a">
+          <speaker>שארלאטא</speaker>
+          <p>קאַרל! וָואָהִין?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0347_a">
+          <speaker>קארל</speaker>
+          <p>לאַסְט מִיךְ, שאַרלאָטאַ! אִיךְ קאַן היִער נִיכְט בלײַבּען.</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0348_a">
+          <speaker>שארלאטא</speaker>
+          <p>אָה, קאַרל! פערלאַסט מִיךְ נִיכְט בײַ מֵייַנֶע לֶעצְטֶע<lb/>מינוּטען פאָן מֵייַנֶעם לֶעבּעֶן! פערלאַסט מִיךְ נִיכְט<lb/>אִין דִיעזֶער מִינוּט, וואַן מאַן וִוירְד מִיךְ צוּם עשאַפאָט<lb/>פיהרעָן!</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0349_a">
+          <speaker>קארל</speaker>
+          <p>קאַן אַייך דֶען מײַן דאַזײַן לײַכטער מַאַכֶען?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0350_a">
+          <speaker>שארלאטא</speaker>
+          <p>יאַ...<lb/><stage type="entrance">(אויפטריט מיִשקע און מאָשקע)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0351_a">
+          <speaker>מישקע</speaker>
+          <p>האָבּ אִיךְ דִיר גֶעזָאָגְט, אַז דאָ דאַרְף עֶס זַײַן?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0352_a">
+          <speaker>קארל</speaker>
+          <p>אַה. אָנְקֶעל, טאַנטע! אִיךְ האַבּע דִי עהרֶע פאָרצוּשטעלען<lb/>פרײַליין ליעבּערמאַן, מײַן טאַנטע...</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0353_a">
+          <speaker>מאשקע</speaker>
+          <p>מאַדאַם גרֶעגֶער!</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0354_a">
+          <speaker>קארל</speaker>
+          <p>מײַן אָנְקֶעל...</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0355_a">
+          <speaker>מישקע</speaker>
+          <p>העָרר המְן⸗קלאַפּער! מאָשקע, אִיז דאָס דִי כַּלָה אַלֵיין?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0356_a">
+          <speaker>מאשקע</speaker>
+          <p>מִישׁקֶע, זֶעץ דִיךְ אַנִידֶער אוּן זִיץ אוֹיף אַיין אָרט.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0357_a">
+          <speaker>מישקע</speaker>
+          <p>אָבֶּער אִיךְ דאַרְף דאָך וויִסֶעֶן ווֶער דִי כַּלָה אִיז; זאָג נאָר<lb/>מִיר כּלה'כען, בִּיזְט דוּ דאָס דִי כַּלָה אַלֵיין?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0358_a">
+          <speaker>שארלאטא</speaker>
+          <p>אִיךְ גֶעה הֶערײַן-שִׁיִקֶען מײַנען פָאַטֶער <stage type="exit">(אָב)</stage></p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0359_a">
+          <speaker>מאשקע</speaker>
+          <p>נוּ, זאָג אַלֵיין גרֶעגֶער! זֶעה וואָס דוּ האָסְט גֶעטְהוּן,<lb/>טאָמעֶר וואָלְט דִי כַּלָה דאָ נאָך אַבִּיסֶעל גֶעזֶעסֶען,<lb/>האָסְט דוּ זִי פֶערְטרִיבֶּען, נוּ זֶעץ דִיךְ שׁוֹין אַנִידֶער<lb/>אוּן זִיץ.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0360_a">
+          <speaker>מישקע</speaker>
+          <p>אִיהר זֶעהט אַ חֲתוּנָה אִין מאַלעריקאַ, מֶען זֶעהט נִישְׁט אָן<lb/>אַ לעבּעדיגען מֶענְשֶׁען! בּייַ אוּנְז אַ פדִיון הבּן אִיז שׁוֹין<lb/>שֶׁעהנֶער ווִי אִין מאַלעריקע אַ חֲתוּנָה...</p>
+        </sp>
+        <pb n="19" facs="0019_NTU4MTU1.558120.jpg"/>
+        <fw type="pageNum">— 32 —</fw>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0361_a">
+          <speaker>מאשקע</speaker>
+          <p>זאָג נאָר מִיר קאַרל, וואָס אִיז דאָס נֶעכטֶען גֶעשֶׁעהן מִיט<lb/>אַיינֶעם וואָלף בּיִסינג אוּן מִיט אַיינֶעם מאָנקאַדזשאוּ?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0362_a">
+          <speaker>קארל</speaker>
+          <p>זאָ ווִי מאָנקאַדזשאוּ עֶרְצֶעהלְט אִיזְט אִיהם בִּיסִינְג בֶּע⸗<lb/>פַאַלֶען, נוּר ווִי מֶענְשֶׁען ערְצֶעהלֶען אִיזְט מאָנקאַדזשאוּ<lb/>בעפאַלען בִּיסִינְג'ן...</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0363_a">
+          <speaker>מאשקע</speaker>
+          <p>אָבֶּער וואָס פאַר אַ גֶעשֶׁעפטֶען הָאָבֶּען זַײַ צוִוישֶׁען זִיך?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0364_a">
+          <speaker>קארל</speaker>
+          <p>דֶער מאָנקאַדזשאוּ וואַר בּײַ הֶערְרְן בּיסינג בּוּכְהַאַלְטֶער. אַבּער<lb/>יֶעצְט אִיזְט עֵר אֵיין וואַגאַבּוּנד, אֵיין דיעבּ!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0365_a">
+          <speaker>מאשקע</speaker>
+          <p>אָבֶּער ווִי קוּמְט דאָס, אַז עֵר זאָל דערמאַהנען דֶעם נָאָמֶען<lb/>נאַטאַנזאָהן?</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0366_a">
+          <speaker>קארל</speaker>
+          <p>אֵיין נאַטאַנזאָהן אִיזְט דֶען דאַ אוֹיף דֶער ווֶעלְט!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0367_a">
+          <speaker>מישקע</speaker>
+          <p>מִיסטֶער אוּן מִיסטֶער, וואָס בּײַ אוּנְז אִין קעשעניאָוו אִיז<lb/>אַ שִׁיסטֶער אִיז דאָ אִין מאַלעריִקאַ אַ מִיסטֶער. מֶען זאָגְט דאָך<lb/>אַז דִי ווײַבּער הַאָבּען נײַן מאָס רֵייד, נאָר דִי מֶענֶער הָאָבֶּען 99 מאָס<lb/>רֵייד. אַז דִי מֶענֶער הויבּען אָן רֶעדֶען, קוּמְט נִישְׁט אֵיינס צוּם צֶעהנ=<lb/>טֶען. גֶעה זֶעץ דִיךְ אַוועֶק, דוּ קאַפּעליוּש! אִיךְ האָבּ עֶפִּיס וִויכְטִיגֶעס<lb/>צוּ רֶעדֶען מִיט קאַרלען; זאָג מִיר נאָר קאַרל! ווֶער וֶועט נֶעהמֶען<lb/>אוּנטערפיהרעכטס?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0368_a">
+          <speaker>מאשקע</speaker>
+          <p>אָט דאָס הַייסְט בַּיי דִיר וִויכְטִיגֶעס? זֶעץ דִיךְ שׁוֹין אַנִידֶער<lb/>דוּ גרֶעגֶער אוּן זִיץ!...<lb/><stage type="entrance">(אויפטריט עמיליע)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0369_a">
+          <speaker>מישקע</speaker>
+          <p>אָה, שׁוועגֶערִין לֶעבֶּען! גאָט צוּ דַאַנְקֶען, וואָס מֶען זֶעהט<lb/>שׁוֹין אַ לעבּעדיגען מֶענְשֶׁען, מֶען האָט מִיר דֶערְצֶעהלְט,<lb/>אַז אִיהר זַײַן גֶעוֶוען גֶעפֶעהרְלִיך קְראַנְק, אִיבֶּער אַייך מֶעג מֶען שׁוֹין<lb/>מַאַכֶען דִי בְּרָכָה: בָּרוּך דִין אֱמְֶת.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0370_a">
+          <speaker>מאשקע</speaker>
+          <p>גרֶעגֶער! בָּרוּךְ מחיה מתִים, האָסְטוּ בֶּעדַאַרְפְט זָאָגֶען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0371_a">
+          <speaker>מישקע</speaker>
+          <p>זאָל זייַן ווִי דוּ זאָגְסְט אַבִּי מֶען זֶעהט זִיך גֶעזוּנְד. וואָס<lb/>זאָגְט אִיהר עָפּיס צוּ דִי מאַלעריִקאַנער חתוּנות, קוִים וואָס<lb/>מֶען זֶעהט אַ לעבּעדיגען מֶענְשֶׁען! בּײַ אוּנְז אִין קעשעניאָוו אַ חֲתוּנָה הויבּט<lb/>זִיך אָן פרײַטאָג אוּן עֶס ענְדִיגט זִיך אִיבֶּער אַכט טאָג פרײַטאָג! מײַן<lb/>קאַפּעליוּש האָט זִיך פאַרגלוּסט פאָהרעֶן אִין מאַלעריקאַ! אִיהר וַוייסְט<lb/>וואָס אִיךְ וֶועל אַייך ערְצֶעהלֶען שׁוועגֶערִין, אַז פוּן דֶער גַאַנְצֶער צײַט<lb/>וואָס אִיךְ בִּין אִין מאַלעריקאַ האָבּ אִיךְ נאָך נִישְׁט גֶעזֶעהן מייַן טַאַטֶען<lb/>צוּ חָלוֹם; אוּן אִיךְ קֶען גאָר ניִשט הָאָבֶּען צוּ אִיהם. אִין קעשעניאָוו פלֶעגט<lb/>עָר קוּמֶען צוּ מִיר אַלֶע חוֹדֶשׁ, ווײַל פוּן בּענדער אִין קעשעניאָוו אִיז<lb/>אֵיין טאָג גאַנג, אָבֶּעָר דערמאַהן זִיך. וִויפִיעל עֵר דאַרְף נֶעבֶּעך גֶעהן פוּן<lb/>בּענדער אִין מאַלעריִקע דוּרְך אַזאַ גְרוֹיסֶען ים..! <stage type="entrance">(אויפטריט שאַרלאָטאַ)</stage><lb/>לאָז מִיךְ, מאָשקע, אִיךְ וִויל עֶפִּיס פְרֶעגֶען דֶער כַּלָה.</p>
+        </sp>
+        <fw type="pageNum">— 33 —</fw>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0372_a">
+          <speaker>מאשקע</speaker>
+          <p>גרֶעגֶער, דוּ וֶועסְט אִיהר וֵוייטֶער פֶערְטרײַבּען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0373_a">
+          <speaker>מישקע</speaker>
+          <p>נִישׁקשׁה, זאָג מִיר נאָר כּלה'ניוּ, דאָס בִּיסְט דוּ דִי<lb/>כַּלָה אַלֵיין?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0374_a">
+          <speaker>שארלאטא</speaker>
+          <p>יאַ!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0375_a">
+          <speaker>מישקע</speaker>
+          <p>זאָל דִיר זייַן צוּ רְפוּאָה שׁלִימְה! זאָג מִיר נאָר כּלה'כען<lb/>דוּ בִּיזְט אַליֵין פוּן מאַלעריקאַ?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0376_a">
+          <speaker>שארלאטא</speaker>
+          <p>נֵיין...</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0377_a">
+          <speaker>מישקע</speaker>
+          <p>פוּן וואַנעֶן דֶען?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0378_a">
+          <speaker>שארלאטא</speaker>
+          <p>פוּן קעשעניאָוו.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0379_a">
+          <speaker>מישקע</speaker>
+          <p>פוּן קעשעניאָוו? מאָשקע דוּ הֶערְסְט פוּן קעשעניאָוו;<lb/>שׁוועגֶערִין פוּן קעשעניאָוו, קאַרל פוּן קעשעניאָוו; דוּ האָסְט<lb/>אַ טַאַטֶען מִיט אַ מַאַמֶען?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0380_a">
+          <speaker>שארלאטא</speaker>
+          <p>אִיךְ האַבּע לֵיידֶער בֵּיידֶע נִיכְט!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0381_a">
+          <speaker>מישקע</speaker>
+          <p>וואָס הַייסְט, דוּ האָסְט בֵּיידֶע נִישְׁט?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0382_a">
+          <speaker>שארלאטא</speaker>
+          <p>וואַן אִיךְ וואַר נאָך אֵיין קלֵיינֶעס קִינְד אִיזְט מײַן<lb/>פָאַטֶער וֶועק נאַך אָמעריִקאַ אונְד אִיסט דאָרְט<lb/>געשטאָרבען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0383_a">
+          <speaker>מישקע</speaker>
+          <p>געשטאָרבּען? בָּרוּך מחַייה מתִים.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0384_a">
+          <speaker>מאשקע</speaker>
+          <p>גֶעוַואַלְד, גרעָגער. וואָס פערבּייַטסט דוּ דִי בּרכות! בָּרוּך<lb/>דַיין אֱמְֶת האָסְטוּ בֶּעדַאַרְפְט זָאָגֶען.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0385_a">
+          <speaker>מאשקע</speaker>
+          <p>ס'דאגה דִיר, געשטאָרבּען בּעגראָבּען, אוֹיף יִעֶנֶעֶר ווֶעלְט<lb/>ווִי גֶעפוּנֶען; נוּ דֶערְצֶעהל ווײַטער...</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0386_a">
+          <speaker>שארלאטא</speaker>
+          <p>נָאַכְהֶער אִיסט מײַנע מוּטֶער, אִיהם געפאַהרען זוּכֶען<lb/>אונְד אִיסט אוֹיף דֶער רֵייזֶע אוִיך געשטאָרבּען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0387_a">
+          <speaker>מישקע</speaker>
+          <p>בָּרוּך... מאָשקע וואָס פאַר אַ בְּרָכָה מאַכְט מֶען?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0388_a">
+          <speaker>מאשקע</speaker>
+          <p>יוצא אָהן אַ בְּרָכָה.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0389_a">
+          <speaker>מישקע</speaker>
+          <p>נוּ ווײַטער?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0390_a">
+          <speaker>שארלאטא</speaker>
+          <p>נָאַכְהֶער האַט מִיךְ דֶער הֶערְר ליעבּערמאַן צוּ זִיך גֶע⸗<lb/>נָאָמֶען אונְד האַט מִיךְ ווִי זַײַן אַייגֶענֶעס קִינְד ערצאָגען,<lb/>אוּנד זאָ אִיזְט עֶס שׁאָן אַיינֶע געשיִכטע פוּן 17 יאַהר.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0391_a">
+          <speaker>מישקע</speaker>
+          <p>דוּ וַוייסְט, וואָס אִיךְ וֶועל דִיר זָאָגֶען כָּל-בּו'ניק, אַז דִי<lb/>גֶעשִׁיכטֶע אִיז עהנְלִיך צוּ מײַן שׁוֶועסְטֶערְס גֶעשִׁיכטֶע; דאָס<lb/>וֶועט שׁוֹין זַײַן אַ גֶעשִׁיכטֶע פוּן 16 יאָהר מִיט 13 חדְשִׁים, אִיז מײַן שווע⸗<lb/>סטֶערְס מאַן גֶעגַאַנְגֶען צוּמאַכען דִי לאָדענס אוּן אִיז פערפאַלען גֶע⸗<lb/>וַואָרֶען. הָאָבֶּען מִיר גֶעמַיינְט, אַז שׁדִים הָאָבֶּען אִיהם צוּגעחאַפּט. נאָר<lb/>נאָךְ אַ קוּרְץ שׁטִיקֶעל צייַט האָבּעָן מִיר געֶהעָרט, אַז עֵר אִיז אִין מאַלע⸗<lb/>ריקאַ, אַז מיַין שְׁווֶעסְטֶער האָט דאָס דערהעֶרט אִיז זִי געפאָהרען אִיהם<lb/>זוּכֶען, נאָר זִי אִיז נעבּאַך אַ לעבּעדיגע אוִיף'ן שִׁיף געשטאָרבּען... זאָג<lb/>מִיר נאָר כּלה׳כען, ווִי אַזוֹי הייַסט דוּ?</p>
+        </sp>
+        <pb n="20" facs="0020_NTU4MTU1.558124.jpg"/>
+        <fw type="pageNum">— 34 —</fw>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0392_a">
+          <speaker>שארלאטא</speaker>
+          <p>שאַרלאָטאַ.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0393_a">
+          <speaker>מישקע</speaker>
+          <p>שקאַרלאָטאַ! אַ שֶׁעַהנֶער נָאָמֶען שקאַרלאָטע! אַזוֹי רוּפְט<lb/>מֶען דִיךְ אִין מאַלעריקא, אָבֶּער ווִי האָט מֶען דִיךְ גֶערוּפֶען<lb/>אִין קעשעניאָוו?</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0394_a">
+          <speaker>שארלאטא</speaker>
+          <p>שיֵינדעלע.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0395_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי, אֵיין אַכטיג האָט מִיךְ גֶעטְרָאָפֶען! כָּל-בּו'ניק דוּ וֶועסְט<lb/>זעָהן אִיך וֶועל בּאַלְד עִפּיִס טְרֶעֵפֶען.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0396_a">
+          <speaker>מאשקע</speaker>
+          <p>מיִשקע זֶעץ דִיךְ אַנִידֶער, דוּ וֶועסְט נִישְׁט טְרֶעפֶען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0397_a">
+          <speaker>מישקע</speaker>
+          <p>אַז אִיךְ וֶועל נִישְׁט טְרֶעפֶען וֶועט זייַן פאַרפאַלען. זאָג<lb/>נאָר מִיר כּלה'כען ווִי האָט גֶעהַייסֶען דײַן מַאַמֶע? שְׁטֶעה,<lb/>שְׁטֶעה, אִיךְ וֶועל אַלֵיין טְרֶעפֶען: דײַן מַאַמֶע האָט גֶעהַייסֶען... חנְה,<lb/>אוּן זִי האָט גֶעהַאַט אַ שְׁווֶעסְטֶער... מיִשקע, אוּן דִי מיִשקע שְׁטֶעהט<lb/>יֶעצְט פאַר דִיר... אוּן ווֹאהל אִיז דײַן מוהמֶע, אוּן גוּט אִיז דײַן<lb/>מוהמֶע!</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0398_a">
+          <speaker>שארלאטא</speaker>
+          <p>וואַס הֶער אִיךְ? אִיהר זַײַט מײַן טאַנטע?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0399_a">
+          <speaker>מישקע</speaker>
+          <p>ווֶער מִיר טראַנטעל אֵיין אַייגֶענֶע מוהמֶע. כָּל-בּו'ניק,<lb/>וואָס שווײַגסט דוּ? דאָס אִיז דאָך שיֵינדעלע חנְה'ס!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0400_a">
+          <speaker>מאשקע</speaker>
+          <p>וואָס הֶער אִיךְ דאָס אִיז שיֵינדעלע חנְה'ס?! בִּין אִיךְ דאָך<lb/>דײַן פֶעטֶער מאָשקע... אוּן ווֹאהל אִיז דײַן פֶעטֶער אוּן<lb/>גוּט אִיז דײַן פֶעטֶער. <stage type="business">(זיי קוּשען זיך)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0401_a">
+          <speaker>מישקע</speaker>
+          <p>מאָשקע, וואָס האָסְט דוּ גֶעטְהוּן?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0402_a">
+          <speaker>מאשקע</speaker>
+          <p>סטײַטש, זִי אִיז דאָך שיֵינדעלע חנְה'ס!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0403_a">
+          <speaker>מישקע</speaker>
+          <p>אוּן אַז שַׁיינְדֶעלֶע חנְה'ס אִיז וואָס? דאַרְף מֶען זִיך אַזוֹי<lb/>קושֶׁען מִיט אֵיין אשה? קאַרל לֶעבֶּען, וואָס שווײַגסט דוּ,<lb/>דאָס אִיז דאָך שיֵינדעלע חנְה'ס...</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0404_a">
+          <speaker>קארל</speaker>
+          <p>דוּ בִּיזְט מײַן קוזִינֶע?!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0405_a">
+          <speaker>מישקע</speaker>
+          <p>וואָס מִיר קאַרזינע? אַנ'אייגענע שְׁווֶעסְטֶערְקִינְד!</p>
+        </sp>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0406_a">
+          <speaker>עמיליע</speaker>
+          <p>אָט דאָס אִיז דִי שֶׁעהנֶע שַׁיינְדֶעלֶע, וואָס מײַן קאַרל פלֶעגט<lb/>זִיךְ מִיט אִיהר שפּיעלען קלֵיינֶערְהַייד?</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0407_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי ס'אִיז אִיהם נֶעבֶּעך נִישְׁט בֶּעשֶׁערְט גֶעוֶוען מִיט אִיהר<lb/>זִיך גרוִיסֶערְהַייד צוּ שׁפִיעלֶען.</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0408_a">
+          <speaker>שארלאטא</speaker>
+          <p>אָה גאָט! בִּין אִיךְ נאָך גְלִיקְלִיך בּײַ מײַנעם לֶעבֶּען<lb/>מײַנע פערוואַנדטע צוּ זֶעהן... אָה גאָט! אִיךְ דַאַנְקֶע<lb/>דִיר פִיר דִי גנאַדע.<lb/><stage type="entrance">(אויפטריט דיענער)</stage></p>
+        </sp>
+        <fw type="pageNum">— 35 —</fw>
+        <sp who="#diener" xml:id="MishkeMashke_SP0409_a">
+          <speaker>דיענער</speaker>
+          <p>דֶער בְּרוֹיטִיגַאַם קאָמט. <stage type="exit">(אָבּ)</stage></p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0410_a">
+          <speaker>מישקע</speaker>
+          <p>ווֶער זאָגְט עֵר אִיז גֶעקוּמֶען?</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0411_a">
+          <speaker>מאשקע</speaker>
+          <p>זֶעץ דִיךְ אַנִידֶער, גרֶעגֶער, אוּן זִיץ רוהִיג, דֶער חָתָן<lb/>קוּמְט. —</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0412_a">
+          <speaker>מישקע</speaker>
+          <p>אִיךְ וֶועל אִיהם גֶעהן מקבּל פָּנִים זַײַן!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0413_a">
+          <speaker>מאשקע</speaker>
+          <p>מֶען דאַרְף נִישְׁט; זִיץ אוֹיף דײַן אָרט.<lb/><stage type="entrance">(אויפטריט ביסינג)</stage></p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0414_a">
+          <speaker>ביסינג</speaker>
+          <p>וִויִלְקָאָמֶען, מײַנע לִיעבֶּע גֶעסְט!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0415_a">
+          <speaker>מישקע</speaker>
+          <p>אוֹי, אֵיין אַכטיג האָט מִיךְ גֶעטְרָאָפֶען! כָּל-בּו'ניק, דוּ<lb/>וֶועסְט זֶעהן אִיךְ וֶועל שׁוֹין ווײַטער עֶפִּיס טְרֶעפֶען.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0416_a">
+          <speaker>מאשקע</speaker>
+          <p>גרֶעגֶער, זִיץ אוֹיף דײַן אָרט זאָגְט מֶען דִיר, דוּ וֶועסְט<lb/>ניִשט טְרֶעפֶען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0417_a">
+          <speaker>מישקע</speaker>
+          <p>אַז אִיךְ וֶועל נִישְׁט טְרֶעפֶען וֶועט זַיין פאַרפאַלען; זאָג מִיר<lb/>נאָר, וועלוועלֶע, דוּ האָסְט מִיךְ דֶערְקֶענְט?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0418_a">
+          <speaker>ביסינג</speaker>
+          <p>שײַנט מִיר מײַן גאָט⸗זֶעלִיגֶע פרוִי'ס שְׁווֶעסְטֶער... עֶס<lb/>פרֶעהט מִיךְ זֶעהר!...</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0419_a">
+          <speaker>מישקע</speaker>
+          <p>זֶעה נאָר עס פרעֵהט אִיהם זֶעהר! וואָס שווײַגסט דוּ, כָּל-<lb/>בּו'ניק? גֶעה צוּ צוּ אִיהם, דאָס אִיז דאָך וועלוועלֶע!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0420_a">
+          <speaker>מאשקע</speaker>
+          <p>וועלוועלֶע? אוּן מִיךְ האָסְט דוּ דֶערְקֶענְט? אִיךְ בִּין דאָך<lb/>דײַן שְׁוַואָגֶער מאָשקע!</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0421_a">
+          <speaker>ביסינג</speaker>
+          <p>עֶס פרֶעהט מִיךְ זֶעהר...</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0422_a">
+          <speaker>מאשקע</speaker>
+          <p>זאָגְט מִיר נאָר, הֶערְר ליעבּערמאַן, ווֶער אִיז דֶער חָתָן<lb/>פוּן דִי כַּלָה?</p>
+        </sp>
+        <sp who="#lieberman" xml:id="MishkeMashke_SP0423_a">
+          <speaker>ליעבערמאן</speaker>
+          <p>מִיסטֶער בּיסינג אִיז דֶער חָתָן פוּן דִי כַּלָה.</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0424_a">
+          <speaker>מאשקע</speaker>
+          <p>נֵיין, אִיהר וויִלְט זָאָגֶען, אַז מִיסטֶער בּיסינג אִיז דֶער פּאָ⸗<lb/>טֶער פוּן דִי כַּלָה...</p>
+        </sp>
+        <sp who="#alle" xml:id="MishkeMashke_SP0425_a">
+          <speaker>אלע</speaker>
+          <p>וואָס?!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0426_a">
+          <speaker>מאשקע</speaker>
+          <p>יאָ. יאָ! שְׁרֶעק דִיךְ נִישְׁט אַזוֹי וועלוועלֶע; דוּ גֶעדֶענְקסט<lb/>ווֶען דוּ בִּיסְט אַנְטְלָאָפֶען גֶעוָואָרֶען פוּן דײַן ווײַבּ האָסְט דוּ<lb/>.אִיבּעֵרגעלאָזט אַ קלְיֵין מַיידֶעלֶע, אוּן דאָס אִיז זִי.</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0427_a">
+          <speaker>שארלאטא</speaker>
+          <p>וואַס העָר אִיךְ?! דוּ בִּיזְט מײַן פָאַטֶער?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0428_a">
+          <speaker>ביסיגג</speaker>
+          <p>אָה, נֵיין! רוּף מִיךְ נִישְׁט מִיט דֶעם נָאַמֶען פָאַטֶער! זאָל<lb/>דִי ווֶעלְט נִיכְט וויִסֶעֶן, דאַס דוּ זאָ אֵיין עֶנְגֶעל, בִּיסְט דִי<lb/>טָאָכְטֶער פאָן אַיינֶען מֶערְדֶער!..</p>
+        </sp>
+        <sp who="#alle" xml:id="MishkeMashke_SP0429_a">
+          <speaker>אלע</speaker>
+          <p>מֶערְדֶער?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0430_a">
+          <speaker>ביסינג</speaker>
+          <p>יאָ, אֵיין מֶערְדֶער, אֵיין בּאַנדיט בִּין אִיךְ! אִיךְ אַלֵיין, מאַדאַם<lb/>נאַטאַנזאָהן, האַבּע אַייעֶר מאַן עָרמאָרדעט אוּנד עֵר האַט זייַן לֶעבֶּען בּייַ<lb/>מִיר אִין קאַנטאָר גֶעֶענְדִיגט...</p>
+        </sp>
+        <pb n="21" facs="0021_NTU4MTU1.558128.jpg"/>
+        <fw type="pageNum">— 36 —</fw>
+        <sp who="#emilye" xml:id="MishkeMashke_SP0431_a">
+          <speaker>עמיליע</speaker>
+          <p>וואַס העֶר אִיךְ? דוּ וואַרסט דֶער מעֶרדעֶר פאָן מֵייַנֶען מאַן!<lb/>אָה! בְּלוּט זאָל זִיך גִיסֶען פאָן דײַן הֶערְץ, זאָ ווִי פאָן<lb/>מֵייַנֶע אוִֹיגֶען טרֶעהנֶען! מייַן לאַגע זאָלְסְט דוּ פִיהלֶען.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0432_a">
+          <speaker>ביסינג</speaker>
+          <p>אָה! צֶערְשׁפרִינְגֶע דוּ פֶערפְלוּכְטֶעס הֶערְץ! נֵיין, לֶענְגֶער<lb/>אִיזְט שׁאָן נִיכְט אויסצוּהאַלטען! זאָל שׁוֹין דִי ווֶעלְט בֶּע⸗<lb/>פרײַט וֶוערְדֶען פוּן זאָ אֵיין מֶערְדֶער... אַדיע!</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0433_a">
+          <speaker>קארל</speaker>
+          <p>שְׁטֶעהט, מִיסטֶער בּיסינג! יֶעדֶער מֶענְשׁ אִין זַײַן לֶעבּעֶן<lb/>בּעגעהט פֶעהלֶער; אִיךְ פוּן מײַנער זייַטע פֶערְצַייהֶע אַייך<lb/>נוּר אֵיין בִּיטֶע האַבּע אִיךְ צוּ אַייך, שֶׁענְקְט מִיר אַייעֶר טָאָכְטֶער<lb/>צוּר פְרוי!...</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0434_a">
+          <speaker>ביסינג</speaker>
+          <p>האַבּ אִיךְ דֶען דאַס רֶעכְט? מִיסטֶער ליעבּערמאַן<lb/>עָר האַט אִיהר ערְצוִיגֶען אוּנד עֵר האַט דאַס רֶעכְט<lb/>אִיבּעֶר אִיהר.</p>
+        </sp>
+        <sp who="#lieberman" xml:id="MishkeMashke_SP0435_a">
+          <speaker>ליעבערמאן</speaker>
+          <p>נֵיין, מִיסטֶער בּיסינג! בִּיז יֶעצְט וואַר אִיךְ פֶערְטרֶעטֶער,<lb/>אַבּער דֶען זֶעגֶען מוּז גֶעבֶּען דֶער רִיכטִיגֶער פָאַטֶער.<lb/>שאַרלאָטאַ, זַײַ דאָך אַרטיג גֶעגֶען דייַנען פָאַטֶער!</p>
+        </sp>
+        <sp who="#sharlata" xml:id="MishkeMashke_SP0436_a">
+          <speaker>שארלאטא</speaker>
+          <p>אָבּוואָהל פוּן מײַן קִינְדְהײַט אַן קאַן אִיךְ נוּר דִיעזֶען<lb/>מאַן אַלְס פָאַטֶער, דאָך זֶעהֶע אִיךְ דאַס דאַס<lb/>שיקזאַל האַט זאָ גֶעפוהרְט דאַס מײַן רִיכטִיגֶער פָאַטֶער זאָל מִיר דֶען<lb/>זֶעגֶען גֶעבֶּען... אָה. פָאַטֶער! לִיעבֶּער פָאַטֶער!</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0437_a">
+          <speaker>מישקע</speaker>
+          <p>דאָס קעָן זִיך נאָר טְרֶעפֶען אִין מאַלעריקאַ, אַז אַ טַאַטֶע<lb/>זאָל חֲתוּנָה הָאָבֶּען מִיט זייַן אַייגענע טָאָכְטֶער!</p>
+        </sp>
+        <sp who="#mashke" xml:id="MishkeMashke_SP0438_a">
+          <speaker>מאשקע</speaker>
+          <p>גרֶעגֶער, וואָס רֶעדְסְט דוּ, עֵר האָט דֶען חֲתוּנָה גֶעהַאַט?<lb/>עָר האָט דאָך נאָר גֶעוָואָלְט.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0439_a">
+          <speaker>מישקע</speaker>
+          <p>אַז אַ טַאַטֶע טאָר אַפילוּ נִישְׁט ווֶעלֶען אוִיך נִישְׁט.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0440_a">
+          <speaker>ביסינג</speaker>
+          <p>אַך מִיסטֶער נאַטאַנזאָהן! אִיךְ גֶעבֶּע אִיהנֶען מֵייַנֶע טָאָכְטֶער<lb/>ווִי אוִיך מייַן גאַנצעס פֶערְמֶעגֶען אונְד אִיךְ אוֹיף מײַנע<lb/>אַלטע יָאַהרֶען וִויל אַלְס דִיענֶער בּײַ אִיהנֶען פערבּלײַבּען.</p>
+        </sp>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0441_a">
+          <speaker>מישקע</speaker>
+          <p>נוּ זאָל זייַן אִין אַ גוּטֶער שֶׁעה, מַזָל טוֹב! מַזָל טוֹב!<lb/><stage type="entrance">(אויפטריט מאָנקאַדזשאו מיט פאָליס⸗מענער)</stage></p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0442_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>מַזָל-טוֹב! מַזָל-טוֹב! חָתָן דומְה לכלב! אַזוֹי ווִי אִיהר<lb/>קוּקְט מִיךְ אָן בִּין אִיךְ רוּנד רוּם מאָנקאַדזשאוּ!<lb/>אִיהר וֶועט מִיר פֶערְצַייהֶען וואַס אִיךְ בִּין גֶעקוּמֶען צוּנעהמען אַייעֶר<lb/>חָתָן, אִיךְ בִּין גֶעקוּמֶען אִיהם פִיהרֶען צוּ דֶער חוּפָּה אָט מִיט דִי כּלי⸗<lb/>זמְרִים.</p>
+        </sp>
+        <fw type="pageNum">— 37—</fw>
+        <sp who="#karl" xml:id="MishkeMashke_SP0443_a">
+          <speaker>קארל</speaker>
+          <p>וואַס פערלאַנגט אִיהר?</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0444_a">
+          <speaker>ביסינג</speaker>
+          <p>לאַסְט מִיךְ מִיסטֶער נאַטאַנזאָהן, דֶען דאָרְט וואָ עֵר גֶע⸗<lb/>הֶערְט, גֶעהֶער אִיךְ אוִיך. וִויר זִינְד בֵּיידֶע דִי זֶעלְבֶּע<lb/>פערבּרעכער.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0445_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>נאַטאַנזאָהן? דאַס זייַט אִיהר דֶער יוּנְגֶער נאַטאַנ⸗<lb/>זאָהן?! אָה, בִּין אִיךְ דאָך אֵיין געמיֵינער קֶערְל!<lb/>אִיךְ האַבּע דאָך גֶעהָאָלְפֶען אַייעֶר פָאַטֶער הערויסטראַגען פאָן הֶערְרְן<lb/>בּיסינג'ס קאַנטאָר. וואַס, זִי גְלוֹיבֶּען נִיכְט? בִּיטֶע דאַ אִיסט נאָך דֶער<lb/>רֶעסִיט.</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0446_a">
+          <speaker>קארל</speaker>
+          <p>מִיסטֶער בּיסינג! אִיזְט דאַס אִיהרֶע אוּנְטֶערְשְׁרִיפְט? <stage type="business">(צוּרייסט)</stage></p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0447_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>וואַס טְהוּט אִיהר? דאַס אִיז דאָך 50,000 דאָלאַר.</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0448_a">
+          <speaker>קארל</speaker>
+          <p>שווײַגט! ניעמאַנד האַט דאַס רֶעכְט אִיבֶּער מִיײַן פאַטערס<lb/>פֶערְמֶעגֶען אונְד אִיהר דזשֶׁענְטֶעלְמֶענְס אִיהר קאַנְט גֶעהן!</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0449_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>עה דזשֶׁענְטֶעלְמֶענְס! אִיהר קֶענְט גֶעהן.</p>
+        </sp>
+        <sp who="#bising" xml:id="MishkeMashke_SP0450_a">
+          <speaker>ביסינג</speaker>
+          <p>אַך מִיסטֶער נאַטאַנזאָהן! דאַס גוּטֶעס וואַס אִיהר טְהוּט מִיט<lb/>מִיר אִיזְט זאָ ווִי גִיפט פִיר מײַן הֶערְץ.</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0451_a">
+          <speaker>קארל</speaker>
+          <p>אוֹיף מײַן שׁוויגֶער-פָאַטֶער דאַרְף קייַן פלֶעק פַאַלֶען. אוּנד<lb/>אִיהר מאָנקאַדזשאוּ, וואַן אִיהר וִוירְד אַייך בּעסערן, וִוירְד<lb/>אִיהר בּײַ מִיר אַיינֶע שׁטֶעלֶע הָאַבֶּען, זאָ לאַנְג ווִי אִיהר<lb/>וִוירְד לֶעבֶּען.</p>
+        </sp>
+        <sp who="#monkadshu" xml:id="MishkeMashke_SP0452_a">
+          <speaker>מאנקאדזשאו</speaker>
+          <p>אִיךְ דַאַנְקֶע זֶעהר, אִיךְ גֶעבֶּע אִיהנֶען מײַן עהרֶען=<lb/>וואָרְט דאַס אִיךְ וֶוערְדֶע מִיךְ שׁאָן בּעסערן, נוּר<lb/>אַיינֶע בּיטטע... האַבּע אִיךְ צוּ אַייך. פאָן דֶער צײַט אָן וואַס אִיהר<lb/>פָאַטֶער אִיזְט געשטאָרבּען קאַן אִיךְ נִיכְט שְׁלָאַפֶען, וואַן אִיךְ וִויל נוּר<lb/>אֵיין בּיסכען אויסרוּהען דאַ קאָמט אִיהר געשטאָרבּענער פָאַטֶער אִינְד<lb/>דרִיקט מִיךְ בּײַם האַלְז. ווִי עֶס ווײַט אוִיס האַט עֵר זִיך פֶער⸗<lb/>לִיעבְּט אִין מײַן גאָרגעל, האַבּע אִיךְ אַייך גֶעוָואָלְט בֶּעָטֶען, אַז אִיהר<lb/>זאָלְט אַרויפגעהן אוֹיף דֶעם הִיזִיגֶען בַּיִת-עוֹלְָם אוּן אִיהר זאָלְט פֶער⸗<lb/>נאַשען אַ פאָר דוּצענד יתגדְל'ס, אַז אַייעֶר פָאַטֶער זאָל זִיך אָבּ⸗<lb/>טשֶׁעפֶען פוּן מִיר.</p>
+        </sp>
+        <sp who="#karl" xml:id="MishkeMashke_SP0453_a">
+          <speaker>קארל</speaker>
+          <p>דאַם פְּלָאַגֶען אַייך אַייעֶרֶע גֶעוויסֶען, וואַס אִיהר האַט<lb/>אוּנְשׁוּלְדִיג בְּלוט פערגאָסען.</p>
+        </sp>
+        <pb n="22" facs="0022_NTU4MTU1.558132.jpg"/>
+        <fw type="pageNum">— 38 —</fw>
+        <sp who="#mishke" xml:id="MishkeMashke_SP0454_a">
+          <speaker>מישקע</speaker>
+          <p>הֶער, וועלוועל, דוּ מוּסט דאָך זַײַן רײַך ווִי מתוּשלח,<lb/>וואָס טוִיג דִיר מאַלעריקאַ, דאָ אִין מאַלעריקאַ אִיז<lb/>דִיר נֶעבֶּעךְ אויסגעקראָכען דִי גַאַנְצֶע בּאָרְד, לאָמיִר שׁוֹין מַאַכֶען אֵיין<lb/>עָק, לאָמיִר שׁוֹין אַמאָל פאָהרעֶן אִין קעשעניאָוו!</p>
+        </sp>
+        <sp who="#alle" xml:id="MishkeMashke_SP0455_a">
+          <speaker>אלע</speaker>
+          <p>יאַ, יאַ, אִין קעָשעניאָוו, אִין קעשעניאָוו.<lb/><stage type="setting">(פאָרהאַנג)</stage></p>
+        </sp>
+        <pb n="23" facs="0023_NTU4MTU1.558137.jpg"/>
+        <pb n="24" facs="0024_NTU4MTU1.558141.jpg"/>
+        <fw type="pageNum">6441</fw>
+      </div>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,3403 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-sore-sheyndel">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">SoreSheyndel</title>
+        <title type="sub">Sore Sheyndel</title>
+        <author>Joseph Lateiner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>SoreSheyndel</title>
+          <author>Joseph Lateiner</author>
+          <publisher>"Di yudishe bihne"</publisher>
+          <pubPlace>Warsaw</pubPlace>
+          <date>1907</date>
+          <note type="repository">Biblioteka Narodowa (Polona)</note>
+          <idno>I 1.469.230 A</idno>
+          <idno type="transkribus">https://app.transkribus.org/collection/18874/doc/820964</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="rb_iukhntsi">
+            <persName>רֶב יוחנצי</persName>
+          </person>
+          <person xml:id="sore_sheyndel">
+            <persName>שׂרה שׁיינדעל</persName>
+          </person>
+          <person xml:id="avromele">
+            <persName>אברהמעלע</persName>
+          </person>
+          <person xml:id="babele">
+            <persName>באבעלע</persName>
+          </person>
+          <person xml:id="dzeyk">
+            <persName>דזייק</persName>
+          </person>
+          <person xml:id="sem">
+            <persName>סעם</persName>
+          </person>
+          <person xml:id="gimpel">
+            <persName>גימפּעל</persName>
+          </person>
+          <person xml:id="shabse">
+            <persName>שׁאַפּסע</persName>
+          </person>
+          <person xml:id="mshurrim_un_flk">
+            <persName>משׁוררים אוּן פֿאָלק</persName>
+          </person>
+          <person xml:id="khnhle">
+            <persName>חנהלע</persName>
+          </person>
+          <person xml:id="dktr">
+            <persName>דאקטאר</persName>
+          </person>
+          <personGrp xml:id="alle">
+            <name>אלע</name>
+          </personGrp>
+          <personGrp xml:id="eyner">
+            <name>איינער</name>
+          </personGrp>
+          <personGrp xml:id="froyen">
+            <name>פרויען</name>
+          </personGrp>
+          <personGrp xml:id="mener">
+            <name>מענער</name>
+          </personGrp>
+          <personGrp xml:id="chor">
+            <name>כאר</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="SoreSheyndel" type="SoreSheyndel">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#rb_iukhntsi">רֶב יוחנצי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#sore_sheyndel">שׂרה שׁיינדעל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#avromele">אברהמעלע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#babele">באבעלע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dzeyk">דזייק</role>
+        </castItem>
+        <castItem>
+          <role corresp="#sem">סעם</role>
+        </castItem>
+        <castItem>
+          <role corresp="#gimpel">גימפּעל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shabse">שׁאַפּסע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mshurrim_un_flk">משׁוררים אוּן פֿאָלק</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khnhle">חנהלע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dktr">דאקטאר</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_01.jpg"/>
+      <pb n="2" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_02.jpg"/>
+      <pb n="3" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_03.jpg"/>
+      <pb n="4" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_04.jpg"/>
+      <pb n="5" facs="30627457.jpg"/>
+      <pb n="6" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_06.jpg"/>
+      <pb n="7" facs="30627459.jpg"/>
+      <pb n="8" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_08.jpg"/>
+      <pb n="9" facs="30627461.jpg"/>
+      <stage type="delivery">פֶּערְזֶאנֶען:</stage>
+      <div type="act" n="1" xml:id="SoreSheyndel_Act1">
+        <head>עֶרְשְטֶער אַקט.</head>
+        <stage type="setting business">אַ ציִמעֶר בּיי רבי יוחנְצִי — מעננער אוּן פרויען זיִנְגעֶן:</stage>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0001_a">
+          <speaker>אַלע</speaker>
+          <p>
+            <lb/>
+            <stage type="delivery">(בּיס)</stage>
+          </p>
+          <lg>
+            <l>מיִר זעֶנעֶן געֶקוּמעֶן אַלע אַהער,</l>
+          </lg>
+          <lg>
+            <l>מיִר וויִלעֶן וויִסעֶן וואָס אִיז זַיין בּאַגעֶר?</l>
+          </lg>
+          <lg>
+            <l>רבּ יוחנצי זאָל קוּמען אַהער צוּ געֶהן</l>
+          </lg>
+          <lg>
+            <l>דעֶן מיִר האָבּען קיין צייט מעהר דאָ צוּ שׁטעהן.</l>
+          </lg>
+          <lg>
+            <l>וואוּ אִיז שרה שַׁיינְדעל דיִ פרוּמע?</l>
+          </lg>
+          <lg>
+            <l>מיִר וויִלעֶן זיִ הַיינְט נאָך זעֶהען.</l>
+          </lg>
+          <lg>
+            <l>מיִר שׁרֵייעֶן אַלע מיִט אֵיין שטוּמע :</l>
+          </lg>
+          <lg>
+            <l>מיר האָבּען מעהר קיין צייט דאָ צוּ שטעהן!</l>
+          </lg>
+        </sp>
+        <sp who="#froyen" xml:id="SoreSheyndel_SP0002_a">
+          <speaker>פרויען</speaker>
+          <p><lb/>וואוּ אִיז זִי?</p>
+        </sp>
+        <sp who="#mener" xml:id="SoreSheyndel_SP0003_a">
+          <speaker>מענֶער</speaker>
+          <p><lb/>וואוּ איז ער?<lb/><stage type="delivery">(בּיס)</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0004_a">
+          <speaker>אַלע</speaker>
+          <p><lb/>מיִר וויִלעֶן זיי שׁוֹין זעֶהען!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0005_a">
+          <speaker>שאפסע</speaker>
+          <p>(לויפט אריין) שאַט! שְׁרֵייט ניִשְׁט אַזוֹי! שרה שַׁיינדעל<lb/>האָט געלאָזט זאָגען, אַז אויבּ אִיהְר וֶועט שׁרֵייעֶן וֶועט<lb/>זיִ ניִשְׁט קוּמען.<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="10" facs="30627462.jpg"/>
+        <fw type="pageNum">6</fw>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0006_a">
+          <speaker>אַלע</speaker>
+          <p>ניין. מיִר וויִלעֶן זִי שׁוֹין זעהען!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0007_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>(קוּמט אַריין) שְׁרֵייט ניִשט מַיינֶע ליעבּע ווייבּער<lb/>אוּן יוּדען! אִיהר זאָלט וויִסעֶן, אַז מַיין מאַן רבי יוחנצי<lb/>פּסקנְט ניִשְׁט מֶעהר קיין שאלות!</p>
+        </sp>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0008_a">
+          <speaker>אַלע</speaker>
+          <p>פאַר וואָס? שרה שיינדעל.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0009_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>שאט! שאט! שְׁרֵייט נישט! אִיך האָבּ גֶעמַיינְט<lb/>אַז דעֶר אַלטער רב וועט שׁטאַרבּעֶן וֶועט קהל לאַנג ניִשט<lb/>טראַכטען אוּן בּאלד מיין רבּ יוחנְצִיען זעצען על כּסא<lb/>הרבנות, צוּם סוף זעֶה אִיך אַז עֶס שְׁטעֶהט גאָר ניִשט<lb/>אָן אייער קהל אַז מַיין מַאן זאָל זַיין רבּי, אוּן אַז אִיך:<lb/>שרה שַׁיינְדעל, דעם יעהופיצעֶרְס טאָכטער זאָל זַיין רבּיצין...<lb/>טאָ געֶהט אַייך, מיינע ליעבּע יוּדֶען אוּן יוּדענעֶס צוּ<lb/>אַייער קהל אוּן לאָזען זיי אַייך פסקיען שאלות.</p>
+        </sp>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0010_a">
+          <speaker>אַלע</speaker>
+          <p>אִיהר דארְפט אוּנז ניִשְׁט טרייבּען, מיִר געֶהעֶן אַליין.<lb/>(אַלע אב).</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0011_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אוּן דוּ שאַפּסע, וואַרף דיִך אויכֶעט אַרויס.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0012_a">
+          <speaker>שאפסע</speaker>
+          <p>אִיך בּין שׁוֹין פוּן יעֶנעֶר זַייט. (אָבּ).</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0013_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>האָט אִיהר געזעהען אַ חוּצפּה? לאָז נוּר מַיין<lb/>יוחנציען זיך פעֶרְגלִיסטֶען עמיצען פּסקנען אַ שַׁאלְה<lb/>דראַפּע אִיך אִיהם אויס בּיידע אוֹיגֶען!. האָ האָ, אִיך<lb/>וֶועל זיי ווייזעֶן אַז אִיך הַייס שרה שַׁיינְדֶעל דֶעם<lb/>יעהופיצערס טאָכטער!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0014_a">
+          <speaker>יוחנצי</speaker>
+          <p>(קוּמט אַריין מיט'ן טלית תפלין) גוּט מאָרגעֶן דיִר שרה<lb/>שיֵינדעלע!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0015_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַ גוּט יאָהר דיִר רבּי, וואָס האָסט דוּ דיך<lb/>אַזוי לאַנג געזוימט? רבּיי מייַנעֶר.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0016_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִיך דאַרף דאָך זאָגען אַ דרְשׁה אוּם שבּת-<lb/>הגדול.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0017_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וֶוער מיִר דרְשה? אוּן וואָס מיִר דרשה? דוּ<lb/>וֶועסְט בּיי מִיר נִישְט דרשנעֶן, בּיז וואַנעֶן מעֶן וועֶט דיִך<lb/>שרה שיינדעל<lb/>ניִשט זעצען עֶל כסא הרבּנות! דוּ הערסט?! נישטאָ קיין<lb/>דרשות!</p>
+        </sp>
+        <pb n="11" facs="30627463.jpg"/>
+        <fw type="pageNum">7</fw>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0018_a">
+          <speaker>יוחנצי</speaker>
+          <p>וואָס הַייסְט ניִשְׁט דרשנעֶן שבּת הגדול? וֶוער זשֶׁע<lb/>דען וועט דרשנעֶן?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0019_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>כּל-זמן דיִ שטאָט וועֶט דיִך ניִשט<lb/>מאַכען פאַר קֵיין רב, וִויל אִיך ניִשְׁט דוּ זאָלסט<lb/>דרשנעֶן. דוּ הֶערְסט? אִיך בּין דֶעם יעהוֹיפּיצערס<lb/>טאָכטער!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0020_a">
+          <speaker>יוחנצי</speaker>
+          <p>אַז דוּ בּיסט דעם יעהופיצערס טאָכטער דאָס ווֵייס<lb/>אִיך, נאָר אַ דרְשׁה אוֹיף שבּת־הגדול, דאָס מוּז אִיך<lb/>זאָגען. איי וואָס? וועגֶען רבנות? — דאָס וֶועט שׁוֹין<lb/>ממִילא קוּמען. אָט, דַארְף צוּ קוּמען מַיין בּרוּדער דעֶר<lb/>מיליאָנטשִׁיק פוּן אַמעריקאַ, מען האָט עֶס מיִר אִין בּית-<lb/>המדרשׁ געזאָגט אַז עֵר קוּמט דיִ טעג, אוּן עֶר מיִט זַיין<lb/>גבירות-שאפט אוּן אִיך מיט מיין דרשה וועֶלעֶן מיִר<lb/>איבּערגעמען גאַנץ קהל אוֹיף מַיין זַייט.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0021_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אִיז טאקי דַיין בּרוּדער אַזאַ נגיד וויִ מעֶן<lb/>זאָגט?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0022_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִיך זאָג דיר: עֶר אִיז אָנגעשטאפּט..</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0023_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>פוּן וואַנעֶן ווייֵסְט דוּ דאָס?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0024_a">
+          <speaker>יוחנצי</speaker>
+          <p>עֶס אִיז גאַנץ איינפאך: וֶוען עֶר אִיז אַוועק נאָך<lb/>אַמעריקאַ, אִיז עֶר אַלט געוועהען אפשר 16 יאָהר, אוּן<lb/>אַציִנְד אִיז עֶר שׁוֹין אַלט 40 יאָהר, אוּן דיִ גאַנְצעֶ צַייט<lb/>האָט עֶר געֶהאַלטעֶן דאָרט אוּן אֵיין גראָבּעֶן גאָלד נוּ<lb/>פֶערְשְׁטֶעהט זיך אַליין אַז עֶר מוּז שׁוֹין האָבּען גאַנצע<lb/>בּעֶרגער גאָלד...</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0025_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אָט זעהסט דוּ דאָס וואָלט דוּקא נִישְט<lb/>שְׁלעֶכט זיין. עֶר זאָל אוּנז נאָר געֶבּעֶן אַבּיסעל מיליאנעֶן,<lb/>וואָלט אִיך שׁוֹין אוּנזער קהל געוויזען וואָס שרה שיֵינדעל<lb/>דעם יעהופיצערס טאָכטער קאָן...<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="12" facs="30627464.jpg"/>
+        <fw type="pageNum">8</fw>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0026_a">
+          <speaker>יוהנצי</speaker>
+          <p>זעהסט דוּ שרה שיינדעל-לעבּען, אִיך וואָלט בּיי אִיהם<lb/>דוקא קיין סך ניִשט געבּעטען` נאָר אָט זֶעהסט דוּ<lb/>אַ פּאָר מיליאנען וואָלט ניִשט שאַדען.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0027_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַ שׁטַייגער וויפיעל קלערסט דוּ מיִר זאָלען<lb/>בּעטען בּיי אִיהם?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0028_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִיך ווייס? וויפיעל רעכענסטוּ אַזוי? עֶס זאָל זַיין מיִט<lb/>יושר?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0029_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>מיִט יושר? דאַכט זִיך אַ דרֵייסִיג מִילִיאנֶען<lb/>וֶועט זַיין גענוּג! פאַר'ן עֶרְשְׁטעֶן מאָל.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0030_a">
+          <speaker>יוחנצי</speaker>
+          <p>מהכא-תּתי... אִיך פערלאָז מִיך אוֹיף דיִר. (לערענט)<lb/>שבּת שלפנִי הַפּסח קורִין אותו שבּת־הגדול, אִיז דאָך דיִ<lb/>קשיה: פאַר וואָס רוּפט מען שבּת הגדול אוּן ניִשט יום<lb/>הגדול?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0031_a">
+          <speaker>שאפּסע</speaker>
+          <p>(לויפט אַריין) אוֹי רב יוחנצי! שרה שַׁיינְדֶעל! אִיהר<lb/>זֶענְט גלִיקלִיך, אִיהְר זֶענְט רייך, אִיהְר זֶענְט אָנגעש⸗<lb/>טאָפּט...</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0032_a">
+          <speaker>יוחנצי</speaker>
+          <p>וֶוער אִיז רייך?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0033_a">
+          <speaker>שאפּסע</speaker>
+          <p>אִיהְר האָט געמאַכט! אִיהר האָט בּיידע גֶעמאכט דֶעם<lb/>אויבּערטרעפער! אִיהְר זֶענְט גלִיקלִיך.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0034_a">
+          <speaker>יוחנצי</speaker>
+          <p>געלויבּט השם יתבּרך! אָט זעֶנעֶן מיִר געֶוואָרעֶן<lb/>נגידים אָהן רבנות.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0035_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אִיך פֶערְשְׁטֶעה נישט. דוּ שפּיעלסט דעֶן אִין<lb/>לאָטעריע?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0036_a">
+          <speaker>יוחנצי</speaker>
+          <p>זעהסט דוּ דאָך, וואָס דעֶר רבּונו שֶׁל עולם קאָן. מען<lb/>דארף דען שפּיעלען? מִי שאמר לשׁמן וִידְלִיק... אַז<lb/>גאָט וויִל שִׁיסט אַ בּעֶזעֶם... דאָס איז דאך טאקי<lb/>גאָטס נסִים.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0037_a">
+          <speaker>שאפסע</speaker>
+          <p>אַ זאָלכע נסִים אוֹיף אַלע חסידִים געזאָגט גע⸗<lb/>וואָרען.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0038_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אִיך מִיט מיין ווייבערישען שכל פארשטעה<lb/>שר שיינדעל<lb/>עֶס פאָרט נישט... קוּם נאָר אַהער, שאַפּסע גולם! זאָג<lb/>מיִר דעם גאַנצען אמְת: פוּן וואַנעֶן ווייסט דוּ דאָס אַז<lb/>מיִר האָבּען געמאכט דעם אוֹיבּער-טרעֶפעֶר?</p>
+        </sp>
+        <pb n="13" facs="30627465.jpg"/>
+        <fw type="pageNum">9</fw>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0039_a">
+          <speaker>שאפּסע</speaker>
+          <p>אִיך האָבּ דאָך אַ פּאדעשווע.</p>
+        </sp>
+        <sp who="#rb_iukhntsi #sore_sheyndel" xml:id="SoreSheyndel_SP0040_a">
+          <speaker>יוחנצי-שרה שיינדעל</speaker>
+          <p>וואָס האָסט דוּ?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0041_a">
+          <speaker>שאפסע</speaker>
+          <p>אַ פּאָדעשווע. רבּ משה דער בּעל-עגלה האָט זִי מיִר<lb/>געבּראַכט אוּן האָט מיִר געזאָגט: שאפּסע! האָט עֵר<lb/>געזאָגט, אָט האָסט דוּ אַ פּאָדעשווע צוּ רבּ יוחנציעֶן,<lb/>עֶר האָט גֶעוויס גֶעמאכט דֶעם אויבּער טרעפער. אָט<lb/>הָאט אִיהר זיי, דיִ פּאָדעשווע.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0042_a">
+          <speaker>יוחנצי</speaker>
+          <p>עֶר מַיינְט, וואָס עֶס קלאַפּט פוּן אֵיין שטאָט אִין דעֶר<lb/>אַנדערער: אַ טעלעגראַף.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0043_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>מיִשטיינס געזאָגט זיי ווייֵסעֶן אַפילוּ ניִשט ווִי<lb/>עֶס הַייסְט... מֶען רוּפט עֶס! דעפּעשניצע. וואָס זְשֶׁע<lb/>שטעהט דאָרט געשריעבּען?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0044_a">
+          <speaker>שאפּסע</speaker>
+          <p>אִיך ווייס? אִיך קאָן דֶען לֵייענֶען טרפה-וּפסל'ען?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0045_a">
+          <speaker>יוחנצי</speaker>
+          <p>געֶה, גולם, בּעֶט אִימיִצעֶן מעֶן זאָל דיִר איִבּעֶר<lb/>לייענען.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0046_a">
+          <speaker>שאפּסע</speaker>
+          <p>צוּ וועמען זאָל אִיך געֶהן?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0047_a">
+          <speaker>יוחנצי</speaker>
+          <p>געה צוּם אַפּטעֶקעֶר.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0048_a">
+          <speaker>שאפּסע</speaker>
+          <p>דעֶר לאַפּטעקער וִויל שׁוֹין מֶעהר ניִשְׁט לייענען אוּן<lb/>אַייך קֵיין בּריעף ניִשְׁט שרייַבּעֶן. עֶר זאָגט: אַז אַ גאַנץ<lb/>יאָהר שרייבּט עֶר אַייך בּריעף צוּ אַייער בּרוּדער דֶעם<lb/>מיליאָנטשִׁיק אוּן אִיהר גיעט אִיהם גאָר ניִשְׁט צוּ לייזעֶן.<lb/>אִיהְר זעֶנְט נאָך איינמאָל ניִשט קראַנק געוועזען.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0049_a">
+          <speaker>יוחנצי</speaker>
+          <p>געה שׁוֹין, גולם!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0050_a">
+          <speaker>שאפסע</speaker>
+          <p>שאַ! אִיך וֶועל געֶהן צוּ חנהלען, דעֶר פערבּלאנדזע⸗<lb/>טער נשמה. זיִ קאָן דאָך אַ סך לשונות!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0051_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>לאָז זיין צוּ דעֶר פערבּלאנדזעטער נשמה! נאָר<lb/>גיך.<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="14" facs="30627466.jpg"/>
+        <fw type="pageNum">10</fw>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0052_a">
+          <speaker>שאפּסע</speaker>
+          <p>אָט לויף אִיך שׁוֹין, האָ האָ! שאַפּסע אִיז אַ קלוגער<lb/>גולם! (ער לויפט אָבּ אוּן פערליערט די טעלעגראַמע).</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0053_a">
+          <speaker>אברהמעלע</speaker>
+          <p>(קוּמט אַריין).</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0054_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>געלויבּט אִיז דער אויבּערשטער! אָט געהט<lb/>טאַקע אוּנזער אברהמעֶלעֶ, לאָז עֵר אוֹיך וויִסעֶן פוּן דעֶר<lb/>גוּטער בּשורה! — אַ גוּט מאָרגען דיִר מַיין זוּנדעלע, אִיך<lb/>וֶועל דיִר אָנזאָגען אַ גוּטעֶ בּשוּרה טובה: מיִר האָבּעֶן<lb/>געמאַכט דעם אויבּערטרעפער.</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0055_a">
+          <speaker>אברהמעלע</speaker>
+          <p>דֶעם אויבּערטרעֶפעֶר? וֶוער שפּיעלט דעֶן בּייַ<lb/>אוּנז אין דער לאָטעריע?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0056_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>קיינער ניִשט, זעהסטוּ מַיין קיִנְד אוּן דאָך...</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0057_a">
+          <speaker>אברהמעלע</speaker>
+          <p>וויִ זשֶׁע אַזוֹי?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0058_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>דאָס אִיז דאך טאַקע אַ נס, אָט אִיז שאַפּסע<lb/>געקוּמען צוּ לויפען מיִט אַ גדולה אַז...</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0059_a">
+          <speaker>אברהמלע</speaker>
+          <p>וֶוער ווייס וואָס עֵר האָט דאָרטען געהערט דעֶר גולם...</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0060_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>עֶר האָט דאָך געבּראַכט אַ דעפּעשניצע, האָבּ<lb/>אִיך אִיהם גֶעשִׁיקט, אַז מֶען זאָל זִי איבּער לֵייענֶען...<lb/>אוֹי אָט אִיז טאקע דיִ דעפּעשניצע (הויבּט זִי אוֹיף אוּן גיִט<lb/>זי אברהמעלען) וואָס דאָס אִיז פאַר אַ גולם, עֶר האָט זי<lb/>פֶערְלוירֶען!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0061_a">
+          <speaker>אברהמלע</speaker>
+          <p>אַ דעפּעשע! (לייענט) וואָס זעֶה אִיך? דעֶר פֶעטֶער<lb/>פוּן אַמעֶריִקאַ קוּמט דאָך צוּ פאָהרעֶן! פוּן אִיהם אִיז<lb/>דאָך די דעפּעשע!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0062_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וואָס? דעֶר פעֶטעֶר פוּן אַמעֶריִקאַ? דעֶר מיליאָנ⸗<lb/>טשיק קוּמט טאקע? (לויפט צוּ יוחנצען) הֶערְסט יוחנְצִי? דַיין<lb/>בּרוּדער קוּמט צוּ פאָהרעֶן, דאָס אִיז פוּן אִיהם דיִ<lb/>דעפּעשניצע. אוּנזער אברהמעלע האָט זי איבּערְגֶעלֵייענְט.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0063_a">
+          <speaker>יוחנצי</speaker>
+          <p>וואָס? אברהמעלע האָט זיִ איִבּעֶרגעלייענט? אוּן דיִר<lb/>שרה שַׁיינדעל, דעם יעהופיצערס טאָכטער איז דאָס נאָר<lb/>נִישְט קשה?<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="15" facs="30627467.jpg"/>
+        <fw type="pageNum">11</fw>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0064_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וואָס זאָל מיר דאָ קשה זַיין?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0065_a">
+          <speaker>יוחנצי</speaker>
+          <p>יעהופיצערס טאָכטער! עֶס אַרט דיִך גאָר ניט? ווי<lb/>קוּמט צוּ אוּנזער אברהם'לען טרפה-ופסל'ען צוּ ליינעֶן? וואוּ<lb/>האָט עֶר עֶס געֶלעֶרעֶנְט?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0066_a">
+          <speaker>אברהמעלע</speaker>
+          <p>(צוּ זיך) אִיך האָבּ מִיך אַליין פערראַטהען.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0067_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אוֹי! אַ דוּנער הָאט מִיך דעֶרְשְׁלָאָגעֶן! וואוּ<lb/>האָסט דאָס געֶלעֶרעֶנְט?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0068_a">
+          <speaker>אברהמעלע</speaker>
+          <p>ליעבּע מוטער! דיִ צַייט שְׁטעֶהט ניִשט, בּאלד<lb/>וֶועט דעֶר פֶעטֶער קוּמען מוּזט דאָך עטוואָס פאָרבּערייטען.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0069_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>קוּם שׁוֹין, קוּם יוחנצי! אָך אִיז מיִר אוּן וֶועה<lb/>אִיז דיִר וואָס מיִר האָבּעֶן דערלעבּט פוּן אוּנְזעֶר אַייגעֶנעֶם<lb/>זוּהן! אָ, הַיילִיגֶער יעהופיצער! זאָלסט שְׁטֶעהן אוּן בּעטען<lb/>פאַר דַיין געטרייע טאָכטער! (אָבּ).</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0070_a">
+          <speaker>יוחנצי</speaker>
+          <p>(אָבּגעהענד לערענט) שבּת שלפני הפסח קורִין אותו שבּת<lb/>הגדול... (אָב).</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0071_a">
+          <speaker>אברהמעלע</speaker>
+          <p>(זיי נאָך קוקענד) אַך דוּ פִינְצְטֶערֶע פאנאטיזמוס!<lb/>ווי לאַנג נאָך וֶועסְט דוּ פֶערְשׁטעֶלעֶן דיִ הֶעלֶע זונען-שַׁיין?<lb/>קוים וִויל מען עפּעס לערנען, עפּעס גֶענִיסֶען פוּן וִויסֶענ⸗<lb/>שׁאפט, מוּז מֶען זִיך בּעהאַלטען בּחדרי חדרִים... אוּן<lb/>יֶעצְט האָבּ אִיך מִיך אַליין פערראַטהען, וֶוער וַוייסְט וואָס<lb/>אִיך וועל ליידען דאַפיר!...</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0072_a">
+          <speaker>באבּעלע</speaker>
+          <p>(אריין קוּמענד).</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0073_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אַ גוּטען מאָרגען דיִר!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0074_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אַ גוּטען מאָרגען דיִר, מיין טייער שוועס⸗<lb/>טֶערִיל!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0075_a">
+          <speaker>באבּעלע</speaker>
+          <p>זֶעהְר גוּט וואָס אִיך האָבּ דיך דאָ גֶעטראפֶען אַליין.<lb/>אִיך וִויל טאַקע מיִט דיִר עטוואָס רעֶדעֶן.</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0076_a">
+          <speaker>אברהמעלע</speaker>
+          <p>ווילְסט מיִט מיִר עטוואָס רעֶדעֶן, נוּ אַדרבּה גוּט.<lb/>זעץ דיך.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0077_a">
+          <speaker>באבעלע</speaker>
+          <p>(זיי זענען זיך) וַוייסְט אברהמעֶלעֶ אַז דעֶר פאטער<lb/>שרה שיינדעל<lb/>מיִט דעֶר מוּטער האָבּען זֶעהְר פִיעל שׁמֶערְצֶען פוּן דיִר?</p>
+        </sp>
+        <pb n="16" facs="30627468.jpg"/>
+        <fw type="pageNum">12</fw>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0078_a">
+          <speaker>אברהמעלע</speaker>
+          <p>נוּ זאָג מיִר, אַדרבה, מַיין שֶׁען שׁוועסטערל<lb/>וואָס פאַר אַ שׁלֶעכטס, אַייגֶענְטלִיך, זֶעהט מֶען פוּן מיִר?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0079_a">
+          <speaker>באבעלע</speaker>
+          <p>מיִר ווייסען דען נישט אַז דוּ געהסט אַלע טאָג צו<lb/>דעֶר פערבּלאנדזעטער נשמה? וואָלסט דוּ דעֶן ניִשט<lb/>געֶקעֶנְט אַ חָתָן וֶוערֶען מיִט אַ רב'ס טאָכטער, זאָלסט אָן<lb/>מאַכעֶן כּבוד אוּנזער זיידעֶן, דעם הייליגען יעהופיצער?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0080_a">
+          <speaker>אברהמעלע</speaker>
+          <p>זאָג מיִר נאָר באַבּעֶלעֶ, פוּן וואַנעֶט ווייסטוּ דאָס<lb/>אַז אוּנזער זיידע, דעֶר יעהופיצער אִיז גֶעוֶועזֶען אַ הֵיילִי⸗<lb/>גער?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0081_a">
+          <speaker>באבעלע</speaker>
+          <p>אוֹי וֶועה! דוּ גלויבטט גאָר ניִשט אַז אוּנזער זיידע<lb/>אִיז גֶעווֶעהְן אַ הֵיילִיגֶער? וֶועה אִיז מיִר! עֵר אִיז דאָך שׁוֹין<lb/>טאַקע אַ פאַרטיגער. אוּן שוּלְדִיג אִין דעם אִיז נאָר די<lb/>פערבּלאנדזעטע נשמה...</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0082_a">
+          <speaker>אברהמעלע</speaker>
+          <p>זאָג נאָר בּאבּעֶלעֶ, צוּ דוּ וַוייסְט פאַר וואָס מען<lb/>האָט דאָס אָרעמע מיידעל אַ נאָמען געגעבּען פער⸗<lb/>בּלאנדזעטע נשמה?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0083_a">
+          <speaker>באבעלע</speaker>
+          <p>ווייל זי איז אַ פערבּלאנדזעטע נשמה.</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0084_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אוּן אִיך זאָג דיִר בּאבּעֶלעֶ, אַז דאָס גאַנצע<lb/>שׁטעטעל זֶענֶען ווילְדֶע חיות, עזלֶען אִין פֶערְד.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0085_a">
+          <speaker>באבעלע</speaker>
+          <p>אוֹי וֶועה! אַזוי פִיעל פערד אוּן עזלען!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0086_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אוּן וַוייסְט פאַר וואָס זיי רוּפעֶן אוֹיף אִיהר פער⸗<lb/>בּלאנדזעטע נשמה?...</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0087_a">
+          <speaker>באבעלע</speaker>
+          <p>וַוייל זִי גֶעהט הערוּם אוֹיף דעם עולם התּהו...</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0088_a">
+          <speaker>אברהמעלע</speaker>
+          <p>נֵיין, זי לעבּט פּוּנקט אַזוֹי וויִ אִיך אוּן דוּ נאָר<lb/>הער אויס: וֶוען חנְהלֶע מיִט אִיהר מוּטער זֶענֶען דאָ אַהער<lb/>געקוּמען אוּן אוּנזער שׁטעֶטעֶל אַריין, אִיז, זי חנהלע, נאָך<lb/>זֶעהְר יוּנג גֶעוֶועזֶען, אִיהְר מוּטער האָט זיִ געלערענט אוּן<lb/>גוּט ערצוִיגֶען, שפּעטער האָבּען זִיך חסידִישֶׁע בּחוּרים צוּ<lb/>אִיהר זִיך גֶעשְׁלֶענְט, אָבּעֶר זיִ האָט אַלעמען אָבּגעזאָגט<lb/>שרה שיינדעל<lb/>אוּן דאַדורך הָאט מֶען אוֹיף אִיהר אויסגעטראכט דעם<lb/>נאָמען זינדיגע אָדער פערבּלאנדזעטע נשמה.</p>
+        </sp>
+        <pb n="17" facs="30627469.jpg"/>
+        <fw type="pageNum">13</fw>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0089_a">
+          <speaker>באבעלע</speaker>
+          <p>הער זשע אָבּער וואָס אונזערע פאטער אוּן מוּטער<lb/>זאָגען אוֹיף אִיהר?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0090_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אוּנזער פאטער זאָל לעבּען, איז אַ צוטראָגעֶנעֶ<lb/>בּריאָה, בּיי אִיהם אִיז רעכט צוּ געוואוּנען אִין דעֶר לאטֶערִיע<lb/>כאָטש ער שפּיעלט גאָר נישט. און דו מיין שוועסטערל בּיזט<lb/>אַזוי פערגלויבּט, אַז וואָס מֶען זאָג דיִר זאָגסט דוּ נאָך בּאָם.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0091_a">
+          <speaker>באבעלע</speaker>
+          <p>איך זאָל נישט בּאָם, איך זאָג — יאָ.</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0092_a">
+          <speaker>אברהמעלע</speaker>
+          <p>זעהסט דוּ שׁוועסטֶערְל, אִיך וֶועל דיִר עפנֶען<lb/>דַיינֶע צְוֵויי שֶׁענֶע אויגֶעלֶעך אוּן וֶועל דיִר ווייזעֶן וואָס עֶס<lb/>הַייסְט מֶענְשֶען, וואָס עֶס אִיז אַזוינס דאָס לעבּען.<lb/>דאַמאַלס וֶועסְט דוּ וויִסעֶן וֶוער עֶס אִיז אַ פערבּלאנדזעטע<lb/>נשמה, חנהלֶע אָדער דאָס גאַנצע שטעטיל. (וויל געהן).</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0093_a">
+          <speaker>באבעלע</speaker>
+          <p>אברהמעלע! געהסט גאָר אַוועק? וואַרטסט גאָר נישט<lb/>אוֹיפן פֶעטֶער פוּן אַמעריקא?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0094_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אִיך וֶועל נאך צַייט האָבּען אִיהם צוּ זעֶהן מיִט<lb/>זיינע מיליאנען. אִיך מוז געֶהן צוּ הנְהלֶען, טאָמעֶר דַארְף.<lb/>זִי עפּעס, זִי אִיז נאָך דעֶר מוּטערס טוִיט זֶעהְר קראַנק,<lb/>גֶעווֶארֶען, אוּן ליעגט אַיינֶע אַליין. אַ גוּטען טאָג<lb/>שוועסטערל! (ער געהט אָבּ).</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0095_a">
+          <speaker>באבעלע</speaker>
+          <p>וֶועה אִיז מיִר נעבּעך, עֶס ציהט אִיהם ווִי מיִט<lb/>צוואַנגען צוּ דעֶר פערבּלאנדזעטע נשמה!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0096_a">
+          <speaker>שאפסע</speaker>
+          <p>(לויפט אַריין פערסאַפעט) גֶעוואלְד! אַ דוּנער הָאט מִיך<lb/>דעֶרְשְׁלָאָגעֶן! פִינְסטֶער אִיז מיִר! שׁרְה שַׁיינְדעל וועט מיך<lb/>דערהרגנען! אוֹי געוואלד!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0097_a">
+          <speaker>באבעלע</speaker>
+          <p>וואָס שרייסט דוּ?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0098_a">
+          <speaker>שאפסע</speaker>
+          <p>גֶעוואַלד אִיך האָבּ פֶערְלוירֶען דיִ גאַנצע פּאדעשווע?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0099_a">
+          <speaker>באבעלע</speaker>
+          <p>אוּן איבּער אַ פּאָדעשווע מאַכט מֶען אַזאַ געוואלד,<lb/>וֶועט מֶען דיִר קויפען אנדערע שטיפעל.<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="18" facs="30627470.jpg"/>
+        <fw type="pageNum">14</fw>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0100_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>(אונטער די קאליסען) שאַפּסע! שאַפּסע!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0101_a">
+          <speaker>שאפּסע</speaker>
+          <p>גֶעוואלד! דער מלאך המות!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0102_a">
+          <speaker>באבעלע</speaker>
+          <p>גולם! וואָס רעדסט דוּ!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0103_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>(קוּמט אַריין איילענד נאָך איהר יוחנצי) שאַפּסעניוּ!<lb/>האַרציניוּ! גֶעשׁווינְדֶער גרֵייט צוּם טישׁ, דעֶר מיליאָנטשִׁיק<lb/>קוּמט! גֶעשׁווינְדֶער! בּרענג אַרייַן בּראָנפען, פערבּייַסעֶן,<lb/>טישׁטוּכלעך! (עס קוּמען אָן דזשיק און סעם).</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0104_a">
+          <speaker>דזייק</speaker>
+          <p>אַ יוחנְצִי! אִיך דעֶרְקעֶן דיִך בּרוּדער!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0105_a">
+          <speaker>יוחנצי</speaker>
+          <p>שלוֹם עליכם! וואָס מאַכסט דוּ טהייערעֶר בּרוּדער?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0106_a">
+          <speaker>דזייק</speaker>
+          <p>יוחנצי! אִיז דאָס דיינע פרוֹי?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0107_a">
+          <speaker>יוחנצי</speaker>
+          <p>יאָ, דעם יעהופיצעֶרְס טאָכטער, זכרונו לברכה.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0108_a">
+          <speaker>דזייק</speaker>
+          <p>עֶס פרעהט מיך זעהר ליעבּע שׁוועגֶערִין.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0109_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>סקאָצעל קוּמט, שוואָגער-לעֶבּעֶן.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0110_a">
+          <speaker>דזייק</speaker>
+          <p>אוּן דאָס אִיז דַיין טאָכטער? (ווייזט אויף באַבעלע)</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0111_a">
+          <speaker>יוחנצי</speaker>
+          <p>דעם יעהופיצערס אַנ'אייניקעל, זכרונו לברכה.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0112_a">
+          <speaker>דזייק</speaker>
+          <p>אַך וואָס פאַר אַ הֶערְלִיך קִינְד! (גלעט איהר, זי לאָזט ניט)</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0113_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִיך האָבּ נאָך... וואוּ אִיז אברהמעלע?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0114_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>שוואָגער לעבּען! וֶוער אִיז דאָס שייגעֶצעֶל?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0115_a">
+          <speaker>דזייק</speaker>
+          <p>שַׁייגעצעל? דעֶר אִיז דאָך מַיין בּוֹי.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0116_a">
+          <speaker>יוחנצי</speaker>
+          <p>דַיין גוֹי?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0117_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אייער גוי?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0118_a">
+          <speaker>דזייק</speaker>
+          <p>דעֶר אִיז מַיין זוּהן, מַיין אַיינְצִיג קִינְד, עֶר אִיז מַיין<lb/>אַלץ וואָס אִיז מיִר געבּליבּען פוּן מַיין גאָטזעליגער<lb/>פרוֹי. — סעם! דעט אִיז אוּר אָנקעל.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0119_a">
+          <speaker>סעם</speaker>
+          <p>אִיז דעֶט פאסיִבּיל? אִיז דעט אַל מַיי רעֶלעֶשֶׁען?<lb/>(געהט צוּ צוּ זיי דעֶרלאַנגט זיי דיִ האַנד) האַדיוּדוּ אָנקעל —<lb/>האַדיוּדוּ טאַנטע — האַדיודוּ קאָזין!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0120_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>שוואָגער לעבּען! געהט צוּם טישׁ, אִיך האָבּ<lb/>מִיך פוּן אַייערט-וועגֶען מבִין געוועהן (דזִייק אוּן סעם<lb/>זֶעצֶען זִיך עֶסעֶן).<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="19" facs="30627471.jpg"/>
+        <fw type="pageNum">15</fw>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0121_a">
+          <speaker>דזייק</speaker>
+          <p>אִיך דאַנקע. אִיך בּין וִוירְקלִיך הונְגֶערִיג. סעם! קאָם<lb/>טוּ דע טעהבּיל.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0122_a">
+          <speaker>יוחנצי</speaker>
+          <p>געלויבּט אִיז דער אויבּערשטער. אִיך וֶועל מיך געֶהן<lb/>וואַשען (אָב).</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0123_a">
+          <speaker>סעם</speaker>
+          <p>(נעמט אַ פלעשעל) איז דעט בּרענדי?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0124_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>חָלִילָה, עֶס בּרענט ניִשט.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0125_a">
+          <speaker>דזייק</speaker>
+          <p>עֶר פרעגט אויבּ דאָס אִיז שנאפּס.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0126_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>ריינער שנאפּס, אִיך האָבּ עֶרְשְׁט געקויפט</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0127_a">
+          <speaker>סעם</speaker>
+          <p>היער איזט מיי רעֶגאַרט.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0128_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>מֶעהר, האָבּ אִיך ניִשט געהאַט.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0129_a">
+          <speaker>דזייק</speaker>
+          <p>עֶר זאָגט צוּ אַייך לחיים.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0130_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>לְחַיִים טוֹבים ולשלום, עֶסְט אַייך אוּן טְריִנְקט<lb/>אַייך גֶעזוּנְטֶערְהַייט.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0131_a">
+          <speaker>סעם</speaker>
+          <p>העָוו יו גאַט ענעפּקין?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0132_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>דאָס אִיז ניִשט לעפּקי, עֶס אִיז גוּט אויס⸗<lb/>געבּאַקען. עֶס אִיז פשוט אַ מחיה.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0133_a">
+          <speaker>דזייק</speaker>
+          <p>עֶר פרעֶגט אויבּ זיִ האָבּען אַ סערוועֶטעֶל.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0134_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>שאַפּסע! שנעֶלעֶר גיבּ אַהער דיִ טיִשׁטוּכלעך.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0135_a">
+          <speaker>שאפסע</speaker>
+          <p>(פון קעשֶׁענֶע) נאַט אַייך דיִ טישׁטוּכלעך. (יוחנצי קוּמט<lb/>אַריין ווישֶׁענְד דִי הֶענְד).</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0136_a">
+          <speaker>דזייק</speaker>
+          <p>פאַר וואָס שׁטעהסט דוּ פוּן ווייטעֶן? זעץ דיךְ אוֹיך צוּם<lb/>טיִשׁ.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0137_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>(לאָזט נישט יוחנצין צום טיש) ניִשט פוּן דַיינֶעט⸗<lb/>וועגֶען האָבּ אִיך זִיך מכִין גֶעוועהֶען.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0138_a">
+          <speaker>יוחנצי</speaker>
+          <p>נוּ אָ! בּרכה לבטלָה! (ווייזט די הענד)</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0139_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>גֶעה דיִר צוּריק אִין קִיך — דוּ וֶועסְט<lb/>שפּעֶטעֶר עֶסעֶן.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0140_a">
+          <speaker>שאפסע</speaker>
+          <p>רבּ יוחנצי! זיי עֶסעֶן אוּמגעוואשען!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0141_a">
+          <speaker>יוחנצי</speaker>
+          <p>אוּן אַז אִיך האָבּ מיִךְ געֶוואַשען אוּן האָבּ ניִשְׁט וואָס<lb/>צוּ עֶסעֶן? (סעם וואַרפט אוֹיגען אוֹיף בּאבּעֶלעֶן אוּן גיעט אִיהר<lb/>שרה שׁיינְדֶעל<lb/>פִין צַייט צוּ צַייט אַ האַנדקוּם, אוּן נאָך אַיינִיגֶע מאָל בּעמערקט<lb/>עֶס שרה שַׁיינְדֶעל אוּן שִׁיקט אִיהר אָבּ).</p>
+        </sp>
+        <pb n="20" facs="30627473.jpg"/>
+        <fw type="pageNum">16</fw>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0142_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>שוואָגער לעבּען וואוּ אִיז עֶרְגֶעץ אַייעֶרֶע<lb/>געֶפּעק?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0143_a">
+          <speaker>דזייק</speaker>
+          <p>אִיך האָבּ דָאך זַיי דאָ מיִט געֶבּראַכט. (קוּקט זִיך אוּם<lb/>צוּם רייזעקעסטעל)</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0144_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>ניִשְׁט דאָס מַיין אִיך. אִיך מַיין דיִ גְרויִסעֶ<lb/>געפּעק...</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0145_a">
+          <speaker>יוחנצי</speaker>
+          <p>זִי מַיינְט דֶעם גאָלדענעס באַרג.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0146_a">
+          <speaker>סעם</speaker>
+          <p>פּאַפּאַ! וואַט דעט פּיפּעל וואָגעט פראָס יוּ?<lb/>דזייק אַיידאָנט נאָה.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0147_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אָהן קאַטאַוועֶס, שוואָגער-לעבּען, וואוּ אִיז<lb/>אֵייעֶרֶע געפּעק? אִיהְר וַוייסְט דָאך שׁוֹין וואָס אִיך מַיין?<lb/>אַייערע...</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0148_a">
+          <speaker>דזייק</speaker>
+          <p>חלעבּען שׁוועגֶערִין, אִיך ווֵייס ניִשְׁט וואָס אִיהְר מַיינְט.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0149_a">
+          <speaker>יוחנצי</speaker>
+          <p>פערשטעהסטוּ מִיך, זִי מַיינְט דֶעם גאָלדענעם בּאַרג.<lb/>וואָס דוּ האָסְט מִיט געבּראַכט פוּן אַמעֶריִקאַ.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0150_a">
+          <speaker>דזייק</speaker>
+          <p>וואָס? דעם גאָלדענעס בּאַרג?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0151_a">
+          <speaker>סעס</speaker>
+          <p>וואט?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0152_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וֶועה אִיז מיִר! אָפשר דאַרְף עֶר אוֹיף א<lb/>רפואה! שאַפּסע! שנעֶל אַ שטיקעל וואטע!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0153_a">
+          <speaker>שאפסע</speaker>
+          <p>(רייסט אויס פון היטעל וואטע) נאַט אַייך וואַטע! קלאָרע.<lb/>ריינע וואטע!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0154_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>לאָז זַיין צוּ רפואה.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0155_a">
+          <speaker>סעם</speaker>
+          <p>וואט איז דעט? (וואַרפט עס אַוועק).</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0156_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>שוואָגער לעבּען! האָט אִיהר דאָס גאַנצע<lb/>פֶערְמֶעגֶען איבּערגעלאזט אוֹיף פְרֶעמְדֶע הֶענְד? וֶועה אִיז<lb/>מיִר! מען קאָן דאָך אַייך נאָך בּע'גנְב'ענֶען!... אוּן וואָס<lb/>האָט איהר דאָ?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0157_a">
+          <speaker>דזייק</speaker>
+          <p>קלייניגקייטעֶן: אַנ'אַנצוּג אוּן דעֶר גלייכען.<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="21" facs="30627474.jpg"/>
+        <fw type="pageNum">17</fw>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0158_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אוּן וואוּ האָט אִיהר געלאָזט אַייערע מיליאנען?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0159_a">
+          <speaker>דזייק</speaker>
+          <p>וֶועלְכֶע מִילאָנען? וואָס האָט זיך אַייך געחלוּם'ט? וואָס<lb/>מַיינְט אִיהר, אִיך בּין ראטשִׁילְד?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0160_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וואָס? קיין מיליאנען? אַ בּעֶטלעֶר גלייךְ מיִט<lb/>אוּנז! אוּן נאָך אַ גוי דאַצוּ! אַך, וואָס עֶס האָט זִיך מיִר<lb/>געחלום'ט דיִ נאַכט, אוּן יעֶנעֶ נאַכט, זאָל מיִר אויִסגעֶהן<lb/>צוּ אַייעֶר קאָפּ אוּן צוּ אַייעֶר הֶענְד אוּן פיס. שאַפּסעֶ! נעם<lb/>דֶעם טיִשׁ! (זיי טראָגען אַוועק דעם טיש אוּן לאָזען זיי זיִצעֶן).</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0161_a">
+          <speaker>סעם</speaker>
+          <p>סֶע מִיסִיס מֶעגִינְטֶע, וויי דאָן טשוּ לעט פוניש אוּר<lb/>דיִנעֶר?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0162_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַ דיִנעֶר זאָל דיך דעֶרְשְׁלָאָגעֶן! דוּ שַׁיינגץ<lb/>אַיינער! זעֶהט נאָר! עֵר שִׁילט זיך נאָך פאַר מַיין גוּטס!<lb/>ניִשט גענוּג אִיך האָבּ מִיך אָנגעבּאָרגט פוּן זייערט-וועגען<lb/>אוּן האָבּ זיי אָנגעשטאָפּט דיִ קישקעס, קוּמט מיִר נאָך<lb/>צוּ שֶׁעלְטֶען! (צוּ יוחנצי) וואָס שְׁוַוייגְסְט דוּ, שׁלִים-מזלְדִי⸗<lb/>געֶר מאַן! ווייל עֶס אִיז דַיין בּרוּדערעֶל! אַ פּראָסטער<lb/>נוֹי, ימח שמו! ניִשְׁט געוואַשעֶן, ניִשט קיין מוצא, ניִשט<lb/>געבּעֶנשט! מען טאָר דָאך אִין זיינע דַלְתּ-אמות נִישְט<lb/>שְׁטעהען! טפוּ! טפוּ! (זי לויפט אב).</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0163_a">
+          <speaker>דזייק</speaker>
+          <p>יוחנצי! וואָס אִיז דאָס?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0164_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>(שרייט) יוחנצי! יוחנצי!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0165_a">
+          <speaker>יוחנצי</speaker>
+          <p>פֶערְשׁטֶעהסט דוּ מִיך, בּרוּדער, אִיך מוּז געֶהן, זִי רוּפט מִיך!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0166_a">
+          <speaker>דזייק</speaker>
+          <p>אָבּער וואָרט נאָר, אֵיין וואָרט!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0167_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>יוחנצי! יוחנציִ! געהסט אַהעֶר?!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0168_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִיך מוּז געֶהן! זי איז דעם יעהוּפיִצעֶרְס טאָכטער!<lb/>(אב).</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0169_a">
+          <speaker>סעם</speaker>
+          <p>וֶועל פּאַפּאַ וואַדיוּ טינקטודעט?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0170_a">
+          <speaker>דזייק</speaker>
+          <p>אָ וֶוען עֶס אִיז נִישְט מַיינְס אַ בּרוּדער וואָלט אִיךְ מיִך<lb/>מיִט אִיהם אָבּגערעכענט!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0171_a">
+          <speaker>שאפסע</speaker>
+          <p>(לויפֿט אַריין) רב יוחנְצי אוּן שׁרְה שַׁיינדעל האבּען<lb/>שרה שַׁיינְדֶעל<lb/>געזאָגט אַז אִיהר זאָלט געהען פוּן וואַנעֶן אִיהר זֶענְט<lb/>געקוּמען.</p>
+        </sp>
+        <pb n="22" facs="30627475.jpg"/>
+        <fw type="pageNum">18</fw>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0172_a">
+          <speaker>דזייק</speaker>
+          <p>(גיעט איהם געלד) קוּם אַהער! דאָס — זאָלסט דוּ געבּען<lb/>מַיין שׁוועגֶערִין, שרה שַׁיינדעל. אוּן אִיהר זאָגען, אַז דאָס<lb/>האָט זִי פאַר'ן עֶסעֶן, אוּן דאָס זאָלסט דוּ געבּען מַיין<lb/>בּרוּדער, טאָמער דאַרף עֵר בּעצאָהלען פאַר מיִטטעֶ, אוּן<lb/>דאָס — האָסְט דוּ פאַר דיִר, פאַרן בּעדיגוּנג. אוּן דוּ<lb/>סעם, קוּם!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0173_a">
+          <speaker>סעם</speaker>
+          <p>וֶוער ווילוויִ גאָן פּאַפּאַ?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0174_a">
+          <speaker>דזייק</speaker>
+          <p>מיִר וועלען קריגען דאָ אַ האָטעֶל.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0175_a">
+          <speaker>סעם</speaker>
+          <p>פּאַפּאַ! אַיי וואָנט טוסיע דעט גוירִיל וואָס מאָאוער?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0176_a">
+          <speaker>דזייק</speaker>
+          <p>קוּם, וֶועסְט און שפּעטער זעהען! (בּיידע אָבּ)</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0177_a">
+          <speaker>שאפסע</speaker>
+          <p>(מיט פערליידיגטע הענד) רבּ יוחנְצִי! רבּ שׁרְה שַׁיינְדעל!<lb/>קוּמט אַריין גֶעשׁווינְד! (יוחנצי און שרה שיינדעל לויפען אַריין)</p>
+        </sp>
+        <sp who="#rb_iukhntsi #sore_sheyndel" xml:id="SoreSheyndel_SP0178_a">
+          <speaker>יוחנצי שרה שיינדעל</speaker>
+          <p>וואָס אִיז? וואָס אִיז?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0179_a">
+          <speaker>שאפסע</speaker>
+          <p>עֵר אִיז אָנגעשטאָפּט, עֶר אִיז אָנגעדאפּטשעט, עֶר<lb/>אִיז אָנגעפוּלט! אִיהְר זֶעהט?... דאָס — האָט עֶר געֶגעֶבּעֶן<lb/>פאַר אַייך פאַר'ן עֶסעֶן, אוּן דאָס — פאַר אַייך אוֹיף<lb/>אַ מִיטה אוּן דאָס — פאַר מיִר אוֹי מאמע! האָט עֵר<lb/>אַרויס גענוּמען אַ בּייטעל! אִיך בּין אַזש שיעוּר בּלינד<lb/>גֶעווארֶען! אָנגעשטאָפּט פיעל מיִט גֶעלְד! אוּן וֶוען זיי<lb/>זֶענֶען אַוועק געגאַנגען האָט דעֶר קלֵיינֶער מִילִיאנְטשִׁיק<lb/>צוּ מיִר געמאַכט אַזוֹי... דאָס הייֵסְט אִיך זאָל ניִשט זאָגען<lb/>וויפיעל גֶעלְד עֶר האָט... אִיך זאָג אַייך עֶר אִיז אָנ⸗<lb/>געשטאפּט!...</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0180_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וֶועה אִיז מיר! וואוּ זענען זיי אַוועק<lb/>געֶגאַנגעֶן? מעֶן וועֶט זיי נאָך חלִילָה בּעגנְב'עֶנעֶן! שאַפּסעֶ!<lb/>האַרצעניוּ! קרוינעניוּ! וואוּ זעֶנעֶן זיי אַוועק געגאַנגעֶן?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0181_a">
+          <speaker>שאפסע</speaker>
+          <p>אִין אַ האָטעל עֶרְגֶעץ.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0182_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וֶועה אִיז מיר! אִין אַ האָטעל! קוּם לאָמיִר<lb/>שרה שׁיינְדֶעל<lb/>זיי אויפֿזוכען!</p>
+        </sp>
+        <pb n="23" facs="30627476.jpg"/>
+        <fw type="pageNum">19</fw>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0183_a">
+          <speaker>יוחנצי</speaker>
+          <p>בּאלד אִיז שבּת־הגדול!... שבּת שׁלְפנִי הפסח...</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0184_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>קוּם, זאָג אִיך!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0185_a">
+          <speaker>יוחנצי</speaker>
+          <p>אוּן דיִ דרְשׁה?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0186_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>צוּ מיינע שׁונְאִים'ס קעפּ! קוּם זאָג אִיך<lb/>האָסְט פֶערְגֶעסֶען אַז אִיך בּין דעם יעהופיצערס? קוּם!<lb/>שׁוֹין זאָלסטוּ געהעָן!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0187_a">
+          <speaker>יוחנצי</speaker>
+          <p>שבּת שלפני הפּסח! (ביידע אב).</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0188_a">
+          <speaker>שאפסע</speaker>
+          <p>אַצינד לויפט זִי שׁוֹין, אִיהם אוֹיף זוּכען — פְריִהעֶר<lb/>האָט מען ניִשט געטהאָרט שְׁטעֶהן אוּן זיינע פייער עֶלעֶן.<lb/>עֶר אִיז אַ פּראָסטער גוִי האָט זִי געזאָגט — אוּן אַצינד<lb/>דאַכט מיִר, וועֶט עֶר וֶוערען בּיי זַיי אַ כּשר'ער יוּד —<lb/>יאָ, יאָ, אַזוי אִיז אוֹיף דער וועלְט: דיִ ממתּקים, דיִ פּאָר<lb/>פּייעם, מאַכען פוּן שלעכט - גוּט, פוּן גראָבּ - אַיידֶעל<lb/>פוּן טרְפה — כּשר. יאָ, כסף וזהב מטהר מִמְזרִים.<lb/>שרה שַׁיינְדֶעל<lb/>פאָרהאַנג</p>
+          <lg>
+            <head>1.</head>
+            <l>עֶס דַארְף ניט הַיינְט דיִ וועלְט</l>
+          </lg>
+          <lg>
+            <l>קיין חכמים אוּן קֵיין קעֶנעֶר;</l>
+          </lg>
+          <lg>
+            <l>וֶוער עֶס האָט נאָר מעהרער גֶעלְט</l>
+          </lg>
+          <lg>
+            <l>אִיז געבּילדעטער אוּן שֶׁעֶנעֶר.</l>
+          </lg>
+          <lg>
+            <l>עֶס מאָג זַיין אַ גראָבּער יוּנג;</l>
+          </lg>
+          <lg>
+            <l>קאָן קיין צלס פאַר קֵיין אַלף</l>
+          </lg>
+          <lg>
+            <l>מעג עֶר שׁוֹין טהוּן אוֹיך אַלעֶס-דיִנְג</l>
+          </lg>
+          <lg>
+            <l>אוּן אַרוּם געֶהן מיִט אַ חלְף,</l>
+          </lg>
+          <lg>
+            <l>מעג אויס-רייסען יעֶנעֶם דיִ געֶדערעם</l>
+          </lg>
+          <lg>
+            <l>וַוייל עֶר הָאט דיִ ממתּקים</l>
+          </lg>
+          <lg>
+            <l>אוּן מֶען וועהלְט אויס רְק-אִיהם</l>
+          </lg>
+          <lg>
+            <l>וַוייל: "כסף וזהב מטהר ממְזרִים!</l>
+          </lg>
+          <lg>
+            <head>2.</head>
+            <l>אָט זֶעהט אִיהר יעֶנעֶר סקנער;</l>
+          </lg>
+          <lg>
+            <l>עֶר פגר'ט פאַר אַ גראָשען,</l>
+          </lg>
+          <lg>
+            <l>אוּן אִיז אִין שטאָט דער הערר</l>
+          </lg>
+          <lg>
+            <l>אוּן אַ גאַנצער בּעל לשון.</l>
+          </lg>
+          <lg>
+            <l>עֵר אִיז הַיינְט ראש-הקהל,</l>
+          </lg>
+          <lg>
+            <l>אוּן פִיהרְט אַלעמען בּיים נאָז</l>
+          </lg>
+          <lg>
+            <l>כאָטש עֵר אִיז געוועהען אַ מאָל...</l>
+          </lg>
+          <lg>
+            <l>אִיהר פֶערְשׁטעהט אַליין שׁוֹין וואָס...</l>
+          </lg>
+          <lg>
+            <l>אוּן אִיז געלעגען דאַן אוֹיך אִין חָכָם.</l>
+          </lg>
+          <lg>
+            <l>נאָר ווייל עֶר האָט דיִ פּייעם</l>
+          </lg>
+          <lg>
+            <l>וועהלט מען אויס נאָר עהם</l>
+          </lg>
+          <lg>
+            <l>וַוייל כסף וזהב מטהר מִמְזרִים!</l>
+          </lg>
+          <lg>
+            <head>3.</head>
+            <l>אִיך קאָן אַ'נ'אַלטען מאַן</l>
+          </lg>
+          <lg>
+            <l>אַ קראַנקעֶ צרה אוּן מיאוס.</l>
+          </lg>
+          <lg>
+            <l>עֶר אִיז געוועהן אַ דאָן זשואן</l>
+          </lg>
+          <lg>
+            <l>אוּן שלעפּט הַיינְט קוים דיִ פיס;</l>
+          </lg>
+          <lg>
+            <l>עֶר האָט חתוּנה פאַר אַ מיידעל,</l>
+          </lg>
+          <lg>
+            <l>זִי אִיז פּראָסטע מִילְך אוּן בּלוּט</l>
+          </lg>
+          <lg>
+            <l>אוּן געבּילדעט שֶׁען אוּן אַיידֶעל,</l>
+          </lg>
+          <lg>
+            <l>אוּן בּערעכענט ניט וואָס זִי טהוּט!</l>
+          </lg>
+          <lg>
+            <l>ווִי קאָן מען וואָהנען מיט חזרים</l>
+          </lg>
+          <lg>
+            <l>און דוקא געפעהלט ער איהר</l>
+          </lg>
+          <lg>
+            <l>וַוייל עֶר אִיז אַ גְרויִסעֶר גְבִיר</l>
+          </lg>
+          <lg>
+            <l>אוּן כסף וזהב מטהר מִמְזרִים...</l>
+          </lg>
+        </sp>
+        <pb n="24" facs="30627478.jpg"/>
+        <fw type="pageNum">20</fw>
+        <trailer>עֶנְדֶע עֶרְשְׁטעֶ אַקט.</trailer>
+        <pb n="25" facs="30627480.jpg"/>
+        <fw type="pageNum">שרה שׁיינְדֶעל</fw>
+        <fw type="pageNum">21</fw>
+      </div>
+      <div type="act" n="2" xml:id="SoreSheyndel_Act2">
+        <head>צווייטֶער אַקט.</head>
+        <stage type="setting">דאָס זעלבּע צימער פוּן ערשטען אַקט, שֶׁענֶער מעבּלירט)</stage>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0189_a">
+          <speaker>גימפּעל</speaker>
+          <p>(מיט משׁורְרִים זיִנְגעֶן) נוּ קיִנְדעֶר עֶס וֶועט שׁוֹין<lb/>געֶהען.</p>
+        </sp>
+        <sp who="#eyner" xml:id="SoreSheyndel_SP0190_a">
+          <speaker>אַיינֶער</speaker>
+          <p>זאָגט מיִר חַזן, וואָס אִיז הַיינְט בּייַ רבּ יוחנציִן אַזאַ<lb/>טראַסק, וואָס מען האָט אוּנז אַלעמען געשיקט רוּפעֶן<lb/>אַהער?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0191_a">
+          <speaker>גימפּעל</speaker>
+          <p>אִיך ווֵייס אַליין אוֹיך ניִשט, שאַפּסע אִיז געקוּמען צוּ<lb/>מיִר אוּן געֶזָאָגְט אִיך זאָל פאַרטיג מאַכעֶן אַ שֶׁענֶעם "מן<lb/>המצר" צוּ ליעבּ דֶעם גאסט.</p>
+        </sp>
+        <sp who="#eyner" xml:id="SoreSheyndel_SP0192_a">
+          <speaker>איינער</speaker>
+          <p>וואָס פאַר אַ גאַסט?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0193_a">
+          <speaker>גימפעל</speaker>
+          <p>אִיהְר וַוייסְט דעֶן ניִשט, אַז רבּ יוחנציס בּרוּדער, דעֶר<lb/>מיליאָנטשִׁיק פוּן אַמעריקאַ, אִיז געקוּמען? קיִנְדעֶר! גרֵייט<lb/>זִיך אָן גאָרגלען!.. אָט גֶעהט שאַפּסע! (שאפּסע קוּמט<lb/>אריין) זאָג נאָר שאַפּסעֶ...</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0194_a">
+          <speaker>שאפסע</speaker>
+          <p>נֵיין, ניִשט שאַפּסע! אויס שאַפּסע! הַיינְט הַייס אִיך<lb/>שׁוֹין ניִשט שאַפּסע...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0195_a">
+          <speaker>גימפּעל</speaker>
+          <p>ווִי דעֶן?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0196_a">
+          <speaker>שאפסע</speaker>
+          <p>טאַקע רבּ שאַפּסע!... (גימפעל אוּן אַלע לאכען) צַייט<lb/>רבּ יוחנצי איז געוואָרען רב בּין אִיך געֶוואָרען שׁמשׁ אוּן<lb/>אִיך הַייס רבּ שאַפּסע שׁמשׁ.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0197_a">
+          <speaker>גימפּעל</speaker>
+          <p>(צוּ דיִ משׁורְרִים) וויִ געֶפֶעלְט אַייך דעֶר גולם?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0198_a">
+          <speaker>שאפּסע</speaker>
+          <p>אַז אִיהר וֶועט מיך-רוּפעֶן גולְם, וֶועל אִיךְ אַייך רוּפעֶן<lb/>דראָנג!<lb/>שרה שׁיינְדֶעל</p>
+        </sp>
+        <pb n="26" facs="30627483.jpg"/>
+        <fw type="pageNum">22</fw>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0199_a">
+          <speaker>גימפּעל</speaker>
+          <p>לאז-זשע זיין: רבּ גולְם.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0200_a">
+          <speaker>שאפּסע</speaker>
+          <p>וֶועל אִיך אַייך רוּפען רבּ דראנְג!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0201_a">
+          <speaker>גימפעל</speaker>
+          <p>גולם!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0202_a">
+          <speaker>שאפּסע</speaker>
+          <p>דראָנג!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0203_a">
+          <speaker>גימפעל</speaker>
+          <p>נוּ לאָז זַיין רבּ שאַפּסע. זאָג-זשע מיִר רבּ שאַפּסע.<lb/>איז טאַקע אמת אַז מען האָט געזעצט רב יוחנצין על<lb/>כסא הרבנות?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0204_a">
+          <speaker>שאפסע</speaker>
+          <p>אוּן מִיך עֶל כסא השמשות.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0205_a">
+          <speaker>גימפעל</speaker>
+          <p>אַ האַ! אִיז דאָס, צוּ ליעבּ דֶעם הַיינְט אַזאַ טראַסק?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0206_a">
+          <speaker>שאפסע</speaker>
+          <p>אַלץ הַייסְט אַ טראַסק! צַייט טראַסקעס האָבּען זִיך<lb/>געטראַסקעט האָט זיך נאָך אַזאַ טראַסק ניִשט אויסגע⸗<lb/>טראַסקעוועט. אוּן אִיהר וַוייסְט גאָר ניִשט? הַיינְט אִיז<lb/>דאָך תּנאים בּיי אברהמלען.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0207_a">
+          <speaker>גימפּעל</speaker>
+          <p>אִיהר הֶערְט חברה-לֵייט?.. וֶוער זשֶׁע אִיז דִי<lb/>כּלה?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0208_a">
+          <speaker>שאפסע</speaker>
+          <p>טאַקע זִי — זִי אַליין אִיז דאָס דיִ כּלה.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0209_a">
+          <speaker>גימפּעל</speaker>
+          <p>וֶוער אִיז דאָס דיִ זיי?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0210_a">
+          <speaker>שאפּסע</speaker>
+          <p>טאַקי זִי אַליין...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0211_a">
+          <speaker>גימפעל</speaker>
+          <p>וֶוער? גולם!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0212_a">
+          <speaker>שאפּסע</speaker>
+          <p>דראנג!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0213_a">
+          <speaker>גימפעל</speaker>
+          <p>רעד מיִט אַ... אִיך פרעֶג דאָך דיִר, וֶוער אִיז דיִ<lb/>כּלה?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0214_a">
+          <speaker>שאפּסע</speaker>
+          <p>טאקי זִי — חנהלע.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0215_a">
+          <speaker>גימפּעל</speaker>
+          <p>זאָג זשֶׁע נאָר שאַפּסע...</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0216_a">
+          <speaker>שאפּסע</speaker>
+          <p>רבּ גימפּעל! אַז אִיהְר וֶועט מִיך רוּפען פּראָסטע<lb/>שאַפּסע, וֶועל אִיך דאָך אַייך רוּפען.... אִיהר וַוייסְט שׁוֹין<lb/>וואָס...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0217_a">
+          <speaker>גימפּעל</speaker>
+          <p>טאַקע נאָר רבּ שׁאפסע?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0218_a">
+          <speaker>שאפּסע</speaker>
+          <p>אַוודאי רבּ שאַפּסע.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0219_a">
+          <speaker>גימפּעל</speaker>
+          <p>זאָג זשֶׁע מיִר רבּ שאַפּסע, היתכן...<lb/>שרה שַׁיינְדֶעל</p>
+        </sp>
+        <pb n="27" facs="30627485.jpg"/>
+        <fw type="pageNum">23</fw>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0220_a">
+          <speaker>שאפסע</speaker>
+          <p>היתּכן וואָס?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0221_a">
+          <speaker>גימפּעל</speaker>
+          <p>היתּכן, שרה שַׁיינְדעל...</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0222_a">
+          <speaker>שאפּסע</speaker>
+          <p>שׁוֹין ניִשט שרה שיינדעל, נאָר דיִ רבּיצין.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0223_a">
+          <speaker>גימפּעל</speaker>
+          <p>אוּן דיִ רבּיצין שרה שַׁיינְדֶעל האָט צוּ געלאָזט צוּ<lb/>דעם שידוּך?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0224_a">
+          <speaker>שאפּסע</speaker>
+          <p>זֶעהט אִיהְר רבּ גימפּעל, אַז אִיהְר פרעגט מִיך ווִי אַ<lb/>מֶענְשׁ, וֶועל אִיך אַייך ענטפערען: רבּ יוחנצי איז דער רב,<lb/>שרה-שַׁיינְדעל — דיִ רבּיצין, רבּ שאַפּסע - דעֶר שׁמשׁ<lb/>אברהמלע — דער חתן, חנה'לע — דיִ כּלה אוּן דאָס<lb/>אַלץ האָט אָנגעמאכט...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0225_a">
+          <speaker>גימפּעל</speaker>
+          <p>וֶוער? וֶוער האָט דאָס אָנגעמאכט?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0226_a">
+          <speaker>שאפסע</speaker>
+          <p>וואָס הַייסְט וֶוער? טאַקע עֶר!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0227_a">
+          <speaker>גימפּעל</speaker>
+          <p>וֶוער אִיז דאָס דעֶר עֶר?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0228_a">
+          <speaker>שאפּסע</speaker>
+          <p>רבּ יוחנציס בּרוּדער...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0229_a">
+          <speaker>גימפּעל</speaker>
+          <p>אָט דעֶר מיליאנטשִׁיק?<lb/>שאפּקע: וואָס? אַ מיליאָנטשיק אִיז עֶר?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0230_a">
+          <speaker>גימפּעל</speaker>
+          <p>וואָס דעֶן, נֵיין?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0231_a">
+          <speaker>שאפּסע</speaker>
+          <p>וואָס דען יאָ?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0232_a">
+          <speaker>גימפּעל</speaker>
+          <p>וואָס? עֶר אִיז גאָר קיין מיליאָנטשִׁיק נישט?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0233_a">
+          <speaker>שאפסע</speaker>
+          <p>אַ מיליאַנטשיק גאָר! אַ מִילֵיי-מִילֵיי-מיליאנטשִׁיק..<lb/>גימפּעל הֶערְט אִיהר חברה? גרֵייט אָן גאָרגלען!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0234_a">
+          <speaker>שאפּסע</speaker>
+          <p>שאַט! שאַט! אָט פִיהרְט מֶען דֶעם רבּין רבּ יוחנְצִי!<lb/>(מען פיהרט אריין ר' יוחנצין, מיט געזאנג)</p>
+        </sp>
+        <sp who="#chor" xml:id="SoreSheyndel_SP0235_a">
+          <speaker>כאָר</speaker>
+          <p>.<lb/><stage type="delivery">(בּיס)</stage></p>
+          <lg>
+            <l>מזל טוֹב, מזל טוֹב אִין אַ גוּטער שֶׁעה</l>
+          </lg>
+          <lg>
+            <l>ווינשט זשע אַלע דעם מורה הוראה</l>
+          </lg>
+          <lg>
+            <l>צוּ ליעבּ דֶעם יעהופיצער אוּנזער זיידען</l>
+          </lg>
+          <lg>
+            <l>טאנצט זשֶׁע, טאַנט זשֶׁע אַלעֶ מיִט פריידעֶן</l>
+          </lg>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0236_a">
+          <speaker>גימפּעל</speaker>
+          <p>שאַט! שאַט! צוּליעבּ דער שׁמְחה מוּזען מיִר געֶהן<lb/>אַ פרֶעהלִיך טענצעל!<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="28" facs="30627487.jpg"/>
+        <fw type="pageNum">24</fw>
+        <sp who="#chor" xml:id="SoreSheyndel_SP0237_a">
+          <speaker>כאָר</speaker>
+          <p>.</p>
+          <lg>
+            <l>מיר יוּדעלעך, חסידים'לעך</l>
+          </lg>
+          <lg>
+            <l>זַיינע כּשרה תּלמידים'לעך</l>
+          </lg>
+          <lg>
+            <l>גיבּען אָבּ עהרע דעם צדיק.</l>
+          </lg>
+          <lg>
+            <l>זינגט זשע הויך.</l>
+            <stage type="delivery">(ביס)</stage>
+          </lg>
+          <lg>
+            <l>אַלע מיט כּח,</l>
+          </lg>
+          <lg>
+            <l>גיעט אָבּ עהרֶע דעם צדִיק!</l>
+          </lg>
+          <lg>
+            <l>לחיים, לחיים,</l>
+          </lg>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0238_a">
+          <speaker>דזייק</speaker>
+          <p>(לאַכט) האַ האַ האַ! אִיך וֶועל עֶס האָבּען צוּ גֶעדֶענְקֶען<lb/>אוֹיף מַיין גאַנצען לעבּען אַרויס... אַ שֶׁענֶע זאָלע שפּיעל<lb/>אִיך דאָ אִין דֶעם שׁטֶעדְטֶעל! רויטשִׁילְדֶען האַלטען זיי<lb/>קעגען מיִר, פאַר אַ בעטלער! זיי רעכנען מיִר פאַר דֶעם<lb/>גרעסטען מיליאנֶער אִין אַמעריקא... אַלץ טהוען זיי<lb/>לויט מיין וויִלעֶן.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0239_a">
+          <speaker>סעם</speaker>
+          <p>יוּ, היִר?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0240_a">
+          <speaker>דזייק</speaker>
+          <p>סעם! גֶעדֶענְק, זאָלסט זֶעהְר פארזיכטיג זַיין מיִט דַיין<lb/>רעֶדעֶן. איבּערהויפּט וועגֶען אוּנזערע מיליאנען.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0241_a">
+          <speaker>סעם</speaker>
+          <p>וואט דויוּמין מִילִיאנס?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0242_a">
+          <speaker>דזייק</speaker>
+          <p>מַיין קלוגער בּרוּדער, דער רבּי רבּ יוחנְצִי מיִט זַיין<lb/>רבּיצין, דעם יעהופיצערס טאָכטער אוּן אַזוי אוֹיך דאָס<lb/>גאַנצע שׁטֶעדְטֶעל האָבּען זִיך איינגעבּילדעט אַז אִיך<lb/>פערמאג טוֹיזֶענְדֶער מיליאנען. אוּן וואָס אִיך רעד נאָר<lb/>אַרויס מיִט'ן מויל ווערְד בּאלד אוִיסגֶעפִיהרְט. אוּן אִיך<lb/>האָבּ גלֵייך גֶעשִׁיקט נאָך דיִ דאָזאָרעס פוּן שטאט אוּן<lb/>האָבּ פעֶרלאַנגט אַז מען זאָל קרוינעֶן מַיין בּרוּדעֶר אַלס<lb/>רב. אוּן אִיך האָבּ ניִשט בּעדאַרפט צְוֵויי מאָל איבּעררעדען<lb/>אוּן מֶען האָט אִיהם גלֵייך אוּנטעֶר געֶשריִבּעֶן אַ כּתב-<lb/>רבנות, דאָס הַייסְט אַ קאָנטראַקט. זיי מיינען אַוודאי אַז<lb/>אִיך וֶועל זיי איבּערלאזען עטלִיכֶע מיליאנען... האַ<lb/>האַ האַ!<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="29" facs="30627489.jpg"/>
+        <fw type="pageNum">25</fw>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0243_a">
+          <speaker>סעם</speaker>
+          <p>דֶע מאָסט בִּי אִינְדִיענְס!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0244_a">
+          <speaker>דזייק</speaker>
+          <p>גֶעוויס. זיי זענען נאָך עֶרְגֶער ווִי אִינְדִיאנֶער. אוּן דיִ<lb/>גֶעשִׁיכטֶע פוּן דַיין קוּזין אברהמעֶלעֶ מיִט דעם אָרעֶמעֶן מיידעל<lb/>אַננאַ וַוייסְט דוּ דאָך, אַך! דיִ אָרעמע אַנגאַ! אִיך קאָן עֶס מיר<lb/>נאָר ניִשט ערקלערען. זי האָט אוֹיף מיִר אַ שׁרֶעקלִיכֶען<lb/>איינדרוק געמאַכט! אִיך האָבּ געֶפאָדערט זיי זאָלען<lb/>פערלויבּט וֶוערֶען אוּן הַיינְט ווֶעלֶען זַיין דיִ תּנאים. אַלץ<lb/>פִיהר אִיך אויס בּיי זיי.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0245_a">
+          <speaker>סעם</speaker>
+          <p>פּאַפּאַ! וואַדט ווילבּיי דיִ עֶנְד?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0246_a">
+          <speaker>דזייק</speaker>
+          <p>וואָס זאָל זַיין?... מיִר ווֶעלֶען זִיך דאָ נאָך אַ פּאר טאָג<lb/>אוֹיף-האַלטען, בּיז אִיך וֶועל פֶערֶענְדִיגֶען מַיינֶע געֶשֶׁעפטעֶן.<lb/>אוּן דאַן ווֶעלֶען מיִר צוּריק פאָהרען קיין אַמעריקא.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0247_a">
+          <speaker>סעם</speaker>
+          <p>פּאַפּאַ! אַיי דוּ יוּ לייק מַיי קאזיין בּאבּעלע?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0248_a">
+          <speaker>דזייק</speaker>
+          <p>בּאבּעלע אִיז זִיהר אַ שֶׁען קִינְד - אָבּער צוּ פרוּם.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0249_a">
+          <speaker>סעם</speaker>
+          <p>יוּ נאָ, פּאַפּא, אַיי לייק בּאבּעלע?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0250_a">
+          <speaker>דזייק</speaker>
+          <p>גֶעוויס, דאַרפסט דוּ זִי ליעבּ האָבּען, זִי אִיז דָאך דַיין<lb/>קוּזיינע.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0251_a">
+          <speaker>סעם</speaker>
+          <p>אַיי לייק שִׁי שעלבּי מַיין ווייף.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0252_a">
+          <speaker>דזייק</speaker>
+          <p>אָ, דוּ לויפֶער דוּ! דוּ רֶעדְסט שׁוֹין פוּן אַ ווייבּ!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0253_a">
+          <speaker>סעם</speaker>
+          <p>פּאַפּאַ! שִׁי אִיז לייק מַיי סאַייס! איי יעם אַבּיקבּוי.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0254_a">
+          <speaker>דזייק</speaker>
+          <p>אָבּער ווִי קוּמסט דוּ צוּ אִיהר? זִי אִיז דִיך אַ גאַנצע<lb/>רבּיצין.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0255_a">
+          <speaker>סעם</speaker>
+          <p>דאַנבּי אַ פרייד, פּאַפּאַ אַיי וַוייל בּי האָר שִׁי-וויל<lb/>גאָד בּי רבּיצין.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0256_a">
+          <speaker>דזייק</speaker>
+          <p>סעם! מֶעהר קיין וואָרט דאפוּן מאַרש אַרויס!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0257_a">
+          <speaker>סעם</speaker>
+          <p>אללרייט (אָבּ) (עס קוּמט אַריין שרה שַׁיינְדֶעל אוּן גימפעל)</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0258_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>שוואָגער לעבּען, אִיהר זעֶנְט גאָר דאָ? אוּן<lb/>מיִר זוּכען אַייך הערוּם!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0259_a">
+          <speaker>דזייק</speaker>
+          <p>צוּ וואָס דאַרפט אִיהר מִיך?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0260_a">
+          <speaker>גימפּעל</speaker>
+          <p>מיִר וויִלעֶן וויִסעֶן, פֶערְשׁטֶעהט אִיהְר מִיך, וויפיעל<lb/>שרה שיינְדֶעל<lb/>מיליאנען מיִר זאָלען דאָ אַרייַן מאַלעֶן? דאָס הַייסְט<lb/>וויפיעל נדן אִיהר זֶענְט אַייך מתחייב?</p>
+        </sp>
+        <pb n="30" facs="30627492.jpg"/>
+        <fw type="pageNum">26</fw>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0261_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>טאַקע יאָ, פערשטעהט איהר מיך, רבּ<lb/>גימפּעל שרייבּט יֶעצְט דיִ תּנאים, אוּן אַזוֹי ווִי אִיהר האָט<lb/>געזאָגט אַז אִיהר וויִלְט זיין דעֶר מחוּתן מִשְנִי הצדְדִים.<lb/>פרעֶגט עֶר, פֶערְשְׁטֶעהט אִיהר מִיך, וויפיעל עֶר זאָל<lb/>איינשרייַבּעֶן.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0262_a">
+          <speaker>דזייק</speaker>
+          <p>קוּמט שׁוועגֶערִין אִין צווייטעֶן ציִמעֶר, ווֶעלֶען מיִר<lb/>רעֶדעֶן דאפון. (דזייק און שרה שיינדעל אָבּ).</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0263_a">
+          <speaker>גימפּעל</speaker>
+          <p>אַז גאָט וֶועט הֶעלְפֶען וֶועל אִיך אוֹיך כאַפּען<lb/>אַ מיליאָן.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0264_a">
+          <speaker>סעם</speaker>
+          <p>(קומט אריין) סע! מִיסטֶער!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0265_a">
+          <speaker>גימפּעל</speaker>
+          <p>חָלִילָה! אִיך בּין קיינמאָל ניִשט גֶעווֶעהְן קיין<lb/>שוסטער! אִיך בּין אַ חַזן — וַוייסְט וואָס עֶס הַייסְט חזן?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0266_a">
+          <speaker>סעם</speaker>
+          <p>עווקאָס יוּ אַהר ע פּיק.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0267_a">
+          <speaker>גימפעל</speaker>
+          <p>שאַפּסע גולם אִיז אַ בּיק — אָבּער ניִשט אִיך!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0268_a">
+          <speaker>סעם</speaker>
+          <p>אַיי נאָ יוּ אַהר ערעוורענד.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0269_a">
+          <speaker>גימפּעל</speaker>
+          <p>וֶוער רעֶוועֶט, וֶוער?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0270_a">
+          <speaker>סעם</speaker>
+          <p>יוּ אַהר--- אָ--א</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0271_a">
+          <speaker>גימפּעל</speaker>
+          <p>עֶר גלֵייכט מיִר גאָר צוּ אַ דבר־אַחר!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0272_a">
+          <speaker>סעם</speaker>
+          <p>אַיי נאָ יוּ אַהר רעֶווענד.<lb/>גימפּעל. דאָס אִיז אמְת, אִיך מאַך מיִט דיִ הֶענְד אַ חזן<lb/>מוּז עֶס אָבּער.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0273_a">
+          <speaker>סעם</speaker>
+          <p>(לאכט) האַ האַ האַ.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0274_a">
+          <speaker>גימפּעל</speaker>
+          <p>גלויבּסט מיִר ניִשט? נאַ זעֶה (ווייזט אִיהם א פאפיר)<lb/>אָט שְׁטעֶהט אונטער געשריעבּען: גימפּעל דעֶר שׁטאט-חַזן.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0275_a">
+          <speaker>סעם</speaker>
+          <p>(בעטראַכט דאָס פאפיר) האַ דוּ יוּ קאָהל דעט?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0276_a">
+          <speaker>גימפּעל</speaker>
+          <p>אַודאי וֶועל אִיך עֶס לייענֶען אויפ'ן קול אוּן נאָך<lb/>מיִט אַ נייגוּן... (סֶעם בּעטראכט אִיהם דיִ בּאָרד אוּן דיִ פאות)<lb/>אַ חשק פוּן אַ מיליאנטשיק! נאָר וואָס טהוּט ניִשְׁט אַ יוּד<lb/>שרה שׁיינְדֶעל<lb/>צוּליעבּ פרנסה? קרֵייזעל מיִר דיִ פּאָה; קראץ<lb/>מיִר דֶעם בּאָרט, אַבּי עֶס זאָל אַרויס אַפּאָר<lb/>מיליאָנען.</p>
+        </sp>
+        <pb n="31" facs="30627494.jpg"/>
+        <fw type="pageNum">27</fw>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0277_a">
+          <speaker>סעם</speaker>
+          <p>סעֶ ליסען!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0278_a">
+          <speaker>גימפעל</speaker>
+          <p>אִיך הַייס ניִשְׁט ניסן! האָ האָ וֶוען אִיך זאָל זַיין<lb/>נִיסן — אָבּער ניִשט צוּ פֶערְזִינְדִיגֶען, גימפּעל חזן קאָן<lb/>אוֹיך זיִנְגעֶן. אָט וֶועסְט דוּ בּאלד הֶערֶען (עֶר שְׁרֵייט אִין<lb/>צווייטען ציִמעֶר אַריין) זרח! בּרוּך! גֶעצֶעל! גרונם! קוּמט<lb/>אַריין (זיי פאַלען אַריין)</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0279_a">
+          <speaker>סעם</speaker>
+          <p>(מיינט אַז זיי וויִלעֶן אִיהם שלאָגען) סע! יוּ וואָנד אַ פֵייט!<lb/>קאָם אָן! אַייל פייט יוּ!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0280_a">
+          <speaker>גימפעל</speaker>
+          <p>(שרעקענד) חָלִילָה מַיין קִינְד! וֶוער שְׁלָאגְט זִיך<lb/>(צוּ די משוררים) חברה! דער מיליאָנטשִׁיק וִויל; מיִר זאָלעֶן<lb/>אִיהם עפּעס זיִנְגעֶן. עֶס וועט גֶעוויס אַרויס אַפּאָר<lb/>מִילִיאנֶען. נוּ! (זיי זיִנְגעֶן)</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0281_a">
+          <speaker>סעם</speaker>
+          <p>סֶע! סֶע! דעט אִינוִיף! איי וִויל סִינְג יוּ!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0282_a">
+          <speaker>גימפּעל</speaker>
+          <p>שאַ שאַ! לאָזט נאָר! אִיהְר הֶערְט? דער מיליאָטשִׁיק<lb/>וִויל אינז עפּעס זיִנְגעֶן.</p>
+        </sp>
+        <sp who="#eyner" xml:id="SoreSheyndel_SP0283_a">
+          <speaker>איינער</speaker>
+          <p>נוּ, לאָמיִר אַדרבּה הערען וואָס אַזאַ מיליאָנטשיִקעֶל<lb/>זִינְגְט.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0284_a">
+          <speaker>גימפּעל</speaker>
+          <p>עֶר מעג שׁוֹין זיִנְגעֶן וואָס עֶר וִויל, אַבּי עֶס זאָל נאָר<lb/>אַרויס אַפּאר מִילִיאנֶען. נוּ...</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0285_a">
+          <speaker>סעם</speaker>
+          <p>אַל בּיבּי אַ סאַנג — עֶס וִויל בּיי סאַלעט.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0286_a">
+          <speaker>גימפּעל</speaker>
+          <p>אִיהְר הֶערְט? עֶר וועֶט אוּנז זיִנְגעֶן פוּן צלאל<lb/>חזן.</p>
+        </sp>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0287_a">
+          <speaker>אַלע</speaker>
+          <p>האָ האָ, נוּ אַדרבּה! אַדרבּה!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0288_a">
+          <speaker>סֶעם</speaker>
+          <p><stage type="delivery">(זינגט).</stage><lb/>שרה שיינדעל<lb/>אִיהם אָבּער)</p>
+          <lg>
+            <l>שִׁי אִיז מַיי סווייסט הארט! אַיי עֶם האָר בּוֹי!</l>
+          </lg>
+          <lg>
+            <l>שִׁי אִיז מַיי הֶענִי אַיי לייק האָר!</l>
+          </lg>
+          <lg>
+            <l>שִׁי וִויל מֶערִי שוּר פאַר מִי —</l>
+          </lg>
+          <lg>
+            <l>איי וִויל קים האָר, שִׁי וִויל קיס מי...</l>
+          </lg>
+        </sp>
+        <pb n="32" facs="30627496.jpg"/>
+        <fw type="pageNum">28</fw>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0289_a">
+          <speaker>גימפּעל</speaker>
+          <p>שׁא: שאַ! זעהסט דוּ מַיין קִינְד, עֶס וואָלט זֶעהְר גוּט<lb/>זַיין, נאָר דאָס אַייגֶענֶע אָהן ווערְטֶער.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0290_a">
+          <speaker>סעם</speaker>
+          <p>וואָ דוּ יוּ וואַנדט.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0291_a">
+          <speaker>גימפּעל</speaker>
+          <p>מיִט דעֶר האַנד שאדְט ניִשט, אָבּער אָהן ווערְטֶער.<lb/>נאָר דיִ דיינע מעלאדיע.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0292_a">
+          <speaker>סעם</speaker>
+          <p>אַיי נאָ, יוּמין ווייט אָהט וואויץ.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0293_a">
+          <speaker>גימפּעל</speaker>
+          <p>אִיך וויצעל זִיך ניִשט, חָלִילָה! נאָר ניִש רעֶדעֶן.<lb/>בּלויז געזאַנג... (סעם פייַפט דאָס זעלבע) אָ נֵיין! שאַ!<lb/>שאַ! דאָס פֶערְשְׁטֶעה אִיך גאָר ניִשט! אוּן גלאט ווי<lb/>טהאָר מֶען עֶס פייַפעֶן אִין אַ יודִישׁ הוִיז?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0294_a">
+          <speaker>סעם</speaker>
+          <p>וואַט דוּ יוּ וואַנדט?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0295_a">
+          <speaker>גימפּעל</speaker>
+          <p>וואָס פאַר אַ וואַנד — עֶס מאָג זַיין אִין מיִטטען<lb/>שטוּבּ, נאָר בּלויז נגינה מַיין אִיך...</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0296_a">
+          <speaker>סעם</speaker>
+          <p>אַיי נאָ וואָ דוּ יוּ מִין! דיִר ניִט ריידע.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0297_a">
+          <speaker>גימפעל</speaker>
+          <p>אִיך שִׁילט דיִך ניִשט אוּן דוּ שִׁיִלְט מִיך ניִשט. נאָך<lb/>דאָס פֶעהלְט מיִר אִיך זאָל, חָלִילָה, מַיין בּייפעל לשון<lb/>פֶערְלִיערֶען. דוּ מאָגסט דיִר רעֶדעֶן וויפיעל דוּ ווילְסט<lb/>נאָר ניִשְׁט בּזו הרְגֶע. אַציִנְד דאַרְף אִיך אַ בּיסעל זיִנְגעֶן.<lb/>אִיך מַיין בּלויז נגינה...</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0298_a">
+          <speaker>סעם</speaker>
+          <p>אַיי נאָ— (זינגט אָהן ווערטער).</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0299_a">
+          <speaker>גימפעל</speaker>
+          <p>(קוועלט אָן) אַך ווִי גוּט! ווִי זיִס! מלאָכים געזאַנג!<lb/>עֶס צוּגעהט אִין יעדען אבר... וואוּ כמאַליעט מען עֶס<lb/>ערְגִיץ אַריין? אַ וואויל ניגונדעל, בּנאמנות!.. האַ?<lb/>וּמפּני חטאינוּ... עפּעס גֶעהט עֶס ניִשט... אפשר, הא?..<lb/>ונתנה תּוקף קדוּשת הִיום... פּאסט אָבּער נישט...</p>
+        </sp>
+        <sp who="#eyner" xml:id="SoreSheyndel_SP0300_a">
+          <speaker>אַיינֶער</speaker>
+          <p>צוּם "לכה דודי" דאַכט זִיך נִישְט שְׁלעֶכט.<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="33" facs="30627498.jpg"/>
+        <fw type="pageNum">29</fw>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0301_a">
+          <speaker>גימפּעל</speaker>
+          <p>שׁטִיל דוּ דראנג!... וואָרט, נאָר וואַרט, הא? דאַכט<lb/>זִיך האַ? יאָ?.. לכה דודִי לקראת... זֶעהְר גוּט, זֶעהְר<lb/>גוּט! עֶס לעֶגט זִיך אויס געצייכענט..... נוּ! (אַלעֶ זיִנְגעֶן, סעם<lb/>זִינְגְט מיט).</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0302_a">
+          <speaker>דזייק</speaker>
+          <p>(קוּמט אָן ווי זיי זיִנְגעֶן סעֶם! וואָס טהוּסט דוּ? דוּ לויפֶער<lb/>אַיינער! — הֶערְר גימפּעל! געהט אוּן עֶנְדיִגט דיִ תנאים!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0303_a">
+          <speaker>גימפעל</speaker>
+          <p>(ערשרעקענד) גלייך! גלייך! (צוּ דִי משׁורְרִים) גֶעהט! געהט!<lb/>(זיי געהען אָבּ) גאָט זיי דאַנק! אִיך האָבּ נוּשׁא חַן געֶוועֶהן<lb/>בּיים גְרויִסעֶן אוּן בּיים קליינעם מִילִיאנְטשִׁיק! (אב)</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0304_a">
+          <speaker>סעם</speaker>
+          <p>וֶועל פּאַפּאַ! פיעל מיליאנען דוּ שׁרֵייבּ אַריין?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0305_a">
+          <speaker>דזייק</speaker>
+          <p>עֶס אִיז ניִשט דַיין זאַך! מאַרש אַרויס!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0306_a">
+          <speaker>סעם</speaker>
+          <p>אללרייט (אב)</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0307_a">
+          <speaker>חנהלע</speaker>
+          <p>(קוּמט אַריין) אַך! מַיין עדְלֶער וואלְטהֶעטֶער! גאָט<lb/>זאָל אַייך בּענשען! אִיך האָבּ קיין ווערְטֶער ניִשט צוּ<lb/>דאַנקען אַייך פאַר דעם גוּטען וואָס אִיהר טהוּט מיִט מִיר!<lb/>אִיך עהרֶע אַייך ווִי אַנ'אייגענעם פאטער!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0308_a">
+          <speaker>דזייק</speaker>
+          <p>אַ פאטער! אִיך בּין גֶעווֶעהְן אַמאָל אַ פאטער פוּן אַ<lb/>טאָכטער! אַנד האָט זיִ געֶהייֵסעֶן... אָבּער לֵיידֶער האָבּ<lb/>אִיך זִי פֶערְלוִירֶען צוזאַמען מיִט אִיהר מוּטער!... פֶער⸗<lb/>לוירען האָבּ אִיך זִי, אָבּער אִיך וֶועל זיִ ניע פעֶרְגעֶסעֶן!...</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0309_a">
+          <speaker>חנהלע</speaker>
+          <p>אָרעמער פאטער!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0310_a">
+          <speaker>דזייק</speaker>
+          <p>זִי, ליעבּע חנה'לֶע האבּען אוֹיף מִיך אַ שטאַרקען אַיינ⸗<lb/>דריק געמאַכט, פוּן עֶרְשְׁטעֶן אויגענבּליק אָן צַייט אִיך<lb/>האָבּ אַייך דֶערְזֶעהֶען בּין אִיך צוּ אַייך צוּ געבּינדען גע⸗<lb/>וואָרען ווי אַ פאטער צוּ זַיין אַייגֶען קִינְד. אִיך בּין בּערייט<lb/>אַלעֶס אָנצוווענדען אַבּי אַייך גלִיקלִיך צוּ זעֶהן, אוּן וויִ<lb/>גלִיקלִיך וואָלט אִיך מִיך שֶׁעצען אִיך זאָל קענען בּיי אַייך<lb/>פערטרעטען דיִ פאַטער-שׁטעֶלעֶ, אִיהר זאָלט זיין מיין<lb/>טרֵייסט אַנשטאַט מיין פעֶרְלוירעֶנעֶ אַננאַ. אַך ווי גלִיקלִיך<lb/>וואָלט אִיך זַיין. ערלויבּ מיִר חנה'לֶע. דַיין שׁטֶערֶען<lb/>שרה שׁיינְדֶעל<lb/>פֶעטֶערְלִיך צוּ קיסען. (עֶר קוּשט זִי, אברהמ'עלע קוּמט אָן אוּן<lb/>בּלייבּט שטעהן) וואָס בּיזטוּ אַזוי שׁטעהען געבּליבּען? בּיסט דוּ<lb/>פִילֵייכט אַייפֶערְזִיכטִיג וואָס אִיך האָבּ מיִך ערלויבּט דַיין<lb/>כּלה אַ פֶעטֶערְלִיכֶען קוּם צוּ געֶבּעֶן?.. זיי וויִסעֶן אברהמע⸗<lb/>אלע אַז אִיך בּעֶטראַכט זִי אַלס מַיין אַייגֶען קִינְד. אִיהר<lb/>זֶענְט בּיידע מַיינֶע קיִנְדעֶר... בּינדע זאָג אִיך.... עוויג<lb/>וואָלט אִיך ווֶעלֶען מיִט אַייך בּיידען זַיין צוּ זאַמען. יֶעצְט<lb/>אָבּעֶר מוּז אִיך אַייךְ אוֹיף אַ קוּרצע צַייט לאָזען אַליין, אוּם<lb/>מאָרגען גאַנץ פְריִה מיִטן צוּג אָבּ צוּ רייזעֶן. בּלייבּט<lb/>גֶעזִינְד קִינְדֶערְלֶעך! אוֹיף'ס וִויעדֶער זעֶהן! (אב)</p>
+        </sp>
+        <pb n="34" facs="30627500.jpg"/>
+        <fw type="pageNum">30</fw>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0311_a">
+          <speaker>אברהמעלע</speaker>
+          <p>זייט געזיִנְד אָנקעל.</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0312_a">
+          <speaker>חנהלע</speaker>
+          <p>געֶהן זִי געזוּנד, פאטער. — (צו אברהמלע) וואָס<lb/>בּיסטוּ אַזוי שְׁטעהן געבּליבּען?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0313_a">
+          <speaker>אברהמעלע</speaker>
+          <p>חנהלע. דעֶר פָאטער דיינער, — וויִ דוּ רופסט<lb/>אִיהם — געֶפֶעהלְט מיִר גאָר ניִשְׁט. אִיך האָבּ קיין צו⸗<lb/>טרויען צוּ אִיהם....</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0314_a">
+          <speaker>חנהלע</speaker>
+          <p>ווִי אִיך זעֶה, בּיסטוּ אייפערזיכטיג אוֹיף דֶעם עדְלֶען<lb/>מֶענְשֶען, וועלכען מיר האָבּען, צוּ פערדאנקען אונזער<lb/>גליק... אברהמ'לֶע.. זיי רוהיג... עֶר הָאט מִיך גֶע⸗<lb/>קוּשט... אָבּער פֶעטֶערְלִיך... אוּן אוֹיך בּיי דיִר דאַרְף עֶר<lb/>פעֶרְרעכענט זיין מעהר אַלס אָנקעל... מעהר, פיעל<lb/>מעהר....</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0315_a">
+          <speaker>אברהמעלע</speaker>
+          <p>יאָ, האָסט רעכט מיין טהייערעֶ, פערצייהע<lb/>מיִר.... עֶנְדְלִיך אִיז געקוּמען דיִ ליעבּע צַייט, אַז אִיך<lb/>קאָן פרֵיי פאַר דעֶר גַאַנְצעֶר וועלְט אוֹיס-שׁרֵייעֶן מיין<lb/>שטאַרקע ליעבּע צוּ דיִר... יאָ שאַרק אִיז דיִ ליעבּע.<lb/>אָבּער דער אַייפֶער! אַ שׁרֶעקלִיכֶען אַייפֶער בּרינגט זיִ מיִר<lb/>אַריין... אִיך וואָס עֶס אִיז מַיין שׁוועכֶע, אִיך לייד<lb/>דאריבּער לייד אוּמזאָנסט... אָבּעֶר, גאָט ווייס צוּ וואָס<lb/>עֶס קאָן מיִר בּרענגען....<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="35" facs="30627502.jpg"/>
+        <fw type="pageNum">31</fw>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0316_a">
+          <speaker>חנהלע</speaker>
+          <p>זיי רוהיג מַיין ליעבּער, טהייערער אברהמְלֶע. (זִי נֶעמְט<lb/>אַרויס פוּן בּוּזעם אַ בּילד) זעהסטוּ מַיין ליעבּער, אָט דאָס<lb/>בּילד, דאָס אַיינְצִיגֶע גֶעדֶעכֶענִישׁ וואָס אִיז מיִר געבּליעבּען<lb/>פוּן מַיין גאטזעליגע מוטער, דאָס אִיז בּיי מיִר טהייערער<lb/>פוּן מַיין גאַנצעס לעֶבּעֶן, אוּן בּיי דעם הייליגען געֶדעֶרעֶניִשׁ<lb/>שְׁוֶוער אִיך דיִר, אַז דוּ בּיסט מַיין עֶרְשְׁטעֶ ליעבּע אוּן<lb/>וֶועסְט עֶס בּלייבּען בּיז אִין מַיין גרוּבּ...</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0317_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אַך מיין טהייערעֶר! פֶערְצַייע! פֶערְצַייע! (זיי<lb/>אוּמאַרמען זִיך עֶס הֶערְט זִיך טרִיט, זַיי כאפֶען זִיך) דאַכט זִיך<lb/>מֶען גֶעהט, לאָזען אוּנז דיִ פאַנאַטיקער ניִשט בּעגעגנען.<lb/>קוּם מַיין טהַייערֶע! (ביידע אב)</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0318_a">
+          <speaker>באבּעלע</speaker>
+          <p>(אריין קוּמענד) עֶר אִיז טאַקע פערליעבּט!.. אוּן עֶר<lb/>האָט רעכט. אַפילוּ אִיך בּין שׁוֹין אוֹיך פערליעבּט אִין<lb/>אִיהר. אִיך האָבּ זִי ליעבּ גֶעקרִיגֶען ווִי אַ'נ'אייגענע<lb/>שׁוועסטער. אִיך וואָלט, דאַכט זִיך, וואָס געטהוּן אַבּי<lb/>צוּ זַיין מיִט אִיהר צוזאַמען. (סֶעם זִינְגְט אוּנְטֶער דיִ קאליסען)<lb/>אוֹי! עֶר אִיז שׁוֹין וִויעדֶער דאָ! וואוּ אִיך גֶעה לויפט<lb/>עֶר מיִר נאָך אוּן האַלט מיִר אוּן אֵיין דיִלעֶן דעם קאָפּ.<lb/>אָבּער אִיך פֶערְשְׁטֶעה ניִשְׁט אַ וואָרט וואָס עֶר רעֶד...<lb/>נאָר דאָס האַרץ, דאָס הארץ מַיינְס שפּירט... עֶס העבּט<lb/>עפּעס אָן אַזוֹי צוּ קלאפּען... אִיך צִיטֶער אינגאַנצען...<lb/>(סעם קוּמט אַריין) אוֹי! אָט אִיז עֶר!..</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0319_a">
+          <speaker>סעם</speaker>
+          <p>סוויט, בּאבּעֶלעֶ, יוּ נאָ, יוּ אַר מיין קאָזיין.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0320_a">
+          <speaker>באבעלע</speaker>
+          <p>וואָס? דֶעם חַזן דאַרפסט דוּ? אָט וֶועל אִיך אִיהם<lb/>בּאלד אַרייַן שיקען... (זי וויל געהען)</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0321_a">
+          <speaker>סעם</speaker>
+          <p>יוּ נאָ, יוּ מַיי שׁוועסטער קיִנְד.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0322_a">
+          <speaker>באבעלע</speaker>
+          <p>אמְת, דוּ בּיסט מַיין גֶעשׁוועסטֶער קִינְד, אָבּער.<lb/>זיִנְדיִגעֶן טהאָר מעֶן ניִשְׁט!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0323_a">
+          <speaker>סעם</speaker>
+          <p>סוויט, בּאבּעֶלעֶ, איי דאנט נוּ וואָדוּ יוּ מיִן זיִנְדיִגעֶ.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0324_a">
+          <speaker>בּאבעלע</speaker>
+          <p>אַיי! לאָז מיך אָבּ!..<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="36" facs="30627504.jpg"/>
+        <fw type="pageNum">32</fw>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0325_a">
+          <speaker>סעם</speaker>
+          <p>סוויט בּאבּעֶלעֶ! יוּ נוּ אַיי לאָוו יוּ, אִיך דיִך זאָ ליעבּע<lb/>אִיך גֶעה שטערבּע, אַ יונגע טויט...</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0326_a">
+          <speaker>באבּעלע</speaker>
+          <p>וואָס זְשֶׁע זאָל אִיך דיִר טהוּן?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0327_a">
+          <speaker>סעם</speaker>
+          <p>האָבּ מִיך אוֹיך ליעבּ. סוויט בּאבּעלע, אִיך דיִך קוּסען!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0328_a">
+          <speaker>באבּעלע</speaker>
+          <p>וֶועה אִיז מיִר! מען טאָהר דעֶן?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0329_a">
+          <speaker>סעם</speaker>
+          <p>סְ'אִיז אָבּעֶר גוּט...</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0330_a">
+          <speaker>באבּעלע</speaker>
+          <p>לאָז מיך געהעָן!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0331_a">
+          <speaker>סעם</speaker>
+          <p>קאָן נישט לענגער! (ער קושט זי)</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0332_a">
+          <speaker>באבּעלע</speaker>
+          <p>וֶועה אִיז מיר. וואָס האָסט דוּ געטהוּן? גאָט זאָל<lb/>מִיך נאָר ניִשט שטראָפען. גאָטעניו. (לויפט אָבּ)</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0333_a">
+          <speaker>סעם</speaker>
+          <p>(בּלייבּט שטעהן) נעוויר יוּמיין. אַיי וִויל קיס יוּ! מיי<lb/>פאַפּאַ ווייל בּיי יוּ פיִר מאני (ער זינגט)<lb/>שרה שַׁיינְדֶעל<lb/>(אַ בּעזינדער ציִמעֶר וואוּ דְזַייק שלאפט, עֶס אִיז פארטאָג.<lb/>דזִייק אַיילֶענְד זִיך צוּם צוּג שְׁטֶעהט אוֹיף אוּן צִיהֶעט<lb/>זִיך גֶעשׁווינְד אָן.)</p>
+          <lg>
+            <head>1.</head>
+            <l>לערנען קאָן אִיך גוּט, אוֹי פּאַפּא, אוֹי פאפא</l>
+          </lg>
+          <lg>
+            <l>קיין קִינְד בּין אִיך שׁוֹין ניִט אוֹי פּאַפאַ, אוֹי פּאַפּאַ.</l>
+          </lg>
+          <lg>
+            <l>צוּם לערנען האָבּ אִיך זִיך געשטיפּט</l>
+          </lg>
+          <lg>
+            <l>שטעטס אַ גוט-בּוי געוועהן</l>
+          </lg>
+          <lg>
+            <l>אוּן צַייט אִיך האָבּ נאָר זִי גֶעזֶעהֶען</l>
+          </lg>
+          <lg>
+            <l>האָבּ אִיך מִיך אִין אִיהר פערליעבּט</l>
+            <stage type="delivery">(בּיס)</stage>
+          </lg>
+          <lg>
+            <l>אוֹי פּאַפּאַ אוֹי פּאַפּאַ</l>
+          </lg>
+          <lg>
+            <l>פּאַפּאַ קוֹיף מיִר דאָס</l>
+          </lg>
+          <lg>
+            <l>אִיך וִויל קיין קליידער, אִיך בּרויך קיין געלד</l>
+          </lg>
+          <lg>
+            <l>וואָס נוּטצט מיִר דיִ גאַנצע וועלְט</l>
+          </lg>
+          <lg>
+            <l>וֶוען זיי גיעט מיִר נאָר אֵיין קוּסס</l>
+          </lg>
+          <lg>
+            <l>אוֹי פּאַפּעניוּ קוֹיף מיִר דאָס...</l>
+          </lg>
+          <lg>
+            <head>2.</head>
+            <l>וֶוען אִיך בּין גֶעווֶען נאָך אַ קִינְד אוֹי מאַמאַ, אוֹי מאַמאַ!</l>
+          </lg>
+          <lg>
+            <l>ווִי בּין אִיך גֶעווֶען דָאן בּלינד אוֹי מאַמאַ, אוֹי מאמאַ!</l>
+          </lg>
+          <lg>
+            <l>אָבּעֶר גלִיקלִיך בּין אִיך דאַן געוועהן</l>
+          </lg>
+          <lg>
+            <l>אִיך האָבּ פוּן קיין זאַך געוואוסט</l>
+          </lg>
+          <lg>
+            <l>צוּ קיין זאַך האָבּ אִיך ניִשט געגלוסט</l>
+          </lg>
+          <lg>
+            <l>געליעבּט האָבּ אִיך דיך נאָר אַליין</l>
+            <stage type="delivery">(ביס)</stage>
+          </lg>
+          <lg>
+            <l>אוי מאַמאַ, אוי מאַמאַ</l>
+          </lg>
+          <lg>
+            <l>מאַמאַ, קויף מיר דאָס</l>
+          </lg>
+          <lg>
+            <l>אִיך וִויל קיין קליידער, אִיך בּרויך קיין געלד</l>
+          </lg>
+          <lg>
+            <l>וואָס נוּטצט מיִר דיִ גאַנצע וועלְט</l>
+          </lg>
+          <lg>
+            <l>וֶוען זִי גיעט מיִר נאָר איין קוּסס</l>
+          </lg>
+          <lg>
+            <l>אוֹי מאַמעניו, קוֹיף מיר דאָס!...</l>
+            <stage type="setting">פֶערוואנְדְלונְג</stage>
+          </lg>
+        </sp>
+        <pb n="37" facs="30627507.jpg"/>
+        <fw type="pageNum">33</fw>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0334_a">
+          <speaker>דזייק</speaker>
+          <p>(קוּקט אויפ'ן זעגער) אָ שׁוֹין נאָך 5 אַ זֶענֶער, אִיך זאָל<lb/>נאָר דעם צוּג ניִשט פערזאָמען. פערלאָזט זִיך אוֹיף<lb/>שאַפּסען. אָבּער עֶר האָט געמוּזט פֶערְשׁלאפֶען. (עֶר פּאַקט<lb/>צוזאַמען דיִ זאַכען) אַך דיִ חנה'לֶע. דאָס ליעבּענסווירדיגע<lb/>קִינְד קאָן מיִר גאָר פוּן זיִנעֶן ניִשְׁט אַרויס. אַך וויִ שְׁוֶוער<lb/>אִיז מיִר צוּ שַׁיידֶען זִיך מיִט אִיהר! (עֶס קוּמט אָן חנהלע אִין<lb/>דיִ שלאָף-קלֵיידעֶר, מיִט אַ ליכְט אִין דעֶר האַנד, אַלס נאַכט-<lb/>וואַנדלערין) אַך גאָט! וואָס זאָל דאָס בּעדייטען?</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0335_a">
+          <speaker>חנה'לע</speaker>
+          <p>(געהט לאַנגזאַם אוּן רעֶד) גליקליך שפיר אִיךְ מיִךְ יֶעצְט.<lb/>אַלע זענען מיִר פרייַנד געֶוואָרען. אוּן בּאבּעֶלעֶ, מַיין<lb/>שרה שיינדעל<lb/>טהֵייערֶע שׁוועגֶערִין וויִ ליעבּ האָבּ אִיך זיי קוּם אַהער צוּ<lb/>מיר טהייערעֶ בּאבּעֶלעֶ! אִיך וִויל דיִך אוּם-ארמען.</p>
+        </sp>
+        <pb n="38" facs="30627509.jpg"/>
+        <fw type="pageNum">34</fw>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0336_a">
+          <speaker>דזייק</speaker>
+          <p>גאָט! זִי אִיז אַ נאַכט-וואַנדלערין! אוּן דאדוּרך רוּפט<lb/>מֶען זִי "פערבּלאנדזעטע נשמה". דיִ גראָבּעֶ מעֶנשען<lb/>פערשטעהען נישט אַז זי איז נעבּעך קראַנק...</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0337_a">
+          <speaker>חנה'לע</speaker>
+          <p>אוּן וויִ געֶפֶעהלְט דיִר, בּאבּעֶלעֶ, מַיין נייע קלייד?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0338_a">
+          <speaker>דזייק</speaker>
+          <p>וואָס טהוּט מען? אוֹיף וועקֶען זִי טהאָר מֶען ניִשט!<lb/>עֶס קאָן אִיהר פִיעל עֶרְגעֶר מאַכעֶן!..</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0339_a">
+          <speaker>חנה'לע</speaker>
+          <p>אוּן דוּ אברהמלע, וואָס שְׁטעהסט דוּ פוּן דעֶר<lb/>ווייטֶענְס? בּיסט דוּ נאָך אַלץ אַייפֶערְזִיכטִיג? (זִי רוּקט זִיך<lb/>צוּ צוּם בּעט אוּן פאַלט אוֹיף דֶעם אַרויף אוּן שלאָפֿט איין)</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0340_a">
+          <speaker>דזייק</speaker>
+          <p>קראַנק אִיז זיי. אַ שׁרֶעקלִיכֶע קרֶענְק אִיז דאָס אוּן דיִע<lb/>אִיז זִיכֶער קיין גוּטע דאָקטוירִים דאָ!.. אָבּער אִיך מוּז זִי<lb/>רעטען! פוּן וִויען וֶועל אִיך פאַר אִיהְר אַ דאָקטאָר אַראָבּ<lb/>בּרענגען, עֶס זאָל מיִר אַפילוּ מַיין גאַנץ פערמעגען קאָסטען<lb/>אוּן רעֶטעֶן מוּז אִיך זִי — בּלייבּ געזוּנד מַיין טהַייער קִינְד!<lb/>עֶס וֶוערְד שפּעט, אִיך מוּז אַיילֶען צוּם צוּג — אָבּער אוֹיך<lb/>נאָר פון דיינעט וועגען. אַדיע! אַדיע! (ער געהט שנעל אָבּ)</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0341_a">
+          <speaker>שאפּסע</speaker>
+          <p>(קוּמט אַריין) רבּ מִילִיאנטשִׁיק! שְׁטֶעהט אוֹיף! אִיהר<lb/>קאָנט נאָך דעם צוּג פערזאָמען! עֶס אִיז שׁוֹין בּאלד זֶעקס<lb/>דעֶר זֶעגער! (צוּ געהענד צוּם בּעט) אוֹי! וֶועה אִיז מיִר!<lb/>אַ בּראָך אִיז מיִר! זִי בּיי אִיהם אִין בּעט!... רבּ יוחנצי!<lb/>רב שרה שַׁיינְדעל! מֶענְשֶען! קוּמט אַרייַן (אַלע אַריין) זעֶהט!<lb/>זִי בּיי אִיהם אִין בּעט.</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0342_a">
+          <speaker>אברהמלע</speaker>
+          <p>חנה!</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0343_a">
+          <speaker>חנהלע</speaker>
+          <p>(וואַכט אויף) אַ'נ'אַנדער ציִמעֶר! גאָט וואָס גֶעהט דָא<lb/>מיִט מיִר פאָר? וואוּ בּין אִיך? וואָס טהוּט אִיהְר אַלע<lb/>דאָ?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0344_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אוּן דאָס טאַקע וויִל איִך דיִךְ פרעֶגעֶן: וואָס<lb/>טהוּסט דוּ דאָ? דוּ אוּנגליקליכע!<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="39" facs="30627511.jpg"/>
+        <fw type="pageNum">35</fw>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0345_a">
+          <speaker>חנהלע</speaker>
+          <p>אַלמעכטיגער גאָט! וואוּ בּין אִיך?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0346_a">
+          <speaker>יוחנצי</speaker>
+          <p>קוּקְט נאָר אָן וויִ זיִ מאַכט דעם אָנשטעל, דיִ מכשפה!<lb/>יוּדען! אִיהר זאָלט וויִסעֶן, אַז לוִיט דֶעם דיִז נאָך, אִיז זִי<lb/>מוּחרם ומנוּדה, אוּן מען טהאָר ניִשט שְׁטעהען אוּן אִיהְרֶע<lb/>פיער עֶלעֶן.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0347_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>הַיילִיגֶער יעהופּוּצער! דוּ זֶעהסט דאָך אַלעס!<lb/>אוּן דוּ וַוייסְט דאָך גוּט אַז מיִר זֶענֶען חָלִילָה אִין דֶעם<lb/>ניִשט שׁוּלְדִיג. בּעט גאָט פאַר אוּנז, הַיילִיגֶער זַיידֶע,<lb/>מיִר זאָלעֶן ניִשט געשטראפט וֶוערֶען פאַר דער שרעקליכע<lb/>זִינְד, וואָס אִיז גֶעשֶׁעהן אִין אוּנזער הוֹיז אָהן אוּנזער<lb/>וויִסעֶן... אוּן דוּ מרְשֶׁעת שְׁטֶעהסט נאָך, אוּן וֶוערְסט<lb/>ניִשְׁט אַיינגעזינקען אִין דעֶר עֶרְד אַריין פאַר חרפּה<lb/>אוּן בּוּשה. געוואלד! וואוּ אִיז עֶס געהערט גֶעווארֶען<lb/>נאָך אַזאַ חוּצפּה אוֹיף דעֶר וֶועלְט. אַרויס פוּן מַיין שטוּבּ!<lb/>דוּ פערבּלאנזעטע נשמה! אַרויס כּלבת!</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0348_a">
+          <speaker>חנהלע</speaker>
+          <p>וֶועה אִיז מיִר! וואָס העֶר אִיך? אברהמעֶלעֶ שִׁיץ מיִךְ !</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0349_a">
+          <speaker>אברהמעלע</speaker>
+          <p>דוּ בּעטריגערין! דוּ וואַגסט נאָך מיין נאָמען צו<lb/>רוּפען!</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0350_a">
+          <speaker>חנהלע</speaker>
+          <p>גֶערֶעכטֶער גאָט! וואָס געֶהט דאָ פאָר? (פאַלט אוֹיף דיִ<lb/>קניע) אוֹיף מַיינֶע קנִיע פאַל אִיך פאַר דיִר אברהמְלֶע! אִיך<lb/>בּעֶט דיִך, ערְקלֶער מיִר וואָס דאָ געֶהט פאָר? מיִט וואָס<lb/>האָבּ אִיך אַזוי זִיך פֶערְזִינְדִיגט? פאַר וואָס קוּמט מיִר<lb/>אַזוֹי צוּ בּע- האַנדלען?!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0351_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אוּן דוּ וואַגסט נאָך צוּ פרעגען פאַר<lb/>וואָס?! ווילסטוּ מִיך אוֹיך יֶעצְט בּעטריגען אוּן אַיינ⸗<lb/>רעֶדעֶן אַז עֶס אִיז גֶעוֶועזֶען אַ פֶעטֶערְלִיכֶער קוש? האַ<lb/>אוּן הַיינְט בּיזט דוּ אִיהם געקוּמען בּעלוינען פאַר זיין<lb/>געכטיגען קוּשען?</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0352_a">
+          <speaker>חנהלע</speaker>
+          <p>גאָט אִין הימעל! וואָס אִיך מוּז אַלץ הערען!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0353_a">
+          <speaker>אברהמעלע</speaker>
+          <p>אוּן מיִט דיִ תנאים מייֵנְסט דוּ בּין אִיך שׁוֹין אוֹיף<lb/>שרה שיינְדֶעל<lb/>עוויג צוּ דיִר פערבּינדען? נֵיין! אִיך בּין עֶס גֶעווֶעהְן...<lb/>אָבּער נאָך אַזאַ פרֶעכהַייט... אוֹיס! (גֶעמְט אַרויס דיִ תּנאים<lb/>אוּן צוּ רֵייסט זַיי) צורייסען דיִ תּנאים! אוּן צורייסען אִיז<lb/>אוּנז בּוּנד אוֹיף אימער אוּן עוויג!</p>
+        </sp>
+        <pb n="40" facs="30627514.jpg"/>
+        <fw type="pageNum">36</fw>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0354_a">
+          <speaker>חנהלע</speaker>
+          <p>גאָט! וואָס הער אִיך! מוּטער! גאט-זעליגע מוּטער!<lb/>עֶרבּאַרמע דיך אוֹיף דַיין אוּנגליקלִיכֶע טאָכטער! נעם מיך<lb/>צוּ צוּ דיִר, מוּטער!... יאָ! ניִשט לאַנג אוּן אִיך קוּם צוּ<lb/>דיִר!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0355_a">
+          <speaker>אברהמעלע</speaker>
+          <p>(וואַרפט איהר די צוריסענע תּנאים) נאַ דיִר אָבּ,<lb/>אוּן געה!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0356_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>הַיילִיגֶער יעהופיצער! שְׁטֶעה אוּנז בּיי! (חנהלע<lb/>מיִט שׁרֶעקלִיכֶען אויס געשריי פאַלט אין אונמאכט)<lb/><stage type="setting">פאָרהאַנג.</stage></p>
+        </sp>
+        <trailer>עֶנְדֶע צווייטע אַקט</trailer>
+        <pb n="41" facs="30627516.jpg"/>
+        <fw type="pageNum">שרה שַׁיינְדֶעל</fw>
+        <fw type="pageNum">37</fw>
+      </div>
+      <div type="act" n="3" xml:id="SoreSheyndel_Act3">
+        <head>דרִיטֶער אַקט.</head>
+        <stage type="setting">(עֶס קוּמט פאָר אַ ציִמעֶר בּיי גימפּעל חזן. וֶוען דעֶר</stage>
+        <stage type="setting">פאָרהאַנג געהט אוֹיף האַלט גימפּעל אִין מיִטט איינזיִנְגעֶן</stage>
+        <stage type="setting">עפֶעס, מיִט זַיינֶע משׁורְרִים. עֶס אִיז פורים פאַר דעֶר</stage>
+        <stage type="setting">סעוּדה).</stage>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0357_a">
+          <speaker>גימפעל</speaker>
+          <p>(נאָך אייניגע מאָל איבּער זיִנְגעֶן) נוּ עֶס וֶועט שׁוֹין געֶהן!<lb/>אָ! אָ! עֶס וועט געֶהן ווִי גֶעשׁמִירְט. אַצינד קאנְט אִיהר<lb/>אַייך געֶהן, נאָר געֶדֶענְקט, אַזוי, אַקעגען אַ שֶׁעה אַרוּם<lb/>אִיהר זאָלט דאָ זיין. מיִר מוּזעֶן געֶהעֶן צוּ רבּ יוחנצין.<lb/>געֶדֶענְקט!</p>
+        </sp>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0358_a">
+          <speaker>אלע</speaker>
+          <p>גוּט, גוּט! אַ גוּטען פורים, אַ גוּטען פּוּרים חזן! (משׁורְרִים<lb/>אָבּ).</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0359_a">
+          <speaker>גימפעל</speaker>
+          <p>אַ גוּטען פּוּרים, אַ גוּט יאָהר!..</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0360_a">
+          <speaker>באבעלע</speaker>
+          <p>(קוּמט אַריין) אַ גוּטען פּוּרים אַייך רבּ גימְפֶעל!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0361_a">
+          <speaker>גימפּעל</speaker>
+          <p>אַ, בּאבּעלע! אַ גוּטען פּוּרים, אַ גוּט יאָהר. וואָס<lb/>טהוסט דוּ עפּעס דאָ, בּאבּעֶלעֶ?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0362_a">
+          <speaker>באבעלע</speaker>
+          <p>איך בּין געקוּמען זעהן וואָס חנהלע מאַכט.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0363_a">
+          <speaker>גימפּעל</speaker>
+          <p>אוֹיף אַלע אוּנזערע שׁונְאִים געזאָגט וֶוער עֶס וִוינְשְׁט<lb/>אוּנז שְׁלעֶכטס, זאָל אַזוי אויסזעהען, ווי זי נעבּעך. אִיך<lb/>זאָג דיִר בּאבּעלע, אַז מֶען זאָל האָבּען אַפילו אַ שׁטַיינעֶרְנֶעס<lb/>העֶרץ וואָלט עֶס אוֹיך צוּ גאָסען וֶוערֶען, צוּ קוקענדיג<lb/>דאָס אוּנגליקליכע קִינְד. טאָג וויִ נאַכט געֶהט זִי אַרוּם אַ<lb/>צוּ טראָגעֶנעֶ, אַ צוּ מיִשְׁטֶע, רעד איבּער פייער און<lb/>וואַסער, וויינְט, קלאגט אוּן לאַכט. דאָס הארץ וויינְט<lb/>אוֹיף אִיהר קוקענדיג. אִיך זאָג דיִר בּאבּעלע, אַז דַיין<lb/>טאַטע, מאמע, וועלען דאַרפען אָבּגעבּען דיין וחשבּון, פאַר<lb/>דיִ צרוֹת וואָס זיי האָבּען אִיהר אָנגעטהוּן!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0364_a">
+          <speaker>באבעלע</speaker>
+          <p>וואָס איז דען שוּלדיג דער טאַטעֶ מיִט דעֶר מאַמען?<lb/>אַז זִי אַליין...<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="42" facs="30627518.jpg"/>
+        <fw type="pageNum">38</fw>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0365_a">
+          <speaker>גימפּעל</speaker>
+          <p>זִי אַליין! וואָס זִי אַליין? גלויבּ מיִר זִי אִיז אַ גאַנץ<lb/>אָרענטליךְ קִינְד. זאָל נאָר דֶער מיליאָנטשִׁיק צוּריק קוּמען<lb/>פוּן וִויען. עֵר וֶועט זִיך מיִט אַלע אָבּרעכנען... שאַ!<lb/>דאַכט זִיך זִי גֶעהט אַהער... יאָ. (חנהלע ערשיינט צוטראָגען)</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0366_a">
+          <speaker>באבעלע</speaker>
+          <p>(קוּקט זיך שרעקענד אָבּ) אוי איך האָבּ מורא פאַר<lb/>אִיהר!</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0367_a">
+          <speaker>חנהלע</speaker>
+          <p>אַלע אַנטלויפען פוּן מיִר! אִיך ליעג אִין חרם! אַלע<lb/>פיינדען מיִר! קֵיין אֵיין לעבּעדיִגעֶן פרייַנד! דיִ אַיינציגע<lb/>פריינדין, מיינע מוטער, אִיז טויט! אָ מוּטער, מוּטער! דוּ<lb/>וַוייסְט דעם אמְת, אַז דַיין אוּנגליקליךְ קִינְד בּעזיצט ניִשְׁט קֵיין<lb/>פאַלשעס העֶרץ. אָבּער ליידער וִויל עֶס מיִר קיינער ניִשְׁט<lb/>גלויבּעֶן!.. אָ מוּטער מוּטער! ניִשט לאַנג נאָך, אוּן אִיך<lb/>וֶועל זַיין בּיי דיִר. פאַר דיִר וֶועל אִיך מיִר קֶענֶען מַיין<lb/>גאנץ האַרץ אויסגיסען. צַייט דוּ בּיסט אַוועק פוּן מיִר,<lb/>מוּטֶער, האָבּ אִיך ניִשט פאַר ווֶעמֶען זִיך אויִס צורעדען.<lb/>מען יאָגט מיך מֶען פּלאגט מִיך אָהן אַ פאַר וואָס! עֶס<lb/>הֶעלְפט ניִשט קיין שוּם פֶערֶענְטפֶערְן זִיך! דעֶר אַיינְצִיגֶער<lb/>שוץ מַיינֶער, קאנסטוּ נאָר זַיין. אוֹי מוּטער! רֶעטֶע מִיך<lb/>נעם מִיך צוּ צוּ דיִר!... אָבּער, בּאלד ניִשט לאַנג.<lb/>מוּטער טרויע, בּאלד וֶועל אִיך זַיין בּיי דיִר, יאָ! האַ האַ<lb/>האַ!..</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0368_a">
+          <speaker>גימפּעל</speaker>
+          <p>חנה'לֶע! בּעמערקסט גאָר נישט וֶוער עֶס אִיז געקוּמען<lb/>צוּ דיִר בּאבּעלע אִיז דאָ.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0369_a">
+          <speaker>באבעלע</speaker>
+          <p>חנהלע! איך האָבּ דיר געבּראַכט אַ גרוס פון<lb/>אברהמ'לען.</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0370_a">
+          <speaker>חנהלע</speaker>
+          <p>אברהמֶעלֶע! אִיך בּין אונשוּלדיג! פֶערְשׁטויס מִיך<lb/>נישט! אברהמֶעלֶע! גלויבּ מיִר! גלויבּ דַיין אוּנשוּלדיִגעֶ<lb/>חנהלֶע! גלויבּ ניִשט דיִ שׁלֶעכטֶע מֶענְשֶען! אִיך בּין<lb/>ניִשט פאַלש! מַיין האַרץ אִיז ריין!... ניין! נֵיין! אַוועק!<lb/>אַוועק געה אברהמעלע! געה! בּיסט מיִט זיי אַיינְס! אַלע<lb/>שרה שיינדעל<lb/>זֶענְט אִיהר מַיינֶע פֵיינְד! אַוועק! אַוועק גֶעהט פוּן מיִר!<lb/>דיִ אַיינְצִיגֶע פרֵיינְדִין אִיז מַיין מוּטער! אָ מוּטער, טהיי⸗<lb/>עֶרֶע מוּטער אִיך גֶעה צוּ דיִר! האַ האַ האַ!.. (אָבּ)</p>
+        </sp>
+        <pb n="43" facs="30627520.jpg"/>
+        <fw type="pageNum">39</fw>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0371_a">
+          <speaker>באבּעלע</speaker>
+          <p>(האַלב-וויינענד) אַך, מַיין אָרעמע חנהלֶע!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0372_a">
+          <speaker>גימפּעל</speaker>
+          <p>אַזוי ווי דוּ האָסט אַצינד גֶעזֶעהֶען, אַזוי אִיז יֶעדֶער<lb/>טאָג. אָט וויינְט זי, אָט לאַכט זיִ עֶס אִיז שׁרֶעקלִיך, זאָג<lb/>אִיך דיִר! עֶס רֵייסט מיִר בּיים האַרצען צוּ קוקענדיג! אַך<lb/>ווִי דערלעבּ אִיך שׁוֹין דעֶר מיליאַנטשיק זאָל קוּמען. אַלץ.<lb/>אַלץ מוּז אִיך אִיהם דערצעהלען.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0373_a">
+          <speaker>שאפּסע</speaker>
+          <p>(קוּמט אַריין) אַ גוּטער יום-טוב אַייך, רבּ גימפּעל.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0374_a">
+          <speaker>גימפעל</speaker>
+          <p>אַ גוּט יום טוב, אַ גוּט יאָהר.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0375_a">
+          <speaker>שאפּסע</speaker>
+          <p>וַוייסְט אִיהר רבּ גימפּעל וואָס אִיך בּין צוּ אַייך<lb/>געקוּמען?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0376_a">
+          <speaker>גימפּעל</speaker>
+          <p>וואָס?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0377_a">
+          <speaker>שאפּסע</speaker>
+          <p>הַיינְט אִיז דאָך פּוּרים אִין שׁטֶעטעֶל, וואָלט גוּט זַיין<lb/>מיִר זאָלען זִיך בּיידע פֶערְשׁטעֶלעֶן: אִיך פאַר המן הצדִיק<lb/>אוּן אִיהר פאַר ושתּי המלְכָה אוּן אַרוּם געֶהן אִין דיִ<lb/>הייזער אוּן מאַכעֶן גֶעלְט.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0378_a">
+          <speaker>גימפּעל</speaker>
+          <p>אָ וואָ! ניִשט אַנדערש! האָסט אַ גוּטען געשמאק<lb/>גולם! אִיך גימפּעל דעֶר שׁטאט-חזן האָבּ שׁוֹין ניִשט מיִט<lb/>ווֶעמֶען אִין דיִ הֵייזֶער צוּ געהעָן נאָר מיִט שאַפּסע גולם?!<lb/>גֶעה דיִר גֶעזוּנדער-הַייט! אִין דיִ הייזער בּין אִיך ניִשט<lb/>קראַנק אַליין צוּ געֶהן... (אָבּ)</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0379_a">
+          <speaker>שאפּסע</speaker>
+          <p>דאַרף מען נישט! (דערזעהט באבעלען) בּאבּעלע! וואָס<lb/>טהוּסט דוּ דאָ? אִיך וֶועל דֶערְצֶעהלֶען דעֶר מאַמען, וֶועסְט<lb/>דוּ קריגען אַ שוואַרצען סוף...</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0380_a">
+          <speaker>באבּעלע</speaker>
+          <p>שאַפּסעניוּ, הערצעניוּ, דֶערְצֶעהל ניִשט דעֶר<lb/>מאַמעֶן, זִי וֶועט מִיך שְׁלָאָגען!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0381_a">
+          <speaker>שאפּסע</speaker>
+          <p>נוּ וואָס אַרט דאָס מִיך אַז זיִ וועֶט דיִך שְׁלָאָגען? עֶס<lb/>וֶועט דעֶן מיִר וֶועה טהוּן?<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="44" facs="30627523.jpg"/>
+        <fw type="pageNum">40</fw>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0382_a">
+          <speaker>באבעלע</speaker>
+          <p>שאַפּסעלע דוּ האָסט דאָך ליעבּ פִישׁ.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0383_a">
+          <speaker>שאפּסע</speaker>
+          <p>יאָ, נוּ?...</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0384_a">
+          <speaker>באבּעלע</speaker>
+          <p>וֶועל אִיך דיִר געבּען אַ שׁטִיק פיִש, אַ גַאנְץ גְרויִס<lb/>שׁטיִק פיִש, אַבּי דֶערְצֶעהל ניִשט דעֶר מאַמעֶן.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0385_a">
+          <speaker>שאפסע</speaker>
+          <p>פִישׁ! אוּן שאַ!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0386_a">
+          <speaker>באבעלע</speaker>
+          <p>אַזאַ שׁטיִק אוּן שׁוֹין!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0387_a">
+          <speaker>שאפסע</speaker>
+          <p>אַזאַ שׁטִיק! אוּן שאַ! אוֹי שאַפּסע בּיזט דוּ, אַ חָכָם<lb/>פון דער מה נשתּנה. (זינגט)<lb/>שרה שַׁיינְדֶעל<lb/>פערוואַנדלוּנג<lb/>(עֶס שׁטעלְט פאָר בּיי רב יוחנְצִין פאַר דעֶר סעוּדה. אִין<lb/>שטוּבּ אִיז יום-טובדיִג — בּאבּעֶלעֶ אַליין קוּקט אין סדור)<lb/>שרה שיינְדֶעל</p>
+          <lg>
+            <head>.I</head>
+            <l>שאַפּסעֶ בּיזט כ'לעֶבּעֶן ניִשט קיין גולם</l>
+          </lg>
+          <lg>
+            <l>גדול מייגסטוּ זַיין בּיי דיִר;</l>
+          </lg>
+          <lg>
+            <l>אִין דַיינֶע הענד ליִגְט דעֶר גַאַנְצעֶר עולם,</l>
+          </lg>
+          <lg>
+            <l>אָנקוּמען מוּז מען נאָר צוּ מיִר.</l>
+          </lg>
+          <lg>
+            <l>אַ יֶעדֶערֶער שִׁיקט מיִר אַנ'אַנדעֶרעֶן גאַנג</l>
+          </lg>
+          <lg>
+            <l>אוּן אִיך פאָלג זיי אָהן אַ שוּם טענה;</l>
+          </lg>
+          <lg>
+            <l>וַוייל אִיך בּין שׁוֹין אַזוי לאַנג:</l>
+          </lg>
+          <lg>
+            <l>אַ חכם פוּן דעֶר "מה נשתּנה״.</l>
+          </lg>
+          <lg>
+            <head>.II</head>
+            <l>אַ ווייבּעל פּיעשצעט זִיך בּיי אִיהר מאַן</l>
+          </lg>
+          <lg>
+            <l>וַוייל עֵר האָט זי זעהר ליעבּ;</l>
+          </lg>
+          <lg>
+            <l>עֶר גיעט זִיך אִיהר איבּער אִין דיִ הֶענְד אַריין</l>
+          </lg>
+          <lg>
+            <l>דעֶר ספאדאַק ווערט זי בּאלד אִין שטוּבּ;</l>
+          </lg>
+          <lg>
+            <l>שפּעטער כאַפּט עֶר פּעטש פוּן אִיהר!</l>
+          </lg>
+          <lg>
+            <l>פוּן זַיין טהייער ווייַבּעֶל בּרייַנעֶ</l>
+          </lg>
+          <lg>
+            <l>וַוייל עֶר אִיז געראָהטעֶן איִן מיִר:</l>
+          </lg>
+          <lg>
+            <l>אַ חכם פוּן דעֶר מה נשתּנה.</l>
+          </lg>
+          <lg>
+            <head>.III</head>
+            <l>איינער פערליעבּט זִיך אִין בּיסעלע מעות:</l>
+          </lg>
+          <lg>
+            <l>עֶר זוּכט ניִשט מֶעהר ווי וֶוערֶען רייך,</l>
+          </lg>
+          <lg>
+            <l>מַיין ווייבּעל, זאָגט עֶר, מאָג זיין אָהן אַ נאָז</l>
+          </lg>
+          <lg>
+            <l>אַבּיי זיִ האָט נאָר גֶעלְד אַ סך;</l>
+          </lg>
+          <lg>
+            <l>אַ ווייבּעל געֶפיִנעֶן האָט בּאלד דעֶר מזִיק</l>
+          </lg>
+          <lg>
+            <l>אַ'נ'אָבּגעשלאָגענע הושענא...</l>
+          </lg>
+          <lg>
+            <l>אוּן גֶעלְט? אַ קרֶענְק! האָט אויך רבּ אַייזיק...</l>
+          </lg>
+          <lg>
+            <l>אַ חכם פון דער מה נשתּנה.</l>
+          </lg>
+          <lg>
+            <head>.IV</head>
+            <l>אַיינער קריגט זַיין דיענסט מויד ליעבּ;</l>
+          </lg>
+          <lg>
+            <l>אוּן בּעקענען וִויל עֶר דאָס אִיהר;</l>
+          </lg>
+          <lg>
+            <l>עֶר זאָגט אִיהר וֶוען סְ'אִיז פִינְסטֶער אִין שטוּבּ</l>
+          </lg>
+          <lg>
+            <l>"אַ כּפּרה זאָל זַיין מַיין ווײַבּ פאַר דיִר"</l>
+          </lg>
+          <lg>
+            <l>פּלוּצלוּנג קריגט ער: אַ קנאק אִין דִי צַיין!</l>
+          </lg>
+          <lg>
+            <l>אוֹי וויִ גְרויס זעֶנעֶן דיִ צרוֹת זיינע:</l>
+          </lg>
+          <lg>
+            <l>זַיין אֵייגֶען ווייבּעלע אִיז דאָס געוועהן.</l>
+          </lg>
+          <lg>
+            <l>אַ חכם פון דער מה נשתּנה.</l>
+          </lg>
+          <lg>
+            <l>דיך גאט לויבּעֶן מיִר אַלעֶ הייַנְט:</l>
+          </lg>
+          <lg>
+            <l>אִין דעם יום-טוב פּוּרים.</l>
+          </lg>
+          <lg>
+            <l>מיִר טאנצען אוּן פרֶעהֶען זִיך אַלע בּיינאנד</l>
+          </lg>
+          <lg>
+            <l>אוּן זיִנְגעֶן שֶׁענֶע מזמורִים.</l>
+            <stage type="delivery">(בּיס)</stage>
+          </lg>
+          <lg>
+            <l>מיִר דאַרפעֶן הַיינְט נאָר לויִבּעֶן אוּן זיִנְגעֶן</l>
+          </lg>
+          <lg>
+            <l>דעֶן מיִר זֶענֶען גֶעוֶועזֶען אִין געפאהר</l>
+          </lg>
+          <lg>
+            <l>דער רשֶׁע המן האָט אוּנז געוואָלט אוּמבּריִנְגעֶן</l>
+          </lg>
+          <lg>
+            <l>אוּן גאָט האָט איהם געשטראפט דערפאַר.</l>
+          </lg>
+        </sp>
+        <pb n="45" facs="30627525.jpg"/>
+        <fw type="pageNum">41</fw>
+        <pb n="46" facs="30627526.jpg"/>
+        <fw type="pageNum">42</fw>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0388_a">
+          <speaker>סעם</speaker>
+          <p>(אונטער די קאליסען) שִׁי אִיז מַיי סוויט האָרט.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0389_a">
+          <speaker>באבעלע</speaker>
+          <p>אוֹי! ער איז שוין וויעדער דאָ!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0390_a">
+          <speaker>סעם</speaker>
+          <p>(טרעט אויף) סוויט באַבּעלע דאָן בּיי אַ פרייד.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0391_a">
+          <speaker>באבעלע</speaker>
+          <p>אַ שענע פרייד וועט דאָ זיין! אַז מיין פאטער מיט דער<lb/>מוּטער וועלען קוּמען פוּן שוּל אוּן וועֶלעֶן אוּנז דאָ עֶבּייַד<lb/>טְרֶעפֶען אַליין!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0392_a">
+          <speaker>סעם</speaker>
+          <p>נאָ! אֵיי מִין — דיִר האָבּען קיין אַנגסט, סוויט בּאבּעלע, יוּ נאָ<lb/>וואַט אַיי קֶעם טוּ יוּ? אִיך דיִר זאָגען, אַז אִיך דיִך ליעבּע,<lb/>אִיך דיִך זוי ליעבּע אַז אִיך שטאַרבּ מיִט יוּנגען טויט.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0393_a">
+          <speaker>באבעלע</speaker>
+          <p>וואָס זשע זאָל איך דיר טהוּן?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0394_a">
+          <speaker>סעם</speaker>
+          <p>דוּ מִיך אוֹיך ליעבּען, בּאבּעלע! שאָ מיי יוּ הֶענְד... דוּ<lb/>הערסט ווִי דאָ קלאפּט? (באַבעלע שאקעלט מיִט'ן קאָפ) דאָ<lb/>ליעגט דיִ ליעבּע אוּן קלאַפּט עֶס מאַכט אַזוי: בּוּם-סטאַראַ-<lb/>ראַ-ראַם! ווי אַזוי מאַכט עֶס בּיי דיִר?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0395_a">
+          <speaker>באבעלע</speaker>
+          <p>אוֹי! בּיי מיר מאַכט אויך, ווי אַזוי זאָגסט דוּ? בּום-<lb/>סטאַראַ-ראַ-דאַם.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0396_a">
+          <speaker>סעם</speaker>
+          <p>נוּ איז דאָך גוּט.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0397_a">
+          <speaker>באבעלע</speaker>
+          <p>ניין עס איז נישט גוּט.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0398_a">
+          <speaker>סעם</speaker>
+          <p>וואַרוּם נישט גוּט?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0399_a">
+          <speaker>באבּעלע</speaker>
+          <p>דוּ האָסט פֶערְגֶעסֶען וואָס פאַר אַ בּעזע הֶערְצֶער עֶס<lb/>האָבּען מַיינֶע פָאטֶער אוּן מוּטער אוֹיף דַיין פָאטֶער?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0400_a">
+          <speaker>סעם</speaker>
+          <p>סוויט בּאבּעלע! דוּ גלויבּסט אַז דַיין פּאַפּאַ מיִט דַיין<lb/>מאַמאַ, וואָס גלויבּט אוֹיף מַיין פּאַפּאַ, גלויבּען אוֹיף דַיין<lb/>פּאַפּאַ מיִט דיין מאַמאַ, אַז מַיין פּאַפּאַ אִיז מיִט דַיין מאַמאַ...</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0401_a">
+          <speaker>באבּעלע</speaker>
+          <p>אוֹי גענוג שׁוֹין פּאַפּאַ, מאַמאַ דוּ רֶעדְסט אוּן<lb/>רעדְסט אוּן אִיך פֶערְשְׁטעה דיִך ניִשְׁט אַ וואָרט.<lb/>שרה שַׁיינְדֶעל</p>
+        </sp>
+        <pb n="47" facs="30627529.jpg"/>
+        <fw type="pageNum">43</fw>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0402_a">
+          <speaker>סעם</speaker>
+          <p>יוּ רֵייט בּאבּעלע, יוּ וִויל סיי עף מיי פּאַפּאַ וִויל קֶעם<lb/>היוויל פיקסעט.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0403_a">
+          <speaker>באבעלע</speaker>
+          <p>מיִט לעבּעדיגע פִיקסֶען וֶועט עֶר קוּמען?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0404_a">
+          <speaker>סעם</speaker>
+          <p>נאָ איי מִין עף מיי פּאַפּאַ וִויל קֶעם. היִ וִויל מַייקייט אָל<lb/>רייט.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0405_a">
+          <speaker>באבּעלע</speaker>
+          <p>וואָס וֶועט עֶר מאַכען?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0406_a">
+          <speaker>סעם</speaker>
+          <p>וואַט שוּל איי דוּ? דוּ פֶערְשְׁטֶעהסט מִיך ניִשט.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0407_a">
+          <speaker>באבּעלע</speaker>
+          <p>זעהסטוּ, דאַפיר וִויל דיִך ניִשט, ניִשט דער פאפא<lb/>אוּן ניִשט דיִ מאַמאַ.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0408_a">
+          <speaker>סעם</speaker>
+          <p>יוּ מאַמאַ, מַייק-מי-סיק.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0409_a">
+          <speaker>באבעלע</speaker>
+          <p>וואָס מַיין מאַמע אִיז אַ ציג?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0410_a">
+          <speaker>סעם</speaker>
+          <p>נוּ, דיִר דוּ מאַמאַ מאַכט מיך קראַנק.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0411_a">
+          <speaker>באבּעלע</speaker>
+          <p>אוֹי וֶועה! זאָלסט כאטשֶׁע זיין אַ יוּד.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0412_a">
+          <speaker>סעם</speaker>
+          <p>אויף קאוס, איי יעם, איי יוּד.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0413_a">
+          <speaker>באבּעלע</speaker>
+          <p>דאָס הַייסְט אַ יוּד? אוֹיף דַיין פּנים זֶעהט מֶען אַפילוּ<lb/>ניִשט אָן דֶעם צלם אלהיים.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0414_a">
+          <speaker>סעם</speaker>
+          <p>דוּ יֶעצְט רעדְסט. אִיך דיִך ניִשט פֶערְשְׁטעה!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0415_a">
+          <speaker>באבּעלע</speaker>
+          <p>דאָס אִיז דאָך לשון הקדש.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0416_a">
+          <speaker>סעם</speaker>
+          <p>לאָשקע קושקע? וואָט אִיז דעט? מֶען עונד אַע פרוֹי?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0417_a">
+          <speaker>באבּעלע</speaker>
+          <p>דוּ בּיסט טאַקע גאָר קיין יוּד ניִשט.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0418_a">
+          <speaker>סעם</speaker>
+          <p>אויף קאוס איך אַ יוּד.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0419_a">
+          <speaker>באבּעלע</speaker>
+          <p>דאָס הַייסְט אַ יוּד? אִיך מַיין אַ יוּד וואָס זאָל מאַכען<lb/>כּבוד אונזער זיידעֶן דעֶם יעהוּפיִצעֶר.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0420_a">
+          <speaker>סעם</speaker>
+          <p>אָלרייט! אַיי וִויל מַייק כּבוד — יוּ זיידען דֶעם<lb/>יעהופיצער.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0421_a">
+          <speaker>באבעלע</speaker>
+          <p>אִיך פֶערְשְׁטֶעה גאָר נישט. זאָלסט כאָטשע האָבּען<lb/>אַ יוּדישען נאָמען?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0422_a">
+          <speaker>סעם</speaker>
+          <p>אויף קוּס איי גאַט אַ יוּדישקע נאָמען.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0423_a">
+          <speaker>באבּעלע</speaker>
+          <p>האָסט אַ יודִישֶׁען נאָמען? ווִי זשֶׁע הַייסְט דוּ אוֹיף<lb/>דַיין יוּדישען נאָמען?<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="48" facs="30627531.jpg"/>
+        <fw type="pageNum">44</fw>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0424_a">
+          <speaker>סעם</speaker>
+          <p>יוּ קוֹיל מיִ סעֶם.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0425_a">
+          <speaker>באבּעלע</speaker>
+          <p>אוֹי! סמך מם!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0426_a">
+          <speaker>סעם</speaker>
+          <p>נאָ, מיי נֶעם אִיז שמואליקעל.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0427_a">
+          <speaker>באבּעלע</speaker>
+          <p>שמואליקעל? אוֹי טאַקע אַ שֶׁענֶער נאָמען. שמואלי⸗<lb/>קעל.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0428_a">
+          <speaker>סעם</speaker>
+          <p>נוּ, וִויל אִיך טאַקע זַיין דַיין שמואליקעל.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0429_a">
+          <speaker>באבעלע</speaker>
+          <p>אָבּער דער טאַטע מיִט דעֶר מאמֶען דַארְפֶען אוֹיך<lb/>וויִסעֶן פוּן דעם.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0430_a">
+          <speaker>סעם</speaker>
+          <p>אוּ נאָ דעט אִיז ע האַרט זשאַבּ.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0431_a">
+          <speaker>באבּעלע</speaker>
+          <p>וואָס מַיינֶע מוּטער אִיז אַ שקראב?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0432_a">
+          <speaker>סעם</speaker>
+          <p>נאָ איי מיין, דאָס אַ שׁווערֶע זאַך. בּאבּעלע דוּ ווילְסט מִיך<lb/>האָבּען פאַר דיין שמואליִקעֶל?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0433_a">
+          <speaker>באבּעלע</speaker>
+          <p>אִיך וִויל.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0434_a">
+          <speaker>סעם</speaker>
+          <p>אִיך וִויל אוֹיך. (וויינט).</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0435_a">
+          <speaker>באבּעלע</speaker>
+          <p>וואָס וויינְסְט דוּ? שמואליקעל?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0436_a">
+          <speaker>סעם</speaker>
+          <p>(וויינענד) וואָס וַויינְסט דוּ בּאבּעלע?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0437_a">
+          <speaker>באבעלע</speaker>
+          <p>אִיך וויין ניִשט. (לאַכט)</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0438_a">
+          <speaker>סעם</speaker>
+          <p>(לאַכט) אִיך וויין אויך ניִשט.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0439_a">
+          <speaker>באבעלע</speaker>
+          <p>וואָס לאַכטס דוּ? שמואָליקעל.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0440_a">
+          <speaker>סעם</speaker>
+          <p>וואָס לאַכסט דוּ? בּאבּעֶלעֶ.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0441_a">
+          <speaker>באבעלע</speaker>
+          <p>אִיך ווייס נישט.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0442_a">
+          <speaker>סעס</speaker>
+          <p>אִיך ווייס אוֹיך ניִשט,</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0443_a">
+          <speaker>באבעלע</speaker>
+          <p>שמוּאליקעל!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0444_a">
+          <speaker>סעס</speaker>
+          <p>וֶועמֶענְס שמואָליקעל?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0445_a">
+          <speaker>באבעלע</speaker>
+          <p>מַיין.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0446_a">
+          <speaker>סעס</speaker>
+          <p>אוּריי! פִיר בּאבּעלע מיט שמואליקעל. (זיי זיִנְגעֶן:)</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0447_a">
+          <speaker>באבעלע</speaker>
+          <lg>
+            <l>גוּט אוּן פרוּם זאָלסט דוּ זיין;</l>
+          </lg>
+          <lg>
+            <l>איבּער דעֶר גְמרַא קנעלען.</l>
+          </lg>
+          <lg>
+            <l>ווירְסט דוּ קֶענֶען זַיין מיין מאַן;</l>
+          </lg>
+          <lg>
+            <l>גאָט אוּן לייט וועסטוּ געֶפעֶלעֶן</l>
+          </lg>
+          <p>שרה שיינדעל</p>
+        </sp>
+        <pb n="49" facs="30627533.jpg"/>
+        <fw type="pageNum">45</fw>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0448_a">
+          <speaker>סעם</speaker>
+          <p>יוּ קאלמיי שמואָליקעל דִיער, איי וִויל קאָל יוּ בּאבּעלע.<lb/>אַלעֶס קאנסטוּ טהוּן מיִט מיִר, מיר מאַכען פאַר אַ<lb/>רבּילע.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0449_a">
+          <speaker>באבעלע</speaker>
+          <lg>
+            <l>מיִר וועלען לעבּען שֶׁען אוּן פיין</l>
+          </lg>
+          <lg>
+            <l>וֶוען דוּ וֶועסְט זַיין מיין שמואליִקעֶל.</l>
+            <stage type="delivery">(בּיס)</stage>
+          </lg>
+          <lg>
+            <l>אַלע וועלען אונז מקנא זיין:</l>
+          </lg>
+          <lg>
+            <l>שמואליקעל מיט בּאבּעֶלעֶן.</l>
+          </lg>
+          <lg>
+            <l>אַ בּן-תּורה וועט זיין מיין מאַן,</l>
+          </lg>
+          <lg>
+            <l>אונזער משפּחה וועט גלאנצען;</l>
+          </lg>
+          <lg>
+            <l>דעֶר יעהופיצער וועט אוּנז מחיה זיין,</l>
+          </lg>
+          <lg>
+            <l>אִין קבר וֶועט עֶר טאַנצען.</l>
+          </lg>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0450_a">
+          <speaker>סעם</speaker>
+          <lg>
+            <l>דעֶר טִישׁמִינִיצֶער קֶען עֵף יוּ פּליסעx</l>
+          </lg>
+          <lg>
+            <l>אֵיי יעם גאָהן טאָבּי אַ רבּיִלעֶ</l>
+          </lg>
+          <lg>
+            <l>איי וִויל טריי טוּבּיס היִם אימפּיסעס</l>
+          </lg>
+          <lg>
+            <l>טריי טוּלייק אוף מיי בּאַבּעֶלעֶ.</l>
+          </lg>
+          <p>(ביידע טאַנצען אָבּ אוּן בּאבּעֶלעֶ קוּמט צוּרִיק).</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0451_a">
+          <speaker>באבּעלע</speaker>
+          <p>אוֹי ווִי אַזוי קאָן אִיך וִויעדֶער גאָט בּעטען, אַז<lb/>אַלע מַיינֶע געדאַנקען זֶענֶען בּיי מַיין שמואליקעל! אוֹי!<lb/>ניִשט אוִיסגֶערֶעד זאָל דאָס זַיין: שמואליקעל אִיז מיִר<lb/>פיעל ליעבּער ווי דעֶר קרבן מנחה סידוּר, אַז עֶר מאַכט<lb/>מיִר דאָ אִין הֶערְצֶען! בום-סטאַראַ - ראַ-ראַם! (וויינְט —<lb/>יוחנצי קוּמט פון לינקס, שרה שיינדעל פון רעכטס)</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0452_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַ גוּטען יום-טוב דיִר רבּי!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0453_a">
+          <speaker>יוחנצי</speaker>
+          <p>אַ גוּט יום-טוב דיר רבּיצין.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0454_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וואָס זעֶה אִיך? בּאבּעלע וויינְט?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0455_a">
+          <speaker>יוחנצי</speaker>
+          <p>אוּם פּוּרים!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0456_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וַוייסְט דוּ רבּי וואָס זִי אִיז פֶערוויינְט? פוּן<lb/>דעם דאַוועֶנעֶן. דער סידוּר אִיז אָבּגעגאָסען מִיט טרערען..</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0457_a">
+          <speaker>יוחנְצִי</speaker>
+          <p>הֶערְסט דוּ! עֶס אִיז דאָך דעם טאַטענס טאָכטער.<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="50" facs="30627535.jpg"/>
+        <fw type="pageNum">46</fw>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0458_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>האָבּ קיין טעוּת. זִי אִיז דאָך דעם יעהופיצערס<lb/>אַנ'אייניקעל בּאבּעלע! געה רוּף אַריין אברהמעֶלעֶן! זאָג<lb/>אִיהם, עֵר זאָל בּאלד אַרייַן קוּמען מקֵיים זיין סעוּדת-<lb/>פּוּרים. (באַבעלע אָבּ). זעהסט דוּ פוּן אוּנזער בּן יחיד<lb/>האָבּעֶן מיִר ניִשט קיין נחת, דערפאַר אָבּעֶר פוּן אוּנְזעֶר<lb/>בּת יחידה וועֶלעֶן מיִר, מיִט גאָטס הילף, האָבּעֶן פיעל נחת.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0459_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִיך האָבּ דאָך געזאָגט! דעם טאַטענס טאָכטער.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0460_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>זאָגסט שׁוֹין וִויעדֶער דאָס זעלבּעֶ! זיִ קאָן<lb/>מֶעהר גראָטען זַיין אִין דעם יעהופיצער, זכרונו לברכה.</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0461_a">
+          <speaker>אברהמעלע</speaker>
+          <p>(קוּמט אַריין מיט באַבעלען) אַ "גוּט יום" אַייך אַלע.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0462_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַ גוּט יום טוֹב דיר מיין קינְד, אַברהמעֶלעֶ!<lb/>בּיזט נאָך אַלץ צוּ טראָגען? פאָלג מיך מַיין קיִנְד אוּן פער⸗<lb/>געֶס אִין דער חצוּפה! אִיך האָבּ געהעָרט אַז זִי אִיז<lb/>משוגע געוואָרען. משוגע זאָל זיי זיין, רבּונו שֶׁל עולם!<lb/>פאַר אַלע יוּדען.</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0463_a">
+          <speaker>אברהמעלע</speaker>
+          <p>מוּטער! רעד נישט פוּן איהר! האָבּ רחמנות<lb/>אוֹיף מיִר! אִיך וֶועל מַיין פערשטאַנד פֶערְלִירֶען!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0464_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>נאַרעלע! פעֶרְגעֶס אִין אִיהר! אוֹיך אִין אִיהר<lb/>פָאטֶער דֶעם אַפּיקורוס!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0465_a">
+          <speaker>באבּעלע</speaker>
+          <p>מאַמעשי! וַוייסְט דוּ וואָס אִיך וֶועל דיִר זאָגען? אַז<lb/>דעֶר פֶעטֶער האָט גאָר קיין שוּלד ניִשט אִין דעם.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0466_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>פוּן וואַנעֶן וַוייסְט דוּ דאָס?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0467_a">
+          <speaker>באבּעלע</speaker>
+          <p>דֶעם פֶעטֶערְס יונגעל האָט מיִר געֶזָאָגְט.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0468_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וֶוער? שמואליקעל האָט עֶס דיִר געזאגט?<lb/>אָט דעֶר שַׁייגעצעל?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0469_a">
+          <speaker>יוחנצי</speaker>
+          <p>אָט דעֶר סמך מֶם?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0470_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וואוּ האָסטוּ אִיהְם געזעהען?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0471_a">
+          <speaker>באבעלע</speaker>
+          <p>טאַקע דאָ אִין שטוּב.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0472_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>זאָג נאָר, אַבּעֶלעֶ, אִיז עֶר געֶוועֶהן מיִט<lb/>דיִר אִין שטוּבּ אַליין?<lb/>שרה שיינדעל</p>
+        </sp>
+        <pb n="51" facs="30627537.jpg"/>
+        <fw type="pageNum">47</fw>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0473_a">
+          <speaker>יוחנצי</speaker>
+          <p>בּיחוּדות? אָהן אַ שׁומְר?!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0474_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אָט האָסט דוּ דיִר, דעם טאַטענס טאָכטער.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0475_a">
+          <speaker>יוחנצי</speaker>
+          <p>נֵיין! דעם יעהופיצערס אַנ'אייניקעל.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0476_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>הַיילִיגֶער יעהופיצער! וואָס שְׁוַוייגְסְט דוּ?<lb/>— זאָג דעם אמְת, בּאבּעלע, וואָס האָט עֶר דאָ געטהוּן?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0477_a">
+          <speaker>באבּעלע</speaker>
+          <p>עֵר אִיז מיִר געקוּמען זאָגען אַז...</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0478_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַז וואָס? זאָג שׁוֹין גיכער.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0479_a">
+          <speaker>באבּעלע</speaker>
+          <p>אַז... עֶר... האָט מיך ליעבּ...</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0480_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וֶועה אִיז דֶעם טאַטען! וואָס שְׁוַוייגְסְט דוּ<lb/>דיין?!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0481_a">
+          <speaker>יוחנצי</speaker>
+          <p>וואָס זאָל אִיך שׁרֵייעֶן? אִיך זאָג דיִר נאָר, אַז על פי<lb/>דיין זֶענְט אִיהר אַלע טרפה!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0482_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>בּאַבעלע! וואָס האָסט דוּ אִיהם גֶעֶענְטפֶערְט?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0483_a">
+          <speaker>באבעלע</speaker>
+          <p>אַז... אַז...</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0484_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַז וואָס?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0485_a">
+          <speaker>באבּעלע</speaker>
+          <p>אַז אִיך האָבּ אִיהְם אוֹיך ליעבּ!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0486_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַ וועהטוג איז מיר! וואָס שווייגסט דוּ דיין?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0487_a">
+          <speaker>יוחנצי</speaker>
+          <p>וואָס זאָל אִיך שׁרֵייעֶן? אִיך זאָג אַייך נאָר: אַזוֹי וויִ<lb/>דער טאַטע אַזוי אִיז דעֶר זוּהן; דאָס עפּעלע פאַלט ניִשט<lb/>וַוייט פוּן בּעמעלע.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0488_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>פאלג מיִר רבּי אוּן קוּק איבּער דיִ מזוזות!<lb/>מיִר דאַכט זיך...</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0489_a">
+          <speaker>יוחנצי</speaker>
+          <p>אוּנְזעֶרעֶ מזוזות זעֶנעֶן שׁוֹין כשר, נוּר זַייערעֶ מזווזותלעֶך<lb/>זענען נעבּעך שׁוֹין פּוּלדיג געוואָרען.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0490_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>יעהופיצער! וואָס שׁווייגסט דוּ?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0491_a">
+          <speaker>יוחנצי</speaker>
+          <p>שׁווייג! לאָז מיִר נאָר פרעֶגעֶן אִיהר אַפּאָר ווערְטֶער. (עֶר<lb/>געהט צוּ צוּ באַבעלען) זאָג מיִר נאָר באַבּעֶלעֶ, וואָס וֶועסְט<lb/>דוּ אָבּעֶר טהוּן אַז דעֶר זוּהן וֶועט ניִשְׁט זַיין בּעֶסעֶר פוּן<lb/>דעם טאַטען?</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0492_a">
+          <speaker>באבעלע</speaker>
+          <p>וֶועל אִיך אִיהם אַלץ ליעבּ האָבּען.<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="52" facs="30627539.jpg"/>
+        <fw type="pageNum">48</fw>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0493_a">
+          <speaker>יוחנצי</speaker>
+          <p>אַ גדולה אוֹיף דַיין טאַטען.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0494_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וֶועה אִיז מיִר בּיבּעלע גֶעה אוּן זאָג תהלים<lb/>וֶועסְט דוּ זֶעהֶען אַז גאָט וועֶט דיִר הֶעלְפֶען.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0495_a">
+          <speaker>באבעלע</speaker>
+          <p>נֵיין מאמע! קיין תּהלים וֶועט שׁוֹין אוֹיך ניִשט<lb/>העלפען. (וויינט)</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0496_a">
+          <speaker>אברהמלע</speaker>
+          <p>וויין ניִשט שׁוועסטערעל. זַיי פֶערְשְׁטעֶהען דיִך<lb/>ניִשט! אָבּער אִיך פֶערְשְׁטֶעה שׁוֹין גוּט דַיין העֶרץ (בּיידע<lb/>וויִיִנעֶן).</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0497_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>וואָס פֶערוויינְט אִיהר מיִר עפֶעס פּוּרים?!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0498_a">
+          <speaker>יוחנצי</speaker>
+          <p>קוּמט זשֶׁע בּעסער צוּ דעֶר סעודה וֶועט עֶס הַייסֶען<lb/>אַז אִיהר בּעוויינט המנ'ען. (עֶס קוּמען אָן געֶסְט צוּ<lb/>דער סעוּדה)</p>
+        </sp>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0499_a">
+          <speaker>אלע</speaker>
+          <lg>
+            <l>גוּט יום טוֹב! גוּט יום טוב! (זינגען)</l>
+          </lg>
+          <lg>
+            <l>זַייט אַייך מְשׁמְח, טאַנצט זשֶׁע קיִנְדעֶר.</l>
+          </lg>
+          <lg>
+            <l>לכבוד אוּנזער רבּין אוּנזער גלאנץ.</l>
+          </lg>
+          <lg>
+            <l>וּדעלעך אוּן ווייַבּעֶלעֶךְ ניִשְׁט בּעזיִנְדעֶר,</l>
+          </lg>
+          <lg>
+            <l>מאַכט אַייך פֶערְטִיג אַ ראָד צוּם טאַנץ.</l>
+          </lg>
+          <lg>
+            <l>פערהויבּט דיִ פּאַלעס ס'זאָלְזַיין גריִנְגעֶר,</l>
+          </lg>
+          <lg>
+            <l>טאנצט זשֶׁע קיִנְדעֶר נאָר מיִט כּחַ.</l>
+          </lg>
+          <lg>
+            <l>טאנצט זשֶׁע אַלע עֶלְטֶער אוּן יוּנגער</l>
+          </lg>
+          <lg>
+            <l>הויבּט דיִ פיסלעך אִין דער הוֹיך.</l>
+          </lg>
+          <lg>
+            <l>פאטשט מיִט דיִ העֶנְדְלעך,</l>
+          </lg>
+          <lg>
+            <l>הופעט מיִט דיִ פיסלעך,</l>
+          </lg>
+          <lg>
+            <l>לכבוד דעם יוֹם טוֹב.</l>
+          </lg>
+          <lg>
+            <l>לכבוד דעם פּוּרים!</l>
+            <stage type="setting">פאָרהאַנג.</stage>
+          </lg>
+        </sp>
+        <trailer>עֶנְדֶע דרִיטֶער אַקט</trailer>
+        <pb n="53" facs="30627541.jpg"/>
+        <fw type="pageNum">שרה שׁיינְדֶעל</fw>
+        <fw type="pageNum">49</fw>
+      </div>
+      <div type="act" n="4" xml:id="SoreSheyndel_Act4">
+        <head>פִירְטֶער אַקט.</head>
+        <stage type="setting">(בּייַ רבּ יוחנצי)</stage>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0500_a">
+          <speaker>יוחנצי</speaker>
+          <p>(צוּ זיך) וואָס טהוּט מֶען? דעֶר פּסה שְׁטעהט שׁוֹין<lb/>אוּנטעֶר דיִ פּלייצעס. אָט אָט אִיז שבּת הגדול, אוּן אִיך<lb/>האַלט נאָך מיִט מַיין דרְשׁה העט! העט ווייט!... אוֹי!<lb/>וֶועה! צער גידול בּנים! קיִנְדעֶר צרוֹת! מֶען קאָן דעֶן<lb/>נאָר לעהרנען, מיִשטיינס געזאָגט... אִיך מוּז אוֹיף זיך<lb/>נעֶמעֶן בּחרם אִיך זאָל צוּ קיינעם אַ וואָרט ניִשט רעֶדעֶן<lb/>בּיז אִיך וֶועל ניִשט אויסלֶעהרְגֶען דיִ דרְשה. (עֶר שאקעלט<lb/>זיך) שבּת שלפנִי הפסח...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0501_a">
+          <speaker>גימפּעל</speaker>
+          <p>(קוּמט אַריין) רבּי! אִיך האָבּ אַייך גֶעוָואלְט פרעגען...</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0502_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִי! נוּ! שבּת שלפני הפּסח...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0503_a">
+          <speaker>גימפעל</speaker>
+          <p>רבּי! אֵיין וואָרט נאָר! גֶעה אִיך בּאלד אַוועק.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0504_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִי, אִי, אָ! אִיך מוּז לערנען דיִ דרְשׁה אוֹיף שבּת<lb/>הגדול!... קורִין אותו שבּת הגדול!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0505_a">
+          <speaker>גימפּעל</speaker>
+          <p>אַ חכם בנאמנות! אַנדערש אִיז טאַקע ניִשְׁט מֶעגלִיך<lb/>אַ טאָן זִיך אויִס צוּ לֶעהרְנֶען. אוּן נאָך בּיי מַיין צרה אִין<lb/>דעֶר הֵיים... גימפּעל! שְׁרֵייט זִי, בּריִנג מיִר דאָס!<lb/>בּרינג מיִר יענץ! גיִמְפּעל! דאָס קִינְד האָט זיך... אַ<lb/>חכם אַ יוּד בנאמנות... אַ וואָרט ניִשט אויִס רעֶדעֶן. אוּן<lb/>טאַקע אָט אָ דאָ, וֶועל אִיך מיִר אויסדרעהען קונציג דעם<lb/>נֵייעס "מן המצר" (שׁטעֶלְט זִיך פוּן דער צווייטער זַייט אוּן זיִנְגְט)<lb/>מן המצר קראתי יה...</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0506_a">
+          <speaker>שאפּסע</speaker>
+          <p>(קוּמט אַריין) רבּי! הֶערְט נאָר אויִס דֶעם צֶעטֶעל!<lb/>(יוחנְצִי האַלט אִין אֵיין לעהרגען) אִיהר האָט קֵיין צַייט ניִשְׁט?<lb/>אָט אִיז רבּ גימפּעל (געהט צוּ גימפלען) רבּ גימפּעל! הערט<lb/>מִיך אויִס! ציִ קאָן אִיך שׁוֹין... (גימפּעל האַלט אִין אֵיין זיִנְגעֶן!<lb/>וואָס? אִיהְר האָט אויךְ קֵיין צַייט נִישְט? דאַרף מען נִישְט!<lb/>שרה שִׁיינְדֶעל<lb/>אִיך קאָן מיִר אַליין איבּער חַזְרֶען (עֶר לֵיינְט איבּער דעם<lb/>צעטעל).</p>
+        </sp>
+        <fw type="pageNum">3</fw>
+        <pb n="54" facs="30627543.jpg"/>
+        <fw type="pageNum">50</fw>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0507_a">
+          <speaker>דזייק</speaker>
+          <p>(קוּמט אַרייַן קוּקט זיך אַרוּם, געֶהט אַרוּם אִין מוּנטעֶרְט אַלע,<lb/>אָבּער זיי ענְטפֶערֶען נישט) יוחנצי! בּרוּדער! (יוחנצי לֶעהרֶענְט<lb/>כסדר) משוגע! — רבּ גימפּעל קאנְט אִיהר מיִר ניִשט...<lb/>אוֹיך משׁוּגֶע! — אוּן דוּ שאַפּסע!... אַ שטוּבּ מיִט<lb/>משוגעים! האַ האַ האַ! (בּעדענקט זיך) אִיך וֶועל זַיי בּאלד<lb/>מישב מאַכעֶן! (עֶר שִׁיסט אוֹים, אַלעֶ פאַלעֶן צו דעֶר עֶרְד,<lb/>עֶר גֶעהט אָבּ).</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0508_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>(לויפט אַריין) וֶועה אִיז מיִר! וואָס אִיז דאָ<lb/>גֶעשֶׁעהֶען?! אִיך האָבּ געהעָרט אַזאַ טראַסק! אַ בּראָך אִיז<lb/>צוּ מיִר! דאָ ליִגְט דָאך מַיין יוחנְצִי! פִינְסטֶער אִיז מִיר!<lb/>מַיין יוחנְצִי! אִיך בּין גֶעווֶארֶען אַ פִינְסטֶערֶע אלמנה! אוֹי<lb/>מַיין טהַייערעֶר מאַן! בּיי וועמען האָסְט דוּ מיִך<lb/>איבּערגעלאזט?!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0509_a">
+          <speaker>יוחנצי</speaker>
+          <p>שאַ שאַ! רבּיצין! וואָס שׁרֵייסט דוּ אַזוֹי?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0510_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>יוחנצי דוּ לעבּסט?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0511_a">
+          <speaker>יוחנצי</speaker>
+          <p>אַזוי דאַכט מיִר, אַז אִיך לעבּ.</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0512_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אוֹי וויִסט אִיז מיִר! בּין אִיך ניִשְׁט געבּליִבּעֶן<lb/>קיין אַלמנה!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0513_a">
+          <speaker>יוחנצי</speaker>
+          <p>וואָס אַיילסט דוּ דיך אַזוֹי? רבּיצין! (עֶר העבּט זִיך אויף) אָט<lb/>ליעגט דאָך גימפּעל! — רבּ גימפּעל! אִיהר לעבּט? האָט<lb/>אַייךְ אוֹיך ניִשט געטראָפען דיִ קויל?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0514_a">
+          <speaker>גימפעל</speaker>
+          <p>פוּן וואַנעֶן זאָל אִיך וויִסעֶן?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0515_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִיהר דאַרפט דאָך פיהלעֶן. בּרעֶנְט אַייך ניִשט חָלִילָה<lb/>אויפ'ן האַרצען?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0516_a">
+          <speaker>גימפעל</speaker>
+          <p>אוֹי עֶס בּרענט מיִר טאַקע! אוֹי געוואלד עֶס בּרעֶנט!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0517_a">
+          <speaker>יוחנצי</speaker>
+          <p>נוּ וואָס זְשֶׁע שׁווייגט אִיהר? וואָס ליִגְט אִיהר? שְׁטעֶהט<lb/>אוֹיף אוּן לויפט גיך עפּעס טהוּן!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0518_a">
+          <speaker>גימפּעל</speaker>
+          <p>(שטעהט אויף) אִיך ווֵייס אָבּער ניִשט, רבּי, פוּן וואָס<lb/>שרה שיינדעל<lb/>עֶס בּרענט מיִר אַזוי. ציִ אִיז דאָס פוּן אַ קוֹיל, ציִ גאָר<lb/>פוּן דעם תיקִין וואָס אִיך האָבּ געֶטריִנְקעֶן.</p>
+        </sp>
+        <pb n="55" facs="30627545.jpg"/>
+        <fw type="pageNum">51</fw>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0519_a">
+          <speaker>יוחנצי</speaker>
+          <p>אַהאַ! אִיז עֶס גֶעוויס פוּן דעם תיקוּן — וַוייל תּדיר ושאינו<lb/>תּדיר תּדיר קודם; תּיקוּן אִיז דאָך אַ שׁטֶענְדִיגֶע זאַך, אוּן<lb/>אַ קוֹיל טְרֶעפט זִיך גאַנץ זֶעלְטֶען, מוּז עֶס אַודאי זַיין פוּן<lb/>דעם תיקון.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0520_a">
+          <speaker>שאפסע</speaker>
+          <p>מוּז זַיין גֶעדְרִינְגֶען אַז דיִ קויל הָאט מִיך געטראָפען!<lb/>אוֹי! עֶס אִיז אַפילוּ ניִשט דאָ וֶוער עֶס זאָל מיִר בּעוויי⸗<lb/>גען! אַזאַ יונגער בּוים! אַזאַ חכם פוּן דעֶר מה נשתנה!<lb/>וויינְט אוֹיף זיינע יונגע יאָהר! רבי זאָגט נאָך מיִר אַ<lb/>חצִי קדיש!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0521_a">
+          <speaker>יוחנצי</speaker>
+          <p>שאַפּסע גולם! ענְטפֶער, דוּ לעבּסט?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0522_a">
+          <speaker>שאפּסע</speaker>
+          <p>פוּן וואַנעֶן זאָל אִיך וויִסעֶן!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0523_a">
+          <speaker>יוחנצי</speaker>
+          <p>אָט וֶועל אִיך בּאלד וויִסעֶן. זאָג מיִר נאָך, שאַפּסע,<lb/>בּקול רם: אחד! אחד! אחד!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0524_a">
+          <speaker>שאפסע</speaker>
+          <p>אחד! אחד! אחר!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0525_a">
+          <speaker>יוחנצי</speaker>
+          <p>וואָס זְשֶׁע ליגסט דוּ, שאַפּסע?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0526_a">
+          <speaker>גימפּעל</speaker>
+          <p>דוּ לעבּסט דאך, גולם!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0527_a">
+          <speaker>שאפּסע</speaker>
+          <p>(שטעהט אויף דראָנג! דראָנג</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0528_a">
+          <speaker>גימפּעל</speaker>
+          <p>גולם!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0529_a">
+          <speaker>שאפּסע</speaker>
+          <p>דראנְג! לאָז זיין אַ גולם! אַבּי אִיך לעבּ!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0530_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>רבּי! אַצינד קוּק איבּער דיִ מזוזות!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0531_a">
+          <speaker>דזייק</speaker>
+          <p>(קוּמט אַריין) לאָזט אָבּ אַייערע מזוזות. (צוּ יוחנצין) שלום<lb/>עליכם! בּרוּדער!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0532_a">
+          <speaker>יוחנצי</speaker>
+          <p>גֶעה אַוועק פוּן מיִר דוּ אַפּיקורוס! דוּ בּיזט ניִשט<lb/>מֶעהר מַיין בּרוּדער! מען טהאָר אִין דיינע דַלְתּ אַמוֹת<lb/>ניִשט שטעהען!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0533_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>מיִט וואָס פאַר אַ הֶעזה קוּמט אִיהר נאָך אַרייַן<lb/>צוּ מיִר אִין שטוּבּ! אִיהְר אַלטער בּעל-עברה'ניק!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0534_a">
+          <speaker>דזייק</speaker>
+          <p>אַ שֶׁענֶער שלוֹם עליכם! שאַפּסע! קוּם נאָר אַהער! וואָס<lb/>שרה שיינדעל<lb/>שְׁטעהסט דוּ פוּן ווייטעֶן, מיִשׁ דִיך אוֹיך אַריין מיִט אַ<lb/>וואָרט.</p>
+        </sp>
+        <pb n="56" facs="30627547.jpg"/>
+        <fw type="pageNum">52</fw>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0535_a">
+          <speaker>שאפּסע</speaker>
+          <p>אִיך בּין דאָך גֶעווֶעהְן דער גאַנצער בּעל דבר.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0536_a">
+          <speaker>דזייק</speaker>
+          <p>וואָס בּיזט דוּ געווען?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0537_a">
+          <speaker>שאפּסע</speaker>
+          <p>דיִ גאַנצע חתונה האָבּ אִיך דאָך אוֹיף געשפּיעלט.<lb/>וואָס אִיך האָבּ גֶעזֶעהֶען האָבּ אִיך אוִיסגֶעשׁרִיען.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0538_a">
+          <speaker>דזייק</speaker>
+          <p>וואָס האָסט דוּ געֶזעֶהען?</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0539_a">
+          <speaker>שאפסע</speaker>
+          <p>אַ חכם! אַז אִיך וֶועל אויִס זאָגען וֶועל אִיך דָאך זַיין...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0540_a">
+          <speaker>גימפּעל</speaker>
+          <p>אַ גולם!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0541_a">
+          <speaker>שאפּסע</speaker>
+          <p>דראָנג!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0542_a">
+          <speaker>דזייק</speaker>
+          <p>אוּן אִיהר, רבּ גימפּעל! וואָס זאָגט אִיהר (אברהמֶעלֶע<lb/>ערשיינט).</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0543_a">
+          <speaker>גימפּעל</speaker>
+          <p>וואָס זאָל אִיך זאָגען? אִיך קֶען אַייך זאָגען נאָר<lb/>דאָס איינע: אַז דיִ אוּנגליקליכע חנה'לֶע אִיז אוּנשוּלדוּג<lb/>אוּן ריין!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0544_a">
+          <speaker>אברהמעלע</speaker>
+          <p>זאָגט זשֶׁע מיר, רבּ גימפּעל! וויפיעל הָאט אִיהר<lb/>גֶעקרִיגֶען, אִיהר זאָלט אַזוי זאָגען?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0545_a">
+          <speaker>גימפּעל</speaker>
+          <p>פֶע? אברהמֶעלֶע! דאָס אִיז ניִשט שֶׁען! גימפּעל חַזן<lb/>מאַכען פאַר אַ ליגנער! אָ אברהמעלע! צוּ אוּנז אִין<lb/>שטיבּעל לאָז אִיך דִיך מֶעהר ניִשט אַריין.</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0546_a">
+          <speaker>שאפסע</speaker>
+          <p>דראנְג! וֶועט עֶר געֶהן אִין שול אַרייַן. אין שול בּין<lb/>אִיך דאָך...</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0547_a">
+          <speaker>גימפּעל</speaker>
+          <p>גולם!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0548_a">
+          <speaker>שאפּסע</speaker>
+          <p>דראָנג!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0549_a">
+          <speaker>דזייק</speaker>
+          <p>עֶזלעֶן! לאָזט מיר כאָטש אֵיין וואָרט רעֶדעֶן!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0550_a">
+          <speaker>שאפּסע</speaker>
+          <p>(ווייזט אויף גימפּלען) דאָס מַיינְט אִיהר אִיהם! יאָ?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0551_a">
+          <speaker>דזייק</speaker>
+          <p>וואָס האָט אִיהְר צוּ דעֶר אָרעמער יתומה? פאַר וואָס<lb/>האָט אִיהר זי אָנגעמאַכט אַזאַ שאַנדע? אִיך געֶה יֶעצְט<lb/>פוּן אִיהר! עֶס רייסט בּיים הערצען אָנצוּקוּקען וואָס אִיהר<lb/>האט געמאַכט פוּן אִיהר!<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="57" facs="30627549.jpg"/>
+        <fw type="pageNum">53</fw>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0552_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>אַ שֶׁענֶע, ריינע כּפּרה...</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0553_a">
+          <speaker>דזייק</speaker>
+          <p>האַלט דאָס מויל! דוּ יעהופיצערס טאָכטער!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0554_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>זֶעהט נאָר וויִ עֶר נעֶמט זיך אָן פאַר אִיהר!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0555_a">
+          <speaker>דזייק</speaker>
+          <p>אִיך מוּז מִיך פאַר אִיהְר זִיך אָננעמען, וַוייל אִיך ווֵייס<lb/>אַז דאָס קִינְד אִיז אוּנשוּלדיג! זִי אִיז אַ נאַכט-וואַנדלערין.<lb/>זִי אִיז שלאָפענדיג אַריין צוּ מיִר אִין ציִמעֶר, וֶוען אִיך<lb/>האָבּ שׁוֹין קיין צַייט געהאַט ווֶעמֶען צוּ וויִסעֶן טְהוּן, וַוייל<lb/>אִיך האָבּ זִיך געאיילט צוּם צוּג...</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0556_a">
+          <speaker>יוחנצי</speaker>
+          <p>שלאָפענדיג גאָר?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0557_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>נוּ, יוחנצי וואָס זאָגסט דוּ אַצוּנד?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0558_a">
+          <speaker>יוחנצי</speaker>
+          <p>וואָס זאָל אִיך אַייך זאָגען? אִיך זאָג אַייך נאָר, אַז<lb/>כל היוצא מפִיו שֶקֶר וכזב! עָל פּי דין בּיזט דוּ טרְפה אַ<lb/>עֶר אִיז טרפה!...</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0559_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>פאַר וואָס אִיך נאך?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0560_a">
+          <speaker>יוחנצי</speaker>
+          <p>אִיך מַיין זִי. (דזִייק וִויל אָבּגעהען)</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0561_a">
+          <speaker>אברהמעלע</speaker>
+          <p>פֶעטֶער! איין אויגענבּליק! איך וויל אַייך נאָר<lb/>עטוואָס בּעטען: פֶעטֶער! וֶוען אִיהְר זאָלט מיִר קעֶנעֶן<lb/>אויסווייזעֶן אַז אִיהר האָט געזאָגט די רֵיינֶע ווארהייט<lb/>וֶועל אִיך זִי פֶערְגֶעטֶערִין! אָ פֶעטֶער! גיעט מיִר צוּריק<lb/>מַיין חָנְהלֶען, אַזוי רֵיין אוּן אונשוּלדיג, ווִי זִי אִיז גֶעוועזֶע<lb/>פְריִהר עהדער אִיהר זעֶנְט געקוּמעֶן!...</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0562_a">
+          <speaker>דזייק</speaker>
+          <p>וואָס וִוילְסט דוּ בּיזט דוּ בּיים ריינעֶן זיִנעֶן?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0563_a">
+          <speaker>אברהמעלע</speaker>
+          <p>בּיים ריינען זיִנעֶן!... אִיך בּין דעֶר אַיינְצִיגֶער<lb/>אוּנגליקליכסטער אוֹיף דעֶר וֶועלְט! מען האָט בּיי מיִר<lb/>אַוועק גערויבּט דאָס בּעֶסטעֶ אוּן טהֵייעֶרְסטע וואָס אִיך<lb/>האָבּ פערמאגט!.. פֶעטֶער! זאָגט מיִר! וואָס אִינְטעֶרעֶסיִרְט<lb/>אִיהְר אַייך אַזוי מיִט חנה'לֶען?... אִיהר שׁווייגט! אָ! פער⸗<lb/>שׁאלְטֶען זאָל זַיין דיִ שֶׁעה אִין וֶועלְכֶער זִי האָט אוּנזער<lb/>שְׁוֶועל בּעֶטרעֶטעֶן! אָבּער ניין!... איִהר האָט עֶס מַיין לעֶבּעֶן<lb/>גערויבּט! אִיהְר האַט עֶס זִי געמאַכט אַלס בּעטריגערין!<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="58" facs="30627551.jpg"/>
+        <fw type="pageNum">54</fw>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0564_a">
+          <speaker>גימפּעל</speaker>
+          <p>אָ נֵיין קיִנְדעֶר! זִי אִיז ניִשט קֵיין בּעטריגערין! אִיהר<lb/>וועט אַלע מוּזֶען אָבּגעבּען דיין וחשבון פאַר גאָט אוֹיף<lb/>דעם וואָס אִיהר האָט זִי אַזוֹי אוּנגליקליך געמאַכט!<lb/>אִיהר זֶעהט ניִשְׁט צוּ אִיהְרֶע צרוֹת! אִיך זאָג אַייך אַז דיִ<lb/>גאָל קאָן פּלאַצען קוקענדיג אוֹיף דער אוּנגליקליכע נשמה!<lb/>עֶס צוּ נֶעמְט דאָס הארץ! אַ שׁטַיין קאָן צוּ גאָסען וועֶרעֶן.<lb/>זִי רֵייסְט בּיי מיִר אַרויס דֶעם ימִים נורְאִים-דִיגֶען אנקת<lb/>מסלְדך אוּן אִיך העבּ אָן אוֹיפן קול: אוֹי מקִימִי מֶעפר<lb/>דל! או מאשפּות ירִים אבִיוֹן!</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0565_a">
+          <speaker>שאפסע</speaker>
+          <p>(זינגט נאָך לויט דעם טאָן) דראָנג! דראנְג!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0566_a">
+          <speaker>גימפעל</speaker>
+          <p>(ווייזט אַ בּילד) אָט מיִט דֶעם בּילד טראָגט זִי זִיך אַרוּם<lb/>טאָג אוּן נאַכט. דריקט עֶס קושט עֶס, לאַכט אוּן וויינְט<lb/>אַז מֶען קאָן צוּ גאָסען וֶוערֶען. דאָס אִיז דאָס בּילד פוּן<lb/>אִיהר מוּטער עליה השלום!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0567_a">
+          <speaker>דזייק</speaker>
+          <p>ווייזט נאָר דאָס בּילד.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0568_a">
+          <speaker>גימפעל</speaker>
+          <p>נֵיין! אִיך טהאָר עֶס פוּן דעֶר האַנד ניִשט אַרויס<lb/>געבּען. עֶס אִיז בּיי אִיהר טהייערער ווִי אִיהר לעבּען.<lb/>אִיך מוּז עֶס אִיהר בּאלד צוּריק געֶבּעֶן. זי האָט עֶס אִין<lb/>אויפרענוּנג פֶערְלוירֶען, אוּן אִיך בּין טאַקעֶ געֶקוּמעֶן אִיהר<lb/>זוּכען דאָ אַהער, אוּם עֶס אִיהר אָבּ צוּ געֶבּעֶן! דאָס אִיז<lb/>אִיהר לעבּען...</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0569_a">
+          <speaker>דזייק</speaker>
+          <p>אִיך גיעבּ עֶס אַייך בּאלד צוּריק. (נעמט דאָס בּילד אוּן<lb/>גיעט אַ ווילְדֶען שְׁרֵיי אויס)</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0570_a">
+          <speaker>גימפעל</speaker>
+          <p>וואָס אִיז אַייך? מיליאָנטשיִק לעֶבּעֶן!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0571_a">
+          <speaker>דזייק</speaker>
+          <p>דאָס אִיז דאָס בּילד פוּן אִיהר מוּטער?... אַך! אסתר<lb/>מַיינֶע פרוֹי! חנְהלֶע מַיין טאָכטער! אִיך האָבּ גערעכענט<lb/>אַז אִיהר זֶענְט שׁוֹין לאַנג געשטאָרבּעֶן! אָ טאָכטער</p>
+        </sp>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0572_a">
+          <speaker>אלע</speaker>
+          <p>אַייער טאָכטער!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0573_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>חנהלֶע אִיז אַייער טאָכטער!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0574_a">
+          <speaker>דזִייק</speaker>
+          <p>זאָגט מיִר רב גימפּעל ווִי קוּמט זיי צוּ אַייך?<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="59" facs="30627553.jpg"/>
+        <fw type="pageNum">55</fw>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0575_a">
+          <speaker>גימפּעל</speaker>
+          <p>מיִט עֶטְלִיכֶע יאָהר צוּריק אִיז געקוּמען פוּן אַמעריקא<lb/>מַיין ווייבּס שׁוועסטֶער, אוּן מיִט אִיהר אִיז מיִט — געקוּמען<lb/>אסתר, עליה־השלום, מיִט אִיהר קִינְד חנהלע! אוֹיף לאַנגעֶ<lb/>יאָהר. זי האָט דֶערְצֶעהלְט אַז פאָהרענדיג קיין אַמעריקא.<lb/>אִיז דֶערְטְריִנְקעֶן געווֶארֶען אִיהר מאַן מיִט אַ קליין קיִנְד<lb/>אוּן האָט דאַדורך געמוּזט צוּריק קֶעהרֶען אַהיים. אָט<lb/>ניִשט לאַנג פאַר אַייעֶר קוּמען אִיז דיִ אָרעמע אסתר<lb/>נעבּעך געשטאָרבּען.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0576_a">
+          <speaker>דזייק</speaker>
+          <p>אָ אונְגלִיקלִיכֶע אסתר! אוּן אִיך דַיין מאַן מיִט דַיין קינְד<lb/>סעם, זֶענֶען ניצוּל גֶעווֶארֶען! אוּן אִיך האָבּ אַייך גע⸗<lb/>רעכֶענְט פאַר טויט! אָ אִיך אוּנגליקליכער!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0577_a">
+          <speaker>אברהמעלע</speaker>
+          <p>פֶעטֶער! פערצייהע!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0578_a">
+          <speaker>דזייק</speaker>
+          <p>אָ גאָט! וואָס האָט אִיהְר געמאַכט פוּן מַיין קיִנְד! וואוּ<lb/>אִיז זִי? ווייזט מיר! (עֶר לויפט אָבּ, אַברהמעלע נאָך אִיהם)</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0579_a">
+          <speaker>יוחנצי</speaker>
+          <p>וואָס זְשֶע זאָגט אִיהר?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0580_a">
+          <speaker>גימפּעל</speaker>
+          <p>אִיך זאָג ווי אַלע מאָל אַז זִי אִיז כּשר וישר! אִיך<lb/>מוּז אוֹיךְ לייפען (אָבּ)</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0581_a">
+          <speaker>יוחנצי</speaker>
+          <p>הַיינְט געֶה אוּן ריכט זיך גאָר אַז זיִ איז פוּן אוּנזער<lb/>פאמיליע!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0582_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>קוּם יוחנצי לאָמיִר אוֹיך אַהין געֶהן!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0583_a">
+          <speaker>יוחנצי</speaker>
+          <p>אוּן דיִ דרְשה?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0584_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>קוּם זאָג אִיך! האָסְט פעֶרְגעֶסעֶן אַז אִיך בּין<lb/>דעם יעהופיצערס טאָכטער? אִיך האָבּ בּאלד גֶעוויסט אַז<lb/>אִין זַיין זכות וֶועט זִיך אַלץ אויסהיילען. קוּם!</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0585_a">
+          <speaker>יוחנצי</speaker>
+          <p>שבּת שלפני הפּסח... (ביידע אב)</p>
+        </sp>
+        <sp who="#shabse" xml:id="SoreSheyndel_SP0586_a">
+          <speaker>שאפּסע</speaker>
+          <p>האַ האַ האַ! נישטאָ בנאמנות וֶוער עֶס זאָל לאַכעֶן.<lb/>אַ שֶׁענֶע ווֶעלְט, מֶען האַלט אִין אֵיין חוֹשׁד זיין. קוים זעהט<lb/>מֶען אַ פְרֵיילֵיין געֶהן מיִט אַ יוּנְגעֶן מאַן, האָט מען בּאלד<lb/>גְרויִסעֶ אוֹיגען, כאָטש עֶס אִיז ניִשְׁט גֶעשׁטויגֶען אוּן ניִשט<lb/>גֶעפלויגֶען! (עֶר זיִנְגְט ).<lb/>שרה שַׁיינְדֶעל<lb/>שרה שיינדעל<lb/>(עֶס שְׁטעלְט פאָר אַ פרייע געֶגֶענְד אוּנטעֶרעֶן שטאָט<lb/>דזִייק קוּמט אָן מיט אַ דאָקטאָר)</p>
+          <lg>
+            <head>1.</head>
+            <l>אִיך קאָן אַ יוּנגעס קינְד,</l>
+          </lg>
+          <lg>
+            <l>שֶׁען ווִי דאָס רֵייכסטֶע בּילד;</l>
+          </lg>
+          <lg>
+            <l>זִי אִיז זִיכֶער ריין פוּן זיִנְד</l>
+          </lg>
+          <lg>
+            <l>אוּן אִיז נאָר אַבּיסעל ווילד,</l>
+          </lg>
+          <lg>
+            <l>אוּן וַוייל זִי אִיז נאַאיוו.</l>
+          </lg>
+          <lg>
+            <l>ליעבּט זיִ אַ לאַך אַ שׁטיף.</l>
+          </lg>
+          <lg>
+            <l>קוים געֶהט זי מיִט אַ יוּנְגעֶן מאַן</l>
+          </lg>
+          <lg>
+            <l>עפוּנט זיך שוין גרויסע אויגען</l>
+          </lg>
+          <lg>
+            <l>אוּן מֶען אִיז בּאלד לחוֹב אִיהר דן!...</l>
+          </lg>
+          <lg>
+            <l>כאָטש ס'איז נישט געשטויגען</l>
+          </lg>
+          <lg>
+            <l>אוּן סְ'אִיז ניִשט געפלויגען.</l>
+          </lg>
+          <lg>
+            <head>2.</head>
+            <l>אוּן אָט דעֶר יוּנגער מאַן</l>
+          </lg>
+          <lg>
+            <l>אִיז בּראַוו און סאָליד:</l>
+          </lg>
+          <lg>
+            <l>אִיז בּאמת איידעל פייַן</l>
+          </lg>
+          <lg>
+            <l>נאָר פיִפיג אִיז עֶר ניִט...</l>
+          </lg>
+          <lg>
+            <l>אוּן אַמאָל טרעֶפט זיך פאָרט</l>
+          </lg>
+          <lg>
+            <l>אַז עֶר רעד אַ איבּעריג וואָרט</l>
+          </lg>
+          <lg>
+            <l>אוּן זאָגט וֶועמען דעם אמְת אַרויס</l>
+          </lg>
+          <lg>
+            <l>עֶסְט מֶען אִיהם בּאלד מיִט דיִ אוֹיגען</l>
+          </lg>
+          <lg>
+            <l>אוּן מֶערֶעד אוֹיף אִיהם אַלץ אוֹיס!...</l>
+          </lg>
+          <lg>
+            <l>כאָטש ס'איז נישט געשטויגען</l>
+          </lg>
+          <lg>
+            <l>אוּן סְ'אִיז ניִשְׁט געפלויגען.</l>
+            <stage type="setting">פערוואַנדלונג.</stage>
+          </lg>
+        </sp>
+        <pb n="60" facs="30627555.jpg"/>
+        <fw type="pageNum">56</fw>
+        <pb n="61" facs="30627557.jpg"/>
+        <fw type="pageNum">57</fw>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0587_a">
+          <speaker>דזייק</speaker>
+          <p>דאָ זאָגט מען, וואַנדעלט זִי הערוּם יעדען טאָג.<lb/>אָפְשֵר וועלען מיִר זִי דאָ אויך היינט טרעפן.</p>
+        </sp>
+        <sp who="#dktr" xml:id="SoreSheyndel_SP0588_a">
+          <speaker>דאקטאר</speaker>
+          <p>בּערוהיגט אַייך, הֶערְר דזִייק. דיִ קרֶענְק אִיז אַפילוּ<lb/>נִישְׁט אַזאַ גריִנְגע. דאָך אִיז זִי צוּם אויס-היילען. איבּער⸗<lb/>הויפּט וֶוען זִי אִיז געקוּמען, דוּרך אויף-רעגונג אוּן<lb/>פלֶעצלִיכֶעס אוּנגליק, קאָן זִי וִוידעֶר פֶערְשׁווינְדֶען בּיי<lb/>פּלעצליכעס גליק אוּן פרֵיידעֶן... (באָבּעֶלעֶ אוּן סעֶם איִן<lb/>אַ לאַנגען דאָק)</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0589_a">
+          <speaker>באבעלע</speaker>
+          <p>גוּט מאָרגען פעטער!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0590_a">
+          <speaker>סעם</speaker>
+          <p>האַדויודוּ פּאַפּאַ.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0591_a">
+          <speaker>דזייק</speaker>
+          <p>הֶערְר דאָקטאָר. דעֶר אִיז מַיין זוּהן, עֶר הָאט זִיך<lb/>אויסגעזוּכט אַ געליעבּטע אוּן וִויל מיִט אִיהר הייראַטהעֶן.<lb/>(צוּם דאָקטאָר) ווענְדֶעט זיי אָבּ!</p>
+        </sp>
+        <sp who="#dktr" xml:id="SoreSheyndel_SP0592_a">
+          <speaker>דאקטאר</speaker>
+          <p>ווִי? אַזוֹי יוּנג הייראַטהען? וַוייט ניר קיִנְדעֶר<lb/>אַייערעֶ צוּנגלעך.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0593_a">
+          <speaker>באבּעלע</speaker>
+          <p>וואָס וִויל עֶר?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0594_a">
+          <speaker>סעם</speaker>
+          <p>מיִר זאָלען אִיהם ווייזעֶן אוּנְזעֶרעֶ צוּנגען. (בּיידע ווייזען<lb/>די צונגען)</p>
+        </sp>
+        <sp who="#dktr" xml:id="SoreSheyndel_SP0595_a">
+          <speaker>דאקטאר</speaker>
+          <p>נֵיין קיִנְדעֶר! אִיהְר טהאָרט נאָך ניִשְׁט הייראַטהען!</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0596_a">
+          <speaker>באבּעלע</speaker>
+          <p>(וויינט) וואָס ווֶעלֶען מיִר אַצינד טהוּן?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0597_a">
+          <speaker>סעם</speaker>
+          <p>ווֶעלֶען מיִר הייראַטהען אָהן אַ דאָקטאָר. (צוּם דאָקטאָר)<lb/>סער דאָקטאָר! שאָ מיִ יוּ טאָנג.</p>
+        </sp>
+        <sp who="#dktr" xml:id="SoreSheyndel_SP0598_a">
+          <speaker>דאקטאר</speaker>
+          <p>וואָס זאָגט עֶר?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0599_a">
+          <speaker>דזייק</speaker>
+          <p>אִיהר זאָלט אִיהם ווייזעֶן אַייער צוּנג. (דאָקטאָר וויינט).</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0600_a">
+          <speaker>סעם</speaker>
+          <p>יוּ אַר עבּיק פוּעל! (לאַכט)</p>
+        </sp>
+        <sp who="#dktr" xml:id="SoreSheyndel_SP0601_a">
+          <speaker>דאקטאר</speaker>
+          <p>וואָס זאָגְט עֶר?<lb/>שרה שַׁיינְדֶעל</p>
+        </sp>
+        <pb n="62" facs="30627559.jpg"/>
+        <fw type="pageNum">58</fw>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0602_a">
+          <speaker>דזייק</speaker>
+          <p>אַז אִיהְר זֶענְט אַ גְרויִסעֶר נאַר. האַ האַ האַ! עֶר אִיז אַ<lb/>גְרויִסעֶר שַׁיינֶעץ. (צוּ סעם'ן) עֶר! סעֶם אוֹיף אַנ'עֶלְטֶערְן<lb/>מֶענְשֶען טהאָר מען דאָס ניִשט זאָגען.</p>
+        </sp>
+        <sp who="#dktr" xml:id="SoreSheyndel_SP0603_a">
+          <speaker>דאקטאר</speaker>
+          <p>עֶס מאַכט ניִשט, עֶס מאַכט ניִשט,</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0604_a">
+          <speaker>דזייק</speaker>
+          <p>סעֶם! וַוייסְט אַז דוּ האָסְט אַ שׁוועסטֶער חנהלֶע?</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0605_a">
+          <speaker>סעם</speaker>
+          <p>קאָם אַן פּאַפּאַ! וִויר וִויל גאָהן טוּ האוּר. (עֶס קוּמען אָן<lb/>שרה-שַׁיינְדֶעל, יוחנְצִי, אברהמעֶלעֶ גיִמְפּעל אוּן געֶסְט אוּן דעֶר<lb/>נאָך חנהלע)</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0606_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>נוּ? זי איז נישטאָ? (חנהלע קומט אָן)</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0607_a">
+          <speaker>חנהלע</speaker>
+          <p>(וואַנדלענד) מוּטער! וואוּ בּיזט דוּ? דעֶר פָאטער לעבּט!<lb/>קוּם צוּריק! (דְזַייק אוּן אברהמֶעלֶע וויִלעֶן צוּ לויפען, דעֶר<lb/>דאָקטער האַלט זַיי אוֹיף)</p>
+        </sp>
+        <sp who="#dktr" xml:id="SoreSheyndel_SP0608_a">
+          <speaker>דאקטאר</speaker>
+          <p>רוהיג! ניִשט ראַשעֶנד זי איבּעֶר וועֶקעֶן. לאַנגזאַם!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0609_a">
+          <speaker>דזייק</speaker>
+          <p>(שוואַך) טאָכטער! טאָכטער! דַיין פָאטֶער! דַיין אברהמע⸗<lb/>לע!</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0610_a">
+          <speaker>חנהלע</speaker>
+          <p>(ערוואכט צוּ בּיסלעך) מַיין פָאטֶער?! מַיין אברהמֶעלֶע?!<lb/>וואוּ איז ער?</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0611_a">
+          <speaker>אברהמעלע</speaker>
+          <p>(פאַלט פאַר איהר אויף די קניע) פֶערְצַייע! חנהלע<lb/>אִיך האָבּ גֶעזִינְדִיגט גֶעגֶען דיִר!</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0612_a">
+          <speaker>חנהלע</speaker>
+          <p>אברהמֶעלֶע! אוֹיף דיִ קניע? פאַר אַ בּעטריגערין? פאַר<lb/>אַנ'אויסגעלאַסענע...</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0613_a">
+          <speaker>דזייק</speaker>
+          <p>פֶערְצַייע אִיהם טאָכטער! עֵר אִיז אוּנשוּלדיג!</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0614_a">
+          <speaker>חנהלע</speaker>
+          <p>אברהמֶעלֶע! שְׁטֶעה אוֹיף! אִיך פֶערְצַייע דיִר!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0615_a">
+          <speaker>אברהמעלע</speaker>
+          <p>פֶערְצַייעסט? ווער שְׁטעֶהט אוֹיף אַך ווי גליקליך!<lb/>(אומאַרמען זיך)</p>
+        </sp>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0616_a">
+          <speaker>חנהלע</speaker>
+          <p>מַיין ליעבּער אברהמעלע!</p>
+        </sp>
+        <sp who="#avromele" xml:id="SoreSheyndel_SP0617_a">
+          <speaker>אברהמעלע</speaker>
+          <p>מַיין ליעבּע חנהלע!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0618_a">
+          <speaker>סעם</speaker>
+          <p>מַיי סִיסטֶער?</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0619_a">
+          <speaker>דזייק</speaker>
+          <p>יאָ קינד.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0620_a">
+          <speaker>סעם</speaker>
+          <p>(צוּ געהענד צו חנהלע) יוּ אַר מַיי סיִסטער?<lb/>שרה שיינדעל<lb/>(קישען זיך)</p>
+        </sp>
+        <pb n="63" facs="30627561.jpg"/>
+        <fw type="pageNum">59</fw>
+        <sp who="#khnhle" xml:id="SoreSheyndel_SP0621_a">
+          <speaker>חנהלע</speaker>
+          <p>טהייערער בּרוּדער!</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0622_a">
+          <speaker>סעם</speaker>
+          <p>מיין סיסטער!<lb/>(פויזע, נאַכהער געהט צוּריק סעֶם צוּם פאטער, בּאבּעֶלעֶ אוּן<lb/>חנהלע קושען זיך)</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0623_a">
+          <speaker>סעם</speaker>
+          <p>פּאַפּאַ! בּאבּעלע זאָגט דאָס זִי מִיך ליעבּ.</p>
+        </sp>
+        <sp who="#babele" xml:id="SoreSheyndel_SP0624_a">
+          <speaker>באבעלע</speaker>
+          <p>(שלעפט אִיהם אַוועק) וואָס טהוּסט דאָ? אִיך שֶׁעם<lb/>זִיך!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0625_a">
+          <speaker>דזייק</speaker>
+          <p>אִיז דאָס וואָהר? זאָג זשֶׁע עֶס פאַר אַלעמען.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0626_a">
+          <speaker>יוחנצי</speaker>
+          <p>שבּת שׁלפני הפסח!</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0627_a">
+          <speaker>דזייק</speaker>
+          <p>גענוּג שׁוֹין מיִט דַיין שבּת שׁלְפנִי הפסח! וואָס זאָגסטוּ<lb/>צוּ דעם פּאָאָרעֶל?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0628_a">
+          <speaker>יוחנצי</speaker>
+          <p>אַ וואוילער יונגעל.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0629_a">
+          <speaker>סעם</speaker>
+          <p>אָנקעל. איי וואָנט יוּ שעלבּיי מיי פאדערגלא</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0630_a">
+          <speaker>דזייק</speaker>
+          <p>נוּ.. אוּן זִי שׁוועגֶערִין, רבּיצין וואָס זאָגען זִי?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0631_a">
+          <speaker>שרה-שיינדעל</speaker>
+          <p>פאַר וואָס לאָזט אִיהְר אִיהם רעֶדעֶן גוישׁ?<lb/>מֶען פֶערְשְׁטֶעהט דאָך אִיהְם קיין אֵיין וואָרט נישט.</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0632_a">
+          <speaker>גימפּעל</speaker>
+          <p>פאַר וואָס פֶערְשְׁטֶעה אִיך אִיהם! עֶר וִויל נעמען<lb/>אַייער טאָכטער פְריִהר פאַר אַ כּלה אוּן דעֶר נאָך פאַר אַ<lb/>ווײַבּ.</p>
+        </sp>
+        <sp who="#sem" xml:id="SoreSheyndel_SP0633_a">
+          <speaker>סעם</speaker>
+          <p>דעט רייט.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0634_a">
+          <speaker>דזייק</speaker>
+          <p>אַלזוֹי שׁוועגֶערִין וואָס זאָגען זיי?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0635_a">
+          <speaker>שרה-שיינדעל</speaker>
+          <p>יוחנצי! וואָס זאָגסט דוּ?</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0636_a">
+          <speaker>יוחנצי</speaker>
+          <p>רבּ גיִמְפּלל וואָס זאָגְט אִיהר?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0637_a">
+          <speaker>גימפּעל</speaker>
+          <p>אִיך זאָג עֶס זאָל זַיין מיִט מֶזל אוּן בּרכה אִין אַ גלִיק⸗<lb/>ליכער שֶׁעָה.</p>
+        </sp>
+        <sp who="#dzeyk" xml:id="SoreSheyndel_SP0638_a">
+          <speaker>דזייק</speaker>
+          <p>אַלזוי מַיינֶע פרייַנד! מאָרגען פֵייערען מיִר דיִ האכצַייט<lb/>פוּן מַיין טאָכטער מיִט אברהמעֶלעֶן, אוּן גלייכצייטיִג אוֹיך<lb/>דיִ פערלויבּוּנג פוּן מיין סעֶם'ן מיִט בּאבּעֶלעֶן. בּלייַבּט<lb/>אַזוֹי?</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0639_a">
+          <speaker>שרה-שיינדעל</speaker>
+          <p>נוּ רבּי?<lb/>שרה שיינְדֶעל</p>
+        </sp>
+        <pb n="64" facs="30627562.jpg"/>
+        <fw type="pageNum">60</fw>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0640_a">
+          <speaker>יוחנצי</speaker>
+          <p>נוּ רבּיצין?</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0641_a">
+          <speaker>גימפעל</speaker>
+          <p>נוּ זאָגט שׁוֹין יאָ אִין אַ מזלְדִיגֶער שֶׁעה!</p>
+        </sp>
+        <sp who="#sore_sheyndel" xml:id="SoreSheyndel_SP0642_a">
+          <speaker>שרה שיינדעל</speaker>
+          <p>זאָל זַיין מיִט מזל אוּן בּרכה. דעֶר יעהופיצער<lb/>זאָל זיך מיהען.</p>
+        </sp>
+        <sp who="#rb_iukhntsi" xml:id="SoreSheyndel_SP0643_a">
+          <speaker>יוחנצי</speaker>
+          <p>לאָז זַיין מיִט מַזָל!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0644_a">
+          <speaker>גימפּעל</speaker>
+          <p>מיִט מזל אוּן מִיט בּרכה פאַר אוּנז אַלע!</p>
+        </sp>
+        <sp who="#alle" xml:id="SoreSheyndel_SP0645_a">
+          <speaker>אלע</speaker>
+          <p>מַזָל טוֹב! מזל טוֹב!</p>
+        </sp>
+        <sp who="#gimpel" xml:id="SoreSheyndel_SP0646_a">
+          <speaker>גימפּעל</speaker>
+          <p>נוּ לאָמיִר געֶהן אַ טֶענְצֶעל!<lb/>(אַלע זיִנְגעֶן) זַייט אַייך מְשׁמְח, טאנצט קיִנְדעֶר!<lb/>לכבוד אוּנזער רבּין אוּנְזעֶר גלאנץ<lb/>(און זאָ ווייטער ווי אויבּען)<lb/><stage type="setting">פאָרהאַנג.</stage></p>
+        </sp>
+        <trailer>ענדע</trailer>
+        <pb n="65" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_65.jpg"/>
+        <pb n="66" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_66.jpg"/>
+        <pb n="67" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_67.jpg"/>
+        <pb n="68" facs="Sore Sheyndel - lebens bild mit gezang un tants - Sure Šejndel - pesa v 3-h dejstviâh - 1907 -1-BN_1.469.230_A_0001_Page_68.jpg"/>
+      </div>
+    </body>
+  </text>
+</TEI>

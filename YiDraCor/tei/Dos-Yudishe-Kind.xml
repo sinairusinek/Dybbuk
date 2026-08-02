@@ -1,0 +1,3651 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-dos-yudishe-kind">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Das Yudishe Kind</title>
+        <title type="sub">Das Yudishe Kind</title>
+        <author>Joseph Lateiner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>Das Yudishe Kind</title>
+          <author>Joseph Lateiner</author>
+          <publisher>Farlag "Kultur" (Dzika 13)</publisher>
+          <pubPlace>Warsaw</pubPlace>
+          <date>1911</date>
+          <note type="repository">Biblioteka Narodowa (Polona)</note>
+          <idno>II 63.395</idno>
+          <idno type="transkribus">https://app.transkribus.org/collection/18874/doc/828424</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="graf_petefi">
+            <persName>גראף פּעטעפי</persName>
+          </person>
+          <person xml:id="vladislav">
+            <persName>וולאדִיסלאוו</persName>
+          </person>
+          <person xml:id="zaslavek">
+            <persName>זאסלאוועק</persName>
+          </person>
+          <person xml:id="hofnar">
+            <persName>הוִיפ⸗נאָר</persName>
+          </person>
+          <person xml:id="graf_zezemir">
+            <persName>גראף זֶעזֶעמִיר</persName>
+          </person>
+          <person xml:id="rov">
+            <persName>רב</persName>
+          </person>
+          <person xml:id="henele">
+            <persName>הֶענֶעלֶע</persName>
+          </person>
+          <person xml:id="shmerl">
+            <persName>שׁמֶערְל</persName>
+          </person>
+          <person xml:id="shprintse">
+            <persName>שׁפרִינְצֶע</persName>
+          </person>
+          <person xml:id="dyener_rov">
+            <persName>דִיענֶער</persName>
+          </person>
+          <person xml:id="marta">
+            <persName>מארְטהא</persName>
+          </person>
+          <person xml:id="kenig_zigmund">
+            <persName>קֶענִיג זיגמוּנד</persName>
+          </person>
+          <person xml:id="kerker_meyster">
+            <persName>קֶערְקֶער⸗מַייסטֶער</persName>
+          </person>
+          <person xml:id="dyener">
+            <persName>אַ דִיענֶער</persName>
+          </person>
+          <person xml:id="gayst">
+            <persName>אַ גַייסט</persName>
+          </person>
+          <person xml:id="kor">
+            <persName>קאהר</persName>
+          </person>
+          <personGrp xml:id="beyde">
+            <name>ביידע</name>
+          </personGrp>
+          <person xml:id="yudn">
+            <persName>יוּדֶען</persName>
+          </person>
+          <person xml:id="grafn">
+            <persName>גראפֶען</persName>
+          </person>
+          <personGrp xml:id="alle">
+            <name>אלע</name>
+          </personGrp>
+          <personGrp xml:id="chor">
+            <name>קאהר</name>
+          </personGrp>
+          <personGrp xml:id="eyner">
+            <name>איינער</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="YudisheKind" type="YudisheKind">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#graf_petefi">גראף פּעטעפי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#vladislav">וולאדִיסלאוו</role>
+        </castItem>
+        <castItem>
+          <role corresp="#zaslavek">זאסלאוועק</role>
+        </castItem>
+        <castItem>
+          <role corresp="#hofnar">הוִיפ⸗נאָר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#graf_zezemir">גראף זֶעזֶעמִיר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#rov">רב</role>
+        </castItem>
+        <castItem>
+          <role corresp="#henele">הֶענֶעלֶע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shmerl">שׁמֶערְל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shprintse">שׁפרִינְצֶע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dyener_rov">דִיענֶער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#marta">מארְטהא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#kenig_zigmund">קֶענִיג זיגמוּנד</role>
+        </castItem>
+        <castItem>
+          <role corresp="#kerker_meyster">קֶערְקֶער⸗מַייסטֶער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dyener">אַ דִיענֶער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#gayst">אַ גַייסט</role>
+        </castItem>
+        <castItem>
+          <role corresp="#kor">קאהר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#yudn">יוּדֶען</role>
+        </castItem>
+        <castItem>
+          <role corresp="#grafn">גראפֶען</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="0001_OTYyMjEzMDA.97285716.jpg"/>
+      <pb n="2" facs="0002_OTYyMjEzMDA.97285719.jpg"/>
+      <pb n="3" facs="30804049.jpg"/>
+      <stage type="delivery">פּערזאנען.</stage>
+      <div type="act" n="1" xml:id="YudisheKind_Act1">
+        <head>ערשטער אקט.</head>
+        <sp who="#kor" xml:id="YudisheKind_SP0001_a">
+          <speaker>קאָהר</speaker>
+          <p><stage type="business">(בּויעֶרעןֶ)</stage>:</p>
+          <lg>
+            <l>מיִטלייַד מיִט אוּנז, אָה, דו מעֶכֿטִיגעֶר גראַף,</l>
+          </lg>
+          <lg>
+            <l>לאָז פֿוּן דיִ צרוֹת שׁוֹין נעֶהמעֶן אַ סוֹף</l>
+          </lg>
+          <lg>
+            <l>פֿון דיִ צרוֹת אַ סוֹף.</l>
+          </lg>
+          <lg>
+            <l>האָבּ רחמנוֹת, אוֹיך מאַך פֿוּן אוּנז ניִשט קיַין העֶל,</l>
+          </lg>
+          <lg>
+            <l>מיִר וויִלעֶן ניִשט שׁטאַרבּעֶן, מיִר וויִלעֶן נאָך לעֶבּעֶן.</l>
+          </lg>
+          <lg>
+            <l>דעֶרפֿאַר וועֶט דיִר גוּטעֶס פֿיִעל דעֶר ליִעבּעֶר גאָט געֶבּעֶן.</l>
+          </lg>
+          <lg>
+            <l>האָבּ מיטליַיד מיִט אוּנז.</l>
+          </lg>
+          <lg>
+            <l>עֶרבּאַרם דיִך, האָב מִיטליַיד מיִט אוּנז.</l>
+          </lg>
+          <lg>
+            <l>עֶרבּאַרם דיִך, האָבּ מיִטליַיד מיִט אוּנז.</l>
+          </lg>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0002_a">
+          <speaker>פעֶטיִפֿיִ</speaker>
+          <p/>
+          <lg>
+            <l>אוּמזאָנסט, אוּמזאָנסט איִז אייַעֶר בּעֶטעֶן,</l>
+          </lg>
+          <lg>
+            <l>פֿאָרט, זאָג איִך, איִהר זאָלט אָבּטרעֶטעֶן,</l>
+          </lg>
+          <lg>
+            <l>סאַקראַמעֶנטיִ! סאַקראַמעֶנטיִ!</l>
+          </lg>
+          <lg>
+            <l>פֿאַלש, פֿאַלש איִז אייַעֶר בּעֶטעֶן,</l>
+          </lg>
+          <lg>
+            <l>איִהר זאָלט שנעֶל פֿון דאַנעֶן אָבּטרעֶטעֶן.</l>
+          </lg>
+          <lg>
+            <l>פֿאָרט, פאָֿרט, פֿון דיִעזעֶן אָרט,</l>
+          </lg>
+          <lg>
+            <l>שנעֶל פֿאָרט פֿוּן היִער.</l>
+          </lg>
+        </sp>
+        <sp who="#kor" xml:id="YudisheKind_SP0003_a">
+          <speaker>קאָהר</speaker>
+          <p><lb/>דאָס יוּדִישֶׁע קִינְד</p>
+          <lg>
+            <l>אוּמזאָנסט אוּנזעְר וויִיִנעֶן,</l>
+          </lg>
+          <lg>
+            <l>אוּמזאָנסט אונזעֶר מיִה.</l>
+          </lg>
+          <lg>
+            <l>זײַן העֶרץ איִז פֿעֶרשטיִיִנעֶרט,</l>
+          </lg>
+          <lg>
+            <l>עֶר גיִט, עֶר גיִט אוּנז קיַין רוּה.</l>
+          </lg>
+          <lg>
+            <l>מיִר בּעטען דיִך, גאָט, דֶערְהֶער דאָס געבּעט.</l>
+          </lg>
+          <lg>
+            <l>הֶער אוּנזער וויִיִנעֶן, הֶער אוּנזעְר קלאגֶען,</l>
+          </lg>
+          <lg>
+            <l>שִׁיק אוּנזער הִילְף, נִיט שפּעט.</l>
+          </lg>
+        </sp>
+        <pb n="4" facs="0004_OTYyMjEzMDA.97285729.jpg"/>
+        <fw type="pageNum">6</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0004_a">
+          <speaker>פעֶטיִפֿיִ</speaker>
+          <p><lb/>דָא דיאַבּלא, פאָרט פוּן היִער.</p>
+        </sp>
+        <sp who="#kor" xml:id="YudisheKind_SP0005_a">
+          <speaker>קאָהר</speaker>
+          <p><lb/>אָה, עֶר פאלְגט אוּנז אָהן אַ שִׁיער<lb/>אָה, אָהן אַ שִׁיער.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0006_a">
+          <speaker>פּעטיפי</speaker>
+          <p>סאַקראַמענט! מיִטלייַד פֶערְלאנְגֶען זיַיי אוּן דעֶר<lb/>צַייט, וֶוען איִך האָבּ נויטִיג אַזוי פֿיִעל גֶעלְד, אָה נֵיין, קיַין מיִטלייַד<lb/>מיִט אַייך! קיַין מיִטלייַד מיִט זַיי! האָבּען מיִר קיַין גֶעלְד ניִשט<lb/>דאַרפען זַיי קיַין מיִטלייַד ניִשט, אָבּוואהל מֶען זאָגט, אַז אַלע אָרימע<lb/>לֵייט האבּען גוּטע הֶערְצֶער. <stage type="business">(רוּפֿט:)</stage> זאַסלאַוועק! זאַסלאַוועק!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0007_a">
+          <speaker>זאַסל</speaker>
+          <p><stage type="business">(הִינְטֶער דיִ קולִיסֶען:)</stage> צוּם בּעפעהל, גראַף!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0008_a">
+          <speaker>פּעטעפי</speaker>
+          <p>גֶעה זאָפאָרט אוּן בּרענג מיִר אַהער דֶעם יוּדי⸗<lb/>שֶׁען רב.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0009_a">
+          <speaker>זאַסל</speaker>
+          <p>גלֵייך, גראַף!</p>
+        </sp>
+        <sp who="#hofnar" xml:id="YudisheKind_SP0010_a">
+          <speaker>הוִיף⸗נאָר</speaker>
+          <p>סְ'אִיז אַ לִיגֶען! ניִשט גלֵייך גֶעהט דעֶר זאַ⸗<lb/>סלאַוועק, נאָר. גאָר קרוּם! דעֶר שנאפּס פִיהרְט אִיהם אייבּיג פוּן<lb/>גלֵייכֶען וועג אַראָבּ!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0011_a">
+          <speaker>פֶעטֶעפִי</speaker>
+          <p>דיִ דוּמע בּויערן זוּכען מיִטלייַד, אוּן איִך זוּך<lb/>גֶעלְד, אוּן זֶעהְר פֿיִעל גֶעלְד.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0012_a">
+          <speaker>וולאַד</speaker>
+          <p>גוּט⸗מאָרגען. פּאפאַ!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0013_a">
+          <speaker>פּעטעפי</speaker>
+          <p>גוּט⸗מאָרגען, מַיין זוּהן, דוּ קוּמסט פֿון דעֶר<lb/>יאַגד?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0014_a">
+          <speaker>וולאַד</speaker>
+          <p>יאָ, פָאטֶער. איִך האָבּ הַיינְט אַ גְלִיקְלִיכֶען ייאַגד<lb/>גֶעהַאט.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0015_a">
+          <speaker>פֶעטֶעפִי</speaker>
+          <p>בּראַוואָ, עֶרְשְׁט אִין דעֶר לֶעצטֶער צַייט האבּ<lb/>איִך ערפאַהרען, וואָס פאַר אַ קוּנסטפאַלער שִׁיסֶער דוּ בּיזט.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0016_a">
+          <speaker>וולאַד</speaker>
+          <p>מיִר שַׁיינְט, פָאטֶער, אַז דאָס איִז דיִר שׁוֹין לאַנג<lb/>בּעקאנט.</p>
+        </sp>
+        <sp who="#hofnar" xml:id="YudisheKind_SP0017_a">
+          <speaker>הויף⸗נאַר:</speaker>
+          <p>יאָ, דאָס איִז אוּנז שׁוֹין לאַנג בּעקאנט...</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0018_a">
+          <speaker>פֶעטֶעפִי</speaker>
+          <p>יאָ, מַיין זוּהן, בּיז הַיינְט האָבּ איִך גֶעוואוסט.<lb/>אַז דוּ קֶענְסט שִׁיסֶען וואלְד-טהִיערֶע, יֶעצְט אָבּער בּין איִך צוּ דעֶר<lb/>איבּערצייגוּנג געקוּמען, אַז איִך מֶענְשֶׁען-הֶערְצֶער טְרֶעפֶען הַיינֶע<lb/>קוילֶען.</p>
+        </sp>
+        <pb n="5" facs="0005_OTYyMjEzMDA.97285735.jpg"/>
+        <fw type="pageNum">7</fw>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0019_a">
+          <speaker>וולאד</speaker>
+          <p>איִך פֶערְשְׁטֶעה דיִך ניִשט, פאָטער?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0020_a">
+          <speaker>פּעט</speaker>
+          <p>איִך וֶועל עֶס דיִר ערְקלֶערֶען, עֶס איִז דיִר זֶעהְר נוִיטִיג<lb/>צוּ וויִסעֶן; נֶעהם פּלאץ. גֶעדֶענְקסט, מַיין זוּהן, דיִ שֶׁענֶע טעאָפייא<lb/>זֶעזֶעמִיר?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0021_a">
+          <speaker>וולאַד</speaker>
+          <p>דיִ טאָכְטֶער פוּן דֶעם קעניגס-ראט-געבּער, פירְסט<lb/>זֶעזֶעמִיר!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0022_a">
+          <speaker>פּעט</speaker>
+          <p>יאָ, מַיין קִינְד. זאָג מיִר, איִז זִי ווירְקלִיך אַזוי שֶׁען.<lb/>ווִי מֶען ערְצֶעהלְט?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0023_a">
+          <speaker>וולאד</speaker>
+          <p>יאָ, זִי איִז זֶעהְר אַ שֶׁענֶע! אָבּער וואַצוּ דִיעזֶע פראַגע,<lb/>פּאַפּא?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0024_a">
+          <speaker>פֶעט</speaker>
+          <p>נוּר גֶעדולְד, מַיין זוּהן, אוּן איִך וֶועל דיִר אִין קוּרצען<lb/>אַלעס ערְצֶעהלֶען: דעֶר פִירְסט זֶעזֶעמִיר בּרענגט אַהער זַיין טאָכְטֶער.<lb/>אוּם זִי מיִט דיִר צוּ פערלאבּען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0025_a">
+          <speaker>וולאַד</speaker>
+          <p>וואָס?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0026_a">
+          <speaker>פֶעט</speaker>
+          <p>איִך האָבּ גֶעוואוסט, מַיין זוּהן, אַז דאָס וועֶט דיִך<lb/>איבּערראַשען, דוּ מוּזט אָבּער זַיין גֶעפאסט, דאָס גְרויִסעֶ גלִיק רוּהיג<lb/>צוּ עמפּפאַנגען. יאָ, זאָ אֵיין גלִיק טרֶעפט אַיינֶעס פוּן מִילִיאנֶען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0027_a">
+          <speaker>וולאַד</speaker>
+          <p>פָאטֶער, דַיינֶע לֶעצְטֶע ווערְטֶער קלִינְגֶען אִין מַיינֶע<lb/>אִיערֶען רעטזעלהאפֿטער, אַלס דיִ ערְשׁטֶע, איִך מַיין דוּ מאַכסט<lb/>שפּאס.</p>
+        </sp>
+        <sp who="#hofnar" xml:id="YudisheKind_SP0028_a">
+          <speaker>נאַר</speaker>
+          <p>וואָס? וֶוער וואַגט דאָס שפּאס צוּ מאַכען? דאָס איִז<lb/>דָאך נאָר מַיין זאַך גנֶעדִיגֶער גראַף! איבּ איִהר וויִלְט ווערֶעץ<lb/>אַייער אַייגֶענֶער הויף-נאָר, זאָגט עֶס מיִר פְריִהעֶר, וֶועל איִך וֶוערֶען<lb/>מַיין אַייגֶענֶער גראַף.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0029_a">
+          <speaker>פּעט</speaker>
+          <p>קיַין שפּאס, מַיין זוּהן. איִך האָבּ פערשפּראַכען הֶעם<lb/>פִירְסט זֶעזֶעמִיר, אַז דוּ וֶועסְט זַיין טאָכְטֶער הייראַטען. דאָס מַיידֶעל<lb/>איִז אִין דיִר פערליעבּט איבּער דיִ אויערְן. אַ בּעווייז האסטוּ, אַז<lb/>דעֶר גֶעלְדְ-גַייצִיגֶער פִירְסט איִז בּערייט אָבצוגעבּען מַיינֶע וועקסלֶען<lb/>אִויף 2 מיליאָן גולְדֶען, וֶוען דוּ וֶועסְט זַיין שוויגער-זוּהן וֶוערֶען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0030_a">
+          <speaker>וולאַד</speaker>
+          <p>אוּן דוּ האָסט דאָס אִיהם פערשפּראַכען?</p>
+        </sp>
+        <pb n="6" facs="0006_OTYyMjEzMDA.97285740.jpg"/>
+        <fw type="pageNum">8</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0031_a">
+          <speaker>פעֶט</speaker>
+          <p>גאנִץ גֶעוויס, איִך האָבּ זאָגאַר ניִשט גֶעפוּנֶען פאַר<lb/>נוִיטִיג צוּ פְרֶעגֶען, אויבּ דוּ ווילִיגסט אֵיין, איִך האָבּ דיִך, גֶעוָואלְט<lb/>איבּערראַשען.</p>
+        </sp>
+        <sp who="#hofnar" xml:id="YudisheKind_SP0032_a">
+          <speaker>נאַר</speaker>
+          <p>אייַעֶר פָאטֶער הָאט אַייך גֶעוָואלְט איבּערראשען, נאָר<lb/>מִיך דַאכְט זִיך, אַז עֶר האָט זִיך אַליין איבּערגעריסען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0033_a">
+          <speaker>וולאַד</speaker>
+          <p>אויבּ אַזוי פָאטֶער, וִויל איִך דיִך אוֹיך איבּער⸗<lb/>ראַשעֶן.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0034_a">
+          <speaker>פּעט</speaker>
+          <p>לא'מִיך הֶערֶען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0035_a">
+          <speaker>וולאַד</speaker>
+          <p>איִך וֶועל דיִ פִירְסטִין טֶעאפִילִיע ניִשט הייראַטען.</p>
+        </sp>
+        <sp who="#hofnar" xml:id="YudisheKind_SP0036_a">
+          <speaker>נאַר</speaker>
+          <p>איִך, אוֹיך ניִשט!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0037_a">
+          <speaker>פֶעט</speaker>
+          <p>שׁטִיל, ווִי וואַגסטוּ אַזוי צוּ רעֶדעֶן? ווייסטו, אַז וֶוען<lb/>דוּ וֶועסְט צוּ דעֶר פּאַרטיי נִיט אַיינוויילִיגֶען וועֶט אוּנז דעֶר פִירְסט<lb/>זֶעזֶעמִיר רוּאיגירען. נאַ, לֶעז דֶעם בּריעף, וועסטוּ אַליין אַיינְזֶעהן.<lb/>אַז דוּ מוּט זַיין שׁוויגֶער=זוּהן וֶוערֶען <stage type="business">(דֶערְלאנְגט דֶעם בּרִיעף).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0038_a">
+          <speaker>וולאַד</speaker>
+          <p>איִך בּין נֵייגִיערִיג צוּ זעֶהן, וואָס דעֶר אוּנמענש שרייבּט<lb/>דיִר.</p>
+        </sp>
+        <sp who="#hofnar" xml:id="YudisheKind_SP0039_a">
+          <speaker>נאַר</speaker>
+          <p>דיִ זאַך וֶוערְט פאַר מיִר צוּ עֶרְנְסט. מֶען דַארְף זִיך<lb/>אָבּטראָגען. זִי ווֶעלֶען זִיך שׁוֹין נֶעהמַען פאַר דיִ גֶעזֶער אָהן מיִר...<lb/><stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0040_a">
+          <speaker>וולאַד</speaker>
+          <p><stage type="business">(לעֶזט:)</stage> פֿרייַנד פּעטיפי. לֵיידֶער איִז אוּנזער מיִר<lb/>צוּ שׁטִירְצֶען דֶעם לוּמפּיגען קֶענִיג אָהן ערפֿאָלג געבּלייבּען... וואָס?<lb/>מַיין פָאטֶער אַ לאַנדס=פֶערְרֶעטֶער? <stage type="business">(לֶעזט:)</stage> שאַדע אָן דיִ מִילִיאנֶען,<lb/>וואָס מיִר בּיידע האָבּען פֶערְצֶעהרְט, אָבּער נאָך לעבּט אִין מיִר דיִ<lb/>האָפנוּנג, אַז מיִר ווֶעלֶען אוּנזער צִיעל ערְרֵייכֶען. יֶעצְט פֿרייַנד, מוּז<lb/>איִך דיִך עראִינֶערְן אָן דיִ 2 מיליאָן גוּלדען, וואָס דוּ בּיזט מיִר<lb/>שׁוּלְדִיג. דַיין אָנטוואָרט, אַז דוּ האָסְט יֶעצְט קיַין גֶעלְד, איִז לֶעכֶער=<lb/>לִיך. איִך וֶועל גֶעצוואונְגֶען זַיין, אַלע דַיינֶע גִיטֶער צוּ פֶערְקוִיפֶען.<lb/>דאָס אֵיינְצִיגֶע, וואָס קאָן דיִך רֶעטֶען, איִז דיִ פערבּינדוּנג פוּן אוּנְזעֶרעֶ<lb/>קיִנְדעֶר, דֶען מַיין טאָכְטֶער ליעבּט דַיין זוּהן. דַיין אָנטוואָרט עֶר=<lb/>וואַרטע איִך שנעֶל. דַיין פֿרייַנד זֶעזֶעמִיר... האָסְט שׁוֹין דֶעם בּריעף<lb/>בּעאַנטוואָרטעט?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0041_a">
+          <speaker>פֶעטֶעפִי</speaker>
+          <p>גֶעוויס, מַיין זוּהן, איִך האבּ אִיהם הַיילִיג פֶער=<lb/>שפּראכען, אַז דוּ וֶועסְט זַיין טאָכטער הייראַטען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0042_a">
+          <speaker>וולאַד</speaker>
+          <p>וֶוען אַזוי, ליעבּער פאָטער, וועסטוּ יֶעצְט מוּזֶען דַיין<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>ערשפּרעכיין צוּריקרוּפען, וַוייל זֶעזֶעמִירְ'ס טאָכְטֶער וֶועל איִך ניִשט<lb/>הַייראטֶען <stage type="business">(בּעהאַלט דֶעם בּריעף).</stage></p>
+        </sp>
+        <pb n="7" facs="0007_OTYyMjEzMDA.97285745.jpg"/>
+        <fw type="pageNum">9</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0043_a">
+          <speaker>פֶעט</speaker>
+          <p>סאַפּריסטוּ! איִך וועק דך צווינֶגען מַיין בּעפעהל צו<lb/>נעהאָרכען. זאָנסט...</p>
+        </sp>
+        <sp who="#dyener_rov" xml:id="YudisheKind_SP0044_a">
+          <speaker>דִיענֶער</speaker>
+          <p><stage type="entrance">(אויפֿטריט)</stage> דעֶר פורְסט לֵייטֶענאנְט וַוארְט אִין<lb/>גראפ'ס קאַבּינעט מיִט נוִיטִיגֶע פּאַפּירען.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0045_a">
+          <speaker>פֶעט</speaker>
+          <p>גוּט, איִך קוּם בּאלד, <stage type="exit">(דִיענֶער אָבּ)</stage> וולאַדיסלאוו. מיִר<lb/>ווֶעלֶען נאָך דעריבּער רעֶדעֶן, איבּערצייג עֶס דיִר, אַיידֶער עֶס וֶוערְט<lb/>שפּעט <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0046_a">
+          <speaker>וולאַד</speaker>
+          <p>עֶר הָאט מִיך פאַר גֶעלְד פֶערְקוִיפט? ווִי בּעדוירוּנגס<lb/>וֶוערְט בּיזטו. פאָטער, אָבּער אומְזִיסט דַיין מיִה, איִך ליעבּ דיִ שֶׁענֶע<lb/>אָנאַ אוּן נוּר זִי וועֶט מַיינֶע זַיין. אָבּוואל זִי איִז אַ יודִישׁ-קִינְד<lb/>אוּן דערצוּ דֶעם הִיזִיגֶען רב'ס טאָכטער, אוּן איִך בּין אַ קרִיסט,<lb/>דער זוּהן פוּן דֶעם גראַף פֶעטֶעפו. אָבּער וואָס קִימֶערְט מִיך דעֶר<lb/>גלויבּען, איִך ליעבּ זִי אוּן איִך פִיהל מִיך גלִיקלִיך מיִט דעֶר ליעבּע.<lb/>יאָ, אָנאָ, פאַר דיִר וֶועל איִך לעבּען, פאַר דיִר וֶועל איִך שטאר⸗<lb/>בּען <stage type="delivery">(זִינְגְט)</stage>:</p>
+          <lg n="1">
+            <l>העֶל ווִי דעֶר טאָג איִז דַיין גֶעזִיכְט.</l>
+          </lg>
+          <lg>
+            <l>דיִ ערשיינוּנג איִז העֶל ווִי ליכְט.</l>
+          </lg>
+          <lg>
+            <l>יאַ, נאָר דוּ אַליין</l>
+          </lg>
+          <lg>
+            <l>קאָן נאָר מיִר פֶערְשׁטֶעהן.</l>
+          </lg>
+          <lg>
+            <l>יאַ, נאָר דוּ אַליין. יאָ,</l>
+          </lg>
+          <lg>
+            <l>איִך זִינְג ניִשט פאַר קֵיינֶעם</l>
+          </lg>
+          <lg>
+            <l>איִך זִינְג נאָר פאַר אִיהר.</l>
+          </lg>
+          <lg>
+            <l>זִי איִז דיִ ליעבּסטע</l>
+          </lg>
+          <lg>
+            <l>אוּן שֶׁענְסטֶע בּיי מיִר.</l>
+          </lg>
+          <lg>
+            <l>מִיך קִימֶערְט קיַין זאַך.</l>
+          </lg>
+          <lg>
+            <l>קיַין לוקסוּס אוּן קיַין גֶעלְד.</l>
+          </lg>
+          <lg>
+            <l>מַיין הארְץ האָט זִי אַליין,</l>
+          </lg>
+          <lg>
+            <l>נאָר זִי אַליין גֶעוָואלְט.</l>
+          </lg>
+          <lg>
+            <l>זִי וַוייסְט, וואָס בּרענט אִין מַיין בּרוּסט.</l>
+          </lg>
+          <lg>
+            <l>פלאַמען פֿוּן פרֵייד אוּן פֿוּן לוּסט,</l>
+          </lg>
+          <lg n="1" prev="true">
+            <l>דאָס יוּדִישֶׁע קִינְד.</l>
+          </lg>
+          <lg>
+            <l>יאָ, פוּן אַצינד זִינְג איך בּיז פרִיה.</l>
+          </lg>
+          <lg>
+            <l>זִיסֶע הִימְלִישֶׁע פּאעזי.</l>
+            <l>איִך זִינְג ניִשט פאַר קֵיינֶעם</l>
+          </lg>
+          <lg>
+            <l>לאַ-לאַ זִי הֶערְט מִיך צוּ צֶערְטלִיך, שׁטִיל</l>
+          </lg>
+          <lg>
+            <l>לאַ-לא, לאַ-לא, אוּן זִי זִיסצט מיִט גְרוִיס גֶעפִיהל.</l>
+          </lg>
+          <lg>
+            <l>דיִ זִיפצֶען ערְלֵייכטֶען מַיין קלאַנג.</l>
+          </lg>
+          <lg>
+            <l>עֶס בּילדעט אַ נֵייעס געזאַנג.</l>
+          </lg>
+          <lg>
+            <l>אָה, ליעבּכען, נאָר דוּ בּיזט מַיין האַרץ</l>
+          </lg>
+          <lg>
+            <l>דיִ ליעבּע, זִי בּרענט אִין בּרענט אִין מַיין האַרץ.</l>
+          </lg>
+        </sp>
+        <pb n="8" facs="0008_OTYyMjEzMDA.97285750.jpg"/>
+        <fw type="pageNum">10</fw>
+        <sp who="#marta" xml:id="YudisheKind_SP0047_a">
+          <speaker>מאַרטהאַ</speaker>
+          <p>
+            <stage type="business">(שְׁרֵייט אוּנְטֶער דיִ קולִיסֶען).</stage>
+          </p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0048_a">
+          <speaker>וולאַד</speaker>
+          <p>וואָס איִז דָארְט?</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0049_a">
+          <speaker>מאַרטהָא</speaker>
+          <p>הַיילְפֶע, רֶעטֶעט מִיך.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0050_a">
+          <speaker>וולאַד</speaker>
+          <p>מאָרטהא'ס שׁטִימֶע?</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0051_a">
+          <speaker>מארְטהאַ</speaker>
+          <p>
+            <stage type="entrance">(קוּמט אַרַיין).</stage>
+          </p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0052_a">
+          <speaker>מארְטהָא</speaker>
+          <p>וולאַדיסלאוו, רֶעטֶע מִיך.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0053_a">
+          <speaker>וולאַד</speaker>
+          <p>וֶוער וַוייל דֶען אַייך שׁלֶעכטס טְהוּן, ליעבּע מארְטהא?</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0054_a">
+          <speaker>מאַרטהא</speaker>
+          <p>דיִ יוּדען וויִלעֶן מִיך אוּמבּרענגען, רֶעטֶע מִיך!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0055_a">
+          <speaker>וולאַד</speaker>
+          <p>אוּם גאָטעס וויִלעֶן, ווֶעמֶען מַיינְט איִהר?</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0056_a">
+          <speaker>מאַרטהָא</speaker>
+          <p>אַך. דאָס וואַר נוּר אַ טרְוים, ענְטשׁולְדִיג מיִר,<lb/>מַיין קִינְד. וואָס איִך האבּ דיִך איבּערגעשראקען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0057_a">
+          <speaker>וולאַד</speaker>
+          <p>אַ טרוים? זֶעצט אַייך, ליעבּע מאַרטהא.</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0058_a">
+          <speaker>מארטהאַ</speaker>
+          <p>יאָ, ליעבּער וולאַדיסלאוו, אֵיין שׁרעקלִיכֶער טרוים<lb/>הָאט מִיך דיִ גאַנצע נאַכְט ניִשט געלאָזט שְלָאפֶען. יֶעצְט, ווִי איִך<lb/>האָבּ נוּר אַ בּיסעל אַיינְגֶעשׁלאפֶען, איִז זי ווייטֶער אַריין אִין מַיין<lb/>נִימֶער אוּן איִך האָבּ זִי וִויעדֶער דֶערְזֶעהֶען, ווִי שׁרֶעקלִיך זִי האָט<lb/>אִיסגֶעזֶעהֶען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0059_a">
+          <speaker>וולאַד</speaker>
+          <p>אָבּער וֶוער איִז דיִ "זִי".</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0060_a">
+          <speaker>מאַרטהא</speaker>
+          <p>נֵיין, דאָס דַארְף איִך דיִר ניִשט זאָגען. דאָס<lb/>מוּן אֵיין אייבּיג גֶעהַיימְנִיס בּלייבּען, אַך. וולאַדיסלאוו, דיִ טרוִימֶע<lb/>ווֶעלֶען מִיך אִין גרוּבּ אַריינטרייבּען <stage type="delivery">(ווֵיינְט).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0061_a">
+          <speaker>וולאַד</speaker>
+          <p>ווִי איִך פֶערְשְׁטֶעה, פּלאגען אֵיין אַייערע גֶעווי=<lb/>סען, איִהר זֶענְט גֶעוויס אַמאָל אַ גְרויִסעֶ זִינְד בּעגאַנגען?</p>
+        </sp>
+        <pb n="9" facs="0009_OTYyMjEzMDA.97285755.jpg"/>
+        <fw type="pageNum">11</fw>
+        <sp who="#marta" xml:id="YudisheKind_SP0062_a">
+          <speaker>מארטהאַ</speaker>
+          <p>יאָ, קִינְד. דוּ בּיזט דעֶר אַיינְצִיגֶער, פאַר ווֶעמֶען<lb/>איִך וֶועל מַיין העֶרץ עפֶענֶען, דיִ גְרויִסעֶ זִינְד פּלאגט מִיך זַייט פיעלֶע<lb/>יאָהרען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0063_a">
+          <speaker>וולאַד</speaker>
+          <p>זאָגט מיִר, אִין וואָס בּעשטעהט אַייערֶע זִינְד?</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0064_a">
+          <speaker>מאַרטהָא</speaker>
+          <p>מיִט פִיעלֶע יאָהרען צוּריק, אַיידֶער איִך בּין<lb/>אִין אייַעֶר הוִיז אַלס פערוואַלטערין אַריינגעטרעטען, האָבּ איִך אַלס<lb/>הייבּאַממע פּראַקטעצירט.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0065_a">
+          <speaker>וולאַד</speaker>
+          <p>דאָס הָאט איִהר מיִר שׁוֹין דֶערְצֶעהלְט.</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0066_a">
+          <speaker>מאַרטהא</speaker>
+          <p>אוּן אַ בּיי-נאכט בּין איִך גֶעווֶען איינגעלאַדען<lb/>צוּ צְוֵויי פרויען: אַיינֶע אַ יוּדין. אוּן דיִ צווייטעֶ אַ קריסטִין, בּיידע<lb/>פרוִיען האבּען אִין דעֶר נאַכְט צְוֵויי יונְגלֶעך געבּוירען, אוּן ווִי איִך<lb/>האָבּ בּיי דעֶר קרִיסטלִיכֶער פרוֹי דאָס קִינְד עמפּפאַנגען, איִז דוּרך<lb/>אַ צוּפאַל דאָס קִינְד דערטרוּנקען גֶעווֶארֶען. מִיך איִז דאַמאלס אַ טוִיט=<lb/>שׁרֶעק בּעפאלען, דֶען איִך האָבּ געוואוּסט, אַז דֶעם קִינְדְס פָאטֶער<lb/>וועֶט דאָס ערפאַרען, וועֶט עֶר מִיך ערְמארְדֶען, אוּן אוּם מַיין לעבּען<lb/>צוּ רֶעטֶען, האָבּ איִך בּאלד דאָס קִינְד אוועקגעטראָגען צוּ דעֶר יוּדין<lb/>אוּן איִהר לעבּעדיג קִינְד געטראָגען צוּ דעֶר רֵייכֶער קרִיסטִין. זַייט<lb/>דאַמאַלס פּלאגט מִיך מַיין גֶעוויסֶען, אוּן זַיי לֶעצְטֶע צַייט זעֶה איִך זִי<lb/>פאסט יעדֶען טאָג אוּן נאַכְט אִין מַיין ציִמעֶר מיִט'ן טוִיטֶען קִינְד<lb/>אוּן שְׁרֵייט: "מֶערְדֶערִין, גיבּ מיִר אָבּ מַיין קִינְד!"</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0067_a">
+          <speaker>וולאַד</speaker>
+          <p>לעבּט נאָך יֶענֶע פרוֹי?</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0068_a">
+          <speaker>מאַרטהא</speaker>
+          <p>נֵיין, זִי אוּן איִהר מאַן זֶענֶען שׁוֹין לאַנג טויט.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0069_a">
+          <speaker>וולאַד</speaker>
+          <p>אוּן זַייער קִינְד לעבּט?</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0070_a">
+          <speaker>מאַרטהאַ</speaker>
+          <p>יאָ, עֶר לעבּט אוּן איִז גלִיקלִיך.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0071_a">
+          <speaker>וולאַד</speaker>
+          <p>אוּן וואוּ געֶפיִנְט ער זִיך יֶעצְט?<lb/>דאָס קאָן איִך דיִר ניִשט זאָגען, עֶר לעבּט אוּן איִז זֶעהְר<lb/>גלִיקלִיך, נוּר וֶוען עֶר זאָל דאָס אִיצט ערפאַרען בּין איִך פֶער=<lb/>לארֶען!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0072_a">
+          <speaker>וולאַד</speaker>
+          <p>בּערוהוגט אַייך, ליעבּע מארְטהא, איִהר זֶענְט קיַין<lb/>זִינְד בּעגאנגען, אִין גֶעגֶענְטַייל, איִהר דארְפט נאָך בּעלאהגט וֶוערֶען<lb/>דערפאַר, גענוּג וויִיִנעֶן, פֿוּן יֶעצְט אָן אוּן ווייטֶער, וֶועל איִך זֶעהֶען<lb/>אַייער שׁמֶערְץ צוּ לִינְדֶערְן, אַדיע! <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0073_a">
+          <speaker>מאַרטהא</speaker>
+          <p>גֶענוג וויִיִנעֶן. "בּ"ר הִוגט אַייך" אבּער דיִ טויטֶע<lb/>יוּדין, אַך, ווִי שׁרֶעקלִיך זִי האָט דיִ נאַכְט אוִיסגֶעזֶעהֶען, פוּן אִיהְרֶע<lb/>אוֹיגֶען האָט גֶעשׁאסֶען פֵייער, אוּן מיִט אַ שׁרֶעקלִיכֶע שׁטִימֶע הָאט<lb/>זִי גֶעשׁרִיען: מֶערְדֶערִין, מֶערְדֶערִין! גיִט מיִר אָבּ מַיין קִינְד. <stage type="business">(פֿאַלט</stage>.<lb/><stage type="delivery">ווֵיינְט).</stage><lb/><stage type="entrance">(עֶס קוּמען אַריין: רב, הֶענֶעלֶע, זַאַסלאַוועק)</stage></p>
+        </sp>
+        <pb n="10" facs="0010_OTYyMjEzMDA.97285761.jpg"/>
+        <fw type="pageNum">12</fw>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0074_a">
+          <speaker>זאַסל</speaker>
+          <p>וואַרט דָא אַ בּיסעל, איִך וֶועל לויפֶען זָאָגען דֶעם<lb/>גראַף, אַז איִהר זֶענְט דָא <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0075_a">
+          <speaker>מארְטהא</speaker>
+          <p>איִהר הָאט אַ בּיטע צוּם גראף?</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0076_a">
+          <speaker>רב</speaker>
+          <p>יאָ.</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0077_a">
+          <speaker>מארְטהא</speaker>
+          <p>איִהר הָאט לֵיידֶער זֶעהְר אַ שׁלֶעכטֶע צַייט אויִס⸗<lb/>געקליבּען, דֶען דעֶר גראַף איִז הַיינְט שְׁלעֶכְט גֶעלוינְט אוּן עֶס איז<lb/>שְׁוֶוער מיִט אִיהם צוּ רעֶדעֶן, זַייט פארזִיכטִיג <stage type="business">(בּיי דעֶר טהִיר)</stage> זַייט<lb/>פארְזִיכטִיג <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0078_a">
+          <speaker>הֶענֶעלֶע</speaker>
+          <p>דוּ הֶערְסט, פָאטֶער, הַיינְט איִז גֶעפֶעהרְלִיך מִיט'ן<lb/>גראַף צוּ רעֶדעֶן. איִך מַיין, מיִר זאָלען ליעבּער צוּריק אַהיים געֶהן.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0079_a">
+          <speaker>רב</speaker>
+          <p>עֶס פּאסט נִיט. מַיין קִינְד, דעֶר דִיענֶער איִז אוּנז שִׁין<lb/>געגאַנגען מֶעלְדֶען, אַז מיִר זֶענֶען דאָ, "ד' לִי לא אִירא," וֶוען גאָט<lb/>איִז מיִט מיִר, וואָס האָבּ איִך מוֹרָא פאַר אַ מֶענְשֶען.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0080_a">
+          <speaker>הֶענ</speaker>
+          <p>טהוּ מיִר צוליעבּ, פאָטער, גֶעה דוּ אַהיים אוּן איִך וֶועל דָא<lb/>בּלייבּען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0081_a">
+          <speaker>רב</speaker>
+          <p>וואָס רעדסטוּ, קִינְד, דיִך לאזֶען? מיִר טהוט שׁוֹין כּאנט<lb/>וואָס איִך האבּ דיִך אינגאַנצען מיטגענוּמען. קאָן איִך דֶען אַליין<lb/>מיִט'ן גראַף נִיט רעֶדעֶן?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0082_a">
+          <speaker>הֶענ</speaker>
+          <p>איִך דֶענְק, פאָטער, ווִי שְׁלעֶכְט אוּן פערדארבּען דעֶר<lb/>גראַף זאָל נִיט זַיין, האָט עֶר דָאך מֶעהר רעספּעקט פאַר אַ פֿרוי<lb/>זַאַסלאַוועק <stage type="business">(קוּמט צוּרִיק).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0083_a">
+          <speaker>זאַסל</speaker>
+          <p>דעֶר גנֶעדִיגֶער גראַף הָאט מִיך געֶהייֵסעֶן אַייך זאָגען.<lb/>אַז איִהר, רבּי זאָלט אַליין צוּ אִיהם אַריינגעהן, עֶר זאָגט, עֶר מאַכְט<lb/>געשעפֿטען נוּר מיִט מֶענֶער, נִיט מיִט קיַין ווייבּער.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0084_a">
+          <speaker>הֶענ</speaker>
+          <p>אוֹי, פָאטֶער, איִך שׁרֶעק מִיך זֶעהְר.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0085_a">
+          <speaker>רב</speaker>
+          <p>שׁרֶעק דיִך ניִשט, מַיין קִינְד, איִך בּין ניִשט צווישֶׁען<lb/>וועלְף, חָלִילָה, מֶען וועֶט מִיך ניִשט אַויפֶעסֶען. וואַרט דָא, טאכטֶער.<lb/>בּיז איִך וֶועל בּשלום צוּריקקוּמען <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0086_a">
+          <speaker>זאַסל</speaker>
+          <p>אַך, וואָס פאַר אַ שֶׁענֶע יודִישׁקֶע דאָס איִז. מַיין<lb/>העֶרץ צאַפּעלט אִין מיִר יעדֶעס מאָל, וֶוען איִך קוּק אוֹיף איִהר, זעה<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>מַיידֶעלֶע, עה, יוּדישקע... איִז זִי טויבּ, צוּם שוואַרצען יָאהר! זיִס<lb/>ליעבּ מַיידֶעלֶע</p>
+        </sp>
+        <pb n="11" facs="0011_OTYyMjEzMDA.97285770.jpg"/>
+        <fw type="pageNum">13</fw>
+        <sp who="#henele" xml:id="YudisheKind_SP0087_a">
+          <speaker>הֶענ</speaker>
+          <p>וואָס ווילסטוּ?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0088_a">
+          <speaker>זאַסל</speaker>
+          <p>קוקאָן אִיגֶען, ווִי גלִיהֶענְדֶע קוִיהלֶען ! אוֹי. סבּרענט!<lb/>אוֹי, ס'בּרענט! הֶער נוּר, מַיידֶעלֶע, וַוייסְט וֶוער איִך בּין? אַ יא<lb/>דוּ וַוייסְט ניִשט? נוּ, זאָג איִך דיִר. אוּ איִך בּין אַ קאמֶערְדִיענֶער<lb/>בֵּיים גראַף!</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0089_a">
+          <speaker>הֶענ</speaker>
+          <p>איִך דאַרף דאָס ניִשט נויטִיג וויִסעֶן.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0090_a">
+          <speaker>זאַסל</speaker>
+          <p>נוּ, האָט מֶען נאָך גֶעזֶעהֶען אַזאַ מַיין פרֶעכהַייט, אָה.<lb/>איִך פֶערְשְׁטֶעה, דוּ מַיינְסט, אַז איִך מאַך פֿוּן דיִר חוֹזֶק, אַ, אַ.<lb/>דאָס מיינסטוּ?... אָט איִז זִי וִויעדֶער שׁטִיל געבּליבּען. איִך וֶועל דיִר<lb/>זאָגען דֶעם גאַנצען אמְת. מיִר, אַז עֶס געֶפֶֿעלְט אַ מַיידֶעלֶע, מֶעג זַיין<lb/>אַפילוּ אַ יודִישׁקֶע, מוּז איִך זִי איבּערצייגען, ווִי איִך האָבּ זִי ליעבּ.<lb/>וויל קושֶׁען. <stage type="business">(זִי וואַרפט אִיהם אַראָבּ פוּן אַ טרֶעבּ).</stage><lb/>וולאַדיסלאַוו <stage type="entrance">(קוּמט אַריין).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0091_a">
+          <speaker>וולאַד</speaker>
+          <p>וואָס ליגסטוּ אוֹיף דר'ערְד?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0092_a">
+          <speaker>זאַסל</speaker>
+          <p>גנֶעדִיגֶער גראַף, איִך האָבּ מִיך פערטשעפּעט אָן אַ פוס<lb/>אוּן בּין געפאַלען... וַוארְט, הוּ יוּדישקע, איִך וֶועל דיִר ווייזעֶן...<lb/>(וויל אָבּ, שְׁלָאגְט זִיך אָן אוּן אַטיהר): אוֹי. אוֹי, אוֹי!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0093_a">
+          <speaker>וולאַד</speaker>
+          <p>וואָס איִז שׁוֹין וִויעדֶער?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0094_a">
+          <speaker>זאסל</speaker>
+          <p>איִך האָבּ מִיך פערטשעפּעט אָן אַ סלוּפּ. <stage type="exit">(אָב)</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0095_a">
+          <speaker>וולאַד</speaker>
+          <p>אָנאַ, ווִי קוּמסטוּ אַהער?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0096_a">
+          <speaker>הֶענ</speaker>
+          <p>איִך בּין מיִט מַיין פָאטֶער צוּם גראַף געלוּמען. אוּם<lb/>בּיי אִיהם מיִטלייַד צוּ דֶערוועקֶען פאַר מַיינֶע אָרימע בּרידער, דען<lb/>עֶס איִז יֶעצְט אונְמֶעגלִיך אִיהם צוּ געבּען דיִ סוּמע פֿוּן 50 טוֹיזֶענְד<lb/>גולְדֶען. וואוּ זאָלען מיִר אַזאַ סוּמע נעֶמעֶן?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0097_a">
+          <speaker>וולאַד</speaker>
+          <p>האָט דַיין פָאטֶער אַליין נִיט געקאָנט קוּמען?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0098_a">
+          <speaker>הֶענ</speaker>
+          <p>איִך האָבּ גֶעמַיינְט, אַז מיִר וועֶט גִיכֶער גֶעלִינְגֶען דֶעם<lb/>גראַפ'ס העֶרץ צוּ רִיהרֶען, אָבּער לֵיידֶער וַוייל דעֶר גראַף מיִט מיִר<lb/>גאָרנישט רעֶדעֶן.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0099_a">
+          <speaker>וולאַד</speaker>
+          <p>פִילֵייכט איִז בּעסער אַזוי... אָבּער זאָג מיִר, פאַרוואס<lb/>בּיזטוּ הַיינְט אִין וועלְדֶעל נִיט געקוּמען, איִך האָבּ אוֹיף דיִר גאַנצע<lb/>3 שׁטונְדֶען געוואַרט.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0100_a">
+          <speaker>הֶענ</speaker>
+          <p>איִך וֶועל שׁוֹין קיינמאָל אַהין נִיט קוּמען.<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="12" facs="0012_OTYyMjEzMDA.97285775.jpg"/>
+        <fw type="pageNum">14</fw>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0101_a">
+          <speaker>וולאַד</speaker>
+          <p>וואַרום?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0102_a">
+          <speaker>הֶענ</speaker>
+          <p>איִך האָבּ זִיך אַרומגעזעהען, אַז אוּנזעְר צוזאַמענקוּמען<lb/>קאָן אונְזנ אַך צוּם גרעֶסטעֶן אומְגלִיק פִיהרֶען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0103_a">
+          <speaker>וולאַד</speaker>
+          <p>וואָס? גלויבּסטוּ ניִשט אִין דעֶר מֶעגלִיכקֵייט, אַז<lb/>מיִר זאָלען זִיך אַלס מַאן אוּן פרוֹי פערבּינדען?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0104_a">
+          <speaker>הֶענ</speaker>
+          <p>אוּן דוּ גלויבּסט אִין דעֶר אוּנמעגליכער מֶעגלִיכקֵייט,<lb/>איִך זאָל מַיין רעליגיאָן פערבּייטען? פאַרוואס ווילסטוּ נִיט אַ יוּד<lb/>וֶוערֶען?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0105_a">
+          <speaker>וולאַד</speaker>
+          <p>פאַרוואס, פרעגסטוּ? וַוייסְט דאָס. אַז דָא אִין לאַנד,<lb/>וֶוען אַ קרִיסטנ עהט איבּער צוּ אַנ אַנדער רֶעלִיג אָן וֶוערְט עֶר מיִט'ן<lb/>טוִיט בֶּעשׁטראפט. אָה, וֶוען איִך זאָל מִיך דערפאַר נִיט שׁרֶעקֶען!<lb/><stage type="business">(גֶערוִישׁ הִינְטֶער דיִ קולִיסֶען. רב, שְׁרֵייט).</stage></p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0106_a">
+          <speaker>פֶעט</speaker>
+          <p><stage type="business">(אִינְטֶען)</stage> סאפרִיסטִי!</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0107_a">
+          <speaker>הֶענ</speaker>
+          <p>וֶועה. איִך הֶער מַיין פאטֶערְס שׁטִימֶע, וֶוער וַוייסְט<lb/>וואָס מיִט אִיהם הָאט פּאסירט.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0108_a">
+          <speaker>וולאַד</speaker>
+          <p>בּערוהיג דיִך, מַיינֶע טַייערֶע, איִך אַליין וֶועל מיִט<lb/>מַיין פָאטֶער רעֶדעֶן. איִך פֶערְזִיכֶער דיִך, אַז דַיין פָאטֶער וועֶט גאָרנישט<lb/>גֶעשֶׁעהֶען <stage type="exit">(אָבּ).</stage> (<stage type="entrance">רב לויפֿט אַריין.</stage> פּ<stage type="business">עט: שְׁלָאגְט מיִט אַ בּייטש</stage>).</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0109_a">
+          <speaker>רב</speaker>
+          <p>
+            <stage type="delivery">זִינְגְט:</stage>
+          </p>
+          <lg>
+            <l>האָבּ דָאך מיִטלייַד, גְרויִסעֶר הֶערְר,</l>
+          </lg>
+          <lg>
+            <l>איִך בּין נִיט שׁוּלְדִיג אִין דֶעם.</l>
+          </lg>
+          <lg>
+            <l>האָבּ רחמנוֹת אוֹיף אוּנז, מאַך פוּן אוּנז קיַין תּל,</l>
+          </lg>
+          <lg>
+            <l>האָבּ רחמנוֹת אוֹיף אוּנז, שִׁיק אוֹיף אוּנז נִיט דיִ העֶל.</l>
+          </lg>
+          <lg>
+            <l>ערבּאָרם זִיך, גְרויִסעֶר הֶערְד</l>
+          </lg>
+          <lg>
+            <l>מיִטלייַד, האָבּ מיִטלייַד מיִט אוּנז.</l>
+          </lg>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0110_a">
+          <speaker>זי</speaker>
+          <p/>
+          <lg>
+            <l>אִיך בּעט דיִך ערבּאַרם דיִך גְרויִסעֶר הֶערְר,</l>
+          </lg>
+          <lg>
+            <l>נֶעהם אַזאַ זִינְד אוֹיף דיִר ניִשט מֶעהר.</l>
+          </lg>
+          <lg>
+            <l>דאָס איִז מַיין פָאטֶער. האָבּ מיִטלייַד מיִט אִיהם.</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="YudisheKind_SP0111_a">
+          <speaker>בּיידע</speaker>
+          <p/>
+          <lg>
+            <l>מיִטלייַד מיִט אוּנז!</l>
+          </lg>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0112_a">
+          <speaker>פעֶטיִפֿיִ</speaker>
+          <p><lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+          <lg>
+            <l>פֿאָרט אִיהר זשִׁידְזשִׁי, פּשאקרעוו, פֿאָרט פֿון היִער,</l>
+          </lg>
+          <lg>
+            <l>עֶס וועֶט נִיט הֶעלְפֶען אַייער וויִיִנעֶן.</l>
+          </lg>
+          <lg>
+            <l>עֶס וֶועט נִיט הֶעלְפֶען אַייעֶר קלאגֶען.</l>
+          </lg>
+          <lg>
+            <l>אייער וויִיִנעֶן, אַייעֶר בּעטען.</l>
+          </lg>
+          <lg>
+            <l>פּשׁאקרֶעוו, זשִׁידְזשִׁי, פּשאַקרעוו, פֿאָרט פוּן איִהער.</l>
+          </lg>
+        </sp>
+        <pb n="13" facs="30804059.jpg"/>
+        <fw type="pageNum">15</fw>
+        <sp who="#beyde" xml:id="YudisheKind_SP0113_a">
+          <speaker>בּיידע</speaker>
+          <p/>
+          <lg>
+            <l>אוּמזיסט אוּנזער וויִיִנעֶן, אוּמזיסט אוּנזער קלאגֶען.</l>
+          </lg>
+          <lg>
+            <l>זַיין העֶרץ איִז פֿוּן שׁטַיין, עֶס הֶעלְפט קיין גֶעוויין.</l>
+          </lg>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0114_a">
+          <speaker>פעֶטיִפֿיִ</speaker>
+          <p/>
+          <lg>
+            <l>אַך, זשִׁידְזשִׁי, פּשאַקרעוו, וואָן פוּן היִער!</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="YudisheKind_SP0115_a">
+          <speaker>בּיידע</speaker>
+          <p/>
+          <lg>
+            <l>מיִטלייַד מיִט אוּנז.</l>
+          </lg>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0116_a">
+          <speaker>וולאַדיסלאוו</speaker>
+          <p/>
+          <lg>
+            <l>האַלט, טרֶעט צוּריק, גיִך אוּן גֶעשׁווינְד,</l>
+          </lg>
+          <lg>
+            <l>אוּן ניִשט בּעריהרען זאָלט איהר דאָס קִינְד.</l>
+          </lg>
+          <lg>
+            <l>שאָהנֶע דִיעזֶען אַלטען.</l>
+          </lg>
+          <lg>
+            <l>פָאטֶער, ליעבּער, הֶער דַיין קִינְד גֶעוויין,</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="YudisheKind_SP0117_a">
+          <speaker>ביידע</speaker>
+          <p/>
+          <lg>
+            <l>פֿריי מאַך אוּנז שנעֶל, מאַך פוּן אוּנז קיין תּל,</l>
+          </lg>
+          <lg>
+            <l>אָה, מאַך אוּנז פרֵיי, ליעבּער הֶערְר,</l>
+          </lg>
+          <lg>
+            <l>אָה, מאַך אוּנז פריי, וִויעדֶער פֿריי.</l>
+          </lg>
+          <lg>
+            <l>פֿריי מאַך אוּנז שנעל, יאַ,</l>
+          </lg>
+          <lg>
+            <l>מאַך פוּן אוּנז שׁוֹין מֶעהר קיין תּל, יאַ, יאַ.</l>
+            <stage type="business">(וועהרֶענְד דֶעם געזאַנג, שְׁלָאָגט דעֶר גראַף דֶעם רבּ מיִט</stage>
+            <stage type="business">אַ בּייטשעל).</stage>
+            <stage type="setting">(פֿאָרהאַנג פֿאַלט.)</stage>
+          </lg>
+        </sp>
+        <trailer>ענדע ערשטער אַקט.</trailer>
+        <pb n="14" facs="30804060.jpg"/>
+      </div>
+      <div type="act" n="2" xml:id="YudisheKind_Act2">
+        <head>צווייטער אקט.</head>
+        <stage type="setting">(א אסיפה בּיים רב).</stage>
+        <sp who="#rov" xml:id="YudisheKind_SP0118_a">
+          <speaker>רב</speaker>
+          <p>רבּותי, וואָס קוּמט אוּנז אַרויס פוּן דֶעם וויִיִנעֶן, דאָס וועט<lb/>אוּנז גאָרניט הֶעלְפֶען, מיִר מוּזֶען דֶעם גראַף געבּען דיִ סוּמע, וואָס<lb/>עֶר פאָדערט פוּן אוּנז.</p>
+        </sp>
+        <sp who="#eyner" xml:id="YudisheKind_SP0119_a">
+          <speaker>איינער</speaker>
+          <p>אָבּער רבּי, גיִט אוּנז אַנ'עצה, ווִי זאָלען מיִר אַזאַ<lb/>גְרויִסעֶ סוּמע נעהמען?</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0120_a">
+          <speaker>רב</speaker>
+          <p>גֶעהט פֿארלויפיג אַהיים, בּיי נאכט בּיי דעֶר אסִיפה אִין<lb/>קהל שטיבּעל וועלען מיר זִיך מיישב זַיין, וואָס ס'איז דאָ צוּ טהוּן.<lb/>געהט אוּן גאָט זאָל אוּנז זיין הילפע שִׁיקֶען.</p>
+        </sp>
+        <sp who="#chor" xml:id="YudisheKind_SP0121_a">
+          <speaker>קאָהר</speaker>
+          <p/>
+          <lg>
+            <l>ווִי לאַנג, ווִי לאַנג נאָך גאָט,</l>
+          </lg>
+          <lg>
+            <l>ענְטפֶער אוּנז, ווי לאַנג.</l>
+          </lg>
+          <lg>
+            <l>גענוג שׁוֹין צוּ פּלאגען דאָס פֿאָלק ישראל.</l>
+          </lg>
+          <lg>
+            <l>פּלאָגסט אוּנז גאָר אָהן אַ צאָהל</l>
+          </lg>
+          <lg>
+            <l>גענוּג שׁוֹין צוּ שְׁלָאָגען דאָס פאלק ישראל</l>
+          </lg>
+          <lg>
+            <l>שְׁלָאָגסט אוּנז גאָר אָהן אַ שִׁיער, אָהן אַ צאָהל.</l>
+          </lg>
+          <lg>
+            <l>הער שׁוֹין צוּ אוּנזער גֶעוויין,</l>
+          </lg>
+          <lg>
+            <l>מאַך שׁוֹין אַ סוֹף פֿון דיִ פּלאגען.</l>
+          </lg>
+          <lg>
+            <l>אָה, גאָט, אָה, הער אוּנז צוּ</l>
+            <stage type="exit">(אַלע אָבּ).</stage>
+          </lg>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0122_a">
+          <speaker>רב</speaker>
+          <p>גאָטעניוּ, עד מתִי? ווִי לאַנג וועסטוּ דַיין פָאלְץ אַזוי<lb/>פֿיעל פּלאגען? שׁוֹין בּאלד צְוֵויי טוֹיזֶענְד יאָהר, זַייט דוּ האָסְט אוּנז<lb/>פֿערטרייבּען פוּן אוּנזער הַיילִיג לאַנד, דיִ גאַנצע עֶרְד איִז בּעדעקט<lb/>מיִט יוּדיש בּלוּט אוּן דוּ, גאָטעניוּ, זֶעהסט אוּן שְׁוַוייגְסְט, האָבּ אוֹיף<lb/>אוּנז רחמנוֹת אוּן לייז אוּנז אויס פֿוּן דֶעם בּיטערן גלוּת <stage type="business">(זיצט).</stage></p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0123_a">
+          <speaker>שפּרינצע</speaker>
+          <p><stage type="business">(הִינְטֶער קולִיסֶען)</stage> אַ סוֹף מוּז הַיינְט נֶעהמֶען,<lb/>כּל-בּו'ניק, אַ סוֹף, דוּ הֶערְסט?<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="15" facs="30804061.jpg"/>
+        <fw type="pageNum">17</fw>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0124_a">
+          <speaker>שמערל</speaker>
+          <p>אַ סוֹף איִז אַ סוֹף, אָבּער שְׁרֵיי נִיט אַזוי.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0125_a">
+          <speaker>שפּריעצע</speaker>
+          <p><stage type="business">(אריין)</stage> בּיזט אַ מבִּין, נאָר עֶר קנייפּט מִיך.<lb/>אַ סוף מוּז הַיינְט נעהמען.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0126_a">
+          <speaker>שׁמֶערל</speaker>
+          <p>אַ סוֹף איִז אַ סוף! דעֶר רבּי זאָל לעבּען וַוייסְט.<lb/>אַז בּיי מיִר איִז אַיינְס צְוֵויי אוּן פֶערְטִיג.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0127_a">
+          <speaker>רב</speaker>
+          <p>פאַרוואָס שְׁרֵייט איִהר אַזוי?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0128_a">
+          <speaker>שפּרינצע</speaker>
+          <p>רבּי קרוין, איִך וֶועל מיִר נאָר אַ מֶעשׁה אנ⸗<lb/>טהוּן, גוואַלד וֶועל איִך שְׁרֵייעֶן אִין אַלע גאַסען. רבּי, האָט רחמנוֹת אוֹיף<lb/>מיינע יונגע יאָהר אוּן שרייבּט אוּנז אַ גט.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0129_a">
+          <speaker>שׁמֶערל</speaker>
+          <p>אַ גט איִז אַ גט. איִך בּין צופריעדען, טהוּט איהר<lb/>צוּליעבּ אוּן מאַכְט אַיינְס צְוֵויי. — אוּן פֶערְטִיג.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0130_a">
+          <speaker>רב</speaker>
+          <p>וואָס איִז אַייך פּלוּצים איינגעפאלען זִיך גט'ן?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0131_a">
+          <speaker>שפּריצע</speaker>
+          <p>רבּי, זִיכֶער, טַייערֶער, איִהר זֶענְט גאָר קיין<lb/>מבִּין נִיט אוֹיף דֶעם פרֶעסֶער, איִך האָבּ פוּן אִיהם ניט פאַר אַייך<lb/>געדאַכט קיין הארץ ניט, איִך וֶועל דוּרך אִיהם פאַר דֶער צַייט פוּן דעֶר<lb/>וֶועלְט געֶהן.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0132_a">
+          <speaker>שמערל</speaker>
+          <p>פאַר דעֶר צַייט, זאָגט זִי? עֶס וואָלט שׁוֹין לאַנג<lb/>צַייט גֶעווֶען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0133_a">
+          <speaker>רב</speaker>
+          <p>וואָס האָט עֶר דיִר אַזוינס געטהוּן?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0134_a">
+          <speaker>שפּרינצע</speaker>
+          <p>ערְשׁטֶענְס, האָט עֶר זִיך גֶעמאכט אַ מאדֶע צוּ<lb/>קנייַפּען. ער האָט מיִר געמאַכט בּלאהע צַייכֶענְס אוֹיף דיִ הֶענְד <stage type="business">(טהוט⸗</stage><lb/><stage type="business">אויס אַ האַלבּע בּלוּזע, בּעווייזט דיִ האַנד).</stage></p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0135_a">
+          <speaker>רב</speaker>
+          <p>ניִשט נויטִיג, איִך גלויבּ דיִר אוֹיף נאמנות</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0136_a">
+          <speaker>שפּרינצע</speaker>
+          <p>אַז איִהר וויִלְט נִיט, דַארְף מֶען ניט. אָבּער<lb/>גלויבּען גלויבּט איִהר מיִר יאָ; צווייטֶענְס, איִז עֶר אַזאַ פרֶעסֶער, אַזאַ<lb/>נאַשער, אַז ס'איז ניִשט צוּם אויסהאַלטען. עֶר הָאט דָאך הַיינְט<lb/>אוִיסגֶעשׁלאקעט אַדורכשלאג פאַרפיל מיִט מִילְך, וואָס איִך האָבּ<lb/>אָבּגעקאָכט פאַר אייערט'וועגֶען. איִך וֶועל מיִר נאָר אַ מעשה אָנטהוּן<lb/>פֿון דעם כּל-בּו'ניק!</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0137_a">
+          <speaker>שמערל</speaker>
+          <p>וואָס שרייסטוּ אַזוי, קלֵיינְשׁטֶערְדטֶעלְדִיגֶע נשמה.<lb/>ווילְסט אַ גט, זאָל זַיין אַ גט. אֵיינְס צְוֵויי אוּן פֶערְטִיג.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0138_a">
+          <speaker>שפּרינצע</speaker>
+          <p>יאָ, אַ גט, אוּן טאקי בּאלד <stage type="business">(קלאַפּט אָן טיש).</stage></p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0139_a">
+          <speaker>שמערל</speaker>
+          <p>אָרורה, וואָס האָסטוּ נעבּעך צוּם רבּינ'ס טיִש, וֶוען<lb/>דוּ וֶועסְט נאָך אַמאָל קלאפּען, איינס צוויי — אוּן פֶערְטִיג!</p>
+        </sp>
+        <pb n="16" facs="30804062.jpg"/>
+        <fw type="pageNum">18</fw>
+        <sp who="#rov" xml:id="YudisheKind_SP0140_a">
+          <speaker>רב</speaker>
+          <p>פֶע, איִהר מֶעגט אַייך שֶׁעמֶען. איִהר וֶועט מִיך אַרויס⸗<lb/>בּרענגען פוּן גֶעדולְד, וֶועל איִך אַייך בּיידען אַרויסטרייבּען.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0141_a">
+          <speaker>שׁמֶערְל</speaker>
+          <p>סֶעדִיכֶע, מעגסט מיִר גלויבּען, אַז בּיי אוּנזער רבּי׳ן<lb/>איִז אומר ועושה, אַיינְס צְוֵויי אוּן פֶערְטִיג.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0142_a">
+          <speaker>שפּרינצע</speaker>
+          <p>אוֹי נוּ, יֶעצְט זֶענְט איִהר שׁוֹין אַ מבִּין, וואָס<lb/>פאַר אַ טרפה'נֶער בּיין עֶר איִז? גלויבּט מיִר, רבּי, וֶוען איִהר זאָלט<lb/>האָבּען אַזאַ מַאן, וואָלט איהר אוֹיך גֶעפִיהלְט מַיינֶע וועהטאגען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0143_a">
+          <speaker>רב</speaker>
+          <p>לָאזְט מִיך צוּ-רוּה אוּן גֶעהט אַייך געזוּנדערהייד.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0144_a">
+          <speaker>שמערל</speaker>
+          <p>דעֶר רבּי הָאט רֶעכט: מיִט אַזאַ סֶעדִיכֶע, ווִי דוּ,<lb/>דאַרף מֶען מאַכען אַיינְס-צְוֵויי אוּן פֶערְטִיג.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0145_a">
+          <speaker>רב</speaker>
+          <p>אוֹיך מיִט אַזאַ מַאן, ווִי דוּ בּיזט, דאַרפען אוֹיך מאכען<lb/>קוּרץ, אַרויס פֿון דער שטוּבּ!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0146_a">
+          <speaker>שפּרינצע</speaker>
+          <p>לאַנג לעבּען זאָלט איִהר, קרוִין מַיינֶער. יֶעצְט<lb/>זעֶה איִך, אַז איִהר זֶענְט אַ מבִּין אוֹיף דֶעם כּל-בּו'ניק, שׁמֶערְל, פּיק,<lb/>וֶוערְסט צוּפּיקעט?</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0147_a">
+          <speaker>רב</speaker>
+          <p>אַרויס פֿון דאַנען, זאָג איִך!</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0148_a">
+          <speaker>שמערל</speaker>
+          <p>אַרויס איִז אַרויס. איִהר וַוייסְט דאָך, אַז איִך לאָז<lb/>מִיך ניִשט לאַנג בּעטען. איִהר הַייסְט געֶהן, גֶעה איִך, קוּם, שפּרינצע!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0149_a">
+          <speaker>שפּרינצע</speaker>
+          <p>איִך געה. וואָס דֶען זאָל איִך טהוּן? אַז דוּ<lb/>בּיזט מַיין מַאן, מוּז איִך דיִר דאָך נאכגעהן... <stage type="exit">(בּיידע אָבּ).</stage></p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0150_a">
+          <speaker>רב</speaker>
+          <p>טפוי אוֹיף זַיי בּיידע. איִך בּין אויסער זִיך פוּן דֶעם אוּמגליק.<lb/>וואָס שוועבּט איבּער אוּנז יוּדען, קוּמען זיי צוגעהן אוּן דוּלען מיִר<lb/>דֶעם קאפּ מיִט זַייערֶע נארישע קרִיעגֶערֵייען.<lb/>זאַסלאַוועק <stage type="entrance">(לויפֿט אַריין).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0151_a">
+          <speaker>זאַסל</speaker>
+          <p>עֶר איִז דאָ גאָרנישטא?</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0152_a">
+          <speaker>רב</speaker>
+          <p>דֶעם גראַפ'ס דִיענֶער? וואָס וִויל עֶר דָא? ווֶעמֶען זוּכסטוּ?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0153_a">
+          <speaker>זאַסל</speaker>
+          <p>איִך זוּך דֶעם יוּנגען גראַף.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0154_a">
+          <speaker>רב</speaker>
+          <p>פאַרוואָס זוּכסטוּ אִיהם דָא?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0155_a">
+          <speaker>זאל</speaker>
+          <p>וַוייל מיִר האָבּען הַיינְט גְרויִסעֶ גֶעסט: זַיין כּלה אוּן<lb/>איהר טאטע, דער פִירְסט זֶעזֶעמִיר אוּן אַלע פּריצים אוּן פְרִיצֶעס זֶענֶען<lb/>אַצינד צוּ אוּנז געקוּמען דיִ גְרויִסעֶ גֶעסְט בּעגריסען, נאָר דער גנֶע⸗<lb/>דִיגֶער גראַף איִז נישטאָ.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0156_a">
+          <speaker>רב</speaker>
+          <p>פאַרוואס זוּכסטוּ אִיהם גראַדע בּיי מיִר אִין הוִיז?<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="17" facs="30804063.jpg"/>
+        <fw type="pageNum">19</fw>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0157_a">
+          <speaker>זאַסל</speaker>
+          <p>דעֶר אַלטער גראַף האָט מיִר געֶהייֵסעֶן אויפֿזוכען<lb/>זַיין זוּהן, נוּ? בּין איִך גֶענאנְגֶען אִין דעֶר גאַנצער שטאָרט, אִיהם<lb/>געזוּכט אוּן אִיהם ניִשט געפוּנען. פּלוּצים בּעגעגען איִך קוּרנאסא<lb/>דֶעם סֶערְזשׁאנְט, האָבּ איִך אִיהם געפרֶעגט, צי עֶר הָאט גֶעזֶעהֶען<lb/>דעם יוּנגען גראַף, האָט עֶר מיִר געזאָגט, אַז צוּריק מיט עטלִיכֶע טעג<lb/>האָט עֶר אִיהם גֶעזֶעהֶען זִיך קושען אִין וואַלד מיִט דַיין טאָכְטֶער.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0158_a">
+          <speaker>רב</speaker>
+          <p>בּיזט אַ לִיגנֶער, מַיין טאָכְטֶער איִז מיִט'ן גראַף קיינמאל<lb/>נִיט גֶעווֶען.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0159_a">
+          <speaker>זאַסלאַוועק</speaker>
+          <p>איִך, זאָגסטוּ, בּין אַ לִיגנֶער? אויבּ אונז<lb/>איִז קוּרנאסא דער סֶערְזשׁאנְט אוֹיך אַ לִיגנֶער?</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0160_a">
+          <speaker>רב</speaker>
+          <p>יאָ, איִהר זֶענְט אַלע לִיגנֶערְס, דער גראַף איִז בּיי מיִר<lb/>קיינמאָל נִיט גֶעווֶען, פערלאָז מַיין הוִיז.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0161_a">
+          <speaker>זאַסלאַוועק</speaker>
+          <p>מיִר, אַז מֶען הַייסְט געֶהן, גֶעה איִך, נאָר<lb/>וואַרט, איִך וֶועל דיִר וואַרפען אַ שׁטַיין אִין שׁטרֵיימֶעל, אַז דוּ וֶועסְט<lb/>מִיך גֶעדֶענְקֶען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0162_a">
+          <speaker>רב</speaker>
+          <p>גֶעה, זאָג איִך. פערלאָז מַיין הוִיז.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0163_a">
+          <speaker>זאַסלאַוועק</speaker>
+          <p>איִך גֶעה! <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0164_a">
+          <speaker>רב</speaker>
+          <p>גאָטעניוּ, וואָס הֶער איִך? נאָך דאָס אוּמגליק הָאט מיִר<lb/>געֶפֶעלְט, אָבּער נֵיין, איִך גלויבּ עֶס ניִשט, עֶס איִז שֶקֶר. וואוּ איִז<lb/>עֶרְגֶעץ הֶענֶעלֶע? <stage type="exit">(אָב).</stage><lb/>הֶעני <stage type="entrance">(קוּמט אַריין).</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0165_a">
+          <speaker>הֶעני</speaker>
+          <p>דאָ בּין איִך, איִך קאָן נִיט צוּזעהען דִי שׁמֶערְצֶען<lb/>פוּן מַיין פָאטֶער, זַייט דעֶר גראַף הָאט דֶעם שׁטַייער אוֹיף אוּנז אַרויפ⸗<lb/>גֶעלֶעגט איִז מַיין פָאטֶער אויִס מֶענְשׁ גֶעווֶארֶען. וֶוען עֶר זאָל נאָך<lb/>וִויסֶען, אַז איִך ליעבּ דֶעם גראפ'ס זוּהן, גאָט! איִך אוּמגליקליך יוּדיש<lb/>קינְד ליעבּ אַ קרִיסט, אַך, ווִי שׁרֶעקלִיך! אוּן דאָך קאָן איִך דיִ ליעבּע<lb/>פוּן מַיין הארץ ניִשט אַרויסרייסען. <stage type="delivery">(זינגט).</stage></p>
+          <lg>
+            <l>איִך דֶענְק אָן אִיהם, יאָ, נוּר אָן אִיהם</l>
+          </lg>
+          <lg>
+            <l>איִך זוּך אִיהם שׁטֶענְדִיג אומעטום,</l>
+          </lg>
+          <lg>
+            <l>עֶר נוּר אַליין קאן מִיך פֶערְשׁטֶעהן.</l>
+          </lg>
+          <lg>
+            <l>נוּר עֶר אַליין.</l>
+            <stage type="delivery">(בּיס)</stage>
+          </lg>
+          <lg>
+            <l>ווִי שטאַרק עֶס קלאפּט אִין מיִר מַיין העֶרץ,</l>
+          </lg>
+          <lg>
+            <l>ווִי גְרויס איִז דעֶר שׁמֶערְץ.</l>
+          </lg>
+          <lg>
+            <l>יאָ, מַיינֶע געדאַנקען, מַיינֶע גֶעפִיהלֶע,</l>
+          </lg>
+          <lg>
+            <l>ווענְדֶען זִיך שׁטֶענְדִיג נוּר צוּ אִיהם.</l>
+          </lg>
+          <lg>
+            <l>איִך דאַרף נוּר הֶערֶען אַיין זִיסֶעס וואָרט,</l>
+          </lg>
+          <lg>
+            <l>פאלְג איִך זאָפאָרט — אִין קִימֶער אוּן טרוִיער,</l>
+          </lg>
+          <lg>
+            <l>אִין פרוֹידֶע אין יוּבּעל,</l>
+          </lg>
+          <lg>
+            <l>זעֶה איִך אִיהם אומעטום.</l>
+            <stage type="delivery">(בּיס)</stage>
+          </lg>
+          <lg>
+            <l>זַיינֶע זַיין וואלְט איִך גֶעוָואלְט — אוּן נוּר זַיינֶע זַיין אַליין.</l>
+          </lg>
+          <lg>
+            <l>אוּן נוּר פִיהלֶען לעבּען נוּר, — איִך וואָלט זַיין גלִיקלִיך אָהן</l>
+          </lg>
+          <lg>
+            <l>אַ שִׁיעור.</l>
+          </lg>
+          <lg>
+            <l>אַ, אַ, אַ! אוּן נאָר פִיהלֶען לעבּען נאָר. אוּן גלִיקלִיך וואָלט</l>
+          </lg>
+          <lg>
+            <l>איִך גֶעווֶען אָהן אַ שִׁיעור.</l>
+          </lg>
+          <lg>
+            <l>מֶען דארף נאָר הֶערֶען אֵיין וואָרט, פאלְג איִך זאָפאָרט.</l>
+          </lg>
+          <lg>
+            <l>אִין קִימֶער, אִין טרוִיער, אִין פרֵיידֶע, אִין יוּבּעל.</l>
+          </lg>
+          <lg>
+            <l>זעֶה איִך אִיהם אומעטום.</l>
+            <stage type="delivery">(בּיס)</stage>
+            <stage type="business">(לויפֿט אַריין).</stage>
+          </lg>
+        </sp>
+        <pb n="18" facs="30804064.jpg"/>
+        <fw type="pageNum">20</fw>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0166_a">
+          <speaker>שפּרינצע</speaker>
+          <p>הֶענֶעלֶע, גֶעוואלְד, אַ דוּנער הָאט מִיך דער⸗<lb/>שְׁלָאָגען.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0167_a">
+          <speaker>הֶעני</speaker>
+          <p>וואָס הָאט פּאסירט?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0168_a">
+          <speaker>שפּרינצע</speaker>
+          <p>וֶועה מיִר, בּעהאַלט דיך.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0169_a">
+          <speaker>הֶעני</speaker>
+          <p>פאַר וועמען?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0170_a">
+          <speaker>שפּרינצע</speaker>
+          <p>עפּעס אַ פּריץ גֶעהט אַהער</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0171_a">
+          <speaker>הֶעני</speaker>
+          <p>וואָס פאַר אַ פּריץ?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0172_a">
+          <speaker>שפּרינצע</speaker>
+          <p>מיִר דאַכט זִיך, אַז דאָס איִז דעֶר יוּנגער גראַף.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0173_a">
+          <speaker>הֶענִי</speaker>
+          <p>וֶוער, וולאַדיסלאוו?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0174_a">
+          <speaker>שפּרינצע</speaker>
+          <p>ווֵייס איִך ווִי אַזוי עֶר הַייסְט, וַוייסְט אִיהם דעֶר<lb/>שוואַרצער יאָהר.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0175_a">
+          <speaker>הֶענִי</speaker>
+          <p>וולאַדיסלאוו, סְ'אִיז ניִשט אוּמזיסט. פיהר אִיהם אַריין.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0176_a">
+          <speaker>שפּרינצע</speaker>
+          <p>הֶענֶעלֶע, בּעהאַלט דיִך אוּנטער'ן טיִש, וַוייל<lb/>זיין קוּמען געֶפֶעלְט מיִר ניִשט.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0177_a">
+          <speaker>הֶענִי</speaker>
+          <p>טהוּ, וואָס איִך הַייס.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0178_a">
+          <speaker>שפּרינצע</speaker>
+          <p>האָסְט גאָר קיין מוֹרָא פאַר אִיהם? נוּ, וואָס<lb/>זאָגְט איִהר צוּ דִי הַיינְטִיגֶע מֵיידְלֶעך? פאַר דֶעם רוּח האָבּען זַיי אוֹיך<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>קיין מוֹרָא נִישְט! פּריץ לעבּען, קוּם אַריין, לאָס איִך מִיך אָבּטראָגען<lb/>אִין מאַרק אַריין <stage type="exit">(אָבּ)</stage>.</p>
+        </sp>
+        <pb n="19" facs="30804065.jpg"/>
+        <fw type="pageNum">21</fw>
+        <sp who="#henele" xml:id="YudisheKind_SP0179_a">
+          <speaker>הֶענִי</speaker>
+          <p>ווֶעגֶען וואָס איִז עֶר געקוּמען?<lb/>וולאַדיסלאַוו <stage type="entrance">(קוּמט מִיט גֶעלְד)</stage>.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0180_a">
+          <speaker>וולאַדיסלאוו</speaker>
+          <p>גוּטען טאָג, אָנאָ, עֶס פְרֶעהט מִיך, וואָס<lb/>איִך האָבּ דיִך אַליין געטראפֶען.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0181_a">
+          <speaker>הֶענִי</speaker>
+          <p>ווִי קוּמסטוּ אַהער, וולאַדיסלאוו? איִך גלויבּ, אַז אַ<lb/>וויכטִיגֶע אוּרזאכע האָט דיִך אַהער געבּראכט.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0182_a">
+          <speaker>וולאַדיסלאוו</speaker>
+          <p>דיִ פערצווייפלוּנג פוּן דַיינֶע יוּדישע בּרי⸗<lb/>דעֶר, דוּרך דֶעם שׁטַייער, וואָס מַיין פָאטֶער האָט אוֹיף זַיי אַרויפגעלעגט.<lb/>איִך וִויל זיי הֶעלְפֶען. דאָ האסטוּ פאַר דַיינֶע אוּמגליקליכע בּרידער<lb/>די 50 טוֹיזֶענְד גוּלדען, וואָס מַיין פָאטֶער פאָדערט פוּן זֵיי <stage type="business">(לעגט גֶעלְד</stage><lb/><stage type="business">אויפ'ן טיש).</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0183_a">
+          <speaker>הֶענִי</speaker>
+          <p>וולאַדיסלאוו, בּיזטוּ אַ מֶענְשׁ, אָדער אַ ענְגֶעל?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0184_a">
+          <speaker>וולאַד</speaker>
+          <p>איִך בּין אַ קרִיסט, מִיט ווֶעלְכֶען דוּ ווייגֶערְסט דיִך<lb/>צוּ פערבּינדען.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0185_a">
+          <speaker>הֶענִי</speaker>
+          <p>עֶס איִז אמְת, טראץ דֶעם שְׁוֶוער איִך דיִר, אַז מַיינֶע<lb/>ליעבּע צוּ דיִר איִז נִיט קלֶענֶער אוּן שׁוואכֶער, ווִי דַיינֶע צוּ מיִר.<lb/>איִך קאָן אָבּער מַיין רעליגיאָן ניט פערבּייטען, דיעזען גלויבּען, פאַר<lb/>ווֶעלְכֶען טוֹיזֶענְדֶער פוּן מַיינֶע בּרידער האָבּען זַייער לעבּען געאפּפערט.<lb/>אַ יוּדיש קִינְד בּין איִך געבּוירען אוּן אַ יודִישׁ קִינְד וִויל איִך שטאַרבּען.<lb/>וולאַדיסלאוו, עוויג ליעבּען וֶועל איִך דיִך, אָבּער דַיינֶע קאָן איִך<lb/>נִיט זַיין.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0186_a">
+          <speaker>וולאַד</speaker>
+          <p>אַלזאָ, גוּט. וֶוען דוּ קאנסט פאַר מיִר קיין אפּפער<lb/>בּרענגען, אַזוי וֶועל איִך עֶס טהוּן, בּיי דעֶר ערְשׁטֶער גֶעלֶעגֶענְהַייט<lb/>פערלאז איִך מַיין גלויבּען אוּן וֶועל וֶוערֶען אַ יוּד.<lb/>דענקסטוּ עֶס ווירְקלִיך צוּ טהוּן?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0187_a">
+          <speaker>וולאַד</speaker>
+          <p>יאָ, מַיין גוּטער ענְגֶעל, איִך שׁוֶוען עֶס דיִר, אוּן<lb/>דוּ שְׁוֶוער מיִר, אַז נוּר מיִר אַליין וועסטוּ גֶעהֶערֶען.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0188_a">
+          <speaker>הֶעני</speaker>
+          <p>איִך שְׁוֶוער עֶס!<lb/><stage type="business">(זינגען דועט).</stage></p>
+        </sp>
+        <sp who="#beyde" xml:id="YudisheKind_SP0189_a">
+          <speaker>בּיידע</speaker>
+          <lg>
+            <l>אַיינֶער בּיזטוּ מיִר געבּליבּען.</l>
+          </lg>
+          <lg>
+            <l>פֿון אַלע מענער געקליבּען.</l>
+            <stage type="delivery">(בּיס)</stage>
+          </lg>
+          <lg>
+            <l>אימער וֶועל איִך נוּר דיִך</l>
+          </lg>
+          <lg>
+            <l>דיִך אַליין ליעבּען.</l>
+            <stage type="delivery">(בּיס 4 מאָל.)</stage>
+          </lg>
+        </sp>
+        <pb n="20" facs="30804066.jpg"/>
+        <fw type="pageNum">22</fw>
+        <sp who="#beyde" xml:id="YudisheKind_SP0190_a">
+          <speaker>בּיידע</speaker>
+          <lg>
+            <l>ליעבּען דיִך אַליין.</l>
+          </lg>
+          <lg>
+            <l>נוּר אוּנז בּענשען, יאַ,</l>
+          </lg>
+          <lg>
+            <l>אוּנז בּעוואהרען יאַ,</l>
+          </lg>
+          <lg>
+            <l>ווייטֶער קֵיינֶעם נֵיין.</l>
+            <stage type="delivery">(בּיס)</stage>
+          </lg>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0191_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>ליעבּעס לִיעדֶער נוּר אימער זיִנְגעֶן,</l>
+          </lg>
+          <lg>
+            <l>טרייהייטס טֶענֶער זאָל איִמעֶר קלִינְגֶען,</l>
+          </lg>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0192_a">
+          <speaker>זי</speaker>
+          <lg>
+            <l>נִיע אִין לעבּען וֶועל איִך פֶערְגֶעסֶען,</l>
+          </lg>
+          <lg>
+            <l>ווִי דוּ בּיזט מיִר גֶעשֶׁעצט.</l>
+          </lg>
+          <lg>
+            <l>ווִי הַייס איִך ליעבּ דיִך יֶעצְט.</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="YudisheKind_SP0193_a">
+          <speaker>בּיידע</speaker>
+          <lg>
+            <l>ניע אִין לעבּען וֶועל איִך פֶערְגֶעסֶען,</l>
+          </lg>
+          <lg>
+            <l>אָה, אָה, ליעבּעס לִיעדֶער</l>
+          </lg>
+          <lg>
+            <l>נוּר איממער זיִנְגעֶן,</l>
+          </lg>
+          <lg>
+            <l>יאָ, טרֵייע טֶענֶער זאָל איִמעֶר קלִינְגֶען.</l>
+            <stage type="business">(אומאַרמט).</stage>
+            <stage type="entrance">(קוּמט אַריין, דערזעהט).</stage>
+          </lg>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0194_a">
+          <speaker>רב</speaker>
+          <p>מַיין גאָט, וואָס זעֶה איִך, הֶענֶעלֶע!</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0195_a">
+          <speaker>הֶענִי</speaker>
+          <p>מַיין פָאטֶער!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0196_a">
+          <speaker>וולאַד</speaker>
+          <p>ויגטשׁולְדִיגט, רבּי, איִהר זאָלט ניִשט מַיינֶען, אַז<lb/>איִך האָבּ מיִט אַייער טאָכְטֶער בּעהיטע גאָט אונמאראלישעס גֶע⸗<lb/>שפּראכען. איִך בּעטראכט זִי אַלס הייליגטוּם. איִהר אַליין וועט זִיך<lb/>דאָס מיִט דעֶר צַייט איבּערצייגען. יֶעצְט, רבּי, נֶעהמְט בּיי מיִר צוּ<lb/>דיִ סוּמע פוּן 50 טוֹיזֶענְד גולְדֶען, איִהר זאָלט קאנֶען דאמִיט אַייערֶע<lb/>בּרידער פוּן זַייער קרִיטִישֶׁער לאגע רֶעטֶען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0197_a">
+          <speaker>רב</speaker>
+          <p>גראַף, נֶעהמְט צוּריק אַייעֶר גֶעלְד, איִך דאַרף עֶס ניִשט.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0198_a">
+          <speaker>וולאַד</speaker>
+          <p>וואָס? איִהר ענטזאגט אַייך צוּ רֶעטֶען אַייערֶע בּרידער,<lb/>נוּר דערפאַר, וַוייל דיִ רעטונג קוּמט פוּן מַיין האַנד?</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0199_a">
+          <speaker>רב</speaker>
+          <p>גנֶעדִיגֶער גראַף, איִך בּעט אַייך, פֶערְשׁווינְט אִיצט דֶעם<lb/>אַלטען מאַן מיִט אַייערֶע פראגען</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0200_a">
+          <speaker>וולאַד</speaker>
+          <p>עהרווירְדִיגֶער רבּי! כ'ווייס, אַז אייער אוּנרוה שטאַמט<lb/>פוּן דעֶר זאָרג וועגֶען מַיינֶע פֶערְהֶעלְטנִיסֶע צוּ אַייער טאָכטער, אַלזא<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>זאָג איִך אַייך נאָך אַמאל: אַייעֶר טאָכְטֶערְס עהרֶע איִז בּיי מיִר פִיעל<lb/>טַייערעֶר, ווִי מַיינֶע רבּי, עמפּפאַנגט דאָס גֶעלְד אוּן גיִט עס<lb/>איבּער אַייערֶע בּרידער, דיִ יוּדען, אוּן זאָגט זַיי, אַז צוּ יֶעדֶער צַייט,<lb/>וֶוען עֶס וֶועט חָלִילָה אוֹיף זַיי אֵיין אוּמגליק קוּמען, וֶועל איִך זַיין<lb/>זַייער פֶערְטַיידִיגֶער בּיזין לֶעצטֶען אייגענבּליק פוּן מַיין לעבּען <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <pb n="21" facs="30804067.jpg"/>
+        <fw type="pageNum">23</fw>
+        <sp who="#rov" xml:id="YudisheKind_SP0201_a">
+          <speaker>רב</speaker>
+          <p>פאַרוואָס האָט עֶר דיִר אַזוי פֿיעל געלד געגעבּען?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0202_a">
+          <speaker>הֶענִי</speaker>
+          <p>אויִס רחמנוֹת צוּ מַיינֶע אוּמגליקליכע בּרידער.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0203_a">
+          <speaker>רב</speaker>
+          <p>נֵיין! <stage type="business">(וואַרפֿט אַראָבּ דאָס גֶעלְד)</stage> אַוועק דֶערְמִיט, דאָס איִז<lb/>דאָס גֶעלְד פאַר דַיין עהרֶע, וואָס דוּ האָסְט אִיהם פֶערְקוִיפט.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0204_a">
+          <speaker>הֶענִי</speaker>
+          <p>וואָס רעדסטוּ, פָאטֶער?</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0205_a">
+          <speaker>רב</speaker>
+          <p>איִך ווֵייס, וואָס איִך רעד, זאָג, וואָס פאַר אַ סודות האסטוּ<lb/>מיִט דֶעם יוּנגען גראַף?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0206_a">
+          <speaker>הֶענִי</speaker>
+          <p>פָאטֶער, איִך שְׁוֶוער דיִר בּיי גאָט, אַז איִך בּין קֵיינְע<lb/>זִינְד בּעגאנגען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0207_a">
+          <speaker>רב</speaker>
+          <p>בּיי גאָט שווערסטוּ? האָסְט נאָך אַ הֶעזה בּיי גאָט פֿאַלש<lb/>צוּ שׁוֶוערֶען? וֶועסְט אָפשר אָבּלייקענען, אַז דעֶר גראַף הָאט דיִך<lb/>געקוּשט?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0208_a">
+          <speaker>העני</speaker>
+          <p>ערלויבּ מיִר, פָאטֶער, אִיך זאָל דיִר אַלעס ערְקלֶערֶען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0209_a">
+          <speaker>רב</speaker>
+          <p>שׁווייג! אַלץ, וואָס דוּ רֶעדְסט יֶעצְט איז פֿאַלש, אוּן אוּנריין.<lb/>פערשׁאלְטֶען האָט געזאָלט וֶוערֶען דעֶר טאָג, אִין ווֶעלְכֶען אִיך בּין<lb/>דַיין פָאטֶער גֶעווֶארֶען. דערפֿאַר, וואָס דוּ האָסְט קיין רחמנות געהאט<lb/>אוֹיף דַיין אַלטען פָאטֶער אוּן האָסְט זַיין אַלטען קאפּ מיִט שׁאנְדֶע<lb/>בּעדעקט, זאָל גאט'ס קללָה דיִך בּעגעגענען אוֹיף שְׁרִיט אוּן טרִיט.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0210_a">
+          <speaker>הֶענִי</speaker>
+          <p>פָאטֶער, שֶׁעלְט מִיך נִישְט, איִך האָבּ דיִ קללָה ניִשט<lb/>פעֶרְדִיענְט.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0211_a">
+          <speaker>רב</speaker>
+          <p>אַוועק פוּן מַיינֶע אוֹיגֶען, איִך וִויל דיִך ניִשט מֶעהר<lb/>אִין מַיין שטוּבּ האָבּען, געה! <stage type="business">(עפֶענְט דיִ טהיר).</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0212_a">
+          <speaker>הֶענִי</speaker>
+          <p>איִך גֶעה, איִך פערלאָז דַיין הוִיז, אָבּער דוּ פערטרייבּסט<lb/>מִיך אוּמזיסט פֿוּן דיִר גאָט איִז מַיין עדות, אַז איִך בּין ריין פוּן<lb/>זִינְד <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0213_a">
+          <speaker>רב</speaker>
+          <p><stage type="delivery">(וויינט)</stage> וואָס האָבּ איִך געטהוּן? איִך האָבּ מַיין קִינְד.<lb/>מַיין טאָכְטֶער, פוּן מַיין הוִיז פֿעריאָגט, אָפשר איִז זִי טאקי אונ⸗<lb/>שׁוּלְדִיג? הֶענֶעלֶע, הֶענֶעלֶע! <stage type="exit">(אָבּ).</stage><lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>שׁמֶערְל <stage type="business">(אריין).</stage></p>
+        </sp>
+        <pb n="22" facs="30804068.jpg"/>
+        <fw type="pageNum">24</fw>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0214_a">
+          <speaker>שמערל</speaker>
+          <p>דאַכט זִיך מיִר, אַז מֶען הָאט מִיך דאָ גערוּפען.<lb/>איִך האָבּ גֶעהֶערְט ווִי מַיין שפּרינצעס קול. איִך האָבּ מִיך אַ בּיסעל<lb/>צוּגעלעגט אוּן גֶעוָואלְט חאַפּען אַ זשׁומְזשֶׁע, דאַכט זִיך מיִר אויס, אַז<lb/>טֶען שְׁרֵייט, אוֹי, קיין רוהִיגֶע מינוּט האבּ איִך ניִשט בּיי איהר.<lb/>וֶוען איִך זאָל וויִסעֶן, אַז פוּן אַ צווייט ווייבּ הָאט מֶען אַזעלכע צרוֹת,<lb/>זאָל איִך קרֶענְקֶען, צִי איִך וואָלט אַמאל חתונה גֶעהאט. מַיין עֶרְשְׁט<lb/>ווייבּ, אַ לִיכטִיגֶען גֶן-עדן זאָל זִי האָבּען, איִז דאָך גֶעווֶען אַ צדקת, איִך<lb/>האָבּ פוּן איִהר קיינמאָל אַ שְׁלעֶכט וואָרט ניִשט גֶעהֶערְט. אמְת, זִי<lb/>איִז טאקי גֶעווֶען אַ שטוּמע; זִי אָבּער האַלט אִין אֵיין שׁרֵייען: גֶעלְד,<lb/>גֶעלְד אוּן גֶעלְד אוּן גלאט אַזוי גֶעלְד. רבּונו שֶׁל עולם! ווִי זאָל<lb/>איִך נֶעהמֶען אַזוי פֿיִעל גֶעלְד! אַמאל, דֶערְצֶעהלְט מֶען, פלעגט אָליהוּ<lb/>הנבִיא אָנווייזען, וואוּ ס'ליגט אַ ״אוצר״, אָדער ״תשעה-באב״, נאָך<lb/>האַלבּער נאַכט פלֶעגט זִיך דֶער הִימֶעל שפּאַלטען, אוּן וֶוען עמִיצֶער<lb/>פלעגט דאַמאלס אַרויסרעדען דאָס וואָרט ״גֶעלְד״ פלעגט פוּנ'ם<lb/>הִימֶעל אַראָבּפאַלען גאַנצע זֶעק מיט גֶעלְד. הַיינְט אָבּער בעונותינו⸗<lb/>הרבּים טרעפט זִיך נִיט מֶעהְר אַזעלכע זאַכען <stage type="business">(טרֶעט אוֹיף דֶעם גֶעלְד)</stage><lb/>וואָס וואַלגערט זִיך עפּעס הִינְטֶער דיִ פיס? <stage type="business">(הויבּט אוֹיף)</stage> עפּעס<lb/>אַ האַרטע זאַך <stage type="business">(קוּקט)</stage> גֶעווַאלְד, נֵיין, איִך האָבּ אַ טֶעות... יוּדען<lb/>איִך שטאַרבּ! איִך קאָן שׁוֶוערֶען, אַז דער בּייטעל איז פוּל מיִט רֶענְדְלֶעך.<lb/>שאַ, אָפְשֵר האָט גאָט מיין תּפלה דֶערְהֶערְט אוּן האָט מיִר טאַקע<lb/>בּאמת אַ אוצר צוּגֶעשִׁיקט, גֶעוואלְד, יוּדען ראַטעוועט מִיך! נֵיין, איִהר<lb/>פערשפּאָרט מִיך צוּ ראַטעווען, איִך בּין שׁוֹין גֶערֶעטֶעט<lb/>ר' שׁמֶרל, מז"ַט! מיִט מזל זאָלט איהר לעבּען, איִהר זֶענְט שׁוֹין<lb/>נִיט שׁמֶערְל קבּצן, שׁמֶערְל דער שוּהל-קלאַפּער, נאָר דער גְרויִסעֶר גְבִיר,<lb/>ר' שׁמֶערְל. גאָט האָט מיִר אַ בּייטעל גֶעלְד פוּן הִימֶעל אַראָבּגעוואר⸗<lb/>פֿען, וואָס רֶעד איִך, ניִשט קיַין בּייטעל, נאָר אַ גאַנצע בּאמבּע געלד.<lb/>גאטעניוּ, איִך דאַנק דיִר פאַר דער באמבּע. <stage type="delivery">(זִינְגְט קוּפלעט ״די בּאמבע״).</stage><lb/>רעפריין:<lb/>רעפריין:</p>
+          <lg>
+            <head>.1</head>
+            <l>איִך האָבּ אַ בּאמבּע גְרויס אוּן דָאך</l>
+          </lg>
+          <lg>
+            <l>דאָס איִז גאָטס רצון</l>
+          </lg>
+          <lg>
+            <l>גֶעווֶען עֶרְשְׁט נֶעכטֶען אַ קבצנ׳יוּק,</l>
+          </lg>
+          <lg>
+            <l>אוּן הַיינְט בּין איִך אַ קצין.</l>
+          </lg>
+          <lg>
+            <l>הלואי אוֹיף מַיינֶע גוּטע פֿרייַנד.</l>
+          </lg>
+          <lg>
+            <l>גאָטעניוּ, אַ חוּן מַיין שׁאדֶען.</l>
+          </lg>
+          <lg>
+            <l>די בּאמבּע מאַכְט מִיך גלִיקלִיך הַיינְט</l>
+          </lg>
+          <lg>
+            <l>איִך בּין יֶעצְט אָנגעלאדען.</l>
+          </lg>
+          <lg>
+            <l>דאָס האָט מיִר גאָטעניוּ בּעשערט</l>
+          </lg>
+          <lg>
+            <l>וַוייסְט איִהר, וואָס אַזא בּאמבּע הָאט דיִ וֶוערְט?</l>
+          </lg>
+          <lg>
+            <l>אַ באמבּע, זַייט באמבּעס האָבּען זִיך גֶעבאמבעט.</l>
+          </lg>
+          <lg>
+            <l>איִז נאָך אַזא בּאמבּע נִיט גֶעווֶען.</l>
+          </lg>
+          <lg>
+            <l>אוֹי, איִז דאָס אַ בּאמבּע, זאָג איִך אַייך, אַ בּאמבּע!</l>
+          </lg>
+          <lg>
+            <l>אוֹי, זאָלְט איִהר מַיין בּאמבּע זעֶהן, אַ בּאמבע!...</l>
+          </lg>
+          <lg>
+            <head>.2</head>
+            <l>אַ מויד, וואָס האָט געקוּקט אוֹיף גֶעלְד,</l>
+          </lg>
+          <lg>
+            <l>גֶעוואלְד! א בּאמבּע האַלטען,</l>
+          </lg>
+          <lg>
+            <l>אוּן בּאלד הָאט זִי דֶערְזֶעהן דיִ וֶועלְט.</l>
+          </lg>
+          <lg>
+            <l>געהייראטעט מיִט אַנ׳אַלטען,</l>
+          </lg>
+          <lg>
+            <l>עֶר האָט דיִ בּאמבּע איִהר דֶערְלאנְגט.</l>
+          </lg>
+          <lg>
+            <l>נאָר הֶערְט, וואָס ס׳הָאט גֶעטראפֶען:</l>
+          </lg>
+          <lg>
+            <l>זִי הָאט אִיהם בתיכף אָבּגענארט</l>
+          </lg>
+          <lg>
+            <l>אוּן איִז פוּן אִיהם אַנטלאפען</l>
+          </lg>
+          <lg>
+            <l>מיִט אַ יוּנְגֶען מַאן, וואָס איִז איהר בּעשערט</l>
+          </lg>
+          <lg>
+            <l>פרעֶג איִך אַייך בּחרם, וואָס זַיין בּאבּע האָט דיִ וֶוערְט?</l>
+            <l>אַ בּאמבּע א. אַז. וו.</l>
+            <stage type="business">(אריין).</stage>
+          </lg>
+        </sp>
+        <pb n="23" facs="30804069.jpg"/>
+        <fw type="pageNum">25</fw>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0215_a">
+          <speaker>שפּרינצע</speaker>
+          <p>בּיזט אַ מבִין ווִי דער לֵיימֶענֶער גולם הָאט זִיך<lb/>יאָ אַנידערגעשטעלט? איִך האָבּ דָאך דִיך געֶהייֵסעֶן אנרייַבּען חרַיין<lb/>פאַר'ן רב אוֹיף וועטשֶׁערֶע.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0216_a">
+          <speaker>שמֶערל</speaker>
+          <p>איִך רייבּ ניִשט הַיינְט!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0217_a">
+          <speaker>שפּרינצע</speaker>
+          <p>וואָס הַייסְט דוּ רייבּסט ניִשט?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0218_a">
+          <speaker>שמערל</speaker>
+          <p>דרך-ארץ, וואָרוּם איִך וֶוער אִין בכעס, ווייסטוּ דָאך<lb/>בּיי מיִר איִז אַיינְס-צְוֵויי אוּן פֶערְטִיג!<lb/>דאָס יוּדִישֶׁע קִינְד</p>
+        </sp>
+        <pb n="24" facs="30804073.jpg"/>
+        <fw type="pageNum">26</fw>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0219_a">
+          <speaker>שׁפרִינְצֶע</speaker>
+          <p>אַיינְס-צְוֵויי אוּן פֶערְטִיג! וואָרט, כּל-בּו'ניק, איִך<lb/>וֶועל מיִר מיִט דיִר אָבּרעכענען פאַר דיִ קניפּ, וואָס דוּ הָאסְט מיִר<lb/>געגעבּען.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0220_a">
+          <speaker>שמערל</speaker>
+          <p><stage type="business">(מיט אַ ניגוּן)</stage> הַיינְט פרעג איִך דיִר, נאָרישע אשה<lb/>אוּן אַפילוּ אַ מלאך קאן זִיך דֶען איינהאַלטען, זַיין ווייבּ ניִשט צוּ קנֵיי⸗<lb/>פּען, וֶוען עֶר וִויל עֶסעֶן? וֶוען דוּ וואָלסט אָבּער שֵׂכֶל געהאַט אוּן וואָלסט<lb/>מיִר געגעבּען גענוּג צוּ עֶסעֶן, וואָלט איִך עֶס געמאַכט אַיינְס-צְוֵויי אוּן<lb/>פֿערטיג!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0221_a">
+          <speaker>שפּרינצע</speaker>
+          <p>בּיזט אַ מבִין? אַיינְס-צְוֵויי אוּן פֶערְטִיג! איִך האָבּ<lb/>גֶעזֶעהֶען בּיי לֵייטֶען, מֶענֶער האָבּען אַ גרויסען אַפּעטיט, פֶערְדִיענֶען<lb/>זַיי; דוּ פֶערְדִיענְסט אַ קרֶענְק אוּן עֶסְט ווִי נאָך אַ קרֶענְק.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0222_a">
+          <speaker>שׁמֶערל</speaker>
+          <p>האָסט שׁוֹין אָבּגערעדט? לאָז מִיך אוֹיך צוּם פּסיק<lb/>קוּמען. זאָלסט וויִסעֶן, שפּרינצע, אַז איִך בּין שׁוֹין ניִשט מֶעהר<lb/>שׁמֶערְל דער קבּען, אוּן דוּ וֶועסְט שׁוֹין נִיט הַייסֶען שפּרינגע דיִ<lb/>שׁמשׁ׳טֶע; פֿון היינט-אָן וועט מֶען מִיך שׁוֹין רוּפען: הגביר. ר'<lb/>שׁמֶערְל פּיק, אוּן דיִך — הגבִּירְ׳טֶע שפּרינצע פּיק'כע.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0223_a">
+          <speaker>שפּרינצע</speaker>
+          <p>אַלע בּייזע חלומות צוּ דַיין קאפּ! פוּן וואַנען<lb/>וועט זִיך צוּ דיִר נֶעהמֶען דאָס גבירְשׁאפט?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0224_a">
+          <speaker>שׁמֶערְל</speaker>
+          <p>פוּן וואַנען, פרעגסטוּ? קוּק אַהער, בּיזט אַ מבִין<lb/>אוֹיף אַ בּייטעל?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0225_a">
+          <speaker>שפּרינצע</speaker>
+          <p>וואָס איִז דאָס, אַ תּפילין-זֶעקֶעל?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0226_a">
+          <speaker>שמערל</speaker>
+          <p>קוּק אַריין, זעֶה, וואָס דַיין מַאן פֶערְמַאגט!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0227_a">
+          <speaker>שפּרינצע</speaker>
+          <p>גֶעווַאלְד, איִך שטאַרבּ!</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0228_a">
+          <speaker>שׁמֶערל</speaker>
+          <p>אַדרבּה, גיבּ יֶעצְט אַ שטאַרבּ-אבּ וועסטוּ זֶעהֶען,<lb/>וואָס פאַר אַ כּלה איִך וֶועל אויסחאפּען.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0229_a">
+          <speaker>שפּרינצע</speaker>
+          <p>שׁמֶערִיל קרוין, זאָג מיִר, וואוּ האָסטוּ דאָס<lb/>גענוּמען?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0230_a">
+          <speaker>שמערל</speaker>
+          <p>גאָט האָט עֶס מיִר צוגעשיקט.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0231_a">
+          <speaker>שפּרינצע</speaker>
+          <p>האָסְט געפונען אַנ'אוצר?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0232_a">
+          <speaker>שמערל</speaker>
+          <p>יאָ, וועסטוּ מיִר נאָך זִידְלֶען? פוּן יֶעצְט אָן וֶועלֶע<lb/>מיִר זִיך בּאדען אִין גאָלד אוּן זילבּער. זאָג מיִר, וואָס זאָל איִך פאַר<lb/>דיִר קויפֿען?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0233_a">
+          <speaker>שפּרינצע</speaker>
+          <p>איִך פערלאָז מִיך אוֹיף דיִר.<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="25" facs="30804078.jpg"/>
+        <fw type="pageNum">27</fw>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0234_a">
+          <speaker>שמערל</speaker>
+          <p>אַז דוּ פערלאָזט זִיך אוֹיף מיִר, זֶעה איִך, אַז<lb/>דוּ האָסְט שֵׂכֶל וַוייסְט, וואָס איִך וֶועל דיִר קוִיפֶען?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0235_a">
+          <speaker>שפּרינצע</speaker>
+          <p>וואָס?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0236_a">
+          <speaker>שמערל</speaker>
+          <p>גאָר צוּם עֶרְשְׁטעֶן וֶועל איִך דיִר קוִיפֶען תּכריכים<lb/>אוּן אַ קבר געבּען דעֶר אַלטער רבּיצין ז״ל.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0237_a">
+          <speaker>שפּרינצע</speaker>
+          <p>אַ וויסטֶער חָלוֹם אוֹיף דַיין קאפּ! שׁמֶערְל פּיק,<lb/>בּיזט נאָר רֵייך גֶעווֶארֶען, ווילסטוּ מִיך שׁוֹין בּעגראָבּען. כדי זאָלסט<lb/>קאָנען חתוּנה האָבּען מיִט אַ מויד?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0238_a">
+          <speaker>שמערל</speaker>
+          <p>קלֵיינְשׁטֶערְטֶעלְדִיגֶע, לאָז מִיך ענְדִיגֶען: קודם כּל<lb/>מוּז מֶען אִין זינען האָבּען יֶענֶע וֶועלְט. וַוייסְט דאָך, אַז אַ מֶענְשׁ איִז<lb/>גֶעגלִיכֶען צוּ אַ וואַטע⸗מאכער, מיִר זִינְדִיגֶע מֶענְשֶען זֶענֶען גלֵייך צוּ<lb/>שפּינוועבּס: אַיינְס-צְוֵויי אוּן פֶערְטִיג. דעריבּער לאָמיִר זִיך צוּם עֶרְשְׁטֶען<lb/>פערזאָרגען מיט עולם-הבּא אוּן דערנאך עֶרְשְׁט מִיט עולם-הזה.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0239_a">
+          <speaker>שפּרינצע</speaker>
+          <p>אַזוי? אוּן פאַר דיִר וועסטוּ אוֹיך אָנגרייטען<lb/>תּכריכים אוּן אַ קבר?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0240_a">
+          <speaker>שמערל</speaker>
+          <p>גֶעוויס, מַיין לעבּען. וואָס בּין איִך דֶען קיין יוּד<lb/>ניִשט?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0241_a">
+          <speaker>שפּרינצע</speaker>
+          <p>אויבּ אַזוי, איִז עפּעס אַנדערש.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0242_a">
+          <speaker>שמערל</speaker>
+          <p>יֶעצְט לאָמיִר זִיך מיישב זַיין, וואָס פאַר אקליידער<lb/>מיִר זאָלען זִיך מאַכען. איִך וֶועל דיִך אויספוּצען, ווִי אַ קֵייזֶערִין.<lb/>אַפילוּ הֶעמְדֶער וֶועל איִך דיִר מאַכען פֿון סאַמעט אוּן פוּן אַטלאס.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0243_a">
+          <speaker>שפּרינצע</speaker>
+          <p>גֶעה מֶען דאַרף דאָך ניִשט זַיין קיין אויס⸗<lb/>בּרענגער. אַ הֶעמְד מֶעג מֶען געֶהן פוּן פראסטע לֵייוואנד, קֵיינֶער<lb/>זֶעהט עֶס דאָך ניִשט, אוּן קלֵיידֶער זאָלסטוּ מיִר מאַכען וואכֶעדִיגֶע<lb/>— פוּן סאַמעט אוּן פוּן אַטלאַס, אוּן שבּת׳דיגע פוּן זַייד, גֶעשׁטִיקט<lb/>מיט גאלְד.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0244_a">
+          <speaker>שמערל</speaker>
+          <p>פוּן גאָלד? ווילסט מיִר בּדלות שְׁטעֶלעֶן איִך זאָל<lb/>וֶוערֶען אַיינְס-צְוֵויי אוּן פֶערְטִיג?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0245_a">
+          <speaker>שפּרינצע</speaker>
+          <p>שאַ, שׁמֶערְל פּיק, צוּליעבּ אַזאַ קְלֵיינִיגקֵייט<lb/>ווֶעלֶען מיִר זִיך דאָך ניִשט גט'ן.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0246_a">
+          <speaker>שׁמֶערְל</speaker>
+          <p>זֶעהט, אַז דוּ וֶועכט מיִר פאלגען. וועט זיין<lb/>וואויל אוּן גוּט: איִך וֶועל דיִר מאַכען שֶׁענֶע קלֵיידֶער, זאָלסט מיר<lb/>אָבּער געבּען גוּט צוּ עֶסעֶן.<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="26" facs="30804081.jpg"/>
+        <fw type="pageNum">28</fw>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0247_a">
+          <speaker>שפּרינצע</speaker>
+          <p>איִך וֶועל דיר מאַכען אַזעלכע מאכלִים, וואָס<lb/>דער מלאך וועט זַיי מֶעגֶען עֶסֶען, וַוייסְט דָאך, אַז איִך בּין אַ מבִין<lb/>אוֹיף אַזעלכע זאַכען.<lb/><stage type="business">(זינגען דועט)</stage>:</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0248_a">
+          <speaker>זי</speaker>
+          <lg>
+            <l>מיִט אוּנזער פֶערְמֶעגֶען</l>
+          </lg>
+          <lg>
+            <l>וֶועל איִך מִיך צולעגען,</l>
+          </lg>
+          <lg>
+            <l>דוּ וֶועסְט זֶעהֶען, וואָס איִך קאָן טהוּן.</l>
+          </lg>
+          <lg>
+            <l>איִך וֶועל קאָכען אוּן בּאַקען,</l>
+          </lg>
+          <lg>
+            <l>קניידְלֶעך דיִר האַקען.</l>
+          </lg>
+          <lg>
+            <l>וֶועסְט זִיך ערקוויקען דערפוּן.</l>
+          </lg>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0249_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>אוּן דיִר וֶועל איִך מאַכען</l>
+          </lg>
+          <lg>
+            <l>די טייערסטע זאַכען,</l>
+          </lg>
+          <lg>
+            <l>בּעקליידען דיִך, ווִי דוּ בּיזט גְרויִס.</l>
+          </lg>
+          <lg>
+            <l>אַ הוּט מיִט פִיעל פֶעדֶערֶען.</l>
+          </lg>
+          <lg>
+            <l>וועט, וועט יֶעדֶערֶען</l>
+          </lg>
+          <lg>
+            <l>אויס קנאה דיִ אוֹיגען אַרויס. יאַ,</l>
+          </lg>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0250_a">
+          <speaker>זי</speaker>
+          <lg>
+            <l>עֶס וֶועט זַיין גוּט.</l>
+          </lg>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0251_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>ווִי איִך בּין אַ יוּד.</l>
+          </lg>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0252_a">
+          <speaker>זי</speaker>
+          <lg>
+            <l>קרעפלעך קאָכען</l>
+          </lg>
+          <lg>
+            <l>אין דערוואכען.</l>
+          </lg>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0253_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>אַ— אַ — — אַ — — — אַ מחיה,</l>
+          </lg>
+          <lg>
+            <l>מַיין נחת, טרֵייע.</l>
+          </lg>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0254_a">
+          <speaker>זי</speaker>
+          <lg>
+            <l>איִך וֶועל דיִך שטאָפּען אוּן דאפּען,</l>
+          </lg>
+          <lg>
+            <l>וֶועסְט וֶוערֶען ווִי אַ בּיק.</l>
+          </lg>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0255_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>דוּ וֶועסְט בּיי מיִר וֶוערֶען דיִק.</l>
+          </lg>
+          <lg>
+            <l>איִז מַיין נאָמען ניט פּיק.</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="YudisheKind_SP0256_a">
+          <speaker>בּיידע</speaker>
+          <lg>
+            <l>דאָס וועט טאקי זַיין אַנ׳אַנטיק.</l>
+          </lg>
+          <lg>
+            <l>גוּט איִז צוּ האָבּען גֶעלְד,</l>
+          </lg>
+          <lg>
+            <l>דאַמאַלס וַוייסְט מֶען פוּן אַ וֶועלְט</l>
+          </lg>
+          <lg>
+            <l>מֶען עֶסְט מֶען טרִינְקט.</l>
+          </lg>
+          <lg>
+            <l>מֶען טאנצט, מֶען זִינְגְט.</l>
+          </lg>
+          <lg>
+            <l>מֶען פרעהט זִיך אוּן מֶען קוועלט.</l>
+          </lg>
+          <p>דאָס יוּדישע קִינְד.</p>
+          <lg>
+            <l>ווייסען דֶען קבּצנים פֿוּן אַ רֶעכטֶען חיים.</l>
+          </lg>
+          <lg>
+            <l>אָבּעֶר מיִר נגידים ווייֵסעֶן גוּט אוּן וואויל,</l>
+          </lg>
+          <lg>
+            <l>בּיער אוּן שנאפּס שאמפּאניען-וויין וועט זַיין ווִי מים.</l>
+          </lg>
+          <lg>
+            <l>טאָג אוּן נאַכט נוּר גִיס אִין מויל.</l>
+            <stage type="exit">(טאנץ, אָבּ).</stage>
+            <stage type="setting">פֶערוואנְדְלונְג.</stage>
+            <stage type="setting">(רייכער זאָל בּיי פֶעטֶעפִי. אין זאַל - פּעטעפי, זֶעזֶעמִיר אוּן גֶעסט).</stage>
+          </lg>
+        </sp>
+        <pb n="27" facs="30804085.jpg"/>
+        <fw type="pageNum">29</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0257_a">
+          <speaker>פּעטעפי</speaker>
+          <p>דאָס זֶענֶען נאָך ניִשט אַלע סוּרפּרייזען, וֶועלְכֶע<lb/>איִך האָבּ הַיינְט פאַר אַייך פארגעבּרייט, מַיינֶע ליעבּע גֶעסט. פּאסט⸗<lb/>אוֹיף, יֶעצְט קוּמען דיִ וויכטִיגסטֶע <stage type="business">(אַ צַייכֶען).</stage><lb/><stage type="entrance business">(עֶס קוּמען אַריין: הויף⸗נאָר, זִינְגֶער אוּן טֶענְצֶער).</stage></p>
+        </sp>
+        <sp who="#hofnar" xml:id="YudisheKind_SP0258_a">
+          <speaker>נאַר</speaker>
+          <p>איִך האבּ דיִ שׁאנְדֶע זִיך פארצושטעלען; איִך בּין<lb/>דעֶר גראַף בּיים הוִיף⸗נאָר... פּארדאָן! פֶערְקֶעהרְט: דעֶר גראַף בּיים<lb/>הוִיף⸗נאָר בּין איִך אוֹיך ניִשט... נאָר וואָס איִז אַייך דעֶר אוּנטער⸗<lb/>שִׁיעד, איִך גיבּ אַייך מַיין וואָרט, אַז אַיינֶער פוּן אוּנז איִז דעֶר<lb/>גראַף אוּן דעֶר צווייטֶער איִז זַיין הוִיף⸗נאָר. מיִר איִז קיין אונטער⸗<lb/>שִׁיעד, וֶוער פוּן אוּנז ס'איז וֶועמֶענְס נאָר. וואָלט עֶס אִיהם אוֹיך<lb/>אַזוי קיין אונְטֶערְשִׁיעד ניִשט גֶעווֶען. איִז עֶר אָבּער אַנ'איינגעשפּאר⸗<lb/>טער, אוּן אַז איִך וִויל אִיהם איבּערשפּארען, שפּאַרט עֶר מיִר אֵיין<lb/>אִין ארעסט, פערשפּאר איִך זִיך שׁוֹין שפּארען. איִז עֶר דעֶר קלוגער<lb/>אוּן איִך בּין זַיין נאָר <stage type="business">(געזאַנג).</stage><lb/>(רעפֿריין)<lb/>דאָס יודישֶׁע קִינְד.<lb/>(רעפריין).<lb/>(רעפריין):</p>
+          <lg>
+            <l>איִך בּין דעֶר הוֹיף נאר, איך בּין דעֶר וועלט-נאָר, נאָר דאָס</l>
+          </lg>
+          <lg>
+            <l>זֶעהְט איִהר אַליין.</l>
+          </lg>
+          <lg>
+            <l>פוּן מיִר לאַכט אִיעדֶער אִינֶער מֶענְשׁ, פוּן גְרויס בּיז קליין.</l>
+          </lg>
+          <lg>
+            <l>לוסטיג זַיין אוּן פרֶעהלִיך מאַכען, דאָס איִז מַיין מלאכה</l>
+          </lg>
+          <lg>
+            <l>וַוייל אַ נאָר געבּוירען וֶוערֶען וואַר הָאך מַיין הצלחה.</l>
+          </lg>
+          <lg>
+            <l>פאַר דֶעם געבּענשטען פאַך לויבּ איִך טאָג אוּן נאַכט.</l>
+          </lg>
+          <lg>
+            <l>נאָר איִז מַיין נאָמען.</l>
+          </lg>
+          <lg>
+            <l>אַלע לאַכט מיִט מיִר צוזאַמען.</l>
+          </lg>
+          <lg>
+            <l>לאכֶען זאָלט איִהר דאָס גאַנצע לעבּן.</l>
+          </lg>
+          <lg>
+            <l>גלִיק זאָל אַייך נוּר אִימֶער שוועבּען.</l>
+          </lg>
+          <lg>
+            <l>איִך בּין גרֶעסֶער פֿון קעניג</l>
+          </lg>
+          <lg>
+            <l>איִך לעבּ אוּן שוועבּ אוּן זאָרג ווענִיג,</l>
+          </lg>
+          <lg>
+            <l>איִך שׁטֶעק אַרויס מַיין צונג.</l>
+          </lg>
+          <lg>
+            <l>אוּן לאַך-אויס אַלסדינג — חאַ-חאַ-חאַ...</l>
+          </lg>
+          <lg>
+            <l>געה גלויבּ אִין ליעבּע, וֶוען דוּ זֶעהסט פוּן אַיינְגֶערְמַאן גאָר.</l>
+          </lg>
+          <lg>
+            <l>ערְקלֶערְט זִיך אִין הייסע ליעבּע אַ פרוֹי פוּן 50 יאָהר.</l>
+          </lg>
+          <lg>
+            <l>נאָר דערפאַר, וַוייל דיִ אַלמנה איז אָנגעשטאָבּפט מיִט גֶעלְד.</l>
+          </lg>
+          <lg>
+            <l>שְׁרֵייט דער יוּנג: נוּר דיִ איינע געֶפֶעלְט אִיהם אוֹיף דֶער וֶועלְט.</l>
+          </lg>
+          <lg>
+            <l>נאָר הער זִיך צוּ אוּן האַלט זִיך אֵיין פוּן צוּ לאַכען אַ יפֿון קול.</l>
+          </lg>
+          <lg>
+            <l>זאָט מיִר, איִך בּעט אַייך, וואָס שְׁלָאגְט מֶען דֶעם יוּדען</l>
+          </lg>
+          <lg>
+            <l>א מעדכן?</l>
+          </lg>
+          <lg>
+            <l>צי דערפאַר, וַוייל עֶר איִז אַ נאָר, אָדער צו גאָר צוּ-פרוּסן?</l>
+          </lg>
+          <lg>
+            <l>נֵיין, מֶען שְׁלָאגט איהם ניִשט דערפאַר, איִך שׁוֶוער אַייך</l>
+          </lg>
+          <lg>
+            <l>בּיי מַיין גלִיק,</l>
+          </lg>
+          <lg>
+            <l>זַיין גאַנצע שוּלד בּעשטעהט אִין דֶעם, וַוייל עֶר קאן נישט</l>
+          </lg>
+          <lg>
+            <l>געבּען צוּריק.</l>
+          </lg>
+          <lg>
+            <l>נוּ, וואָס-זשֶׁע בּלייבּט אִיהם דאָך צוּ טהוּן, מען יאָגט אִיהם</l>
+          </lg>
+          <lg>
+            <l>אַהער, אַהין.</l>
+          </lg>
+          <lg>
+            <l>נאָר איִז זַיין נאָמען.</l>
+          </lg>
+          <lg>
+            <l>לאַכט מיִט אִיהם צוזאַמען,</l>
+          </lg>
+          <lg>
+            <l>לאַכען זאָל עֶר דאָס גאַנצע לעבּען.</l>
+          </lg>
+          <lg>
+            <l>גלִיק זאָל אִיהם נוּר איממער שוועבּען.</l>
+          </lg>
+          <lg>
+            <l>עֶר איִז גרֶעסֶער פוּנ'ם קֶענִיג</l>
+          </lg>
+          <lg>
+            <l>עֶר לעבּט אוּן שוועבּט אוּן זאָרגט ווענִיג</l>
+          </lg>
+          <lg>
+            <l>עֶר שׁטֶעקט אַרויס זַיין צונג</l>
+          </lg>
+          <lg>
+            <l>אוּן לאַכט אויס פוּן אַלסדינג — חאַ-חא חאַ....</l>
+          </lg>
+        </sp>
+        <pb n="28" facs="30804089.jpg"/>
+        <fw type="pageNum">30</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0259_a">
+          <speaker>פֶעט</speaker>
+          <p>יֶעצְט, מַיינֶע פרֵיינְדֶע, לאַד איִך אַייך צוּם טיש. נוּן<lb/>פֿרייַנד זֶעזֶעמִיר, גֶעהסט אוֹיך מיִט?</p>
+        </sp>
+        <sp who="#graf_zezemir" xml:id="YudisheKind_SP0260_a">
+          <speaker>זֶעזֶעמִיר</speaker>
+          <p>גֶעה, איִך קוּם בּאלד. <stage type="exit">(פּעטעפי קאָהר אָבּ).</stage><lb/>וואָס זאָל דאָס בּעדייטען, וואָס דעֶר יוּנגער גראַף איִז נאָך ניִשט<lb/>געקוּמען מִיך בּעגריסען?...<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>זאַסלאַוועק <stage type="entrance">(קוּמט אַריין).</stage></p>
+        </sp>
+        <pb n="29" facs="30804095.jpg"/>
+        <fw type="pageNum">31</fw>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0261_a">
+          <speaker>זאַסל</speaker>
+          <p>גנֶעדִיגֶער פִירְסט, דעֶר יוּנגער גראַף איִז אִיצט בּיי<lb/>זַיין געליעבּטער מכשפה נישטא.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0262_a">
+          <speaker>זֶעז</speaker>
+          <p>צוּ עֶרְשְׁט זאָג מיִר, וֶוער בּיזטוּ?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0263_a">
+          <speaker>זאַסל</speaker>
+          <p>איִך בּין דעֶר קאַמערדיענער פוּן גראַף פֶעטֶעפי.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0264_a">
+          <speaker>זעז</speaker>
+          <p>פון וועמען האסטוּ געבּען גֶערֶעדְט?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0265_a">
+          <speaker>זאַסל</speaker>
+          <p>פוּנ'ם רב'ס טאָכטער; דעֶר יוּנגער גראַף איִז אִין<lb/>איִהר פערליעבּט איבּער דיִ אוִיערֶען. אָבּער איִך בּעט אַייך, גנֶע⸗<lb/>דִיגֶער פִירְסט, איִהר זאָלט קֵיינֶעם ניט זאָגען, אַז איִך האָבּ אַייך<lb/>ערְצֶעהלְט.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0266_a">
+          <speaker>זֶעז</speaker>
+          <p>זיי רוהיג דיִר וועט גאָר ניִשט גֶעשֶׁעהֶען, קֶענְסט<lb/>געֶהן <stage type="business">(גיט איהם גֶעלְד).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0267_a">
+          <speaker>זאַסל</speaker>
+          <p>דאַנקע!<lb/><stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0268_a">
+          <speaker>זֶעז</speaker>
+          <p>הָאט ווירְקלִיך דער גראַף זִיך ערלויבּט מיִט מיִר זאָ<lb/>אֵיין אוּנערהערטען שפּאס צוּ מאַכען? אָה, וֶוען דאָס איִז וואַהר, דָאן<lb/>זאָלט איִהר בּיידע מַיינֶע ראכֶע פִיהלֶען!<lb/>פעטעפי <stage type="business">(אריין).</stage></p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0269_a">
+          <speaker>פּעטעפי</speaker>
+          <p>חאַ-חאַ! וֶוען מַיינֶע גֶעסט זאָלען מִיך אַזוי ליעבּען,<lb/>ווִי זיי ליעבּען מַיין שאמפּאניער, וואָלט איִך דעֶר גרֶעסטֶער ליעבּלינג<lb/>פוּן דֶעם פאלְק גֶעווֶען! אָה, דוּ בּיזט דָא גאַנץ אַליין? דוּ, ווִי אוֹיך<lb/>דַיין טאָכטער, ליעבּען דיִ איינזאמקייט, אוּם פאַנטאַזירען צוּ קֶענֶען.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0270_a">
+          <speaker>זעז</speaker>
+          <p>יא, איך פאנטאזיר יעצט וועגען זֶעהְר אַ וויכטִיגֶע פראגע.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0271_a">
+          <speaker>פֶעט</speaker>
+          <p>גֶעוויס ווֶעגֶען דֶער צוּקוּנפט פוּן אוּנזערע קיִנְדעֶר, נִיכְט<lb/>וואָהר, פִירְסט?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0272_a">
+          <speaker>זעז</speaker>
+          <p>נֵיין, איִך דֶענְק יֶעצְט ווֶעגֶען אַ גאַנץ אַנדערען גֶעגֶענ⸗<lb/>שׁטאנְד: איִך ווֵייס, דוּ בּיזט יֶעצְט ניִשט אימשטאַנד מיִר מַיינֶע<lb/>שׁוּלְדֶען צוּ בּעצאהלען, אוּן גֶעגֶען מַיין וויִלעֶן וֶועל איִך געצוואונְגֶען<lb/>זַיין, דיִך מיִט דַיין זוּהן פוּן דֶעם שלאָס צוּ פעריאָגען.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0273_a">
+          <speaker>פֶעט</speaker>
+          <p>איִך פֶערְשְׁטֶעה ניִשט, וואָס דוּ רֶעדְסט.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0274_a">
+          <speaker>זֶעז</speaker>
+          <p>מֶעגלִיך, אַז דוּ פֶערְשׁטֶעהסְט מִיך נִיט, וַוייל דוּ זֶעהסְט<lb/>נִיט, וואָס אוּנְטֶער דַיין רוּקען פאהרגעהט, האָסט מיִר פערשפּראכען,<lb/>אַז דַיין זוּהן וועט הייראַטען מַיין טאָכְטֶער, אַם עֶנְדֶע הָאט אִיהם<lb/>דֶעם רב'ס טאָכטער בּעצויבּערט אוּן עֶר דֶענְקט זִי צוּ הַייראַטען.<lb/>פֶערְשׁטֶעהסט?<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="30" facs="30804098.jpg"/>
+        <fw type="pageNum">32</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0275_a">
+          <speaker>פֶעט</speaker>
+          <p>וֶוער האָט עֶס דיִר דֶערְצֶעהלְט? עֶס איִז בּלויז אַיינֶע<lb/>פערליימדוּנג.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0276_a">
+          <speaker>זֶעז</speaker>
+          <p>אויבּ דאָס איִז אַ פערליימדוּנג, זאָלסטוּ זִיך בּאלד איבּער⸗<lb/>צַייגֶען. איִך זאָג דיִר יֶעצְט קוּרץ אוּן שׁארְף, וֶוען דֶעם רב'ס טאָכטער<lb/>וועט ניט זאָפאָרט פערהאפֿטעט וֶוערֶען אַלס אַיינֶע גֶעפֶעהרְלִיכֶע צוֹי⸗<lb/>בּערין אוּן אַלס אַזעלכע בּעשטראפט וֶוערֶען, אוּן וֶוען דַיין זוּהן<lb/>וועט ניט פאַר מַיין טאָכְטֶער קנִיהֶען, אוּם זִי פערצייהוּנג בּעטען<lb/>אַזוי וועסטוּ מיִט אִיהם, נאָך שׁנֶעלֶער, ווִי דוּ דֶענְקסט, פוּן דַיינֶע<lb/>גִיטֶער פֿעריאָגט וֶוערֶען. דאָס זֶענֶען מַיינֶע לֶעצְטֶע ווערְטֶער, אַדיע! <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0277_a">
+          <speaker>פֶעט</speaker>
+          <p>סאפרִיסטִי! וואָס גֶעהט דָא פאָר, וֶוער האָט גֶעוואגט<lb/>מַיין זוּהן אַזוי שׁרֶעקלִיך צוּ פֶערְלֵיימְדֶען? אָבּער ציִ האָט עֶר זִי<lb/>דֶען נִיט פֶערְטַיידִיגט, וֶוען איִך האָבּ מַיין בּייטש גֶעגֶען אִיהר אויפ⸗<lb/>געהויבּען? איִך הויבּ אָן צוּ גלויבּען, אַז אַלעס, וואָס זֶעזֶעמִיר הָאט<lb/>דֶערְצֶעהלְט אִיז רִיכטִיג. דאן הֶעלֶע אוּן טַייפֶעל... דאַכט זִיך, מַיין זוּהן<lb/>שפּאצירט אִין גאָרטען, <stage type="business">(רופט)</stage>: זאַסלאַוועק!<lb/>זאַסלאַוועק <stage type="business">(לויפֿט אַריין).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0278_a">
+          <speaker>זאַסלאַוועק</speaker>
+          <p>צוּם בּעפעהל, גראַף.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0279_a">
+          <speaker>פֶעט</speaker>
+          <p>זאָפאָרט זאָל מֶען אַהערבּרענגען דֶעם רב'ס טאָכְטֶער,<lb/>שִׁיק מיִר אַריין וולאַדיסלאוו׳ן.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0280_a">
+          <speaker>זאַסל</speaker>
+          <p>זאָפאָרט, הֶערְר גראַף! <stage type="exit">(אָבּ)</stage></p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0281_a">
+          <speaker>פּעט</speaker>
+          <p>וואָס? מיִר זאָל אַיינֶע יוּדין אִין וועג שׁטֶעהן? אָה, איִהר<lb/>זאָלט אַלע מיין מאַכט פִיהלֶען!<lb/>וולאַדיסלאַוו <stage type="entrance">(קוּמט אַריין).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0282_a">
+          <speaker>וולאַדיסלאוו</speaker>
+          <p>האָכְט מִיך גערוּפען, פָאטֶער?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0283_a">
+          <speaker>פֶעט</speaker>
+          <p>זאָג מיִר, דוּ אוּנגעהארכזאַמער, אַך, מַיין קאפּ! <stage type="business">(פֿאַלט</stage><lb/><stage type="business">צוּם טיש).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0284_a">
+          <speaker>וולאַד</speaker>
+          <p>פָאטֶער, וואָרוּם זאָ אוִיפגֶערֶעגט?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0285_a">
+          <speaker>פֶעט</speaker>
+          <p>דוּ וואַגסט מִיך נאָך פָאטֶער צוּ רוּפען? זאָג מיִר דיִ<lb/>וואַהרהייט, ליעבּסטוּ דֶעם רב'ס טאָכְטֶער? נוּ, וואַרוּם שווייגסטוּ?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0286_a">
+          <speaker>וולאַד</speaker>
+          <p>יאָ, איִך ליעבּע זִי.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0287_a">
+          <speaker>פֶעט</speaker>
+          <p>דוּ ליעבּסט אַיינֶע יוּדין? דוּ, דעֶר זוּהן פוּן גראַף<lb/>פּעטעפי?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0288_a">
+          <speaker>וולאַד</speaker>
+          <p>פָאטֶער, דיִ ליעבּע וַוייסְט פוּן קֵיין רֶעלִיגִיאן.<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="31" facs="30804100.jpg"/>
+        <fw type="pageNum">33</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0289_a">
+          <speaker>פֶעט</speaker>
+          <p>שׁטִיל! ווידערהאָלסטוּ נאָך אַמאָל דיִ ווערְטֶער, ערְשִׁיס<lb/>איִך דיִך, ווִי אַ הוּנד!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0290_a">
+          <speaker>וולאַד</speaker>
+          <p>פָאטֶער, איִך וִויל זאָלכע אויסדרִיקֶע נִיט דוּלדען,<lb/>זאָגאַר פוּן מַיין פָאטֶער זעלבּסט.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0291_a">
+          <speaker>פֶעט</speaker>
+          <p>מַיין זוּהן, האָבּ מיִטלייַד מיִט דַיין פָאטֶער, בּיזט דָאך<lb/>שׁטֶענְדִיג גֶעווֶען אַ געהאָרכזאַמעס קִינְד, זַיי עֶס אוֹיך ווייטֶער. פֶערְגֶעס<lb/>אָן דער פערפלוּכטער הֶעקסֶע, וואָס הָאט דיִך בּעצויבּערט אוּן דיִך<lb/>פֿון גראַדען וועג אַראָבּגעפיהרט, פֶערְגֶעס אוּן רֶעטֶע דַיין, ווִי אוֹיך<lb/>דַיין פָאטֶערְס עהרֶע!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0292_a">
+          <speaker>וולאַד</speaker>
+          <p>פָאטֶער, וֶוען דוּ בּעליידיגסט דִיעזֶען ענְגֶעל, אַזוי בּע⸗<lb/>ליידיגסטוּ אוֹיך מִיך.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0293_a">
+          <speaker>פֶעט</speaker>
+          <p>וויִסעֶן זאָלסטוּ, אַז איִך האָבּ אַ בּעפעהל געגעבּען, מֶען<lb/>זאָל דיִ יוּדין זאָפאָרט פערהאפטֶען, אוּן נאָך הַיינְט וועט זַיי פאַר<lb/>דֶעם גֶערִיכְט גֶעשׁטֶעלְט וֶוערֶען אַלס צויבּערן, מיִט דֶעם טוִיט בּע⸗<lb/>שׁטראפט צוּ וֶוערֶען, דאָס זֶענֶען מַיינֶע לֶעצְטֶע ווערְטֶער <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0294_a">
+          <speaker>וולאַד</speaker>
+          <p>אַלזא, האָט מֶען דאָך ערפאַהרען... אָבּער וואָס קִי⸗<lb/>מֶערְט דאָס מִיך? טאָר איִך דֶען ניט ליעבּען, ווֶעמֶען איִך וויל?<lb/>עֶס זאָל גֶעשֶׁעהֶען, וואָס עֶס וִויל, קֵיינֶער וֶועט אִימְשׁטאנְדֶע זַיין, מִיך<lb/>פוּן מַיין אַנאַ צוּ ענְטרֵייסֶען, איִך האָבּ גֶעשׁווארֶען דיִ ״יוּדין״ צוּ<lb/>ליעבּען אוּן וֶועל אוֹיך מַיין שבועה האַלטען, עֶס זאָל מיִר אוֹיך מַיין<lb/>לעבּען קאָכטען! <stage type="exit">(אָב).</stage><lb/><stage type="business">(מֶען שׁלֶעפט הֶענֶעלֶע׳ן. אַלע אויפ'ן ביהנע)</stage></p>
+        </sp>
+        <sp who="#chor" xml:id="YudisheKind_SP0295_a">
+          <speaker>קאָהר</speaker>
+          <p><lb/>הֶעקסֶע, גֶעה שנעל, דוּ הֶעקסֶע, שׁנֶעלֶער שׁנֶעלֶער געה.<lb/>גֶעה שׁוֹין שנעֶל, דוּ הֶעקסֶע, שנעלער, שנעֶל פוּן דאַנען געה.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0296_a">
+          <speaker>הֶעניִ</speaker>
+          <p><lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+          <lg>
+            <l>נֵיין, איִך בּין קֵיין הֶעקסֶע,</l>
+          </lg>
+          <lg>
+            <l>נוּר אַ קִינְד, דיִ עלְטֶערֶען טרֵיי,</l>
+          </lg>
+          <lg>
+            <l>איִך ווייס פֿון קיין כּשוּף</l>
+          </lg>
+          <lg>
+            <l>אוּן אוֹיך פוּן קיין צויבּעריי</l>
+          </lg>
+          <lg>
+            <l>בּיי גאָט פֿון ישראל שְׁוֶוער איִךְ אַציִנְד,</l>
+          </lg>
+          <lg>
+            <l>אַז איִך בּין ריין פוּן זִינְד.</l>
+          </lg>
+          <lg>
+            <l>אוּן וֶוען איִך ליעבּ אַ קרִיסט.</l>
+          </lg>
+          <lg>
+            <l>צי הַייסְט דאָס אַיינֶע זִינְד?</l>
+          </lg>
+          <lg>
+            <l>זאָגט מיִר, זאָגט מיִר שנעֶל.</l>
+          </lg>
+          <lg>
+            <l>שנעֶל גיט שׁוֹין דֶעם בּעפעהל,</l>
+          </lg>
+          <lg>
+            <l>מִיך צוּ טויטֶען גֶעשׁווינְד,</l>
+          </lg>
+          <lg>
+            <l>איִך זאָג אייך גאנץ פֿריי.</l>
+          </lg>
+          <lg>
+            <l>דאָס איִך ליעבּ אִיהם טרֵיי,</l>
+          </lg>
+          <lg>
+            <l>בּיי גָאט אִין הִימֶעל שְׁוֶוער איִך.</l>
+          </lg>
+        </sp>
+        <pb n="32" facs="30804103.jpg"/>
+        <fw type="pageNum">34</fw>
+        <sp who="#chor" xml:id="YudisheKind_SP0297_a">
+          <speaker>קאָהר</speaker>
+          <p/>
+          <lg>
+            <l>געה, דוּ הֶעקסֶע, שׁנֶעלֶער גֶעה, שׁנֶעלֶער גֶעה פוּן דאַנען.</l>
+          </lg>
+          <lg>
+            <l>פערפלוּכטעט בּיזטוּ דוּ יוּדיש קִינְד,</l>
+          </lg>
+          <lg>
+            <l>פערפלוּכטעט בּיזטוּ, אוֹיף עוויג זיי פערפלוּכטעט.</l>
+          </lg>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0298_a">
+          <speaker>וולאַדיסלאַוו</speaker>
+          <p/>
+          <lg>
+            <l>וואָס זֶעהֶען מַיינֶע אוֹיגֶען?</l>
+          </lg>
+          <lg>
+            <l>וואָס וויִלְט איִהר דֶען פוּן איִהר?</l>
+          </lg>
+          <lg>
+            <l>זאָג, ערְצֶעהל מיִר, זאָג גֶעשׁווינְד,</l>
+          </lg>
+          <lg>
+            <l>ערְצֶעהל, ערְצֶעהל דאָך מיִר.</l>
+          </lg>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0299_a">
+          <speaker>זי</speaker>
+          <p><lb/>איִך אַיינֶע הֶעקסֶע.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0300_a">
+          <speaker>ער</speaker>
+          <p><lb/>דוּ אַיינֶע הֶעקסֶע?</p>
+        </sp>
+        <sp who="#beyde" xml:id="YudisheKind_SP0301_a">
+          <speaker>ביידע</speaker>
+          <p><lb/>בּלינד זֶענְט איִהר אַלע, אויבּ איִהר דעֶרְקעֶנְט אַזוי</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0302_a">
+          <speaker>ער</speaker>
+          <p><lb/>זאָ וואָס צוּ דֶענְקֶען איִז אַיינֶע פרֶעכהַייט.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0303_a">
+          <speaker>זי</speaker>
+          <p><lb/>מִיך פֶערְדאמען.</p>
+        </sp>
+        <sp who="#beyde" xml:id="YudisheKind_SP0304_a">
+          <speaker>בּיידע</speaker>
+          <p><lb/>מִיך פערדאַמען וִוילֶען זיי צוזאַמען.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0305_a">
+          <speaker>פּעטעפי</speaker>
+          <p>ווִי וואגסטוּ, וולאַדיסלאוו, צוּ וויעדערשפּרעכען<lb/>מַיין וויִלעֶן?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0306_a">
+          <speaker>וולאַד</speaker>
+          <p>זִי איִז קיין צויבּערין, פאטער, דוּ וַוייסְט דאָס אַליין!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0307_a">
+          <speaker>פּעטעפי</speaker>
+          <p>אַזוי ווִי איִך זאָג מוּז עֶס זַיין.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0308_a">
+          <speaker>וולאַד</speaker>
+          <p>וואָס'ער שׁרֶעקלִיכֶע קאָמעדיע ווילסטוּ דאָ שפּיעלען?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0309_a">
+          <speaker>פּעטעפי</speaker>
+          <p>מַיין וואוּנש מוזטוּ ערְפִיעלֶען! וֶוען נִיט וועט זִי<lb/>אִין גֶעפֶענְגנִיס געֶהן! <stage type="business">(צוּם כאָר)</stage> אִיך שׁוֶוער אַייך בּיי מַיין עהרֶע, אַז<lb/>זִי איִז אַ צויבּערין! נֶעהמְט זִי אִין גֶעפֶענְגנִיס!<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="33" facs="30804106.jpg"/>
+        <fw type="pageNum">35</fw>
+        <sp who="#chor" xml:id="YudisheKind_SP0310_a">
+          <speaker>קאָהר</speaker>
+          <p><lb/>דוּ בּעקוּמסט בּאלד דיִ שטראפע, וואָס דוּ האָסְט פֶערְדִיענְט<lb/>צויבּערן.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0311_a">
+          <speaker>זי</speaker>
+          <p><lb/>גָאט בּעשיץ!</p>
+        </sp>
+        <sp who="#chor" xml:id="YudisheKind_SP0312_a">
+          <speaker>קאָהר</speaker>
+          <p><lb/>דוּ בּעקוּמסט דַיין שטראפע, וואָס דוּ האָסְט פֶערְדִיענְט.<lb/>יאָ, דוּ גֶעהסט בּאלד אַהין.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0313_a">
+          <speaker>זי</speaker>
+          <p><lb/>גָאט בּעשיץ!</p>
+        </sp>
+        <sp who="#chor" xml:id="YudisheKind_SP0314_a">
+          <speaker>קאָהר</speaker>
+          <p><lb/>שׁנֶעלֶער, שנעלער געה פֿון דאַנען!</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0315_a">
+          <speaker>זי</speaker>
+          <p><lb/>אָה, גרויזאם.</p>
+        </sp>
+        <sp who="#chor" xml:id="YudisheKind_SP0316_a">
+          <speaker>קאָהר</speaker>
+          <p><lb/>שׁנֶעלֶער גֶעה פֿון דאַנען, שׁנֶעלֶער דוּ הֶעקסֶע, גֶעה פֿון דאנען.<lb/>שנעֶל. יאָ, שנעֶל.<lb/><stage type="setting">(פאָרהאַנג פֿאַלט.)</stage></p>
+        </sp>
+        <trailer>ענְדֶע צווייטער אַקט.</trailer>
+        <pb n="34" facs="30804110.jpg"/>
+      </div>
+      <div type="act" n="3" xml:id="YudisheKind_Act3">
+        <head>דריטער אקט.</head>
+        <stage type="setting">(געפֿענגניס).</stage>
+        <stage type="setting">הֶענֶעלֶע, וועכטער.</stage>
+        <stage type="business">(אריין, וואַקלענדיג).</stage>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0317_a">
+          <speaker>זאַסל</speaker>
+          <p>עה! שֶׁענֶע הֶעקסֶע! וואָס האָבּ איִך דיִר דאָס גֶעוָואלְט<lb/>זאָגען? דוּ גֶעדֶענְקסט ניִשט? ס׳אַ וואוּנדער! ווִי איִך קוּק דיִר נוּר אָן<lb/>פֶערְגֶעס איִך בּאלד אִין אַלעס נייטִיגסטֶען. ס׳מוּז, זֶעהְט אויִס, טאַקע<lb/>וואָהר זַיין, וואָס מֶען זאָגט, אַז דוּ בּיסט אַ צויבּערין, האסט מיך<lb/>אוֹיך בּעצויבּערט, אַז איִך אַזש אוֹיף דיִ פיס ניִשט שְׁטֶעהן... זאָה.<lb/>זֶעהסט?... <stage type="business">(פֿאַלט אוֹיף איִהר אַרויף).</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0318_a">
+          <speaker>הֶענע</speaker>
+          <p>וואָס ווילסטוּ פוּן מיִר? וֶוער הָאט דיִך צוּ מיִר<lb/>גֶעשִׁיקט?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0319_a">
+          <speaker>זאַסל</speaker>
+          <p>כ׳האָבּ פֶערְגֶעסֶען... אַהאַ! איִך האָבּ זִיך שׁוֹין דֶער⸗<lb/>מאהנט! עפּעס יעמאַנד... עפּעס אַיינֶער וִויל דיִך זעֶהן...</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0320_a">
+          <speaker>הֶענע</speaker>
+          <p>וֶוער?!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0321_a">
+          <speaker>זאַסל</speaker>
+          <p>האָבּ איִך פֶערְגֶעסֶען, מיִט׳ן זכרון גֶעהט מיִר גאָר<lb/>ניִשט, עֶר פאַלט בּיי מיִר פוּן דיִ פיס, מַיין אונְגלִיקלִיכֶער זכרון...<lb/><stage type="delivery">(פֿאַלט, זִינְגְט שטיל).</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0322_a">
+          <speaker>הֶענֶע</speaker>
+          <p>מִיך זֶעהֶען? אָה, גאָט! פוּן מַיין פָאטֶער בּין איִך<lb/>פֶערְשׁטוִיסֶען, פוּן מַיין געליעבּטען אָבּגעריסען. דאָס ערְשׁטֶע מאל,<lb/>וואָס מֶען פרעגט אוֹיף מיִר; איִז דאָס פִילֵייכט וולאַדיסלאוו, מַיין<lb/>רעטֶער, מַיין ענְגֶעל!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0323_a">
+          <speaker>זאַסלאַוועק</speaker>
+          <p><stage type="delivery">(זִינְגְט)</stage>:</p>
+          <lg>
+            <l>חאטש בּרעך זִיך, שפּרוּנג אוּן קלֶעטֶער,</l>
+          </lg>
+          <lg>
+            <l>איִז אַלעס ניִשט גוּט.</l>
+          </lg>
+          <lg>
+            <l>חאָטש צֶערֵייס זִיך, פערפאַלען, פֶעטֶער.</l>
+          </lg>
+          <lg>
+            <l>עֶס איִז צוּ-שפּעט, עֶס גֶעהט ניִשט!</l>
+            <stage type="entrance">(אריין).</stage>
+          </lg>
+        </sp>
+        <pb n="35" facs="30804118.jpg"/>
+        <fw type="pageNum">37</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0324_a">
+          <speaker>פּעטעפי</speaker>
+          <p>זאַסלאַוועק!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0325_a">
+          <speaker>זאַסל</speaker>
+          <p>אַהאַ, כ׳האָבּ זִיך שׁוֹין דֶערְמאהנְט! דעֶר גראַף ווייל<lb/>מִיט דיִר רֵיידֶען.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0326_a">
+          <speaker>פּעטעפי</speaker>
+          <p>פאהרט.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0327_a">
+          <speaker>זאַסל</speaker>
+          <p>פאָרט איִז פאָרט, פֿאָרט אַ גראַף, אַז עֶר זאָגט פאהרט<lb/>פֿאָהרט מען... ס׳גֶעהט מיִר ניט... <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0328_a">
+          <speaker>הֶענֶע</speaker>
+          <p>עֶר גאָר? מַיין הֶענְקֶער!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0329_a">
+          <speaker>פֶעטֶעפִי</speaker>
+          <p>אַך, ווִי שׁרֶעקלִיך עֶס איִז היער!</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0330_a">
+          <speaker>הֶענֶע</speaker>
+          <p>יֶעצְט איִז עֶרְשְׁט דאָ נאָך שׁרֶעקלִיכֶער גֶעווֶארֶען.<lb/>וַוייל דער טַייפֶעל אַליין פוּן דעֶר הֶעלְלֶע איִז אַריינגעקוּמען.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0331_a">
+          <speaker>פֶעט</speaker>
+          <p>ווִי, הֶעקסֶע, דאָ וואַגסטוּ אייך נאָך פרעך צוּ זַיין? דַיין<lb/>לעבּען איִז אִיצט אִין מַיינֶער מאַכט...</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0332_a">
+          <speaker>הֶענֶע</speaker>
+          <p>מַיין לעבּען הָאט בּיי מיִר קיין וֶוערְט, דֶען וואָס<lb/>פֶערְלִירְט אַנ'אָרים מֵיידֶעל, וֶוען זִי שטאַרבּט גאנץ אַנדערש וועט עֶס<lb/>אָבּער זַיין מיִט דיִר, וואָס דוּ בּיזט אִין לוקסוּס ערְצוִיגֶען, וֶוען דוּ<lb/>וֶועסְט מוּזען דאָ שׁמאכטֶען אִין גֶעפֶענְגנִיס.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0333_a">
+          <speaker>פֶעט</speaker>
+          <p>שׁווייג, פערפלוכטע צויבערן !</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0334_a">
+          <speaker>הֶענֶע</speaker>
+          <p>איִך שׁרֶעק מִיך נִיט פאַר אַייך; האָט איִהר דֶען אַליין<lb/>ניט געזאָגט, אַז איִך בּין צוּם טויט פעראוּרטיילט, נוּ, וואָס הָאט<lb/>אַ שׁטאַרבּעֶנדעֶ צוּ פֶערְלִירֶען?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0335_a">
+          <speaker>פֶעט</speaker>
+          <p>דוּ קאנסט זִיך נאָך רֶעטֶען, וֶוען דוּ וֶועסְט געהאָרכזאם<lb/>זַיין.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0336_a">
+          <speaker>הֶענע</speaker>
+          <p>אַלזאָ, וואָס פאַר אַ פּרייז פֶערְלאנְגט איהר פאַר<lb/>מַיין בּעפרייאוּנג?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0337_a">
+          <speaker>פֶעט</speaker>
+          <p>דוּ זאָלסט מַיין זוּהן שרייבּען, אַז דוּ האָסְט אִיהם...</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0338_a">
+          <speaker>הענע</speaker>
+          <p>נִימאַלס, איִך בּין בּערייט צוּ שטאַרבּען.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0339_a">
+          <speaker>פֶעט</speaker>
+          <p>נֵיין, נִישְט דוּ אַליין וֶועסט שטאַרבּען, נאָר אִיך<lb/>דַיין פָאטֶער.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0340_a">
+          <speaker>הענע</speaker>
+          <p>וואָס האָט איִהם געֶזָאָגְט? וואָס האָט איִהר צוּ מַיין<lb/>פָאטֶער?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0341_a">
+          <speaker>פֶעט</speaker>
+          <p>דֶען אַ פאטער, וואָס האָט אַ טאָכטער אַ צויבּערין, איִז<lb/>אוֹיך גֶעוויס נִיט בּעסער, אוּן מוּז אוֹיך בּעשטראפט וֶוערֶען.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0342_a">
+          <speaker>הֶענֶע</speaker>
+          <p>הָאט מיִטלייַד מיִט מַיין פָאטֶער!<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="36" facs="30804127.jpg"/>
+        <fw type="pageNum">38</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0343_a">
+          <speaker>פֶעט</speaker>
+          <p>אַלזאָ, יֶעצְט וֶועהלֶע דיר: אָדער די ליעבּע צוּ מַיין זוּהן<lb/>אָדער דאָס לעבּען פוּן דַיין פָאטֶער.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0344_a">
+          <speaker>הֶענ</speaker>
+          <p>גאָט! צוּ ווֶעלְכֶען נסיון האָסטוּ מִיך געבּראכט? זעס<lb/>איִז אמְת, איִך ליעבּ אַייער זוּהן מיִט מַיין גרֶעסטֶען פֵייער, אָבּער<lb/>מיין פאטערס לעבעֶן איִז בּיי מיִר טַייערֶער פוּן מַיין ליעבּע; דִיקטִירְט<lb/>אוּן איִך וֶועל שרייבּען!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0345_a">
+          <speaker>פֶעט</speaker>
+          <p><stage type="business">(קלאַפּט מיִט דיִ הֶענְד, אַ דִיענֶער בּרענגט פּאַפּיר, טיִנְט</stage><lb/><stage type="business">אוּן פֶעדֶער, דיקטירט)</stage> וולאַדיסלאוו! עֶנְדְלִיך האָבּ איִך זִיך איבּער⸗<lb/>צַייגט, אַז דוּ בּיזט אַ לוּמפּיגער גראַף...</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0346_a">
+          <speaker>הענע</speaker>
+          <p>נֵיין, אַזעלכע ווערְטֶער וֶועל איִך נִיט שרייבּען!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0347_a">
+          <speaker>פֶעט</speaker>
+          <p>גֶעדֶענְק אָן דַיין פָאטֶער.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0348_a">
+          <speaker>הֶענֶע</speaker>
+          <p>יאָ, מַיין פָאטֶער... דוּ בּיזט אַ לוּמפּיגער גראַף.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0349_a">
+          <speaker>פֶעט</speaker>
+          <p>איִך שֶׁעס זִיך, וֶוען איִך עראִינֶערֶע מִיך, אַז איִך האָב<lb/>דיִך געליעבּט, זאָ איין אויסוואוּרף דער נאטוּר האָבּ איִך מַיין ליעבּע<lb/>גֶעשֶׁענְקט... נוּ, שרייבּ, זאָנסט... אימער וועֶט דיִך האסען דיִ יוּדין...<lb/>יֶעצְט שרייבּ אוּנְטֶער דַיין נאָמען... זאָ... יֶעצְט בּין איִך צוּפריעדען.<lb/>אוּן אַלס דאַנק דערפאַר, זאָלסטוּ זאָפאָרט דַיין פָאטֶער זעֶהן, מֶען<lb/>וֶועט אִיהם בּאלד אַהער בּרענגען, אַדיע! <stage type="exit">(אָבּ)</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0350_a">
+          <speaker>הֶענֶע</speaker>
+          <p>איִך וֶועל בּאלד מַיין פָאטֶער זֶעהֶען, אָה, וואָס פאַר<lb/>אַ גלִיק! וֶועט דֶען וולאַדיסלאוו דֶעם בּריעף גלויבּען? נֵיין! עֶר וֶועט<lb/>וויִסעֶן, אַז מֶען הָאט מִיך דאצוּ געצוואונגען.<lb/>רב <stage type="entrance">(קוּמט אַריין).</stage></p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0351_a">
+          <speaker>רב</speaker>
+          <p>הֶענֶעלֶע, מַיין קִינְד... איִז דאָס דער נחת, וואָס איִך<lb/>האָבּ דערלעבּט פוּן מַיין קִינְד? אַך, ווִי גלִיקלִיך איִז דיִ מאמע, וואָס זִי<lb/>האָט דאָס ניִשט דערלעבּט צוּ זעֶהן!</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0352_a">
+          <speaker>הֶענֶע</speaker>
+          <p>טאַטעניוּ, מאַך מיִר קיין פארווירְפֶע, דֶען עֶס איִז<lb/>אַצינד מַיינֶע לֶעצְטֶע מינוּטען, אַיידֶער איִך וֶוער צוּם טוִיט פֶער⸗<lb/>אוּרטיילט.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0353_a">
+          <speaker>רב</speaker>
+          <p>דיִך צוּם טויט פעראוּרטיילען? עֶס איִז אוּנמעגליך!</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0354_a">
+          <speaker>הֶענֶע</speaker>
+          <p>יאָ, אַלעס איִז מֶעגלִיך, פאטער, דעֶר גראַף בּע⸗<lb/>שׁוּלְדִיגט מִיך אַלס מכשפה.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0355_a">
+          <speaker>רב</speaker>
+          <p>וֶועה מיִר, וואָס איִך האָבּ דערלעבּט צוּ הֶערֶען? זֶעהסט.<lb/>מַיין קִינְד, ווִי גאָט שׁטראפט דֶעם יֶענִיגֶען, וואָס וִויל אָבּטרעטען<lb/>פוּן דעֶר אַמוּנה.<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="37" facs="30804136.jpg"/>
+        <fw type="pageNum">39</fw>
+        <sp who="#henele" xml:id="YudisheKind_SP0356_a">
+          <speaker>הֶענע</speaker>
+          <p>פָאטֶער, איִך שְׁוֶוער דיִר, אַז אִיך האָבּ נִיט גֶעדֶענְקט<lb/>מַיין גלויבּען צוּ פֶערְלאזֶען, אוּן גֶעגֶענְטַייל, עֶר איִז גֶעווֶען בּעזאָגען<lb/>אַ יוּד צוּ וֶוערֶען, אוּם עֶר זאָל קאנֶען מיִט מיִר הייראַטען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0357_a">
+          <speaker>רב</speaker>
+          <p>איִך גלויבּ דיִר, קִינְד מַיינְס, איִך האָבּ צוּריק מַיין יוּדישע<lb/>טאָכטער. נֵיין, איִך וֶועל דיִך ניט לאזען שטאַרבּען, איִך וֶועל לויפֶען<lb/>בּעטען, מֶען זאָל מִיך אוֹיף דַיין אָרט נֶעמֶען, איִך האָבּ שׁוֹין מַיין<lb/>רֶעשׁט בּיסעל יאָהרען אָבּגעלעבּעט, וועהרֶענְד דוּ הויבּסט יֶעצְט אָן<lb/>צוּ לעבּען.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0358_a">
+          <speaker>הענע</speaker>
+          <p>נֵיין, פָאטֶער, איִך וִויל עֶס נִיט.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0359_a">
+          <speaker>רב</speaker>
+          <p>אוֹי, גאטעניוּ, "עד מתִי?" בּיז ווִי לאַנג נאָך וועט דַיין<lb/>פֿאלק ישראל זַיין הֶפְקֶר, אַז יֶעדֶער שונא יִשְרָאֵל וֶועט זִיך בּאדען<lb/>אִין יוּדיש בּלוּט, ער מתי? עד מתִי?<lb/><stage type="business">(זינגען דועט).</stage></p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0360_a">
+          <speaker>רב</speaker>
+          <p/>
+          <lg>
+            <l>אַזוי פֿיעל אויסצושטעהן.</l>
+          </lg>
+          <lg>
+            <l>אַך גאָט, זאָג אַליין.</l>
+          </lg>
+          <lg>
+            <l>ווִי גרויזאַם איִז אוּנזער פֿיינד.</l>
+          </lg>
+          <lg>
+            <l>פֶערְנֶעהם אוּנזער צער,</l>
+          </lg>
+          <lg>
+            <l>אוּן פֶערְמַייד דאָס געפאהר.</l>
+          </lg>
+          <lg>
+            <l>דער חלף שוועבּט איבּער אוּנז הַיינְט.</l>
+          </lg>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0361_a">
+          <speaker>הֶענֶע</speaker>
+          <p/>
+          <lg>
+            <l>ווִי קענסטוּ, גאטעניוּ, גלֵייכגִילְטִיג זַיין</l>
+          </lg>
+          <lg>
+            <l>עֶס שׁמֶערְצט, עֶס שניידט דער קנוּט.</l>
+          </lg>
+          <lg>
+            <l>מיִר וֶוערֶען דערטרוּנקען אִין אוּנזער פּיין.</l>
+          </lg>
+          <lg>
+            <l>אִין טַייך, אִין ים פוּן אוּנזער בּלוּט.</l>
+          </lg>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0362_a">
+          <speaker>רב</speaker>
+          <p><lb/>ער מתִי?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0363_a">
+          <speaker>הענֶע</speaker>
+          <p><lb/>ווִי לאַנג?<lb/>דוּ בּיזט דאָך אַ גוּטער, גאָט...<lb/>זאַסלאַוועק <stage type="entrance">(אריין).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0364_a">
+          <speaker>זאַסלאַוועק</speaker>
+          <p>כ'בּין שׁוֹין וִויעדֶער דאָ שֶׁעהנֶע הֶעקסֶע. נאָר<lb/>דאָס מאָל וֶועל איִך שׁוֹין ניִשט פֶערְגֶעסֶען, נאָך וואָס איִך בּין<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>געקוּמען, דאָס מאָל האָבּ איִך זִיך שׁוֹין מיטגעבּראכט צְוֵויי דֶערְמא⸗<lb/>נֶערְס מִיט טַייטלען. לבּין געקוּמען, דיִך שֶׁענֶע יוּדישקע, פִיהרֶען<lb/>צוּם גֶערִיכְט... אַהאַ! גֶעדֶענְקט!... בּיזט נאָך אַ לֵייט, זאַסלאַוועק!<lb/>עֶס גֶעהט דיִר ניִשט...<lb/><stage type="business">(פֿאַלט)</stage></p>
+        </sp>
+        <pb n="38" facs="30804149.jpg"/>
+        <fw type="pageNum">40</fw>
+        <sp who="#henele" xml:id="YudisheKind_SP0365_a">
+          <speaker>הענע</speaker>
+          <p>שׁוֹין?!</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0366_a">
+          <speaker>רב</speaker>
+          <p>שׁרֶעק זִיך ניִשט, מַיין קִינְד, קוּם מיִט מיִר, איִך ווֵייס<lb/>אַז דוּ וֶועסְט בּאלד דאַרפען שְׁטעהן פאַר אַ מֶענְשֶען, אָבּער זַיי זִיכֶער.<lb/>ווען גאָט'ס וויִלעֶן וועֶט ניִשט זַיין דערבּיי ווֶעלֶען זיי אוּנז גאָרנישט<lb/>טְהוּן, "ה' לִי לא אִירא מה יעֶעשה לִי אדם"? וֶוען גאָט איִז מיִט<lb/>מיִר, וואָס קאָן אוּנז אַ מֶענְשׁ טהוּן? <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0367_a">
+          <speaker>זאַסל</speaker>
+          <p>גאָט איִז מיִט אַייך! וואָס זאָגט איִהר, אַז גאָט איִז<lb/>מיִט אַייך? קאָן דֶען גאָט זַיין מיִט אַ צויבּערין? עֶר וואָלט דאָך אַליין<lb/>אויך מורא געהאט... אַ גְרויִסעֶר שאָר, וואָס אַזאַ שֶׁעהנֶע יוּדישקע<lb/>איִז גאָר אַ הֶעקסֶע, אוּן נאָך וואָס טוִיג עֶס איִהר? וֶוען זִי וואָלט<lb/>ניִשט גֶעווֶען קיין הֶעקסֶע, וואָלט איִך דאָך זִי ליעבּ געהאַט, אוּן אַזוי<lb/>וואָס האָט זִי? אַ פֵייג! ניִשט איִך האָבּ זִי ליעבּ, ניִשט איִך וֶועל זִיך<lb/>לאזֶען צוּמאָל פוּן איִהר אַ קוּש טהוּן אוּן אוֹיף אַ צוּלאָג וועט מֶען<lb/>זי נאָך גֶעוויס פערבּרענען... איִהר, ווִי עֶס וַוייזט אויִס, גֶעהט אוֹיך<lb/>ניִשט... ס'גֶעהט אוּנז, הַייסְט עֶס, בּיידען ניִשט... אַמאָל איִז<lb/>מיִר דאָס אַ בּיסעל געגאנגען! אַמאָל האָבּ איִך דאָס געהאַט אַ בּיסעל<lb/>גלִיק צוּ מֵיידְלֶעך! יֶעדֶע אַיינְצִיגֶע איִז מיִר גֶעפֶעלֶען! פאַר יֶעדֶע<lb/>בּין איִך דיִ כּפּרה גֶעווֶארֶען! איִהר הָאט מִיך געדאַרפט דאַמאלס קֶענֶען,<lb/>וֶוען ס'איז מיִר געגאַנגען!<lb/>שמערל, שפּרינצע <stage type="business">(קוּמען אַריין).</stage></p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0368_a">
+          <speaker>שפּרינצע</speaker>
+          <p>פּאַוואָלע, שׁמֶערְל, דאָ איִז דאָ טרעפּ.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0369_a">
+          <speaker>זאַסל</speaker>
+          <p>וֶועמֶען זוּכט איִהר דאָ?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0370_a">
+          <speaker>שפּרנצע</speaker>
+          <p>וואָהנט דאָ הֶענֶעלֶע?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0371_a">
+          <speaker>זאַסל</speaker>
+          <p>וֶוער? וֶועמֶען? וואָס?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0372_a">
+          <speaker>שמערל</speaker>
+          <p>וואָס רעדסטוּ צוּ אִיהם יוּדיש, עֶר פֶערְשְׁטֶעהט<lb/>דען? רֶעד צוּ אִיהם דַייטשׁ.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0373_a">
+          <speaker>שפּרינצע</speaker>
+          <p>מיִר זיינען געקוּמען זוּכען אנעלען, הִינֶעלֶען!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0374_a">
+          <speaker>זאַסל</speaker>
+          <p>אָה, איִהר מַיינְט דיִ שֶׁעהנֶע גֶעפאנְגֶענֶע יוּדישקע?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0375_a">
+          <speaker>שפּרינצע</speaker>
+          <p>וֶועה מיִר, הֶערְסט, שׁמֶערְל, מֶען האָט זִי דָאך<lb/>געהאַנגען!<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="39" facs="30804163.jpg"/>
+        <fw type="pageNum">41</fw>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0376_a">
+          <speaker>שמערל</speaker>
+          <p>וואָס רעדסטוּ, קלֵיינְשׁטֶעהטֶעלְדִיגֶע נשמה, הֶערְסט<lb/>ניט? עֶר רֶעדְט מיִט אַ פאנְפֶע, עֶר האָט גֶעוָואלְט זאָגען גֶעפאנְגֶענֶען<lb/>האָט עֶר געזאָגט געהאַנגענע.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0377_a">
+          <speaker>זאַסל</speaker>
+          <p>אוּן איִהר הָאט גֶעמַיינְט, געהאנגען גאָר? גאָט בּעהיט.<lb/>בּיי אוּנז הֶענְגט מֶען נִיט, חָלִילָה, בּיי אוּנז פערבּרענט מען נאָר. אוֹי,<lb/>איִז אייַעֶר הֶענֶעלֶע אַ הֶעקסֶעלֶע?! פֶע, שֶׁעמְט זִיך!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0378_a">
+          <speaker>שפּרינצע</speaker>
+          <p>וואָס? אוּנזער הֶענֶעלֶע איִז בּיי אַייך גאָר אַ קֶעק⸗<lb/>סֶעלֶע? פֶע, שֶׁעמְט זִיך!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0379_a">
+          <speaker>זאַסל</speaker>
+          <p>פאַר וואָס פֶע? זִי האָט דאָך מִיך אַליין אִיך בּע⸗<lb/>צויבּערט, אַז איִך פאל אַזש פוּן דיִ פיס, האָ!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0380_a">
+          <speaker>שפּרינצע</speaker>
+          <p>אָבּער זאָגט מיִר שׁוֹין, וואוּ אִיז הֶענֶעלֶע?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0381_a">
+          <speaker>זאַסל</speaker>
+          <p>ווֵייס איִך? ס'דאַכט זִיך מיִר אַפילוּ, אַז זִי איִז אַרויס⸗<lb/>געגאַנגען פֿון דאנען, פונדעסטוועגען איִז דאָך מֶעגלִיך, אַז זִי איִז<lb/>דאָ געבּליבּען. בּיי אַצויבּערין איז אַלעס מֶעגלִיך. איבּריגענס, זוּכט<lb/>זִי, וועֶט איִהר זִי געפוּנען. <stage type="delivery">(אַפּאַרט)</stage> איִך וֶועל זִי בּעסער אָבּטהון<lb/>איִך וֶועל זַיי דאָ פערשפּארען אוּן נֶעהמְט זַיי דֶער טַייפֶעל <stage type="exit">(אָבּ)</stage></p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0382_a">
+          <speaker>שפּרינצע</speaker>
+          <p>בּיזט אַ מבִּין אוֹיף אִיהם? זוּכט זִי זאָגט עֶר.<lb/>וֶועט איִהר זִי גֶעפוּנֶען; קראַנק אִיז עֶר גֶעווֶען אוּנז איינשפּארען דאָס<lb/>זוּכעניש, נוּ, וואָס שטעהסטוּ? לאָמיִר זִי זוּכען.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0383_a">
+          <speaker>שמערל</speaker>
+          <p>רבּונו שֶׁל עולם! ווִי קאָן מֶען זִי זוּכען, דאָ<lb/>זֶענֶען דאָך לֵיידִיגֶע פיער ווענְד!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0384_a">
+          <speaker>שפּריעצע</speaker>
+          <p>אָפשר איִז זִי אוֹיפ'ן בּוידעס, קרִיך אַרויף.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0385_a">
+          <speaker>שמערל</speaker>
+          <p>קרִיך אַרויף אוּן קרִיך אַראָבּ קְלֵיינְשׁטֶעדְטֶעלדיגע<lb/>נשמה, מיִר זֶענֶען דָאך אִין אַ קֶעלֶער. האָסְט פֶערְגֶעסֶען, אַז איִך בּין<lb/>אַראָבּגעפאַלען פוּן דיִ טרעפּ? נאָר ווייסטוּ, וואָס איִך וֶועל דיִר זאָגען.<lb/>עפּעס בּעפאַלט מִיך דאָ אַ שׁרֶעק, לאָמיִר אַוועקגעהן פוּן דַאנֶען.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0386_a">
+          <speaker>שפּרינצע</speaker>
+          <p><stage type="business">(ציטערט)</stage> איִך האָבּ דאָס דיִר פְריִהעֶר גֶעוָואלְט<lb/>זאָגען, נאָר איִך האָבּ מִיך גֶעשֶׁעמְט, זאָלסט מִיך ניִשט רוּפען קלֵיינ⸗<lb/>שׁטֶעדְטֶעלְדִיגֶע נשמה.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0387_a">
+          <speaker>שמערל</speaker>
+          <p>וואָסזשֶׁע, דוּ האָסְט אִיך מוֹראָ? קוּק זִי נאָר אָן.<lb/>זִי האָט דאָך גאָר מירא! פֶע, שֶׁעם זִיך, פאַר דיִר דארף דער טַייפֶעל<lb/>אוֹיך זִיך דֶערְשׁרֶעקֶען.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0388_a">
+          <speaker>שפּרינצע</speaker>
+          <p>עֶר פרעגט נאָך, צי איִך שׁרֶעק זִיך, אַ טויט⸗<lb/>שׁרֶעק בּעפאַלט מִיך.<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="40" facs="30804179.jpg"/>
+        <fw type="pageNum">42</fw>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0389_a">
+          <speaker>שמערל</speaker>
+          <p>נוּ, לאָמיר⸗זשֶׁע מאַכען אַיינְס⸗צְוֵויי, אוּן פֶערְטִיג!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0390_a">
+          <speaker>שפּרינצע</speaker>
+          <p>הָאסְט רֶעכט... אוֹי וֶועה... שׁוֹין...</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0391_a">
+          <speaker>שמערל</speaker>
+          <p>שׁוֹין אָפֿען דיִ טהִיר?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0392_a">
+          <speaker>שפּרינצע</speaker>
+          <p>נֵיין, זִי איִז פֶערְמַאכט.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0393_a">
+          <speaker>שמערל</speaker>
+          <p>שׁוטה, גיבּ אַ גוּטען שטופּ, אַיינְס⸗צְוֵויי אוּן פֶערְטִיג.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0394_a">
+          <speaker>שפּרינצע</speaker>
+          <p>בּיזט אַ מבִּין אוֹיף שׁמֶערְל פִיק, ווִי עֶר וֶוערְט<lb/>אַזוי גיִך פֶערְטִיג; זִי איִז דָאך צוּגעשפּארט!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0395_a">
+          <speaker>שפּרינצע</speaker>
+          <p>לאָז מִיך נאָר צוּ וועסטוּ זעֶהן, וואָס פאַר אַ<lb/>דרך-ארץ דיִ טהיר וועט פאַר מיִר האָבּען <stage type="business">(עֶר וִויל עפענען).</stage></p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0396_a">
+          <speaker>שפּרינצע</speaker>
+          <p>נוּ?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0397_a">
+          <speaker>שמערל</speaker>
+          <p>שפּרינצע, מיִר זֶענֶען פֶערְטִיג!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0398_a">
+          <speaker>שפּרינצע</speaker>
+          <p>שׁוֹין אָפֿען?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0399_a">
+          <speaker>שמערל</speaker>
+          <p>נֵיין, זִי איִז צוגעמאכט, מֶען הָאט אוּנז לעבּעדיגער<lb/>הייד בּעגראָבּען.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0400_a">
+          <speaker>שפּרינצע</speaker>
+          <p>אוֹי, אַ דוּנער הָאט מִיך דֶערְשְׁלָאָגען! דאָ איִז<lb/>דֶען אַ קבר? אוֹי, אַ קלאָג איִז צוּ מיִר, אָפְשֵר זֶענֶען מיִר טאַקע גֶע⸗<lb/>שטאַרבּען?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0401_a">
+          <speaker>שמערל</speaker>
+          <p>סֶעדִיכֶע, וֶוען דוּ וואָלסט געשטאָרבּען, וואָלסטוּ<lb/>דאָך געגאנגען אוּן תּכריכים, והשִׁינִית, וואָלסטוּ דאָך ניִשט גֶערֶעדְט,<lb/>השׁלִישִׁית וואָלטען מיר דאָך געהערט שׁרֵייען צדְקה תצִיל ממות.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0402_a">
+          <speaker>שפּרינצע</speaker>
+          <p>הַייסְט עֶס הָאט מֶען אוּנז לעבּעדיגערהייד בּע⸗<lb/>גראָבּען?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0403_a">
+          <speaker>שמערל</speaker>
+          <p>וֶועה מיִר, אַז מֶען וועט מיִר ניִשט געבּען אַ שֶׁעה<lb/>צוּ עֶסעֶן, וֶועל איִך דָאך בּמילא שטאַרבּען.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0404_a">
+          <speaker>שפּרינצע</speaker>
+          <p>זֶעה נאָר, ווִי דאָס פרֶעסֶען ליִגְט אִיהם נאָר<lb/>אִין זיִנעֶן! שׁמֶערְל, אָפְשֵר וואָלטען מיִר גאָר גֶעשׁרִיען גֶעווַאלְד.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0405_a">
+          <speaker>שמערל</speaker>
+          <p>דאָ בּעגראָבּט מֶען, אַז מֶען שְׁרֵייט, שְׁרֵיי גֶעווַאלְד<lb/>שׁטִילֶערְהַייד.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0406_a">
+          <speaker>שפּרינצע</speaker>
+          <p>ווִי אַזוי שְׁרֵייט מֶען דאָס שׁטִילֶערְהַייד?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0407_a">
+          <speaker>שמערל</speaker>
+          <p>מֶען שְׁרֵייט אוּן מֶען צִיטֶערְט דערבּיי. נוּ, לאָ'מיִר<lb/>שׁרֵייעֶן גֶעווַאלְד!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0408_a">
+          <speaker>זאַסל</speaker>
+          <p><stage type="delivery">(לאַכט)</stage> וואָס שְׁרֵייט אִיהר?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0409_a">
+          <speaker>שׁמֶערְל</speaker>
+          <p>אִיצט קאנסטוּ שׁוֹין שׁרֵייעֶן <stage type="exit">(פערשלאָסען, אָבּ).</stage></p>
+        </sp>
+        <pb n="41" facs="30804195.jpg"/>
+        <fw type="pageNum">43</fw>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0410_a">
+          <speaker>זאַסל</speaker>
+          <p>עפֶענְט! פערפלוּכטע יוּדען! עפֶענְט! עפענְט זַיי<lb/>האבּען פֶערְשׁלאסֶען, אַ פנים עֶס גֶעהט מיִר ניט! <stage type="delivery">(זִינְגְט קוּפלעט)</stage></p>
+          <lg>
+            <l>ס'וועט נישט לֵייקֶענֶען קֵיינֶער,</l>
+          </lg>
+          <lg>
+            <l>וֶוער סִ'קֶען מיִר ניִשט פוּן הַיינְט.</l>
+          </lg>
+          <lg>
+            <l>כ'וואַהר אַמאל אַ יוּנג מיִט בּיינער.</l>
+          </lg>
+          <lg>
+            <l>וואָס מַיידְלֶעך האָבּען ניִשט פיינד.</l>
+          </lg>
+          <lg>
+            <l>הַיינְט אָבּער, צוּם דאָנער וועטֶער.</l>
+          </lg>
+          <lg>
+            <l>וואָס איִז גֶעווֶארֶען מיִט מיִר,</l>
+          </lg>
+          <lg>
+            <l>ס'פֿאַלען פוּן מַיין בּיים די בּלעטער</l>
+          </lg>
+          <lg>
+            <l>וואוּ איִז מַיין קראפֿט פוּן פרִיהֶער?</l>
+          </lg>
+          <lg>
+            <l>חאטש בּרעך זִיך, שפּרוּנג אוּן קלֶעטֶער</l>
+          </lg>
+          <lg>
+            <l>איִז אַלעס ניִשט גוּט.</l>
+          </lg>
+          <lg>
+            <l>חאָטש צֶערֵייס זִיך, פערפאַלען. פֶעטֶער,</l>
+          </lg>
+          <lg>
+            <l>עֶס איִז צוּ⸗שפּעט, עֶס גֶעהט ניִשט!</l>
+            <stage type="setting">פֶערוואנְדְלונְג.</stage>
+            <stage type="setting">(רייכער זאָל, זאַסלאַוועק טרינקט.)</stage>
+          </lg>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0411_a">
+          <speaker>זאַסל</speaker>
+          <p>פּראָזיט! הַיינְט דאַרפען אַלע טרִינְקֶען. אַזאַ גרִיסֶע<lb/>פֶעסט! בּאלד ווֶעלֶען אַהער קוּמען אַלע גְרויִסעֶ פּריצים, מֶען וועט<lb/>אַהער בּרענגען דיִ יוּדישקע, דיִ שֶׁעהנֶע אוּן מֶען וועט זִי נָאך הַיינְט<lb/>פערבּרענען. פּראזיט, איִך טרִינְק פאַר'ן טוִיט פוּן דעֶר יוּדישע הֶעק⸗<lb/>סע. דער קעניג זעלבּסט האָט פֿערשפּראכען צוּ קוּמען צוּם פעסט<lb/>פֿון פערבּרענען. פּראַזט, איִך טרִינְק פאַר'ן לעבּען פוּן קֶענִיג!<lb/>מאַרטהאַ <stage type="entrance">(קוּמט אַריין).</stage></p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0412_a">
+          <speaker>מאַרטהא</speaker>
+          <p>דיִ דאנֶערְן קראַכען!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0413_a">
+          <speaker>זאַסל</speaker>
+          <p>אָט האָסטוּ זִי! זִי מאַכט מִיר גאָר דֶעם גִאנצנֶען פֶעכט<lb/>זויער.</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0414_a">
+          <speaker>מאַרטהא</speaker>
+          <p>דיִ טַייפֶעל, זיי לאכֶען!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0415_a">
+          <speaker>זאַסל</speaker>
+          <p>עפּעס גֶעהט זִי אַרוּם דיִ לֶעצְטֶע צַייט נור ווִי משׁוגֶע.</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0416_a">
+          <speaker>מאַרטהא</speaker>
+          <p>דיִ טוִיטֶע, זַיי טאַנצען!</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0417_a">
+          <speaker>מאַרטהא</speaker>
+          <p>וואוּ טאַנצען טויטֶע, גנֶעדִיגֶע מארטהא אַ?</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0418_a">
+          <speaker>מאַרטהא</speaker>
+          <p>דאָס בּיזטוּ, זאַסלאוועק?<lb/>דאָס יוּדִישֶׁע קִינְד</p>
+        </sp>
+        <pb n="42" facs="30804207.jpg"/>
+        <fw type="pageNum">44</fw>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0419_a">
+          <speaker>זאַסל</speaker>
+          <p>אַ שֶׁענֶע פראגֶע, צי איִך בּין עֶס, איִהר דעֶרְקֶענְט<lb/>מיך גאָר ניִשט? פּראָזיט!</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0420_a">
+          <speaker>מאַרטהא</speaker>
+          <p>זאַסלאַוועק, זאָג מיִר, פאַרוואָס וִויל מֶען דֶעם<lb/>רב'ס טאָכְטֶער צוּם טוִיט פעראוּרטיילען?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0421_a">
+          <speaker>זאַסל</speaker>
+          <p>דערפאַר, וַוייל זִי איִז אַ מכשפה.</p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0422_a">
+          <speaker>מאַרטהא</speaker>
+          <p>אוּן דעֶר גראַף וולאַדיסלאוו ערלויבּט, מֶען זאָל<lb/>זִי צוּם טוִיט פעראוּרטיילען?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0423_a">
+          <speaker>זאַסל</speaker>
+          <p>עֶר מוּז. איִך האָבּ אַליין גֶעהֶערְט, ווִי דעֶר פִירְסט<lb/>זֶעזֶעמִיר האָט געזאָגט צוּ אוּנזער גנֶעדִיגֶען גראַף, אַז וולאַדיסלאוו<lb/>מוּז דֶעם טויטס-אוּרטייל אונטערשרייבּען, וֶוען ניט וֶועט זַיין טאָכ⸗<lb/>טער מיִט אִיהם נִיט הייראַטען. — לאָמִיך בּעסער אָבּטראָגען, וַוייל<lb/>זִי וֵוייזְט אוֹיס משׁוגֶע, אוּן איִך האָבּ זֶעהְר מוֹרָאָ פאַר אַ משׁוגֶע'נֶע,<lb/>פראזיט! <stage type="exit">(אָבּ).</stage></p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0424_a">
+          <speaker>מאַרטהא</speaker>
+          <p>מֶען וִויל וולאַדיסלאוו'ן צווינְגֶען, עֶר זאָל מיִט<lb/>גֶעווַאלְד איהר טוִיט אוּרטייל אונטערשרייבּען? נֵיין, עֶר דאַרף עֶס<lb/>ניִשט טהוּן. איִך מוּז אִיהם בּאלד דוּרך אַ בּריעף דאָס גֶעהַיימְנִיס<lb/>ענְטדֶעקֶען, אַז עֶר איִז דאָס פערבּייטענע קִינְד אוּן דֶעם רב'ס טאָכט⸗<lb/>טֶער איִז זַיינֶע אַ גלויבּענסגענאסענע רעליגיאנס-שׁוועסטֶער, עֶר טאָר<lb/>זִי ניט פעראורְטַיילֶען צוּם טוִיט! פִילֵייכט וועֶט דיִ גֶערֶעכטֶע טהאט<lb/>מַיינֶע גֶעוויסֶען בּערוהיגען. <stage type="business">(שרייבּט)</stage>: ליעבּער וולאַדיסלאוו! איִך<lb/>וִויל דיִר עֶנְדְלִיך יֶעצְט ענְטדֶעקֶען דאָס גֶעהַיימְנִיס, פוּן וֶועלְכֶען<lb/>איִך האָבּ מיִט דיִר שׁוֹין אַמאָל גֶערֶעדְט: זַיי וויִסעֶן, אַז דאָס פערבּיי⸗<lb/>טֶענֶע יוּדישע קִינְד... <stage type="business">(שלאפט-איין)</stage><lb/>גייסט <stage type="entrance">(ערשיינט).</stage></p>
+        </sp>
+        <sp who="#gayst" xml:id="YudisheKind_SP0425_a">
+          <speaker>גייסט</speaker>
+          <p>רויבּערין, מֶערְדֶערִין! נֶעהם דיִך צוּריק דַיין טויט<lb/>קִינְד אוּן גיבּ מיִר צוּריק מַיין לעבּעדיג, יוּדיש קִינְד. <stage type="business">(פֶערְשׁווינְדֶעט).</stage></p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0426_a">
+          <speaker>מאַרטהא</speaker>
+          <p>רֶעטֶעט! איִך ערְשׁטִיקֶע, עֶס פֶעהלְט מיר לופט!<lb/>אַך, צי וועֶט דעֶר שׁרֶעקלִיכֶער טרוים שׁוֹין קיינמאָל נִיט אוֹיפְהֶערֶען !<lb/><stage type="business">(פֿאַלט)</stage> <stage type="entrance business">(גייסט ערְשַׁיינְט, ווידערהאַלט דאָס זעלבּע....)</stage></p>
+        </sp>
+        <sp who="#marta" xml:id="YudisheKind_SP0427_a">
+          <speaker>מאַרטהא</speaker>
+          <p>צי וועט שׁוֹין דֶען קיינמאָל צוּ מַיינֶע לֵיידֶען קיין<lb/>עֶנְדֶע נֶעהמֶען? <stage type="business">(קניעט)</stage> אַך, גְרויִסעֶר, יוּדישער גאָט! צוּ דיִר ווענְדֶע<lb/>איִך מיִר יֶעצְט. איִך האָבּ גֶעהֶערְט, אַז דוּ בּיזט אַ גאָט פוּן בּארמהער⸗<lb/>צִיגְקֵייט, אַ גאָט פוּן רחמנות. אַזוי בּעט איִך דיִר, האָבּ רחמנות<lb/>אויף מיִר, איִך גֶעשׁטֶעהֶע, איִך האָבּ אִין מַיין יוגענד אַ פֶעהלֶער<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>בּעגאנגען, אָבּער איִך האָבּ חרטה, מַיין לעבּען וִויל איִך יֶעצְט אַוועק⸗<lb/>געבּען, אַז איִך זאָל קאָנען מַיין פֶעהלֶער גוּט מאַכען פֿון קאמין<lb/>שלאָגט⸗אַרויס אַ פֵייער. אָה, איִך פֶערְשְׁטֶעה דֶעם צַייכֶען; עֶס איִז<lb/>נאָך ניִשט צוּשפּעט; איִך וֶועל אַלעס אָנווענְדֶען, אַז אַ טאָכטער<lb/>פוּן דַיין גלויבּען זאָל ניִשט צוּם טויט פערבּרענט וֶוערֶען. אָנאַ, איִך<lb/>שְׁוֶוער דיִר בּיי מַיין לעבּען, אַז דוּ זאָלסט ניִשט שטאַרבּען <stage type="exit">(אָבּ).</stage><lb/>פּעטעפי, זעזֶעמִיר, וולאַדיסלאוו <stage type="business">(דִיענֶער טראָגען</stage><lb/><stage type="business">אַריין אַ טיִשׁ אוּן שטוהלען).</stage></p>
+        </sp>
+        <pb n="43" facs="30804220.jpg"/>
+        <fw type="pageNum">45</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0428_a">
+          <speaker>פֶעטֶעפִי</speaker>
+          <p>נוּן, מַיינֶע הֶערְרֶען, פֶערְנֶעהמְט אַייערֶע פּלעצער,<lb/>פֿיהרט⸗אַריין די פערבּרעכערין, מיִר מוּזען מיִט'ן גֶערִיכְט צוּ⸗אַיילֶען,<lb/>וַוייל דעֶר קֶענִיג האָט מיִר געלאָזט וויסען דוּרך זַיין שׁטאַפעט, אַז<lb/>נאָך הַיינְט וֶועט עֶר קוּמען, בּייצווואהנען דיִ צערעמאנִיע פוּן הֶעקסֶען⸗<lb/>פערבּרענען. עֶס לעבּע דעֶר קֶענִיג!</p>
+        </sp>
+        <sp who="#alle" xml:id="YudisheKind_SP0429_a">
+          <speaker>אַלע</speaker>
+          <p>עֶס לעבּע דעֶר קֶענִיג!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0430_a">
+          <speaker>וולאַדיסלאַוו</speaker>
+          <p>אַך, דער שׁמֶערְץ איִז ניִשט צוּם ערטראָגען<lb/><stage type="business">(הענעלע ווערט אַריינגעפֿיהרט)</stage> אוֹיך יֶעצְט זֶעהְט זִי אוֹיס, ווִי אֵיין ענְגֶעל,<lb/>אוּן דִיעזֶער ענְגֶעל זאָל אַזוי פערדארבּען זַיין? דאָס איִז שׁרֶעקלִיך!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0431_a">
+          <speaker>פֶעט</speaker>
+          <p>אונְגלִיקלִיכֶע, טרֶעט אַהער, מֶען וועט דַיין אוּרטייל<lb/>לֶעזֶען.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0432_a">
+          <speaker>הֶענֶע</speaker>
+          <p>מַיין אוּרטייל? ווִי איִז דאָס מֶעגלִיך? מֶען האָט דָאך<lb/>מַיין פּראצעס נאָך ניִשט אָנגעפאנגען אוּן מַיין פערטיידיגוּנג ניִשט<lb/>אוִיסגֶעהֶערְט.</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0433_a">
+          <speaker>פֶעט</speaker>
+          <p>מיִר בּרויכען קֵיינֶע פּראצעסען צוּ מאַכען אוּן דַיין<lb/>פֿערטיידיגוּנג אויסצוהֶערֶען. מיִר האָבּען אַלעס גֶענוי אויסגעפֿאָרשט<lb/>אוּן ערפאַרען, וואָס עֶס איִז אוּנז נויטִיג צוּ וויִסעֶן.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0434_a">
+          <speaker>הֶענע</speaker>
+          <p>נוּ, אוּן מִיך וַוייל מֶען ניִשט פְרֶעגֶען?</p>
+        </sp>
+        <sp who="#graf_zezemir" xml:id="YudisheKind_SP0435_a">
+          <speaker>זֶעזֶעמיר</speaker>
+          <p>דַיין אָנטוואָרט האָט קיין ווערְטה. גראַף וולאַ⸗<lb/>דיסלאוו, בּיטע, לעזט פאר דֶעם אוּרטייל!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0436_a">
+          <speaker>וולאַד</speaker>
+          <p>איִך דאַנקע פיִר דיִ עהרֶע; דאָ געֶפיִנעֶן זִיך עֶלְטֶערֶע<lb/>וֶועלְכֶע האָבּען זֶעהְר דיִ עהרֶע פֶערְדִיענְט.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0437_a">
+          <speaker>זעז</speaker>
+          <p>אַלזאָ וֶועל איִך עֶס דוּרכלֶעזֶען <stage type="business">(לעזט)</stage>: נאָך אַיינֶער<lb/>גֶענויער אונטערזוּכוּנג איִז פֶעסְט גֶעשׁטֶעלְט גֶעווֶארֶען, דאָס דיִ יוּדין<lb/>אנאַ, דיִ טאָכטער פוּן יוּדִישֶׁען רב, איִז אַ צויבּערין, אַ זֶעהְר גֶעפֶעהר<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>לִיכֶע הֶעקסֶע, וֶועלְכֶע איִז אימשׁטאנְדֶע טוֹיזֶענְדֶער יוּנגע לֵייט אִין<lb/>גרֶעסטֶען אוּמגליק צוּ בּרענגען. דאַרום האבּען מיִר, דִי אונטערגע⸗<lb/>צַייכֶענְטֶע רִיכְטֶער, געפוּנען פאַר טויטִיג, דיִ הֶעקסֶע צוּם טויט אוּ<lb/>פעראוּרטיילען.</p>
+        </sp>
+        <pb n="44" facs="30804234.jpg"/>
+        <fw type="pageNum">46</fw>
+        <sp who="#henele" xml:id="YudisheKind_SP0438_a">
+          <speaker>הֶענֶע</speaker>
+          <p>אָה, מַיין פָאטֶער וועט דאָס ניט איבּערלעבּען! <stage type="delivery">(וויינט)</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0439_a">
+          <speaker>וולאַד</speaker>
+          <p>מַיין מיִטלייַד שׁטַייגט פוּן יעדען מאמֶענְט, זִי קאָן ניִשט<lb/>זַיין שוּלדיג!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0440_a">
+          <speaker>פֶעט</speaker>
+          <p>מַיינֶע הֶערְרֶען! יֶעצְט זאָל יֶעדֶער פוּן אוּנז זַיין נאָמען<lb/>אוּנטערשרייבּען: איִך וֶועל דער ערְשׁטֶער זַיין <stage type="business">(שרייבּט).</stage></p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0441_a">
+          <speaker>הֶענֶע</speaker>
+          <p>גראַף! וואוּ איִז אייער וואָרט, וואָס איִהר הָאט מִיר<lb/>פערשפּראכען אִין גֶעפֶענְנִיס?</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0442_a">
+          <speaker>פֶעט</speaker>
+          <p>יוּדישקע: וואָגסטוּ נאָך אֵיין וואָרט צוּ רֵיידֶען, אַזוי<lb/>וועֶרְט דַיין פָאטֶער איך געטראפען פוּן דֶעם זעלבּען טויט, וואָס<lb/>דוּ יֶעצְט, מַיין זוּהן, שרייבּ אוֹיך דַיין נאָמען אונטער.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0443_a">
+          <speaker>וולאַד</speaker>
+          <p>איִך גלויבּ, אַז מַיין אונְטֶערְשׁרִיפט איִז איבּעריגע.</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0444_a">
+          <speaker>זֶעז</speaker>
+          <p>אַלזא, גראַף, לאָזט אַייך ניִשט פִיעל בּעטען, אוּנְטֶער⸗<lb/>שרייבּט.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0445_a">
+          <speaker>הענע</speaker>
+          <p>יאַ-יאַ, וולאַדיסלאוו, לאָז זִיך ניִשט פֿיעל בּעטען דוּ<lb/>מוּזט אוֹיך אֵיין אָפּפער בּרענגען צוּליעבּ דַיין פָאטֶער, ווִי איִך האָבּ<lb/>געבּראַכט צוּליעבּ מַיין פָאטֶער, דאמיט, וואָך איִך האָבּ דיִר געשריבּען,<lb/>וואָס דעֶר גראַף פּעטעפי הָאט מִיך גֶענויט צוּ שרייבּען!</p>
+        </sp>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0446_a">
+          <speaker>פֶעט</speaker>
+          <p>פערפלוּכטע הֶעקסֶע!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0447_a">
+          <speaker>וולאַד</speaker>
+          <p>מַיין גאָט, וואָס הֶער איִך? וואָס האסטוּ געזאָגט<lb/>דֶעם בּריעף הָאט דיִך מַיין פָאטֶער גֶענויט צוּ שרייבּען?<lb/>זאַסלאַוועק <stage type="business">(מיט אַ בּריעף).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0448_a">
+          <speaker>זאַסלאַוועק</speaker>
+          <p>גנֶעדִיגֶער גראַף! דֶעם בּריעף האָט אַייך מאר⸗<lb/>טהאַ גֶעשִׁיקט אוּן האָט געֶהייֵסעֶן, איִהר זאָלט אִיהם בּאלד איבּער<lb/>לֶעזֶען <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0449_a">
+          <speaker>וולאַד</speaker>
+          <p><stage type="business">(לעזט)</stage> "דאָס קִינְד, וואָס איִך האָבּ פוּן דעֶר יוּדין<lb/>גערויבּט, בּיזטוּ אַליין". "מארטהא". גאָט, איִז דאָס קיין טרוים<lb/><stage type="business">(לעזט נאָך אַמאָל).</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0450_a">
+          <speaker>זעז</speaker>
+          <p>צוּפֿיעל, ליעבּער וולאַדיסלאַוו, לאָזטו אונז וואַרטען אוֹיף<lb/>דיין אונְטֶערְשׁרִיפט. מאַך עֶס שׁנֶעלֶער.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0451_a">
+          <speaker>וולאַד</speaker>
+          <p><stage type="business">(בעהאַלט דֶעם בּריעף)</stage> איִהר וויִלְט, איִך זאָל עֶס<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>שנעֶל מאַכען? גוּט, איִך וֶועל עֶס טהוּן, גיִט אַהער דאָס פּאפּיר;<lb/>איִהר, פָאטֶער, האָט געצוואונְגֶען דאָס אונשוּלדיגע קִינְד זאָ אֵיין<lb/>בּריעף צוּ שרייבּען אוּן פּרעטענדירט נאָך גֶערֶעכטֶע מֶענֶער צוּ זַיין;<lb/>איִהר וויִלְט אוּרטיילען אוֹיף טויט אוּן לעבּען אוּן וויִלְט דערצוּ מַיין<lb/>אונְטֶערְשׁרִיפט? איִהר זאָלט עֶס האָבּען דאָ איִז מַיין אונְטֶערְשׁרִיפט!<lb/><stage type="business">(צורייסט)</stage> אָנאַ, דוּ בּיזט, אוּן דוּ בּלייבּסט מַיינֶע. <stage type="business">(אומאַרמונג).</stage></p>
+        </sp>
+        <pb n="45" facs="30804246.jpg"/>
+        <fw type="pageNum">47</fw>
+        <sp who="#graf_petefi" xml:id="YudisheKind_SP0452_a">
+          <speaker>פֶעט</speaker>
+          <p>אָה, דוּ אוּנגעהאָרזאמעס קִינְד! <stage type="business">(פאלט טוִיט)</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0453_a">
+          <speaker>זֶעז</speaker>
+          <p><stage type="business">(בּויגט זִיך איבּער פּעטעפי'ן)</stage> דעֶר גראַף פּעטעפי איִז<lb/>טויט, וולאַדיסלאוו! דוּ האָסט דַיין פָאטֶער גֶעטויט!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0454_a">
+          <speaker>וולאַד</speaker>
+          <p>עֶר איִז ניִשט מַיין פָאטֶער, פורְסט אוּן ניִשט איִך<lb/>נאָר עֶר זעלבּסט, איִז זַיין מֶערְדֶער גֶעוֶועזֶען, זאָל גאָט זיין דער<lb/>רִיכְטֶער צווישֶׁען מיִר אוּן אִיהם. <stage type="business">(טראמפּייטען-סיגנאַל)</stage></p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0455_a">
+          <speaker>זעז</speaker>
+          <p>דעֶר קֶענִיג קוּמט!</p>
+        </sp>
+        <sp who="#alle" xml:id="YudisheKind_SP0456_a">
+          <speaker>אַלע</speaker>
+          <p>דעֶר קֶענִיג! דעֶר קֶענִיג!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0457_a">
+          <speaker>זעז</speaker>
+          <p>נֶעהמְט שנעֶל אַוועק פוּן דאַנען דֶעם טויטֶען קערפּער.<lb/>דאָס וואָלט פאַר'ן קֶענִיג אַ צוּטרויערִיגֶער סוּרפּרייז גֶעוֶועזֶען.<lb/><stage type="entrance business">(דיענער טראָגען אַרויס פֶעטֶעפִי, עֶס ערְשַׁיינְט דעֶר קֶענִיג מיִט זַיין סוויטֶע).</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="YudisheKind_SP0458_a">
+          <speaker>אַלע</speaker>
+          <p>עֶס לעבּע דעֶר קֶענִיג!</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0459_a">
+          <speaker>קֶענִיג</speaker>
+          <p>ווילְקאמֶען, מַיינֶע ליעבּע. איִך האָבּ גֶעאיילְט צוּ<lb/>אַייך ניִשט אוּם דיִ צערעמאניע פוּן הֶעקסֶען פערבּרענען בּייצווואהנען.<lb/>נוּר אום דיִ פעראורטיילטע צוּ בּעגנאדיגען. וואוּ איִז דיִ בּעשוּל⸗<lb/>דִיגטֶע?</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0460_a">
+          <speaker>הֶענֶע</speaker>
+          <p>איִך בּין עֶס קֶענִיג, דיִ אונשולדיג פעראוּרטיילטע.<lb/>איִך דאַנק דיִר, קֶענִיג, פאַר דַיין גנאדע.</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0461_a">
+          <speaker>קֶענִיג</speaker>
+          <p>דוּ זֶעהסְט מיִר ניִשט אויִס צוּ זַיין אַ הֶעקסֶע, איִך<lb/>גלויבּ אִין דַיין אונשוּלד, דוּ בּיזט פרֵיי!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0462_a">
+          <speaker>וולאַד</speaker>
+          <p>עֶס לעבּע דעֶר גֶערֶעכטִיגֶער קֶענִיג!</p>
+        </sp>
+        <sp who="#alle" xml:id="YudisheKind_SP0463_a">
+          <speaker>אַלע</speaker>
+          <p>עֶס לעבּע דעֶר קֶענִיג!</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0464_a">
+          <speaker>קֶענִיג</speaker>
+          <p>הַיינְט וִויל איִך דאָס אַלע מַיינֶע אונטערטהאַנע זאָ⸗<lb/>לֶען גלִיקלִיך אוּן לוסטיג זַיין הַיינְט איִז מַיין גלִיקלִיכֶער טאָג.<lb/>וַוייל איִך האָבּ הַיינְט ערהאַלטען דיִ פריעדענס-קאָנטראַקטען פוּן<lb/>מֶעכטִיגֶען עסטרֵייכִישֶׁען הֶערְשֶׁער. יֶעצְט איִז אונגארן זִיכֶער, אַז<lb/>קיין פֿיינד וועט ניִשט אִימְשׁטאנְדֶע זַיין אוּנז שׁלֶעכטס צוּ טהוּן. <stage type="business">(צוּ</stage><lb/><stage type="business">זעזעמיר)</stage>: גראַדע דיִר, מַיין פרייַנד, דאַנקע איִך הֶערְצלִיך פיִר דַיין<lb/>דאָס יוּדִישֶׁע קִינְד.<lb/>טרֵייע צוּ מיִר אוּן צוּ מַיין קֶענִיגרֵייך. דערוּם רופֿט אַלע מיִט מיִר צוּ⸗<lb/>זאַמען: האך! לעבּע דעֶר פִירְסט זֶעזֶעמִיר!</p>
+        </sp>
+        <pb n="46" facs="30804261.jpg"/>
+        <fw type="pageNum">48</fw>
+        <sp who="#alle" xml:id="YudisheKind_SP0465_a">
+          <speaker>אַלע</speaker>
+          <p>האָך! האך!</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0466_a">
+          <speaker>קעניג</speaker>
+          <p>אוּן וואוּ איִז דעֶר גראַף פֶעטֶעפִי? פאַרוואס זעה<lb/>איִך אִיהם ניִשט דאָ?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0467_a">
+          <speaker>זֶעז</speaker>
+          <p>מאִיעסטֶעט! דעֶר גראַף פּעטעפי איִז אַ מאמענט פאַר<lb/>דַיין אַהערקוּמען פּלוּצלוּנג געשטאָרבּען.</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0468_a">
+          <speaker>קעניג</speaker>
+          <p>געשטאָרבּען? אָה, דאָס מאַכט מיִר מַיין פרוֹידֶע<lb/>דוּנקעל! נוּ, אוּן זַיין זוּהן וואוּ איִז?</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0469_a">
+          <speaker>זֶעז</speaker>
+          <p>גראַף וולאַדיסלאוו, דעֶר קֶענִיג פרעגט אוֹיף דיִר</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0470_a">
+          <speaker>וולאַד</speaker>
+          <p><stage type="business">(טרעט-אַרויס)</stage> קֶענִיג!</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0471_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(דֶערְלאנְגט אִיהם דיִ האַנד)</stage> זַיי גֶעטרֵייסט פוּן גָאט,<lb/>יונגער גראַף! צוּליעבּ דַיין עדֶעלֶען גאט-זעליגען פָאטֶער, בּיזטוּ מיִר<lb/>ווילְקאמֶען!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0472_a">
+          <speaker>וולאַד</speaker>
+          <p>אויבּ איִך בּין אַייעֶר מאִיעסטֶעט ווילְקאמֶען נאָר<lb/>צוּליעבּ דֶעם אַלטען גראַף פּעטעפי, האָבּ איִך דיִ עהרֶע נִיט פֶער⸗<lb/>דִיענְט.</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0473_a">
+          <speaker>קעניג</speaker>
+          <p>וואָס זאָל דאָס בּעדייטען?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0474_a">
+          <speaker>וולאַד</speaker>
+          <p>צוּ מַיין גרֶעסטֶער שׁאנְדֶע מוּז איִך דיִ וואַהרהייט<lb/>גֶעשׁטעהן, דאָס דעֶר אַלטער גראַף פּעטעפי וואהר אֵיין קֶענִיגס-<lb/>פֶערְרֶעטהֶער.</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0475_a">
+          <speaker>קעניג</speaker>
+          <p>וואָס שפּריכסטוּ יוּנְגֶע?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0476_a">
+          <speaker>וולאַד</speaker>
+          <p>נוּר דיִ ווארהייט, מַיין קֶענִיג!</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0477_a">
+          <speaker>קעניג</speaker>
+          <p>וֶועלְכֶע בּעווייזע האסטוּ, דאָס דוּ רֶעדְסט דיִ וואַהר⸗<lb/>הַייט?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0478_a">
+          <speaker>וולאַד</speaker>
+          <p>דאָ, מַיין קֶענִיג, זֶענֶען בּעווייזע. <stage type="business">(בריעף).</stage></p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0479_a">
+          <speaker>קעניג</speaker>
+          <p><stage type="business">(לעזט, קוּקט אוֹיף זֶעזֶעמִיר)</stage> אָה, איִך ערְקֶען דִי<lb/>האַנדשריפט, וואָס? פִירְסט זֶעזֶעמִיר?! פִירְסט, איִז דאָס דַיין האַנד⸗<lb/>שׁרִיפט? אָבּער נוּר דיִ וואַהרהייט, הֶערְסט!</p>
+        </sp>
+        <sp who="#zaslavek" xml:id="YudisheKind_SP0480_a">
+          <speaker>זֶעז</speaker>
+          <p>מאִיעסטֶעט! איִך ערְקֶען מַיין שוּלד, גנאדע!</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0481_a">
+          <speaker>קֶענִיג</speaker>
+          <p>קיין גנאדע, אִין גֶעפֶענְגנִיס מיִט אִיהם! <stage type="business">(מֶען פִיהרְט</stage><lb/><stage type="exit">אִיהם אָבּ)</stage> מיִט וואָס זאָל איִך דיִר בּעלאהנען פאַר דִיעזֶער ענטדעקוּנג,<lb/>גראַף?</p>
+        </sp>
+        <pb n="47" facs="30804273.jpg"/>
+        <fw type="pageNum">49</fw>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0482_a">
+          <speaker>וולאַד</speaker>
+          <p>דעֶר נאָמען פוּן גראַף פּעטעפוּ איִז בּעשמוצט, אוּן<lb/>מִיך פרעהט זֶעהְר דאָס דִיעזֶער נאָמען גֶעהֶער ניִשט צוּ מיִר.</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0483_a">
+          <speaker>קֶענִיג</speaker>
+          <p>וואָס מיינסטוּ דאמיט?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0484_a">
+          <speaker>וולאד</speaker>
+          <p>צוּפעליגערווייזע האָבּ איִך ערפאַהרען. דאָס גראַף<lb/>פֶעטֶעפִי וואהר נִיכְט מַיין פָאטֶער, דיִ העבּאממע פוּן גראַף הָאט מִיך<lb/>פוּן מַיין ווירְקלִיכֶער מוּטער גֶעשׁטאהלען, אוּם מיִט מיִר דֶעם גראפ'ס<lb/>טויטֶע קִינְד צוּ פערבּייטען.</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0485_a">
+          <speaker>קֶענִיג</speaker>
+          <p>אוּן וֶוער זֶענֶען דַיינֶע ווירְקלִיכֶע עֶלְטֶערֶען?</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0486_a">
+          <speaker>וולאַד</speaker>
+          <p>מַיינֶע ווירְקלִיכֶע עלְטֶערֶען זֶענֶען גֶעווֶען יוּדען, אָבּער<lb/>זֵיי זֶענֶען שׁוֹין לאַנג טויט. יֶעצְט, מַיין קֶענִיג, וֶועל איִך דיִר בּעטען,<lb/>זאָלסט מיר ערלויבּען דיִ יוּדישע רֶעלִיגִיאן אָנצונעמען אוּן צוּ הַייראטֶען<lb/>דֶעם רב'ס טאָכטער.</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0487_a">
+          <speaker>קעניג</speaker>
+          <p>איִך ערלויבּע עֶס דיִר, זַייט גֶעזֶעגֶענְט, אָבּער דאָס<lb/>הַייסְט ווענִיג פֶערְלאנְגט פֶערְלאנְגט נאכמעהר.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0488_a">
+          <speaker>וולאַד</speaker>
+          <p>איִך פֶערְלאַנג ניִשט מֶעהר, דאָס איִז פאַר מיִר גענוּג!<lb/>צוּם גליק.</p>
+        </sp>
+        <sp who="#kenig_zigmund" xml:id="YudisheKind_SP0489_a">
+          <speaker>קֶענִיג</speaker>
+          <p>דעֶר קֶענִיג זאָל אָבּער נוּר קֶענִיגלִיך בּעלוינען, אַלזא<lb/>אויבּוואהל דוּ בּיזט ניט דעֶר זוּהן פוּן גראַף פֶעטֶעפי. יעדאך שֶׁענְק<lb/>איִךְ דיִ אַלע זַיינֶע גִיטֶער, אוּן דעֶר טיטוּל גראַף בּלייבּט אוֹיך בּיי<lb/>דיִר.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0490_a">
+          <speaker>וולאַד</speaker>
+          <p>מַיין הֶערְצלִיכֶען דַאנְק אַייך, מֶעכטִיגֶער הֶערְשֶׁער. עֶס<lb/>לעבּע דֶער קֶענִיג!</p>
+        </sp>
+        <sp who="#alle" xml:id="YudisheKind_SP0491_a">
+          <speaker>אַלע</speaker>
+          <p>עֶס לעבּע דֶער קֶענִיג!<lb/><stage type="setting">(פאָרהאַנג פֿאַלט).</stage></p>
+        </sp>
+        <trailer>עֶנְדֶע דרִיטֶער אַקט.</trailer>
+        <pb n="48" facs="30804284.jpg"/>
+      </div>
+      <div type="act" n="4" xml:id="YudisheKind_Act4">
+        <head>פיערטער אקט.</head>
+        <stage type="setting">(בּיי'ם רב אין שטוב).</stage>
+        <stage type="entrance business">(לויפֿט אַריין).</stage>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0492_a">
+          <speaker>שפּרינצע</speaker>
+          <p>שׁמֶערְל פּיק, וואוּ בּיזטוּ? פֶערְלארֶען דֶעם מאן.<lb/>געהאט אֵיין מַאן, האָבּ איִך אִיהם אִיך פֶערְלארֶען <stage type="exit">(אָבּ).</stage><lb/>שמערל <stage type="business">(אונטער דיִ קוליסען).</stage></p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0493_a">
+          <speaker>שמערל</speaker>
+          <p>שפּרינצע. וואוּ בּיזטוּ?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0494_a">
+          <speaker>שפּר</speaker>
+          <p>געלויבּט איִז גאָט, דעֶר שׁאדֶען האָט זִיך אָבּגעזוּכט!<lb/>איִך בּין דָא שׁלִימְמזלְ'דִיגֶער מַאן.</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0495_a">
+          <speaker>שמערל</speaker>
+          <p><stage type="business">(מיט פלֶעשֶׁער)</stage> אָט איִז זִי גאָר דָא, אוּן איִך<lb/>האבּ מִיך פֶערְדְרֶעהט דֶעם קאפּ זוּכענדיג.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0496_a">
+          <speaker>שפּר</speaker>
+          <p>בּיזט דאך געגאנגען גלייך מיִט מיִר, וואוּ בּיזטוּ אַהינ⸗<lb/>געקוּמען?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0497_a">
+          <speaker>שמערל</speaker>
+          <p>איִך האָבּ מִיך דֶערְמאהנְט, אַז איִך האָבּ פֶערְגֶעסֶען<lb/>אַ פלאש בּראנפען, האָבּ איִך מִיך אוּמגעקֶעהרְט, וַוייסְט דָאך בּיי<lb/>מיִר איִז אַיינְס-צוויי אוּן פֶערְטִיג.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0498_a">
+          <speaker>שפּר</speaker>
+          <p>איִך קֶען דיִר שׁמֶערְל פּיק, דוּ וֶוערְסט גִיך פֶערְטִיג<lb/>שיכור'ניק, איִך ווֵייס דעֶן ניִשט, בּיזט אַהין גֶעלאפֶען טְריִנְקעֶן בּראָנ⸗<lb/>פֿען!</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0499_a">
+          <speaker>שמערל</speaker>
+          <p>זאָל איִך קרֶענְקֶען, זאָל איִך אַיינְנֶעהמֶען אַ מִיתה-<lb/>משוּנה אוֹיף דֶעם אָרט... וואָס איִז? איִך האָבּ קיין צַייט ניִשט?<lb/>גַיינְט וֶועט זִיך דאָס גאַנצע שׁטֶעדְטֶעל שיכור'ן לכבוד הֶענֶעלֶעס בּעפריי⸗<lb/>אוּנג, לאמיר נאָר גרֵייטֶען צוּם טיש.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0500_a">
+          <speaker>שפּר</speaker>
+          <p>דיִר פְרֶעדְט נישט אַזוי הֶענֶעלֶעס בּעפרייאונג. ווי<lb/>דֶער בּראנפען.<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="49" facs="30804295.jpg"/>
+        <fw type="pageNum">51</fw>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0501_a">
+          <speaker>שמערל</speaker>
+          <p>איִז דֶען אַ עולה, אַז מֶען נֶעהמְט אַמאָל אַ בּיסעל<lb/>בּראנפען פאַר צרות?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0502_a">
+          <speaker>שפּר</speaker>
+          <p>וואָס פאַר אַ צרוֹת האסטוּ?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0503_a">
+          <speaker>שמערל</speaker>
+          <p>דוּ אַליין בּיזט ווענִיג צרה?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0504_a">
+          <speaker>שפּר</speaker>
+          <p>שׁמֶערְל פּיק! בּיזט אַ מבִּין ווִי עֶר זִידֶעלְט מִיך?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0505_a">
+          <speaker>שמערל</speaker>
+          <p>נאָ, שאַ, איִך שְׁווייג שׁוֹין, וַוייסְט דָאך, אַז איִך<lb/>האָבּ פיינד מיִט דיִר מלְחמה צוּ האַלטען, אוֹי, בּיזטוּ אַ גבּורטע!<lb/>כ'לעבּען, וֶוען אוּנזער מלך זאָל דאַרפען מלְחמְה האַלטען מִיט אַזֶעלְכֶע<lb/>ווייַבּער, ווִי דוּ בּיזט וואָלט עֶר דיִ מלְחמה נישט אַזוי גיך איינגענוּמען<lb/>ווִי ס'האָט אִיהם אָבּגעגליקט מיִט דיִ לֶעצְטֶע מלְחמה מִיט דיִ דייטשֶׁען.<lb/>מיִט זיי האָט עֶר גֶעמאכט אַיינְס-צְוֵויי אוּן פֶערְטִיג.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0506_a">
+          <speaker>שפּר</speaker>
+          <p>גוּט וואָס דוּ האָסט מיִר דערמאהנְט; זאָג מיִר גאָר.<lb/>וואָס איִז אַזוינס מלְחמה?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0507_a">
+          <speaker>שמערל</speaker>
+          <p>לאָמיִך דיִר ערקלערען: <stage type="business">(צייגט האַנד)</stage> למְשׁל, דאָ<lb/>שְׁטֶעהט דער דַייטשׁ, אוּן דאָ שְׁטֶעהֶען אוּנְזֶערֶע, <stage type="business">(גיט אַ שפיי)</stage> אוּן<lb/>דאָ צווישֶׁען זַיי בּיידע איִז אַ טַייך, אוּן זַיי האַלטען אִין אֵיין שִׁיסע'ן<lb/>אֵיינְס אויפ'ן אַנְדֶערֶען.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0508_a">
+          <speaker>שפּרינצע</speaker>
+          <p>וואָרט נאָר, שׁמערל, וואוּ זאָגסטוּ שְׁטֶעהן<lb/>אוּנזערע?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0509_a">
+          <speaker>שמערל</speaker>
+          <p>אָט דָא...</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0510_a">
+          <speaker>שפּר</speaker>
+          <p>אוּן וואוּ זאָגסטו, שׁטֶעהן דיִ דַייטשֶׁען?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0511_a">
+          <speaker>שמערל</speaker>
+          <p><stage type="business">(אַ שפּיץ פִינְגֶער)</stage> אָט דָא.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0512_a">
+          <speaker>שפּר</speaker>
+          <p>אִין מִיטֶען איִז אַ טַייך?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0513_a">
+          <speaker>שמערל</speaker>
+          <p>יאָ, יוּדענע וואָס דוּ בּיזט?</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0514_a">
+          <speaker>שפּר</speaker>
+          <p>אויבּ אַזוי קאָן דָאך אוּנזערער צוּמאַכען דיִ האַנד<lb/>אוּן דער שונא זאָל אַריינפֿאַלען?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0515_a">
+          <speaker>שמערל</speaker>
+          <p>גֶעה שׁוֹין, גֶעה, קלֵיינְשׁטֶערְטֶעלְדִיגֶע נשמה! וואָס<lb/>מיינסטוּ, יֶענֶער פּלאץ איִז אַזוי גרויס ווִי מַיין האַנד? נאָר ווֵייס<lb/>איִך וואָס, אַ שֶׁעהן פּנים האָבּען דיִ מלְחמות גֶעגֶען דיִ מלְחמות פֿוּן<lb/>גוג-ומגוג!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0516_a">
+          <speaker>שפּר</speaker>
+          <p>וואָס זאָגסטוּ, גאָגעל מֶעגֶעל?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0517_a">
+          <speaker>שמערל</speaker>
+          <p>ניִשט געגעל מאגעל, איִך זאָג גוג-ומגוג, דאָס<lb/>זֶענֶען צְוֵויי גְרויִסעֶ קסרִים, וואָס ווֶעלֶען מיִט אוּנז מלְחמְה האַלטען.<lb/>וֶוען משִׁיח וֶועט קוּמען. נאָר וואָס זאָג איִך, מלאכים פוּן הִימֶעל<lb/>ווֶעלֶען זַיי דער'הרְגֶ'ענֶען. עֶס וֶועט זַיין אומר ועושה, אַיינְס-צוויי<lb/>אוּן אָבּגעטרעֶסטעט!</p>
+        </sp>
+        <pb n="50" facs="30804308.jpg"/>
+        <fw type="pageNum">52</fw>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0518_a">
+          <speaker>שפּר</speaker>
+          <p>וואָס וֶועט זַיין, אַז מֶען וועט זיי האָבּען אַלע אָבּגע⸗<lb/>טרֶעסטֶעט?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0519_a">
+          <speaker>שמערל</speaker>
+          <p>וואָס דאַמאַלס וועט זַיין, פרעגסטוּ? דאַמאלס ווֶעלֶען<lb/>אַלע מַלְכִים זַיין בּיי אוּנז משרתים אוּן דיענסטען. דוּ, למְשׁל, וֶועסְט<lb/>האבּען דרֵיי מלכּות פאַר דִיענְסטֶען.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0520_a">
+          <speaker>שפּר</speaker>
+          <p>צוּ וואָס דַארְף איִך דריי? צוּ וֶועלְכֶע שוואַרצע יאָהר<lb/>זאָלען מיִר געבּען צוּ פרעסֶען דרֵיי מַלְכות, נאָך וואָס מאַכען אַזוי<lb/>פֿיעל הוצאות?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0521_a">
+          <speaker>שמערל</speaker>
+          <p>קלֵיינְשׁטֶעדְטֶעלְדִיגֶע נשמה, פאַר דיִ הוצאות האסטוּ<lb/>ניִשְׁט וואָס מוֹרָא צוּ האָבּען, מיִר ווֶעלֶען זִיך דאַמאַלס בּאָדען אִין גאָלד<lb/>אוּן בּריליאַנטען.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0522_a">
+          <speaker>שפּר</speaker>
+          <p>אוֹי, גאטעניוּ, ווִי דערלעבּט מֶען דאָס!</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0523_a">
+          <speaker>שמערל</speaker>
+          <p>מיִר ווֶעלֶען דאָס דערלעבּען, וֶועכט זעֶהן!<lb/><stage type="business">(זינגען).</stage></p>
+          <stage type="delivery">דועט.</stage>
+          <stage type="delivery">I.</stage>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0524_a">
+          <speaker>ער</speaker>
+          <p/>
+          <lg>
+            <l>אַך וֶועט זַיין פייַן אוּן שֶׁעהן.</l>
+          </lg>
+          <lg>
+            <l>אַז משיח וועט קוּמען צוגעהן</l>
+          </lg>
+          <lg>
+            <l>איִהר מעגט מיר גלויבּען.</l>
+          </lg>
+          <lg>
+            <l>געבּראָטענע טויבּען.</l>
+          </lg>
+          <lg>
+            <l>וועט פלִיהֶען אִין מויל.</l>
+          </lg>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0525_a">
+          <speaker>זי</speaker>
+          <p><lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+          <lg>
+            <l>פוּן הִימֶעל אָהן אַ צאָהל.</l>
+          </lg>
+          <lg>
+            <l>פֿאַלען וועט, ווִי גאָר אַמאָל.</l>
+          </lg>
+          <lg>
+            <l>מן וֶועט מֶען האָבּען.</l>
+          </lg>
+          <lg>
+            <l>מֶען וֶועט זִיך נִיט בּעקלאגען.</l>
+          </lg>
+          <lg>
+            <l>עֶס וֶועט זַיין גוּט אוּן וואויל.</l>
+          </lg>
+        </sp>
+        <pb n="51" facs="30804319.jpg"/>
+        <fw type="pageNum">53</fw>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0526_a">
+          <speaker>ער</speaker>
+          <p/>
+          <lg>
+            <l>אוֹי, טאטע, מיִר וואַרטען לעת-עתּה.</l>
+          </lg>
+          <lg>
+            <l>דיִ גלִיקלִיכֶע צַייטֶען</l>
+          </lg>
+          <lg>
+            <l>ווֶעלֶען קוּמען צוּרֵייטֶען.</l>
+          </lg>
+          <lg>
+            <l>אַז קוּמען וועט משִׁיח.</l>
+          </lg>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0527_a">
+          <speaker>זי</speaker>
+          <p/>
+          <lg>
+            <l>אוֹי, פָאטֶער, מיִר ווֶעלֶען וֶוערֶען פּטוּר</l>
+          </lg>
+          <lg>
+            <l>פֿון אַלע איוואַנ'קעֶס,</l>
+          </lg>
+          <lg>
+            <l>פֿון אַלע סטעפּאַנקעס.</l>
+          </lg>
+          <lg>
+            <l>אַז משִׁיח וֶועט קוּמען.</l>
+          </lg>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0528_a">
+          <speaker>ער</speaker>
+          <p/>
+          <lg>
+            <l>דער שונא וֶועט מוּזען טריי</l>
+          </lg>
+          <lg>
+            <l>בּעדיענען מִיך אוּן דיִך</l>
+          </lg>
+          <lg>
+            <l>אַראָבּ זיין שטאלץ.</l>
+          </lg>
+          <lg>
+            <l>האַקען האָלץ.</l>
+          </lg>
+          <lg>
+            <l>אַרבּייטען ווִי אַ רוּח.</l>
+          </lg>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0529_a">
+          <speaker>זי</speaker>
+          <p><lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+          <lg>
+            <l>אִין בּאר אִין שׁווייץ, מאַכען היץ</l>
+          </lg>
+          <lg>
+            <l>געבּען מיִר אַ רֵייבּ.</l>
+          </lg>
+          <lg>
+            <l>וואַשען, וועשׁ, פּוּצען מֶעשׁ</l>
+          </lg>
+          <lg>
+            <l>וועט דֶעם שׁררה'ס וַוייבּ.</l>
+          </lg>
+          <lg>
+            <l>מיִר וֶועלֶען זיִנְגעֶן,</l>
+          </lg>
+          <lg>
+            <l>מיִר ווֶעלֶען טאַנצען געֶהן.</l>
+          </lg>
+          <lg>
+            <l>אוֹי. זאָג מִיר, טאטע, פָאטֶער!</l>
+          </lg>
+          <lg>
+            <l>ווִי דערלעבּט מֶען דאָס?</l>
+          </lg>
+          <lg>
+            <l>ס'וועט בּאמת זַיין זֶעהְר שֶׁעהן.</l>
+          </lg>
+          <lg>
+            <l>אַז יֶעדֶער יוּד וֶועט זַיין פאַר זיך אַ בּעל-הבּית.</l>
+          </lg>
+          <lg>
+            <l>קיין וכוּח, קוּמען גיך</l>
+          </lg>
+          <lg>
+            <l>וועט צוּ אונז משיח</l>
+          </lg>
+          <stage type="delivery">II.</stage>
+        </sp>
+        <pb n="52" facs="30804338.jpg"/>
+        <fw type="pageNum">54</fw>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0530_a">
+          <speaker>ער</speaker>
+          <p/>
+          <lg>
+            <l>פֿון פעטען שור⸗הבּר</l>
+          </lg>
+          <lg>
+            <l>וועט מען מאַכען אַ מאָלצייט נאָר,</l>
+          </lg>
+          <lg>
+            <l>אַ שטיק לויתן, שמחה-וששון</l>
+          </lg>
+          <lg>
+            <l>וֶועט זַיין אַ גאנץ יאָהר.</l>
+          </lg>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0531_a">
+          <speaker>זי</speaker>
+          <p/>
+          <lg>
+            <l>איִך מיִט אַ פּאק וֶועל געֶהן</l>
+          </lg>
+          <lg>
+            <l>טאַנצען פאַר אִיהם אַליין,</l>
+          </lg>
+          <lg>
+            <l>זִינְגֶען שִׁירָה, אוּן די בשוּרה</l>
+          </lg>
+          <lg>
+            <l>זאָגען גְרויס אוּן קליין.</l>
+          </lg>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0532_a">
+          <speaker>ער</speaker>
+          <p/>
+          <lg>
+            <l>אוֹי, טאטע, מיִר וואַרטען לעת-עתּה</l>
+          </lg>
+          <lg>
+            <l>דער שופר זאָל שאַלען.</l>
+          </lg>
+          <lg>
+            <l>אַ פּחד זאָל פאַלען</l>
+          </lg>
+          <lg>
+            <l>אוֹיף דיִ גויים גיך.</l>
+          </lg>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0533_a">
+          <speaker>זי</speaker>
+          <p/>
+          <lg>
+            <l>אוֹי, פָאטֶער, מיִר ווֶעלֶען וֶוערֶען פּטוּר</l>
+            <l>פֿון אַלע יללות</l>
+            <l>פֿוּן דֶעם בּיטערן גלוּת,</l>
+            <l>אַז קוּמען וועט משִׁיח.</l>
+          </lg>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0534_a">
+          <speaker>ער</speaker>
+          <p><lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+          <lg>
+            <l>פוּן פּאפּיער, ווֶעלֶען מיִר</l>
+          </lg>
+          <lg>
+            <l>אוּנז מאַכען אַ בּריק,</l>
+          </lg>
+          <lg>
+            <l>קויקלֶען זִיך, קוּמען גיך.</l>
+          </lg>
+          <lg>
+            <l>אִין אוּנזער לאַנד מיִט גליק.</l>
+          </lg>
+          <lg>
+            <l>דיִ שׁונְאִים אוֹיך מיט זייער כּוח,</l>
+          </lg>
+          <lg>
+            <l>אוּנז נאכטהוּן ווֶעלֶען זַיי,</l>
+          </lg>
+          <lg>
+            <l>אוּן מִיטֶען ים וועט יֶעדֶער האַס</l>
+          </lg>
+          <lg>
+            <l>אַריין גאָר אָהן גֶעשׁרֵיי.</l>
+            <stage type="exit">(טאַנצען אָבּ).</stage>
+            <stage type="business">(קוּמען).</stage>
+          </lg>
+        </sp>
+        <pb n="53" facs="30804351.jpg"/>
+        <fw type="pageNum">55</fw>
+        <sp who="#alle" xml:id="YudisheKind_SP0535_a">
+          <speaker>אלע</speaker>
+          <p>בּרוּך, מתּיר אַסוּרים!</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0536_a">
+          <speaker>רב</speaker>
+          <p>רבותי, בּיי מיִר איִז הַיינְט פּוּרים. זֶעהְר אַ גרויסען נס<lb/>האט גאט מיִט מיִר אוּן מַיין טאָכְטֶער געטהוּן, אוּן דעֶר רוצח, וואָס<lb/>האָט זִי גֶעוָואלְט הרְג'ענֶען, הָאט גֶעהַאט המנ'ס מפּלה, דוּרך דֶעם<lb/>נֵייעס מרְדְכִי אִין דֶעם געשטאַלט פֿוּן יוּנגען גראַף פּעטעפי, דאַרוּם.<lb/>יוּדען, זַייט זִיך משׁמְח.<lb/>שׁמֶערל, שפּרינצע <stage type="entrance business">(לויפען אַריין).</stage></p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0537_a">
+          <speaker>שמערל</speaker>
+          <p>וואוּ איִז דעֶר רבּי? אַ קלאָג איִז צוּ מיר!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0538_a">
+          <speaker>שפּרינצע</speaker>
+          <p>איִהר הֶערְט, רבּי?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0539_a">
+          <speaker>שמערל</speaker>
+          <p>זַייט⸗זְשֶׁע מוֹחֵל, רבּי, <stage type="business">(מע'שלעפּט אִיהם).</stage></p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0540_a">
+          <speaker>שפּר</speaker>
+          <p>רבּי, זַייט-זשֶׁע מוחל.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0541_a">
+          <speaker>רב</speaker>
+          <p>וואָס איִז גֶעשֶׁעהֶען? רֶעד שׁוֹין אַמאל!</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0542_a">
+          <speaker>שמערל</speaker>
+          <p>עֶר גֶעהט!</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0543_a">
+          <speaker>שפּר</speaker>
+          <p>עֶר גֶעהט שׁוֹין וִויעדֶער. רבּ'ניוּ!</p>
+        </sp>
+        <sp who="#alle" xml:id="YudisheKind_SP0544_a">
+          <speaker>אַלע</speaker>
+          <p>וֶוער? וֶוער?</p>
+        </sp>
+        <sp who="#shmerl" xml:id="YudisheKind_SP0545_a">
+          <speaker>שׁמֶערל</speaker>
+          <p>דֶעם גראפ'ס זוּהן.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0546_a">
+          <speaker>רב</speaker>
+          <p>אָה, עֶר איִז בּיי מיִר זֶעהְר אַ גוּטער גאסט.<lb/>וולאַדיסלאַוו <stage type="business">(קוּמט).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0547_a">
+          <speaker>וולאַד</speaker>
+          <p>גוּט נ'אָווענד!</p>
+        </sp>
+        <sp who="#alle" xml:id="YudisheKind_SP0548_a">
+          <speaker>אַלע</speaker>
+          <p>גוּט נ'אווענד! זִיצְט, אָט האָט איִהר אַ בּענקעל.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0549_a">
+          <speaker>רב</speaker>
+          <p>אַ גוּט געבענשט יאָהר זאָל אייך גאָט געבּען; וֶוען מיִר<lb/>זאָלֶען גֶעווֶען דֶערמאהנֶען משִׁיח'ן, וואָלט עֶר אוֹיך געקוּמען.</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0550_a">
+          <speaker>וולאַד</speaker>
+          <p>הָאט איִהר מִיך חאטש צוּם גוּטען דֶערְמאהנְט?</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0551_a">
+          <speaker>רב</speaker>
+          <p>קאָגען מיִר דֶען אַייך חָלִילָה צוּם שׁלֶעכטֶען דֶערמאהנֶען?<lb/>עפעס אַ קלֵיינִיגְקֵייט, וואָס איִהר הָאט דָא אויפגעטהוּן?! גאָט זאָל<lb/>אייך פאַר אַלעס בּעצאהלען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0552_a">
+          <speaker>רב</speaker>
+          <p>וואָס זעֶה איִך פוּן דֶעם קראָקעווער רב, פוּן דֶעם גאון<lb/>ר' חיים'קֶען! ווִי קוּמט צוּ אַייך הער בּריעף?<lb/>דאָס יוּדִישֶׁע קִינְד.</p>
+        </sp>
+        <pb n="54" facs="30804363.jpg"/>
+        <fw type="pageNum">56</fw>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0553_a">
+          <speaker>וולאַד</speaker>
+          <p>לֶעזט אִיהם, וועֶט איִהר אַלעס וויִסעֶן.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0554_a">
+          <speaker>רב</speaker>
+          <p><stage type="business">(לעזט)</stage> "לכבוד הרְבּ המְפורְסם... נ"י. נאָך פִיעלֶע נאכ⸗<lb/>פֿאָרשונגען בּין איִך אַייך מודִיע, אַז דעֶר יוּנגערמאן, וֶועלְכֶער איִז<lb/>גֶעווֶען בּעקאנט בּיז יֶעצְט אוּנְטֶער דֶעם נאָמען גראַף וולאַדיסלאוו<lb/>פּעטעפי, איִז אַ געבּאָרענער יוּד, אַ קִינְד פוּן יוּדישע עלְטֶערֶען. יֶעצְט,<lb/>אַז עֶר האָט ערפאַרען פוּן וואָגען עֶר שׁטאמְט, האָט עֶר מיִר גֶע⸗<lb/>בּעטען, איִך זאָל אִיהם צוּריק פאַר אַ יוּדען מאַכען אוּן מיִטן ערלויבּ⸗<lb/>ניס פוּן קֶענִיג האָבּ איִך זַיין בּקשה ממלא גֶעווֶען עֶר הַייסְט שׁוֹין<lb/>ניט וולאַדיסלאוו, נאָר אברהם הישראלִי. ממנִי חיים בן דוד-ליבּ<lb/>הכּהן, רב דק"ק קראַקוֹי.</p>
+        </sp>
+        <sp who="#alle" xml:id="YudisheKind_SP0555_a">
+          <speaker>אַלע</speaker>
+          <p>עֶר איִז אַ יוּד. שלוֹם עליכם!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0556_a">
+          <speaker>וולאַד</speaker>
+          <p>יֶעצְט קוּמט דעֶר אָנטוואָרט אוֹיף אַייער פראגע<lb/>מיִט וואָס קִינְט איִהר מִיך בּעלאהנען? רבּי, איִך ליעבּ אַייער טאָכְטֶער.<lb/>אוּן פֶערְלאנְג אייער פאטערליכען זֶעגֶען.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0557_a">
+          <speaker>רב</speaker>
+          <p>איִך בּעטראַכט עֶס פאַר דֶעם גרֶעסטֶען גלִיק אוּן כבוד.<lb/>אַייך, ר' אברהם, פאַר מַיין אַיידֶעם צוּ האָבּען. שׁמֶערְל, שפּרינצע!<lb/>בּרענגט די כּלה.</p>
+        </sp>
+        <sp who="#shprintse" xml:id="YudisheKind_SP0558_a">
+          <speaker>שפּרינצע</speaker>
+          <p>איִך לויף שׁוֹין <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0559_a">
+          <speaker>וולאַד</speaker>
+          <p>איִהר הָאט מִיך יֶעצְט פאַר דֶעם גלִיקלִיכסטֶען מֶענ⸗<lb/>שֶׁען גֶעמאכט.</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0560_a">
+          <speaker>רב</speaker>
+          <p>זֶעהט, רבּותי, ווִי גאט'ס ווֶעגֶען זֶענֶען אוּנבּעגרייפליך:<lb/>דעֶר יוּנגערמאן איִז עֶרְצויגען גֶעווֶארֶען בּיי אַ שונא-ישראל, אוּן דאָך<lb/>איִז זַיין הארץ שׁטֶענְדִיג גֶעווֶען מיִט אוּנז יוּדען!</p>
+        </sp>
+        <sp who="#vladislav" xml:id="YudisheKind_SP0561_a">
+          <speaker>וולאַד</speaker>
+          <p>יאָ, רבּי, פוּן שׁטֶענְדִיג אָן, ניִשט וויסֶענְדִיג פאר⸗<lb/>וואָס איִך האָבּ גֶעפִיהלְט אַ גְרויִסעֶ ליעבּע צוּ מַיינֶע יידִישֶׁע בּרידער.<lb/>אַז איִך פלעג אַמאל פערבּייגעהן אַ שוּהל, האָט עֶס מִיך גֶעצוִיגֶען<lb/>מיִט אַ אונְגֶעהוִיערֶע קראפט, גלֵייך ווִי איִך וואָלט בּעלאַנגט אַהין.<lb/>אַזוי איז עֶס אַפּנים, רבּי: אַ יוּד, עֶר מֶעג אַפילוּ זַיין ערְצוִיגֶען צוויי⸗<lb/>שֶׁען גראפֶען אוּן פורְסטֶען, דָאך בּלייבּט עֶר אַ יוּד. <stage type="delivery">(זִינְגְט)</stage>:<lb/>דאָס יוּדישע קִינְד.</p>
+          <lg>
+            <l>פֿון רֶעגֶעלֶעך אַ קייטעלע.</l>
+          </lg>
+          <lg>
+            <l>פוּן דור-דורות אָן.</l>
+          </lg>
+          <lg>
+            <l>אַ לאַנג יחוס-צעטעלע</l>
+          </lg>
+          <lg>
+            <l>הָאט אוּנזער נאַציאָן.</l>
+          </lg>
+          <lg>
+            <l>אַ זֶעלְטֶען גֶעשִיכטֶעלֶע.</l>
+          </lg>
+          <lg>
+            <l>אויסגֶעקרִיצט מִיט בּלוּט,</l>
+          </lg>
+          <lg>
+            <l>וואָס גיִט אַייך אַ בּעריכטעלע</l>
+          </lg>
+          <lg>
+            <l>פֿון דעם יוּדענס שׁטאלְץ אוּן מוּטה.</l>
+          </lg>
+          <lg>
+            <l>זַיין לעבּען. זַיין שטרעבּען,</l>
+          </lg>
+          <lg>
+            <l>זַיין עקזִיסטֶענְץ בּיז הַיינְט</l>
+          </lg>
+          <lg>
+            <l>זַיין רֵיינְקֵייט, זַיין שֶׁעהנְקֵייט.</l>
+          </lg>
+          <lg>
+            <l>אַנערקענט בּרידער אוּן פיינד</l>
+          </lg>
+          <lg>
+            <l>אַ יוּדיש קִינְד.</l>
+          </lg>
+          <lg>
+            <l>דעֶרְקעֶנְט איִהר גֶעשׁווינְד.</l>
+          </lg>
+          <lg>
+            <l>עֶר מעג זַיין אַיינֶער פוּן דיִ גראַפען</l>
+          </lg>
+          <lg>
+            <l>הֶעלְדִישׁ טראָגען רִיטֶער-וואפֶען,</l>
+          </lg>
+          <lg>
+            <l>אָדער וואָהנען צווישֶׁען שקלאפען.</l>
+          </lg>
+          <lg>
+            <l>וואוּ אִיהם טראָגט אַוועק דעֶר גלוּת־ווינד.</l>
+          </lg>
+          <lg>
+            <l>דאָך זַיין פיהרוּנג, זיין סבלנוֹת.</l>
+          </lg>
+          <lg>
+            <l>זַיין גוּט העֶרץ, זַיין רחמנות.</l>
+          </lg>
+          <lg>
+            <l>זַיינֶע גֶעטלִיכֶע מתּנות —</l>
+          </lg>
+          <lg>
+            <l>דאָס בּעזיצט אַ יוּדיש קִינְד.</l>
+            <stage type="business">(לויפֿט אַרייַן, ערפֿרעהט).</stage>
+          </lg>
+        </sp>
+        <pb n="55" facs="30804375.jpg"/>
+        <fw type="pageNum">57</fw>
+        <sp who="#henele" xml:id="YudisheKind_SP0562_a">
+          <speaker>הֶענֶע</speaker>
+          <p>וולאַדיסלאוו!</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0563_a">
+          <speaker>רב</speaker>
+          <p>טאָכְטֶער, ניט וולאַדיסלאוו הַייסט ער נאָר אברהם<lb/>הִישראלִי, ער איז איינער פוּן אוּנזערע בּרידער.</p>
+        </sp>
+        <sp who="#henele" xml:id="YudisheKind_SP0564_a">
+          <speaker>הֶענֶע</speaker>
+          <p>טאַטעניוּ, יֶעצְט איִז עֶר שׁוֹין וִוירְקלִיך מַיין חָתָן?!</p>
+        </sp>
+        <sp who="#rov" xml:id="YudisheKind_SP0565_a">
+          <speaker>רב</speaker>
+          <p>יאָ, מַיין קִינְד <stage type="business">(זִי קוּשט)</stage> יֶעצְט גיבּ איִך אַייך מַיין פָאטֶער⸗<lb/>לִיכֶע בּרכה, איִהר זאָלט גלִיקלִיך לעבּען. נוּ, שׁמֶערְל, שפּרינצע!<lb/>זַייט משׁמְח חתן כּלה! <stage type="business">(אַלע זינגען).</stage><lb/>דאָס יוּדִישֶׁע קִינְד</p>
+          <lg>
+            <l>מיִר חסידִים'לעך, עֶכטע חסידִים'לעך</l>
+          </lg>
+          <lg>
+            <l>זֶענֶען מיִר טאקִי נוּר אַליין</l>
+          </lg>
+          <lg>
+            <l>מיִר דִיענֶען דֶעם בּורא</l>
+          </lg>
+          <lg>
+            <l>דיִ הֵיילִיגֶע תּורה.</l>
+          </lg>
+          <lg>
+            <l>גאָר פֿיין אוּן שֶׁען.</l>
+          </lg>
+          <lg>
+            <l>אוֹי, אוֹי, אוֹי...</l>
+          </lg>
+          <lg>
+            <l>פרעגט קיין שׁאלות.</l>
+          </lg>
+          <lg>
+            <l>שרייט שׁוֹין יעלות,</l>
+          </lg>
+          <lg>
+            <l>מיִט אַ בּרען, מיִט התפּעלות.</l>
+          </lg>
+          <lg>
+            <l>אוֹי....</l>
+          </lg>
+          <lg>
+            <l>טאַנְצעֶן, זיִנְגעֶן, הולען, שפּרינגען</l>
+          </lg>
+          <lg>
+            <l>בּיז דִי הִימְלֶען ווֶעלֶען קלִינְגֶען.</l>
+          </lg>
+          <lg>
+            <l>עֶר, זאָל לעבּען, וֶועט אוּנז געבּען,</l>
+          </lg>
+          <lg>
+            <l>פֿיעל הצלחה אוּן בּרכה.</l>
+          </lg>
+          <lg>
+            <l>וֶועט אוּנז גלִיקֶען אוֹיך צוּשיקען.</l>
+          </lg>
+          <lg>
+            <l>גיעט גאָט פֿיעל הצלחה.</l>
+          </lg>
+          <lg>
+            <l>אוֹי, טאטע!</l>
+            <stage type="business">(טאנץ)</stage>
+            <stage type="setting">(פאָרהאַנג פאַלט).</stage>
+          </lg>
+        </sp>
+        <pb n="56" facs="30804386.jpg"/>
+        <fw type="pageNum">58</fw>
+        <trailer>ענדע.</trailer>
+        <pb n="57" facs="30804398.jpg"/>
+        <pb n="58" facs="30804411.jpg"/>
+        <pb n="59" facs="30804423.jpg"/>
+        <pb n="60" facs="30804436.jpg"/>
+      </div>
+    </body>
+  </text>
+</TEI>

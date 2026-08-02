@@ -1,0 +1,3363 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-yudale-der-blinder">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">יודאלע דער בלינדער</title>
+        <title type="sub">Yudale der Blinder</title>
+        <author>Joseph Lateiner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>יודאלע דער בלינדער</title>
+          <author>Joseph Lateiner</author>
+          <publisher>Amkroyt un Fraynd</publisher>
+          <pubPlace>Przemyśl</pubPlace>
+          <date>1908</date>
+          <note type="repository">Biblioteka Narodowa (Polona)</note>
+          <idno>63.347</idno>
+          <idno type="transkribus">https://app.transkribus.org/collection/18874/doc/828539</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="hertsl_valdman">
+            <persName>הֶערְצֶעל וַואלְדְמאן</persName>
+          </person>
+          <person xml:id="raza">
+            <persName>רָאזַא</persName>
+          </person>
+          <person xml:id="alteril">
+            <persName>אַלְטֶערִיל</persName>
+          </person>
+          <person xml:id="yudale">
+            <persName>יוּדַאלֶע</persName>
+          </person>
+          <person xml:id="yerukhem">
+            <persName>יְרוּחָם</persName>
+          </person>
+          <person xml:id="yakhne">
+            <persName>יַאכְנֶע</persName>
+          </person>
+          <person xml:id="dvorele">
+            <persName>דְבוֹרָה'לֶע</persName>
+          </person>
+          <person xml:id="freydale">
+            <persName>פְרֵיידַא'לֶע</persName>
+          </person>
+          <person xml:id="berman">
+            <persName>בֶּערְמַאן</persName>
+          </person>
+          <person xml:id="iser">
+            <persName>אִיסָר</persName>
+          </person>
+          <person xml:id="profesor_edelman">
+            <persName>פְּרָאפֶעסָאר עֶדֶעלְמַאן</persName>
+          </person>
+          <person xml:id="kor">
+            <persName>קאָהר</persName>
+          </person>
+          <person xml:id="fishl">
+            <persName>פישל</persName>
+          </person>
+          <person xml:id="khazn">
+            <persName>חזן</persName>
+          </person>
+          <personGrp xml:id="alle">
+            <name>אלע</name>
+          </personGrp>
+          <personGrp xml:id="beyde">
+            <name>ביידע</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="Yudale" type="Yudale">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#hertsl_valdman">הֶערְצֶעל וַואלְדְמאן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#raza">רָאזַא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#alteril">אַלְטֶערִיל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#yudale">יוּדַאלֶע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#yerukhem">יְרוּחָם</role>
+        </castItem>
+        <castItem>
+          <role corresp="#yakhne">יַאכְנֶע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dvorele">דְבוֹרָה'לֶע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#freydale">פְרֵיידַא'לֶע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#berman">בֶּערְמַאן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#iser">אִיסָר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#profesor_edelman">פְּרָאפֶעסָאר עֶדֶעלְמַאן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#kor">קאָהר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fishl">פישל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khazn">חזן</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="0001_OTgwNjYwMDE.111007889.jpg"/>
+      <pb n="2" facs="0002_OTgwNjYwMDE.111007890.jpg"/>
+      <pb n="3" facs="0003_OTgwNjYwMDE.111007891.jpg"/>
+      <pb n="4" facs="0004_OTgwNjYwMDE.111007892.jpg"/>
+      <pb n="5" facs="0005_OTgwNjYwMDE.111007893.jpg"/>
+      <stage type="delivery">פֶּערְזָאנֶען:</stage>
+      <div type="act" n="1" xml:id="Yudale_Act1">
+        <head>ערְשׁטֶער אַקט</head>
+        <stage type="setting">(ארים חדר ביי ירוחם).</stage>
+        <sp who="#yerukhem" xml:id="Yudale_SP0001_a">
+          <speaker>ירוחם</speaker>
+          <p>רבּשׁ״ע מָלֵא משַלות לבנוּ לטובה א. ז. וו.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0002_a">
+          <speaker>יאכנע</speaker>
+          <p>כזה מזל אוֹיף מִיר וואס פאר א רבש״ע דאס אִיז, עֵר קריכט דָאךְ.<lb/>אִין הֶערְצֶען אַריין.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0003_a">
+          <speaker>ירוחם</speaker>
+          <p><stage type="delivery">(בעז)</stage> אז קריכֶן זאלסְטוּ וִי אַהין אִיךְ ווייס, ווֶער פרעגט דִיךְ.<lb/>מבִּינות? דוּ זֶעהסט דָאךְ, דַאכְט זִיך מִיר, אַז אִיךְ מַאךְ אַ קאמפּאזיציע<lb/>וואַס'זשׁע שלאגסְטוּ מִיר איבּער?</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0004_a">
+          <speaker>יאכנע</speaker>
+          <p>יאָ, יאָ, אִיךְ וֶועל שׁוֹין שׁווייגֶען, קאמפּאזיציע דִיר ווייטֶער געזוּנדער⸗<lb/>הַייט, וואָס בּין אִיךְ שׁוּלְדִיג אַז ס'צוּגעהט זִיך מִיר אִין אַ יעדֶען עֵבֶר,<lb/>אוֹי יסוּרים'לעך, אִיךְ שׁטֶעל מִיר פאַר אַז דוּ וֶועסְט בּיים עַמוּד געבּען<lb/>אַלאז אַרויס דֶעם רבּש״ע...!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0005_a">
+          <speaker>ירוחם</speaker>
+          <p>עֶס וֶועט זַיין שׁטִיל צוּ נֵיין?</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0006_a">
+          <speaker>יאכנע</speaker>
+          <p>נַא, נַא, אִיךְ שְׁווייג שׁוֹין, עפּעס בּיזטוּ הַייטֶע אוִיפגֶעשׁטאנֶען אוֹיף<lb/>דֶער לִינְקֶער זַייט.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0007_a">
+          <speaker>ירוחם</speaker>
+          <p>עֶס וֶועט זַיין שׁטִיל צוּ נֵיין? <stage type="business">(צערייסט די נאטען).</stage><lb/><stage type="entrance">(אויפטריט פריידעלע).</stage></p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0008_a">
+          <speaker>פריידעלע</speaker>
+          <p>מאמֶע דאָס קִינְד הָאט זִיך אויפגעכאפּט.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0009_a">
+          <speaker>יאכנע</speaker>
+          <p>דֶער מאמֶען זאָל זײַן פאַר אַ יעדֶען עֵבֶר <stage type="exit">(אב).</stage></p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0010_a">
+          <speaker>ירוחם</speaker>
+          <p>רבּש״ע מלֵא משאַלות אַ. ז. וו.<lb/><stage type="entrance">(אויפטריט איסר).</stage></p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0011_a">
+          <speaker>איסר</speaker>
+          <p>אַ גוּט מאָרגען אַייך ר' ירוּחם!</p>
+        </sp>
+        <pb n="6" facs="0006_OTgwNjYwMDE.111007894.jpg"/>
+        <sp who="#yerukhem" xml:id="Yudale_SP0012_a">
+          <speaker>ירוחם</speaker>
+          <p>אַ שְוַוארְצֶער חָלוֹם אוֹיף דַיין קָאפְּף — אַ גוּט מָארְגֶען ר' אִיסֶר!</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0013_a">
+          <speaker>איסר</speaker>
+          <p>אַ גוּט מָארְגֶען אַייךְ חַזְן'טֶע.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0014_a">
+          <speaker>יאכנע</speaker>
+          <p>אַ גוּט מָאְרגֶען ר' אִיסֶר אַלֶע וִויסְטֶע חֲלוֹמוֹת צוּ דַיין קָאפְּף.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0015_a">
+          <speaker>ירוחם</speaker>
+          <p>זִיצְט, זִיצְט, ר' אִיסֶר אִיהר זֶענט אַ וַדְאִי גֶעקוּמֶען...</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0016_a">
+          <speaker>יאכנע</speaker>
+          <p>דַארְפְסְט נָאךְ פְרֶעגֶען ווֶעגֶען ווָאס עֵר קוּמְט, אוֹי רבּשׁ"ע ווֶען<lb/>ווֶעלֶען מִיר שׁוֹין אַמָאל אוֹיסְגֶעלֵייזְט וֶוערֶען פוּן זַיינֶע הֶענְד, נוּר אֵיין<lb/>אֵיינְצִיג מָאהל הָאבֶּען מִיר בֵּיי אִיהם גֶעלְד גְעלוּגֶען ווֶען אוּנְזֶער<lb/>דְבוֹרֶה'לֶע אִיז נִישְט הַיינְט גֶעדַאכְט שְׁטַארְק קְרַאנְק גֶעוֶועזֶען. אוּן פוּן<lb/>דֵאמָאלְס אָן הַאלְטֶען מִיר אִין אֵיין צָאהלֶען אוּן ווָאס מֶעהר מֶען<lb/>צָאהלְט, מֶעהר זֶענֶען מִיר שׁוּלְדִיג.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0017_a">
+          <speaker>ירוחם</speaker>
+          <p>ר' אִיסֶר לֶעבּ הָאט גָאר קֵיין פֶערְאִיבֶּעל נִישְׁט, אִיהר וַוייסְט דָאךְ<lb/>עֶס אִיז פַאר פֵּסֶח, אַ קְלֵיינִיגְקֵייט פֶּּסַח שֶׁענְקְט מִיר נָאךְ דִי אַיינֶע וָואךְ<lb/>אוּן דֶערְנָאךְ בֶּעקוּמְט אִיהר שׁוֹין וִויעדֶער אַייערֶע וָואכֶערְס אֲפילוּ<lb/>אִיךְ זָאל מַיין לֶעצְט קִישֶׁעלֶע...</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0018_a">
+          <speaker>יאכנע</speaker>
+          <p>נִישְׁט דֶערְלֶעבֶּען זָאל עֶר עֶס.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0019_a">
+          <speaker>פריידעלע</speaker>
+          <p>אָמֵן.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0020_a">
+          <speaker>איסר</speaker>
+          <p>חַ חַ חַ הָאט מִיר נִישְׁט קֵיין פֶּערְאִיבֶּעל, קוֹדֶם כָּל מֶעג אִיךְ מִיךְ<lb/>אַבִּיסֶעל זֶעצֶען.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0021_a">
+          <speaker>ירוחם</speaker>
+          <p>יאַכְנֶע! פְרֵיידֶעלֶע! אַ בֶּענְקֶעל.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0022_a">
+          <speaker>יאכנע</speaker>
+          <p><stage type="business">(גיט אַ בענקעל)</stage> זִיצְט <stage type="delivery">(אַפאַרט)</stage> אִין גֶעהַאקְטֶע וואוּנְדֶען.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0023_a">
+          <speaker>איסר</speaker>
+          <p>אַ דַאנְק.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0024_a">
+          <speaker>יאכנע</speaker>
+          <p>נִישְׁט דָא פַאר וָואס.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0025_a">
+          <speaker>איסר</speaker>
+          <p>אַצִינְד עֶרְשְׁט הֶערְט וֶועגֶען וואָס אִיךְ בִּין צוּ אַייךְ גֶעקוּמֶען גָאר<lb/>נִישְׁט וֶועגֶען דִי וָואכֶערְס.</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0026_a">
+          <speaker>אלע</speaker>
+          <p>נֵיין???</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0027_a">
+          <speaker>איסר</speaker>
+          <p>אַ יָא עֶס וואוּנְדֶערְט אַייךְ, וַוארְט, וֶועט אִיהר אייךְ נָאךְ מֶעהר<lb/>וואוּנְדֶערְן אַז אִיהר וֶועט הֶערֶען אַז אִיךְ פֶערְלַאנְג נִישְׁט קֵיין גְרָאשְׁען<lb/>שַׁדְכָנוּת גֶעלְד.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0028_a">
+          <speaker>ירוחם</speaker>
+          <p>אַזוֹי, ר' אִיסֶר פְּרָאצֶענְטְנִיק אִיז גוּר גֶעווֶארֶען אַ שַׁדְכָן? זאָגְט מִיר<lb/>נוּר אִיךְ בֶּעט אַייךְ פוּן וֶועמֶעס ווֶעגֶען?</p>
+        </sp>
+        <pb n="7" facs="0007_OTgwNjYwMDE.111007895.jpg"/>
+        <sp who="#iser" xml:id="Yudale_SP0029_a">
+          <speaker>איסר</speaker>
+          <p>פאַר וֶועמֶעס ווֶעגֶען, אַז נִישְׁט פאַר אַייער טֶעכטֶערִיל?</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0030_a">
+          <speaker>יאכנע</speaker>
+          <p>פְרֵיידֶעלֶע, גֶעה אַרַיִין אִין יֶענֶע שְׁטוּבּ.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0031_a">
+          <speaker>איסר</speaker>
+          <p>נֵיין נֵיין נִישְׁט זִיא מַיין אִיךְ.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0032_a">
+          <speaker>פריידעלע</speaker>
+          <p>אִיךְ דַאנְק דִיר גָאטִ'ינְיוּ.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0033_a">
+          <speaker>איסר</speaker>
+          <p>אִיךְ מַיין אַייֶער עֶלְטֶערֶע טאָכְטֶער דְבוֹרֶה'לֶע.</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0034_a">
+          <speaker>אלע</speaker>
+          <p>דְבוֹרֶה'לֶע???</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0035_a">
+          <speaker>איסר</speaker>
+          <p>אִיךְ הָאבּ אַ שִׁדוּך אַז אִיהְר וֶועט זִיך אוּנכַֿאפֶּען מִיט הֶענְד אוּן מִיט<lb/>פִיס רֵאשִׁית פֶערְשְׁטֶעהְט אִיהְר מִיךְ אִיז דֶער חָתָן אַ יוּד...</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0036_a">
+          <speaker>ירוחם</speaker>
+          <p>הַשֵם יִשְׁמְרֵנִי וואָס דֶען נִישְׁט קֵיין יוּד זאָל עֵר זַײן?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0037_a">
+          <speaker>איסר</speaker>
+          <p>נֵיין נֵיין אִיךְ מַיין אַ יוּד אַזוי ווִי גָאט הָאט גֶעבֶּאטֶען וְהַשֵׁנִית אִיז עֵר<lb/>אַ חָתָן מִיט גֶעלְד, אִיהְר הֶערְט אַ חָתָן מִיט אַ בָּאמְבֶּע, נוּ, וואָס זאָגְט<lb/>אִיהְר צוּ דֶעם שִׁדוּךְ?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0038_a">
+          <speaker>ירוחם</speaker>
+          <p>צוּ ווֶעלְכֶען שִׁדוּךְ? אִיהְר הָאט דָאךְ דֶעם חָתָנְ'ס נָאמֶען נִישְׁט דֶער⸗<lb/>מַאנְט?</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0039_a">
+          <speaker>יאכנע</speaker>
+          <p>ווֶער אִיז דֶער יוּנְגֶער מַאן?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0040_a">
+          <speaker>איסר</speaker>
+          <p>טַאקֶע אִיךְ אַלֵיין?</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0041_a">
+          <speaker>אלע</speaker>
+          <p>ווָאס???</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0042_a">
+          <speaker>איסר</speaker>
+          <p>הֶע הֶע הֶע אִיהְר גְלֵייבְּט מִיר נִישְׁט אִיךְ מַיין עֶס גַאנְץ עֶרְנְסט, הַלְוַאִי<lb/>זאָלט אִיהְר אַזוֹי לֶעבּעֶן מִיט מִיר.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0043_a">
+          <speaker>יאכנע</speaker>
+          <p>אִיהְר, אַ חָתָן פַאר אוּנְזֶער דְבוֹרֶה'לֶע אַזוֹי אַ יוּנְג קִינְד ווִי זִי.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0044_a">
+          <speaker>איסר</speaker>
+          <p>דאָס וואָס זִי אִיז יוּנְג אִיז פַאר מִיר קֵיין חִסָרוֹן נִישְׁט.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0045_a">
+          <speaker>ירוחם</speaker>
+          <p>אִיהְר אָבֶּער זִינְד פַאר אוּנְז אַ חִסָרוֹן, הֶערְט אִיךְ בֶּעט אַייךְ אַ יוּד<lb/>פוּן 60 יָאהר.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0046_a">
+          <speaker>איסר</speaker>
+          <p>זאָלֶען עֶס מַיינֶע שׁונְאִים פֶערְקְרֶענְקֶען אִין שְׁפּיטאָל ווִי פִיעל עֶס<lb/>פֶעהלְט מִיר נָאךְ צוּ 59 יָאהר.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0047_a">
+          <speaker>יאכנע</speaker>
+          <p>הֶערְט ר׳ אִיסֶר, אוֹיבּ אִיהְר זֶענְט גֶעקוּמֶען פוּן אוּנְז חוזֵק צוּ<lb/>מַאכֶען?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0048_a">
+          <speaker>איסר</speaker>
+          <p>אַ חוֹזֶק זאָל דֶעם ווַאקְסֶען אִין בּויךְ ווֶער סֶע מַיינְט חוֹזֶק צוּ מַאכֶען.<lb/>הַייסְט דאָס אַ חוֹזֶק אַז אִיךְ בֶּעשְטֵעה צוּ נֶעהמֶען אַייעֶר טאָכְטֶער<lb/>חָאטְש זִי אִיז שׁוֹין אִין לַאטִישֶׁע מאַהלֶער.</p>
+        </sp>
+        <pb n="8" facs="0008_OTgwNjYwMDE.111007896.jpg"/>
+        <sp who="#yerukhem" xml:id="Yudale_SP0049_a">
+          <speaker>ירוחם</speaker>
+          <p>מַיין קִינְד אִין לַאטִישֶׁע מַאלֶער?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0050_a">
+          <speaker>איסר</speaker>
+          <p>זײַט יוּדַאלֶע גֶעהט אַרַיין צוּ אַייךְ אִין הוִיז אַרַיין, יוּדַאלע ווֵייסְט<lb/>אִיהר דָאךְ אִיז אַ נְגִידִישׁ קִינְד, וֶועט עֵר דָאךְ נִישְׁט זַיין מְשׁוגֶע צוּ<lb/>נֶעהמֶען אַזַא קַבְּצָנִיש מֵיידֶעל ווִי אַייעֶר דְבּורָה, נוּ אִיז דָאךְ דִי קַשִׁיָא<lb/>פאַר וואַס קוּמט עֵר אַ הֶער אַלֶע טָאג? אוּן פאַר וואָס זֶעהט מֶען זַיי<lb/>אָפְט שְׁטִילֶערְהַייט אִין אַ ווִיינְקֶעל זִיךְ סוֹד'ֶען אוּן שוּשְקֶען... מַיינְט עֵר<lb/>דֶען עֶפִּיס אַנְדֶערְש ווִי... האַט מִיר קֵיין פֶערְאיבֶּעל נִישְׁט.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0051_a">
+          <speaker>ירוחם</speaker>
+          <p>ווֶעהרְט פֶערְשְׁטִימְט! ווָארִין... <stage type="business">(וויל איהם געבען אפאטש)</stage></p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0052_a">
+          <speaker>איסר</speaker>
+          <p>פַּאווָאלֶע חַזֶן, ווַארְפְט נִישְׁט מִיט דִי הֶענְד, אִיהר שְׁטֶעהט דָאךְ<lb/>נִישְׁט בֵּיים עָמוּד.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0053_a">
+          <speaker>יאכנע</speaker>
+          <p>אוּנְזֶער קִינְד אַזַא שֵׁם רָע צוּ מַאכֶען?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0054_a">
+          <speaker>איסר</speaker>
+          <p>וואָס'זְשֶע בִּין אִיךְ שוּלְדִיג אַז מֶען פְרֶעגּט צוּ לִיעבּ ווֶעמֶען אִיז<lb/>יוּדַאלֶע דָא אַזא בֶּן בַּיִת?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0055_a">
+          <speaker>ירוחם</speaker>
+          <p>וֶוער פְרֶעגְט?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0056_a">
+          <speaker>איסר</speaker>
+          <p>מֶע מֶע פְרֶעגְט!</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0057_a">
+          <speaker>יאכנע</speaker>
+          <p>אַז אָבְּגֶענוּמֶען זאָל ווֶערִין דאָס לָשׁוֹן דֶעם ווֶער עֶס פְרֶעגְט אוּן<lb/>ווֶער עֶס זאָגְט.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0058_a">
+          <speaker>ירוחם</speaker>
+          <p>יֶעדֶער ווֶער עֶס קֶען יוּדַאלֶען וַוייסְט אַז עֵר אִיז אַ מוּזִיקַאלִישֵער-<lb/>יוּנְגֶער מַאן.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0059_a">
+          <speaker>איסר</speaker>
+          <p>חִי חִי חִי, אָפְשֵר קוּמְט עֵר בֵּיי אַייךְ לֶערְנֶען נָאטֶען עֵר אִיז דָאךְ<lb/>נֶעבֶּעךְ בְּלִינְד אוֹיף בֵּיידע אוִֹיגֶען.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0060_a">
+          <speaker>ירוחם</speaker>
+          <p>יאָ בְּלִינְד אִיז עֵר אָבֶּער טוֹיבּ אִיז עֵר דָאךְ נִישְׁט אִין זַיין אֵיינְצִיג<lb/>פֶערְגְנִיגֶען אוֹיף דֶער ווֶעלְט אִיז מוּזיק, דֶערְפַאר קוּמְט עֵר צוּ מִיר<lb/>אַזוֹי אָפְט.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0061_a">
+          <speaker>יאכנע</speaker>
+          <p>אוּן עֵר קוּמְט דָאךְ קֵיין מָאהל נִישְׁט אַלֵיין עֵר מוּז דָאךְ גֶעפִיהרְט<lb/>וֶוערֶען.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0062_a">
+          <speaker>פריידעלע</speaker>
+          <p>אוּן זַיין שְׁטֶענְדִיגֶער פִיהרֶער אִיז דָאךְ זײַן שְׁווֶעסְטֶערְקִינְד<lb/>דֶער גוּטֶער אַלְטֶערִיל.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0063_a">
+          <speaker>איסר</speaker>
+          <p>אַלְטֶערִיל דֶער בֶּן יָחִיד פוּן דֶעם גְרוֹיסֶען גְבִיר ר' הֶערְצַאלֶע ווַאלְד⸗<lb/>מַאן חאַ חַא חַא אוּן וואָס טְהוּט דָא אַלְטֶערִיל?</p>
+        </sp>
+        <pb n="9" facs="0009_OTgwNjYwMDE.111007897.jpg"/>
+        <sp who="#freydale" xml:id="Yudale_SP0064_a">
+          <speaker>פריידעלע</speaker>
+          <p>אוּן אַלְטֶעריל אַלֵיין קוּמְט דָאךְ אוִיךְ דֵארִיבֶּער אַהער וַוייל דֶער<lb/>טַאטֶע לֶערְנְט אִיהם נָאטֶען.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0065_a">
+          <speaker>איסר</speaker>
+          <p>אוּן ווֶען קֵיינֶער זֶעהט נִישְׁט זִינְגְט אִיהר דָא אֵייךְ בֵּיידע שְׁטִילֶער⸗<lb/>הַייט אַ דוּעֶט.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0066_a">
+          <speaker>ירוחם</speaker>
+          <p>וואָס, אוֹיף דֶעם קִינְד זֶענְט אִיהר אוֹיךְ מוֹצָא שֵׁם רֶע?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0067_a">
+          <speaker>איסר</speaker>
+          <p>נִישְׁט אִיךְ, מֶע מֶע..</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0068_a">
+          <speaker>יאכנע</speaker>
+          <p>אִיךְ פֶערְשְׁטֶעה דִיךְ נִישְׁט יְרוּחָם, אַזא בְּלוּטְזוֹיגֶער קוּמְט צוּ אוּנְז<lb/>אִין שְׁטִיעבּ אַרֵיין בַּארֶעדֶען אוּנְזֶער קִינְד אוּן דוּ שְׁוַוייגְסְט?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0069_a">
+          <speaker>ירוחם</speaker>
+          <p>אִיךְ האָבּ אוִיסֶער מַיינֶע 2 טֶעכְטֶערְלִיך אוֹיךְ אַ זוּהן, אִיהר וַוייסְט<lb/>דָאךְ עֶר אִיז אַ בּוּכְהאַלְטֶער בֵּיי דֶעם גְבִיר ר' הֶערְצַאלֶע ווַאלְדְמַאן<lb/>הָאט אִיהר אָפְשַר אוֹיף מַיין זוּהן אוֹיךְ אַ מֶע?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0070_a">
+          <speaker>איסר</speaker>
+          <p>חִי חִי חִי אַ קַשִׁיְא אוֹיף אַ מֶעֲשֶׁה אַ בּוּכְהאַלְטֶער אַ קַאסִירֶער עֶס<lb/>זאָל זיךְ נִישְׁט טְרֶעפֶען וואָס עֶס קֶאן זִיךְ טְרֶעפֶען.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0071_a">
+          <speaker>יאכנע</speaker>
+          <p>אַז טְרֶעפֶען זאָל דִיך אַ קוֹיל.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0072_a">
+          <speaker>ירוחם</speaker>
+          <p>אָ דוּ הונְד <stage type="business">(חאפט א בענקעל, איסר בלייבט ליגען אויף דער ערד).</stage></p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0073_a">
+          <speaker>איסר</speaker>
+          <p>הַלְוַאִי זָאלְט אִיהר אַזוי קְרֶענְקֶען ווִי אִיהר מוּזְט מִיר בֶּעצֶאהלֶען<lb/>פַאר אַ פָּאר נֵייֶע הוֹיזֶען.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0074_a">
+          <speaker>ירוחם</speaker>
+          <p>אִיךְ לאָז דִיר מַאכֶען נֵייֶע תַּכְרִיכִים אַבִּי גֶעה מִיטְ'ן קָאפּ אִין דֶער<lb/>עֶרְד אַרֵיין.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0075_a">
+          <speaker>איסר</speaker>
+          <p><stage type="business">(ביי די טהיר)</stage> אַיידֶער אִיךְ גֶעה אִיבֶּערְלֶעגְט אַייךְ גוּט דֶעם שִׁידָךְ<lb/>נָאךְ אַ מָאהל אִיהר זאָלט אַזוי לֶעבֱּען מִיט מִיר לָאז זַיין אִין אַ גוּטֶע<lb/>שֶׁעָה, מַזָל טוֹב! <stage type="exit">(אב).</stage></p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0076_a">
+          <speaker>ירוחם</speaker>
+          <p>נַא נאַ אַזַא מִין אָנְשִיִקֶענִיש אוֹיף מַיין קָאפּ, עֶס זאָל זײַן שְׁטִיל<lb/>אִין שְטוּב.</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0077_a">
+          <speaker>פישל</speaker>
+          <p><stage type="business">(אונטער דיא קוליסען)</stage> גֶעווַאלְד... גֶעווַאלְד!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0078_a">
+          <speaker>ירוחם</speaker>
+          <p>רִבּונו שֶׁל עולֶם, הָאט זִיך דִי גַאנְצֶע ווֶעלְט פֶערְנוּמֶען אוֹיף מִיר<lb/>הַיינְט?</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0079_a">
+          <speaker>יאכנע</speaker>
+          <p>עֶס אִיז דֶער נַארִישֶׁער פִישֶׁעל.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0080_a">
+          <speaker>פריידע</speaker>
+          <p>עֵר שְׁלָאגְט זִיך דָאךְ מִיט בֵּיידֶע הֶענְד אִין קָאפּ אַרײַן אוּן שְׁרֵייט<lb/>גֶעווַאלְד, גֶעווַאלְד, אוּן ווֵיינְט. <stage type="entrance">(פישעל פאלט אריין).</stage></p>
+        </sp>
+        <pb n="10" facs="0010_OTgwNjYwMDE.111007898.jpg"/>
+        <sp who="#fishl" xml:id="Yudale_SP0081_a">
+          <speaker>פישל</speaker>
+          <p>גֶעווַאלְד!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0082_a">
+          <speaker>אלע</speaker>
+          <p>וָואס אִיז פִישֶׁעל?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0083_a">
+          <speaker>פישל</speaker>
+          <p>אַ בּראך אִיז מִיר!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0084_a">
+          <speaker>ירוחם</speaker>
+          <p>רֶעד, רֶעד!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0085_a">
+          <speaker>פישעל</speaker>
+          <p>ווִי אַזוי קֶען אִיך רעֶדעֶן אַז עֶס הָאט זִיך מִיר אָפּגענוּמען דאָס<lb/>לָשׁוֹן, גֶעווַאלְד!</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0086_a">
+          <speaker>יאכנע</speaker>
+          <p>זאָג שׁוֹין דִי לֶעקֶעשׁ וואָס שרייסטוּ?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0087_a">
+          <speaker>פישעל</speaker>
+          <p>אַזא אוּנגליק!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0088_a">
+          <speaker>אלע</speaker>
+          <p>וואָס פאַר אַ אונְגלִיק?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0089_a">
+          <speaker>פישעל</speaker>
+          <p>הַלְוַאִי וָואלט עֶס מִיך בּעסער גֶעווֶען גֶעטראפֶען.</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0090_a">
+          <speaker>אלע</speaker>
+          <p>וואָס גֶעטראפֶען?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0091_a">
+          <speaker>פישל</speaker>
+          <p>שׁוֹין נָאך אַלעמען.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0092_a">
+          <speaker>יאכנע</speaker>
+          <p>פוּן ווֶעמֶען רעדְסטוּ?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0093_a">
+          <speaker>פישל</speaker>
+          <p>אוֹי אַזא יוּנגער בּוים, נאָר וואָס זאָג אִיך בּוים, אַזא יונְגֶע בּוימערקע,<lb/>גֶעווַאלְד!</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0094_a">
+          <speaker>יאכנע</speaker>
+          <p><stage type="business">(ערשראקען)</stage> וֶועה מִיר עפּעס שׁרֶעקט מִיר דאָס הארְץ, זאָג נוּר דִי<lb/>גולְם, אִיך האָבּ דִיך גֶעשִׁיקט מִיט דבּורְה'לֶען אִין מארְק אַריין ווִי אִיז<lb/>דְבוֹרֶה'לֶע?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0095_a">
+          <speaker>פישל</speaker>
+          <p>הערסטוּ, אִיך דֶערְצֶעהל אוּן דֶערְצֶעהל אוּן אַצינד פְרֶעגְט זִי עֶרְשְׁט<lb/>ווִי אִיז דְבוֹרֶה'לֶע?</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0096_a">
+          <speaker>אלע</speaker>
+          <p>ווִי אִיז זִי ?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0097_a">
+          <speaker>פישל</speaker>
+          <p>מֶען בּרענגט זִי.</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0098_a">
+          <speaker>אלע</speaker>
+          <p>מֶען בּרענגט זִי גָאר?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0099_a">
+          <speaker>פישל</speaker>
+          <p>מֶען טרָאגט זִי.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0100_a">
+          <speaker>יאכנע</speaker>
+          <p><stage type="business">(קוּקט ארויס)</stage> וֶועה מִיר אוּנְזֶער קִינְד.<lb/><stage type="entrance">(אויפטריט בערמאן, פיהרט דורה'לע).</stage></p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0101_a">
+          <speaker>ירוחם</speaker>
+          <p>בּערמאן, מַיין זוּהן, וואָס פאַר אַיין אוּנגליק הָאט אוּנז פלֶעצלִיך<lb/>גֶעטראפֶען.</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0102_a">
+          <speaker>בערמאן</speaker>
+          <p>דְבוֹרֶה'לֶע, אוּנזער שׁטאלְץ, אוּנְזֶער קרוִין! וַוייסְט אִיהר וואָס<lb/>פאַר אַיינע זֶעלְטֶענֶע הֶעלְדֶענְטאט זִי הָאט בּעוויזען, יוּדַאלֶע דֶער אונ⸗<lb/>גלִיקלִיכֶער בּלינדער, גֶעפִיהרְט פוּן זַיין גֶעשׁוועסטֶערְקִינְד אַלטעריל<lb/>פאסִירֶענְדִיג דֶעם מארְקט, הֶערְט מֶען פּלעצליך אַ גֶעשׁרֵיי פוּן אַלע<lb/>זֵייַטען, אַנטלויפט ווֶעמֶען דאָס לעבּען אִיז ליעבּ! עֶס אִיז גֶעווֶארֶען<lb/>אַ שׁרֶעקלִיך גֶעדְרֶענְג, מֶענְשֶען זֶענֶען גֶעלאפֶען אַיינער אוֹיף דֶעם<lb/>אַנדערען, אַ פֶערְד אִיז פּלעצליך ווילְד גֶעווֶארֶען אוּן אִיז אַריין מִיט<lb/>דֶעם וואגֶען אִין דֶעם געדרֶענג... אוּן ווֶען אַלֶעס אִיז אַנטלאפֶען אוּם זִיך<lb/>צוּ רֶעטֶען, האָבּען זַיי אִין דֶער ענְגשׁאפט מִיטגֶערִיסֶען מִיט זִיך אַלטרלען<lb/>דֶעם פִיהרֶער פוּן דֶעם בּלינדען, אַזוי דאָס דֶער אוּנגליקליכער אִיז<lb/>געבּליבּען שְטֶעהן הִילְפלאו, אָהנע צוּ וויִסעֶן ווִי אַהין עָר לויִפְט נָאך<lb/>אַיינע מינוּטע וואָלט מֶען אִיהם גֶעווֶען צוּריבּען, צֶעטרֶעטֶען, אוּן זִי.<lb/>אוּנזער דְבוֹרֶה'לֶע וֶועלְכֶע אִיז אוּנגליקליכער ווייזֶע אוֹיך דאָרט גֶעווֶען<lb/>אִיז וִויא אַיינע לֶעווין צוּ אִיהם צוּגעשפּרינגען אוּן נִישְׁט צוּ אַכטען אוֹיף<lb/>דֶעם גֶעפאהר פוּן אִיהר אַייגען לעבּען, הָאט זִי דאָס זַיינִיגֶע גֶערֶעטֶעט<lb/>פאַר שׁרֶעק אָבּער אוּן אויפרענוּנג אִיז זִי בּעוואוּסטלאז אַנידער גֶעפאלֶען.</p>
+        </sp>
+        <pb n="11" facs="0011_OTgwNjYwMDE.111007899.jpg"/>
+        <sp who="#dvorele" xml:id="Yudale_SP0103_a">
+          <speaker>דבורה</speaker>
+          <p>הֶעלְפט אִיהם דֶעם אוּנגליקליכען בּלינדען! אַלע זֶעהֶען, לוִיפֶען<lb/>אַלעס רֶעטֶעט זִיך נוּר עֵר בּלייבּט גַאנץ אַליין אִין דֶער גרֶעסטֶער<lb/>גֶעפאהר, אָ, זָאגט מִיר, לעבּט עֵר נָאך?</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0104_a">
+          <speaker>בערמאן</speaker>
+          <p>יאָ טַייערֶע שׁוועסטֶער, עֵר אִיז גערֶעטעט אוּן זַיין שוּצענגעל<lb/>בּיזט דִי גֶעוֶועזֶען.</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0105_a">
+          <speaker>פישל</speaker>
+          <p>עָר גֶעהט, עֵר קוּמט, אָט אִיז עֵר.</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0106_a">
+          <speaker>אלע</speaker>
+          <p>ווֶער?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0107_a">
+          <speaker>דבורה</speaker>
+          <p>יהוּדהלע?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0108_a">
+          <speaker>פישל</speaker>
+          <p>טַאקֶע נוּר זִי אַליין פֶערְשְׁטֶעהְט מִיך אוֹיף דֶעם ווינְק, אָט אִיז עֵר.</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0109_a">
+          <speaker>דבורה</speaker>
+          <p>לָאזְט מִיך אִיהם ענטגעגֶען געֶהן, לָאזט מיךְ <stage type="exit">(לויפט אב)</stage> — <stage type="business">(יְרוּחָם</stage><lb/><stage type="business">קוּקְט נָאך מִיט אַ אונְצופרִיעדֶענֶער מִינֶע).</stage></p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0110_a">
+          <speaker>יאכנע</speaker>
+          <p>ירוּחם וואַס מאָכסטוּ עֶפּיס אַזא בּייז פּנים.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0111_a">
+          <speaker>ירוחם</speaker>
+          <p>דוּ פרעגְסט נָאך, זעהסטוּ דֶען נישׁט אַז אִיסֶר הָאט רֶעכט<lb/>גֶעהַאט?</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0112_a">
+          <speaker>יאכנע</speaker>
+          <p>גֶעהט, האסטוּ גֶעזֶעהֶען ווִי זִי אִיז פֶערְצווייפֶעלְט געוָוארען.</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0113_a">
+          <speaker>פישל</speaker>
+          <p>אִיך האָבּ עֶס שׁוֹין לאַנְג גֶעזֶעהְן.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0114_a">
+          <speaker>יאכנע</speaker>
+          <p>וואָס האסטוּ גֶעזֶעהְן?</p>
+        </sp>
+        <pb n="12" facs="0012_OTgwNjYwMDE.111007900.jpg"/>
+        <sp who="#fishl" xml:id="Yudale_SP0115_a">
+          <speaker>פישל</speaker>
+          <p>אַז יהוּדא'לע און דבורה'לע <stage type="business">(זיפצט)</stage> אוי!</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0116_a">
+          <speaker>יאכנע</speaker>
+          <p>זענען אפשר פערליעבּט?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0117_a">
+          <speaker>פישל</speaker>
+          <p>פערליעבּט גאר? זיי זענעָן פערבּרענט, פערסמאלעט.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0118_a">
+          <speaker>ירוחם</speaker>
+          <p>פאר וואס'זשע די גולם האסטוּ בּיז אַ הער געשוויגען? נוּ זאָג!<lb/>פאר וואס??</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0119_a">
+          <speaker>פישל</speaker>
+          <p>ווייל איך האבּ מורא געהאט אַז איהר וועט זיך בּייזערן אוּן איהר<lb/>וועט נישט וועלען דעם שדוּך.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0120_a">
+          <speaker>ירוחם</speaker>
+          <p>נא?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0121_a">
+          <speaker>פישל</speaker>
+          <p>נא אוּן איך וויל אָבּער יא דעם שדוּך!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0122_a">
+          <speaker>ירוחם</speaker>
+          <p>דוּא??</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0123_a">
+          <speaker>פישל</speaker>
+          <p>איך פרעג אַייך אַליין איז נישט דער שדוּך אַ גליק פאר אוּנזער<lb/>דבורהלע.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0124_a">
+          <speaker>ירוחם</speaker>
+          <p>אוּנזער דבורה'לע, הער נוּר איך בּעט דיך ווער עס זאגט אוּנזער<lb/>דבורהלע.</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0125_a">
+          <speaker>פישל</speaker>
+          <p>אוי, הלואי וואָלט איך געמעגט זאָגען מיין דבורה'לע.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0126_a">
+          <speaker>ירוחם</speaker>
+          <p>וואס...?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0127_a">
+          <speaker>פישל</speaker>
+          <p>פאַר וואָס בּין איך נישט אַ אַ אַ קייזער, וואַלט זי דאך געווען מייַן<lb/>קייסערטע! אָבּער צוּ מיין אוּנגליק וואָס בּיךְ איךְ? אַ האלבּער⸗ משרת<lb/>אַ האלבּער משורר אוּן אַ גאנצער גאר נישט. נוּ, טראַכט איך מיר —<lb/>פישל, אַז דוּ קאנסט זי נישט גליקליך מאכען לאז זי חָאטש איין<lb/>אַנדערֶער גליקליך מאכען!</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0128_a">
+          <speaker>בערמאן</speaker>
+          <p>הער מיך אויס פאטער. אַלס צוועלף יעהריג יוּנגעל איז יוּדעלע<lb/>בּלינד געווארען, אַ בּן-יחיד בּיי זיין רייכען פָאטער. ער וואַלט אַליין<lb/>געבּליבּען דער יורש, אָבּער ווייל עֵר איז געווֶען בּלינד אוּן הילפלאז<lb/>האט יודאַלעס פאטער אין זײַן צואָה געמאַכט זיין בּרוּדער דיעזען<lb/>הערצעלע וואלדמאן צוּם פערוואלטער איבּער דעם גרויסען<lb/>רייכטהוּם בּיז יוּדאַלע וועט געהיילט ווערען. זאָל אָבּער יוּדאלע<lb/>וועלען חתוּנה האַבּען ווען ער איז נאך בּלינד, בּעקוּמט ער בּלאז<lb/>די העלפטע פוּנ'ם פערמעגען. נוּן פאַטער, פערשטעה איך נישט<lb/>פאר וואַס דוּ בּיזט דאגעגען?</p>
+        </sp>
+        <pb n="13" facs="0013_OTgwNjYwMDE.111007901.jpg"/>
+        <sp who="#yakhne" xml:id="Yudale_SP0129_a">
+          <speaker>יאכנע</speaker>
+          <p>אַז די קינדער האבּען זיך ליעבּ אוּן עשירות איז אויך דא פאר<lb/>וואָס׳זשע זאלען מיר נישט וועלען?</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0130_a">
+          <speaker>בערמאן</speaker>
+          <p>פאטער, איבּערלאזען מיר דעם צוּפאל, קוּם מוּטער איך וויל<lb/>עסען. <stage type="exit">(אב מיט יאכנע).</stage></p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0131_a">
+          <speaker>ירוחם</speaker>
+          <p>עס זאָל זיין שטיל! <stage type="business">(קאָמפאניערט)</stage> רבּש"ע א. ז. וו.<lb/><stage type="entrance">(אויפטריט אַלטעריל מיט פריידאלע).</stage><lb/><stage type="business">(זיי זינגען און קישען זיך אין מיטען געזאנג פישל דערזעהט עס).</stage></p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0132_a">
+          <speaker>פישל</speaker>
+          <p><stage type="business">(צייגט ירוחם)</stage> חזן דארט זינגט מען אויף נָאטען!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0133_a">
+          <speaker>ירוחם</speaker>
+          <p><stage type="business">(גייט צו)</stage> וואָס טהוּט איהר די בּיידע אַה?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0134_a">
+          <speaker>אלטעריל</speaker>
+          <p>מיר האַבּען איבּערגעזינגען דאם דועט.</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0135_a">
+          <speaker>פישל</speaker>
+          <p>געזוּנגען זאגט ער? ער האַט טאקי געצימבּעלט.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0136_a">
+          <speaker>ירוחם</speaker>
+          <p>אַלטעריל דיין טאַטע לאָזט דיך לערנען נאָטען בּיי מיר, אָבּער<lb/>נישט בּיי מיין טאַכטער, וואָס טויג זי דיר אַזא קבצנישע מויד, און די<lb/>בּיזט אזא נגידיש קינד, אַ בּן יחידל וואָס עס דארף דיר נישט<lb/>אָן שטיין צוּ רעדען מיט איהר, קוּם אַלטעריל וועסטו נעמען דיין<lb/>לעקציע, <stage type="delivery">(צוּ פריידעלע)</stage> אוּן די קבצנישע מויד, איך וועל דיר אויסרייסען<lb/>די צעפּ ווען איךְ וועל דיך זעהען נאך רעדעָן מיט איהם דוּ הערסט?<lb/>אַזוי לאַנג ער איז אֵין שטוּבּ זאלסטוּ האַלטען אַ ראפגעלאזט די אויגען<lb/>נוּ, וואָס האבּ איך דיר געזאַגט? <stage type="business">(פריידעלע לאזט א ראָפ די אויגען און וויל</stage><lb/><stage type="business">געהן ווי אַלטעריל).</stage></p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0137_a">
+          <speaker>ירוחם</speaker>
+          <p>ווי אַהין קריכסטוּ? געה! <stage type="business">(ווייזט אויף די צווייטע זייט)</stage> נוּ, <stage type="business">(ווייזט איהר</stage><lb/><stage type="business">די אויגען אראפ צו לאזען)</stage> געדענק׳זשע <stage type="exit">(פריידע אַב).</stage> — <stage type="delivery">(ירוחם זינגט רבש"ע</stage><lb/><stage type="exit">פישל העלפט אונטער, אלע אב).</stage><lb/><stage type="entrance">(אויפטריט דבורה'לע מיט יודאלע).</stage><lb/> <stage type="business">(זינגען צו ערסט אונטער קאליסען דאן טרעטען אויף).</stage></p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0138_a">
+          <speaker>יודאלע</speaker>
+          <p>יא דבורה'לע דאָס האסטוּ דאמאלס געזוּנגען ווען איך האבּ צוּם<lb/>ערשטען מאַל געהערט דיין שטימע, אַך דבורהלע בּלינד צוּ זייַן<lb/>בּלינד מיט איינער בּרוּסט, פוּל זעהנזוּכט, נאך טהאטען נאך ליעבּע,<lb/>אַך ווי שרעקליך, ווי שרעקליך!</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0139_a">
+          <speaker>דבורה</speaker>
+          <p>מיין ארמער פריינד.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0140_a">
+          <speaker>יודאלע</speaker>
+          <p>וואָלט איך געוועזען בּלינד געבּוירען געווארען וואָלט דָאס גן-עדן<lb/>..<lb/>פוּן דֶער ווֶעלְט פְרֶעמְד גֶעוֶועזֶען, אוּן וואָלט נִישְׁט פֶערְשׁטאנְדֶען דֶען<lb/>ווערְטה פוּן דֶעם ליכְט. אַזוי אָבּער אִיז מִיר געבּליבּען דִי ערינערוּנג,<lb/>אוּן טוֹיזֶענְדֶע בּילדער שְׁטעֶלעֶן זִיך מִיר פָּאר. אִיך גֶעדֶענְק אַלס<lb/>קִינְד, אִין דֶער האַנד פוּן מַיין ליעבּער מוּטֶער, זִי האלְזט מִיך, קִישׁט<lb/>מִיך, אִיך לאך אוּן פרֵייע מִיך אוּן אַלע פרֵייען זִיך מִיט מִיר.<lb/>פלֶעצלִיך פֶערְשׁווינְדֶען דִי אַלע זיסע ערינערוּנגען אוּן אִיך ערוואך פוּן מַיין<lb/>גְלִיקְלִיכֶען טרוֹים דֶער פֶערְנאנְגֶענְהַייט, פִינְסטֶער זֶענֶען מִיר מַיינֶע<lb/>אוֹיגען, עוויגֶע פִינְסטֶערְנִיס! אָ ערְסט דָאן פִיהלֶע אִיך מִיך, ווִי<lb/>אוּנגליקליך אִיך בּין! <stage type="business">(דבורה גיבט איהם א בענקעל).</stage></p>
+        </sp>
+        <pb n="14" facs="0014_OTgwNjYwMDE.111007902.jpg"/>
+        <sp who="#dvorele" xml:id="Yudale_SP0141_a">
+          <speaker>דבורה</speaker>
+          <p>אָ ווִי פִיהלֶע אִיך מִיט דִיר מִיט!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0142_a">
+          <speaker>יודאלע</speaker>
+          <p>דָאך דְבוֹרֶה'לֶע הֶערֶע מִיך אויִס! הַיינְט וִויל אִיך דִיר עֶנְדְלִיך<lb/>מַיין העֶרץ עפנֶען, הַיינְט בּיזט דִי פאַר דֶען בּלינדען אַיין רֶעטֶענְדֶער<lb/>ענְגֶעל גֶעוֶועזֶען. ווילסטוּ דְבוֹרֶה'לֶע, ווילסטוּ אוֹיך דֶעם בּלינדען זַיין<lb/>געליעבּט ווייבּ וֶוערֶען? אָ דָאן פֶעהלְט מִיר גאָר נִישְׁט מֶעהר, דָאן<lb/>בּיזטו מַיין ליכְט מַיין זאנֶע!</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0143_a">
+          <speaker>דבורה</speaker>
+          <p>דַיין אִיז מַיין העֶרץ שׁוֹין לאַנְג אוּן דַיין וִויל אִיך עוויג בּלייבּען<lb/>ערְזֶעצֶען וִויל אִיך דִיר פָאטֶער אוּן מוּטֶער, דַיינֶע פלֶעגֶערִיז דַיין<lb/>טרֵייעם וַוייבּ! <stage type="business">(אומארמט איהם).</stage></p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0144_a">
+          <speaker>יודאלע</speaker>
+          <p>ליכְט! יֶעצְט פעהלסטוּ מִיר נִיכְט מֶעהר! זִיען ליעבּע אִיז ליכְט<lb/>ליעבּע אִיז לעבּען, אוּן גאָט הָאט מִיר יֶעצְט בּיידע דוּרך דַיינֶע<lb/>האָנד געגעבּען!<lb/><stage type="business">(דועט).</stage></p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0145_a">
+          <speaker>דבורה</speaker>
+          <lg>
+            <l>אָה, גלויבּע מִיר, אִיך שְׁוֶוערעֶ דִיר, דַיין ליכְט וִויל אִיך זייַן.</l>
+          </lg>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0146_a">
+          <speaker>יודאלע</speaker>
+          <lg>
+            <l>אִיך גלויבּע דִיר אָ געליעבּטע מַיין.</l>
+          </lg>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0147_a">
+          <speaker>דבורה</speaker>
+          <lg>
+            <l>דִיך בּעגלייטען מַיין לעבּען לאַנְג.</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0148_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>נִיע זִיך שַׁיידֶען נִיע זיךְ קוועהלֶען,</l>
+            <l>גלִיק פאַר בּיידע זאָל נִישְׁט פֶעהלֶען.</l>
+          </lg>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0149_a">
+          <speaker>דבורה</speaker>
+          <lg>
+            <l>אָ גלויבּע מִיר, אִיך שְׁוֶוערעֶ דִיר, דַיין ליכְט אוֹי וֶועל אִיך זייַן.</l>
+          </lg>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0150_a">
+          <speaker>יודאלע</speaker>
+          <lg>
+            <l>אִיך גלויבּע דִיר אַ געליעבּטע, מַיין ליכְט אוּן מַיין שַׁיין,</l>
+            <l>אִיז דִי ליעבּע נוּר אַליין.</l>
+          </lg>
+        </sp>
+        <pb n="15" facs="0015_OTgwNjYwMDE.111007903.jpg"/>
+        <sp who="#dvorele" xml:id="Yudale_SP0151_a">
+          <speaker>דבורה</speaker>
+          <p>פִילֵייכט אִיז מֶעגלִיך נָאך, פאַר דִיר אוֹיך הִילְפֶע בּעהט<lb/>מִיט מִיר צוּ גָאט.</p>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0152_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>אָשא עינִי אָל ההרִים, דִיא אוֹיגען העבּען מִיר צוּ דִיר אַרויף</l>
+          </lg>
+          <lg>
+            <l>ווֶען וִוירְד צוּ מייַנע לֵיידעֶן וֶוערֶען אַ סוֹף.</l>
+          </lg>
+          <lg>
+            <l>דַיינֶע</l>
+          </lg>
+          <lg>
+            <l>מאַין יָבׂא עזרִי — מֶעם ד' עושה שׁמיִם ואָרץ.</l>
+          </lg>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0153_a">
+          <speaker>דבורה</speaker>
+          <p>ווֶער קֶען אוּנְז הֶעלְפֶען?</p>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0154_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>ווֶער — דִי הִילְפֶע אִיז נוּר עֵר. עֵר.</l>
+          </lg>
+          <lg>
+            <l>עָזרי מֶעם ד' עושה שׁמִים וָאָרץ.</l>
+            <stage type="exit">(ביידע אב).</stage>
+            <stage type="setting">פערוואַנדלונג</stage>
+            <stage type="setting">(ארמעס צימער ביי ירוחם).</stage>
+            <stage type="entrance">(אויפטריט בערמאן — וואלדמאן, איסר, אלע צוזאמען).</stage>
+          </lg>
+        </sp>
+        <pb n="16" facs="0016_OTgwNjYwMDE.111007904.jpg"/>
+        <sp who="#berman" xml:id="Yudale_SP0155_a">
+          <speaker>בערמאן</speaker>
+          <p>ווילְקאמֶען הֶערְר וַואלְדְמאן, טוֹיזֶענְד מָאהל ווילְקאמֶען, דַארְף<lb/>אִיך פרעגֶען ווארוּם הֶערְר וַואלְדְמאן הָאט זִיך בּעמיהט דאָס אָרמע<lb/>הוֹיז פוּן מַיינֶע עֶלְטֶערְן צוּ בּעזוּכען?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0156_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיך בּין נֵייגֶערִיג צוּ זעֶהן דַיינֶע שׁוועסטֶער, וֶועלְכֶע הָאט<lb/>הַיינְט אַזוי אֵיין העלדענטהאַט בּעוויזען.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0157_a">
+          <speaker>איסר</speaker>
+          <p>אִיך האבּ דֶערְצֶעהלְט דֶעם גְרוֹיסֶען גְבִיר ר' הֶערְצֶעלֶע וַואלְדְמאן.</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0158_a">
+          <speaker>בערמאן</speaker>
+          <p>אִיך רוּף בּאלד מַיין שׁוועסטֶער, ענטשוּלדיגען זִיא הֶערְר<lb/>וואַלדמאן <stage type="exit">(אַב).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0159_a">
+          <speaker>וואלדמאן</speaker>
+          <p>זֶענְט אִיהר איבּערצייגט אַז צווישֶׁען יוּדאלען אוּן דֶעם חַזָן'ס<lb/>טאָכְטֶער האַלט עֶס שׁוֹין ווירְקלִיך אַזוי וַוייט?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0160_a">
+          <speaker>איסר</speaker>
+          <p>ר' הֶערְצֶעלֶע, אִיך בּין אַ יוּד וואָס אִיך האבּ ליעבּ צוּ טהוּן מצוֹת<lb/>הַלְוַאִי זאָלט אִיהר אַזוי לעבּען מִיט מִיר, אִיך זֶעהֶע דֶער חזָן אִיז נעבּיךְ<lb/>אַיין אָרימאן, גֶעה אִיך אִין בּארג אִיהם גֶעלְד דעריבּער פעֶרְשְׁטַייט<lb/>אִיהר מִיך, בּין אִיך אַ גאַנצער בּן-בּית, אוּן ווֵייס אַלעס אוּן אִיהר<lb/>מֶעגט זִיכֶער זַײַן אַז הַיינְט מָארְגֶען וֶועט צווישֶׁען דֶעם חזָן'ם טאָכְטֶער<lb/>מִיט יוּדאלע אַרויס אֵיין מַזָל טוֹב.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0161_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אַזוי! <stage type="delivery">(אפארט)</stage> דֶער בּלינדער האַט זִיך בּלינדערהייט אויִס⸗<lb/>געזוּכט אַ כּלה אוּן לוִיט דִי צואָה מוּס אִיך אִיהם געבּען אֵיין הֶעלְפט<lb/>פוּן דֶעם פֶערְמֶעגֶען, ווֶען עֵר וִוירְד הַייראטֶען, זאָל אִיך פֶערְלִיהרֶען<lb/>אַ הֶעלְפט פוּן אַזוי גְרוֹיסֶען רֵייכטהום? אָ נֵיין דִי בּלינדער. זארְגֶען מוּז<lb/>אִיך דַאפִיר — זָארְגֶען מוּז אִיך דַאפִיר, דָאס דִי זָאלְסְט נִיע הֵיירַאטְהֶען<lb/>הָאסְטוּ קַיין אויגֶען, בְּרויכְסְטוּ אויךְ קַיין ווֵייבּ!</p>
+        </sp>
+        <pb n="17" facs="0017_OTgwNjYwMDE.111007905.jpg"/>
+        <sp who="#iser" xml:id="Yudale_SP0162_a">
+          <speaker>איסר</speaker>
+          <p>ר‘ הֶערְצֶענְיוּ! לְמַעְן הַשֵם לָאזְט דֶעם שִדוּך נִישְט צוּ, דֶעם חַזָן‘ס<lb/>טָאכְטֶער אִיז נִישְט לְכָכוֹד אֵייעֶר מִשְפָּחָה, זִי אִיז אֵיין אויסְגֶעלאסֶענֶע<lb/>מוִיד, הַלְוַאי זָאלְט אִיהר אַזוי לֶעבֶּען מִיט מִיר, וֵוייסְט אִיהר<lb/>ר' הֶערְצֶענְיוּ, קודֶם הָאט מֶען מִיר גֶעוָואלְט דִי מוִיד אָנְהֶענְגֶען.<lb/>חַ חַ חַ חַ! דֶער פָאטֶער מִיט דֶער מוּטֶער הָאבֶּען זִיך אויסְגֶעשְטְרֶעְקְט<lb/>פַאר מִיר אַז אִיך  זָאל וֶוערֶען זֵייעֶר אֵיידֶעם.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0163_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיהר?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0164_a">
+          <speaker>איסר</speaker>
+          <p>הַלְוַאי זָאלְט אִיהר אַזוי לֶעבֶּען מִיט מִיר! אָבֶּער אִיך הָאבּ נִישְט<lb/>גֶעווָאלְט ווָאס טוִיג מִיר אַזַא אויסְגֶעלַאסֶענֶע מוֹיד? ר' הֶערְצֶעלֶע, דֶער<lb/>חַזָן הָאט אַ יוּנְגֶערֶע מוִיד אוּן אַייעֶר בֶּן יָחִיד’ל אַלְטֶערִיל קוּמְט אַהֶער<lb/>אַלֶע טָאג לֶערְנֶען נָאטֶען אַ יָא?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0165_a">
+          <speaker>וואלדמאן</speaker>
+          <p>יָא נָאטֶען!</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0166_a">
+          <speaker>איסר</speaker>
+          <p>גִיבְּט אַכְטוּנְג!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0167_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וִוירְקְלִיך?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0168_a">
+          <speaker>איסר</speaker>
+          <p>ר' הֶערְצִינְיוּ! דֶעם חַזָן'ס זִיהן אִיז בַּיי אַייך אַ בּוּכהַאלְטֶער הָאט<lb/>אוֹיף אִיהם אָפֶענֶע אויגֶען. אִיך בִּין אַייך אַ גוּטֶער פְרֵיינְד, הַלְוַאי זָאלְט<lb/>אִיהר אַזוי לֶעבֶּען מִיט מִיר!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0169_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיך דַאנְק אַייך ר‘ אִיסָר פאַר אַייעֶרֶע נַאכְרִיכְט, קוּמְט עֶפְטֶער<lb/>צוּ מִיר, אוּן וֶוען אִיהר הָאט צַייט בֶּעזוּכְט מִיך.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0170_a">
+          <speaker>איסר</speaker>
+          <p>איךְ וֶועל אַייך גֶעווִיס בֶּעזוּכֶען אָבֶּער צֵייט הָאבּ אִיך נוּר 3 מָאל אִין<lb/>טָאג, צוּם פְרִישְטִיק, צוּם מִיטָאג, אוּן צוּם נַאכְטְמָאל. אַ גוּטֶען טָאג!<lb/><stage type="delivery">(אפארט)</stage> אִיך ווֶעל שׁוֹין בְּלַייבֶּען זַיין קֶעסְט קִינְד. חַ חַ חַ חַ! <stage type="exit">(אָב).</stage><lb/><stage type="entrance business">(אויפטריט ראזא, רופט אונטער קוליסען דאן ערשיינט).</stage></p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0171_a">
+          <speaker>ראזא</speaker>
+          <p>פָאטֶער! פָאטֶער! <stage type="business">(פרייליך)</stage> מֵיין פָאטֶער!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0172_a">
+          <speaker>וואלדמאן</speaker>
+          <p>דוּ דָא?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0173_a">
+          <speaker>ראזא</speaker>
+          <p>אִיך בִּין געווֶעהן נייגֶערִיג זִי צוּ זֶעהֶען, דַאנְקָע דִיר פֶאטֶער, אִיהר<lb/>אַייגֶען לֶעבֶּען הָאט זִי רֶעזִיקִירְט אוּם דָאס זַיינִיגֶע צוּ רֶעטֶען. אַזַא<lb/>עֶדֶעל קִינְד! אִיך הָאבּ זִי גֶעהַאלְזְט אוּן גֶעקִישְט. הָאסְטוּ זִי שׁוֹין<lb/>גֶעזֶעהן פָאטֶער?</p>
+        </sp>
+        <pb n="18" facs="0018_OTgwNjYwMDE.111007906.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0174_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיך ווֶעל זִי שׁוֹין זֶעהן, הֶער וָואס דָא טְהוּט זִיך אַבִּיסֶעל?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0175_a">
+          <speaker>ראזא</speaker>
+          <p>פְרֵייט עֶס דִיך נִישט ווָאס אוּנְזעֶר יוּדַאלֶע אִיז גֶערֶעטֶעט?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0176_a">
+          <speaker>וואלדמאן</speaker>
+          <p><stage type="delivery">(בּייז)</stage> אִיך פְרֵייא מִיך, אִיך פְרֵייא מִיך, אוּן דוּל מִיר נִישְט<lb/>דֶעם קָאפּ!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0177_a">
+          <speaker>ראזא</speaker>
+          <p>פָאטֶער! פַאר ווָאס בִּיזְטוּ דֶעם אוּנְגְלִיקְלִיכֶען בְּלִינְדֶען אויךְ נִישְט אַ<lb/>פָאטֶער? אִיז עֶר דֶען נִישְט דַיין בְּרוּדֶערְס קִינְד?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0178_a">
+          <speaker>וואלדמאן</speaker>
+          <p>ווָאס אִיז דָאס? מוּסָר? דוּ זָאגְסְט מִיר מוּסָר?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0179_a">
+          <speaker>ראזא</speaker>
+          <p>אִיז עֶר דֶען נִישט זָא זַאנְפְט זָא גוּט?! אִיך הָאבּ אִיהם לִיעב וִוי מֵיין<lb/>אֵייגֶענֶען בְּרוּדֶער, אַך מִיר בְּרֶעכְט דָאס הֶערְץ צוּזַאמֶען וִוי שְטִיל וִוי<lb/>עֶרְגֶעבֶּען עֶר טְרָאגְט זַיין אוּנְגְלִיק!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0180_a">
+          <speaker>וואלדמאן</speaker>
+          <p><stage type="delivery">(שפעטיש)</stage> זַיין אוּנְגְלִיק? ווָאס פֶעהלְט אִיהם דֶען? הָאט עֶר נִישט<lb/>צוּ עֶסֶען, צוּ טְרִינְקֶען אוּן אַלעֶס ווָאס זַיין הֶערְץ בֶּעגֶעהרְט?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0181_a">
+          <speaker>ראזא</speaker>
+          <p>אָבֶּער צוּ לֶעבֶּען אִין עֶווִיגֶע פִינְסְטֶערְנִיס, אָה וֶועה! וִוי שְרֶעקְלִיך<lb/>מוּז דָאס זַײַן! פָאטֶער אִיז דֶען וִוירְקְלִיך קֵיין הָאפְנוּנְג מֶעהר דָאס עֶר<lb/>זָאל קורִירט וֶוערֶען?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0182_a">
+          <speaker>וואלדמאן</speaker>
+          <p><stage type="delivery">(אפארט)</stage> עֶר זָאל קורִירְט וֶוערֶען זָאגְט זִי? דַאן גֶעהֶערְט אִיהם<lb/>דָאס גַאנְצֶע פֶערְמֶעגֶען אוּן אִיך בְּלַייבּ אַ בֶּעטְלֶער <stage type="delivery">(צוּ איהר)</stage> הָאסְט דוּ<lb/>דֶען נִישט גֶעזֶעהען, וִויפִיעל דָאקְטָארֶען אִיך הָאבּ שׁוֹין גֶעבְּרַאכְט?<lb/>אָבֶּער אַלֶע זָאגֶען דָאס עֶר מוּז בְּלִינד בְּלַייבֶּען זַיין לֶעבֶּען לַאנְג,<lb/><stage type="delivery">(אפארט)</stage> עֶס קָאסְט מִיך שׁוֹין גֶענוּג גֶעלד דָאס עֶס זָאל אַזוי הַייסֶען.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0183_a">
+          <speaker>ראזא</speaker>
+          <p>אוּנְגלִיקְלִיכֶער יוּדַאלֶע!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0184_a">
+          <speaker>וואלדמאן</speaker>
+          <p>רָאזַא קוּם, אִיך הָאבּ עֶטְווָאס וִויכְטִיגֶעס מִיט דִיר צוּ רֶעדֶען.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0185_a">
+          <speaker>ראזא</speaker>
+          <p>אוּן זִי וִוילְסְטוּ נִישט זֶעהן?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0186_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיך וֶועל זִי שׁוֹין זֶעהן, קוּם! <stage type="exit">(אב).</stage></p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0187_a">
+          <speaker>ראזא</speaker>
+          <p><stage type="business">(מיט א זיפץ)</stage> אַך, אָרְמער אוּנְגְלִיקְלִיכֶער יוּדַאלֶע! <stage type="exit">(אב).</stage><lb/><stage type="entrance">(אויפטריט אלטעריל מיט פריידעלע).</stage></p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0188_a">
+          <speaker>אלטעריל</speaker>
+          <p>וָואס אִיז דָאס פְרֵיידֶעלֶע? ווָאס הַאלְטְסְט דוּ אִין אֵיין קוּקֶען<lb/>אוֹיף דֶער עֶרְד?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0189_a">
+          <speaker>פריידעלע</speaker>
+          <p>דֶער טַאטֶע הָאט מִיר אָנְגֶעזָאגְט אִיך זָאל מֶעהר נִיט קוּקֶען<lb/>אוֹיף דִיר!</p>
+        </sp>
+        <pb n="19" facs="0019_OTgwNjYwMDE.111007907.jpg"/>
+        <sp who="#alteril" xml:id="Yudale_SP0190_a">
+          <speaker>אלטעריל</speaker>
+          <p>פַאר וָואס נֶעבִּיך?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0191_a">
+          <speaker>פריידעלע</speaker>
+          <p>וַוייל מַיין טַאטֶע הָאט מורָא פַאר דַיין טַאטֶען אַז דַיין טַאטֶע<lb/>זָאל נִיט זָאגֶען אַז מַיין טַאטֶע הָאט גֶעהַאלְטֶען פַארְבָּארְגֶען פַאר דַיין<lb/>טַאטֶען...</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0192_a">
+          <speaker>אלטעריל</speaker>
+          <p>מַיין טַאטֶע דַיין טַאטֶע דַיין טַאטֶע מַיין טַאטֶע— לָאמֶער אָבּ<lb/>לָאזֶען דִי טַאטֶעס אוּן רֶעדֶען פוּן דִי קִינְדֶער, מִיר קִינְדֶער זֶענֶען דָאך<lb/>אויךְ נִישְט קֵיין שְטִילֶע בְּהֵמות!</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0193_a">
+          <speaker>פריידעלע</speaker>
+          <p>וָואס זְשֶע קָאן אִיך טְהון? אַ טַאטֶען מוּז מֶען דָאך פָאלְגֶען!</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0194_a">
+          <speaker>אלטעריל</speaker>
+          <p>יָא יָא! אָבֶּער ווֵייסְטוּ פְרֵיידֶעלֶע וָואס אִיך וֶועל טְהוּן? אִיך<lb/>וֶועל מַיין טַאטֶען פאלֶען צוּ דִי פִיס אַזוי <stage type="business">(קניעט פאר איהר).</stage></p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0195_a">
+          <speaker>פריידעלע</speaker>
+          <p>נוּ! וָואס טְהוסְטוּ?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0196_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך וַוייז דִיר נוּר וִוי אַזוי אִיך וֶועל טְהוּן אוּן אִיך וֶועל אִיהם<lb/>קִישֶען זַיינֶע הֶענְד אַזוי <stage type="business">(קישט איהרע הענד).</stage></p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0197_a">
+          <speaker>פריידעלע</speaker>
+          <p>נוּטֶע וָואס טְהוּסְטוּ?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0198_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך מֵיין דָאך נִיט דִיך נוּר מַיין טַאטֶען, אוּן אִיך וֶועל אִיהם<lb/>גַאנץ אָפֶען זָאגֶען אַז אִיך קָאן נִישְט לֶעבֶּען אָהן מַיין פְרֵיידֶעלֶען.<lb/>וָואס זְשֶע מֵיינְסְטוּ וֶועט עֶר טְהון?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0199_a">
+          <speaker>פריידעלע</speaker>
+          <p>וָואס?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0200_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך וֶועל אִיהם פַאלֶען אוֹיף זַיין הַאלְז אַזוי... <stage type="business">(אומארמט זי).</stage></p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0201_a">
+          <speaker>פריידעלע</speaker>
+          <p>אוֹי וֶועה וָואס טְהוּסְטוּ?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0202_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך מֵיין דָאך נִישְט דִיך נוּר מַיין טַאטֶען - אוּן אִיך וֶועל אִיהם<lb/>הַאלְזֶען אוּן קִישֶען <stage type="business">(קישט זי)</stage> אוּן וָואס מֵיינְסְטוּ וֶועט עֶר טְהון?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0203_a">
+          <speaker>פריידעלע</speaker>
+          <p>עֶר וֶועט דִיךְ אויךְ קִישֶען <stage type="business">(קישט איהם).</stage></p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0204_a">
+          <speaker>אלטעריל</speaker>
+          <p>אוּן נָאך דֶעם וִוי אִיך וֶועל שׁוֹין זַיין פַארטִיג מִיט מַיין טַאטֶען<lb/>וֶועל אִיך מִיך נֶעהמֶען צוּ דַיין טַאטֶען <stage type="business">(קישט זי)</stage> אוּן דָערְנְאך צוּ דַיין<lb/>מַאמֶען <stage type="business">(קישט זי).</stage></p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0205_a">
+          <speaker>פריידעלע</speaker>
+          <p>נוּ אוּן צוּ מַיין שְוֶועסְטֶער?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0206_a">
+          <speaker>אלטעריל</speaker>
+          <p>אוּן צוּ דַיין שְוועסְטֶער <stage type="business">(קישט זי).</stage></p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0207_a">
+          <speaker>פריידעלע</speaker>
+          <p>אוּן פְישְלֶען?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0208_a">
+          <speaker>אלטעריל</speaker>
+          <p>אוּן פִישְלֶען <stage type="business">(קישט זי)</stage></p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0209_a">
+          <speaker>פריידעלע</speaker>
+          <p>אוּן דִי צִיעג?<lb/>אַלְטֶערִיל אוּן דִי צִיעג <stage type="business">(קישט זי).</stage></p>
+        </sp>
+        <pb n="20" facs="0020_OTgwNjYwMDE.111007908.jpg"/>
+        <sp who="#freydale" xml:id="Yudale_SP0210_a">
+          <speaker>פריידעלע</speaker>
+          <p>אוּן מַיין בְּרוּדֶער?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0211_a">
+          <speaker>אלטעריל</speaker>
+          <p>אוּן דַיין בְּרוּדֶער, אוּן דַײַן פֶעטֶער, אוּן דַיין מומֶען, אוּן דַיין<lb/>זַיידֶען אוּן דַיין בַּאבֶּען! <stage type="business">(קישט זי).</stage><lb/><stage type="business">(דועט).</stage></p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0212_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>אוֹי! אוֹי! ווִי גֶעמְט מֶען אַזַא סָאלדַאטְסְקִי כּחַ!</l>
+          </lg>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0213_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>אוֹי עֶס טְרוּקֶענְט אויִס דֶער מוחַ!</l>
+          </lg>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0214_a">
+          <speaker>פריידעלע</speaker>
+          <lg>
+            <l>אוֹי! דָאס צִיפִּינִיש אִיז זֶעהר גְרויס!</l>
+          </lg>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0215_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>אוֹי! עֶס צִיפֶּעט אוּן עֶס רִיפֶּעט</l>
+          </lg>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0216_a">
+          <speaker>פריידעלע</speaker>
+          <lg>
+            <l>אוֹי! עֶס זִיפּעט אוּן עֶס סְקְרִיפֶּעט</l>
+          </lg>
+          <lg>
+            <l>נַיין נַיין וַויין נִישְט, נַיין נַיין קְלָאג נִישְט</l>
+          </lg>
+          <lg>
+            <l>אַז אִיבֶּערַאל זֶענֶען דָא אַזויפִיעל שָטָן'ס</l>
+          </lg>
+          <lg>
+            <l>נַיין נַיין קְרֶעכְץ נִישְט נַיין נַיין יֶעכְטְץ נִישְט</l>
+          </lg>
+          <lg>
+            <l>אַז פוּן מַיין הֶערְץ קֶען וֶוערָען אַ גֶעבְּרָאטֶענְם.</l>
+          </lg>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0217_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>אוֹי פְרֶעסְט דָאס, אוֹי גֶעה פַארְגֶעס דָאס</l>
+          </lg>
+          <lg>
+            <l>קֶען דִי לִיעבֶּע וֶוערֶען נִמְאָס</l>
+          </lg>
+          <lg>
+            <l>אוֹי פַּאקְט דָאס, אוֹי בַּאקְט דָאס</l>
+          </lg>
+          <lg>
+            <l>פּוּנְקְט ווִי אַ מֵייעֶרְן צִימֶעס</l>
+          </lg>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0218_a">
+          <speaker>פריידעלע</speaker>
+          <lg>
+            <l>וֶוער שְמוּסְט בַּיי נַאכְט וֶוען מֶען גֶעהט שְלָאפֶען</l>
+            <l>צוּמָאלְס אִיז דָאך גָאר אַ סוֹף.</l>
+          </lg>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0219_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>אוֹיף אַ שְטִיקֶעל שְלָאף קֶען מֶען מֶעהר נִישְט הָאפֶען</l>
+          </lg>
+          <lg>
+            <l>מֶען לִיגְט דִי גַאנְצֶע נַאכְט דִי אויגֶען אַרויף,</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0220_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>אוֹי אִיז דֶען אַ מוּז לַיידֶען אַזוי פִיעל, פַאר ווָאס?</l>
+            <stage type="business">(בִּיז און בִּיז)</stage>
+          </lg>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0221_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>שְטֶעה! שְטֶעה! כְ’הָאבּ אַ פְּלַאן, אַזוי וָועט זַיין!</l>
+          </lg>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0222_a">
+          <speaker>פריידעלע</speaker>
+          <lg>
+            <l>וָואס וֶועט זַיין?</l>
+          </lg>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0223_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>אִיך לויף גֶעשְוִוינְד צוּם טַאטֶען דַיינֶעם</l>
+          </lg>
+          <lg>
+            <l>אוּן פַאל אִיהם אוֹיף זַיין הַאלְז אַרויף</l>
+          </lg>
+          <lg>
+            <l>אִיך חַאפּ אִיהם אָן בַּיים פִּיסְק זַיינֶעם</l>
+          </lg>
+          <lg>
+            <l>קִיש אוּן הָער נִישט אוֹיף</l>
+          </lg>
+          <lg>
+            <l>אִיך ווֶעל אִיהם אַזוי לַאנְג הַאלְזֶען קִישֶען</l>
+          </lg>
+          <lg>
+            <l>בִּיז עֶר זָאגְט מִיר צוּ</l>
+          </lg>
+          <lg>
+            <l>אַז עֶר וֶועט זִיך נִישְט מֶעהר מִישֶען</l>
+          </lg>
+          <lg>
+            <l>מַיינֶע זַיין וֶועסְטוּ</l>
+          </lg>
+          <lg>
+            <l>למְָשָל זֶעה קוּק דִיךְ צוּ דֶער טַאטֶע דֶער בִּיזְטו</l>
+          </lg>
+          <lg>
+            <l>דוּ זֶעהסְט אוּן פֶערְשְטֶעהסְט דָאך</l>
+          </lg>
+        </sp>
+        <pb n="21" facs="0021_OTgwNjYwMDE.111007909.jpg"/>
+        <sp who="#freydale" xml:id="Yudale_SP0224_a">
+          <speaker>פריידעלע</speaker>
+          <lg>
+            <l>אִיך זֶעה דָאך אוּן פֶערְשְטֶעה דָאך</l>
+          </lg>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0225_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>אִיך מַיין אִיהם.</l>
+          </lg>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0226_a">
+          <speaker>פריידעלע</speaker>
+          <lg>
+            <l>עֶר מֵיינְט אִיהם!</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0227_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>אוֹי גוּט אוֹי ווֹאהל, אוֹי עֶס אִיז דָאך נוּט</l>
+          </lg>
+          <lg>
+            <l>קֶען מֶען דֶען דִי יוגֶענְד שְטִיקֶען</l>
+          </lg>
+          <lg>
+            <l>טְרַייעֶ לִיעבֶּע וֶוער קֶען שטְֶערֶען</l>
+          </lg>
+          <lg>
+            <l>וֶוען מִיר וִוילֶען זִיך עֶרְקְוִויקֶען</l>
+          </lg>
+          <lg>
+            <l>וֶוער קֶען אונְז פֶערְוֶועהרֶען</l>
+          </lg>
+          <lg>
+            <l>לִיעבּ... וָואַס נוּר מֶעהר גֶענִיס</l>
+          </lg>
+          <lg>
+            <l>לִיעבּ... אוֹי דָאס אִיז צוּקֶער זִיעס</l>
+          </lg>
+          <lg>
+            <l>נֶעהם פוּן דֶעם פַּארַאדִיז</l>
+          </lg>
+          <lg>
+            <l>מונְטֶער הִיער טַאנְצְט וָואס מֶעהר</l>
+          </lg>
+          <lg>
+            <l>הִילֶע דֶען דָאס לֶעבֶּען אִיז זָא זִיעס</l>
+          </lg>
+          <lg>
+            <l>אוֹי זָא זִיעס! אוֹי זָא זִיעס</l>
+          </lg>
+          <lg>
+            <l>לִיעבֶּע אִיז זָא זִיעס! יָאה זִיעס!</l>
+            <stage type="delivery">(בּיס).</stage>
+            <stage type="setting">פערוואַנדלונג</stage>
+            <stage type="entrance">(אויפטריט יודאלע דבורה זינגענדיג).</stage>
+          </lg>
+        </sp>
+        <pb n="22" facs="0022_OTgwNjYwMDE.111007910.jpg"/>
+        <sp who="#yudale" xml:id="Yudale_SP0228_a">
+          <speaker>יודאלע</speaker>
+          <p>מֵיינְסְטוּ דָאס עֶרנְסְט דְבורה'לֶע? אַבְּשִיעד? גֶעזֶעגְנֶען וִוילְסְטוּ<lb/>דִיך מִיט מִיר?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0229_a">
+          <speaker>דבורה</speaker>
+          <p>נוּר אַ קוּרְצֶע צַייט וֶועל אִיך אויסְבְּלֵייבֶּען פוּן דֶער הֵיים.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0230_a">
+          <speaker>יודאלע</speaker>
+          <p>אָבֶּער וָואהִין גֶעסְטוּ דֶען?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0231_a">
+          <speaker>דבורה</speaker>
+          <p>יוּדַאלֶע, אִיך גֶעה דִיר בְּרֶענְגֶען אַ רְפוּאָה צוּ דַיינֶע קְרַאנְקֶע<lb/>אויגֶען.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0232_a">
+          <speaker>יודאלע</speaker>
+          <p>וָואס הָאט מַיין דבורֶה'לֶע גֶעזָאגְט? אַך, נֵיין! דְבורֶה'לֶע,<lb/>עֶרְוֶועק נִישְט אִין מִיר אַזוי אַיין זִיסֶע הָאפְנוּנְג, אַז אִיך זָאל דַאן מוזֶען<lb/>פִיהלֶען דִי בִּיטֶערֶע עֶנְטֵיישונְג — מֵיין פֶעטֶער הָאט מִיר שׁוֹין<lb/>געבְּרֶענְגְט פֶערְשִיעדֶענֶע דָאקְטוירִים, אָבֶּער אַלע הָאבֶּען מִיך פַאר<lb/>אוּנְהֵיילְבַּאר עֶרְקְלֶעהרְט..</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0233_a">
+          <speaker>דבורה</speaker>
+          <p>אִיך אָבֶּער, אִיך גְלויבּ נִישְט דַיין פֶעטֶער אוּן נִישְט זֵיינֶע<lb/>דָאקטְוירִים, אַזוי זאַגְט מִיר מַיין הֶערְץ אִיך בְּרֶענְג דִיר מִיט גָאט'ס<lb/>הִילְף אַ זיכֶערֶע רְפוּאָה.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0234_a">
+          <speaker>יודאלע</speaker>
+          <p>זָאג דְבורֶה'לֶע, עֶרְקְלֶעהרֶע מִיר וָואס וִוילסְטוּ טְהון?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0235_a">
+          <speaker>דבורה</speaker>
+          <p>יוּדַאלֶע זָאלְסְט נִישְט לַאכֶען פוּן מִיר, דָאס וָואס אִיך וִויל יֶעצְט<lb/>טְהון וִוירְסְטו פִילֵייכְט זָאגֶען דָאס אִיז קִינְדִיש, אִיך אָבֶּער בֶּעטְרַאכְט<lb/>עֶס פַאר אֵיין וִוינְק פוּן דֶעם הִימֶעל.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0236_a">
+          <speaker>יודאלע</speaker>
+          <p>אִיז דָאס פִילֵייכְט אַ סְגוּלֶה?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0237_a">
+          <speaker>דבורה</speaker>
+          <p>יוּדַאלֶע, דִי לֶאזְט דִיר טָאג אוּן נַאכְט פָארְלֶעזֶען פוּן דֵיינֶע בִּיכֶער<lb/>בִּיזְטוּ אֵיין גֶעבִּילְדֶעטֶער יוּנְגֶערמַאן. אִיך אָבֶּער בִּין אַ אַיינְפַאכֶע<lb/>יוּדִישֶע טָאכְטֶער אוּן גְלויבּ אָן אַלֶעס אַזוי וִוי מַיינֶע פְרוּמֶע עֶלטֶערְן<lb/>הָאבּעֶן מִיך גֶעלֶערְנְט. דַארוּם הֶערֶע מִיך אויִס! נָאכְדֶעם וִוי אִיך הָאבּ<lb/>דִיך עֶרקֶענְט וִוי גוּט אוּן עֶדֶעל דוּ בִּיזְט, הָאבּ אִיך מִיר דַיין אוּנְגְלִיק<lb/>אַזוי גֶענוּמֶען צוּם הֶערְץ, דָאס אִיך הָאבּ טָאג אוּן נַאכְט נִישְט<lb/>אויפְגֶעהֶערְט, פַאר דִיר, גָאט צוּ בֶּעטֶען אוּן דָא נִישְט לַאנְג, הָאבּ אִיך<lb/>גֶעזֶעהן אַיין גְרֵייז, אויסְגֶעזֶעהן הָאט עֶר וִוי אַיין מַלְאָך אֶלקִים<lb/>אוּן דֶער גְרֵייז הָאט מִיר גֶעבְּרַאכְט קְרֵייטֶער אוּן מִיך גֶעזָאגֶט, דַאמִיט<lb/>וִוירְסְטוּ דֶעם בְּלִינְדֶען זַיינֶע אויגֶען עֶפנֶען, דוּ לַאכְסְט יודַאלֶע?</p>
+        </sp>
+        <pb n="23" facs="0023_OTgwNjYwMDE.111007911.jpg"/>
+        <sp who="#yudale" xml:id="Yudale_SP0238_a">
+          <speaker>יודאלע</speaker>
+          <p>נֵיין, דוּ טְרֵייעֶס הֶערְץ, דוּ הֶערְסְט נִישְט אוִיפ צוּ דֶענְקֶען,<lb/>פוּן מַיין אוּנְגְלִיק בֵּיי טָאג, דַארוּם חָלום'ט זִיך דִיר פוּן אַ רְפוּאָה<lb/>בֵּיי נַאכְט...</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0239_a">
+          <speaker>דבורה</speaker>
+          <p>דָאך הֶערֶע וֵוייטֶער, דֶער גְרייז פוּן מַיין חָלום שְטֶעהט מִיר<lb/>אַזוי קְלָאהר פַאר מֵיינֶע אויגֶען, דָאס אִיך קָאן אִיהם דִיר נִישְט<lb/>אויסְמָאהלֶען וִוי עֶר הָאט אויסְגֶעזֶעהן... פאַר אַיינִינֶע טַאגֶע, אִיז<lb/> מַיין פָאטֶער גֶעקוּמֶען אִיבֶּער אַ סֵפֶר פוּן אַ גְרויסֶען מַאן, וֶואס זַײַן<lb/>הֵיילִיג קֵבֶר אִיז נִישְט וַוייט פוּן דַאנֶין אוּן דֶער פָאטֶער הָאט<lb/>אוּנְז אַלֵיין פָארְגֶעלֶעזֶען דָאס פוּן דִי קְרֵייטֶער, וֶועלְכֶע דָארְט<lb/>ווַאקְסֶען זֶענֶען שׁוֹין פֶערְשִיעדֶענֶע קְרַאנְקֶע גֶעהֵיילְט גֶעוָוארֶען, אִין<lb/>דֶעם סֵפֶר אִיז אוֹיך דָא דָאס בִּילְד פוּן דֶעם הֵיילִיגֶען מַאן. יֶעצְט<lb/>הֶערֶע יוּדַאלֶע, אִין דִיזֶען בִּילְד הָאבּ אִיך עֶרקָאנְט דֶעם גְרֵייז, וֶועלְכֶען<lb/>אִיך הָאבּ גֶעזֶעהן אִין חָלום, פַארווָאס דֶען יוּדַאלֶע זָאל אִיך דָאס<lb/>נִישְט גְלויבֶּען? אַז גָאט הָאט זִיך אוֹיף דִיר עֶרבַּארְמְט, אוּן מִיך<lb/>הָאט עֶר אויסְגֶעוֶועהלְט אַלְס דַיין גוּטֶען שָלוחַ? <stage type="business">(קוּמְט, פִישׁל</stage><lb/><stage type="business">בּלֵייבּט שְטֶעהן).</stage></p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0240_a">
+          <speaker>פישל</speaker>
+          <p>דוּ, דְבורֶה'לֶע, דוּ וִוילְסְט גֶעהן טְהוּן דִי סְגוּלָה פוּן זֵיינִיטְוֶועגֶען<lb/>וִוילְסְטוּ אֶפְשֶר אַ וֶועק גֶעהן אָן אַ זֵייט גֶעזוּנְד? <stage type="delivery">(שרייט)</stage> חַזָן. חַזֶנְ'טֶע,<lb/>פְרַיידֶעלֶע, אַלְטֶערִיל, בֶּערמַאן, משֶה, לֵיבּ, פֵייוִויש, קוּמְט גוּר אַרַיין.<lb/><stage type="entrance">(אויפטרעטען ירוחם, פריידעלע, יאכנע, אלטעריל, בערמאן, משוררים).</stage></p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0241_a">
+          <speaker>פישל</speaker>
+          <p>זֵיי פרֶעגֶען נִישְט אָן קֵיינֶעם אוּן גֶעהֶען טְהון דִי סְגוּלֶה.</p>
+        </sp>
+        <pb n="24" facs="0024_OTgwNjYwMDE.111007912.jpg"/>
+        <sp who="#alle" xml:id="Yudale_SP0242_a">
+          <speaker>אלע</speaker>
+          <p>דְבוֹרֶה'לֶע???</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0243_a">
+          <speaker>יודאלע</speaker>
+          <p>מַיין כּלה!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0244_a">
+          <speaker>אלע</speaker>
+          <p>זַיין כּלה.</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0245_a">
+          <speaker>דבורה</speaker>
+          <p>וֶועלְכֶע, גָאט הָאט אוִיסֶערוועהלְט מִיט דֶעם שׁלִיחות צוּ זַיינֶע<lb/>בּלינדע אוֹיגען אַ רפוּאָה צוּ בּרענגען.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0246_a">
+          <speaker>ירוחם</speaker>
+          <p>אָמֵן! אוּן טוֹיזֶענְד מָאהל אָמן וואָלט אִיך מִיט שׁמְחה אוִיסגֶעשׁרִיען<lb/>ווֶען אִיך זאָל נוּר נִישְׁט מוֹרָאָ האבּען, אַז זַיין רפוּאָה קֶאן דִיך<lb/>אַס וֶעלום קאָסטען דַיין לעבּען!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0247_a">
+          <speaker>יודאלע</speaker>
+          <p>וואָס הֶער אִיך? דְבוֹרֶה'לֶע גיבּ מִיר דַיין הַאנְד! <stage type="business">(געשיהט)</stage><lb/>נֵיין, אִיך וִויל נִישְׁט דוּ זאָלסט געֶהן אִיך דַארְף קֵיינֶע אוִינֶען,<lb/>דַיין אוִיג אִיז מַיין לִיכטֶענְדֶער מארְגֶענְשׁטֶערְן, דַיין הַאנְד מַיין<lb/>פִיהרֶער, דַיין אַרם מַיין שׁטִיצֶע, דוּ אַליין בּיזט מַיין נאנְצֶע<lb/>ווֶעלְט, מִיר פֶעהלְט גאָר נִישְׁט. ווֶען דוּ בּיןט מִיט מִיר! דארוּם<lb/>דורְה'לֶע בּלייבּע.</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0248_a">
+          <speaker>דבורה</speaker>
+          <p>נֵיין ענְטשׁלאסֶען האבּ אִיך מִיך דאָס צוּ טהוּן אוּן קֵיינֶער וֶועט מִיך<lb/>נִישְׁט צוּריק האַלטען זאגֵאר דוּ יוּדאלע אוֹיך נִישְׁט. מָארְגֶען, איבּער⸗<lb/>מָארְגֶען אוּן מיטערנאַכט וֶועל אִיך פוּן אַייך פּלעצליך פֶערְשׁווינְדֶען.<lb/>דארוּם לָאזְט מִיך נִישְׁט קֵיין צַייט פֶערְלִיערֶען, זַיינֶעט ווענֶען וואַס וִויל<lb/>אִיך דעָן נִישְׁט טהוּן? אפּפערן וֶועל אִיך פִיר אִיהם מִיט פרֵיידֶע מִיט<lb/>מַיין בּלוט מַיין לעבּען!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0249_a">
+          <speaker>יודאלע</speaker>
+          <p>הִימֶעל אוּן עֶרְד! זַייט עדות וואָס זי טהוּט יֶעצְט פוּן מַיינֶעטווענֶען!<lb/>אַבּי יתומִים! טאָג אוּן נאַכט וֶועל איךְ נִיט אוֹיפְהֶערֶען דִיר צוּ דאנְקֶען<lb/>פאַר דִי זִיסֶע מתּנה וואָס דוּ האָסְט מִיר דֶעם בּלינדען יתום נֶעשֶׁענְקט!<lb/>דְבוֹרֶה'לֶע אִיך פִיהל עֶס דאָס צוּריק הַאלְטֶען וֶועט מֶען דִיך נִישְׁט<lb/>מֶעהר קֶענֶען, גֶעה אַלזָא דוּ מלאָך טוֹב! גֶעה מִיט גָאט! פאַטער מוּטער.<lb/>לאָזט זִי נִישְׁט געֶהן אָהן אַייער בּרכה! בּענְשׁט זִי, זֶעגֶענְט אוֹיך מִיך!<lb/>בּענשט אוּנז בּיידע אַייערע קיִנְדעֶר!</p>
+        </sp>
+        <sp who="#kor" xml:id="Yudale_SP0250_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>זעגֶנע פָאטער, דַיין ליעבּעס קִינְד, דַיין קִינְד!</l>
+          </lg>
+          <lg>
+            <l>גֶעבּע אִיהר בּרכה דָא אַצינד.</l>
+          </lg>
+        </sp>
+        <pb n="25" facs="0025_OTgwNjYwMDE.111007913.jpg"/>
+        <sp who="#beyde" xml:id="Yudale_SP0251_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>אַך ווִי שְׁוֶוער מִיר אִיז צוּ שַׁיידֶען</l>
+          </lg>
+          <lg>
+            <l>שְׁוֶוער, שְׁוֶוער פוּן דִיר</l>
+          </lg>
+          <lg>
+            <l>אַך ווִי בּיטער וֶועט זַײַן צוּ לֵיידעֶן</l>
+          </lg>
+          <lg>
+            <l>בּיטער אָהן אַ שעוּר.</l>
+          </lg>
+        </sp>
+        <sp who="#kor" xml:id="Yudale_SP0252_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>(בּעסער גֶעה דִיר בּשלום</l>
+          </lg>
+          <lg>
+            <l>ליעבּער גָאט זעֶה אָ זעֶה</l>
+          </lg>
+          <lg>
+            <l>עֶס זאָל נִישְׁט זַיין קֵיין חָלוֹם)</l>
+          </lg>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0253_a">
+          <speaker>דבורה</speaker>
+          <lg>
+            <l>אַך מוּטער פָאטער געליעבּטער!</l>
+          </lg>
+          <lg>
+            <l>אַך פִילֵייכט גָאר זֶעהֶען וִויר אוּנז נִישְׁט מֶעהר?</l>
+          </lg>
+        </sp>
+        <sp who="#kor" xml:id="Yudale_SP0254_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>גֶעה מִיט גלִיק</l>
+          </lg>
+          <lg>
+            <l>אוּן גָאט זאָל דַיין וועג בּענליקען</l>
+          </lg>
+          <lg>
+            <l>אָמֵן.</l>
+          </lg>
+        </sp>
+        <stage type="setting">(פארהאנג).</stage>
+        <trailer>(ענדע פון ערשטען אקט).</trailer>
+        <pb n="26" facs="0026_OTgwNjYwMDE.111007914.jpg"/>
+      </div>
+      <div type="act" n="2" xml:id="Yudale_Act2">
+        <head>צווייטֶער אַקט.</head>
+        <stage type="setting">(בֵּיי יְרוּחָם, פֵּסֶח סדר נאַכְט, ירוחם אוֹיף דֶעם הֶעסֶעבעט, ארוּם דֶעם טישׁ</stage>
+        <stage type="setting">יאַכנע פְרֵיידֶעלֶע, בֶּערְמַאן, פִישֶׁעל, משׁורְרִים, אַלֶע מִיט הגדות, מֶען האַלט שׁוֹין</stage>
+        <stage type="setting">אִין מִיטֶען בֶּענְטְשֶׁען).</stage>
+        <sp who="#yerukhem" xml:id="Yudale_SP0255_a">
+          <speaker>ירוחם</speaker>
+          <p><stage type="delivery">(חזניש זינגענד)</stage> הרֶעמְן הוּא ישׁלח לנוּ את אַליהוּ הנְבִיא זכוּר לטוב<lb/>וִיבּשׁר לנוּ בּשורות טובות ישׁוּעות ונְחמות <stage type="business">(פִישֶׁעל הֶעלְפט אִיהם אוּנְטֶער</stage><lb/><stage type="delivery">מִיט אַ באס)</stage> הרחמן הוּא יברֵך אָת אִשתּי ואֶת כּל בּני בּיתי.</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0256_a">
+          <speaker>פישל</speaker>
+          <p><stage type="business">(קוּקט אריין אין דער הגדה און זאָגט מיט א נגון)</stage> אַצוּנד גִיס אָן אַלע כּוסות<lb/>אוּן עפֶען אוֹיף דִי טהִיר אוּן זאָג שפוך מִיט גְרוֹיס כַּוָנה, חזֶן'טע עפֶענְט<lb/>דִי טהִיר צוּם שפוך.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0257_a">
+          <speaker>ירוחם</speaker>
+          <p>וואָרט, פְריִהעֶר גִיס אָן אַלע כּוסות אוּן גִיס אָן אַיין עקסטרֶען כּוס<lb/>פאַר אַליהוּ הנְבִּיא'ס וועגֶען <stage type="business">(געשיעהט)</stage></p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0258_a">
+          <speaker>פישל</speaker>
+          <p>חַזְן'טֶע אַיידֶער אִיהר עפֶענְט אוֹיף דִי טהִיר פאָר אָליהוּ הנביא<lb/>קוּקט פְריִהעֶר אַרויס אִין דרוִיסֶען. אִיהר גֶעדענקט פאָר אַ יאָהרען<lb/>הָאט אִיהר גֶעֶעפֶענְט דִי טהִיר אִיז אַרײַן געקוּמען דִי צִיעג!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0259_a">
+          <speaker>ירוחם</speaker>
+          <p>אִי נָא נָא! <stage type="business">(אַלע שטעהען אויף מיט די כוסות)</stage> שפוך!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0260_a">
+          <speaker>אלע</speaker>
+          <p>שפוך!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0261_a">
+          <speaker>ירוחם</speaker>
+          <p>חמָתך!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0262_a">
+          <speaker>אלע</speaker>
+          <p>חמָתך!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0263_a">
+          <speaker>ירוחם</speaker>
+          <p>עַל הגוֹים!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0264_a">
+          <speaker>אלע</speaker>
+          <p>עַל הגוֹים!<lb/><stage type="entrance">(אויפטריט פראפעסאר עדעלמאן אין דער טהיר).</stage><lb/>פִישׁל קוּקט אַליהוּ הנביא! <stage type="business">(אַלע שטוינען).</stage></p>
+        </sp>
+        <pb n="27" facs="0027_OTgwNjYwMDE.111007915.jpg"/>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0265_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אִיך בּיטע טוֹיזֶענְד מאָל אוּם ענטשוּלדיגוּנג!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0266_a">
+          <speaker>פישל</speaker>
+          <p><stage type="delivery">(אונטערברעכענד)</stage> אַ שְוַוארְצֶער חָלוֹם צוּ דַיין קאפּ! עֶס אִיז נאָר אַ<lb/>דַייטשׁ! אוֹי חַזָן'טע, חַזָן'טע פאַר אַ יאָהרען הָאט אִיהר אַריין גֶעלאזט<lb/>דִי צִיעג אוּן הַיינְטִיגֶעס יאָהר אַ בּאק!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0267_a">
+          <speaker>ירוחם</speaker>
+          <p><stage type="business">(צי עדעלמאן)</stage> אַ נַא—נַא!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0268_a">
+          <speaker>פישל</speaker>
+          <p>דֶער חַזָן פְרֶעגְט דִיך מַה שׁמֶך? מאַין בּאת? וואָס פאַר אַ רוּח הָאט<lb/>זיךְ אַהעָר געבּראכט!</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0269_a">
+          <speaker>עדעלמאן</speaker>
+          <p>עֶס טהוּט מִיר זֶעהְר לֵייד וואָס אִיך האָבּ אַייך גֶעשׁטֶערְט, דאָך<lb/>האפֶע אִיך דאָס מַיין בּעזוּך וִוירְד אַייך נִישְׁט אוּנאַנגענעהם זַיין אִיך בּין<lb/>צְווַאר נִישְׁט אַליהוּ הנְכִיא...</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0270_a">
+          <speaker>פישל</speaker>
+          <p>אַ חָכָם פוּן דֶער מַה נשתּנה! וואַס דֶען וואַלט אִיך גֶעוָואלְט מַיינֶען?<lb/>יאַ אַליהוּ הנביא? וואוּ אִיז דַיין בּארד אוּן פּאות? וואוּ אִיז דַיין<lb/>שׁטרֵיימֶעל?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0271_a">
+          <speaker>ירוחם</speaker>
+          <p>אִי נַא נַא אָ נַא!</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0272_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אִיך האבּ גֶעהֶערְט פוּן דֶער פערגֶע אַייער הרחֲמן הוּא ישׁלְח<lb/>לנוּ את אָליהוּ הנבִיא וִיבּשׁר לנוּ בּשוּרות טובות...</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0273_a">
+          <speaker>פישל</speaker>
+          <p>אִיהר הֶערְט עבּרִי? ווִי אַ געבּוירענער טֶערְק!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0274_a">
+          <speaker>ירוחם</speaker>
+          <p><stage type="delivery">(בייז)</stage> אִי נַא, נַא אָ!</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0275_a">
+          <speaker>עדעלמאן</speaker>
+          <p>נוּ ווֶען אִיך בּין אוֹיך נִישְׁט אַליהוּ הנְבִּיא, האבּ אִיך אַייך דָאך<lb/>געבּראַכט אַ בּשוּרה טוֹבָה!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0276_a">
+          <speaker>אלע</speaker>
+          <p>אַ בּשוּרה טוֹבָה?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0277_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אִיך בּרינג אַייך אַ גרוּס פוּן אַייער טאַכטער דְבוֹרֶה'לֶע!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0278_a">
+          <speaker>אלע</speaker>
+          <p>דְבוֹרֶה'לֶע?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0279_a">
+          <speaker>ירוחם</speaker>
+          <p>יאַכע גִיכער אַ בּענקיל!</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0280_a">
+          <speaker>יאכנע</speaker>
+          <p>ווֶער זֶענְט אִיהר ליעבּער הֶער? אוּן ווִי קוּמט אִיהר צוּ אוּנזער קִינְד<lb/>ליעבּער הֶער? פּלאטצען זִי ליעבּער הֶער!</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0281_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אִיך בּין קֵיין היזיגֶער אָבּער מַיין נָאמֶען וִוירְד אַייך אָפְשֵר<lb/>נִישְׁט פְרֶעמְד זַיין. אִיך הַייס פּראפעסאר עֶדֶעלְמַאן אוּן בּין ספּעציאַליסט<lb/>אִין אוִינֶענְקראנְקהַייט.</p>
+        </sp>
+        <pb n="28" facs="0028_OTgwNjYwMDE.111007916.jpg"/>
+        <sp who="#fishl" xml:id="Yudale_SP0282_a">
+          <speaker>פישל</speaker>
+          <p>עֵר אִיז קְרַאנְק אוֹיף דִי אוֹיגען?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0283_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אֵיין זָאנדערבּארע צוּפאַל הָאט מִיך צוּזאמען גֶעפִיהרְט מִיט<lb/>אַייער טאַכטער. אִיך האָבּ נֶעמליך פאַר אַיינִיגֶע יָאהר נָאך פּסח<lb/>מַיין מוּטֶער פֶערְלוִירֶען אוּן נאכדֶעם אִיך האָבּ אוֹיף אִיהרֶען גראבּ<lb/>דֶען קדִישׁ גֶעזאגט האבּ אִיך מִיר פארגענוּמען לכבוך מַיינֶער<lb/>זֶעלִיגֶען מוּטֶער אַיינע וואהלטהאַט צוּ בּעגעהען.</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0284_a">
+          <speaker>אלע</speaker>
+          <p>אַ וואָס?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0285_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אַיינע מצְוה צוּ טְהוּן אוּן דִי גֶעלֶעגֶענְהַייט האָט זִיך מִיר בּאָלד<lb/>דארגעבּאטען. אוֹיף דֶעם זעלבּען פרִיעדְהאף לִיענְט אוֹיך אַיין גְרויִסעֶר<lb/>מַאן אֵיין גֶעוויסֶער רבּי, רבּי...</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0286_a">
+          <speaker>ירוחם</speaker>
+          <p>מורְה מורינוּ הרַב ר' אָלחנן כּהן צדק, זכוּתו יגן עָלינוּ! נַא נַא?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0287_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אִיך בּין פערבּייגענאנגען יֶענֶעם הַיילִיגֶען גרוּבּ, אוּן וואָס האבּ<lb/>אִיך דאָרט ערבּליקט? אַ שְוַואכֶעס בּלאסעס מֶעדְכֶען!</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0288_a">
+          <speaker>יאכנע</speaker>
+          <p>וֶועה אִיז דֶער מאמֶען!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0289_a">
+          <speaker>ירוחם</speaker>
+          <p>אוּן אָך אִיז דֶעם טאָטען, אוּן לאָז זַיין שׁטִיל חזָן'טע, דֶערְצַיילְט<lb/>ווייטֶער הֶער הֶער הֶער פרֶעסֶער.</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0290_a">
+          <speaker>עדעלמאן</speaker>
+          <p>פּראפעסאר, אִיהְרֶע טרֶערֶען זֶענען זָא גֶעפלאסֶען איבּער<lb/>אִיהְרֶע בּלאַסע וואנְגֶען, דאָס עֶס מִיך הָאט. גֶערירט אִיך פרעֶג<lb/>זִי וואָס פֶעהלְט דִיר ליעבּעס קִינְד, בּיזטוּ אוּנגליקליך, אוּן האבּ<lb/>אִיהר דִיא פערזיכערוּנג געגעבּען דאַס אִיך וֶועל אִיהר הֶעלְפֶען<lb/>ווֶען נוּר מֶעגלִיך אִיז, מַיינֶע זאנְפטֶע וַוארְטֶען האבּען אוֹיף אִיהר<lb/>זָא אֵיינֶען גוּטען אַיינדרוּק גֶעמאכט, דאָס זִיא הָאט מִיר אַלעס<lb/>ערְצֶעהלְט.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0291_a">
+          <speaker>ירוחם</speaker>
+          <p>ווִי אַזוי, זִי וואר בּערייט זִיך צוּ אָפפערן פאַר אֵיין אונְגלִיקלִיכֶען<lb/>בּלינדען יתום, נוּן וואָס זאָגט אִיהר עפּעס צוּ אַזא גוּט אוּן פרוּם<lb/>קִינְד, הֶער פֶער פּראפעסאר.</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0292_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אַנשטאט, איבּער דיִעזעֶן קִינְדִישֶׁען אַבּערגלויבּען צוּ לאכֶען<lb/>וואר אִיך גֶערִירְט, פוּן אִיהרֶען אונשוּלדיגען גֶעזִיכְט, איבּערהויפּט פוּן<lb/>אִיהְרֶע זֶעלְטֶענֶע הינגעבּונג צוּ דֶען מַאן ווֶעלְכֶען אִיהר העֶרץ ליעבּט.<lb/>קוּרץ ענְטשׁלאסֶען האבּ אִיך אִיהר האַנד גֶעפאסט, אוּן אִיהר געזָאנט<lb/>הֶער מִיך אויִס גוּטעס קִינְד, הַיינְט גֶעשֶׁעהֶען נִישְׁט מֶעהר איבּער<lb/>נאטִירְלִיכֶע וואוּנדער, אָבּער ווֶען גאַט וִויל יעמאנְדֶען הֶעלְפֶען דָאן<lb/>וועהלְט עֵר אֵיינֶעם גוּטען מֶענְשֶען צוּם שׁלִיח, אוּן ווִי אִיך זֶעהֶע בּיזטו<lb/>אַיין גוּטעס קִינְד, דארוּם זאָלסטוּ אוֹיך אַיין גוּטער שליחַ זַײַן, דַיין<lb/>אוּנגליקליכער בּרייטיגאם זאָל גֶעהאלְפֶען וֶוערֶען אוּן אוֹיף<lb/>אַיין נאַטירליכען וועג, אִיך בּין נֶעמליך אוֹיגען אַרצט אוּן קוִים אִין<lb/>נוּר הִילְפֶע מֶעגלִיך, זָא וֶועל אִיך הִילְפֶע בּרינגען.</p>
+        </sp>
+        <pb n="29" facs="0029_OTgwNjYwMDE.111007917.jpg"/>
+        <sp who="#yerukhem" xml:id="Yudale_SP0293_a">
+          <speaker>ירוחם</speaker>
+          <p>אַ לעבּען אוֹיף אַייער קאַפּ הֶער פּראפעסאר.</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0294_a">
+          <speaker>עדעלמאן</speaker>
+          <p>בּעפאר אִיך בּין נוּר אַהער געקוּמען בּין אִיך אוֹיך דָארְט גֶעוֶועזֶען.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0295_a">
+          <speaker>ירוחם</speaker>
+          <p>בּיי ווֶעמֶען בּיים יוּדאלע.</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0296_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אוּן בּין אוִיסֶער מִיר פאַר שׁטוֹינען!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0297_a">
+          <speaker>ירוחם</speaker>
+          <p>ווִי הַייסְט אִיז עֵר חָלִילָה נִישְׁט מֶעהר צוּ הַיילֶען?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0298_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אִים גֶעגֶענְטַייל! זַיינֶע אוִיגֶענְקראנְקהַייט אִיזְט זאָ לֵייכְט דאָס<lb/>אִירְגֶענְד וֶועלְכֶער דאָקטאר וואַלט זִי לֵייכְט קוּרירען קֶענֶען. דָא מוּז<lb/>אֵיין בּעטרוּג פארְגֶעהֶען, יעמאַנד הָאט פִילֵייכט אִינְטֶערֶעסֶע דאס דֶער<lb/>יוּנגערמאן זאָל בּלינד בּלייבּען, אוּן הָאט אִיהם וואהרְשַׁיינְלִיך זאלְכֶע<lb/>דאָקטארען געבּראַכט וֶועלְכֶע האַבּען זיךְ מִיט גֶעלְד אָבּקויפען לאסֶען<lb/>אִיהם פִיר אוּנהיילבּאר צוּא ערְקלֶעהרֶען, יֶעצְט אָבּער בּין אִיך<lb/>דָא אוּן נִישְׁט פִיר גֶעלְד הֶערְגֶעקאמֶען. יאָ מַיינֶע פרֵיינְדֶע! בּאלד<lb/>וִוירְד דִיעזֶער יוּנגערמאן פאלְקאמֶען זעהעָן!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0299_a">
+          <speaker>ירוחם</speaker>
+          <p>אוֹי גוּטער שׁלִיח פוּן גָאט! זֶענְט אִיהר נִיט אָליהוּ הנבִיא אַליין אַזוי<lb/>זֶענְט אִיהר בּמקום אֶליהוּ הנְביא!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0300_a">
+          <speaker>פישל</speaker>
+          <p>בּמקום אֵליהוּ! גְרויִסעֶר ה' פּראפעסאר! אִיך האַבּ פְריִהעֶר<lb/>פֶערְגֶעסֶען צוּ הֶערְצֶען אוּן האבּ אַייך געזאַגט אַ שְוַוארְצֶער חָלוֹם<lb/>אוֹיף דַיין קאפּ וואזשֶׁע בּין אִיך שוּלדיג אִיך האָבּ גָאר נִישְׁט געוואוּסט?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0301_a">
+          <speaker>עדעלמאן</speaker>
+          <p>שאַן גוּט!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0302_a">
+          <speaker>פישל</speaker>
+          <p>נֵיין אִיך קאַן עֶס מִיר נִישְׁט מוֹחֵל זַײַן!</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0303_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אַלא וואָס ווילסטוּ?</p>
+        </sp>
+        <pb n="30" facs="0030_OTgwNjYwMDE.111007918.jpg"/>
+        <sp who="#fishl" xml:id="Yudale_SP0304_a">
+          <speaker>פישל</speaker>
+          <p>אִיך וִויל אַייך בּעטען מחִילְה.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0305_a">
+          <speaker>יאכנע</speaker>
+          <p>זאנְט מִיר וואוּ אִיז אוּנזער טֶעכטֶערִיל? וֶועה אִיז דֶער מאמֶען!</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0306_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אִיהר חָתָן הָאט זִיא נאָך דארְטֶען צוּריק געהאַלטען וַוייל<lb/>זִי אִיז נָאך זֶעהְר אוִיפגֶערֶעגט.<lb/><stage type="entrance">(אויפטריט אַלטעריל, קומט פרעהליך).</stage></p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0307_a">
+          <speaker>אלטעריל</speaker>
+          <p>אַ גוּט יוֹם טוֹב חַזָן!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0308_a">
+          <speaker>אלע</speaker>
+          <p>אַלטעריל?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0309_a">
+          <speaker>פריידעלע</speaker>
+          <p>אַלטעריל! אַלטעריל!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0310_a">
+          <speaker>ירוחם</speaker>
+          <p>נוּ וואָסעשע גֶעהט עֶס דִיך אָן הָא? דוּ מוֹיד! אִיך האבּ דָאך דִיר<lb/>עִפִּיס געזאַגט? נַא! וואָס אִיז עִפִּיס נֵייעס אַלטעריל?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0311_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך האָבּ אַייך געבּראַכט חרוסת.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0312_a">
+          <speaker>ירוחם</speaker>
+          <p>אִיצט האָט עֵר זִיך דֶערְמַאנְט אִין חרוסת, ווֶען מִיר האַלטען שׁוֹין<lb/>נָאך דִי קנֵיידלֶעך.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0313_a">
+          <speaker>אלטעריל</speaker>
+          <p>נוּ האָבּ אִיך געבּראַכט אפִיקומן.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0314_a">
+          <speaker>ירוחם</speaker>
+          <p>מִיר האַלטען שׁוֹין נָאך דֶעם בּענטשען.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0315_a">
+          <speaker>אלטעריל</speaker>
+          <p>נוּ האָבּ אִיך געבּראכט חד גדִיא.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0316_a">
+          <speaker>ירוחם</speaker>
+          <p>זאָג דוּ עזוּת פּנימ'על וואָס בּיזטוּ געקוּמען אוּן וואַס האָסְט דוּ<lb/>געבּראכט?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0317_a">
+          <speaker>אלטעריל</speaker>
+          <p>חד גדִיא אַ ציגַאלע, אַ ציגַאלע וואָס דֶער טַאטֶע הָאט גֶעקוִיפט<lb/>פאַר צְוֵויי גוּלדען אָבּער פֶערְקוִיפֶען וֶועט עֵר עֶס נִישְׁט פאַר אַלע<lb/>מִילִיאנֶען וַוייל דֶער טַאטֶע הָאט ליעבּ דאָס ציגַאלע, סְ'אִיז אַזוי פרוּם<lb/>ווִי אַ לֶעמֶעלֶע, גוּט ווִי אַ מלאָכיל, זיִס ווִי אַ מַיידֶעלֶע אוּן הַייסֶען הַייסְט<lb/>זִי דְבוֹרֶה'לֶע <stage type="business">(קישט זיך מיט פריידעלען).</stage></p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0318_a">
+          <speaker>פישל</speaker>
+          <p><stage type="delivery">(שרייט)</stage> חַזָן! <stage type="business">(ווייזט אויף זיי)</stage> עֵר האַט אַייך געבּראַכט דִי עֶלְטֶערֶע אוּן<lb/>שׁלִינְגט אַיין דִי יונְגֶערֶע!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0319_a">
+          <speaker>ירוחם</speaker>
+          <p>וואָס טהוּט אִיהר דָא בּיידע?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0320_a">
+          <speaker>אלטעריל</speaker>
+          <p>מִיר עָסען אַפיקומן!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0321_a">
+          <speaker>ירוחם</speaker>
+          <p>פְרֵיידֶעלֶע אִיך האבּ דִיר דָאך עפּיס אָנגעזאגט? אַצוּנד לאזְט דוּ<lb/>אַרויף דִי אוֹיגען ווֶען סְ'אִיז שׁוֹין נָאך דֶעם אפִיקומָן?</p>
+        </sp>
+        <pb n="31" facs="0031_OTgwNjYwMDE.111007919.jpg"/>
+        <sp who="#yakhne" xml:id="Yudale_SP0322_a">
+          <speaker>יאכנע</speaker>
+          <p>ירוּחם קוּם נאָר אַהער, וואָס בּעטסטוּ נִישְׁט דֶעם "שפוך" צוּם טִיש?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0323_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אִיך דאנְקע מַיינֶע פרֵיינְדֶע! אָבּער ווֶען אִיהר וויִלְט מִיר אַיין<lb/>גֶעפאלֶען טְהוּן לָאסְט מִיך מִיט אַייך צוזאַמען ענְדִיגֶען דֶעם סדְר<lb/>אֵיבּערהוֹיפּט הֶערֶע אִיך גֶערְנֶע דֶעם חד גַדיא.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0324_a">
+          <speaker>ירוחם</speaker>
+          <p>בּשמחה רבּה.<lb/><stage type="delivery">(זינגט)</stage></p>
+          <lg n="2">
+            <l>אַ יֶעדֶער יוּך פוּן דֶעם וויעגֶעלֶע</l>
+          </lg>
+          <lg>
+            <l>זִינְגְט דאָס לִיעד פוּן דֶעם צִיגֶעלֶע</l>
+          </lg>
+          <lg>
+            <l>חד גדִיא הַייסְט עֶס</l>
+          </lg>
+          <lg>
+            <l>אַ יֶעדֶער וַוייסְט עֶס</l>
+          </lg>
+          <lg>
+            <l>אַלט אִיז עֶס</l>
+          </lg>
+          <lg>
+            <l>אוּן דָאך נֵיי</l>
+          </lg>
+          <lg>
+            <l>דאָס אִיז פאַר אוּנז אַ שפּיעגעלע</l>
+          </lg>
+          <lg>
+            <l>אַ משל נֶעמְט אַייך דאָס צִיגֶעלֶע</l>
+          </lg>
+          <lg>
+            <l>גֶעדֶענְק⸗זְשֶׁע יוּדעלע דאָס שֶׁעהנֶע לִידֶעלֶע</l>
+          </lg>
+          <lg>
+            <l>זִינְג דאָס אִימֶער פרֵיי.</l>
+            <stage type="delivery" who="#kor">(קאהר ביז).</stage>
+          </lg>
+          <lg>
+            <l>חאטשֶׁע מִיר יוּדען, דִי עַם סגוּלה</l>
+          </lg>
+          <lg>
+            <l>גֶעוֶועזֶען זֶענֶען מִיר רֵייך אַמאָל</l>
+          </lg>
+          <lg>
+            <l>נוּר דארְך אוּנזער זִינְד פִיעלֶע</l>
+          </lg>
+          <lg>
+            <l>גֶעשׁטראפט זֶענֶען מִיר אָהן אַ צָאהל</l>
+          </lg>
+          <lg>
+            <l>ווֶער קֶען פֶערְגֶעסֶען דִי גְרויִסעֶ פּלאנע</l>
+          </lg>
+          <lg>
+            <l>פוּן שפּאניענס אינקוויזיציאָנען</l>
+          </lg>
+          <lg>
+            <l>אָבּער זֶעהט נוּר הַייט צוּ טאגֶע,</l>
+          </lg>
+          <lg>
+            <l>זֶעהט וואָס גָאט קֶען טְהוּן</l>
+          </lg>
+          <lg>
+            <l>עֶס קוּמט אַ מכּה יעָנקעלע</l>
+          </lg>
+          <lg>
+            <l>אוּן מאַכט שפּאניען אַ קרֶענְקֶעלֶע,</l>
+          </lg>
+          <lg>
+            <l>דִי גַאנצע פּלאטע</l>
+          </lg>
+          <lg>
+            <l>גֶעמאכט אַ בּלאטע</l>
+          </lg>
+          <lg>
+            <l>שפּאניען לִיעגט אִין דֶער עָרד</l>
+          </lg>
+          <lg>
+            <l>גאטעניוּ וואָס הָאט דאס דִי ווערְטה</l>
+          </lg>
+          <lg>
+            <l>וואָס דִי יוּדעלעך אִין אַמעריקא טהוּן</l>
+          </lg>
+          <lg>
+            <l>דִי יוּדעלעך דאָרט זיִנְגעֶן חד גדִיא.</l>
+            <stage type="business">(העָרט)</stage>
+          </lg>
+          <lg>
+            <l>עֶס אִיז זַיי דאָרט גֶעלונְגֶען חד גדִיא</l>
+          </lg>
+          <lg>
+            <l>מֶען קֶען זַיי דאָרט נִישְׁט צווינְגֶען חד גדִיא</l>
+          </lg>
+          <lg>
+            <l>אוּן שפּאניען וֶוערְט צוּ שפּרינגען חד גדִיא.</l>
+            <stage type="delivery" who="#kor">(קאהר ביז)</stage>
+          </lg>
+        </sp>
+        <pb n="32" facs="0032_OTgwNjYwMDE.111007920.jpg"/>
+        <sp who="#freydale" xml:id="Yudale_SP0325_a">
+          <speaker>פריידעלע</speaker>
+          <lg>
+            <l>אוֹיך מִיר פרוֹיען</l>
+          </lg>
+          <lg>
+            <l>אִיהר קֶענְט אוּנְז טרוֹיען</l>
+          </lg>
+          <lg>
+            <l>האבּען צָרוֹת אַ פוּל קריעגֶעלע</l>
+          </lg>
+          <lg>
+            <l>דֶעם פּאק יסוּרים</l>
+          </lg>
+          <lg>
+            <l>אוֹי טראגָען מִיר אִיהם</l>
+          </lg>
+          <lg>
+            <l>נָאך פוּן וויעגֶעלֶע.</l>
+          </lg>
+          <lg>
+            <l>דֶער טַאטֶע קרֶענְקט זִיך,</l>
+          </lg>
+          <lg>
+            <l>דִי מאמֶע בּענגט זִיך,</l>
+          </lg>
+          <lg>
+            <l>אַ הארבּ דִי מוִיד אוֹיף דִי פּלייצע,</l>
+          </lg>
+          <lg>
+            <l>נדְן קלֵיידֶער, ווִי גֶעמְט מֶען כּסדֶר</l>
+          </lg>
+          <lg>
+            <l>גֶעווַאלְד נִיט מִיר אַ עצה.</l>
+          </lg>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0326_a">
+          <speaker>אלטעריל</speaker>
+          <lg>
+            <l>קוּמט אַ בּחוּר אַ שֶׁעהנֶענְקֶער.</l>
+          </lg>
+          <lg>
+            <l>אוּן זאַנט צוּם מַיידֶעלֶע דִי קלֵיינֶענְקִי.</l>
+          </lg>
+          <lg>
+            <l>דוּ מַיין טאבּילע, זַיי מַיין ווייבּעלע.</l>
+          </lg>
+          <lg>
+            <l>דוּ בּיזט מִיר בּעשערט.</l>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0327_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>גאַטעניוּ וואָס הָאט דאָס פאַר אַ ווערְטה.</l>
+          </lg>
+          <lg>
+            <l>וואַס מִיר מַיידֶעלֶעך נאכהֶער טְהוּן הֶערְט נוּר הֶערְט.</l>
+          </lg>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0328_a">
+          <speaker>פריידעלע</speaker>
+          <lg>
+            <l>בּיים טישׁ מִיט אַ בּעל הבּית'עלע. חד גדִיא.</l>
+          </lg>
+          <lg>
+            <l>אַ קניאַש יש אַ שפּעסעלע. חד גדִיא.</l>
+          </lg>
+          <lg>
+            <l>אוֹיף אַ הוִיך זֶעסֶעלֶע. חד גדִיא.</l>
+          </lg>
+          <lg>
+            <l>זִיצְט אַ קִינְד ווִי אַ פּעסעלע. חד גדִיא.</l>
+          </lg>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0329_a">
+          <speaker>פישל</speaker>
+          <lg>
+            <l>דאם זעלבּע ווייבּעלע.</l>
+          </lg>
+          <lg>
+            <l>דאָס שׁטִילֶע טייבּעלע.</l>
+          </lg>
+          <lg>
+            <l>אַ יאָהר שפּעטער קוּקט אַייך צוּ.</l>
+          </lg>
+          <lg>
+            <l>ווִי זִי נֶעמט דִי לֵייצֶעס.</l>
+          </lg>
+          <lg>
+            <l>וֹיף דֶעם מאן'ס פּלייצעס.</l>
+          </lg>
+          <lg>
+            <l>דֶער גַאַנצער ספּאדעק וֶוערְט זִי.</l>
+          </lg>
+          <lg n="1">
+            <l>דֶער מַאן, דֶער בּהמה.</l>
+          </lg>
+          <lg>
+            <l>אוֹיף אִיהם פאַלט אַ אִימְה.</l>
+          </lg>
+          <lg>
+            <l>עֵר צִיטֶערְט פאַר אִיהר, אוֹיף אַ יעדֶען שְׁרִיט.</l>
+          </lg>
+          <lg>
+            <l>וִויל עֵר וואָס זאָגען.</l>
+          </lg>
+          <lg>
+            <l>חאפּט זִי אִיהם שְׁלָאָגעֶן.</l>
+          </lg>
+          <lg>
+            <l>עֶס אִיז אִיהם וויסט אַ יֶעדֶער מינוּט.</l>
+          </lg>
+          <lg>
+            <l>אָ-זָא מַאן אַ צִיעגאלֶע.</l>
+          </lg>
+          <lg>
+            <l>דַארְף מֶען זיִנְגעֶן דאָס נִיגאלֶע.</l>
+          </lg>
+          <lg>
+            <l>אוֹי ר' זבדִיה.</l>
+          </lg>
+          <lg>
+            <l>אִיהר זֶענְט אַ חד גדִיא.</l>
+          </lg>
+          <lg>
+            <l>אִיהר וַוייסְט נִישְׁט, וואָס צוּ טְהוּן.</l>
+          </lg>
+          <lg>
+            <l>נוּ אִיז דֶען דאָס אַזוי רֶעכט.</l>
+          </lg>
+          <lg>
+            <l>אַ ווייבּ זאָל שְׁלָאָגעֶן.</l>
+          </lg>
+          <lg>
+            <l>אַ מַאן אִין פּלאגען.</l>
+          </lg>
+          <lg>
+            <l>אוּן קֵיין מִיטֶעל צוּ דֶעם הָאט עֵר נִישְׁט.</l>
+          </lg>
+          <lg>
+            <l>אוֹיף דֶעם האלְז אַ שׁטרִיקֶעלֶע. חד גדִיא.</l>
+          </lg>
+          <lg>
+            <l>אוּן פִיהר זִי גלֵייך צוּם בּריקאלע. חד גדִיא.</l>
+          </lg>
+          <lg>
+            <l>פּויק אִין וואַסער רִיקאלֶע. חד גדִיא.</l>
+          </lg>
+          <lg>
+            <l>געפּאטערט אַ צרה אַ שׁטִיקאלֶע. חד גדִיא.</l>
+          </lg>
+          <lg>
+            <l>אוֹי חד גדִיא.</l>
+          </lg>
+          <p>—<lb/><stage type="setting">פערוואַנדלונג</stage>.<lb/><stage type="setting">(פאָרזאַל ביי וואַלדמאן). — וואַלדמאן קוּמְט מִיט ראָזע)</stage></p>
+        </sp>
+        <pb n="33" facs="0033_OTgwNjYwMDE.111007921.jpg"/>
+        <pb n="34" facs="0034_OTgwNjYwMDE.111007922.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0330_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אויִס, אֵיין עֶנְדֶע! אֵיין אַיינְצִינֶער פערפלוּכטער צוּפאַל הָאט<lb/>אִין אֵיין מינוּט אוּמגעווארפען אַלע מַיינֶע פּלעהנע פוּן יאָהרען לאַנְג.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0331_a">
+          <speaker>ראזע</speaker>
+          <p>פָאטֶער! ווִי דִיצִיטֶערְסט אִין אַלע גלִיעדֶערְן, דַיינֶע אוֹיגען גלִיהֶען<lb/>פאַר צארְן, וואַס פֶעהלְט דִיר?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0332_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואָס מִיר פֶעהלְט? בּאלד בּעקוּמט יוּדאלע, וִויעדֶער זַיינֶע<lb/>אוֹיגען אוּן דִי פרֶעגסט מִיך וואָס מִיר פֶעהלְט?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0333_a">
+          <speaker>ראזע</speaker>
+          <p>פָאטֶער! פרֵייט עֶס דִיך גאָר נִישְׁט דאָס יוּדאלע וֶוערְט וִויעדֶער<lb/>קורִירְט?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0334_a">
+          <speaker>וואלדמאן</speaker>
+          <p>פרֵייען זאָל עֶס מִיך? ווייסטוּ דֶען נִישְׁט דאָס אִין דיִעזעֶן<lb/>אויגענבּליק וואָס עֵר הייַבּט אָן צוּ זעֶהן, ווערְד עֵר דֶער אַייגענטהימער<lb/>פוּן דֶעם גַאנְצעֶן רייכטהוּם, אוּן מִיט אַייך בּיידע, מַיינֶע קיִנְדעֶר, מִיר<lb/>דערפוּן אוּנס פארבּרייטען טארבּעס אוּם אִין דִי הַייזֶער אַרוּמצוּגעהן.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0335_a">
+          <speaker>ראזא</speaker>
+          <p>אִיז דאָס ווירְקלִיך מַיין פאַטער אמת! מוּזֶען מִיר דֶען אַלעס<lb/>פֶערְלִיערֶען? אַלעס?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0336_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אַלעס! אַלעס! נוּר אֵיין מִיטֶעל אִיז נָאך דָא אוּם אוּנז צוּ<lb/>רֶעטֶען.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0337_a">
+          <speaker>ראזא</speaker>
+          <p>יאָ, גיבּט עֶס דָאך נָאך אַ מִיטֶעל?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0338_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אוּן דאַס מִיטֶעל אִיז נוּר אִין דַיין הַאנְד אַליין!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0339_a">
+          <speaker>ראזא</speaker>
+          <p>זאָג עֶס מִיר פאַטער! וואַס וֶועל אִיך דֶען פאַר דַיינִיט ווֶעגֶען<lb/>נִישְׁט טְהוּן?</p>
+        </sp>
+        <pb n="35" facs="0035_OTgwNjYwMDE.111007923.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0340_a">
+          <speaker>וואלדמאן</speaker>
+          <p>רָאזַא! יוּדאלע מוּז דַיין מַאן ווערְדֶען!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0341_a">
+          <speaker>ראזא</speaker>
+          <p>מַיין מַאן?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0342_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואַס האסטוּ דִיך אַזוי דֶערְשׁראקֶען, געֶפֶעלְט עֵר דִיר נִישְׁט?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0343_a">
+          <speaker>ראזא</speaker>
+          <p>דוּ וַוייסְט דָאך פָאטֶער, דאַס עֵר אוּן אִיך זֶענֶען פוּן קִינְדְהֵייט אָהן,<lb/>אַזוי ווִי שׁוועסטֶער אוּן בּרוּדער.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0344_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נוּ, אוּן אַצינד, זֶענְט אִיהר ערוואקסֶען ווִי מַאן אוּן פרוֹי.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0345_a">
+          <speaker>ראזא</speaker>
+          <p>אָבּער פָאטֶער! וואָס רעדסטוּ דערפוּן מִיט מִיר! עֵר אִיז דָאך דִי<lb/>הויפּט זאַכע, אוּן עֵר, ווייסטוּ דָאך ווִי פערליעבּט עֵר אִיז אִין דבּורְה'לֶען.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0346_a">
+          <speaker>וואלדמאן</speaker>
+          <p>פערליעבּט? עֵר אַ בּלינדער, נִישְׁט גֶעזֶעהֶען, פערליעבּט? נֵיין!<lb/>דאָס אִיז קֵיינֶע ליעבּע. עֵר ליעבּט זִי נוּר בּלויס אויִס דַאנְק⸗<lb/>בּארקייט. נאָכדעם אָבּער ווֶען זַיינֶע אוֹיגען ווֶעלֶען זִיך עפנֶען, קאנסטוּ<lb/>מַיין קִינְד אִיהם מַאכֶען, עֵר זאָל זִיך אָן דִיר ווירְקלִיך פערליעבּען,<lb/>לֵיידֶענְשׁאפטלִיך פערליעבּען. צִינְד אָן אִין זַײַן העֶרץ אֵיין פֵייער פוּן<lb/>לֵיידֶענְשׁאפט, מַאך אִיהם פֶערְגֶעסֶען אִין דֶען פערפלוּכטען חַזָן'ס<lb/>טאָכטער, אוּן זַיי ווֶעלֶען מִיר שׁוֹין מִיט גֶעלְד בּעלאהנען, זַיין ווייבּ<lb/>אָבּער דַארְף קֵיין אַנדערע וֶוערֶען, נוּר דוּ! נוּ פאַר וואָס ציטערסטוּ?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0347_a">
+          <speaker>ראזא</speaker>
+          <p>וֶועה! דאַס אִיז זֶעהְר בּיטער! אָה! אִין וואַס פאַר אַיינֶע וִוילְדֶע<lb/>פרֵיידֶע דַיינֶע אוֹיגען בּליצען! פאַטער! אִיך ערְקֶען דיךְ נִישְׁט מֶעהר!<lb/>לאכֶען, קעָנסטוּ נָאך לאכֶען? ווֶען דוּ מַאכְסְט פּלעהנע ווִי אַזוי אֵיין<lb/>אונשוּלדיגעס וועזֶען צוּ פערדערבּען, צוּ שׁטִירְצֶען דִיעזֶעס טרֵייע<lb/>מֶעדְכֶען, וועלְכֶעס האַט מִיט גֶעפאהר פוּן אִיהר אֵייגֶען לעבּען דאָס<lb/>זייניגֶע גֶערֶעטֶעט? זִי וֶועלְכֶע נוּר אִיהר וִוירְד עֵר האבּען זַיין אוֹיגען<lb/>ליכְט צוּ פֶערְדאנְקֶען? זִי זוּכסטוּ צוּ פערדערבּען, אוּן אִיך זאָל דִיר<lb/>דאצוּ בּעהילפליך זַײַן? נֵיין! דאָס וִוירְד נִיע גֶעשֶׁעהֶען! פָאטֶער, נָאך<lb/>אַיין מאָל איבּערלעגע, בּעדענקע!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0348_a">
+          <speaker>וואלדמאן</speaker>
+          <p>איבּערלעגען? אִיך האבּ שׁוֹין גענוּג איבּערלעגט, אַצינד<lb/>האָסטוּ צוּ איבּערלעגען, דוּ האָסְט צַייט צוּ וועהלֶען אִיהר אוּנגליק,<lb/>אָדער אוּנזער אוּנגליק! <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0349_a">
+          <speaker>ראזא</speaker>
+          <p>גָאלד! פערפלוּכטעס גאָלד! מֶענְשֶען פערוואנדעלסטוּ אִין בֶּעס⸗<lb/>טִיען! פוּן מלאָכים מאכסטוּ טַייפֶעל, אָה גָאט! נוּר דוּ אַליין וַוייסְט<lb/>אַצינד מייַן צערבּראכען העֶרץ! וואָס זאָל אִיך טהוּן? הֶעלְף מִיר<lb/>גָאטעניוּ! הֶעלְף מִיר! <stage type="exit">(אָב)</stage><lb/><stage type="business">(יודאלע געפיהרט פון פראָפֿעסאָר).</stage></p>
+        </sp>
+        <pb n="36" facs="0036_OTgwNjYwMDE.111007924.jpg"/>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0350_a">
+          <speaker>עדעלמאן</speaker>
+          <p>נוּן מַיין יוּנְגֶער פרייַנד, גֶעלונְגֶען אִיז דִי אפּעראציאן, אוּן<lb/>בּאלד נֶעם אִיך אַראבּ אוֹיך דִיעזֶע בּינדע, אָבּער אִיך ווידערהאַלע עֶס<lb/>דִיר, אִיך בּין נוּר אַיין שְוַואכֶעס ווערְקצַייג, אַלעס צוּ פֶערְדאנְקֶען<lb/>האסטוּ נוּר אִיהר!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0351_a">
+          <speaker>יודאלע</speaker>
+          <p>יאָ אִיהר, אוּן אוֹיך אַייער גֶעטלִיכֶע קוּנסט, אָה ווִי מאַכְט דאָס<lb/>גלִיק מַיין העֶרץ צִיטֶערְן, בּאלד ווערְדֶע אִיך זִי זעֶהן מַיין טַייערֶע<lb/>דְבוֹרֶה'לֶע, בּאלד אִיז דִי שֶׁעהנֶע ווֶעלְט מַיין, דֶען שֶׁעהן מוּז זִי דָאך<lb/>זַיין, ווֶען אִין אִיהר פִינְדֶעט זִיך זָא אַיינע טרֵייע זֶעֶעלֶע...</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0352_a">
+          <speaker>עדעלמאן</speaker>
+          <p>יאָ מַיין פרייַנד, דעריבּער זאָלסטוּ דיִעזעֶן ענְגֶעל קֵיינְמָאל<lb/>בּעטריגען, דֶען יֶעדֶע טרֶער וואַס זִי וִוירְד אֵיין מאַל פֶערְגִיעסֶען דוּרך<lb/>דַיין שוּלד, וִוירְד ווִי אֵיין פֶערְצֶעהרֶענְד פֵייער בּרענען אוֹיף דַיין זֶעֶעלֶע<lb/>מאכֶע זִי גלִיקלִיך מַיין פרייַנד, מאכֶע זִי גלִיקלִיך.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0353_a">
+          <speaker>יודאלע</speaker>
+          <p>דאַס הֶעכסטֶע גלִיק וואָס נוּר ליעבּע געבּען קֶען, דאָס זאָל זִי<lb/>בּיי מִיר געפוּנען <stage type="entrance">(וואלדמאן קומט).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0354_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אָ יוּדאלע, מַיין ליעבּעס מַיין טַייערֶעס קִינְד, בּאלד בּאלד<lb/>וועסטוּ וִויעדֶער זֶעהֶען פאַר דִיר דִי לִיכטִיגֶע ווֶעלְט, בּאלד וועסטוּ<lb/>אוֹיך זֶעהֶען דַיין פֶעטֶער, דַיין צווייטֶען פָאטֶער. אָה ווִי דַאנְק אִיך דִיר<lb/>גָאט וואָס אִיך האָבּ עֶס ערלעבּט.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0355_a">
+          <speaker>יודאלע</speaker>
+          <p>דאִנקֶע ליעבּער פֶעטֶער פִיר דַיין טרֵיישׁאפט.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0356_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אַייך הֶערְר פּראפעסאר האַבּען וִויר דאַס גְרויִסעֶ גלִיק צוּ<lb/>פֶערְדאנְקֶען, מִיט וועלְכֶעם קֶענֶען מִיר עֶס אַייך אָבּ דאנְקֶען.</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0357_a">
+          <speaker>עדעלמאן</speaker>
+          <p>בּיי אֵיין עהרְלִיכֶען דאָקטער אִיזְט דֶער גרֶעסטֶער לאהן, דִי<lb/>היילוּנג אַליין!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0358_a">
+          <speaker>וואלדמאן</speaker>
+          <p>קוּמט הֶערְר פּראפעסאר, דֶער זַאאל אִיז שׁוֹין פוּל מִיט געסְט.<lb/>דוּ יוּדַאלֶע בּלייבּ נָאך דָא, מַיין טאָכְטֶער וִויל מִיט דִיר רעֶדעֶן.<lb/><stage type="exit">(פראָפֿעסאָר מיט וואלדמאן אב).</stage><lb/><stage type="entrance">(אוופטריט ראָזאַ).</stage></p>
+        </sp>
+        <pb n="37" facs="0037_OTgwNjYwMDE.111007925.jpg"/>
+        <sp who="#raza" xml:id="Yudale_SP0359_a">
+          <speaker>ראזא</speaker>
+          <p>יוּדאַלע, דַיין וואוּנש אִיז גֶעשֶׁעהן, דְבוֹרֶה'לֶע אוּן אִיהְרֶע גאַנצע<lb/>פאמִילִיע קוּמען בּאלד רֵייך גֶעקלֵיידֶעט אַזוי ווִי דוּ האָסְט גֶעוָואלְט.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0360_a">
+          <speaker>יודאלע</speaker>
+          <p>פִיער מִיך אִיהר ענְטגֶענֶען, אִין שטיעבּ וִויל אִיך פאַר אִיהר<lb/>קנִיען, קִישֶׁען וִויל אִיך אִיהְרֶע צארְטֶע פוּס, וֶועלְכֶע זִי הָאט מַיינֶעט<lb/>ווֶעגֶען גֶעמארְטֶערְט. אָה רָאזַא, מַיין שׁוועסטֶער, אִיך דַארְף דִיך אַזוי<lb/>רוּפען, נִישְׁט וַואהְר?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0361_a">
+          <speaker>ראזא</speaker>
+          <p>יאָ געליעבּטער בּרוּדער!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0362_a">
+          <speaker>יודאלע</speaker>
+          <p>בּאלד נעמְט מַיינֶע נאַכט אֵיין עֶנְדֶע, בּאלד וֶועל אִיך זִי זעהעָן מַיין<lb/>דְבוֹרֶה'לֶע, נִישְׁט וַואהְר זִי אִיז אַזוי שֶׁעהן ווִי גוּט.<lb/><stage type="business">(וואַלדמאן איז נאָך פריהעָר אריינגעקומען).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0363_a">
+          <speaker>וואלדמאן</speaker>
+          <p><stage type="delivery">(לאַכט)</stage> דאָס וִוירְד זַײַן אֵיין שֶׁעהנֶער שפּאס, אִיך האָבּ שׁוֹין<lb/>דָא דאריבּער גֶערֶעדְט מִיט אוּנְזעֶרעֶ גֶעסט, מאנְכֶע גלויבּען מאנְכֶע<lb/>זָאָגען עֶס אִיז נִישְׁט מֶעגלִיך. קוּרץ אוֹיף דֶעם הַיינְטִיגען טאָג פוּן דַיינֶער<lb/>גענעזוּנג אַזוי פרֶעהלִיך צוּ מַאכֶען ווִי נאָר, האָבּ אִיך עֶס אַזוי אַראנזירט<lb/>דאָס צווישֶׁען אַלע מיידְלעך פוּן אוּנזערע גֶעסט וִוירְד זִי אוֹיך זייַן.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0364_a">
+          <speaker>יודאלע</speaker>
+          <p>מַיין דְבוֹרֶה'לֶע?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0365_a">
+          <speaker>וואלדמאן</speaker>
+          <p>יאָ דַיינֶע בּעשטימטע כּלה! נוּן קוּמט דֶער אויגענבּליק ווֶען<lb/>דֶער פּראפעסאר נֶעמְט דִיר אַרונטער דַיין בּינדע פוּן דַיינֶע אוֹיגען, דוּ<lb/>זֶעהסט פאַר דִיר פֶערְשִׁיעדֶענֶע גֶעשׁטאלְטֶען, דַיינֶע אוֹיגען זוּכען זִי....</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0366_a">
+          <speaker>יודאלע</speaker>
+          <p>אוּן אִיך וֶועל זִי בּאלד געפוּנען?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0367_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נאנְץ גֶעוויס, דֶערְקֶענֶען מוסטוּ זִי אִין אִיהְרֶע פֵייערִיגֶע אוֹינֶען<lb/>אֵין אִיהְרֶע ליעבּעספאלע בּליקען, אִין אִיהר פּנים וועלְכֶעס שׁטראהלְט<lb/>פוּן שֶׁעהנְהַייט אוּן געזוּנדהייט, נִישְׁט וַואהְר.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0368_a">
+          <speaker>יודאלע</speaker>
+          <p>יאָ, אִיך זֶעה זִי אִין מַיין פאנְטאזִיע אַלס דִי שֶׁעהנְסטֶע פוּן אַלע,<lb/>אִיך געפוּן זִי נָאך פְרִיעֶר אַיידֶער זִי וִוירְד אִיהר נאָמען אויקרוּפען אִיך<lb/>צִיהֶע זִי צוּ מַיין בּרוּסט, אוּן אִין גֶעגֶענווארְט פוּן אַלע וֶועל אִיך<lb/>זִי ערְקלֶעהרֶען אַלס מַיינֶע זיעסע כּלה. קוּמט, הַיינְט אִיז דֶער שֶׁעהנ⸗<lb/>סטֶער טאָג אִין מַיין לעבּען, קוּמט.<lb/><stage type="exit">(אַלע אב).</stage><lb/><stage type="setting">פערוואַנדלונג.</stage><lb/><stage type="setting">(פרעכטיגער זאַאַל)</stage>,<lb/><stage type="setting">(קאָהר, אַלטעריל, פֿריידע, יְרוּחָם, יאַכנע, דְבוֹרֶה'לֶע דערנאָך אִיסֶר, אַלֶע</stage><lb/><stage type="setting">אוִיסגֶעפוצט, שְׁפֶּעטֶער יודאַלע מִיט אַ אוֹיגען בִּינְדֶע, פראָפֿעסאָר עֶדֶעלְמַאן,</stage><lb/><stage type="setting">וואַלדמאן, ראָזאַ).</stage></p>
+        </sp>
+        <pb n="38" facs="0038_OTgwNjYwMDE.111007926.jpg"/>
+        <sp who="#freydale" xml:id="Yudale_SP0369_a">
+          <speaker>פריידעלע</speaker>
+          <p>אַך ווִי אונגעדוּלדיג אִיך וַוארְט אוֹיף אִיהם דָא<lb/>אִיך זאָל שׁוֹין דערלעבּען דִי שֶׁעָה.</p>
+        </sp>
+        <sp who="#kor" xml:id="Yudale_SP0370_a">
+          <speaker>קאהר</speaker>
+          <p>זִי זאָל שׁוֹין דערלעבּען דִי שֶׁעָה.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0371_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך זאָג דִיר עֶס קלאפּט מִיר מַיין העֶרץ פאַר פרֵיידֶע<lb/>אַזוי זָאל אִיך אִיהם זעֶהן געזוּנדטערהייט</p>
+        </sp>
+        <sp who="#kor" xml:id="Yudale_SP0372_a">
+          <speaker>קאהר</speaker>
+          <p>אַזוי זאָל עֵר אִיהם זעֶהן געזוּנדטערהייט.</p>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0373_a">
+          <speaker>ביידע</speaker>
+          <p>דאַס וֶועט טאָקע, אוֹי אוֹי טאָקע זַיין אַ וואונְדֶער</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0374_a">
+          <speaker>אלטעריל</speaker>
+          <p>העָרט אִיך בּעהט אַייך וואָס זאנְט אִיהר קיִנְדעֶר<lb/>זֶעהֶען וֶועט פּלוּצים אַ בּלינדער.</p>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0375_a">
+          <speaker>ביידע</speaker>
+          <p>אִיך זאָג אַייך מֶעהר נִיט חלעבּען אַז גוּט זָאוואָס צוּ זֶעהֶען<lb/>מִיט אִיהם זִיך פרֵייען זאָגט אַלע יאה.</p>
+        </sp>
+        <sp who="#kor" xml:id="Yudale_SP0376_a">
+          <speaker>קאהר</speaker>
+          <p>יאה שֶׁעהן.</p>
+        </sp>
+        <sp who="#beyde" xml:id="Yudale_SP0377_a">
+          <speaker>ביידע</speaker>
+          <lg>
+            <l>אַזא שׁמְחה צוּ דערלעבּען</l>
+          </lg>
+          <lg>
+            <l>אַזא שׁמְחה צוּ דערלעבּען.</l>
+          </lg>
+          <lg>
+            <l>אַ רופא מוּמחה וֶועט אוּנז דִי פרֵיידֶע גֶעבּען</l>
+          </lg>
+          <lg>
+            <l>אַזא שׁמְחה פאַר טַאטֶע מאמֶע פרֵייען זָאלען מִיר זִיך</l>
+          </lg>
+          <lg>
+            <l>אַלע צוּזאמען</l>
+          </lg>
+          <lg>
+            <l>ייט גרֵייט... צוּם טאנְץ</l>
+          </lg>
+          <lg>
+            <l>טאנְצֶעשֶׁע אַלע טאנְצֶעשֶׁע אַלע! צוּם טאנְץ</l>
+          </lg>
+        </sp>
+        <pb n="39" facs="0039_OTgwNjYwMDE.111007927.jpg"/>
+        <sp who="#kor" xml:id="Yudale_SP0378_a">
+          <speaker>קאהר</speaker>
+          <lg>
+            <l>אַזא שׁמְחה... (ביסס)</l>
+          </lg>
+          <lg>
+            <l>אַלע צוּ זָאַמעֶן</l>
+          </lg>
+          <lg>
+            <l>פרֵייען אַלע זאָלֶען מִיר זִיך שֶׁעהן</l>
+          </lg>
+          <lg>
+            <l>אוּנזער יוּדא'לע וֶועט בּאלד זעֶהן</l>
+          </lg>
+          <lg>
+            <l>אָמֵן.</l>
+          </lg>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0379_a">
+          <speaker>עדעלמאן</speaker>
+          <p>נוּן אִין גָאטעס נָאמֶען אַרונטער מִיט דֶער בּינדע <stage type="business">(נעמְט אראָבּ</stage><lb/><stage type="business">לאנְגזאם דִי בִּינְדֶע).</stage></p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0380_a">
+          <speaker>יודאלע</speaker>
+          <p><stage type="business delivery">(איין אויגענבּליק ווי געבלענדעט דערנאָך שרייט ער אויס)</stage> ליכְט, ליכְט,<lb/>אָה בּלייבּ בּיי מִיר ווייטֶער דוּ זִיעסֶע גֶעטלִיכֶע קְוֶועלֶע, פערשוואוּנדע<lb/>קֵיינְמָאל פוּן דִי שֶׁעהנֶע לִיכטִיגֶע ווֶעלְט. דוּ, דוּ בּיסט וִויעדֶער מַיין...<lb/>מַיין... <stage type="business">(קניעט)</stage> אָה אִיך דַאנְק דִיר גָאט <stage type="business">(אויף)</stage> אוּן אַצינד לָאזְט מִיך צוּם<lb/>עֶרְשְׁטעֶן מאָל זֶעהֶען וואַס פִיר אֵיין ענְגֶעל גאָט האַט מִיר צוּ גֶעשִׁיקט<lb/><stage type="business">(זוכט צווישען אלע פֿרויען)</stage> אִיך האָבּ עֶס פְריִהעֶר געזאגְט, דאָס צווישֶׁען<lb/>טוֹיזֶענְד פרוִיען ווערְדֶע אִיך זִי דֶערְקֶענֶען <stage type="business">(געהט צו צו ראָזא)</stage> אוּן דוּ בּיסט<lb/>עֶס, זָאָגען מִיר דַיינֶע אוֹיגען דאָס דוּ בּיסט עֶס, רוּפט מַיינֶע זֶעֶעלֶע<lb/><stage type="business">(אומארמט זי)</stage> זֶעהט מַיינֶע צוּקוּנפטיגע פרוֹי פאַר גָאט אוּן פאַר אַייך<lb/>אַלע <stage type="exit">(געהט מיט איהר אב).</stage></p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0381_a">
+          <speaker>דבורה</speaker>
+          <p>גִיבּט אֵיין ווילְדֶען גֶעשׁרֵיי אָה דַיין, חַא חַא חַא, דערנאָך אֵיין יאַמער<lb/>גֶעוויין פֿאַלט אוֹיף ירוחם אִין אונְמאכט, אַלע שׁטוִיגֶען פֿערלייגען דִי הֶענְד.</p>
+        </sp>
+        <stage type="setting">(פארהאנג).</stage>
+        <trailer>(ענדע פון צווייטען אקט).</trailer>
+        <pb n="40" facs="0040_OTgwNjYwMDE.111007928.jpg"/>
+      </div>
+      <div type="act" n="3" xml:id="Yudale_Act3">
+        <head>דרִיטֶער אַקט.</head>
+        <stage type="setting">(געוועהנליך צימער ביי הערצעלע, שפאנישע וואנד, איסר קומט).</stage>
+        <sp who="#iser" xml:id="Yudale_SP0382_a">
+          <speaker>איסר</speaker>
+          <p>חִי חִי חִי דֶער אייבּערשטער זִיצְט אויבּען אוּן אִיז מזוֵג זויגִים הִינְטֶען<lb/>אַזא קבּצנישע מוֹיד ווִי דֶעם חַזָען'ס טאָכְטֶער האַט זִיך אַיינגערעדְט אַז<lb/>זִי אִין שׁוֹין יוּדאלע'ס כּלה. חִי חִי חִי, זאָג נִישְׁט האפּ האפּ בּיז דוּ<lb/>שפּרינגסט נִישְׁט אַריבּער, פאַר דֶעם בּלינדען יוּדאלע בּיזטוּ גֶעווֶען<lb/>אַ כּלה, אָבּער פאַר דֶעם זֶעהֶענְדִיגֶען אִיז ר' הִירְצֶעלֶעס טאָכטער<lb/>בּיליכער, מן הסתּם דבורה'לֶע בּיזטוּ מִיר בּעשעהרט, הלוואִי זאָלסטוּ<lb/>אַזוי לעבּען מִיט מִיר, דאָרט לִיענְט זִי דִי גֶעוועזֶענֶע כּלה דְבוֹרֶה'לֶע<lb/>שׁוֹין מֶעהר אַלס צְוֵויי שֶׁעָה אַז דִי גֶעסט זֶענֶען זיךְ צֶענאנְגֶען אוּן זִי הָאט<lb/>נָאך נִישְׁט אוִיפגֶעהֶערְט צוּ חלְשֶׁ'ען, בֶּע, בֶּע, וֶועסְט איבּערקוּמען<lb/>דְבוֹרֶה'לֶע, עֶס וֶועט אַוועק געֶהן אַ טאָג אַ וָואך, אַ חודֶשׁ וועסטוּ קוּמען<lb/>צוּם שֵׂכֶל, אַ יוּדישע טאָכטער מוּז האבּען אַ מַאן, אִיז נִישְׁט יוּדאלע<lb/>אִיז אִיסֶר, וואַס אִיז דֶער חִילְק? אמת יוּדאַלע אִיז טאקִי יוּנְגֶער פוּן<lb/>מִיר, דֶערְפַאר אָבּער בּין אִיך כָּשֶׁרֶ'ער פוּן אִיהם, הלוַאי זאָלט עטץ<lb/>אַזוי לעבּען מִיט מִיר, הָא, הָא ר' הֶערְצֶעלֶע גֶעהט אַהער מִיט זַײַן<lb/>בּוּכהאַלטער אִיך בּין נֵייגֶערִיג צוּ הֶערֶען וואַס זַיי ווֶעלֶען רעֶדעֶן.<lb/><stage type="business">(פֿערשטעקט זיך אונטער דעם שפאנישען ווענטיל דאס פובליקוּם זאָל איהם האלב זעהן).</stage><lb/><stage type="entrance">(אויפטריט וואלדמאן מיט בערמאן).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0383_a">
+          <speaker>וואלדמאן</speaker>
+          <p>גלויבּע מִיר בּערמאן דאַס דִיזֶער צוּפאל פוּן יוּדאלע מִיט מַיין<lb/>טאָכְטֶער הָאט מִיך אַליין איבּערראשט, אִיך אַליין האבּ דאָס אוֹיך<lb/>נִישְׁט ערווארְטֶעט.</p>
+        </sp>
+        <pb n="41" facs="0041_OTgwNjYwMDE.111007929.jpg"/>
+        <sp who="#iser" xml:id="Yudale_SP0384_a">
+          <speaker>איסר</speaker>
+          <p>הלואי זאָלסטוּ אַזוי לעבּען אָהן מִיר.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0385_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אוּן וואַס ווייטֶער וֶועט זַיין ווִי קֶענֶען מִיר אַצינד דֶערְפון רעֶדעֶן<lb/>דוּ האָסְט דָאך גֶעזֶעהֶען אִין וואַס פאַר אַ צוּשטאנד יוּדאלע<lb/>בּעפינדעט זִיך.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0386_a">
+          <speaker>איסר</speaker>
+          <p>דוּ מִיט דַיין הוִיז-דאקטאר האבּען אִיהם שׁוֹין גוּט פערזארגְט.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0387_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נוּן יאָ, עֶס אִיז קֵיין וואוּנדער, זייַן פּלעצליכער איבּערנאַנג פוּן<lb/>פִינְסטֶערְנִישׁ אִין ליכְט אִין דיזֶע אויפרענוּנג, דאָס אַלעס צוּזַאמען הָאט<lb/>אִיהם גֶעלֵיינְט.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0388_a">
+          <speaker>איסר</speaker>
+          <p>אַנידער לֶעגֶען זאָל דִיך אַ חָאלירע אָהן מִיר!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0389_a">
+          <speaker>וואלדמאן</speaker>
+          <p>פאָר דֶער הַאנְד ליעבּער בּערמאן פֶערְנאכלֶעסִיגֶע נִישְׁט דַיין<lb/>פּפליכט. דִי 5000 גוּלדען וֶועלְכֶע אִיך האָבּ דִיר פריהעָר געגעבּען דִי<lb/>מוּזען נָאך הַיינְט דעפּאנירט וֶוערֶען האָסטוּ דאָס גֶעלְד בּיי דִיר?</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0390_a">
+          <speaker>בּערמאן</speaker>
+          <p><stage type="business">(צויגט דעם בריעף⸗טאש)</stage> דָא אִיז דאָס גֶעלְד.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0391_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אַלזָא גֶעה אוּן בּעזארגע, אִיך וֶועל דעֶרְוַוייל אַהינגעהן אוּן<lb/>זעֶהן וואַס יוּדאלע מאַכט אָפשר אִיז אִיהם שׁוֹין עפּיס בּעסער <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0392_a">
+          <speaker>איסר</speaker>
+          <p>גֶעה אוּן פֶערְגֶעס דָא אַ פוּס!</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0393_a">
+          <speaker>בערמאן</speaker>
+          <p><stage type="business">(לעֶגט דֶעם בּרִיעף⸗טאש אוֹיף דֶעם טִיש מִיט דֶעם אִיבֶּערְצִיהֶער קוּקְט נאָך</stage><lb/><stage type="business">וואָלדמאַנען)</stage> דִיזֶער צוּפאל פוּן יוּדאלע מִיט דַיין טאָכְטֶער הָאט אוֹיך דִיך<lb/>איבּערראשט, נֵיין עֶס אִיז אַ לִיגֶענְט, ווֶער וַוייסְט פאַר ווֶעלְכֶען<lb/>נידערטרעכטיגֶען פּלאן דוּ האָסְט דֶעם בּלינדען דֶעם קאפּ פֶערְדְרֶעהט<lb/>אוּן וואָס עֶס אִיז גֶעשֶׁעהן האסטוּ יאָ ערווארְטֶעט.</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0394_a">
+          <speaker>איסר</speaker>
+          <p>הַלְוַאִי זאָלסטוּ אַזוי לעבּען מִיט מִיר.</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0395_a">
+          <speaker>בערמאן</speaker>
+          <p>יאָ אוֹיף אַזוי אַ גֶעלְדְגֶערִיגֶען מַאן ווִי דוּ בּיזט אִיז אַלעס צוּ<lb/>גלויבּען אוּן דָאך וֶועה דִיר אוּן אַייך אַלע ווֶען מַיינֶע שׁוועסטֶער וֶועט<lb/>אוּנרעכט גֶעשֶׁעהן, אֵיהר לעבּען האַט זִי דֶעם געליעבּטען צוּם אָפּפער<lb/>גֶעבּראַכט אוּן דאַס זעלבּע וֶועט אוֹיך דֶער בּרוּדער פאַר זַײַן שׁוועסטֶער<lb/>טְהוּן <stage type="business">(נעמְט אַלעס וועק פוּן טִיש גִיר דאָס גֶעלְד פעֶרְגעֶסְט עֵר</stage>)</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0396_a">
+          <speaker>איסר</speaker>
+          <p><stage type="business">(ציטערט)</stage> אוֹי עֵר האַט פֶערְגֶעסֶען דִי בּריעף טאשֶׁע-מִיטְ'ן גֶעלְד<lb/>5000 גוּלדען אוֹי דִי שׁלִימְלְדִיגֶער בּוּכהאלטער, צוּליעבּ אַ שׁוועסטֶער<lb/>פעֶרְגעֶסְט מֶען אִין דֶעם וואַס אִיז טהַייערֶער פוּן טַאטֶע מאמֶע? אוֹי<lb/>5000 גוּלדען אִיך מוּז עֶס נֶעמען אִין... <stage type="business">(וויל צוגעהן ערשרעקט צוריק)</stage> אוֹי ר'<lb/>הֶערְצֶעלֶע קוּמט, געֶהן זאָל עֵר נוּר אוֹיף קִילֶעס אָהן מִיר. <stage type="business">(פֶערְשׁטֶעקט</stage><lb/><stage type="business">זִיך צוּרִיק).</stage><lb/><stage type="business">(וואלדמאן מיט א פלעטעל אין דער האנד).</stage></p>
+        </sp>
+        <pb n="42" facs="0042_OTgwNjYwMDE.111007930.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0397_a">
+          <speaker>וואלדמאן</speaker>
+          <p>עֵר לִיענְט ווִי בּערוישט, דאִנק דֶער מֶעדִיצִין פוּן מַיין הוִיז⸗<lb/>דאקטאר, איינהאַלטען מוּז אִיך אִיהם אִין דִיזֶען צוּשטאנד בּיז אִיך מִיט<lb/>אֵיהר זִיכֶער בּין, אָה וֶועלְכֶע מִיטֶעל וֶועל אִיך דאָן נִישְׁט אַיינווענדען<lb/>אוּם דֶעם רייכטהוּם פוּן מַיינֶע העָנד נִישְׁט אַרויסצוּלאזען <stage type="business">(ערְבּלִיקט דִיא</stage><lb/><stage type="business">בּרִיעף⸗טאש)</stage> וואָס זעֶה אִיך דִיא בּריעף טאש מִיט 5000 גוּלדען האָט עֵר<lb/>פֶערְגֶעסֶען? <stage type="business">(נעמט דאס און רוּפט אין די טהיר)</stage> בּערמאן! בּערמאן! דָאך<lb/>ווארְטֶע. אֵיין גֶעדאנְק! פאַר וואַס זאָל אִיך נִישְׁט דִי גֶעלֶענֶענְהַייט<lb/>אוִיסנִיצֶען בּעסער פאַר מִיר? דאָס עֵר הָאט דאַס גֶעלְד דָא פֶערְגֶעסֶען<lb/>וַוייסְט דָאך קֵיינֶער נִישְׁט נוּר אִיך זעלבּסט?</p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0398_a">
+          <speaker>איסר</speaker>
+          <p>נוּ וואוּ בּין אִיך?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0399_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיך קֶען אִיהם אַלזא מַאכֶען אַ בּלבּוּל דאָס עֵר הָאט דאָס<lb/>גֶעלְד פאַר זִיך בּעהאַלטען. יאָ, אִיך מַאך אִיהם פאַר אַ גנב דאדוּרך<lb/>וֶועל אִיך דֶעם חַזן'ס משפַּחה אִין אוּנגליק שׁטִירְצֶען אוּן דאַס וֶועט<lb/>יוּדאלען מֶעהר אוּן מֶעהר פֶערווייטֶערֶען פוּן זַיי יאָ אִיך טהוּע<lb/>עֶס. <stage type="business">(לעֶגט דאָס גֶעלְד אִין טאש, אִיסֶר קוּמְט לאנְגזאם אפִיער פוּן דֶער שׁפאנִישֶׁער</stage><lb/><stage type="business">וואַנד אוּן נֶעמְט דאָס אַרויס)</stage> דִיזֶער בּריעף-טאש מִיט גֶעלְד בּלייבּט<lb/>בּיי מִיר. <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#iser" xml:id="Yudale_SP0400_a">
+          <speaker>איסר</speaker>
+          <p>הלִואִי זאָלסטוּ אַזוי לעבּען אָהן מִיר, דִיזֶער בּריעף-טאש מִיט גֶעלְד<lb/>בּלייבּט בּיי מִיר הלוַאי זאָל אִיך אַזוי לעבּען אָהן דִיר, הגונֵב מן הגנב<lb/>אִיז פּטוּר הַלְוַאִי זאָלֶען מִיר אַלע אַזוי לעבּען אָהן אִיהם. <stage type="exit">(אָב)</stage><lb/><stage type="entrance">(אויפטריט דבורה'לע געפיהרט פֿוּן ירוחם יאכנע).</stage></p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0401_a">
+          <speaker>דבורה</speaker>
+          <p>וואַס נָאך טהוּן מִיר, אִיהר פִיהרְט מִיך אַהיים?</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0402_a">
+          <speaker>יאכנע</speaker>
+          <p>וואַס ווילסטוּ? דָאך אַזוי בּאלד וֶועט אַ וַדְאִי יוּדאלען אוֹיך בּעסער<lb/>וֶוערֶען אוּן הַיינְט נאךְ וֶועט אִיה"שׁ זַיין דִי תּנָאִים בּיי אַייך.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0403_a">
+          <speaker>ירוחם</speaker>
+          <p><stage type="delivery">(שרייט)</stage> עֶס דַארְף זַיין, עֶס מוּן זַיין, זַיין כּלה דַארְף קֵיין אַנדערע זַיין<lb/>ווי דוּ אַליין.</p>
+        </sp>
+        <pb n="43" facs="0043_OTgwNjYwMDE.111007931.jpg"/>
+        <sp who="#dvorele" xml:id="Yudale_SP0404_a">
+          <speaker>דבורה</speaker>
+          <p><stage type="delivery">(שלוכצענד)</stage> אָ נֵיין נֵיין, מִיר אִיז עֵר פֶערְלארֶען פִיר עָוויג.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0405_a">
+          <speaker>יאכנע</speaker>
+          <p>וואָס, דוּ ווילְסט נִישְׁט?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0406_a">
+          <speaker>ירוחם</speaker>
+          <p>דוּ רֶעדְסט פוּן הִיטץ.</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0407_a">
+          <speaker>דבורה</speaker>
+          <p>אָ נֵיין, אִיך ווֵייס וואָס אִיך רֶעד, ווֶען זַיינֶע אוֹיגען האַבּען זִיך צוּם<lb/>עֶרְשְׁטעֶן מאַל גֶעֶעפֶענְט אוּן עֵר הָאט דֶערְזֶעהן רָאזא'ן הָאט עֵר אויִס<lb/>גערוּפען, דוּ בּיזְט עֶס, וַוייל אִין זייֵנעֶר פאַנטאזיע הָאט עֵר זִיך אִיהר<lb/>בּאלד פארְגֶעשׁטֶעלְט, זִי אִיז גֶעווֶען זַיין טרוים, זַיין ליעבּע אוּן ווֶען עֵר<lb/>זאָל יֶעצְט קוּמען מִיר זַײַן האַנד אַנבּיטען, וֶועט עֵר עָס נִישְׁט טהוּן אויִס<lb/>ליעבּע זוּנדערן אויִס דאנקבּארקייט, אוּן דאַס דַארְף אוּן וִויל אִיך נִישְׁט<lb/>אַנגעהמען.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0408_a">
+          <speaker>יאכנע</speaker>
+          <p>זאָל אִיך קְרֶענְקֶען אויבּ אִיך האבּ דִיך פֶערְשׁטאנֶען, עֵר הָאט<lb/>הִירְצֶעלֶעס טאָכטער געֶזָאָגְט דוּ בּיזט עֶס, עֵר האַט געבּעך אַ טעוּת<lb/>גֶעהַאט, עֵר האַט גֶעמַיינְט אַז דוּ בּיסט עֶס, נוּ?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0409_a">
+          <speaker>ירוחם</speaker>
+          <p>עֵר האַט יִעֶנעֶר גֶעזאנְט דוּ בּיזְט עֶס וַוייל עֵר הָאט גֶעמַיינְט אַז דוּ<lb/>בּיזט עֶס, אָבּער אַצוּנד וַוייסְט עֵר דָאך שׁוֹין אַז טאקִי נוּר דוּ בּיזט עֶס.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0410_a">
+          <speaker>יאכנע</speaker>
+          <p>אַדרבּה, אִיך פרעֶג דִיך אַליין טאָכְטֶער, דוּ האָסְט אִיהם זַיין לעבּען<lb/>גֶערֶעטֶעט, דוּ האָסְט אִיהם זַיינֶע אוֹיגען גֶעֶעפֶענְט אוּן אַצוּנד ווילסטוּ<lb/>אִיהם נָאר צוּ לאזֶען אֵיין אַנדערע מויד אַ גוּטע קרֶענְק פאַר וואָס?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0411_a">
+          <speaker>דבורה</speaker>
+          <p>אָה קרֶענְקט מִיך נִישְׁט, אִיהר וויִלְט אָדער אִיהר קאנְט מִיך גָאר<lb/>נִישְׁט פֶערְשׁטֶעהן.</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0412_a">
+          <speaker>יאכנע</speaker>
+          <p>טאקִי נִישְׁט, האָסְט אִיהם פּלוּצים פֵיינְד בּעקוּמען?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0413_a">
+          <speaker>דבורה</speaker>
+          <p>עוויג אוּן עוויג וֶועל אִיך אִיהם ליעבּען, אָבּער עָבּען דִיע ליעבּע<lb/>הַייסְט מִיך נִישְׁט אִיהם זַיין גלִיק צוּ צֶערְשׁטֶערֶען אִיך האָבּ נוּר דֶעם<lb/>בּלינדעָן געֶקעֶנְט בּעגליקען — אָבּער נִישְׁט דֶעם זֶעהֶענְדֶען.<lb/><stage type="entrance">(אויפטריט וואלדמאן, אויף די לעצטע ווערטער אריינקוּמענד)</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0414_a">
+          <speaker>וואלדמאן</speaker>
+          <p>יאָ מַיין קִינְד, דוּ בּיזט זֶעהְר גֶערעכט, דֶען עֶרְשְׁט פְריִהעֶר<lb/>פאַר אַיינֶע סעקוּנדע אִיז יוּדאלע'ן עטוואָס בּעסער גֶעווֶען האָבּ אִיך<lb/>אִיהם גֶעפרֶעגט אויבּ עֵר וִויל דִיך זֶעהֶען האָט עֵר דיזֶע ווערְטֶער<lb/>געאנטווארטעט: אָנקעל! אִיך ליעבּע רָאזא'ן אִיך פֶערְגֶעטֶערֶע זִי, אָבּער<lb/>צוּם חַזן'ס טאַכטער פִיהלֶע אִיך מִיך פֶערְפלִיכטֶעט, אִיך מוּז אִיהר מייַן<lb/>הַאנְד אַנבּיעטען, ווֶען אוֹיך מַיין העֶרץ דאדוּרך בּרעכען זאָל, דאָס<lb/>ווארֶען זַיינֶע ווערְטֶער, יֶעצְט מַיין קִינְד הֶענְגט עֶס נוּר פוּן דִיר אַב.</p>
+        </sp>
+        <pb n="44" facs="0044_OTgwNjYwMDE.111007932.jpg"/>
+        <sp who="#dvorele" xml:id="Yudale_SP0415_a">
+          <speaker>דבורה</speaker>
+          <p>אִיך האבּ נוּר אֵיין וואוּנש, דאָס אַייער טאַכטער זאָל דאָס זַיין פאַר<lb/>דֶעם זֶעהֶענְדֶען וואַס אִיך וואר פִיר דֶעם בּלינדען, קוּמט פִיהרְט<lb/>מִיך אַהיים.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0416_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נוּר אַיין אויגענבּליק, דוּ בּיזט אֵיין עדְלֶעס קִינְד אוּן אִיך וֶועל<lb/>דִיר צַיינֶען דאָס אִיך אֵיין עֶדֶעלְמַאן בּין <stage type="business">(שטעקט די האַנד אין דער טאשע)</stage><lb/>וואוּ, וואָס אִיז דאַס? וואוּ אִיז פּלעצליך דאַס גֶעלְד פֶערְשׁוואונְדֶען?<lb/><stage type="business">(זוּכט)</stage> אָבּער דָאך זוּכען וֶועל אִיך עֶס שפּעטער <stage type="business">(פון איין אנדערע טאשע)</stage><lb/>דָא מַיין ליעבּעס קִינְד, האסטוּ אֵיין טשֶׁעק אוֹיף 5000 גוּלדען, דאמִיט<lb/>זָאלסטוּ דִיר דַיינֶע צוּקוּנפט זִיכֶערְן אוּן דאמִיט מִיר זאָלען אַלס גוּטע<lb/>פרייַנד שַׁיידֶען, וועסטוּ גיטִיגסט דאָס פּאפּיער אוּנטערשרייבּען.<lb/><stage type="business">(גיבט איהר א פעדער).</stage></p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0417_a">
+          <speaker>ירוחם</speaker>
+          <p>פּא-פּא-פּאוָואלע, קוּק נוּר אָן עֵר אִיז שׁוֹין פֶערְטִיג, וואָס אִיז דאָס<lb/>פאַר אַ פּאפּיער?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0418_a">
+          <speaker>וואלדמאן</speaker>
+          <p>עֶס אִיז בּלויס אַזוי דִי פארְם פוּן קויפלֵייטֶע, שרַייבּען אַלעס<lb/>וואָס וֶוערְט אָבּ גֶערֶעדְט, דאָס אִיז נוּר אַיין בּעשטעטינוּנג אוֹיף דֶעם<lb/>וואָס זִי זעלבּסט הָאט עֶרְשְׁט געֶזָאָגְט דאָס זִי טהוּט זִיך פוּן אִיהם<lb/>פרֵייווילִיג ענְטזאגֶען אוּן דאַס זִי הָאט דאָס גֶעלְד ערהאַלטען, אוּן אַזוי<lb/>ווייטֶער, אִיהר פֶערְשְׁטֶעהְט דָאך שׁוֹין אַליין.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0419_a">
+          <speaker>ירוחם</speaker>
+          <p>אויבּ אִיך פֶערְשְׁטֶעה — גֶעוויס פֶערְשְׁטֶעה אִיך, עֶרְשְׁט יֶעצְט<lb/>פֶערְשְׁטֶעה אִיך.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0420_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואָס נוּן וואַס פֶערְשְׁטֶעהְט אִיהר?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0421_a">
+          <speaker>ירוחם</speaker>
+          <p>אַז אַלעס וואָס אִיהר הָאט דָא דֶערְצַיילְט פוּן יוּדאלע'ן מִיט אַייער<lb/>טאָכְטֶער אוּן מִיט דֶער פֵייערִיגֶע ליעבּע אִיז שֶקֶר וכזב עֶס הָאט זִיך<lb/>נִישְׁט אָנגעהויבּען אוּן נִישְׁט אויסגעלאָזט..</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0422_a">
+          <speaker>וואלדמאן</speaker>
+          <p>פרֶעכֶער קבּצן מִיט ווֶעמֶען רֶעדְט אִיהר?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0423_a">
+          <speaker>ירוחם</speaker>
+          <p>מִיט אַ לִיגנֶער, אַ פּלאטקע מַאכעֶר, אִיהר לויִפְט פוּן דַאנֶען אַהין<lb/>אוּן פוּן דאָרט אַהער, דִי הוִיט צִיטֶערְט אוֹיף אַייך, אִיהר הָאט מוֹרָאָ<lb/>אַז יוּדאלע זאָל אַייך נִישְׁט מאַכען אוֹיס קאפּעליש מַאכעֶר.</p>
+        </sp>
+        <pb n="45" facs="0045_OTgwNjYwMDE.111007933.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0424_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נאָרישער קבּצן!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0425_a">
+          <speaker>ירוחם</speaker>
+          <p>קלוּנער סוחר מַיינֶער, אִיהר האַט גֶעמַיינְט אוּנז קבּצנִים צוּ איבּער⸗<lb/>ראשֶׁען מִיט גֶעלְד, מִיט גֶעלְד וויִלְט אִיהר אָבּ קויִפעֶן אִיהר נשמה<lb/>אִיהר ליעבּע? סוחר'ן מִיט מַיין קִינְד'ס לעבּען, אוֹיף דֶעם קֶען אִיך<lb/>אַייך נוּר ענְטפֶערְן טפוּי.<lb/>וַואלְדְמאן: הִינאוִיס! אָדער פעֶרְגעֶסְט אִיהר אַז אִיהר זֶענְט בּיי מִיר<lb/>אִין שטוּב.</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0426_a">
+          <speaker>ירוחם</speaker>
+          <p>אָט דאַס אִיז אַייער גלִיק, וועָן נִישְׁט וואָלט אִיך אַייך גֶעוויזֶען דאָס<lb/>אִיך בּין אַ חַזֶן מִיט נָאטֶען אוּן קֶען צַיילֶען טאקטֶען <stage type="business">(הַייבט דִי האַנד אוּן</stage><lb/><stage type="business">וִויל אִיהם שְׁלָאָגעֶן).</stage></p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0427_a">
+          <speaker>יאכנע</speaker>
+          <p><stage type="business">(רייסט איהם וועק)</stage> ירוּחם...</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0428_a">
+          <speaker>ירוחם</speaker>
+          <p>דאָס קִינְד אִיז קְרַאנְק, וַוארְט אִין דרוִיסֶען מִיט דֶעם קִינְד אוּן אִיך<lb/>וֶועל געֶהן בּרענגען אַ וועגֶעלֶע.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0429_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיך גיבּ אַייך מַיין וואָגען <stage type="business">(רופט)</stage> פהיליפּ!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0430_a">
+          <speaker>ירוחם</speaker>
+          <p>מוֹחֵל, מוֹחֵל, אִיך פֶערְלַאנְג פוּן אַייך קֵיין טובות נִישְׁט, פהיליפּ,<lb/>אִיך האָבּ דִיך אִין דֶער עֶרְד מִיט דַיין בּעל-הבּית אוּן מִיט דַיין פֶערְד<lb/>אוּן וואַנעֶן, הַלְוַאִי וָואלְט אַייך אַלע גֶעווֶען דֶער רוּח געֶקעֶנְט! <stage type="exit">(אָב)</stage></p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0431_a">
+          <speaker>יאַכנע</speaker>
+          <p>זַייד אִיהם מוֹחֵל, עֵר אִיז אֵיין בּעל כּעסן! אַ יאָ? נֵיין? אִיהר וֶועט<lb/>אִיהם נִישְׁט אָבּזאגען חָלִילָה פוּן חזנוּת, אוּן אוּנזערן בּערמאן אוֹיך<lb/>נִישְׁט?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0432_a">
+          <speaker>וואלדמאן</speaker>
+          <p>זֶעהט אִיך בּין נִישְׁט אַזוי שְׁלעֶכְט ווִי אַייער מַאן, דֶענְקט אַייך<lb/>אִיך בּין אַפילוּ נִישְׁט בּעז, דֶען עֵר אִיז דָאך אַ חַזָן, אוּן אַ חַזן אִיז גֶע⸗<lb/>וועהנְלִיך אַ נאאר!</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0433_a">
+          <speaker>יאכנע</speaker>
+          <p>לאַנְג לעבּען זאָלט אִיהר, אַ שֶׁעהנֶעם דַאנְק!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0434_a">
+          <speaker>וואלדמאן</speaker>
+          <p>גֶעהט אַלזא ליעבּע פרוֹי, אוּן זאָגְט אִיהם, אַז עֵר בּרויךְ קֵיין<lb/>וואַגֶען, מַיינֶער שְׁטֶעהט אִיהם צוּר פערפינוּנג! גֶעהט גוּטע פרוֹי, אִיהר<lb/>קֶענְט אַייער קִינְד דָא צוּרִיק לאזֶען!</p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0435_a">
+          <speaker>יאכנע</speaker>
+          <p>אַ שַׁיינֶעם דַאנְק, אִיך גֶעה שׁוֹין! <stage type="exit">(אָב).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0436_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נוּר מִיט דִיר זֶעלְבְּסְט לאָזט זִיך רעֶדעֶן אֵיין וואָרט! זאָג דָאך<lb/>זעלבּסט ליעבּעס קִינְד, האָבּ אִיך גֶעמַיינְט מִיט דֶעם דִיך אָבּצוּקויפען<lb/>דוּ האָסְט דָאך יוּדאלען אַזוי ווִי אַזוי ענְטזאגט? נִישְׁט וַואהְר?<lb/><stage type="entrance">(בערמאן שטירצט אריין)</stage></p>
+        </sp>
+        <pb n="46" facs="0046_OTgwNjYwMDE.111007934.jpg"/>
+        <sp who="#berman" xml:id="Yudale_SP0437_a">
+          <speaker>בערמאן</speaker>
+          <p>מַיין גָאט!</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0438_a">
+          <speaker>דבורה</speaker>
+          <p>בּערמאן מַיין בּרוּדער וואַס אִיז גֶעשֶׁעהן?</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0439_a">
+          <speaker>בֶּערְמַאן</speaker>
+          <p>הֶערְר וואלְדְמאן דִי פיִנְף טוֹיזֶענְד גוּלדען...</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0440_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נוּן?</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0441_a">
+          <speaker>בערמאן</speaker>
+          <p>דִי פֶעהלֶען מִיר!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0442_a">
+          <speaker>וואלדמאן</speaker>
+          <p><stage type="delivery">(אפארט)</stage> מִיר פֶעהלֶען זַיי אוֹיך, וַוייסְט דֶער טַייפֶעל ווִי אִיך<lb/>האָבּ זַיי פֶערְלֵייגט <stage type="delivery">(לויט)</stage> וואָס הַייסְט זַיי פֶעהלֶען דִיר?</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0443_a">
+          <speaker>בערמאן</speaker>
+          <p>זאָל אִיך זִי האבּען אוֹיף דֶעם וועג פֶערְלוִירֶען? דָאך נֵיין, עֶס<lb/>אִיז נִישְׁט מֶעגלִיך! ווֶער אִיז דָא גֶעווֶען!?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0444_a">
+          <speaker>וואלדמאן</speaker>
+          <p>דַיין שׁוועסטֶער דַיינֶע עֶלְטֶערְן זֶענֶען דָא גֶעוֶועזֶען, זאנְסט<lb/>קֵיינֶער.</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0445_a">
+          <speaker>בֶּערְמַאן</speaker>
+          <p>הֶערְר וַואלְדְמאן, אִיהר מאַכט אַייך גֶעוויס אַ שפּאַס מִיט מִיר<lb/>אִיהר אַליין הָאט גֶעוויס דאָס גֶעלְד געפוּנען, אוּן אִיהר וויִלְט מִיר<lb/>נִישְׁט אויסזאגֶען, וַוייל אִיהר וויִלְט מִיך בּעשטראפען פִיר מַיינֶע<lb/>נאכלֶעסִיגקֵייט! יאָ, אִיך האבּ פֶערְדִיענְט אַ שׁטראפֶע! בּעשטראפט<lb/>מִיך מִיט וואַס אִיהר וויִלְט, נוּר נֶעמְט מִיר נִישְׁט הֶערוִיס דִי נְשָמָה<lb/>פאַר שׁרֶעק!</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0446_a">
+          <speaker>דבורה</speaker>
+          <p>גְרויִסעֶר גָאט! וואַס אִיז דאָס פאַר אֵיין נֵייעס אוּנגליק!</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0447_a">
+          <speaker>בערמאן</speaker>
+          <p>שׁרֶעק דִיך נִישְׁט מַיינֶע טַייערֶע שׁוועסטֶער! אִיך ווֵייס זִיכֶער<lb/>דאַס אִיך האָבּ עֶס הִיעֶר ליגֶען לאסֶען!<lb/>וַואלְדְמאן: <stage type="delivery">(אַפאַרט)</stage> אַיינע בּעסערע גֶעלֶענֶענְהַייט קֶען אִיך מִיר נִישְׁט ווינְשֶׁען!</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0448_a">
+          <speaker>בערמאן</speaker>
+          <p>נִישְׁט וַואהְר הֶערְר וַואלְדְמאן, אִיהר אַליין הָאט דאָס גֶעלְד?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0449_a">
+          <speaker>וואלדמאן</speaker>
+          <p>דאָס הַייסְט דוּ מַאכְסְט מִיך פאַר אַ גנְב?</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0450_a">
+          <speaker>בערמאן</speaker>
+          <p>בּעהייטע גָאט! אִיך מַיין נוּר דאַס אִיהר מאַכט אַ שפּאַס מִיט<lb/>מִיר.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0451_a">
+          <speaker>וואלדמאן</speaker>
+          <p>יאָ, מִיר זאָגען עֶס דַיינֶע אוינֶען, דאָס דוּ האָסְט דאַס גֶעלְד<lb/>פִיר דִיר בּעהאלטען!</p>
+        </sp>
+        <pb n="47" facs="0047_OTgwNjYwMDE.111007935.jpg"/>
+        <sp who="#berman" xml:id="Yudale_SP0452_a">
+          <speaker>בערמאן</speaker>
+          <p>הֶערְר וַואלְדְמאן, אִיהר האַט מִיר שׁוֹין גרֶעסֶערֶע סוּמען גֶעלְד<lb/>אָנפערטרויט!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0453_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אָבּער דִיעזֶעס מאל האָסטוּ נִישְׁט געֶקעֶנְט בּעזיעגען דַיין רֵייץ,<lb/>האסטוּ דִיך פִילֵייכט גֶעוָואלְט ענטשוּלדיגען דוּרך דֶעם וואָס דוּ האָסְט<lb/>אָנגעווארען אַזא רֵייכֶען שׁוואגֶער! בּערמאן שׁוֹין וִויל אִיך זֶעהֶען דאָס<lb/>גֶעלְד צוּריק! גֶעשׁטֶעהֶע אוּן בּערייהע אוּן אִיך וֶועל דִיר פֶערְצַייהֶען,<lb/>דָא הָאט עֶס דַיינֶע שׁוועסטֶער געהעָרט. נוּן, ווִי אִיז דאָס גֶעלְד? וואָס<lb/>דוּ צֶעגֶערְס נָאך? <stage type="business">(פאָקט איהם)</stage> גנְב! פהיליפּ!</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0454_a">
+          <speaker>בערמאן</speaker>
+          <p>הֶערְר וַואלְדְמאן, אַלעס וואָס אִיך קֶען טהוּן אִיז נָאך צוּ שׁווערֶען<lb/>בּיי אַלעם הַיילִיגֶען, דאַס אִיך האבּ דִי וואהרְהַייט געֶזָאָגְט, דאַס אִיך בּין<lb/>אונשוּלדיג! לָאזְט מִיך, לָאזְט! אִיך וֶועל נָאך אַ מאל זוּכען אוֹיף דֶעם<lb/>וועג, אוּן זאָל אִיך דאָס נִישְׁט געפוּנען, אַזוי בּלייבּ אִיך אַייער שקלאווע<lb/>מַיין לעבּען לאַנְג, נוּר גנב זאָלט אִיהר מִיך נִיט רוּפען <stage type="business">(קניעט)</stage> בּיים<lb/>עָוויגען גָאט! אִיך בּין קֵיין גנְב!</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0455_a">
+          <speaker>דבורה</speaker>
+          <p>מַיין בּרודער אִיז דִי עהרְלִיכקֵייט אַליין, לָאסְט אִיהם נָאך אַ מאל<lb/>זוּכען.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0456_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אָה נֵיין, ווֶער וַוייסְט ווִי פִיעל נָאך גנְבּות דוּ האָסְט בּענאנגען<lb/>אוּן אִיך האבּ מִיך נִישְׁט צוּגעקוּקט? אַצינד אָבּער וֶועל אִיך אֵיין<lb/>אוּנטערזוּכוּנג מַאכֶען <stage type="business">(רוּפֿט)</stage> פהיליפּ, שנעֶל בּרענג מִיר אַ הֶער דִי<lb/>פּאליציי.</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0457_a">
+          <speaker>בערמאן</speaker>
+          <p>לאַסט מִיך אָבּ, אִיך וִויל נָאך אַ מאל זוּכען.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0458_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִין גֶעפֶענְגנִיס מִיט דִיר דוּ שֶׁענְדְלִיכֶער גנְב!</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0459_a">
+          <speaker>בערמאן</speaker>
+          <p>שׁורְקֶע! <stage type="exit">(שטויסט איהם אָב ענטפליהט אב).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0460_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אַצינד וֶועל אִיך אַייך ווייזעֶן, וואָס הֶערְצֶעלֶע וואלְךמאן אִיז<lb/>אוּם שְׁטַאנְד צוּ טְהוּן <stage type="business">(וויל אַב).</stage></p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0461_a">
+          <speaker>דבורה</speaker>
+          <p><stage type="business">(לאָסט איהם נישט)</stage> מיִטלייַד הֶערְר וַואלְדְמאן.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0462_a">
+          <speaker>וואלדמאן</speaker>
+          <p>מיִטלייַד? מִיט וועהמֶען מִיט דַיין פָאטֶער וֶועלְכֶער הָאט מִיך<lb/>עֶרְשְׁט אַזוי בּעליידיגט, פִיר מַיין גוּטעס העֶרץ, פִיר מַיין עדֶעלְקֵייט.<lb/>נֵיין, דֶער פאַטער פוּן אַזוי אֵיין שֶׁענְדְלִיכֶען גנְב, דֶער דַארְף נִישְׁט<lb/>מֶעהר שְטֶעהן פאַר דֶעם אַלטאר, לאָז מִיך גֶעהֶען.</p>
+        </sp>
+        <pb n="48" facs="0048_OTgwNjYwMDE.111007936.jpg"/>
+        <sp who="#dvorele" xml:id="Yudale_SP0463_a">
+          <speaker>דבורה</speaker>
+          <p>הֶערְר וואַלדמאן אֵיין אויגענבּליק.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0464_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נוּן וואָס ווילסטוּ?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0465_a">
+          <speaker>דבורה</speaker>
+          <p><stage type="delivery">(שוואַך)</stage> פיִנְף טוִיזֶענְר גוּלדען הָאט מַיין בּרוּדער פֶערְלוִירֶען.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0466_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נֵיין, געגַנב'עט!</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0467_a">
+          <speaker>דבורה</speaker>
+          <p>אִיהר הָאט מִיר דִי זעלבּע סוּמע אַנגעבּאטען.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0468_a">
+          <speaker>וואלדמאן</speaker>
+          <p>עֶנְדְלִיך.</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0469_a">
+          <speaker>דבורה</speaker>
+          <p>מַיין לעבּען אִיז מִיר אַזוי ווִי אַזוי נִישְׁט מֶעהר ווערְטה, נֶעמְט עֶס.<lb/>נוּר מַיינֶע אָרוּמע עֶלְטֶערְן, מַיינֶע אָרוּמע פאמִילִיע לאָזט אִין רוהֶע<lb/><stage type="delivery">(וויינט)</stage> ווִי אִיז דאַס פּאפּיער?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0470_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נוּר צוּליעבּ דִיר וִויל אִיך פֶערְצִיכטֶען אוֹיף מַיין גערויבּטעס<lb/>גֶעלְד אוּן מַיינֶע בּעליידיגען, הִיעֶר גוּטעס קִינְד, האסטוּ דאָס פּאפּיער!<lb/><stage type="business">(דְבורָה אונְטֶערְשׁרֵייבּט בּלֵייבּט שטאַר דאַן פֿאַלט זִי צור ערְדֶע בעוואוסטלאָז.</stage><lb/><stage type="business">וואַלדמאן אָהנע דִיעזֶעס צוּ בֶּעמֶערְקֶען נעמְט דֶען טשֶׁעק)</stage> דאָ האסטוּ פיִנְף<lb/>טוֹיזֶענְד גוּלדען וואָס אִיך האבּ דִיר פערשפּראכען, מַיין גאָט זִי אִיז<lb/>אוּנמעכטיג? האָט זִי אוּנטערשריעבּען <stage type="business">(נעמט פאַפיער)</stage> יאָ! <stage type="business">(בעהאַלט עס)</stage><lb/>אָבּער וואָס טהוּט מֶען אַצינד מִיט אִיהר <stage type="business">(הייבט זי אויף)</stage> פהיליפּ שנעֶל<lb/>מַיין וואגֶען, אִיך וִויל זִי אַהיים שִׁיקֶען, דאַס גֶעלְד זאָל זִי אָבּער בּעקוּמען<lb/><stage type="business">(לעגט איהר אין טאש).</stage><lb/><stage type="business">(דְבּורָה ערוואכט, בּלִיקטן בֶּעוועגלִיך פוּן זִיך הִין. וַואלְדְמאן פּיהרט זִי אָב,</stage><lb/><stage type="exit business">זִי פֿליהט פֿון זייֵנעֶר האָנד, עָר ערגרייפֿט זִי, פֿיהרט זִי אַב).</stage><lb/><stage type="setting">פערוואַנדלוּנג.</stage><lb/><stage type="setting">(איין צימער ביי וואלדמאן... אָלטער מיט פריידאלע).</stage></p>
+        </sp>
+        <pb n="49" facs="0049_OTgwNjYwMDE.111007938.jpg"/>
+        <sp who="#freydale" xml:id="Yudale_SP0471_a">
+          <speaker>פריידע</speaker>
+          <p>לאַז מִיך אַ הַיים, אַלע זֶענֶען שׁוֹין אַ הַיים גֶענאנְגֶען. דֶער טַאטֶע<lb/>אוֹיך, דִי מאמֶע אוֹיך.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0472_a">
+          <speaker>אלטעריל</speaker>
+          <p>איבּערלאזען מוּז מֶען פָאטֶער אוּן מוּטֶער, אוּן בּלייבּען דאָרט<lb/>ווִי דֶער מַאן הַייסְט.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0473_a">
+          <speaker>פריידע</speaker>
+          <p>דֶער מַאן? פוּן אוּנז בּיידע וֶועט זִיך אוֹיסלאזֶען אַזא בּוידעם ווִי<lb/>פוּן יוּדאלען מִיט מַיין שׁוועסטֶער.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0474_a">
+          <speaker>אלטעריל</speaker>
+          <p>שׁרֶעק דִיך נִישְׁט, אִיך האָבּ אָפענע אוֹיגען, אִיך וֶועל מִיך נִישְׁט<lb/>טועה זַיין אַזוי ווִי יוּדאַלע אוּן קרִיכֶען אִין אַ פְרֶעמְד קבר.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0475_a">
+          <speaker>פריידע</speaker>
+          <p>אַך מַיינֶע אָרוּמע שׁוועסטֶער!</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0476_a">
+          <speaker>אלטעריל</speaker>
+          <p>אַך מַיין רֵייכֶע שׁוועסטֶער.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0477_a">
+          <speaker>פריידע</speaker>
+          <p>גֶעראטֶעוועט הָאט אִיהם מַיין שׁוועסטֶער, אוּן אויסגעהאפּט הָאט<lb/>אִיהם דַיין שׁוועסטֶער.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0478_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך פֶערְשְׁטֶעה אָבּער נִישְׁט דַיין שׁוועסטֶער ווֶען עֵר הָאט<lb/>אַרוּם געחאפט מַיין שׁוועסטֶער וַוייל עֵר הָאט גֶעמַיינְט אַז דאָס אִיז<lb/>דַיין שׁוועסטֶער, פאַר וואָס הָאט אִיהם דַיין שׁוועסטֶער צוּ גֶעלאזט<lb/>מַיין שׁוועסטֶער.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0479_a">
+          <speaker>פריידע</speaker>
+          <p>וואָסזשע האַט זִי גֶעןאלְט טְהוּן? זִי הָאט גֶעחלְשׁ'ט אוּן...</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0480_a">
+          <speaker>אלטעריל</speaker>
+          <p>אוֹי אִיהר ווייַבּער, בּאלד זֶענֶען זַיי פֶערְטִיג מִיטְ'ן חלְשׁ'ן ווֶען<lb/>דאָס זאָל זִיך טְרֶעפֶען בּיי אוּנז מֶענֶער אוֹי וואַלט גֶעפלוֹיגֶען פּעטש!</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0481_a">
+          <speaker>פריידע</speaker>
+          <p>אוֹי אִיהר מֶענֶער, בּאלד זֶענְט אִיהר פֶערְטִיג מִיט פּעטש.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0482_a">
+          <speaker>אלטעריל</speaker>
+          <p>זאָג נאָר פרֵיידאלֶע, ווֶען אַיין אַנדערע מוֹיד זאָל מִיך ווֶעלֶען<lb/>בּיי דִיר אויסחאפּען, זאָג מִיר נאָר, וואלסטוּ אוֹיך גֶעחלְשׁ'ט?</p>
+        </sp>
+        <pb n="50" facs="0050_OTgwNjYwMDE.111007939.jpg"/>
+        <sp who="#freydale" xml:id="Yudale_SP0483_a">
+          <speaker>פריידע</speaker>
+          <p>נֵיין.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0484_a">
+          <speaker>אלטעריל</speaker>
+          <p>אַזוי, האבּ אִיך דִיך ליעבּ, וואָס דֶען חלְשׁן גָאר. דוּ וואָלסט<lb/>אָבּער איבּערקעהרט וועלְטֶען, אַ יאָה.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0485_a">
+          <speaker>פריידע</speaker>
+          <p>נֵיין.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0486_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך מַיין נִישְׁט זאלְסט איבּערקעהרען וועלְטֶען, ס'רֶעדְט זִיך נוּר<lb/>אַזוי, אָבּער וואָלסט גֶעהרְג'עט גֶעשׁלאגֶען.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0487_a">
+          <speaker>פריידע</speaker>
+          <p>נֵיין.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0488_a">
+          <speaker>אלטעריל</speaker>
+          <p><stage type="delivery">(בעז)</stage> אָבּער יֶענֶע מוֹיד וואַס וואָלט מִיך בּיי דִיר אויִס געחאפּט<lb/>וואָלסטוּ אוִיסגֶעקראצט דִי אוִינֶען.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0489_a">
+          <speaker>פריידע</speaker>
+          <p>נֵיין.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0490_a">
+          <speaker>אלטעריל</speaker>
+          <p>נײַן אוּן נײַן אוּן נֵיין, וואלסטוּ געטהוּן?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0491_a">
+          <speaker>פריידע</speaker>
+          <p>אִיך וואַלט גֶעלאכט.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0492_a">
+          <speaker>אלטעריל</speaker>
+          <p>גֶעלאכט! <stage type="business">(ווייגענד)</stage> אוּן עֶס וואָלט דִיך נאָר נִישְׁט גֶעהארְט וואָס<lb/>אֵיין אַנדערער נֶעמט מִיך צוּ פוּן דִיר.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0493_a">
+          <speaker>פריידעלע</speaker>
+          <p>נֵיין, וַוייל אַזא מַאן וואָס לאָט זִיך אויסחאפּען פוּן אַיין<lb/>אַנדערער מוֹיד, אַזא מַאן מֶעג אוִיסגֶעחאפט וֶוערֶען.<lb/><lb/><lb/><stage type="setting">פערוואַנדלונג</stage>.<lb/><stage type="setting">(שעהנער גארטען ביי וואלדמאן, יודאלע דאן ראזא מיט א פלעשיל).</stage></p>
+        </sp>
+        <pb n="51" facs="0051_OTgwNjYwMDE.111007940.jpg"/>
+        <sp who="#yudale" xml:id="Yudale_SP0494_a">
+          <speaker>יודאלע</speaker>
+          <p><stage type="entrance">(קריכט ארויס פון דער פענסטער)</stage> אוּן יֶעצְט צוּ אִיהר.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0495_a">
+          <speaker>ראזא</speaker>
+          <p><stage type="business">(קומט איהם ענטגעגען)</stage> וואוהִין, זעֶה יוּדאלע דֶער פָאטֶער הָאט מִיר<lb/>פאַר דִיר מִיט געגעבּען אֵיין מֶעדִיצִין צוּם שׁטֶערְקֶען <stage type="business">(גיט עס איהם).</stage></p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0496_a">
+          <speaker>יודאלע</speaker>
+          <p>צוּם טַייפֶעל מִיט דִיעזֶער מֶעדִיצִין <stage type="business">(ווארפט דאַס פלעשיל אוועק)</stage> מַיין<lb/>גָאט! האסטוּ מִיך דֶען דארוּם גֶעשׁטֶערְקט אוּן גֶעהַיילְט פוּן מַיינֶער<lb/>בּלינדהייט אוּם מִיך צוּ בּעשטראפען מִיט וואהנְזִין.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0497_a">
+          <speaker>ראזא</speaker>
+          <p>אָ ווִי גֶערְנֶע וָואלְט אִיך דַיינֶע שׁמֶערְצֶען גֶעלִינְדֶערְט, יאָ יאָ, בּלייבּע<lb/>דָא אִין גָארטען דִי פרִישֶׁע לוּפט וֶועט דִיך שׁטארְקֶען.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0498_a">
+          <speaker>יודאלע</speaker>
+          <p>אוֹיך דָא גִיבּסטוּ מִיר קֵיין רוּהע וואכֶענְד אוּן טרֵיימֶענְד<lb/>פֶערְפאלְגט זִי מִיך איבּעראל.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0499_a">
+          <speaker>ראזא</speaker>
+          <p>ווֶער?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0500_a">
+          <speaker>יודאלע</speaker>
+          <p>מַיין דְבוֹרֶה'לֶע.</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0501_a">
+          <speaker>ראזא</speaker>
+          <p>בּערוּהיג דִיך יוּדאלע, דוּ בּיזְט נָאך צוּ שוואך.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0502_a">
+          <speaker>יודאלע</speaker>
+          <p>רָאזַא! דוּ וַוייסְט עֶס דאָס דוּ בּזְיט מִיר שׁטֶעטס ליעבּ גֶעווֶען ווִי<lb/>אַיין אַיינענע שׁוועסטֶער!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0503_a">
+          <speaker>ראזא</speaker>
+          <p>יאָ געליעבּטער בּרוּדער!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0504_a">
+          <speaker>יודאלע</speaker>
+          <p>פאַר וואָס האסטוּ דֶעם בּרוּדער געלאזְט האַנדלען ווִי אַ שוּרקע?<lb/>פאַר וואַס האסטוּ דיךְ גֶעלאזט פוּן מִיר אוּמאַרמען אוּן קִישֶׁען? פאַר<lb/>וואָס האסטוּ מִיך גֶעלאזט אויִסרעֶדעֶן ווֶען אִיך האָבּ דִיך ערְקלֶערְט<lb/>אַלס מַיינֶע כּלה? פאַר וואָס?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0505_a">
+          <speaker>ראזא</speaker>
+          <p>דַיין פּלעצליכעס אוּמאַרמען, דַיין גלִיהֶענְדֶער קוּש אוֹיף מַיינֶע<lb/>ליפּען דאָס הָאט מִיר אוֹיף אַיינע וַויילֶע מַיינֶע שפּראכע גערויבּט<lb/><stage type="delivery">(וויינט)</stage> אַך יוּדאלע, אַנשטאַט מִיר פאָרווירפע צוּ מַאכֶען, בּעדוירע מִיך<lb/>דֶען אִיך בּין זעלבּסט אוּנגליקליך.</p>
+        </sp>
+        <pb n="52" facs="0052_OTgwNjYwMDE.111007941.jpg"/>
+        <sp who="#yudale" xml:id="Yudale_SP0506_a">
+          <speaker>יודאלע</speaker>
+          <p>אוּנגליקליךְ? אִיך וואגֶע דִיך נִישְׁט צוּ פרעגֶען דִי אוּרזאכע פוּן<lb/>דַיין אונְגלִיק, דֶען דוּ זעלבּסט מוּזט אַיינְזֶעהן וואוהִין מִיך מַיינֶע<lb/>הֵיילִיגֶע פּפליכט רוּפט, מַיינֶע אוֹיגען האַבּען זִי נָאך רֶעכט נִישְׁט<lb/>גֶעזֶעהֶען, אָבּער זאָל זִי זַיין דִי העָסליכקייט זעלבּסט אוּן ווֶען זִי זאָל<lb/>אוֹיך זַיין אַיין קריפּעל, געהעָרט מַיין לעבּען נוּר אִיהר אַליין.</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0507_a">
+          <speaker>פריידעלע</speaker>
+          <p><stage type="business">(נאָך פריהער קוּמענד)</stage> מַיין שׁוועסטֶער אִיז חָלִילָה קֵיין קריפּעל<lb/>נִישְׁט אוּן אוֹיך נִישְׁט הֶעסלִיך אוּן ווֶען זִי אִיז הַיינְט גֶעווֶען אַבּיסעל<lb/>בּלאסער ווִי אִימֶער, דוּרך אִיהר בּלאסקייט האסטוּ אַצוּנד אַפּאר<lb/>לֶעכטִיגֶע אוֹיגען.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0508_a">
+          <speaker>יודאלע</speaker>
+          <p>צוּם עֶרְשְׁטעֶן מאל זעֶה אִיך דאָס גֶעזִיכְט, דָאך דַיין שׁטִימֶע האָבּ<lb/>אִיך שׁוֹין פִיעל מאָל געהעָרט, זאָג, בּיזטוּ אִיהר שׁוועסטֶער?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0509_a">
+          <speaker>פריידעלע</speaker>
+          <p>פְרֵיידֶעלֶע!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0510_a">
+          <speaker>יודאלע</speaker>
+          <p>אַזוי לאָז מִיך זעֶהן אִיהר בּילד אִין שפּיעגעל פוּן דַיינֶע אוֹינֶען<lb/>לאָז מִיך זִי דוּרך דַיינֶע ליפּען קִישֶׁען.<lb/>אַלְטֶערִיל <stage type="business">(פון באלקאן)</stage> יוּדאלע דוּ בּיזט דִיך שׁוֹין וִויעדֶער טוֹעֶה?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0511_a">
+          <speaker>יודאלע</speaker>
+          <p><stage type="business">(העָרט נישט)</stage> דוּ זִיסֶעס קִינְד, דוּ בּיזט אִיהר שׁוועסטֶער.</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0512_a">
+          <speaker>אלטעריל</speaker>
+          <p>יוּדאַלע וואָס אִיז דאָס פאַר אַיין אונְגלִיק, פְריִהעֶר האסטוּ<lb/>אַ טֶעות געהאַט אוֹיף מַיין שׁוועסטֶער אַצוּנד האסטוּ אַ טֶעות אוֹיף<lb/>אִיהר שׁוועסטֶער, רבּש"ע בּיזטו דֶען דאריבּער זֶעהֶענְדִיג גֶעווֶארֶען, אַז<lb/>דוּ זאָלסט אַלע שׁוועסטֶערְס פוּן דֶער גַאנצער ווֶעלְט פאַר דִיר<lb/>אויסחאפּען?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0513_a">
+          <speaker>יודאלע</speaker>
+          <p>אַ בּעקאנטע שׁטִימֶע! ווֶער בּיזטוּ?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0514_a">
+          <speaker>אלטעריל</speaker>
+          <p>דַיין גֶעשׁוועסטֶער קִינְד אַלטעריל.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0515_a">
+          <speaker>יודאלע</speaker>
+          <p>אַלטעריל! <stage type="business">(קישט איהם).</stage></p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0516_a">
+          <speaker>אלטעריל</speaker>
+          <p>זעהסטוּ בּרודער מִיך מעגְסט דוּ קִישֶׁען אַ גַאנצען טאָג, אָבּער<lb/>זִי לאָז אָבּ!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0517_a">
+          <speaker>יודאלע</speaker>
+          <p>וואַס גֶעהט זִי דִיך אָן?</p>
+        </sp>
+        <pb n="53" facs="0053_OTgwNjYwMDE.111007942.jpg"/>
+        <sp who="#alteril" xml:id="Yudale_SP0518_a">
+          <speaker>אלטעריל</speaker>
+          <p>דאָס זעלבּע וואָס אִיהר שׁוועסטֶער גֶעהט דִיך אָן.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0519_a">
+          <speaker>יודאלע</speaker>
+          <p>אַזוי? דָאן קוּמט, נָאך הַיינְט זאָלֶען בּיידע פערלאבּוּנגען גֶעפֵייעֶרְט<lb/>וֶוערֶען <stage type="business">(אַלע ווילען געהן)</stage><lb/><stage type="entrance">(אויפטריט וואלדמאן).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0520_a">
+          <speaker>וואלדמאן</speaker>
+          <p>יוּדאלע דאָס הָאט דֶער דאקטאר פערבּאטען, דוּ בּיזט נָאך<lb/>צוּ שוואך.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0521_a">
+          <speaker>יודאלע</speaker>
+          <p>מַיין ליעבּער אָנקעל, זַייט אִיך האָבּ אָנגעהויבּען צוּ טהוּן פֶערְקֶעהרְט<lb/>וואַס דֶער דאָקטאר הָאט מִיך געֶהייֵסעֶן בּין אִיך גֶעווֶארֶען געזוּנד.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0522_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אָבּער וואוהִין בּיזטו פֶערְטִיג צוּ געֶהן?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0523_a">
+          <speaker>יודאלע</speaker>
+          <p>צוּ מַיין כּלה!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0524_a">
+          <speaker>וואלדמאן</speaker>
+          <p>צוּ דַיין כּלה דָא שְׁטֶעהט זִי דָאך.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0525_a">
+          <speaker>יודאלע</speaker>
+          <p>רָאזַא בלייבּט אוּן אִיז עוויג מַיין שׁוועסטֶער, מַיין כּלה אָבּער<lb/>אִיז יֶענֶע הֵיילִיגֶע מארְטִירֶערִין מַיין טהַייערֶע דבורה'לע, אִיך זעֶה ווִי<lb/>עֶס פלִיעסֶען אַצונד הַייסֶע טרֶערֶען אויִס אִיהְרֶע זאנְפטֶע אוֹיגען, דִי<lb/>שׁווערֶען זַייפצֶער אויִס אִיהר בּרוּסט דרִינְגֶען בּיז אַ הֶער צוּ<lb/>מַיינֶע אָהרען. אִיך שוועהר בּיי אַלעם וועלְכֶעס אִיז מִיר אוֹיף הִימֶעל<lb/>אוּן עֶרְד הַיילִיג, בּעגליקען וִויל אִיך זִי בּעגליקען, ווִי נוּר אֵיין מַאן זייַן<lb/>טרֵייעס ווייבּ בּעגליקען מוּז.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0526_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אַיין אוינענבּליק, זאָג מִיר מַיין ליעבּ קִינְד, ווייסטוּ עֶס זִיכֶער<lb/>דאַס אִיהְרֶע אוֹיגען רִינֶען אַצוּנד טרֶערֶען? ווֶען דוּ האָסְט מַיינֶע<lb/>טאָכְטֶער פאַר גָאט אוּן מֶענְשֶען אַלס דַיין כּלה ערְקלֶעהרְט, אַזוי<lb/>אִיז דאָס נִישְׁט גֶעווֶען אַ צוּפאל, זוּנדערן גאָט הָאט עֶס אַזוי געוואַלט<lb/>צוּ דַיין גלִיק, דֶען דֶעם חַזָן'ס טאָכטער אִיז אַיינֶע הַייכלֶערִין, אַלעס<lb/>וואַס זִי הָאט געטהוּן אִיז גוּר גֶעוֶועזֶען פארשטעלוּנג, נִישְׁט יוּדאלען<lb/>הָאט זִי גֶעמַיינְט נוּר דַיין גֶעלְד.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0527_a">
+          <speaker>יודאלע</speaker>
+          <p>דְבוֹרֶה'לֶע! דִיעזֶער טרֵייער ענְגֶעל.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0528_a">
+          <speaker>וואלדמאן</speaker>
+          <p>דְבוֹרֶה'לֶע דִיעזֶע פאלְשֶׁע קַאטְץ.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0529_a">
+          <speaker>יודאלע</speaker>
+          <p>אָנקעל!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0530_a">
+          <speaker>וואלדמאן</speaker>
+          <p>רוּף מִיך נִישְׁט אָנקעל, נוּר פאַטער. אִיך מִיט מַיינֶע אָפענע<lb/>אוִינֶען האַבּ מִיר נוּר דִי גאַנצע צַייט דִיעזֶע פראגֶע גֶעשׁטֶעלְט,<lb/>וואָלט יוּדאלע גֶעוֶועזֶען אָרוּם וואָלט זִי אוֹיך דאָס זעלבּע פִיר אִיהם<lb/>גְעטְהוּן!</p>
+        </sp>
+        <pb n="54" facs="0054_OTgwNjYwMDE.111007943.jpg"/>
+        <sp who="#yudale" xml:id="Yudale_SP0531_a">
+          <speaker>יודאלע</speaker>
+          <p>צווייפעלסטוּ אִין דֶעם?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0532_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיך נִישְׁט מֶעהר, דֶען הַיינְט הָאט זִי עֶס בּעוויזען, הַיינְט נָאך<lb/>דִיעזֶעם ערוואגנִיס, האָבּ אִיך זִי אוֹיף דֶער פּראַבּע גֶעשׁטֶעלְט אִיך האבּ<lb/>אִיהר אִין דַיין נאָמען אֵיין לִיגֶענְד פארגיפּלוישט, נֶעמליך דוּ האָסְט<lb/>אִיהר אַצינד גענעבּען צְוֵויי ווֶעגֶען, יוּדאַלע אָהן גֶעלְד, אָדער גֶעלְד אָהן<lb/>יוּדַאלֶע, אוּן וואָס מיינסטוּ האָט זִי פארְגֶעצוִינֶען?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0533_a">
+          <speaker>יודאלע</speaker>
+          <p>אָנקעל, בּיסטוּ געקוּמען וִויעדֶער מִיך בּלינד צוּ מַאכֶען?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0534_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נֵיין, אִיך בּין געקוּמען עֶרְשְׁט אַצינד דַיינֶע אוִינֶען צוּ עפֶענֶען<lb/><stage type="business">(גיבט איהם א פאפיער)</stage> דאָ איבּערצייגע דִיך <stage type="business">(יודאלע לעזט ציטערענד).</stage><lb/>פרֵיידאלֶע דוּ שַׁיינְסט אֵיין עהרְלִיכֶעס קִינְד צוּ זַײַן וֶועמֶעס אוּנְטֶער-<lb/>שׁרִיפט אִיז עֶס?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0535_a">
+          <speaker>פריידאלע</speaker>
+          <p><stage type="business">(בעטראַכט ציטערענד)</stage> מַיי-מַיי-מַיין שׁוועסטֶערְס <stage type="exit">(פֿריידאַלע אלטעריל</stage><lb/><stage type="exit">אַב וויינֶענְד).</stage></p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0536_a">
+          <speaker>יודאלע</speaker>
+          <p>מֶען זאָגְט אַז בּיי אֵיינֶעם בּלינדען זֶענֶען דִי זיִנעֶן דאפּעלט שְׁטַארְק<lb/>נֵיין, עֶס אִיז נִישְׁט וַואהְר, דֶען וועהרֶענְד זִי הָאט מִיט דֶעם בּלינדען<lb/>פוּן ליעבּע גֶערֶעדְט הָאט זִי דָאך נוּר גֶעלאכט פוּן מִיר, פאַר וואָס<lb/>האבּ אִיך אִיהר שפּעטיש גֶעלֶעכטֶער נִישְׁט גֶעהֶערְט, ווֶען אִיך האבּ זִי<lb/>פֶערְגֶעטֶערְט, ווִי אַיין הֶעהֶערֶעס וועזֶען ווִי אֵיין גֶעשֶׁענְק פוּן הִימֶעל<lb/>גֶעשֶׁעצט, פאַר וואָס הָאט מַיין העֶרץ נִישְׁט גֶעפִיעלְט דאָס פאַר מִיר<lb/>שׁטַייט אַיינע קראעטוּר פוּן לִיעגֶע פאלְשׁהַייט אוּן פערשטעלוּנג!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0537_a">
+          <speaker>וואלדמאן</speaker>
+          <p>מַיין קִינְד, זִי אִיז נִישְׁט ווערְטה זאָלסט דִיך ווֶעגֶען אִיהר אַזוי<lb/>פִיעל אויפרעגֶען.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0538_a">
+          <speaker>יודאלע</speaker>
+          <p>לָאסְט מִיך צוּ אִיהר?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0539_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נֵיין, נֵיין, צוּ וועלְכֶעס צְוֶועק?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0540_a">
+          <speaker>יודאלע</speaker>
+          <p>אַצינד אַצינד וִויל אִיך זִי זעֶהן! זעֶהן וִויל אִיך וֶועלְכֶע גרִימאסֶען<lb/>זִי מאַכְט בּיים גֶעלְד צֶעהלֶען! זעֶהן וִויל אִיך דִיעזֶעס ווייבּ וועלְכֶעס<lb/>רֶעדְט ווִי דִי אוּנשוּלד אוּן הַאנְדֶעלְט ווִי אַיינע....! קוִים אַיינֶע<lb/>שטוּנדע זַייט דֶעם אִיך צוּם לעבּען ערוואכט בּין, אוּן וואָס האבּ אִיך<lb/>שׁוֹין נִישְׁט אִין דִיעזֶער קוּרצע צַייט שׁוֹין ערלעבּט?!<lb/><stage type="entrance">(אויפטריט אַלטעריל חליפעט, פריידאלע).</stage></p>
+        </sp>
+        <pb n="55" facs="0055_OTgwNjYwMDE.111007944.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0541_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואַס אִיז? וואַס וויינסטוּ?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0542_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך האָבּ געהעָרט דאַס דוּ האָסְט פריהעָר ערְצֶעהלְט אַ מֶעֲשֶׁה<lb/>פוּן אַ פאלְשֶׁע קַאטְץ— ווֶעמֶען האסטוּ גֶעמַיינְט?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0543_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואַס גֶעהט עֶס דִיך אָהן?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0544_a">
+          <speaker>אלטעריל</speaker>
+          <p>אָה נֵיין, דוּ האָסְט נִישְׁט גֶעמַיינְט דבורה'לֶען?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0545_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואָס ווילסטוּ?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0546_a">
+          <speaker>אלטעריל</speaker>
+          <p>נִישְׁט אַנדערש נאָר דוּ האָסְט אַ טֶעות גֶעהַאט פָאטֶער, זִי<lb/>וואוֹינְט דָאך נִישְׁט וַוייט, קוּם אוּן זעֶה וועסטוּ אַליין אוֹיך זאַגען אַז<lb/>דְבוֹרֶה'לֶע הָאט אִיהר ליעבּע פאַר גֶעלְד נִישְׁט פֶערְקוִיפט!</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0547_a">
+          <speaker>פריידעלע</speaker>
+          <p>מַיין שׁוועסטֶער! מַיין אָרוּמע שׁוועסטֶער!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0548_a">
+          <speaker>אלע</speaker>
+          <p>וואָס אִיז גֶעשֶׁעהן? נוּן?</p>
+        </sp>
+        <sp who="#freydale" xml:id="Yudale_SP0549_a">
+          <speaker>פריידעלע</speaker>
+          <p>זִי אִיז פוּן זיִנעֶן!!<lb/><stage type="entrance">(אויפטריט דבורה געפֿיהרט פון ירוחם יאַכנע).</stage></p>
+        </sp>
+        <sp who="#yakhne" xml:id="Yudale_SP0550_a">
+          <speaker>יאכנע</speaker>
+          <p>זֶעהט וואָס אִיהר האַט געמאַכט פוּן אוּנזער קִינְד!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0551_a">
+          <speaker>ירוחם</speaker>
+          <p>מַזָל טוֹב מחוּתן! אִיז שׁוֹין גֶעוֶועזֶען בּיי אַייערע קיִנְדעֶר תּנאים?<lb/>האַט אִיהר שׁוֹין געבּרענגט טֶעלֶער? אִיך בּין אוֹיך אַ מחוּתן, וַוייל<lb/>צווישֶׁען אַייערע צעבּראכענע טֶעלֶער, אִיז אוֹיך דָא דאָס צעבּראכענע<lb/>העֶרץ פוּן מַיין קִינְד!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0552_a">
+          <speaker>יודאלע</speaker>
+          <p>אִיז דאָס דְבוֹרֶה'לֶע דִיעזֶע פרִיהלִינְגס בּלוּמע? אוּן זאָלכע<lb/>זאנְפטֶע אוֹיגען זאָלֶען קֶענֶען לִיענֶען <stage type="delivery">(שרייט)</stage> אָנקעל! אָנקעל! פאַר וואָס<lb/>ווענְדֶעסט דוּ אָבּ דַיינֶע בּליקען פוּן אִיהר? פאַר וואָס ציטערסטוּ?<lb/>זאָג עֶס מִיר אַצינד אִין אִיהְרֶע גֶעגֶענווארְט! פוּן ווֶעמֶען בּין אִיך בּע⸗<lb/>טראגֶען פוּן אִיהר אָדער פוּן דִיר?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0553_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אוּנערפארענעס קִינְד וואָס דוּ בּיסט! דִיר אִיז דאָס פרוִיענ⸗<lb/>גֶעשׁלֶעכט נָאך נִישְׁט בּעקאנט, נָאך פְרֶעמְד! דוּ וַוייסְט נָאך נִישְׁט<lb/>דאַס אֵיין פרוֹי קֶען וויִיִנעֶן ווֶען זִי וִויל, קֶען חלְשׁ'ן ווֶען זִי וִויל, קֶען<lb/>אויךְ זַײַן משוּגע ווֶען זִי וִויל.</p>
+        </sp>
+        <pb n="56" facs="0056_OTgwNjYwMDE.111007946.jpg"/>
+        <sp who="#yerukhem" xml:id="Yudale_SP0554_a">
+          <speaker>ירוחם</speaker>
+          <p>אַז מְשׁוגֶע זאָלט אִיהר אַזוי וֶוערֶען!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0555_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואַס וויִלְט אִיהר? טהוּט עֶס אַייך אָפער לֵייד דאָס זִי הָאט<lb/>ווענִיג גֶעלְד בּעקוּמען?</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0556_a">
+          <speaker>ירוחם</speaker>
+          <p>וואַס? גֶעלְד?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0557_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אִיז דאָס אַייער טאַכטערס אונְטֶערְשׁרִיפט!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0558_a">
+          <speaker>ירוחם</speaker>
+          <p>יאָ... אָבּער... טאָכטער! פאַר וואָס האסטוּ דאָס אונטערשריעבּען<lb/>ערְצֶעהל מַיין קִינְד וואָס אִיז גֶעשֶׁעהן.<lb/><stage type="business">(דבורה פֿאַנגט אָן צו זינקען פֿאַלט אויף ירוחם'ס ברוסט).</stage></p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0559_a">
+          <speaker>יודאלע</speaker>
+          <p><stage type="business">(קניעט פֿאַר איהר)</stage> דְבוֹרֶה'לֶע! ווייסטוּ ווֶער ס'שׁטֶעהט פאַר דִיר?<lb/>דְבוֹרֶה'לֶע דִיעזֶע אוֹיגען וֶועלְכֶע זֶעהֶען דִיך צוּם עֶרְשְׁטעֶן מאל, דִיעזֶע<lb/>צְוֵויי אוֹיגען גֶעהֶערֶען דִיר! דִי זִינְד דַיין געשענק. -אָבּעֶר הֶערֶע אִין וואָס<lb/>דוּ ווירְסט בּעשולדיגט... דאַס דוּ האָסְט דִיך געלאָזט דאפִיר בּעצאהלען<lb/>אוּן דאס גֶעלְד אִיז דִיר גֶעווֶעהְן ליעבּער אַלס יוּדאלע! וואש דִיך<lb/>רֵיין פוּן דִיעזֶע בּעשולדיגוּנג! נֶעם צוזאמֶען אַלע דַיינֶע גֶעדאנְקֶען אוּן<lb/>ערְקלֶעהר עֶס מִיר, אִיך גלויבּ דִיר אַ יֶעדֶעם וואָרט, נוּר שווייגֶע נִישְׁט!<lb/>רֶעדֶע!<lb/><stage type="business">(דבורה ווי פֿריער און קוויטשט)</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0560_a">
+          <speaker>וואלדמאן</speaker>
+          <p>גענוּג מִיט דִי קאמֶעדִיע! דאַס אִיז נוּר אַלעס אוּם נָאך מֶעהר<lb/>גֶעלְד צוּ ערפּרעָסען!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0561_a">
+          <speaker>ירוחם</speaker>
+          <p>וואַס פִיר אַ גֶעלְד?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0562_a">
+          <speaker>וואלדמאן</speaker>
+          <p>זִי הָאט עֶס מִיט אִיהר אַייגענע האַנד אַליין אִין דֶער טאש<lb/>גֶעלֶעגט <stage type="business">(נעמט עס פון איהר טאש ארויס)</stage> הָא הָא הָא? דָא האסטוּ יוּדאלע!<lb/>זעהסטוּ אַליין מִיט דַיינֶע אוֹיגען, אַצוּנד בּיסטוּ שׁוֹין גָאט זַיי דַאנְק<lb/>נִישְׁט מֶעהר בּלינד!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0563_a">
+          <speaker>יודאלע</speaker>
+          <p>נֵיין, אִיך בּין נִישְׁט מֶעהר בּלינד! אָבּער בּיים עוויגֶען הִימֶעל<lb/>אִיך זֶעהנֶע מִיך נָאך מַיינֶעם פרִיהֶערֶען צוּשטאנד. גָאט! גיבּ מִיר<lb/>צוּריק מַיינֶע בּלינדהייט! דִיע אוֹיגען בּרעגען אַצוּנד ווִי גלִיהֶענְדֶע<lb/>קאהלֶען אִין מַיינֶעם קאפּף אַרויסרייסען וואָלט אִיך זִי מִיט מַיינֶע<lb/>העָנד...</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0564_a">
+          <speaker>אלע</speaker>
+          <p>יוּדאלע!</p>
+        </sp>
+        <pb n="57" facs="0057_OTgwNjYwMDE.111007947.jpg"/>
+        <sp who="#yudale" xml:id="Yudale_SP0565_a">
+          <speaker>יודאלע</speaker>
+          <p>אַיין צוועלְף יעהרִינֶער יוּנגעל בּין אִיך גֶעווֶען ווֶען אִיך האָבּ<lb/>מַיין אוֹיגֶענְלִיכט פֶערְלוִירֶען, פאלְשׁהַיייט, פארשטעלוּנג זֶענֶען מִיר<lb/>פְרֶעמְד גֶעווֶען ווִי אַיין קִינְד, אַזוי האבּ אִיך אַלעס געגלויבּט, אַצוּנד<lb/>האָבּ אִיך ערוואכט אוּן מַיין גלויבּען אָן דִי מֶענְשׁהַייט אִיז צֶערְפלאסֶען<lb/>ווִי אֵיין גֶעבּעל, אַצוּנד זֶעהֶען מַיינֶע אוֹיגען, אָבּער דֶער פֶערְשְׁטַאנְד.<lb/>דֶער אִיז מִיר בּלינד! אָה נִיט מִיר צוּריק יֶענֶע גלִיקלִיכֶע צַייט, נִיט<lb/>מִיר צוּרִיק מַיין גלויבּען אָן דִי מֶענְשׁהַייט. אָנקעל! גיִט מִיר צוּריק<lb/>מַיין דבּורְה'לֶען, מַיין שׁוטצֶענְגֶעל, מַיין גאַנצע ווֶעלְט, מַיין... מַיין...<lb/><stage type="business">(שטירצט בעוואוסטלאַז אויף דבורה'לעס פיס).</stage><lb/><stage type="setting">(פארהאנג).</stage></p>
+        </sp>
+        <trailer>(ענדע פון דריטען אקט).</trailer>
+        <pb n="58" facs="0058_OTgwNjYwMDE.111007948.jpg"/>
+      </div>
+      <div type="act" n="4" xml:id="Yudale_Act4">
+        <head>פִיערְטֶער אַקט.</head>
+        <stage type="setting">(צימער בּיי וואלדמאן).</stage>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0566_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נֵיין מַיין קִינְד! נָאך אַיין שטוּנדע אוּן דוּ בּיזט יוּדאַלעס פרוֹי,<lb/>אָבּער ווִי זאָל אִיך דִיך פֶערְשׁטֶעהֶען רָאזַא, דוּ זֶעהסט גָאָר נִישְׁט אויִס<lb/>ווִי אַ כּלה פאַר דֶער טרויאוּנג? טרֶערֶען זעֶה אִיך אִין דַיינֶע אוֹיגען?!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0567_a">
+          <speaker>ראזא</speaker>
+          <p>פָאטֶער! נָאך אִיז עֶס צַייט, נָאך קֶענֶען מִיר צוּריק טרֶעטֶען פוּן<lb/>דֶעם אוּנרעכט וואַס מִיר וויִלעֶן בּעגֶעהן!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0568_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אוּנרעכט? הֶערְט מֶענְשֶען! מיךְ קאָסט עֶס אַיין האָלבּ לעבּען<lb/>בּיי טאָג נִישְׁט גערוּהט, בּיי נאַכט נִישְׁט גֶעשׁלאפֶען, בּיז אִיך זאָל אַזוי<lb/>וַוייט האַלטען, דָא הָאט אִיהר מַיינֶע פרוּמע טאָכְטֶער מִיט דֶעם אונ⸗<lb/>רֶעכט! נארִישֶׁעס קינְד! ווילסטוּ מֶעהר פֶערְשׁטֶעהן אַלס דַיין פָאטֶער<lb/>וואָס רֶעכט אוּן אוּנרעכט אִיז?!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0569_a">
+          <speaker>ראזא</speaker>
+          <p>אָ פָאטֶער! עֶרְשְׁט אַצוּנד אִין דֶער לֶעצְטֶע שטוּנדע פִיהל אִיך ווִי<lb/>שְׁוֶוער דאָס אָפְּפֶער אִיז, וואָס דוּ פֶערְלאנְגסט פוּן מִיר.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0570_a">
+          <speaker>וואלדמאן</speaker>
+          <p>שׁוֹין וִוידעֶר דערמאנסטוּ דאָס וואָרט "אָפּפער" רָאזַא! מִיר<lb/>שַׁיינְט דאָס אִיסֶר פּראצענטניק הָאט דעֶמָאָלְס מִיט דֶעם חַזָן'ס זוּהן<lb/>בּערמאן רֶעכט גֶעהַאט!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0571_a">
+          <speaker>ראזא</speaker>
+          <p>יאָ פָאטֶער! עֵר הָאט דִי וואהרְהַייט געשפּראכען!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0572_a">
+          <speaker>וואלדמאן</speaker>
+          <p>יאָ? אוּן דִיעזֶער קַבְּצָן הָאט עֶס גֶעוואגט?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0573_a">
+          <speaker>ראזא</speaker>
+          <p>נֵיין, נִישְׁט עֵר! אָבּוואהל אוּנזערע אוֹיגען האָבּען אוּנְז שׁוֹין לאַנְג<lb/>געזאַגט, וואָס מִיר גֶעגֶענְזַייטִיג פִיהלֶען, דָאך הָאט עֵר נִישְׁט גֶעוואנְט<lb/>זאגאר צוּ האפֶען. אָבּער אִיך וואגֶע אַצינד צוּם עֶרְשְׁטעֶן מאל. פָאטֶער!<lb/>אִיך ליעבּע דֶען עהרְלִיכֶען בּערמאן, אוּן מִיט דִיעזֶע הַייראטה פֶער⸗<lb/>דערבּסטוּ מַיין לעבּען, פָאטֶער!</p>
+        </sp>
+        <pb n="59" facs="0059_OTgwNjYwMDE.111007949.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0574_a">
+          <speaker>וואלדמאן</speaker>
+          <p>נאָ האסטוּ דִיר אַ חַזָן אוֹיף מַיין קאפּף קוֹים מִיט מִיהֶע בּין<lb/>אִיך פרֵיי גֶעווֶארֶען דֶעם חַזָן'ס טאַכטער מִיט אִיהר ליעבּע, בּרוּך-<lb/>הבּא דֶעם חַזָן'ס זוּהן מִיט זַיין ליעבּע! אוּן דוּ שֶׁעמְסט דִיך נִישְׁט אַזוי<lb/>אֵיינֶען צוּ ליעבּען, ווֶעלְכֶען נוּר אויִס מיִטלייַד צוּ זייַנע עֶלְטֶערְן אִיך<lb/>נִישְׁט פֶערְפאלְגֶען וִויל, אָבּוואהל אִיך בּין איבּערצייגט דאַס עֵר אִיז<lb/>אֵיין גנב!?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0575_a">
+          <speaker>ראזא</speaker>
+          <p>אָה נֵיין, פָאטֶער! אִיך גלויבּ אִין זַײַן אונשוּלד, ווִי אִין גָאט.<lb/>וואַלדמאן; יאָ, דוּ גלויבּסט דֶעם חַזָן'ס טאָכטער אוֹיף אִיהְרֶע לִיגֶענְד אוּן<lb/>דֶעם חַזָן'ס זוּהן אוֹיף זַיינֶע לִיגֶענְד, נוּר מִיר דַיין עהרְלִיכֶען פָאטֶער<lb/>ווילסטוּ נִישְׁט גלויבּען?!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0576_a">
+          <speaker>ראזא</speaker>
+          <p>אַזוי פִיעל אִיך האַבּ געהעָרט, אִיז בּערמאן שׁוֹין אוֹיף דִי שפּוּר פוּן<lb/>דֶעם גנב!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0577_a">
+          <speaker>וואלדמאן</speaker>
+          <p><stage type="delivery">(אַפארט)</stage> דֶער גנב! דֶער גנב בּין אִיך דָאך אָבּער דֶער רוּח<lb/>הָאט עֶס וִויעדֶער בּיי מִיר צוּגענוּמען <stage type="delivery">(צוּ איהר)</stage> עֶס וֶועט מִיך גֶעוויס<lb/>פרֵייען ווֶען עֵר וֶועט קֶענֶען זַיין אונשוּלד בּעווייזען, אָבּער וואָס הָאט<lb/>דאָס מִיט דִיר צוּ טְהוּן? אִין אַיין שֶׁעָה אִיז דִי חוּפּה! — מַאך דִיך<lb/>פֶערְטִיג!<lb/><stage type="business">(אַלטעריל הליפענד מיט איינע איינגעוויקעלטען קראנץ פון צוויבעל).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0578_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואַס אִיז? וואַס וויינסטוּ?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0579_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך בּין געקוּמען זאגֶען מַזָל טוֹב.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0580_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אַזוי זאגט מֶען מַזָל טוֹב מִיט דֶעם נגוּן פוּן קִנות? וואַס אִיז<lb/>דַיין קראֶעץ דוּ בּיסט דָאך אַיין קרֶענְצִיל הֶערְר?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0581_a">
+          <speaker>אלטעריל</speaker>
+          <p>אוּן נָאך וואַס פאַר אַ קרֶענְצִיל הֶערְר! זעהסטוּ שׁוועסטֶער צוּ<lb/>אַזא מִין חתוּנה ווִי דוּ האָסְט הַיינְט, האָבּ אִיך אָהן גֶעגרֵייט אַ גאנץ<lb/>בּעזוּנדערן קראנְץ <stage type="business">(וויקעלט אויף).</stage></p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0582_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אוִיסגֶעלאסֶענֶער יונְגֶע!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0583_a">
+          <speaker>ראזא</speaker>
+          <p>בּיסט מִיר געקוּמען זאלְצֶען מַיינֶע וואוּנְדֶען?</p>
+        </sp>
+        <pb n="60" facs="0060_OTgwNjYwMDE.111007952.jpg"/>
+        <sp who="#alteril" xml:id="Yudale_SP0584_a">
+          <speaker>אלטעריל</speaker>
+          <p>זאלְצֶען אוּן פֶעפֶער'ן! אוּן ווֶען אִיך זאָל האַבּען אַ מאַכְט איבּער<lb/>דִיר, וָואלְט אִיך דִיך צוּ געבּוּנדען צוּ אַ בּוים זאָלסט נִישְׁט קֶענֶען געֶהן<lb/>צוּ דֶער חוּפּה!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0585_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וואַס האסטוּ געֶזָאָגְט?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0586_a">
+          <speaker>אלטעריל</speaker>
+          <p>אִיך האָבּ שׁוֹין אָבּ געֶזָאָגְט וואָס אִיך האבּ בּעדארפט!</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0587_a">
+          <speaker>ראזא</speaker>
+          <p>אַלטעריל, אִיך בּין אֵיין אוּנגליקליכעס אָפּפער!</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0588_a">
+          <speaker>אלטעריל</speaker>
+          <p>נוּ? אוּן ווֶען עֶס גֶעהט נִישְׁט מִיט נוּטען, טהוּ דוּ אַצינד אַזוי ווִי<lb/>איךְ וֶועל טהוּן שפּעטער!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0589_a">
+          <speaker>וואלדמאן</speaker>
+          <p>ווִי דוּ וֶועסְט טְהוּן שפּעטער! אוּן וואַס ווירסטוּ שפּעטער<lb/>טְהוּן?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0590_a">
+          <speaker>אלטעריל</speaker>
+          <p>קֵיינֶעם נִישְׁט פְרֶעגֶען אוּן מִיר נעֶמעֶן דאָס מֵיידֶעל וואָס אִיך<lb/>האבּ ליעבּ!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0591_a">
+          <speaker>וואלדמאן</speaker>
+          <p>דוּ האָסט שׁוֹין אַ מֵיידֶעל?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0592_a">
+          <speaker>אלטעריל</speaker>
+          <p>אַזא יָאהר אוֹיף דֶעם אָנקעל!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0593_a">
+          <speaker>וואלדמאן</speaker>
+          <p>דַארְף אִיך אוֹיך וויִסעֶן ווֶער דאַס מֵיידֶעל אִיז?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0594_a">
+          <speaker>אלטעריל</speaker>
+          <p>אַ מֵיידֶעל!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0595_a">
+          <speaker>וואלדמאן</speaker>
+          <p>ווֶער אִיז זִי?</p>
+        </sp>
+        <sp who="#alteril" xml:id="Yudale_SP0596_a">
+          <speaker>אלטעריל</speaker>
+          <p>אַ פרֵיידאלֶע!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0597_a">
+          <speaker>וואלדמאן</speaker>
+          <p>ווֶער אִיז זִי?<lb/>אַלטעריל דֶעם חזן'ס יוּנגסטע טאָכטער!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0598_a">
+          <speaker>וואלדמאן</speaker>
+          <p>שׁוֹין וִויעדֶער דֶער חַזָן! מַיין גָאט! הָאט זִיך דֶען דֶער חַזֶן מִיט<lb/>זַיינֶע קיִנְדעֶר אוֹיף מַיינֶע יאָהרען פֶערְלֵייגט? <stage type="delivery">(בּעז)</stage> אִיך וֶועל דִיר<lb/>געבּען אַ מֵיידֶעל אַ פרֵיידאלֶע אַז... <stage type="business">(וויל איהם שלאָגען).</stage><lb/><stage type="entrance">(אויפטריט עדעלמאן ווי פֿון איינע רייזע)</stage></p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0599_a">
+          <speaker>עדעלמאן</speaker>
+          <p>גוּטען טאָג!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0600_a">
+          <speaker>אלע</speaker>
+          <p>דֶער פּראפעסאר!?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0601_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וֶועלְכֶער רוּם הָאט אִיהם אַצינד געבּראכט? איבּריגענס וואָס<lb/>האבּ אִיך אִיהם צוּ פִירְכטֶען <stage type="delivery">(לויט)</stage> אַך, ווִי פרֵייעט עֶס מִיך הֶערְר<lb/>פּראפעסאר צוּ זעָהן זִי אוּן גְרַאדֶע הַיינְט צור האכצַייט!</p>
+        </sp>
+        <pb n="61" facs="0061_OTgwNjYwMDE.111007956.jpg"/>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0602_a">
+          <speaker>עדעלמאן</speaker>
+          <p>פאַר צְוֵויי וואכֶען ווֶען אִיך בּין פוּן הִיעֶר אַ וועק, האָבּ אִיך<lb/>דִיעזֶע האכצַייט נִישְׁט ערווארְטֶעט!...</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0603_a">
+          <speaker>וואלדמאן</speaker>
+          <p>יאָ וויִסעֶן זִי...</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0604_a">
+          <speaker>עדעלמאן</speaker>
+          <p>יאָ אִיך ווייס אַלעס, מֶען הָאט עֶס מִיר געשריעבּען, דַארְף<lb/>אִיך דֶעם בּרויטיגאם גראטוּליערען?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0605_a">
+          <speaker>וואלדמאן</speaker>
+          <p>גֶעוויס העָרר פּראפעסאר קוּמען זִי געפעליגְסט, קוּמט קיִנְדעֶר!<lb/><stage type="exit business">(ראָזאַ, עדעלמאן, אלטעריל אַב)</stage> נָאך אֵיין אַיינְצִינֶע שׁטונְדֶע האָבּ אִיך<lb/>איבּערצוּקוּמען! אַך, אֵיין יאָהר פוּן מַיינֶעם לעבּען וואָלט אִיך פֶער⸗<lb/>שֶׁענְקְט פִיר דִי אַיינֶע שׁטונְדֶע <stage type="business">(זעצט זיך).</stage><lb/><stage type="entrance">(אויפטריט פֿישעל סאַפענדיג)</stage></p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0606_a">
+          <speaker>פישל</speaker>
+          <p>אִיך בּין אַייך געקוּמען אָבּ געבּען מַזָל טוֹב.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0607_a">
+          <speaker>וואלדמאן</speaker>
+          <p>ווֶער בּיסטוּ אוּן ווִי הייסטוּ?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0608_a">
+          <speaker>פישל</speaker>
+          <p>הַייסֶען הַייס אִיך פִישׁל אוּן בּינֶען בּין אִיך דֶעם חזן'ס משׁורְר.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0609_a">
+          <speaker>וואלדמאן</speaker>
+          <p>שׁוֹין וִויעדֶער דֶער חַזן? ס'האבּען זִיך אִיהם אוִיסגֶעלאט דִי<lb/>קיִנְדעֶר, שִׁיקט עֵר אוֹיף מִיר אָהן דִי משׁורְרִים, וואָס ווילסטוּ?</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0610_a">
+          <speaker>פישל</speaker>
+          <p>אִיך בּין אַייך געקוּמען אָבּגעבּען מַזָל טוֹב!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0611_a">
+          <speaker>וואלדמאן</speaker>
+          <p>שפּעטער שפּעטער!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0612_a">
+          <speaker>פִישׁל</speaker>
+          <p>אַז אִיהר הַייסְט מִיך קוּמען שפּעטער וֶועל אִיך אִיה זעֶהן צוּ קוּמען<lb/>שפּעטער! דֶער וַוייל בּין אִיך נָאך דָא, וִויל אִיך אַייך אָבּגעבּען<lb/>אַ מַזָל טוֹב.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0613_a">
+          <speaker>וואלדמאן</speaker>
+          <p>זאָל אִיך רוּפען אַ דִיענֶער דִיך אַרויס צוּ ווַאַרְפעֶן? אָדער<lb/>ווילסטוּ דיךְ אַליין בּעמיהעָן?...</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0614_a">
+          <speaker>פישל</speaker>
+          <p>נֵיין, אִיך וֶועל מִיך אַליין מַטְריִחַ זַיין, אָבּער אִיך בּין דָאך שׁוֹין דָא<lb/>וֶועל אִיך אַייך שׁוֹין אָבּ געבּען דֶעם מַזָל טוֹב! מַזָל טוֹב אַייך מחוּתן.</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0615_a">
+          <speaker>וואלדמאן</speaker>
+          <p>דַאנְקֶע!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0616_a">
+          <speaker>פישל</speaker>
+          <p>געזוּנד אוּן שְׁטַארְק זאַלט אִיהר זַײַן!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0617_a">
+          <speaker>וואלדמאן</speaker>
+          <p>דַאנְקֶע!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0618_a">
+          <speaker>פישל</speaker>
+          <p>געזוּנד אוּן שְׁטַארְק זאַלט אִיהר זַיין ווִי אַיין אַייזען אִיהר זאַלט אַייך<lb/>נִישְׁט קֶענֶען אַיינבּייגען!</p>
+        </sp>
+        <pb n="62" facs="0062_OTgwNjYwMDE.111007959.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0619_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אָה דוּ שׁנארֶער, אַרויס <stage type="business">(טרייבט איהם אַרויס)</stage></p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0620_a">
+          <speaker>פישל</speaker>
+          <p><stage type="business">(פון איין אַנדערע זייט)</stage> נֵיין, אִיך וִויל אַייך נִישְׁט שֶׁעלְטֶען, וַוייל אִיהר<lb/>זֶענְט אַלטעריל'ס טַאטֶע, אוּן אִיך האבּ ליעבּ אַלטערל'ן, וואָלט אִיהר<lb/>אָבּער נִישְׁט גֶעוֶועזֶען אַלטערל'ס טַאטֶע, וואַלט אִיך אַייך אָנגעווינשען<lb/>אַז דבּורְה'לֶעס טרֶערֶען זאָלֶען פאַלען אוֹיף אַייער קאפּ, אוּן אַזוי ווִי<lb/>אִיהר האַט דֶעם חָתָן אויסגעחאפּט אַזוי זאָל קוּמען אוֹיף אַייך אֵיין<lb/>אויסחאפּעניש <stage type="business">(ער ווארפֿט איהם אַ רויס, ער קומט צוריק א ריין)</stage> אַ בּהלה...<lb/>אַ מהוּמה, אַ מִיתה משוּנה! <stage type="business">(אַב, וואַלדמאן נאָך איהם).</stage><lb/><stage type="entrance">(אויפֿטריט יודאלע עדעלמאן).</stage></p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0621_a">
+          <speaker>יודאלע</speaker>
+          <p>שווייגט! אִיך בּיטע אַייך פֶערְלֵיימְדֶעט נִישְׁט מַיין גוּטען אָנקעל!<lb/>עֵר אִיז אַזוי גוּט ווִי אֵיין אַיינֶענֶער פָאטֶער!</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0622_a">
+          <speaker>עדעלמאן</speaker>
+          <p>עֵר אִיז אֵיין שוּרקע!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0623_a">
+          <speaker>יודאלע</speaker>
+          <p>הֶערְר פּראפעסאַר זִי טהוּן מִיר וֶועה ווֶען זִי שימפּפען איבּער<lb/>מַיין אָנקעל.</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0624_a">
+          <speaker>עדעלמאן</speaker>
+          <p>אוּנגליקליכער פֶערְפִיהרְטֶער! דַיין גוּטער אָנקעל דֶער הָאט<lb/>דִיר דַיינֶע זֶעֶעלֶע פֶערְגיפטֶעט, דַיין קאפּ פֶערווירְט, דַיין פרִישׁ<lb/>גֶעֶעפנֶעטֶע אוֹיגען וִויעדֶער צוּ גֶעמאכט! דוּ בּיסט בּערייט צוּ איבּער⸗<lb/>געֶהן דִי גרֶעסטֶע שוּרקעריי אוֹיף גָאט'ס עֶרְד! עָרוואכע!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0625_a">
+          <speaker>יודאלע</speaker>
+          <p>הֶעלְפט מִיר! רֶעטֶעט מִיך!</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0626_a">
+          <speaker>עדעלמאן</speaker>
+          <p>דאָס וִויל אִיך אוּן דארוּם בּין אִיך אַהעָר געקוּמען, אִיך האָבּ<lb/>דַיינֶע קראַנקע אוֹיגען גֶעהַיילְט אוּן מַיינֶע פּפליכט אִיז עֶס אוֹיך דַיין<lb/>קראַנקע זֶעֶעלֶע צוּ הַיילֶען! גלויבּען זאָלסטוּ מִיר נִישְׁט אוֹיף ס'וואָרט,<lb/>נֵיין, גֶעוויסהַייט זאָלסטוּ בּעקוּמען, מִיט דַיינֶע אוֹיגען זאָלסטוּ זעֶהן<lb/>דֶעם אמְת אוּן דֶעם שֶקֶר!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0627_a">
+          <speaker>יודאלע</speaker>
+          <p>וואַס זאָל אִיך טְהוּן?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0628_a">
+          <speaker>עדעלמאן</speaker>
+          <p>דַיין גוּטער אָנקעל קוּמט, אִיך זאָג דִיר שפּעטער אַלעס.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0629_a">
+          <speaker>יודאלע</speaker>
+          <p>אוּן וואָס זאָל זַיין מִיט דֶער חוּפּה?</p>
+        </sp>
+        <pb n="63" facs="0063_OTgwNjYwMDE.111007962.jpg"/>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0630_a">
+          <speaker>וואלדמאן</speaker>
+          <p><stage type="business">(אויף די לעצטע ווערטער קומענד)</stage> דִי חוּפּה? גלֵייך מַיין קִינְד אִיז<lb/>דִי חוּפּה, שפּאציערען זִי פאַר אוֹיס ה' פּראפעסאר.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0631_a">
+          <speaker>יודאלע</speaker>
+          <p><stage type="delivery">(אפארט)</stage> הַייסְט אִיהר מִיך געֶהן צוּ דֶער חוּפּה?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0632_a">
+          <speaker>עדעלמאן</speaker>
+          <p>יאָ.<lb/><stage type="setting">פערוואַנדלונג.</stage></p>
+        </sp>
+        <pb n="64" facs="0064_OTgwNjYwMDE.111007965.jpg"/>
+        <sp who="#yudale" xml:id="Yudale_SP0633_a">
+          <speaker>יודעלא</speaker>
+          <p>רָאזַא, יוּדען האַלטען אַ חופה, גֶעסט, וַואלְדְמאן, אַלטעריל, חַזֶן זִינְגְט<lb/>מִיט אַ זמר אִין מִיטֶען זיִנְגעֶן קוּמְט יְרוּחָם, יאַכנע, פִישֶׁעל, פְרֵיידֶעלֶע, דְבורָה).</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0634_a">
+          <speaker>יודאלע</speaker>
+          <p><stage type="business">(שרייט אין מיטען געזאנג אויס)</stage> וֶועה מִיר!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0635_a">
+          <speaker>אלע</speaker>
+          <p>וואָס אִיז גֶעשֶׁעהן?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0636_a">
+          <speaker>יודאלע</speaker>
+          <p><stage type="business">(טאַפט ארום זיך)</stage> נאַכְט! פאַר מַיינֶע אוֹינֶען אִיז וִויעדֶער נאַכט<lb/>גֶעווֶארֶען, מִיר אִיז אַלעס וִויעדֶער פִינְסטֶער! שׁווארְץ! אַלמעכטיגער<lb/>גָאט! אִיך בּין וִויעדֶער בּלינד!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0637_a">
+          <speaker>אלע</speaker>
+          <p>בּלינד?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0638_a">
+          <speaker>יודאלע</speaker>
+          <p>וואוּ זֶענְט אִיהר ליעבּער גוּטער אָנקעל? וואוּ בּיזטוּ לִיעבֶּע טרֵייע<lb/>בּרויט? וואוּ זֶענְט אִיהר?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0639_a">
+          <speaker>וואלדמאן</speaker>
+          <p>ה' פּראפעסאר, אִיז עס נוּר פאראיבּערגֶעהענד אָדער אִיז עֵר<lb/>ווירְקלִיך בּלינד?</p>
+        </sp>
+        <sp who="#profesor_edelman" xml:id="Yudale_SP0640_a">
+          <speaker>עדעלמאן</speaker>
+          <p><stage type="business">(בעטראכטעט)</stage> לֵיידֶער, לֵיידֶער, הִיעֶר קֶען דִי קוּנסט פוּן אִין<lb/>דאקטאר נִישְׁט מֶעהר הֶעלְפֶען! דִיזע רִיקפאל, דִיזֶע נֵייֶע בּלִינְדְהַייט<lb/>אִיז אינהיילבּאר, אַ בּלינדער בּלייבּט עֵר יֶעצְט זַיין לֶעבּעֶן לאַנְג!</p>
+        </sp>
+        <sp who="#fishl" xml:id="Yudale_SP0641_a">
+          <speaker>פישעל</speaker>
+          <p>וואַס דַארְף אִיך נָאך ווַאַרְפעֶן מִיט שׁטַיינֶער אַז גָאט הָאט אִיהם<lb/>גֶעווארְפֶען אַזא שׁטַיין? <stage type="business">(וואַרפט די שטיינער אוועק).</stage></p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0642_a">
+          <speaker>ירוחם</speaker>
+          <p>אִיך עאלְט בּעדארף דערלעבּען אַ נְקָמָה אוּן צוּם סוֹף ווֵיינְט אִין<lb/>מִיר דאָס הארְץ איבּער זַיין אוּמגליק.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0643_a">
+          <speaker>יודאלע</speaker>
+          <p>וואַרוּם זֶענְט אִיהר אַלע שטעהעָן געבּליעבען? הָאט אִיהר דֶעם<lb/>בּלינדען פֶערְלאזט? רָאזַא וואוּ בּיזְטוּ? דַיין האַנד גיבּ מִיר! אָנקעל!<lb/>הַייסְט ענְדִיגֶען דִי צֶערְמאנִיע, רויבּט מִיר ווענִיגסטֶענְס נִישְׁט אַוועק<lb/>דִיזע טרוִיסט, חַזן גיִט אוּנז חוּפה קדוּשין.</p>
+        </sp>
+        <sp who="#khazn" xml:id="Yudale_SP0644_a">
+          <speaker>חזן</speaker>
+          <p><stage type="business">(פאַנגט אן)</stage> בּרוּך אַתה ד'!</p>
+        </sp>
+        <pb n="65" facs="0065_OTgwNjYwMDE.111007966.jpg"/>
+        <sp who="#kor" xml:id="Yudale_SP0645_a">
+          <speaker>קאהר</speaker>
+          <p>בּרוּך הוּא וּברוּך שמו.<lb/>וַואלְדְמאן האַלט! <stage type="business">(נעמט אוועק די חופה).</stage></p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0646_a">
+          <speaker>יודאלע</speaker>
+          <p>וואָס? פאַר וואַס אָנקעל?</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0647_a">
+          <speaker>וואלדמאן</speaker>
+          <p>אונְמֶעגלִיך, ווִי קֶענֶען מִיר אַצוּנד נָאך דֶענְקֶען פוּן אַיינֶע<lb/>האכצַייט? וַוארְט, מִיר ווֶעלֶען זעֶהן <stage type="business">(שלעפט ראזא ביז זייטע).</stage> אייבּיג<lb/>בּלינד בּלייבּט עֵר, אוּן אִיך בּלייבּ וִוידעֶר פערוואַלטער פוּן גַאנְצעֶן<lb/>פֶערְמֶעגען.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0648_a">
+          <speaker>יודאלע</speaker>
+          <p>אָ גֶערֶעכט אִיז דַיין שטראף, דוּ רֶעכֶענְדֶער גָאט! פֶערְראטֶען<lb/>האבּ אִיך אֵיין עדֶעל העֶרץ אוּן דארוּם בּין אִיך אַצוּנד אִין מַיינֶעם<lb/>אוּנגליק פֶערְלאזט, פוּן אַלע פֶערְלאזט!</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0649_a">
+          <speaker>דבורה</speaker>
+          <p>נֵיין, נִישְׁט פוּן אַלע!</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0650_a">
+          <speaker>אלע</speaker>
+          <p>וואָס?</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0651_a">
+          <speaker>דבורה</speaker>
+          <p>אַזוי ווִי פְריִהעֶר אַזוי וִויל אִיך אִימֶער אוּן עוויג דַיין אוֹיג זַיין, דַיין<lb/>שׁטִיצֶע, דַיין פִיהרֶער!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0652_a">
+          <speaker>ירוחם</speaker>
+          <p>נֵיין טאַכטער, עֵר הָאט עֶס נִישְׁט פֶערְדִיענְט.</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0653_a">
+          <speaker>דבורה</speaker>
+          <p>אַזוי ווִי פְריִהעֶר אַזוי וִויל אִיך אִימֶער אוּן עוויג דַיין אוֹיג זַיין,<lb/>דַיין שׁטִיצֶע, דַיין פִיהרֶער!</p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0654_a">
+          <speaker>ירוחם</speaker>
+          <p>נֵיין טאָכטער, עֵר הָאט עֶס נִישְׁט פֶערְדִיענְט.</p>
+        </sp>
+        <sp who="#dvorele" xml:id="Yudale_SP0655_a">
+          <speaker>דבורה</speaker>
+          <p>לאָז מִיך פאַטער, אַזוי וִויל אוֹיך גָאט, אַז אִיך זָאל נוּר דֶעם<lb/>בּלינדען בּעגליקען נִישְׁט דֶעם זֶעהֶענְדֶען.</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0656_a">
+          <speaker>יודאלע</speaker>
+          <p>נֵיין, דוּ טרֵייעס העֶרץ! נִישְׁט דֶער בּלינדער, נוּר דֶער זֶעהֶענְדֶער<lb/>רֵייכט אִיצט דִיר זַיין הַאנְד.</p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0657_a">
+          <speaker>אלע</speaker>
+          <p>וואָס?</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0658_a">
+          <speaker>יודאלע</speaker>
+          <p>הָא חַא חַא, בּלינד? נוּר ווֶעגֶען אֵיין פּראבּע בּין אִיך אֵיין מינוּט<lb/>בּלינד גֶעווֶארֶען אוּם אַראבּ צוּ רֵייסֶען דִי פאלְשֶׁע מאסקֶע פוּנ'ם שֶקֶר<lb/>אוּן קנִיענְט אַנצוּבעטען דֶעם אמְת <stage type="business">(קניעט, קיסט דבורה'לע).</stage></p>
+        </sp>
+        <sp who="#yerukhem" xml:id="Yudale_SP0659_a">
+          <speaker>ירוחם</speaker>
+          <p>העָרט אַ חכמְה!</p>
+        </sp>
+        <sp who="#hertsl_valdman" xml:id="Yudale_SP0660_a">
+          <speaker>וואלדמאן</speaker>
+          <p>וֶועה מִיר וואָס האבּ אִיך געטהוּן?<lb/><stage type="entrance">(אויפטריט איסר, בערמאן).</stage></p>
+        </sp>
+        <pb n="66" facs="0066_OTgwNjYwMDE.111007967.jpg"/>
+        <sp who="#iser" xml:id="Yudale_SP0661_a">
+          <speaker>איסר</speaker>
+          <p><stage type="delivery">(שרייט פון דרויסען)</stage> הַלְוַאִי זאָלסטוּ אַזוי לעבּען מִיט מִיר! אִיך האבּ<lb/>עֶס נִישְׁט גֶעגנְבֶעט, אִיך האָבּ עֶס געפוּנען בּיי אִיהם אִין קֶעשֶׁענֶע!</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0662_a">
+          <speaker>בערמאן</speaker>
+          <p><stage type="business">(גיבט הערצלען די בריעף⸗טאשע)</stage> דָא ה' וַואלְדְמאן!</p>
+        </sp>
+        <sp who="#yudale" xml:id="Yudale_SP0663_a">
+          <speaker>יודאלע</speaker>
+          <p>לאנְגזאם בּערמאן מַיין שוואגֶער, נִישְׁט אִיהם גיבּ דאָס גֶעלְד, דֶער<lb/>אִיז דָא מֶעהר קֵיין בּעל הבּית נישׁט, יאָ מִיון גוּטער אָנקעל, דֶעם<lb/>בּלינדען האסטוּ פֶערְלְזאט, אַצוּנד פערלָזאט דִיך דארוּם דֶער<lb/>זֶעהֶענְדֶער!</p>
+        </sp>
+        <sp who="#berman" xml:id="Yudale_SP0664_a">
+          <speaker>בערמאן</speaker>
+          <p>רָאזַא אִיך ווֵייס אַלֶעס, דַארְף אִיך האפֶען?</p>
+        </sp>
+        <sp who="#raza" xml:id="Yudale_SP0665_a">
+          <speaker>ראזא</speaker>
+          <p>בּערמאן! <stage type="business">(אומארמונג).</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="Yudale_SP0666_a">
+          <speaker>אלע</speaker>
+          <p>וִויוַואט מזל טוֹב!</p>
+          <lg>
+            <l>סִימְן טוֹב ומז"ט</l>
+            <stage type="business">(א. ז. וו. טאנץ)</stage>
+          </lg>
+          <lg>
+            <l>דֶער אמְת הָאט אַ וֶוערְט חַד גדִיא</l>
+          </lg>
+          <lg>
+            <l>דֶער שֶקֶר ליעגְט אִין דֶער עֶרד חַד גדִיא,</l>
+          </lg>
+          <lg>
+            <l>געפּאטערט האַבּען מִיר דִי קליפּה חד גדִיא</l>
+          </lg>
+          <lg>
+            <l>אַצוּנד שְׁטעֶלעֶן מִיר אַ חוּפּה חד גדִיא.</l>
+            <stage type="setting">(פארהאַנג).</stage>
+          </lg>
+        </sp>
+        <trailer>(ענדע פון שטיק).</trailer>
+        <pb n="67" facs="0067_OTgwNjYwMDE.111007969.jpg"/>
+        <pb n="68" facs="0068_OTgwNjYwMDE.111007970.jpg"/>
+        <pb n="69" facs="0069_OTgwNjYwMDE.111007971.jpg"/>
+        <pb n="70" facs="0070_OTgwNjYwMDE.111007972.jpg"/>
+      </div>
+    </body>
+  </text>
+</TEI>
