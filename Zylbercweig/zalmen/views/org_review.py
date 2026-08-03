@@ -39,6 +39,7 @@ CORE_DB_FILE = BASE / "organizations" / "core_db.tsv"
 CLUSTER_FILE = BASE / "organizations" / "organizations_clustered.tsv"
 ADDR_FILE = BASE / "organizations" / "org_addresses_review.tsv"
 DRAFTS_FILE = BASE / "organizations" / "org_alignment_drafts.tsv"
+CORRO_FILE = BASE / "organizations" / "graph" / "alignment_corroboration.tsv"
 LEXICON_DIR = BASE / "The Lexicon"
 
 _COL_CID = "cluster_id"
@@ -246,6 +247,25 @@ def load_drafts(mtime: float) -> dict[str, dict[str, str]]:
 			cid = row.get("cluster_id", "").strip()
 			if cid:
 				out[cid] = row
+	return out
+
+
+@st.cache_data(show_spinner=False)
+def load_corroborations(mtime: float) -> dict[tuple[str, str], dict[str, str]]:
+	"""(cluster_id, candidate_db_id) -> person-org graph corroboration row.
+
+	Built by organizations/build_person_org_graph.py: shared host biographies
+	between an undecided cluster and a candidate entity's linked clusters.
+	"""
+	if not CORRO_FILE.exists():
+		return {}
+	out: dict[tuple[str, str], dict[str, str]] = {}
+	with open(CORRO_FILE, newline="", encoding="utf-8") as f:
+		for row in csv.DictReader(f, delimiter="\t"):
+			cid = row.get("cluster_id", "").strip()
+			dbid = row.get("candidate_db_id", "").strip()
+			if cid and dbid:
+				out[(cid, dbid)] = row
 	return out
 
 
@@ -929,12 +949,14 @@ def _render_batch_confirm(
 		header[5].caption("Rationale")
 		header[6].caption("Open")
 
+		corro_by_key = load_corroborations(_mtime(CORRO_FILE))
 		for r, d in page_items:
 			cid = r.get("cluster_id", "").strip()
 			decision = d.get("draft_decision", "").strip()
 			db_id = d.get("draft_aligned_db_id", "").strip()
 			db_name = db_by_id.get(db_id, {}).get("name", "") if db_id else ""
 			rationale = d.get("rationale", "").strip()
+			_corro = corro_by_key.get((cid, db_id)) if db_id else None
 			row_cols = st.columns([0.4, 2.2, 0.9, 0.9, 1.8, 2.4, 0.6])
 			row_cols[0].checkbox(
 				"accept",
@@ -953,7 +975,10 @@ def _render_batch_confirm(
 			         "DEFER": "🟡", "DESCRIPTIVE": "🔵", "DISCUSS": "💬"}.get(decision, "·")
 			row_cols[3].markdown(f"{badge} **{decision}**")
 			if db_id:
-				row_cols[4].markdown(f"`{db_id}` {db_name}")
+				_c_badge = f" · 🕸{_corro.get('shared_hosts','')}" if _corro else ""
+				row_cols[4].markdown(f"`{db_id}` {db_name}{_c_badge}")
+				if _corro:
+					row_cols[4].caption(f"shared biographies: {_corro.get('shared_host_headings','')[:120]}")
 			else:
 				row_cols[4].caption("—")
 			row_cols[5].caption(rationale[:240] + ("…" if len(rationale) > 240 else ""))
@@ -1283,6 +1308,7 @@ def render() -> None:
 	addr_db_ids = load_address_db_ids(_mtime(ADDR_FILE))
 	addr_details = load_address_details(_mtime(ADDR_FILE))
 	drafts_by_cid = load_drafts(_mtime(DRAFTS_FILE))
+	corro_by_key = load_corroborations(_mtime(CORRO_FILE))
 
 	with st.sidebar:
 		mode_options = ["Single cluster", "Batch confirm"]
@@ -1574,6 +1600,13 @@ def render() -> None:
 						unsafe_allow_html=True,
 					)
 					st.caption(f"type: {db.get('org_type','')} · score: {score_txt} · method: {method_txt}")
+					_corro = corro_by_key.get((selected.get("cluster_id", "").strip(), dbid))
+					if _corro:
+						st.markdown(
+							f"<div class='rtl-block'>🕸 <b>{_corro.get('shared_hosts','')}</b> shared biographies: "
+							f"{_corro.get('shared_host_headings','')}</div>",
+							unsafe_allow_html=True,
+						)
 					if db.get("address", ""):
 						st.caption(f"address: {db.get('address','')}")
 					loc = addr_details.get(dbid, {})

@@ -28,11 +28,13 @@ from __future__ import annotations
 import csv
 import math
 import sys
+import unicodedata
 from collections import defaultdict
 from itertools import combinations
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
+KG_DIR = BASE.parent / "plays" / "kg"
 CLUSTERED = BASE / "organizations_clustered.tsv"
 CORE_DB = BASE / "core_db.tsv"
 REVIEW = BASE / "org_alignment_review.tsv"
@@ -55,7 +57,9 @@ HEBREW_MARKS = {c: None for c in range(0x0591, 0x05C8) if chr(c) not in "אבג�
 
 def norm_tokens(name: str) -> set[str]:
     """Normalized, non-generic name tokens for compatibility checks."""
-    s = name.translate(HEBREW_MARKS).translate(FINALS)
+    # NFKD first: precomposed Yiddish letters (e.g. U+FB2E alef-patah) decompose
+    # into base letter + combining mark, which the mark-strip can then remove.
+    s = unicodedata.normalize("NFKD", name).translate(HEBREW_MARKS).translate(FINALS)
     for ch in "\"'׳״()[],.·-—/„“”":
         s = s.replace(ch, " ")
     return {t for t in s.split() if len(t) >= 3 and t not in GENERIC_TOKENS}
@@ -154,16 +158,60 @@ def main() -> None:
         if r.get("aligned_db_id") and r["cluster_id"] not in cluster_to_db:
             cluster_to_db[r["cluster_id"]] = resolve(r["aligned_db_id"])
 
+    # --- typed person->org edges derived from the plays KG (pilot scope) ----
+    # person -cast_in-> production_event -produced_by/staged_at-> org(_cluster)
+    # These are kept out of the overlap computation (different host keyspace);
+    # they enrich the edge file with performance-typed relations. The KG scale-up
+    # to all playwrights will grow this layer with no change here.
+    kg_edges: dict[tuple[str, str], dict] = {}
+    kg_label: dict[str, str] = {}
+    kg_edges_file = KG_DIR / "edges.tsv"
+    if kg_edges_file.exists():
+        for n in read_tsv(KG_DIR / "nodes.tsv"):
+            kg_label[n["node_id"]] = n.get("label_yiddish") or n.get("label_english") or ""
+        kg_rows = read_tsv(kg_edges_file)
+        event_orgs: dict[str, set[str]] = defaultdict(set)
+        for r in kg_rows:
+            if r["edge_type"] in ("produced_by", "staged_at") and \
+                    r["target_id"].split(":")[0] in ("org", "org_cluster"):
+                event_orgs[r["source_id"]].add(r["target_id"])
+        for r in kg_rows:
+            if r["edge_type"] != "cast_in":
+                continue
+            person = r["source_id"]
+            for org_node in event_orgs.get(r["target_id"], ()):
+                e = kg_edges.setdefault((person, org_node), {
+                    "n_mentions": 0, "rel_categories": {"KG_Performance"},
+                    "roles": set(), "dates": set(), "settlements": set(),
+                })
+                e["n_mentions"] += 1
+                if r.get("role_detail"):
+                    e["roles"].add(r["role_detail"])
+                if r.get("date_start"):
+                    e["dates"].add(r["date_start"])
+
     # --- write edges --------------------------------------------------------
     edge_path = OUTDIR / "person_org_edges.tsv"
     with edge_path.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, delimiter="\t")
-        w.writerow(["host_file", "host_xmlid", "host_heading", "cluster_id",
-                    "canonical_yiddish", "db_id", "n_mentions", "rel_categories",
-                    "roles", "dates", "settlements"])
+        w.writerow(["edge_source", "host_file", "host_xmlid", "host_heading",
+                    "cluster_id", "canonical_yiddish", "db_id", "n_mentions",
+                    "rel_categories", "roles", "dates", "settlements"])
         for (host, cid), e in sorted(edges.items()):
-            w.writerow([host[0], host[1], host_label[host], cid,
+            w.writerow(["mention", host[0], host[1], host_label[host], cid,
                         cluster_name.get(cid, ""), cluster_to_db.get(cid, ""),
+                        e["n_mentions"],
+                        " | ".join(sorted(e["rel_categories"])),
+                        " | ".join(sorted(e["roles"])),
+                        " | ".join(sorted(e["dates"])),
+                        " | ".join(sorted(e["settlements"]))])
+        for (person, org_node), e in sorted(kg_edges.items()):
+            kind, _, ident = org_node.partition(":")
+            cid = ident if kind == "org_cluster" else ""
+            db_id = ident if kind == "org" else (
+                cluster_to_db.get(cid) or cluster_to_db.get(cid.split("_Q")[0], ""))
+            w.writerow(["plays_kg", "plays_kg", person, kg_label.get(person, ""),
+                        cid, kg_label.get(org_node, ""), db_id,
                         e["n_mentions"],
                         " | ".join(sorted(e["rel_categories"])),
                         " | ".join(sorted(e["roles"])),
@@ -262,10 +310,10 @@ def main() -> None:
         hosts = cluster_hosts.get(cid, set())
         if not hosts:
             continue
-        for db in (d.strip() for d in (r.get("candidate_db_ids") or "").split("|")):
-            if not db:
+        for raw_db in (d.strip() for d in (r.get("candidate_db_ids") or "").split("|")):
+            if not raw_db:
                 continue
-            db = resolve(db)
+            db = resolve(raw_db)
             entity_hosts = set()
             for c in db_clusters.get(db, ()):
                 if c != cid:
@@ -278,7 +326,8 @@ def main() -> None:
                 "canonical_yiddish": r.get("canonical_yiddish", ""),
                 "org_type": r.get("org_type", ""),
                 "extracted_settlements": r.get("extracted_settlements", ""),
-                "candidate_db_id": db,
+                "candidate_db_id": raw_db,
+                "resolved_db_id": db,
                 "candidate_db_name": db_name.get(db, ""),
                 "shared_hosts": len(shared),
                 "idf_score": round(sum(host_weight(h) for h in shared), 3),
@@ -292,7 +341,7 @@ def main() -> None:
         w.writerows(corro)
 
     print(f"hosts: {len(host_clusters)}  clusters: {len(cluster_hosts)}  "
-          f"edges: {len(edges)}")
+          f"edges: {len(edges)}  kg-typed edges: {len(kg_edges)}")
     print(f"cluster->entity mapped: {len(cluster_to_db)}")
     print(f"pairs sharing >= {MIN_SHARED_HOSTS} hosts: "
           f"{n_same_entity} already same entity (sanity bucket); "
