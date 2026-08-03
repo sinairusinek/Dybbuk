@@ -112,14 +112,19 @@ def build_network(persons, acts, min_edge=1):
     # If no one speaks, still show the castList to at least populate the graph.
     if not xids_in_play:
         xids_in_play = set(persons)
-    # Build edges
+    # Build edges + track which acts contributed to each edge
     pair_weight = Counter()
-    for a in acts:
+    pair_acts = defaultdict(list)
+    node_acts = defaultdict(list)
+    for act_i, a in enumerate(acts):
         speaking = [x for x in a["speakers"] if x in xids_in_play]
+        for x in speaking:
+            node_acts[x].append(act_i)
         for i in range(len(speaking)):
             for j in range(i + 1, len(speaking)):
                 pair = tuple(sorted([speaking[i], speaking[j]]))
                 pair_weight[pair] += 1
+                pair_acts[pair].append(act_i)
     nodes = []
     max_sp = max(total_sp.values()) if total_sp else 1
     for xid in sorted(xids_in_play):
@@ -138,6 +143,8 @@ def build_network(persons, acts, min_edge=1):
         nodes.append({
             "id": xid, "label": lbl, "color": color, "size": size,
             "title": "<br>".join(tip_parts),
+            "acts": sorted(node_acts.get(xid, [])),   # act indices this char speaks in
+            "baseColor": color,                        # kept so JS can restore after highlight
         })
     edges = []
     for (a, b), w in pair_weight.items():
@@ -145,7 +152,8 @@ def build_network(persons, acts, min_edge=1):
             continue
         edges.append({"from": a, "to": b, "width": max(1, w),
                       "title": f"co-appear in {w} act{'s' if w != 1 else ''}",
-                      "color": {"color": "#888", "opacity": min(1.0, 0.35 + 0.15 * w)}})
+                      "color": {"color": "#888", "opacity": min(1.0, 0.35 + 0.15 * w)},
+                      "acts": sorted(set(pair_acts[(a, b)]))})
     stats = {
         "chars": len(nodes),
         "speaking_chars": sum(1 for n in nodes if total_sp.get(n["id"], 0) > 0),
@@ -225,9 +233,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
               background:rgba(20,20,20,0.9); border:1px solid #333; border-radius:6px;
               padding:8px 12px; font-size:11px; direction:rtl; z-index:10; }}
   #actlist h3 {{ font-size:11px; margin:2px 0 6px; color:#888; text-transform:uppercase; letter-spacing:0.4px; direction:ltr; }}
-  .act-row {{ margin-bottom:6px; }}
+  .act-row {{ margin-bottom:6px; padding:4px 6px; border-radius:4px; cursor:pointer; border:1px solid transparent; }}
+  .act-row:hover {{ background:#1e1e1e; }}
+  .act-row.active {{ background:#252525; border-color:#3cb44b; }}
   .act-row .name {{ color:#ccc; font-weight:500; }}
   .act-row .top {{ font-size:10px; color:#888; }}
+  .act-row.all-btn {{ background:#1a1a1a; color:#aaa; text-align:center; }}
+  .act-row.all-btn.active {{ background:#252525; border-color:#3cb44b; }}
   .legend {{ position:absolute; bottom:12px; left:12px; background:rgba(20,20,20,0.85);
              padding:6px 10px; border-radius:4px; font-size:11px; color:#aaa;
              display:flex; gap:12px; direction:ltr; z-index:10; }}
@@ -257,15 +269,104 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       <span class="chip"><span class="dot" style="background:#3cb44b"></span> unknown</span>
       <span class="chip">node size = # speeches</span>
       <span class="chip">edge width = # shared acts</span>
+      <span class="chip" style="color:#3cb44b">▸ click a node = neighbors · click an act = ensemble · click empty = reset</span>
     </div>
   </main>
 </div>
 <script>
 const PLAYS = {plays_json};
 let currentNet = null;
+let currentPlay = null;      // reference to the loaded play data
+let currentData = null;      // {{ nodes: DataSet, edges: DataSet }}
+let selectionMode = null;    // {{ type: 'act'|'node', actIdx?, nodeId? }} or null
+
+const DIM_NODE  = {{ background: '#2a2a2a', border: '#333' }};
+const DIM_EDGE  = {{ color: '#1e1e1e', opacity: 0.1 }};
+const HL_BORDER = '#fff';
+
+function nodeBaseColor(n) {{ return n.baseColor || n.color || '#3cb44b'; }}
+function edgeBaseColor(e, w) {{ return {{ color: '#888', opacity: Math.min(1.0, 0.35 + 0.15 * (w||1)) }}; }}
+
+function resetHighlight() {{
+  selectionMode = null;
+  const nodeUpdates = currentPlay.nodes.map(n => ({{
+    id: n.id, color: {{ background: nodeBaseColor(n), border: '#333' }},
+    borderWidth: 1, font: {{ color: '#eee' }},
+  }}));
+  const edgeUpdates = currentPlay.edges.map(e => ({{
+    id: e.from + '__' + e.to, color: edgeBaseColor(e, e.width),
+  }}));
+  currentData.nodes.update(nodeUpdates);
+  currentData.edges.update(edgeUpdates);
+  document.querySelectorAll('.act-row').forEach(r => r.classList.remove('active'));
+  document.querySelector('.act-row.all-btn')?.classList.add('active');
+}}
+
+function highlightAct(actIdx) {{
+  selectionMode = {{ type: 'act', actIdx }};
+  const involved = new Set();
+  currentPlay.nodes.forEach(n => {{ if ((n.acts||[]).includes(actIdx)) involved.add(n.id); }});
+  const nodeUpdates = currentPlay.nodes.map(n => {{
+    const on = involved.has(n.id);
+    return {{
+      id: n.id,
+      color: on ? {{ background: nodeBaseColor(n), border: HL_BORDER }} : DIM_NODE,
+      borderWidth: on ? 3 : 1,
+      font: {{ color: on ? '#eee' : '#555' }},
+    }};
+  }});
+  const edgeUpdates = currentPlay.edges.map(e => {{
+    const on = (e.acts||[]).includes(actIdx) && involved.has(e.from) && involved.has(e.to);
+    return {{
+      id: e.from + '__' + e.to,
+      color: on ? {{ color: '#fff', opacity: 0.85 }} : DIM_EDGE,
+    }};
+  }});
+  currentData.nodes.update(nodeUpdates);
+  currentData.edges.update(edgeUpdates);
+  // camera fits to the highlighted subgraph
+  if (involved.size) {{
+    currentNet.fit({{ nodes: [...involved], animation: {{ duration: 500, easingFunction: 'easeOutQuad' }} }});
+  }}
+  document.querySelectorAll('.act-row').forEach((r, i) => {{
+    r.classList.toggle('active', r.dataset.actIdx == actIdx);
+  }});
+}}
+
+function highlightNode(nodeId) {{
+  selectionMode = {{ type: 'node', nodeId }};
+  const neighbors = new Set([nodeId]);
+  currentPlay.edges.forEach(e => {{
+    if (e.from === nodeId) neighbors.add(e.to);
+    if (e.to === nodeId)   neighbors.add(e.from);
+  }});
+  const nodeUpdates = currentPlay.nodes.map(n => {{
+    const isSeed = n.id === nodeId;
+    const isNeighbor = neighbors.has(n.id);
+    return {{
+      id: n.id,
+      color: isNeighbor ? {{ background: nodeBaseColor(n),
+                              border: isSeed ? HL_BORDER : nodeBaseColor(n) }}
+                        : DIM_NODE,
+      borderWidth: isSeed ? 4 : (isNeighbor ? 2 : 1),
+      font: {{ color: isNeighbor ? '#eee' : '#555' }},
+    }};
+  }});
+  const edgeUpdates = currentPlay.edges.map(e => {{
+    const on = e.from === nodeId || e.to === nodeId;
+    return {{
+      id: e.from + '__' + e.to,
+      color: on ? {{ color: '#fff', opacity: 0.85 }} : DIM_EDGE,
+    }};
+  }});
+  currentData.nodes.update(nodeUpdates);
+  currentData.edges.update(edgeUpdates);
+  document.querySelectorAll('.act-row').forEach(r => r.classList.remove('active'));
+}}
 
 function renderPlay(idx) {{
   const p = PLAYS[idx];
+  currentPlay = p;
   document.querySelectorAll('.play-item').forEach((el, i) => {{
     el.classList.toggle('active', i === idx);
   }});
@@ -277,25 +378,37 @@ function renderPlay(idx) {{
     `<b>${{s.acts}}</b> acts &middot; <b>${{s.total_sp}}</b> speeches &middot; ` +
     `top: ${{top}}`;
 
-  // Act list
+  // Act list — with a top "All" pseudo-row and clickable act rows
   const alDiv = document.getElementById('actlist');
-  alDiv.innerHTML = '<h3>Acts</h3>' + p.acts.map(a => {{
+  const rows = [`<h3>Acts · click to isolate</h3>`,
+    `<div class="act-row all-btn active" data-act-idx="-1">All acts (reset)</div>`,
+  ].concat(p.acts.map((a, i) => {{
     const top = a.top.map(([n,c]) => `${{n}} ·${{c}}`).join('  ');
-    return `<div class="act-row"><div class="name">${{a.label}} (${{a.n_speakers}})</div><div class="top">${{top}}</div></div>`;
-  }}).join('');
+    return `<div class="act-row" data-act-idx="${{i}}"><div class="name">${{a.label}} (${{a.n_speakers}})</div><div class="top">${{top}}</div></div>`;
+  }}));
+  alDiv.innerHTML = rows.join('');
+  alDiv.querySelectorAll('.act-row').forEach(r => {{
+    r.addEventListener('click', () => {{
+      const idx = parseInt(r.dataset.actIdx, 10);
+      if (idx < 0) resetHighlight();
+      else highlightAct(idx);
+    }});
+  }});
 
-  // Build vis network
+  // Build vis network — give every edge a stable id so we can update it later
   if (currentNet) {{ currentNet.destroy(); currentNet = null; }}
   const container = document.getElementById('graph');
-  const data = {{
-    nodes: new vis.DataSet(p.nodes),
-    edges: new vis.DataSet(p.edges),
+  const nodeCopies = p.nodes.map(n => ({{ ...n }}));
+  const edgeCopies = p.edges.map(e => ({{ ...e, id: e.from + '__' + e.to }}));
+  currentData = {{
+    nodes: new vis.DataSet(nodeCopies),
+    edges: new vis.DataSet(edgeCopies),
   }};
   const opts = {{
     nodes: {{ shape: 'dot', font: {{ color: '#eee', size: 14, face: 'sans-serif' }},
               borderWidth: 1, color: {{ border: '#333' }} }},
     edges: {{ smooth: false, color: {{ color: '#555', opacity: 0.5 }} }},
-    interaction: {{ hover: true, tooltipDelay: 100, navigationButtons: true, keyboard: true }},
+    interaction: {{ hover: true, tooltipDelay: 100, navigationButtons: true, keyboard: true, multiselect: false }},
     physics: {{
       solver: 'forceAtlas2Based',
       forceAtlas2Based: {{ gravitationalConstant: -80, centralGravity: 0.02,
@@ -304,9 +417,18 @@ function renderPlay(idx) {{
       timestep: 0.35, minVelocity: 0.75, maxVelocity: 40, adaptiveTimestep: true,
     }},
   }};
-  currentNet = new vis.Network(container, data, opts);
+  currentNet = new vis.Network(container, currentData, opts);
   currentNet.once('stabilizationIterationsDone', () => {{
     currentNet.setOptions({{ physics: {{ enabled: false }} }});
+  }});
+  // Interaction handlers
+  currentNet.on('click', (params) => {{
+    if (params.nodes && params.nodes.length) {{
+      highlightNode(params.nodes[0]);
+    }} else if (params.edges && params.edges.length === 0) {{
+      // click on empty canvas — reset
+      resetHighlight();
+    }}
   }});
 }}
 
