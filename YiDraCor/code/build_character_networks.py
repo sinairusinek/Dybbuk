@@ -278,9 +278,35 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .mini-cell .mini-title .meta {{ font-size:10px; color:#888; direction:ltr; white-space:nowrap; }}
   .mini-net {{ height:260px; background:#111; }}
   .col-year {{ font-size:11px; color:#888; text-align:center; padding:2px 0; direction:ltr; }}
-  #actlist {{ position:absolute; top:54px; right:12px; width:260px; max-height:60vh; overflow-y:auto;
+  /* Help panel — collapsible, fixed to right edge, spans both views */
+  #help {{ position:fixed; top:40px; right:0; height:calc(100vh - 40px); width:340px;
+           background:#161616; border-left:1px solid #2a2a2a; z-index:100;
+           transform:translateX(0); transition:transform 0.25s ease; direction:ltr;
+           display:flex; flex-direction:column; }}
+  #help.collapsed {{ transform:translateX(340px); }}
+  #help-tab {{ position:absolute; top:14px; left:-30px; width:30px; height:80px;
+               background:#1e1e1e; border:1px solid #2a2a2a; border-right:none;
+               border-radius:6px 0 0 6px; cursor:pointer; display:flex;
+               align-items:center; justify-content:center; writing-mode:vertical-rl;
+               transform:rotate(180deg); font-size:11px; color:#aaa;
+               letter-spacing:1px; text-transform:uppercase; padding:6px 4px; }}
+  #help-tab:hover {{ background:#252525; color:#eee; }}
+  #help-content {{ overflow-y:auto; padding:18px 20px; font-size:12.5px;
+                   color:#ccc; line-height:1.55; }}
+  #help-content h3 {{ font-size:12px; text-transform:uppercase; letter-spacing:0.5px;
+                      color:#888; margin:18px 0 6px; font-weight:600; }}
+  #help-content h3:first-child {{ margin-top:0; }}
+  #help-content ul {{ padding-left:18px; margin:6px 0; }}
+  #help-content li {{ margin:4px 0; }}
+  #help-content code, #help-content kbd {{ background:#252525; color:#eee;
+    padding:1px 5px; border-radius:3px; font-family:ui-monospace,Menlo,monospace; font-size:11.5px; }}
+  #help-content .swatch {{ display:inline-block; width:10px; height:10px; border-radius:50%;
+                            vertical-align:middle; margin-right:5px; }}
+  #actlist {{ position:absolute; top:54px; right:360px; width:260px; max-height:60vh; overflow-y:auto;
               background:rgba(20,20,20,0.9); border:1px solid #333; border-radius:6px;
-              padding:8px 12px; font-size:11px; direction:rtl; z-index:10; }}
+              padding:8px 12px; font-size:11px; direction:rtl; z-index:10;
+              transition:right 0.25s ease; }}
+  body.help-collapsed #actlist {{ right:50px; }}
   #actlist h3 {{ font-size:11px; margin:2px 0 6px; color:#888; text-transform:uppercase; letter-spacing:0.4px; direction:ltr; }}
   .act-row {{ margin-bottom:6px; padding:4px 6px; border-radius:4px; cursor:pointer; border:1px solid transparent; }}
   .act-row:hover {{ background:#1e1e1e; }}
@@ -289,9 +315,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .act-row .top {{ font-size:10px; color:#888; }}
   .act-row.all-btn {{ background:#1a1a1a; color:#aaa; text-align:center; }}
   .act-row.all-btn.active {{ background:#252525; border-color:#3cb44b; }}
-  .legend {{ position:absolute; bottom:12px; left:12px; background:rgba(20,20,20,0.85);
+  .legend {{ position:absolute; bottom:12px; left:12px; right:360px; background:rgba(20,20,20,0.85);
              padding:6px 10px; border-radius:4px; font-size:11px; color:#aaa;
-             display:flex; gap:12px; direction:ltr; z-index:10; }}
+             display:flex; gap:12px; direction:ltr; z-index:10; flex-wrap:wrap;
+             transition:right 0.25s ease; }}
+  body.help-collapsed .legend {{ right:50px; }}
   .legend .chip {{ display:inline-flex; align-items:center; gap:4px; }}
   .legend .dot {{ display:inline-block; width:10px; height:10px; border-radius:50%; }}
 </style>
@@ -331,6 +359,58 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </main>
 </div>
+
+<aside id="help">
+  <div id="help-tab" onclick="toggleHelp()" title="Toggle guide"><span id="help-tab-label">How to read ›</span></div>
+  <div id="help-content">
+    <h3>The two views</h3>
+    <ul>
+      <li><b>One play</b> — pick a title from the left sidebar; explore the character network of that play with clicks.</li>
+      <li><b>Corpus overview</b> — all 15 print plays laid out side-by-side, Lateiner in the left column, Hurwitz in the right, oldest at the top. Small networks, no labels: use it to compare ensemble structure at a glance.</li>
+    </ul>
+
+    <h3>What each node means</h3>
+    <p>One node = one character with a speaking part in the play.</p>
+    <ul>
+      <li><b>Size</b> — number of speeches (<code>&lt;sp&gt;</code> elements) that character delivers across the whole play. Bigger = talks more.</li>
+      <li><b>Color</b> — the character's <code>@sex</code> attribute:
+        <br><span class="swatch" style="background:#4363d8"></span>male ·
+        <span class="swatch" style="background:#e6194B"></span>female ·
+        <span class="swatch" style="background:#3cb44b"></span>unknown / unset.</li>
+      <li><b>Label</b> — the Yiddish <code>&lt;persName&gt;</code> from the TEI cast list.</li>
+    </ul>
+
+    <h3>What each edge means</h3>
+    <p>Two characters are connected when they both speak in the same act (or scene, if the TEI has scenes).</p>
+    <ul>
+      <li><b>Width</b> — number of acts they co-appear in. Thicker line = they share more acts, i.e. they're on stage together more of the play.</li>
+    </ul>
+
+    <h3>What you can click (one-play view)</h3>
+    <ul>
+      <li><b>Click a character</b> — highlights that character (white border), its neighbors, and only the edges touching it. Everything else dims.</li>
+      <li><b>Click an act row</b> on the right — highlights only the characters who speak in that act and only that act's co-appearance edges; the camera zooms to fit the ensemble.</li>
+      <li><b>"All acts (reset)"</b> or a click on empty canvas — clears the highlight.</li>
+      <li><b>Drag a node</b> — reposition it (physics is frozen after settling, so it stays put).</li>
+      <li><b>Scroll</b> to zoom, <b>drag empty canvas</b> to pan, or use the arrow buttons on the graph.</li>
+    </ul>
+
+    <h3>Under the hood</h3>
+    <ul>
+      <li>Data source: <code>YiDraCor/tei/dracor/*.xml</code> — the 15 print TEIs.</li>
+      <li>Layout: <code>forceAtlas2Based</code>, frozen after stabilization so the picture doesn't drift.</li>
+      <li>Builder: <code>YiDraCor/code/build_character_networks.py</code> — runs automatically at the tail of every <code>build_tei.py</code>.</li>
+      <li>Author + year for the overview view: edit the <code>ATTRIBUTION</code> dict at the top of the builder.</li>
+    </ul>
+
+    <h3>Caveats</h3>
+    <ul>
+      <li>Segmentation is per-<b>act</b>, not per-scene — none of the 15 TEIs use <code>&lt;div type="scene"&gt;</code>. If scenes get added later, the builder auto-switches to finer granularity.</li>
+      <li><i>Der-Man-Untern-Tisch</i> has no act divisions in the TEI — it renders as one virtual scene where every speaker co-appears with every other. Not a bug; that play is a single unbroken piece.</li>
+      <li>Character sex is only visible when the TEI declares it. Green = unset, not "neuter."</li>
+    </ul>
+  </div>
+</aside>
 <script>
 const PLAYS = {plays_json};
 let currentNet = null;
@@ -592,6 +672,25 @@ function switchView(mode) {{
   document.getElementById('overview-view').style.display = (mode === 'overview') ? 'block' : 'none';
   if (mode === 'overview') buildOverview();
 }}
+
+// Help panel toggle — persists via localStorage
+function toggleHelp() {{
+  const panel = document.getElementById('help');
+  const collapsed = panel.classList.toggle('collapsed');
+  document.body.classList.toggle('help-collapsed', collapsed);
+  document.getElementById('help-tab-label').textContent = collapsed ? '‹ How to read' : 'How to read ›';
+  try {{ localStorage.setItem('yidracor_help_collapsed', collapsed ? '1' : '0'); }} catch (e) {{}}
+}}
+// Restore last state (default: expanded on first visit)
+(function initHelp() {{
+  let collapsed = false;
+  try {{ collapsed = localStorage.getItem('yidracor_help_collapsed') === '1'; }} catch (e) {{}}
+  if (collapsed) {{
+    document.getElementById('help').classList.add('collapsed');
+    document.body.classList.add('help-collapsed');
+    document.getElementById('help-tab-label').textContent = '‹ How to read';
+  }}
+}})();
 
 // Auto-load first
 renderPlay(0);
