@@ -89,6 +89,65 @@ class Graph:
         self.edges.append(kw)
 
 
+def _norm_name(s: str) -> str:
+    """Aggressive Yiddish/Hebrew name normalization for cross-source matching.
+    Strips diacritics, brackets, punctuation, honorifics, and sorts tokens so
+    surname-first / first-name-first orderings collapse to one key."""
+    if not s:
+        return ""
+    import re, unicodedata
+    s = unicodedata.normalize("NFC", s)
+    # strip Hebrew diacritics (nikkud + cantillation)
+    s = "".join(c for c in s if not (0x0591 <= ord(c) <= 0x05C7))
+    # letter variants
+    for a, b in [("ייִ", "יי"), ("ױ", "וי"), ("ײַ", "יי"), ("ײ", "יי"),
+                 ("וּ", "ו"), ("אַ", "א"), ("אָ", "א"), ("פּ", "פ"),
+                 ("פֿ", "פ"), ("בּ", "ב"), ("וֹ", "ו"), ("כּ", "כ"),
+                 ("שׂ", "ש"), ("תּ", "ת")]:
+        s = s.replace(a, b)
+    # drop bracketed spelling variants ('[האָרוויץ - הורוויטש]') — these are
+    # alternate orthographies from the lexicon, not additional name parts.
+    s = re.sub(r"\[[^\]]*\]", " ", s)
+    s = re.sub(r"\([^)]*\)", " ", s)
+    s = re.sub(r"[\[\](){}]", " ", s)
+    s = re.sub(r"[.,;:״׳'\"`\-–—]+", " ", s)
+    # drop common honorifics/titles that vary between sources
+    HONOR = {"פראפעסאר", "פרופסור", "פראפ", "רב", "רבי", "רי", "דר", "דאקטער",
+             "פראפעסאָר", "מיסטער", "מר", "מרת", "פרוי", "הרב"}
+    toks = [t for t in s.split() if t and t not in HONOR]
+    return " ".join(sorted(toks))
+
+
+def load_entry_index():
+    """Build lookups from entry_person_id -> heading (Yiddish name of bio host)
+    and from normalized heading -> people_db db_id (best-effort match)."""
+    entry_heading = {}
+    for r in pc.read_tsv(pc.ENTRY_TEXTS_TSV):
+        pid = (r.get("person_id") or "").strip()
+        head = (r.get("heading") or "").strip()
+        if pid and head:
+            entry_heading[pid] = head
+    # Build normalized-hebname index of people_db for reverse lookup
+    heb_index = {}
+    for r in pc.read_tsv(pc.PEOPLE_DB_TSV):
+        db_id = (r.get("db_id") or "").strip()
+        heb = (r.get("hebname") or "").strip()
+        if not (db_id and heb):
+            continue
+        key = _norm_name(heb)
+        # first-write-wins to avoid overwriting on ambiguous keys; multi-hits become None
+        if key in heb_index:
+            heb_index[key] = None  # mark ambiguous
+        else:
+            heb_index[key] = db_id
+    entry_to_dbid = {}
+    for pid, head in entry_heading.items():
+        db_id = heb_index.get(_norm_name(head))
+        if db_id:  # skip None (ambiguous) and missing
+            entry_to_dbid[pid] = db_id
+    return entry_heading, entry_to_dbid
+
+
 def load_registry_labels():
     people = {r["db_id"]: r for r in pc.read_tsv(pc.PEOPLE_DB_TSV) if r.get("db_id")}
     orgs = {r["db_id"]: r for r in pc.read_tsv(pc.ORGS_DIR / "core_db.tsv") if r.get("db_id")}
@@ -102,6 +161,22 @@ def load_registry_labels():
             if r.get("qid"):
                 places[r["qid"]] = r
     return people, orgs, clusters, places
+
+
+def _place_label_yi(pl: dict, surface: str) -> str:
+    """Best label for a place: prefer label_yi, then first variant, else surface."""
+    if pl.get("label_yi"):
+        return pl["label_yi"]
+    variants = (pl.get("variants") or "").strip()
+    if variants:
+        return variants.split(";")[0].strip()
+    return surface
+
+
+def _place_label_en(pl: dict) -> str:
+    if pl.get("label_en"):
+        return pl["label_en"]
+    return ""
 
 
 def resolve_with_adjudication(row: dict, slot: str, review: dict) -> tuple[str, str]:
@@ -126,35 +201,72 @@ def resolve_with_adjudication(row: dict, slot: str, review: dict) -> tuple[str, 
 
 
 def ensure_endpoint(g: Graph, link: str, status: str, slot: str, surface: str,
-                    labels) -> str:
-    """Return a node_id for this slot (minting an unlinked node if needed)."""
+                    labels, entry_index=None) -> str:
+    """Return a node_id for this slot (minting an unlinked node if needed).
+
+    entry_index is (entry_heading, entry_to_dbid) — enables:
+      * relabeling person_entry:P-... nodes with the bio host's real name
+        (instead of the placeholder '[HOST]' surface), and
+      * upgrading person_entry:P-... to person:<db_id> when the heading
+        matches a people_db row unambiguously.
+    """
     people, orgs, clusters, places = labels
+    entry_heading, entry_to_dbid = entry_index or ({}, {})
     if link and status in ("matched", "candidate") and "|" not in link:
         ns, _, ref = link.partition(":")
         if ns == "person":
             p = people.get(ref, {})
-            g.add_node(link, node_type="person", label_yiddish=p.get("hebname", surface),
-                       label_english=p.get("english", ""), ext_ref_type="people_db",
+            hebname = p.get("hebname") or ""
+            english = p.get("english") or ""
+            # Only fall back to surface if surface is a real name (not the
+            # '[HOST]' placeholder that some fact rows carry).
+            clean_surface = surface if surface and surface != "[HOST]" else ""
+            g.add_node(link, node_type="person",
+                       label_yiddish=hebname or clean_surface,
+                       label_english=english, ext_ref_type="people_db",
                        ext_ref_id=ref, match_status=status)
         elif ns == "person_entry":
-            g.add_node(link, node_type="person", label_yiddish=surface,
+            # Prefer the bio-entry heading over the raw surface (which is
+            # usually the placeholder '[HOST]').
+            head = entry_heading.get(ref, "")
+            label = head or (surface if surface and surface != "[HOST]" else ref)
+            # If the entry heading unambiguously matches a people_db row,
+            # upgrade the node id and switch to people_db metadata — this
+            # merges the split representation (person_entry: vs person:)
+            # for the same real-world individual.
+            db_id = entry_to_dbid.get(ref)
+            if db_id:
+                p = people.get(db_id, {})
+                upgraded = f"person:{db_id}"
+                g.add_node(upgraded, node_type="person",
+                           label_yiddish=p.get("hebname") or label,
+                           label_english=p.get("english", ""),
+                           ext_ref_type="people_db", ext_ref_id=db_id,
+                           secondary_ids=f"entry_person_id:{ref}",
+                           match_status=status,
+                           notes=f"upgraded from person_entry:{ref}")
+                return upgraded
+            g.add_node(link, node_type="person", label_yiddish=label,
                        ext_ref_type="entry_person_id", ext_ref_id=ref,
                        match_status=status)
         elif ns == "org":
             o = orgs.get(ref, {})
-            g.add_node(link, node_type="org", label_yiddish=o.get("name_yiddish", surface),
+            g.add_node(link, node_type="org",
+                       label_yiddish=o.get("name_yiddish") or surface,
                        label_english=o.get("name", ""), ext_ref_type="org_core_db",
                        ext_ref_id=ref, match_status=status)
         elif ns == "org_cluster":
             c = clusters.get(ref, {})
-            g.add_node(link, node_type="org", label_yiddish=c.get("canonical_yiddish", surface),
+            g.add_node(link, node_type="org",
+                       label_yiddish=c.get("canonical_yiddish") or surface,
                        ext_ref_type="org_cluster", ext_ref_id=ref, match_status=status)
         elif ns == "place":
             pl = places.get(ref, {})
             sec = json.dumps({k: pl.get(k, "") for k in ("kima_id", "lat", "lon")},
                              ensure_ascii=False) if pl else ""
-            g.add_node(link, node_type="place", label_yiddish=pl.get("label_yi", surface),
-                       label_english=pl.get("label_en", ""), ext_ref_type="wikidata_qid",
+            g.add_node(link, node_type="place",
+                       label_yiddish=_place_label_yi(pl, surface),
+                       label_english=_place_label_en(pl), ext_ref_type="wikidata_qid",
                        ext_ref_id=ref, secondary_ids=sec, match_status=status)
         elif ns == "play":
             return link  # play nodes are added from the registry
@@ -162,7 +274,9 @@ def ensure_endpoint(g: Graph, link: str, status: str, slot: str, surface: str,
     if status == "not_entity":
         return ""  # adjudicated: not an entity of this kind — no node, no edge
     # unmatched (or multi-candidate, which stays unresolved) -> mint
-    if not surface.strip():
+    if not surface.strip() or surface.strip() == "[HOST]":
+        # '[HOST]' at this point means the linker failed to resolve a bio-entry
+        # host reference — don't mint an anonymous node for it.
         return ""
     prefix = {"person": "person:UP", "org": "org:UO", "venue": "venue:UV",
               "place": "place:UPL", "play": "play:NEW"}[slot]
@@ -191,6 +305,10 @@ def main() -> None:
     review = {(r["slot"], r["surface"]): r for r in pc.read_tsv(pc.LINK_REVIEW_TSV)}
     labels = load_registry_labels()
     people, orgs, clusters, places = labels
+    entry_index = load_entry_index()
+    entry_heading, entry_to_dbid = entry_index
+    print(f"entry-host lookups: {len(entry_heading)} headings, "
+          f"{len(entry_to_dbid)} auto-upgraded to people_db")
     plays = pc.load_plays_db()
 
     g = Graph()
@@ -315,18 +433,18 @@ def main() -> None:
         place_link, place_st = resolve_with_adjudication(r, "place", review)
 
         play_node = ensure_endpoint(g, play_link, play_st, "play",
-                                    r.get("play_title_surface", ""), labels)
+                                    r.get("play_title_surface", ""), labels, entry_index)
         person_node = ensure_endpoint(g, person_link, person_st, "person",
-                                      r.get("person_surface", ""), labels) \
+                                      r.get("person_surface", ""), labels, entry_index) \
             if r.get("person_surface") else ""
         org_node = ensure_endpoint(g, org_link, org_st, "org",
-                                   r.get("org_surface", ""), labels) \
+                                   r.get("org_surface", ""), labels, entry_index) \
             if r.get("org_surface") else ""
         venue_node = ensure_endpoint(g, venue_link, venue_st, "venue",
-                                     r.get("venue_surface", ""), labels) \
+                                     r.get("venue_surface", ""), labels, entry_index) \
             if r.get("venue_surface") else ""
         place_node = ensure_endpoint(g, place_link, place_st, "place",
-                                     r.get("settlement_surface", ""), labels) \
+                                     r.get("settlement_surface", ""), labels, entry_index) \
             if r.get("settlement_surface") else ""
 
         statuses = [st for st in (play_st, person_st, org_st, venue_st, place_st) if st]
