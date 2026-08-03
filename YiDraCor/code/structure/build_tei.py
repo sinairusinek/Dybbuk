@@ -843,6 +843,33 @@ def main():
         if len(dropped) > 10:
             print(f"    … and {len(dropped) - 10} more")
 
+    # Refresh the corpus-wide character-network visualization so tei/dracor/
+    # and tei/character_networks.html stay in sync automatically.
+    _refresh_character_networks()
+
+
+def _refresh_character_networks() -> None:
+    """Regenerate tei/character_networks.html after any per-play TEI build.
+    Cheap (~1s: parses all 15 small XMLs). Silent on success, warns on failure
+    without breaking the build."""
+    import subprocess, sys
+    script = REPO_ROOT / "code" / "build_character_networks.py"
+    if not script.exists():
+        return
+    try:
+        # build_character_networks.py uses __file__-relative paths so cwd
+        # doesn't matter.
+        r = subprocess.run([sys.executable, str(script)],
+                           capture_output=True, text=True, timeout=60)
+        if r.returncode != 0:
+            print(f"  ⚠ character-network refresh failed: {r.stderr.strip()[:200]}")
+        else:
+            # last non-empty line of stdout is the "wrote …" summary
+            tail = [ln for ln in r.stdout.splitlines() if ln.strip()][-1:]
+            print(f"  character-network refresh: {tail[0] if tail else 'ok'}")
+    except Exception as e:
+        print(f"  ⚠ character-network refresh error: {e}")
+
 
 if __name__ == "__main__":
     main()
