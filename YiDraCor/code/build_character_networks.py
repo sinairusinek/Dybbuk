@@ -29,6 +29,32 @@ VIS_JS = Path("/opt/anaconda3/lib/python3.11/site-packages/pyvis/lib/vis-9.1.2/v
 
 NS = {"tei": "http://www.tei-c.org/ns/1.0"}
 
+# --- Attribution for the corpus-overview view -------------------------------
+# Author + composition year per stem in tei/dracor/. Edit here to correct.
+# Year source: editions.csv (year_written; falls back to year_printed).
+# Author source: plays_db.tsv (author_db_id 683=Lateiner, 684=Hurwitz).
+# TEI headers list Lateiner for all 15, but plays_db + prior Ruthie decisions
+# say Kidush-Hashem is Hurwitz (PL-0257, attribution=single); Dos-Yudishe-Kind
+# had its Lateiner ascription rejected (worksReport pooling bug) — historical
+# attribution disputed. Sinai / Ruthie — please correct as needed.
+ATTRIBUTION = {
+    "Al-Naharot-Bavel":   {"author": "Lateiner", "year": 1908},   # ed. 1909
+    "Bas-Sheva":          {"author": "Lateiner", "year": 1911},
+    "Blimele":            {"author": "Lateiner", "year": 1903},
+    "Der-Man-Untern-Tisch":{"author": "Lateiner", "year": 1911},
+    "Di-Seder-Nakht":     {"author": "Lateiner", "year": 1908},
+    "Dos-Yudishe-Herts":  {"author": "Lateiner", "year": 1910},
+    "Dos-Yudishe-Kind":   {"author": "?",        "year": 1908},   # Lateiner rejected; unresolved
+    "Dovids-Fidele":      {"author": "Lateiner", "year": 1904},
+    "Ezra":               {"author": "Lateiner", "year": 1908},
+    "Hinke-Pinke":        {"author": "Lateiner", "year": 1907},
+    "Isha-Raa":           {"author": "Lateiner", "year": 1904},
+    "Kidush-Hashem":      {"author": "Hurwitz",  "year": 1909},   # plays_db: 684
+    "Mishke-Mashke":      {"author": "Lateiner", "year": 1892},   # ed. 1911; written 1892
+    "Sore-Sheyndel":      {"author": "Lateiner", "year": 1907},
+    "Yudale-der-Blinder": {"author": "Lateiner", "year": 1908},
+}
+
 
 def _first_text(el, xpath):
     n = el.find(xpath, NS)
@@ -187,10 +213,13 @@ def process_play(path: Path):
             persons = load_persons(alt_root)
     acts = load_acts(root)
     nodes, edges, stats = build_network(persons, acts)
+    attr = ATTRIBUTION.get(path.stem, {"author": "?", "year": None})
     return {
         "id": path.stem,
         "title": get_title(root, path.stem),
         "file": path.name,
+        "author": attr["author"],
+        "year": attr["year"],
         "nodes": nodes,
         "edges": edges,
         "stats": stats,
@@ -222,13 +251,33 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .play-item .en {{ font-size:11px; color:#888; }}
   .play-item .meta {{ font-size:10px; color:#666; margin-top:2px; }}
   #main {{ position:relative; overflow:hidden; }}
+  #tabs {{ display:flex; gap:0; background:#0e0e0e; border-bottom:1px solid #2a2a2a; }}
+  .tab {{ padding:8px 18px; cursor:pointer; color:#888; font-size:12px; border-bottom:2px solid transparent;
+          text-transform:uppercase; letter-spacing:0.5px; }}
+  .tab:hover {{ color:#ccc; }}
+  .tab.active {{ color:#eee; border-bottom-color:#3cb44b; background:#161616; }}
   #header {{ padding:10px 20px; background:#181818; border-bottom:1px solid #2a2a2a;
              display:flex; align-items:baseline; gap:20px; flex-wrap:wrap; }}
   #header h2 {{ margin:0; font-size:18px; direction:rtl; }}
   #header .stats {{ font-size:12px; color:#999; }}
   #header .stats b {{ color:#ccc; }}
-  #graph {{ position:absolute; top:44px; bottom:0; left:0; right:0; background:#111; }}
+  #detail-view {{ position:absolute; top:32px; bottom:0; left:0; right:0; display:block; }}
+  #overview-view {{ position:absolute; top:32px; bottom:0; left:0; right:0; display:none;
+                    overflow-y:auto; background:#111; padding:16px; }}
+  #graph {{ position:absolute; top:76px; bottom:0; left:0; right:0; background:#111; }}
   #graph canvas {{ background:#111; }}
+  #overview-grid {{ display:grid; grid-template-columns: 1fr 40px 1fr; gap:12px; max-width:1600px; margin:0 auto; }}
+  .col-hdr {{ text-align:center; font-size:14px; color:#ccc; text-transform:uppercase; letter-spacing:0.5px;
+              padding:8px; border-bottom:1px solid #333; margin-bottom:8px; }}
+  .col-divider {{ background:linear-gradient(to bottom, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }}
+  .mini-cell {{ background:#161616; border:1px solid #2a2a2a; border-radius:6px; overflow:hidden;
+                display:flex; flex-direction:column; }}
+  .mini-cell .mini-title {{ padding:6px 10px; background:#1a1a1a; border-bottom:1px solid #2a2a2a;
+                            display:flex; justify-content:space-between; align-items:baseline; gap:8px; }}
+  .mini-cell .mini-title .yi {{ direction:rtl; font-size:14px; color:#eee; }}
+  .mini-cell .mini-title .meta {{ font-size:10px; color:#888; direction:ltr; white-space:nowrap; }}
+  .mini-net {{ height:260px; background:#111; }}
+  .col-year {{ font-size:11px; color:#888; text-align:center; padding:2px 0; direction:ltr; }}
   #actlist {{ position:absolute; top:54px; right:12px; width:260px; max-height:60vh; overflow-y:auto;
               background:rgba(20,20,20,0.9); border:1px solid #333; border-radius:6px;
               padding:8px 12px; font-size:11px; direction:rtl; z-index:10; }}
@@ -257,19 +306,28 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <div id="playlist"></div>
   </nav>
   <main id="main">
-    <div id="header">
-      <h2 id="playtitle"></h2>
-      <div class="stats" id="stats"></div>
+    <div id="tabs">
+      <div class="tab active" data-view="detail" onclick="switchView('detail')">One play</div>
+      <div class="tab" data-view="overview" onclick="switchView('overview')">Corpus overview</div>
     </div>
-    <div id="graph"></div>
-    <div id="actlist"></div>
-    <div class="legend">
-      <span class="chip"><span class="dot" style="background:#4363d8"></span> male</span>
-      <span class="chip"><span class="dot" style="background:#e6194B"></span> female</span>
-      <span class="chip"><span class="dot" style="background:#3cb44b"></span> unknown</span>
-      <span class="chip">node size = # speeches</span>
-      <span class="chip">edge width = # shared acts</span>
-      <span class="chip" style="color:#3cb44b">▸ click a node = neighbors · click an act = ensemble · click empty = reset</span>
+    <div id="detail-view">
+      <div id="header">
+        <h2 id="playtitle"></h2>
+        <div class="stats" id="stats"></div>
+      </div>
+      <div id="graph"></div>
+      <div id="actlist"></div>
+      <div class="legend">
+        <span class="chip"><span class="dot" style="background:#4363d8"></span> male</span>
+        <span class="chip"><span class="dot" style="background:#e6194B"></span> female</span>
+        <span class="chip"><span class="dot" style="background:#3cb44b"></span> unknown</span>
+        <span class="chip">node size = # speeches</span>
+        <span class="chip">edge width = # shared acts</span>
+        <span class="chip" style="color:#3cb44b">▸ click a node = neighbors · click an act = ensemble · click empty = reset</span>
+      </div>
+    </div>
+    <div id="overview-view">
+      <div id="overview-grid"></div>
     </div>
   </main>
 </div>
@@ -438,11 +496,103 @@ PLAYS.forEach((p, i) => {{
   const el = document.createElement('div');
   el.className = 'play-item';
   el.innerHTML = `<span class="yi">${{p.title}}</span>` +
-                 `<span class="en">${{p.id.replace(/-/g,' ')}}</span>` +
+                 `<span class="en">${{p.id.replace(/-/g,' ')}} · ${{p.author}}${{p.year ? ' · ' + p.year : ''}}</span>` +
                  `<span class="meta">${{p.stats.speaking_chars}} chars · ${{p.stats.acts}} acts · ${{p.stats.total_sp}} speeches</span>`;
-  el.onclick = () => renderPlay(i);
+  el.onclick = () => {{ switchView('detail'); renderPlay(i); }};
   list.appendChild(el);
 }});
+
+// -------------- Corpus overview grid --------------
+let overviewBuilt = false;
+const overviewNets = [];
+function buildOverview() {{
+  if (overviewBuilt) return;
+  overviewBuilt = true;
+  const grid = document.getElementById('overview-grid');
+  // Column headers
+  grid.innerHTML =
+    '<div class="col-hdr">Lateiner</div>' +
+    '<div></div>' +
+    '<div class="col-hdr">Hurwitz</div>';
+  // Partition
+  const lateiner = PLAYS.filter(p => p.author === 'Lateiner').sort((a,b) => (a.year||9999) - (b.year||9999));
+  const hurwitz  = PLAYS.filter(p => p.author === 'Hurwitz').sort((a,b) => (a.year||9999) - (b.year||9999));
+  const other    = PLAYS.filter(p => p.author !== 'Lateiner' && p.author !== 'Hurwitz')
+                        .sort((a,b) => (a.year||9999) - (b.year||9999));
+  const rows = Math.max(lateiner.length, hurwitz.length + other.length);
+  for (let i = 0; i < rows; i++) {{
+    const L = lateiner[i];
+    const R = hurwitz[i] || other[i - hurwitz.length];
+    grid.appendChild(mkCell(L));
+    const div = document.createElement('div'); div.className = 'col-divider'; grid.appendChild(div);
+    grid.appendChild(mkCell(R));
+  }}
+  // "Unattributed" note at bottom if any
+  if (other.length) {{
+    const note = document.createElement('div');
+    note.style.cssText = 'grid-column:1/-1;text-align:center;font-size:11px;color:#888;margin-top:10px';
+    note.textContent = 'Right column also lists unattributed plays (author = "?") below the Hurwitz plays. Edit ATTRIBUTION in build_character_networks.py to reclassify.';
+    grid.appendChild(note);
+  }}
+  // Kick off physics for each mini-network in sequence to avoid all 15
+  // solvers competing for CPU at once — visibly settles column-by-column.
+  overviewNets.forEach((entry, idx) => {{
+    setTimeout(() => {{
+      entry.net.setOptions({{ physics: {{ enabled: true }} }});
+      entry.net.once('stabilizationIterationsDone', () => {{
+        entry.net.setOptions({{ physics: {{ enabled: false }} }});
+      }});
+    }}, idx * 60);
+  }});
+}}
+
+function mkCell(p) {{
+  const cell = document.createElement('div');
+  if (!p) {{ cell.className = 'mini-cell'; cell.style.visibility='hidden'; return cell; }}
+  cell.className = 'mini-cell';
+  const yr = p.year ? p.year : '';
+  const s = p.stats;
+  cell.innerHTML =
+    `<div class="mini-title">` +
+      `<span class="yi">${{p.title}}</span>` +
+      `<span class="meta">${{yr}} · ${{s.speaking_chars}}c / ${{s.acts}}a</span>` +
+    `</div>` +
+    `<div class="mini-net" id="mini-${{p.id}}"></div>`;
+  // Defer network build to microtask so DOM is attached
+  setTimeout(() => {{
+    const container = cell.querySelector('.mini-net');
+    const data = {{
+      nodes: new vis.DataSet(p.nodes.map(n => ({{ ...n, label: '', font: {{size:0}} }}))),
+      edges: new vis.DataSet(p.edges.map(e => ({{ ...e, id: e.from + '__' + e.to,
+                                                  color: {{ color:'#666', opacity:0.4 }} }}))),
+    }};
+    const opts = {{
+      nodes: {{ shape:'dot', borderWidth:0.5, color:{{border:'#222'}} }},
+      edges: {{ smooth:false, width:0.8 }},
+      interaction: {{ hover:false, dragNodes:false, dragView:true, zoomView:true,
+                      selectable:false, tooltipDelay: 300 }},
+      physics: {{
+        enabled: false,   // will be toggled on by buildOverview() sequencer
+        solver: 'forceAtlas2Based',
+        forceAtlas2Based: {{ gravitationalConstant:-60, centralGravity:0.03,
+                             springLength:70, springConstant:0.1, damping:0.9, avoidOverlap:0.5 }},
+        stabilization: {{ enabled:true, iterations:400, updateInterval:50, fit:true }},
+        timestep:0.4, minVelocity:1.0, maxVelocity:40, adaptiveTimestep:true,
+      }},
+    }};
+    const net = new vis.Network(container, data, opts);
+    overviewNets.push({{ id: p.id, net, container }});
+  }}, 0);
+  return cell;
+}}
+
+function switchView(mode) {{
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === mode));
+  document.getElementById('detail-view').style.display = (mode === 'detail') ? 'block' : 'none';
+  document.getElementById('overview-view').style.display = (mode === 'overview') ? 'block' : 'none';
+  if (mode === 'overview') buildOverview();
+}}
+
 // Auto-load first
 renderPlay(0);
 </script>
