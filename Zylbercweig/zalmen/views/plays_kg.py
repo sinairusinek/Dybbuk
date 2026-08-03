@@ -246,7 +246,12 @@ def render():
     html_src = build_pyvis(seed, by_id, node_ids, sub_edges)
     components.html(html_src, height=720, scrolling=False)
 
-    with st.expander("Raw edges in this view"):
-        import pandas as pd
-        df = pd.DataFrame(sub_edges)[["source_id","edge_type","target_id","role_detail","character","date_start","evidence_sentence"]]
-        st.dataframe(df, use_container_width=True, height=300)
+    with st.expander(f"Raw edges in this view ({len(sub_edges)})"):
+        if not sub_edges:
+            st.caption("No edges in this neighborhood.")
+        else:
+            import pandas as pd
+            wanted = ["source_id","edge_type","target_id","role_detail","character","date_start","evidence_sentence"]
+            df = pd.DataFrame(sub_edges)
+            cols = [c for c in wanted if c in df.columns]
+            st.dataframe(df[cols], use_container_width=True, height=300)
