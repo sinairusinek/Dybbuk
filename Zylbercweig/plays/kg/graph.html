@@ -349,6 +349,7 @@ function highlightFilter(filter) {
 <div id="hdr">
   <h1>Plays Knowledge Graph</h1>
   <span class="meta">500 nodes · 1579 edges · rendering top 500 by degree</span>
+  <button id="physBtn" onclick="togglePhysics()" style="background:#333;color:#eee;border:1px solid #555;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer">⏸ Freeze layout</button>
   <span class="chip" data-type="play" style="background:#e6194B"><input type="checkbox" checked onchange="toggleType('play',this.checked)"> play</span><span class="chip" data-type="person" style="background:#4363d8"><input type="checkbox" checked onchange="toggleType('person',this.checked)"> person</span><span class="chip" data-type="production_event" style="background:#3cb44b"><input type="checkbox" checked onchange="toggleType('production_event',this.checked)"> production_event</span><span class="chip" data-type="org" style="background:#f58231"><input type="checkbox" checked onchange="toggleType('org',this.checked)"> org</span><span class="chip" data-type="place" style="background:#911eb4"><input type="checkbox" checked onchange="toggleType('place',this.checked)"> place</span><span class="chip" data-type="venue" style="background:#42d4f4"><input type="checkbox" checked onchange="toggleType('venue',this.checked)"> venue</span><span class="chip" data-type="edition" style="background:#808000"><input type="checkbox" checked onchange="toggleType('edition',this.checked)"> edition</span>
 </div>
 <script>
@@ -360,12 +361,27 @@ function highlightFilter(filter) {
     });
     window.nodes.update(upd);
   }
+  function togglePhysics() {
+    if (!window.network) return;
+    window._physicsOn = !window._physicsOn;
+    window.network.setOptions({physics: {enabled: window._physicsOn}});
+    document.getElementById('physBtn').textContent = window._physicsOn ? '⏸ Freeze layout' : '▶ Resume physics';
+  }
   // expose nodes/network globally (pyvis names them locally)
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      if (typeof nodes !== 'undefined') window.nodes = nodes;
-      if (typeof network !== 'undefined') window.network = network;
-    }, 500);
+    const iv = setInterval(() => {
+      if (typeof nodes !== 'undefined' && typeof network !== 'undefined') {
+        window.nodes = nodes; window.network = network; window._physicsOn = true;
+        // Once stabilized, freeze physics so the layout stops drifting
+        network.once('stabilizationIterationsDone', () => {
+          network.setOptions({physics: {enabled: false}});
+          window._physicsOn = false;
+          const b = document.getElementById('physBtn');
+          if (b) b.textContent = '▶ Resume physics';
+        });
+        clearInterval(iv);
+      }
+    }, 100);
   });
 </script>
 
@@ -428,7 +444,7 @@ function highlightFilter(filter) {
                   // adding nodes and edges to the graph
                   data = {nodes: nodes, edges: edges};
 
-                  var options = {"interaction": {"hover": true, "navigationButtons": true, "keyboard": true, "tooltipDelay": 100}, "edges": {"smooth": {"enabled": true, "type": "continuous"}, "arrows": {"to": {"scaleFactor": 0.4}}}, "physics": {"stabilization": {"iterations": 200}}};
+                  var options = {"interaction": {"hover": true, "navigationButtons": true, "keyboard": true, "tooltipDelay": 100}, "edges": {"smooth": false, "arrows": {"to": {"scaleFactor": 0.4}}}, "physics": {"solver": "forceAtlas2Based", "stabilization": {"enabled": true, "iterations": 1500, "updateInterval": 50, "fit": true}, "timestep": 0.35, "minVelocity": 0.75, "maxVelocity": 40, "adaptiveTimestep": true}};
 
                   
 

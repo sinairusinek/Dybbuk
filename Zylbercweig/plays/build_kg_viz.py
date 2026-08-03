@@ -93,8 +93,9 @@ def main():
 
     net = Network(height="90vh", width="100%", bgcolor="#111", font_color="#eee",
                   directed=True, cdn_resources="in_line")
-    net.barnes_hut(gravity=-4000, central_gravity=0.15, spring_length=120,
-                   spring_strength=0.01, damping=0.35, overlap=0)
+    net.force_atlas_2based(gravity=-60, central_gravity=0.012,
+                           spring_length=110, spring_strength=0.08,
+                           damping=0.9, overlap=0.2)
 
     for n in all_nodes:
         nid = n["node_id"]
@@ -134,8 +135,15 @@ def main():
     net.set_options("""
     {
       "interaction": {"hover": true, "navigationButtons": true, "keyboard": true, "tooltipDelay": 100},
-      "edges": {"smooth": {"enabled": true, "type": "continuous"}, "arrows": {"to": {"scaleFactor": 0.4}}},
-      "physics": {"stabilization": {"iterations": 200}}
+      "edges": {"smooth": false, "arrows": {"to": {"scaleFactor": 0.4}}},
+      "physics": {
+        "solver": "forceAtlas2Based",
+        "stabilization": {"enabled": true, "iterations": 1500, "updateInterval": 50, "fit": true},
+        "timestep": 0.35,
+        "minVelocity": 0.75,
+        "maxVelocity": 40,
+        "adaptiveTimestep": true
+      }
     }
     """)
 
@@ -165,6 +173,7 @@ def main():
 <div id="hdr">
   <h1>Plays Knowledge Graph</h1>
   <span class="meta">{len(all_nodes)} nodes · {len(edges)} edges · rendering {'all' if args.all else f'top {args.top} by degree'}</span>
+  <button id="physBtn" onclick="togglePhysics()" style="background:#333;color:#eee;border:1px solid #555;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer">⏸ Freeze layout</button>
   {legend_items}
 </div>
 <script>
@@ -176,12 +185,27 @@ def main():
     }});
     window.nodes.update(upd);
   }}
+  function togglePhysics() {{
+    if (!window.network) return;
+    window._physicsOn = !window._physicsOn;
+    window.network.setOptions({{physics: {{enabled: window._physicsOn}}}});
+    document.getElementById('physBtn').textContent = window._physicsOn ? '⏸ Freeze layout' : '▶ Resume physics';
+  }}
   // expose nodes/network globally (pyvis names them locally)
   window.addEventListener('load', () => {{
-    setTimeout(() => {{
-      if (typeof nodes !== 'undefined') window.nodes = nodes;
-      if (typeof network !== 'undefined') window.network = network;
-    }}, 500);
+    const iv = setInterval(() => {{
+      if (typeof nodes !== 'undefined' && typeof network !== 'undefined') {{
+        window.nodes = nodes; window.network = network; window._physicsOn = true;
+        // Once stabilized, freeze physics so the layout stops drifting
+        network.once('stabilizationIterationsDone', () => {{
+          network.setOptions({{physics: {{enabled: false}}}});
+          window._physicsOn = false;
+          const b = document.getElementById('physBtn');
+          if (b) b.textContent = '▶ Resume physics';
+        }});
+        clearInterval(iv);
+      }}
+    }}, 100);
   }});
 </script>
 """

@@ -97,8 +97,9 @@ def _type_of(nid: str) -> str:
 def build_pyvis(seed_id, nodes_by_id, node_ids, edges):
     net = Network(height="700px", width="100%", bgcolor="#111", font_color="#eee",
                   directed=True, cdn_resources="in_line", notebook=False)
-    net.barnes_hut(gravity=-4000, central_gravity=0.15, spring_length=120,
-                   spring_strength=0.01, damping=0.35, overlap=0)
+    net.force_atlas_2based(gravity=-60, central_gravity=0.012,
+                           spring_length=110, spring_strength=0.08,
+                           damping=0.9, overlap=0.2)
     deg = defaultdict(int)
     for e in edges:
         deg[e["source_id"]] += 1
@@ -136,11 +137,34 @@ def build_pyvis(seed_id, nodes_by_id, node_ids, edges):
     net.set_options("""
     {
       "interaction": {"hover": true, "navigationButtons": true, "keyboard": true, "tooltipDelay": 100},
-      "edges": {"smooth": {"enabled": true, "type": "continuous"}, "arrows": {"to": {"scaleFactor": 0.4}}},
-      "physics": {"stabilization": {"iterations": 200}}
+      "edges": {"smooth": false, "arrows": {"to": {"scaleFactor": 0.4}}},
+      "physics": {
+        "solver": "forceAtlas2Based",
+        "stabilization": {"enabled": true, "iterations": 1500, "updateInterval": 50, "fit": true},
+        "timestep": 0.35,
+        "minVelocity": 0.75,
+        "maxVelocity": 40,
+        "adaptiveTimestep": true
+      }
     }
     """)
-    return net.generate_html(notebook=False)
+    html_src = net.generate_html(notebook=False)
+    # Freeze physics once stabilization completes, so the layout stops drifting
+    freeze_js = """
+<script>
+window.addEventListener('load', () => {
+  const iv = setInterval(() => {
+    if (typeof network !== 'undefined') {
+      network.once('stabilizationIterationsDone', () => {
+        network.setOptions({physics: {enabled: false}});
+      });
+      clearInterval(iv);
+    }
+  }, 100);
+});
+</script>
+"""
+    return html_src.replace("</body>", freeze_js + "</body>", 1)
 
 
 def render():
