@@ -780,8 +780,10 @@ def _render_falsemerge_tab(reviewer: str, samples: dict[str, dict[str, list]]) -
         )
     with col_u:
         untagged_only = st.checkbox(
-            "…and only ones not yet tagged", value=False,
+            "…and only ones not yet tagged", value=True,
             key="dba_filter_untagged", disabled=not troupe_only,
+            help="On by default so already-tagged troupes stay hidden and you "
+                 "don't re-tag them. Untick to see every traveling company.",
         )
 
     def _is_troupe(r: dict) -> bool:
