@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -55,6 +56,51 @@ NS = f"{{{PAGE_NS}}}"
 # Manuscript folders plus Meshumed (the one MS play with a legacy folder name).
 MS_GLOB = "MS_*"
 MS_EXTRA = ["Lateiner_Meshumed"]
+
+
+# --- prompt-book musical apparatus (manuscript track only) ------------------
+# The MS plays are souffleur's notebooks, and their Latin-script spans are the
+# prompter's own production apparatus, historical and formulaic:
+#   N / No / NO / N=1 / N 5 / No=9 / N-10   Nummer — which musical number
+#   Return / Ret / Returnel / Returnelle    Ritornell (ritornello), not English
+#                                           "return"; spelled a dozen ways
+#   Terzett / Duett / Musik / Tanz          the musical form being cued
+#   Bis / bis                               the repeat mark, Latin-script twin
+#                                           of the printed (ביס)
+#   Vorhang                                 curtain — German twin of פארהאנג,
+#                                           already `setting` in stage_lexicon
+#   Trompetenschall                         a sound effect, not music
+# Musical performance instructions are `delivery` corpus-wide (Sinai
+# 2026-07-21, when `repeat` was retired for exactly this reason), so the
+# apparatus types as `delivery`; the curtain stays `setting` to match its
+# Yiddish counterpart and the sound effect is `business`.
+_MS_APPARATUS = [
+    (re.compile(r'^\s*"?vorhang\b', re.I), "setting"),
+    (re.compile(r'^\s*"?trompetenschall', re.I), "business"),
+    (re.compile(r'^\s*"?bis\b', re.I), "delivery"),
+    # Nummer: bare N / No / NO / Nr, and N=1, N 5, No=9, N-10, N3.
+    (re.compile(r'^\s*"?n(?:[or]\b|\b|\s*[=.\-]?\s*\d)', re.I), "delivery"),
+    # Ritornell, in every attested spelling: Ret, Retur, Return, Returned,
+    # Returnel(:), Returnell, Returnelle, Retunel. A bare `ret` prefix is safe
+    # here because this runs only on Latin-script spans in the MS plays.
+    (re.compile(r'\bret[a-z]*', re.I), "delivery"),
+    (re.compile(r'\b(terzett|duett|musik|tanz|arie|aro)\b', re.I), "delivery"),
+]
+
+
+def ms_apparatus_type(span_text: str):
+    """Type a prompt-book musical/production cue, else None.
+
+    Latin-script only: a Yiddish direction that merely contains a Latin
+    substring must not be caught here, it belongs to the calibrated lexicon.
+    """
+    t = (span_text or "").strip()
+    if not t or re.search(r"[א-ת]", t):
+        return None
+    for rx, typ in _MS_APPARATUS:
+        if rx.search(t):
+            return typ
+    return None
 
 
 def _line_text(tl) -> str:
@@ -146,7 +192,8 @@ def process_page(path: Path, apply: bool):
                 out.append((tag, a))
                 continue
 
-            t = stage_lexicon(text) or stage_lexicon_span(span_text)
+            t = (stage_lexicon(text) or stage_lexicon_span(span_text)
+                 or ms_apparatus_type(span_text))
             # stage_lexicon can return `trailer`/`epilog`, which are not stage
             # types at all but a different element — retagging those is
             # auto_resolve_flags' job on the live transcript, not ours. Leave
