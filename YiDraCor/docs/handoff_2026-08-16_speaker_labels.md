@@ -395,6 +395,7 @@ This is an entry in the **cast list**, not a speech prefix. It could not be give
 - [ ] **Mint a new role** — suggested `xml:id`: `new_role` (name as printed: א)
 - [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
 - [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Collective / group** — the cast list is naming a group here, not a person (`Chor`, `סאלדאטען`)
 - [ ] **Not a role** — this span is mis-tagged
 
 **Comment:**
@@ -560,6 +561,7 @@ This is an entry in the **cast list**, not a speech prefix. It could not be give
 - [ ] **Mint a new role** — suggested `xml:id`: `iekb_mekhel_shrh` (name as printed: יעקב מעכעל שרה)
 - [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
 - [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Collective / group** — the cast list is naming a group here, not a person (`Chor`, `סאלדאטען`)
 - [ ] **Not a role** — this span is mis-tagged
 
 **Comment:**
@@ -624,6 +626,7 @@ This is an entry in the **cast list**, not a speech prefix. It could not be give
 - [ ] **Mint a new role** — suggested `xml:id`: `flismn` (name as printed: פאליסמאן)
 - [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
 - [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Collective / group** — the cast list is naming a group here, not a person (`Chor`, `סאלדאטען`)
 - [ ] **Not a role** — this span is mis-tagged
 
 **Comment:**
@@ -710,6 +713,7 @@ This is an entry in the **cast list**, not a speech prefix. It could not be give
 - [ ] **Mint a new role** — suggested `xml:id`: `shrh_kinder` (name as printed: שרה קינדער)
 - [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
 - [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Collective / group** — the cast list is naming a group here, not a person (`Chor`, `סאלדאטען`)
 - [ ] **Not a role** — this span is mis-tagged
 
 **Comment:**
@@ -2580,6 +2584,7 @@ This is an entry in the **cast list**, not a speech prefix. It could not be give
 - [ ] **Mint a new role** — suggested `xml:id`: `chor` (name as printed: Chor)
 - [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
 - [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Collective / group** — the cast list is naming a group here, not a person (`Chor`, `סאלדאטען`)
 - [ ] **Not a role** — this span is mis-tagged
 
 **Comment:**
@@ -2694,6 +2699,7 @@ This is an entry in the **cast list**, not a speech prefix. It could not be give
 - [ ] **Mint a new role** — suggested `xml:id`: `bn_fdus_und_izrelis` (name as printed: בן פדות, אונד איזראעלית)
 - [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
 - [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Collective / group** — the cast list is naming a group here, not a person (`Chor`, `סאלדאטען`)
 - [ ] **Not a role** — this span is mis-tagged
 
 <sub>Resolver: joint: 'אונד איזראעלית' unmatched. Where it says *ambiguous*, that is the number of cast names it found equally plausible — it declined to choose rather than guess.</sub>
@@ -2780,6 +2786,7 @@ This is an entry in the **cast list**, not a speech prefix. It could not be give
 - [ ] **Mint a new role** — suggested `xml:id`: `khhr_royber_khglh_fldsh_nkhmn_hiln` (name as printed: כאהר. רויבער. חגלה, פלדש. נחמן. הילנא)
 - [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
 - [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Collective / group** — the cast list is naming a group here, not a person (`Chor`, `סאלדאטען`)
 - [ ] **Not a role** — this span is mis-tagged
 
 <sub>Resolver: joint: 'כאהר. רויבער. חגלה' unmatched. Where it says *ambiguous*, that is the number of cast names it found equally plausible — it declined to choose rather than guess.</sub>
@@ -2828,6 +2835,7 @@ This is an entry in the **cast list**, not a speech prefix. It could not be give
 - [ ] **Mint a new role** — suggested `xml:id`: `shmeun_tsenbi` (name as printed: שמעון - צענאביא)
 - [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
 - [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Collective / group** — the cast list is naming a group here, not a person (`Chor`, `סאלדאטען`)
 - [ ] **Not a role** — this span is mis-tagged
 
 **Comment:**

@@ -185,67 +185,81 @@ def main() -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--only", action="append")
     ap.add_argument("--min-occurrences", type=int, default=1)
+    ap.add_argument("--only-kind", choices=["speaker", "role"],
+                    help="restrict to one span kind (used to build addenda)")
+    ap.add_argument("--preamble",
+                    help="path to a markdown file to use instead of the "
+                         "standard introduction")
     args = ap.parse_args()
 
     found = collect(args.only)
+    if args.only_kind:
+        found = {p: {l: r for l, r in labs.items()
+                     if r.get("kind", "speaker") == args.only_kind}
+                 for p, labs in found.items()}
+        found = {p: labs for p, labs in found.items() if labs}
     L: list[str] = []
     A = L.append
 
     total = sum(r["n"] for p in found.values() for r in p.values())
     distinct = sum(len(p) for p in found.values())
 
-    A("# Speaker labels needing a decision — manuscript track")
-    A("")
-    A("**For Noa and Judith. 2026-08-16.**")
-    A("")
-    A(f"The pipeline resolved 3,583 of 3,969 speaker labels automatically "
-      f"(90%). The remaining **{total} spans across {distinct} labels** could "
-      f"not be settled mechanically, and shouldn't be — each is an editorial "
-      f"question rather than a spelling problem.")
-    A("")
-    A("Three kinds turn up:")
-    A("")
-    A("* **Characters who speak but are not in the castList.** `אסיפ` speaks "
-      "65 times in Meshumed and appears nowhere in its cast list.")
-    A("* **Unnamed functional roles** — `קעלנער` (waiter), `דיענער` (servant), "
-      "`שפיאן` (spy). These may deserve their own entries, or may be "
-      "collectives.")
-    A("* **The duet pronouns** `ער` / `זיא`, which refer to different people "
-      "scene by scene and need a per-scene answer.")
-    A("* **Cast-list entries** (marked *castList `role` span*) rather than "
-      "speech prefixes. These usually failed because one span covers several "
-      "names, or because the span is clipped — Meshumed's `א` covers only the "
-      "article of `א ריכטיר פֿון געהיימס געריכט`, a role the list already has.")
-    A("")
-    A("**How to answer:** tick one box per label. Every candidate is a real "
-      "role from that play's own cast list, with its `xml:id` in code font. "
-      "If none fits, tick *mint a new role* — a suggested id is given, change "
-      "it if you prefer. The last boxes cover the cases where the tagging "
-      "itself is wrong rather than the identification. The comment line is for "
-      "anything else, including \"depends on the scene\".")
-    A("")
-    A("Each label is asked **once**, however many times it occurs. Page links "
-      "go straight to Transkribus.")
-    A("")
-    A("### The ones that matter most")
-    A("")
-    A("| Play | Label | Spans | |")
-    A("|---|---|---:|---|")
-    big = sorted(((p, lab, r["n"]) for p, labs in found.items()
-                  for lab, r in labs.items()), key=lambda t: -t[2])[:15]
-    for p, lab, n in big:
-        anchor = PLAY_TITLES.get(p, p)
-        hint = NOTES.get((p, lab))
-        flag = " *(suggestion below)*" if hint and hint[0] else (
-            " *(needs a per-scene answer)*" if hint else "")
-        A(f"| {anchor} | {lab} | {n} |{flag} |")
-    A("")
-    A(f"Those {sum(n for _, _, n in big)} spans are "
-      f"{100 * sum(n for _, _, n in big) // max(total, 1)}% of the total. The "
-      f"remaining labels occur only a handful of times each.")
-    A("")
-    A("---")
-    A("")
+    if args.preamble:
+        A(Path(args.preamble).read_text(encoding="utf-8").rstrip())
+        A("")
+    else:
+        A("# Speaker labels needing a decision — manuscript track")
+        A("")
+        A("**For Noa and Judith. 2026-08-16.**")
+        A("")
+        A(f"The pipeline resolved 3,583 of 3,969 speaker labels automatically "
+          f"(90%). The remaining **{total} spans across {distinct} labels** could "
+          f"not be settled mechanically, and shouldn't be — each is an editorial "
+          f"question rather than a spelling problem.")
+        A("")
+        A("Three kinds turn up:")
+        A("")
+        A("* **Characters who speak but are not in the castList.** `אסיפ` speaks "
+          "65 times in Meshumed and appears nowhere in its cast list.")
+        A("* **Unnamed functional roles** — `קעלנער` (waiter), `דיענער` (servant), "
+          "`שפיאן` (spy). These may deserve their own entries, or may be "
+          "collectives.")
+        A("* **The duet pronouns** `ער` / `זיא`, which refer to different people "
+          "scene by scene and need a per-scene answer.")
+        A("* **Cast-list entries** (marked *castList `role` span*) rather than "
+          "speech prefixes. These usually failed because one span covers several "
+          "names, or because the span is clipped — Meshumed's `א` covers only the "
+          "article of `א ריכטיר פֿון געהיימס געריכט`, a role the list already has.")
+        A("")
+        A("**How to answer:** tick one box per label. Every candidate is a real "
+          "role from that play's own cast list, with its `xml:id` in code font. "
+          "If none fits, tick *mint a new role* — a suggested id is given, change "
+          "it if you prefer. The last boxes cover the cases where the tagging "
+          "itself is wrong rather than the identification. The comment line is for "
+          "anything else, including \"depends on the scene\".")
+        A("")
+        A("Each label is asked **once**, however many times it occurs. Page links "
+          "go straight to Transkribus.")
+        A("")
+        A("### The ones that matter most")
+        A("")
+        A("| Play | Label | Spans | |")
+        A("|---|---|---:|---|")
+        big = sorted(((p, lab, r["n"]) for p, labs in found.items()
+                      for lab, r in labs.items()), key=lambda t: -t[2])[:15]
+        for p, lab, n in big:
+            anchor = PLAY_TITLES.get(p, p)
+            hint = NOTES.get((p, lab))
+            flag = " *(suggestion below)*" if hint and hint[0] else (
+                " *(needs a per-scene answer)*" if hint else "")
+            A(f"| {anchor} | {lab} | {n} |{flag} |")
+        A("")
+        A(f"Those {sum(n for _, _, n in big)} spans are "
+          f"{100 * sum(n for _, _, n in big) // max(total, 1)}% of the total. The "
+          f"remaining labels occur only a handful of times each.")
+        A("")
+        A("---")
+        A("")
 
     for play in sorted(found, key=lambda p: -sum(r["n"] for r in found[p].values())):
         labels = found[play]
@@ -342,6 +356,8 @@ def main() -> int:
                   "the role itself is fine")
                 A("- [ ] **One span, several roles** — split it (say which "
                   "in the comment)")
+                A("- [ ] **Collective / group** — the cast list is naming a "
+                  "group here, not a person (`Chor`, `סאלדאטען`)")
                 A("- [ ] **Not a role** — this span is mis-tagged")
             else:
                 A("- [ ] **Collective / group**, no individual cast entry "
