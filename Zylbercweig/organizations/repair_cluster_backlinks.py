@@ -17,7 +17,13 @@ already on disk.
 export all read. `linked_cluster_ids` is a denormalised convenience column, so
 it is the side that gets rewritten.
 
-Three classes are handled:
+With one exception: a `REMOVE` in `db_audit_decisions.tsv` outranks
+`aligned_db_id`. `apply_db_audit_decisions.py` drops the cluster from
+`linked_cluster_ids` but leaves `aligned_db_id` naming the row, so a reviewer's
+REMOVE survives *only* in the decisions file. Treating aligned_db_id as
+authority there would resurrect 18 decisions by Sinai and Ruthie.
+
+Four classes are handled:
 
   STALE   DB row lists a cluster whose aligned_db_id names a *different* row
           -> drop it from this row (the other row is its real owner)
@@ -26,6 +32,8 @@ Three classes are handled:
   ORPHAN  DB row lists a cluster_id that is not in the alignment file at all
           -> reported, never touched: could be a genuinely deleted cluster or
              an id typo, and either way it needs a human
+  REMOVED reviewer filed REMOVE for this (db_id, cluster) pair
+          -> never added back, and dropped if present: a human already ruled
 
 Clusters pointing at a DB row that no longer exists are *not* repaired here.
 They need re-filing, not a link edit, and the audit view now flags them
@@ -49,6 +57,7 @@ import sys
 HERE = pathlib.Path(__file__).resolve().parent
 ALIGN_FILE = HERE / "org_alignment_review.tsv"
 CORE_DB_FILE = HERE / "core_db.tsv"
+DECISIONS_FILE = HERE / "db_audit_decisions.tsv"
 
 csv.field_size_limit(10**8)
 
@@ -91,6 +100,15 @@ def main() -> int:
     a_headers, a_rows = _read(ALIGN_FILE)
     db_headers, db_rows = _read(CORE_DB_FILE)
 
+    # (db_id, cluster_id) pairs a reviewer has explicitly unlinked.
+    removed: set[tuple[str, str]] = set()
+    if DECISIONS_FILE.exists():
+        _, d_rows = _read(DECISIONS_FILE)
+        for r in d_rows:
+            if (r.get("decision") or "").strip().upper() == "REMOVE":
+                removed.add(((r.get("db_id") or "").strip(),
+                             (r.get("cluster_id") or "").strip()))
+
     db_ids = {r.get("db_id", "").strip() for r in db_rows}
     # cluster_id -> the DB row it says it belongs to (only live rows count)
     owner: dict[str, str] = {}
@@ -110,6 +128,8 @@ def main() -> int:
     stale: list[tuple[str, str, str]] = []    # (db_id, cluster, real_owner)
     orphan: list[tuple[str, str]] = []        # (db_id, cluster)
     missing: list[tuple[str, str]] = []       # (db_id, cluster)
+    dropped: list[tuple[str, str]] = []       # (db_id, cluster) — REMOVE'd
+    blocked: list[tuple[str, str]] = []       # (db_id, cluster) — REMOVE'd, not re-added
     changed_rows = 0
 
     for row in db_rows:
@@ -117,7 +137,9 @@ def main() -> int:
         listed = _split_ids(row.get("linked_cluster_ids", ""))
         keep: list[str] = []
         for cid in listed:
-            if cid not in known_clusters:
+            if (dbid, cid) in removed:
+                dropped.append((dbid, cid))   # reviewer already ruled: unlink
+            elif cid not in known_clusters:
                 orphan.append((dbid, cid))
                 keep.append(cid)          # untouched: needs a human
             elif cid in owner and owner[cid] != dbid:
@@ -129,6 +151,9 @@ def main() -> int:
         # Clusters that name this row but are absent from its list.
         for cid, tgt in owner.items():
             if tgt == dbid and cid not in keep:
+                if (dbid, cid) in removed:
+                    blocked.append((dbid, cid))
+                    continue
                 missing.append((dbid, cid))
                 if args.add_missing:
                     keep.append(cid)
@@ -159,6 +184,14 @@ def main() -> int:
         print(f"          DB {dbid} → {cid}")
     if len(orphan) > 15:
         print(f"          … and {len(orphan) - 15} more")
+
+    print(f"\nREMOVED {len(dropped):4}  link dropped — reviewer filed REMOVE in "
+          f"{DECISIONS_FILE.name}")
+    for dbid, cid in dropped[:15]:
+        print(f"          DB {dbid} ⊅ {cid}")
+    if len(dropped) > 15:
+        print(f"          … and {len(dropped) - 15} more")
+    print(f"        {len(blocked):4}  further REMOVE'd pair(s) NOT re-added by --add-missing")
 
     print(f"\nDANGLING {len(dangling):3}  cluster points at a DB row that no longer exists —")
     print("            LEFT AS IS, re-file from the audit view (⚠️ badge)")
