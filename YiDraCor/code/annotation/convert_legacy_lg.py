@@ -48,6 +48,7 @@ from statistics import median
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from annotation.schema import PAGE_NS, parse_custom, serialize_custom  # noqa: E402
+from annotation.review_links import page_url  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 NS = f"{{{PAGE_NS}}}"
@@ -321,8 +322,10 @@ def main() -> int:
     print(f"\n{'APPLIED — files rewritten' if args.apply else 'DRY RUN — nothing written'}")
 
     if args.report and all_flags:
-        cols = ["play", "page", "kind", "reading_index", "gap", "median_gap",
-                "text", "note"]
+        cols = ["play", "page", "transkribus_url", "kind", "reading_index",
+                "gap", "median_gap", "text", "note"]
+        for fl in all_flags:
+            fl["transkribus_url"] = page_url(fl.get("play", ""), fl.get("page", ""))
         with open(args.report, "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=cols, delimiter="\t")
             w.writeheader()

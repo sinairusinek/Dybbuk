@@ -47,6 +47,7 @@ from annotation.schema import (  # noqa: E402
 from annotation.auto_resolve_flags import (  # noqa: E402
     stage_lexicon, stage_lexicon_span, apply_opening_setting,
 )
+from annotation.review_links import page_url  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 NS = f"{{{PAGE_NS}}}"
@@ -227,7 +228,10 @@ def main() -> int:
     print("APPLIED — files rewritten" if args.apply else "DRY RUN — nothing written")
 
     if args.report and all_rows:
-        cols = ["play", "page", "line_id", "span", "line", "rule_said"]
+        cols = ["play", "page", "transkribus_url", "line_id", "span", "line",
+                "rule_said"]
+        for r in all_rows:
+            r["transkribus_url"] = page_url(r["play"], r["page"])
         with open(args.report, "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=cols, delimiter="\t")
             w.writeheader()

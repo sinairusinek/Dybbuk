@@ -54,6 +54,7 @@ from annotation.schema import (  # noqa: E402
     PAGE_NS, COLLECTIVE_XMLID, collective_skeleton, parse_custom,
     serialize_custom, _NIKUD,
 )
+from annotation.review_links import page_url  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 NS = f"{{{PAGE_NS}}}"
@@ -231,6 +232,9 @@ def process_play(folder: Path, apply: bool):
     stats = Counter()
     unresolved: dict[str, Counter] = defaultdict(Counter)
     unres_reason: dict[str, str] = {}
+    # Where each unresolved label occurs, so the sheet can link straight to a
+    # page instead of naming a play and leaving the RA to hunt for it.
+    unres_pages: dict[str, list] = defaultdict(list)
 
     for xf in sorted((folder / "page_annotated").glob("*.xml")):
         try:
@@ -272,6 +276,7 @@ def process_play(folder: Path, apply: bool):
                         if not hit:
                             stats["role_unmatched"] += 1
                             unresolved[bare(label)][folder.name] += 1
+                            unres_pages[bare(label)].append(xf.name)
                             unres_reason.setdefault(bare(label), f"role: {why}")
                             out.append((tag, a))
                             continue
@@ -288,6 +293,7 @@ def process_play(folder: Path, apply: bool):
                 if not xid:
                     stats["speaker_unmatched"] += 1
                     unresolved[bare(label)][folder.name] += 1
+                    unres_pages[bare(label)].append(xf.name)
                     unres_reason.setdefault(bare(label), why)
                     out.append((tag, a))
                     continue
@@ -302,7 +308,7 @@ def process_play(folder: Path, apply: bool):
                 changed = True
         if changed and apply:
             tree.write(xf, encoding="utf-8", xml_declaration=True)
-    return stats, unresolved, unres_reason
+    return stats, unresolved, unres_reason, unres_pages
 
 
 def main() -> int:
@@ -326,14 +332,18 @@ def main() -> int:
         got = process_play(folder, args.apply)
         if not got:
             continue
-        stats, unresolved, reasons = got
+        stats, unresolved, reasons, upages = got
         grand.update(stats)
         for label, plays in unresolved.items():
             if folder.name in plays:
+                pgs = sorted(set(upages.get(label, [])))
                 rows.append({
                     "play": folder.name, "label": label,
                     "occurrences": plays[folder.name],
                     "reason": reasons.get(label, ""),
+                    "pages": ",".join(p.split("_")[0].lstrip("0") or "0"
+                                      for p in pgs[:8]),
+                    "first_page_url": page_url(folder.name, pgs[0]) if pgs else "",
                 })
         print(f"{folder.name[:30]:30} {stats['speaker_resolved']:9} "
               f"{stats['speaker_unmatched']:9} "
@@ -347,7 +357,8 @@ def main() -> int:
     if args.report and rows:
         rows.sort(key=lambda r: (-r["occurrences"], r["play"]))
         with open(args.report, "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=["play", "label", "occurrences", "reason"],
+            w = csv.DictWriter(f, fieldnames=["play", "label", "occurrences",
+                                              "pages", "first_page_url", "reason"],
                                delimiter="\t")
             w.writeheader()
             w.writerows(rows)
