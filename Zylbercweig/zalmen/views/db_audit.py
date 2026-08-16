@@ -723,8 +723,10 @@ def _render_falsemerge_tab(reviewer: str) -> None:
         )
     with col_s:
         max_show = st.number_input(
-            "Show top N", min_value=10, max_value=500, value=50, step=10,
+            "Show top N", min_value=5, max_value=500, value=20, step=5,
             key="dba_filter_n",
+            help="Fewer DBs per page render faster. Raise it when you want to "
+                 "scan more at once.",
         )
 
     # The troupe-tagging worklist filters that used to live here are gone: the
