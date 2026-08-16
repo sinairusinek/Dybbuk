@@ -35,6 +35,7 @@ ALIGN = HERE / "org_alignment_review.tsv"
 OUT_A = HERE / "db_yiddish_contamination_punchlist.tsv"
 OUT_B_DUPS = HERE / "db_duplicate_pairs_punchlist.tsv"
 OUT_B_BUCKETS = HERE / "db_garbage_bucket_punchlist.tsv"
+OUT_C_ORPHANS = HERE / "db_orphaned_links_punchlist.tsv"
 # PI-confirmed benign variant pairs — rows where name and name_yiddish are
 # legitimate orthographic/declension alternates of the same entity, not
 # contamination. Skipped from the Class A low_intra_sim check. Append rows here
@@ -324,11 +325,38 @@ if class_b_buckets:
 elif OUT_B_BUCKETS.exists():
     OUT_B_BUCKETS.unlink()  # don't leave a stale empty file
 
+# ── Class C — orphaned rows (active, but no linked clusters) ────────────────
+# The settlement-audit re-align path (settlement_audit._align_clusters_to_db)
+# drops a cluster from its previous owner but never deprecates a row it leaves
+# empty. Moving a DB's LAST cluster strands it: active, but linked to nothing.
+# Standing guard so future strandings surface instead of hiding as "no mentions".
+# (db_rows already excludes deprecated/out_of_project; also drop merged_into.)
+class_c = [
+    {
+        "db_id": r.get("db_id", ""),
+        "name": r.get("name", ""),
+        "name_yiddish": r.get("name_yiddish", ""),
+        "org_type": r.get("org_type", ""),
+    }
+    for r in db_rows
+    if not (r.get("merged_into", "") or "").strip()
+    and not (r.get("linked_cluster_ids", "") or "").strip()
+]
+class_c.sort(key=lambda r: (r["org_type"], r["db_id"]))
+if class_c:
+    with OUT_C_ORPHANS.open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=list(class_c[0].keys()),
+                           delimiter="\t", lineterminator="\n")
+        w.writeheader(); w.writerows(class_c)
+elif OUT_C_ORPHANS.exists():
+    OUT_C_ORPHANS.unlink()
+
 # ── Summary ───────────────────────────────────────────────────────────────
 print(f"Class A — name_yiddish contamination candidates: {len(class_a)} → {OUT_A.name}")
 print(f"  (sort: cross-row collisions first, then lowest intra-row similarity)")
 print(f"Class B — duplicate DB-row pairs (sim ≥ 0.60):    {len(class_b_pairs)} → {OUT_B_DUPS.name}")
 print(f"Class B — garbage-bucket alignments (≥3 mismatched aligns): {len(class_b_buckets)} → {OUT_B_BUCKETS.name}")
+print(f"Class C — orphaned rows (active, no linked clusters):       {len(class_c)} → {OUT_C_ORPHANS.name}")
 print("\nTop 5 Class A (most suspicious):")
 for r in class_a[:5]:
     print(f"  db{r['db_id']:>4} {r['suspect_reasons']:<50} "

@@ -146,6 +146,9 @@ def test_realigning_unlinks_the_previous_row(monkeypatch):
     assert "C3" in by_id["10"]["linked_cluster_ids"]      # new owner claims it
     assert a_rows[2]["aligned_db_id"] == "10"
     assert "moved 1" in msg
+    # The emptied previous row (DB 11 had only C3) is flagged, not silently
+    # stranded — this is how the orphan-link backlog accumulated.
+    assert "no clusters" in msg and "11" in msg
 
 
 def test_aligning_a_free_cluster_touches_no_other_row(monkeypatch):

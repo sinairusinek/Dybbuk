@@ -226,6 +226,7 @@ def _align_clusters_to_db(
     # without unlinking left the old row still claiming the cluster in its
     # linked_cluster_ids, so two DB rows owned one cluster. Unlink first.
     moved: list[str] = []
+    touched_prev: set[str] = set()
     for cid in cluster_ids:
         row = a_by_cid.get(cid)
         if not row:
@@ -238,6 +239,7 @@ def _align_clusters_to_db(
                 prev_row["linked_cluster_ids"] = _drop_linked_id(
                     prev_row.get("linked_cluster_ids", ""), cid
                 )
+                touched_prev.add(prev)
         row["decision"] = "ALIGN"
         row["aligned_db_id"] = target_db
     target_row = db_by_id.get(target_db)
@@ -245,10 +247,22 @@ def _align_clusters_to_db(
         target_row["linked_cluster_ids"] = _merge_linked_ids(
             target_row.get("linked_cluster_ids", ""), *cluster_ids
         )
+    # A previous owner whose LAST cluster we just moved is now active with no
+    # clusters — an orphan (this is how 200+ empty-link rows accumulated). We do
+    # NOT auto-deprecate it: it may be a legitimate distinct entity the reviewer
+    # means to keep, not a duplicate. Instead flag it in the result so the
+    # orphaning is never silent; detect_data_defects.py Class C is the standing
+    # catch-all, and repair_orphan_links.py handles the safe subset.
+    emptied = [p for p in sorted(touched_prev, key=lambda x: (len(x), x))
+               if db_by_id.get(p) is not None
+               and not (db_by_id[p].get("linked_cluster_ids") or "").strip()]
     _persist_and_clear(a_headers, a_rows, db_headers, db_rows)
     msg = f"Aligned {len(cluster_ids)} cluster(s) → {target_db}"
     if moved:
         msg += f" · moved {len(moved)} off a previous row"
+    if emptied:
+        msg += (f" · ⚠ DB {', '.join(emptied)} now with no clusters — "
+                f"review (DB Audit / detect_data_defects Class C)")
     return msg
 
 
