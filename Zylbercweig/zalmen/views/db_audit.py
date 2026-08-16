@@ -109,13 +109,11 @@ _TROUPE_TAG_OPTS = [
     "Operetta / Opera Company",
     "German-Jewish Company",
     "Amateur Company",
-    "Zionist Company",
-    "Socialist Company",
-    "Post-Holocaust Company",
-    "Bilingual Company",
     # added 2026-08-10 (Ruthie): two new characteristic tags from the lexicon
     "Kleinkunst / Revue / Cabaret Company",
     "Marionette / Puppet Company",
+    # Dropped 2026-08-10 (Ruthie): Zionist, Socialist, Post-Holocaust, Bilingual
+    # — never used, never assigned, unconfirmed leftovers from the 07-19 list.
 ]
 
 

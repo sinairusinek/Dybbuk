@@ -198,11 +198,8 @@ def classify(name, yid, sents):
     am = cue(nm, [r"אַמאַטאָר", r"ליבהאָבער", r"דראַמאַטיש\w*[- ]קרייז",
                   r"דראַמ[- ]קרייז", r"יוגנט[- ]", r"סטודענטן?[- ]", r"שול[- ]טרופּ"])
     if am: add("Amateur Company", f"«{am}»", "text")
-    # Zionist / Socialist — tight
-    z = cue(hay, [r"ציוני", r"העברעא"])
-    if z: add("Zionist Company", f"«{z}»", "low")
-    s = cue(hay, [r"סאָציאַליסט", r"\bבונד\b", r"פּראָלעט", r"אַרבעטער-רינג"])
-    if s: add("Socialist Company", f"«{s}»", "low")
+    # (Zionist / Socialist cues removed 2026-08-10: Ruthie dropped those tags,
+    # along with Post-Holocaust and Bilingual, as unconfirmed and unused.)
     # Family — brothers/sisters/family word in the NAME (a mention of "the
     # brothers" elsewhere is about a person's career, not this troupe).
     fam = cue(nm, [r"ברידער", r"שוועסטער", r"משפּחה", r"[Ff]amily"])
