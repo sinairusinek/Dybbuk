@@ -26,11 +26,18 @@ WHAT IT DOES, per page, in reading order:
   * per-line `lg`/`LG` spans on lines 2..k are dropped
   * uppercase `LG` is normalised to `lg` on the way through
 
-WHAT IT REFUSES TO DECIDE. Two stanzas by the same speaker on one page carry
-no tag-level boundary signal — only a wider gap on the page image. Those runs
-are grouped as one stanza and reported to the review sheet instead of being
-split silently; a strong vertical-gap outlier inside a run is reported as a
-*proposed* break, never applied. See `--report`.
+ON SUB-STANZA STRUCTURE. A verse run is emitted as ONE <lg>. The RAs never
+encoded stanza boundaries — in the original pull, 1,224 of 1,245 `lg` spans are
+an identical `continued:true` and the 21 exceptions are malformed rather than
+meaningful — so a contiguous run is all the evidence there is, and grouping it
+whole is forced rather than chosen.
+
+A line-pitch heuristic for splitting same-speaker runs was tried and REMOVED
+(2026-08-16). Its ratios ran 1.51, 1.51, 1.52 … 1.96 in a continuous band with
+no bimodal separation: ordinary line-spacing jitter, not blank lines. Any
+threshold over that distribution invents findings. If sub-stanza structure is
+wanted later it has to come from the page images or from the RAs annotating it,
+not from a cutoff on noise.
 
 Run (repo root, python3.11):
   python -m annotation.convert_legacy_lg --dry-run --only MS_BasKoyen
@@ -44,7 +51,6 @@ import csv
 import re
 import sys
 from pathlib import Path
-from statistics import median
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from annotation.schema import PAGE_NS, parse_custom, serialize_custom  # noqa: E402
@@ -58,14 +64,6 @@ NS = f"{{{PAGE_NS}}}"
 # that then escaped the colon — as `con: yes` / `cont: yes`.
 _CONT_RX = re.compile(r"^cont?\b", re.I)
 
-# A run longer than this with no internal structural signal is suspicious:
-# real stanzas in this corpus are 2-8 lines. Reported, not split.
-LONG_RUN = 12
-# Line *pitch* (top-to-top distance) this many times the page's median verse
-# pitch is proposed as a stanza break. Pitch, not the gap between polygon
-# bottoms and tops: Transkribus line polygons overlap vertically, so that gap
-# is routinely negative and comparing it against a negative median inverts.
-GAP_FACTOR = 1.5
 
 
 def _is_cont(attrs: dict) -> bool:
@@ -160,19 +158,6 @@ def convert_page(tree, start_n: int):
         parsed = [(tl, parse_custom(tl.get("custom") or "")) for tl in lines]
         parsed.sort(key=lambda p: _reading_index(p[1]))
 
-        # Median gap between consecutive verse lines, for the outlier proposal.
-        pitches = []
-        prev_top = None
-        for tl, ents in parsed:
-            if any(t in ("lg", "LG") for t, _ in ents):
-                yt = _ytop(tl)
-                if prev_top is not None and yt is not None and yt > prev_top:
-                    pitches.append(yt - prev_top)
-                prev_top = yt
-            else:
-                prev_top = None
-        med_gap = median(pitches) if len(pitches) >= 3 else None
-
         run: list[tuple] = []   # (tl, entries, lg_attrs, text)
 
         def close_run():
@@ -186,18 +171,6 @@ def convert_page(tree, start_n: int):
             cont = _is_cont(first_lg)
             if cont:
                 stats["cont"] += 1
-            # One flag per over-long run, raised where the stanza opens — not
-            # one per line past the threshold, which buried the sheet.
-            if len(run) > LONG_RUN:
-                flags.append({
-                    "kind": "long_run",
-                    "reading_index": _reading_index(first_ents),
-                    "gap": "", "median_gap": "",
-                    "text": first_text[:60],
-                    "note": f"stanza n:{n} groups {len(run)} consecutive verse "
-                            f"lines with no speaker or head break; may be "
-                            f"several stanzas",
-                })
             for i, (tl, ents, lg_attrs, text) in enumerate(run):
                 out: list[tuple[str, dict]] = []
                 have_l = False
@@ -231,36 +204,17 @@ def convert_page(tree, start_n: int):
             run = []
 
         run = []
-        prev_top = None
         for tl, ents in parsed:
             lg_attrs = next((a for t, a in ents if t in ("lg", "LG")), None)
             text = _line_text(tl)
             if lg_attrs is None:
                 close_run()
-                prev_top = None
                 continue
             has_speaker = any(t == "speaker" for t, _ in ents)
             has_head = any(t == "head" for t, _ in ents)
-            yt = _ytop(tl)
-            gap = (yt - prev_top) if (yt is not None and prev_top is not None
-                                      and yt > prev_top) else None
-
             if run and (has_speaker or has_head):
                 close_run()
-            elif (run and gap is not None and med_gap and med_gap > 0
-                  and gap > GAP_FACTOR * med_gap):
-                # A wider-than-usual gap: likely a stanza break, but the only
-                # evidence is layout. Group anyway, propose the split.
-                flags.append({
-                    "kind": "proposed_stanza_break",
-                    "reading_index": _reading_index(ents),
-                    "gap": gap, "median_gap": med_gap,
-                    "text": text[:60],
-                    "note": f"line pitch {gap} is {gap/med_gap:.1f}x the page "
-                            f"median ({med_gap}); may start a new stanza",
-                })
             run.append((tl, ents, lg_attrs, text))
-            prev_top = yt
         close_run()
     return start_n, stats, flags
 
@@ -323,7 +277,7 @@ def main() -> int:
 
     if args.report and all_flags:
         cols = ["play", "page", "transkribus_url", "kind", "reading_index",
-                "gap", "median_gap", "text", "note"]
+                "text", "note"]
         for fl in all_flags:
             fl["transkribus_url"] = page_url(fl.get("play", ""), fl.get("page", ""))
         with open(args.report, "w", newline="", encoding="utf-8") as f:
