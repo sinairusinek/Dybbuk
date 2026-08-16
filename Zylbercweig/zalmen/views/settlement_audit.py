@@ -15,6 +15,7 @@ from __future__ import annotations
 import csv
 import math
 import pathlib
+import re
 import sys
 from dataclasses import dataclass
 from typing import Iterable
@@ -141,6 +142,20 @@ def _merge_linked_ids(*values: str) -> str:
     return " | ".join(seen)
 
 
+def _drop_linked_id(value: str, cluster_id: str) -> str:
+    """Remove one cluster from a DB row's `linked_cluster_ids` list."""
+    keep = [
+        p.strip() for p in (value or "").replace(",", "|").split("|")
+        if p.strip() and p.strip() != cluster_id
+    ]
+    return " | ".join(keep)
+
+
+# Prefix used to mark a merge that changed nothing, so callers can skip the
+# activity-log write and show an informational toast instead of a success one.
+_ALREADY_PREFIX = "Already merged"
+
+
 def _addr_status_for_qid(qid: str, ix, addr_by_dbid: dict[str, dict[str, str]]) -> str:
     """green = every DB row in this city has lat+lon, amber = some, red = none."""
     db_ids: set[str] = set()
@@ -205,20 +220,36 @@ def _align_clusters_to_db(
     db_headers: list[str],
 ) -> str:
     a_by_cid = {r["cluster_id"]: r for r in a_rows}
+    db_by_id = {r.get("db_id", ""): r for r in db_rows}
+    # A cluster can already point at a DIFFERENT DB row — a reviewer re-merging
+    # something an earlier session already consumed. Overwriting aligned_db_id
+    # without unlinking left the old row still claiming the cluster in its
+    # linked_cluster_ids, so two DB rows owned one cluster. Unlink first.
+    moved: list[str] = []
     for cid in cluster_ids:
         row = a_by_cid.get(cid)
         if not row:
             continue
+        prev = (row.get("aligned_db_id") or "").strip()
+        if prev and prev != target_db:
+            moved.append(cid)
+            prev_row = db_by_id.get(prev)
+            if prev_row is not None:
+                prev_row["linked_cluster_ids"] = _drop_linked_id(
+                    prev_row.get("linked_cluster_ids", ""), cid
+                )
         row["decision"] = "ALIGN"
         row["aligned_db_id"] = target_db
-    for r in db_rows:
-        if r.get("db_id") == target_db:
-            r["linked_cluster_ids"] = _merge_linked_ids(
-                r.get("linked_cluster_ids", ""), *cluster_ids
-            )
-            break
+    target_row = db_by_id.get(target_db)
+    if target_row is not None:
+        target_row["linked_cluster_ids"] = _merge_linked_ids(
+            target_row.get("linked_cluster_ids", ""), *cluster_ids
+        )
     _persist_and_clear(a_headers, a_rows, db_headers, db_rows)
-    return f"Aligned {len(cluster_ids)} cluster(s) → {target_db}"
+    msg = f"Aligned {len(cluster_ids)} cluster(s) → {target_db}"
+    if moved:
+        msg += f" · moved {len(moved)} off a previous row"
+    return msg
 
 
 def _mint_db_from_clusters(
@@ -314,10 +345,20 @@ def _consolidate_clusters(
     survivor_row["linked_cluster_ids"] = _merge_linked_ids(*pieces)
 
     in_set = set(cluster_ids)
+    db_by_id = {r.get("db_id", ""): r for r in db_rows}
     for r in a_rows:
         cid = r.get("cluster_id", "")
         cur_target = (r.get("aligned_db_id") or "").strip()
         if cid in in_set or cur_target in losers:
+            # Losers are deleted below, so only a surviving third row needs its
+            # back-link cleaned — otherwise it keeps claiming a cluster that has
+            # just moved to `survivor`.
+            if cur_target and cur_target != survivor and cur_target not in losers:
+                stale = db_by_id.get(cur_target)
+                if stale is not None:
+                    stale["linked_cluster_ids"] = _drop_linked_id(
+                        stale.get("linked_cluster_ids", ""), cid
+                    )
             r["aligned_db_id"] = survivor
             if not (r.get("decision") or "").strip():
                 r["decision"] = "NEW"
@@ -352,6 +393,94 @@ def _merge_db_rows_op(
     db_rows[:] = [r for r in db_rows if r.get("db_id") not in secondaries]
     _persist_and_clear(a_headers, a_rows, db_headers, db_rows)
     return f"Merged {len(secondaries)} row(s) into {primary}"
+
+
+_RECEIPT_KEY = "sa_last_receipt"
+
+
+def _record_receipt(qid: str, msg: str, kind: str, ident: str, n_partners: int) -> None:
+    """Remember the last mutation so the next render can show it in place.
+
+    `st.toast` disappears after a few seconds and the Actions panel closes on
+    the rerun that follows a merge, so nothing on screen said the merge landed —
+    which is why reviewers came back and did it again. The receipt survives in
+    session_state until the next mutation or a change of city.
+    """
+    db_id = ""
+    m = re.search(r"DB (\d+)", msg or "")
+    if m:
+        db_id = m.group(1)
+    elif kind == "db":
+        db_id = ident
+    st.session_state[_RECEIPT_KEY] = {
+        "qid": qid, "msg": msg or "", "db_id": db_id, "n": n_partners,
+    }
+
+
+def _aligned_target(
+    cluster_id: str,
+    a_rows_by_cid: dict[str, dict[str, str]],
+    db_by_id: dict[str, dict[str, str]],
+) -> str:
+    """DB row this cluster is already consumed by, or "" if it is still free.
+
+    A pointer at a DB row that no longer exists is *not* consumed: those
+    danglers are the residue of rows deleted by later merges, and hiding them
+    as "resolved" would strand them.
+    """
+    row = a_rows_by_cid.get(cluster_id) or {}
+    tid = (row.get("aligned_db_id") or "").strip()
+    return tid if tid and tid in db_by_id else ""
+
+
+def _merge_plan(
+    self_kind: str,
+    self_id: str,
+    partners: list[tuple[str, str]],
+    a_rows_by_cid: dict[str, dict[str, str]],
+    db_by_id: dict[str, dict[str, str]],
+) -> tuple[bool, list[str]]:
+    """Predict what a proposed merge would do.
+
+    Returns `(is_noop, warnings)`. `is_noop` is True when every cluster in the
+    proposal already sits on the one DB row the merge would target — the
+    signature of re-merging work a previous session already did. `warnings`
+    names each cluster that would be *moved* off a different DB row and each DB
+    row that would be absorbed, so the reviewer sees it before confirming
+    rather than discovering it in the diff.
+    """
+    members = [(self_kind, self_id)] + list(partners)
+    cluster_ids = [i for k, i in members if k == "cluster"]
+    db_ids = [i for k, i in members if k == "db"]
+
+    current = {cid: _aligned_target(cid, a_rows_by_cid, db_by_id) for cid in cluster_ids}
+
+    if db_ids:
+        # Routes that involve a DB row always keep a DB row: `self` when the menu
+        # was opened on one, otherwise the first picked row.
+        target = self_id if self_kind == "db" else db_ids[0]
+    else:
+        # Cluster-only: _consolidate_clusters keeps the lowest-numbered DB row
+        # any member already points at, or mints a fresh one.
+        existing = sorted(
+            {t for t in current.values() if t},
+            key=lambda x: int(x) if x.isdigit() else 10**9,
+        )
+        target = existing[0] if existing else ""
+
+    if target and all(t == target for t in current.values()) and set(db_ids) <= {target}:
+        return True, []
+
+    warnings: list[str] = []
+    for cid, cur in current.items():
+        if cur and target and cur != target:
+            name = (a_rows_by_cid.get(cid) or {}).get("canonical_yiddish", "") or cid
+            warnings.append(f"`{cid}` {name[:34]} — currently in **DB {cur}**, would move")
+    absorbed = [d for d in db_ids if d != target]
+    for d in absorbed:
+        nm = (db_by_id.get(d) or {}).get("name", "") or (db_by_id.get(d) or {}).get("name_yiddish", "")
+        warnings.append(f"**DB {d}** {nm[:34]} — would be removed and folded in")
+    return False, warnings
 
 
 def _build_research_prompt(
@@ -644,20 +773,40 @@ def _bucket_options(
     bucket: CityBucket,
     self_kind: str,
     self_id: str,
+    a_rows_by_cid: dict[str, dict[str, str]],
+    db_by_id: dict[str, dict[str, str]],
 ) -> list[tuple[str, str, str]]:
-    """Return [(kind, id, label)] for every other item in the bucket."""
-    out: list[tuple[str, str, str]] = []
+    """Return [(kind, id, label)] for every other item in the bucket.
+
+    Clusters an earlier session already folded into a DB row keep rendering in
+    the bucket, and this picker used to offer them with a label identical to an
+    untouched cluster's. That is the mechanism behind the re-merge problem: 86
+    of 86 clusters picked as a merge partner more than once were already
+    consumed at the time they were re-picked, usually a day or more later, and
+    often into a *different* target. So: drop the ones already sitting on this
+    very row (picking them is a pure no-op), and push the rest to the bottom
+    carrying the DB row that owns them.
+    """
+    free: list[tuple[str, str, str]] = []
+    consumed: list[tuple[str, str, str]] = []
     for d in bucket.db_cards:
         if self_kind == "db" and d.db_id == self_id:
             continue
         label = f"DB {d.db_id} · {d.name or d.name_yiddish or '(unnamed)'}"
-        out.append(("db", d.db_id, label))
+        free.append(("db", d.db_id, label))
     for c in bucket.clusters:
         if self_kind == "cluster" and c.cluster_id == self_id:
             continue
-        label = f"cluster {c.cluster_id} · {c.canonical_yiddish or '(no canonical)'} (n={c.cluster_size})"
-        out.append(("cluster", c.cluster_id, label))
-    return out
+        target = _aligned_target(c.cluster_id, a_rows_by_cid, db_by_id)
+        if target and self_kind == "db" and target == self_id:
+            continue  # already on this row — nothing to merge
+        name = c.canonical_yiddish or "(no canonical)"
+        label = f"cluster {c.cluster_id} · {name} (n={c.cluster_size})"
+        if target:
+            consumed.append(("cluster", c.cluster_id, f"⛔ already in DB {target} — {label}"))
+        else:
+            free.append(("cluster", c.cluster_id, label))
+    return free + consumed
 
 
 def _row_action_menu(
@@ -689,6 +838,15 @@ def _row_action_menu(
         merge reuses any already-minted target instead of producing orphans."""
         if not partners:
             return None
+        is_noop, _warn = _merge_plan(
+            self_kind, self_id, partners, a_rows_by_cid, db_by_id,
+        )
+        if is_noop:
+            # Everything picked already sits on the row this merge would target.
+            # Writing anyway rewrote both TSVs, pushed to GitHub and logged a
+            # decision that recorded nothing — 22 of the 75 repeat actions in
+            # the audit trail are exactly this.
+            return f"{_ALREADY_PREFIX} — nothing to do"
         partner_clusters = [pid for pk, pid in partners if pk == "cluster"]
         partner_dbs = [pid for pk, pid in partners if pk == "db"]
         if self_kind == "cluster":
@@ -753,7 +911,9 @@ def _row_action_menu(
             )
 
             if mode == "Merge":
-                opts = _bucket_options(bucket, self_kind, self_id)
+                opts = _bucket_options(
+                    bucket, self_kind, self_id, a_rows_by_cid, db_by_id,
+                )
                 if not opts:
                     st.caption("No other items in this bucket to combine with.")
                 else:
@@ -767,25 +927,52 @@ def _row_action_menu(
                         cb_key = f"{key}_mp_{pk_kind}_{pk_id}"
                         if st.checkbox(pk_label, key=cb_key):
                             picked.append((pk_kind, pk_id))
+
+                    is_noop, warnings = (
+                        _merge_plan(self_kind, self_id, picked, a_rows_by_cid, db_by_id)
+                        if picked else (False, [])
+                    )
+                    move_ok = True
+                    if is_noop:
+                        st.info(
+                            "Everything ticked is already merged into the same DB "
+                            "row. Nothing to do."
+                        )
+                    elif warnings:
+                        # Silently re-pointing a cluster that another DB row already
+                        # owns is how one cluster ended up claimed by two rows. Name
+                        # the consequence and make the reviewer opt in.
+                        st.warning(
+                            "This merge moves work that is already filed:\n\n"
+                            + "\n".join(f"- {w}" for w in warnings)
+                        )
+                        move_ok = st.checkbox(
+                            "Yes — re-file these into this entity",
+                            key=f"{key}_confirm_move",
+                        )
                     if st.button(
                         f"Confirm merge ({len(picked)} selected)",
                         key=f"{key}_confirm_multi",
                         type="primary",
-                        disabled=not picked,
+                        disabled=not picked or is_noop or not move_ok,
                         use_container_width=True,
                     ):
                         msg = _do_merge(picked)
                         for pk_kind, pk_id, _ in opts:
                             st.session_state.pop(f"{key}_mp_{pk_kind}_{pk_id}", None)
-                        log_action(
-                            "settlement_audit", "merge",
-                            target_id=f"{self_kind}:{self_id}", decision="MERGE",
-                            note=msg or "",
-                            qid=qid, org_type=bucket.org_type,
-                            partners=[f"{k}:{i}" for k, i in picked],
-                        )
+                        st.session_state.pop(f"{key}_confirm_move", None)
+                        landed = bool(msg) and not msg.startswith(_ALREADY_PREFIX)
+                        if landed:
+                            log_action(
+                                "settlement_audit", "merge",
+                                target_id=f"{self_kind}:{self_id}", decision="MERGE",
+                                note=msg or "",
+                                qid=qid, org_type=bucket.org_type,
+                                partners=[f"{k}:{i}" for k, i in picked],
+                            )
+                            _record_receipt(qid, msg, self_kind, self_id, len(picked))
                         if msg:
-                            st.toast(msg, icon="✅")
+                            st.toast(msg, icon="✅" if landed else "ℹ️")
                         _rerun_local()
 
             elif mode == "Search":
@@ -811,15 +998,18 @@ def _row_action_menu(
                                        help="Show variants, settlements & attestations")
                         if cols[2].button("Merge", key=f"{key}_m_{r_kind}_{r_id}"):
                             msg = _do_merge([(r_kind, r_id)])
-                            log_action(
-                                "settlement_audit", "merge_via_search",
-                                target_id=f"{self_kind}:{self_id}", decision="MERGE",
-                                note=msg or "",
-                                qid=qid, org_type=bucket.org_type,
-                                partner=f"{r_kind}:{r_id}",
-                            )
+                            landed = bool(msg) and not msg.startswith(_ALREADY_PREFIX)
+                            if landed:
+                                log_action(
+                                    "settlement_audit", "merge_via_search",
+                                    target_id=f"{self_kind}:{self_id}", decision="MERGE",
+                                    note=msg or "",
+                                    qid=qid, org_type=bucket.org_type,
+                                    partner=f"{r_kind}:{r_id}",
+                                )
+                                _record_receipt(qid, msg, self_kind, self_id, 1)
                             if msg:
-                                st.toast(msg, icon="✅")
+                                st.toast(msg, icon="✅" if landed else "ℹ️")
                             _rerun_local()
                         if st.session_state.get(show_key):
                             with st.container(border=True):
@@ -841,7 +1031,13 @@ def _row_action_menu(
                         "Create a brand-new DB row for **only** this cluster — "
                         "use this when nothing else in the bucket should merge with it."
                     )
+                    already = _aligned_target(self_id, a_rows_by_cid, db_by_id)
+                    if already:
+                        # Minting a cluster that is already on a row produced a
+                        # duplicate entity and orphaned the old back-link.
+                        st.info(f"This cluster is already **DB {already}**.")
                     if st.button("Mint as new entity (solo)", key=f"{key}_mint",
+                                 disabled=bool(already),
                                  use_container_width=True):
                         _new, msg = _mint_db_from_clusters(
                             [self_id], bucket.org_type, canonical_yiddish, "",
@@ -857,6 +1053,7 @@ def _row_action_menu(
                             # the log lost which row had just been minted.
                             new_db_id=_new or "",
                         )
+                        _record_receipt(qid, msg, "db", _new or "", 1)
                         st.toast(msg, icon="✅")
                         _rerun_local()
 
@@ -953,6 +1150,29 @@ def _action_bar(
     n_cl = len(selected_cluster_ids)
     st.markdown(f"**Selection** · {n_cl} cluster(s), {n_db} DB row(s)")
 
+    # Same guards as the per-row Actions menu: a selection can just as easily be
+    # made of clusters an earlier session already filed. Rendered before the
+    # button row so the warning reads above the action it qualifies.
+    align_noop, align_warn = (
+        _merge_plan(
+            "db", selected_db_ids[0],
+            [("cluster", c) for c in selected_cluster_ids],
+            a_rows_by_cid, db_by_id,
+        )
+        if (n_cl >= 1 and n_db == 1) else (False, [])
+    )
+    if align_noop:
+        st.info("Every selected cluster is already on that DB row.")
+    elif align_warn:
+        st.warning(
+            "Aligning moves work that is already filed:\n\n"
+            + "\n".join(f"- {w}" for w in align_warn)
+        )
+    align_ok = (not align_warn) or st.checkbox(
+        "Yes — re-file these into the selected DB row",
+        key=f"{sel_key_prefix}_align_move_ok",
+    )
+
     cols = st.columns([1, 1, 1, 1])
 
     # Determine org_type for mint — derive from first selected cluster.
@@ -970,7 +1190,7 @@ def _action_bar(
     with cols[0]:
         if st.button(
             "Align selected → DB row",
-            disabled=not (n_cl >= 1 and n_db == 1),
+            disabled=not (n_cl >= 1 and n_db == 1) or align_noop or not align_ok,
             type="primary", use_container_width=True,
             key=f"{sel_key_prefix}_btn_align",
         ):
@@ -981,6 +1201,14 @@ def _action_bar(
             for cid in selected_cluster_ids:
                 st.session_state.pop(f"{sel_key_prefix}_cl_{cid}", None)
             st.session_state.pop(f"{sel_key_prefix}_db_{selected_db_ids[0]}", None)
+            st.session_state.pop(f"{sel_key_prefix}_align_move_ok", None)
+            log_action(
+                "settlement_audit", "align_selected",
+                target_id=f"db:{selected_db_ids[0]}", decision="MERGE",
+                note=msg or "", qid=qid,
+                partners=[f"cluster:{c}" for c in selected_cluster_ids],
+            )
+            _record_receipt(qid, msg, "db", selected_db_ids[0], n_cl)
             st.toast(msg, icon="✅")
             _rerun_local()
 
@@ -1009,6 +1237,7 @@ def _action_bar(
                     )
                     for cid in selected_cluster_ids:
                         st.session_state.pop(f"{sel_key_prefix}_cl_{cid}", None)
+                    _record_receipt(qid, msg, "db", _new or "", n_cl)
                     st.toast(msg, icon="✅")
                     _rerun_local()
 
@@ -1041,6 +1270,7 @@ def _action_bar(
                     )
                     for dbid in selected_db_ids:
                         st.session_state.pop(f"{sel_key_prefix}_db_{dbid}", None)
+                    _record_receipt(qid, msg, "db", primary, len(secondaries))
                     st.toast(msg, icon="✅")
                     _rerun_local()
 
@@ -1273,6 +1503,17 @@ def _workbench(reviewer) -> None:
 
     sel_key_prefix = f"sa_sel_{qid}"
 
+    # --- Receipt for the last mutation in this city ---
+    receipt = st.session_state.get(_RECEIPT_KEY)
+    receipt_db = ""
+    if isinstance(receipt, dict) and receipt.get("qid") == qid and receipt.get("msg"):
+        receipt_db = receipt.get("db_id", "")
+        r_col, x_col = st.columns([8, 1])
+        r_col.success(f"✅ {receipt['msg']}")
+        if x_col.button("Dismiss", key=f"sa_receipt_x_{qid}"):
+            st.session_state.pop(_RECEIPT_KEY, None)
+            _rerun_local()
+
     # --- Global filters (apply across all types) ---
     with st.expander("Filters", expanded=False):
         f_col1, f_col2 = st.columns(2)
@@ -1370,25 +1611,44 @@ def _workbench(reviewer) -> None:
             unique_db.append(d)
         unique_db.sort(key=lambda d: (d.name or d.name_yiddish or "").lower())
 
-        clusters_visible = [
+        clusters_all = [
             c for c in bucket.clusters
             if _cl_passes(c) and c.cluster_id not in claimed_cl
         ]
-        clusters_visible.sort(key=lambda c: (bool(c.decision), -c.cluster_size))
+        clusters_all.sort(key=lambda c: (bool(c.decision), -c.cluster_size))
+
+        # A cluster already folded into a DB row is finished work, but it kept
+        # rendering as a full, selectable card indistinguishable from an open
+        # one — so reviewers merged it again, days later, sometimes into a
+        # different row. Split it out: open clusters stay as action cards,
+        # resolved ones collapse into a read-only receipt list. Clusters whose
+        # aligned_db_id points at a row that no longer exists are NOT resolved;
+        # they stay in the open list flagged, because they need re-filing.
+        clusters_visible = [
+            c for c in clusters_all
+            if not _aligned_target(c.cluster_id, a_rows_by_cid, db_by_id)
+        ]
+        clusters_resolved = [
+            c for c in clusters_all
+            if _aligned_target(c.cluster_id, a_rows_by_cid, db_by_id)
+        ]
 
         claimed_db.update(d.db_id for d in unique_db)
-        claimed_cl.update(c.cluster_id for c in clusters_visible)
+        claimed_cl.update(c.cluster_id for c in clusters_all)
 
-        if not unique_db and not clusters_visible:
+        if not unique_db and not clusters_all:
             continue
 
         # With rollup on, several buckets share an org_type — name the settlement
         # so a Brooklyn section is never mistaken for a Manhattan one.
         where = f" · {bucket.english or bucket.qid}" if bucket.qid != qid else ""
-        st.subheader(
+        head = (
             f"{bucket.org_type}{where} · "
-            f"{len(unique_db)} DB / {len(clusters_visible)} clusters"
+            f"{len(unique_db)} DB / {len(clusters_visible)} open clusters"
         )
+        if clusters_resolved:
+            head += f" (+{len(clusters_resolved)} resolved)"
+        st.subheader(head)
 
         align_counts: dict[str, int] = {}
         for c in bucket.clusters:
@@ -1437,6 +1697,8 @@ def _workbench(reviewer) -> None:
                     head = f"**DB {d.db_id}** · {name}"
                     if yi:
                         head += f"  ·  {yi}"
+                    if d.db_id and d.db_id == receipt_db:
+                        head += "  ·  🆕 **just updated**"
                     st.markdown(head)
                     meta_bits = []
                     if d.confirmed_settlement:
@@ -1477,7 +1739,9 @@ def _workbench(reviewer) -> None:
                     if c.decision:
                         badge += f" · {c.decision}"
                         if c.aligned_db_id:
-                            badge += f" → {c.aligned_db_id}"
+                            # Reached only when the target row is gone: resolved
+                            # clusters are rendered in the collapsed list below.
+                            badge += f" · ⚠️ points at missing DB {c.aligned_db_id}"
                     else:
                         badge += " · _undecided_"
                     st.markdown(badge)
@@ -1506,3 +1770,25 @@ def _workbench(reviewer) -> None:
         omitted = len(clusters_visible) - len(clusters_to_show)
         if omitted > 0 and cap_off:
             st.caption(f"… and {omitted} more clusters (refine filters)")
+
+        if clusters_resolved:
+            # Read-only on purpose: no checkbox, no Actions menu. These are done,
+            # and every widget rendered here is a widget the reviewer can use to
+            # redo work. To undo one, act from the DB row that owns it.
+            with st.expander(
+                f"✅ {len(clusters_resolved)} resolved clusters "
+                "(already folded into a DB row)"
+            ):
+                for c in clusters_resolved[:60]:
+                    tgt = _aligned_target(c.cluster_id, a_rows_by_cid, db_by_id)
+                    owner = db_by_id.get(tgt, {})
+                    owner_name = (
+                        owner.get("name") or owner.get("name_yiddish") or ""
+                    )
+                    st.caption(
+                        f"`{c.cluster_id}` n={c.cluster_size} · "
+                        f"{c.canonical_yiddish or '(no canonical)'} → "
+                        f"**DB {tgt}** {owner_name}"
+                    )
+                if len(clusters_resolved) > 60:
+                    st.caption(f"… and {len(clusters_resolved) - 60} more")
