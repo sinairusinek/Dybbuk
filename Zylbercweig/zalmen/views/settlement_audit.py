@@ -79,6 +79,29 @@ def _bump_index_version() -> None:
     _INDEX_VERSION += 1
 
 
+def _rerun_local() -> None:
+    """Rerun the smallest scope that is legal here.
+
+    Every app-scoped rerun re-mounts the folium iframe in the map header. The
+    component reports its height only after it loads, so the page reflows from
+    a collapsed header and the browser dumps you back at the top of the view —
+    which is what "the audit keeps jumping" means in practice. Row actions
+    (merge, mint, show-all, clear selection) only ever change what the
+    workbench renders, so a fragment-scoped rerun is enough and leaves the map
+    — and your scroll position — alone.
+
+    `scope="fragment"` is rejected outside a fragment rerun, so fall back to a
+    full rerun there. RerunException derives from BaseException, so it passes
+    straight through this handler.
+    """
+    from streamlit.errors import StreamlitAPIException
+
+    try:
+        st.rerun(scope="fragment")
+    except StreamlitAPIException:
+        st.rerun()
+
+
 # Color palette for the dominant-org-type map mode. The typology is ~27 types;
 # we colour the most common ones and lump the long tail as grey.
 _TYPE_COLORS: dict[str, str] = {
@@ -720,9 +743,7 @@ def _row_action_menu(
                 # fragment so the close takes effect immediately instead of on
                 # the user's next interaction.
                 st.session_state[open_key] = None
-                # Unscoped: scope="fragment" is only legal *during* a fragment
-                # rerun, and this handler also runs on full app runs.
-                st.rerun()
+                _rerun_local()
             # radio, not st.tabs: a tab selection is not persisted across the
             # rerun that every widget in here triggers.
             mode = st.radio(
@@ -765,7 +786,7 @@ def _row_action_menu(
                         )
                         if msg:
                             st.toast(msg, icon="✅")
-                        st.rerun(scope="app")
+                        _rerun_local()
 
             elif mode == "Search":
                 st.caption("Search all DB rows + clusters across the whole corpus.")
@@ -799,7 +820,7 @@ def _row_action_menu(
                             )
                             if msg:
                                 st.toast(msg, icon="✅")
-                            st.rerun(scope="app")
+                            _rerun_local()
                         if st.session_state.get(show_key):
                             with st.container(border=True):
                                 if r_kind == "cluster":
@@ -837,7 +858,7 @@ def _row_action_menu(
                             new_db_id=_new or "",
                         )
                         st.toast(msg, icon="✅")
-                        st.rerun(scope="app")
+                        _rerun_local()
 
                 if reviewer == ADMIN_REVIEWER:
                     if self_kind == "cluster":
@@ -961,7 +982,7 @@ def _action_bar(
                 st.session_state.pop(f"{sel_key_prefix}_cl_{cid}", None)
             st.session_state.pop(f"{sel_key_prefix}_db_{selected_db_ids[0]}", None)
             st.toast(msg, icon="✅")
-            st.rerun(scope="app")
+            _rerun_local()
 
     with cols[1]:
         new_disabled = not (n_cl >= 1 and n_db == 0)
@@ -989,7 +1010,7 @@ def _action_bar(
                     for cid in selected_cluster_ids:
                         st.session_state.pop(f"{sel_key_prefix}_cl_{cid}", None)
                     st.toast(msg, icon="✅")
-                    st.rerun(scope="app")
+                    _rerun_local()
 
     with cols[2]:
         merge_disabled = n_db < 2
@@ -1021,7 +1042,7 @@ def _action_bar(
                     for dbid in selected_db_ids:
                         st.session_state.pop(f"{sel_key_prefix}_db_{dbid}", None)
                     st.toast(msg, icon="✅")
-                    st.rerun(scope="app")
+                    _rerun_local()
 
     with cols[3]:
         if st.button("Clear selection", use_container_width=True,
@@ -1031,7 +1052,7 @@ def _action_bar(
                     st.session_state[k] = False
                 if isinstance(k, str) and k.startswith(sel_key_prefix + "_db_"):
                     st.session_state[k] = False
-            st.rerun()
+            _rerun_local()
 
 
 # ─── view entry point ─────────────────────────────────────────────────────
@@ -1076,7 +1097,7 @@ def render() -> None:
         _render_map(ix, addr_by_dbid, focus_qid)
 
     _unplaced_panel(ix)
-    _workbench(ix, addr_by_dbid, reviewer, cities)
+    _workbench(reviewer)
 
 
 def _unplaced_panel(ix) -> None:
@@ -1129,11 +1150,19 @@ def _unplaced_panel(ix) -> None:
 
 
 @st.fragment
-def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
+def _workbench(reviewer) -> None:
     # Fragment: the picker, filters, selection action-bar and per-row Actions
-    # menus all rerun in isolation. Ticking a checkbox or opening a popover no
-    # longer triggers a full-page rerun (which would rebuild the map header).
-    # City changes and data mutations escalate to a full app rerun explicitly.
+    # menus all rerun in isolation. Ticking a checkbox, opening a popover or
+    # committing a merge no longer triggers a full-page rerun (which would
+    # re-mount the map iframe and throw your scroll position away). Only a
+    # city change escalates to a full app rerun, so the map can recenter.
+    #
+    # The index is looked up HERE rather than passed in: Streamlit replays a
+    # fragment with the arguments captured at the last full run, so a merge
+    # that calls get_index.cache_clear() would otherwise keep re-rendering the
+    # pre-merge buckets until something forced a full rerun.
+    ix = get_index()
+    cities = ix.cities()
 
     # --- Picker ---
     sort_col, picker_col = st.columns([1, 3])
@@ -1358,7 +1387,7 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
                 key=f"{cap_key}_btn", use_container_width=False,
             ):
                 st.session_state[cap_key] = True
-                st.rerun()
+                _rerun_local()
             db_to_show = unique_db[:_ROW_CAP]
             cluster_budget = max(0, _ROW_CAP - len(db_to_show))
             clusters_to_show = clusters_visible[:cluster_budget]
@@ -1375,7 +1404,7 @@ def _workbench(ix, addr_by_dbid, reviewer, cities) -> None:
                     "Re-cap this section", key=f"{cap_key}_recap_btn",
                 ):
                     st.session_state[cap_key] = False
-                    st.rerun()
+                    _rerun_local()
 
         for d in db_to_show:
             with st.container(border=True):
