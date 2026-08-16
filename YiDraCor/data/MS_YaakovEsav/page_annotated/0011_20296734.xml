@@ -32,14 +32,14 @@ Transkribus</Creator>
                     <Unicode>דעם ווילען פון גאט... גאט האט דיין מאמען געזאגט ורב יעבד צעיר,</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l4" custom="readingOrder {index:3;} stage {offset:26;length:43;}">
+            <TextLine id="r1l4" custom="readingOrder {index:3;} stage {offset:26; length:43; type:exit;}">
                 <Coords points="2255,651 2483,596 2899,669 3132,605 3342,609 3448,674 3679,615 4007,633 4007,529 2863,559 2256,511"/>
                 <Baseline points="2268,603 2354,600 2440,599 2527,597 2613,596 2700,596 2786,596 2872,597 2959,597 3045,599 3132,600 3218,601 3304,602 3391,603 3477,605 3564,605 3650,606 3736,606 3823,606 3909,605 3996,605"/>
                 <TextEquiv>
                     <Unicode>און דו טהו וואס דו קענסט (ווערט פערשווונדען אויפשטעלענדיג די פליגלען)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l5" custom="readingOrder {index:4;} stage {offset:4; length:10;} speaker {offset:0; length:3; xmlid:eshu;}">
+            <TextLine id="r1l5" custom="readingOrder {index:4;} stage {offset:4; length:10; type:delivery;} speaker {offset:0; length:3; xmlid:eshu;}">
                 <Coords points="2789,723 2922,724 2968,748 3073,723 3200,784 3226,759 3326,764 3357,748 3357,676 3236,626 3181,619 3108,674 3078,660 3036,683 2978,631 2908,668 2790,660"/>
                 <Baseline points="2802,711 2829,711 2856,713 2883,713 2910,714 2937,714 2964,714 2992,713 3019,713 3046,713 3073,713 3100,711 3127,711 3154,711 3182,713 3209,713 3236,714 3263,714 3290,716 3317,718 3345,720"/>
                 <TextEquiv>
@@ -74,7 +74,7 @@ Transkribus</Creator>
                     <Unicode>ישראל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l10" custom="readingOrder {index:9;} stage {offset:1;length:55;}">
+            <TextLine id="r1l10" custom="readingOrder {index:9;} stage {offset:1; length:55; type:entrance;}">
                 <Coords points="2508,1262 3308,1249 3431,1297 3520,1258 3878,1300 3929,1284 3930,1193 2509,1169"/>
                 <Baseline points="2519,1251 2588,1247 2658,1244 2728,1241 2798,1239 2868,1239 2938,1239 3008,1239 3078,1241 3148,1242 3218,1244 3287,1245 3357,1247 3427,1248 3497,1250 3567,1250 3637,1251 3707,1251 3777,1250 3847,1249 3917,1247"/>
                 <TextEquiv>
@@ -130,21 +130,21 @@ Transkribus</Creator>
                     <Unicode>פאלגער און פארציהער פון אברהם׳ס מיסיאן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l18" custom="readingOrder {index:17;} unclear {offset:40;length:6;} stage {offset:0;length:39;}">
+            <TextLine id="r1l18" custom="readingOrder {index:17;} unclear {offset:40; length:6;} stage {offset:0; length:39; type:entrance;}">
                 <Coords points="2118,2146 2318,2103 2569,2146 2653,2097 2918,2140 2978,2089 3300,2058 3372,2114 3532,2082 3695,2148 3732,2030 2118,2035"/>
                 <Baseline points="2130,2093 2209,2093 2289,2093 2368,2091 2448,2091 2527,2093 2607,2093 2686,2093 2766,2094 2845,2094 2925,2096 3004,2096 3084,2096 3163,2097 3243,2097 3322,2097 3402,2097 3481,2097 3561,2097 3640,2097 3720,2096"/>
                 <TextEquiv>
                     <Unicode>יעקב קומט אן פון לינקס בלאנד העל אויפן Pxx Pxx</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l19" custom="readingOrder {index:18;} textStyle {offset:43;length:2;strikethrough:true;} stage {offset:1;length:55;} stage {offset:57;length:17;}">
+            <TextLine id="r1l19" custom="readingOrder {index:18;} textStyle {offset:43; length:2; strikethrough:true;} stage {offset:1; length:55; type:delivery;} stage {offset:57; length:17; type:business;}">
                 <Coords points="2134,2253 2376,2203 2597,2265 3109,2207 3918,2256 3954,2145 2135,2148"/>
                 <Baseline points="2145,2202 2234,2202 2324,2202 2414,2202 2504,2202 2594,2202 2684,2202 2773,2202 2863,2204 2953,2204 3043,2205 3133,2205 3223,2205 3313,2207 3402,2207 3492,2208 3582,2208 3672,2210 3762,2210 3852,2211 3942,2211"/>
                 <TextEquiv>
                     <Unicode>(געזיכט. רעד איידעל ווייך ישראל אראב לאזענדיג די פליגלען בלייבט שטעהן יעקב</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l20" custom="readingOrder {index:19;} stage {offset:0;length:8;}">
+            <TextLine id="r1l20" custom="readingOrder {index:19;} stage {offset:0; length:8; type:business;}">
                 <Coords points="2373,2325 2691,2357 2805,2312 2912,2371 3122,2316 3735,2379 3957,2328 3957,2270 3632,2233 2876,2268 2374,2225"/>
                 <Baseline points="2384,2300 2462,2303 2540,2304 2618,2306 2696,2309 2774,2310 2852,2312 2930,2313 3008,2314 3086,2315 3164,2316 3242,2318 3320,2318 3398,2319 3476,2319 3554,2319 3632,2321 3710,2321 3788,2319 3866,2319 3945,2319"/>
                 <TextEquiv>
@@ -283,7 +283,7 @@ Transkribus</Creator>
                     <Unicode>יעקב</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l18" custom="readingOrder {index:17;} stage {offset:24;length:19;}">
+            <TextLine id="r2l18" custom="readingOrder {index:17;} stage {offset:24; length:19; type:business;}">
                 <Coords points="89,1970 1269,1979 1584,2042 1941,1988 1942,1909 1302,1945 1129,1881 814,1926 578,1859 497,1920 91,1870"/>
                 <Baseline points="102,1943 193,1946 284,1948 376,1950 467,1953 558,1956 650,1959 741,1961 832,1964 924,1966 1015,1968 1106,1970 1198,1971 1289,1973 1380,1974 1472,1976 1563,1976 1654,1977 1746,1977 1837,1976 1929,1976"/>
                 <TextEquiv>

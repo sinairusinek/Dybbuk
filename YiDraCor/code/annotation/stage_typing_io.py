@@ -70,6 +70,9 @@ _STRUCTURAL = [
     re.compile(r'^[SR][\s.=/]*[IVX0-9]*\.?$', re.I),
     re.compile(r'^[IVX]+\.?$'),
     re.compile(r'^[\W\d]+$'),
+    # Numerals mixed with Roman numerals and punctuation only: `2. (II)`,
+    # `3. (III)`, `.II A` — the same division numbering as `ער אקט III (ער3)`.
+    re.compile(r'^[IVXA\d\s.()/=-]+$'),
 ]
 
 
