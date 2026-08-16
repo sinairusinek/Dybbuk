@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2022-05-25T05:47:58.394-04:00</Created>
+        <LastChange>2022-05-27T14:11:10.746+02:00</LastChange>
+        <TranskribusMetadata docId="1013131" pageId="41061581" pageNr="1"/>
+    </Metadata>
+    <Page imageFilename="0265.jpg" imageWidth="996" imageHeight="1164">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1653653470754" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="TextRegion_1653482072393_106"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion orientation="0.0" id="TextRegion_1653482072393_106" custom="readingOrder {index:0;}">
+            <Coords points="201,361 706,361 706,657 201,657"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="275,483 300,476 325,470 351,466 376,462 402,459 427,458 452,456 478,456 503,456 529,455 554,455 579,454 605,453 630,451 656,448 681,445 707,440 707,400 681,405 656,408 630,411 605,413 579,414 554,415 529,415 503,416 478,416 452,416 428,372 403,373 376,422 351,426 325,398 300,404 275,443"/>
+                <Baseline points="275,470 300,463 325,457 351,453 376,449 402,446 427,445 452,443 478,443 503,443 529,442 554,442 579,441 605,440 630,438 656,435 681,432 707,427"/>
+                <TextEquiv>
+                    <Unicode>עמיגראציאן</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="428,534 457,536 486,536 515,536 544,534 574,530 574,490 544,494 515,496 486,496 457,496 428,494"/>
+                <Baseline points="428,521 457,523 486,523 515,523 544,521 574,517"/>
+                <TextEquiv>
+                    <Unicode>נאך</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1653482064728_97" custom="readingOrder {index:2;}">
+                <Coords points="259,563 391,565 478,559 516,572 546,573 546,603 401,628 257,637"/>
+                <Baseline points="257,624 258,624 287,622 315,620 344,617 372,616 401,615 400,598 429,596 458,594 487,592 516,592 546,593"/>
+                <TextEquiv>
+                    <Unicode>אמעריקא</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>עמיגראציאן
+נאך
+אמעריקא</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

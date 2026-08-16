@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>Transkribus</Creator>
+        <Created>2021-11-21T13:19:04.178+01:00</Created>
+        <LastChange>2022-01-22T12:57:00.579+01:00</LastChange>
+        <Comments>
+                Measurement unit: pixel
+                PrimaryLanguage: 
+                Producer: Transkribus
+            </Comments>
+    </Metadata>
+    <Page imageFilename="31089287.jpg" imageWidth="4279" imageHeight="2638">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1642852620589" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1637960404894_545"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_1637960404894_545" custom="readingOrder {index:0;}">
+            <Coords points="514,249 1617,249 1617,627 514,627"/>
+            <TextLine id="line_1637960409954_549" custom="readingOrder {index:0;} persName {offset:0; length:15;}">
+                <Coords points="537,335 1006,333 1006,383 537,385"/>
+                <Baseline points="537,380 1006,378"/>
+                <TextEquiv>
+                    <Unicode>[הורוויטש, משה]</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1637960413059_554" custom="readingOrder {index:1;} textStyle {offset:0; length:7;underlined:true; fontSize:0.0; kerning:0;} head {offset:0; length:7;}">
+                <Coords points="1153,489 1577,453 1581,503 1157,539"/>
+                <Baseline points="1157,534 1581,498"/>
+                <TextEquiv>
+                    <Unicode>בת כּהן</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>[הורוויטש, משה]
+בת כּהן</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <GraphicRegion id="Graphic_1637960390574_539" custom="readingOrder {index:1;}">
+            <Coords points="1322,677 1618,677 1618,900 1322,900"/>
+        </GraphicRegion>
+        <GraphicRegion id="Graphic_1637960396074_542" custom="readingOrder {index:2;}">
+            <Coords points="2356,80 4123,80 4123,2249 2356,2249"/>
+        </GraphicRegion>
+    </Page>
+</PcGts>

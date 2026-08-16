@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=YiddishHTR13Hands(htr_id=38995)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/net_tf/LA73_249_0mod360.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2020-09-26T16:46:21.607+03:00</Created>
+        <LastChange>2023-09-11T16:16:31.452+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="יעקב ועשו-0060.jpg" imageWidth="2933" imageHeight="2921">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1694441791452" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
+            <Coords points="2561,116 2561,291 2685,291 2685,116"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="2592,204 2620,204 2630,197 2646,197 2652,202 2664,197 2688,198 2682,92 2644,92 2628,95 2624,100 2586,100"/>
+                <Baseline points="2600,167 2625,169 2650,166 2675,164"/>
+                <TextEquiv>
+                    <Unicode>87</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="2551,289 2569,290 2579,282 2601,294 2631,269 2669,293 2695,292 2694,206 2680,206 2668,215 2636,197 2624,209 2586,210 2560,233 2550,233"/>
+                <Baseline points="2561,264 2592,267 2623,267 2654,265 2685,263"/>
+                <TextEquiv>
+                    <Unicode>2335</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>87
+2335</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

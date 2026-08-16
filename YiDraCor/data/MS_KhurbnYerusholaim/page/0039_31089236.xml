@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Yiddish_HTR(htr_id=38946)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-11-21T13:42:29.947+02:00</Created>
+        <LastChange>2021-12-26T13:44:25.533+01:00</LastChange>
+        <TranskribusMetadata docId="838368" pageId="31089236" pageNr="39"/>
+    </Metadata>
+    <Page imageFilename="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0039.jpg" imageWidth="2450" imageHeight="2899">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1640522665557" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1637870631623_6"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_1637870631623_6" custom="readingOrder {index:0;}">
+            <Coords points="2030,113 2157,113 2158,266 2031,266"/>
+            <TextLine id="line_1637870646052_10" custom="readingOrder {index:0;}">
+                <Coords points="2053,167 2091,169 2099,165 2107,169 2119,158 2127,166 2137,166 2135,112 2105,111 2095,115 2089,111 2071,118 2063,114 2051,115"/>
+                <Baseline points="2062,160 2127,158"/>
+                <TextEquiv>
+                    <Unicode>39</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1637870651810_20" custom="readingOrder {index:1;}">
+                <Coords points="2030,268 2076,264 2094,272 2110,268 2118,276 2132,270 2144,276 2158,272 2158,194 2124,190 2108,194 2098,204 2086,196 2030,200"/>
+                <Baseline points="2039,254 2148,254"/>
+                <TextEquiv>
+                    <Unicode>1708</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>39
+1708</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <SeparatorRegion id="Separator_1637870662661_28" custom="readingOrder {index:1;}">
+            <Coords points="2028,174 2154,174 2154,204 2028,204"/>
+        </SeparatorRegion>
+    </Page>
+</PcGts>

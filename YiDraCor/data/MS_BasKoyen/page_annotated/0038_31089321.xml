@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Yiddish_HTR(htr_id=38946)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-11-21T13:19:12.468+01:00</Created>
+        <LastChange>2021-12-31T14:49:42.327+01:00</LastChange>
+        <Comments>
+                Measurement unit: pixel
+                PrimaryLanguage: 
+                Producer: Transkribus
+            </Comments>
+        <TranskribusMetadata docId="838374" pageId="31089321" pageNr="38"/>
+    </Metadata>
+    <Page imageFilename="31089321.jpg" imageWidth="4185" imageHeight="2642">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1640958582337" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+                <RegionRefIndexed index="1" regionRef="r2"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="r1" custom="readingOrder {index:0;}">
+            <Coords points="2541,1602 3413,1602 3413,1691 2541,1691"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="2557,1637 2912,1650 3073,1627 3186,1650 3206,1622 2557,1602"/>
+                <Baseline points="2566,1635 3197,1643"/>
+                <TextEquiv>
+                    <Unicode>1190DEACHO IAMICTeDCTÉד  אס</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="2559,1685 2650,1707 2718,1684 2816,1703 2869,1683 3030,1704 3193,1688 3193,1650 3163,1643 2841,1657 2559,1637"/>
+                <Baseline points="2568,1679 3185,1682"/>
+                <TextEquiv>
+                    <Unicode>Zatwierdzono przez Ministerjuo F. za</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+                <Coords points="3200,1677 3249,1671 3273,1676 3286,1668 3336,1686 3371,1670 3407,1674 3407,1615 3369,1627 3329,1628 3309,1620 3289,1631 3244,1620 3199,1624"/>
+                <Baseline points="3208,1665 3398,1664"/>
+                <TextEquiv>
+                    <Unicode>No 5790</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>1190DEACHO IAMICTeDCTÉד  אס
+Zatwierdzono przez Ministerjuo F. za
+No 5790</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion id="r2" custom="readingOrder {index:1;}">
+            <Coords points="2171,2321 3749,2321 3749,2550 2171,2550"/>
+            <TextLine id="r2l1" custom="readingOrder {index:0;}">
+                <Coords points="2202,2424 3545,2458 3546,2401 3330,2413 3227,2366 2203,2366"/>
+                <Baseline points="2210,2416 3536,2446"/>
+                <TextEquiv>
+                    <Unicode>A.M. PRUZANSKIEGO .וו. 8 אַסאַד1000 דאמחטדם</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r2l2" custom="readingOrder {index:1;}">
+                <Coords points="2222,2477 3545,2510 3546,2457 3334,2434 2223,2427"/>
+                <Baseline points="2230,2470 3536,2498"/>
+                <TextEquiv>
+                    <Unicode>Fabryka kajetow A.M.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r2l3" custom="readingOrder {index:2;}">
+                <Coords points="3604,2496 3621,2493 3639,2498 3659,2483 3667,2486 3681,2478 3709,2485 3729,2481 3729,2425 3717,2427 3707,2418 3686,2423 3654,2404 3639,2412 3631,2404 3621,2412 3604,2409"/>
+                <Baseline points="3612,2479 3721,2479"/>
+                <TextEquiv>
+                    <Unicode>15 K.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>A.M. PRUZANSKIEGO .וו. 8 אַסאַד1000 דאמחטדם
+Fabryka kajetow A.M.
+15 K.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <GraphicRegion id="Graphic_1637959519978_230" custom="readingOrder {index:2;}">
+            <Coords points="2727,559 3253,559 3253,938 2727,938"/>
+        </GraphicRegion>
+        <GraphicRegion id="Graphic_1637959523841_233" custom="readingOrder {index:3;}">
+            <Coords points="2523,952 3449,952 3450,1599 2524,1599"/>
+        </GraphicRegion>
+    </Page>
+</PcGts>

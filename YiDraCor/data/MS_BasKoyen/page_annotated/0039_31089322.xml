@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Yiddish_HTR(htr_id=38946)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/net_tf/LA73_249_0mod360.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-11-21T13:19:12.689+01:00</Created>
+        <LastChange>2021-12-31T07:54:23.566+01:00</LastChange>
+        <Comments>
+                Measurement unit: pixel
+                PrimaryLanguage: 
+                Producer: Transkribus
+            </Comments>
+    </Metadata>
+    <Page imageFilename="31089322.jpg" imageWidth="2222" imageHeight="2614">
+        <PrintSpace>
+            <Coords points="0,0 2222,0 2222,2614 0,2614"/>
+        </PrintSpace>
+        <ReadingOrder>
+            <OrderedGroup id="ro_1640933663575" caption="Regions reading order">
+                <RegionRefIndexed index="1" regionRef="r1"/>
+                <RegionRefIndexed index="3" regionRef="r2"/>
+                <RegionRefIndexed index="5" regionRef="r3"/>
+                <RegionRefIndexed index="7" regionRef="r4"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <GraphicRegion id="r_1" custom="readingOrder {index:0;}">
+            <Coords points="0,0 2222,0 2222,2614 0,2614"/>
+        </GraphicRegion>
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:1;}">
+            <Coords points="128,105 128,168 227,168 227,105"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="124,156 134,155 141,147 145,149 151,141 160,138 164,141 168,137 173,141 189,139 201,129 232,132 232,103 196,114 170,88 164,91 152,82 123,91"/>
+                <Baseline points="128,128 161,132 194,134 227,125"/>
+                <TextEquiv>
+                    <Unicode>פון</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="193,175 204,173 207,176 224,176 224,130 201,129 198,131 193,131"/>
+                <Baseline points="198,158 219,158"/>
+                <TextEquiv>
+                    <Unicode>ד</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>פון
+ד</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <SeparatorRegion id="r_2" custom="readingOrder {index:2;}">
+            <Coords points="586,54 676,54 676,60 586,60"/>
+        </SeparatorRegion>
+        <TextRegion orientation="0.0" id="r2" custom="readingOrder {index:3;}">
+            <Coords points="1481,0 1481,148 1532,148 1532,0"/>
+            <TextLine id="r2l1" custom="readingOrder {index:0;}">
+                <Coords points="1477,108 1491,103 1494,105 1507,89 1518,82 1522,84 1536,81 1531,55 1503,56 1497,54 1491,56 1480,54 1468,57"/>
+                <Baseline points="1481,98 1506,94 1532,89"/>
+                <TextEquiv>
+                    <Unicode>I</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>I</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <SeparatorRegion id="r_3" custom="readingOrder {index:4;}">
+            <Coords points="684,57 780,57 780,62 684,62"/>
+        </SeparatorRegion>
+        <TextRegion orientation="0.0" id="r3" custom="readingOrder {index:5;}">
+            <Coords points="1757,0 1757,142 1787,142 1787,0"/>
+            <TextLine id="r3l1" custom="readingOrder {index:0;}">
+                <Coords points="1752,92 1760,91 1765,86 1774,92 1779,90 1784,83 1791,84 1789,64 1768,65 1763,63 1762,65 1749,65"/>
+                <Baseline points="1757,92 1787,89"/>
+                <TextEquiv>
+                    <Unicode>י</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>י</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <SeparatorRegion id="r_4" custom="readingOrder {index:6;}">
+            <Coords points="894,911 978,911 978,915 894,915"/>
+        </SeparatorRegion>
+        <TextRegion orientation="0.0" id="r4" custom="readingOrder {index:7;}">
+            <Coords points="1949,0 1949,125 2033,125 2033,0"/>
+            <TextLine id="r4l1" custom="readingOrder {index:0;}">
+                <Coords points="1943,87 1968,95 1983,93 1987,96 2001,94 2029,97 2037,94 2038,64 2011,59 1985,61 1944,57"/>
+                <Baseline points="1949,69 1977,75 2005,72 2033,75"/>
+                <TextEquiv>
+                    <Unicode>ר</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>ר</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <SeparatorRegion id="r_5" custom="readingOrder {index:8;}">
+            <Coords points="2079,2070 2087,2070 2087,2166 2079,2166"/>
+        </SeparatorRegion>
+        <SeparatorRegion id="r_6" custom="readingOrder {index:9;}">
+            <Coords points="2080,1918 2090,1918 2090,2062 2080,2062"/>
+        </SeparatorRegion>
+        <SeparatorRegion id="r_7" custom="readingOrder {index:10;}">
+            <Coords points="2082,1638 2095,1638 2095,1886 2082,1886"/>
+        </SeparatorRegion>
+        <SeparatorRegion id="r_8" custom="readingOrder {index:11;}">
+            <Coords points="2086,1404 2098,1404 2098,1579 2086,1579"/>
+        </SeparatorRegion>
+        <SeparatorRegion id="r_9" custom="readingOrder {index:12;}">
+            <Coords points="2096,588 2103,588 2103,700 2096,700"/>
+        </SeparatorRegion>
+        <SeparatorRegion id="r_10" custom="readingOrder {index:13;}">
+            <Coords points="2105,610 2112,610 2112,776 2105,776"/>
+        </SeparatorRegion>
+        <SeparatorRegion id="r_11" custom="readingOrder {index:14;}">
+            <Coords points="2111,255 2119,255 2119,370 2111,370"/>
+        </SeparatorRegion>
+    </Page>
+</PcGts>

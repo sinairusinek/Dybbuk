@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Emigration(htr_id=42228)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2022-05-25T05:48:13.309-04:00</Created>
+        <LastChange>2022-07-31T11:04:57.004+02:00</LastChange>
+        <TranskribusMetadata docId="1013131" pageId="41061737" pageNr="111"/>
+    </Metadata>
+    <Page imageFilename="0375.jpg" imageWidth="757" imageHeight="1252">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1659258297004" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
+            <Coords points="55,106 45,319 664,319 674,106"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="309,191 323,184 358,203 410,192 455,200 484,184 550,212 582,193 646,205 668,201 670,147 645,149 599,113 510,150 416,103 310,142"/>
+                <Baseline points="314,176 339,178 364,179 389,180 414,181 439,181 464,182 489,182 514,182 539,182 564,183 589,184 614,186 639,188 664,190"/>
+                <TextEquiv>
+                    <Unicode>בעטען מיר אַצינד</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="295,254 365,240 440,258 521,244 669,264 670,222 606,200 547,215 515,200 486,208 399,193 352,208 328,190 296,191"/>
+                <Baseline points="300,241 326,238 352,236 378,235 404,235 430,235 456,235 482,236 508,237 534,238 560,240 586,241 612,243 638,246 664,247"/>
+                <TextEquiv>
+                    <Unicode>פאטער אין היממעל</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;} textStyle {offset:0; length:5;strikethrough:true;}">
+                <Coords points="40,333 163,304 199,325 328,305 393,329 427,314 515,332 666,310 666,269 575,256 549,277 403,248 354,273 265,254 241,270 40,262"/>
+                <Baseline points="45,306 75,303 106,301 137,300 168,298 199,297 229,296 260,295 291,295 322,294 353,294 383,295 414,295 445,296 476,296 507,297 537,298 568,299 599,301 630,302 661,304"/>
+                <TextEquiv>
+                    <Unicode>יזכור יזכור א.ז. וו (ביז אמן  —)</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>בעטען מיר אַצינד
+פאטער אין היממעל
+יזכור יזכור א.ז. וו (ביז אמן  —)</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

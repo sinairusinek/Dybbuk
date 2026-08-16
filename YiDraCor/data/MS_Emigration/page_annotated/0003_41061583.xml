@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=The Dybbuk for Yiddish Handwriting(htr_id=41131)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2022-05-25T05:47:58.743-04:00</Created>
+        <LastChange>2022-07-30T02:29:16.547+02:00</LastChange>
+        <TranskribusMetadata docId="1013131" pageId="41061583" pageNr="3"/>
+    </Metadata>
+    <Page imageFilename="0267.jpg" imageWidth="897" imageHeight="1167">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1659140956548" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="TextRegion_1653482020172_65"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion orientation="0.0" id="TextRegion_1653482020172_65" custom="readingOrder {index:0;}">
+            <Coords points="298,249 408,252 410,166 801,166 801,275 558,277 557,356 801,357 801,425 582,419 576,677 411,677 411,514 281,517 285,421 206,420 206,351 293,351"/>
+            <TextLine id="r1l2" custom="readingOrder {index:0;} Header {offset:0; length:10;type:title;}">
+                <Coords points="418,258 469,275 486,263 538,275 676,267 782,284 783,192 682,199 631,245 602,250 471,239 418,250"/>
+                <Baseline points="423,257 448,256 495,256 520,257 546,257 572,257 597,258 623,258 648,258 674,259 700,260 725,260 751,261 777,262"/>
+                <TextEquiv>
+                    <Unicode>עמיגראציאן</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:1;} Header {offset:0; length:12;type:title;}">
+                <Coords points="294,336 364,327 394,305 422,311 432,301 460,320 486,321 509,307 552,303 553,269 489,267 469,275 417,264 394,242 352,260 339,253 296,261"/>
+                <Baseline points="300,287 327,287 354,287 382,289 409,290 437,291 464,292 492,293 519,293 547,292"/>
+                <TextEquiv>
+                    <Unicode>נאך אמעריקא!</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:2;}">
+                <Coords points="201,401 372,403 412,423 542,405 570,423 640,405 693,426 806,423 807,379 767,366 202,363"/>
+                <Baseline points="206,391 235,392 265,393 295,394 325,394 354,395 384,395 414,396 444,396 473,397 503,397 533,397 563,397 592,398 622,398 652,398 682,398 711,398 741,399 771,399 801,399"/>
+                <TextEquiv>
+                    <Unicode>געזאנג דראממא אין 5 אקטען אין 9 בילדער</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1653482001193_55" custom="readingOrder {index:3;}">
+                <Coords points="276,511 337,507 386,534 427,510 462,518 476,504 527,518 585,518 585,483 535,462 510,466 494,450 445,451 407,474 366,472 352,458 334,471 294,462 276,470"/>
+                <Baseline points="281,499 293,499 320,498 346,498 373,497 399,497 426,497 453,497 479,497 506,497 532,497 559,498 580,498"/>
+                <TextEquiv>
+                    <Unicode>פאן יוסף לאטיינער!</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1653481982619_40" custom="readingOrder {index:4;}">
+                <Coords points="414,671 452,680 459,687 495,678 517,687 528,679 543,682 545,605 510,606 497,614 487,605 471,611 460,603 434,608 415,621"/>
+                <Baseline points="420,666 539,668"/>
+                <TextEquiv>
+                    <Unicode>1884</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>עסיג
+נאך אמעריקא!
+געזאנג דראממא אין 5 אקטען אין 1 בילדער
+פאן יוסף לאטיינער!
+1884</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>
