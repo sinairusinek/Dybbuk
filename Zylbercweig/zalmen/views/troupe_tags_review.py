@@ -2,13 +2,16 @@
 troupe tags (build_troupe_tag_drafts.py), so Ruthie confirms rather than
 fills 124 blanks by hand.
 
-Flow per troupe:
-  Accept  — write the draft tags to troupe_tags.tsv unchanged
-  Save    — write whatever pills are currently ticked (edit-then-save)
-  Reject  — record a rejection; the troupe stays untagged and drops out
+Flow per troupe: a two-panel card — draft tags (editable pills) on the left,
+the scrollable lexicon text naming the troupe on the right — and one **Save
+edits** button. Saving writes the ticked pills to troupe_tags.tsv and the
+troupe leaves the queue (it is then "already tagged", correctable in the second
+section). There is no separate accept/reject: accepting the draft unchanged is
+just Save without editing.
 
-Queue order (her choice): HIGH first (bulk-acceptable) → MEDIUM → BASE-ONLY
-(needs her knowledge) → and a cross-cut group of the German-Jewish-flagged rows.
+A radio picks which confidence group to work — HIGH / MEDIUM / BASE-ONLY, plus
+a cross-cut "German-Jewish?" group of the flagged rows — so the lower-confidence
+tiers are reachable directly, not only after scrolling past the high ones.
 
 A second section, "Correct saved tags", is a flat table over everything already
 written to troupe_tags.tsv — for fixing your own earlier calls without hunting
@@ -33,7 +36,7 @@ import pathlib
 
 import streamlit as st
 
-from views.org_review import CLUSTER_FILE, _open_url, load_samples, render_attestations
+from views.org_review import CLUSTER_FILE, load_samples
 from views.db_audit import (
     TROUPE_TAGS,
     _TROUPE_TAG_OPTS,
@@ -142,72 +145,66 @@ def _commit_tags(db_id: str, tags: list[str], reviewer: str, status: str) -> Non
     _commit_batch([(db_id, tags, status)], reviewer)
 
 
+def _mention_lines(d: dict, samples: dict) -> list[tuple[str, str]]:
+    """Unique (heading, sentence) mention lines across this troupe's clusters."""
+    lines, seen = [], set()
+    for cid in _split_tags(d.get("cluster_ids", "")):
+        for head, sent, _fle, _xid in (samples.get(cid) or {}).get("samples", []):
+            key = (head, sent)
+            if sent and key not in seen:
+                seen.add(key)
+                lines.append((head, sent))
+    return lines
+
+
+def _render_text_panel(d: dict, samples: dict) -> None:
+    """Right panel: the lexicon lines that name this troupe, in a fixed-height
+    scrollable box (st.container(height=...) gives the scroll)."""
+    lines = _mention_lines(d, samples)
+    box = st.container(height=360, border=True)
+    with box:
+        if not lines:
+            st.caption("No source mentions found for this troupe's clusters.")
+            return
+        st.caption(f"{len(lines)} lexicon mention(s) naming this troupe:")
+        for head, sent in lines[:80]:
+            st.markdown(
+                f"<div dir='rtl' style='margin-bottom:.55em; line-height:1.5'>"
+                f"<b>{head or '(no heading)'}</b> — {sent}</div>",
+                unsafe_allow_html=True,
+            )
+        if len(lines) > 80:
+            st.caption(f"… and {len(lines) - 80} more")
+
+
 def _render_card(d: dict, reviewer: str, samples: dict) -> None:
     db_id = d["db_id"]
     draft_tags = [t for t in _split_tags(d.get("tags", "")) if t in _TROUPE_TAG_OPTS]
-
     name = d.get("name", "") or ""
     yi = d.get("name_yiddish", "") or ""
-    head = f"**DB {db_id}** — :blue[{yi or '(no Yiddish)'}]" + (f" · _{name}_" if name else "")
-    hcol, lcol = st.columns([4, 1])
-    with hcol:
-        st.markdown(head)
-    with lcol:
-        st.link_button("🗂 Full entry →", url=_open_url("Organization Cards", db_id),
-                       use_container_width=True)
+    st.markdown(
+        f"**DB {db_id}** — :blue[{yi or '(no Yiddish)'}]"
+        + (f" · _{name}_" if name else "")
+    )
 
-    if d.get("evidence"):
-        st.caption("why these tags: " + d["evidence"])
-    if d.get("review_flags"):
-        # icon= must be a real emoji: "⚑" (U+2691) raises StreamlitAPIException
-        # and takes the whole queue down on any flagged row.
-        st.warning(d["review_flags"], icon="⚠️")
-
-    # Pre-filled pills (editable). Default = the draft's tags.
-    st.pills("Tags", _TROUPE_TAG_OPTS, selection_mode="multi",
-             default=draft_tags, key=f"ttr_pills_{db_id}")
-
-    # Lazy mentions — one button, renders attestations for THIS troupe only,
-    # across all of its clusters. Built only when opened (Streamlit executes
-    # collapsed-expander bodies, so we gate on a button, not an expander).
-    cids = _split_tags(d.get("cluster_ids", ""))
-    show_key = f"ttr_showment_{db_id}"
-    if st.session_state.get(show_key):
-        with st.expander("📜 Mentions", expanded=True):
-            any_shown = False
-            for cid in cids:
-                if (samples.get(cid) or {}).get("samples"):
-                    st.markdown(f"`{cid}`")
-                    render_attestations({"cluster_id": cid}, samples)
-                    any_shown = True
-            if not any_shown:
-                st.caption("No source mentions found for this troupe's clusters.")
-    else:
-        n = int(d.get("n_sents", "0") or 0)
-        if n and st.button(f"📜 Show mentions ({n})", key=f"ttr_mbtn_{db_id}"):
-            st.session_state[show_key] = True
-            st.rerun()
-
-    a, e, r, _ = st.columns([2, 2, 2, 3])
-    with a:
-        if st.button("✅ Accept draft", key=f"ttr_acc_{db_id}",
-                     type="primary", use_container_width=True):
-            _commit_tags(db_id, draft_tags, reviewer, "accept")
-            st.toast(f"Accepted DB {db_id}", icon="✅")
-            st.rerun()
-    with e:
-        if st.button("💾 Save edits", key=f"ttr_save_{db_id}",
+    # Two panels: tags on the left, scrollable lexicon text on the right.
+    left, right = st.columns([1, 1])
+    with left:
+        if d.get("evidence"):
+            st.caption("why these tags: " + d["evidence"])
+        if d.get("review_flags"):
+            # icon= must be a real emoji: "⚑" (U+2691) raises StreamlitAPIException.
+            st.warning(d["review_flags"], icon="⚠️")
+        st.pills("Tags", _TROUPE_TAG_OPTS, selection_mode="multi",
+                 default=draft_tags, key=f"ttr_pills_{db_id}")
+        if st.button("💾 Save edits", key=f"ttr_save_{db_id}", type="primary",
                      use_container_width=True):
             picked = st.session_state.get(f"ttr_pills_{db_id}", []) or []
             _commit_tags(db_id, picked, reviewer, "edit")
-            st.toast(f"Saved DB {db_id}", icon="💾")
+            st.toast(f"Saved DB {db_id} — moved to already-tagged", icon="💾")
             st.rerun()
-    with r:
-        if st.button("🚫 Reject", key=f"ttr_rej_{db_id}",
-                     use_container_width=True):
-            _commit_tags(db_id, [], reviewer, "reject")
-            st.toast(f"Rejected DB {db_id} — left untagged", icon="🚫")
-            st.rerun()
+    with right:
+        _render_text_panel(d, samples)
 
 
 # ── Correct saved tags ────────────────────────────────────────────────────────
@@ -414,38 +411,45 @@ def render() -> None:
     done = len(drafts) - len(pending)
     st.caption(
         f"{len(pending)} troupes left to review · {done} of {len(drafts)} done. "
-        "Accept keeps the draft as-is; Save writes your edited pills; Reject "
-        "leaves the troupe untagged."
+        "Adjust the tags on the left, read the lexicon text on the right, then "
+        "click **Save edits** — the troupe moves to “already tagged” (see the "
+        "*Correct saved tags* section to revisit it)."
     )
 
-    only_flagged = st.checkbox("⚑ Show only German-Jewish-flagged rows",
-                               value=False, key="ttr_only_flagged")
-    if only_flagged:
-        pending = [d for d in pending if d.get("review_flags")]
+    # Confidence-group picker — this is where you choose which tier to work,
+    # including the lower-confidence ones. "Flagged" is the German-Jewish cross-cut.
+    group_keys = list(_TIERS) + ["flagged"]
+    group_label = {
+        "high": "✅ High", "medium": "🟡 Medium",
+        "low (base only)": "⚪ Base only",
+        "flagged": "⚠️ German-Jewish?",
+    }
 
-    per_tier = st.number_input("Show top N per tier", min_value=5, max_value=200,
-                               value=25, step=5, key="ttr_pagesize")
+    def _count(k: str) -> int:
+        if k == "flagged":
+            return sum(1 for d in pending if d.get("review_flags"))
+        return sum(1 for d in pending if d.get("confidence", "") == k)
 
-    for tier in _TIERS:
-        rows = [d for d in pending if d.get("confidence", "") == tier]
-        if not rows:
-            continue
-        st.subheader(f"{_TIER_LABEL[tier]} · {len(rows)}")
+    idx = st.radio(
+        "Confidence group",
+        range(len(group_keys)),
+        format_func=lambda i: f"{group_label[group_keys[i]]} · {_count(group_keys[i])}",
+        horizontal=True, key="ttr_group",
+    )
+    chosen = group_keys[idx]
+    if chosen == "flagged":
+        rows = [d for d in pending if d.get("review_flags")]
+    else:
+        rows = [d for d in pending if d.get("confidence", "") == chosen]
 
-        # Bulk accept for a whole tier (only meaningful for high, but offered
-        # everywhere; it accepts each row's draft tags unchanged).
-        if st.button(f"✅ Accept all shown in this tier ({min(len(rows), int(per_tier))})",
-                     key=f"ttr_bulk_{tier}"):
-            batch = [
-                (d["db_id"],
-                 [t for t in _split_tags(d.get("tags", "")) if t in _TROUPE_TAG_OPTS],
-                 "accept")
-                for d in rows[: int(per_tier)]
-            ]
-            _commit_batch(batch, reviewer)   # one troupe_tags push + one review push
-            st.toast(f"Accepted {len(batch)} in {tier}", icon="✅")
-            st.rerun()
+    if not rows:
+        st.success("Nothing left in this group. 🎉")
+        return
 
-        for d in rows[: int(per_tier)]:
-            with st.container(border=True):
-                _render_card(d, reviewer, samples)
+    page = st.number_input("Show top N", min_value=5, max_value=200,
+                           value=20, step=5, key="ttr_pagesize")
+    st.caption(f"Showing {min(len(rows), int(page))} of {len(rows)} in this group.")
+
+    for d in rows[: int(page)]:
+        with st.container(border=True):
+            _render_card(d, reviewer, samples)
