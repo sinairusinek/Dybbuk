@@ -42,6 +42,7 @@ VIEWS = {
     "Organization Cards":      ("org_addresses", "geo"),
     "Settlement audit":        ("settlement_audit", "audit"),
     "DB Audit":                ("db_audit",      "dba"),
+    "Troupe-tag review":       ("troupe_tags_review", "ttr"),
     "Activity":                ("activity",      "activity"),
     "B1 · Person Dedup":       ("person_dedup",   "b1"),
     "B2 · Person → DB":        ("person_alignment", "b2"),
@@ -68,6 +69,7 @@ VIEW_STATUS = {
     "Organization Cards":      "✅ Ready",
     "Settlement audit":        "🌆",
     "DB Audit":                "🩺",
+    "Troupe-tag review":       "🏷",
     "Activity":                "📋",
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → DB":        "✅ Ready",
@@ -225,6 +227,9 @@ elif view_module == "activity":
     render()
 elif view_module == "db_audit":
     from views.db_audit import render
+    render()
+elif view_module == "troupe_tags_review":
+    from views.troupe_tags_review import render
     render()
 elif view_module == "person_dedup":
     from views.person_dedup import render

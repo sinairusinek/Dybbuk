@@ -66,6 +66,11 @@ DBLALIGN_DECISION_HEADERS = [
 ]
 
 # ── Troupe tags (Ruthie's typology, ratified 2026-07-19) ──────────────────────
+# NOTE: the tagging UI moved to views/troupe_tags_review.py on 2026-08-16 — this
+# view no longer reads or writes tags. The vocabulary, paths, loader and saver
+# stay here because that view imports them from this module; treat this block as
+# the shared troupe-tag data layer, not as dead code.
+#
 # One flat level of sub-tags for traveling companies. Layer A is the primary
 # structural category (pick one); Layer B is additional characteristics (pick
 # any number). Keyed on db_id alone — tags describe the organization, not the
@@ -409,8 +414,7 @@ def _mentions_block(cid: str, samples: dict[str, dict[str, list]],
 
 
 def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
-               reviewer: str, samples: dict[str, dict[str, list]],
-               tags: dict[str, dict]) -> None:
+               reviewer: str, samples: dict[str, dict[str, list]]) -> None:
     db_id = db["db_id"]
     clusters = db.get("_clusters", [])
     sev = db.get("severity_boost", "") or ""
@@ -491,44 +495,14 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
             )
             _mentions_block(cid, samples, "dba_fm")
 
-    # Troupe tags — only for traveling companies (Ruthie's typology).
-    is_troupe = (db.get("org_type") or "").strip().lower() in TROUPE_ORG_TYPES
-    if is_troupe:
-        prev_tags = tags.get(db_id, {})
-        prev_sel = [t for t in _split_tags(prev_tags.get("tags", ""))
-                    if t in _TROUPE_TAG_OPTS]
-        prev_other = " | ".join(_split_tags(prev_tags.get("other_tags", "")))
-
-        tagged_mark = " ✓" if (prev_sel or prev_other) else ""
-        # Open by default when the reviewer is here to tag, so the pills are
-        # visible without a click per DB.
-        tagging_mode = bool(st.session_state.get("dba_filter_troupe", False))
-        with st.expander(f"🏷 Troupe tags (DB {db_id}){tagged_mark}",
-                         expanded=tagging_mode or bool(tagged_mark)):
-            # st.pills (not st.multiselect): shows every option on screen at
-            # once, tick-to-toggle, and stays ONE widget per DB. A checkbox
-            # grid would be 15 widgets × up to 50 DBs per render — Streamlit
-            # instantiates widgets inside collapsed expanders too.
-            st.pills(
-                "Tags (tick any number)",
-                _TROUPE_TAG_OPTS, selection_mode="multi",
-                default=prev_sel, key=f"dba_tags_{db_id}",
-            )
-            st.text_input(
-                "Other tags (not in the list above)",
-                value=prev_other, key=f"dba_tag_other_{db_id}",
-                placeholder="free text — separate multiple tags with |",
-                help="Anything the vocabulary doesn't cover yet. These get "
-                     "reviewed and may be promoted into the list later.",
-            )
-            # Echo back other-tags already coined elsewhere, so the same idea
-            # gets the same spelling and the free-text column stays groupable.
-            coined = _coined_other_tags(tags)
-            if coined:
-                st.caption("already coined — reuse the exact wording if it fits: "
-                           + " · ".join(f"`{t}`" for t in coined))
-            st.caption("Saved by the Save button below, together with the "
-                       "cluster decisions.")
+    # Troupe tagging used to live here, on every flagged card. It moved to the
+    # "Troupe-tag review" view, which drafts tags for all 686 live traveling
+    # companies instead of the 152 that happen to be in this punchlist.
+    if (db.get("org_type") or "").strip().lower() in TROUPE_ORG_TYPES:
+        st.caption(
+            "🏷 This is a traveling company — tag it in the **Troupe-tag "
+            "review** view (sidebar). Tags are no longer edited here."
+        )
 
     # Notes + Save + Keep-all-in shortcut
     notes_key = f"dba_notes_{db_id}"
@@ -569,30 +543,10 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                 "reviewer": reviewer,
                 "reviewed_at": ts,
             })
-        # Troupe tags ride along on the same Save click. A tags-only save (no
-        # cluster decisions touched) is valid — tagging and false-merge review
-        # are independent jobs that happen to share this block.
-        tag_rec: dict | None = None
-        if is_troupe:
-            picked = st.session_state.get(f"dba_tags_{db_id}", []) or []
-            other = _split_tags(st.session_state.get(f"dba_tag_other_{db_id}", ""))
-            if picked or other:
-                tag_rec = {
-                    "db_id": db_id,
-                    "tags": " | ".join(picked),
-                    "other_tags": " | ".join(other),
-                    "reviewer_notes": notes,
-                    "reviewer": reviewer,
-                    "reviewed_at": ts,
-                }
-
-        if not recs and not tag_rec:
-            st.toast("Nothing to save — no decisions or tags picked.", icon="ℹ️")
+        if not recs:
+            st.toast("Nothing to save — no decisions picked.", icon="ℹ️")
         else:
-            if recs:
-                save_decisions(recs)
-            if tag_rec:
-                save_troupe_tags([tag_rec])
+            save_decisions(recs)
             try:
                 from zalmen.activity_log import log_action
                 for r in recs:
@@ -603,24 +557,9 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                         note=notes,
                         push=False,  # avoid N pushes; the save already pushed the TSV
                     )
-                if tag_rec:
-                    log_action(
-                        "db_audit", "troupe_tags",
-                        target_id=db_id,
-                        decision=" | ".join(
-                            b for b in [tag_rec["tags"], tag_rec["other_tags"]] if b
-                        ),
-                        note=notes,
-                        push=False,
-                    )
             except Exception:  # noqa: BLE001
                 pass
-            parts = []
-            if recs:
-                parts.append(f"{len(recs)} decisions")
-            if tag_rec:
-                parts.append("troupe tags")
-            st.toast(f"✅ Saved {' + '.join(parts)} for DB {db_id}", icon="✅")
+            st.toast(f"✅ Saved {len(recs)} decisions for DB {db_id}", icon="✅")
             st.rerun()
 
 
@@ -756,7 +695,6 @@ def _render_falsemerge_tab(reviewer: str) -> None:
 
     punchlist = load_punchlist(_mtime(PUNCHLIST))
     decisions = load_decisions(_mtime(DECISIONS))
-    tags = load_troupe_tags(_mtime(TROUPE_TAGS))
     samples = load_samples(_mtime(CLUSTER_FILE))
 
     if not punchlist:
@@ -791,59 +729,28 @@ def _render_falsemerge_tab(reviewer: str) -> None:
             key="dba_filter_n",
         )
 
-    # Troupe-tagging mode: the tagging job is independent of false-merge review,
-    # so it needs its own worklist. Resolved DBs are shown here — a DB whose
-    # clusters are all decided is still untagged, and would otherwise be hidden.
-    col_t, col_u = st.columns([2, 2])
-    with col_t:
-        troupe_only = st.checkbox(
-            "🏷 Troupe-tagging mode (traveling companies only)",
-            value=False, key="dba_filter_troupe",
-            help="Show only traveling companies, including ones already resolved "
-                 "for false-merge, so they can be tagged.",
-        )
-    with col_u:
-        untagged_only = st.checkbox(
-            "…and only ones not yet tagged", value=True,
-            key="dba_filter_untagged", disabled=not troupe_only,
-            help="On by default so already-tagged troupes stay hidden and you "
-                 "don't re-tag them. Untick to see every traveling company.",
-        )
-
-    def _is_troupe(r: dict) -> bool:
-        return (r.get("org_type") or "").strip().lower() in TROUPE_ORG_TYPES
+    # The troupe-tagging worklist filters that used to live here are gone: the
+    # tagging job moved to the "Troupe-tag review" view, whose worklist covers
+    # every live traveling company rather than the subset in this punchlist.
 
     # Apply filters: hide resolved first, then severity, then top-N.
-    if troupe_only:
-        rows = [r for r in punchlist if _is_troupe(r)]
-        if untagged_only:
-            rows = [r for r in rows if r["db_id"] not in tags]
-    else:
-        rows = [r for r in punchlist if not _is_resolved(r)]
+    rows = [r for r in punchlist if not _is_resolved(r)]
     if sev_only:
         rows = [r for r in rows if (r.get("severity_boost") or "").strip()]
     rows = rows[: int(max_show)]
 
-    if troupe_only:
-        n_troupes = sum(1 for r in punchlist if _is_troupe(r))
-        st.markdown(
-            f"**{len(rows)} traveling companies shown** (of {n_troupes} in the "
-            f"punchlist; {len(tags)} tagged so far). Resolved DBs are included "
-            f"in this mode."
-        )
-    else:
-        n_decided = sum(1 for r in rows if any(
-            (r["db_id"], c["cluster_id"]) in decisions for c in r.get("_clusters", [])
-        ))
-        st.markdown(
-            f"**{len(rows)} DBs shown** (of {len(punchlist)} flagged total; "
-            f"{n_resolved_total} fully resolved and hidden). "
-            f"{n_decided} of the shown DBs have at least one decision recorded."
-        )
+    n_decided = sum(1 for r in rows if any(
+        (r["db_id"], c["cluster_id"]) in decisions for c in r.get("_clusters", [])
+    ))
+    st.markdown(
+        f"**{len(rows)} DBs shown** (of {len(punchlist)} flagged total; "
+        f"{n_resolved_total} fully resolved and hidden). "
+        f"{n_decided} of the shown DBs have at least one decision recorded."
+    )
 
     for i, db in enumerate(rows):
         with st.container(border=True):
-            _render_db(i, db, decisions, reviewer, samples, tags)
+            _render_db(i, db, decisions, reviewer, samples)
 
 
 def _render_dedup_tab(reviewer: str) -> None:
