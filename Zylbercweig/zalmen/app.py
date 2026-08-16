@@ -119,21 +119,32 @@ if "reviewer" not in st.session_state:
         st.rerun()
     st.stop()
 
-# ── Query-param deep links (consumed before sidebar renders) ─────────────────
+# ── Query-param deep links + restart-proof view ───────────────────────────────
+# `view` now *stays* in the URL for the whole session (it used to be consumed and
+# cleared). The app is redeployed by Streamlit Cloud whenever a commit lands on
+# the deployed branch — and every reviewer save pushes one — so the server drops
+# every session several times an hour. On reconnect the browser replays the URL
+# and nothing else, so a cleared `view` param meant the RA came back on the first
+# view in the registry, having "jumped to the first page" mid-work. Keeping the
+# param means the reconnect restores where they were.
+#
+# Only re-apply the param when its value actually changes, otherwise a stale URL
+# would overwrite `active_view` on the very rerun where the sidebar radio's
+# on_change had just moved it, pinning the app to whatever the URL last said.
 _qp = st.query_params
 _qp_view = _qp.get("view", None)
 _qp_entity = _qp.get("entity", None)
-if _qp_view and _qp_view in VIEWS:
+if _qp_view and _qp_view in VIEWS and _qp_view != st.session_state.get("_qp_view_applied"):
     st.session_state["active_view"] = _qp_view
+    st.session_state["_qp_view_applied"] = _qp_view
     if _qp_entity:
         if _qp_view == "Organizations matching":
             st.session_state["review_selected_cid"] = _qp_entity
         elif _qp_view == "Organization Cards":
             st.session_state["addr_selected"] = _qp_entity
-    _preserved_user = st.query_params.get("user")
-    st.query_params.clear()
-    if _preserved_user:
-        st.query_params["user"] = _preserved_user
+        # Consume only the entity: `view` and `user` are the two params that have
+        # to survive a redeploy, so clearing the whole query string is never right.
+        del st.query_params["entity"]
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -170,6 +181,14 @@ with st.sidebar:
             format_func=lambda v: f"{v}  {VIEW_STATUS[v]}",
         )
         selected = st.session_state["active_view"]
+        # Mirror the routed view into the URL so a redeploy (see the note by the
+        # query-param block) brings the RA back here instead of to view 0.
+        # Assigning to query_params only pushes a page_info_changed message — it
+        # does not rerun — and `_qp_view_applied` keeps the block above from
+        # fighting the value we just wrote.
+        if st.query_params.get("view") != selected:
+            st.query_params["view"] = selected
+            st.session_state["_qp_view_applied"] = selected
 
     st.divider()
     st.caption(f"Logged in as **{st.session_state['reviewer']}**")

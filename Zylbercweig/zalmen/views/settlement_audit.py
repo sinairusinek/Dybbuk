@@ -1085,12 +1085,29 @@ def render() -> None:
     # map-click in the previous turn). Streamlit updates widget session_state
     # before the script body runs, so settlement_audit_city is already current.
     target_qid = st.session_state.pop("audit_target_qid", None)
+    # A reviewer save pushes a commit, which redeploys the app and drops every
+    # session (see the query-param note in app.py). app.py restores the view from
+    # the URL; carry the city the same way, so a redeploy mid-merge doesn't also
+    # cost the RA their place in the picker. Applied once per distinct URL value
+    # so it can't override a later pick.
+    if not target_qid:
+        qp_city = st.query_params.get("city")
+        if (
+            qp_city
+            and qp_city != st.session_state.get("_sa_qp_city_applied")
+            and "settlement_audit_city" not in st.session_state
+        ):
+            target_qid = qp_city
+            st.session_state["_sa_qp_city_applied"] = qp_city
     if target_qid:
         match = next((c for c in cities if c[0] == target_qid), None)
         if match is not None:
             st.session_state["settlement_audit_city"] = match
     focus_city = st.session_state.get("settlement_audit_city")
     focus_qid = focus_city[0] if focus_city else None
+    if focus_qid and st.query_params.get("city") != focus_qid:
+        st.query_params["city"] = focus_qid
+        st.session_state["_sa_qp_city_applied"] = focus_qid
 
     # --- Map header ---
     with st.container(border=True):
