@@ -60,13 +60,13 @@ def _folders(only=None):
     return sorted(set(out))
 
 
-# Prompt-book structural markers: Auftritt/Aufzug (scene/act), the S· and R·
-# forms, and bare numerals. These are historical division markings mis-tagged
+# Prompt-book structural markers: the S· and R· forms and bare numerals.
+# Auftritt/Aufzug is NOT one of them — the RAs confirmed 2026-08-16 that every
+# spelling of it marks an entrance, so it is typed by the apparatus lexicon. These are historical division markings mis-tagged
 # as `stage`, not directions — they belong to the heading-notation question and
 # should be retagged `heading` once the RAs settle what they mean, so they are
 # not offered for stage typing.
 _STRUCTURAL = [
-    re.compile(r'^(auf|auft|auftr|auftri|auftritt|aufz|aufzug)\.?', re.I),
     re.compile(r'^[SR][\s.=/]*[IVX0-9]*\.?$', re.I),
     re.compile(r'^[IVX]+\.?$'),
     re.compile(r'^[\W\d]+$'),

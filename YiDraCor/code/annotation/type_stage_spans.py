@@ -75,6 +75,14 @@ MS_EXTRA = ["Lateiner_Meshumed"]
 # apparatus types as `delivery`; the curtain stays `setting` to match its
 # Yiddish counterpart and the sound effect is `business`.
 _MS_APPARATUS = [
+    # Auftritt / Aufzug and every abbreviation of them: Auf, Auft, Auftr,
+    # Auftrit, Auft. — ANSWERED BY THE RAs (Sinai, 2026-08-16): all of them
+    # mark an entrance, not a scene division. That matches the calibrated
+    # lexicon's treatment of the Yiddish spelling אויפטריט, which
+    # `stage_lexicon_span` already types `entrance`; the Latin-script forms in
+    # the prompt books are the same cue. They had been routed to the
+    # heading-notation question on the reading that Auftritt = scene.
+    (re.compile(r'^["%/\s.]*auf(t(r(i(t(t)?)?)?)?|z(ug)?)?\b\.?', re.I), "entrance"),
     (re.compile(r'^\s*"?vorhang\b', re.I), "setting"),
     (re.compile(r'^\s*"?trompetenschall', re.I), "business"),
     (re.compile(r'^\s*"?bis\b', re.I), "delivery"),
@@ -88,14 +96,23 @@ _MS_APPARATUS = [
 ]
 
 
-def ms_apparatus_type(span_text: str):
-    """Type a prompt-book musical/production cue, else None.
+# Auftritt is tested before the Latin-only guard because it legitimately mixes
+# scripts: the cue names the character entering, so `Auftr שמעון.` and
+# `Auf: Ansal | N3 בר-נזיר` are exactly the pattern the Yiddish `אויפטריט שלמון`
+# follows. A leading nikud is stripped first — one span is stored as `ָAuf`.
+_AUFTRITT = re.compile(r'^["%/\s.]*auf(t(r(i(t(t)?)?)?)?|z(ug)?)?\b\.?', re.I)
 
-    Latin-script only: a Yiddish direction that merely contains a Latin
-    substring must not be caught here, it belongs to the calibrated lexicon.
-    """
-    t = (span_text or "").strip()
-    if not t or re.search(r"[א-ת]", t):
+
+def ms_apparatus_type(span_text: str):
+    """Type a prompt-book musical/production cue, else None."""
+    t = re.sub(r"[\u0591-\u05C7]", "", span_text or "").strip()
+    if not t:
+        return None
+    if _AUFTRITT.match(t):
+        return "entrance"
+    # Everything else is Latin-script only: a Yiddish direction that merely
+    # contains a Latin substring belongs to the calibrated lexicon, not here.
+    if re.search(r"[א-ת]", t):
         return None
     for rx, typ in _MS_APPARATUS:
         if rx.search(t):
