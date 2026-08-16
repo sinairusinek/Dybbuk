@@ -83,7 +83,7 @@ Transkribus</Creator>
                     <Unicode>=שווערד</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l11" custom="readingOrder {index:10;} stage {offset:0;length:21;} stage {offset:24;length:8;}">
+            <TextLine id="r1l11" custom="readingOrder {index:10;} stage {offset:0; length:21; type:business;} stage {offset:24; length:8; type:delivery;}">
                 <Coords points="2329,1324 2444,1277 3142,1282 3207,1325 3758,1271 3848,1321 3912,1310 3909,1165 2798,1217 2711,1162 2327,1223"/>
                 <Baseline points="2341,1274 3897,1246"/>
                 <TextEquiv>
@@ -104,7 +104,7 @@ Transkribus</Creator>
                     <Unicode>גדליה אה ניין דאס זענען אונזערע פיינד די כאלדעער.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l14" custom="readingOrder {index:13;} stage {offset:7;length:12;}">
+            <TextLine id="r1l14" custom="readingOrder {index:13;} stage {offset:7; length:12; type:entrance;}">
                 <Coords points="2946,1661 3008,1674 3106,1623 3209,1623 3257,1664 3305,1620 3522,1601 3521,1539 3417,1536 3356,1560 3199,1517 3161,1557 3128,1538 3060,1565 2988,1534 2944,1548"/>
                 <Baseline points="2959,1624 3509,1611"/>
                 <TextEquiv>
@@ -139,7 +139,7 @@ Transkribus</Creator>
                     <Unicode>צדקיה נעמט אלע די שווערדען געשווינד</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l19" custom="readingOrder {index:18;} speaker {offset:0; length:3; xmlid:alle;} stage {offset:5; length:24;}">
+            <TextLine id="r1l19" custom="readingOrder {index:18;} speaker {offset:0; length:3; xmlid:alle;} stage {offset:5; length:24; type:business;}">
                 <Coords points="2733,2244 3014,2224 3098,2263 3233,2215 3589,2266 3709,2210 4077,2246 4118,2224 4117,2093 3689,2159 3575,2110 3472,2151 3116,2100 2732,2133"/>
                 <Baseline points="2744,2213 4105,2200"/>
                 <TextEquiv>
@@ -153,7 +153,7 @@ Transkribus</Creator>
                     <Unicode>ירמיהו אומזיסט זעהט אונזער חורבן. זעהט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l21" custom="readingOrder {index:20;} speaker {offset:0; length:3; xmlid:alle;} stage {offset:5; length:6;} stage {offset:29; length:38;}">
+            <TextLine id="r1l21" custom="readingOrder {index:20;} speaker {offset:0; length:3; xmlid:alle;} stage {offset:5; length:6; type:business;} stage {offset:29; length:38; type:setting;}">
                 <Coords points="2438,2476 4122,2472 4120,2356 4065,2335 3216,2392 2946,2355 2873,2401 2436,2338"/>
                 <Baseline points="2451,2455 4110,2422"/>
                 <TextEquiv>
@@ -187,7 +187,7 @@ Transkribus</Creator>
                     <Unicode>צווייטער אקט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l3" custom="readingOrder {index:2;} stage {offset:0; length:53;} speaker {offset:54; length:4; xmlid:chor;}">
+            <TextLine id="r2l3" custom="readingOrder {index:2;} stage {offset:0; length:53; type:setting;} speaker {offset:54; length:4; xmlid:chor;}">
                 <Coords points="365,345 530,388 816,321 1168,383 1501,329 1937,371 2073,353 2074,254 1142,272 366,195"/>
                 <Baseline points="377,320 2060,332"/>
                 <TextEquiv>
@@ -236,14 +236,14 @@ Transkribus</Creator>
                     <Unicode>גדליהו אונזער העלד! אונזער העלד! זאל לעבען לאנג! הֵידָד!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l10" custom="readingOrder {index:9;} stage {offset:8; length:13;} speaker {offset:0; length:7; xmlid:irmihu_hnbi;}">
+            <TextLine id="r2l10" custom="readingOrder {index:9;} stage {offset:8; length:13; type:location;} speaker {offset:0; length:7; xmlid:irmihu_hnbi;}">
                 <Coords points="528,1155 796,1195 915,1148 1270,1154 1437,1211 1726,1172 1878,1217 2093,1173 2093,1047 1814,1111 1566,1046 1405,1087 917,1030 740,1089 528,1066"/>
                 <Baseline points="539,1139 2081,1142"/>
                 <TextEquiv>
                     <Unicode>ירמיהו /פֿון דרויסען/ נָפלה עַטֶרֶת רֹאשֵנִו אוי נָא לָנו כִי חָטָאָנִו.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l11" custom="readingOrder {index:10;} speaker {offset:0; length:3; xmlid:alle;} stage {offset:31; length:24;} stage {offset:57; length:5;}">
+            <TextLine id="r2l11" custom="readingOrder {index:10;} speaker {offset:0; length:3; xmlid:alle;} stage {offset:31; length:24; type:business;} stage {offset:57; length:5; type:entrance;}">
                 <Coords points="179,1294 2095,1293 2079,1172 1883,1224 181,1151"/>
                 <Baseline points="193,1250 2082,1269"/>
                 <TextEquiv>
@@ -292,7 +292,7 @@ Transkribus</Creator>
                     <Unicode>צפֿניה געטליכער מאנן. דערקענסטו ניט מעהר דיין אלטען סאלדאט צפֿנִיה?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l18" custom="readingOrder {index:17;} stage {offset:47; length:9;} speaker {offset:0; length:6; xmlid:irmihu_hnbi;}">
+            <TextLine id="r2l18" custom="readingOrder {index:17;} stage {offset:47; length:9; type:business;} speaker {offset:0; length:6; xmlid:irmihu_hnbi;}">
                 <Coords points="225,2133 1080,2086 2049,2151 2094,2023 225,2022"/>
                 <Baseline points="237,2082 2082,2088"/>
                 <TextEquiv>
