@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Yiddish_HTR(htr_id=38946)::::v=2.6.7
@@ -16,14 +16,14 @@ Transkribus</Creator>
     <Page imageFilename="31089309.jpg" imageWidth="4212" imageHeight="2622">
         <TextRegion id="r1" custom="readingOrder {index:0;}">
             <Coords points="2622,2169 3839,2169 3839,2534 2622,2534"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;} stage {offset:0;length:27;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} stage {offset:0; length:27; type:delivery;}">
                 <Coords points="2980,2236 3812,2234 3812,2284 2980,2286"/>
                 <Baseline points="2980,2281 3812,2279"/>
                 <TextEquiv>
                     <Unicode>נאך קאר חלקיהו חלקיהו זינגט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l2" custom="readingOrder {index:1;} stage {offset:0;length:14;}">
+            <TextLine id="r1l2" custom="readingOrder {index:1;} stage {offset:0; length:14; type:delivery;}">
                 <Coords points="2748,2460 3183,2453 3184,2503 2749,2510"/>
                 <Baseline points="2749,2505 3184,2498"/>
                 <TextEquiv>
@@ -36,14 +36,14 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion id="r2" custom="readingOrder {index:1;}">
             <Coords points="19,29 2050,29 2050,2469 19,2469"/>
-            <TextLine id="r2l1" custom="readingOrder {index:0;} fw {offset:0;length:6;}">
+            <TextLine id="r2l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="1250,167 1350,165 1407,150 1448,169 1464,155 1557,162 1557,86 1486,91 1467,83 1445,95 1371,83 1281,88 1250,100"/>
                 <Baseline points="1261,144 1546,144"/>
                 <TextEquiv>
                     <Unicode>168920</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l2" custom="readingOrder {index:1;} speaker {offset:0;length:7;}">
+            <TextLine id="r2l2" custom="readingOrder {index:1;} speaker {offset:0; length:7; xmlid:khlkihu;}">
                 <Coords points="108,242 2037,308 1990,146 1778,204 1563,152 1105,204 109,161"/>
                 <Baseline points="119,241 2026,255"/>
                 <TextEquiv>
@@ -162,14 +162,14 @@ Transkribus</Creator>
                     <Unicode>שעהנהייט און טאָגעֶנד אין דיין פנים צו געפֿונען,</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l19" custom="readingOrder {index:18;} stage {offset:8;length:13;}">
+            <TextLine id="r2l19" custom="readingOrder {index:18;} stage {offset:8; length:13; type:business;}">
                 <Coords points="1072,1908 1125,1903 1201,1848 1339,1881 1415,1859 1473,1887 1568,1858 1602,1877 1807,1859 1806,1776 1749,1779 1696,1745 1616,1805 1589,1782 1556,1801 1422,1785 1348,1745 1236,1807 1072,1801"/>
                 <Baseline points="1084,1853 1794,1850"/>
                 <TextEquiv>
                     <Unicode>ערלויבע (זי לאזט ניט)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l20" custom="readingOrder {index:19;} speaker {offset:0;length:6;}">
+            <TextLine id="r2l20" custom="readingOrder {index:19;} speaker {offset:0; length:6; xmlid:fgil;}">
                 <Coords points="141,1961 1710,1966 1948,2020 2015,2004 2016,1894 1871,1826 1701,1899 1203,1848 1126,1903 1067,1855 919,1904 141,1887"/>
                 <Baseline points="154,1948 2004,1959"/>
                 <TextEquiv>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Yiddish_HTR(htr_id=38946)::::v=2.6.7
@@ -58,7 +58,7 @@ Transkribus</Creator>
                     <Unicode>און נעם</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l7" custom="readingOrder {index:6;} speaker {offset:0;length:5;}">
+            <TextLine id="r1l7" custom="readingOrder {index:6;} speaker {offset:0; length:5; xmlid:izbl;}">
                 <Coords points="2105,831 2498,847 2698,788 2902,857 3962,864 3964,765 3788,707 3587,787 2107,749"/>
                 <Baseline points="2119,795 3950,837"/>
                 <TextEquiv>
@@ -79,14 +79,14 @@ Transkribus</Creator>
                     <Unicode>איך דאביי זיין, פאר וואס זאל די אומשולדיגע</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l10" custom="readingOrder {index:9;} stage {offset:7;length:4;} stage {offset:12;length:10;}">
+            <TextLine id="r1l10" custom="readingOrder {index:9;} stage {offset:7; length:4; type:exit;} stage {offset:12; length:10; type:exit;}">
                 <Coords points="2487,1170 2541,1195 2629,1131 2799,1160 2862,1220 2981,1149 3075,1203 3159,1165 3515,1202 3703,1161 3705,1055 3597,1027 3515,1084 3283,1099 3142,1037 3068,1094 2938,1059 2736,1097 2489,1026"/>
                 <Baseline points="2500,1127 3080,1158 3212,1160 3373,1158 3497,1155 3691,1145"/>
                 <TextEquiv>
                     <Unicode>ליידען (אב) (ביידע אב)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l11" custom="readingOrder {index:10;} speaker {offset:0;length:6;}">
+            <TextLine id="r1l11" custom="readingOrder {index:10;} speaker {offset:0; length:6; xmlid:fgil;}">
                 <Coords points="2057,1253 3972,1298 3975,1184 3075,1203 3013,1152 2862,1219 2630,1130 2524,1182 2061,1087"/>
                 <Baseline points="2070,1215 3961,1264"/>
                 <TextEquiv>
@@ -170,7 +170,7 @@ Transkribus</Creator>
                     <Unicode>דארט איז מיין פאטער לאנד!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l23" custom="readingOrder {index:22;} stage {offset:0;length:3;} heading {offset:0;length:3;}">
+            <TextLine id="r1l23" custom="readingOrder {index:22;} stage {offset:0; length:3; type:delivery;} heading {offset:0; length:3;}">
                 <Coords points="2797,2507 3062,2518 3132,2475 3277,2532 3868,2563 3920,2550 3925,2390 3819,2384 3676,2488 3524,2512 3314,2481 3156,2393 3048,2449 2940,2422 2799,2460"/>
                 <Baseline points="2809,2509 3908,2544"/>
                 <TextEquiv>
@@ -183,7 +183,7 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion id="r2" custom="readingOrder {index:1;}">
             <Coords points="51,68 1944,68 1944,2569 51,2569"/>
-            <TextLine id="r2l1" custom="readingOrder {index:0;} fw {offset:0;length:6;}">
+            <TextLine id="r2l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="1326,193 1411,169 1437,178 1498,166 1520,180 1534,172 1643,179 1641,103 1602,92 1574,103 1437,90 1413,100 1394,84 1355,114 1324,110"/>
                 <Baseline points="1338,163 1630,154"/>
                 <TextEquiv>
@@ -302,7 +302,7 @@ Transkribus</Creator>
                     <Unicode>אנ׳אלטע פֿרוי מיט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l18" custom="readingOrder {index:17;} stage {offset:0;length:9;}">
+            <TextLine id="r2l18" custom="readingOrder {index:17;} stage {offset:0; length:9; type:setting;}">
                 <Coords points="668,2500 1257,2489 1447,2518 1489,2500 1481,2282 1358,2284 1206,2345 1083,2337 1046,2303 776,2306 662,2356"/>
                 <Baseline points="679,2469 1467,2439 1474,2442"/>
                 <TextEquiv>

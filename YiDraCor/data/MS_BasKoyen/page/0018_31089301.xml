@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Yiddish_HTR(htr_id=38946)::::v=2.6.7
@@ -16,7 +16,7 @@ Transkribus</Creator>
     <Page imageFilename="31089301.jpg" imageWidth="4239" imageHeight="2621">
         <TextRegion id="r1" custom="readingOrder {index:0;}">
             <Coords points="6,70 2016,70 2016,2548 6,2548"/>
-            <TextLine id="l" custom="readingOrder {index:0;} span {offset:0;length:6;} fw {offset:0;length:7;}">
+            <TextLine id="l" custom="readingOrder {index:0;} span {offset:0; length:6;} fw {offset:0; length:7; type:pageNum;}">
                 <Coords points="1466,128 1790,119 1791,195 1616,211 1466,175"/>
                 <Baseline points="1466,191 1780,189"/>
                 <TextEquiv>
@@ -30,14 +30,14 @@ Transkribus</Creator>
                     <Unicode> צווייטעס בילד</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l2" custom="readingOrder {index:2;} stage {offset:1;length:17;} stage {offset:21;length:4;}">
+            <TextLine id="r1l2" custom="readingOrder {index:2;} stage {offset:1; length:17; type:setting;} stage {offset:21; length:4; type:entrance;}">
                 <Coords points="594,356 813,363 954,325 1040,374 1141,321 1500,338 1554,313 1553,228 1273,260 1017,234 954,266 692,222 638,258 593,244"/>
                 <Baseline points="606,322 1541,311"/>
                 <TextEquiv>
                     <Unicode>(צימער ביי יונתן ) | אסנת.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l3" custom="readingOrder {index:3;} textStyle {offset:28;length:1;strikethrough:true;} speaker {offset:0;length:5;}">
+            <TextLine id="r1l3" custom="readingOrder {index:3;} textStyle {offset:28; length:1; strikethrough:true;} speaker {offset:0; length:5; xmlid:sns;}">
                 <Coords points="88,501 229,415 370,486 573,441 733,500 931,432 1069,486 1492,420 2008,460 2005,318 709,382 85,347"/>
                 <Baseline points="99,437 1994,399"/>
                 <TextEquiv>
@@ -170,7 +170,7 @@ Transkribus</Creator>
                     <Unicode>היינטיגען מארגען איבערגעלעבט, ווען איך זאל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l22" custom="readingOrder {index:22;} stage {offset:35;length:7;}">
+            <TextLine id="r1l22" custom="readingOrder {index:22;} stage {offset:35; length:7; type:delivery;}">
                 <Coords points="128,2291 855,2248 1091,2289 1219,2206 1347,2290 1393,2246 1444,2287 1782,2239 1779,2159 1501,2143 1460,2185 1378,2131 765,2192 626,2122 512,2204 125,2185"/>
                 <Baseline points="139,2270 1770,2221"/>
                 <TextEquiv>

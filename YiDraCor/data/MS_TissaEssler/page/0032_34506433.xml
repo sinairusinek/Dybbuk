@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Esther2(htr_id=39727)::::v=2.6.7
@@ -12,7 +12,7 @@ Transkribus</Creator>
     <Page imageFilename="tissa_essler-81-175-56-95CROPPED-0032.jpg" imageWidth="10347" imageHeight="7316">
         <TextRegion orientation="0.0" id="TextRegion_1644096849606_1388" custom="readingOrder {index:0;}">
             <Coords points="5156,786 9924,200 10166,200 10166,354 9482,7172 5496,7172 5176,2567 5156,2279"/>
-            <TextLine id="r4l1" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
+            <TextLine id="r4l1" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="9895,398 9933,392 9965,360 10008,365 10035,392 10089,354 10126,386 10191,370 10190,145 10083,166 10002,145 9981,124 9895,124"/>
                 <Baseline points="9924,302 9950,302 9977,302 10004,302 10031,300 10058,300 10085,300 10112,300 10139,302 10166,304"/>
                 <TextEquiv>
@@ -179,7 +179,7 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion orientation="0.0" id="TextRegion_1644096840954_1380" custom="readingOrder {index:1;}">
             <Coords points="248,965 406,970 383,1543 2201,1347 2284,1197 2367,1160 2336,1352 4181,1171 4369,4440 4786,4399 4786,4901 4447,4969 4577,7152 4577,7159 741,7159 248,3625"/>
-            <TextLine id="r1l6" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
+            <TextLine id="r1l6" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="228,1205 276,1199 295,1180 330,1203 340,1191 404,1183 375,954 343,958 328,971 289,965 266,995 202,997"/>
                 <Baseline points="248,1156 279,1142 310,1140 341,1138 372,1136"/>
                 <TextEquiv>
@@ -270,14 +270,14 @@ Transkribus</Creator>
                     <Unicode>בעפרייען אונד אללע אנקלאגער צו פערקלאגען!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l20" custom="readingOrder {index:13;} speaker {offset:0;length:4;} stage {offset:70;length:2;}">
+            <TextLine id="r1l20" custom="readingOrder {index:13;} speaker {offset:0; length:4; xmlid:frezedent;} stage {offset:70; length:2; type:exit;}">
                 <Coords points="465,4947 3998,4760 4810,4579 4797,4376 1921,4666 443,4604"/>
                 <Baseline points="486,4845 697,4833 972,4806 1184,4795 1395,4784 1607,4774 1818,4766 2029,4756 2241,4746 2452,4737 2664,4726 2875,4714 3086,4702 3298,4688 3509,4673 3721,4655 3932,4637 4143,4615 4355,4592 4566,4565 4778,4538"/>
                 <TextEquiv>
                     <Unicode>פרעז דאס געריכט ציהט זיך צוריק אום צו בעשפרעכען וועגען דעם אורטהייל! (אב)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l21" custom="readingOrder {index:14;} speaker {offset:0;length:5;}">
+            <TextLine id="r1l21" custom="readingOrder {index:14;} speaker {offset:0; length:5; xmlid:izef_shrf;}">
                 <Coords points="470,5179 2167,5056 2399,5167 3534,4984 3810,5103 4819,4885 4802,4574 3152,4872 457,4954"/>
                 <Baseline points="492,5058 706,5054 921,5051 1136,5047 1350,5042 1565,5038 1780,5032 1994,5026 2209,5019 2424,5010 2639,5001 2853,4989 3068,4977 3283,4961 3497,4945 3712,4926 3927,4904 4141,4882 4356,4856 4571,4827 4786,4794"/>
                 <TextEquiv>
@@ -346,7 +346,7 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion id="region_1644096950596_1434" custom="readingOrder {index:2;}">
             <Coords points="4712,5052 5217,5052 5217,6729 4712,6729"/>
-            <TextLine id="line_1644096961389_1438" custom="readingOrder {index:0;} stage {offset:0;length:11;}">
+            <TextLine id="line_1644096961389_1438" custom="readingOrder {index:0;} stage {offset:0; length:11; type:business;}">
                 <Coords points="5035,6699 5120,6589 5084,6526 5139,6361 5232,6250 5034,5948 5101,5593 5161,5534 5068,5416 5099,5206 4799,5190 4758,5592 4839,5734 4811,5936 4889,6206 4762,6481 4864,6690"/>
                 <Baseline points="5040,6689 5118,5216"/>
                 <TextEquiv>

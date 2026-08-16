@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=The Dybbuk for Yiddish Handwriting(htr_id=41131)::::v=2.6.7
@@ -19,7 +19,7 @@ Transkribus</Creator>
                     <Unicode>9</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l1" custom="readingOrder {index:1;} speaker {offset:0;length:7;}">
+            <TextLine id="r1l1" custom="readingOrder {index:1;} speaker {offset:0; length:7; xmlid:shfinner;}">
                 <Coords points="56,187 886,186 886,140 544,153 298,127 227,160 56,135"/>
                 <Baseline points="61,175 102,175 143,175 184,175 225,175 266,175 307,175 348,175 389,175 430,176 471,176 512,176 553,176 594,176 635,176 676,176 717,176 758,176 799,177 840,177 881,177"/>
                 <TextEquiv>
@@ -40,7 +40,7 @@ Transkribus</Creator>
                     <Unicode>מיט זיינער טענער שטיממע</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l4" custom="readingOrder {index:4;} speaker {offset:0;length:4;}">
+            <TextLine id="r1l4" custom="readingOrder {index:4;} speaker {offset:0; length:4; xmlid:nn;}">
                 <Coords points="9,336 546,361 803,336 885,363 885,284 807,315 9,288"/>
                 <Baseline points="15,327 58,328 101,328 144,329 188,330 231,330 274,330 317,331 361,331 404,331 447,331 490,332 534,332 577,332 620,332 663,332 707,332 750,332 793,332 836,332 880,331"/>
                 <TextEquiv>
@@ -61,7 +61,7 @@ Transkribus</Creator>
                     <Unicode>איהר דאך בעססער. דא קאממען זייא ביידע!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l7" custom="readingOrder {index:7;} supplied {offset:0;length:1;} stage {offset:7;length:7;} speaker {offset:0;length:7;}">
+            <TextLine id="r1l7" custom="readingOrder {index:7;} supplied {offset:0; length:1;} stage {offset:7; length:7; type:delivery;} speaker {offset:0; length:7; xmlid:shfinner;}">
                 <Coords points="37,502 430,500 510,527 582,495 882,507 882,468 776,455 459,468 423,446 355,474 302,443 37,469"/>
                 <Baseline points="42,489 83,489 125,488 167,488 209,488 250,488 292,488 334,488 376,488 417,488 459,488 501,488 543,488 584,488 626,488 668,488 710,488 751,488 793,489 835,489 877,489"/>
                 <TextEquiv>
@@ -89,28 +89,28 @@ Transkribus</Creator>
                     <Unicode>דא צו פיעל הויז פריינד געווארדען.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l11" custom="readingOrder {index:11;} stage {offset:0;length:11;}">
+            <TextLine id="r1l11" custom="readingOrder {index:11;} stage {offset:0; length:11; type:entrance;}">
                 <Coords points="413,722 449,713 517,716 525,708 555,720 617,715 630,723 660,714 659,658 624,668 593,652 577,659 554,653 467,670 450,661 413,674"/>
                 <Baseline points="419,696 445,695 471,693 497,693 523,693 549,693 575,693 601,693 627,692 654,690"/>
                 <TextEquiv>
                     <Unicode>ראשעל מאריץ</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l12" custom="readingOrder {index:12;} speaker {offset:0;length:5;}">
+            <TextLine id="r1l12" custom="readingOrder {index:12;} speaker {offset:0; length:5; xmlid:rshel;}">
                 <Coords points="156,751 211,770 447,751 803,771 892,751 892,701 762,729 703,709 156,715"/>
                 <Baseline points="161,747 197,746 233,746 269,745 306,745 342,745 378,745 415,746 451,746 487,746 524,747 560,747 596,748 632,748 669,748 705,748 741,748 778,747 814,747 850,746 887,744"/>
                 <TextEquiv>
                     <Unicode>ראשעל פאטער וואס ביזטו הייטע זא ניעדער געשלאגען?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1653483517349_862" custom="readingOrder {index:13;} supplied {offset:0;length:1;} speaker {offset:0;length:7;}">
+            <TextLine id="line_1653483517349_862" custom="readingOrder {index:13;} supplied {offset:0; length:1;} speaker {offset:0; length:7; xmlid:b_mshkvitsh;}">
                 <Coords points="26,818 418,804 598,838 687,804 812,835 885,803 885,758 784,792 696,760 617,784 420,758 129,782 99,759 26,783"/>
                 <Baseline points="31,802 68,801 106,800 143,800 181,799 218,799 256,799 293,799 331,799 368,799 406,799 444,799 481,799 519,799 556,799 594,799 631,800 669,800 706,800 744,801 782,801 801,800 827,801 853,800 880,797"/>
                 <TextEquiv>
                     <Unicode>מאשקאוו ניין מיין קינד, איך בין נור איין וועהניג נאכדענקליך</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1653483520252_866" custom="readingOrder {index:14;} supplied {offset:0;length:1;} speaker {offset:0;length:5;}">
+            <TextLine id="line_1653483520252_866" custom="readingOrder {index:14;} supplied {offset:0; length:1;} speaker {offset:0; length:5; xmlid:rshel;}">
                 <Coords points="44,863 857,871 892,857 892,820 241,836 91,804 44,825"/>
                 <Baseline points="50,848 86,849 123,851 160,852 197,853 234,853 271,854 308,854 345,854 382,854 419,853 455,853 492,853 529,853 566,853 603,852 640,852 677,853 714,853 751,853 788,854 803,852 830,850 858,850 886,850"/>
                 <TextEquiv>
@@ -131,14 +131,14 @@ Transkribus</Creator>
                     <Unicode>ריג.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1653483525933_872" custom="readingOrder {index:17;} supplied {offset:0;length:1;} speaker {offset:0;length:7;}">
+            <TextLine id="line_1653483525933_872" custom="readingOrder {index:17;} supplied {offset:0; length:1;} speaker {offset:0; length:7; xmlid:b_mshkvitsh;}">
                 <Coords points="76,1013 611,1032 761,1009 814,1037 892,1006 892,948 760,985 560,959 76,980"/>
                 <Baseline points="81,1005 115,1004 150,1004 185,1003 220,1003 255,1003 290,1003 325,1003 360,1003 395,1004 430,1004 464,1004 499,1005 534,1005 569,1005 604,1006 639,1006 674,1006 709,1006 744,1006 779,1006 803,1006 831,1004 859,1003 887,1003"/>
                 <TextEquiv>
                     <Unicode>מאשקאוו אך וויא גערן וואלט איך שאן געוואלט דארט זיין.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1653483529989_876" custom="readingOrder {index:18;} supplied {offset:0;length:1;} speaker {offset:0;length:5;}">
+            <TextLine id="line_1653483529989_876" custom="readingOrder {index:18;} supplied {offset:0; length:1;} speaker {offset:0; length:5; xmlid:rshel;}">
                 <Coords points="34,1087 202,1063 349,1096 462,1065 892,1079 892,1034 847,1010 790,1049 515,1017 35,1039"/>
                 <Baseline points="40,1055 76,1056 113,1057 150,1058 187,1058 223,1058 260,1058 297,1058 334,1058 370,1058 407,1057 444,1057 481,1056 517,1056 554,1056 591,1056 628,1057 664,1057 701,1058 738,1059 775,1061 807,1063 833,1062 859,1061 886,1062"/>
                 <TextEquiv>

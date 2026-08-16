@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Esther2(htr_id=39727)::::v=2.6.7
@@ -12,14 +12,14 @@ Transkribus</Creator>
     <Page imageFilename="tissa_essler-81-175-56-95CROPPED-0031.jpg" imageWidth="10643" imageHeight="7116">
         <TextRegion orientation="0.0" id="TextRegion_1644096100862_1046" custom="readingOrder {index:0;}">
             <Coords points="5236,754 9860,64 10100,64 10100,234 10020,2784 9449,2960 9618,6663 8857,6853 5236,6853"/>
-            <TextLine id="r3l1" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
+            <TextLine id="r3l1" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="9843,296 9871,294 9908,326 9931,324 10006,249 10046,252 10099,190 10128,188 10113,-1 10009,-5 9971,27 9924,13 9823,39"/>
                 <Baseline points="9860,184 9886,182 9913,180 9940,178 9966,177 9993,175 10020,173 10046,171 10073,167 10100,164"/>
                 <TextEquiv>
                     <Unicode>58</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1644095990011_968" custom="readingOrder {index:1;} speaker {offset:0;length:4;}">
+            <TextLine id="line_1644095990011_968" custom="readingOrder {index:1;} speaker {offset:0; length:4; xmlid:frezedent;}">
                 <Coords points="5296,1364 5719,1383 6182,1155 6675,1254 7491,1045 9691,957 9923,854 9905,654 5270,1084"/>
                 <Baseline points="5314,1246 5513,1221 5712,1196 5912,1172 6111,1149 6311,1128 6510,1107 6709,1086 6909,1068 7108,1048 7308,1031 7507,1012 7706,995 7906,978 8105,961 8305,944 8504,928 8703,912 8903,893 9102,877 9302,858 9446,842 9472,840 9498,837 9525,835 9551,832 9577,829 9604,827 9630,826 9656,824 9683,822 9709,820 9735,820 9762,820 9788,820 9814,820 9841,822 9867,824 9894,826"/>
                 <TextEquiv>
@@ -33,14 +33,14 @@ Transkribus</Creator>
                     <Unicode>זאנסטיגע אויפקלערונגען?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1644095996059_974" custom="readingOrder {index:3;} speaker {offset:0;length:6;}">
+            <TextLine id="line_1644095996059_974" custom="readingOrder {index:3;} speaker {offset:0; length:6; xmlid:etvsh;}">
                 <Coords points="6490,1789 7587,1622 8077,1689 8482,1520 9237,1586 9497,1459 9838,1481 9815,1218 6465,1514"/>
                 <Baseline points="6508,1668 6648,1660 6789,1649 6929,1638 7070,1627 7210,1616 7351,1604 7491,1591 7632,1580 7772,1567 7913,1553 8053,1542 8194,1528 8334,1516 8475,1504 8615,1493 8756,1480 8896,1470 9037,1458 9177,1448 9318,1438 9406,1406 9432,1406 9459,1405 9485,1402 9512,1399 9538,1397 9565,1395 9591,1392 9618,1391 9644,1390 9671,1388 9697,1387 9724,1386 9750,1388 9777,1390 9804,1392"/>
                 <TextEquiv>
                     <Unicode>עטוואש ניין הערר פרעזידענט וויר האבען נישט מעהר</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1644095999449_979" custom="readingOrder {index:4;} speaker {offset:0;length:4;}">
+            <TextLine id="line_1644095999449_979" custom="readingOrder {index:4;} speaker {offset:0; length:4; xmlid:frezedent;}">
                 <Coords points="6681,1961 9825,1757 9807,1545 9351,1532 7110,1792 6873,1714 6670,1835"/>
                 <Baseline points="6706,1920 6835,1916 6965,1908 7095,1899 7224,1890 7354,1878 7484,1865 7613,1854 7743,1840 7873,1827 8003,1814 8132,1801 8262,1787 8392,1773 8521,1762 8651,1749 8781,1739 8910,1730 9040,1722 9170,1716 9300,1712 9382,1700 9407,1700 9433,1700 9459,1699 9485,1697 9510,1695 9536,1692 9562,1690 9588,1689 9613,1687 9639,1686 9665,1686 9691,1686 9716,1687 9742,1689 9768,1694 9794,1700"/>
                 <TextEquiv>
@@ -200,7 +200,7 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion orientation="0.0" id="TextRegion_1644095976225_955" custom="readingOrder {index:1;}">
             <Coords points="275,906 475,884 489,1413 1882,1153 2110,1177 2116,1282 4113,1161 4234,4142 4762,4077 4762,4537 4239,4596 4364,6975 3950,7042 3709,7081 636,7081 575,6951 479,6340 116,2500 116,1467 283,1461"/>
-            <TextLine id="r1l2" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
+            <TextLine id="r1l2" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="278,1160 324,1158 429,1062 475,1072 464,802 355,807 322,837 265,839"/>
                 <Baseline points="300,1036 328,1038 357,1036 386,1035 415,1033 444,1032"/>
                 <TextEquiv>
@@ -291,21 +291,21 @@ Transkribus</Creator>
                     <Unicode>דיא אנגעקלאגטע פאר אונשולדיג אונד דיא פערקלאגער אונד פראצעספֿיהרער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l15" custom="readingOrder {index:13;} stage {offset:12;length:17;}">
+            <TextLine id="r1l15" custom="readingOrder {index:13;} stage {offset:12; length:17; type:delivery;}">
                 <Coords points="1864,4303 2160,4152 2468,4209 2768,4127 3295,4193 3383,4130 3555,4206 4211,4034 4204,3914 3758,3855 3355,4046 3127,3887 2899,4010 2600,3925 2418,4039 2234,3953 1846,4005"/>
                 <Baseline points="1882,4146 1994,4142 2164,4141 2276,4137 2388,4132 2500,4127 2612,4122 2724,4116 2836,4111 2948,4106 3061,4098 3173,4091 3285,4084 3397,4076 3509,4068 3621,4059 3733,4049 3845,4039 3957,4029 4069,4018 4182,4006"/>
                 <TextEquiv>
                     <Unicode>פיר שולדיג. (בראווא! בראווא]!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l16" custom="readingOrder {index:14;} speaker {offset:0;length:5;}">
+            <TextLine id="r1l16" custom="readingOrder {index:14;} speaker {offset:0; length:5; xmlid:frezedent;}">
                 <Coords points="1944,4480 3206,4500 3873,4340 4801,4351 4760,3818 4571,3908 4417,3844 3692,4222 1925,4228"/>
                 <Baseline points="1970,4408 2109,4406 2249,4402 2388,4400 2528,4394 2668,4388 2807,4381 2947,4374 3086,4364 3226,4355 3366,4345 3505,4334 3645,4321 3784,4308 3924,4294 4064,4281 4203,4266 4343,4251 4482,4235 4622,4218 4762,4200"/>
                 <TextEquiv>
                     <Unicode>פרעז דיא פערטהיידיגונג האט דאס ווארט!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l17" custom="readingOrder {index:15;} speaker {offset:0;length:6;}">
+            <TextLine id="r1l17" custom="readingOrder {index:15;} speaker {offset:0; length:6; xmlid:etvsh;}">
                 <Coords points="408,4754 667,4866 2335,4681 2745,4831 3087,4668 3718,4754 4702,4555 4632,4329 403,4662"/>
                 <Baseline points="436,4746 647,4734 859,4722 1071,4711 1282,4702 1494,4694 1706,4687 1917,4680 2129,4674 2341,4667 2553,4658 2764,4650 2976,4641 3188,4628 3399,4615 3611,4598 3823,4579 4034,4556 4246,4529 4458,4500 4670,4466"/>
                 <TextEquiv>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.6
@@ -58,7 +58,7 @@ Transkribus</Creator>
                     <Unicode>שלאכטפֿעלד! דיע הייליקע אמנה איז אונזער פֿאהנע אונד</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455681588_1484" custom="readingOrder {index:7;} foreign {offset:49;length:5;lang:Slav;}">
+            <TextLine id="line_1605455681588_1484" custom="readingOrder {index:7;} foreign {offset:49; length:5; lang:sla;}">
                 <Coords points="2179,788 3743,780 3743,830 2179,838"/>
                 <Baseline points="2179,833 3743,825"/>
                 <TextEquiv>
@@ -86,7 +86,7 @@ Transkribus</Creator>
                     <Unicode>אונזער פֿאהנע געבין וויר ניכט אויף. ערינערע דיך מיין זאהן!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455700911_1499" custom="readingOrder {index:11;} personName {offset:20;length:13;}">
+            <TextLine id="line_1605455700911_1499" custom="readingOrder {index:11;} persName {offset:20; length:13;}">
                 <Coords points="2132,1091 3726,1086 3726,1136 2132,1141"/>
                 <Baseline points="2132,1136 3726,1131"/>
                 <TextEquiv>
@@ -142,7 +142,7 @@ Transkribus</Creator>
                     <Unicode>בריעדער פֿערלאסען צו ליעב דעם טיטעל ד"ר צו ערייכען? ניין!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455759740_1539" custom="readingOrder {index:19;} personName {offset:10;length:9;}">
+            <TextLine id="line_1605455759740_1539" custom="readingOrder {index:19;} persName {offset:10; length:9;}">
                 <Coords points="2219,1894 3737,1887 3737,1937 2219,1944"/>
                 <Baseline points="2219,1939 3737,1932"/>
                 <TextEquiv>
@@ -176,7 +176,7 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion id="region_1605455574826_1342" custom="readingOrder {index:1;}">
             <Coords points="98,2255 2039,2255 2039,100 98,100"/>
-            <TextLine id="line_1605455834800_1603" custom="readingOrder {index:0;} fw {offset:0;length:6;}">
+            <TextLine id="line_1605455834800_1603" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="1308,138 1601,136 1601,186 1308,188"/>
                 <Baseline points="1308,183 1601,181"/>
                 <TextEquiv>
@@ -190,7 +190,7 @@ Transkribus</Creator>
                     <Unicode>דוס הייסט איין אידישעס הערץ. איין אידישעס קינד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455846729_1613" custom="readingOrder {index:2;} speaker {offset:0;length:6;}">
+            <TextLine id="line_1605455846729_1613" custom="readingOrder {index:2;} speaker {offset:0; length:6; xmlid:iusf;}">
                 <Coords points="135,385 2002,385 2002,435 135,435"/>
                 <Baseline points="135,430 2002,430"/>
                 <TextEquiv>
@@ -218,14 +218,14 @@ Transkribus</Creator>
                     <Unicode>מיינע ליידענדע בריעדער. פֿאטיר איין יודע בין איך און איין</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455867103_1633" custom="readingOrder {index:6;} stage {offset:45;length:11;}">
+            <TextLine id="line_1605455867103_1633" custom="readingOrder {index:6;} stage {offset:45; length:11; type:business;}">
                 <Coords points="264,791 1743,785 1743,835 264,841"/>
                 <Baseline points="264,836 1743,830"/>
                 <TextEquiv>
                     <Unicode>יודע ווערדע איך אויך ווייטיר בלייבען. פֿאטיר (אומארמונג)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455872785_1638" custom="readingOrder {index:7;} personName {offset:24;length:4;} foreign {offset:29;length:4;lang:LK;}">
+            <TextLine id="line_1605455872785_1638" custom="readingOrder {index:7;} persName {offset:24; length:4;} foreign {offset:29; length:4; lang:he;}">
                 <Coords points="123,881 2007,892 2007,942 123,931"/>
                 <Baseline points="123,926 2007,937"/>
                 <TextEquiv>
@@ -239,7 +239,7 @@ Transkribus</Creator>
                     <Unicode>חי</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455882153_1643" custom="readingOrder {index:9;} foreign {offset:0;length:12;lang:LK;} _deleted {offset:13;length:3;} textStyle {offset:13;length:3;strikethrough:true;}">
+            <TextLine id="line_1605455882153_1643" custom="readingOrder {index:9;} foreign {offset:0; length:12; lang:he;} _deleted {offset:13; length:3;} textStyle {offset:13; length:3; strikethrough:true;}">
                 <Coords points="195,992 1741,988 1741,1038 195,1042"/>
                 <Baseline points="195,1037 1741,1033"/>
                 <TextEquiv>
@@ -253,42 +253,42 @@ Transkribus</Creator>
                     <Unicode>פֿאטיר קען צופֿריעדען שטערבין. מעכעלע ברועדער שוועגערין</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455899757_1653" custom="readingOrder {index:11;} stage {offset:11;length:22;}">
+            <TextLine id="line_1605455899757_1653" custom="readingOrder {index:11;} stage {offset:11; length:22; type:entrance;}">
                 <Coords points="387,1199 1740,1200 1740,1250 387,1249"/>
                 <Baseline points="387,1244 1740,1245"/>
                 <TextEquiv>
                     <Unicode>קומטאראן. מעכיל שרה סענדיר קינדער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455907751_1658" custom="readingOrder {index:12;} speaker {offset:0;length:5;}">
+            <TextLine id="line_1605455907751_1658" custom="readingOrder {index:12;} speaker {offset:0; length:5; xmlid:alle;}">
                 <Coords points="680,1286 2010,1291 2010,1341 680,1336"/>
                 <Baseline points="680,1331 2010,1336"/>
                 <TextEquiv>
                     <Unicode>אלע. | מיר האבען גיהערט מיר האבען גיהערט.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455914238_1663" custom="readingOrder {index:13;} foreign {offset:20;length:6;lang:LK;} speaker {offset:0;length:5;}">
+            <TextLine id="line_1605455914238_1663" custom="readingOrder {index:13;} foreign {offset:20; length:6; lang:he;} speaker {offset:0; length:5; xmlid:iekb_eyzenshteyn;}">
                 <Coords points="326,1394 2000,1389 2000,1439 326,1444"/>
                 <Baseline points="326,1439 2000,1434"/>
                 <TextEquiv>
                     <Unicode>יעקב. | גיט מיר אוב מזל טב מיט איין ניי געבוירענים זוהן</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455919906_1668" custom="readingOrder {index:14;} stage {offset:0;length:21;}">
+            <TextLine id="line_1605455919906_1668" custom="readingOrder {index:14;} stage {offset:0; length:21; type:business;}">
                 <Coords points="1020,1490 1614,1490 1614,1540 1020,1540"/>
                 <Baseline points="1020,1535 1614,1535"/>
                 <TextEquiv>
                     <Unicode>(אלע ווינטשען מזל טב)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455924632_1673" custom="readingOrder {index:15;} unclear {offset:17;length:9;} _deleted {offset:20;length:1;} foreign {offset:37;length:4;lang:LK;} speaker {offset:0;length:6;}">
+            <TextLine id="line_1605455924632_1673" custom="readingOrder {index:15;} unclear {offset:17; length:9;} _deleted {offset:20; length:1;} foreign {offset:37; length:4; lang:he;} speaker {offset:0; length:6; xmlid:mekhil;}">
                 <Coords points="222,1589 2006,1589 2006,1639 222,1639"/>
                 <Baseline points="222,1634 2006,1634"/>
                 <TextEquiv>
                     <Unicode>מעכיל. | איי דיע וואלינקער. האסט זיך מישב געוועהן הא? ביזט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455929194_1678" custom="readingOrder {index:16;} foreign {offset:0;length:6;lang:LK;}">
+            <TextLine id="line_1605455929194_1678" custom="readingOrder {index:16;} foreign {offset:0; length:6; lang:he;}">
                 <Coords points="171,1677 1737,1685 1737,1735 171,1727"/>
                 <Baseline points="171,1722 1737,1730"/>
                 <TextEquiv>
@@ -302,14 +302,14 @@ Transkribus</Creator>
                     <Unicode>אויף דיר? אביר איך הער דיך וויע דעם קוטיר. דיע ביזט</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455941310_1688" custom="readingOrder {index:18;} stage {offset:9;length:11;}">
+            <TextLine id="line_1605455941310_1688" custom="readingOrder {index:18;} stage {offset:9; length:11; type:business;}">
                 <Coords points="1213,1896 1747,1896 1747,1946 1213,1946"/>
                 <Baseline points="1213,1941 1747,1941"/>
                 <TextEquiv>
                     <Unicode>אונזערער (קושען זיך)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455946463_1693" custom="readingOrder {index:19;} foreign {offset:52;length:5;lang:LK;} speaker {offset:0;length:6;}">
+            <TextLine id="line_1605455946463_1693" custom="readingOrder {index:19;} foreign {offset:52; length:5; lang:he;} speaker {offset:0; length:6; xmlid:iekb_eyzenshteyn;}">
                 <Coords points="193,1995 2015,1995 2015,2045 193,2045"/>
                 <Baseline points="193,2040 2015,2040"/>
                 <TextEquiv>
@@ -323,7 +323,7 @@ Transkribus</Creator>
                     <Unicode>ניי געבוירענעם זוהן.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605455963293_1703" custom="readingOrder {index:21;} stage {offset:56;length:11;} speaker {offset:0;length:3;}">
+            <TextLine id="line_1605455963293_1703" custom="readingOrder {index:21;} stage {offset:56; length:11; type:business;} speaker {offset:0; length:3; xmlid:shrhke;}">
                 <Coords points="125,2193 1996,2193 1996,2243 125,2243"/>
                 <Baseline points="125,2238 1996,2238"/>
                 <TextEquiv>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Esther(htr_id=39652)::::v=2.6.7
@@ -12,7 +12,7 @@ Transkribus</Creator>
     <Page imageFilename="tissa_essler-81-175-56-95CROPPED-0014.jpg" imageWidth="10979" imageHeight="7339">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="5491,1693 6833,1005 9892,156 10132,156 10132,350 9914,1277 9389,1473 8966,2171 8017,3424 6763,3615 5504,2613"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="9885,425 9913,421 9951,369 10009,371 10083,405 10183,383 10135,81 10052,105 10018,140 9948,99 9878,93 9835,111"/>
                 <Baseline points="9892,300 9918,294 9945,288 9972,284 9998,282 10025,279 10052,276 10078,270 10105,263 10132,256"/>
                 <TextEquiv>
@@ -26,14 +26,14 @@ Transkribus</Creator>
                     <Unicode>2 טעס בילד</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l3" custom="readingOrder {index:2;} stage {offset:0;length:1;}">
+            <TextLine id="r1l3" custom="readingOrder {index:2;} stage {offset:0; length:1; type:delivery;}">
                 <Coords points="9129,1248 9216,1264 9442,1098 9511,1104 9547,1135 9608,1113 9565,575 9514,579 9353,769 9293,802 9091,767"/>
                 <Baseline points="9148,1101 9574,1067"/>
                 <TextEquiv>
                     <Unicode>N</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l4" custom="readingOrder {index:3;} speaker {offset:0;length:4;}">
+            <TextLine id="r1l4" custom="readingOrder {index:3;} speaker {offset:0; length:4; xmlid:chor;}">
                 <Coords points="9362,1483 9465,1501 9569,1367 9736,1283 9826,1292 9915,1248 9835,894 9739,933 9654,1045 9593,1035 9505,1108 9444,1098 9406,1136 9285,1140"/>
                 <Baseline points="9358,1340 9882,1222"/>
                 <TextEquiv>
@@ -108,35 +108,35 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion orientation="0.0" id="r3" custom="readingOrder {index:2;}">
             <Coords points="131,1263 643,1201 653,1761 5060,1319 5060,7137 677,7153 574,6200 457,5611 131,3135"/>
-            <TextLine id="r3l1" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
+            <TextLine id="r3l1" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="208,1526 236,1523 261,1492 291,1506 314,1503 339,1472 356,1471 377,1451 411,1448 390,1244 333,1250 301,1265 275,1296 185,1305"/>
                 <Baseline points="228,1456 253,1455 278,1454 304,1452 329,1449 354,1445 380,1440"/>
                 <TextEquiv>
                     <Unicode>25</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l2" custom="readingOrder {index:1;} head {offset:0;length:13;unit-type:act n\u003a 3;} stage {offset:15;length:12;} heading {offset:0;length:13;}">
+            <TextLine id="r3l2" custom="readingOrder {index:1;} head {offset:0; length:13; unit-type:act n\u003a 3;} stage {offset:15; length:12; type:setting;} heading {offset:0; length:13;}">
                 <Coords points="1238,2048 1359,2058 1574,1870 1841,1969 2422,1903 2568,1768 3227,1792 3392,1678 3364,1407 3254,1498 2690,1562 2392,1501 2093,1646 1948,1569 1824,1691 1294,1699 1209,1765"/>
                 <Baseline points="1252,1882 1357,1871 1462,1859 1568,1849 1673,1837 1779,1826 1884,1815 1989,1804 2095,1794 2200,1782 2306,1771 2411,1759 2516,1749 2622,1738 2727,1728 2833,1717 2938,1706 3043,1696 3149,1686 3254,1677 3360,1668"/>
                 <TextEquiv>
                     <Unicode>דריטטער אַקט. (קאמיטעט הויז)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l3" custom="readingOrder {index:2;} speaker {offset:0;length:8;} stage {offset:10;length:10;}">
+            <TextLine id="r3l3" custom="readingOrder {index:2;} speaker {offset:0; length:8; xmlid:fetsheli;} stage {offset:10; length:10; type:entrance;}">
                 <Coords points="152,2565 4757,2161 4733,1929 4424,1864 1175,2299 112,2175"/>
                 <Baseline points="172,2502 396,2480 669,2451 894,2430 1118,2408 1343,2385 1568,2364 1792,2340 2017,2318 2242,2295 2467,2272 2691,2248 2916,2225 3141,2201 3365,2177 3590,2155 3815,2129 4039,2105 4264,2079 4489,2052 4714,2026"/>
                 <TextEquiv>
                     <Unicode>פעטשעלי. (קומט אריין) פאנדור! ברינג אריין הורי, יאהאננא און דעם קליינעם שאַרף</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l4" custom="readingOrder {index:3;} speaker {offset:0;length:6;} stage {offset:18;length:4;}">
+            <TextLine id="r3l4" custom="readingOrder {index:3;} speaker {offset:0; length:6; xmlid:fndur;} stage {offset:18; length:4; type:exit;}">
                 <Coords points="3051,2544 3473,2543 3701,2432 3933,2412 4225,2466 4634,2444 4693,2414 4667,2171 4400,2241 3972,2196 3732,2297 3491,2335 3358,2275 3030,2357"/>
                 <Baseline points="3074,2486 3152,2476 3231,2464 3310,2454 3389,2445 3468,2434 3547,2426 3626,2416 3705,2407 3784,2399 3863,2390 3941,2382 4020,2373 4099,2366 4178,2358 4257,2350 4336,2341 4415,2333 4494,2325 4573,2317 4652,2310"/>
                 <TextEquiv>
                     <Unicode>פאנדור צו דיענען! (אב)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l5" custom="readingOrder {index:4;} speaker {offset:0;length:7;} stage {offset:73;length:12;}">
+            <TextLine id="r3l5" custom="readingOrder {index:4;} speaker {offset:0; length:7; xmlid:fetsheli;} stage {offset:73; length:12; type:entrance;}">
                 <Coords points="170,3191 1365,2932 4518,2727 4714,2690 4686,2418 141,2914"/>
                 <Baseline points="180,3034 378,3011 577,2991 775,2968 974,2947 1173,2926 1371,2906 1570,2885 1768,2863 1967,2844 2166,2823 2364,2803 2563,2784 2761,2763 2960,2744 3159,2724 3357,2705 3556,2686 3754,2666 3953,2647 4152,2628 4228,2612 4254,2612 4280,2611 4306,2609 4332,2608 4358,2606 4384,2605 4410,2601 4436,2598 4463,2596 4489,2594 4515,2591 4541,2589 4567,2585 4593,2583 4619,2581 4645,2578 4672,2576"/>
                 <TextEquiv>
@@ -150,7 +150,7 @@ Transkribus</Creator>
                     <Unicode>קאם אהער שאַמאַ, האסט ליעב מאנדלען אין ניסלעך?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l7" custom="readingOrder {index:6;} speaker {offset:0;length:6;}">
+            <TextLine id="r3l7" custom="readingOrder {index:6;} speaker {offset:0; length:6; xmlid:shm;}">
                 <Coords points="2557,3383 2659,3430 2754,3351 2968,3387 3735,3292 3825,3220 4705,3171 4676,2894 4424,2994 4306,2960 4213,3050 3623,3029 3311,3107 3218,3036 3000,3138 2853,3090 2536,3174"/>
                 <Baseline points="2576,3308 2652,3303 2804,3284 2880,3279 2956,3272 3033,3265 3109,3258 3185,3250 3261,3243 3337,3235 3414,3226 3490,3219 3566,3210 3642,3203 3718,3196 3795,3188 3871,3180 3947,3173 4023,3166 4099,3159 4176,3154 4304,3136 4330,3133 4356,3131 4382,3128 4408,3124 4434,3120 4460,3117 4487,3114 4513,3110 4539,3107 4565,3105 4591,3102 4617,3100 4643,3100 4670,3098"/>
                 <TextEquiv>
@@ -164,14 +164,14 @@ Transkribus</Creator>
                     <Unicode>פעצעלי איהר הערט הורי, "יאַה" זאגט ער. (שרייבט) זאג נאָר שאַמאַ האסט אליין געזעהען</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l9" custom="readingOrder {index:8;} stage {offset:53;length:25;}">
+            <TextLine id="r3l9" custom="readingOrder {index:8;} stage {offset:53; length:25; type:business;}">
                 <Coords points="256,4072 3344,3850 4236,3694 4282,3467 243,3947"/>
                 <Baseline points="282,4032 481,4011 680,3990 880,3971 1079,3952 1279,3932 1478,3914 1677,3895 1877,3876 2076,3857 2276,3839 2475,3819 2674,3800 2874,3781 3073,3762 3273,3741 3472,3720 3671,3700 3871,3679 4070,3656 4270,3632"/>
                 <TextEquiv>
                     <Unicode>דאס מיידעל? שווייגסט? זאל מען דיר נאך עטוואס געבען? (קינד שאקאלט מיטען קאפ יאה)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l10" custom="readingOrder {index:9;} stage {offset:16;length:6;}">
+            <TextLine id="r3l10" custom="readingOrder {index:9;} stage {offset:16; length:6; type:business;}">
                 <Coords points="374,4402 551,4283 2496,4226 2863,4060 4321,3917 4299,3748 348,4125"/>
                 <Baseline points="390,4274 585,4256 780,4237 975,4218 1170,4198 1365,4180 1560,4161 1755,4143 1950,4124 2145,4104 2341,4086 2536,4068 2731,4050 2926,4031 3121,4013 3316,3996 3511,3978 3706,3961 3901,3943 4096,3927 4292,3910"/>
                 <TextEquiv>
@@ -192,14 +192,14 @@ Transkribus</Creator>
                     <Unicode>געקוילעט איז מאריץ אויך געווען דאבייא? לאס הערען וואס דוא ווייסט!</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l13" custom="readingOrder {index:12;} unclear {offset:68;length:11;} speaker {offset:0;length:6;}">
+            <TextLine id="r3l13" custom="readingOrder {index:12;} unclear {offset:68; length:11;} speaker {offset:0; length:6; xmlid:shm;}">
                 <Coords points="408,5118 3355,4797 3662,4905 4900,4661 4881,4469 4550,4466 4409,4600 1220,4841 780,4649 380,4818"/>
                 <Baseline points="432,5056 629,5032 827,5007 1025,4985 1222,4964 1420,4943 1618,4924 1815,4904 2013,4887 2211,4868 2409,4851 2606,4834 2804,4817 3002,4800 3199,4781 3397,4763 3595,4745 3792,4727 3990,4708 4188,4688 4386,4666 4562,4654 4587,4651 4613,4646 4638,4642 4664,4637 4689,4631 4715,4626 4740,4620 4766,4615 4791,4611 4817,4607 4842,4603 4868,4600"/>
                 <TextEquiv>
                     <Unicode>שאַמאַ איך ווייס טאקע אז דיא מומע הורי וועט מיר קויפען אבייטשיל מיט אקצופילושעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l14" custom="readingOrder {index:13;} speaker {offset:0;length:7;}">
+            <TextLine id="r3l14" custom="readingOrder {index:13;} speaker {offset:0; length:7; xmlid:fetsheli;}">
                 <Coords points="488,5401 4111,4984 4941,5017 4917,4751 4632,4697 4174,4859 468,5175"/>
                 <Baseline points="508,5292 701,5272 895,5253 1089,5235 1282,5216 1476,5198 1670,5179 1863,5160 2057,5142 2251,5123 2445,5105 2638,5089 2832,5070 3026,5053 3219,5036 3413,5019 3607,5002 3800,4986 3994,4969 4188,4953 4382,4938 4456,4928 4482,4926 4508,4925 4534,4923 4560,4920 4587,4917 4613,4914 4639,4910 4665,4907 4692,4903 4718,4900 4744,4897 4770,4893 4797,4891 4823,4888 4849,4886 4875,4886 4902,4886"/>
                 <TextEquiv>
@@ -213,7 +213,7 @@ Transkribus</Creator>
                     <Unicode>זאל ער שוין אנהייבען צו ערצעהלען?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l16" custom="readingOrder {index:15;} speaker {offset:0;length:4;}">
+            <TextLine id="r3l16" custom="readingOrder {index:15;} speaker {offset:0; length:4; xmlid:huri;}">
                 <Coords points="506,5890 3612,5688 4017,5504 4670,5595 4995,5474 4976,5259 483,5630"/>
                 <Baseline points="528,5806 725,5785 923,5764 1120,5745 1318,5725 1516,5707 1713,5689 1911,5672 2108,5655 2306,5638 2504,5623 2701,5605 2899,5589 3096,5573 3294,5557 3492,5540 3689,5524 3887,5505 4084,5488 4282,5470 4480,5450 4642,5420 4668,5418 4694,5417 4721,5415 4747,5414 4773,5412 4800,5410 4826,5409 4852,5407 4879,5405 4905,5404 4931,5402 4958,5400"/>
                 <TextEquiv>
@@ -234,7 +234,7 @@ Transkribus</Creator>
                     <Unicode>א סאלדאטעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l19" custom="readingOrder {index:18;} textStyle {offset:63;length:12;strikethrough:true;} speaker {offset:0;length:7;}">
+            <TextLine id="r3l19" custom="readingOrder {index:18;} textStyle {offset:63; length:12; strikethrough:true;} speaker {offset:0; length:7; xmlid:shm;}">
                 <Coords points="689,6410 5034,6026 5014,5794 4528,5785 667,6150"/>
                 <Baseline points="706,6304 920,6283 1135,6261 1349,6240 1564,6220 1778,6200 1993,6180 2207,6161 2422,6142 2636,6123 2851,6106 3065,6087 3280,6068 3494,6051 3709,6033 3923,6015 4138,5997 4352,5980 4567,5962 4781,5944 4996,5926"/>
                 <TextEquiv>
@@ -248,7 +248,7 @@ Transkribus</Creator>
                     <Unicode>אַ פֿייפֿיל פאר וואס גיט איהר מיר ניט וועל איך טאקע ניט ערצעהלען?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l21" custom="readingOrder {index:20;} speaker {offset:0;length:7;} stage {offset:10;length:13;}">
+            <TextLine id="r3l21" custom="readingOrder {index:20;} speaker {offset:0; length:7; xmlid:fetsheli;} stage {offset:10; length:13; type:business;}">
                 <Coords points="626,6895 3100,6621 3581,6725 4273,6551 4521,6663 5093,6544 5069,6238 1932,6621 601,6577"/>
                 <Baseline points="650,6812 870,6790 1090,6768 1310,6748 1531,6727 1751,6708 1971,6691 2192,6673 2412,6657 2632,6640 2853,6623 3073,6607 3293,6591 3513,6575 3734,6558 3954,6542 4174,6525 4395,6508 4615,6491 4835,6472 5056,6454"/>
                 <TextEquiv>
@@ -262,7 +262,7 @@ Transkribus</Creator>
                     <Unicode>עס</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r3l23" custom="readingOrder {index:22;} textStyle {offset:69;length:3;strikethrough:true;} speaker {offset:0;length:6;}">
+            <TextLine id="r3l23" custom="readingOrder {index:22;} textStyle {offset:69; length:3; strikethrough:true;} speaker {offset:0; length:6; xmlid:shm;}">
                 <Coords points="810,7131 4785,6828 5092,6741 5075,6526 794,6927"/>
                 <Baseline points="832,7062 1043,7039 1254,7016 1466,6996 1677,6975 1889,6956 2100,6938 2311,6922 2523,6905 2734,6890 2946,6873 3157,6859 3368,6843 3580,6829 3791,6815 4003,6799 4214,6784 4425,6769 4637,6752 4848,6736 5060,6718"/>
                 <TextEquiv>
