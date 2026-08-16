@@ -13,6 +13,18 @@ Everything else is left untouched: blank-name rows, modern Hebrew publishers,
 and any match whose cluster is owned by 2+ DBs (a double-alignment that needs
 human review, not an auto-merge).
 
+Two things a name match alone must never override:
+
+  REMOVE decisions — a reviewer who unlinks a cluster in the DB Audit view
+      leaves the pair in db_audit_decisions.tsv, and the cluster keeps naming
+      the row in org_alignment_review.aligned_db_id. A name match will happily
+      re-link it. It re-linked db427 אונזער ווינקל ← ORG-C00752 against
+      Ruthie's 2026-08-09 REMOVE; that pair is now blocked here.
+  umbrella parents — a row whose clusters were QID-exploded onto child rows
+      (parent_db_id) is *supposed* to end up with no links of its own; db427's
+      ORG-C00752 lives on as _Q01/_Q02/_Q03 on db1785/1786/1787. Such a row is
+      not an orphan and must be neither re-linked nor deprecated.
+
 In place, reversible (one/two columns per affected row). NEVER regenerates
 core_db (build_core_db.py is non-idempotent). Dry-run by default; pass --apply
 to write.
@@ -24,6 +36,7 @@ csv.field_size_limit(10**9)
 HERE = pathlib.Path(__file__).resolve().parent
 CORE = HERE / "core_db.tsv"
 CLUSTERED = HERE / "organizations_clustered.tsv"
+DECISIONS = HERE / "db_audit_decisions.tsv"
 APPLY = "--apply" in sys.argv
 
 
@@ -44,6 +57,18 @@ def split_links(s):
 
 core, headers = load(CORE)
 active = [r for r in core if is_active(r)]
+
+# (db_id, cluster_id) pairs a reviewer explicitly unlinked — never re-link.
+removed = set()
+if DECISIONS.exists():
+    for r in load(DECISIONS)[0]:
+        if (r.get("decision") or "").strip().upper() == "REMOVE":
+            removed.add(((r.get("db_id") or "").strip(),
+                         (r.get("cluster_id") or "").strip()))
+
+# db_ids that are some other row's parent: umbrella rows, empty by design.
+parents = {(r.get("parent_db_id") or "").strip()
+           for r in core if (r.get("parent_db_id") or "").strip()}
 
 # cluster_id -> set of active db_ids owning it
 owner = {}
@@ -68,11 +93,22 @@ with open(CLUSTERED, newline="", encoding="utf-8") as f:
 orphans = [r for r in active if not split_links(r.get("linked_cluster_ids", ""))]
 
 relink, deprecate, skip_multi = [], [], []
+skip_parent, skip_removed = [], []
 for r in orphans:
     yi = (r.get("name_yiddish") or "").strip()
     if not yi or yi not in canon2cids:
         continue
+    if r["db_id"].strip() in parents:
+        skip_parent.append(r)      # umbrella: its clusters live on the children
+        continue
     cids = sorted(canon2cids[yi])
+    # A reviewer's REMOVE outranks a name match.
+    blocked = [c for c in cids if (r["db_id"].strip(), c) in removed]
+    if blocked:
+        skip_removed.append((r, blocked))
+        cids = [c for c in cids if c not in blocked]
+        if not cids:
+            continue
     # partition matched clusters by ownership
     unowned = [c for c in cids if not owner.get(c)]
     owners = {o for c in cids for o in owner.get(c, set())}
@@ -88,7 +124,14 @@ for r in orphans:
 print(f"orphans (active, empty links): {len(orphans)}")
 print(f"RE-LINK candidates : {len(relink)}")
 print(f"DEPRECATE (dup)    : {len(deprecate)}")
-print(f"SKIP (multi-owner) : {len(skip_multi)}\n")
+print(f"SKIP (multi-owner) : {len(skip_multi)}")
+print(f"SKIP (umbrella parent, empty by design) : {len(skip_parent)}")
+for r in skip_parent:
+    print(f"    db{r['db_id']:>5} {(r.get('name_yiddish') or r.get('name') or '')[:30]}")
+print(f"SKIP (reviewer filed REMOVE) : {len(skip_removed)}")
+for r, b in skip_removed:
+    print(f"    db{r['db_id']:>5} ⊅ {' | '.join(b)}")
+print()
 
 print("── RE-LINK ─────────────────────────────────────────────")
 for r, cids in relink:

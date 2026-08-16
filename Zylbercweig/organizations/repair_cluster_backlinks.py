@@ -110,6 +110,24 @@ def main() -> int:
                              (r.get("cluster_id") or "").strip()))
 
     db_ids = {r.get("db_id", "").strip() for r in db_rows}
+
+    # A merge deprecates the loser and moves its clusters to the survivor, but
+    # nothing rewrites aligned_db_id — it keeps naming the deprecated row. Follow
+    # merged_into to the survivor, or the link gets stripped off the live row and
+    # left on the corpse (repair_orphan_links.py merged 691→689, 712→711, 738→736).
+    merged: dict[str, str] = {}
+    for r in db_rows:
+        tgt = (r.get("merged_into") or "").strip()
+        if tgt:
+            merged[(r.get("db_id") or "").strip()] = tgt
+
+    def _survivor(db_id: str) -> str:
+        seen: set[str] = set()
+        while db_id in merged and db_id not in seen:
+            seen.add(db_id)
+            db_id = merged[db_id]
+        return db_id
+
     # cluster_id -> the DB row it says it belongs to (only live rows count)
     owner: dict[str, str] = {}
     dangling: list[tuple[str, str]] = []
@@ -119,7 +137,7 @@ def main() -> int:
         if not cid or not tgt:
             continue
         if tgt in db_ids:
-            owner[cid] = tgt
+            owner[cid] = _survivor(tgt)
         else:
             dangling.append((cid, tgt))
 

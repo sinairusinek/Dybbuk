@@ -331,6 +331,13 @@ elif OUT_B_BUCKETS.exists():
 # empty. Moving a DB's LAST cluster strands it: active, but linked to nothing.
 # Standing guard so future strandings surface instead of hiding as "no mentions".
 # (db_rows already excludes deprecated/out_of_project; also drop merged_into.)
+#
+# EXCEPT umbrella parents: a row whose clusters were QID-exploded onto child
+# rows (parent_db_id) is *meant* to hold none itself — db427 אונזער ווינקל
+# keeps its content as _Q01/_Q02/_Q03 on db1785/1786/1787. Flagging those as
+# stranded would send a reviewer to re-link a row that is correct as it stands.
+_parent_ids = {(r.get("parent_db_id", "") or "").strip()
+               for r in db_rows if (r.get("parent_db_id", "") or "").strip()}
 class_c = [
     {
         "db_id": r.get("db_id", ""),
@@ -341,6 +348,7 @@ class_c = [
     for r in db_rows
     if not (r.get("merged_into", "") or "").strip()
     and not (r.get("linked_cluster_ids", "") or "").strip()
+    and (r.get("db_id", "") or "").strip() not in _parent_ids
 ]
 class_c.sort(key=lambda r: (r["org_type"], r["db_id"]))
 if class_c:
