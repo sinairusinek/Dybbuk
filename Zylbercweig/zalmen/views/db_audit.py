@@ -108,6 +108,9 @@ _TROUPE_TAG_OPTS = [
     "Socialist Company",
     "Post-Holocaust Company",
     "Bilingual Company",
+    # added 2026-08-10 (Ruthie): two new characteristic tags from the lexicon
+    "Kleinkunst / Revue / Cabaret Company",
+    "Marionette / Puppet Company",
 ]
 
 
@@ -372,6 +375,39 @@ _DBLALIGN_DECISION_OPTS = ["", "REMOVE_FROM_DBS", "KEEP_ALL_LINKS",
                            "WAIT_FOR_MERGE", "CHECK"]
 
 
+def _mentions_block(cid: str, samples: dict[str, dict[str, list]],
+                    key_prefix: str) -> None:
+    """Cluster attestations behind an explicit open/close toggle.
+
+    This used to be an `st.expander`, but Streamlit runs an expander's body even
+    while it is collapsed. With 50 DBs on screen that meant building every
+    cluster's mention list — a markdown + caption + a *nested* expander with the
+    full entry text per sample — on every single rerun, for mentions nobody was
+    looking at. Gating on session state instead costs one button per cluster
+    when closed, and only the reader's own cluster pays for the full render.
+    """
+    n = len((samples.get(cid) or {}).get("samples", []))
+    if not n:
+        st.caption(
+            "📜 No source mentions found in organizations_clustered.tsv "
+            f"for `{cid}`."
+        )
+        return
+    key = f"{key_prefix}_att_{cid}"
+    is_open = bool(st.session_state.get(key, False))
+    if st.button(
+        f"{'▾' if is_open else '▸'} 📜 Mentions ({n})",
+        key=f"{key}_btn",
+        help="Source mentions are loaded only when opened — that is what keeps "
+             "this page fast with 50 DBs on screen.",
+    ):
+        st.session_state[key] = not is_open
+        st.rerun()
+    if is_open:
+        with st.container(border=True):
+            render_attestations({"cluster_id": cid}, samples)
+
+
 def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                reviewer: str, samples: dict[str, dict[str, list]],
                tags: dict[str, dict]) -> None:
@@ -453,19 +489,7 @@ def _render_db(idx: int, db: dict, decisions: dict[tuple[str, str], dict],
                 f":blue[{yi_c}]"
                 + (f"  \nvariant: {tv}" if tv and tv != yi_c else "")
             )
-            n_samples = len((samples.get(cid) or {}).get("samples", []))
-            mentions_label = (
-                f"📜 Mentions ({n_samples})" if n_samples
-                else "📜 Mentions (none in clustered TSV)"
-            )
-            with st.expander(mentions_label, expanded=False):
-                if n_samples:
-                    render_attestations({"cluster_id": cid}, samples)
-                else:
-                    st.caption(
-                        "No source mentions found in organizations_clustered.tsv "
-                        f"for `{cid}`."
-                    )
+            _mentions_block(cid, samples, "dba_fm")
 
     # Troupe tags — only for traveling companies (Ruthie's typology).
     is_troupe = (db.get("org_type") or "").strip().lower() in TROUPE_ORG_TYPES
@@ -720,7 +744,7 @@ def _render_dedup_pair(pair: dict, decisions: dict[tuple[str, str], dict],
 
 # ── Tab renderers ─────────────────────────────────────────────────────────────
 
-def _render_falsemerge_tab(reviewer: str, samples: dict[str, dict[str, list]]) -> None:
+def _render_falsemerge_tab(reviewer: str) -> None:
     if not PUNCHLIST.exists():
         st.error(
             f"No punchlist yet. Run:\n\n"
@@ -969,10 +993,7 @@ def _render_dblalign_row(row: dict, decisions: dict[str, dict],
             )
 
     # Mentions for context — reuse the same widget.
-    n_samples = len((samples.get(cid) or {}).get("samples", []))
-    if n_samples:
-        with st.expander(f"📜 Mentions ({n_samples})", expanded=False):
-            render_attestations({"cluster_id": cid}, samples)
+    _mentions_block(cid, samples, "dba_dbl")
 
     # Decision + notes + save
     prev_dec = prev.get("decision", "")
@@ -1031,7 +1052,7 @@ def _render_dblalign_row(row: dict, decisions: dict[str, dict],
         st.rerun()
 
 
-def _render_dblalign_tab(reviewer: str, samples: dict[str, dict[str, list]]) -> None:
+def _render_dblalign_tab(reviewer: str) -> None:
     if not DBLALIGN_AUDIT.exists():
         st.error(
             "No audit file. Run:\n\n"
@@ -1043,6 +1064,11 @@ def _render_dblalign_tab(reviewer: str, samples: dict[str, dict[str, list]]) -> 
 
     rows_all = load_dblalign_audit(_mtime(DBLALIGN_AUDIT))
     decisions = load_dblalign_decisions(_mtime(DBLALIGN_DECISIONS))
+    # Loaded here rather than in render(): organizations_clustered.tsv is 35 MB,
+    # and the Dedup section never touches it. Every RA save pushes to the
+    # deployed branch and Streamlit Cloud redeploys, so the cache is cold
+    # several times an hour — worth not paying for on sections that don't use it.
+    samples = load_samples(_mtime(CLUSTER_FILE))
 
     if not rows_all:
         st.success("No clusters double-aligned. Re-run the audit to refresh.")
@@ -1095,14 +1121,18 @@ def render() -> None:
     if not reviewer:
         st.warning("Pick your name in the sidebar to record decisions.")
 
-    samples = load_samples(_mtime(CLUSTER_FILE))
+    # Sections are routed, not tabbed. `st.tabs` renders *every* tab's body on
+    # every rerun, so ticking one troupe tag also rebuilt 50 dedup pairs and the
+    # whole double-alignment list. A radio renders only the branch you picked.
+    section = st.radio(
+        "Section",
+        ["False-equation merges", "Dedup candidates", "Cluster double-alignments"],
+        key="dba_section",
+        horizontal=True,
+        label_visibility="collapsed",
+    )
 
-    tab_fm, tab_dd, tab_dbl = st.tabs([
-        "False-equation merges",
-        "Dedup candidates",
-        "Cluster double-alignments",
-    ])
-    with tab_fm:
+    if section == "False-equation merges":
         st.caption(
             "Flagged DBs whose constituent clusters score below the alignment "
             "pipeline's MIN_SCORE (0.60). Each cluster's per-pair scores are "
@@ -1110,8 +1140,9 @@ def render() -> None:
             "from this DB (apply_db_audit_decisions.py executes); "
             "KEEP_IN = leave; CHECK = defer."
         )
-        _render_falsemerge_tab(reviewer, samples)
-    with tab_dd:
+        _render_falsemerge_tab(reviewer)
+
+    elif section == "Dedup candidates":
         st.caption(
             "Candidate duplicate DBs surfaced by phonetic/trigram matching on "
             "names + surnames. MERGE = the two DBs are the same entity (pick "
@@ -1119,12 +1150,13 @@ def render() -> None:
             "Decisions go to db_dedup_decisions.tsv keyed by (db_id_a, db_id_b)."
         )
         _render_dedup_tab(reviewer)
-    with tab_dbl:
+
+    else:
         st.caption(
             "Clusters that appear in linked_cluster_ids of 2+ DB rows — a data-"
             "integrity bug. Either the DBs are duplicates (resolves via the "
-            "Dedup tab) or they are distinct entities and the cluster needs to "
-            "be removed from the wrong one. Decisions go to "
+            "Dedup section) or they are distinct entities and the cluster needs "
+            "to be removed from the wrong one. Decisions go to "
             "cluster_double_alignment_decisions.tsv keyed by cluster_id."
         )
-        _render_dblalign_tab(reviewer, samples)
+        _render_dblalign_tab(reviewer)
