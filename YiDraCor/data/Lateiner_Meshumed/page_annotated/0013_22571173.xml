@@ -11,7 +11,7 @@ Transkribus</Creator>
     <Page imageFilename="Lateiner_Meshumed-0013.jpg" imageWidth="4086" imageHeight="2560">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="93,92 93,2248 1997,2248 1997,92"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0;length:6;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="1311,157 1332,152 1430,181 1517,166 1545,178 1666,179 1665,97 1379,90 1341,127 1311,115"/>
                 <Baseline points="1322,144 1347,146 1373,146 1398,146 1424,146 1450,146 1475,144 1501,144 1526,143 1552,143 1578,143 1603,143 1629,144 1655,147"/>
                 <TextEquiv>
@@ -46,7 +46,7 @@ Transkribus</Creator>
                     <Unicode>איך בין דער אומגליקליכסטיר מענש אויף גאטטעס ערדע. (וויינט)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1605993863195_225" custom="readingOrder {index:5;} foreign {offset:35; length:10; lang:Rus;} unclear {offset:37; length:1;} speaker {offset:0; length:7; xmlid:liubv_bulvn;}">
+            <TextLine id="line_1605993863195_225" custom="readingOrder {index:5;} foreign {offset:35; length:10; lang:ru;} unclear {offset:37; length:1;} speaker {offset:0; length:7; xmlid:liubv_bulvn;}">
                 <Coords points="223,767 1965,742 1985,648 222,659"/>
                 <Baseline points="235,726 1973,713"/>
                 <TextEquiv>
@@ -158,7 +158,7 @@ Transkribus</Creator>
                     <Unicode>גוטע געלעגענהייט פֿור דיינע אומגליקליכע גלויבענגענאסע</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l22" custom="readingOrder {index:21;} foreign {offset:48;length:5;lang:Rus;}">
+            <TextLine id="r1l22" custom="readingOrder {index:21;} foreign {offset:48; length:5; lang:ru;}">
                 <Coords points="159,2255 1791,2269 1791,2148 159,2172"/>
                 <Baseline points="170,2210 250,2214 330,2217 411,2219 491,2220 572,2222 652,2223 733,2223 813,2223 894,2223 974,2223 1054,2222 1135,2222 1215,2222 1296,2220 1376,2220 1457,2220 1537,2219 1618,2219 1698,2220 1779,2220"/>
                 <TextEquiv>

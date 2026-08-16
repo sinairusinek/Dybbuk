@@ -44,14 +44,56 @@ ALLOWED_TAGS = {
 EDITORIAL_TAGS = {
     "unclear", "sic", "corr", "orig", "reg", "abbr", "expan",
     "supplied", "add", "del", "gap", "note", "foreign", "hi",
+    # TEI name elements. The manuscript RAs tag these routinely — Meshumed
+    # alone carries 113 — and every one linted as an unknown tag until
+    # 2026-08-16. `personName` is not TEI; it is normalised to `persName`
+    # by `normalize_ms_tags`, and is NOT accepted here.
+    "persName", "placeName", "orgName", "name", "date", "num",
 }
 for _t in EDITORIAL_TAGS:
-    ALLOWED_TAGS.setdefault(_t, {"cert", "reason", "resp", "rend", "type"})
+    ALLOWED_TAGS.setdefault(_t, {"cert", "reason", "resp", "rend", "type",
+                                 # `lang` → TEI @xml:lang. Required by <foreign>,
+                                 # which is meaningless without it: the MS plays
+                                 # mark 330 foreign spans, mostly Russian and
+                                 # loshn-koydesh. See LANG_MAP.
+                                 "lang",
+                                 # RA line-continuation marker, same sense as on
+                                 # `l`: the span runs on to the next line.
+                                 "continued"})
 
 # Transkribus-native span types that are not part of our tagset at all. They are
 # emitted by the Transkribus editor itself (styling, layout) and must be ignored
 # by the validator rather than flagged.
-IGNORED_TAGS = {"readingOrder", "textStyle", "Header", "Footer", "structure"}
+IGNORED_TAGS = {"readingOrder", "textStyle", "Header", "Footer", "structure",
+                # Transkribus editor built-ins, not part of our tagset:
+                # `comment` is its free-text annotation field and `topic` its
+                # document-classification field. Both appear in the manuscript
+                # collection and each linted as an unknown tag until 2026-08-16.
+                "comment", "topic"}
+
+# `foreign @lang` as the RAs write it → BCP-47, for TEI @xml:lang.
+# `LK` is loshn-koydesh, the Hebrew-Aramaic component of Yiddish — by far the
+# commonest value (192 of 330) and not a foreign language in the ordinary
+# sense, but the RAs mark it and TEI can carry it as `he`.
+LANG_MAP = {
+    "LK": "he", "Rus": "ru", "Slav": "sla", "Eng": "en", "Fr": "fr",
+    "Ukr": "uk", "Pol": "pl", "Ger": "de", "Heb": "he", "Aram": "arc",
+    "Fr (Rus)": "fr",
+}
+
+
+def normalize_lang(v: str) -> str:
+    """RA language code → BCP-47, tolerating the `\u0020` escape mojibake."""
+    if not v:
+        return ""
+    v = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), v).strip()
+    # A few spans are marked with two languages ("Rus, Fr" — a Russian line
+    # with a French phrase in it). TEI @xml:lang carries a single value, so
+    # the first is kept; the second is recoverable from the source if a finer
+    # encoding is ever wanted.
+    if "," in v:
+        v = v.split(",")[0].strip()
+    return LANG_MAP.get(v, LANG_MAP.get(v.title(), v))
 
 # Structural division headings. `epilog` added per the 2026-05-24 PI review:
 # a standalone "עפילאג" line opens an epilogue division parallel to the acts.

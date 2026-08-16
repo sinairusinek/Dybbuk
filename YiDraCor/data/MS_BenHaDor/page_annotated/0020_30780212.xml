@@ -12,7 +12,7 @@ Transkribus</Creator>
     <Page imageFilename="בן_הדור-0020.jpg" imageWidth="4200" imageHeight="2550">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="2051,97 2051,2425 3902,2425 3902,97"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="3724,167 3744,172 3755,164 3781,158 3801,184 3823,182 3838,170 3858,175 3867,108 3848,106 3830,85 3812,78 3802,82 3796,74 3786,80 3778,76 3751,82 3735,78"/>
                 <Baseline points="3737,150 3764,153 3792,155 3820,159 3848,165"/>
                 <TextEquiv>
@@ -165,7 +165,7 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion orientation="0.0" id="r2" custom="readingOrder {index:1;}">
             <Coords points="157,244 1794,65 2036,65 2036,2094 1829,2431 157,2434"/>
-            <TextLine id="r2l1" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
+            <TextLine id="r2l1" custom="readingOrder {index:0;} fw {offset:0; length:2; type:pageNum;}">
                 <Coords points="1777,159 1800,162 1824,178 1836,172 1850,174 1891,145 1936,147 1943,97 1931,95 1887,49 1864,43 1851,51 1835,48 1814,64 1791,61"/>
                 <Baseline points="1794,116 1820,116 1846,117 1872,121 1898,127 1925,135"/>
                 <TextEquiv>

@@ -52,7 +52,7 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:1;}">
             <Coords points="93,106 93,2275 1973,2271 1973,102"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0;length:6;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:6; type:pageNum;}">
                 <Coords points="1313,208 1405,168 1441,182 1478,168 1526,181 1546,170 1595,197 1660,188 1660,98 1313,101"/>
                 <Baseline points="1323,153 1348,152 1373,152 1398,152 1423,152 1448,152 1473,152 1498,152 1523,152 1548,152 1573,152 1598,152 1623,152 1649,150"/>
                 <TextEquiv>
@@ -80,14 +80,14 @@ Transkribus</Creator>
                     <Unicode>א סטריט אין נע יארק. מעכיל (מיט א זאק)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l6" custom="readingOrder {index:4;} foreign {offset:9; length:4; lang:LK;} foreign {offset:53; length:8; lang:LK;} placeName {offset:62; length:7;} speaker {offset:0; length:6; xmlid:mekhil;}">
+            <TextLine id="r1l6" custom="readingOrder {index:4;} foreign {offset:9; length:4; lang:he;} foreign {offset:53; length:8; lang:he;} placeName {offset:62; length:7;} speaker {offset:0; length:6; xmlid:mekhil;}">
                 <Coords points="168,852 1949,868 1951,785 170,744"/>
                 <Baseline points="180,797 257,804 334,808 411,812 489,816 566,818 643,821 720,822 798,824 875,824 952,825 1029,825 1107,825 1184,825 1261,826 1338,827 1416,827 1493,828 1570,828 1647,830 1938,842"/>
                 <TextEquiv>
                     <Unicode>מעכיל. | אכלל האט בין איך שאין אויך דוא אין אמעריקא. שלם הלכם אמעריקא</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l7" custom="readingOrder {index:5;} foreign {offset:0;length:10;lang:LK;}">
+            <TextLine id="r1l7" custom="readingOrder {index:5;} foreign {offset:0; length:10; lang:he;}">
                 <Coords points="285,955 433,918 551,960 1719,957 1719,856 1673,849 286,874"/>
                 <Baseline points="297,923 367,921 438,921 508,920 579,918 650,917 720,917 791,916 861,915 932,915 1003,915 1073,915 1144,915 1214,915 1285,917 1356,918 1426,920 1497,921 1567,924 1638,927 1709,930"/>
                 <TextEquiv>
@@ -108,7 +108,7 @@ Transkribus</Creator>
                     <Unicode>וואלט איך געקושט דיע שטייניר וואס איך טרעהט אויף</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l10" custom="readingOrder {index:8;} foreign {offset:9;length:6;lang:LK;}">
+            <TextLine id="r1l10" custom="readingOrder {index:8;} foreign {offset:9; length:6; lang:he;}">
                 <Coords points="85,1258 1718,1261 1679,1173 85,1161"/>
                 <Baseline points="96,1223 176,1223 257,1223 337,1223 418,1223 498,1223 579,1223 659,1223 740,1223 820,1223 901,1224 982,1224 1062,1224 1143,1224 1223,1224 1304,1223 1384,1223 1465,1223 1545,1221 1626,1220 1707,1220"/>
                 <TextEquiv>
@@ -122,21 +122,21 @@ Transkribus</Creator>
                     <Unicode>דער אטהעם עפיס דאכט זיך מיר אז איך</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l12" custom="readingOrder {index:10;} foreign {offset:39;length:5;lang:Slav;}">
+            <TextLine id="r1l12" custom="readingOrder {index:10;} foreign {offset:39; length:5; lang:sla;}">
                 <Coords points="82,1407 1059,1484 1722,1450 1699,1383 1253,1344 83,1378"/>
                 <Baseline points="93,1424 178,1421 263,1419 348,1418 433,1416 519,1416 604,1418 689,1418 774,1419 859,1421 945,1422 1030,1425 1115,1427 1200,1430 1285,1433 1371,1436 1456,1439 1541,1442 1626,1445 1712,1448"/>
                 <TextEquiv>
                     <Unicode>בין גור ניי גיבוירין. וויא איז ערגיץ א קאזאק</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l13" custom="readingOrder {index:11;} foreign {offset:8;length:7;lang:Fr\u0020(Rus);} personName {offset:23;length:10;} foreign {offset:34;length:7;lang:LK;}">
+            <TextLine id="r1l13" custom="readingOrder {index:11;} foreign {offset:8; length:7; lang:fr;} persName {offset:23; length:10;} foreign {offset:34; length:7; lang:he;}">
                 <Coords points="104,1541 711,1518 1003,1580 1564,1548 1743,1597 1746,1428 1534,1499 956,1445 716,1485 511,1416 105,1482"/>
                 <Baseline points="116,1530 196,1527 277,1526 358,1526 439,1526 520,1526 601,1527 681,1528 762,1530 843,1532 924,1533 1005,1535 1086,1538 1167,1539 1247,1542 1328,1544 1409,1545 1490,1547 1571,1547 1652,1548 1733,1548"/>
                 <TextEquiv>
                     <Unicode>נישטו א זשאנדאר. נישטו אליקסאנדער ימח שמו</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l14" custom="readingOrder {index:12;} foreign {offset:12;length:5;lang:Rus;} foreign {offset:18;length:12;lang:LK;}">
+            <TextLine id="r1l14" custom="readingOrder {index:12;} foreign {offset:12; length:5; lang:ru;} foreign {offset:18; length:12; lang:he;}">
                 <Coords points="116,1700 844,1612 1066,1676 1783,1676 1783,1531 1649,1592 1442,1548 1365,1596 1134,1556 1020,1599 941,1546 831,1586 712,1519 536,1572 116,1561"/>
                 <Baseline points="128,1641 210,1638 292,1637 374,1634 456,1632 539,1631 621,1629 703,1628 785,1628 867,1626 950,1626 1032,1627 1114,1628 1196,1629 1278,1630 1361,1632 1443,1634 1525,1637 1607,1640 1689,1644 1772,1649"/>
                 <TextEquiv>

@@ -12,7 +12,7 @@ Transkribus</Creator>
     <Page imageFilename="בן_הדור-0005.jpg" imageWidth="4200" imageHeight="2550">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
             <Coords points="2214,250 3954,46 3998,46 4095,217 4097,1537 4097,2357 3899,2440 2214,2440"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0;length:1;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0; length:1; type:pageNum;}">
                 <Coords points="3937,193 3960,195 3986,174 4007,174 4016,75 4005,74 3997,81 3981,77 3967,68 3949,67"/>
                 <Baseline points="3954,146 3998,150"/>
                 <TextEquiv>
@@ -165,7 +165,7 @@ Transkribus</Creator>
         </TextRegion>
         <TextRegion orientation="0.0" id="r2" custom="readingOrder {index:1;}">
             <Coords points="212,254 1899,54 2090,54 2090,1998 1854,2452 212,2452"/>
-            <TextLine id="r2l1" custom="readingOrder {index:0;} fw {offset:0;length:1;}">
+            <TextLine id="r2l1" custom="readingOrder {index:0;} fw {offset:0; length:1; type:pageNum;}">
                 <Coords points="1930,166 1956,164 1971,153 1999,144 2008,134 2024,135 2016,32 1997,36 1978,32 1963,48 1953,49 1946,44 1939,52 1921,54"/>
                 <Baseline points="1938,114 1974,115 2010,108"/>
                 <TextEquiv>
