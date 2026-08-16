@@ -72,30 +72,49 @@ def gather_evidence() -> dict[str, dict]:
                 out.append(c)
         return out
 
-    db2cids = {r["db_id"]: _cids_for(r) for r in troupes}
-    cid2db = {cid: db for db, cids in db2cids.items() for cid in cids}
-    sents = {db: [] for db in db2cids}
+    # One pass over the clustered file: per-cluster mention sentences, and a
+    # canonical-Yiddish → cluster_id map (first occurrence) used to rescue
+    # troupes that core_db never linked. The file is small (~16k rows), so
+    # holding every cluster's sentences in memory is cheap.
+    cid_sents: dict[str, list[str]] = {}
+    canon2cid: dict[str, str] = {}
     with open(HERE / "organizations_clustered.tsv", newline="", encoding="utf-8") as f:
         rd = csv.DictReader(f, delimiter="\t")
         cidcol = next((c for c in rd.fieldnames if c.strip().lower() == "cluster_id"), None)
         for row in rd:
-            db = cid2db.get((row.get(cidcol) or "").strip())
-            if db:
-                s = (row.get(SENT_COL) or "").strip()
-                if s:
-                    sents[db].append(s)
+            cid = (row.get(cidcol) or "").strip()
+            if not cid:
+                continue
+            cy = (row.get("canonical_yiddish") or "").strip()
+            if cy and cy not in canon2cid:
+                canon2cid[cy] = cid
+            s = (row.get(SENT_COL) or "").strip()
+            if s:
+                cid_sents.setdefault(cid, []).append(s)
+
     out = {}
     for r in troupes:
         db = r["db_id"]
-        cids = db2cids.get(db, [])
+        cids = _cids_for(r)
+        sents = [s for c in cids for s in cid_sents.get(c, [])]
+        # text_source: linked (mentions came from core_db/punchlist links),
+        # name-match (rescued by exact canonical-Yiddish name — NOT a confirmed
+        # link, just recovered evidence), or none (genuinely no lexicon text).
+        source = "linked" if sents else "none"
+        if not sents:
+            mcid = canon2cid.get((r.get("name_yiddish") or "").strip())
+            if mcid and cid_sents.get(mcid):
+                if mcid not in cids:
+                    cids = cids + [mcid]
+                sents = cid_sents[mcid]
+                source = "name-match"
         out[db] = {
             "name": r.get("name", ""),
             "yiddish": r.get("name_yiddish", ""),
-            # Was the punchlist's n_clusters column; core_db has no such field,
-            # so count the linked clusters directly (same number).
             "n_clusters": str(len(cids)),
             "cids": cids,
-            "sents": sents.get(db, []),
+            "sents": sents,
+            "text_source": source,
         }
     return out
 
@@ -221,6 +240,7 @@ for db, d in EV.items():
         "db_id": db, "name": d["name"], "name_yiddish": d["yiddish"],
         "n_clusters": d["n_clusters"], "n_sents": len(d["sents"]),
         "cluster_ids": " | ".join(d["cids"]),
+        "text_source": d.get("text_source", ""),
         "tags": " | ".join(tags), "confidence": overall,
         "evidence": " ; ".join(ev), "review_flags": " ; ".join(flags),
         "source": "Claude-draft",
@@ -247,7 +267,7 @@ print(f"(recall = how many of her tags my rules also picked; precision = how man
 
 # write drafts for the UNTAGGED troupes only
 untagged = [r for r in rows if r["db_id"] not in ruthie]
-cols = ["db_id","name","name_yiddish","n_clusters","n_sents","cluster_ids","tags","confidence","evidence","review_flags","source"]
+cols = ["db_id","name","name_yiddish","n_clusters","n_sents","cluster_ids","text_source","tags","confidence","evidence","review_flags","source"]
 with open("troupe_tags_draft.tsv","w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=cols,delimiter="\t"); w.writeheader()
     for r in sorted(untagged,key=lambda x:int(x["db_id"]) if x["db_id"].isdigit() else 1e9):

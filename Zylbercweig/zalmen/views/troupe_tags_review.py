@@ -166,6 +166,9 @@ def _render_text_panel(d: dict, samples: dict) -> None:
         if not lines:
             st.caption("No source mentions found for this troupe's clusters.")
             return
+        if d.get("text_source", "") == "name-match":
+            st.caption("⚠️ recovered by name match — core_db does not link this "
+                       "troupe to the cluster below; verify it is the same troupe.")
         st.caption(f"{len(lines)} lexicon mention(s) naming this troupe:")
         for head, sent in lines[:80]:
             st.markdown(
@@ -417,18 +420,26 @@ def render() -> None:
     )
 
     # Confidence-group picker — this is where you choose which tier to work,
-    # including the lower-confidence ones. "Flagged" is the German-Jewish cross-cut.
-    group_keys = list(_TIERS) + ["flagged"]
+    # including the lower-confidence ones. "German-Jewish?" is the flagged
+    # cross-cut; "No lexicon text" are troupes core_db never linked to any
+    # cluster, so there is nothing to read — held apart from the real tiers.
+    def _no_text(d: dict) -> bool:
+        return d.get("text_source", "") == "none"
+
+    group_keys = list(_TIERS) + ["flagged", "notext"]
     group_label = {
         "high": "✅ High", "medium": "🟡 Medium",
         "low (base only)": "⚪ Base only",
         "flagged": "⚠️ German-Jewish?",
+        "notext": "📭 No lexicon text",
     }
 
     def _count(k: str) -> int:
+        if k == "notext":
+            return sum(1 for d in pending if _no_text(d))
         if k == "flagged":
-            return sum(1 for d in pending if d.get("review_flags"))
-        return sum(1 for d in pending if d.get("confidence", "") == k)
+            return sum(1 for d in pending if d.get("review_flags") and not _no_text(d))
+        return sum(1 for d in pending if d.get("confidence", "") == k and not _no_text(d))
 
     idx = st.radio(
         "Confidence group",
@@ -437,10 +448,18 @@ def render() -> None:
         horizontal=True, key="ttr_group",
     )
     chosen = group_keys[idx]
-    if chosen == "flagged":
-        rows = [d for d in pending if d.get("review_flags")]
+    if chosen == "notext":
+        rows = [d for d in pending if _no_text(d)]
+        st.info(
+            "These troupes aren't linked to any cluster in core_db, so there's no "
+            "lexicon text to show. Tag from the name if you recognise it, or Save "
+            "empty to skip. (This reflects a core_db linkage gap, not a tab bug.)",
+            icon="📭",
+        )
+    elif chosen == "flagged":
+        rows = [d for d in pending if d.get("review_flags") and not _no_text(d)]
     else:
-        rows = [d for d in pending if d.get("confidence", "") == chosen]
+        rows = [d for d in pending if d.get("confidence", "") == chosen and not _no_text(d)]
 
     if not rows:
         st.success("Nothing left in this group. 🎉")
