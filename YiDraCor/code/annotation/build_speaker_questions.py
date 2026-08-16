@@ -36,7 +36,7 @@ from lxml import etree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from annotation.schema import PAGE_NS, parse_custom, _NIKUD  # noqa: E402
-from annotation.resolve_span_xmlids import bare, skeleton_key  # noqa: E402
+from annotation.resolve_span_xmlids import bare, skeleton_key, Resolver  # noqa: E402
 from annotation.review_links import page_url  # noqa: E402
 from annotation.extract_cast_dict import _auto_xmlid  # noqa: E402
 
@@ -133,8 +133,13 @@ def collect(only=None):
 
     out: dict[str, dict] = {}
     for folder in folders:
+        cast_path = folder / "cast_dict.json"
+        cast = json.loads(cast_path.read_text(encoding="utf-8")) \
+            if cast_path.exists() else {}
+        resolver = Resolver(cast)
         labels: dict[str, dict] = defaultdict(
-            lambda: {"n": 0, "pages": [], "context": []})
+            lambda: {"n": 0, "pages": [], "context": [], "kind": "speaker",
+                     "why": ""})
         for xf in sorted((folder / "page_annotated").glob("*.xml")):
             try:
                 tree = etree.parse(str(xf))
@@ -142,11 +147,15 @@ def collect(only=None):
                 continue
             for tl in tree.getroot().iter(f"{NS}TextLine"):
                 ents = parse_custom(tl.get("custom") or "")
-                if not any(t == "speaker" and not a.get("xmlid") for t, a in ents):
+                if not any(t in ("speaker", "role") and not a.get("xmlid")
+                           for t, a in ents):
                     continue
                 text = _line_text(tl)
                 for tag, a in ents:
-                    if tag != "speaker" or a.get("xmlid"):
+                    # `role` spans are castList entries and fail for their own
+                    # reasons — usually because one span covers several names.
+                    # They were in the TSV and must not be lost here.
+                    if tag not in ("speaker", "role") or a.get("xmlid"):
                         continue
                     try:
                         off, ln = int(a["offset"]), int(a["length"])
@@ -156,6 +165,9 @@ def collect(only=None):
                     if not key:
                         continue
                     rec = labels[key]
+                    rec["kind"] = tag
+                    if not rec["why"]:
+                        rec["why"] = resolver.resolve(text[off:off + ln])[1]
                     rec["n"] += 1
                     if xf.name not in rec["pages"]:
                         rec["pages"].append(xf.name)
@@ -200,12 +212,17 @@ def main() -> int:
       "collectives.")
     A("* **The duet pronouns** `ער` / `זיא`, which refer to different people "
       "scene by scene and need a per-scene answer.")
+    A("* **Cast-list entries** (marked *castList `role` span*) rather than "
+      "speech prefixes. These usually failed because one span covers several "
+      "names, or because the span is clipped — Meshumed's `א` covers only the "
+      "article of `א ריכטיר פֿון געהיימס געריכט`, a role the list already has.")
     A("")
     A("**How to answer:** tick one box per label. Every candidate is a real "
       "role from that play's own cast list, with its `xml:id` in code font. "
       "If none fits, tick *mint a new role* — a suggested id is given, change "
-      "it if you prefer. If the span isn't a speaker at all, tick that. The "
-      "comment line is for anything else, including \"depends on the scene\".")
+      "it if you prefer. The last boxes cover the cases where the tagging "
+      "itself is wrong rather than the identification. The comment line is for "
+      "anything else, including \"depends on the scene\".")
     A("")
     A("Each label is asked **once**, however many times it occurs. Page links "
       "go straight to Transkribus.")
@@ -251,9 +268,17 @@ def main() -> int:
         A("")
 
         for label, rec in items:
+            kind = rec.get("kind", "speaker")
+            tagnote = "" if kind == "speaker" else "  *(castList `role` span)*"
             A(f"### {label} — {rec['n']} occurrence"
-              f"{'s' if rec['n'] != 1 else ''}")
+              f"{'s' if rec['n'] != 1 else ''}{tagnote}")
             A("")
+            if kind == "role":
+                A("This is an entry in the **cast list**, not a speech prefix. "
+                  "It could not be given an `xml:id` — usually because one span "
+                  "covers several names, or names someone the list does not "
+                  "otherwise have. Should it be split, or is it one role?")
+                A("")
             links = ", ".join(
                 f"[p.{p.split('_')[0].lstrip('0') or '0'}]({page_url(play, p)})"
                 for p in rec["pages"][:MAX_PAGES])
@@ -307,10 +332,28 @@ def main() -> int:
             suggested = _auto_xmlid(label) or "new_role"
             A(f"- [ ] **Mint a new role** — suggested `xml:id`: `{suggested}` "
               f"(name as printed: {label})")
-            A("- [ ] **Collective / group**, no individual cast entry "
-              "(like `אלע`, `קאהר`)")
-            A("- [ ] **Not a speaker** — this span is mis-tagged")
+            if kind == "role":
+                # The commonest role-span failure is not identification but a
+                # clipped span: Meshumed's `א` covers only the article of
+                # `א ריכטיר פֿון געהיימס געריכט`, a role the cast list already
+                # has. Offer that as an answer rather than forcing a choice
+                # between names.
+                A("- [ ] **The span is mis-cut** — it covers the wrong text; "
+                  "the role itself is fine")
+                A("- [ ] **One span, several roles** — split it (say which "
+                  "in the comment)")
+                A("- [ ] **Not a role** — this span is mis-tagged")
+            else:
+                A("- [ ] **Collective / group**, no individual cast entry "
+                  "(like `אלע`, `קאהר`)")
+                A("- [ ] **Not a speaker** — this span is mis-tagged")
             A("")
+            why = (rec.get("why") or "").strip()
+            if why and not why.startswith("unmatched"):
+                A(f"<sub>Resolver: {why}. Where it says *ambiguous*, that is "
+                  f"the number of cast names it found equally plausible — it "
+                  f"declined to choose rather than guess.</sub>")
+                A("")
             A("**Comment:**")
             A("")
             A("---")

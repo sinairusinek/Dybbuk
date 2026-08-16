@@ -2,15 +2,16 @@
 
 **For Noa and Judith. 2026-08-16.**
 
-The pipeline resolved 3,583 of 3,969 speaker labels automatically (90%). The remaining **386 spans across 120 labels** could not be settled mechanically, and shouldn't be — each is an editorial question rather than a spelling problem.
+The pipeline resolved 3,583 of 3,969 speaker labels automatically (90%). The remaining **406 spans across 128 labels** could not be settled mechanically, and shouldn't be — each is an editorial question rather than a spelling problem.
 
 Three kinds turn up:
 
 * **Characters who speak but are not in the castList.** `אסיפ` speaks 65 times in Meshumed and appears nowhere in its cast list.
 * **Unnamed functional roles** — `קעלנער` (waiter), `דיענער` (servant), `שפיאן` (spy). These may deserve their own entries, or may be collectives.
 * **The duet pronouns** `ער` / `זיא`, which refer to different people scene by scene and need a per-scene answer.
+* **Cast-list entries** (marked *castList `role` span*) rather than speech prefixes. These usually failed because one span covers several names, or because the span is clipped — Meshumed's `א` covers only the article of `א ריכטיר פֿון געהיימס געריכט`, a role the list already has.
 
-**How to answer:** tick one box per label. Every candidate is a real role from that play's own cast list, with its `xml:id` in code font. If none fits, tick *mint a new role* — a suggested id is given, change it if you prefer. If the span isn't a speaker at all, tick that. The comment line is for anything else, including "depends on the scene".
+**How to answer:** tick one box per label. Every candidate is a real role from that play's own cast list, with its `xml:id` in code font. If none fits, tick *mint a new role* — a suggested id is given, change it if you prefer. The last boxes cover the cases where the tagging itself is wrong rather than the identification. The comment line is for anything else, including "depends on the scene".
 
 Each label is asked **once**, however many times it occurs. Page links go straight to Transkribus.
 
@@ -18,31 +19,31 @@ Each label is asked **once**, however many times it occurs. Page links go straig
 
 | Play | Label | Spans | |
 |---|---|---:|---|
-| Meshumed | אסיפ | 62 | *(suggestion below)* |
+| Meshumed | אסיפ | 65 | *(suggestion below)* |
 | Emigration | קעלנער | 30 | |
 | Emigration | ער | 25 | *(needs a per-scene answer)* |
 | Emigration | זיא | 24 | *(needs a per-scene answer)* |
 | Khurbn Yerusholaim | גדליה | 12 | |
+| Yaakov-Esav | פאלק | 12 | |
 | Meshumed | שפיאן | 11 | |
 | Emigration | דיענער | 9 | |
 | Meshumed | פאוו | 9 | |
-| Yaakov-Esav | פאלק | 8 | |
+| Ben HaDor | ער | 8 | *(needs a per-scene answer)* |
 | Yoysef in Egipten | מנשה | 8 | |
-| Ben HaDor | ער | 7 | *(needs a per-scene answer)* |
 | Meshumed | קאצאפ | 6 | |
 | Meshumed | סאלד | 6 | |
 | Meshumed | יוד | 6 | |
 | Tissa-Essler | בארי | 5 | |
 
-Those 228 spans are 59% of the total. The remaining labels occur only a handful of times each.
+Those 236 spans are 58% of the total. The remaining labels occur only a handful of times each.
 
 ---
 
 ## Meshumed
 
-*24 labels, 132 spans.* Cast list has 14 roles: `iekb_eyzenshteyn`, `iusf`, `mekhil`, `shrhke`, `sender`, `liubv_bulvn`, `nikli_nikitin`, `ivn`, `gregur_mrksenel`, `vsk`, `geheym_flitsist`, `rikhtir_fun_geheyms_gerikht` …
+*28 labels, 140 spans.* Cast list has 14 roles: `iekb_eyzenshteyn`, `iusf`, `mekhil`, `shrhke`, `sender`, `liubv_bulvn`, `nikli_nikitin`, `ivn`, `gregur_mrksenel`, `vsk`, `geheym_flitsist`, `rikhtir_fun_geheyms_gerikht` …
 
-### אסיפ — 62 occurrences
+### אסיפ — 65 occurrences
 
 **Pages:** [p.12](https://app.transkribus.org/collection/2372172/doc/534187/detail/12), [p.13](https://app.transkribus.org/collection/2372172/doc/534187/detail/13), [p.14](https://app.transkribus.org/collection/2372172/doc/534187/detail/14), [p.22](https://app.transkribus.org/collection/2372172/doc/534187/detail/22), [p.23](https://app.transkribus.org/collection/2372172/doc/534187/detail/23), [p.24](https://app.transkribus.org/collection/2372172/doc/534187/detail/24), [p.25](https://app.transkribus.org/collection/2372172/doc/534187/detail/25), [p.26](https://app.transkribus.org/collection/2372172/doc/534187/detail/26), [p.27](https://app.transkribus.org/collection/2372172/doc/534187/detail/27), [p.28](https://app.transkribus.org/collection/2372172/doc/534187/detail/28) …and 7 more
 
@@ -351,6 +352,55 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ---
 
+### פאוויל — 2 occurrences
+
+**Pages:** [p.39](https://app.transkribus.org/collection/2372172/doc/534187/detail/39)
+
+**In context:**
+
+> פֿאוויל| מעכיל דוא דערקענסט מיך נישט.
+>
+
+**Which role is this?**
+
+*No close match — the names below are simply the nearest in the cast list and may well be none of them. For a role like this, `mint a new role` or `collective` is often the answer.*
+
+- [ ] `vekhtir` — א וועכטיר
+- [ ] `ivn` — איוואן
+- [ ] `liubv_bulvn` — ליובאוו אבאולאוונא
+- [ ] **Mint a new role** — suggested `xml:id`: `fvil` (name as printed: פאוויל)
+- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
+- [ ] **Not a speaker** — this span is mis-tagged
+
+**Comment:**
+
+---
+
+### א — 1 occurrence  *(castList `role` span)*
+
+This is an entry in the **cast list**, not a speech prefix. It could not be given an `xml:id` — usually because one span covers several names, or names someone the list does not otherwise have. Should it be split, or is it one role?
+
+**Pages:** [p.4](https://app.transkribus.org/collection/2372172/doc/534187/detail/4)
+
+**In context:**
+
+> א ריכטיר פֿון געהיימס געריכט
+>
+
+**Which role is this?**
+
+- [ ] `vekhtir` — א וועכטיר
+- [ ] `shreybir_bey_gerikht` — א שרייביר ביי געריכט
+- [ ] `geheym_flitsist` — א געהיים פאליציסט
+- [ ] **Mint a new role** — suggested `xml:id`: `new_role` (name as printed: א)
+- [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
+- [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Not a role** — this span is mis-tagged
+
+**Comment:**
+
+---
+
 ### איוואניוו — 1 occurrence
 
 **Pages:** [p.23](https://app.transkribus.org/collection/2372172/doc/534187/detail/23)
@@ -490,6 +540,32 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ---
 
+### יעקב מעכעל שרה — 1 occurrence  *(castList `role` span)*
+
+This is an entry in the **cast list**, not a speech prefix. It could not be given an `xml:id` — usually because one span covers several names, or names someone the list does not otherwise have. Should it be split, or is it one role?
+
+**Pages:** [p.25](https://app.transkribus.org/collection/2372172/doc/534187/detail/25)
+
+**In context:**
+
+> יעקב מעכעל שרה (קאהר זינגט)
+>
+
+**Which role is this?**
+
+*No close match — the names below are simply the nearest in the cast list and may well be none of them. For a role like this, `mint a new role` or `collective` is often the answer.*
+
+- [ ] `iekb_eyzenshteyn` — יעקב אייזענשטיין
+- [ ] `mekhil` — מעכיל
+- [ ] **Mint a new role** — suggested `xml:id`: `iekb_mekhel_shrh` (name as printed: יעקב מעכעל שרה)
+- [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
+- [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Not a role** — this span is mis-tagged
+
+**Comment:**
+
+---
+
 ### ניקיטיוו — 1 occurrence
 
 **Pages:** [p.14](https://app.transkribus.org/collection/2372172/doc/534187/detail/14)
@@ -503,30 +579,6 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 - [ ] `nikli_nikitin` — ניקאלאי ניקיטין
 - [ ] **Mint a new role** — suggested `xml:id`: `nikitiv` (name as printed: ניקיטיוו)
-- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
-- [ ] **Not a speaker** — this span is mis-tagged
-
-**Comment:**
-
----
-
-### פאוויל — 1 occurrence
-
-**Pages:** [p.39](https://app.transkribus.org/collection/2372172/doc/534187/detail/39)
-
-**In context:**
-
-> פֿאוויל| מעכיל דוא דערקענסט מיך נישט.
->
-
-**Which role is this?**
-
-*No close match — the names below are simply the nearest in the cast list and may well be none of them. For a role like this, `mint a new role` or `collective` is often the answer.*
-
-- [ ] `vekhtir` — א וועכטיר
-- [ ] `ivn` — איוואן
-- [ ] `liubv_bulvn` — ליובאוו אבאולאוונא
-- [ ] **Mint a new role** — suggested `xml:id`: `fvil` (name as printed: פאוויל)
 - [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
 - [ ] **Not a speaker** — this span is mis-tagged
 
@@ -554,6 +606,25 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 - [ ] **Mint a new role** — suggested `xml:id`: `fvl` (name as printed: פאוול)
 - [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
 - [ ] **Not a speaker** — this span is mis-tagged
+
+**Comment:**
+
+---
+
+### פאליסמאן — 1 occurrence  *(castList `role` span)*
+
+This is an entry in the **cast list**, not a speech prefix. It could not be given an `xml:id` — usually because one span covers several names, or names someone the list does not otherwise have. Should it be split, or is it one role?
+
+**Pages:** [p.38](https://app.transkribus.org/collection/2372172/doc/534187/detail/38)
+
+**Which role is this?**
+
+- [ ] `geheym_flitsist` — א געהיים פאליציסט
+- [ ] `ivn` — איוואן
+- [ ] **Mint a new role** — suggested `xml:id`: `flismn` (name as printed: פאליסמאן)
+- [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
+- [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Not a role** — this span is mis-tagged
 
 **Comment:**
 
@@ -620,6 +691,26 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 - [ ] **Mint a new role** — suggested `xml:id`: `kind` (name as printed: קינד)
 - [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
 - [ ] **Not a speaker** — this span is mis-tagged
+
+**Comment:**
+
+---
+
+### שרה קינדער — 1 occurrence  *(castList `role` span)*
+
+This is an entry in the **cast list**, not a speech prefix. It could not be given an `xml:id` — usually because one span covers several names, or names someone the list does not otherwise have. Should it be split, or is it one role?
+
+**Pages:** [p.21](https://app.transkribus.org/collection/2372172/doc/534187/detail/21)
+
+**Which role is this?**
+
+- [ ] `shrhke` — שרהקע
+- [ ] `sender` — סענדער
+- [ ] `shreybir_bey_gerikht` — א שרייביר ביי געריכט
+- [ ] **Mint a new role** — suggested `xml:id`: `shrh_kinder` (name as printed: שרה קינדער)
+- [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
+- [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Not a role** — this span is mis-tagged
 
 **Comment:**
 
@@ -1007,6 +1098,8 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 - [ ] **Mint a new role** — suggested `xml:id`: `khr` (name as printed: קאהר)
 - [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
 - [ ] **Not a speaker** — this span is mis-tagged
+
+<sub>Resolver: contains-ambiguous (2). Where it says *ambiguous*, that is the number of cast names it found equally plausible — it declined to choose rather than guess.</sub>
 
 **Comment:**
 
@@ -2117,9 +2210,9 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ## Ben HaDor
 
-*10 labels, 20 spans.* Cast list has 15 roles: `shlmun`, `sufur`, `bn_hdur`, `khnu`, `elms`, `rkhumh`, `lfidus`, `tsroyh`, `mun`, `militer`, `leybgrdie`, `ferbrekher` …
+*10 labels, 24 spans.* Cast list has 15 roles: `shlmun`, `sufur`, `bn_hdur`, `khnu`, `elms`, `rkhumh`, `lfidus`, `tsroyh`, `mun`, `militer`, `leybgrdie`, `ferbrekher` …
 
-### ער — 7 occurrences
+### ער — 8 occurrences
 
 **Pages:** [p.17](https://app.transkribus.org/collection/2372172/doc/826910/detail/17), [p.32](https://app.transkribus.org/collection/2372172/doc/826910/detail/32), [p.33](https://app.transkribus.org/collection/2372172/doc/826910/detail/33)
 
@@ -2143,6 +2236,33 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 - [ ] `sufur` — סופורא
 - [ ] `rkhumh` — רחומה
 - [ ] **Mint a new role** — suggested `xml:id`: `er` (name as printed: ער)
+- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
+- [ ] **Not a speaker** — this span is mis-tagged
+
+**Comment:**
+
+---
+
+### אלטע — 4 occurrences
+
+**Pages:** [p.32](https://app.transkribus.org/collection/2372172/doc/826910/detail/32), [p.33](https://app.transkribus.org/collection/2372172/doc/826910/detail/33)
+
+**In context:**
+
+> אלטע | איך שוועהר אז דאָס איז דער שכור מיין מתנה
+>
+> אלטע | קווא (4) קיינער איז נישטא
+>
+> אלטע | קווא (4) (ביסס)
+>
+
+**Which role is this?**
+
+*No close match — the names below are simply the nearest in the cast list and may well be none of them. For a role like this, `mint a new role` or `collective` is often the answer.*
+
+- [ ] `militer` — מיליטער
+- [ ] `medkhen_flk` — מעדכען פאלק
+- [ ] **Mint a new role** — suggested `xml:id`: `lte` (name as printed: אלטע)
 - [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
 - [ ] **Not a speaker** — this span is mis-tagged
 
@@ -2175,38 +2295,15 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ---
 
-### אלטע — 2 occurrences
-
-**Pages:** [p.32](https://app.transkribus.org/collection/2372172/doc/826910/detail/32), [p.33](https://app.transkribus.org/collection/2372172/doc/826910/detail/33)
-
-**In context:**
-
-> אלטע | איך שוועהר אז דאָס איז דער שכור מיין מתנה
->
-> אלטע | נישט זיין אַ מענש נור אַ דזשאבע איז כּדי
->
-
-**Which role is this?**
-
-*No close match — the names below are simply the nearest in the cast list and may well be none of them. For a role like this, `mint a new role` or `collective` is often the answer.*
-
-- [ ] `militer` — מיליטער
-- [ ] `medkhen_flk` — מעדכען פאלק
-- [ ] **Mint a new role** — suggested `xml:id`: `lte` (name as printed: אלטע)
-- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
-- [ ] **Not a speaker** — this span is mis-tagged
-
-**Comment:**
-
----
-
-### יונגע — 2 occurrences
+### יונגע — 3 occurrences
 
 **Pages:** [p.32](https://app.transkribus.org/collection/2372172/doc/826910/detail/32), [p.33](https://app.transkribus.org/collection/2372172/doc/826910/detail/33)
 
 **In context:**
 
 > יונגע | קוּ קוּ קוּ קוּ קוּ
+>
+> יונגע | קוּקוּ (4)
 >
 > יונגע | נישט זיין אַ מענש נור זיין אַ קוּקו. איז שון באַלד כּדי
 >
@@ -2353,7 +2450,7 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ## Di Tsvey Tnoim
 
-*14 labels, 17 spans.* Cast list has 16 roles: `rbi_iukhnn_br_nskhh`, `izrelis`, `rbi_shmeun_bn_lkish`, `bn_fdus`, `tsenbi`, `hiln`, `br_nzir`, `khgle`, `nkhmn`, `fldsh`, `khr_fun_royber`, `snim` …
+*18 labels, 21 spans.* Cast list has 16 roles: `rbi_iukhnn_br_nskhh`, `izrelis`, `rbi_shmeun_bn_lkish`, `bn_fdus`, `tsenbi`, `hiln`, `br_nzir`, `khgle`, `nkhmn`, `fldsh`, `khr_fun_royber`, `snim` …
 
 ### בר-נזיר — 2 occurrences
 
@@ -2470,6 +2567,25 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ---
 
+### Chor — 1 occurrence  *(castList `role` span)*
+
+This is an entry in the **cast list**, not a speech prefix. It could not be given an `xml:id` — usually because one span covers several names, or names someone the list does not otherwise have. Should it be split, or is it one role?
+
+**Pages:** [p.18](https://app.transkribus.org/collection/2372172/doc/838430/detail/18)
+
+**Which role is this?**
+
+*Nothing in this play's cast list resembles this label, so it is most likely a role that was never listed, or a collective.*
+
+- [ ] **Mint a new role** — suggested `xml:id`: `chor` (name as printed: Chor)
+- [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
+- [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Not a role** — this span is mis-tagged
+
+**Comment:**
+
+---
+
 ### אי כר — 1 occurrence
 
 **Pages:** [p.40](https://app.transkribus.org/collection/2372172/doc/838430/detail/40)
@@ -2558,6 +2674,34 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ---
 
+### בן פדות, אונד איזראעלית — 1 occurrence  *(castList `role` span)*
+
+This is an entry in the **cast list**, not a speech prefix. It could not be given an `xml:id` — usually because one span covers several names, or names someone the list does not otherwise have. Should it be split, or is it one role?
+
+**Pages:** [p.14](https://app.transkribus.org/collection/2372172/doc/838430/detail/14)
+
+**In context:**
+
+> בן פּדות, אונד איזראעלית. Auftr
+>
+
+**Which role is this?**
+
+*No close match — the names below are simply the nearest in the cast list and may well be none of them. For a role like this, `mint a new role` or `collective` is often the answer.*
+
+- [ ] `izrelis` — יזראעלית
+- [ ] `bn_fdus` — בן פדות
+- [ ] **Mint a new role** — suggested `xml:id`: `bn_fdus_und_izrelis` (name as printed: בן פדות, אונד איזראעלית)
+- [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
+- [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Not a role** — this span is mis-tagged
+
+<sub>Resolver: joint: 'אונד איזראעלית' unmatched. Where it says *ambiguous*, that is the number of cast names it found equally plausible — it declined to choose rather than guess.</sub>
+
+**Comment:**
+
+---
+
 ### בר - נזיר — 1 occurrence
 
 **Pages:** [p.33](https://app.transkribus.org/collection/2372172/doc/838430/detail/33)
@@ -2618,6 +2762,32 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ---
 
+### כאהר. רויבער. חגלה, פלדש. נחמן. הילנא — 1 occurrence  *(castList `role` span)*
+
+This is an entry in the **cast list**, not a speech prefix. It could not be given an `xml:id` — usually because one span covers several names, or names someone the list does not otherwise have. Should it be split, or is it one role?
+
+**Pages:** [p.18](https://app.transkribus.org/collection/2372172/doc/838430/detail/18)
+
+**In context:**
+
+> כאָהר. רויבער. חגלה, פּלדש. נחמן. הילנא.
+>
+
+**Which role is this?**
+
+*Nothing in this play's cast list resembles this label, so it is most likely a role that was never listed, or a collective.*
+
+- [ ] **Mint a new role** — suggested `xml:id`: `khhr_royber_khglh_fldsh_nkhmn_hiln` (name as printed: כאהר. רויבער. חגלה, פלדש. נחמן. הילנא)
+- [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
+- [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Not a role** — this span is mis-tagged
+
+<sub>Resolver: joint: 'כאהר. רויבער. חגלה' unmatched. Where it says *ambiguous*, that is the number of cast names it found equally plausible — it declined to choose rather than guess.</sub>
+
+**Comment:**
+
+---
+
 ### פדות] — 1 occurrence
 
 **Pages:** [p.12](https://app.transkribus.org/collection/2372172/doc/838430/detail/12)
@@ -2640,6 +2810,30 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 
 ---
 
+### שמעון - צענאביא — 1 occurrence  *(castList `role` span)*
+
+This is an entry in the **cast list**, not a speech prefix. It could not be given an `xml:id` — usually because one span covers several names, or names someone the list does not otherwise have. Should it be split, or is it one role?
+
+**Pages:** [p.17](https://app.transkribus.org/collection/2372172/doc/838430/detail/17)
+
+**In context:**
+
+> Auft שמעון - צענאַביאַ
+>
+
+**Which role is this?**
+
+- [ ] `tsenbi` — צענאביא
+- [ ] `rbi_shmeun_bn_lkish` — רבי שמעון בן לקיש
+- [ ] **Mint a new role** — suggested `xml:id`: `shmeun_tsenbi` (name as printed: שמעון - צענאביא)
+- [ ] **The span is mis-cut** — it covers the wrong text; the role itself is fine
+- [ ] **One span, several roles** — split it (say which in the comment)
+- [ ] **Not a role** — this span is mis-tagged
+
+**Comment:**
+
+---
+
 ### שמעון פדות — 1 occurrence
 
 **Pages:** [p.9](https://app.transkribus.org/collection/2372172/doc/838430/detail/9)
@@ -2654,6 +2848,68 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 - [ ] `bn_fdus` — בן פדות
 - [ ] `rbi_shmeun_bn_lkish` — רבי שמעון בן לקיש
 - [ ] **Mint a new role** — suggested `xml:id`: `shmeun_fdus` (name as printed: שמעון פדות)
+- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
+- [ ] **Not a speaker** — this span is mis-tagged
+
+**Comment:**
+
+---
+
+## Yaakov-Esav
+
+*3 labels, 14 spans.* Cast list has 14 roles: `itskhk`, `rbkh`, `iekb`, `eshu`, `ishrl_mlkh`, `dumil`, `lbn`, `lh`, `rkhl`, `lh_2`, `rkhl_2`, `bshms` …
+
+### פאלק — 12 occurrences
+
+**Pages:** [p.22](https://app.transkribus.org/collection/2372172/doc/494907/detail/22), [p.23](https://app.transkribus.org/collection/2372172/doc/494907/detail/23), [p.24](https://app.transkribus.org/collection/2372172/doc/494907/detail/24)
+
+**In context:**
+
+> פֿאלק: האָ האָ האָ האָ האָ האָ הא
+>
+> פֿאלק: האָ האָ האָ...
+>
+> ָפֿאלק: האָ. האָ. הא.
+>
+
+**Which role is this?**
+
+*No close match — the names below are simply the nearest in the cast list and may well be none of them. For a role like this, `mint a new role` or `collective` is often the answer.*
+
+- [ ] `lh_2` — לאה
+- [ ] `lh` — לאה
+- [ ] **Mint a new role** — suggested `xml:id`: `flk` (name as printed: פאלק)
+- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
+- [ ] **Not a speaker** — this span is mis-tagged
+
+**Comment:**
+
+---
+
+### 169030 — 1 occurrence
+
+**Pages:** [p.30](https://app.transkribus.org/collection/2372172/doc/494907/detail/30)
+
+**Which role is this?**
+
+*Nothing in this play's cast list resembles this label, so it is most likely a role that was never listed, or a collective.*
+
+- [ ] **Mint a new role** — suggested `xml:id`: `169030` (name as printed: 169030)
+- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
+- [ ] **Not a speaker** — this span is mis-tagged
+
+**Comment:**
+
+---
+
+### עש — 1 occurrence
+
+**Pages:** [p.39](https://app.transkribus.org/collection/2372172/doc/494907/detail/39)
+
+**Which role is this?**
+
+- [ ] `eshu` — עשו
+- [ ] **Mint a new role** — suggested `xml:id`: `esh` (name as printed: עש)
 - [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
 - [ ] **Not a speaker** — this span is mis-tagged
 
@@ -2842,59 +3098,6 @@ Those 228 spans are 59% of the total. The remaining labels occur only a handful 
 - [ ] `gdlil` — גדליאל
 - [ ] `fgil` — פגיאל 
 - [ ] **Mint a new role** — suggested `xml:id`: `shlmil` (name as printed: שאלמיאל)
-- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
-- [ ] **Not a speaker** — this span is mis-tagged
-
-**Comment:**
-
----
-
-## Yaakov-Esav
-
-*3 labels, 10 spans.* Cast list has 14 roles: `itskhk`, `rbkh`, `iekb`, `eshu`, `ishrl_mlkh`, `dumil`, `lbn`, `lh`, `rkhl`, `lh_2`, `rkhl_2`, `bshms` …
-
-### פאלק — 8 occurrences
-
-**Pages:** [p.23](https://app.transkribus.org/collection/2372172/doc/494907/detail/23), [p.24](https://app.transkribus.org/collection/2372172/doc/494907/detail/24)
-
-**Which role is this?**
-
-*No close match — the names below are simply the nearest in the cast list and may well be none of them. For a role like this, `mint a new role` or `collective` is often the answer.*
-
-- [ ] `lh_2` — לאה
-- [ ] `lh` — לאה
-- [ ] **Mint a new role** — suggested `xml:id`: `flk` (name as printed: פאלק)
-- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
-- [ ] **Not a speaker** — this span is mis-tagged
-
-**Comment:**
-
----
-
-### 169030 — 1 occurrence
-
-**Pages:** [p.30](https://app.transkribus.org/collection/2372172/doc/494907/detail/30)
-
-**Which role is this?**
-
-*Nothing in this play's cast list resembles this label, so it is most likely a role that was never listed, or a collective.*
-
-- [ ] **Mint a new role** — suggested `xml:id`: `169030` (name as printed: 169030)
-- [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
-- [ ] **Not a speaker** — this span is mis-tagged
-
-**Comment:**
-
----
-
-### עש — 1 occurrence
-
-**Pages:** [p.39](https://app.transkribus.org/collection/2372172/doc/494907/detail/39)
-
-**Which role is this?**
-
-- [ ] `eshu` — עשו
-- [ ] **Mint a new role** — suggested `xml:id`: `esh` (name as printed: עש)
 - [ ] **Collective / group**, no individual cast entry (like `אלע`, `קאהר`)
 - [ ] **Not a speaker** — this span is mis-tagged
 
