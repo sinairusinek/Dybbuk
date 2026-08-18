@@ -32,3 +32,18 @@ Zylbercweig/Utilizing_Phonetic_Similarity*
 Zylbercweig/organizations/Organisations-*.tsv
 Zylbercweig/organizations/Organisations_Report_*.xlsx
 Zylbercweig/organizations/Organisations-*.xlsx
+
+# Pipeline backup snapshots (transient). Scripts write these before a
+# destructive pass; they are recoverable from git history, so they do not
+# belong in the working tree — 330 MB of them were removed 2026-08-18, which
+# every Streamlit Cloud checkout was paying for.
+# Two are genuine script INPUTS, not snapshots, so they stay tracked:
+#   core_db.tsv.pre_canonical_backup  (read by build_canonical_mapping_tsv.py)
+#   core_db.tsv.pre_arne_2026-06-28   (read by apply_arne_decisions.py)
+*.pre_*
+*_pre_explode_backup.tsv
+*_pre_explode_qid_backup.tsv
+*.preconflict_bak
+*.bak
+!Zylbercweig/organizations/core_db.tsv.pre_canonical_backup
+!Zylbercweig/organizations/core_db.tsv.pre_arne_2026-06-28
