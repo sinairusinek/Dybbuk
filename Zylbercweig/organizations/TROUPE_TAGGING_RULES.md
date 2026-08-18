@@ -111,6 +111,13 @@ agreed on what they'd mean:
 
 ## Part B — new tags I'd propose (pick the ones you want)
 
+> **REJECTED 2026-08-18 (Ruthie).** None of the tags below are adopted. The
+> vocabulary stays at the 13 tags listed in Part A / the app menu. Kept here only
+> as a record of what was considered and turned down. Two of them —
+> Kleinkunst / Revue / Cabaret and Marionette / Puppet — had already been
+> accepted separately on 2026-08-10 and are live in the menu. Youth / Student
+> (no. 10) is not a tag of its own: it **folds into Amateur Company**.
+
 These come straight out of words the lexicon keeps using that the current menu has no
 home for. I'd suggest **8**; the last two are optional.
 
@@ -169,13 +176,18 @@ home for. I'd suggest **8**; the last two are optional.
 
 ---
 
-## What I'd need back from you
+## Status — closed 2026-08-18
 
-1. **Fix any rule in Part A** that doesn't match what you meant — especially the
-   Ad Hoc vs Ensemble line, and German-Jewish (which I can barely read from the text).
-2. **Circle the new tags in Part B you want**, and cross out the rest.
-3. Say whether you still want the four little-used ones (Zionist, Socialist,
-   Post-Holocaust, Bilingual) or want them dropped.
+- **Part A is not a set of questions.** It writes out the tags already in use and
+  the wording in the lexicon that gives each one away. It stood open only for
+  corrections; none were made, so the rules below are the operative ones.
+- **Part B: rejected**, except the two already accepted on 2026-08-10 —
+  Kleinkunst / Revue / Cabaret and Marionette / Puppet — which are live in the
+  menu. The four unused tags (Zionist, Socialist, Post-Holocaust, Bilingual) were
+  dropped the same day.
+- **Youth / Student is not a separate tag**: youth, student and school troupes
+  are tagged **Amateur Company**. The drafter's Amateur rule already reads
+  *יוגנט-*, *סטודענטן-*, *שול-טרופּע* alongside *אַמאַטאָר* / *ליבהאָבער* / *דראַמאַטישער קרייז*.
 
-With that, I'll draft tags for all remaining troupes from the lexicon evidence and
-hand you a file to correct — accept-or-fix, not blank-fill.
+The vocabulary is therefore settled at 13 tags, and drafting tags for the
+remaining troupes from the lexicon evidence can proceed against Part A as written.
