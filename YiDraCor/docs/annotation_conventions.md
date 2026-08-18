@@ -40,6 +40,7 @@ Annotation lives in the Transkribus `custom` attribute on each `TextLine`:
 | `head` | `lg_id`, `unit-type` | song/section heading |
 | `lg` | `n`, `cont`, `continued`, `type` | one per stanza — **never per line** |
 | `fw` | `type` **required** | forme work; page numbers are `type:pageNum` |
+| `metamark` | `function` **required**, `role` **required**, `n`, `spanto`, `corresp` | Regie/prompter cue notation, MS track only — see §11 |
 
 **Editorial tags** passed through to TEI: `unclear`, `sic`, `corr`, `orig`,
 `reg`, `abbr`, `expan`, `supplied`, `add`, `del`, `gap`, `note`, `foreign`,
@@ -485,6 +486,122 @@ Emigration, …) are a **separate track**. The whole pipeline — stage lexicons
 `(ביס)` conventions, orthography assumptions — is calibrated on printed OCR.
 Manuscripts bring editorial layers, strike-throughs, scribal `<unclear>` and
 mixed-language insertions. Do not bootstrap them as one-offs.
+
+---
+
+## 11. Regie cue notation (manuscript track)
+
+*Sinai 2026-08-18. Decoded from MS_Emigration + Lateiner_Meshumed; inventory in
+`data/review/ms_cue_notation_inventory.tsv`.*
+
+The handwritten witnesses carry Latin-script marks in the Regie/prompter hand:
+`RI`, `RII`, `IR`, `IIR`, `R.I`, `SI`, `SII`, `N4`, `No 4.`, `Returnell:`,
+`Chor`, `Marsch`, `Terzett`. They are **signs about the performance, not part
+of the play's text**, so they are `metamark`, never `stage`.
+
+**C1. The grammar.** Three orthogonal slots, confirmed by MS_BenHaDor's fully
+spelled-out forms `II Returnell: No 4.` and `II Return: N=3` — i.e. *the second
+ritornello of number 4*:
+
+| slot | answers | forms |
+|---|---|---|
+| number | *which* number | `N`, `No 4.`, `N=3`, `N2`…`N12` |
+| boundary | *where* it starts/stops | `RI`/`RII`, `IR`/`IIR`, `R.I`, `1 Returnell:`, `II Return:`, bare `I`/`II` (BasKoyen) |
+| genre | *what kind* of number | `Chor`, `Marsch`, `Tanz`, `Terzett`, `Quarted`, `Duet`, `arya`, `Refrein` |
+
+**C2. The letter is the family; the numeral is a state.** `R` = Returnel
+(ritornello, the pit's vamp), `S` = Szene. The Roman numeral is **in/out, not a
+serial** — which is why `RIII` and `SIII` never occur anywhere in the corpus.
+`S II` falls on `פֿארהאנג` and `פֿערוואנדלונג`; Meshumed p.37 has `R II S II`
+together at the Act IV curtain — music out *and* scene out at one moment.
+
+**C3. Tagging.** `metamark {function; role}`, both **required**
+(`schema.METAMARK_FUNCTIONS` / `METAMARK_ROLES`):
+
+- `function` ∈ {`musicCue`, `sceneCue`} — the family.
+- `role` ∈ {`in`, `out`, `genre`, `number`} — the slot. `in`/`out` are shared
+  across families, so `RI` and `SI` both take `role:in`.
+- `n` — the **normalised** number (`No 4.` → `n:4`). Required on `role:number`.
+- `spanto` / `corresp` — see C5.
+
+→ TEI `<metamark function="musicCue" ana="#cue-in" place="inline" n="4">`,
+against the `prod-cues` taxonomy `build_tei` writes into `encodingDesc`. The
+**span text keeps the diplomatic reading**; the normalisation lives in the
+attributes. That is what lets `RI`, `IR` and `1 Returnell:` be one queryable
+class without flattening what the scribe actually wrote.
+
+**C4. `R` and `Returnell` are the same mark; the genre words are not.**
+`R` *is* the abbreviation of `Returnell`, so `RI`, `IR`, `R.I`, `.R.I`,
+`1 Returnell:` and BasKoyen's bare `I` all take `function:musicCue; role:in` —
+the spelling variation is scribal, not semantic. The numeral-first forms
+(`IR`, `IIR`, `II R`) are **RTL/bidi rendering flips of the same code**, not a
+separate notation; do not tag them as a variant.
+⚠️ But `Terzett` carries no in/out state — it says the number is a trio.
+Genre words take `role:genre`. Collapsing them into `role:in`/`out` destroys
+both the score index and the ability to ask where the music runs.
+
+**C5. `S` additionally justifies structure.** `R` records something the TEI
+does not otherwise hold (what the pit does); `S` marks a boundary TEI already
+models. So a scene cue carries `corresp` to the `<div>` it delimits, and the
+Meshumed `S` marks are the documentary evidence for where that play's
+divisions fall. Where an in/out pair is identified, the opening mark carries
+`spanto` → an `<anchor>` at the closing one; that makes the bracket reading
+falsifiable by query rather than by assertion.
+
+**C6. The boundary rule — function, not word.** *Is it part of the play, or a
+sign about the play?*
+- `פֿערוואנדלונג`, `פֿארהאנג`, `Vorhang`, `Verwandlung`, `Auftritt` → part of
+  the text: `stage` (act ends stay `trailer`, ST12).
+- `קאהר` heading a sung line → part of the text: `speaker` (§M6).
+- `Chor` beside `N=3` → a sign about the text: `metamark`.
+
+⚠️ **MS_YoysefInEgipten's 23 `קאהר` hits are speaker labels, not cues.** Same
+word, opposite treatment.
+
+**C6a. Two tests decide a chorus word**, applied in this order by
+`annotation.tag_ms_cues`:
+1. **Already tagged `speaker` or `role`?** Then it is a label and never a cue —
+   the RA has decided, and it resolves to an xml:id that `<sp who>` depends on.
+   Overriding it would break speaker attribution. 3 cases, incl. Emigration
+   p.5 `RII N קאהר דער שעהנער זאממער`, where `RII` and `N` are still tagged so
+   the musical information survives.
+2. **Is it the agent of its stage direction?** If the enclosing `stage` span
+   still holds substantive text once every cue is removed, the chorus is the
+   party doing something — `2 מערדער קאהר זינגט פריער מארש`,
+   `אופטריט עלמת רחומה קאהר.`, `hintergrund chor on` — and tagging it
+   `metamark` would strip the subject out of the direction. 5 cases.
+
+**C6b. The old annotation comes off.** A cue span carries `metamark` and
+nothing else: the covering `stage` **and `heading`** spans are subtracted
+(union of all cues on the line, in one pass — `II Return: N=3` is two cues
+under one span). A residue with no substantive text is dropped rather than
+left as a stage direction consisting of a full stop; a residue on both sides
+becomes two spans, which §1 allows. *Sinai 2026-08-18: "I prefer
+consistency."* The Meshumed marks were tagged `heading`, so `R II S II` was
+being published as an act heading — 63 such spans dropped, which also cleared
+62 corpus lint flags.
+
+**C6c. A bare I/II beside another cue is a cue** with the letter elided —
+`R I II` marks both R I and R II; `N3    II` is number 3 plus its out-bracket.
+Requiring another cue on the same line is what keeps this off Khurbn's act
+numbers (C7), which stand alone and run to V.
+
+**C7. Bare numerals are play-specific — never sweep them corpus-wide.**
+- **MS_BasKoyen**: bare `I`/`II` ARE cues (they sit on `קאהר` and
+  `(קאהר אב מיט געזאנג)`), with the letter dropped. 24 of them.
+- **MS_KhurbnYerusholaim**: bare numerals run I–V. IV and V cannot be an
+  in/out bracket, so those are act numbers. Leave them to `heading`.
+
+**C8. DraCor.** `<metamark>` is tei_all but outside the DraCor profile —
+nothing in their pipeline reads it. `build_tei` **strips** it from the
+`tei/dracor/` variant (it strips rather than whitelists, unlike
+`dracor_transform`, so every new element needs an explicit line there). The
+`prod-cues` taxonomy is kept in both: it documents the witness at no cost.
+
+⚠️ `data/review/heading_notation_questions_2026-08-16.tsv` predates this and
+still carries the stale guess `German (S=Scene, R=?)` in its `family` column;
+it also only covers marks already tagged `heading`/`stage`, so it misses every
+spelled-out musical cue. Work from the inventory, not from that sheet.
 
 ---
 

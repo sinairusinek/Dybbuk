@@ -34,8 +34,21 @@ ALLOWED_TAGS = {
         # act headings, predating heading{type:act}. Accepted so it does not
         # lint as an error; new annotation should use `heading`.
     "lg": {"n", "cont", "continued", "type"},  # legacy RA form `continued:true; type:cont` = the modern `cont:yes`.  # group marker: one per stanza/song. `cont` is OPTIONAL and only ever `yes` (stanza continues from previous page); omit it otherwise (absence = not a continuation). Per-line `lg` spans are wrong — lines are `l {lg_id}`. Structurer expands cont:yes → continued="yes" in TEI.
+    # Regie/prompter cue notation in the handwritten track (Sinai 2026-08-18).
+    # `function` REQUIRED, `role` REQUIRED. TEI <metamark>: a written signal
+    # about how the document is to be performed, NOT part of the play's text.
+    # See annotation_conventions.md §11 for the R/S/N grammar and the
+    # text-vs-sign boundary rule.
+    "metamark": {"function", "role", "n", "spanto", "corresp"},
     "fw": {"type"},  # forme work (TEI <fw>): printed page numbers, running heads, catchwords, signatures. `type` REQUIRED; page numbers are type:pageNum.
 }
+
+# Controlled vocabulary for `metamark` (§11). The family says WHAT is cued;
+# the role says which slot of the cue grammar the mark fills. They are
+# orthogonal: the numeral I/II is an in/out state shared by R and S, which is
+# why RIII/SIII never occur.
+METAMARK_FUNCTIONS = {"musicCue", "sceneCue"}
+METAMARK_ROLES = {"in", "out", "genre", "number"}
 
 # TEI editorial/transcription tags the RAs apply in Transkribus. They carry no
 # YiDraCor-specific semantics — `build_tei` passes them through — but they must
@@ -298,6 +311,23 @@ def validate_span(line_text: str, span: dict) -> str | None:
         cont = attrs.get("cont")
         if cont is not None and cont != "yes":
             return f"lg.cont, if present, must be 'yes' (omit it for non-continuations), got {cont!r}"
+    if tag == "metamark":
+        fn = attrs.get("function")
+        if fn is None:
+            return ("metamark span requires a function attribute "
+                    f"(one of {sorted(METAMARK_FUNCTIONS)})")
+        if fn not in METAMARK_FUNCTIONS:
+            return f"metamark.function must be one of {sorted(METAMARK_FUNCTIONS)}, got {fn!r}"
+        rl = attrs.get("role")
+        if rl is None:
+            return ("metamark span requires a role attribute "
+                    f"(one of {sorted(METAMARK_ROLES)})")
+        if rl not in METAMARK_ROLES:
+            return f"metamark.role must be one of {sorted(METAMARK_ROLES)}, got {rl!r}"
+        # `n` carries the NORMALISED number of the musical item (N4 -> n:4);
+        # the diplomatic reading stays in the covered text.
+        if attrs.get("role") == "number" and not attrs.get("n"):
+            return "metamark role:number requires n (the normalised number)"
     if tag == "fw":
         t = attrs.get("type")
         if t is None:

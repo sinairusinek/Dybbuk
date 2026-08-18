@@ -206,7 +206,7 @@ def emit_line_content(para: Para, text: str, spans, skip_speaker=True,
         length = span_int(attrs, "length")
         if off is None or length is None:
             continue
-        if tag == "stage" or tag in EDITORIAL_TAGS:
+        if tag in ("stage", "metamark") or tag in EDITORIAL_TAGS:
             inline.append((off, length, tag, attrs))
     inline.sort(key=lambda x: x[0])
 
@@ -225,6 +225,20 @@ def emit_line_content(para: Para, text: str, spans, skip_speaker=True,
             if xid:
                 el.set("who", format_who(xid, role_ids or set(),
                                          bad if bad is not None else []))
+        if tag == "metamark":
+            # §11. @function = the family (what is cued); @ana = the slot of
+            # the cue grammar. Orthogonal, so `RI` and `SI` share ana="#cue-in"
+            # while differing in @function. The element text keeps the
+            # diplomatic reading (`RI`, `IR`, `Returnell`, `Terzett`).
+            el.set("function", attrs["function"])
+            el.set("ana", "#cue-" + attrs["role"])
+            el.set("place", "inline")
+            if attrs.get("n"):
+                el.set("n", attrs["n"])
+            if attrs.get("spanto"):
+                el.set("spanTo", "#" + attrs["spanto"])
+            if attrs.get("corresp"):
+                el.set("corresp", "#" + attrs["corresp"])
         el.text = chunk
         para.add_child(el)
         cursor = off + length
@@ -320,6 +334,32 @@ def build_header(rec: dict, cast: dict, play_id: str):
     if rec.get("transkribus_url"):
         idno = etree.SubElement(bibl, q("idno")); idno.set("type", "transkribus")
         idno.text = rec["transkribus_url"]
+
+    # encodingDesc / classDecl — the Regie cue taxonomy (§11). Declared for
+    # every play so @ana always resolves; the categories cost nothing when a
+    # play carries no marks.
+    enc = etree.SubElement(header, q("encodingDesc"))
+    cls = etree.SubElement(enc, q("classDecl"))
+    tax = etree.SubElement(cls, q("taxonomy")); set_xmlid(tax, "prod-cues")
+    tdesc = etree.SubElement(tax, q("desc"))
+    tdesc.text = ("Regie/prompter cue notation of the handwritten witnesses. "
+                  "The letter names the family (R = Returnel/ritornello, "
+                  "S = Szene); the Roman numeral is an in/out bracket state, "
+                  "not a serial number, which is why III never occurs. "
+                  "N/No + Arabic numeral is the serial of the musical number.")
+    for cid, cdesc in (
+        ("cue-in", "Opening bracket of a cue: RI, IR, R.I, '1 Returnell:', "
+                   "and the bare I of MS_BasKoyen where the letter is dropped."),
+        ("cue-out", "Closing bracket of a cue: RII, IIR, R.II, 'II Return:', "
+                    "bare II. At a scene cue it falls on Vorhang/Verwandlung."),
+        ("cue-genre", "Names the kind of musical number rather than bracketing "
+                      "it: Chor, Marsch, Tanz, Terzett, Quarted, Duet, arya, "
+                      "Refrein. Carries no in/out state."),
+        ("cue-number", "The serial of the musical number: N, No 4., N=3. "
+                       "@n carries the normalised value."),
+    ):
+        cat = etree.SubElement(tax, q("category")); set_xmlid(cat, cid)
+        etree.SubElement(cat, q("catDesc")).text = cdesc
 
     # particDesc / listPerson from cast_dict
     prof = etree.SubElement(header, q("profileDesc"))
@@ -817,6 +857,20 @@ def main():
     droot = copy.deepcopy(root)
     for fw in droot.findall(f".//{q('fw')}"):
         fw.getparent().remove(fw)
+    # <metamark> is tei_all but outside the DraCor profile: nothing in their
+    # pipeline reads it and it would sit unrendered. The scholarly edition in
+    # tei/ keeps it. NB this build STRIPS for DraCor (unlike dracor_transform,
+    # which rebuilds from a whitelist), so every new element needs a line here.
+    for mm in droot.findall(f".//{q('metamark')}"):
+        parent = mm.getparent()
+        # keep the surrounding text flow intact when removing an inline element
+        tail = mm.tail or ""
+        prev = mm.getprevious()
+        if prev is not None:
+            prev.tail = (prev.tail or "") + tail
+        else:
+            parent.text = (parent.text or "") + tail
+        parent.remove(mm)
     dr_path = REPO_ROOT / "tei" / "dracor" / Path(cfg["out"]).name
     dr_path.parent.mkdir(exist_ok=True)
     dr_path.write_bytes(etree.tostring(etree.ElementTree(droot), pretty_print=True,

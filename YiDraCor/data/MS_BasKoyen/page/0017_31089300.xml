@@ -5,7 +5,7 @@
 prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
 Transkribus</Creator>
         <Created>2021-11-21T13:19:07.27+01:00</Created>
-        <LastChange>2026-08-09T14:01:58.672+02:00</LastChange>
+        <LastChange>2026-08-16T18:39:58.658+02:00</LastChange>
         <Comments>
                 Measurement unit: pixel
                 PrimaryLanguage: 
@@ -175,7 +175,7 @@ Transkribus</Creator>
                     <Unicode>168911</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l2" custom="readingOrder {index:1;} add {offset:0;length:1;} heading {offset:0;length:1;}">
+            <TextLine id="r2l2" custom="readingOrder {index:1;} add {offset:0; length:1;} metamark {offset:0; length:1; function:musicCue; role:in;}">
                 <Coords points="1903,221 1944,233 1953,255 1978,266 1982,276 1993,281 2037,181 2026,177 2014,161 1988,98 1977,83 1966,78"/>
                 <Baseline points="1920,212 1995,245"/>
                 <TextEquiv>
@@ -224,7 +224,7 @@ Transkribus</Creator>
                     <Unicode>(אב)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="l" custom="readingOrder {index:8;} heading {offset:0;length:2;}">
+            <TextLine id="l" custom="readingOrder {index:8;} metamark {offset:0; length:2; function:musicCue; role:out;}">
                 <Coords points="1887,675 1985,655 1979,626 1881,646"/>
                 <Baseline points="1887,675 1985,655"/>
                 <TextEquiv>
