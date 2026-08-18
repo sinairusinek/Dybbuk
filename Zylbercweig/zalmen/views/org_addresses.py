@@ -33,6 +33,7 @@ import streamlit as st
 
 from zalmen.activity_log import log_action
 from atomic_io import atomic_write
+import mention_removals
 
 def _open_url(view: str, entity: str = "") -> str:
     """Build a deep-link URL for opening a specific view+entity in a new tab."""
@@ -200,13 +201,15 @@ def load_alignment_rows(mtime: float):
 
 
 @st.cache_data(show_spinner=False)
-def load_cluster_rows(mtime: float):
+def load_cluster_rows(cache_key):
     with open(CLUSTER_FILE, newline="", encoding="utf-8") as f:
         r = csv.DictReader(f, delimiter="\t")
-        return list(r.fieldnames), list(r)
+        headers, rows = list(r.fieldnames), list(r)
+    mention_removals.apply_to_rows(rows)
+    return headers, rows
 
 @st.cache_data(show_spinner=False)
-def load_samples(mtime: float) -> dict[str, dict[str, list[tuple[str,str,str,str]]]]:
+def load_samples(cache_key) -> dict[str, dict[str, list[tuple[str,str,str,str]]]]:
     """
     Returns {cluster_id: {settlement: [(heading, sentence, file, xml_id), ...]}}
     Settlement key "" means no settlement recorded.
@@ -214,10 +217,12 @@ def load_samples(mtime: float) -> dict[str, dict[str, list[tuple[str,str,str,str
     """
     idx: dict[str, dict[str, list]] = collections.defaultdict(lambda: collections.defaultdict(list))
     seen: dict[tuple, set] = collections.defaultdict(set)
+    _removed = mention_removals.load_removed_keys()
     with open(CLUSTER_FILE, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f, delimiter="\t"):
             cid  = row.get(_COL_CID, "").strip()
             if not cid: continue
+            if _removed and mention_removals.mention_key(row) in _removed: continue
             s    = row.get(_COL_SETTLE, "").strip()
             sent = row.get(_COL_SENTENCE, "").strip()
             head = row.get(_COL_HEADING, "").strip()
@@ -264,18 +269,6 @@ def save_alignment(headers, rows):
         st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
 
 
-def save_cluster_rows(headers, rows):
-    lock = CLUSTER_FILE.with_suffix(".lock")
-    with open(lock, "w") as lf:
-        fcntl.flock(lf, fcntl.LOCK_EX)
-        try:
-            with atomic_write(CLUSTER_FILE) as f:
-                w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
-                w.writeheader()
-                w.writerows(rows)
-        finally:
-            fcntl.flock(lf, fcntl.LOCK_UN)
-
 def get_mtime(path=ADDR_FILE): return path.stat().st_mtime if path.exists() else 0.0
 
 
@@ -320,13 +313,29 @@ def _unlink_cluster(cluster_id: str):
 
 
 def _remove_mention(cluster_row_idx: int):
-    headers, rows = load_cluster_rows(get_mtime(CLUSTER_FILE))
+    _, rows = load_cluster_rows(mention_removals.cluster_cache_key(CLUSTER_FILE))
     if cluster_row_idx < 0 or cluster_row_idx >= len(rows):
         st.error("The selected mention could not be found.")
         return
 
-    rows[cluster_row_idx][_COL_CID] = ""
-    save_cluster_rows(headers, rows)
+    row = rows[cluster_row_idx]
+    cluster_id = row.get(_COL_CID, "").strip()
+    key = mention_removals.record(row, st.session_state.get("reviewer", ""))
+
+    from zalmen.github_sync import push_file_to_github
+    ok = push_file_to_github(
+        mention_removals.REMOVALS_REPO_PATH,
+        mention_removals.REMOVALS_FILE,
+        "chore: record mention removal",
+    )
+    if not ok:
+        st.toast(
+            "⚠️ The mention was removed here but could not be saved permanently. "
+            "Please contact Sinai before continuing.",
+            icon="⚠️",
+        )
+    log_action("org_addresses", "remove_mention",
+               target_id=cluster_id, decision="REMOVE", note=key)
     _refresh_after_upstream_change()
     st.rerun()
 
@@ -536,7 +545,7 @@ def render():
         return
 
     mtime_addr    = get_mtime(ADDR_FILE)
-    mtime_cluster = get_mtime(CLUSTER_FILE)
+    mtime_cluster = mention_removals.cluster_cache_key(CLUSTER_FILE)
     headers, rows = load_orgs(mtime_addr)
     samples       = load_samples(mtime_cluster)
 
@@ -1051,7 +1060,7 @@ def _render_detail(headers, rows, row, samples):
         if r.get("cluster_id", "").strip()
     }
     linked_cids = _split(row.get("linked_cluster_ids", ""))
-    _, cluster_rows = load_cluster_rows(get_mtime(CLUSTER_FILE))
+    _, cluster_rows = load_cluster_rows(mention_removals.cluster_cache_key(CLUSTER_FILE))
     linked_sources = _linked_source_rows(linked_cids, cluster_rows)
 
     new_name = st.text_input(
@@ -1367,7 +1376,7 @@ def _render_explode_panel(headers, rows, parent_row, parent_idx, settlements, co
     refined split that lets the reviewer assign individual mentions to named groups."""
     did = parent_row["db_id"]
     linked_cids = _split(parent_row.get("linked_cluster_ids", ""))
-    _, cluster_rows = load_cluster_rows(get_mtime(CLUSTER_FILE))
+    _, cluster_rows = load_cluster_rows(mention_removals.cluster_cache_key(CLUSTER_FILE))
     source = [row for _, row in _linked_source_rows(linked_cids, cluster_rows)]
 
     # Toggle between auto-explode and refined split

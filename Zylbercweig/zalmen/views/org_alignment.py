@@ -76,6 +76,7 @@ XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
 # settlement_audit, which imports get_entry_text from this module — are unchanged.
 from zalmen.lexicon import get_entry_text  # noqa: E402,F401
 from atomic_io import atomic_write
+import mention_removals
 
 
 @st.cache_data(show_spinner=False)
@@ -93,12 +94,15 @@ def load_core_db(mtime: float):
 
 
 @st.cache_data(show_spinner=False)
-def load_samples(mtime: float):
+def load_samples(cache_key):
     idx = {}
+    _removed = mention_removals.load_removed_keys()
     with open(CLUSTER_FILE, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f, delimiter="\t"):
             cid = row.get(_COL_CID, "").strip()
             if not cid:
+                continue
+            if _removed and mention_removals.mention_key(row) in _removed:
                 continue
             if cid not in idx:
                 idx[cid] = {
@@ -276,7 +280,7 @@ def render() -> None:
 
     a_headers, a_rows = load_alignment(_mtime(ALIGN_FILE))
     db_headers, db_rows = load_core_db(_mtime(CORE_DB_FILE))
-    samples = load_samples(_mtime(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
+    samples = load_samples(mention_removals.cluster_cache_key(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
     addr_db_ids = load_address_db_ids(_mtime(ADDR_FILE))
     db_settlements = load_db_settlements(_mtime(ADDR_FILE))
 

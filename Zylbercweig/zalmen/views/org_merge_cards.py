@@ -55,6 +55,7 @@ from views.settlement_audit import (  # noqa: E402
     _merge_db_rows_op,  # noqa: F401 — kept for parity / future DB-row merges
     _search_corpus,
 )
+import mention_removals
 
 _PAGE_SIZE = 25
 _SAMPLES_COLLAPSED = 3
@@ -327,7 +328,7 @@ def _queue() -> None:
     reviewer = st.session_state.get("reviewer", "")
     a_headers, a_rows = load_alignment(_mtime(ALIGN_FILE))
     db_headers, db_rows = load_core_db(_mtime(CORE_DB_FILE))
-    samples = load_samples(_mtime(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
+    samples = load_samples(mention_removals.cluster_cache_key(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
     db_by_id = {r.get("db_id", ""): r for r in db_rows}
 
     # --- Filters ---

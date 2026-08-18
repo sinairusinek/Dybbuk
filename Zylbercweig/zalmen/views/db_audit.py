@@ -36,6 +36,7 @@ from views.org_review import (
     render_attestations,
 )
 from atomic_io import atomic_write
+import mention_removals
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 ORG = pathlib.Path(__file__).resolve().parents[2] / "organizations"
@@ -694,7 +695,7 @@ def _render_falsemerge_tab(reviewer: str) -> None:
 
     punchlist = load_punchlist(_mtime(PUNCHLIST))
     decisions = load_decisions(_mtime(DECISIONS))
-    samples = load_samples(_mtime(CLUSTER_FILE))
+    samples = load_samples(mention_removals.cluster_cache_key(CLUSTER_FILE))
 
     if not punchlist:
         st.success("No DBs currently flagged. Re-run the audit to refresh.")
@@ -976,7 +977,7 @@ def _render_dblalign_tab(reviewer: str) -> None:
     # and the Dedup section never touches it. Every RA save pushes to the
     # deployed branch and Streamlit Cloud redeploys, so the cache is cold
     # several times an hour — worth not paying for on sections that don't use it.
-    samples = load_samples(_mtime(CLUSTER_FILE))
+    samples = load_samples(mention_removals.cluster_cache_key(CLUSTER_FILE))
 
     if not rows_all:
         st.success("No clusters double-aligned. Re-run the audit to refresh.")

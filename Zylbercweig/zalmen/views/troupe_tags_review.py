@@ -45,6 +45,7 @@ from views.db_audit import (
     load_troupe_tags,
 )
 from atomic_io import atomic_write
+import mention_removals
 
 ORG = pathlib.Path(__file__).resolve().parents[2] / "organizations"
 DRAFTS = ORG / "troupe_tags_draft.tsv"
@@ -403,7 +404,7 @@ def render() -> None:
     drafts = load_drafts(_mtime(DRAFTS))
     review = load_review(_mtime(REVIEW))
     tags_now = load_troupe_tags(_mtime(TROUPE_TAGS))
-    samples = load_samples(_mtime(CLUSTER_FILE))
+    samples = load_samples(mention_removals.cluster_cache_key(CLUSTER_FILE))
 
     # A draft is done once it's been reviewed (any status) or the DB is already
     # tagged in production. Those drop out of the queue.

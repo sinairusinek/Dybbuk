@@ -61,6 +61,7 @@ from views.research_queue import (
     RESEARCH_QUEUE,
     queue_research as _queue_research,
 )
+import mention_removals
 
 # Show this many rows per (type, kind) section by default. Each row spawns
 # ~12 widgets (popover body, radio, text input, buttons), so a busy city like
@@ -1506,7 +1507,7 @@ def _workbench(reviewer) -> None:
     # --- Load editable data ---
     a_headers, a_rows = load_alignment(_mtime(ALIGN_FILE))
     db_headers, db_rows = load_core_db(_mtime(CORE_DB_FILE))
-    samples = load_samples(_mtime(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
+    samples = load_samples(mention_removals.cluster_cache_key(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
     db_by_id = {r.get("db_id", ""): r for r in db_rows}
     a_rows_by_cid = {r["cluster_id"]: r for r in a_rows}
 

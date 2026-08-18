@@ -33,6 +33,7 @@ from organizations.org_normalize import normalize_yiddish as _nrm_yid
 from organizations.settlement_index import get_index as _get_settlement_index
 from zalmen.activity_log import log_action
 from atomic_io import atomic_write
+import mention_removals
 
 ALIGN_FILE = BASE / "organizations" / "org_alignment_review.tsv"
 PAIRS_FILE = BASE / "organizations" / "cluster_pairs_review.tsv"
@@ -186,12 +187,15 @@ def load_address_details(mtime: float) -> dict[str, dict[str, str]]:
 
 
 @st.cache_data(show_spinner=False)
-def load_samples(mtime: float) -> dict[str, dict[str, list]]:
+def load_samples(cache_key) -> dict[str, dict[str, list]]:
 	idx: dict[str, dict[str, list]] = {}
+	_removed = mention_removals.load_removed_keys()
 	with open(CLUSTER_FILE, newline="", encoding="utf-8") as f:
 		for row in csv.DictReader(f, delimiter="\t"):
 			cid = row.get(_COL_CID, "").strip()
 			if not cid:
+				continue
+			if _removed and mention_removals.mention_key(row) in _removed:
 				continue
 			if cid not in idx:
 				idx[cid] = {
@@ -1304,7 +1308,7 @@ def render() -> None:
 	a_headers, a_rows = load_alignment(_mtime(ALIGN_FILE))
 	pair_headers, pair_rows = load_pairs(_mtime(PAIRS_FILE))
 	db_headers, db_rows = load_core_db(_mtime(CORE_DB_FILE))
-	samples = load_samples(_mtime(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
+	samples = load_samples(mention_removals.cluster_cache_key(CLUSTER_FILE)) if CLUSTER_FILE.exists() else {}
 	pair_index = load_pair_index(_mtime(PAIRS_FILE))
 	addr_db_ids = load_address_db_ids(_mtime(ADDR_FILE))
 	addr_details = load_address_details(_mtime(ADDR_FILE))
