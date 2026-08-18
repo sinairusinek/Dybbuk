@@ -422,7 +422,8 @@ def main() -> int:
 
     # Write flat CSV
     flat_cols = [
-        "title", "author", "year_written", "year_printed",
+        "title", "author", "author_certainty", "author_source",
+        "year_written", "year_printed",
         "publication_place", "publisher", "publisher_place",
         "printer", "printer_place",
         "transkribus_doc_id", "transkribus_collection_id", "transkribus_url",
@@ -444,6 +445,8 @@ def main() -> int:
             w.writerow({
                 "title": r.get("title"),
                 "author": r.get("author"),
+                "author_certainty": r.get("author_certainty"),
+                "author_source": r.get("author_source"),
                 "year_written": r.get("year_written"),
                 "year_printed": r.get("year_printed"),
                 "publication_place": r.get("publication_place"),
