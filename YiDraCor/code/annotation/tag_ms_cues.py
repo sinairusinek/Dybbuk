@@ -32,7 +32,9 @@ from annotation.schema import parse_custom, serialize_custom, dedup_entries
 REPO = Path(__file__).resolve().parents[2]
 NS = "{http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15}"
 
-RS   = re.compile(r'(?<![A-Za-z])(?:([RS])\s*\.?\s*(I{1,3})|(I{1,3})\s*\.?\s*([RS]))(?![A-Za-z])')
+# Separator between letter and numeral is a dot, a slash, a space, or nothing:
+# `RII`, `R.I`, `R II`, `.R/II` (Meshumed p.11) are one notation.
+RS   = re.compile(r'(?<![A-Za-z])(?:([RS])\s*[./]?\s*(I{1,3})|(I{1,3})\s*[./]?\s*([RS]))(?![A-Za-z])')
 # The scribes abbreviate freely: Return, Returnell, Returnal, Retur:, Ret, Re.
 # Anchored to an adjacent numeral or a colon so a stray `Re` in OCR noise
 # (BenHaDor's cover carries `Ren VItand`) cannot match.
@@ -46,6 +48,35 @@ HEBCHOR = re.compile(r'קאהר|כאר|כער')
 ANYCUE  = re.compile(r'(?<![A-Za-z])(?:[RS]\s*\.?\s*I{1,3}|I{1,3}\s*\.?\s*[RS]|N[o°]?\s*[.=]?\s*\d{1,2}|Return\w*)', re.I)
 BARE = re.compile(r'^(I{1,2})\.?$')
 ROMAN = {"I": "in", "II": "out"}
+
+
+ISOLATED_CUE_PLAYS = ("MS_BasKoyen",)   # Khurbn pending Judith's act-structure review
+
+
+def isolated_numeral_cues(play, text, entries, found):
+    """§C7b. A bare I/II that the RA has isolated as its own untyped `stage`
+    span is a cue with the letter elided. Restricted to the plays where C7
+    establishes the letter-elided form: elsewhere a bare numeral is an act
+    number. The RA's span boundary is what distinguishes the two.
+    """
+    if play not in ISOLATED_CUE_PLAYS:
+        return []
+    covered = [(o, o + l) for o, l, *_ in found]
+    out = []
+    for tag, a in entries:
+        if tag != "stage" or a.get("type"):
+            continue
+        try:
+            s0 = int(a["offset"]); ln = int(a["length"])
+        except (KeyError, ValueError):
+            continue
+        tok = text[s0:s0 + ln].strip()
+        if tok not in ROMAN:
+            continue
+        if any(x <= s0 and s0 + ln <= y for x, y in covered):
+            continue
+        out.append((s0, ln, "musicCue", ROMAN[tok], None))
+    return out
 
 
 def cues(play: str, text: str):
@@ -72,6 +103,9 @@ def cues(play: str, text: str):
     if HEBCHOR.search(text) and ANYCUE.search(text):
         m = HEBCHOR.search(text)
         out.append((m.start(), len(m.group(0)), "musicCue", "genre", None))
+    # §C7b: a bare numeral the RA has already isolated as its own `stage` span
+    # is the letter-elided cue form — the RA drawing that boundary is the
+    # evidence. Handled by the caller, which can see the existing spans.
     # §C7: BasKoyen alone drops the letter; Khurbn's bare numerals are act numbers
     if play == "MS_BasKoyen":
         m = BARE.match(text.strip())
@@ -237,11 +271,12 @@ def main() -> int:
                 text = (u.text or "") if u is not None else ""
                 if not text.strip():
                     continue
-                found = cues(play, text)
-                if not found:
-                    continue
                 entries = parse_custom(tl.get("custom") or "")
+                found = cues(play, text)
+                if not found and play not in ISOLATED_CUE_PLAYS:
+                    continue
                 line_touched = False
+                found = found + isolated_numeral_cues(play, text, entries, found)
                 found = demote_agent_cues(found, entries, text, report,
                                           f"{play} p{f.name.split('_')[0]}")
                 new_found = [c for c in found

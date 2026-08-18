@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Yiddish_HTR(htr_id=38946)::::v=2.6.7
@@ -190,7 +190,7 @@ Transkribus</Creator>
                     <Unicode>אריין אין דעם פעלז הייל און פערשטעקט אייך מע זאל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l3" custom="readingOrder {index:2;} textStyle {offset:12;length:4;strikethrough:true;} stage {offset:0;length:1;}">
+            <TextLine id="r2l3" custom="readingOrder {index:2;} textStyle {offset:12; length:4; strikethrough:true;} metamark {offset:0; length:1; function:musicCue; role:in;}">
                 <Coords points="960,363 1136,391 1221,358 1556,359 1614,403 1783,330 2003,339 2004,218 1934,210 1813,294 1639,278 1590,313 1228,296 1185,266 961,286"/>
                 <Baseline points="972,346 1990,355"/>
                 <TextEquiv>
@@ -281,7 +281,7 @@ Transkribus</Creator>
                     <Unicode>דעם גראבען פינגער און דעק דיך צו מיט א גלעזעל</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l16" custom="readingOrder {index:15;} stage {offset:39; length:22; type:business;} stage {offset:0; length:2;}">
+            <TextLine id="r2l16" custom="readingOrder {index:15;} stage {offset:39; length:22; type:business;} metamark {offset:0; length:2; function:musicCue; role:out;}">
                 <Coords points="71,1776 1070,1742 1442,1806 1999,1722 1999,1551 1767,1699 1217,1635 860,1682 756,1624 587,1685 70,1673"/>
                 <Baseline points="83,1736 1751,1753 1882,1702 1988,1704"/>
                 <TextEquiv>
