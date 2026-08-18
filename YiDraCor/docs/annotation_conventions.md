@@ -589,8 +589,28 @@ numbers (C7), which stand alone and run to V.
 **C7. Bare numerals are play-specific — never sweep them corpus-wide.**
 - **MS_BasKoyen**: bare `I`/`II` ARE cues (they sit on `קאהר` and
   `(קאהר אב מיט געזאנג)`), with the letter dropped. 24 of them.
-- **MS_KhurbnYerusholaim**: bare numerals run I–V. IV and V cannot be an
-  in/out bracket, so those are act numbers. Leave them to `heading`.
+- **MS_KhurbnYerusholaim**: bare numerals are **neither** cues nor act
+  numbers, and they are not even uniformly one thing *(corrected 2026-08-18 —
+  the earlier reading here, "they run to V so they are act numbers", was
+  wrong)*:
+  - p.21 `I`…`V`, p.30–31 `I`/`II`, p.33–34 `I`…`III` are **stanza numbers**,
+    each followed by the verse lines of its own song (`שלאף מיין קינד` with a
+    `Refrein` between; the `איכה` lament). The V is the fifth *stanza*. These
+    are `head`, by the same logic as M5's `רעפריין` rubric.
+  - p.19 `II` is a **music cue** — the next lines are `מוזיק שפיעלט` and
+    `/ארקעסטער מארש/`.
+  One play, two readings, decided by what follows the numeral. This is why
+  C7b's `ISOLATED_CUE_PLAYS` holds Khurbn back from any blanket rule.
+
+**C7a. A bare numeral alone on its line and followed by `l`/`lg` is a stanza
+number** → `head`. Swept 2026-08-18 by `annotation.fix_ms_residual_2026_08_18`
+(12 spans: Khurbn 9, Meshumed 2, DiTsveyTnoim 1), all previously mis-tagged
+`heading`, i.e. published as act headings.
+
+**C7c. Repeat with a count `(4)` → `stage{type:delivery}`**, per M4, which
+already declines to record the count. BenHaDor p.33 writes
+`אלטע | קווא (4) (ביסס)` — count and repeat word side by side — which is what
+identifies the bare `(4)` as the same instruction. 5 spans.
 
 **C8. DraCor.** `<metamark>` is tei_all but outside the DraCor profile —
 nothing in their pipeline reads it. `build_tei` **strips** it from the
