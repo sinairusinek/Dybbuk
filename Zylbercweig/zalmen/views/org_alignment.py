@@ -75,6 +75,7 @@ XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
 # found in XML"). Re-exported here so existing callers — including
 # settlement_audit, which imports get_entry_text from this module — are unchanged.
 from zalmen.lexicon import get_entry_text  # noqa: E402,F401
+from atomic_io import atomic_write
 
 
 @st.cache_data(show_spinner=False)
@@ -175,7 +176,7 @@ def save_alignment(headers, rows):
     with open(lock, "w") as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
         try:
-            with open(ALIGN_FILE, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(ALIGN_FILE) as f:
                 w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
                 w.writeheader()
                 w.writerows(rows)
@@ -218,7 +219,7 @@ def save_core_db(headers, rows):
     with open(lock, "w") as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
         try:
-            with open(CORE_DB_FILE, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(CORE_DB_FILE) as f:
                 w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
                 w.writeheader()
                 w.writerows(rows)

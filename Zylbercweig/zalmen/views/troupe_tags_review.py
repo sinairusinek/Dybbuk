@@ -44,6 +44,7 @@ from views.db_audit import (
     save_troupe_tags,
     load_troupe_tags,
 )
+from atomic_io import atomic_write
 
 ORG = pathlib.Path(__file__).resolve().parents[2] / "organizations"
 DRAFTS = ORG / "troupe_tags_draft.tsv"
@@ -100,7 +101,7 @@ def save_review(recs: list[dict]) -> None:
                         existing[row.get("db_id", "")] = row
             for rec in recs:
                 existing[rec["db_id"]] = rec
-            with open(REVIEW, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(REVIEW) as f:
                 w = csv.DictWriter(f, fieldnames=REVIEW_HEADERS, delimiter="\t")
                 w.writeheader()
                 for row in existing.values():

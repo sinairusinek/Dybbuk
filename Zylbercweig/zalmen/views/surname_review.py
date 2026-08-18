@@ -28,6 +28,7 @@ PEOPLE_DIR = BASE / "people"
 if str(PEOPLE_DIR) not in sys.path:
     sys.path.insert(0, str(PEOPLE_DIR))
 from people_similarity import token_variant_similarity  # noqa: E402
+from atomic_io import atomic_write
 RESOLUTIONS_TSV = PEOPLE_DIR / "mention_surname_resolutions.tsv"
 GROUPS_TSV = PEOPLE_DIR / "surname_groups.tsv"
 HUB_TSV = PEOPLE_DIR / "person_hub.tsv"
@@ -208,7 +209,7 @@ def _save_decisions(new_rows: list[dict], commit_msg: str) -> None:
     decisions = _load_decisions()
     for row in new_rows:
         decisions[row["mention_id"]] = {**decisions.get(row["mention_id"], {}), **row}
-    with open(DECISIONS_TSV, "w", encoding="utf-8", newline="") as fp:
+    with atomic_write(DECISIONS_TSV) as fp:
         w = csv.DictWriter(fp, fieldnames=DECISION_FIELDS, delimiter="\t",
                            extrasaction="ignore")
         w.writeheader()

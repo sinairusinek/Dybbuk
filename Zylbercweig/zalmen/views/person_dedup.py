@@ -13,6 +13,7 @@ import pathlib
 import sys
 
 import streamlit as st
+from atomic_io import atomic_write
 
 BASE = pathlib.Path(__file__).parents[2]
 _BASE_STR = str(BASE)
@@ -56,7 +57,7 @@ def _save_decision(row: dict) -> None:
     key = tuple(sorted((row["a_xml_id"], row["b_xml_id"])))
     decisions[key] = {**decisions.get(key, {}), **row}
     PEOPLE_DIR.mkdir(parents=True, exist_ok=True)
-    with open(DECISIONS_TSV, "w", encoding="utf-8", newline="") as fp:
+    with atomic_write(DECISIONS_TSV) as fp:
         w = csv.DictWriter(fp, fieldnames=DECISION_FIELDS, delimiter="\t", extrasaction="ignore")
         w.writeheader()
         for v in decisions.values():

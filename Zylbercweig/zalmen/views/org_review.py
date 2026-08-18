@@ -32,6 +32,7 @@ if _BASE_STR not in sys.path:
 from organizations.org_normalize import normalize_yiddish as _nrm_yid
 from organizations.settlement_index import get_index as _get_settlement_index
 from zalmen.activity_log import log_action
+from atomic_io import atomic_write
 
 ALIGN_FILE = BASE / "organizations" / "org_alignment_review.tsv"
 PAIRS_FILE = BASE / "organizations" / "cluster_pairs_review.tsv"
@@ -278,7 +279,7 @@ def save_alignment(headers: list[str], rows: list[dict[str, str]]) -> None:
 	with open(lock_path, "w") as lock_fh:
 		fcntl.flock(lock_fh, fcntl.LOCK_EX)
 		try:
-			with open(ALIGN_FILE, "w", newline="", encoding="utf-8") as f:
+			with atomic_write(ALIGN_FILE) as f:
 				w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
 				w.writeheader()
 				w.writerows(rows)
@@ -295,7 +296,7 @@ def save_pairs(headers: list[str], rows: list[dict[str, str]]) -> None:
 	with open(lock_path, "w") as lock_fh:
 		fcntl.flock(lock_fh, fcntl.LOCK_EX)
 		try:
-			with open(PAIRS_FILE, "w", newline="", encoding="utf-8") as f:
+			with atomic_write(PAIRS_FILE) as f:
 				w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
 				w.writeheader()
 				w.writerows(rows)
@@ -369,7 +370,7 @@ def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
 	with open(lock_path, "w") as lock_fh:
 		fcntl.flock(lock_fh, fcntl.LOCK_EX)
 		try:
-			with open(CORE_DB_FILE, "w", newline="", encoding="utf-8") as f:
+			with atomic_write(CORE_DB_FILE) as f:
 				w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
 				w.writeheader()
 				w.writerows(rows)
@@ -418,7 +419,7 @@ def append_address_row(db_id: str, name: str, org_type: str, cluster_id: str,
 			if "reviewed_at" in headers:
 				new_row["reviewed_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 			rows.append(new_row)
-			with open(ADDR_FILE, "w", newline="", encoding="utf-8") as f:
+			with atomic_write(ADDR_FILE) as f:
 				w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
 				w.writeheader()
 				w.writerows(rows)

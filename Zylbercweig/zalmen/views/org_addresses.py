@@ -32,6 +32,7 @@ import xml.etree.ElementTree as ET
 import streamlit as st
 
 from zalmen.activity_log import log_action
+from atomic_io import atomic_write
 
 def _open_url(view: str, entity: str = "") -> str:
     """Build a deep-link URL for opening a specific view+entity in a new tab."""
@@ -235,7 +236,7 @@ def save_orgs(headers, rows):
     with open(lock, "w") as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
         try:
-            with open(ADDR_FILE, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(ADDR_FILE) as f:
                 w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
                 w.writeheader(); w.writerows(rows)
         finally:
@@ -251,7 +252,7 @@ def save_alignment(headers, rows):
     with open(lock, "w") as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
         try:
-            with open(ALIGN_FILE, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(ALIGN_FILE) as f:
                 w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
                 w.writeheader()
                 w.writerows(rows)
@@ -268,7 +269,7 @@ def save_cluster_rows(headers, rows):
     with open(lock, "w") as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
         try:
-            with open(CLUSTER_FILE, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(CLUSTER_FILE) as f:
                 w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
                 w.writeheader()
                 w.writerows(rows)

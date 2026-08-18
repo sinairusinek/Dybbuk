@@ -71,6 +71,7 @@ _JSON_TO_XML = {
 # eager all-volumes parse pinned via cache_resource, which (times four views)
 # risked OOM on Streamlit Cloud and silently dropped whole volumes.
 from zalmen.lexicon import get_entry_text  # noqa: E402,F401
+from atomic_io import atomic_write
 
 
 # ── Data loading / saving ─────────────────────────────────────────────────────
@@ -92,7 +93,7 @@ def save_pairs(headers: list[str], rows: list[dict]) -> None:
     with open(lock_path, "w") as lock_fh:
         fcntl.flock(lock_fh, fcntl.LOCK_EX)
         try:
-            with open(PAIRS_FILE, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(PAIRS_FILE) as f:
                 writer = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
                 writer.writeheader()
                 writer.writerows(rows)
@@ -131,7 +132,7 @@ def save_alignment(headers: list[str], rows: list[dict]) -> None:
     with open(lock_path, "w") as lock_fh:
         fcntl.flock(lock_fh, fcntl.LOCK_EX)
         try:
-            with open(ALIGN_FILE, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(ALIGN_FILE) as f:
                 writer = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
                 writer.writeheader()
                 writer.writerows(rows)

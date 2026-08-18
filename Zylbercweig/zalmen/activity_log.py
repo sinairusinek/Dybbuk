@@ -18,6 +18,7 @@ import pathlib
 from datetime import datetime, timezone
 
 import streamlit as st
+from atomic_io import atomic_write
 
 LOG_PATH = pathlib.Path(__file__).parents[1] / "organizations" / "activity_log.tsv"
 REPO_PATH = "Zylbercweig/organizations/activity_log.tsv"
@@ -29,7 +30,7 @@ def _ensure_header() -> None:
     if LOG_PATH.exists() and LOG_PATH.stat().st_size > 0:
         return
     LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(LOG_PATH, "w", encoding="utf-8", newline="") as f:
+    with atomic_write(LOG_PATH) as f:
         csv.writer(f, delimiter="\t").writerow(COLUMNS)
 
 

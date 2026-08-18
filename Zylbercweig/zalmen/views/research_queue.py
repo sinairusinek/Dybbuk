@@ -11,6 +11,7 @@ from __future__ import annotations
 import csv
 import datetime as _dt
 import pathlib
+from atomic_io import atomic_write
 
 BASE = pathlib.Path(__file__).parents[2]
 RESEARCH_QUEUE = BASE / "organizations" / "research_queue.tsv"
@@ -35,7 +36,7 @@ def _migrate_if_needed() -> None:
     for row in rows:
         for h in RESEARCH_HEADERS:
             row.setdefault(h, "")
-    with RESEARCH_QUEUE.open("w", newline="") as f:
+    with atomic_write(RESEARCH_QUEUE) as f:
         w = csv.DictWriter(f, fieldnames=RESEARCH_HEADERS, delimiter="\t")
         w.writeheader()
         w.writerows(rows)

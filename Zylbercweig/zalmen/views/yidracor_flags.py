@@ -20,6 +20,7 @@ import pathlib
 import sys
 
 import streamlit as st
+from atomic_io import atomic_write
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 YIDRACOR = pathlib.Path(__file__).resolve().parents[3] / "YiDraCor"
@@ -103,7 +104,7 @@ def save_decision(rec: dict) -> None:
                     for row in csv.DictReader(f, delimiter="\t"):
                         existing[row["row_key"]] = row
             existing[rec["row_key"]] = rec
-            with open(DECISIONS, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(DECISIONS) as f:
                 w = csv.DictWriter(f, fieldnames=DECISION_HEADERS, delimiter="\t")
                 w.writeheader()
                 for row in existing.values():

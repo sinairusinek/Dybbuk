@@ -35,6 +35,7 @@ from views.org_review import (
     load_samples,
     render_attestations,
 )
+from atomic_io import atomic_write
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 ORG = pathlib.Path(__file__).resolve().parents[2] / "organizations"
@@ -164,7 +165,7 @@ def save_decisions(records: list[dict]) -> None:
                         existing[(row.get("db_id", ""), row.get("cluster_id", ""))] = row
             for rec in records:
                 existing[(rec["db_id"], rec["cluster_id"])] = rec
-            with open(DECISIONS, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(DECISIONS) as f:
                 w = csv.DictWriter(f, fieldnames=DECISION_HEADERS, delimiter="\t")
                 w.writeheader()
                 for row in existing.values():
@@ -235,7 +236,7 @@ def save_troupe_tags(records: list[dict]) -> None:
                         existing[row.get("db_id", "")] = row
             for rec in records:
                 existing[rec["db_id"]] = rec
-            with open(TROUPE_TAGS, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(TROUPE_TAGS) as f:
                 w = csv.DictWriter(f, fieldnames=TROUPE_TAG_HEADERS, delimiter="\t")
                 w.writeheader()
                 for row in existing.values():
@@ -294,7 +295,7 @@ def save_dedup_decisions(records: list[dict]) -> None:
                         existing[(row.get("db_id_a", ""), row.get("db_id_b", ""))] = row
             for rec in records:
                 existing[(rec["db_id_a"], rec["db_id_b"])] = rec
-            with open(DEDUP_DECISIONS, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(DEDUP_DECISIONS) as f:
                 w = csv.DictWriter(f, fieldnames=DEDUP_DECISION_HEADERS, delimiter="\t")
                 w.writeheader()
                 for row in existing.values():
@@ -350,7 +351,7 @@ def save_dblalign_decisions(records: list[dict]) -> None:
                         existing[row.get("cluster_id", "")] = row
             for rec in records:
                 existing[rec["cluster_id"]] = rec
-            with open(DBLALIGN_DECISIONS, "w", newline="", encoding="utf-8") as f:
+            with atomic_write(DBLALIGN_DECISIONS) as f:
                 w = csv.DictWriter(f, fieldnames=DBLALIGN_DECISION_HEADERS, delimiter="\t")
                 w.writeheader()
                 for row in existing.values():

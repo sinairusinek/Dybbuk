@@ -18,6 +18,7 @@ import pathlib
 import sys
 
 import streamlit as st
+from atomic_io import atomic_write
 
 BASE = pathlib.Path(__file__).parents[2]
 _BASE_STR = str(BASE)
@@ -169,7 +170,7 @@ def _save_decisions(new_rows: list[dict], commit_msg: str) -> None:
     decisions = _load_decisions()
     for row in new_rows:
         decisions[row["person_id"]] = {**decisions.get(row["person_id"], {}), **row}
-    with open(DECISIONS_TSV, "w", encoding="utf-8", newline="") as fp:
+    with atomic_write(DECISIONS_TSV) as fp:
         w = csv.DictWriter(fp, fieldnames=DECISION_FIELDS, delimiter="\t",
                            extrasaction="ignore")
         w.writeheader()
