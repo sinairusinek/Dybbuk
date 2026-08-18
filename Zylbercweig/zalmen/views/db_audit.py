@@ -82,6 +82,10 @@ TROUPE_TAGS_REPO_PATH = "Zylbercweig/organizations/troupe_tags.tsv"
 
 TROUPE_TAG_HEADERS = [
     "db_id", "tags", "other_tags",
+    # `reviewer_notes` is machine provenance ("from draft (edit)") and is
+    # overwritten on every save — `comment` is the reviewer's own free text and
+    # is carried forward when a later save leaves it blank.
+    "comment",
     "reviewer_notes", "reviewer", "reviewed_at",
 ]
 

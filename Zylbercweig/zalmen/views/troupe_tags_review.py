@@ -117,34 +117,43 @@ def save_review(recs: list[dict]) -> None:
     load_review.clear()
 
 
-def _commit_batch(items: list[tuple[str, list[str], str]], reviewer: str) -> None:
-    """Commit N (db_id, tags, status) decisions with ONE troupe_tags push and
-    ONE review-audit push — critical on Streamlit Cloud, where each push
-    triggers a redeploy that resets sessions. status ∈ accept/edit/reject."""
+def _commit_batch(items: list[tuple[str, list[str], str, str]], reviewer: str) -> None:
+    """Commit N (db_id, tags, status, comment) decisions with ONE troupe_tags
+    push and ONE review-audit push — critical on Streamlit Cloud, where each push
+    triggers a redeploy that resets sessions. status ∈ accept/edit/reject.
+
+    A blank comment never erases one already on the row: the card's box starts
+    empty on a fresh render, so clearing it must be deliberate (done from the
+    Correct-saved-tags table, which shows the current text). A row is written
+    when it has tags OR a comment — a comment-only row is a legitimate way to
+    park a question about a troupe you can't yet tag."""
     ts = _dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    prev = load_troupe_tags(_mtime(TROUPE_TAGS))
     tag_recs = [{
         "db_id": db_id, "tags": " | ".join(tags), "other_tags": "",
+        "comment": comment or (prev.get(db_id, {}).get("comment", "") or ""),
         "reviewer_notes": f"from draft ({status})",
         "reviewer": reviewer, "reviewed_at": ts,
-    } for db_id, tags, status in items if tags]
+    } for db_id, tags, status, comment in items if tags or comment]
     if tag_recs:
         save_troupe_tags(tag_recs)                       # one push
     save_review([{
         "db_id": db_id, "status": status,
         "final_tags": " | ".join(tags),
         "reviewer": reviewer, "reviewed_at": ts,
-    } for db_id, tags, status in items])                 # one push
+    } for db_id, tags, status, _comment in items])       # one push
     try:
         from zalmen.activity_log import log_action
-        for db_id, tags, status in items:
+        for db_id, tags, status, _comment in items:
             log_action("troupe_review", status, target_id=db_id,
                        decision=" | ".join(tags), push=False)
     except Exception:  # noqa: BLE001
         pass
 
 
-def _commit_tags(db_id: str, tags: list[str], reviewer: str, status: str) -> None:
-    _commit_batch([(db_id, tags, status)], reviewer)
+def _commit_tags(db_id: str, tags: list[str], reviewer: str, status: str,
+                 comment: str = "") -> None:
+    _commit_batch([(db_id, tags, status, comment)], reviewer)
 
 
 def _mention_lines(d: dict, samples: dict) -> list[tuple[str, str]]:
@@ -202,10 +211,17 @@ def _render_card(d: dict, reviewer: str, samples: dict) -> None:
             st.warning(d["review_flags"], icon="⚠️")
         st.pills("Tags", _TROUPE_TAG_OPTS, selection_mode="multi",
                  default=draft_tags, key=f"ttr_pills_{db_id}")
+        st.text_input(
+            "Comment (optional)", key=f"ttr_comment_{db_id}",
+            placeholder="a doubt, a source, anything the tags can't say",
+            help="Free text, saved with the row. Leave blank and nothing is "
+                 "written — an existing comment is kept, not erased.",
+        )
         if st.button("💾 Save edits", key=f"ttr_save_{db_id}", type="primary",
                      use_container_width=True):
             picked = st.session_state.get(f"ttr_pills_{db_id}", []) or []
-            _commit_tags(db_id, picked, reviewer, "edit")
+            note = (st.session_state.get(f"ttr_comment_{db_id}", "") or "").strip()
+            _commit_tags(db_id, picked, reviewer, "edit", note)
             st.toast(f"Saved DB {db_id} — moved to already-tagged", icon="💾")
             st.rerun()
     with right:
@@ -243,19 +259,24 @@ def _diff_and_validate(
       unknown — (db_id, tag) for tags outside the vocabulary. Nothing downstream
                 re-checks the tags column, so a typo saved here is invisible
                 forever; the Save button is disabled while any exist.
-      emptied — rows left with no tags at all. Legal, but they stay in
+      emptied — rows left with no tags AND no comment. Legal, but they stay in
                 troupe_tags.tsv as empty rows and so never return to the draft
-                queue, which is worth warning about before it happens.
+                queue, which is worth warning about before it happens. A row
+                cleared of tags but carrying a comment is deliberate, not empty.
     """
     before = {r["db_id"]: r for r in before_rows}
     changed = [r for r in edited_rows
                if r["db_id"] in before
                and (r["tags"] != before[r["db_id"]]["tags"]
-                    or r["other tags"] != before[r["db_id"]]["other tags"])]
+                    or r["other tags"] != before[r["db_id"]]["other tags"]
+                    # .get: the comment column post-dates callers/tests that
+                    # pass two-column rows.
+                    or r.get("comment", "") != before[r["db_id"]].get("comment", ""))]
     unknown = [(r["db_id"], t) for r in changed
                for t in _split_tags(r["tags"]) if t not in _TROUPE_TAG_OPTS]
     emptied = [r["db_id"] for r in changed
-               if not _split_tags(r["tags"]) and not _split_tags(r["other tags"])]
+               if not _split_tags(r["tags"]) and not _split_tags(r["other tags"])
+               and not (r.get("comment", "") or "").strip()]
     return changed, unknown, emptied
 
 
@@ -269,7 +290,7 @@ def _render_correct(reviewer: str) -> None:
     names = load_core_names(_mtime(CORE_DB))
 
     st.caption(
-        "Everything saved to troupe_tags.tsv. Edit the **tags** / **other tags** "
+        "Everything saved to troupe_tags.tsv. Edit the **tags** / **other tags** / **comment** "
         "cells directly — pipe-delimited, e.g. `Family Company | Operetta / Opera "
         "Company` — then Save. Only rows you actually changed are written."
     )
@@ -283,6 +304,7 @@ def _render_correct(reviewer: str) -> None:
             "yiddish": meta.get("name_yiddish", ""),
             "tags": " | ".join(_split_tags(r.get("tags", ""))),
             "other tags": " | ".join(_split_tags(r.get("other_tags", ""))),
+            "comment": r.get("comment", "") or "",
             "by": r.get("reviewer", ""),
             "when": (r.get("reviewed_at", "") or "")[:10],
         })
@@ -292,7 +314,7 @@ def _render_correct(reviewer: str) -> None:
     # Filters — plain text/select, so the table stays one widget.
     c1, c2 = st.columns([3, 2])
     with c1:
-        q = st.text_input("Filter by name or db_id", key="ttc_q",
+        q = st.text_input("Filter by name, comment or db_id", key="ttc_q",
                           placeholder="substring match")
     with c2:
         who = st.selectbox("Tagged by", ["everyone"] + sorted(
@@ -303,6 +325,7 @@ def _render_correct(reviewer: str) -> None:
         view = view[view.apply(
             lambda r: ql in str(r["name"]).casefold()
             or ql in str(r["yiddish"]).casefold()
+            or ql in str(r["comment"]).casefold()
             or ql in str(r["db_id"]).casefold(), axis=1)]
     if who != "everyone":
         view = view[view["by"] == who]
@@ -322,6 +345,10 @@ def _render_correct(reviewer: str) -> None:
             "other tags": st.column_config.TextColumn(
                 "other tags", help="Free text, pipe-delimited — ideas the "
                                    "vocabulary doesn't cover yet."),
+            "comment": st.column_config.TextColumn(
+                "comment", help="Optional free text about this troupe. This is "
+                                "the only place an existing comment can be "
+                                "cleared — the draft card never erases one."),
             "by": st.column_config.TextColumn("by", disabled=True, width="small"),
             "when": st.column_config.TextColumn("when", disabled=True, width="small"),
         },
@@ -356,6 +383,7 @@ def _render_correct(reviewer: str) -> None:
             "db_id": r["db_id"],
             "tags": " | ".join(_split_tags(r["tags"])),
             "other_tags": " | ".join(_split_tags(r["other tags"])),
+            "comment": (r.get("comment", "") or "").strip(),
             "reviewer_notes": "corrected in Correct-saved-tags",
             "reviewer": reviewer,
             "reviewed_at": ts,

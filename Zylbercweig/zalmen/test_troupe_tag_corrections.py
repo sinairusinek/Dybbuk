@@ -15,8 +15,9 @@ sys.path[:0] = [str(pathlib.Path(__file__).resolve().parent)]
 from views.troupe_tags_review import _diff_and_validate  # noqa: E402
 
 
-def _row(db_id, tags="", other=""):
-    return {"db_id": db_id, "tags": tags, "other tags": other}
+def _row(db_id, tags="", other="", comment=""):
+    return {"db_id": db_id, "tags": tags, "other tags": other,
+            "comment": comment}
 
 
 def test_no_edits_changes_nothing():
@@ -78,3 +79,34 @@ def test_rows_filtered_out_of_view_are_never_written():
     after = [_row("1", "Family Company"), _row("99", "Star Company")]
     changed, _, _ = _diff_and_validate(before, after)
     assert changed == []
+
+
+# ── comment column (added 2026-08-18) ─────────────────────────────────────────
+
+def test_comment_edit_alone_counts_as_a_change():
+    before = [_row("1", "Family Company")]
+    after = [_row("1", "Family Company", comment="Ruthie: check the 1904 tour")]
+    changed, unknown, emptied = _diff_and_validate(before, after)
+    assert [r["db_id"] for r in changed] == ["1"]
+    assert unknown == [] and emptied == []
+
+
+def test_comment_is_not_vocabulary_checked():
+    before = [_row("1", "Family Company")]
+    after = [_row("1", "Family Company", comment="Wandering Company?")]
+    _, unknown, _ = _diff_and_validate(before, after)
+    assert unknown == []
+
+
+def test_row_with_only_a_comment_is_not_reported_as_emptied():
+    before = [_row("1", "Family Company", "something")]
+    after = [_row("1", "", "", comment="not a troupe at all — see DB 412")]
+    changed, _, emptied = _diff_and_validate(before, after)
+    assert changed and emptied == []
+
+
+def test_clearing_tags_and_comment_is_still_emptied():
+    before = [_row("1", "Family Company", comment="was unsure")]
+    after = [_row("1", "", "", comment="   ")]
+    _, _, emptied = _diff_and_validate(before, after)
+    assert emptied == ["1"]
