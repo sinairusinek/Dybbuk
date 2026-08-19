@@ -118,6 +118,13 @@ _TROUPE_TAG_OPTS = [
     # added 2026-08-10 (Ruthie): two new characteristic tags from the lexicon
     "Kleinkunst / Revue / Cabaret Company",
     "Marionette / Puppet Company",
+    # added 2026-08-19 (Ruthie): the language/ethnicity axis, plus an escape
+    # hatch. "Not a Troupe" is a disposition, not a description — it says the row
+    # was mis-typed as a troupe upstream, and downstream org_type work should
+    # pick it up. Keep it last so it reads as separate from the descriptive tags.
+    "Non-Jewish Company",
+    "Hebrew-Language Company",
+    "Not a Troupe",
     # Dropped 2026-08-10 (Ruthie): Zionist, Socialist, Post-Holocaust, Bilingual
     # — never used, never assigned, unconfirmed leftovers from the 07-19 list.
 ]

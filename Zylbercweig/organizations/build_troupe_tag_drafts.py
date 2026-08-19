@@ -6,10 +6,16 @@ citing the Yiddish phrase or the known-name that triggered it. Curated
 family/star/operetta knowledge is applied conservatively and marked as such so
 the reviewer can weigh it separately from hard text cues.
 
-Live vocabulary only (the flat app list), plus the two new tags Ruthie approved:
-  Kleinkunst / Revue / Cabaret Company, Marionette / Puppet Company.
+Live vocabulary only (the flat app list). Ruthie's additions: Kleinkunst /
+Revue / Cabaret + Marionette / Puppet (2026-08-10), then Non-Jewish,
+Hebrew-Language and Not a Troupe (2026-08-19).
 Youth/student folds into Amateur (her decision). Not adopted: Wandering,
-Provincial, Drama, Art-Theatre, Hebrew, Women-Led, Guest-Star.
+Provincial, Drama, Art-Theatre, Women-Led, Guest-Star.
+
+"Not a Troupe" is deliberately never drafted: nothing in a name or a mention
+sentence marks a row as mis-typed, and guessing it would put rows the reviewer
+never looked at beyond the reach of every troupe query. It is a reviewer-only
+tag.
 
 Output: troupe_tags_draft.tsv — reviewed later in Zalmen (separate tab, TBD).
 NOT written into troupe_tags.tsv; these are drafts, source=Claude-draft.
@@ -146,6 +152,29 @@ OPERETTA_NAMES = {
 _HYPHEN_NOT_NAME = ("טרופּ","טרופ","קרייז","קאָלעקטיוו","קוואַרטעט","אָפּערעט","קינדער",
                     "וואַנדער","פּראָווינץ","טעאַטער","אַנסאַמבל","יידיש","געזעלשאַפֿט")
 
+# Nation adjectives arrive pointed in the source (אַלאוקראַאינישן) but the shared
+# patterns elsewhere in this dir are written unpointed, so strip points before
+# matching — an unstripped regex silently misses most of them.
+_POINTS = re.compile(r"[\u0591-\u05C7]")
+
+
+def bare(s: str) -> str:
+    return _POINTS.sub("", s or "")
+
+
+# National / republic-level qualifiers, unpointed. Byelorussian precedes Russian
+# (ווייסרוסיש contains רוסיש). Kept in step with collapse_state_theaters.py.
+_NATIONS = [
+    ("Byelorussian", r"ווייסרוס"), ("Ukrainian", r"אוקרא"), ("Moldavian", r"מאלד"),
+    ("Latvian", r"לעטיש"), ("Romanian", r"רומעניש"), ("Russian", r"רוסיש"),
+    ("Polish", r"פויליש"), ("Uzbek", r"אוזבעקיש"), ("Kirghiz", r"קירגיז"),
+    ("Lithuanian", r"ליטוויש"), ("Hungarian", r"אונגאריש"), ("Czech", r"טשעכיש"),
+]
+# A Jewish-language marker anywhere in the name vetoes Non-Jewish: a
+# "פּוילישער יידישער טעאַטער" is a Polish-based YIDDISH company, not a Polish one.
+_JEWISH_MARKER = r"יידיש|אידיש|העברעאיש|העברעיש|זשארגאן"
+
+
 def cue(text, pats):
     for p in pats:
         m = re.search(p, text)
@@ -204,6 +233,20 @@ def classify(name, yid, sents):
     # brothers" elsewhere is about a person's career, not this troupe).
     fam = cue(nm, [r"ברידער", r"שוועסטער", r"משפּחה", r"[Ff]amily"])
     if fam: add("Family Company", f"«{fam}»", "text")
+    # Hebrew-Language — NAME only, and Habima by name. A mention that an actor
+    # later played in Palestine is career history, not this company's language.
+    heb = cue(bare(nm), [r"העברעאיש", r"העברעיש", r"הבימה", r"[Hh]ebrew"])
+    if heb: add("Hebrew-Language Company", f"«{heb}»", "text")
+    # Non-Jewish — a nation adjective in the NAME with no Jewish-language marker
+    # anywhere in it. This is the troupe-tag counterpart of the
+    # "Non-Yiddish Theatre" org_type (map_canonical_types_v3.py Rule 0/4).
+    bn = bare(nm)
+    if not re.search(_JEWISH_MARKER, bn) and "Hebrew-Language Company" not in tags:
+        for who, pat in _NATIONS:
+            m = re.search(pat, bn)
+            if m:
+                add("Non-Jewish Company", f"{who} («{m.group(0)}»), no Jewish-language marker", "text-low")
+                break
 
     # ── curated knowledge (medium confidence), name-only ──
     for sub, who in FAMILIES.items():

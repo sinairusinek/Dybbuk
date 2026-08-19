@@ -44,6 +44,7 @@ from views.db_audit import (
     save_troupe_tags,
     load_troupe_tags,
 )
+from lexicon import JSON_TO_XML, get_entry_text
 from atomic_io import atomic_write
 import mention_removals
 
@@ -156,19 +157,21 @@ def _commit_tags(db_id: str, tags: list[str], reviewer: str, status: str,
     _commit_batch([(db_id, tags, status, comment)], reviewer)
 
 
-def _mention_lines(d: dict, samples: dict) -> list[tuple[str, str]]:
-    """Unique (heading, sentence) mention lines across this troupe's clusters."""
+def _mention_lines(d: dict, samples: dict) -> list[tuple[str, str, str, str]]:
+    """Unique (heading, sentence, file, xml_id) mention lines across this
+    troupe's clusters. file/xml_id address the lexicon entry the sentence came
+    from, so the panel can offer to open its full text."""
     lines, seen = [], set()
     for cid in _split_tags(d.get("cluster_ids", "")):
-        for head, sent, _fle, _xid in (samples.get(cid) or {}).get("samples", []):
+        for head, sent, fle, xid in (samples.get(cid) or {}).get("samples", []):
             key = (head, sent)
             if sent and key not in seen:
                 seen.add(key)
-                lines.append((head, sent))
+                lines.append((head, sent, fle, xid))
     return lines
 
 
-def _render_text_panel(d: dict, samples: dict) -> None:
+def _render_text_panel(d: dict, samples: dict, db_id: str = "") -> None:
     """Right panel: the lexicon lines that name this troupe, in a fixed-height
     scrollable box (st.container(height=...) gives the scroll)."""
     lines = _mention_lines(d, samples)
@@ -176,19 +179,57 @@ def _render_text_panel(d: dict, samples: dict) -> None:
     with box:
         if not lines:
             st.caption("No source mentions found for this troupe's clusters.")
-            return
-        if d.get("text_source", "") == "name-match":
-            st.caption("⚠️ recovered by name match — core_db does not link this "
-                       "troupe to the cluster below; verify it is the same troupe.")
-        st.caption(f"{len(lines)} lexicon mention(s) naming this troupe:")
-        for head, sent in lines[:80]:
-            st.markdown(
-                f"<div dir='rtl' style='margin-bottom:.55em; line-height:1.5'>"
-                f"<b>{head or '(no heading)'}</b> — {sent}</div>",
-                unsafe_allow_html=True,
-            )
-        if len(lines) > 80:
-            st.caption(f"… and {len(lines) - 80} more")
+        else:
+            if d.get("text_source", "") == "name-match":
+                st.caption("⚠️ recovered by name match — core_db does not link "
+                           "this troupe to the cluster below; verify it is the "
+                           "same troupe.")
+            st.caption(f"{len(lines)} lexicon mention(s) naming this troupe:")
+            for i, (head, sent, _f, _x) in enumerate(lines[:80], start=1):
+                st.markdown(
+                    f"<div dir='rtl' style='margin-bottom:.55em; line-height:1.5'>"
+                    f"<b>{i}. {head or '(no heading)'}</b> — {sent}</div>",
+                    unsafe_allow_html=True,
+                )
+            if len(lines) > 80:
+                st.caption(f"… and {len(lines) - 80} more")
+    # Outside the scroll box, so the opener stays reachable without scrolling.
+    _render_entry_opener(db_id, lines[:80])
+
+
+def _render_entry_opener(db_id: str, lines: list[tuple[str, str, str, str]]) -> None:
+    """Optional: open the FULL lexicon entry behind one of the mentions above.
+
+    A selectbox rather than a link or an expander per mention, on purpose. An
+    expander body executes even while collapsed, so 80 of them would parse a
+    volume per mention on every rerun (the bug this view's docstring warns
+    about); a button per mention is 80 widgets per card, and there can be 200
+    cards on a page. This is one widget, and `get_entry_text` runs only for the
+    entry actually chosen — nothing is read until the reviewer asks."""
+    openable = [(i, h, f, x) for i, (h, _s, f, x) in enumerate(lines, start=1)
+                if f and x]
+    if not openable:
+        return
+    pick = st.selectbox(
+        "Open the full entry behind a mention (optional)",
+        options=range(len(openable)), index=None,
+        format_func=lambda j: f"{openable[j][0]}. {openable[j][1] or '(no heading)'}",
+        placeholder="— pick a mention —", key=f"ttr_entry_{db_id}",
+        label_visibility="collapsed",
+    )
+    if pick is None:
+        return
+    _n, head, fle, xid = openable[pick]
+    text = get_entry_text(fle, xid)
+    if not text:
+        st.caption(f"Entry not found in XML ({JSON_TO_XML.get(fle, fle)}).")
+        return
+    st.caption(f"Full entry — {head or '(no heading)'} · {xid}")
+    with st.container(height=300, border=True):
+        st.markdown(
+            f"<div dir='rtl' style='font-size:.9em; white-space:pre-wrap; "
+            f"line-height:1.6'>{text}</div>", unsafe_allow_html=True,
+        )
 
 
 def _render_card(d: dict, reviewer: str, samples: dict) -> None:
@@ -225,7 +266,7 @@ def _render_card(d: dict, reviewer: str, samples: dict) -> None:
             st.toast(f"Saved DB {db_id} — moved to already-tagged", icon="💾")
             st.rerun()
     with right:
-        _render_text_panel(d, samples)
+        _render_text_panel(d, samples, db_id)
 
 
 # ── Correct saved tags ────────────────────────────────────────────────────────

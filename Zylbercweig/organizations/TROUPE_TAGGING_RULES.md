@@ -189,5 +189,39 @@ home for. I'd suggest **8**; the last two are optional.
   are tagged **Amateur Company**. The drafter's Amateur rule already reads
   *יוגנט-*, *סטודענטן-*, *שול-טרופּע* alongside *אַמאַטאָר* / *ליבהאָבער* / *דראַמאַטישער קרייז*.
 
-The vocabulary is therefore settled at 13 tags, and drafting tags for the
-remaining troupes from the lexicon evidence can proceed against Part A as written.
+## Reopened 2026-08-19 — three tags added (Ruthie)
+
+The vocabulary is now **16 tags**. The language/ethnicity axis, closed the day
+before when Hebrew Company was rejected, was reopened deliberately.
+
+### Non-Jewish Company
+**Plain meaning:** the company is not a Jewish one at all — a Russian, Polish or
+Ukrainian troupe that appears in Zylbercweig only because Jewish actors passed
+through it.
+**Signs:** a nation adjective in the **name** — *רוסישער*, *פּוילישער*,
+*אוקראַאינישער*, *לעטישער*, *רומענישער* — **and no Jewish-language marker**
+(*יידיש*, *אידיש*, *העברעאיש*, *זשאַרגאָן*) anywhere in it. A
+*פּוילישער יידישער טעאַטער* is a Polish-based **Yiddish** company and is not tagged.
+Drafted at `text-low`: the name is good evidence, but it is still only the name.
+This is the troupe-tag counterpart of the existing **`Non-Yiddish Theatre`
+org_type**, which covers standing institutions rather than touring companies.
+**Drafted: 20 troupes** — almost all *רוסישער טרופּע פֿון …*.
+
+### Hebrew-Language Company
+**Plain meaning:** the company performs **in Hebrew**.
+**Signs:** *העברעאיש* / *העברעיש* in the name, or *הבימה*. Name only — that an
+actor later played in Palestine is career history, not this company's language.
+**Drafted: 2 troupes** (*צמחס העברעאישער טרופּע*, and Katzenelson's Hebrew
+performances).
+
+### Not a Troupe
+**Plain meaning:** this row should never have been in the troupe list — it is a
+theatre building, a society, a person, a mistake.
+**Never drafted, ever.** Nothing in a name or a sentence marks a row as
+mis-typed, and a guess would push rows the reviewer never looked at out of reach
+of every troupe query. It exists only for Ruthie to apply by hand, and it is a
+signal for downstream `org_type` work, not a description of a company.
+
+---
+
+Drafting for the remaining troupes proceeds against Part A plus these three.
