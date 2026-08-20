@@ -64,6 +64,57 @@ _TIER_LABEL = {
 }
 
 
+# ── surviving a redeploy ──────────────────────────────────────────────────────
+# Every reviewer save pushes to the branch Streamlit Cloud deploys, so the server
+# restarts and drops the session several times an hour (see the app.py note on
+# `?view=`). `?view=` brings the RA back to THIS view, but the section and the
+# confidence tier live in session_state, so she came back to the top of the first
+# tier — mid-queue, that still reads as "it jumped". Mirroring both in the URL
+# means the reconnect replays the exact group she was working.
+#
+# Slugs, not the raw labels: the tier keys carry spaces and parens, and the radio
+# INDEX is not stable — inserting a tier would silently move everyone.
+_TIER_SLUG = {
+    "high": "high", "medium": "medium", "low (base only)": "base",
+    "flagged": "flagged", "notext": "notext",
+}
+_SLUG_TIER = {v: k for k, v in _TIER_SLUG.items()}
+_SECTION_SLUG = {"Draft queue": "queue", "Correct saved tags": "correct"}
+_GROUP_KEYS = list(_TIERS) + ["flagged", "notext"]
+_SLUG_SECTION = {v: k for k, v in _SECTION_SLUG.items()}
+
+
+def _restore_from_url(group_keys: list[str]) -> None:
+    """Apply ?section= / ?tier= to the widgets' session_state, BEFORE they are
+    created — Streamlit takes a widget's value from session_state only if the key
+    is set first.
+
+    Each param re-applies only when its value changes, exactly as app.py does for
+    `?view=`: a stale URL must not overwrite the pick the reviewer just made on
+    the very rerun where her on_change had already moved it."""
+    qp = st.query_params
+    sec = _SLUG_SECTION.get(qp.get("section", ""))
+    if sec and sec != st.session_state.get("_ttr_section_applied"):
+        st.session_state["ttr_section"] = sec
+        st.session_state["_ttr_section_applied"] = sec
+    tier = _SLUG_TIER.get(qp.get("tier", ""))
+    if tier and tier in group_keys and tier != st.session_state.get("_ttr_tier_applied"):
+        st.session_state["ttr_group"] = group_keys.index(tier)
+        st.session_state["_ttr_tier_applied"] = tier
+
+
+def _mirror_to_url(section: str, tier: str | None) -> None:
+    """Keep the URL in step with where she is. Assigning to query_params only
+    sends a page_info_changed message — it does not rerun — so this is safe to
+    call on every render."""
+    slug = _SECTION_SLUG.get(section)
+    if slug and st.query_params.get("section") != slug:
+        st.query_params["section"] = slug
+    tslug = _TIER_SLUG.get(tier or "")
+    if tslug and st.query_params.get("tier") != tslug:
+        st.query_params["tier"] = tslug
+
+
 def _mtime(p: pathlib.Path) -> float:
     return p.stat().st_mtime if p.exists() else 0.0
 
@@ -455,11 +506,13 @@ def render() -> None:
     # Two jobs, one view. Routed off a radio rather than st.tabs: tabs execute
     # every tab's body on each rerun, so the draft queue would keep rebuilding
     # while you were correcting the table.
+    _restore_from_url(_GROUP_KEYS)
     section = st.radio(
         "Section", ["Draft queue", "Correct saved tags"],
         key="ttr_section", horizontal=True, label_visibility="collapsed",
     )
     if section == "Correct saved tags":
+        _mirror_to_url(section, None)
         _render_correct(reviewer)
         return
 
@@ -497,7 +550,7 @@ def render() -> None:
     def _no_text(d: dict) -> bool:
         return d.get("text_source", "") == "none"
 
-    group_keys = list(_TIERS) + ["flagged", "notext"]
+    group_keys = _GROUP_KEYS
     group_label = {
         "high": "✅ High", "medium": "🟡 Medium",
         "low (base only)": "⚪ Base only",
@@ -519,6 +572,7 @@ def render() -> None:
         horizontal=True, key="ttr_group",
     )
     chosen = group_keys[idx]
+    _mirror_to_url(section, chosen)
     if chosen == "notext":
         rows = [d for d in pending if _no_text(d)]
         st.info(
