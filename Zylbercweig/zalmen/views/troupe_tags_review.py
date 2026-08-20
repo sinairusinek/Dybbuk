@@ -267,6 +267,48 @@ def _render_text_panel(d: dict, samples: dict, db_id: str = "") -> None:
     _render_entry_opener(db_id, lines[:80])
 
 
+def _draft_tags(d: dict) -> list[str]:
+    """The drafted tags for a row, vocabulary-filtered — what a card shows before
+    the reviewer touches it."""
+    return [t for t in _split_tags(d.get("tags", "")) if t in _TROUPE_TAG_OPTS]
+
+
+def _split_page(rows: list[dict], picks: dict[str, tuple[list[str] | None, str]]
+                ) -> tuple[list[tuple], list[tuple]]:
+    """Sort a page of cards into (touched, untouched) decision tuples.
+
+    `picks` is db_id → (tags picked in this session or None if the card has not
+    rendered yet, comment). A card counts as touched when its tags differ from
+    the draft or it carries a comment — that is the reviewer having said
+    something. An untouched card is an unreviewed draft, and accepting it is a
+    separate, explicit act.
+
+    Tuples are the (db_id, tags, status, comment) shape `_commit_batch` takes,
+    with status 'edit' for touched and 'accept' for untouched.
+    """
+    touched, untouched = [], []
+    for d in rows:
+        db_id = d["db_id"]
+        picked, comment = picks.get(db_id, (None, ""))
+        drafted = _draft_tags(d)
+        if picked is None:
+            untouched.append((db_id, drafted, "accept", ""))
+            continue
+        if set(picked) != set(drafted) or comment.strip():
+            touched.append((db_id, picked, "edit", comment.strip()))
+        else:
+            untouched.append((db_id, drafted, "accept", ""))
+    return touched, untouched
+
+
+def _forget_cards(db_ids: list[str]) -> None:
+    """Drop a saved card's widget state. The row leaves the queue, so its keys
+    would otherwise sit in session_state for the rest of the session."""
+    for db_id in db_ids:
+        for k in (f"ttr_pills_{db_id}", f"ttr_comment_{db_id}", f"ttr_entry_{db_id}"):
+            st.session_state.pop(k, None)
+
+
 def _render_entry_opener(db_id: str, lines: list[tuple[str, str, str, str]]) -> None:
     """Optional: open the FULL lexicon entry behind one of the mentions above.
 
@@ -304,7 +346,7 @@ def _render_entry_opener(db_id: str, lines: list[tuple[str, str, str, str]]) -> 
 
 def _render_card(d: dict, reviewer: str, samples: dict) -> None:
     db_id = d["db_id"]
-    draft_tags = [t for t in _split_tags(d.get("tags", "")) if t in _TROUPE_TAG_OPTS]
+    draft_tags = _draft_tags(d)
     name = d.get("name", "") or ""
     yi = d.get("name_yiddish", "") or ""
     st.markdown(
@@ -526,6 +568,62 @@ def _render_correct(reviewer: str) -> None:
         st.rerun()
 
 
+def _render_page_save(shown: list[dict], reviewer: str) -> None:
+    """Save the whole page in ONE commit — one Cloud restart instead of one per
+    card (see github_sync.push_files_to_github). This is the main relief for the
+    reviewer: 20 cards saved singly restart the server 20 times.
+
+    Rendered ABOVE the cards on purpose. Streamlit runs the script top-down, so
+    it reads the pills and comment boxes from session_state as they stood at the
+    END of the previous rerun — which is exactly the reviewer's current picks —
+    and she does not have to scroll to the bottom to save.
+
+    Deliberately two buttons. Saving what she edited is safe and needs no
+    ceremony; accepting drafts she never touched writes decisions about rows
+    nobody read, so it is separate and gated behind a checkbox.
+    """
+    picks = {}
+    for d in shown:
+        db_id = d["db_id"]
+        pills_key = f"ttr_pills_{db_id}"
+        picked = (list(st.session_state[pills_key])
+                  if pills_key in st.session_state else None)
+        picks[db_id] = (picked, st.session_state.get(f"ttr_comment_{db_id}", "") or "")
+    touched, untouched = _split_page(shown, picks)
+
+    def _save(items: list[tuple], label: str) -> None:
+        _commit_batch(items, reviewer)
+        _forget_cards([i[0] for i in items])
+        st.toast(f"Saved {len(items)} {label} in one commit", icon="💾")
+        st.rerun()
+
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        if st.button(
+            f"💾 Save the {len(touched)} card(s) I changed on this page",
+            key="ttr_save_page", type="primary", use_container_width=True,
+            disabled=not touched,
+            help="One commit for the whole page, so the app restarts once "
+                 "instead of once per card.",
+        ):
+            _save(touched, "cards")
+    with c2:
+        ok = st.checkbox(
+            f"also accept the {len(untouched)} untouched draft(s) as-is",
+            key="ttr_accept_untouched", disabled=not untouched,
+            help="Writes the drafted tags for cards you did not change. Only "
+                 "tick this once you have actually read them.",
+        )
+        if st.button("✅ Accept untouched drafts", key="ttr_accept_page",
+                     use_container_width=True, disabled=not (ok and untouched)):
+            _save(untouched, "drafts as-is")
+
+    if touched:
+        st.caption("Changed on this page: DB "
+                   + ", ".join(i[0] for i in touched[:12])
+                   + ("…" if len(touched) > 12 else ""))
+
+
 def render() -> None:
     st.header("🏷 Troupe-tag review")
     reviewer = st.session_state.get("reviewer", "")
@@ -621,8 +719,11 @@ def render() -> None:
 
     page = st.number_input("Show top N", min_value=5, max_value=200,
                            value=20, step=5, key="ttr_pagesize")
-    st.caption(f"Showing {min(len(rows), int(page))} of {len(rows)} in this group.")
+    shown = rows[: int(page)]
+    st.caption(f"Showing {len(shown)} of {len(rows)} in this group.")
 
-    for d in rows[: int(page)]:
+    _render_page_save(shown, reviewer)
+
+    for d in shown:
         with st.container(border=True):
             _render_card(d, reviewer, samples)
