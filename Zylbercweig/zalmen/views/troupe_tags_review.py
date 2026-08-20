@@ -19,9 +19,14 @@ back through the queue. It is one st.data_editor rather than per-row widgets,
 so reviewing 600 saved rows costs one widget instead of thousands.
 
 Input : Zylbercweig/organizations/troupe_tags_draft.tsv
-Output: troupe_tags.tsv        (accepted/edited tags — the production file,
-                                reused via db_audit.save_troupe_tags)
+Output: troupe_tags.tsv        (accepted/edited tags — the production file)
         troupe_tag_review.tsv  (audit of accept/edit/reject per db_id)
+
+Persistence rides `troupe_store`: both output files live on a data-only branch
+that Streamlit Cloud does not deploy, so SAVING NO LONGER RESTARTS THE SERVER —
+the "app jumps mid-work" failure came from every save redeploying the app. The
+store fetches and merges that branch at boot, so a restart (a code deploy, or a
+save from a view still on the deployed branch) comes back with every saved tag.
 
 Performance: mentions render lazily (one button → attestations for that troupe
 only), and each tier paginates. Streamlit executes collapsed-expander bodies,
@@ -31,30 +36,27 @@ from __future__ import annotations
 
 import csv
 import datetime as _dt
-import fcntl
 import pathlib
 
 import streamlit as st
 
 from views.org_review import CLUSTER_FILE, load_samples
-from views.db_audit import (
+import troupe_store
+from troupe_store import (
     TROUPE_TAGS,
-    TROUPE_TAGS_REPO_PATH,
+    TAG_REVIEW as REVIEW,
     _TROUPE_TAG_OPTS,
     _split_tags,
     save_troupe_tags,
     load_troupe_tags,
+    save_tag_review,
+    load_tag_review,
 )
 from lexicon import JSON_TO_XML, get_entry_text
-from atomic_io import atomic_write
 import mention_removals
 
 ORG = pathlib.Path(__file__).resolve().parents[2] / "organizations"
 DRAFTS = ORG / "troupe_tags_draft.tsv"
-REVIEW = ORG / "troupe_tag_review.tsv"
-REVIEW_REPO_PATH = "Zylbercweig/organizations/troupe_tag_review.tsv"
-
-REVIEW_HEADERS = ["db_id", "status", "final_tags", "reviewer", "reviewed_at"]
 
 # Draft confidence strings → display tier (order matters).
 _TIERS = ["high", "medium", "low (base only)"]
@@ -66,12 +68,12 @@ _TIER_LABEL = {
 
 
 # ── surviving a redeploy ──────────────────────────────────────────────────────
-# Every reviewer save pushes to the branch Streamlit Cloud deploys, so the server
-# restarts and drops the session several times an hour (see the app.py note on
-# `?view=`). `?view=` brings the RA back to THIS view, but the section and the
-# confidence tier live in session_state, so she came back to the top of the first
-# tier — mid-queue, that still reads as "it jumped". Mirroring both in the URL
-# means the reconnect replays the exact group she was working.
+# Saves in THIS view no longer restart the server (they push to the data branch,
+# see troupe_store) — but the server still restarts when code is deployed or
+# when a view still on the deployed branch saves, and that drops the session.
+# `?view=` brings the RA back to THIS view; mirroring the section and the
+# confidence tier in the URL means the reconnect replays the exact group she was
+# working instead of the top of the first tier ("it jumped").
 #
 # Slugs, not the raw labels: the tier keys carry spaces and parens, and the radio
 # INDEX is not stable — inserting a tier would silently move everyone.
@@ -128,57 +130,9 @@ def load_drafts(mtime: float) -> list[dict]:
         return list(csv.DictReader(f, delimiter="\t"))
 
 
-@st.cache_data(show_spinner=False)
-def load_review(mtime: float) -> dict[str, dict]:
-    out: dict[str, dict] = {}
-    if not REVIEW.exists():
-        return out
-    with open(REVIEW, newline="", encoding="utf-8") as f:
-        for r in csv.DictReader(f, delimiter="\t"):
-            out[r.get("db_id", "")] = r
-    return out
-
-
-def save_review(recs: list[dict], push: bool = True) -> None:
-    """Upsert N review-audit rows (keyed db_id) under one lock + one push.
-
-    `push=False` leaves the GitHub commit to the caller — see `_commit_batch`."""
-    if not recs:
-        return
-    REVIEW.parent.mkdir(parents=True, exist_ok=True)
-    lock = REVIEW.with_suffix(".lock")
-    with open(lock, "w") as lf:
-        fcntl.flock(lf, fcntl.LOCK_EX)
-        try:
-            existing: dict[str, dict] = {}
-            if REVIEW.exists():
-                with open(REVIEW, newline="", encoding="utf-8") as f:
-                    for row in csv.DictReader(f, delimiter="\t"):
-                        existing[row.get("db_id", "")] = row
-            for rec in recs:
-                existing[rec["db_id"]] = rec
-            with atomic_write(REVIEW) as f:
-                w = csv.DictWriter(f, fieldnames=REVIEW_HEADERS, delimiter="\t")
-                w.writeheader()
-                for row in existing.values():
-                    w.writerow({k: row.get(k, "") for k in REVIEW_HEADERS})
-        finally:
-            fcntl.flock(lf, fcntl.LOCK_UN)
-    if push:
-        try:
-            from zalmen.github_sync import push_file_to_github
-            push_file_to_github(REVIEW_REPO_PATH, REVIEW, "chore: troupe_tag_review")
-        except Exception:  # noqa: BLE001
-            pass
-    load_review.clear()
-
-
 def _commit_batch(items: list[tuple[str, list[str], str, str]], reviewer: str) -> None:
-    """Commit N (db_id, tags, status, comment) decisions in ONE GitHub commit.
-
-    Both files are written locally first with `push=False`, then sent together —
-    Streamlit Cloud restarts the server on every push, so the old
-    one-push-per-file shape dropped every live session TWICE per saved card.
+    """Commit N (db_id, tags, status, comment) decisions in ONE GitHub commit
+    to the DATA branch — persistence without a server restart (troupe_store).
     status ∈ accept/edit/reject.
 
     A blank comment never erases one already on the row: the card's box starts
@@ -196,23 +150,20 @@ def _commit_batch(items: list[tuple[str, list[str], str, str]], reviewer: str) -
     } for db_id, tags, status, comment in items if tags or comment]
     if tag_recs:
         save_troupe_tags(tag_recs, push=False)
-    save_review([{
+    save_tag_review([{
         "db_id": db_id, "status": status,
         "final_tags": " | ".join(tags),
         "reviewer": reviewer, "reviewed_at": ts,
     } for db_id, tags, status, _comment in items], push=False)
 
-    # One commit for both files → one Cloud restart, not two.
-    files = [(REVIEW_REPO_PATH, REVIEW)]
+    # One commit for both files, straight to the data branch — no restart.
+    repo_paths = [troupe_store.TAG_REVIEW_REPO_PATH]
     if tag_recs:
-        files.insert(0, (TROUPE_TAGS_REPO_PATH, TROUPE_TAGS))
-    try:
-        from zalmen.github_sync import push_files_to_github
-        if not push_files_to_github(files, f"chore: troupe tags ({len(items)} reviewed)"):
-            st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).",
-                     icon="⚠️")
-    except Exception:  # noqa: BLE001
-        st.toast("⚠️ Saved locally but not pushed to GitHub.", icon="⚠️")
+        repo_paths.insert(0, troupe_store.TROUPE_TAGS_REPO_PATH)
+    if not troupe_store.push_batch(
+            repo_paths, f"chore: troupe tags ({len(items)} reviewed)"):
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).",
+                 icon="⚠️")
     try:
         from zalmen.activity_log import log_action
         for db_id, tags, status, _comment in items:
@@ -541,21 +492,17 @@ def _render_correct(reviewer: str) -> None:
             "reviewer": reviewer,
             "reviewed_at": ts,
         } for r in changed]
-        # Same one-commit shape as the draft queue: two files, one restart.
+        # Same one-commit shape as the draft queue, straight to the data branch.
         save_troupe_tags(recs, push=False)
-        save_review([{
+        save_tag_review([{
             "db_id": r["db_id"], "status": "correct",
             "final_tags": r["tags"],
             "reviewer": reviewer, "reviewed_at": ts,
         } for r in recs], push=False)
-        try:
-            from zalmen.github_sync import push_files_to_github
-            if not push_files_to_github(
-                [(TROUPE_TAGS_REPO_PATH, TROUPE_TAGS), (REVIEW_REPO_PATH, REVIEW)],
-                f"chore: troupe tag corrections ({len(recs)} rows)",
-            ):
-                st.toast("⚠️ Saved locally but not pushed to GitHub.", icon="⚠️")
-        except Exception:  # noqa: BLE001
+        if not troupe_store.push_batch(
+            [troupe_store.TROUPE_TAGS_REPO_PATH, troupe_store.TAG_REVIEW_REPO_PATH],
+            f"chore: troupe tag corrections ({len(recs)} rows)",
+        ):
             st.toast("⚠️ Saved locally but not pushed to GitHub.", icon="⚠️")
         try:
             from zalmen.activity_log import log_action
@@ -569,9 +516,10 @@ def _render_correct(reviewer: str) -> None:
 
 
 def _render_page_save(shown: list[dict], reviewer: str) -> None:
-    """Save the whole page in ONE commit — one Cloud restart instead of one per
-    card (see github_sync.push_files_to_github). This is the main relief for the
-    reviewer: 20 cards saved singly restart the server 20 times.
+    """Save the whole page in ONE commit to the data branch — no restart, and
+    one commit instead of one per card. (Batching predates the branch split; it
+    stays because 20 cards as one commit is also one API round-trip, one toast,
+    and one legible entry in the branch history.)
 
     Rendered ABOVE the cards on purpose. Streamlit runs the script top-down, so
     it reads the pills and comment boxes from session_state as they stood at the
@@ -603,8 +551,7 @@ def _render_page_save(shown: list[dict], reviewer: str) -> None:
             f"💾 Save the {len(touched)} card(s) I changed on this page",
             key="ttr_save_page", type="primary", use_container_width=True,
             disabled=not touched,
-            help="One commit for the whole page, so the app restarts once "
-                 "instead of once per card.",
+            help="Saves every card you changed on this page in one go.",
         ):
             _save(touched, "cards")
     with c2:
@@ -626,6 +573,18 @@ def _render_page_save(shown: list[dict], reviewer: str) -> None:
 
 def render() -> None:
     st.header("🏷 Troupe-tag review")
+
+    # Pull the data branch into the local files (once per server process) BEFORE
+    # anything reads them — after a restart this is what brings back every tag
+    # saved since the last code deploy. Reads still work when it fails (checkout
+    # snapshot), and saves re-attempt the merge themselves, so this only warns.
+    if not troupe_store.ensure_fresh() and troupe_store.has_github():
+        st.warning(
+            "Couldn't refresh tags from the data branch — showing the deployed "
+            "snapshot, which may be missing recent saves. Saving is still safe "
+            "(each save re-merges); reload to retry.", icon="🔄",
+        )
+
     reviewer = st.session_state.get("reviewer", "")
     if not reviewer:
         st.warning("Pick your name in the sidebar to record decisions.")
@@ -651,7 +610,7 @@ def render() -> None:
         return
 
     drafts = load_drafts(_mtime(DRAFTS))
-    review = load_review(_mtime(REVIEW))
+    review = load_tag_review(_mtime(REVIEW))
     tags_now = load_troupe_tags(_mtime(TROUPE_TAGS))
     samples = load_samples(mention_removals.cluster_cache_key(CLUSTER_FILE))
 

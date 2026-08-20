@@ -97,7 +97,7 @@ def test_a_failed_push_falls_back_to_one_commit_per_file(monkeypatch, files):
     monkeypatch.setattr(github_sync, "_SESSION", fake)
     called: list[str] = []
     monkeypatch.setattr(github_sync, "push_file_to_github",
-                        lambda rp, lp, m: called.append(rp) or True)
+                        lambda rp, lp, m, branch=None: called.append(rp) or True)
     assert github_sync.push_files_to_github(files, "msg") is True
     assert called == ["repo/a.tsv", "repo/b.tsv"]
 
@@ -105,7 +105,7 @@ def test_a_failed_push_falls_back_to_one_commit_per_file(monkeypatch, files):
 def test_a_single_file_still_uses_the_contents_api(monkeypatch, files):
     called: list[str] = []
     monkeypatch.setattr(github_sync, "push_file_to_github",
-                        lambda rp, lp, m: called.append(rp) or True)
+                        lambda rp, lp, m, branch=None: called.append(rp) or True)
     assert github_sync.push_files_to_github(files[:1], "msg") is True
     assert called == ["repo/a.tsv"]
 

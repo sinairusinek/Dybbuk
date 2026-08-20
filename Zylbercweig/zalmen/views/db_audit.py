@@ -77,57 +77,25 @@ DBLALIGN_DECISION_HEADERS = [
 # structural category (pick one); Layer B is additional characteristics (pick
 # any number). Keyed on db_id alone — tags describe the organization, not the
 # (db_id, cluster_id) pair that db_audit_decisions.tsv is keyed on.
-TROUPE_TAGS = ORG / "troupe_tags.tsv"
-TROUPE_TAGS_REPO_PATH = "Zylbercweig/organizations/troupe_tags.tsv"
-
-TROUPE_TAG_HEADERS = [
-    "db_id", "tags", "other_tags",
-    # `reviewer_notes` is machine provenance ("from draft (edit)") and is
-    # overwritten on every save — `comment` is the reviewer's own free text and
-    # is carried forward when a later save leaves it blank.
-    "comment",
-    "reviewer_notes", "reviewer", "reviewed_at",
-]
+# The troupe-tag data layer moved to `troupe_store` (2026-08-20): its saves ride
+# a data-only branch so they no longer restart the Cloud server, and that store
+# owns the boot-time fetch/merge the split requires. Re-exported here because
+# this is where the layer historically lived and other code imports it from us.
+from troupe_store import (  # noqa: F401  (re-exports)
+    TROUPE_TAGS,
+    TROUPE_TAGS_REPO_PATH,
+    TROUPE_TAG_HEADERS,
+    _TROUPE_TAG_OPTS,
+    _split_tags,
+    load_troupe_tags,
+    save_troupe_tags,
+)
 
 # org_type values that get the tag control. Case-folded before comparison —
 # core_db is inconsistent ("traveling company" vs "Traveling Company").
 # "company on tour" is included so its 5 rows are taggable too; drop it here if
 # the pilot should be strictly Traveling Company.
 TROUPE_ORG_TYPES = {"traveling company", "company on tour"}
-
-# One flat vocabulary — any number of tags may apply to a troupe. The former
-# Layer A / Layer B split was dropped 2026-07-20: its premise was that the
-# structural categories are mutually exclusive, which they are not (a family
-# company can be built around one star; an institutional one can be run
-# cooperatively). The distinction survives as a `layer` column in the
-# definitions TSV, as metadata rather than as a UI constraint.
-_TROUPE_TAG_OPTS = [
-    # structural
-    "Family Company",
-    "Impresario Company",
-    "Star Company",
-    "Ensemble Company",
-    "Cooperative Company",
-    "Institutional Company",
-    "Ad Hoc Company",
-    # characteristics
-    "Children's Company",
-    "Operetta / Opera Company",
-    "German-Jewish Company",
-    "Amateur Company",
-    # added 2026-08-10 (Ruthie): two new characteristic tags from the lexicon
-    "Kleinkunst / Revue / Cabaret Company",
-    "Marionette / Puppet Company",
-    # added 2026-08-19 (Ruthie): the language/ethnicity axis, plus an escape
-    # hatch. "Not a Troupe" is a disposition, not a description — it says the row
-    # was mis-typed as a troupe upstream, and downstream org_type work should
-    # pick it up. Keep it last so it reads as separate from the descriptive tags.
-    "Non-Jewish Company",
-    "Hebrew-Language Company",
-    "Not a Troupe",
-    # Dropped 2026-08-10 (Ruthie): Zionist, Socialist, Post-Holocaust, Bilingual
-    # — never used, never assigned, unconfirmed leftovers from the 07-19 list.
-]
 
 
 def _mtime(p: pathlib.Path) -> float:
@@ -197,25 +165,7 @@ def save_decisions(records: list[dict]) -> None:
     load_decisions.clear()
 
 
-# ── Troupe-tag loader / saver ─────────────────────────────────────────────────
-
-@st.cache_data(show_spinner=False)
-def load_troupe_tags(mtime: float) -> dict[str, dict]:
-    """db_id → row. Multi-value columns stay pipe-delimited strings here;
-    _split_tags() parses them at the render site."""
-    out: dict[str, dict] = {}
-    if not TROUPE_TAGS.exists():
-        return out
-    with open(TROUPE_TAGS, newline="", encoding="utf-8") as f:
-        for r in csv.DictReader(f, delimiter="\t"):
-            out[r.get("db_id", "")] = r
-    return out
-
-
-def _split_tags(raw: str) -> list[str]:
-    """Parse the pipe-delimited multi-value convention used across the app."""
-    return [t.strip() for t in (raw or "").split("|") if t.strip()]
-
+# ── Troupe-tag helpers (loader/saver live in troupe_store) ────────────────────
 
 def _coined_other_tags(tags: dict[str, dict], limit: int = 12) -> list[str]:
     """Distinct free-text tags already coined, most-used first — shown back to
@@ -230,51 +180,6 @@ def _coined_other_tags(tags: dict[str, dict], limit: int = 12) -> list[str]:
             forms.setdefault(k, {})[t] = forms.setdefault(k, {}).get(t, 0) + 1
     ranked = sorted(counts, key=lambda k: (-counts[k], k))[:limit]
     return [max(forms[k], key=lambda f: (forms[k][f], f)) for k in ranked]
-
-
-def save_troupe_tags(records: list[dict], push: bool = True) -> None:
-    """Upsert N troupe-tag rows (keyed on db_id) under one lock + one push.
-
-    `push=False` writes the file but leaves the GitHub commit to the caller, so
-    an action that also writes a second file can land both in ONE commit — and
-    so restart the Cloud server once instead of once per file.
-    """
-    if not records:
-        return
-    TROUPE_TAGS.parent.mkdir(parents=True, exist_ok=True)
-    lock = TROUPE_TAGS.with_suffix(".lock")
-    with open(lock, "w") as lf:
-        fcntl.flock(lf, fcntl.LOCK_EX)
-        try:
-            existing: dict[str, dict] = {}
-            if TROUPE_TAGS.exists():
-                with open(TROUPE_TAGS, newline="", encoding="utf-8") as f:
-                    for row in csv.DictReader(f, delimiter="\t"):
-                        existing[row.get("db_id", "")] = row
-            for rec in records:
-                existing[rec["db_id"]] = rec
-            with atomic_write(TROUPE_TAGS) as f:
-                w = csv.DictWriter(f, fieldnames=TROUPE_TAG_HEADERS, delimiter="\t")
-                w.writeheader()
-                for row in existing.values():
-                    w.writerow({k: row.get(k, "") for k in TROUPE_TAG_HEADERS})
-        finally:
-            fcntl.flock(lf, fcntl.LOCK_UN)
-    if not push:
-        load_troupe_tags.clear()
-        return
-    try:
-        from zalmen.github_sync import push_file_to_github
-        ok = push_file_to_github(
-            TROUPE_TAGS_REPO_PATH, TROUPE_TAGS,
-            f"chore: troupe tags ({len(records)} rows)",
-        )
-    except Exception:  # noqa: BLE001
-        ok = False
-    if not ok:
-        st.toast("⚠️ Tags saved locally but not pushed to GitHub (check secrets).",
-                 icon="⚠️")
-    load_troupe_tags.clear()
 
 
 # ── Dedup loaders / saver ─────────────────────────────────────────────────────

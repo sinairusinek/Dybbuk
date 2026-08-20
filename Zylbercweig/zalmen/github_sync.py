@@ -18,18 +18,26 @@ freeze. Two synchronous-but-lighter optimisations here:
 The call remains synchronous and still returns True only after the commit lands,
 so a successful return continues to mean "persisted to GitHub".
 
-Why the data has to go to the deployed branch at all: nothing here ever fetches.
-Every view reads plain local paths inside the checkout, and Streamlit Cloud
-rebuilds that checkout from the deployed branch on each restart — so a decision
-that is not committed to THAT branch is gone the next time the server restarts.
-That is also why the obvious cure for the redeploy churn (push the data to a
-branch Cloud does not deploy) is not one: it would persist the saves and hide
-them from the app at the same time.
+Why most data still goes to the deployed branch: most views never fetch — they
+read plain local paths inside the checkout, and Streamlit Cloud rebuilds that
+checkout from the deployed branch on each restart, so a decision not committed
+to THAT branch is gone the next time the server restarts. Pushing such a view's
+data to a branch Cloud does not deploy would persist the saves and hide them
+from the app at once.
 
-What is left is to make each save cost ONE commit instead of one per file, which
-is what `push_files_to_github` is for. The Contents API commits a single file per
-call; the Git Data API can put several files in one commit, so an action that
-writes N files restarts the server once rather than N times.
+The way OFF the deployed branch (and so off the restart treadmill entirely) is
+the two-plane shape `troupe_store.py` implements: fetch the data files from a
+data-only branch at boot (merging with the checkout copy so no plane can lose
+rows), then push every save to that branch via the `branch=` override below.
+Pushes to a non-deployed branch never restart the server. A view may only adopt
+`branch=` together with such a boot-time fetch — one without the other loses
+data or shows stale data.
+
+For views still on the deployed branch, the mitigation is to make each save cost
+ONE commit instead of one per file, which is what `push_files_to_github` is for.
+The Contents API commits a single file per call; the Git Data API can put
+several files in one commit, so an action that writes N files restarts the
+server once rather than N times.
 """
 
 from __future__ import annotations
@@ -41,12 +49,52 @@ import requests
 import streamlit as st
 
 # Reused across reruns within a single Streamlit process: keep-alive connection
-# pool + last-known blob SHA per repo path (skips the GET round-trip).
+# pool + last-known blob SHA per (branch, repo path) (skips the GET round-trip).
 _SESSION = requests.Session()
-_SHA_CACHE: dict[str, str] = {}
+_SHA_CACHE: dict[tuple[str, str], str] = {}
 
 
-def push_file_to_github(repo_path: str, local_path: pathlib.Path, commit_message: str) -> bool:
+def _credentials(branch: str | None) -> tuple[str, str, str]:
+    """(token, repo, branch) from secrets; empty strings when unconfigured.
+    `branch=None` means the deployed branch (the `github_branch` secret)."""
+    try:
+        token = st.secrets.get("github_token", "")
+        repo = st.secrets.get("github_repo", "")
+        deployed = st.secrets.get("github_branch", "main")
+    except Exception:  # noqa: BLE001
+        return "", "", ""
+    return token, repo, branch or deployed
+
+
+def fetch_file_from_github(repo_path: str, branch: str | None = None) -> bytes | None:
+    """Fetch a file's current content from GitHub, or None on any failure.
+
+    The read half of the two-plane shape (see module docstring): a view that
+    pushes its data to a non-deployed branch must read it back from there at
+    boot, because the checkout Cloud rebuilds only ever reflects the deployed
+    branch. Returns None — never raises — so a caller can fall back to the
+    checkout copy."""
+    token, repo, branch = _credentials(branch)
+    if not token or not repo:
+        return None
+    try:
+        resp = _SESSION.get(
+            f"https://api.github.com/repos/{repo}/contents/{repo_path}",
+            headers={
+                "Authorization": f"token {token}",
+                # raw media type: the file body itself, no base64 envelope,
+                # works past the 1 MB Contents-API JSON limit.
+                "Accept": "application/vnd.github.raw",
+            },
+            params={"ref": branch}, timeout=15,
+        )
+        return resp.content if resp.ok else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def push_file_to_github(repo_path: str, local_path: pathlib.Path, commit_message: str,
+                        branch: str | None = None) -> bool:
     """
     Commit a local file to GitHub via the Contents API.
 
@@ -54,19 +102,18 @@ def push_file_to_github(repo_path: str, local_path: pathlib.Path, commit_message
         repo_path:      Path within the repo (e.g. "Zylbercweig/organizations/foo.tsv")
         local_path:     Absolute path to the file on the local/cloud filesystem
         commit_message: Git commit message
+        branch:         Target branch; None = the deployed branch. A push to the
+                        deployed branch restarts the Cloud server; a push to a
+                        data branch does not (but see the module docstring for
+                        the fetch-at-boot precondition).
 
     Returns True on success, False if credentials are missing or the API call fails.
     """
-    try:
-        token = st.secrets.get("github_token", "")
-        repo  = st.secrets.get("github_repo", "")
-        branch = st.secrets.get("github_branch", "main")
-    except Exception:
-        return False
-
+    token, repo, branch = _credentials(branch)
     if not token or not repo:
         return False
 
+    cache_key = (branch, repo_path)
     try:
         with open(local_path, "rb") as f:
             content_b64 = base64.b64encode(f.read()).decode()
@@ -92,7 +139,7 @@ def push_file_to_github(repo_path: str, local_path: pathlib.Path, commit_message
             return _SESSION.put(url, json=payload, headers=headers, timeout=15)
 
         # Use the cached SHA when we have one; otherwise fetch it once.
-        sha = _SHA_CACHE.get(repo_path) or _fetch_sha()
+        sha = _SHA_CACHE.get(cache_key) or _fetch_sha()
         put_resp = _put(sha)
 
         # 409 = the SHA was stale (a parallel session pushed in between, or our
@@ -104,22 +151,23 @@ def push_file_to_github(repo_path: str, local_path: pathlib.Path, commit_message
         if put_resp.ok:
             new_sha = (put_resp.json().get("content") or {}).get("sha")
             if new_sha:
-                _SHA_CACHE[repo_path] = new_sha
+                _SHA_CACHE[cache_key] = new_sha
             else:
-                _SHA_CACHE.pop(repo_path, None)
+                _SHA_CACHE.pop(cache_key, None)
             return True
 
         # On any other failure, drop the cached SHA so the next save re-fetches.
-        _SHA_CACHE.pop(repo_path, None)
+        _SHA_CACHE.pop(cache_key, None)
         return False
 
     except Exception:
-        _SHA_CACHE.pop(repo_path, None)
+        _SHA_CACHE.pop(cache_key, None)
         return False
 
 
 def push_files_to_github(
-    files: list[tuple[str, pathlib.Path]], commit_message: str
+    files: list[tuple[str, pathlib.Path]], commit_message: str,
+    branch: str | None = None,
 ) -> bool:
     """
     Commit SEVERAL files in ONE commit via the Git Data API.
@@ -127,11 +175,13 @@ def push_files_to_github(
     Each reviewer action that writes more than one TSV used to push once per
     file, and Streamlit Cloud restarts the server on every push — so a two-file
     save dropped every live session twice, which the RA experiences as the app
-    jumping mid-work. One commit means one restart.
+    jumping mid-work. One commit means one restart. (A push to a non-deployed
+    `branch` restarts nothing; the single commit is then just fewer API calls.)
 
     Args:
         files:          (repo_path, local_path) pairs; empty list is a no-op.
         commit_message: Git commit message.
+        branch:         Target branch; None = the deployed branch.
 
     Returns True only once the ref points at the new commit. On ANY failure it
     falls back to pushing the files one by one through the Contents API — worse
@@ -140,14 +190,10 @@ def push_files_to_github(
     if not files:
         return True
     if len(files) == 1:
-        return push_file_to_github(files[0][0], files[0][1], commit_message)
+        return push_file_to_github(files[0][0], files[0][1], commit_message,
+                                   branch=branch)
 
-    try:
-        token = st.secrets.get("github_token", "")
-        repo = st.secrets.get("github_repo", "")
-        branch = st.secrets.get("github_branch", "main")
-    except Exception:  # noqa: BLE001
-        return False
+    token, repo, branch = _credentials(branch)
     if not token or not repo:
         return False
 
@@ -161,7 +207,8 @@ def push_files_to_github(
         # Sequential Contents-API pushes: N commits, N restarts, but persisted.
         ok = True
         for repo_path, local_path in files:
-            ok = push_file_to_github(repo_path, local_path, commit_message) and ok
+            ok = push_file_to_github(repo_path, local_path, commit_message,
+                                     branch=branch) and ok
         return ok
 
     try:
@@ -222,12 +269,12 @@ def push_files_to_github(
         # These paths went out through the Git Data API, so the Contents-API SHA
         # cache no longer describes them.
         for repo_path, _ in files:
-            _SHA_CACHE.pop(repo_path, None)
+            _SHA_CACHE.pop((branch, repo_path), None)
         return True
 
     except Exception:  # noqa: BLE001
         for repo_path, _ in files:
-            _SHA_CACHE.pop(repo_path, None)
+            _SHA_CACHE.pop((branch, repo_path), None)
         try:
             return _fallback()
         except Exception:  # noqa: BLE001
