@@ -232,8 +232,13 @@ def _coined_other_tags(tags: dict[str, dict], limit: int = 12) -> list[str]:
     return [max(forms[k], key=lambda f: (forms[k][f], f)) for k in ranked]
 
 
-def save_troupe_tags(records: list[dict]) -> None:
-    """Upsert N troupe-tag rows (keyed on db_id) under one lock + one push."""
+def save_troupe_tags(records: list[dict], push: bool = True) -> None:
+    """Upsert N troupe-tag rows (keyed on db_id) under one lock + one push.
+
+    `push=False` writes the file but leaves the GitHub commit to the caller, so
+    an action that also writes a second file can land both in ONE commit — and
+    so restart the Cloud server once instead of once per file.
+    """
     if not records:
         return
     TROUPE_TAGS.parent.mkdir(parents=True, exist_ok=True)
@@ -255,6 +260,9 @@ def save_troupe_tags(records: list[dict]) -> None:
                     w.writerow({k: row.get(k, "") for k in TROUPE_TAG_HEADERS})
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
+    if not push:
+        load_troupe_tags.clear()
+        return
     try:
         from zalmen.github_sync import push_file_to_github
         ok = push_file_to_github(

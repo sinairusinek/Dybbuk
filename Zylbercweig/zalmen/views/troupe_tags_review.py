@@ -39,6 +39,7 @@ import streamlit as st
 from views.org_review import CLUSTER_FILE, load_samples
 from views.db_audit import (
     TROUPE_TAGS,
+    TROUPE_TAGS_REPO_PATH,
     _TROUPE_TAG_OPTS,
     _split_tags,
     save_troupe_tags,
@@ -138,8 +139,10 @@ def load_review(mtime: float) -> dict[str, dict]:
     return out
 
 
-def save_review(recs: list[dict]) -> None:
-    """Upsert N review-audit rows (keyed db_id) under one lock + one push."""
+def save_review(recs: list[dict], push: bool = True) -> None:
+    """Upsert N review-audit rows (keyed db_id) under one lock + one push.
+
+    `push=False` leaves the GitHub commit to the caller — see `_commit_batch`."""
     if not recs:
         return
     REVIEW.parent.mkdir(parents=True, exist_ok=True)
@@ -161,18 +164,22 @@ def save_review(recs: list[dict]) -> None:
                     w.writerow({k: row.get(k, "") for k in REVIEW_HEADERS})
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
-    try:
-        from zalmen.github_sync import push_file_to_github
-        push_file_to_github(REVIEW_REPO_PATH, REVIEW, "chore: troupe_tag_review")
-    except Exception:  # noqa: BLE001
-        pass
+    if push:
+        try:
+            from zalmen.github_sync import push_file_to_github
+            push_file_to_github(REVIEW_REPO_PATH, REVIEW, "chore: troupe_tag_review")
+        except Exception:  # noqa: BLE001
+            pass
     load_review.clear()
 
 
 def _commit_batch(items: list[tuple[str, list[str], str, str]], reviewer: str) -> None:
-    """Commit N (db_id, tags, status, comment) decisions with ONE troupe_tags
-    push and ONE review-audit push — critical on Streamlit Cloud, where each push
-    triggers a redeploy that resets sessions. status ∈ accept/edit/reject.
+    """Commit N (db_id, tags, status, comment) decisions in ONE GitHub commit.
+
+    Both files are written locally first with `push=False`, then sent together —
+    Streamlit Cloud restarts the server on every push, so the old
+    one-push-per-file shape dropped every live session TWICE per saved card.
+    status ∈ accept/edit/reject.
 
     A blank comment never erases one already on the row: the card's box starts
     empty on a fresh render, so clearing it must be deliberate (done from the
@@ -188,12 +195,24 @@ def _commit_batch(items: list[tuple[str, list[str], str, str]], reviewer: str) -
         "reviewer": reviewer, "reviewed_at": ts,
     } for db_id, tags, status, comment in items if tags or comment]
     if tag_recs:
-        save_troupe_tags(tag_recs)                       # one push
+        save_troupe_tags(tag_recs, push=False)
     save_review([{
         "db_id": db_id, "status": status,
         "final_tags": " | ".join(tags),
         "reviewer": reviewer, "reviewed_at": ts,
-    } for db_id, tags, status, _comment in items])       # one push
+    } for db_id, tags, status, _comment in items], push=False)
+
+    # One commit for both files → one Cloud restart, not two.
+    files = [(REVIEW_REPO_PATH, REVIEW)]
+    if tag_recs:
+        files.insert(0, (TROUPE_TAGS_REPO_PATH, TROUPE_TAGS))
+    try:
+        from zalmen.github_sync import push_files_to_github
+        if not push_files_to_github(files, f"chore: troupe tags ({len(items)} reviewed)"):
+            st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).",
+                     icon="⚠️")
+    except Exception:  # noqa: BLE001
+        st.toast("⚠️ Saved locally but not pushed to GitHub.", icon="⚠️")
     try:
         from zalmen.activity_log import log_action
         for db_id, tags, status, _comment in items:
@@ -480,12 +499,22 @@ def _render_correct(reviewer: str) -> None:
             "reviewer": reviewer,
             "reviewed_at": ts,
         } for r in changed]
-        save_troupe_tags(recs)                       # one lock + one push
+        # Same one-commit shape as the draft queue: two files, one restart.
+        save_troupe_tags(recs, push=False)
         save_review([{
             "db_id": r["db_id"], "status": "correct",
             "final_tags": r["tags"],
             "reviewer": reviewer, "reviewed_at": ts,
-        } for r in recs])
+        } for r in recs], push=False)
+        try:
+            from zalmen.github_sync import push_files_to_github
+            if not push_files_to_github(
+                [(TROUPE_TAGS_REPO_PATH, TROUPE_TAGS), (REVIEW_REPO_PATH, REVIEW)],
+                f"chore: troupe tag corrections ({len(recs)} rows)",
+            ):
+                st.toast("⚠️ Saved locally but not pushed to GitHub.", icon="⚠️")
+        except Exception:  # noqa: BLE001
+            st.toast("⚠️ Saved locally but not pushed to GitHub.", icon="⚠️")
         try:
             from zalmen.activity_log import log_action
             for r in recs:
