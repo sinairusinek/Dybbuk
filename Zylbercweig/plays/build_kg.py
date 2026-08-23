@@ -38,12 +38,13 @@ EDGES_TSV = pc.KG_DIR / "edges.tsv"
 EVENTS_TSV = pc.KG_DIR / "events.tsv"
 
 NODE_FIELDS = ["node_id", "node_type", "label_yiddish", "label_english",
-               "ext_ref_type", "ext_ref_id", "secondary_ids", "match_status", "notes"]
+               "ext_ref_type", "ext_ref_id", "secondary_ids", "match_status", "notes",
+               "source_layer", "attrs"]
 EDGE_FIELDS = ["edge_id", "source_id", "target_id", "edge_type", "role_detail",
                "character", "date_start", "date_end", "date_precision",
                "event_id", "production_key", "provenance_person_id",
                "provenance_fact_ids", "evidence_sentence", "extraction_model",
-               "confidence", "match_status", "review_status"]
+               "confidence", "match_status", "review_status", "source_layer"]
 EVENT_FIELDS = ["event_id", "event_type", "play_id", "venue_id", "org_id",
                 "place_id", "date_start", "date_end", "date_precision",
                 "production_key", "provenance_person_id", "provenance_fact_ids",
@@ -71,6 +72,7 @@ class Graph:
                 if v and not n.get(k):
                     n[k] = v
         else:
+            kw.setdefault("source_layer", "plays")
             self.nodes[node_id] = {"node_id": node_id, **kw}
         return node_id
 
@@ -86,6 +88,7 @@ class Graph:
 
     def add_edge(self, **kw) -> None:
         kw.setdefault("review_status", "auto")
+        kw.setdefault("source_layer", "plays")
         self.edges.append(kw)
 
 
@@ -140,11 +143,19 @@ def load_entry_index():
             heb_index[key] = None  # mark ambiguous
         else:
             heb_index[key] = db_id
-    entry_to_dbid = {}
+    # person_hub.tsv (RA/human alignment) is the authority; the heading match
+    # only fills entries the hub leaves unaligned.
+    import kg_bio
+    entry_to_dbid = kg_bio.entry_to_dbid_map(kg_bio.build_entry_index())
+    n_hub = len(entry_to_dbid)
     for pid, head in entry_heading.items():
+        if pid in entry_to_dbid:
+            continue
         db_id = heb_index.get(_norm_name(head))
         if db_id:  # skip None (ambiguous) and missing
             entry_to_dbid[pid] = db_id
+    print(f"entry->db_id: {n_hub} from person_hub, "
+          f"{len(entry_to_dbid) - n_hub} from heading match")
     return entry_heading, entry_to_dbid
 
 
@@ -297,6 +308,8 @@ def event_key(play: str, venue: str, org: str, place: str, date: str) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--execute", action="store_true")
+    ap.add_argument("--no-bio", action="store_true",
+                    help="skip the lexicon bio layer (kg_bio.py)")
     args = ap.parse_args()
 
     rows = pc.read_tsv(LINKED_TSV)
@@ -551,6 +564,13 @@ def main() -> None:
                    label_english=f"{ev['event_type']} {ev['date_start'][:4]}",
                    match_status="matched")
 
+    # ---- bio layer: every lexicon subject + birth/death/burial places
+    import kg_bio
+    bio_index = kg_bio.build_entry_index()
+    if not args.no_bio:
+        bio_stats = kg_bio.add_bio_layer(g, labels, bio_index)
+        print(f"bio layer: {bio_stats}")
+
     for i, e in enumerate(g.edges, 1):
         e["edge_id"] = f"E-{i:05d}"
 
@@ -569,6 +589,8 @@ def main() -> None:
     pc.write_tsv(NODES_TSV, nodes, NODE_FIELDS)
     pc.write_tsv(EDGES_TSV, g.edges, EDGE_FIELDS)
     pc.write_tsv(EVENTS_TSV, g.events, EVENT_FIELDS)
+    kg_bio.write_entry_index(bio_index)
+    print(f"wrote {kg_bio.ENTRY_INDEX_TSV} ({len(bio_index)})")
     print(f"wrote {NODES_TSV} ({len(nodes)}), {EDGES_TSV} ({len(g.edges)}), "
           f"{EVENTS_TSV} ({len(g.events)})")
 

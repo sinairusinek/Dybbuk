@@ -56,6 +56,21 @@ PLACE_FUZZY = 92
 PLAY_FUZZY = 85
 
 
+def _norm_latin(s: str) -> str:
+    """Normalize a Latin-script place name for indexing/lookup.
+
+    Lowercase, drop parenthetical gloss ('New York (N.Y.)' -> 'new york'),
+    collapse whitespace and strip punctuation. Returns '' for non-Latin input
+    (e.g. a Yiddish string), which callers treat as 'no Latin key'.
+    """
+    s = (s or "").split("(")[0].casefold()
+    kept = [c if (c.isalnum() or c.isspace()) else " " for c in s]
+    out = "".join(kept)
+    if not any("a" <= c <= "z" for c in out):
+        return ""
+    return " ".join(out.split())
+
+
 class Linkers:
     def __init__(self) -> None:
         # --- people ---
@@ -107,18 +122,30 @@ class Linkers:
         self.cluster_norms = list(self.cluster_by_norm)
 
         # --- places ---
+        # Yiddish index (norm_yiddish keys) plus a Latin-script index built
+        # from label_en / kima_rom / Latin variants. Gemini fact rows sometimes
+        # emit the place surface in English ("New York"), which norm_yiddish
+        # collapses to '' — those must resolve against the Latin index or they
+        # get minted as bogus unmatched UPL- nodes beside the real QID node.
         self.place_by_norm: dict[str, str] = {}
+        self.place_by_norm_en: dict[str, str] = {}
         gaz = pc.ZIBN_WORKING / "toponyms_gazetteer.csv"
         with open(gaz, encoding="utf-8-sig") as f:
             for r in csv.DictReader(f):
                 qid = (r.get("qid") or "").strip()
                 if not qid:
                     continue
-                for n in [r.get("label_yi", "")] + (r.get("variants") or "").split(";"):
+                variants = (r.get("variants") or "").split(";")
+                for n in [r.get("label_yi", "")] + variants:
                     nn = pc.norm_yiddish(n)
                     if len(nn) >= 3:
                         self.place_by_norm.setdefault(nn, qid)
+                for n in [r.get("label_en", ""), r.get("kima_rom", "")] + variants:
+                    en = _norm_latin(n)
+                    if len(en) >= 3:
+                        self.place_by_norm_en.setdefault(en, qid)
         self.place_norms = list(self.place_by_norm)
+        self.place_norms_en = list(self.place_by_norm_en)
 
         # --- plays ---
         self.plays = pc.load_plays_db()
@@ -183,18 +210,30 @@ class Linkers:
 
     @lru_cache(maxsize=None)
     def link_place(self, surface: str) -> tuple[str, str, str]:
-        sn = pc.norm_yiddish(surface)
         if not surface.strip():
             return "", "", ""
-        if len(sn) < 3:
+        sn = pc.norm_yiddish(surface)
+        if len(sn) >= 3:
+            qid = self.place_by_norm.get(sn)
+            if qid:
+                return f"place:{qid}", "matched", "gazetteer_exact"
+            m = process.extractOne(sn, self.place_norms, scorer=fuzz.ratio,
+                                   score_cutoff=PLACE_FUZZY)
+            if m:
+                return f"place:{self.place_by_norm[m[0]]}", "candidate", f"fuzzy_{m[1]:.0f}"
+            return "", "unmatched", ""
+        # Yiddish normalization yielded nothing (e.g. a Latin-script surface) —
+        # fall back to the Latin index populated from label_en / kima_rom.
+        en = _norm_latin(surface)
+        if len(en) < 3:
             return "", "unmatched", "too_short"
-        qid = self.place_by_norm.get(sn)
+        qid = self.place_by_norm_en.get(en)
         if qid:
-            return f"place:{qid}", "matched", "gazetteer_exact"
-        m = process.extractOne(sn, self.place_norms, scorer=fuzz.ratio,
+            return f"place:{qid}", "matched", "gazetteer_exact_en"
+        m = process.extractOne(en, self.place_norms_en, scorer=fuzz.ratio,
                                score_cutoff=PLACE_FUZZY)
         if m:
-            return f"place:{self.place_by_norm[m[0]]}", "candidate", f"fuzzy_{m[1]:.0f}"
+            return f"place:{self.place_by_norm_en[m[0]]}", "candidate", f"fuzzy_en_{m[1]:.0f}"
         return "", "unmatched", ""
 
     @lru_cache(maxsize=None)
