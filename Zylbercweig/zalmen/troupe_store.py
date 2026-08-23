@@ -113,13 +113,40 @@ _TROUPE_TAG_OPTS = [
     # — never used, never assigned, unconfirmed leftovers from the 07-19 list.
 ]
 
+# KG link review for the non-plays layers (plays/kg_link_review_layers.tsv):
+# minted person/place surfaces awaiting ALIGN / NOT_ENTITY. Keyed on
+# (slot, surface), not db_id. build_kg.py regenerates the undecided rows on
+# main; decisions ride the data branch like troupe tags, so mirror the data
+# branch into main before running build_kg.py (see that file's docstring).
+PLAYS = pathlib.Path(__file__).resolve().parents[1] / "plays"
+KG_LINK_REVIEW = PLAYS / "kg_link_review_layers.tsv"
+KG_LINK_REVIEW_REPO_PATH = "Zylbercweig/plays/kg_link_review_layers.tsv"
+KG_LINK_REVIEW_HEADERS = [
+    "slot", "surface", "auto_link", "auto_status", "auto_method", "n_facts",
+    "example_fact_id", "example_evidence", "decision", "decided_link",
+    "reviewer_notes", "reviewer", "reviewed_at",
+]
+
+
+def _key_db_id(row: dict) -> str:
+    return row.get("db_id", "")
+
+
+def _key_slot_surface(row: dict) -> str:
+    return f"{row.get('slot', '')}|{row.get('surface', '')}"
+
+
 # The store's files, with the headers a write must be normalised to
 # (see feedback: save_* must enforce canonical headers at write time).
 _FILES: list[tuple[str, pathlib.Path, list[str]]] = [
     (TROUPE_TAGS_REPO_PATH, TROUPE_TAGS, TROUPE_TAG_HEADERS),
     (TAG_REVIEW_REPO_PATH, TAG_REVIEW, TAG_REVIEW_HEADERS),
+    (KG_LINK_REVIEW_REPO_PATH, KG_LINK_REVIEW, KG_LINK_REVIEW_HEADERS),
 ]
 _HEADERS_BY_REPO_PATH = {rp: headers for rp, _lp, headers in _FILES}
+# Row identity per file (default db_id).
+_KEY_BY_REPO_PATH = {KG_LINK_REVIEW_REPO_PATH: _key_slot_surface}
+_KEY_BY_LOCAL_PATH = {lp: _KEY_BY_REPO_PATH.get(rp, _key_db_id) for rp, lp, _h in _FILES}
 
 # Per-process boot state: repo_path → whether the data-branch copy has been
 # merged in. Not session_state — the merged file is process-wide, so one fetch
@@ -153,16 +180,17 @@ def _read_rows(path: pathlib.Path) -> dict[str, dict]:
     out: dict[str, dict] = {}
     if not path.exists():
         return out
+    key = _KEY_BY_LOCAL_PATH.get(path, _key_db_id)
     with open(path, newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f, delimiter="\t"):
-            out[r.get("db_id", "")] = r
+            out[key(r)] = r
     return out
 
 
-def _parse_rows(data: bytes) -> dict[str, dict]:
+def _parse_rows(data: bytes, key=_key_db_id) -> dict[str, dict]:
     out: dict[str, dict] = {}
     for r in csv.DictReader(io.StringIO(data.decode("utf-8")), delimiter="\t"):
-        out[r.get("db_id", "")] = r
+        out[key(r)] = r
     return out
 
 
@@ -198,7 +226,7 @@ def _merge_from_branch(repo_path: str, local_path: pathlib.Path,
     if data is None:
         return False
     try:
-        remote = _parse_rows(data)
+        remote = _parse_rows(data, _KEY_BY_REPO_PATH.get(repo_path, _key_db_id))
     except Exception:  # noqa: BLE001
         return False
     merged = _merge_newer(_read_rows(local_path), remote)
@@ -232,6 +260,7 @@ def ensure_fresh() -> bool:
     if ok:
         load_troupe_tags.clear()
         load_tag_review.clear()
+        load_kg_link_review.clear()
     return ok
 
 
@@ -252,8 +281,9 @@ def _upsert(repo_path: str, local_path: pathlib.Path, headers: list[str],
                 if _merge_from_branch(repo_path, local_path, headers):
                     _BOOT_MERGED[repo_path] = True
             existing = _read_rows(local_path)
+            key = _KEY_BY_REPO_PATH.get(repo_path, _key_db_id)
             for rec in records:
-                existing[rec["db_id"]] = rec
+                existing[key(rec)] = rec
             _write_rows(local_path, headers, existing)
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
@@ -301,6 +331,26 @@ def save_tag_review(records: list[dict], push: bool = True) -> bool:
     if not push:
         return True
     return push_batch([TAG_REVIEW_REPO_PATH], "chore: troupe_tag_review")
+
+
+@st.cache_data(show_spinner=False)
+def load_kg_link_review(mtime: float) -> dict[str, dict]:
+    """'slot|surface' → row. Callers pass `_mtime(KG_LINK_REVIEW)` after
+    `ensure_fresh()`."""
+    return _read_rows(KG_LINK_REVIEW)
+
+
+def save_kg_link_review(records: list[dict], push: bool = True) -> bool:
+    """Upsert N link-review rows (keyed slot|surface); same contract as
+    `save_troupe_tags`."""
+    if not records:
+        return True
+    _upsert(KG_LINK_REVIEW_REPO_PATH, KG_LINK_REVIEW, KG_LINK_REVIEW_HEADERS, records)
+    load_kg_link_review.clear()
+    if not push:
+        return True
+    return push_batch([KG_LINK_REVIEW_REPO_PATH],
+                      f"chore: KG link review ({len(records)} rows)")
 
 
 def push_batch(repo_paths: list[str], commit_message: str) -> bool:

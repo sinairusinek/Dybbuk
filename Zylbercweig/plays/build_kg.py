@@ -34,7 +34,10 @@ import plays_common as pc
 
 LINKED_TSV = pc.HERE / "kg_facts_linked.tsv"
 # review sheet for surfaces minted by the bio/mentions layers (link_entities.py
-# rewrites kg_link_review.tsv from its own facts, so these live beside it)
+# rewrites kg_link_review.tsv from its own facts, so these live beside it).
+# Decisions are made in Zalmen ("KG link review") and ride the zalmen-data
+# branch — MIRROR THEM INTO MAIN BEFORE RUNNING THIS:
+#   git fetch origin zalmen-data && git checkout FETCH_HEAD -- Zylbercweig/plays/kg_link_review_layers.tsv
 LAYERS_REVIEW_TSV = pc.HERE / "kg_link_review_layers.tsv"
 NODES_TSV = pc.KG_DIR / "nodes.tsv"
 EDGES_TSV = pc.KG_DIR / "edges.tsv"
@@ -650,7 +653,7 @@ def main() -> None:
     for key, row in g.pending.items():
         old = prior.get(key)
         if old:
-            for col in ("decision", "decided_link", "reviewer_notes"):
+            for col in ("decision", "decided_link", "reviewer_notes", "reviewer", "reviewed_at"):
                 row[col] = old.get(col, "")
         rows.append(row)
     # decided rows no longer minted (now ALIGNed) stay on the sheet as audit trail
@@ -659,7 +662,8 @@ def main() -> None:
             rows.append(old)
     rows.sort(key=lambda x: (x["slot"], -int(x["n_facts"] or 0)))
     fields = ["slot", "surface", "auto_link", "auto_status", "auto_method", "n_facts",
-              "example_fact_id", "example_evidence", "decision", "decided_link", "reviewer_notes"]
+              "example_fact_id", "example_evidence", "decision", "decided_link",
+              "reviewer_notes", "reviewer", "reviewed_at"]
     pc.write_tsv(LAYERS_REVIEW_TSV, rows, fields)
     print(f"wrote {LAYERS_REVIEW_TSV} ({len(rows)}; pending "
           f"{sum(1 for r in rows if not r['decision'])})")

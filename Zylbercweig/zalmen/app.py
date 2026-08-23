@@ -50,6 +50,7 @@ VIEWS = {
     "Person Hub":              ("person_hub",     "hub"),
     "YiDraCor · Annotation flags": ("yidracor_flags", "yd"),
     "Plays KG · Explorer":         ("plays_kg", "kg"),
+    "KG link review":              ("kg_link_review", "klr"),
 }
 
 def _remember_view() -> None:
@@ -245,6 +246,9 @@ elif view_module == "person_hub":
     render()
 elif view_module == "yidracor_flags":
     from views.yidracor_flags import render
+    render()
+elif view_module == "kg_link_review":
+    from views.kg_link_review import render
     render()
 elif view_module == "plays_kg":
     from views.plays_kg import render
