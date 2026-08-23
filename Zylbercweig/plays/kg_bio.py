@@ -257,6 +257,65 @@ def _merge_entry_attrs(entries: list[dict]) -> dict:
     return merged
 
 
+# ---------------------------------------------------------------- RA sheets
+CEMETERIES_XLSX = EXTRACTION_DIR / "Zylbercweig-Extraction2026-02-05cemeteries-tsv.xlsx"
+JSON_REVIEW_XLSX = EXTRACTION_DIR / "Json Review.xlsx"
+
+
+def _load_cemeteries() -> dict[str, tuple[str, str]]:
+    """entry_key -> (cemetery QID, find-a-grave url) from the RA burial sheet
+    (2026-02-05; 167 QIDs). Used to fill burial places the toponym spine left
+    unlinked and to confirm needs_review ones; a disagreement with a LINKED
+    attestation is recorded, not applied."""
+    try:
+        import openpyxl
+    except ImportError:
+        return {}
+    if not CEMETERIES_XLSX.exists():
+        return {}
+    wb = openpyxl.load_workbook(CEMETERIES_XLSX, read_only=True)
+    rows = wb.worksheets[0].iter_rows(values_only=True)
+    hdr = [str(h).strip() for h in next(rows)]
+    i = {h: k for k, h in enumerate(hdr)}
+    out = {}
+    for r in rows:
+        if not r or r[i["unique-id"]] is None:
+            continue
+        m = re.search(r"Q\d+", str(r[i["wikidata"]] or ""))
+        fg = str(r[i["find a grave link"]] or "").strip() if "find a grave link" in i else ""
+        out[str(r[i["unique-id"]]).strip()] = (m.group(0) if m else "", fg)
+    return out
+
+
+def _load_ra_final_types() -> dict[str, str]:
+    """entry_key -> RA 'final type' from Json Review.xlsx per-volume sheets
+    (374 verdicts; 'NOT AN ENTRY' marks non-subjects the LLM split off)."""
+    try:
+        import openpyxl
+    except ImportError:
+        return {}
+    if not JSON_REVIEW_XLSX.exists():
+        return {}
+    wb = openpyxl.load_workbook(JSON_REVIEW_XLSX, read_only=True)
+    out = {}
+    for ws in wb.worksheets:
+        if not ws.title.lower().startswith("volume"):
+            continue
+        rows = ws.iter_rows(values_only=True)
+        hdr = [str(h) for h in next(rows)]
+        if "final type" not in hdr or "_ - xml:id" not in hdr:
+            continue
+        i = {h: k for k, h in enumerate(hdr)}
+        for r in rows:
+            if not r or r[i["_ - xml:id"]] is None:
+                continue
+            f = str(r[i["final type"]] or "").strip()
+            if f:
+                vol = str(r[i["Volume"]]).split(".")[0]
+                out[f"{vol}-{str(r[i['_ - xml:id']]).strip()}"] = f
+    return out
+
+
 # ---------------------------------------------------------------- step 1
 def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
     """Add every lexicon subject as a person node and its place edges."""
@@ -265,6 +324,8 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
     people, _orgs, _clusters, places = labels
     att = _load_attestations()
     family = _load_family_background()
+    cemeteries = _load_cemeteries()
+    ra_types = _load_ra_final_types()
     stats: Counter = Counter()
 
     # pass 1: build per-entry attrs, grouped by node_id (multiple lexicon
@@ -289,6 +350,17 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
         if fam:
             attrs.update(fam)
             stats["family_background"] += 1
+        ra = ra_types.get(e["entry_key"])
+        if ra:
+            attrs["entry_type_ra"] = ra
+            stats["ra_final_type"] += 1
+            if ra.upper() == "NOT AN ENTRY":
+                attrs["ra_not_an_entry"] = True
+                stats["ra_not_an_entry"] += 1
+        cem = cemeteries.get(e["entry_key"])
+        if cem and cem[1]:
+            attrs["findagrave"] = cem[1]
+            stats["findagrave"] += 1
         by_node[e["node_id"]].append({
             "pid": pid, "attrs": attrs,
             "volume": r["volume"], "span": r.get("span", ""),
@@ -344,6 +416,23 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
             a = att.get((e["entry_key"], ctx))
             status = (a or {}).get("link_status", "")
             qid = (a or {}).get("qid", "")
+            sheet_note = ""
+            if ctx == "burial":
+                cq = (cemeteries.get(e["entry_key"]) or ("", ""))[0]
+                if cq:
+                    if status == "linked" and qid and qid != cq:
+                        sheet_note = f"cemetery_sheet_disagrees:{cq}"
+                        stats["burial_sheet_conflict"] += 1
+                    elif status == "needs_review" and qid == cq:
+                        status = "linked"  # RA sheet confirms the spine's guess
+                        stats["burial_sheet_confirms"] += 1
+                    elif not qid or status not in LINK_CONF:
+                        # sheet fills an unlinked / absent attestation
+                        a = dict(a or {}); a.setdefault("attestation_id", "")
+                        a["attestation_id"] = (a["attestation_id"] + "|" if a["attestation_id"] else "") + "cemeteries_sheet"
+                        a["label_en"] = ""
+                        qid, status = cq, "needs_review"
+                        stats["burial_sheet_fills"] += 1
             if a and qid and status in LINK_CONF:
                 pl = places.get(qid, {})
                 sec = json.dumps({k: pl.get(k, "") for k in ("kima_id", "lat", "lon")},
@@ -383,7 +472,8 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
                        date_start=d0, date_end=d1, date_precision=prec,
                        event_id="", production_key="",
                        provenance_person_id=pid,
-                       provenance_fact_ids=(a or {}).get("attestation_id", ""),
+                       provenance_fact_ids=(a or {}).get("attestation_id", "")
+                       + (f"|{sheet_note}" if sheet_note else ""),
                        evidence_sentence=evidence,
                        extraction_model=EXTRACTION_MODEL,
                        confidence=conf, match_status=match,
