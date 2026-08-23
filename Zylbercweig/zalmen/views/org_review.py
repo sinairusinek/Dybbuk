@@ -38,6 +38,10 @@ import mention_removals
 ALIGN_FILE = BASE / "organizations" / "org_alignment_review.tsv"
 PAIRS_FILE = BASE / "organizations" / "cluster_pairs_review.tsv"
 CORE_DB_FILE = BASE / "organizations" / "core_db.tsv"
+# Plays-KG degree ranking of unaligned clusters (organizations/org_cluster_kg_backlog.tsv,
+# rebuilt by organizations/build_org_cluster_kg_backlog.py after build_kg.py).
+# Read-only here: it only orders the queue and annotates the selected cluster.
+KG_BACKLOG_FILE = BASE / "organizations" / "org_cluster_kg_backlog.tsv"
 CLUSTER_FILE = BASE / "organizations" / "organizations_clustered.tsv"
 ADDR_FILE = BASE / "organizations" / "org_addresses_review.tsv"
 DRAFTS_FILE = BASE / "organizations" / "org_alignment_drafts.tsv"
@@ -130,6 +134,15 @@ def _has_yiddish(s: str) -> bool:
 # eager all-volumes parse pinned via cache_resource, which (times four views)
 # risked OOM on Streamlit Cloud and silently dropped whole volumes.
 from zalmen.lexicon import get_entry_text  # noqa: E402,F401
+
+
+@st.cache_data(show_spinner=False)
+def load_kg_backlog(mtime: float) -> dict[str, dict[str, str]]:
+	"""cluster_id -> {n_distinct_persons, n_person_edges, top_edge_types, sample_persons}."""
+	if not KG_BACKLOG_FILE.exists():
+		return {}
+	with open(KG_BACKLOG_FILE, newline="", encoding="utf-8") as f:
+		return {r["cluster_id"]: r for r in csv.DictReader(f, delimiter="\t")}
 
 
 @st.cache_data(show_spinner=False)
@@ -1368,7 +1381,7 @@ def render() -> None:
 			default="Undecided",
 		)
 	with f2:
-		sort_by = st.selectbox("Sort by", ["Candidate score ↓", "Cluster size ↓", "Name"], index=0)
+		sort_by = st.selectbox("Sort by", ["Candidate score ↓", "KG persons ↓", "Cluster size ↓", "Name"], index=0)
 
 	type_counts: dict[str, int] = collections.Counter()
 	for r in a_rows:
@@ -1410,8 +1423,16 @@ def render() -> None:
 		except ValueError:
 			return 0.0
 
+	kg_backlog = load_kg_backlog(KG_BACKLOG_FILE.stat().st_mtime if KG_BACKLOG_FILE.exists() else 0.0)
+
+	def kg_persons(r: dict[str, str]) -> tuple[int, int]:
+		b = kg_backlog.get(r.get("cluster_id", ""), {})
+		return (int(b.get("n_distinct_persons", "0") or "0"), int(b.get("n_person_edges", "0") or "0"))
+
 	if sort_by == "Candidate score ↓":
 		visible.sort(key=score, reverse=True)
+	elif sort_by == "KG persons ↓":
+		visible.sort(key=kg_persons, reverse=True)
 	elif sort_by == "Cluster size ↓":
 		visible.sort(key=lambda r: int(r.get("cluster_size", "0") or "0"), reverse=True)
 	else:
@@ -1490,6 +1511,13 @@ def render() -> None:
 			f"<div class='rtl-block'>Cluster: {selected.get('cluster_id','')} · Mentions: {selected.get('cluster_size','')}</div>",
 			unsafe_allow_html=True,
 		)
+		_kgb = kg_backlog.get(selected.get("cluster_id", ""))
+		if _kgb:
+			st.caption(
+				f"KG: {_kgb.get('n_distinct_persons','0')} persons / {_kgb.get('n_person_edges','0')} edges"
+				f" · {_kgb.get('top_edge_types','')}"
+				+ (f" · e.g. {_kgb.get('sample_persons','')}" if _kgb.get("sample_persons") else "")
+			)
 		# org_type selectbox — inline editing
 		_type_row_idx = next((i for i, r in enumerate(a_rows) if r.get("cluster_id") == selected["cluster_id"]), None)
 		_cur_type = selected.get("org_type", "").strip().lower()
