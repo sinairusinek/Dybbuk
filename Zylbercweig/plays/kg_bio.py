@@ -189,6 +189,74 @@ def _load_family_background() -> dict[str, dict]:
     return out
 
 
+# ---------------------------------------------------------------- step 1a
+# add_node only fills EMPTY keys (see build_kg.Graph.add_node), so when 2+
+# lexicon entries share a node_id (a person aligned to the same people_db id
+# via 2+ volumes) only the FIRST entry's attrs would survive. Merge across
+# entries here, before add_node is ever called for that node_id.
+def _merge_scalar(vals: list[str]) -> tuple[str, list[str]]:
+    """First non-empty value, plus other distinct non-empty values seen."""
+    non_empty = [v for v in vals if v]
+    if not non_empty:
+        return "", []
+    first = non_empty[0]
+    alts = []
+    for v in non_empty[1:]:
+        if v != first and v not in alts:
+            alts.append(v)
+    return first, alts
+
+
+def _merge_entry_attrs(entries: list[dict]) -> dict:
+    """Merge per-entry attrs dicts (+ volume/span/credit/person_id) for all
+    lexicon entries that resolve to the same node_id. `entries` items carry
+    pid, attrs (dict), volume, span, credit."""
+    if len(entries) == 1:
+        return dict(entries[0]["attrs"])
+
+    merged: dict = {}
+    entry_list = [
+        {k: v for k, v in (
+            ("volume", en["volume"]), ("span", en["span"]),
+            ("credit", en["credit"]), ("person_id", en["pid"]),
+        ) if v}
+        for en in entries
+    ]
+    merged["entries"] = entry_list
+
+    excluded = {"volume", "span", "credit"}
+    all_keys: list[str] = []
+    for en in entries:
+        for k in en["attrs"]:
+            if k not in excluded and k not in all_keys:
+                all_keys.append(k)
+
+    for k in all_keys:
+        vals = [en["attrs"].get(k, "") for en in entries]
+        if k == "education_classes":
+            union: list[str] = []
+            for v in vals:
+                for c in (v or []):
+                    if c not in union:
+                        union.append(c)
+            if union:
+                merged[k] = union
+        elif k in ("education", "family_description"):
+            parts: list[str] = []
+            for v in vals:
+                if v and v not in parts:
+                    parts.append(v)
+            if parts:
+                merged[k] = " | ".join(parts)
+        else:
+            first, alts = _merge_scalar(vals)
+            if first:
+                merged[k] = first
+            if alts:
+                merged[f"{k}_alt"] = alts
+    return merged
+
+
 # ---------------------------------------------------------------- step 1
 def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
     """Add every lexicon subject as a person node and its place edges."""
@@ -199,6 +267,9 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
     family = _load_family_background()
     stats: Counter = Counter()
 
+    # pass 1: build per-entry attrs, grouped by node_id (multiple lexicon
+    # entries can share a node_id when they align to the same people_db id)
+    by_node: dict[str, list[dict]] = defaultdict(list)
     for pid, e in index.items():
         r = e["_row"]
         attrs = {k: v for k, v in (
@@ -218,24 +289,51 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
         if fam:
             attrs.update(fam)
             stats["family_background"] += 1
-        node_id = e["node_id"]
-        if e["db_id"]:
-            p = people.get(e["db_id"], {})
-            g.add_node(node_id, node_type="person",
-                       label_yiddish=p.get("hebname") or r["heading"],
-                       label_english=p.get("english", ""),
-                       ext_ref_type="people_db", ext_ref_id=e["db_id"],
-                       secondary_ids=f"entry_person_id:{pid}",
-                       match_status="matched", source_layer="bio",
-                       attrs=json.dumps(attrs, ensure_ascii=False))
-        else:
-            g.add_node(node_id, node_type="person", label_yiddish=r["heading"],
-                       ext_ref_type="entry_person_id", ext_ref_id=pid,
-                       match_status="unmatched", source_layer="bio",
-                       attrs=json.dumps(attrs, ensure_ascii=False))
+        by_node[e["node_id"]].append({
+            "pid": pid, "attrs": attrs,
+            "volume": r["volume"], "span": r.get("span", ""),
+            "credit": r.get("credit", ""),
+        })
         stats["subjects"] += 1
         stats["subjects_aligned" if e["db_id"] else "subjects_unaligned"] += 1
 
+    # pass 2: one add_node call per node_id, attrs merged across its entries
+    for node_id, entries in by_node.items():
+        merged_attrs = _merge_entry_attrs(entries)
+        attrs_json = json.dumps(merged_attrs, ensure_ascii=False)
+        pids = [en["pid"] for en in entries]
+        e0 = index[pids[0]]
+        r0 = e0["_row"]
+        if e0["db_id"]:
+            p = people.get(e0["db_id"], {})
+            g.add_node(node_id, node_type="person",
+                       label_yiddish=p.get("hebname") or r0["heading"],
+                       label_english=p.get("english", ""),
+                       ext_ref_type="people_db", ext_ref_id=e0["db_id"],
+                       secondary_ids="|".join(
+                           f"entry_person_id:{pid}" for pid in pids),
+                       match_status="matched", source_layer="bio",
+                       attrs=attrs_json)
+            # add_node only fills EMPTY keys: if the plays layer already
+            # upgraded this node_id earlier (person_entry: -> person:) it
+            # stamped secondary_ids with a single entry_person_id, which
+            # would silently block our full pid list above. Force-merge so
+            # every entry's pid survives regardless of write order.
+            existing = g.nodes[node_id].get("secondary_ids", "") or ""
+            existing_ids = [x for x in existing.split("|") if x]
+            want_ids = [f"entry_person_id:{pid}" for pid in pids]
+            g.nodes[node_id]["secondary_ids"] = "|".join(
+                dict.fromkeys(existing_ids + want_ids))
+        else:
+            g.add_node(node_id, node_type="person", label_yiddish=r0["heading"],
+                       ext_ref_type="entry_person_id", ext_ref_id=pids[0],
+                       match_status="unmatched", source_layer="bio",
+                       attrs=attrs_json)
+
+    # pass 3: place edges (per entry — each entry's own attestations)
+    for pid, e in index.items():
+        r = e["_row"]
+        node_id = e["node_id"]
         for ctx, etype in CONTEXT_EDGE.items():
             surface = r.get(f"{ctx}_place_name", "")
             if not surface:
