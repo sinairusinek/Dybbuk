@@ -261,6 +261,12 @@ def ensure_endpoint(g: Graph, link: str, status: str, slot: str, surface: str,
                        ext_ref_type="entry_person_id", ext_ref_id=ref,
                        match_status=status)
         elif ns == "org":
+            # follow merge chains so a link resolved before a core_db merge
+            # lands on the survivor, not the deprecated row
+            hops = 0
+            while orgs.get(ref, {}).get("merged_into") in orgs and hops < 10:
+                ref, hops = orgs[ref]["merged_into"], hops + 1
+            link = f"org:{ref}"
             o = orgs.get(ref, {})
             g.add_node(link, node_type="org",
                        label_yiddish=o.get("name_yiddish") or surface,
@@ -310,6 +316,8 @@ def main() -> None:
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--no-bio", action="store_true",
                     help="skip the lexicon bio layer (kg_bio.py)")
+    ap.add_argument("--no-orgrel", action="store_true",
+                    help="skip the person<->org relations layer (kg_orgrel.py)")
     args = ap.parse_args()
 
     rows = pc.read_tsv(LINKED_TSV)
@@ -570,6 +578,11 @@ def main() -> None:
     if not args.no_bio:
         bio_stats = kg_bio.add_bio_layer(g, labels, bio_index)
         print(f"bio layer: {bio_stats}")
+    # ---- org-relations layer: subject <-> org affiliations (IIIorg relations)
+    if not args.no_orgrel:
+        import kg_orgrel
+        orgrel_stats = kg_orgrel.add_orgrel_layer(g, labels, bio_index)
+        print(f"orgrel layer: {orgrel_stats}")
 
     for i, e in enumerate(g.edges, 1):
         e["edge_id"] = f"E-{i:05d}"
