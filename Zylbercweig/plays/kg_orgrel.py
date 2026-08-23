@@ -147,6 +147,18 @@ def _load_core_db() -> tuple[dict[str, dict], dict[str, str]]:
     return rows, c2d
 
 
+def _load_cluster_decisions() -> dict[str, tuple[str, str]]:
+    """cluster_id -> (decision, aligned_db_id) from Zalmen's org_alignment_review.
+    Stamped on org_cluster nodes as metadata ONLY: an ALIGN there is not a
+    link until it reaches core_db.linked_cluster_ids (REMOVE decisions and
+    merges override it — several pending ALIGNs are visibly wrong)."""
+    out = {}
+    for r in pc.read_tsv(pc.ORGS_DIR / "org_alignment_review.tsv"):
+        if r.get("cluster_id") and r.get("decision"):
+            out[r["cluster_id"]] = (r["decision"], r.get("aligned_db_id") or "")
+    return out
+
+
 def _load_org_places() -> dict[str, list[dict]]:
     out: dict[str, list[dict]] = defaultdict(list)
     with open(ATTESTATIONS_CSV, encoding="utf-8-sig") as f:
@@ -164,6 +176,7 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
     byk = _load_clustered()
     core, c2d = _load_core_db()
     org_places = _load_org_places()
+    decisions = _load_cluster_decisions()
     by_entry_key = {e["entry_key"]: e for e in entry_index.values()}
     stats: Counter = Counter()
     seen_edges: set[tuple] = set()
@@ -186,9 +199,16 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
             stats["org_nodes_db"] += 1
         else:
             nid = f"org_cluster:{cid}"
+            dec, adb = decisions.get(cid, ("", ""))
+            # DESCRIPTIVE/GENERIC = reviewer says "a kind of thing, not an
+            # entity" (חדר, גימנאַזיע): keep the edges, flag the node
+            status = "not_entity" if dec in ("DESCRIPTIVE", "GENERIC") else "unmatched"
+            notes = (f"review:{dec}" + (f" aligned_db_id:{adb}" if adb else "")) if dec else ""
+            if dec:
+                stats[f"cluster_review:{dec}"] += 1
             g.add_node(nid, node_type="org", label_yiddish=canon,
                        ext_ref_type="org_cluster", ext_ref_id=cid,
-                       match_status="unmatched", source_layer="orgrel",
+                       match_status=status, notes=notes, source_layer="orgrel",
                        attrs=json.dumps({"org_type": org_type_hint},
                                         ensure_ascii=False) if org_type_hint else "")
             stats["org_nodes_cluster_only"] += 1
