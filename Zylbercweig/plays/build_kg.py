@@ -33,6 +33,9 @@ from collections import Counter, defaultdict
 import plays_common as pc
 
 LINKED_TSV = pc.HERE / "kg_facts_linked.tsv"
+# review sheet for surfaces minted by the bio/mentions layers (link_entities.py
+# rewrites kg_link_review.tsv from its own facts, so these live beside it)
+LAYERS_REVIEW_TSV = pc.HERE / "kg_link_review_layers.tsv"
 NODES_TSV = pc.KG_DIR / "nodes.tsv"
 EDGES_TSV = pc.KG_DIR / "edges.tsv"
 EVENTS_TSV = pc.KG_DIR / "events.tsv"
@@ -64,6 +67,35 @@ class Graph:
         self.events: list[dict] = []
         self._minted: dict[tuple[str, str], str] = {}
         self._mint_seq: Counter = Counter()
+        # adjudication: (slot, surface) -> review row (kg_link_review*.tsv)
+        self.review: dict[tuple[str, str], dict] = {}
+        self.labels = None
+        self.entry_index = None
+        # unmatched surfaces minted by the non-plays layers, for the
+        # layers review sheet: (slot, surface) -> row
+        self.pending: dict[tuple[str, str], dict] = {}
+
+    def resolve_surface(self, slot: str, surface: str, layer: str,
+                        fact_id: str, evidence: str, **mint_kw) -> str:
+        """Node id for an unmatched surface in a non-plays layer: an ALIGN
+        decision in either review sheet wins; otherwise mint (shared prefix
+        with the plays layer) and queue the surface for review."""
+        rv = self.review.get((slot, surface))
+        if rv and rv.get("decision") == "ALIGN" and rv.get("decided_link"):
+            return ensure_endpoint(self, rv["decided_link"], "matched", slot,
+                                   surface, self.labels, self.entry_index)
+        if rv and rv.get("decision") in ("NOT_ENTITY", "GEMINI_NOT_ENTITY"):
+            return ""
+        prefix = {"person": "person:UP", "org": "org:UO", "venue": "venue:UV",
+                  "place": "place:UPL", "play": "play:NEW"}[slot]
+        nid = self.mint(prefix, pc.norm_yiddish(surface) or surface, **mint_kw)
+        row = self.pending.setdefault((slot, surface), {
+            "slot": slot, "surface": surface, "auto_link": nid,
+            "auto_status": "unmatched", "auto_method": layer, "n_facts": 0,
+            "example_fact_id": fact_id, "example_evidence": (evidence or "")[:200],
+            "decision": "", "decided_link": "", "reviewer_notes": ""})
+        row["n_facts"] += 1
+        return nid
 
     def add_node(self, node_id: str, **kw) -> str:
         n = self.nodes.get(node_id)
@@ -318,6 +350,8 @@ def main() -> None:
                     help="skip the lexicon bio layer (kg_bio.py)")
     ap.add_argument("--no-orgrel", action="store_true",
                     help="skip the person<->org relations layer (kg_orgrel.py)")
+    ap.add_argument("--no-mentions", action="store_true",
+                    help="skip the vol-3 person mentions layer (kg_mentions.py)")
     args = ap.parse_args()
 
     rows = pc.read_tsv(LINKED_TSV)
@@ -333,6 +367,9 @@ def main() -> None:
     plays = pc.load_plays_db()
 
     g = Graph()
+    g.review = dict(review)
+    g.review.update({(r["slot"], r["surface"]): r for r in pc.read_tsv(LAYERS_REVIEW_TSV)})
+    g.labels, g.entry_index = labels, entry_index
 
     # Registry play nodes + authored edges (lexicon-derived created_expressions).
     for p in plays:
@@ -583,6 +620,10 @@ def main() -> None:
         import kg_orgrel
         orgrel_stats = kg_orgrel.add_orgrel_layer(g, labels, bio_index)
         print(f"orgrel layer: {orgrel_stats}")
+    # ---- mentions layer: vol-3 in-text person mentions -> person<->person
+    if not args.no_mentions:
+        import kg_mentions
+        print(f"mentions layer: {kg_mentions.add_mentions_layer(g, labels, bio_index)}")
 
     for i, e in enumerate(g.edges, 1):
         e["edge_id"] = f"E-{i:05d}"
@@ -603,6 +644,25 @@ def main() -> None:
     pc.write_tsv(EDGES_TSV, g.edges, EDGE_FIELDS)
     pc.write_tsv(EVENTS_TSV, g.events, EVENT_FIELDS)
     kg_bio.write_entry_index(bio_index)
+    # layers review sheet: keep prior decisions, refresh counts/examples
+    prior = {(r["slot"], r["surface"]): r for r in pc.read_tsv(LAYERS_REVIEW_TSV)}
+    rows = []
+    for key, row in g.pending.items():
+        old = prior.get(key)
+        if old:
+            for col in ("decision", "decided_link", "reviewer_notes"):
+                row[col] = old.get(col, "")
+        rows.append(row)
+    # decided rows no longer minted (now ALIGNed) stay on the sheet as audit trail
+    for key, old in prior.items():
+        if key not in g.pending and old.get("decision"):
+            rows.append(old)
+    rows.sort(key=lambda x: (x["slot"], -int(x["n_facts"] or 0)))
+    fields = ["slot", "surface", "auto_link", "auto_status", "auto_method", "n_facts",
+              "example_fact_id", "example_evidence", "decision", "decided_link", "reviewer_notes"]
+    pc.write_tsv(LAYERS_REVIEW_TSV, rows, fields)
+    print(f"wrote {LAYERS_REVIEW_TSV} ({len(rows)}; pending "
+          f"{sum(1 for r in rows if not r['decision'])})")
     print(f"wrote {kg_bio.ENTRY_INDEX_TSV} ({len(bio_index)})")
     print(f"wrote {NODES_TSV} ({len(nodes)}), {EDGES_TSV} ({len(g.edges)}), "
           f"{EVENTS_TSV} ({len(g.events)})")

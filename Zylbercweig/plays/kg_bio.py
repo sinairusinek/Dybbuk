@@ -130,6 +130,65 @@ def _load_attestations() -> dict[tuple[str, str], dict]:
     return best
 
 
+# ---------------------------------------------------------------- step 4
+# family_background / education as node attributes (not nodes).  The family
+# fields carry the extraction's controlled values (financial: modest|rich|poor,
+# religion: religious|maskilic_secular|yichus|christian, theater_connection:
+# connected|amateur_lover|opposed, structure: orphan); education is free text
+# that gets a coarse class list on top.  Only vol 7 was RA-reviewed.
+EXTRACTION_DIR = pc.HERE.parent / "Zylbercweig_extraction"
+
+EDU_CLASSES = [  # (class, regex over pc.norm_yiddish text — un-finalized letters)
+    ("kheyder", r"\bחדר|\bחדרימ|\bמלמד"),
+    ("yeshiva", r"ישיבה|בית המדרש|\bתלמוד תורה"),
+    ("gymnasium", r"גימנאז"),
+    ("folkshul", r"פאלקס ?שול|פאלקשול"),
+    ("public_school", r"פאבליק ?סקול|פובליק ?סקול|\bסקול\b"),
+    ("commercial_school", r"קאמערצ|האנדלס"),
+    ("conservatory", r"קאנסערוואטאר"),
+    ("university", r"אוניווערסיטעט|אוניווערזיטעט|\bקאלעדזש|פאקולטעט|מעדיצינ"),
+    ("drama_school", r"דראמ[^ ]* ?(?:שול|סטודיא|קורס)|טעאטער ?(?:שול|סטודיא)|סטודיא"),
+    ("music_school", r"מוזיק ?שול|געזאנג"),
+    ("extern", r"עקסטערנ"),
+    ("self_taught", r"זעלבסט ?(?:בילדונג|געלערנט)|אויטאדידאקט"),
+    ("private_tutors", r"פריוואט|מיט לערער"),
+]
+_EDU = [(c, re.compile(rx)) for c, rx in EDU_CLASSES]
+
+
+def education_classes(text: str) -> list[str]:
+    s = pc.norm_yiddish(text)
+    return [c for c, rx in _EDU if rx.search(s)]
+
+
+def _load_family_background() -> dict[str, dict]:
+    """entry_key -> family attrs from the IIIorg JSONs."""
+    import glob, json as _json, os
+    out: dict[str, dict] = {}
+    for path in sorted(glob.glob(str(EXTRACTION_DIR / "*IIIorg.json"))):
+        m = re.search(r"(\d+)", os.path.basename(path))
+        vol = m.group(1) if m else ""
+        with open(path, encoding="utf-8") as f:
+            for e in _json.load(f):
+                fb = e.get("family_background") or []
+                if not fb:
+                    continue
+                d: dict = {}
+                for b in fb:
+                    for k, ak in (("financial", "family_financial"),
+                                  ("religion", "family_religion"),
+                                  ("theater_connection", "family_theater"),
+                                  ("structure", "family_structure")):
+                        if b.get(k) and ak not in d:
+                            d[ak] = b[k]
+                    if b.get("description"):
+                        d.setdefault("family_description", []).append(b["description"])
+                if "family_description" in d:
+                    d["family_description"] = " | ".join(d["family_description"])
+                out[f"{vol}-{(e.get('xml:id') or '').strip()}"] = d
+    return out
+
+
 # ---------------------------------------------------------------- step 1
 def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
     """Add every lexicon subject as a person node and its place edges."""
@@ -137,6 +196,7 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
 
     people, _orgs, _clusters, places = labels
     att = _load_attestations()
+    family = _load_family_background()
     stats: Counter = Counter()
 
     for pid, e in index.items():
@@ -147,7 +207,17 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
             ("birth_date", r.get("birth_date", "")),
             ("death_date", r.get("death_date", "")),
             ("credit", r.get("credit", "")),
+            ("education", r.get("education", "")),
         ) if v}
+        if r.get("education"):
+            cls = education_classes(r["education"])
+            if cls:
+                attrs["education_classes"] = cls
+            stats["education"] += 1
+        fam = family.get(e["entry_key"])
+        if fam:
+            attrs.update(fam)
+            stats["family_background"] += 1
         node_id = e["node_id"]
         if e["db_id"]:
             p = people.get(e["db_id"], {})
@@ -196,11 +266,17 @@ def add_bio_layer(g, labels, index: dict[str, dict]) -> dict:
                 notes = f"attestation:{status}" if status else "no_attestation"
                 if status == "misresolved" and qid:
                     notes += f" rejected:{qid}"
-                target = g.mint("place:UPL", pc.norm_yiddish(surface) or surface,
-                                node_type="place", label_yiddish=surface,
-                                match_status="unmatched", notes=notes,
-                                source_layer="bio")
-                match, conf = "unmatched", "low"
+                target = g.resolve_surface(
+                    "place", surface, "bio", (a or {}).get("attestation_id", "") or pid,
+                    evidence, node_type="place", label_yiddish=surface,
+                    match_status="unmatched", notes=notes, source_layer="bio")
+                if not target:
+                    stats[f"{etype}:not_entity"] += 1
+                    continue
+                if target.startswith("place:UPL"):
+                    match, conf = "unmatched", "low"
+                else:
+                    match, conf = "matched", "high"  # adjudicated ALIGN
             date_key = {"birth": "birth_date", "death": "death_date",
                         "burial": "death_date"}[ctx]
             d0, d1, prec = norm_date(r.get(date_key, ""))
