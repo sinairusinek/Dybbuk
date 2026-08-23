@@ -1381,15 +1381,20 @@ def render() -> None:
 			default="Undecided",
 		)
 	with f2:
-		sort_by = st.selectbox("Sort by", ["Candidate score ↓", "KG persons ↓", "Cluster size ↓", "Name"], index=0)
+		sort_by = st.selectbox("Sort by", ["KG persons ↓", "Candidate score ↓", "Cluster size ↓", "Name"], index=0)
 
 	type_counts: dict[str, int] = collections.Counter()
+	type_undecided: dict[str, int] = collections.Counter()
 	for r in a_rows:
 		t = r.get("org_type", "").strip()
 		if t:
 			type_counts[t.title()] += 1
-	type_options = [t for t, _ in sorted(type_counts.items(), key=lambda x: (-x[1], x[0]))]
-	type_labels = {t: f"{t} ({type_counts[t]})" for t in type_options}
+			if not r.get("decision", "").strip():
+				type_undecided[t.title()] += 1
+	# sort by remaining work, then total; label = undecided/total
+	type_options = [t for t, _ in sorted(type_counts.items(),
+	                                     key=lambda x: (-type_undecided[x[0]], -x[1], x[0]))]
+	type_labels = {t: f"{t} ({type_undecided[t]}/{type_counts[t]})" for t in type_options}
 
 	st.caption("Filter by org type")
 	sel_types = st.pills(
