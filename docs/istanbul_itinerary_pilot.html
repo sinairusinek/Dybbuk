@@ -55,9 +55,9 @@ about extracting itineraries and events corpus-wide — and how the two relate.<
 
 <div class="statrow">
   <div class="stat"><b>79</b><span>entries processed</span></div>
-  <div class="stat"><b>1,174</b><span>stations</span></div>
-  <div class="stat"><b>595</b><span>events</span></div>
-  <div class="stat"><b>101</b><span>itineraries</span></div>
+  <div class="stat"><b>1,182</b><span>stations</span></div>
+  <div class="stat"><b>609</b><span>events</span></div>
+  <div class="stat"><b>95</b><span>itineraries</span></div>
   <div class="stat"><b>88</b><span>Istanbul stations</span></div>
   <div class="stat"><b>45</b><span>Istanbul events</span></div>
 </div>
@@ -87,17 +87,16 @@ reconciliation step.</p>
 </table></div>
 
 <h2>3 · Dating: narrative order carries the load</h2>
-<p>Only <b>465 stations (40%)</b> have an explicit or approximate date in the text.
-<b>676 (58%)</b> received an inferred year-range interpolated from the nearest dated
-neighbors in narrative order (Leksikon entries are chronological); <b>33 (3%)</b> are
-undatable. Spot checks (Zbarzher, Grinberg, Amatin) show the interpolated ranges are
+<p>Roughly <b>40%</b> of stations have an explicit or approximate date in the text.
+about <b>58%</b> received an inferred year-range interpolated from the nearest dated
+neighbors in narrative order (Leksikon entries are chronological); about <b>3%</b> are undatable. Spot checks (Zbarzher, Grinberg, Amatin) show the interpolated ranges are
 coherent. Recommendation: keep inferred ranges as first-class but flagged data
 (<span class="mono">t_inferred</span>) — they are what makes a timeline possible at all.</p>
 
 <h2>4 · Place resolution: the existing spine mostly suffices</h2>
 <div class="tablewrap"><table>
 <tr><th>outcome</th><th class="num">stations</th><th class="num">share</th><th>note</th></tr>
-<tr><td>settlement resolved (QID + coords)</td><td class="num">816</td><td class="num">70%</td><td>unified toponyms gazetteer variants + KG place nodes + 13 manual supplements</td></tr>
+<tr><td>settlement resolved (QID + coords)</td><td class="num">824</td><td class="num">70%</td><td>unified toponyms gazetteer variants + KG place nodes + 13 manual supplements</td></tr>
 <tr><td>region / country centroid</td><td class="num">210</td><td class="num">18%</td><td>tours ("איבער גאַליציע") — legitimate itinerary units, drawn differently</td></tr>
 <tr><td>unresolved</td><td class="num">148</td><td class="num">12%</td><td>mostly genuinely vague ("פּראָווינץ", "unknown") or venue-level ("וויין-קעלערס")</td></tr>
 </table></div>
@@ -105,7 +104,21 @@ coherent. Recommendation: keep inferred ranges as first-class but flagged data
 match resolved 70% with zero fuzzy logic. Corpus-wide, new variants surfacing here should
 feed the existing kimatch review flow, not a new mechanism.</p>
 
-<h2>5 · Third-person testimony is real data</h2>
+<h2>5 · Mention ≠ visit (and extraction recall)</h2>
+<p>Of the 72 unique careers in the cohort (79 entries minus 7 cross-volume duplicate
+pairs, merged), <b>9 mention Istanbul without ever being there</b>: scholarship about
+Constantinople (Shimen Ernst), the operetta title <span class="yi">די רויז פֿון
+סטאַמבול</span> in repertoire lists (Kadish, Zeiderman, Dina Kenig, Hershele), a play
+<i>about</i> traffic to Constantinople (Lilienblum), or a relative's birthplace (Gitl
+Shteyn's father — captured as his own third-person station). A text-mention cohort
+therefore overstates presence by ~12%; the station extraction is what separates the two,
+and the viz pages hide mention-only careers behind a toggle. Two extraction lessons from
+auditing this class: one long entry (Weinblatt) initially <b>skipped a whole journey</b>
+(Odessa→Romania→Constantinople→back) — long entries need a recall verification pass,
+as in the plays-KG dual-pass protocol; and one response nested its JSON one level deep —
+the parser must accept all three shapes seen (object, bare list, wrapped list).</p>
+
+<h2>6 · Third-person testimony is real data</h2>
 <p><b>22 of 101</b> extracted itineraries belong to people other than the entry subject —
 Kornfeld's entry alone narrates Hurwitz's, Jawiler's, Gelis's and Krauze's Istanbul visits.
 The schema's <span class="mono">subject</span> field captured this cleanly. Corpus-wide this
@@ -113,21 +126,22 @@ is a ~20% data bonus, but it adds a required step: resolving free-text subject n
 ("פּראָפעסאָר הורוויץ") against people_db — the same entity-linking machinery the
 mentions layer already uses.</p>
 
-<h2>6 · Confirmed traps (all handled, all will recur)</h2>
+<h2>7 · Confirmed traps (all handled, all will recur)</h2>
 <ul>
 <li>Work titles containing toponyms (<span class="yi">די רויז פֿון סטאַמבול</span>) and
 toponymic surnames (סטאַמבולקאַ) — excluded by prompt rule; keep it.</li>
 <li>Hebrew points must be stripped before any matching; OCR confusions (ג↔נ: Galata as
 <span class="yi">נאָלאַטאָ</span>) resolve via the variant table, not normalization.</li>
-<li>The Leksikon repeats people across volumes (Leresko, Katia Adler, Rokhl Ariel…) —
-person-level merge needed before corpus metrics, else itineraries double.</li>
+<li>The Leksikon repeats people across volumes (7 pairs in this cohort: Leresko, Katia Adler,
+Rokhl &amp; Ch.-D. Ariel, Sonia Amatin, Mendelevitsh, Hershele) — merged person-level in the
+viz (richer extraction kept, labeled "vols 1+5"); corpus run needs the same merge step.</li>
 <li>Venue-level "places" (schools, theaters, wine cellars) belong to a
 <span class="mono">venue_only</span> place_kind, not the settlement resolver.</li>
 <li>One of 79 responses came back as a bare JSON list rather than an object — parser
 must accept both shapes.</li>
 </ul>
 
-<h2>7 · Proposed corpus-wide plan</h2>
+<h2>8 · Proposed corpus-wide plan</h2>
 <ol>
 <li><b>Extract</b> all ~3,000 person entries with the pilot schema (est. ~15–20k stations,
 ~8–10k events; flash-tier cost is negligible; a few hours parallelized).</li>

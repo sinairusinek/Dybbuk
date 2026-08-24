@@ -143,7 +143,14 @@ def main():
                 )
                 text = (resp.text or "").strip()
                 data = json.loads(text)
-                stations = data if isinstance(data, list) else data.get("stations", [])
+                if isinstance(data, list):
+                    # bare list of stations, or a list wrapping {"stations": [...]}
+                    if len(data) == 1 and isinstance(data[0], dict) and "stations" in data[0]:
+                        stations = data[0]["stations"]
+                    else:
+                        stations = data
+                else:
+                    stations = data.get("stations", [])
                 rec["stations"] = stations
                 n_st += len(stations)
                 n_ev += sum(len(s.get("events") or []) for s in stations)

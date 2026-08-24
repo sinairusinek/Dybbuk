@@ -16,6 +16,17 @@ def is_ist(st):
     return st.get("qid") == "Q406" or bool(IST_RE.search(POINTS.sub("", st.get("place", ""))))
 
 
+# the Leksikon repeats these people across volumes; keep the richer extraction
+DUP_GROUPS = [
+    {"P-1-facs_35_tr_1740520972", "P-5-facs_556_tr_1739222579"},      # Katia Adler
+    {"P-1-facs_64_tr_1740520942", "P-5-facs_126_tr_1733832830"},      # Ch.-D. Ariel
+    {"P-1-facs_64_tr_1740520959", "P-5-facs_560_tr_1739220843"},      # Rokhl Ariel
+    {"P-2-facs_194_tr_1744279147", "P-5-facs_430_r"},                 # Leresko
+    {"P-2-facs_292_tr_1744280734", "P-5-facs_568_tr_1739221639"},     # Mendelevitsh
+    {"P-1-facs_335_r_6", "P-5-facs_250_tr_1739221688"},               # Hershele
+    {"P-1-facs_50_tr_1740521040", "P-5-facs_568_r_2"},                # Sonia Amatin
+]
+
 # ---- prepare compact viz payload ----
 itins = []
 for it in DATA:
@@ -38,6 +49,19 @@ for it in DATA:
                     "d": e.get("description", "")} for e in s["events"]],
         } for s in sts],
     })
+
+# collapse cross-volume duplicate entries: keep the richer entry-subject itinerary
+for group in DUP_GROUPS:
+    cand = [i for i in itins if i["pid"] in group and i["subject"] == "entry"]
+    if len(cand) > 1:
+        cand.sort(key=lambda i: -len(i["stations"]))
+        keep, drop = cand[0], cand[1:]
+        keep["name"] += f" (vols {'+'.join(sorted(c['vol'] for c in cand))})"
+        for d in drop:
+            itins.remove(d)
+
+for i in itins:
+    i["hasIst"] = any(s["ist"] for s in i["stations"])
 
 payload = json.dumps(itins, ensure_ascii=False)
 
@@ -96,6 +120,7 @@ from narrative order. Dots are events.</p>
 <div class="controls">
   <label><input type="checkbox" id="istOnly"> Istanbul stations &amp; events only</label>
   <label><input type="checkbox" id="thirdP" checked> include third-person testimony lanes</label>
+  <label><input type="checkbox" id="mentOnly"> include mention-only careers (no Istanbul station)</label>
   <span class="legend">
     <span><span class="sw" style="background:var(--teal)"></span> performance/season</span>
     <span><span class="sw" style="background:var(--brick)"></span> life event</span>
@@ -118,7 +143,9 @@ function showTip(html,e){tip.innerHTML=html;tip.style.display='block';
 function render(){
   const istOnly=document.getElementById('istOnly').checked;
   const thirdP=document.getElementById('thirdP').checked;
+  const mentOnly=document.getElementById('mentOnly').checked;
   let lanes=DATA.filter(d=>d.entrySubject||thirdP)
+    .filter(d=>d.hasIst||mentOnly)
     .filter(d=>d.stations.some(s=>s.t0&&(!istOnly||s.ist)))
     .sort((a,b)=>(a.istYear||9999)-(b.istYear||9999));
   const H=lanes.length*LANE+60;
@@ -154,6 +181,7 @@ function render(){
 }
 document.getElementById('istOnly').onchange=render;
 document.getElementById('thirdP').onchange=render;
+document.getElementById('mentOnly').onchange=render;
 render();
 </script></body></html>"""
 
@@ -201,7 +229,7 @@ function render(){
   const useReg=document.getElementById('regions').checked;
   const on=w=>document.getElementById(w).checked;
   let n=0;
-  DATA.filter(d=>d.entrySubject).forEach(d=>{
+  DATA.filter(d=>d.entrySubject&&d.hasIst).forEach(d=>{
     const w=wave(d);if(!on(w))return;
     const pts=d.stations.filter(s=>s.lat&&(useReg||s.res.startsWith('settlement')));
     if(pts.length<2)return;n++;
