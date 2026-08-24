@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Itinerary Extraction Pilot</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#faf7f0;--ink:#272219;--soft:#5c554a;--line:#e2dcce;--card:#f2eddf;
+--teal:#0e6f8a;--teal-ink:#0b5a70;--brick:#a1462e;--mono-bg:#ece7d8}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:"Spectral",Georgia,serif;
+font-size:1.02rem;line-height:1.62;margin:0;padding:3rem 1.4rem 5rem}
+main{max-width:52rem;margin:0 auto}
+h1,h2{font-family:"Fraunces",serif;font-weight:600;line-height:1.15;text-wrap:balance}
+h1{font-size:2.3rem;margin:.4rem 0 .5rem}
+h2{font-size:1.35rem;margin:2.2rem 0 .7rem;border-top:1px solid var(--line);padding-top:1.5rem}
+p{max-width:44rem}
+a{color:var(--teal-ink)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;
+text-transform:uppercase;color:var(--teal-ink);margin:0 0 .2rem}
+.lede{font-size:1.1rem;color:var(--soft);max-width:42rem;margin-top:0}
+.yi{font-family:"Frank Ruhl Libre",serif;unicode-bidi:isolate}
+.statrow{display:flex;flex-wrap:wrap;gap:.9rem;margin:1.6rem 0 .4rem}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:4px;
+padding:.55rem .95rem .5rem;min-width:7rem}
+.stat b{display:block;font-family:"Fraunces",serif;font-size:1.45rem;font-weight:600;
+color:var(--teal-ink);font-variant-numeric:tabular-nums}
+.stat span{font-size:.76rem;color:var(--soft)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:4px;margin:.8rem 0 1.2rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.09em;
+text-transform:uppercase;color:var(--soft);text-align:left;padding:.5rem .8rem;
+border-bottom:1px solid var(--line);background:var(--card)}
+td{padding:.45rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;text-align:right}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:.82em;background:var(--mono-bg);
+padding:.06em .35em;border-radius:3px}
+ol,ul{padding-inline-start:1.2rem}li{margin-bottom:.4rem;max-width:42rem}
+.note{background:var(--card);border:1px solid var(--line);border-radius:4px;
+padding:.8rem 1.1rem;font-size:.92rem;color:var(--soft);max-width:46rem}
+.nav{font-size:.9rem}.nav a{margin-right:1rem}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Dybbuk · Plays KG · 2026-08-24</p>
+<h1>Itinerary Extraction Pilot</h1>
+<p class="lede">What one Gemini pass over the 79 Istanbul-linked Leksikon entries taught us
+about extracting itineraries and events corpus-wide — and how the two relate.</p>
+<p class="nav"><a href="istanbul_dossier.html">dossier</a>
+<a href="istanbul_timeline.html">timeline</a>
+<a href="istanbul_map.html">map</a></p>
+
+<div class="statrow">
+  <div class="stat"><b>79</b><span>entries processed</span></div>
+  <div class="stat"><b>1,174</b><span>stations</span></div>
+  <div class="stat"><b>595</b><span>events</span></div>
+  <div class="stat"><b>101</b><span>itineraries</span></div>
+  <div class="stat"><b>88</b><span>Istanbul stations</span></div>
+  <div class="stat"><b>45</b><span>Istanbul events</span></div>
+</div>
+
+<h2>1 · The headline: coverage multiplier vs. the current KG</h2>
+<p>For Istanbul, the KG previously held <b>5</b> person↔place facts and <b>1</b> event.
+The pilot extracted <b>88</b> Istanbul stations (≈18×) and <b>45</b> events located there
+(≈45×) — from the same source text, at flash-model cost, in ~15 minutes. The itinerary
+layer is not a marginal improvement; it is most of the person–place signal in the corpus.</p>
+
+<h2>2 · Itineraries vs. events: the model that worked</h2>
+<p>We treated <b>stations</b> (entity × place × interval, in narrative order) as the spine
+and nested <b>events</b> (point occurrences: performance, founding, marriage…) inside the
+station where they happen. In practice this dissolved the overlap completely: nothing was
+extracted twice, every event automatically carries a location and a host itinerary, and a
+performance mention still yields a station even when no explicit travel verb appears.
+The timeline draws events over station bands; the map draws stations — same data, no
+reconciliation step.</p>
+<div class="tablewrap"><table>
+<tr><th>istanbul stations by verb</th><th class="num">n</th><th>istanbul events by type</th><th class="num">n</th></tr>
+<tr><td>stay</td><td class="num">39</td><td>performance</td><td class="num">20</td></tr>
+<tr><td>tour</td><td class="num">20</td><td>season</td><td class="num">11</td></tr>
+<tr><td>emigration / flight</td><td class="num">15</td><td>marriage</td><td class="num">5</td></tr>
+<tr><td>return</td><td class="num">5</td><td>founding / business</td><td class="num">4</td></tr>
+<tr><td>settled</td><td class="num">4</td><td>death</td><td class="num">2</td></tr>
+<tr><td>born / death / pass_through</td><td class="num">5</td><td>debut / other</td><td class="num">3</td></tr>
+</table></div>
+
+<h2>3 · Dating: narrative order carries the load</h2>
+<p>Only <b>465 stations (40%)</b> have an explicit or approximate date in the text.
+<b>676 (58%)</b> received an inferred year-range interpolated from the nearest dated
+neighbors in narrative order (Leksikon entries are chronological); <b>33 (3%)</b> are
+undatable. Spot checks (Zbarzher, Grinberg, Amatin) show the interpolated ranges are
+coherent. Recommendation: keep inferred ranges as first-class but flagged data
+(<span class="mono">t_inferred</span>) — they are what makes a timeline possible at all.</p>
+
+<h2>4 · Place resolution: the existing spine mostly suffices</h2>
+<div class="tablewrap"><table>
+<tr><th>outcome</th><th class="num">stations</th><th class="num">share</th><th>note</th></tr>
+<tr><td>settlement resolved (QID + coords)</td><td class="num">816</td><td class="num">70%</td><td>unified toponyms gazetteer variants + KG place nodes + 13 manual supplements</td></tr>
+<tr><td>region / country centroid</td><td class="num">210</td><td class="num">18%</td><td>tours ("איבער גאַליציע") — legitimate itinerary units, drawn differently</td></tr>
+<tr><td>unresolved</td><td class="num">148</td><td class="num">12%</td><td>mostly genuinely vague ("פּראָווינץ", "unknown") or venue-level ("וויין-קעלערס")</td></tr>
+</table></div>
+<p>The gazetteer's attested-variant field did the heavy lifting — points-stripped exact
+match resolved 70% with zero fuzzy logic. Corpus-wide, new variants surfacing here should
+feed the existing kimatch review flow, not a new mechanism.</p>
+
+<h2>5 · Third-person testimony is real data</h2>
+<p><b>22 of 101</b> extracted itineraries belong to people other than the entry subject —
+Kornfeld's entry alone narrates Hurwitz's, Jawiler's, Gelis's and Krauze's Istanbul visits.
+The schema's <span class="mono">subject</span> field captured this cleanly. Corpus-wide this
+is a ~20% data bonus, but it adds a required step: resolving free-text subject names
+("פּראָפעסאָר הורוויץ") against people_db — the same entity-linking machinery the
+mentions layer already uses.</p>
+
+<h2>6 · Confirmed traps (all handled, all will recur)</h2>
+<ul>
+<li>Work titles containing toponyms (<span class="yi">די רויז פֿון סטאַמבול</span>) and
+toponymic surnames (סטאַמבולקאַ) — excluded by prompt rule; keep it.</li>
+<li>Hebrew points must be stripped before any matching; OCR confusions (ג↔נ: Galata as
+<span class="yi">נאָלאַטאָ</span>) resolve via the variant table, not normalization.</li>
+<li>The Leksikon repeats people across volumes (Leresko, Katia Adler, Rokhl Ariel…) —
+person-level merge needed before corpus metrics, else itineraries double.</li>
+<li>Venue-level "places" (schools, theaters, wine cellars) belong to a
+<span class="mono">venue_only</span> place_kind, not the settlement resolver.</li>
+<li>One of 79 responses came back as a bare JSON list rather than an object — parser
+must accept both shapes.</li>
+</ul>
+
+<h2>7 · Proposed corpus-wide plan</h2>
+<ol>
+<li><b>Extract</b> all ~3,000 person entries with the pilot schema (est. ~15–20k stations,
+~8–10k events; flash-tier cost is negligible; a few hours parallelized).</li>
+<li><b>Resolve places</b> against the toponym spine; route new variants into the kimatch
+review queue (existing donation flow).</li>
+<li><b>Link orgs</b>: station <span class="mono">org</span> strings → org core_db clusters
+via the existing blocking/translit machinery. Org itineraries then come free, by
+aggregating member stations — no separate org extraction needed at first.</li>
+<li><b>Link third-person subjects</b> → people_db (reuse mentions-layer matching).</li>
+<li><b>Integrate into the KG</b>: stations become person→place edges
+(<span class="mono">stayed_in / toured_in / passed_through / settled_in / fled_to</span>)
+carrying dates, certainty, inferred-flag and evidence; events become event nodes linked to
+their station edge. The existing born_in/died_in bio edges stay as-is — they are just the
+first two verb classes of the same model.</li>
+<li><b>Evaluate</b> with per-city dossiers (this Istanbul set becomes the gold sample:
+hand-verify ~10 entries for precision/recall before the full run).</li>
+</ol>
+
+<div class="note"><b>Open questions for the team</b>: (a) should region-level tour stations
+enter the KG as edges to region entities, or only annotate the neighboring settlement
+edges? (b) do we want inferred dates in the KG proper, or only in derived views?
+(c) who reviews the ~12% unresolved-place residue — auto-queue to the RA place flow, or
+leave unresolved with the evidence quote?</div>
+
+<h2>Artifacts of this pilot</h2>
+<ul>
+<li><a href="istanbul_timeline.html">Timeline</a> — all stations/events, Istanbul filter, inferred dates faded.</li>
+<li><a href="istanbul_map.html">Map</a> — 97 mappable routes through Istanbul, colored by first-arrival wave.</li>
+<li><span class="mono">Zylbercweig/plays/itinerary/</span> — <span class="mono">extract_itineraries.py</span> (Gemini),
+<span class="mono">build_itinerary_data.py</span> (resolution + date interpolation),
+<span class="mono">build_istanbul_pages.py</span> (these pages),
+<span class="mono">itinerary_drafts.jsonl</span>, <span class="mono">stations_resolved.tsv</span>.</li>
+</ul>
+</main>
+</body>
+</html>
