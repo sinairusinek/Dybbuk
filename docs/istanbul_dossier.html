@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Istanbul Dossier</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#faf7f0; --ink:#272219; --ink-soft:#5c554a; --line:#e2dcce;
+  --card:#f2eddf; --accent:#0e6f8a; --accent-ink:#0b5a70; --brick:#a1462e;
+  --chip:#e4ecec; --mono-bg:#ece7d8;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#161a1e; --ink:#e7e1d3; --ink-soft:#a49c8c; --line:#2c333a;
+    --card:#1d2329; --accent:#5cb6cd; --accent-ink:#7fc6d8; --brick:#d98868;
+    --chip:#223034; --mono-bg:#20272d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161a1e; --ink:#e7e1d3; --ink-soft:#a49c8c; --line:#2c333a;
+  --card:#1d2329; --accent:#5cb6cd; --accent-ink:#7fc6d8; --brick:#d98868;
+  --chip:#223034; --mono-bg:#20272d;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Spectral", Georgia, serif; font-size:1.02rem; line-height:1.62;
+  margin:0; padding:3.2rem 1.4rem 5rem;
+}
+main{max-width:56rem; margin:0 auto}
+h1,h2,h3{font-family:"Fraunces","Spectral",Georgia,serif; line-height:1.15; text-wrap:balance; font-weight:600}
+h1{font-size:2.6rem; margin:.4rem 0 .6rem}
+h2{font-size:1.45rem; margin:0 0 .9rem; color:var(--ink)}
+h3{font-size:1.08rem; margin:1.4rem 0 .4rem}
+p{max-width:44rem}
+a{color:var(--accent-ink)}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent-ink); margin:0 0 .2rem;
+}
+.lede{font-size:1.12rem; color:var(--ink-soft); max-width:42rem; margin-top:0}
+.yi{font-family:"Frank Ruhl Libre","Spectral",serif; font-size:1.06em; unicode-bidi:isolate}
+q.yi{quotes:"„" "“"}
+section{border-top:1px solid var(--line); padding-top:1.6rem; margin-top:2.4rem}
+.statrow{display:flex; flex-wrap:wrap; gap:.9rem; margin:1.8rem 0 .4rem}
+.stat{
+  background:var(--card); border:1px solid var(--line); border-radius:4px;
+  padding:.55rem .95rem .5rem; min-width:7.4rem;
+}
+.stat b{display:block; font-family:"Fraunces",serif; font-size:1.5rem; font-weight:600; color:var(--accent-ink); font-variant-numeric:tabular-nums}
+.stat span{font-size:.78rem; color:var(--ink-soft); letter-spacing:.02em}
+.tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:4px; margin:.8rem 0 1.2rem}
+table{border-collapse:collapse; width:100%; font-size:.92rem}
+th{
+  font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-soft); text-align:left; padding:.55rem .8rem; border-bottom:1px solid var(--line);
+  background:var(--card); white-space:nowrap;
+}
+td{padding:.5rem .8rem; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums; text-align:right}
+.mono{font-family:"IBM Plex Mono",monospace; font-size:.82em; background:var(--mono-bg); padding:.06em .35em; border-radius:3px; white-space:nowrap}
+td .yi, th .yi{display:inline-block; direction:rtl; text-align:right}
+.rtlcell{direction:rtl; text-align:right; font-family:"Frank Ruhl Libre",serif; font-size:1.02rem}
+.chip{
+  display:inline-block; background:var(--chip); border-radius:3px; padding:.05em .5em;
+  font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.04em; color:var(--accent-ink); white-space:nowrap;
+}
+.flag{color:var(--brick); font-weight:600}
+blockquote{
+  border-inline-start:3px solid var(--accent); background:var(--card);
+  margin:1rem 0; padding:.8rem 1.1rem; direction:rtl; text-align:right;
+  font-family:"Frank Ruhl Libre",serif; font-size:1.05rem; line-height:1.8; border-radius:0 4px 4px 0;
+}
+blockquote footer{direction:ltr; text-align:left; font-family:"Spectral",serif; font-size:.82rem; color:var(--ink-soft); margin-top:.5rem}
+.note{
+  background:var(--card); border:1px solid var(--line); border-radius:4px;
+  padding:.8rem 1.1rem; font-size:.92rem; color:var(--ink-soft); max-width:46rem;
+}
+.cols{column-width:16rem; column-gap:2rem}
+ul{padding-inline-start:1.2rem}
+li{margin-bottom:.35rem}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+</style>
+</head>
+<body>
+
+<main>
+<p class="eyebrow">Dybbuk · Plays KG × Zylbercweig Leksikon · 2026-08-24</p>
+<h1>Istanbul Dossier</h1>
+<p class="lede">Everything the knowledge graph and the Leksikon fun yidishn teater currently hold about Istanbul / Constantinople — <span class="yi" dir="rtl">קאָנסטאַנטינאָפּאָל · סטאַמבול</span> — collected in one place.</p>
+
+<div class="statrow">
+  <div class="stat"><b>1</b><span>place node</span></div>
+  <div class="stat"><b>17</b><span>KG edges</span></div>
+  <div class="stat"><b>1</b><span>production event</span></div>
+  <div class="stat"><b>13</b><span>org clusters</span></div>
+  <div class="stat"><b>79</b><span>lexicon entries</span></div>
+  <div class="stat"><b>109</b><span>name tokens</span></div>
+</div>
+
+<section>
+<h2>1 · The place node</h2>
+<p>Istanbul is a single, fully resolved node in the plays KG. Both the Wikidata link and the Kima gazetteer link are in place, so nothing here is pending alignment.</p>
+<div class="tablewrap"><table>
+<tr><th>node</th><th>Yiddish label</th><th>English</th><th>Wikidata</th><th>Kima</th><th>coords</th><th>status</th></tr>
+<tr><td><span class="mono">place:Q406</span></td><td class="rtlcell">סטאַמבול</td><td>Istanbul</td><td><span class="mono">Q406</span></td><td><span class="mono">533</span> — Istanbul (Turkey) / <span class="yi" dir="rtl">איסטנבול (תורכיה)</span></td><td class="num">41.010, 28.960</td><td>matched</td></tr>
+</table></div>
+<p>The Kimatch attestation table (<span class="mono">kimatch_matched_full.tsv</span>) carries three attested source spellings, all auto-linked at grade <span class="chip">A_autolink</span>: <span class="yi" dir="rtl">קאַנסטאַנטינאָפּאָל</span>, <span class="yi" dir="rtl">סטאַמבול</span>, and <span class="yi" dir="rtl">סטאַמבול (?)</span>, drawn from the birth/death/burial extraction.</p>
+</section>
+
+<section>
+<h2>2 · Life-event edges (bio layer)</h2>
+<p>The bio extraction produced five person↔Istanbul facts:</p>
+<div class="tablewrap"><table>
+<tr><th>edge</th><th>person</th><th>relation</th><th>date</th><th>evidence</th></tr>
+<tr><td><span class="mono">E-04935</span></td><td>Abdul <span class="yi" dir="rtl">(אַבדול)</span> · <span class="mono">person:1096</span></td><td>born_in</td><td>—</td><td class="rtlcell">געב. אין סטאַמבול (?), זאָל דאָרט האָבן געשפּילט יידיש טעאַטער מיט „ליבהאַבער"</td></tr>
+<tr><td><span class="mono">E-06842</span></td><td>Rudolf Schildkraut <span class="yi" dir="rtl">(שילדקרויט, רודאָלף [חיים־מרדכי])</span> · <span class="mono">person:3816</span></td><td>born_in</td><td>1862</td><td class="rtlcell">קאָנסטאַנטינאָפּאָל / טערקיי</td></tr>
+<tr><td><span class="mono">E-05153</span></td><td>Leyzer Boyke <span class="yi" dir="rtl">(בויקע, לייזער)</span> · <span class="mono">person:1369</span></td><td>died_in</td><td>1912</td><td class="rtlcell">סטאָמבול</td></tr>
+<tr><td><span class="mono">E-05883</span></td><td>Velvel Zbarzher <span class="yi" dir="rtl">(זבאַרזשער, וועלוועל [בנימין וואָלף עהרענקראַנץ])</span> · <span class="mono">person:3360</span></td><td>died_in</td><td>1883-06-02</td><td class="rtlcell">קאָנסטאַנטינאָפּאָל</td></tr>
+<tr><td><span class="mono">E-05884</span></td><td>Velvel Zbarzher · <span class="mono">person:3360</span></td><td>buried_in</td><td>1883-06-02</td><td class="rtlcell">קאָנסטאַנטינאָפּאָל</td></tr>
+</table></div>
+<p><span class="flag">Contested birthplace.</span> Schildkraut's entry is itself a small source-critical dossier: Zylbercweig quotes Sigmund Mogulesko saying the mother was also Constantinople-born, and Schildkraut's own 1911 <span class="yi" dir="rtl">פֿאָרווערטס</span> statement claims Constantinople — but a family friend (per the entry) insists he was actually born in Galați, Romania, where the parents kept a small hotel. The KG currently records the Constantinople claim.</p>
+<p>Velvel Zbarzher is the deepest Istanbul biography in the corpus: attested there in January 1872, married his second wife there (<q class="yi" dir="rtl">די שיינע מלכהלע</q>, an Istanbul café owner), died there of pneumonia on 2 June 1883, and was buried there — with a sealed testament ordered opened fifty years after his death.</p>
+</section>
+
+<section>
+<h2>3 · The production event</h2>
+<p>One staged event is anchored to Istanbul, extracted from Leon Kornfeld's vol. 7 entry (<span class="mono">event:EV-0682</span>): a benefit production at the <b>Theater Concordia</b> (<span class="mono">org:1529</span>) under Kornfeld's direction. The KG event row indexes Latayner's <i>Dovids fidele</i> (<span class="mono">play:PL-0070</span>, <span class="yi" dir="rtl">דודס פֿידעלע</span>); the same evidence sentence also names Goldfaden's <span class="yi" dir="rtl">די קאַפּריזנע טאָכטער</span> and <span class="yi" dir="rtl">קאָלדוניע</span> (with K. as Bobe Yakhne) and Shliferstein's <span class="yi" dir="rtl">דאָראַ</span>.</p>
+<blockquote>דערנאָך (אין טעאַטער „קאַנקאָרדיאָ") פֿירן זיי אויף, אויך פֿאַר אַ וווילטעטיקן צוועק, גאָלדפֿאָדנס „די קאַפּריזנע טאָכטער", אָנגעבנדיק אויף די אַפֿישן „דירעקציאָן — לעאָן קאָרנפעלד", דערנאָך „קאָלדוניע"… שליפּערשטיינס „דאָראַ" און לאַטיינערס „דודס פידעלע"
+<footer>P-7-facs_81_r_7 · Kornfeld entry, vol. 7 — the KG's one <span class="mono">held_in</span> edge for Istanbul</footer></blockquote>
+</section>
+
+<section>
+<h2>4 · Organizations located in Istanbul</h2>
+<p>Thirteen org clusters carry an Istanbul settlement — twelve as KG <span class="mono">located_in</span> edges, plus two more visible only in the clustered org table (Krauze's troupe from the Breitman entry, Jawiler's troupe from the Roze Friedman entry; the Gelis troupe attests twice).</p>
+<div class="tablewrap"><table>
+<tr><th>cluster</th><th>organization</th><th>type</th><th>host entry</th><th>relation in evidence</th></tr>
+<tr><td><span class="mono">ORG-C00419</span></td><td class="rtlcell">טעאַטער „קאַנקאָרדיאָ"</td><td>Theatre</td><td class="rtlcell">קאָרנפעלד, לעאָן</td><td>owner_manager (direction — Leon Kornfeld)</td></tr>
+<tr><td><span class="mono">ORG-C00840_Q05</span></td><td class="rtlcell">יידיש פֿאָלקס־טעאַטער</td><td>Theatre</td><td class="rtlcell">ברין, שלום</td><td>founder — with Dr. Vladimir Tiomkin and Joint members</td></tr>
+<tr><td><span class="mono">ORG-C05328</span></td><td class="rtlcell">צעזאַר גרינבערגס אויפֿפֿירונג פֿון „מכירת יוסף"</td><td>Traveling Company</td><td class="rtlcell">אַבראַמאָוויטש, חיים</td><td>performer (1876)</td></tr>
+<tr><td><span class="mono">ORG-C06789</span></td><td class="rtlcell">טרופּע בראָדערזינגער</td><td>Traveling Company</td><td class="rtlcell">זבאַרזשער, וועלוועל</td><td>performer — the Stambul quarrel episode</td></tr>
+<tr><td><span class="mono">ORG-C00082</span></td><td class="rtlcell">טרופּע פֿון געליס</td><td>Traveling Company</td><td class="rtlcell">לערעסקאָ, סאַמועל (vols. 2 &amp; 5)</td><td>performer — travelled with it to Constantinople, played a year</td></tr>
+<tr><td><span class="mono">ORG-C02716</span></td><td class="rtlcell">טרופּע פֿון ירמיהו אַדלער און מישאַ שיין</td><td>Traveling Company</td><td class="rtlcell">יאַקובאָוויטש, יעקב</td><td>performer</td></tr>
+<tr><td><span class="mono">ORG-C03640</span></td><td class="rtlcell">פֿאַכלערס מיניאַטור־טרופּע</td><td>Traveling Company</td><td class="rtlcell">אַדלער, קאַטיאַ</td><td>performer</td></tr>
+<tr><td><span class="mono">ORG-C04594</span></td><td class="rtlcell">טרופּעס פֿון קרויזע</td><td>Traveling Company</td><td class="rtlcell">בויקע, לייזער</td><td>performer — also censored the plays for the authorities</td></tr>
+<tr><td><span class="mono">ORG-C03661</span></td><td class="rtlcell">קרויזע</td><td>Traveling Company</td><td class="rtlcell">ברייטמאַן, פּאָול</td><td>performer (1911, Constantinople and Romania)</td></tr>
+<tr><td><span class="mono">ORG-C05481</span></td><td class="rtlcell">לעאָפּאָלד קאָנערם יידישער טרופּע</td><td>Traveling Company</td><td class="rtlcell">אַמאַטין, פּעטער</td><td>performer (1912)</td></tr>
+<tr><td><span class="mono">ORG-C05660</span></td><td class="rtlcell">קלמן יאַווילערס טרופּע</td><td>Traveling Company</td><td class="rtlcell">פֿרידמאַן, ראָזע</td><td>performer</td></tr>
+<tr><td><span class="mono">ORG-C05480</span></td><td class="rtlcell">פֿראַנצויזישער קאָמערץ־שול</td><td>Education</td><td class="rtlcell">אַמאַטין, פּעטער</td><td>student (to 6th class)</td></tr>
+<tr><td><span class="mono">ORG-C05918</span></td><td class="rtlcell">שענק „צום עסטרייכישן אָדלער"</td><td>Business</td><td class="rtlcell">פֿייערשטיין, אשר</td><td>owner — a tavern in <span class="flag">נאָלאַטאָ</span></td></tr>
+</table></div>
+<p class="note"><b>OCR flag:</b> the tavern venue <span class="yi" dir="rtl">נאָלאַטאָ</span> is almost certainly <span class="yi" dir="rtl">גאַלאַטאַ</span> (Galata, the historic entertainment quarter) with the known <span class="yi" dir="rtl">ג↔נ</span> OCR confusion. Kornfeld's entry independently mentions Hurwitz playing in Galata. Worth a correction in the org record.</p>
+</section>
+
+<section>
+<h2>5 · What the lexicon narrates: three Istanbul waves</h2>
+<p>Reading the 79 entries together, Istanbul appears in the Leksikon in three distinct historical layers:</p>
+<h3>The Goldfaden-era Orient (1870s–1880s)</h3>
+<p>Cezar Grinberg locates himself in Constantinople in 1875 and stages a biblical operetta on the Joseph story — <span class="yi" dir="rtl">„מכירת יוסף"</span> with up to 100 chorus and ballet — then tours it through Turkey and Romania to Iași. Chaim Abramovitsh and Itsik-Mendl Bergman performed in it; Israel Gradner and Goldfaden himself passed through in 1878–79 before returning to the Odessa troupe. Velvel Zbarzher's Broder-singer feud and death (1883) close this layer. Professor Moyshe Hurwitz fled to Constantinople around 1886 en route to London — and reappears, hungry, playing Galata with amateurs in Kornfeld's childhood memory.</p>
+<h3>The touring circuit (1890s–1914)</h3>
+<p>Istanbul is a standard stop between Romania, Bulgaria, Egypt and the Caucasus: the Gelis troupe (a full year), Kalman Jawiler's 17-year circuit (Galicia–Bukovina–Romania–Constantinople–Alexandria–Cairo), Krauze's troupes (with a contract from a certain Kornblit of Constantinople; Pinski's <span class="yi" dir="rtl">פֿאַמיליע צבי</span> staged there), Leopold Kanner's troupe (1912), Anshel Schorr's 1888–89 visit where the operetta <span class="yi" dir="rtl">„גבור החייל"</span> drew Ottoman notables. Leon Kornfeld — the entry with the most mentions (9) — sent the Leksikon his own history of Yiddish theater in Constantinople and ran the Concordia; Roze Friedman's café-singer career there is documented through his testimony.</p>
+<h3>The refugee stage (1918–1923)</h3>
+<p>After the pogroms, war and revolution, Constantinople becomes an emigration funnel: Clara Young's troupe plays there in 1918 and 1920 (Jenny Zeltser, Morris Braun), Sholem Brin founds a Yiddish folk theater with Dr. Vladimir Tiomkin and Joint members, Peter Amatin plays with a group of refugee actors from Russia (1919), Feli Bakman spends half of 1923 there before Canada, Alex Amasia plays seven months before America. Gabriel Zar runs Yiddish theater there for 15 months until 1921. The city then largely exits the narrative.</p>
+<p>Two non-theatrical threads also surface: M.-L. Lilienblum's play agitating against the traffickers selling Jewish daughters <q class="yi" dir="rtl">צו שאַנדע אין קאָנסטאַנטינאָפּאָל</q>, and Avrom Frumkin studying Turkish and jurisprudence there (1891) at the start of his journalistic career.</p>
+</section>
+
+<section>
+<h2>6 · All 79 lexicon entries mentioning Istanbul</h2>
+<p>From <span class="mono">entry_texts.tsv</span>, searched with Hebrew points stripped. Count = occurrences in the entry text.</p>
+<div class="tablewrap"><table>
+<tr><th>vol</th><th>entry</th><th>person_id</th><th class="num">×</th></tr>
+<tr><td>1</td><td class="rtlcell">אבדול</td><td><span class="mono">P-1-facs_17_tr_1713546856</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">אבראמאוויטש, חיים</td><td><span class="mono">P-1-facs_19_r</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">אדלער ירמיהו [גאלדענבערג־טווערסקי]</td><td><span class="mono">P-1-facs_30_TextRegion_…_1191</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">אדלער, קאטיא [גוראלניק]</td><td><span class="mono">P-1-facs_35_tr_1740520972</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">אמאטין, סאניא [שרה גאלדבערג־לעווין]</td><td><span class="mono">P-1-facs_50_tr_1740521040</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">אמאסיא, אלעקס [אלעקסאנדער]</td><td><span class="mono">P-1-facs_50_tr_1740521042</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">אמאטין, פעטער [פסח גאלדבערג]</td><td><span class="mono">P-1-facs_50_tr_1740521046</span></td><td class="num">2</td></tr>
+<tr><td>1</td><td class="rtlcell">אפעל, מאריס [אפעלאויג]</td><td><span class="mono">P-1-facs_58_tr_1740521139</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">אריעל, חיים דוד</td><td><span class="mono">P-1-facs_64_tr_1740520942</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">אריעל, רחל</td><td><span class="mono">P-1-facs_64_tr_1740520959</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">ארקא, איסאק</td><td><span class="mono">P-1-facs_68_tr_1740521054</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">באקמאן, פעלי</td><td><span class="mono">P-1-facs_78_tr_1740521032</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">כאראטאוו, בן־צבי [פאוועל ברענער]</td><td><span class="mono">P-1-facs_79_tr_1740520948</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">בויקע, לייזער [?]</td><td><span class="mono">P-1-facs_91_r_5</span></td><td class="num">2</td></tr>
+<tr><td>1</td><td class="rtlcell">בן־ציון, בענעדיקט דר.</td><td><span class="mono">P-1-facs_110_r</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">בערגמאן, איציק־מענדל</td><td><span class="mono">P-1-facs_115_r_6</span></td><td class="num">2</td></tr>
+<tr><td>1</td><td class="rtlcell">פֿייערשטיין, אשר [זעליג גאבעל ?]</td><td><span class="mono">P-1-facs_132_tr_1740520959</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">מאשקאוויטש, יאסעלע</td><td><span class="mono">P-1-facs_132_tr_1740520968</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">בראון, מאריס [מנחם־מענדל בראנשטיין]</td><td><span class="mono">P-1-facs_134_tr_1740520967</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">ברייטמאן, פאול</td><td><span class="mono">P-1-facs_138_tr_1740521018</span></td><td class="num">2</td></tr>
+<tr><td>1</td><td class="rtlcell">ברין, שלום</td><td><span class="mono">P-1-facs_139_tr_1740521042</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">גאלד, ניוסיא [גיסי גאלדבערג]</td><td><span class="mono">P-1-facs_147_tr_1740521027</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">גורעוויטש, מרים [מינא]</td><td><span class="mono">P-1-facs_254_tr_1741260246</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">גערטנער, אדאלף</td><td><span class="mono">P-1-facs_266_tr_1741260241</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">גראדנער ישראל [ראזענפעלד?]</td><td><span class="mono">P-1-facs_270_r_2</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">גראפער איידא [בריה]</td><td><span class="mono">P-1-facs_280_TextRegion_…_435</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">גראפער יוסף</td><td><span class="mono">P-1-facs_280_r_2</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">גרושקאוו, אברהם [גרושקאווסקי]</td><td><span class="mono">P-1-facs_281_tr_1741260291</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">גרינבערג, צעזאר [בצלאל]</td><td><span class="mono">P-1-facs_283_tr_1741260236</span></td><td class="num">2</td></tr>
+<tr><td>1</td><td class="rtlcell">הורוויץ, משה איש הלוי פראפעסאר</td><td><span class="mono">P-1-facs_312_TextRegion_…_829</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">הערשעלע [הערשעלע דאניעלעוויטש]</td><td><span class="mono">P-1-facs_335_r_6</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">וויינבלאט, טשארלס [קלמן]</td><td><span class="mono">P-1-facs_355_tr_1741260495</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">זאנגער יעקב</td><td><span class="mono">P-1-facs_389_tr_1739715087</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">זבארזשער, וועלוועל [ב. וו. עהרענקראנץ]</td><td><span class="mono">P-1-facs_395_r_6</span></td><td class="num">4</td></tr>
+<tr><td>1</td><td class="rtlcell">זילבערט, יעקב [קוליש]</td><td><span class="mono">P-1-facs_405_r_4</span></td><td class="num">2</td></tr>
+<tr><td>1</td><td class="rtlcell">זילבערט, ליזא</td><td><span class="mono">P-1-facs_406_tr_1739715063</span></td><td class="num">1</td></tr>
+<tr><td>1</td><td class="rtlcell">זעלצער, דזשעני</td><td><span class="mono">P-1-facs_414_r_304</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">יאוועליר, קלמן</td><td><span class="mono">P-2-facs_63_r_2</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">לאגער אהרן</td><td><span class="mono">P-2-facs_87_r_8</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">ליליענבלום, משה־לייב</td><td><span class="mono">P-2-facs_150_tr_1744279160</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">לערעסקא, סאמועל [שמואל לעהרער]</td><td><span class="mono">P-2-facs_194_tr_1744279147</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">מאשקאוויטש, נאדיא [גורעוויטש]</td><td><span class="mono">P-2-facs_250_tr_1744280768</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">מיאדאווניק, מארק</td><td><span class="mono">P-2-facs_253_tr_1744280798</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">מענדעלעוויטש, דוד</td><td><span class="mono">P-2-facs_292_tr_1744280734</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">סאמאלעסקא, דעיוו</td><td><span class="mono">P-2-facs_327_tr_1744365754</span></td><td class="num">1</td></tr>
+<tr><td>2</td><td class="rtlcell">סאמואילאוו, משה־בער</td><td><span class="mono">P-2-facs_329_tr_1744365808</span></td><td class="num">1</td></tr>
+<tr><td>4</td><td class="rtlcell">אניסמאן, הערי</td><td><span class="mono">P-4-facs_27_r_14</span></td><td class="num">1</td></tr>
+<tr><td>4</td><td class="rtlcell">פֿרידמאן, ראזע</td><td><span class="mono">P-4-facs_89_tr_1753938266</span></td><td class="num">4</td></tr>
+<tr><td>4</td><td class="rtlcell">קארפ, סאפיע</td><td><span class="mono">P-4-facs_92_r_1</span></td><td class="num">1</td></tr>
+<tr><td>4</td><td class="rtlcell">פֿרומקין, אברהם</td><td><span class="mono">P-4-facs_114_tr_1753936423</span></td><td class="num">2</td></tr>
+<tr><td>4</td><td class="rtlcell">שילדקרויט, רודאלף [חיים־מרדכי]</td><td><span class="mono">P-4-facs_207_tr_1754998369</span></td><td class="num">5</td></tr>
+<tr><td>4</td><td class="rtlcell">שאר [שור], אנשל</td><td><span class="mono">P-4-facs_252_tr_1754998536</span></td><td class="num">1</td></tr>
+<tr><td>4</td><td class="rtlcell">קאנער לעאפאלד [לייב]</td><td><span class="mono">P-4-facs_277_tr_1754998404</span></td><td class="num">1</td></tr>
+<tr><td>4</td><td class="rtlcell">קאנער, שרה [פרילינג]</td><td><span class="mono">P-4-facs_278_tr_1754998432</span></td><td class="num">1</td></tr>
+<tr><td>4</td><td class="rtlcell">זאר, הער [גבריאל זארשעווסקי]</td><td><span class="mono">P-4-facs_333_tr_1754998452</span></td><td class="num">1</td></tr>
+<tr><td>4</td><td class="rtlcell">זארזשעווסקא, פאלינא [קעלער]</td><td><span class="mono">P-4-facs_333_tr_1754998454</span></td><td class="num">1</td></tr>
+<tr><td>4</td><td class="rtlcell">קרויזע, שלמה</td><td><span class="mono">P-4-facs_351_tr_1754998561</span></td><td class="num">3</td></tr>
+<tr><td>5</td><td class="rtlcell">זיידערמאן, דוד</td><td><span class="mono">P-5-facs_64_tr_1733059339</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">יאקובאוויטש, יעקב</td><td><span class="mono">P-5-facs_70_tr_1733059368</span></td><td class="num">2</td></tr>
+<tr><td>5</td><td class="rtlcell">קדיש [ק. כאש]</td><td><span class="mono">P-5-facs_100_tr_1733059460</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">אריעל, חיים־דוד</td><td><span class="mono">P-5-facs_126_tr_1733832830</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">צוקער, שלום</td><td><span class="mono">P-5-facs_143_tr_1733832807</span></td><td class="num">2</td></tr>
+<tr><td>5</td><td class="rtlcell">הערשעלע [הערש דאנילעוויטש]</td><td><span class="mono">P-5-facs_250_tr_1739221688</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">קיימאן, חיים־יוסף</td><td><span class="mono">P-5-facs_372_tr_1739222351</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">לערעסקא, סאמועל [שמואל לערער]</td><td><span class="mono">P-5-facs_430_r</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">אדלער קאטיא [גוראלניק]</td><td><span class="mono">P-5-facs_556_tr_1739222579</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">אריעל, רחל</td><td><span class="mono">P-5-facs_560_tr_1739220843</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">אמאטין, סאניא</td><td><span class="mono">P-5-facs_568_r_2</span></td><td class="num">1</td></tr>
+<tr><td>5</td><td class="rtlcell">מענדעלעוויטש, דוד</td><td><span class="mono">P-5-facs_568_tr_1739221639</span></td><td class="num">1</td></tr>
+<tr><td>6</td><td class="rtlcell">ווייסמאן, הערש</td><td><span class="mono">P-6-facs_35_tr_1747746200</span></td><td class="num">1</td></tr>
+<tr><td>6</td><td class="rtlcell">שוידער אויגוסטא [לויפער]</td><td><span class="mono">P-6-facs_57_r_2</span></td><td class="num">1</td></tr>
+<tr><td>6</td><td class="rtlcell">ראזענבלום אדאלף [אהרן]</td><td><span class="mono">P-6-facs_103_tr_1747825052</span></td><td class="num">2</td></tr>
+<tr><td>6</td><td class="rtlcell">אבראמאוו, באריס [פיינלאנד]</td><td><span class="mono">P-6-facs_108_r_4</span></td><td class="num">1</td></tr>
+<tr><td>6</td><td class="rtlcell">אבראמאוו, מערי [מרים איינהארן]</td><td><span class="mono">P-6-facs_109_tr_1747825072</span></td><td class="num">1</td></tr>
+<tr><td>6</td><td class="rtlcell">קעניג דינה</td><td><span class="mono">P-6-facs_183_tr_1747825124</span></td><td class="num">1</td></tr>
+<tr><td>6</td><td class="rtlcell">ראפעל, לייזער</td><td><span class="mono">P-6-facs_241_tr_1747928957</span></td><td class="num">1</td></tr>
+<tr><td>6</td><td class="rtlcell">קאמינסקי, אסתר־רחל [האלפערן]</td><td><span class="mono">P-6-facs_300_tr_1747928891</span></td><td class="num">1</td></tr>
+<tr><td>6</td><td class="rtlcell">שטיין, גיטל</td><td><span class="mono">P-6-facs_465_tr_1747930358</span></td><td class="num">1</td></tr>
+<tr><td>7</td><td class="rtlcell">ערנסט, שמעון</td><td><span class="mono">P-7-facs_32_tr_1756359774</span></td><td class="num">1</td></tr>
+<tr><td>7</td><td class="rtlcell">קארנפעלד, לעאן</td><td><span class="mono">P-7-facs_81_r_7</span></td><td class="num">9</td></tr>
+</table></div>
+<p>Same-person duplicates across volumes (Leresko, Katia Adler, Rokhl Ariel, Sonia Amatin, Dovid Mendelevitsh, Hershele) reflect the Leksikon's own repeated entries; the entry ids are distinct.</p>
+</section>
+
+<section>
+<h2>7 · Name variants & method</h2>
+<div class="tablewrap"><table>
+<tr><th>spelling</th><th class="num">tokens</th><th>note</th></tr>
+<tr><td class="rtlcell">קאנסטאנטינאפאל</td><td class="num">100</td><td>dominant form throughout (one וו-vocalized variant אָ/אַ pointing aside)</td></tr>
+<tr><td class="rtlcell">סטאמבול</td><td class="num">7</td><td>incl. סטאָמבול in Boyke's death notice</td></tr>
+<tr><td class="rtlcell">איסטאמבול</td><td class="num">2</td><td>vol. 6 (Gitl Shteyn's father) — the modern form appears only late</td></tr>
+</table></div>
+<ul>
+<li>Searched with Hebrew points stripped (U+0591–U+05C7) — required, or most hits are missed.</li>
+<li><b>Excluded as false friends:</b> the operetta title <span class="yi" dir="rtl">„די רויז פֿון סטאַמבול"</span> (Leo Fall's <i>Die Rose von Stambul</i>, staged in Łódź — in both Hershele entries) refers to the work, not a visit; and the actor surname <span class="yi" dir="rtl">סטאַמבולקאַ</span> (Harris Stambulka, <span class="mono">person:3020</span>) matches lexically but is a person, though the name itself is an Istanbul toponymic.</li>
+<li><b>Coverage gap worth knowing:</b> the KG's bio layer holds only 5 person↔Istanbul facts (birth/death/burial), while 79 entries mention the city — the itinerary mentions (toured there, played a season) are not yet extracted as person→place edges. The org layer covers part of that gap via the 13 <span class="mono">located_in</span> clusters.</li>
+<li>Sources: <span class="mono">plays/kg/nodes.tsv · edges.tsv · events.tsv</span>, <span class="mono">people/entry_texts.tsv</span>, <span class="mono">organizations/organizations_clustered.tsv</span>, <span class="mono">zibn-shtern/…/kimatch_matched_full.tsv</span>, <span class="mono">…/Zylbercweig-Extraction2026-02-05-places.tsv</span>.</li>
+</ul>
+</section>
+</main>
+</body>
+</html>
