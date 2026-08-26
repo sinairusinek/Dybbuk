@@ -1,0 +1,147 @@
+{
+  "slug": "rumshinsky",
+  "display_name": "Joseph Rumshinsky",
+  "display_name_yi": "יוסף רומשינסקי",
+  "node_id": "person:916",
+  "person_id": "916",
+  "entry_person_id": "P-3-facs_402_tr_1755856047",
+  "volume": "3",
+  "has_works": true,
+  "life": {
+    "date_born": "1881-01-15",
+    "date_died": "1956-02-06",
+    "born_in_yi": "ווילנע",
+    "born_in_en": "Vilna",
+    "died_in_yi": "ניו יארק",
+    "died_in_en": "New York",
+    "source": "entry subheading: [געבוירן 15 יאנואר 1881 — געשט. 6 פעברואר 1956]; birthplace from the entry's first sentence (געבוירן 15 יאַנואַר 1881 אין ווילנע, ליטע)"
+  },
+  "name_regex_base": [
+    "רומשינסק",
+    "רומשיסק"
+  ],
+  "variant_nodes": [
+    {
+      "node_id": "person:UP-0048",
+      "label": "רומשינסקי",
+      "verdict": "merge",
+      "why": "composed „דאָס ציגיינער מיידל\" (duplicates his own E-02021) and „דעם רבינס ניגון\"; Esther Field performed his operetta"
+    },
+    {
+      "node_id": "person:UP-0194",
+      "label": "יוסף רומשינסקי",
+      "verdict": "merge",
+      "why": "„מיט דער מוזיק פֿון יוסף רומשינסקי\" (ציפקע די אלמנה) — the full name, unambiguous"
+    },
+    {
+      "node_id": "person:UP-0443",
+      "label": "יאָזעף רומשינסקי",
+      "verdict": "merge",
+      "why": "partner in Kessler's Second Ave. and the Folks-Theatre — matches his documented career"
+    },
+    {
+      "node_id": "person:UP-0854",
+      "label": "יאָזער רומשינסקי",
+      "verdict": "merge",
+      "why": "OCR typo of יאָזעף; described as קאָמפּאָזיטאָר, wrote music for a Shomer operetta"
+    },
+    {
+      "node_id": "person:UP-1058",
+      "label": "יאָסעלע דעם קירזשנערס (יוסף רומשינסקי)",
+      "verdict": "merge",
+      "why": "childhood nickname ('Yosele the furrier's'), glossed with his full name in the source itself; his father משה was a קירזשנער"
+    },
+    {
+      "node_id": "person:UP-0896",
+      "label": "קאַליך רומשינסקי",
+      "verdict": "duo",
+      "duo_with": "person:922",
+      "edge_label": "managed (with Jacob Kalich)",
+      "why": "Miriam Shomer Zunser's entry: the theatre passed in 1931 אונטער דער דירעקציע פֿון קאַליך רומשינסקי — the Kalich+Rumshinsky management duo, not a name variant (the same list also carries רומשינסקי-סקולניק)"
+    },
+    {
+      "node_id": "person:UP-1735",
+      "label": "מאָרי רומשינסקי",
+      "verdict": "separate",
+      "why": "his son Murray Rumshinsky — a real distinct person; the family_of child edge already links them"
+    },
+    {
+      "node_id": "org_cluster:ORG-C02234",
+      "label": "רומשינסקי-בוך",
+      "verdict": "separate",
+      "why": "the 1,288-page festschrift about him — an org/publication node, belongs under 'works about him'"
+    }
+  ],
+  "edge_classes": {
+    "family": {
+      "color": "#a1462e",
+      "dashes": true,
+      "width": 2.0,
+      "types": [
+        "family_of"
+      ]
+    },
+    "life": {
+      "color": "#6b5b95",
+      "dashes": false,
+      "width": 2.4,
+      "types": [
+        "born_in",
+        "died_in",
+        "buried_in"
+      ]
+    },
+    "education": {
+      "color": "#2f8f7f",
+      "dashes": [
+        2,
+        4
+      ],
+      "width": 2.0,
+      "types": [
+        "studied_with",
+        "studied_at"
+      ]
+    },
+    "professional": {
+      "color": "#0e6f8a",
+      "dashes": false,
+      "width": 2.2,
+      "types": [
+        "staff_of",
+        "composed_music",
+        "performed_with",
+        "performed_work_of",
+        "directed_by",
+        "founded",
+        "managed",
+        "executive_of",
+        "delegate_of",
+        "co_member_of",
+        "colleague_of",
+        "work_published_by"
+      ]
+    },
+    "discourse": {
+      "color": "#a8a08e",
+      "dashes": false,
+      "width": 1.0,
+      "types": [
+        "wrote_about",
+        "associated_with",
+        "mention"
+      ]
+    }
+  },
+  "timeline": {
+    "y0": 1875,
+    "y1": 1960
+  },
+  "map": {
+    "center": [
+      46.0,
+      -20.0
+    ],
+    "zoom": 3
+  }
+}

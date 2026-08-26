@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumshinsky Dossier</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#faf7f0; --ink:#272219; --ink-soft:#5c554a; --line:#e2dcce;
+  --card:#f2eddf; --accent:#0e6f8a; --accent-ink:#0b5a70; --brick:#a1462e;
+  --chip:#e4ecec; --mono-bg:#ece7d8;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#161a1e; --ink:#e7e1d3; --ink-soft:#a49c8c; --line:#2c333a;
+    --card:#1d2329; --accent:#5cb6cd; --accent-ink:#7fc6d8; --brick:#d98868;
+    --chip:#223034; --mono-bg:#20272d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161a1e; --ink:#e7e1d3; --ink-soft:#a49c8c; --line:#2c333a;
+  --card:#1d2329; --accent:#5cb6cd; --accent-ink:#7fc6d8; --brick:#d98868;
+  --chip:#223034; --mono-bg:#20272d;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Spectral", Georgia, serif; font-size:1.02rem; line-height:1.62;
+  margin:0; padding:3.2rem 1.4rem 5rem;
+}
+main{max-width:56rem; margin:0 auto}
+h1,h2,h3{font-family:"Fraunces","Spectral",Georgia,serif; line-height:1.15; text-wrap:balance; font-weight:600}
+h1{font-size:2.6rem; margin:.4rem 0 .6rem}
+h2{font-size:1.45rem; margin:0 0 .9rem; color:var(--ink)}
+h3{font-size:1.08rem; margin:1.4rem 0 .4rem}
+p{max-width:44rem}
+a{color:var(--accent-ink)}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent-ink); margin:0 0 .2rem;
+}
+.lede{font-size:1.12rem; color:var(--ink-soft); max-width:42rem; margin-top:0}
+.yi{font-family:"Frank Ruhl Libre","Spectral",serif; font-size:1.06em; unicode-bidi:isolate}
+q.yi{quotes:"„" "“"}
+section{border-top:1px solid var(--line); padding-top:1.6rem; margin-top:2.4rem}
+.statrow{display:flex; flex-wrap:wrap; gap:.9rem; margin:1.8rem 0 .4rem}
+.stat{
+  background:var(--card); border:1px solid var(--line); border-radius:4px;
+  padding:.55rem .95rem .5rem; min-width:7.4rem;
+}
+.stat b{display:block; font-family:"Fraunces",serif; font-size:1.5rem; font-weight:600; color:var(--accent-ink); font-variant-numeric:tabular-nums}
+.stat span{font-size:.78rem; color:var(--ink-soft); letter-spacing:.02em}
+.tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:4px; margin:.8rem 0 1.2rem}
+table{border-collapse:collapse; width:100%; font-size:.92rem}
+th{
+  font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-soft); text-align:left; padding:.55rem .8rem; border-bottom:1px solid var(--line);
+  background:var(--card); white-space:nowrap;
+}
+td{padding:.5rem .8rem; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums; text-align:right}
+.mono{font-family:"IBM Plex Mono",monospace; font-size:.82em; background:var(--mono-bg); padding:.06em .35em; border-radius:3px; white-space:nowrap}
+td .yi, th .yi{display:inline-block; direction:rtl; text-align:right}
+.rtlcell{direction:rtl; text-align:right; font-family:"Frank Ruhl Libre",serif; font-size:1.02rem}
+.chip{
+  display:inline-block; background:var(--chip); border-radius:3px; padding:.05em .5em;
+  font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.04em; color:var(--accent-ink); white-space:nowrap;
+}
+.flag{color:var(--brick); font-weight:600}
+blockquote{
+  border-inline-start:3px solid var(--accent); background:var(--card);
+  margin:1rem 0; padding:.8rem 1.1rem; direction:rtl; text-align:right;
+  font-family:"Frank Ruhl Libre",serif; font-size:1.05rem; line-height:1.8; border-radius:0 4px 4px 0;
+}
+blockquote footer{direction:ltr; text-align:left; font-family:"Spectral",serif; font-size:.82rem; color:var(--ink-soft); margin-top:.5rem}
+.note{
+  background:var(--card); border:1px solid var(--line); border-radius:4px;
+  padding:.8rem 1.1rem; font-size:.92rem; color:var(--ink-soft); max-width:46rem;
+}
+.cols{column-width:16rem; column-gap:2rem}
+ul{padding-inline-start:1.2rem}
+li{margin-bottom:.35rem}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+</style>
+
+</head>
+<body>
+
+<main>
+<p class="eyebrow">Dybbuk · Plays KG × Zylbercweig Leksikon · person dossier · 2026-08-26</p>
+<h1>Joseph Rumshinsky</h1>
+<p class="lede">The first <b>person dossier</b>: everything the knowledge graph and the <i>Leksikon fun yidishn teater</i> hold about the composer <span class="yi" dir="rtl">יוסף רומשינסקי</span> (1881 Vilna – 1956 New York) — his professional network, the geography of his career, the works the Leksikon credits to him, and how the corpus talks <i>about</i> him.</p>
+<p style="font-size:.9rem"><b>Companion pages:</b>
+<a href="rumshinsky_network.html">ego network</a> ·
+<a href="rumshinsky_timeline.html">timeline</a> ·
+<a href="rumshinsky_map.html">route map</a>
+&nbsp;·&nbsp; <b>see also</b> <a href="istanbul_dossier.html">Istanbul dossier</a> (the place-shaped counterpart)</p>
+
+<div class="statrow">
+  <div class="stat"><b>75</b><span>KG edges on him</span></div>
+  <div class="stat"><b>20</b><span>career stations</span></div>
+  <div class="stat"><b>12</b><span>places</span></div>
+  <div class="stat"><b>117</b><span>works named</span></div>
+  <div class="stat"><b>120</b><span>entries mention him</span></div>
+  <div class="stat"><b>19</b><span>KG anchor facts</span></div>
+</div>
+
+<section>
+<h2>1 · Vital facts</h2>
+<div class="tablewrap"><table>
+<tr><th>field</th><th>value</th><th>source</th></tr>
+<tr><td>node</td><td><span class="mono">person:916</span> · <span class="mono">people_db 916</span></td><td>KG plays layer</td></tr>
+<tr><td>entry</td><td><span class="mono">P-3-facs_402_tr_1755856047</span> — vol. 3, cols. 2307–2406</td><td>Leksikon</td></tr>
+<tr><td>heading</td><td class="rtlcell">רומשינסקי, יוסף [רומשיסקי]</td><td>Leksikon</td></tr>
+<tr><td>born</td><td>15 January 1881, <span class="yi" dir="rtl">ווילנע</span> (Vilna), <span class="yi" dir="rtl">ליטע</span></td><td>entry, first sentence</td></tr>
+<tr><td>died</td><td>6 February 1956, <span class="yi" dir="rtl">ניו יאָרק</span></td><td>entry + subheading</td></tr>
+<tr><td>buried</td><td class="rtlcell">בית עולם פֿון דער יידישער טעאַטריקל עלייענס</td><td>entry (not yet a KG edge)</td></tr>
+<tr><td>father / mother</td><td class="rtlcell">משה, אַ קירזשנער · צלבה, אַ קענערקע פֿון אליקום צונזערס לידער</td><td>entry</td></tr>
+</table></div>
+
+<p><b>Backfill applied.</b> Both date and both place fields were <b>empty</b> in the database even though the entry states them outright — the subheading carries <span class="yi" dir="rtl">[געבוירן 15 יאנואַר 1881 — געשט. 6 פעברואר 1956]</span> and the first sentence names Vilna. This dossier filled <span class="mono">people_db.tsv</span> row 916 (<span class="mono">date_born</span>, <span class="mono">date_died</span>, <span class="mono">born_in</span>, <span class="mono">died_in</span>) and the corresponding empty fields of his <span class="mono">people_extracted.tsv</span> row, then re-ran <span class="mono">build_kg.py --execute</span>. The rebuild added <b>exactly two</b> new edges and removed none:</p>
+<div class="tablewrap"><table>
+<tr><th>edge</th><th>relation</th><th>place</th><th>date</th></tr>
+<tr><td><span class="mono">E-06698</span></td><td>born_in</td><td><span class="mono">place:Q216</span> — Vilnius</td><td>1881-01-15</td></tr>
+<tr><td><span class="mono">E-06699</span></td><td>died_in</td><td><span class="mono">place:Q60</span> — New York City</td><td>1956-02-06</td></tr>
+</table></div>
+<p class="note"><b>Rebuild side-effect, handled.</b> Inserting two edges renumbered <span class="mono">edge_id</span>s downstream of them — roughly 30,000 rows shifted by two, with no change of content. That silently invalidated one edge id quoted in the already-published <a href="istanbul_dossier.html">Istanbul dossier</a> (Schildkraut's contested Constantinople birth), which has been corrected from <span class="mono">E-06842</span> to <span class="mono">E-06844</span>. <span class="flag">Edge ids are not stable across rebuilds</span> — anything citing them needs re-checking after each one. The burial place is still <i>not</i> in the KG: the entry names an institution's cemetery rather than a settlement, which the birth/death extractor has no slot for.</p>
+</section>
+
+<section>
+<h2>2 · The professional network</h2>
+<p>His node carries <b>75 edges</b> to 72 neighbours — 53 people, 10 organizations, 7 plays, 2 places. The <a href="rumshinsky_network.html">ego-network page</a> draws all of them one hop out, with each edge class separately switchable.</p>
+
+<div class="tablewrap"><table>
+<tr><th>edge class</th><th class="num">edges</th><th>what it holds</th></tr>
+<tr><td><b>professional</b></td><td class="num">24</td><td>staff_of, composed_music, founded, managed, executive_of, delegate_of, studied/performed/published relations — the career skeleton</td></tr>
+<tr><td><b>discourse</b></td><td class="num">47</td><td><span class="mono">associated_with</span> / <span class="mono">wrote_about</span> — the diffuse layer of people the entry merely names alongside him</td></tr>
+<tr><td><b>family</b></td><td class="num">7</td><td>parents <span class="yi" dir="rtl">משה</span> &amp; <span class="yi" dir="rtl">צלבה</span>, uncle <span class="yi" dir="rtl">חיים רומשיסקער</span>, both wives, son Murray, daughter Betty</td></tr>
+<tr><td><b>education</b></td><td class="num">4</td><td>Treskin's music school (Vilna), the Warsaw Conservatory, and two teacher relations</td></tr>
+<tr><td><b>life</b></td><td class="num">2</td><td>born_in / died_in — new, from the backfill above</td></tr>
+</table></div>
+
+<p>Family edges are drawn but visually separated (brick, dashed, role-labelled), so the professional structure stays readable next to them. The <b>discourse</b> class is the interesting one to switch off: 47 of his 75 edges — nearly two thirds — are not career facts at all but co-mention, the residue of a densely cross-referential lexicon. What remains with discourse hidden is the career proper.</p>
+
+<h3>Collaborators the works layer actually names</h3>
+<p>Counted over the 117 works below rather than over the graph, the recurring partners are: <span class="yi" dir="rtl">אַנשעל שאָר</span> (8 works), <span class="yi" dir="rtl">ל. פֿריימאַן</span> (6), <span class="yi" dir="rtl">נ. ראַקאָוו</span> (4), <span class="yi" dir="rtl">טאָמאַשעווסקי</span> (4), <span class="yi" dir="rtl">וויליאַם סיגעל</span> (4), <span class="yi" dir="rtl">יעקב קאַליך</span> (4), <span class="yi" dir="rtl">ה. קאַלמאַנאָוויטש</span> (3), then Gordin, Libin and Shomer with two apiece. Anshel Schorr is both his most frequent librettist here <i>and</i> the entry that mentions him most often across the whole Leksikon (17×) — the two layers agree about who his principal partner was.</p>
+
+<h3 id="variants">Name variants and a dedup finding</h3>
+<p>Seven stray nodes in the KG carry Rumshinsky-shaped labels. They were adjudicated from their evidence sentences and host entries; <span class="flag">the merges below are applied in the dossier's display layer only</span> — the KG TSVs are untouched, since a real dedup pass is a separate job.</p>
+<div class="tablewrap"><table>
+<tr><th>node</th><th>label</th><th>verdict</th><th>why</th></tr>
+<tr><td><span class="mono">person:UP-0048</span></td><td class="rtlcell">רומשינסקי</td><td><span class="chip">merge</span></td><td>composed <span class="yi" dir="rtl">„דאָס ציגיינער מיידל"</span> — a duplicate of his own <span class="mono">E-02021</span> — and <span class="yi" dir="rtl">„דעם רבינס ניגון"</span></td></tr>
+<tr><td><span class="mono">person:UP-0194</span></td><td class="rtlcell">יוסף רומשינסקי</td><td><span class="chip">merge</span></td><td>the full name, unambiguous: <span class="yi" dir="rtl">מיט דער מוזיק פֿון יוסף רומשינסקי</span></td></tr>
+<tr><td><span class="mono">person:UP-0443</span></td><td class="rtlcell">יאָזעף רומשינסקי</td><td><span class="chip">merge</span></td><td>partner in Kessler's Second Ave. and the Folks-Theatre — his documented career</td></tr>
+<tr><td><span class="mono">person:UP-0854</span></td><td class="rtlcell">יאָזער רומשינסקי</td><td><span class="chip">merge</span></td><td>OCR slip for <span class="yi" dir="rtl">יאָזעף</span>; described as <span class="yi" dir="rtl">קאָמפּאָזיטאָר</span></td></tr>
+<tr><td><span class="mono">person:UP-1058</span></td><td class="rtlcell">יאָסעלע דעם קירזשנערס (יוסף רומשינסקי)</td><td><span class="chip">merge</span></td><td>childhood nickname — "Yosele the furrier's" — glossed with his full name in the source itself; his father was a <span class="yi" dir="rtl">קירזשנער</span></td></tr>
+<tr><td><span class="mono">person:UP-0896</span></td><td class="rtlcell">קאַליך רומשינסקי</td><td><span class="flag">duo, not a variant</span></td><td>see below</td></tr>
+<tr><td><span class="mono">person:UP-1735</span></td><td class="rtlcell">מאָרי רומשינסקי</td><td>correctly separate</td><td>his son Murray — a real distinct person, already linked by a <span class="mono">family_of</span> child edge</td></tr>
+<tr><td><span class="mono">org_cluster:ORG-C02234</span></td><td class="rtlcell">רומשינסקי-בוך</td><td>correctly separate</td><td>the 1,288-page festschrift <i>about</i> him, not a person at all</td></tr>
+</table></div>
+
+<p><b>The <span class="yi" dir="rtl">קאַליך רומשינסקי</span> finding.</b> This node looks exactly like a two-word spelling variant, and a naive surname-based dedup would swallow it. It is not one. Miriam Shomer Zunser's entry records that in 1931 the theatre passed <span class="yi" dir="rtl">אונטער דער דירעקציע פֿון קאַליך רומשינסקי</span> — the <b>Jacob Kalich + Rumshinsky management duo</b>, a compound of two surnames. The same list carries <span class="yi" dir="rtl">רומשינסקי-סקולניק</span>, the same construction with Menashe Skulnik. The network page keeps its edge, attributes it to the ego, and labels it <i>managed (with Jacob Kalich)</i> rather than pretending it is a spelling of his name; Kalich himself (<span class="mono">person:922</span>) is already a <span class="mono">colleague_of</span> neighbour, described in his own edge as <span class="yi" dir="rtl">רומשינסקיס לאַנג-יאָריקער מיטאַרבעטער און שותף אין טעאַטער</span>.</p>
+<p class="note"><b>Generalizable:</b> in this corpus a bare surname pair is as likely to be a <i>management partnership</i> as a name variant. Duo-surface strings deserve their own detector before any surname dedup runs.</p>
+</section>
+
+<section>
+<h2>3 · Life &amp; career course</h2>
+<p>A Gemini pass over the 71,867-character entry yielded <b>20 stations</b> carrying <b>15 events</b>, across <b>12 distinct places</b>. All 20 place strings resolved against the gazetteer — nothing was left unresolved. Four stations have no stated date and were interpolated from narrative order; they are drawn faded on both the <a href="rumshinsky_timeline.html">timeline</a> and the <a href="rumshinsky_map.html">map</a>.</p>
+
+<p class="rtlcell" style="direction:ltr;text-align:left;font-family:'Spectral',serif">
+<b>The route:</b> Vilna → cantorial tours through Russia → Grodno → Dvinsk → Borisov → Yelisavetgrad → Łódź (<span class="yi" dir="rtl">הזמיר</span>) → Warsaw Conservatory → London (1903–4) → New York (July 1904) → Boston (1905–6) → back to New York for the Windsor, Thalia, National and Second Avenue theatres → a 1921 European visit → Maurice Schwartz's Yiddish Art Theatre (1946–9) → death, New York, 1956.</p>
+
+<h3>Extraction vs. the KG: the agreement table</h3>
+<p>The dossier does not ask the reader to trust the extraction. Each of the <b>19 dated or placeable KG facts</b> on his node was checked against the extracted stations. Every anchor is drawn on the timeline as a diamond, on its place's lane, so agreement is visible rather than asserted.</p>
+<div class="statrow">
+  <div class="stat"><b>18</b><span>match</span></div>
+  <div class="stat"><b>0</b><span>conflict</span></div>
+  <div class="stat"><b>1</b><span>KG only</span></div>
+  <div class="stat"><b>5</b><span>extraction only</span></div>
+</div>
+<div class="tablewrap"><table>
+<tr><th>edge</th><th>relation</th><th>counterpart</th><th>place (via org's located_in)</th><th>date</th><th>verdict</th></tr>
+<tr><td><span class="mono">E-06698</span></td><td>born_in</td><td class="rtlcell">ווילנע</td><td>Vilnius</td><td>1881</td><td>match</td></tr>
+<tr><td><span class="mono">E-13410</span></td><td>studied_at</td><td class="rtlcell">טרעסקינס מוזיק-שול</td><td>Vilnius</td><td>—</td><td>match</td></tr>
+<tr><td><span class="mono">E-13412</span></td><td>founded</td><td class="rtlcell">הזמיר (לאָדזש)</td><td>Łódź</td><td>—</td><td>match</td></tr>
+<tr><td><span class="mono">E-13413</span></td><td>staff_of · <span class="yi" dir="rtl">דיריגענט</span></td><td class="rtlcell">הזמיר (לאָדזש)</td><td>Łódź</td><td>–1902</td><td>match</td></tr>
+<tr><td><span class="mono">E-13414</span></td><td>studied_at</td><td class="rtlcell">קאָנסערוואַטאָריע</td><td>Warsaw</td><td>—</td><td>match</td></tr>
+<tr><td><span class="mono">E-13411</span></td><td>performed_with · <span class="yi" dir="rtl">כאָר</span></td><td class="rtlcell">טרופּע פֿון א. י. קאַמינסקי</td><td>Warsaw <span class="flag">(see caveat)</span></td><td>—</td><td>match</td></tr>
+<tr><td><span class="mono">E-13416</span></td><td>staff_of · <span class="yi" dir="rtl">דיריגענט</span></td><td class="rtlcell">האָפּ-טעאַטער</td><td>Boston</td><td>1905–1906</td><td>match</td></tr>
+<tr><td><span class="mono">E-02015</span></td><td>composed_music</td><td class="rtlcell">די אַמעריקאָנערין</td><td>—</td><td>1910</td><td>match</td></tr>
+<tr><td><span class="mono">E-02016</span></td><td>composed_music</td><td class="rtlcell">צוריק אין דער היים</td><td>—</td><td>1916</td><td>match</td></tr>
+<tr><td><span class="mono">E-13418</span></td><td>staff_of</td><td class="rtlcell">סעקאָנד עוועניו טעאַטער</td><td>New York City</td><td>1919–1920</td><td>match</td></tr>
+<tr><td><span class="mono">E-02018</span></td><td>composed_music</td><td class="rtlcell">חכמת נשים</td><td>—</td><td>1922</td><td>match</td></tr>
+<tr><td><span class="mono">E-02020</span></td><td>composed_music</td><td class="rtlcell">המן דער צווייטער</td><td>—</td><td>1924</td><td>match</td></tr>
+<tr><td><span class="mono">E-02021</span></td><td>composed_music</td><td class="rtlcell">דאָס ציגיינער מיידל</td><td>—</td><td>1924</td><td>match</td></tr>
+<tr><td><span class="mono">E-02023</span></td><td>composed_music</td><td class="rtlcell">מזל-ברכה</td><td>—</td><td>1927</td><td>match</td></tr>
+<tr><td><span class="mono">E-13417</span></td><td>managed · <span class="yi" dir="rtl">דירעקציע</span></td><td class="rtlcell">סעקאָנד עוועניו טעאַטער</td><td>New York City</td><td>1931</td><td><span class="flag">KG only</span></td></tr>
+<tr><td><span class="mono">E-13419</span></td><td>staff_of · <span class="yi" dir="rtl">מוזיקאַלישער דירעקטאָר</span></td><td class="rtlcell">קונסט-טעאַטער</td><td>New York City</td><td>1946–1949</td><td>match</td></tr>
+<tr><td><span class="mono">E-13415</span></td><td>work_published_by</td><td class="rtlcell">גאָלדבערגס מוזיק-פֿאַרלאַג</td><td>New York City</td><td>—</td><td>match</td></tr>
+<tr><td><span class="mono">E-13421</span></td><td>delegate_of</td><td class="rtlcell">יידישע טעאַטריקל עלייענס</td><td>New York City</td><td>—</td><td>match</td></tr>
+<tr><td><span class="mono">E-06699</span></td><td>died_in</td><td class="rtlcell">ניו יאָרק</td><td>New York City</td><td>1956</td><td>match</td></tr>
+</table></div>
+
+<p><b>The single KG-only row is explainable, not a contradiction.</b> <span class="mono">E-13417</span> dates his takeover of the Second Avenue directorship to <b>1931</b>; the extraction closed his Second Avenue station at <b>1919–1930</b> and marked that end date <i>approximate</i>. The two layers describe the same engagement and disagree only about where its open end falls — which is precisely what an approximate date means. No anchor disagrees about <i>place</i>.</p>
+
+<p><b>Five extraction-only stations</b> — the Russian cantorial tour (1890–4), Dvinsk (1896), Borisov (1897), London (1903–4) and the 1921 European visit — are dated stations the KG has no fact for. They are not errors; they mark where the narrative is richer than the extracted graph. The London and Dvinsk years in particular are entirely absent from the KG.</p>
+
+<p class="note"><b>Caveat on org-derived places.</b> An anchor's place comes from its organization's <span class="mono">located_in</span> edge, which records an org's <i>home base</i>. For a touring troupe that is misleading: <span class="mono">E-13411</span> resolves Kaminski's troupe to Warsaw, while the entry has him joining its choir on tour in <b>Grodno</b>. The verdict still reads <i>match</i> because he was demonstrably with that troupe — but for itinerant organizations, "located_in" is not a station.</p>
+
+<p class="note"><b>A gazetteer bug found on the way.</b> <span class="yi" dir="rtl">באָריסאָוו</span> is listed in <span class="mono">toponyms_gazetteer.csv</span> twice: correctly as Barysaw/Borisov (<span class="mono">Q19313</span>) and, wrongly, as a variant of Babruysk (<span class="mono">Q207294</span>). Whichever row loads first wins, and the first pass resolved his 1897 Borisov season to Babruysk. The dossier's resolver now lets curated decisions override the gazetteer, and the contaminated variant should be removed upstream.</p>
+</section>
+
+<section>
+<h2>4 · Works &amp; genres <span style="font-weight:400;font-size:.8em;color:var(--ink-soft)">— optional module, authors &amp; composers only</span></h2>
+<p>A second Gemini pass extracted the works the entry credits to him with the genre <i>the entry itself</i> uses. It returned <b>117 works</b>, and <b>every one survived the hallucination guard</b>: each title occurs verbatim in the entry text, 116 of them inside a <span class="yi" dir="rtl">„…"</span> quoted span, which is how the Leksikon marks titles. 115 of 117 evidence quotes are literal substrings of the entry. Nothing was invented.</p>
+
+<div class="statrow">
+  <div class="stat"><b>117</b><span>works</span></div>
+  <div class="stat"><b>0</b><span>rejected as unattested</span></div>
+  <div class="stat"><b>47</b><span>carry a year</span></div>
+  <div class="stat"><b>1896–1949</b><span>span</span></div>
+</div>
+
+<p><b>Genres as the Leksikon names them:</b>
+<span class="chip">operetta 51</span> <span class="chip">drama 26</span> <span class="chip">comedy 12</span>
+<span class="chip">melodrama 9</span> <span class="chip">other 5</span> <span class="chip">musical number set 3</span>
+<span class="chip">cantata 1</span> <span class="chip">revue 1</span> <span class="chip">opera 1</span>
+<span class="chip">unspecified 8</span></p>
+<p>The shape is unambiguous: he is an <b>operetta</b> composer first — 51 of the 109 works whose genre the entry states — with drama and comedy scores as the second register, and only a single work the entry calls an <span class="yi" dir="rtl">אָפּערע</span>. The concert works (a cantata, a waltz for piano, a fantasia for orchestra) sit at the edges of a theatre career.</p>
+
+<blockquote>אין צווייטן סעזאָן שרייבט ער 16 נומערן פֿאַר אַנשעל שאָרס אָפּערעטע „שיר השירים" (אין וועלכער ס'ווערט צום ערשטן מאָל אויף דער יידישער בינע דורכגעפֿירט אַ לייטמאָטיוו אין דער מוזיק)
+<footer>The Leksikon's own claim for his historical significance: the first use of a leitmotif on the Yiddish stage.</footer></blockquote>
+
+<h3>Works ↔ KG join</h3>
+<p>All <b>six</b> <span class="mono">composed_music</span> edges on his node are accounted for in the works list, one-to-one — but only three matched <i>by title</i>. The other three matched through their shared evidence sentence, because <span class="flag">the KG stores a play's canonical title where the entry names a different one</span>:</p>
+<div class="tablewrap"><table>
+<tr><th>KG play</th><th>KG title</th><th>title in the entry</th><th>matched via</th></tr>
+<tr><td><span class="mono">play:PL-0056</span></td><td class="rtlcell">דאָס ציגיינער מיידל</td><td class="rtlcell">דאָס ציגיינער מיידל</td><td>title</td></tr>
+<tr><td><span class="mono">play:PL-0218</span></td><td class="rtlcell">מזל-ברכה</td><td class="rtlcell">מזל ברכה</td><td>title</td></tr>
+<tr><td><span class="mono">play:PL-0246</span></td><td class="rtlcell">צוריק אין דער היים</td><td class="rtlcell">צוריק אין דער היים</td><td>title</td></tr>
+<tr><td><span class="mono">play:PL-0184</span></td><td class="rtlcell">חכמת נשים</td><td class="rtlcell">קלוגע פרויען</td><td><span class="flag">evidence sentence</span></td></tr>
+<tr><td><span class="mono">play:PL-0172</span></td><td class="rtlcell">המן דער צווייטער</td><td class="rtlcell">שמענדריקס חתונה</td><td><span class="flag">evidence sentence</span></td></tr>
+<tr><td><span class="mono">play:NEW-0032</span></td><td class="rtlcell">די אַמעריקאָנערין</td><td colspan="2"><span class="flag">no matching title in the entry at all</span> — attached only through the long sentence it shares with several other titles</td></tr>
+</table></div>
+<p>That leaves <b>110 works the KG does not hold as plays</b>. This is the dossier's clearest coverage finding: the plays layer knows six of his scores; the entry names a hundred and seventeen. Two of the six are only reachable by alternate title, and one (<span class="mono">NEW-0032</span>) has no title anchor in its own source at all and should be re-checked.</p>
+<p class="note"><b>Deliberately not used:</b> the genre column of <span class="mono">eval/eval_reference_works.tsv</span>. It is held-out evaluation data; joining against it here would contaminate the eval. Genres were instead sanity-checked with a nikud-tolerant regex over the Yiddish genre vocabulary. It disagreed with the model on three works, and in all three cases the <i>regex</i> was more specific: a waltz and a fantasia the model filed as "other", and one <span class="yi" dir="rtl">אָפּערעסע</span> — an OCR slip for <span class="yi" dir="rtl">אָפּערעטע</span> — that it read as "opera".</p>
+</section>
+
+<section>
+<h2>5 · Reception in the Lexicon</h2>
+<p>Beyond his own entry, Rumshinsky is named in <b>120 other entries</b> — he is one of the most-cited figures in the corpus. His own entry is also among the largest: <b>#32</b> of 3,032 by length (71,867 characters), <b>#24</b> of 3,084 by endnote count (95), and <b>#22</b> by number of people it names (45).</p>
+<div class="tablewrap"><table>
+<tr><th>volume</th><th class="num">1</th><th class="num">2</th><th class="num">3</th><th class="num">4</th><th class="num">5</th><th class="num">6</th><th class="num">7</th></tr>
+<tr><td>entries mentioning him</td><td class="num">18</td><td class="num">29</td><td class="num">23</td><td class="num">38</td><td class="num">0</td><td class="num">12</td><td class="num">0</td></tr>
+</table></div>
+<p>The distribution is itself a finding: <b>volumes 5 and 7 never mention him</b>, while volume 4 alone accounts for nearly a third of all mentions.</p>
+<div class="tablewrap"><table>
+<tr><th>entry</th><th>vol</th><th class="num">mentions</th></tr>
+<tr><td class="rtlcell">שאָר [שור], אַנשל</td><td>4</td><td class="num">17</td></tr>
+<tr><td class="rtlcell">פּראַגער רעגינע</td><td>3</td><td class="num">14</td></tr>
+<tr><td class="rtlcell">טאָמאַשעווסקי, באָריס [ברוך-אהרן]</td><td>2</td><td class="num">12</td></tr>
+<tr><td class="rtlcell">פֿריימאַן, לואיס [לייזער געניוק]</td><td>4</td><td class="num">12</td></tr>
+<tr><td class="rtlcell">סקולניק, מנשה</td><td>6</td><td class="num">11</td></tr>
+<tr><td class="rtlcell">קאַליש, בערטאָ</td><td>4</td><td class="num">10</td></tr>
+<tr><td class="rtlcell">פּיקאָן, מאַלי</td><td>3</td><td class="num">8</td></tr>
+<tr><td class="rtlcell">פרץ, יצחק לייבוש</td><td>3</td><td class="num">7</td></tr>
+<tr><td class="rtlcell">שוואַרץ, מאָריס [אַברהם משה]</td><td>3</td><td class="num">7</td></tr>
+<tr><td class="rtlcell">שילדקרויט, רודאָלף [חיים-מרדכי]</td><td>4</td><td class="num">7</td></tr>
+</table></div>
+<p>The list is a map of his working life rather than of his fame: his principal librettist (Schorr), the stars who carried his scores (Prager, Thomashefsky, Skulnik, Picon), and Peretz, whose <span class="yi" dir="rtl">„דריי מתנות"</span> he set at the Art Theatre in 1946. Note that the Kalich at 10 mentions is <b>Bertha</b> Kalisch, the actress — not Jacob Kalich of the management duo in §2.</p>
+<p>His towering piece of reception is not an entry at all but an object: the 1,288-page <span class="yi" dir="rtl">רומשינסקי-בוך</span> (<span class="mono">org_cluster:ORG-C02234</span>), whose contributor list his own entry reproduces — Zylbercweig, Zalmen Reisen, Ab. Cahan, Mukdoni, Jacob Kalich, Morris Schwartz, Jacob Shatzky, Anshel Schorr, Boris Thomashefsky, Sholom Secunda and more.</p>
+<p style="font-size:.9rem">Click any Yiddish name in the tables above to read that entry in the side panel. Entries other than his own are shown as excerpts around each mention.</p>
+</section>
+
+<section>
+<h2>6 · Method &amp; gaps</h2>
+<h3>How this was built</h3>
+<ul>
+<li><b>Network</b> — <span class="mono">build_person_network.py</span> over <span class="mono">kg/nodes.tsv</span> + <span class="mono">kg/edges.tsv</span>; vis-network from CDN with an inline payload (53 KB, not a 3 MB pyvis dump). Variant merges are display-level only.</li>
+<li><b>Itinerary</b> — one Gemini call (<span class="mono">gemini-3-flash-preview</span>, temperature 0) through the shared <span class="mono">itinerary/extract_itineraries.py</span>, which gained <span class="mono">--ids-file</span>, <span class="mono">--out</span> and <span class="mono">--prompt-extra</span> so the Istanbul pilot's own behaviour is unchanged. The extra prompt told it the subject is a composer, so study and employment stations count, not only tours.</li>
+<li><b>Resolution</b> — <span class="mono">build_person_itinerary_data.py</span>, a local copy of the pilot resolver with a per-dossier place supplement, plus the new <span class="mono">kg_anchors</span> agreement pass.</li>
+<li><b>Works</b> — <span class="mono">extract_works.py</span>: one Gemini call, then the attestation guard, the KG join and the genre regex, all deterministic.</li>
+<li><b>Pages</b> — <span class="mono">build_person_pages.py</span>, adapted from <span class="mono">build_istanbul_pages.py</span>; the timeline is re-laned by <i>place</i> rather than by person, since a person dossier has one career.</li>
+<li><b>Entry panel</b> — <span class="mono">make_entry_json.py</span>, a reusable generator (the Istanbul pilot's equivalent file was hand-made). His own entry ships in full; the 120 mentioning entries ship as ±900-character windows, which keeps the payload at 836 KB instead of 8.9 MB.</li>
+</ul>
+
+<h3>Known gaps</h3>
+<ul>
+<li><b>110 of his 117 named works are not in the plays layer.</b> The largest single coverage gap this dossier surfaces.</li>
+<li><b>Alternate titles are not modelled.</b> <span class="yi" dir="rtl">קלוגע פרויען</span> / <span class="yi" dir="rtl">חכמת נשים</span> and <span class="yi" dir="rtl">שמענדריקס חתונה</span> / <span class="yi" dir="rtl">המן דער צווייטער</span> are the same works under two names; only the evidence sentence connects them. <span class="mono">play:NEW-0032</span> needs re-checking — its title appears nowhere in the entry that sourced it.</li>
+<li><b>Burial place is unrepresented.</b> The extractor has slots for settlements, not for an institution's cemetery.</li>
+<li><b>Org <span class="mono">located_in</span> is a home base, not a station</b> — misleading for touring troupes (the Kaminski case above).</li>
+<li><b>The gazetteer's <span class="yi" dir="rtl">באָריסאָוו</span> variant is contaminated</b> and should be detached from Babruysk upstream.</li>
+<li><b>Edge ids shift on every rebuild.</b> Anything that cites them — including these dossiers — must be re-verified afterwards. Stable fact identifiers would be worth having.</li>
+<li><b>Five dated stations have no KG fact behind them</b> (Russia 1890–4, Dvinsk 1896, Borisov 1897, London 1903–4, Europe 1921): candidates for promotion into the graph.</li>
+<li>Family relations are shown but not analysed; his second wife and daughter remain unmatched <span class="mono">UP-</span> nodes, as do 24 of his 72 neighbours.</li>
+</ul>
+<p class="note">Everything here is reproducible: <span class="mono">Zylbercweig/plays/person_dossier/</span> holds the config, the four builders, and the committed Gemini outputs (<span class="mono">rumshinsky_stations.jsonl</span>, <span class="mono">rumshinsky_works.json</span>), so the pages rebuild without re-calling the model. Point the same scripts at another <span class="mono">*.json</span> config to build the next person dossier; set <span class="mono">has_works: false</span> and §4 simply does not run.</p>
+</section>
+
+</main>
+
+<style>
+#epanel{display:none;position:fixed;top:0;right:0;bottom:0;width:min(580px,94vw);
+z-index:1200;background:var(--paper);border-left:1px solid var(--line);
+box-shadow:-8px 0 28px rgba(0,0,0,.18);flex-direction:column}
+#ep-head{padding:.9rem 1.1rem .6rem;border-bottom:1px solid var(--line);
+display:flex;align-items:flex-start;gap:.8rem}
+#ep-title{font-family:"Frank Ruhl Libre",serif;font-size:1.25rem;font-weight:700;
+direction:rtl;text-align:right;flex:1;line-height:1.3}
+#ep-meta{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--soft,#5c554a);
+padding:0 1.1rem .5rem;border-bottom:1px solid var(--line)}
+#ep-close{border:1px solid var(--line);background:var(--card);color:var(--ink);
+border-radius:4px;font-size:1rem;line-height:1;padding:.25rem .55rem;cursor:pointer}
+#ep-text{overflow-y:auto;padding:1rem 1.2rem 2rem;direction:rtl;text-align:right;
+font-family:"Frank Ruhl Libre",serif;font-size:1.04rem;line-height:1.9;
+white-space:pre-wrap;flex:1}
+#ep-text mark{background:#0e6f8a33;color:inherit;padding:0 .1em;border-radius:2px}
+.entrylink{cursor:pointer}
+.entrylink:hover{text-decoration:underline;text-decoration-color:var(--teal,#0e6f8a)}
+</style>
+<div id="epanel" role="dialog" aria-label="Leksikon entry">
+  <div id="ep-head"><div id="ep-title"></div>
+  <button id="ep-close" aria-label="close">✕</button></div>
+  <div id="ep-meta"></div>
+  <div id="ep-text"></div>
+</div>
+<script>
+(function(){
+let ENTRIES=null;
+const nik='[\\\\u0591-\\\\u05C7]*';
+const mk=b=>b.split('').join(nik);
+const IST=new RegExp('('+['רומשינסק','רומשיסק']
+  .map(mk).join('|')+')(?:'+nik+'[א-ת])*','g');
+window.openEntry=async function(pid){
+  const p=document.getElementById('epanel');
+  p.style.display='flex';
+  document.getElementById('ep-title').textContent='…';
+  document.getElementById('ep-meta').textContent=pid;
+  document.getElementById('ep-text').textContent='';
+  if(!ENTRIES){
+    try{ENTRIES=await (await fetch('rumshinsky_entry.json')).json();}
+    catch(e){document.getElementById('ep-text').textContent=
+      'Entry texts could not be loaded (rumshinsky_entry.json).';return;}
+  }
+  let e=ENTRIES[pid];
+  if(!e && pid.includes('…')){
+    const rx=new RegExp('^'+pid.split('…').map(s=>s.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&')).join('.*')+'$');
+    const k=Object.keys(ENTRIES).find(k=>rx.test(k));
+    if(k)e=ENTRIES[k],pid=k;
+  }
+  if(!e){document.getElementById('ep-text').textContent='Entry not found: '+pid;return;}
+  document.getElementById('ep-title').textContent=e.h;
+  document.getElementById('ep-meta').textContent='Leksikon vol. '+e.v+' · '+pid
+    +(e.x?' · excerpts around each mention':' · full entry');
+  const esc=e.t.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  document.getElementById('ep-text').innerHTML=esc.replace(IST,'<mark>$1</mark>');
+};
+const close=()=>document.getElementById('epanel').style.display='none';
+document.getElementById('ep-close').onclick=close;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+</script>
+
+<script>
+document.querySelectorAll('table tr').forEach(tr=>{
+  const mono=[...tr.querySelectorAll('.mono')].map(el=>el.textContent).find(t=>/^P-\d/.test(t));
+  const name=tr.querySelector('.rtlcell');
+  if(mono&&name){name.classList.add('entrylink');name.title='read the entry';
+    name.addEventListener('click',()=>openEntry(mono));}
+});
+</script>
+</body>
+</html>

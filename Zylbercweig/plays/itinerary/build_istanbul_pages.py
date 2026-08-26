@@ -178,7 +178,8 @@ box-shadow:0 2px 10px rgba(0,0,0,.12);z-index:10}
 Istanbul. Teal bands = time in Istanbul; grey bands = elsewhere; faded = date inferred
 from narrative order. Dots are events.</p>
 <p class="nav"><a href="istanbul_dossier.html">← dossier</a>
-<a href="istanbul_map.html">map →</a></p>
+<a href="istanbul_map.html">map →</a>
+<a href="rumshinsky_dossier.html">Rumshinsky dossier →</a></p>
 </header>
 <div class="controls">
   <label><input type="checkbox" id="istOnly"> Istanbul stations &amp; events only</label>
@@ -273,6 +274,7 @@ margin-left:-.5rem;padding:.1rem .25rem .1rem .4rem;border-radius:0 3px 3px 0;fo
 <h1>Istanbul Routes</h1>
 <p class="nav"><a href="istanbul_dossier.html">← dossier</a>
 <a href="istanbul_timeline.html">timeline →</a>
+<a href="rumshinsky_dossier.html">Rumshinsky dossier →</a>
 &nbsp;·&nbsp; routes of the 79 Istanbul-linked careers; click a line for its stations</p>
 </header>
 <div class="controls">

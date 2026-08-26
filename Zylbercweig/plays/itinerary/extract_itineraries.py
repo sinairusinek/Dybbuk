@@ -6,11 +6,18 @@ Model contract (station = spine, events attach to stations):
   station: subject x place x interval, in narrative order (seq).
   event:   point occurrence inside a station (performance, founding, ...).
 
+Reusable beyond the pilot: --ids-file / --out / --prompt-extra retarget it at any
+entry set (the person-dossier track uses this). Defaults preserve pilot behaviour.
+
 Usage:
     GOOGLE_API_KEY=... python3.11 extract_itineraries.py --limit 5   # calibration
     GOOGLE_API_KEY=... python3.11 extract_itineraries.py            # all 79
+    GOOGLE_API_KEY=... python3.11 extract_itineraries.py \
+        --ids-file ../person_dossier/rumshinsky_ids.txt \
+        --out ../person_dossier/rumshinsky_stations.jsonl \
+        --prompt-extra "The subject is a composer ..."
 
-Output: itinerary_drafts.jsonl (one JSON object per entry; resumable).
+Output: itinerary_drafts.jsonl (one JSON object per entry; resumable), or --out.
 """
 import argparse, csv, json, os, re, sys
 from datetime import datetime, timezone
@@ -89,6 +96,13 @@ def main():
     ap.add_argument("--only", help="comma-separated person_ids")
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--redo", action="store_true", help="re-run even if already in output")
+    ap.add_argument("--ids-file", default=str(IDS_FILE),
+                    help="file of entry person_ids, one per line "
+                         "(default: the Istanbul pilot list)")
+    ap.add_argument("--out", default=str(OUT),
+                    help="output .jsonl (default: itinerary_drafts.jsonl)")
+    ap.add_argument("--prompt-extra", default="",
+                    help="extra guidance appended to the system prompt")
     args = ap.parse_args()
 
     api_key = os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY")
@@ -98,14 +112,24 @@ def main():
     from google import genai
     from google.genai import types
 
-    ids = [l.strip() for l in IDS_FILE.read_text().splitlines() if l.strip()]
+    ids_file, out_path = Path(args.ids_file), Path(args.out)
+    system_prompt = SYSTEM_PROMPT
+    if args.prompt_extra:
+        system_prompt += "\n\nAdditional guidance for this run:\n" + args.prompt_extra
+
+    ids = [l.strip() for l in ids_file.read_text(encoding="utf-8").splitlines()
+           if l.strip() and not l.startswith("#")]
     if args.only:
         ids = [i for i in ids if i in set(args.only.split(","))]
     entries = load_entries()
 
+    missing = [i for i in ids if i not in entries]
+    if missing:
+        sys.exit(f"person_ids not found in {ENTRY_TEXTS.name}: {missing[:5]}")
+
     done = set()
-    if OUT.exists() and not args.redo:
-        with OUT.open(encoding="utf-8") as f:
+    if out_path.exists() and not args.redo:
+        with out_path.open(encoding="utf-8") as f:
             for line in f:
                 try:
                     done.add(json.loads(line)["person_id"])
@@ -119,9 +143,9 @@ def main():
         return
 
     client = genai.Client()
-    mode = "a" if OUT.exists() and not args.redo else "w"
+    mode = "a" if out_path.exists() and not args.redo else "w"
     n_st = n_ev = errors = 0
-    with OUT.open(mode, encoding="utf-8") as out:
+    with out_path.open(mode, encoding="utf-8") as out:
         for i, pid in enumerate(work, 1):
             e = entries[pid]
             user_msg = (f"Entry heading: {e['heading']}\nEntry id: {pid} "
@@ -134,13 +158,20 @@ def main():
                     model=args.model,
                     contents=user_msg,
                     config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_PROMPT,
+                        system_instruction=system_prompt,
                         max_output_tokens=65536,
                         temperature=0.0,
                         response_mime_type="application/json",
                         thinking_config=types.ThinkingConfig(thinking_budget=0),
                     ),
                 )
+                try:
+                    fr = str(resp.candidates[0].finish_reason)
+                except Exception:
+                    fr = ""
+                if fr and "STOP" not in fr:
+                    print(f"  WARNING {pid}: finish_reason={fr} "
+                          f"(entry {len(e['entry_text']):,} chars) — output may be truncated")
                 text = (resp.text or "").strip()
                 data = json.loads(text)
                 if isinstance(data, list):
@@ -162,7 +193,7 @@ def main():
             print(f"  {i}/{len(work)} {pid} "
                   f"stations={len(rec.get('stations', []))} "
                   f"{'ERROR ' + rec['error'][:80] if 'error' in rec else ''}")
-    print(f"\ntotal stations={n_st} events={n_ev} errors={errors} -> {OUT.name}")
+    print(f"\ntotal stations={n_st} events={n_ev} errors={errors} -> {out_path.name}")
 
 
 if __name__ == "__main__":
