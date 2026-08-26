@@ -95,8 +95,7 @@ li{margin-bottom:.35rem}
 <p class="lede">The first <b>person dossier</b>: everything the knowledge graph and the <i>Leksikon fun yidishn teater</i> hold about the composer <span class="yi" dir="rtl">יוסף רומשינסקי</span> (1881 Vilna – 1956 New York) — his professional network, the geography of his career, the works the Leksikon credits to him, and how the corpus talks <i>about</i> him.</p>
 <p style="font-size:.9rem"><b>Companion pages:</b>
 <a href="rumshinsky_network.html">ego network</a> ·
-<a href="rumshinsky_timeline.html">timeline</a> ·
-<a href="rumshinsky_map.html">route map</a>
+<a href="rumshinsky_course.html">life &amp; career course (map + timeline)</a>
 &nbsp;·&nbsp; <b>see also</b> <a href="istanbul_dossier.html">Istanbul dossier</a> (the place-shaped counterpart)</p>
 
 <div class="statrow">
@@ -168,13 +167,13 @@ li{margin-bottom:.35rem}
 
 <section>
 <h2>3 · Life &amp; career course</h2>
-<p>A Gemini pass over the 71,867-character entry yielded <b>20 stations</b> carrying <b>15 events</b>, across <b>12 distinct places</b>. All 20 place strings resolved against the gazetteer — nothing was left unresolved. Four stations have no stated date and were interpolated from narrative order; they are drawn faded on both the <a href="rumshinsky_timeline.html">timeline</a> and the <a href="rumshinsky_map.html">map</a>.</p>
+<p>A Gemini pass over the 71,867-character entry yielded <b>20 stations</b> carrying <b>15 events</b>, across <b>12 distinct places</b>. All 20 place strings resolved against the gazetteer — nothing was left unresolved. Four stations have no stated date and were interpolated from narrative order; they are drawn faded on the <a href="rumshinsky_course.html">course page</a>, where the map and the timeline are one linked view.</p>
 
 <p class="rtlcell" style="direction:ltr;text-align:left;font-family:'Spectral',serif">
 <b>The route:</b> Vilna → cantorial tours through Russia → Grodno → Dvinsk → Borisov → Yelisavetgrad → Łódź (<span class="yi" dir="rtl">הזמיר</span>) → Warsaw Conservatory → London (1903–4) → New York (July 1904) → Boston (1905–6) → back to New York for the Windsor, Thalia, National and Second Avenue theatres → a 1921 European visit → Maurice Schwartz's Yiddish Art Theatre (1946–9) → death, New York, 1956.</p>
 
 <h3>Extraction vs. the KG: the agreement table</h3>
-<p>The dossier does not ask the reader to trust the extraction. Each of the <b>19 dated or placeable KG facts</b> on his node was checked against the extracted stations. Every anchor is drawn on the timeline as a diamond, on its place's lane, so agreement is visible rather than asserted.</p>
+<p>The dossier does not ask the reader to trust the extraction. Each of the <b>19 dated or placeable KG facts</b> on his node was checked against the extracted stations. Agreement is shown rather than asserted: on the <a href="rumshinsky_course.html">course page</a> the 12 <i>dated</i> anchors appear as diamonds on the timeline — a diamond sitting on its lane's bar is a match, one floating on an empty lane is a fact the extraction never reached — and the 11 anchors that carry coordinates appear as dashed rings on the map. A fact about a play (his <span class="mono">composed_music</span> edges) has no place of its own, so it borrows the lane of the station it was matched to: the KG says he composed <span class="yi" dir="rtl">מזל-ברכה</span> in 1927, and the timeline shows where he was in 1927.</p>
 <div class="statrow">
   <div class="stat"><b>18</b><span>match</span></div>
   <div class="stat"><b>0</b><span>conflict</span></div>
@@ -284,7 +283,7 @@ li{margin-bottom:.35rem}
 <li><b>Itinerary</b> — one Gemini call (<span class="mono">gemini-3-flash-preview</span>, temperature 0) through the shared <span class="mono">itinerary/extract_itineraries.py</span>, which gained <span class="mono">--ids-file</span>, <span class="mono">--out</span> and <span class="mono">--prompt-extra</span> so the Istanbul pilot's own behaviour is unchanged. The extra prompt told it the subject is a composer, so study and employment stations count, not only tours.</li>
 <li><b>Resolution</b> — <span class="mono">build_person_itinerary_data.py</span>, a local copy of the pilot resolver with a per-dossier place supplement, plus the new <span class="mono">kg_anchors</span> agreement pass.</li>
 <li><b>Works</b> — <span class="mono">extract_works.py</span>: one Gemini call, then the attestation guard, the KG join and the genre regex, all deterministic.</li>
-<li><b>Pages</b> — <span class="mono">build_person_pages.py</span>, adapted from <span class="mono">build_istanbul_pages.py</span>; the timeline is re-laned by <i>place</i> rather than by person, since a person dossier has one career.</li>
+<li><b>Pages</b> — <span class="mono">build_person_pages.py</span>, adapted from <span class="mono">build_istanbul_pages.py</span>. The timeline is re-laned by <i>place</i> rather than by person, since a person dossier has one career, and it shares a page with the map: hovering either highlights the other, and dragging the year axis scrubs a period so the map redraws to just that window. A route map on its own collapses forty years into a single tangle of lines; the year brush is what makes it readable.</li>
 <li><b>Entry panel</b> — <span class="mono">make_entry_json.py</span>, a reusable generator (the Istanbul pilot's equivalent file was hand-made). His own entry ships in full; the 120 mentioning entries ship as ±900-character windows, which keeps the payload at 836 KB instead of 8.9 MB.</li>
 </ul>
 

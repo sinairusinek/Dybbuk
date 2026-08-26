@@ -1,10 +1,18 @@
 #!/usr/bin/env python3.11
-"""Build docs/<slug>_timeline.html and docs/<slug>_map.html for a person dossier.
+"""Build docs/<slug>_course.html — the combined life & career course page.
+
+Map and timeline are ONE view over the same stations, not two pages: hovering
+either highlights the other, clicking a timeline band opens that station on the
+map, and dragging the year axis scrubs a period so the map redraws to just that
+window. That coupling is the point — a route map alone collapses forty years
+into one tangle of lines.
 
 Adapted from itinerary/build_istanbul_pages.py: the inline-SVG timeline engine,
 COMMON_CSS palette and ENTRY_PANEL are carried over; the Istanbul-specific parts
 (IST_RE, the wave colouring, DUP_GROUPS, istMarker) are dropped. The timeline is
-re-laned by PLACE rather than by person, since a person dossier has one career.
+re-laned by PLACE rather than by person, since a person dossier has one career,
+and its year scale is computed from the container width so it never needs
+horizontal scrolling.
 
 Usage: python3.11 build_person_pages.py --config rumshinsky.json
 """
@@ -63,6 +71,15 @@ def build_payload(data):
             "ev": a["ev"],
             "lane": seen.get(a["qid"], seen.get(a["place_yi"], -1)),
         })
+    # A fact about a PLAY (composed_music) carries no place of its own, so it has
+    # no lane — yet it is exactly the kind of fact the agreement table argues
+    # about. Put it on the lane of the station it was matched to: the KG says he
+    # composed X in 1924, and the timeline shows where he was in 1924.
+    lane_of_seq = {s["seq"]: s["lane"] for s in stations}
+    for a in anchors:
+        if a["lane"] < 0 and a["seqs"]:
+            a["lane"] = lane_of_seq.get(a["seqs"][0], -1)
+            a["viaStation"] = a["seqs"][0]
 
     return {
         "name": data["name"], "nameYi": data["name_yi"], "slug": data["slug"],
@@ -87,18 +104,22 @@ COMMON_CSS = """
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
 font-family:"Spectral",Georgia,serif;font-size:15px}
-header{padding:1.4rem 1.6rem .5rem;max-width:78rem;margin:0 auto}
+header{padding:1.4rem 1.6rem .5rem;max-width:82rem;margin:0 auto}
 h1{font-family:"Fraunces",serif;font-weight:600;font-size:1.9rem;margin:.1rem 0 .3rem}
 .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13em;
 text-transform:uppercase;color:var(--teal);margin:0}
-.lede{color:var(--soft);margin:.2rem 0 .6rem;max-width:50rem}
+.lede{color:var(--soft);margin:.2rem 0 .6rem;max-width:52rem}
 .nav{font-size:.85rem}.nav a{color:var(--teal);margin-right:1rem}
 .yi{font-family:"Frank Ruhl Libre",serif;unicode-bidi:isolate}
 .controls{display:flex;flex-wrap:wrap;gap:.5rem 1.1rem;align-items:center;
-padding:.4rem 1.6rem .6rem;max-width:78rem;margin:0 auto;font-size:.84rem}
+padding:.4rem 1.6rem .6rem;max-width:82rem;margin:0 auto;font-size:.84rem}
 .controls label{display:flex;gap:.35rem;align-items:center;cursor:pointer}
 .legend{display:inline-flex;gap:.9rem;flex-wrap:wrap;font-size:.8rem;color:var(--soft)}
 .sw{display:inline-block;width:.75em;height:.75em;border-radius:50%;vertical-align:-1px}
+button{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.05em;
+border:1px solid var(--line);background:var(--card);color:var(--ink);
+border-radius:4px;padding:.3rem .6rem;cursor:pointer}
+button:hover{border-color:var(--teal)}
 #tip{position:fixed;display:none;background:var(--card);border:1px solid var(--line);
 border-radius:4px;padding:.55rem .75rem;font-size:.82rem;max-width:29rem;
 pointer-events:none;box-shadow:0 2px 12px rgba(0,0,0,.14);z-index:1000;line-height:1.5}
@@ -165,195 +186,128 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 })();
 </script>"""
 
-# ---------------- TIMELINE ----------------
-TIMELINE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
+# ---------------- COMBINED COURSE PAGE (map + timeline, linked) ----------------
+COURSE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__NAME__ · Timeline</title>""" + FONTS + """
+<title>__NAME__ · Life &amp; Career Course</title>""" + FONTS + """
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>__CSS__
-#wrap{max-width:78rem;margin:0 auto;padding:0 1.6rem 3rem;overflow-x:auto}
+#stage{max-width:82rem;margin:0 auto;padding:0 1.6rem 2.5rem}
+#map{height:44vh;min-height:330px;border:1px solid var(--line);border-radius:4px}
+#tlwrap{margin-top:.9rem;border:1px solid var(--line);border-radius:4px;
+background:#fdfbf6;padding:.3rem 0 .2rem;overflow-x:auto}
 svg text{font-family:"Spectral",serif}
 .lane-label{font-size:12px;fill:var(--ink)}
 .lane-label.region{fill:var(--soft);font-style:italic}
-.band{opacity:.9;cursor:pointer}.band.inf{opacity:.34}
+.lane-label.on{font-weight:700;fill:var(--teal)}
+.band{opacity:.9;cursor:pointer}
+.band.inf{opacity:.34}
+.band.out{opacity:.10}
+.band.on{stroke:var(--ink);stroke-width:1.6}
 .evdot{stroke:var(--paper);stroke-width:1;cursor:pointer}
+.evdot.out{opacity:.12}
 .anch{cursor:pointer}
 .gridline{stroke:var(--line);stroke-width:1}
 .lanerule{stroke:var(--line);stroke-width:1;stroke-dasharray:2 4;opacity:.7}
 .decade{font-size:10.5px;fill:var(--soft);font-family:"IBM Plex Mono",monospace}
 .lifeline{stroke:var(--brick);stroke-width:1;stroke-dasharray:3 3;opacity:.6}
 .lifelabel{font-size:10px;fill:var(--brick);font-family:"IBM Plex Mono",monospace}
-</style></head><body>
-<header>
-<p class="eyebrow">Dybbuk · Person dossier · life &amp; career course</p>
-<h1>__NAME__ — Timeline</h1>
-<p class="lede">One lane per place. Bars are stations (time spent there); faded bars
-have their dates <b>inferred</b> from narrative order rather than stated. Dots are
-events. Diamonds are the KG's own dated facts, placed where the KG puts them — a
-diamond sitting on its lane's bar is an <b>agreement</b> between the two layers;
-one floating on an empty lane is a fact the extraction never reached.</p>
-<p class="nav"><a href="__SLUG___dossier.html">← dossier</a>
-<a href="__SLUG___network.html">network →</a>
-<a href="__SLUG___map.html">map →</a></p>
-</header>
-<div class="controls">
-  <label><input type="checkbox" id="inf" checked> show date-inferred stations</label>
-  <label><input type="checkbox" id="anch" checked> show KG anchor facts</label>
-  <label><input type="checkbox" id="evs" checked> show events</label>
-  <span class="legend">
-    <span><span class="sw" style="background:var(--teal)"></span> station</span>
-    <span><span class="sw" style="background:var(--amber)"></span> founding/business</span>
-    <span><span class="sw" style="background:var(--brick)"></span> life event</span>
-    <span><span class="sw" style="background:var(--green)"></span> performance/premiere</span>
-  </span>
-</div>
-<div id="wrap"><svg id="tl"></svg></div>
-<div id="tip"></div>
-<script>
-const P=__PAYLOAD__;
-const Y0=P.tl.y0,Y1=P.tl.y1,PXY=13,LANE=25,LEFT=230,W=LEFT+(Y1-Y0)*PXY+40;
-const x=y=>LEFT+(y-Y0)*PXY;
-const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
-const evColor=t=>["performance","premiere","season","debut"].includes(t)?"var(--green)"
-  :["marriage","death","burial","born"].includes(t)?"var(--brick)"
-  :["founding","business"].includes(t)?"var(--amber)":"#8a8577";
-const tip=document.getElementById('tip');
-function showTip(html,e){tip.innerHTML=html;tip.style.display='block';
-  tip.style.left=Math.min(e.clientX+14,innerWidth-470)+'px';
-  tip.style.top=Math.min(e.clientY+12,innerHeight-40)+'px';}
-const hideTip=()=>tip.style.display='none';
-
-function render(){
-  const showInf=document.getElementById('inf').checked;
-  const showAnch=document.getElementById('anch').checked;
-  const showEv=document.getElementById('evs').checked;
-  const sts=P.stations.filter(s=>s.t0&&(showInf||!s.inf));
-  const H=P.lanes.length*LANE+70;
-  const svg=document.getElementById('tl');
-  svg.setAttribute('width',W);svg.setAttribute('height',H);
-  let g='';
-  for(let y=Math.ceil(Y0/10)*10;y<=Y1;y+=10){
-    g+=`<line class="gridline" x1="${x(y)}" y1="30" x2="${x(y)}" y2="${H-24}"/>`
-      +`<text class="decade" x="${x(y)-14}" y="22">${y}</text>`;}
-  // birth / death rules
-  [[P.life.date_born,'b. '+(P.life.date_born||'')],
-   [P.life.date_died,'d. '+(P.life.date_died||'')]].forEach(([d,lab])=>{
-    const yy=parseInt((d||'').slice(0,4));if(!yy)return;
-    g+=`<line class="lifeline" x1="${x(yy)}" y1="30" x2="${x(yy)}" y2="${H-24}"/>`
-      +`<text class="lifelabel" x="${x(yy)+3}" y="${H-12}">${lab}</text>`;});
-  P.lanes.forEach((l,i)=>{
-    const yy=48+i*LANE;
-    const cls=l.region?'lane-label region':'lane-label';
-    const nm=(l.en||l.yi||'?')+(l.region?' (region)':'');
-    g+=`<text class="${cls}" x="${LEFT-10}" y="${yy+4}" text-anchor="end">${esc(nm).slice(0,32)}</text>`
-      +`<text class="lane-label yi" x="${LEFT-10}" y="${yy+16}" text-anchor="end"
-         style="font-size:10px;opacity:.65" direction="rtl">${esc(l.yi)}</text>`
-      +`<line class="lanerule" x1="${LEFT}" y1="${yy}" x2="${W-30}" y2="${yy}"/>`;});
-  sts.forEach(s=>{
-    const yy=48+s.lane*LANE;
-    const x0=x(s.t0),x1=Math.max(x(s.t1||s.t0),x0+5);
-    const col=s.res.startsWith('region')?'#ddd6c4':'var(--teal)';
-    g+=`<rect class="band${s.inf?' inf':''}" x="${x0}" y="${yy-7}" width="${x1-x0}"
-      height="13" rx="3" fill="${col}" data-s="${s.seq}"/>`;
-    if(showEv) s.ev.forEach((e,j)=>{
-      const ex=e.date&&/^\\d{4}/.test(e.date)?x(+e.date.slice(0,4)):x0+10+j*9;
-      g+=`<circle class="evdot" cx="${ex}" cy="${yy}" r="4" fill="${evColor(e.t)}"
-        data-s="${s.seq}" data-e="${j}"/>`;});
-  });
-  if(showAnch) P.anchors.forEach((a,i)=>{
-    if(a.lane<0||!a.y0)return;
-    const yy=48+a.lane*LANE, ax=x(a.y0);
-    const fill=a.verdict==='match'?'var(--teal2)'
-      :a.verdict==='conflict'?'var(--brick)':'var(--amber)';
-    g+=`<rect class="anch" x="${ax-5}" y="${yy-16}" width="10" height="10"
-      transform="rotate(45 ${ax} ${yy-11})" fill="${fill}" stroke="var(--paper)"
-      stroke-width="1.2" data-a="${i}"/>`;});
-  svg.innerHTML=g;
-  svg.querySelectorAll('[data-s]').forEach(el=>{
-    const s=P.stations.find(z=>z.seq==el.dataset.s);
-    const html=el.dataset.e!==undefined?(()=>{const e=s.ev[+el.dataset.e];
-      return `<b>${esc(e.t)}</b> ${esc(e.date)||''}`
-        +(e.play?`<span class="yi">${esc(e.play)}</span>`:'')
-        +(e.venue?`venue: <span class="yi">${esc(e.venue)}</span>`:'')
-        +`<br>${esc(e.d)}<br><span class="kv">station ${s.seq} · ${esc(s.en||s.place)}</span>`;})()
-      :`<b>${esc(s.en||'')}</b> <span class="yi">${esc(s.place)}</span>`
-        +`<span class="kv">station ${s.seq} · ${esc(s.verb)}`
-        +`${s.role?' · '+esc(s.role):''} · ${esc(s.ds)||'?'}–${esc(s.de)||'?'}`
-        +`${s.inf?' (inferred '+s.t0+'–'+s.t1+')':''}${s.kg?' · KG-backed':''}</span>`
-        +(s.org?`<br>with <span class="yi" style="display:inline">${esc(s.org)}</span>`:'')
-        +(s.evid?`<span class="ev">${esc(s.evid)}</span>`:'');
-    el.addEventListener('mousemove',e=>showTip(html,e));
-    el.addEventListener('mouseleave',hideTip);});
-  svg.querySelectorAll('[data-a]').forEach(el=>{
-    const a=P.anchors[+el.dataset.a];
-    const html=`<b>KG fact — ${esc(a.verdict)}</b> <span class="kv">${esc(a.id)}</span><br>`
-      +`${esc(a.type)}${a.role?' · '+esc(a.role):''} `
-      +`<span class="yi" style="display:inline">${esc(a.yi||a.en)}</span><br>`
-      +`<span class="kv">${esc(a.placeEn||a.placeYi)} · ${a.y0}${a.y1&&a.y1!=a.y0?'–'+a.y1:''}`
-      +`${a.seqs.length?' · station '+a.seqs.join(', '):' · no matching station'}</span>`
-      +(a.ev?`<span class="ev">${esc(a.ev)}</span>`:'');
-    el.addEventListener('mousemove',e=>showTip(html,e));
-    el.addEventListener('mouseleave',hideTip);});
-}
-['inf','anch','evs'].forEach(id=>document.getElementById(id).onchange=render);
-render();
-</script></body></html>"""
-
-# ---------------- MAP ----------------
-MAP = """<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__NAME__ · Route map</title>""" + FONTS + """
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<style>__CSS__
-#map{height:calc(100vh - 210px);min-height:430px;margin:0 1.6rem;
-border:1px solid var(--line);border-radius:4px}
+#brushstrip{cursor:ew-resize}
+.brushsel{fill:var(--teal);opacity:.10}
+.brushedge{stroke:var(--teal);stroke-width:1.5}
+.brushhint{font-size:10px;fill:var(--soft);font-family:"IBM Plex Mono",monospace}
+.numicon{background:var(--teal);color:#fff;border-radius:50%;text-align:center;
+font-family:"IBM Plex Mono",monospace;font-size:11px;line-height:20px;
+border:2px solid var(--paper);box-shadow:0 1px 4px rgba(0,0,0,.3);
+transition:transform .12s ease}
+.numicon.inf{background:#9db8c2}
+.numicon.kg{box-shadow:0 0 0 2px var(--amber)}
+.numicon.on{transform:scale(1.5);z-index:900}
 .leaflet-popup-content{font-family:"Spectral",serif;font-size:.86rem;
 max-height:280px;overflow-y:auto}
 .leaflet-popup-content .yi{direction:rtl;font-family:"Frank Ruhl Libre",serif}
 .leaflet-popup-content .kv{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:#5c554a}
 .leaflet-popup-content .ev{direction:rtl;text-align:right;font-style:italic;
 color:#5c554a;display:block;margin-top:.35rem;font-family:"Frank Ruhl Libre",serif}
-.numicon{background:var(--teal);color:#fff;border-radius:50%;text-align:center;
-font-family:"IBM Plex Mono",monospace;font-size:11px;line-height:20px;
-border:2px solid var(--paper);box-shadow:0 1px 4px rgba(0,0,0,.3)}
-.numicon.inf{background:#9db8c2}
-.numicon.kg{box-shadow:0 0 0 2px var(--amber)}
+#range{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--teal);
+background:var(--card);border:1px solid var(--line);border-radius:3px;padding:.15rem .5rem}
 </style></head><body>
-<header style="padding-bottom:.3rem">
+<header>
 <p class="eyebrow">Dybbuk · Person dossier · life &amp; career course</p>
-<h1>__NAME__ — Route map</h1>
-<p class="lede">The career as a route: stations in narrative order, numbered.
-Amber rings mark stations the KG independently corroborates. Click a marker for
-its dates, organization and the sentence it was extracted from.</p>
+<h1>__NAME__ — Life &amp; Career Course</h1>
+<p class="lede">Where he was and when, in one view. The map and the timeline are the
+same twenty stations: hover either and the other lights up. <b>Drag across the year
+axis</b> to scrub a period — the map redraws to just that window, so the route becomes
+temporal rather than a single tangle. Faded bars have dates inferred from narrative
+order; diamonds are the KG's own dated facts, and amber rings mark stations the KG
+independently corroborates.</p>
 <p class="nav"><a href="__SLUG___dossier.html">← dossier</a>
-<a href="__SLUG___network.html">network →</a>
-<a href="__SLUG___timeline.html">timeline →</a></p>
+<a href="__SLUG___network.html">network →</a></p>
 </header>
 <div class="controls">
-  <label><input type="checkbox" id="regions"> include region/country centroids</label>
-  <label><input type="checkbox" id="inf" checked> include date-inferred stations</label>
-  <label><input type="checkbox" id="anch" checked> show KG anchor places</label>
-  <button style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;
-    border:1px solid var(--line);background:var(--card);color:var(--ink);
-    border-radius:4px;padding:.3rem .6rem;cursor:pointer"
-    onclick="openEntry('__PID__')">read the Leksikon entry</button>
+  <label><input type="checkbox" id="inf" checked> date-inferred stations</label>
+  <label><input type="checkbox" id="anch" checked> KG anchor facts</label>
+  <label><input type="checkbox" id="evs" checked> events</label>
+  <label><input type="checkbox" id="regions"> region/country centroids on the map</label>
+  <span id="range">all years</span>
+  <button id="clear">clear the year filter</button>
+  <button onclick="openEntry('__PID__')">read the Leksikon entry</button>
+  <span class="legend">
+    <span><span class="sw" style="background:var(--teal)"></span> station</span>
+    <span><span class="sw" style="background:var(--green)"></span> performance</span>
+    <span><span class="sw" style="background:var(--amber)"></span> founding/business</span>
+    <span><span class="sw" style="background:var(--brick)"></span> life event</span>
+  </span>
   <span id="count" style="color:var(--soft)"></span>
 </div>
-<div id="map"></div>
+<div id="stage">
+  <div id="map"></div>
+  <div id="tlwrap"><svg id="tl"></svg></div>
+</div>
+<div id="tip"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const P=__PAYLOAD__;
+const Y0=P.tl.y0,Y1=P.tl.y1,LANE=25,LEFT=230,PAD=40;
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const evColor=t=>["performance","premiere","season","debut"].includes(t)?"var(--green)"
+  :["marriage","death","burial","born"].includes(t)?"var(--brick)"
+  :["founding","business"].includes(t)?"var(--amber)":"#8a8577";
+
+// shared state
+let PXY=13, W=0, brush=null, focus=null;
+const inRange=s=>!brush||((s.t1||s.t0)>=brush[0]&&s.t0<=brush[1]);
+const x=y=>LEFT+(y-Y0)*PXY;
+const xInv=px=>Y0+(px-LEFT)/PXY;
+
+// ---- tooltip ----
+const tip=document.getElementById('tip');
+function showTip(html,e){tip.innerHTML=html;tip.style.display='block';
+  tip.style.left=Math.min(e.clientX+14,innerWidth-470)+'px';
+  tip.style.top=Math.min(e.clientY+12,innerHeight-40)+'px';}
+const hideTip=()=>tip.style.display='none';
+function stationTip(s){
+  return `<b>${esc(s.en||'')}</b> <span class="yi">${esc(s.place)}</span>`
+    +`<span class="kv">station ${s.seq} · ${esc(s.verb)}`
+    +`${s.role?' · '+esc(s.role):''} · ${esc(s.ds)||'?'}–${esc(s.de)||'?'}`
+    +`${s.inf?' (inferred '+s.t0+'–'+s.t1+')':''}${s.kg?' · KG-backed':''}</span>`
+    +(s.org?`<br>with <span class="yi" style="display:inline">${esc(s.org)}</span>`:'')
+    +(s.evid?`<span class="ev">${esc(s.evid)}</span>`:'');
+}
+
+// ---- map ----
 const map=L.map('map').setView(P.mapCfg.center,P.mapCfg.zoom);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
  {attribution:'© OpenStreetMap © CARTO',maxZoom:12}).addTo(map);
-let layers=[];
-function render(){
-  layers.forEach(l=>map.removeLayer(l));layers=[];
+let layers=[], markerBySeq={}, fitted=false;
+
+function drawMap(){
+  layers.forEach(l=>map.removeLayer(l));layers=[];markerBySeq={};
   const useReg=document.getElementById('regions').checked;
   const useInf=document.getElementById('inf').checked;
   const useAnch=document.getElementById('anch').checked;
   const pts=P.stations.filter(s=>s.lat&&(useReg||s.res.startsWith('settlement'))
-    &&(useInf||!s.inf));
+    &&(useInf||!s.inf)&&inRange(s));
   if(pts.length>1){
     const line=L.polyline(pts.map(s=>[s.lat,s.lon]),
       {color:'#0e6f8a',weight:2,opacity:.5,dashArray:'6 5'});
@@ -362,7 +316,7 @@ function render(){
   pts.forEach(s=>{
     const cls='numicon'+(s.inf?' inf':'')+(s.kg?' kg':'');
     const m=L.marker([s.lat,s.lon],{icon:L.divIcon({className:'',
-      html:`<div class="${cls}" style="width:20px;height:20px">${s.seq}</div>`,
+      html:`<div class="${cls}" data-seq="${s.seq}" style="width:20px;height:20px">${s.seq}</div>`,
       iconSize:[20,20],iconAnchor:[10,10]})});
     const evs=s.ev.map(e=>`<li><b>${esc(e.t)}</b> ${esc(e.date)||''} `
       +(e.play?`<span class="yi">${esc(e.play)}</span> `:'')
@@ -375,12 +329,15 @@ function render(){
       +(s.org?`<br>with <span class="yi">${esc(s.org)}</span>`:'')
       +(evs?`<ol style="margin:.3rem 0 0;padding-left:1.1rem">${evs}</ol>`:'')
       +(s.evid?`<span class="ev">${esc(s.evid)}</span>`:''));
-    m.bindTooltip(`${s.seq}. ${esc(s.en||s.place)} ${s.t0||''}`);
-    m.addTo(map);layers.push(m);
+    m.on('mouseover',()=>setFocus(s.seq,false));
+    m.on('mouseout',()=>setFocus(null,false));
+    m.addTo(map);layers.push(m);markerBySeq[s.seq]=m;
   });
   let na=0;
   if(useAnch) P.anchors.forEach(a=>{
-    if(!a.lat)return;na++;
+    if(!a.lat)return;
+    if(brush&&a.y0&&!(a.y0<=brush[1]&&(a.y1||a.y0)>=brush[0]))return;
+    na++;
     const col=a.verdict==='match'?'#7fb8c9':a.verdict==='conflict'?'#a1462e':'#b07d2b';
     const c=L.circleMarker([a.lat,a.lon],{radius:11,color:col,weight:2,
       fillOpacity:0,dashArray:'3 3'});
@@ -394,10 +351,154 @@ function render(){
   });
   document.getElementById('count').textContent=
     `${pts.length} stations plotted${useAnch?' · '+na+' KG anchor places':''}`;
-  if(pts.length) map.fitBounds(L.latLngBounds(pts.map(s=>[s.lat,s.lon])).pad(.15));
+  if(pts.length){
+    const b=L.latLngBounds(pts.map(s=>[s.lat,s.lon])).pad(.15);
+    if(!fitted){map.fitBounds(b);fitted=true;}
+    else if(brush)map.flyToBounds(b,{duration:.5});
+  }
 }
-['regions','inf','anch'].forEach(id=>document.getElementById(id).onchange=render);
-render();
+
+// ---- linked focus ----
+function setFocus(seq,fromMap){
+  focus=seq;
+  document.querySelectorAll('#tl .band').forEach(el=>
+    el.classList.toggle('on',+el.dataset.s===seq));
+  document.querySelectorAll('#tl .lane-label').forEach(el=>
+    el.classList.remove('on'));
+  document.querySelectorAll('.numicon').forEach(el=>
+    el.classList.toggle('on',+el.dataset.seq===seq));
+  if(seq!=null){
+    const s=P.stations.find(z=>z.seq===seq);
+    if(s){const lab=document.querySelector(`#tl .lane-label[data-lane="${s.lane}"]`);
+      if(lab)lab.classList.add('on');}
+  }
+}
+
+// ---- timeline ----
+function drawTimeline(){
+  const wrap=document.getElementById('tlwrap');
+  const avail=wrap.clientWidth-4;
+  PXY=Math.max(8,(avail-LEFT-PAD)/(Y1-Y0));   // fit the century to the container
+  W=LEFT+(Y1-Y0)*PXY+PAD;
+  const showInf=document.getElementById('inf').checked;
+  const showAnch=document.getElementById('anch').checked;
+  const showEv=document.getElementById('evs').checked;
+  const sts=P.stations.filter(s=>s.t0&&(showInf||!s.inf));
+  const H=P.lanes.length*LANE+78;
+  const svg=document.getElementById('tl');
+  svg.setAttribute('width',W);svg.setAttribute('height',H);
+  let g='';
+  for(let y=Math.ceil(Y0/10)*10;y<=Y1;y+=10){
+    g+=`<line class="gridline" x1="${x(y)}" y1="38" x2="${x(y)}" y2="${H-24}"/>`
+      +`<text class="decade" x="${x(y)-14}" y="30">${y}</text>`;}
+  [[P.life.date_born,'b. '+(P.life.date_born||'')],
+   [P.life.date_died,'d. '+(P.life.date_died||'')]].forEach(([d,lab])=>{
+    const yy=parseInt((d||'').slice(0,4));if(!yy)return;
+    g+=`<line class="lifeline" x1="${x(yy)}" y1="38" x2="${x(yy)}" y2="${H-24}"/>`
+      +`<text class="lifelabel" x="${x(yy)+3}" y="${H-12}">${lab}</text>`;});
+  // brush strip along the axis
+  g+=`<rect id="brushstrip" x="${LEFT}" y="8" width="${(Y1-Y0)*PXY}" height="26"
+       fill="transparent"/>`;
+  if(!brush) g+=`<text class="brushhint" x="${LEFT+6}" y="20">drag here to scrub a period</text>`;
+  if(brush){
+    const bx0=x(brush[0]),bx1=x(brush[1]);
+    g+=`<rect class="brushsel" x="${bx0}" y="38" width="${bx1-bx0}" height="${H-62}"/>`
+      +`<line class="brushedge" x1="${bx0}" y1="8" x2="${bx0}" y2="${H-24}"/>`
+      +`<line class="brushedge" x1="${bx1}" y1="8" x2="${bx1}" y2="${H-24}"/>`;
+  }
+  P.lanes.forEach((l,i)=>{
+    const yy=56+i*LANE;
+    const cls=l.region?'lane-label region':'lane-label';
+    const nm=(l.en||l.yi||'?')+(l.region?' (region)':'');
+    g+=`<text class="${cls}" data-lane="${i}" x="${LEFT-10}" y="${yy+4}" text-anchor="end">${esc(nm).slice(0,32)}</text>`
+      +`<text class="lane-label yi" x="${LEFT-10}" y="${yy+16}" text-anchor="end"
+         style="font-size:10px;opacity:.65" direction="rtl">${esc(l.yi)}</text>`
+      +`<line class="lanerule" x1="${LEFT}" y1="${yy}" x2="${W-PAD+10}" y2="${yy}"/>`;});
+  sts.forEach(s=>{
+    const yy=56+s.lane*LANE;
+    const x0=x(s.t0),x1=Math.max(x(s.t1||s.t0),x0+5);
+    const col=s.res.startsWith('region')?'#ddd6c4':'var(--teal)';
+    const out=inRange(s)?'':' out';
+    g+=`<rect class="band${s.inf?' inf':''}${out}" x="${x0}" y="${yy-7}" width="${x1-x0}"
+      height="13" rx="3" fill="${col}" data-s="${s.seq}"/>`;
+    if(showEv) s.ev.forEach((e,j)=>{
+      const ex=e.date&&/^\\d{4}/.test(e.date)?x(+e.date.slice(0,4)):x0+10+j*9;
+      g+=`<circle class="evdot${out}" cx="${ex}" cy="${yy}" r="4" fill="${evColor(e.t)}"
+        data-s="${s.seq}" data-e="${j}"/>`;});
+  });
+  if(showAnch) P.anchors.forEach((a,i)=>{
+    if(a.lane<0||!a.y0)return;
+    const yy=56+a.lane*LANE, ax=x(a.y0);
+    const fill=a.verdict==='match'?'var(--teal2)'
+      :a.verdict==='conflict'?'var(--brick)':'var(--amber)';
+    g+=`<rect class="anch" x="${ax-5}" y="${yy-16}" width="10" height="10"
+      transform="rotate(45 ${ax} ${yy-11})" fill="${fill}" stroke="var(--paper)"
+      stroke-width="1.2" data-a="${i}"/>`;});
+  svg.innerHTML=g;
+  wireTimeline(svg);
+  if(focus!=null)setFocus(focus,false);
+}
+
+function wireTimeline(svg){
+  svg.querySelectorAll('[data-s]').forEach(el=>{
+    const s=P.stations.find(z=>z.seq==el.dataset.s);
+    const html=el.dataset.e!==undefined?(()=>{const e=s.ev[+el.dataset.e];
+      return `<b>${esc(e.t)}</b> ${esc(e.date)||''}`
+        +(e.play?`<span class="yi">${esc(e.play)}</span>`:'')
+        +(e.venue?`venue: <span class="yi">${esc(e.venue)}</span>`:'')
+        +`<br>${esc(e.d)}<br><span class="kv">station ${s.seq} · ${esc(s.en||s.place)}</span>`;})()
+      :stationTip(s);
+    el.addEventListener('mousemove',e=>showTip(html,e));
+    el.addEventListener('mouseenter',()=>setFocus(s.seq,true));
+    el.addEventListener('mouseleave',()=>{hideTip();setFocus(null,true);});
+    el.addEventListener('click',()=>{           // timeline -> map
+      const m=markerBySeq[s.seq];
+      if(m){map.panTo(m.getLatLng(),{animate:true});m.openPopup();}
+    });
+  });
+  svg.querySelectorAll('[data-a]').forEach(el=>{
+    const a=P.anchors[+el.dataset.a];
+    const html=`<b>KG fact — ${esc(a.verdict)}</b> <span class="kv">${esc(a.id)}</span><br>`
+      +`${esc(a.type)}${a.role?' · '+esc(a.role):''} `
+      +`<span class="yi" style="display:inline">${esc(a.yi||a.en)}</span><br>`
+      +`<span class="kv">${esc(a.placeEn||a.placeYi||'no place of its own')} · ${a.y0}${a.y1&&a.y1!=a.y0?'–'+a.y1:''}`
+      +`${a.seqs.length?' · station '+a.seqs.join(', '):' · no matching station'}`
+      +`${a.viaStation?' · shown on station '+a.viaStation+"'s lane":''}</span>`
+      +(a.ev?`<span class="ev">${esc(a.ev)}</span>`:'');
+    el.addEventListener('mousemove',e=>showTip(html,e));
+    el.addEventListener('mouseleave',hideTip);});
+  // brush drag
+  const strip=svg.querySelector('#brushstrip');
+  if(!strip)return;
+  let anchor=null;
+  const yearAt=ev=>{
+    const r=svg.getBoundingClientRect();
+    return Math.round(Math.min(Y1,Math.max(Y0,xInv(ev.clientX-r.left))));};
+  strip.addEventListener('mousedown',ev=>{anchor=yearAt(ev);ev.preventDefault();});
+  svg.addEventListener('mousemove',ev=>{
+    if(anchor==null)return;
+    const b=yearAt(ev);
+    brush=[Math.min(anchor,b),Math.max(anchor,b)];
+    if(brush[1]-brush[0]<1)return;
+    applyRange();drawTimeline();});
+  window.addEventListener('mouseup',()=>{
+    if(anchor==null)return;
+    anchor=null;
+    if(brush&&brush[1]-brush[0]<2)brush=null;
+    applyRange();drawTimeline();drawMap();});
+}
+
+function applyRange(){
+  document.getElementById('range').textContent=
+    brush?`${brush[0]}–${brush[1]}`:'all years';
+}
+
+function redrawAll(){applyRange();drawTimeline();drawMap();}
+['inf','anch','evs','regions'].forEach(id=>
+  document.getElementById(id).onchange=redrawAll);
+document.getElementById('clear').onclick=()=>{brush=null;redrawAll();};
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(drawTimeline,180);});
+redrawAll();
 </script></body></html>"""
 
 
@@ -414,16 +515,22 @@ def main():
              .replace("__NAMEBASES__", json.dumps(cfg["name_regex_base"], ensure_ascii=False))
              .replace("__SLUG__", slug))
 
-    for tpl, name in ((TIMELINE, "timeline"), (MAP, "map")):
-        html = (tpl.replace("__CSS__", COMMON_CSS)
-                   .replace("__PAYLOAD__", payload)
-                   .replace("__NAME__", cfg["display_name"])
-                   .replace("__PID__", cfg["entry_person_id"])
-                   .replace("__SLUG__", slug)
-                   .replace("</body></html>", panel + "\n</body></html>"))
-        out = DOCS / f"{slug}_{name}.html"
-        out.write_text(html, encoding="utf-8")
-        print(f"wrote {out.name} — {out.stat().st_size/1024:.0f} KB")
+    html = (COURSE.replace("__CSS__", COMMON_CSS)
+                  .replace("__PAYLOAD__", payload)
+                  .replace("__NAME__", cfg["display_name"])
+                  .replace("__PID__", cfg["entry_person_id"])
+                  .replace("__SLUG__", slug)
+                  .replace("</body></html>", panel + "\n</body></html>"))
+    out = DOCS / f"{slug}_course.html"
+    out.write_text(html, encoding="utf-8")
+    print(f"wrote {out.name} — {out.stat().st_size/1024:.0f} KB")
+
+    # the combined page replaces the two separate ones
+    for old in (f"{slug}_timeline.html", f"{slug}_map.html"):
+        p = DOCS / old
+        if p.exists():
+            p.unlink()
+            print(f"removed superseded {old}")
 
     print(f"stations: {len(P['stations'])}  lanes(places): {len(P['lanes'])}  "
           f"anchors: {len(P['anchors'])}  third-person itineraries: {len(P['others'])}")

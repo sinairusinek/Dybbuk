@@ -206,8 +206,7 @@ and the diffuse <b>discourse</b> layer of <span class="mono">wrote_about</span> 
 career skeleton. Dashed node borders = unmatched (<span class="mono">UP-</span>) nodes.
 A halo marks an edge re-attributed here from a name-variant node.</p>
 <p class="nav"><a href="__SLUG___dossier.html">← dossier</a>
-<a href="__SLUG___timeline.html">timeline →</a>
-<a href="__SLUG___map.html">map →</a></p>
+<a href="__SLUG___course.html">life &amp; career course →</a></p>
 </header>
 <div class="controls" id="legend"></div>
 <div class="controls" style="padding-top:0">
