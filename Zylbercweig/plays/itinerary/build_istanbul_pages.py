@@ -90,6 +90,69 @@ FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
          'family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500'
          '&display=swap">')
 
+# shared entry-reader side panel (fetches docs/istanbul_entries.json lazily)
+ENTRY_PANEL = """
+<style>
+#epanel{display:none;position:fixed;top:0;right:0;bottom:0;width:min(580px,94vw);
+z-index:1200;background:var(--paper);border-left:1px solid var(--line);
+box-shadow:-8px 0 28px rgba(0,0,0,.18);flex-direction:column}
+#ep-head{padding:.9rem 1.1rem .6rem;border-bottom:1px solid var(--line);
+display:flex;align-items:flex-start;gap:.8rem}
+#ep-title{font-family:"Frank Ruhl Libre",serif;font-size:1.25rem;font-weight:700;
+direction:rtl;text-align:right;flex:1;line-height:1.3}
+#ep-meta{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--soft,#5c554a);
+padding:0 1.1rem .5rem;border-bottom:1px solid var(--line)}
+#ep-close{border:1px solid var(--line);background:var(--card);color:var(--ink);
+border-radius:4px;font-size:1rem;line-height:1;padding:.25rem .55rem;cursor:pointer}
+#ep-text{overflow-y:auto;padding:1rem 1.2rem 2rem;direction:rtl;text-align:right;
+font-family:"Frank Ruhl Libre",serif;font-size:1.04rem;line-height:1.9;
+white-space:pre-wrap;flex:1}
+#ep-text mark{background:#0e6f8a33;color:inherit;padding:0 .1em;border-radius:2px}
+.entrylink{cursor:pointer}
+.entrylink:hover{text-decoration:underline;text-decoration-color:var(--teal,#0e6f8a)}
+</style>
+<div id="epanel" role="dialog" aria-label="Leksikon entry">
+  <div id="ep-head"><div id="ep-title"></div>
+  <button id="ep-close" aria-label="close">✕</button></div>
+  <div id="ep-meta"></div>
+  <div id="ep-text"></div>
+</div>
+<script>
+(function(){
+let ENTRIES=null;
+const nik='[\\\\u0591-\\\\u05C7]*';
+const mk=b=>b.split('').join(nik);
+const IST=new RegExp('('+['קאנסטאנטינאפ','סטאמבול','סטאמבל','איסטאמבול','סטומבול']
+  .map(mk).join('|')+')(?:'+nik+'[א-ת])*','g');
+window.openEntry=async function(pid){
+  const p=document.getElementById('epanel');
+  p.style.display='flex';
+  document.getElementById('ep-title').textContent='…';
+  document.getElementById('ep-meta').textContent=pid;
+  document.getElementById('ep-text').textContent='';
+  if(!ENTRIES){
+    try{ENTRIES=await (await fetch('istanbul_entries.json')).json();}
+    catch(e){document.getElementById('ep-text').textContent=
+      'Entry texts could not be loaded (istanbul_entries.json).';return;}
+  }
+  let e=ENTRIES[pid];
+  if(!e && pid.includes('…')){
+    const rx=new RegExp('^'+pid.split('…').map(s=>s.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&')).join('.*')+'$');
+    const k=Object.keys(ENTRIES).find(k=>rx.test(k));
+    if(k)e=ENTRIES[k],pid=k;
+  }
+  if(!e){document.getElementById('ep-text').textContent='Entry not found: '+pid;return;}
+  document.getElementById('ep-title').textContent=e.h;
+  document.getElementById('ep-meta').textContent='Leksikon vol. '+e.v+' · '+pid;
+  const esc=e.t.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  document.getElementById('ep-text').innerHTML=esc.replace(IST,'<mark>$1</mark>');
+};
+const close=()=>document.getElementById('epanel').style.display='none';
+document.getElementById('ep-close').onclick=close;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+</script>"""
+
 # ---------------- TIMELINE ----------------
 timeline = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -159,7 +222,7 @@ function render(){
     const yy=40+i*LANE;
     const cls=d.entrySubject?'lane-label':'lane-label third';
     const nm=d.entrySubject?d.name:(d.subject+' ⟨per '+d.name.split(',')[0]+'⟩');
-    g+=`<text class="${cls}" x="${LEFT-8}" y="${yy+4}" text-anchor="end">${nm.slice(0,34)}</text>`;
+    g+=`<text class="${cls} entrylink" data-pid="${d.pid}" x="${LEFT-8}" y="${yy+4}" text-anchor="end">${nm.slice(0,34)}</text>`;
     d.stations.filter(s=>s.t0&&(!istOnly||s.ist)).forEach(s=>{
       const x0=x(s.t0),x1=Math.max(x(s.t1||s.t0),x0+3);
       const col=s.ist?'var(--teal)':(s.res.startsWith('region')?'#ddd6c4':'var(--grey)');
@@ -178,6 +241,8 @@ function render(){
   svg.querySelectorAll('[data-t]').forEach(el=>{
     el.addEventListener('mousemove',e=>showTip(el.dataset.t,e));
     el.addEventListener('mouseleave',()=>tip.style.display='none');});
+  svg.querySelectorAll('text[data-pid]').forEach(el=>{
+    el.addEventListener('click',()=>openEntry(el.dataset.pid));});
 }
 document.getElementById('istOnly').onchange=render;
 document.getElementById('thirdP').onchange=render;
@@ -237,7 +302,7 @@ function render(){
     const line=L.polyline(latlngs,{color:wcol[w],weight:1.8,opacity:.55});
     const stops=d.stations.map(s=>`<li>${s.en||'?'} <span class="yi">${s.place}</span>`
       +` <small>${s.verb}${s.t0?' '+s.t0+(s.t1&&s.t1!==s.t0?'–'+s.t1:''):''}${s.inf?'~':''}</small></li>`).join('');
-    line.bindPopup(`<b>${d.name}</b> <small>vol ${d.vol}</small><ol class="stop-list">${stops}</ol>`);
+    line.bindPopup(`<b class="entrylink" style="color:var(--teal)" onclick="openEntry('${d.pid}')">${d.name}</b> <small>vol ${d.vol} · click name for the entry</small><ol class="stop-list">${stops}</ol>`);
     line.on('mouseover',e=>e.target.setStyle({weight:4,opacity:.95}));
     line.on('mouseout',e=>e.target.setStyle({weight:1.8,opacity:.55}));
     line.addTo(map);layers.push(line);
@@ -255,10 +320,12 @@ function render(){
 render();
 </script></body></html>"""
 
-(DOCS / "istanbul_timeline.html").write_text(
-    timeline.replace("__PAYLOAD__", payload), encoding="utf-8")
-(DOCS / "istanbul_map.html").write_text(
-    mapp.replace("__PAYLOAD__", payload), encoding="utf-8")
+timeline = timeline.replace("__PAYLOAD__", payload).replace(
+    "</body></html>", ENTRY_PANEL + "\n</body></html>")
+mapp = mapp.replace("__PAYLOAD__", payload).replace(
+    "</body></html>", ENTRY_PANEL + "\n</body></html>")
+(DOCS / "istanbul_timeline.html").write_text(timeline, encoding="utf-8")
+(DOCS / "istanbul_map.html").write_text(mapp, encoding="utf-8")
 print("wrote", DOCS / "istanbul_timeline.html", "and istanbul_map.html")
 print("itineraries in payload:", len(itins),
       " with coords:", sum(1 for i in itins if any(s["lat"] for s in i["stations"])))
