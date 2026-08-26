@@ -260,6 +260,13 @@ mapp = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 .leaflet-popup-content{font-family:"Spectral",serif;font-size:.85rem;max-height:260px;overflow-y:auto}
 .leaflet-popup-content .yi{direction:rtl}
 .stop-list{margin:.3rem 0 0;padding-left:1rem}
+.stop-list li.ist-stop{background:#0e6f8a1f;border-left:3px solid var(--teal);
+margin-left:-.5rem;padding:.1rem .25rem .1rem .4rem;border-radius:0 3px 3px 0;font-weight:600}
+.leaflet-tooltip.tip-ist{border-color:var(--teal);border-width:1.5px;font-weight:600}
+.ist-tip{color:var(--teal)}
+.ist-pulse{animation:istpulse 1.1s ease-out 2}
+@keyframes istpulse{0%{r:6;stroke-width:2}50%{r:13;stroke-width:5}100%{r:6;stroke-width:2}}
+@media (prefers-reduced-motion:reduce){.ist-pulse{animation:none}}
 </style></head><body>
 <header style="padding-bottom:.3rem">
 <p class="eyebrow">Dybbuk · Istanbul itinerary pilot</p>
@@ -284,8 +291,21 @@ const map=L.map('map').setView([44,24],4);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
  {attribution:'© OpenStreetMap © CARTO',maxZoom:12}).addTo(map);
 const IST=[41.010,28.960];
-L.circleMarker(IST,{radius:9,color:'#0e6f8a',weight:3,fillColor:'#0e6f8a',fillOpacity:.55})
- .addTo(map).bindTooltip('Istanbul / קאָנסטאַנטינאָפּאָל',{permanent:true,direction:'right',offset:[10,0]});
+const istMarker=L.circleMarker(IST,{radius:9,color:'#0e6f8a',weight:3,
+  fillColor:'#0e6f8a',fillOpacity:.55}).addTo(map);
+istMarker.bindTooltip('Istanbul / קאָנסטאַנטינאָפּאָל',
+  {permanent:true,direction:'right',offset:[10,0],className:'tip-ist'});
+// emphasize Istanbul whenever the reader hovers a station or route
+let istTimer=null;
+function flashIst(){
+  const el=istMarker.getElement(); if(!el)return;
+  istMarker.setStyle({radius:12,weight:5,fillOpacity:.75});
+  el.classList.add('ist-pulse');
+  clearTimeout(istTimer);
+  istTimer=setTimeout(()=>{
+    istMarker.setStyle({radius:9,weight:3,fillOpacity:.55});
+    el.classList.remove('ist-pulse');},1400);
+}
 const wave=d=>!d.istYear?'w0':d.istYear<1890?'w1':d.istYear<1914?'w2':'w3';
 const wcol={w1:'#b07d2b',w2:'#0e6f8a',w3:'#a1462e',w0:'#8a8577'};
 let layers=[];
@@ -300,17 +320,21 @@ function render(){
     if(pts.length<2)return;n++;
     const latlngs=pts.map(s=>[s.lat,s.lon]);
     const line=L.polyline(latlngs,{color:wcol[w],weight:1.8,opacity:.55});
-    const stops=d.stations.map(s=>`<li>${s.en||'?'} <span class="yi">${s.place}</span>`
+    const stops=d.stations.map(s=>`<li${s.ist?' class="ist-stop"':''}>${s.en||'?'} <span class="yi">${s.place}</span>`
       +` <small>${s.verb}${s.t0?' '+s.t0+(s.t1&&s.t1!==s.t0?'–'+s.t1:''):''}${s.inf?'~':''}</small></li>`).join('');
     line.bindPopup(`<b class="entrylink" style="color:var(--teal)" onclick="openEntry('${d.pid}')">${d.name}</b> <small>vol ${d.vol} · click name for the entry</small><ol class="stop-list">${stops}</ol>`);
-    line.on('mouseover',e=>e.target.setStyle({weight:4,opacity:.95}));
+    line.on('mouseover',e=>{e.target.setStyle({weight:4,opacity:.95});flashIst();});
     line.on('mouseout',e=>e.target.setStyle({weight:1.8,opacity:.55}));
     line.addTo(map);layers.push(line);
     pts.forEach(s=>{
       const m=L.circleMarker([s.lat,s.lon],{radius:s.ist?5:(s.verb==='pass_through'?2:3),
         color:wcol[w],weight:1,fillColor:wcol[w],
         fillOpacity:s.verb==='pass_through'?0.15:0.7});
-      m.bindTooltip(`${s.en||s.place} — ${d.name.split(',')[0]} <i>${s.verb}</i> ${s.t0||''}`);
+      m.bindTooltip(`${s.ist?'<b class="ist-tip">★ Istanbul</b> — ':''}`
+        +`${s.ist?'':(s.en||s.place)+' — '}${d.name.split(',')[0]} <i>${s.verb}</i> ${s.t0||''}`,
+        {className:s.ist?'tip-ist':''});
+      if(s.ist)m.bringToFront();
+      m.on('mouseover',()=>flashIst());
       m.addTo(map);layers.push(m);
     });
   });
