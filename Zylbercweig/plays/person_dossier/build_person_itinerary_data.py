@@ -42,11 +42,12 @@ REGIONS = {
 # Curated place decisions for this dossier: settlements missing from the
 # gazetteer, PLUS overrides where the gazetteer is ambiguous. Checked BEFORE the
 # gazetteer, so a curated call wins.
-#   באריסאוו is listed in the gazetteer both as Barysaw (Q19313, correct) and as
-#   a variant of Babruysk (Q207294) — a contaminated variant list. The entry's
-#   "באָריסאָווס רוסישער אָפּערע" is Borisov/Barysaw.
+#   The Borisov override that used to live here is gone: the gazetteer listed
+#   באריסאוו under both Barysaw (correct) and Babruysk (contaminated variant),
+#   and Barysaw had no coordinates. Both were fixed upstream on 2026-08-26
+#   (places_unified_corrected.csv row 3322 + manual_qid_locks.csv +
+#   settlement_coords.tsv Q19313), so it now resolves from the gazetteer alone.
 SUPPLEMENT = {
-    "באריסאוו": ("Q19313", "Barysaw (Borisov)", 54.226, 28.505),
     "לאנדאן": ("Q84", "London", 51.507, -0.128),
     "באסטאן": ("Q100", "Boston", 42.360, -71.059),
     "דווינסק": ("Q134301", "Daugavpils (Dvinsk)", 55.875, 26.536),

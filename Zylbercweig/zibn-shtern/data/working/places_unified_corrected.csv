@@ -2604,7 +2604,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 1-facs_81_tr_1740521184,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False
 1-facs_81_tr_1740521184,birth,country,אוקראַאינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False
 1-facs_81_tr_1740521171,birth,place,אָדעס,Odesa,Q1874,initial,False,Odesa,אדעס,"port city, big city, city in Ukraine, metropolis",settlement,,,,,Odesa,,,,,,False,,False
-1-facs_82_tr_1740520996,birth,place,באָריסאָוו,Barysaw,Q19313,translit_audit_2026-05-22,False,Barysaw,באריסאב,Q1549591,settlements,,,,,Babruysk,,,,,,False,True,False
+1-facs_82_tr_1740520996,birth,place,באָריסאָוו,Barysaw,Q19313,translit_audit_2026-05-22,False,Barysaw,באריסאב,big city,settlements,,,,,Barysaw,,,,,,False,True,False
 1-facs_82_tr_1740520982,birth,place,שירלאָווצע,Shyrlivtsi,Q1022962,dodgy,False,Velká Bystřice,,"municipality of the Czech Republic, municipality with town privileges in the Czech Republic",settlement,,,,,Velká Bystřice,,,,,place_country_mismatch,True,,False
 1-facs_82_tr_1740520982,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False
 1-facs_83_tr_1740521021,birth,place,שטשערזשעץ,Shcherzhets,Q1023020,dodgy,False,Rollancourt,,commune of France,settlement,,,,,Rollancourt,,,,,place_province_mismatch,True,,False
@@ -3321,7 +3321,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_134_tr_1744279145,birth,province,קרים,Crimea,Q7835,province,False,Crimea,קרים,"peninsula, disputed territory",province,,,,,,Crimea,,,,,False,qid_override,False
 2-facs_134_tr_1744279151,birth,place,מינסק,Minsk,Q2280,initial,False,Minsk,מינסק,"administrative territorial entity of Belarus, first-level administrative division, city or town, big city",settlement,,,,,Minsk,,,,,,False,,False
 2-facs_134_tr_1744279151,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False
-2-facs_134_tr_1744279148,birth,place,באריסאָוו,Barysaw,Q207294,dodgy,False,Babruysk,באברויסק,"city of oblast subordinance, big city",settlement,,,,,Babruysk,,,,,,False,,False
+2-facs_134_tr_1744279148,birth,place,באריסאָוו,Barysaw,Q19313,manual_lock_2026-08-26,False,Barysaw,באריסאב,big city,settlements,,,,,Barysaw,,,,,,False,True,False
 2-facs_134_tr_1744279148,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False
 2-facs_135_tr_1744279211,birth,place,זלאטשעוו,Zolochiv,Q869741,dodgy,False,Melody Time,מעלאדיע צייט,film,other,film,,,,,,,,Melody Time,needs_manual_type_review;place_province_mismatch,True,,False
 2-facs_135_tr_1744279211,birth,province,גאַליציע,Galicia,Q180086,province,False,Galicia,גאליציע,"historical region, Ukrainian historical regions",province,,,,,,Galicia,,,,,False,,False
@@ -3576,7 +3576,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 2-facs_250_tr_1744280775,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False
 2-facs_251_r_13,birth,place,לוקאָוו,Łuków,Q384244,initial,False,Łuków,לוּקאָוו,urban municipality of Poland,settlement,,,,,Łuków,,,,,,False,,False
 2-facs_251_r_13,birth,country,פּוילן,Poland,Q36,country,False,Poland,פוילן,"sovereign state, country, country bordering the Baltic Sea, successor state",country,,,,,,,Poland,,,,False,,False
-2-facs_252_tr_1744280823,birth,place,באָריסאָוו,Barysaw,Q19313,translit_audit_2026-05-22,False,Barysaw,באריסאב,Q1549591,settlements,,,,,Babruysk,,,,,,False,True,False
+2-facs_252_tr_1744280823,birth,place,באָריסאָוו,Barysaw,Q19313,translit_audit_2026-05-22,False,Barysaw,באריסאב,big city,settlements,,,,,Barysaw,,,,,,False,True,False
 2-facs_252_tr_1744280823,birth,country,ווייסרוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False
 2-facs_252_tr_1744280813,birth,place,ניי-זאַגער,Nowy Sącz,Q802,dodgy,False,Nowy Sącz,צאנז,"city with powiat rights in Poland, city",settlement,,,,,Nowy Sącz,,,,,place_country_mismatch,True,,False
 2-facs_252_tr_1744280813,birth,country,ליטע,Lithuania,Q37,country,False,Lithuania,ליטע,"sovereign state, unitary state, country bordering the Baltic Sea, country",country,,,,,,,Lithuania,,,,False,,False
@@ -4875,7 +4875,7 @@ entry_id,context,source_role,source_value,clustered_value,qid,qid_source,place_q
 5-facs_422_r_2,birth,place,בערדיטשעוו,Berdychiv,Q158799,initial,True,Berdychiv,בערדיטשעוו,"city of regional significance of Ukraine, miasteczko",settlement,,,,,Berdychiv,,,,,place_qid_conflict,True,,False
 5-facs_422_r_2,birth,country,אוקראַינע,Ukraine,Q212,country,False,Ukraine,אוקראינע,"sovereign state, country, unitary state, republic, social state, Rechtsstaat, territory",country,,,,,,,Ukraine,,,,False,,False
 5-facs_423_r_4,birth,place,כערסאָן,Kherson,Q156732,initial,False,Kherson,,"city of regional significance of Ukraine, city in Ukraine",settlement,,,,,Kherson,,,,,,False,,False
-5-facs_423_tr_1739222033,birth,place,באָריסאָוו,Barysaw,Q19313,translit_audit_2026-05-22,False,Barysaw,באריסאב,Q1549591,settlements,,,,,Babruysk,,,,,,False,True,False
+5-facs_423_tr_1739222033,birth,place,באָריסאָוו,Barysaw,Q19313,translit_audit_2026-05-22,False,Barysaw,באריסאב,big city,settlements,,,,,Barysaw,,,,,,False,True,False
 5-facs_423_tr_1739222033,birth,country,ווייס-רוסלאַנד,Belarus,Q184,country,False,Belarus,בעלארוס,"sovereign state, unitary state, social state, country, landlocked country, republic",country,,,,,,,Belarus,,,,False,,False
 5-facs_430_r,birth,place,יאָסי,Iași,Q46852,initial,False,Iași,יאס,"municipality of Romania, capital of county in Romania, big city, college town",settlement,,,,,Iași,,,,,,False,,False
 5-facs_430_r,birth,country,רומעניע,Romania,Q218,country,False,Romania,רומעניע,"sovereign state, country",country,,,,,,,Romania,,,,False,,False
