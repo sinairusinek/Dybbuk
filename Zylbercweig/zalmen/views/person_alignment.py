@@ -182,6 +182,24 @@ def _save_decisions(new_rows: list[dict], commit_msg: str) -> None:
     except Exception:
         pass  # local-only fallback
 
+    # Mirror into the central activity log so B2 work shows up in the Activity
+    # tab. `_save_decisions` also serves batch saves, so log one row each and
+    # push only on the last (each push is a GitHub round-trip).
+    try:
+        from zalmen.activity_log import log_action
+        for i, row in enumerate(new_rows):
+            log_action(
+                "person_alignment", "alignment",
+                target_id=row.get("person_id", ""),
+                decision=row.get("decision", ""),
+                note=row.get("notes", "") or row.get("heading", ""),
+                push=(i == len(new_rows) - 1),
+                aligned_db_id=row.get("aligned_db_id", ""),
+                mode=row.get("mode", ""),
+            )
+    except Exception:
+        pass
+
 
 def _decision_row(d: dict, decision: str, accepted: bool, reviewer: str,
                   mode: str, notes: str = "", aligned_db_id: str = "",

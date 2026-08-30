@@ -119,6 +119,17 @@ def save_decision(rec: dict) -> None:
     if not ok:
         st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
     load_decisions.clear()
+    try:
+        from zalmen.activity_log import log_action
+        log_action(
+            "yidracor_flags", "flag_decision",
+            target_id=rec.get("row_key", ""),
+            decision=rec.get("decision", ""),
+            note=rec.get("note", ""),
+            role_id=rec.get("role_id", ""),
+        )
+    except Exception:
+        pass
 
 
 # ── Per-category decision control ─────────────────────────────────────────────

@@ -138,6 +138,18 @@ def _save(row: dict, decision: str, link: str, reviewer: str, note: str = "") ->
     if not ok:
         st.toast("⚠️ Saved locally but the push failed — it will ride the next successful save.",
                  icon="⚠️")
+    # Must come BEFORE st.rerun() — rerun raises, so anything after it is dead.
+    try:
+        from zalmen.activity_log import log_action
+        log_action(
+            "kg_link_review", "link_decision",
+            target_id=row.get("surface", ""),
+            decision=decision,
+            note=note,
+            decided_link=link,
+        )
+    except Exception:
+        pass
     st.rerun()
 
 

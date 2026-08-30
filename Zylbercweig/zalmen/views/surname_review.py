@@ -221,6 +221,24 @@ def _save_decisions(new_rows: list[dict], commit_msg: str) -> None:
     except Exception:
         pass
 
+    # Mirror into the central activity log so B3 work shows up in the Activity
+    # tab. Batch-capable, so log one row each and push only on the last.
+    # Note this view's decision column is `decision_kind`, not `decision`.
+    try:
+        from zalmen.activity_log import log_action
+        for i, row in enumerate(new_rows):
+            log_action(
+                "surname_review", "mention_decision",
+                target_id=row.get("mention_id", ""),
+                decision=row.get("decision_kind", ""),
+                note=row.get("notes", "") or row.get("mention_name", ""),
+                push=(i == len(new_rows) - 1),
+                surname=row.get("surname", ""),
+                resolved_hub_id=row.get("resolved_hub_id", ""),
+            )
+    except Exception:
+        pass
+
 
 def _rtl(text: str, size: float = 1.0, weight: int = 400) -> str:
     return (f"<div dir='rtl' style='font-size:{size}rem; "

@@ -72,6 +72,21 @@ def _save_decision(row: dict) -> None:
     except Exception:
         pass  # local-only fallback
 
+    # Mirror into the central activity log so B1 work shows up in the
+    # Activity tab (the per-row reviewer stamps above are not enough — the
+    # Activity view reads the log first).
+    try:
+        from zalmen.activity_log import log_action
+        log_action(
+            "person_dedup", "pair_decision",
+            target_id=f"{row.get('a_xml_id','')}↔{row.get('b_xml_id','')}",
+            decision=row.get("decision", ""),
+            note=row.get("notes", ""),
+            batch=row.get("batch", ""),
+        )
+    except Exception:
+        pass
+
 
 # ── pair loading ─────────────────────────────────────────────────────────────
 def _load_pairs(path: pathlib.Path) -> list[dict]:
