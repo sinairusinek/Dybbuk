@@ -26,6 +26,7 @@ AUDIT_DIR = REPO / "data" / "review"
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lxml import etree
 from annotation.schema import parse_custom, serialize_custom, is_collective_label
+from annotation.schema import collective_xmlid
 from annotation.lint_pages import (NS, TURN_RE, COLLECTIVE_XMLID, skel,
                                    line_text, page_type)
 from transkribus.client import TrpClient
@@ -96,7 +97,7 @@ def scan_play(play):
             mt = TURN_RE.match(txt)
             if mt and is_collective_label(mt.group(1)):
                 coll.append((nr, tl.get("id"),
-                             COLLECTIVE_XMLID.get(skel(mt.group(1)), skel(mt.group(1)))))
+                             collective_xmlid(mt.group(1))))
         has_text[nr] = n_lines > 0
 
     # fit printed = a*nr + c

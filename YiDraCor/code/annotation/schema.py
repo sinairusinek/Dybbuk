@@ -141,6 +141,14 @@ KNOWN_COLLECTIVE = {
     # as good as the spellings listed here.
     "אללע", "כאהר",
 }
+# 2026-08-30: KNOWN_COLLECTIVE and COLLECTIVE_XMLID were two hand-maintained
+# lists of the same skeletons, and this file's own comment (below) warns what
+# happens when one rule lives in two places. They had not drifted, but the
+# speech-prefix questionnaire added nine labels and keeping them in step by
+# hand is exactly the trap. KNOWN_COLLECTIVE is now derived: a skeleton is a
+# collective iff the canonical map gives it an xmlid. Add new ones to
+# COLLECTIVE_XMLID alone.
+_LEGACY_KNOWN_COLLECTIVE = KNOWN_COLLECTIVE
 
 # Canonical xmlid per collective skeleton. AUTHORITATIVE — `auto_resolve_flags`
 # and `lint_pages` import this rather than keeping their own copies. They each
@@ -155,17 +163,55 @@ COLLECTIVE_XMLID = {
     "קאהר": "chor", "כאר": "chor", "קאר": "chor", "כאהר": "chor",
     "דועט": "duet", "איינער": "eyner", "דאמען": "damen", "קינדער": "kinder",
     "סאפראן": "sopran", "אלט": "alt", "באס": "bas", "טענאר": "tenor",
+    # 2026-08-30, from the returned speech-prefix questionnaire. Noa and
+    # Judith ticked "collective / group" on all of these. The counted forms
+    # ("all 4", "all 3") are the same ensemble answer as plain אלע — the
+    # numeral says how many are on stage, not which group it is — so they
+    # share `alle` rather than minting le_4/le_3 per printed variant.
+    "אלע 4": "alle", "אלע4": "alle", "אללע 4": "alle", "אלע 3": "alle",
+    "אלע צוזאמען": "alle",
+    "כהר": "chor", "חאהר": "chor",
+    "beide": "beyde",
+    "מעדכען חאהר": "meydkhen_chor",
 }
+
+# Derived — see the note above KNOWN_COLLECTIVE's legacy alias.
+KNOWN_COLLECTIVE = set(COLLECTIVE_XMLID) | _LEGACY_KNOWN_COLLECTIVE
+
+
+# Punctuation stripped from both ends of a speaker label before matching.
+# `!` and the quote marks joined the set 2026-08-30: the questionnaire turned
+# up `!אללע` (Tissa-Essler p.11) and `״שלמון״` (Ben HaDor p.18), and the old
+# set only stripped `:־ .`, so a leading mark blocked the match. `.strip()` is
+# symmetric, so this covers a mark on either side.
+_LABEL_PUNCT = ':־ .!?״׳"\'“”’()[]'
 
 
 def collective_skeleton(text: str) -> str:
     """Nikud-stripped, punctuation-stripped speaker label."""
-    return _NIKUD.sub("", (text or "").strip()).strip(":־ .")
+    return _NIKUD.sub("", (text or "").strip()).strip(_LABEL_PUNCT)
 
 
 def is_collective_label(text: str) -> bool:
-    """True if a speaker label is a known collective/chorus (no cast entry)."""
-    return collective_skeleton(text) in KNOWN_COLLECTIVE
+    """True if a speaker label is a known collective/chorus (no cast entry).
+
+    Latin-script labels (`Beide`, `Chor`) are matched case-insensitively —
+    the manuscripts write the German ensemble tags in Latin letters, and the
+    map holds them lowercased.
+    """
+    s = collective_skeleton(text)
+    return s in KNOWN_COLLECTIVE or s.lower() in KNOWN_COLLECTIVE
+
+
+def collective_xmlid(text: str) -> str:
+    """Canonical xmlid for a collective label, matching `is_collective_label`.
+
+    Use this rather than `COLLECTIVE_XMLID.get(label, label)` — a bare dict
+    lookup misses the case-insensitive Latin-script path and hands back the
+    raw label (`Beide`) where the canonical id is `beyde`.
+    """
+    s = collective_skeleton(text)
+    return COLLECTIVE_XMLID.get(s) or COLLECTIVE_XMLID.get(s.lower()) or s
 # TEI <fw> @type values. Page numbers = pageNum (the common case here).
 FW_TYPES = {"pageNum", "header", "footer", "catch", "sig"}
 # TEI <stage> @type values. `type` is REQUIRED on every stage.

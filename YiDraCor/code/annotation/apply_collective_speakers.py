@@ -30,7 +30,8 @@ from pathlib import Path
 from lxml import etree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from annotation.schema import parse_custom, serialize_custom, is_collective_label
+from annotation.schema import (parse_custom, serialize_custom,
+                               is_collective_label, collective_xmlid)
 from annotation.lint_pages import (
     NS, REPO, TURN_RE, COLLECTIVE_XMLID, skel, line_text, page_type, page_files,
 )
@@ -75,7 +76,7 @@ def collective_targets(play: str):
             m = TURN_RE.match(txt)
             if not m or not is_collective_label(m.group(1)):
                 continue
-            xmlid = COLLECTIVE_XMLID.get(skel(m.group(1)), skel(m.group(1)))
+            xmlid = collective_xmlid(m.group(1))
             yield page, tl.get("id"), xmlid
 
 

@@ -43,6 +43,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from annotation.schema import (
     PAGE_NS, parse_custom, validate_span, is_collective_label, _NIKUD,
     COLLECTIVE_XMLID,
+    collective_xmlid,
 )
 
 REPO = Path(__file__).resolve().parents[2]
@@ -225,11 +226,11 @@ def lint_play(play: str, label: str) -> list[dict]:
                         "tag role + roleDesc")
                 continue
             if is_collective_label(label_txt):
-                collective_pages[COLLECTIVE_XMLID.get(k, k)].append(page)
+                collective_pages[collective_xmlid(k)].append(page)
                 # individual rows still emitted (auto owner) for the applier
                 add(page, tl.get("id"), "untagged speaker (collective)", "AUTO",
                     f"collective '{k}' — no speaker span",
-                    txt[:40], f"tag speaker xmlid:{COLLECTIVE_XMLID.get(k, k)}")
+                    txt[:40], f"tag speaker xmlid:{collective_xmlid(k)}")
             elif k in cast_index:
                 add(page, tl.get("id"), "untagged speaker (named)", "NOA",
                     f"label '{k}' matches cast role", txt[:40],
