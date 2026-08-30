@@ -78,6 +78,7 @@ VIEW_STATUS = {
     "Person Hub":              "🧑",
     "YiDraCor · Annotation flags": "✅ Ready",
     "Plays KG · Explorer":         "📊",
+    "KG link review":              "🔗",
 }
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -181,7 +182,7 @@ with st.sidebar:
             list(VIEWS.keys()),
             key="main_view",
             on_change=_remember_view,
-            format_func=lambda v: f"{v}  {VIEW_STATUS[v]}",
+            format_func=lambda v: f"{v}  {VIEW_STATUS.get(v, '')}".rstrip(),
         )
         selected = st.session_state["active_view"]
         # Mirror the routed view into the URL so a redeploy (see the note by the
