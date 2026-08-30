@@ -105,7 +105,11 @@ def main() -> int:
         man = json.loads(man_p.read_text(encoding="utf-8"))
         doc = man["doc_id"]
         n_add = n_skip = n_pages = 0
-        print(f"\n=== {play} (doc {doc})")
+        print(f"\n=== {play} (doc {doc})", flush=True)
+        # One fulldoc per DOCUMENT, not per page: this used to sit inside the
+        # page loop, so Emigration fetched the same 117-page manifest 117 times.
+        pages_meta = {p["pageNr"]: p
+                      for p in client.fulldoc(COL, doc)["pageList"]["pages"]}
 
         for pg in man["pages"]:
             rel = f"YiDraCor/data/{play}/page_annotated/{pg['file']}"
@@ -117,11 +121,10 @@ def main() -> int:
                 continue
 
             page_nr = pg["pageNr"]
-            tr = client.fulldoc(COL, doc)["pageList"]["pages"]
-            tsl = [p for p in tr if p["pageNr"] == page_nr]
-            if not tsl or not tsl[0].get("tsList", {}).get("transcripts"):
+            meta = pages_meta.get(page_nr)
+            if not meta or not meta.get("tsList", {}).get("transcripts"):
                 print(f"  p{page_nr}: no transcript"); continue
-            top = tsl[0]["tsList"]["transcripts"][0]
+            top = meta["tsList"]["transcripts"][0]
             live_xml = client.fetch_transcript(top["url"])
             root = etree.fromstring(live_xml.encode("utf-8"))
 
@@ -169,7 +172,7 @@ def main() -> int:
             if not changed:
                 continue
             n_pages += 1
-            print(f"  p{page_nr}:")
+            print(f"  p{page_nr}:", flush=True)
             for r in report:
                 print(r)
             if not a.dry_run:
