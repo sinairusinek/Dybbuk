@@ -1,0 +1,141 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dybbuk · Visualizations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#faf7f0;--ink:#272219;--soft:#5c554a;--line:#e2dcce;--card:#f2eddf;
+--teal:#0e6f8a;--teal2:#7fb8c9;--brick:#a1462e;--amber:#b07d2b;--grey:#c9c2b2;
+--green:#2f8f7f;--violet:#6b5b95}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+font-family:"Spectral",Georgia,serif;font-size:15px;line-height:1.55}
+header{padding:2.2rem 1.6rem .4rem;max-width:74rem;margin:0 auto}
+h1{font-family:"Fraunces",serif;font-weight:600;font-size:2.3rem;margin:.1rem 0 .45rem}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13em;
+text-transform:uppercase;color:var(--teal);margin:0}
+.lede{color:var(--soft);margin:.2rem 0 .5rem;max-width:44rem;font-size:1.02rem}
+main{max-width:74rem;margin:0 auto;padding:.6rem 1.6rem 4rem}
+h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.12rem;
+margin:2.3rem 0 .2rem;padding-bottom:.4rem;border-bottom:1px solid var(--line)}
+h2 .n{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--soft);
+font-weight:400;letter-spacing:.04em;margin-left:.5rem}
+.sect-note{color:var(--soft);font-size:.88rem;margin:.5rem 0 1rem;max-width:44rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(20rem,1fr));gap:1rem}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--card);
+border:1px solid var(--line);border-radius:5px;padding:.9rem 1rem 1rem;
+transition:border-color .13s ease,transform .13s ease,box-shadow .13s ease}
+a.card:hover{border-color:var(--teal);transform:translateY(-2px);
+box-shadow:0 3px 14px rgba(0,0,0,.09)}
+a.card h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.04rem;
+margin:0 0 .3rem;color:var(--teal)}
+a.card p{margin:0;color:var(--soft);font-size:.88rem}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;
+letter-spacing:.07em;text-transform:uppercase;color:var(--soft);
+border:1px solid var(--line);background:var(--paper);
+border-radius:3px;padding:.1rem .4rem;margin:.5rem .3rem 0 0}
+.tag.live{color:var(--green);border-color:var(--green)}
+.tag.big{color:var(--brick);border-color:var(--brick)}
+.yi{font-family:"Frank Ruhl Libre",serif;unicode-bidi:isolate}
+footer{max-width:74rem;margin:0 auto;padding:0 1.6rem 3rem;color:var(--soft);
+font-size:.82rem;border-top:1px solid var(--line);padding-top:1rem}
+footer code{font-family:"IBM Plex Mono",monospace;font-size:.76rem;
+background:var(--card);padding:.08rem .3rem;border-radius:3px}
+</style></head><body>
+<header>
+<p class="eyebrow">Dybbuk · Yiddish theatre research</p>
+<h1>Visualizations</h1>
+<p class="lede">Every interactive view currently published from this repository —
+the drama corpus, the knowledge graph built from Zylbercweig's
+<span class="yi">לעקסיקאָן פֿון יידישן טעאַטער</span>, and the person dossiers that
+join the two.</p>
+</header>
+<main>
+
+<h2>Drama corpus <span class="n">YiDraCor · TEI editions</span></h2>
+<p class="sect-note">Fifteen Yiddish plays encoded in TEI from the printed editions,
+plus nine handwritten manuscript notebooks in Transkribus.</p>
+<div class="grid">
+  <a class="card" href="character_networks.html">
+    <h3>Character networks</h3>
+    <p>Who shares a scene with whom, one network per play. 15 plays,
+    263 characters, 1,895 co-occurrence edges, filterable by act.</p>
+    <span class="tag">15 plays</span><span class="tag">co-occurrence</span>
+  </a>
+</div>
+
+<h2>Plays knowledge graph <span class="n">Zylbercweig Leksikon</span></h2>
+<p class="sect-note">People, plays, organizations and places extracted from the
+Leksikon and linked into a single graph.</p>
+<div class="grid">
+  <a class="card" href="plays_kg_graph.html">
+    <h3>Graph explorer</h3>
+    <p>The whole knowledge graph, pan and zoom. Around 500 nodes and 3,300 edges
+    across people, plays, troupes and places.</p>
+    <span class="tag big">large file</span><span class="tag">network</span>
+  </a>
+</div>
+
+<h2>Istanbul <span class="n">first KG-coverage dossier</span></h2>
+<p class="sect-note">Everything the graph and the Leksikon hold about
+Istanbul / Constantinople — built as a test of how well the KG covers a single
+place, from the 79 Leksikon entries that mention it.</p>
+<div class="grid">
+  <a class="card" href="istanbul_dossier.html">
+    <h3>Istanbul dossier</h3>
+    <p>The full write-up: who passed through, when, and what the entries say.
+    Click any name to read the original Leksikon entry in a side panel.</p>
+    <span class="tag">79 entries</span><span class="tag">reading view</span>
+  </a>
+  <a class="card" href="istanbul_map.html">
+    <h3>Istanbul routes · map</h3>
+    <p>Every extracted station and route on one map. Hovering a station or route
+    highlights Istanbul across the itinerary.</p>
+    <span class="tag">map</span>
+  </a>
+  <a class="card" href="istanbul_timeline.html">
+    <h3>Istanbul timeline</h3>
+    <p>The same stations and events arranged in time, so the waves of arrival
+    and departure are legible.</p>
+    <span class="tag">timeline</span>
+  </a>
+  <a class="card" href="istanbul_itinerary_pilot.html">
+    <h3>Itinerary extraction pilot</h3>
+    <p>Method note: what one Gemini pass over the 79 Istanbul-linked entries
+    got right, got wrong, and what it cost.</p>
+    <span class="tag">method</span>
+  </a>
+</div>
+
+<h2>Person dossiers <span class="n">KG × Leksikon</span></h2>
+<p class="sect-note">A configurable dossier template that joins a person's
+Leksikon entry to their edges in the knowledge graph. Joseph Rumshinsky
+(person:916) is the prototype.</p>
+<div class="grid">
+  <a class="card" href="rumshinsky_dossier.html">
+    <h3>Rumshinsky dossier</h3>
+    <p>The composer's life and work as the graph and the Leksikon have it,
+    with the original entry alongside.</p>
+    <span class="tag">person:916</span><span class="tag">prototype</span>
+  </a>
+  <a class="card" href="rumshinsky_course.html">
+    <h3>Life &amp; career course</h3>
+    <p>Twenty stations on a linked map and timeline — hover either and the
+    other lights up. Drag the year axis to filter.</p>
+    <span class="tag">map + timeline</span><span class="tag">linked</span>
+  </a>
+  <a class="card" href="rumshinsky_network.html">
+    <h3>Ego network</h3>
+    <p>Every KG edge on the ego node, one hop out, typed by relation.</p>
+    <span class="tag">ego network</span>
+  </a>
+</div>
+
+</main>
+<footer>
+<p>Built from the <a href="https://github.com/sinairusinek/Dybbuk" style="color:var(--teal)">Dybbuk</a>
+repository. Pages live in <code>docs/Visualizations/</code> and are published via
+GitHub Pages from <code>main</code>. Character networks are regenerated by
+<code>YiDraCor/code/build_character_networks.py</code> at the tail of every
+<code>build_tei.py</code> run; the KG graph by <code>Zylbercweig/plays/kg/</code>.</p>
+</footer>
+</body></html>
