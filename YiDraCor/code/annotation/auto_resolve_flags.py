@@ -478,7 +478,23 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
 
     for tag, a in entries:
         # 1. drop legacy / editorial cruft
-        if tag in ("unclear", "textStyle", "Header"):
+        #
+        # `textStyle` is NOT cruft on the manuscript track. 2026-08-30: this
+        # rule ran unconditionally over the nine notebooks and stripped 730
+        # scribal marks off the live transcripts — 556 `strikethrough:true`
+        # (text the scribe struck out) and 174 `underlined:true`. Both are
+        # editorial evidence: the full TEI carries them (`<del>` / `<hi>`),
+        # and the DraCor variant deletes the struck text along with the tag
+        # (Sinai, 2026-08-30). The print track has no `textStyle` left at all,
+        # so this rule now only ever fires on manuscript marks — it is kept
+        # solely for a bare `textStyle` carrying neither attribute.
+        if tag == "textStyle":
+            if a.get("strikethrough") == "true" or a.get("underlined") == "true":
+                pass          # falls through to the keep path below
+            else:
+                auto.append("drop textStyle (no strikethrough/underline)")
+                continue
+        elif tag in ("unclear", "Header"):
             auto.append(f"drop {tag}")
             continue
         if tag == "head" and "unit-type" in a:
