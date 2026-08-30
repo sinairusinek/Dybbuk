@@ -33,7 +33,7 @@ _BASE_STR = str(BASE)
 if _BASE_STR not in sys.path:
     sys.path.insert(0, _BASE_STR)
 
-from views.org_alignment import (  # noqa: E402
+from views.org_review import (  # noqa: E402
     ALIGN_FILE,
     CORE_DB_FILE,
     CLUSTER_FILE,
@@ -41,12 +41,12 @@ from views.org_alignment import (  # noqa: E402
     load_core_db,
     load_samples,
     save_alignment,
-    get_entry_text,
     _split_pipe,
     _mtime,
     _status,
     _JSON_TO_XML,
 )
+from zalmen.lexicon import get_entry_text  # noqa: E402,F401
 from views.org_review import _ORG_TYPE_OPTIONS  # noqa: E402 — canonical typology
 from views.settlement_audit import (  # noqa: E402
     _align_clusters_to_db,

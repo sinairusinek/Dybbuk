@@ -40,7 +40,7 @@ from organizations.settlement_index import (
     load_coords,
 )
 
-from views.org_alignment import (
+from views.org_review import (  # noqa: E402
     ALIGN_FILE,
     CORE_DB_FILE,
     CLUSTER_FILE,
@@ -49,12 +49,12 @@ from views.org_alignment import (
     load_samples,
     save_alignment,
     save_core_db,
-    get_entry_text,
     _split_pipe,
     _next_db_id,
     _mtime,
     _JSON_TO_XML,
 )
+from zalmen.lexicon import get_entry_text  # noqa: E402,F401
 
 from views.research_queue import (
     ADMIN_REVIEWER,
