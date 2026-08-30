@@ -112,7 +112,10 @@ VARIANTS = {
         "ishmel": ["ישמא"],
     },
     BENHA: {
-        "sufur": ["סו פירא", "סוּ פֿירא"],
+        # The questionnaire printed this with a space; the live page (p.30)
+        # has it closed up, `סוּפֿירא` -> skeleton `סופירא`, so the spaced
+        # forms alone never matched. Both spellings listed.
+        "sufur": ["סו פירא", "סוּ פֿירא", "סופירא", "סוּפֿירא"],
         "khnu": ["תנו"],
         "shlmun": ['״שלמון״'],
     },
