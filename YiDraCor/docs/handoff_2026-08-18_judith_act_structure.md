@@ -100,8 +100,11 @@ The title page ([p. 3](https://app.transkribus.org/collection/2372172/doc/101313
 
 Pages: [p. 3](https://app.transkribus.org/collection/2372172/doc/1013131/detail/3) · [p. 30](https://app.transkribus.org/collection/2372172/doc/1013131/detail/30) · [p. 58](https://app.transkribus.org/collection/2372172/doc/1013131/detail/58)
 
-**Answer:**
+**Answer:** two more Bilder: p. 42, p.80
 
+> *(Judith 2026-09-01. INCOMPLETE — this locates 4 of the 9 Bilder the title
+> page declares: the two scene-change lines already known at p.30 and p.58,
+> plus these two. The remaining 5 are still unlocated.)*
 ---
 
 ### Q2. Yoysef in Egipten
@@ -112,8 +115,20 @@ The title page ([p. 4](https://app.transkribus.org/collection/2372172/doc/826832
 
 Pages: [p. 4](https://app.transkribus.org/collection/2372172/doc/826832/detail/4) · [p. 40](https://app.transkribus.org/collection/2372172/doc/826832/detail/40) · [p. 41](https://app.transkribus.org/collection/2372172/doc/826832/detail/41) · [p. 53](https://app.transkribus.org/collection/2372172/doc/826832/detail/53)
 
-**Answer:**
+**Answer** *(Judith 2026-09-01)*:
 
+| division | pages | Bild |
+| :-- | :-- | :-- |
+| Act 1 | 5–19 | |
+| Act 2 | 19–25 | p.21 |
+| Act 3 | 25–32 | p.29 |
+| Act 4 | 32–40 | |
+| Act 5 | 41–53 | |
+| epilogue | 54–55 | |
+
+So Akt and Bild are NOT the same unit — the Bilder are subdivisions inside the
+acts. Act 5 does run from p.41 to p.53, and the epilogue follows it.
+(Only 2 of the declared 8 Bilder are located.)
 ---
 
 ### Q3. Yaakov un Esav
@@ -124,8 +139,25 @@ Acts 1–4 are clearly written (p.6, 21, 32, 42) and there are **no act-end line
 
 Pages: [p. 42](https://app.transkribus.org/collection/2372172/doc/494907/detail/42) · [p. 56](https://app.transkribus.org/collection/2372172/doc/494907/detail/56) · [p. 57](https://app.transkribus.org/collection/2372172/doc/494907/detail/57)
 
-**Answer:**
+**Answer** *(Judith 2026-09-01)*:
 
+| division | pages | Bild |
+| :-- | :-- | :-- |
+| Act 1 | 6–20 | |
+| Act 2 | 21–31 | |
+| Act 3 | 32–41 | p.40 |
+| Act 4 | 42–56 | p.46 |
+
+There is no act 5: act 4 runs to the `ענדע פֿארהאנג` at p.56.
+
+**p.57 is the start of a DIFFERENT play** — the stage setting for its act 1,
+not a repeat of Yaakov-Esav's. It is the opening stage direction of *The
+Dybbuk* (Khonon the gravedigger's room, two windows onto the cemetery).
+p.58 returns to Yaakov-Esav, so this is a single inserted leaf, not a second
+work bound in.
+
+> *(Judith wrote "Act 2: 31 - 31"; the notebook has `צווייטער אקט` at p.21 and
+> `דריטער אקט` at p.32, so the start page was mistyped — read 21–31.)*
 ---
 
 ### Q4. Ben HaDor
@@ -136,8 +168,8 @@ Acts 1–3 are long (p.4–18, 18–28, 29–35), but **act 4 begins at p.35 and
 
 Pages: [p. 35](https://app.transkribus.org/collection/2372172/doc/826910/detail/35) · [p. 36](https://app.transkribus.org/collection/2372172/doc/826910/detail/36)
 
-**Answer:**
-
+**Answer:** act 4 is pp.35–36 — genuinely that short. No missing pages, and
+nothing continued in another notebook. *(Judith 2026-09-01)*
 ---
 
 ### Q5. Tissa Essler
@@ -148,8 +180,20 @@ Two lines say `אנפאנג` ('beginning') where an act has already begun: **`א
 
 Pages: [p. 11](https://app.transkribus.org/collection/2372172/doc/905289/detail/11) · [p. 14](https://app.transkribus.org/collection/2372172/doc/905289/detail/14) · [p. 24](https://app.transkribus.org/collection/2372172/doc/905289/detail/24) · [p. 34](https://app.transkribus.org/collection/2372172/doc/905289/detail/34) · [p. 35](https://app.transkribus.org/collection/2372172/doc/905289/detail/35)
 
-**Answer:**
+**Answer** *(Judith 2026-09-01)*:
 
+| division | pages | Bilder |
+| :-- | :-- | :-- |
+| Act 1 | 4–9 | |
+| Act 2 | 9–14 | p.11 |
+| Act 3 | 14–20 | |
+| Act 4 | 20–33 | p.24 |
+| Act 5 | 34–36 | Bild 1 p.34, Bild 2 p.35, "Scene" p.36 |
+
+On the two `אנפאנג` lines: **p.11 is a second Bild**, not a restart — the word
+`פערוואנדלונג` appears in the row below it. And the line reads
+`אנפאנג 2טער אקט?` **with a question mark**, which is the scribe's own doubt:
+it is not act 2.
 ---
 
 ### Q6. Di Tsvey Tnoim
@@ -160,8 +204,18 @@ The four acts are clear. Inside act 2 there are three Bild-ish lines — `ביל
 
 Pages: [p. 12](https://app.transkribus.org/collection/2372172/doc/838430/detail/12) · [p. 16](https://app.transkribus.org/collection/2372172/doc/838430/detail/16) · [p. 26](https://app.transkribus.org/collection/2372172/doc/838430/detail/26) · [p. 27](https://app.transkribus.org/collection/2372172/doc/838430/detail/27)
 
-**Answer:**
+**Answer** *(Judith 2026-09-01)*:
 
+| division | pages | Bilder |
+| :-- | :-- | :-- |
+| Act 1 | 5–18 | p.12, p.16 |
+| Act 2 | 18–28 | p.22 |
+| Act 3 | 28–40 | |
+| Act 4 | 40–48 | p.43 |
+
+They ARE divisions. Note the correction to what we listed: there is a Bild on
+**p.27 but none on p.26**, and act 1's two `Verwandlung` lines (p.12, p.16) are
+Bild divisions too.
 ---
 
 ### Q7. Bas Koyen
@@ -172,8 +226,17 @@ No act count on the title page. Acts are written at p.5 (`I אקט`), p.22 (`II 
 
 Pages: [p. 5](https://app.transkribus.org/collection/2372172/doc/838374/detail/5) · [p. 18](https://app.transkribus.org/collection/2372172/doc/838374/detail/18) · [p. 20](https://app.transkribus.org/collection/2372172/doc/838374/detail/20) · [p. 22](https://app.transkribus.org/collection/2372172/doc/838374/detail/22) · [p. 31](https://app.transkribus.org/collection/2372172/doc/838374/detail/31)
 
-**Answer:**
+**Answer** *(Judith 2026-09-01)*:
 
+| division | pages | Bilder |
+| :-- | :-- | :-- |
+| Act 1 | 5–22 | Bild 1 p.18, Bild 2 p.20 |
+| Act 2 | 22–30 | |
+| Act 3 | 31–36 | |
+
+Yes — the Bilder are subdivisions of the acts. Three acts; pp.31–36 are all
+act 3. **p.37 is a prayer to God, coming after the end of act 3** (so it is
+not part of it).
 ---
 
 ### Q8. Meshumed
@@ -187,6 +250,10 @@ The title page says **4 acts** (`מעלאדראמע אין 4 אקטען`), and a
 
 Pages: [p. 25](https://app.transkribus.org/collection/2372172/doc/534187/detail/25) · [p. 32](https://app.transkribus.org/collection/2372172/doc/534187/detail/32) · [p. 33](https://app.transkribus.org/collection/2372172/doc/534187/detail/33) · [p. 37](https://app.transkribus.org/collection/2372172/doc/534187/detail/37) · [p. 44](https://app.transkribus.org/collection/2372172/doc/534187/detail/44)
 
-**Answer:**
+**Answer** *(Judith 2026-09-01)*:
 
+- **p.32 is the END of act 3**, not a restart or second copy.
+- **Act 4 starts at p.33** and ends at p.37 (right side of the page).
+- **p.37 (left side) opens a genuine FIFTH act**, running pp.37–41 — despite
+  the title page declaring 4 acts.
 ---

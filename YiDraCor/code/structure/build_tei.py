@@ -9,6 +9,8 @@ This is the missing final stage of the YiDraCor pipeline. Upstream stages
     speaker {offset; length; xmlid:<role>}   -> opens a <sp who="#role">
     stage   {offset; length; type:<t>}       -> <stage type="t">
     heading {offset; length; type:act; n:N [; subtype:songGroup]}
+    heading {offset; length; type:scene; n:N}  -> Bild, <div type="scene">
+                                                  nested inside the act
     lg {n:N [; cont:yes]}  l {lg_id:N}  head {lg_id:N}   -> song verse
     fw {offset; length; type:pageNum}        -> <fw> (printed page number)
     -- editorial spans (sic/corr, orig/reg, abbr/expan, supplied, ...) are
@@ -414,6 +416,8 @@ def build_text(pages, cfg, role_ids):
 
     state = {
         "act_div": None,
+        "scene_div": None,      # Bild/scene div nested inside the current act
+        "scene_counter": 0,     # numbers unnumbered Bilder; reset per act
         "sp": None,
         "para": None,
         "sp_counter": 0,
@@ -471,7 +475,34 @@ def build_text(pages, cfg, role_ids):
             set_xmlid(div, f"{play_id}_Act{n}")
             etree.SubElement(div, q("head")).text = head_text
             state["act_div"] = div
+            state["scene_div"] = None
             state["container"] = div
+            state["scene_counter"] = 0
+
+    def open_scene(n, head_text):
+        """A Bild (tableau) -> <div type="scene"> NESTED inside the act.
+
+        Four of the nine manuscript notebooks divide into Bilder as well as
+        acts (Emigration declares 9, Yoysef in Egipten 8, and Bas Koyen and
+        Tissa Essler write numbered Bilder inside their acts), so the Bild is
+        a real structural level, not a scene-change instruction. Sinai
+        2026-09-01: a Bild is `<div type="scene">`.
+
+        Nests inside the open act where there is one, so an act's Bilder are
+        its children; a Bild before any act heading attaches to <body> rather
+        than being dropped.
+        """
+        close_sp()
+        state["trailer_el"] = None
+        parent = state["act_div"] if state["act_div"] is not None else body
+        div = etree.SubElement(parent, q("div"))
+        div.set("type", "scene"); div.set("n", str(n))
+        act_n = state["act_div"].get("n") if state["act_div"] is not None else None
+        set_xmlid(div, f"{play_id}_Act{act_n}_Sc{n}" if act_n
+                  else f"{play_id}_Sc{n}")
+        etree.SubElement(div, q("head")).text = head_text
+        state["scene_div"] = div
+        state["container"] = div
 
     def open_epilog(head_text):
         # epilogue division parallel to acts (PI review 2026-05-24).
@@ -481,6 +512,7 @@ def build_text(pages, cfg, role_ids):
         set_xmlid(div, f"{play_id}_Epilog")
         etree.SubElement(div, q("head")).text = head_text
         state["act_div"] = div
+        state["scene_div"] = None
         state["container"] = div
 
     def enter_back():
@@ -525,6 +557,16 @@ def build_text(pages, cfg, role_ids):
             if heading is not None:
                 if heading.get("type") == "epilog":
                     open_epilog(stripped)
+                    continue
+                htype = heading.get("type")
+                if htype == "scene":
+                    # `n` is optional on a Bild heading: many are written just
+                    # `בילד` / `Bild` with no numeral, so fall back to counting
+                    # them within the act rather than defaulting every one to 1.
+                    state["scene_counter"] = state.get("scene_counter", 0) + 1
+                    n = span_int(heading, "n", state["scene_counter"])
+                    state["scene_counter"] = n
+                    open_scene(n, stripped)
                     continue
                 n = span_int(heading, "n", 1)
                 if heading.get("subtype") == "songGroup":
