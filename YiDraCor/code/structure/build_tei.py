@@ -122,6 +122,46 @@ CONFIG = {
     "דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete": {
         "play_id": "YudisheKind", "out": "tei/Dos-Yudishe-Kind.xml",
         "body_last_page": NO_BACK},
+
+    # ---- manuscript track (Transkribus collection 2372172) ----------------
+    # Act/Bild divisions confirmed by Judith 2026-09-01; see
+    # docs/handoff_2026-08-18_judith_act_structure.md for the page ranges and
+    # for what is still unlocated (Emigration marks 4 of its declared 9
+    # Bilder, Yoysef 2 of 8).
+    "Lateiner_Meshumed": {
+        "play_id": "Meshumed", "out": "tei/ms/Meshumed.xml",
+        "body_last_page": NO_BACK},
+    "MS_Emigration": {
+        "play_id": "Emigration", "out": "tei/ms/Emigration.xml",
+        "body_last_page": NO_BACK},
+    "MS_TissaEssler": {
+        "play_id": "TissaEssler", "out": "tei/ms/Tissa-Essler.xml",
+        "body_last_page": NO_BACK},
+    "MS_YoysefInEgipten": {
+        "play_id": "YoysefInEgipten", "out": "tei/ms/Yoysef-in-Egipten.xml",
+        "body_last_page": NO_BACK},
+    "MS_KhurbnYerusholaim": {
+        "play_id": "KhurbnYerusholaim", "out": "tei/ms/Khurbn-Yerusholaim.xml",
+        "body_last_page": NO_BACK},
+    "MS_BenHaDor": {
+        "play_id": "BenHaDor", "out": "tei/ms/Ben-HaDor.xml",
+        "body_last_page": NO_BACK},
+    "MS_DiTsveyTnoim": {
+        "play_id": "DiTsveyTnoim", "out": "tei/ms/Di-Tsvey-Tnoim.xml",
+        "body_last_page": NO_BACK},
+    "MS_BasKoyen": {
+        "play_id": "BasKoyen", "out": "tei/ms/Bas-Koyen.xml",
+        "body_last_page": NO_BACK},
+    "MS_YaakovEsav": {
+        "play_id": "YaakovEsav", "out": "tei/ms/Yaakov-Esav.xml",
+        "body_last_page": NO_BACK,
+        # p.57 is a single inserted leaf carrying the opening stage direction
+        # of THE DYBBUK, not part of this play (Judith 2026-09-01, Q3). The
+        # notebook proper ends at p.56 `ענדע פֿארהאנג`; p.58 resumes Yaakov-Esav.
+        "skip_pages": {57}},
+    "MS_YetsiasMitsrayim": {
+        "play_id": "YetsiasMitsrayim", "out": "tei/ms/Yetsias-Mitsrayim.xml",
+        "body_last_page": NO_BACK},
 }
 
 PAGENUM_RE = re.compile(r"^[\s—–\-—–]*\d+[\s—–\-—–]*$")
