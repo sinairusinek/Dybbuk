@@ -52,6 +52,14 @@ ALIASES = {
     "ensamble company": "Ensemble Company",
     "star troupe": "Star Company",
     "ad-hoc company": "Ad Hoc Company",
+    # 2026-09-15 round: further free-typed spellings / typos.
+    "impressario company": "Impresario Company",
+    "impresario": "Impresario Company",
+    "family comapany": "Family Company",
+    "family troupe": "Family Company",
+    "on-jewish company": "Non-Jewish Company",   # dropped leading N
+    "hebrew language company": "Hebrew-Language Company",
+    "ensembel company": "Ensemble Company",
 }
 _CANON = {t.lower(): t for t in VOCAB}
 
@@ -67,6 +75,21 @@ def canon_tag(raw: str) -> tuple[str | None, str | None]:
     if k in ALIASES:
         return ALIASES[k], None
     return None, s
+
+
+# She sometimes writes the "not a troupe" disposition as a PROSE COMMENT and
+# leaves the drafted tag in place (observed 2026-08-30 on db35/424/791/985, and
+# again 2026-09-15). Sinai authorized applying `Not a Troupe` for these, REPLACING
+# the draft rather than adding to it. Matched on the whole comment only, so prose
+# that merely discusses a troupe is never caught.
+_NOT_A_TROUPE_COMMENTS = {
+    "not a troupe", "not a troupe/ company", "not a troupe / company",
+    "\u05dc\u05d0 \u05dc\u05d4\u05e7\u05d4",
+}
+
+
+def comment_says_not_a_troupe(comment: str) -> bool:
+    return " ".join((comment or "").split()).strip(" .;").lower() in _NOT_A_TROUPE_COMMENTS
 
 
 def split_tags(cell: str) -> tuple[list[str], list[str]]:
@@ -142,7 +165,7 @@ def main() -> None:
 
     added = changed = unchanged = skipped_blank = 0
     unmapped: collections.Counter = collections.Counter()
-    changes, blanks = [], []
+    changes, blanks, prose_disposition = [], [], []
 
     for row in sheet:
         if row["status"] != "reviewed":
@@ -154,6 +177,8 @@ def main() -> None:
             unmapped[b] += 1
         if bad and not good:
             continue  # nothing usable — don't overwrite a good existing value
+        if comment_says_not_a_troupe(row["comment"]):
+            good, bad, prose_disposition = ["Not a Troupe"], [], prose_disposition + [db]
         if not good and not row["comment"]:
             # reviewed, no tags, no comment: almost certainly an unfilled row.
             skipped_blank += 1
@@ -195,6 +220,9 @@ def main() -> None:
     print(f"  added   {added}\n  changed {changed}\n  same    {unchanged}")
     if skipped_blank:
         print(f"  skipped {skipped_blank} reviewed-but-empty rows (no tags, no comment)")
+    if prose_disposition:
+        print(f"  applied 'Not a Troupe' from a prose comment on {len(prose_disposition)} rows: "
+              + ", ".join("db" + d for d in prose_disposition))
         for db, nm in blanks[:8]:
             print(f"      db{db:<5} {nm}")
         if len(blanks) > 8:
