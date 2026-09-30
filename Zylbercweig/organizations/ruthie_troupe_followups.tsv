@@ -1,0 +1,22 @@
+db_id	kind	action	value	rationale
+1577	org_type	SET	Theatre	Ruthie: "this is not a traveling troupe" — Hebrew performances under Y. Katzenelson, institutional/resident
+1591	org_type	SET	Theatre	Ruthie: "not a traveling troupe" — Oscar Green Stock Company; a stock company is resident by definition
+959	org_type	SET	Theatre	Ruthie: "resident in Newark from 1921 through at least 1927"
+1704	org_type	SET	Military	Ruthie: "אפשר לסווג כ-military" — 2nd Front Troupe, a Soviet front-line entertainment unit
+427	org_type	KEEP	Theatre	Ruthie other_tags: "Not a traveling troupe and not connected to each other" — org_type already Theatre; the "not connected" half is a SPLIT, see splits below
+843	name	FIX	בלייכמאָנס טרופּע	Ruthie: "fix to טרופע" — OCR: אַרופּע->טרופּע and בלייכמאָזס->בלייכמאָנס (ז/ן confusion); surname attested as בלייכמאָן in ORG-C06755 "יעקב בלייכמאָןס בערלינער יידישער טרופּע" and בלייכמאַן in ORG-C03186
+583	name	REVIEW	זינלערs/Ziegler	Ruthie: "Ziegler's Troupe צריך לתקן כיתוב" — she reads the surname as Ziegler, DB has זינלערס; needs her confirmation of target spelling
+1478	name	REVIEW		Ruthie: "טעות OCR" — הערטאָ וויטשס טרופּע; she does not say what the correct reading is
+1005	external_id	ADD	Q56466308	Ruthie: Teatro Marconi, Buenos Aires — this is a VENUE qid, not the troupe's; belongs on the address/venue, not the org
+579	name	REVIEW	גענפערס טרופּע	Ruthie: "גענפערס ולא נענקערס" — OCR ג/נ confusion (a known recurring pair); she gives the correct reading, but this RENAMES an org, so confirm it is not a merge into an existing Genfer row first
+390	name_variants	ADD	Oriental Operetta Society	Ruthie: "Also named the Oriental Operetta Society" — alias, additive, no structural change
+1474	name_variants	ADD	Yevreyski Experimental Theatre	Ruthie: "Also called: Yevreyski Experimental Theatre" — alias, additive
+1354	org_type	REVIEW	Not a Troupe	Ruthie: "two people" — Meyerhold + Kashavarov are two persons, not an org; tagged Not a Troupe. Candidate for out_of_project / removal, not a retype
+1717	org_type	REVIEW	Not a Troupe	Ruthie: פלייסיגן is the Yiddish adjective "diligent" — an extraction artifact, never an org name. Candidate for removal
+1735	org_type	REVIEW	Not a Troupe	Ruthie: "snatch-plays" — כאָפּ-שפּילן is a genre term, not an org. Candidate for removal
+1716	parent	REVIEW	Arbeter Ring	Ruthie: "under the auspices of the Arbeter Ring" — suggests a parent_db_id link for פרייע בינע
+1619	note	NOTE	David Belasco	Ruthie identifies בעלאָסקאָ as David Belasco; already tagged Non-Jewish Company. Informational
+966	note	NOTE	Fannie Reinhart	Ruthie expands פי ריינהאָרדס to Fannie Reinhart. Informational; supports a name_variants add
+773	note	NOTE	Pesachke Burstein	Ruthie identifies בורשטיין as Pesachke Burstein. Informational
+790	mention	REVIEW	ORG-C04918	MISFILED comment: it sits on db790 (ליבערטס) but describes "Paul Breitman's company in Romania" = ORG-C04918, currently linked to db774. She is reassigning that mention away from Breitman-the-troupe to Paul Breitman. Feeds the db774 question
+793	mention	REVIEW	ORG-C06406	MISFILED comment: it sits on db793 (לאַטיינערס) but says Children's Company applies ONLY to the explicit "קינדער-טרופּע א"פ פֿון ברייטמאַן" = ORG-C06406, also on db774. Feeds the db774 question
