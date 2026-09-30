@@ -5,7 +5,7 @@ import json, re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-DOCS = HERE.parent.parent.parent / "docs"
+DOCS = HERE.parent.parent.parent / "docs" / "Visualizations"
 DATA = json.load(open(HERE / "istanbul_itineraries.json", encoding="utf-8"))
 
 IST_RE = re.compile(r"(קאנסטאנטינאפ|סטאמבול|סטאמבל|איסטאמבול|סטומבול)")
@@ -258,6 +258,9 @@ mapp = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>""" + COMMON_CSS + """
 #map{height:calc(100vh - 175px);min-height:430px}
+/* OSM standard is heavier than the CARTO Positron this replaced;
+   pull it back toward that pale ground so the route colors stay legible */
+.leaflet-tile-pane{filter:saturate(.25) brightness(1.08) contrast(.92)}
 .leaflet-popup-content{font-family:"Spectral",serif;font-size:.85rem;max-height:260px;overflow-y:auto}
 .leaflet-popup-content .yi{direction:rtl}
 .stop-list{margin:.3rem 0 0;padding-left:1rem}
@@ -290,8 +293,8 @@ margin-left:-.5rem;padding:.1rem .25rem .1rem .4rem;border-radius:0 3px 3px 0;fo
 <script>
 const DATA = __PAYLOAD__;
 const map=L.map('map').setView([44,24],4);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
- {attribution:'© OpenStreetMap © CARTO',maxZoom:12}).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+ {attribution:'© OpenStreetMap contributors',maxZoom:12}).addTo(map);
 const IST=[41.010,28.960];
 const istMarker=L.circleMarker(IST,{radius:9,color:'#0e6f8a',weight:3,
   fillColor:'#0e6f8a',fillOpacity:.55}).addTo(map);

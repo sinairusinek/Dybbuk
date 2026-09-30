@@ -20,7 +20,7 @@ import argparse, json, re, unicodedata
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-DOCS = HERE.parent.parent.parent / "docs"
+DOCS = HERE.parent.parent.parent / "docs" / "Visualizations"
 POINTS = re.compile(r"[֑-ׇ]")
 
 
@@ -194,6 +194,9 @@ COURSE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <style>__CSS__
 #stage{max-width:82rem;margin:0 auto;padding:0 1.6rem 2.5rem}
 #map{height:44vh;min-height:330px;border:1px solid var(--line);border-radius:4px}
+/* OSM standard is heavier than the CARTO Positron this replaced;
+   pull it back toward that pale ground so the route colors stay legible */
+.leaflet-tile-pane{filter:saturate(.25) brightness(1.08) contrast(.92)}
 #tlwrap{margin-top:.9rem;border:1px solid var(--line);border-radius:4px;
 background:#fdfbf6;padding:.3rem 0 .2rem;overflow-x:auto}
 svg text{font-family:"Spectral",serif}
@@ -297,8 +300,8 @@ function stationTip(s){
 
 // ---- map ----
 const map=L.map('map').setView(P.mapCfg.center,P.mapCfg.zoom);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
- {attribution:'© OpenStreetMap © CARTO',maxZoom:12}).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+ {attribution:'© OpenStreetMap contributors',maxZoom:12}).addTo(map);
 let layers=[], markerBySeq={}, fitted=false;
 
 function drawMap(){
