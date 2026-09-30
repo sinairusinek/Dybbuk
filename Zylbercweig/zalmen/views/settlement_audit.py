@@ -18,6 +18,7 @@ import pathlib
 import re
 import sys
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from typing import Iterable
 
 import streamlit as st
@@ -203,6 +204,22 @@ def _load_addresses() -> dict[str, dict[str, str]]:
 
 # ─── core data mutations (used by both the top action-bar and per-row menus) ──
 
+def _stamp(row: dict[str, str]) -> None:
+    """Stamp reviewer name and ISO timestamp on a decided row.
+
+    Every mutation below writes `decision`, so every one of them has to stamp:
+    an unattributed decision is indistinguishable from a script's. These three
+    helpers silently skipped it for a long time — 1322 of 4025 decided rows in
+    `org_alignment_review.tsv` had a decision with no reviewer and no
+    reviewed_at (1081 NEW, 232 ALIGN), all of them from here and from
+    org_merge_cards, which imports these same helpers. Mirrors org_review's
+    `_stamp`; `backfill_unattributed_decisions.py` replays activity_log onto
+    the recoverable share of the historical gap.
+    """
+    row["reviewer"] = st.session_state.get("reviewer", "")
+    row["reviewed_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def _persist_and_clear(a_headers, a_rows, db_headers, db_rows) -> None:
     save_alignment(a_headers, a_rows)
     save_core_db(db_headers, db_rows)
@@ -243,6 +260,7 @@ def _align_clusters_to_db(
                 touched_prev.add(prev)
         row["decision"] = "ALIGN"
         row["aligned_db_id"] = target_db
+        _stamp(row)
     target_row = db_by_id.get(target_db)
     if target_row is not None:
         target_row["linked_cluster_ids"] = _merge_linked_ids(
@@ -295,6 +313,7 @@ def _mint_db_from_clusters(
             continue
         row["decision"] = "NEW"
         row["aligned_db_id"] = next_id
+        _stamp(row)
     _persist_and_clear(a_headers, a_rows, db_headers, db_rows)
     return next_id, f"Created DB {next_id} from {len(cluster_ids)} cluster(s)"
 
@@ -377,6 +396,9 @@ def _consolidate_clusters(
             r["aligned_db_id"] = survivor
             if not (r.get("decision") or "").strip():
                 r["decision"] = "NEW"
+            # Re-pointing an existing ALIGN is as much a review act as coining a
+            # NEW, so stamp either way — not just the branch that sets decision.
+            _stamp(r)
 
     if losers:
         db_rows[:] = [r for r in db_rows if r.get("db_id") not in losers]
