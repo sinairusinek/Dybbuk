@@ -32,9 +32,6 @@ max-width:75rem;margin:0 auto;font-size:.85rem}
 margin-left:-.5rem;padding:.1rem .25rem .1rem .4rem;border-radius:0 3px 3px 0;font-weight:600}
 .leaflet-tooltip.tip-ist{border-color:var(--teal);border-width:1.5px;font-weight:600}
 .ist-tip{color:var(--teal)}
-.ist-pulse{animation:istpulse 1.1s ease-out 2}
-@keyframes istpulse{0%{r:6;stroke-width:2}50%{r:13;stroke-width:5}100%{r:6;stroke-width:2}}
-@media (prefers-reduced-motion:reduce){.ist-pulse{animation:none}}
 </style></head><body>
 <header style="padding-bottom:.3rem">
 <p class="eyebrow">Dybbuk · Istanbul itinerary pilot</p>
@@ -65,15 +62,29 @@ const istMarker=L.circleMarker(IST,{radius:9,color:'#0e6f8a',weight:3,
 istMarker.bindTooltip('Istanbul / קאָנסטאַנטינאָפּאָל',
   {permanent:true,direction:'right',offset:[10,0],className:'tip-ist'});
 // emphasize Istanbul whenever the reader hovers a station or route
-let istTimer=null;
+const IST_R=9,IST_RMAX=13,IST_MS=620;
+const reduceMotion=matchMedia('(prefers-reduced-motion:reduce)');
+let istTimer=null,istRaf=null;
+// Leaflet draws a circleMarker as <path d="..arcs..">, which has no `r` for CSS
+// to animate — so the pulse has to run through setRadius(), which redraws the path.
 function flashIst(){
-  const el=istMarker.getElement(); if(!el)return;
-  istMarker.setStyle({radius:12,weight:5,fillOpacity:.75});
-  el.classList.add('ist-pulse');
+  if(istRaf)return;                       // already pulsing; let it finish
+  istMarker.setStyle({weight:5,fillOpacity:.75});
+  if(reduceMotion.matches){
+    istMarker.setRadius(IST_RMAX);
+  }else{
+    const t0=performance.now();
+    const step=now=>{
+      const k=Math.min((now-t0)/IST_MS,1);
+      istMarker.setRadius(IST_R+(IST_RMAX-IST_R)*Math.sin(k*Math.PI));
+      istRaf=k<1?requestAnimationFrame(step):null;
+    };
+    istRaf=requestAnimationFrame(step);
+  }
   clearTimeout(istTimer);
   istTimer=setTimeout(()=>{
-    istMarker.setStyle({radius:9,weight:3,fillOpacity:.55});
-    el.classList.remove('ist-pulse');},1400);
+    if(istRaf){cancelAnimationFrame(istRaf);istRaf=null;}
+    istMarker.setRadius(IST_R).setStyle({weight:3,fillOpacity:.55});},1400);
 }
 const wave=d=>!d.istYear?'w0':d.istYear<1890?'w1':d.istYear<1914?'w2':'w3';
 const wcol={w1:'#b07d2b',w2:'#0e6f8a',w3:'#a1462e',w0:'#8a8577'};
