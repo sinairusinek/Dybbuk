@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Yiddish_HTR(htr_id=38946)::::v=2.6.7
@@ -6,7 +6,7 @@ prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias
 prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/net_tf/LA73_249_0mod360.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
 Transkribus</Creator>
         <Created>2021-11-07T13:07:05.431+02:00</Created>
-        <LastChange>2026-08-16T18:40:20.884+02:00</LastChange>
+        <LastChange>2026-08-30T10:12:24.497+02:00</LastChange>
     </Metadata>
     <Page imageFilename="בן_הדור-0018.jpg" imageWidth="4200" imageHeight="2550">
         <TextRegion orientation="0.0" id="r1" custom="readingOrder {index:0;}">
@@ -101,7 +101,7 @@ Transkribus</Creator>
                     <Unicode>29</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l2" custom="readingOrder {index:1;} head {offset:0;length:15;unit-type:act n\u003a 2;} heading {offset:0;length:15;}">
+            <TextLine id="r2l2" custom="readingOrder {index:1;} heading {offset:0; length:15;}">
                 <Coords points="454,365 625,331 826,376 1542,377 1720,322 1717,191 1540,227 1414,192 1238,275 1127,201 972,243 907,212 789,284 576,176 449,179"/>
                 <Baseline points="462,318 524,318 586,317 649,317 711,317 773,317 836,317 898,317 960,317 1023,317 1085,315 1147,315 1210,314 1272,312 1334,309 1397,307 1459,302 1521,298 1584,293 1646,285 1709,278"/>
                 <TextEquiv>
@@ -129,7 +129,7 @@ Transkribus</Creator>
                     <Unicode>II Retunel: N-10</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r2l6" custom="readingOrder {index:5;} stage {offset:8; length:6; type:delivery;} speaker {offset:0; length:7;}">
+            <TextLine id="r2l6" custom="readingOrder {index:5;} stage {offset:8; length:6; type:delivery;} speaker {offset:0; length:7; xmlid:shlmun;}">
                 <Coords points="966,791 1009,805 1070,768 1146,780 1167,763 1250,802 1519,807 1514,670 1453,678 1400,656 1237,693 1210,676 1187,701 962,682"/>
                 <Baseline points="975,750 1001,753 1028,754 1054,756 1081,758 1107,759 1134,759 1160,759 1187,759 1213,759 1240,758 1267,756 1293,755 1320,753 1346,751 1373,748 1399,745 1426,742 1452,738 1479,733 1506,729"/>
                 <TextEquiv>

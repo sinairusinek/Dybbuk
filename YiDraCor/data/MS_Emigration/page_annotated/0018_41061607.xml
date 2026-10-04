@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Emigration(htr_id=42228)::::v=2.6.7
@@ -6,13 +6,13 @@ prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias
 prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
 Transkribus</Creator>
         <Created>2022-05-25T05:48:01.556-04:00</Created>
-        <LastChange>2026-08-16T18:41:50.867+02:00</LastChange>
+        <LastChange>2026-09-01T08:55:55.218+02:00</LastChange>
         <TranskribusMetadata docId="1013131" pageId="41061607" pageNr="18"/>
     </Metadata>
     <Page imageFilename="0282.jpg" imageWidth="924" imageHeight="1197">
         <TextRegion orientation="0.0" id="TextRegion_1653484276099_1187" custom="readingOrder {index:0;}">
             <Coords points="9,142 811,139 807,34 899,34 899,524 9,524"/>
-            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+            <TextLine id="r1l1" custom="readingOrder {index:0;} fw {offset:0;length:2;}">
                 <Coords points="818,98 827,100 833,95 839,97 854,87 886,88 888,50 863,43 849,28 837,34 831,28 822,28"/>
                 <Baseline points="825,58 853,64 882,61"/>
                 <TextEquiv>
@@ -54,14 +54,14 @@ Transkribus</Creator>
                     <Unicode>שוועהרע מיר דאס דוא ווירסט זיין מיין אוף איממער אונד עביג</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l7" custom="readingOrder {index:6;} speaker {offset:0; length:5; xmlid:mrits_gutmn;}">
+            <TextLine id="r1l7" custom="readingOrder {index:6;} speaker {offset:0;length:5;xmlid:mrits_gutmn;}">
                 <Coords points="219,462 707,463 755,443 804,462 904,443 902,399 867,389 806,420 556,405 513,430 409,404 352,432 218,435"/>
                 <Baseline points="224,460 257,458 291,456 325,455 359,454 392,452 426,451 460,450 494,449 527,448 561,447 595,446 629,445 662,444 696,443 730,442 764,441 797,439 831,437 865,436 899,434"/>
                 <TextEquiv>
                     <Unicode>מאריץ אה מיינע ראשעל. מיין געטליכעס קינד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="r1l8" custom="readingOrder {index:7;} textStyle {offset:0; length:10; strikethrough:true;} metamark {offset:0; length:3; function:musicCue; role:number; n:3;}">
+            <TextLine id="r1l8" custom="readingOrder {index:7;} metamark {offset:0; length:3; function:musicCue; role:number; n:3;} textStyle {offset:0; length:10; strikethrough:true;}">
                 <Coords points="291,519 334,523 398,512 415,527 447,520 490,528 502,519 517,528 574,506 572,460 551,451 534,468 483,460 387,467 373,478 290,490"/>
                 <Baseline points="296,505 323,503 350,501 377,500 404,498 432,498 459,497 486,496 513,495 540,495 568,493"/>
                 <TextEquiv>
