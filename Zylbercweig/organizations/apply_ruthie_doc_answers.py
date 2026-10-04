@@ -107,6 +107,8 @@ def main(apply: bool) -> None:
     holds: list[tuple[str, str]] = []
     problems: list[str] = []
     already: list[str] = []
+    merges: list[tuple[str, str, str]] = []
+    noops: list[tuple[str, str, str]] = []
 
     parts_by_bundle: dict[str, list[str]] = {}
 
@@ -117,6 +119,20 @@ def main(apply: bool) -> None:
 
         if dec == "HOLD":
             holds.append((q, a["note"]))
+            continue
+        if dec in ("LEAVE", "NOOP"):
+            noops.append((q, dec, a["note"]))
+            continue
+        if dec == "MERGE":
+            src, tgt = bundle, a["target_db_id"].strip()
+            if src not in by_id or tgt not in by_id:
+                problems.append(f"q{q}: MERGE db{src} -> db{tgt}, one of them not in core_db")
+                continue
+            merges.append((src, tgt, a["note"]))
+            continue
+
+        if kind == "spelling":
+            problems.append(f"q{q}: spelling row with decision {dec}, unhandled")
             continue
 
         if kind == "bundle_part":
@@ -176,6 +192,18 @@ def main(apply: bool) -> None:
     for i, (b, part, cid) in enumerate(creates):
         print(f"  db{next_id + i}  {troupe_name(part)}   from db{b}  ({cid})")
 
+    print("\nMERGE — fold source into target (merged_into + deprecated):")
+    for src, tgt, why in merges:
+        srow, trow = by_id[src], by_id[tgt]
+        scl = [c.strip() for c in (srow["linked_cluster_ids"] or "").split("|") if c.strip()]
+        print(f"  db{src} {(srow['name_yiddish'] or srow['name'])!r}")
+        print(f"    -> db{tgt} {(trow['name_yiddish'] or trow['name'])!r}  moving {len(scl)} cluster(s): {scl}")
+        print(f"    {why}")
+
+    print(f"\nLEAVE / NOOP — recorded, no edit ({len(noops)}):")
+    for q, dec, why in noops:
+        print(f"  q{q} [{dec}]: {why}")
+
     print("\nREMOVE — set deprecated=1 (reversible, not deleted):")
     for db, why in removes:
         r = by_id[db]
@@ -216,6 +244,20 @@ def main(apply: bool) -> None:
         new["linked_cluster_ids"] = cid
         rows.append(new)
 
+    for src, tgt, _why in merges:
+        srow, trow = by_id[src], by_id[tgt]
+        for c in [x.strip() for x in (srow["linked_cluster_ids"] or "").split("|") if x.strip()]:
+            add_cluster(trow, c)
+        # carry the source's spelling onto the target as a variant
+        sname = (srow["name_yiddish"] or srow["name"]).strip()
+        if sname:
+            cur = [v.strip() for v in (trow.get("name_variants") or "").split("|") if v.strip()]
+            if not any(norm(v) == norm(sname) for v in cur):
+                trow["name_variants"] = " | ".join(cur + [sname])
+        srow["merged_into"] = tgt
+        srow["deprecated"] = "true"   # matches the 53 existing merged rows
+        srow["linked_cluster_ids"] = ""
+
     for db, _why in removes:
         by_id[db]["deprecated"] = "1"
     for b in retire:
@@ -223,7 +265,8 @@ def main(apply: bool) -> None:
 
     _dump(CORE_DB, fields, rows)
     print(f"\nwrote: {n_link} cluster links, {len(creates)} new orgs, "
-          f"{len(removes)} removed, {len(retire)} bundle rows retired")
+          f"{len(merges)} merged, {len(removes)} removed, "
+          f"{len(retire)} bundle rows retired")
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ q	kind	bundle_db_id	part	decision	target_db_id	note
 4	bundle_part	1076	איציקל גאָלדענבערג	HOLD		she chose CREATE but db1329 איציקל גאָלדענבערג און קאָנער exists; near-duplicate risk, confirm
 5	bundle_part	1076	אַשכנזי	LINK	1016	
 6	bundle_part	1076	קענער	LINK	1403	
-7	bundle_part	1076	זיגלער	HOLD		she chose LINK but the column said no match exists; nothing to link to
+7	bundle_part	1076	זיגלער	LINK	459	Sinai 2026-10-04: Ziegler Troupe exists = db459 זייגלערס טרופּע (double-yod spelling; my זיגלער search missed it)
 8	bundle_part	1418	פּאָטאָצקאַ	LINK	844	
 9	bundle_part	1418	באַראַטאָוו	CREATE		
 10	bundle_part	1418	משה ליפּמאַן	LINK	794	
@@ -30,14 +30,14 @@ q	kind	bundle_db_id	part	decision	target_db_id	note
 29	bundle_part	1074	נפתלי גאָלדפאַדען	CREATE		
 30	bundle_part	1346	וויינשטאָק	LINK	1363	
 31	bundle_part	1346	וויינשטיין	CREATE		
-32	spelling	583		HOLD		blank — she left the Correct spelling cell empty
-33	spelling	1478		HOLD		blank — she left the Correct spelling cell empty
-34	spelling	579		HOLD		blank; and her "Keep as one" on the merge question is ambiguous
-b1	db888_fischer	888	פֿישער	GROUP1		Fischer -> group 1 (Kaminski), per the entry text; she accepted it over her own "probably"
-b2	db774_breitman	774		SPLIT		"Split as described" — the 3 clusters are the 3 phases
+32	spelling	583		MERGE	459	Sinai 2026-10-04: db583 זינלערס = db459 misread. Confirmed: db459 already holds both זיגלער/זייגלער spellings, and its ORG-C02610 carries the SAME חיים גוטמאַן mention as db583
+33	spelling	1478		LEAVE		Sinai 2026-10-04: leave as is in Zalmen, handle it there
+34	spelling	579		MERGE	254	Sinai 2026-10-04: merge db579 נענקערס -> db254 גענפערס טרופּע
+b1	db888_fischer	888	פֿישער	GROUP1		"Fischer -> group 1 (Kaminski), per the entry text; she accepted it over her own ""probably"""
+b2	db774_breitman	774		SPLIT		Split as described — the 3 clusters are the 3 phases
 d1	serial_comma_rule			ONE_BY_ONE		18 rows become a working session, not a rule
-35	remove	1354		REMOVE		"two people"
-36	remove	1717		REMOVE		פלייסיגן = the adjective "diligent"
+35	remove	1354		REMOVE		two people
+36	remove	1717		REMOVE		"פלייסיגן = the adjective ""diligent"""
 37	remove	1735		REMOVE		כאָפּ-שפּילן = a genre term
-38	remove	427		HOLD		she chose REMOVE but אונזער ווינקל is a real theatre; her note only said not-traveling + mentions unconnected
-39	parent	1716		HOLD		"Split differently — see my comment" but she left no comment
+38	remove	427		NOOP		Sinai 2026-10-04: retype to theatre — ALREADY org_type=Theatre and has zero cluster links, so nothing to do
+39	parent	1716		LEAVE		Sinai 2026-10-04: leave as is in Zalmen, handle it there
