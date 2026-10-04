@@ -1353,14 +1353,15 @@ def render() -> None:
 		by_decision[d] = by_decision.get(d, 0) + 1
 	undecided = by_decision.get("", 0)
 
-	c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
+	c1, c2, c3, c4, c5, c6, c7, c8 = st.columns(8)
 	c1.metric("Total", total)
 	c2.metric("Undecided", undecided)
 	c3.metric("Aligned", by_decision.get("ALIGN", 0))
 	c4.metric("New", by_decision.get("NEW", 0))
-	c5.metric("Split", by_decision.get("SPLIT", 0))
-	c6.metric("Defer", by_decision.get("DEFER", 0))
-	c7.metric("Descriptive", by_decision.get("DESCRIPTIVE", 0))
+	c5.metric("Generic", by_decision.get("GENERIC", 0))
+	c6.metric("Split", by_decision.get("SPLIT", 0))
+	c7.metric("Defer", by_decision.get("DEFER", 0))
+	c8.metric("Descriptive", by_decision.get("DESCRIPTIVE", 0))
 
 	with open(ALIGN_FILE, "rb") as _f:
 		st.download_button(
@@ -1377,7 +1378,7 @@ def render() -> None:
 	with f1:
 		status_filter = st.segmented_control(
 			"Show",
-			options=["Undecided", "All", "ALIGN", "NEW", "SPLIT", "DEFER", "DESCRIPTIVE"],
+			options=["Undecided", "All", "ALIGN", "NEW", "GENERIC", "SPLIT", "DEFER", "DESCRIPTIVE"],
 			default="Undecided",
 		)
 	with f2:
@@ -1499,13 +1500,18 @@ def render() -> None:
 				unsafe_allow_html=True,
 			)
 		with action_col:
-			qa1, qa2, qa3 = st.columns(3)
+			qa1, qa2, qa3, qa4 = st.columns(4)
 			if qa1.button("🔴 Split", key=f"entity-split-{selected['cluster_id']}", use_container_width=True):
 				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "SPLIT"
 			if qa2.button("🟡 Defer", key=f"entity-defer-{selected['cluster_id']}", use_container_width=True):
 				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "DEFER"
 			if qa3.button("🔵 Descriptive", key=f"entity-descriptive-{selected['cluster_id']}", use_container_width=True):
 				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "DESCRIPTIVE"
+			# 🔶 Generic: names a KIND of institution, not an individuated one
+			# (team rule 2026-10-04). Not mintable; distinct from DEFER, which
+			# means "might be real, cannot resolve yet".
+			if qa4.button("🔶 Generic", key=f"entity-generic-{selected['cluster_id']}", use_container_width=True):
+				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "GENERIC"
 		with toggle_col:
 			show_samples = st.session_state.get(show_samples_key, False)
 			sample_label = "Hide sample texts" if show_samples else "Click to see sample texts"
@@ -1792,7 +1798,7 @@ def render() -> None:
 		# ── Handle entity-level quick actions (Split/Defer/Descriptive from header) ──
 		quick_key = f"entity_quick_{selected['cluster_id']}"
 		quick_action = st.session_state.pop(quick_key, None)
-		if quick_action in ("SPLIT", "DEFER", "DESCRIPTIVE"):
+		if quick_action in ("SPLIT", "DEFER", "DESCRIPTIVE", "GENERIC"):
 			_ensure_audit_cols(a_headers, a_rows, "reviewer", "reviewed_at")
 			a_rows[row_idx]["decision"] = quick_action
 			a_rows[row_idx]["aligned_db_id"] = ""
