@@ -91,12 +91,34 @@ def load_acts(root):
     """Return list of {label, speakers_counter} for each act (or leaf div).
     Falls back to a single 'whole play' scene when no divs exist."""
     all_divs = root.findall(".//tei:div", NS)
-    # Prefer act-level divs at the top of the body; if scenes exist inside acts,
-    # use scenes (finer granularity, better co-appearance signal).
-    scenes = [d for d in all_divs if d.get("type") == "scene"]
-    if scenes:
-        divs = scenes
-    else:
+    # Finest-grained complete cover of the play: a scene div where one exists,
+    # otherwise the act itself.
+    #
+    # Until 2026-10-04 this did `if scenes: divs = scenes`, which was safe only
+    # while no play had scenes. The manuscript track has Bilder (`type="scene"`)
+    # that cover SOME acts and not others, so taking scenes alone silently
+    # dropped every scene-less act: Emigration's 3 Bilder sit inside acts 2-4,
+    # so acts 1 and 5 disappeared and the play reported 211 of its 696
+    # speeches. Now an act contributes itself unless it has scenes, in which
+    # case its scenes stand in for it — so the cover is complete either way.
+    acts_l = [d for d in all_divs if d.get("type") == "act"]
+    divs = []
+    for a in acts_l:
+        inner = [d for d in a.findall(".//tei:div", NS)
+                 if d.get("type") == "scene"]
+        # An act is always included: in these manuscripts the act opens and
+        # runs for a while BEFORE its first Bild, so the scenes alone do not
+        # cover it (Emigration lost 167 of 696 speeches that way — 82 of them
+        # in act 3 before its Bild). `_sp_in` therefore counts an act's OWN
+        # speeches only, excluding those inside its scenes, and the scenes are
+        # added as their own units.
+        divs.append(a)
+        divs.extend(inner)
+    # non-act top-level divisions (epilog, and any play with no acts at all)
+    divs.extend(d for d in all_divs
+                if d.get("type") not in ("act", "scene")
+                and not any(d in a.iter() for a in acts_l))
+    if not divs:
         divs = all_divs
     if not divs:
         # single virtual "scene" spanning the whole body
@@ -107,16 +129,26 @@ def load_acts(root):
         head = _first_text(d, "tei:head") or ""
         dtype = d.get("type", "")
         label = head or (f"{dtype.capitalize() or 'Section'} {i}")
+        # `dtype` is carried through so the summary can count real acts
+        # separately from the act+Bild division units used for co-appearance.
         # Collect all @who attributes on <sp> elements inside this div
         speakers = Counter()
+        inner_scene_sps = set()
+        if d.get("type") == "act":
+            for s in d.findall(".//tei:div", NS):
+                if s.get("type") == "scene":
+                    inner_scene_sps.update(id(x) for x in s.findall(".//tei:sp", NS))
         for sp in d.findall(".//tei:sp", NS):
+            if id(sp) in inner_scene_sps:
+                continue
             who = (sp.get("who") or "").strip()
             for tok in who.split():
                 tok = tok.lstrip("#")
                 if tok:
                     speakers[tok] += 1
         if speakers:
-            acts.append({"label": label, "speakers": speakers})
+            acts.append({"label": label, "speakers": speakers,
+                         "type": dtype})
     return acts
 
 
@@ -183,7 +215,11 @@ def build_network(persons, acts, min_edge=1):
     stats = {
         "chars": len(nodes),
         "speaking_chars": sum(1 for n in nodes if total_sp.get(n["id"], 0) > 0),
-        "acts": len(acts),
+        # Real acts, not division units: the co-appearance cover counts an act
+        # and each of its Bilder separately, so len(acts) over-reports (a
+        # 5-act Emigration showed "8 acts"). `units` keeps the cover size.
+        "acts": sum(1 for a in acts if a.get("type") == "act") or len(acts),
+        "units": len(acts),
         "total_sp": sum(total_sp.values()),
         "top_speakers": [(persons.get(x, {}).get("label", x), c)
                          for x, c in total_sp.most_common(5)],

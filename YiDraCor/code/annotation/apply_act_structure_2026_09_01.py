@@ -106,7 +106,13 @@ STRUCTURE = [
     ("MS_TissaEssler", 9,  "act", 2), ("MS_TissaEssler", 11, "scene", 2),
     ("MS_TissaEssler", 14, "act", 3),
     ("MS_TissaEssler", 20, "act", 4), ("MS_TissaEssler", 24, "scene", 2),
-    ("MS_TissaEssler", 34, "act", 5), ("MS_TissaEssler", 34, "scene", 1),
+    # p.34's line reads `5טער אקט ערשטעס בילד` — it IS both act 5 and its
+    # first Bild, but one span carries one type, and the act is the outer
+    # division. Stamping both made the scene overwrite the act, act 5 never
+    # opened, and its content folded into act 4 (duplicate
+    # TissaEssler_Act4_Sc2, invalid XML). So: act only here. Act 5's Bild 1 is
+    # implicit in the act opening; Bild 2 at p.35 is tagged.
+    ("MS_TissaEssler", 34, "act", 5),
     ("MS_TissaEssler", 35, "scene", 2),
     # ---- Ben HaDor (Q4): 4 acts, act 4 genuinely pp.35-36 ---------------
     ("MS_BenHaDor", 4,  "act", 1), ("MS_BenHaDor", 18, "act", 2),
