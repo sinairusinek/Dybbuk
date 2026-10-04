@@ -1,0 +1,2619 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-tissa-essler">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">טיססא עסלער</title>
+        <title type="sub">Tissa-Essler</title>
+        <author>Moyshe Hurwitz</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>טיססא עסלער</title>
+          <author>Moyshe Hurwitz</author>
+          <idno type="transkribus">https://app.transkribus.org/collection/2372172/doc/905289</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <classDecl>
+        <taxonomy xml:id="prod-cues">
+          <desc>Regie/prompter cue notation of the handwritten witnesses. The letter names the family (R = Returnel/ritornello, S = Szene); the Roman numeral is an in/out bracket state, not a serial number, which is why III never occurs. N/No + Arabic numeral is the serial of the musical number.</desc>
+          <category xml:id="cue-in">
+            <catDesc>Opening bracket of a cue: RI, IR, R.I, '1 Returnell:', and the bare I of MS_BasKoyen where the letter is dropped.</catDesc>
+          </category>
+          <category xml:id="cue-out">
+            <catDesc>Closing bracket of a cue: RII, IIR, R.II, 'II Return:', bare II. At a scene cue it falls on Vorhang/Verwandlung.</catDesc>
+          </category>
+          <category xml:id="cue-genre">
+            <catDesc>Names the kind of musical number rather than bracketing it: Chor, Marsch, Tanz, Terzett, Quarted, Duet, arya, Refrein. Carries no in/out state.</catDesc>
+          </category>
+          <category xml:id="cue-number">
+            <catDesc>The serial of the musical number: N, No 4., N=3. @n carries the normalised value.</catDesc>
+          </category>
+        </taxonomy>
+      </classDecl>
+    </encodingDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="izef_shrf">
+            <persName>יאזעף שאַרף</persName>
+          </person>
+          <person xml:id="lh">
+            <persName>לאה</persName>
+          </person>
+          <person xml:id="mrits">
+            <persName>מאָריץ</persName>
+          </person>
+          <person xml:id="shm">
+            <persName>שאמא</persName>
+          </person>
+          <person xml:id="grsmnn">
+            <persName>גראָסמאנן</persName>
+          </person>
+          <person xml:id="buksboym">
+            <persName>בוקסבוים</persName>
+          </person>
+          <person xml:id="shvrts">
+            <persName>שווארץ</persName>
+          </person>
+          <person xml:id="dud_hirshk">
+            <persName>דוד הירשקא</persName>
+          </person>
+          <person xml:id="ignts_klmn">
+            <persName>איגנאץ קלמן</persName>
+          </person>
+          <person xml:id="khr_iden">
+            <persName>קאהר אידען</persName>
+          </person>
+          <person xml:id="khr_kristen">
+            <persName>קאהר קריסטען</persName>
+          </person>
+          <person xml:id="boyerin_boyerinen">
+            <persName>בויערין בויערינען</persName>
+          </person>
+          <person xml:id="mshhli">
+            <persName>משהלי</persName>
+          </person>
+          <person xml:id="ssr_slumsi">
+            <persName>אסתר סאלומאסי</persName>
+          </person>
+          <person xml:id="huri">
+            <persName>הורי </persName>
+          </person>
+          <person xml:id="shndmsh">
+            <persName>שאנדמש</persName>
+          </person>
+          <person xml:id="emnul">
+            <persName>עמנואל</persName>
+          </person>
+          <person xml:id="frezedent">
+            <persName>פרעזעדענט</persName>
+          </person>
+          <person xml:id="frkurf">
+            <persName>פראקוראפ </persName>
+          </person>
+          <person xml:id="etvsh">
+            <persName>עטוואש</persName>
+          </person>
+          <person xml:id="ndir">
+            <persName>אנאדיר</persName>
+          </person>
+          <person xml:id="fltelkhe">
+            <persName>פלאטעלכע</persName>
+          </person>
+          <person xml:id="fetsheli">
+            <persName>פעטשעלי</persName>
+          </person>
+          <person xml:id="ntisemiten">
+            <persName>אנטיסעמיטען</persName>
+          </person>
+          <person xml:id="fndur">
+            <persName>פאנדור</persName>
+          </person>
+          <person xml:id="henter">
+            <persName>הענטער</persName>
+          </person>
+          <person xml:id="brbr">
+            <persName>בארבארא</persName>
+          </person>
+          <person xml:id="dnil_brtshi">
+            <persName>דניאל בארטשי</persName>
+          </person>
+          <person xml:id="ihnn">
+            <persName>יאהאננא</persName>
+          </person>
+          <person xml:id="insh">
+            <persName>יאנאש</persName>
+          </person>
+          <person xml:id="mzel">
+            <persName>אמזעל</persName>
+          </person>
+          <person xml:id="verhvi">
+            <persName>ווערהאוואי</persName>
+          </person>
+          <person xml:id="iulin">
+            <persName>יוליאנא</persName>
+          </person>
+          <person xml:id="diener">
+            <persName>דיענער</persName>
+          </person>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="TissaEssler" type="TissaEssler">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#izef_shrf">יאזעף שאַרף</role>
+        </castItem>
+        <castItem>
+          <role corresp="#lh">לאה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mrits">מאָריץ</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shm">שאמא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#grsmnn">גראָסמאנן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#buksboym">בוקסבוים</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shvrts">שווארץ</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dud_hirshk">דוד הירשקא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ignts_klmn">איגנאץ קלמן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khr_iden">קאהר אידען</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khr_kristen">קאהר קריסטען</role>
+        </castItem>
+        <castItem>
+          <role corresp="#boyerin_boyerinen">בויערין בויערינען</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mshhli">משהלי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ssr_slumsi">אסתר סאלומאסי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#huri">הורי </role>
+        </castItem>
+        <castItem>
+          <role corresp="#shndmsh">שאנדמש</role>
+        </castItem>
+        <castItem>
+          <role corresp="#emnul">עמנואל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#frezedent">פרעזעדענט</role>
+        </castItem>
+        <castItem>
+          <role corresp="#frkurf">פראקוראפ </role>
+        </castItem>
+        <castItem>
+          <role corresp="#etvsh">עטוואש</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ndir">אנאדיר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fltelkhe">פלאטעלכע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fetsheli">פעטשעלי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ntisemiten">אנטיסעמיטען</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fndur">פאנדור</role>
+        </castItem>
+        <castItem>
+          <role corresp="#henter">הענטער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#brbr">בארבארא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dnil_brtshi">דניאל בארטשי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ihnn">יאהאננא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#insh">יאנאש</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mzel">אמזעל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#verhvi">ווערהאוואי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#iulin">יוליאנא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#diener">דיענער</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="tissa_essler-81-175-56-95CROPPED-0001.jpg"/>
+      <pb n="2" facs="tissa_essler-81-175-56-95CROPPED-0002.jpg"/>
+      <pb n="3" facs="tissa_essler-81-175-56-95CROPPED-0003.jpg"/>
+      <pb n="4" facs="tissa_essler-81-175-56-95CROPPED-0004.jpg"/>
+      <div type="act" n="1" xml:id="TissaEssler_Act1">
+        <head>ערשטער אַקט</head>
+        <stage type="setting">(שטעלט פאר דאס דארף טיססאַ עסלאַר, רעכטס פובליקום, לינקס אשאלין הינטער גרונדא</stage>
+        <stage type="setting">אונגארען טרינקען זינגען.</stage>
+        <sp who="#chor" xml:id="TissaEssler_SP0001_a">
+          <speaker>1 קאָהר</speaker>
+          <p>. NO</p>
+          <lg n="1">
+            <l>עס ווייסט ניט גאר דער אונגאר</l>
+            <l>צו זאגען פֿון קיין הונגער</l>
+            <l>טאג אונד נאכט פֿרייליך זיין</l>
+            <l>עסען אונד טרינקען וויין</l>
+            <l>טאנצען שפרינגען פרייליך זיין שווערען</l>
+            <l>אונגאר עמבעדר אונגאר וויל נור איממער לעבען</l>
+            <l>דאס בלוט קאכט באי איהם וויא פייער</l>
+            <l>טרינקענדיג פון דעם טאָקאַיער</l>
+            <l>קיין פאלק לעבט ניט בעסער</l>
+            <l>וויין טרינקען מיר נור פון פֿעססער</l>
+            <l>מיר אונגארען ווייסען פֿון קיין נוט</l>
+            <l>שטענדיג איז אונזער געזיכט רויט.</l>
+            <stage type="business delivery">מיין שלעפט אסתרן אריין אין מיטען זינגען זינגט מיט)</stage>
+          </lg>
+          <lg n="2" prev="true">
+            <l>קומט גיך מיט אונז צו קאנקאנירען</l>
+            <l>זייט ניט בייז אויף אונז שיינע מאגיארען</l>
+            <l>דיינע שמערצען פאר געס איצונד</l>
+            <l>צום טשארדאש טאַנץ קום גיכער דוא שעהנעס קינד.</l>
+            <stage type="business">(אסתר רייסט זיך אויס פון זייא)</stage>
+            <stage type="delivery">סאָלאָ</stage>
+          </lg>
+        </sp>
+        <pb n="5" facs="34506386.jpg"/>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0002_a">
+          <speaker>סאלא</speaker>
+          <lg n="3">
+            <l>אומזיסט איז אייער בעמיהען</l>
+            <l>אַוועק איז פון מיר מיין פֿרייליכקייט.</l>
+            <l>אונשולדיגע בלומען קענען מעהר ניט בליהען</l>
+            <l>פֿערשאלטען בין איך פון מיין יוגענד צייט.</l>
+            <l>וויא קען איך דען האבען יעצט דיא מוטה</l>
+            <l>צו טאַנצען מיט אייך גאַלאָפ</l>
+            <l>זעהט וויא עס רינט יעצט פון מיר מיין בלוט</l>
+            <l>צו שפאלטען האט מיר דיא מומע דעם קאָפ</l>
+            <l>אוי אוי אוי לאזט מיך שוין געהן</l>
+            <l>איך קען דא מעהר מיט אייך ניט שטעהן!</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="TissaEssler_SP0003_a">
+          <speaker>קאהר</speaker>
+          <lg n="4">
+            <l>מען האט דיך אבער באווארענט פריהער</l>
+            <l>אַז דוא זאלסט שוין נישט מעהר דינען באר איהר.</l>
+            <l>ניט דאס איז דיין שמערץ דער גרעסטער</l>
+          </lg>
+        </sp>
+        <sp who="#insh" xml:id="TissaEssler_SP0004_a">
+          <speaker>סאָלאָ</speaker>
+          <p>יאַנאָש.</p>
+          <lg n="5">
+            <l>איך ווייס פון דיין סוד זייא זיך מודה אסתר</l>
+            <l>דיין הערץ איזט דער פאר באטריבט,</l>
+            <l>ווייל דוא האסט דיך אין א אידען פערליבט</l>
+            <l>ער האט דיך פארפיהרט. און איז אוועק</l>
+            <l>דאס שמערצט דיך יעצט גאר אן אנעק</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="TissaEssler_SP0005_a">
+          <speaker>קאָהר</speaker>
+          <p/>
+          <lg n="6">
+            <l>אזוי פֿאלג אונז אצינד</l>
+            <l>קלויב דיר אויס אמאגיאר געשווינד</l>
+            <l>ער וועט דיר שטענדיג זיין געטראַי</l>
+            <l>דיך שטענדיג ליעבען אימער זיין פראַי</l>
+            <stage type="delivery">סאָלאָ (בעססע)</stage>
+            <l>איך וועל דיך שטענדיג ליעבען</l>
+            <l>איך וועל דיך קיין מאָהל ניט בעטריבען</l>
+            <stage type="delivery">(ערשטער טענאר)</stage>
+            <l>איך וועלן דיך שטענדיג שעצען</l>
+            <stage type="delivery">(צווייטער טענאר)</stage>
+          </lg>
+        </sp>
+        <sp xml:id="TissaEssler_SP0006_a">
+          <speaker>(קאָהר)</speaker>
+          <lg>
+            <l>מיר וועללען דיך קיין מאהל נישט רייצען</l>
+          </lg>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0007_a">
+          <speaker>אסתר</speaker>
+          <lg n="7">
+            <l>(סאָלאָ) ווען איין מאגנאט זאל מיר בעטען מיין האנד</l>
+            <l>איך פערקניפ קיין צווייטעס באַנד</l>
+            <l>פערשפראכען איז מיר אין מיינער ברוסט</l>
+            <l>דיא פרעהליכע ערשטע יוגענד לוסט,</l>
+            <l>יעדער שריט פירט מיך צום גרוב</l>
+            <l>מיין לעבען איזט מיר מעהר ניכט ליעב!</l>
+          </lg>
+        </sp>
+        <sp xml:id="TissaEssler_SP0008_a">
+          <speaker>(קאָהר)</speaker>
+          <lg n="8">
+            <l>זאַי קיין קינד זייא קיין נאַרר</l>
+            <l>קלויב דיר אויס איין מאַגיאַר</l>
+            <l>דער ערסטער, דער בעסטער</l>
+            <l>וועט דיך ליעבען טהייערע אסתר</l>
+          </lg>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0009_a">
+          <speaker>אסתר</speaker>
+          <lg n="9">
+            <l>(סאָלאָ) דיא בלוממען בליהען איך זעה זייא ניט</l>
+            <l>דיא פויגעל זינגען איך הער זייא ניט</l>
+            <l>נאר דעם געהערען, מיינע אויגען מיינע אויערען</l>
+            <l>וואס איך האב מיין אונשולד יעצט פערלוירען</l>
+            <l>דער פארקניפ איך קיין צווייטעס באַנד</l>
+            <l>ווען אויך איין מאגנאט גיט מיר זיין האַנד</l>
+          </lg>
+        </sp>
+        <pb n="6" facs="tissa_essler-81-175-56-95CROPPED-0006.jpg"/>
+        <sp who="#chor" xml:id="TissaEssler_SP0010_a">
+          <speaker>קאָהר</speaker>
+          <p>זיא איזט משוגע זיא איז פעריקט, לעגט אללע דיא הענד וועמען עס גליקעל<lb/>באלד<lb/>אסתרן חאפען ווער קען זיא דאָ זיא וועט <sic>טשאדראש</sic> געהן</p>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0011_a">
+          <speaker>אסתר</speaker>
+          <p>אה ניין דאס וועט ניט געשעהן, איך מוז שוין אהיים געהן.<lb/><stage type="business delivery">(מוזיק גערויש, אסער לויפט אוועק יאַנאַשי שלעפט זיא צוריק)</stage></p>
+        </sp>
+        <sp who="#insh" xml:id="TissaEssler_SP0012_a">
+          <speaker>יאנאַש</speaker>
+          <lg n="10">
+            <l>. ווען איך דיך בלומעלע, דיך אפ רייסען ווילל</l>
+            <l>דאן מעגסטו בלומעלע דיך בעקלאגען.</l>
+            <l>ווען איך דיך לעמעלע, דיך יעצט שערען וויל</l>
+            <l>מוז איך דען לעמעלע דיך פרעגען?</l>
+            <l>דיא בלום מעג שטערען ווען איך וויל זיא אָברעכען</l>
+            <l>דאס לעמעלע מעג מעקען מעה מעה!</l>
+            <l>דיא בלום מעג שטערען ווען איך וויל זיא אברייסען</l>
+            <l>מיך קענסטו נישט אב שרעקען וועה וועה!</l>
+            <l>לעמעלע ביסטו געחאפט ביסטו באלד געשוירען</l>
+            <l>בלומעלע ביסטו דער טאפט שטעק מיך דיין דארען</l>
+            <l>מיר מעננער האבען דאס רעכט</l>
+            <l>איהר פֿרויען זינד געשאפען אונזערע קנעכט</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="TissaEssler_SP0013_a">
+          <speaker>קאָהר</speaker>
+          <lg n="11">
+            <l>יאה, יאה, ער האט רעכט,</l>
+            <l>ער זאגט דא גאר ניט שלעכט</l>
+          </lg>
+          <p>(ביס)<lb/>}ביז</p>
+          <lg n="12" prev="true">
+            <l>נור דא ליגט און מיט אהאקען.</l>
+            <l>עס געפעללען איהר גאר קאזאקען</l>
+          </lg>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0014_a">
+          <speaker>אסתר</speaker>
+          <lg n="13">
+            <l>נוא לאסט מיך אהיים גיין.</l>
+            <l>איך קען דאָ מיט אייך ניט שטעהען!</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="TissaEssler_SP0015_a">
+          <speaker>קאָהר</speaker>
+          <lg n="14">
+            <l>נוא לאמיר ווייטער זעהען,</l>
+            <l>וואס דא וועט געשעהן</l>
+          </lg>
+          <p>(ביס)</p>
+          <lg n="15" prev="true">
+            <l>מיט געוואלד מיט געוואַלד,</l>
+            <stage type="delivery">(מיט מוזיק)</stage>
+            <l>מוז זיא מיט אונז מיט טאנצען באלד</l>
+          </lg>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0016_a">
+          <speaker>אסתר</speaker>
+          <lg n="16">
+            <l>איינער פלאַגט צום טוידט פערטרייבט - זיין געטרייעס. וווייב</l>
+            <l>דער אנדערער לאזט זיא אללען זיצען - זיא זאל אגאנצען טאג אין קוך שוויצען</l>
+            <l>דער דריטער מאכט איהר נאך - גאר געשוואלענע באקען</l>
+            <l>אָ מעננער שווער איז אייער יאך - שלעכט זייט איהר אללע דאך</l>
+            <l>אַמבעסטען זיינען דיא קאזאקען.</l>
+          </lg>
+        </sp>
+        <sp xml:id="TissaEssler_SP0017_a">
+          <speaker>(קאָהר</speaker>
+          <lg n="17">
+            <l>מיט געוואלד, מיט געוואַלד מוז זיא מיט אונז מיט טאנצען באלד (ביס)</l>
+            <l>חאפט זיא חאפט זיא צום טאַנץ באַלד</l>
+            <stage type="business">(מען צווינגט זיא טאנצען)</stage>
+            <stage type="delivery">פראזע</stage>
+            <stage type="entrance">(מיט סאלדאטען קאממען</stage>
+            <stage type="entrance">עמנואל</stage>
+          </lg>
+        </sp>
+        <sp who="#emnul" xml:id="TissaEssler_SP0018_a">
+          <speaker>עמנואל</speaker>
+          <lg n="18">
+            <l>אָ דוא קאנאליע, אָ דוא בעזע וויכט</l>
+            <l>שעהמען מעגסטו דיך און דיין געזיכט</l>
+            <l>דאס איז דיין טרוישאַפֿט פון היינט איאהר</l>
+            <l>פֿאר ביינקענעש טאנצטוא מיט א אונגאר גאָר</l>
+            <l>אבער איך בין אויך אונגארישער הוזאַר</l>
+            <l>איך וועל דיר ווייזען וויא מען האלט מיך פאר אַנאַר.</l>
+          </lg>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0019_a">
+          <speaker>אסתר</speaker>
+          <p>אָה, עמנואל!!...</p>
+        </sp>
+        <sp who="#emnul" xml:id="TissaEssler_SP0020_a">
+          <speaker>עמנואל</speaker>
+          <lg n="19">
+            <l>. אוועק פון מיר מיט דיינע נייע ליגען</l>
+            <l>אומזאנסט, ווערסט שוין מיך מעהר נישט בעטריגען</l>
+            <l>איין אנטיסעמיטין ביסטו אויך געווען</l>
+            <l>איך וועל מיר אלליין מיין שטעדשט באשטעהן. הו הו</l>
+            <l>אונד איהר אונגארישע שיכורים הינד</l>
+            <l>מיך וואגט איהר צו רופען וואגעבינד</l>
+          </lg>
+          <lg n="20">
+            <l>איך דיך טראַו מיין קעניג פֿאַרגיס מיין בלוט פאר מיין פֿאטערלאַנד</l>
+            <l>מיינט ניט מיר זיינען דאָ וועהניג באלד וועט איהר ליידען גענוג שאַנד</l>
+          </lg>
+          <p>(סאלדאטען שלאגען דיא בויערען) (נאכהר צו זאממען אב)</p>
+        </sp>
+        <pb n="7" facs="tissa_essler-81-175-56-95CROPPED-0007.jpg"/>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0021_a">
+          <speaker>אסתר</speaker>
+          <p>וואס ווילסטו נאך פאן מיר האבען? וואס ווילסטו מיינע שמערצען פיל מאכֿען?<lb/>וועהניג בין איך היינט שוין אויסגעשטאנען? איך האב היינט פאר צרות ניט<lb/>געוואָוסט וואס איך טוה, האב איך גענומען קאכעדיג וואסער און האב מיר<lb/>מיין קאפ אפ געבריהט.</p>
+        </sp>
+        <sp who="#emnul" xml:id="TissaEssler_SP0022_a">
+          <speaker>עמנואל</speaker>
+          <p>ווייל דער קאפ איז דיר געווען באי דיא גוטע ברידער, וואס דוא האסט מיט<lb/>זייא געטאנצט. וועק פון מיינע אויגען, נאַך דעם טוידט סיידען קען איך<lb/>דיך ליעבען, ביים לעבען נישט מעהר! <stage type="exit">(אב)</stage><lb/><lb/>אוויליע</p>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0023_a">
+          <speaker>אסתר</speaker>
+          <p>אָ עמנואל! איך וועל דיך אייך פאָלגען, איך וועל עס אייך פֿריווען, פילייכט<lb/>האסטו הערט, אויף מיר איז אויס געגאסען גאטטעס צאָרען מעהר וויא<lb/>אויף דער גאנצער וועלט, אללע רופין מיך דער אידשער הונד מיין<lb/>אייגענע מוטטער האט מיך ארויסגענומען, ווען איך האב געדיענט. באם<lb/>איין אידען, און עס איז מיר אזויא גיט געווען און האט מיך איבער<lb/>געגעבען צו דער מומע הורי וואו מען גוט מיר מעהר קלעפ אלס ברויט<lb/>מיט<lb/>זיא האט אויך מורא געהאט דער יודישער סאלדאט זאל ניט וועללען אויף מיר<lb/>חתונה האבען, אונד צו דעם אייפערט אויך מיין געליעבטער, <lb/>אז עס קומט מיר נור אויס איך זאל מיר דאס לעבען ווירקליך נעהמען אה<lb/>ער האט מיר אויך אזויא געזאגט; דיא מומע הורי האט אויך הייטע<lb/>געשריעגען..<lb/>געשריגען זיא ווייסט ניט וויא אזויא אזעלכס לעבט אויף דער וועלט<lb/>מיר שיינט איך וועל זייא צו ליעב טאן (ווייל איך האב דעם גאנצען =<lb/><stage type="delivery">NO 1</stage><lb/>איידער אזוי<lb/>מוטה צום לעבען פערלוירען, אזויא פארשווארצט צו ווערען איז גאר איין<lb/>עברה וואס מען איז געבוירין געווארן. בעסער דער טויט</p>
+        </sp>
+        <sp who="#huri" xml:id="TissaEssler_SP0024_a">
+          <speaker>הורי</speaker>
+          <p>. (<stage type="delivery">איהר שטיממע הערט מען אונטער קוליסען</stage>)</p>
+        </sp>
+        <sp who="#huri" xml:id="TissaEssler_SP0025_a">
+          <speaker>הורי</speaker>
+          <p><foreign>איסטאן, סעניטאַ, מאגיאן</foreign>! האט איהר מיין קליינע אויס געלאסענע מויד ניט געזען<lb/>שוין גייט 2 שטuנדע האב איך זיא געשיקט נאך ברוינפֿען און זיא דערלעב ניט<lb/>צו קומען (<stage type="entrance">ערשיינט</stage>) אסתר! וואו ביסטו?</p>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0026_a">
+          <speaker>אסתר</speaker>
+          <p>. | אַך דיא מומע הורי! דא בין איך טאַנצע</p>
+        </sp>
+        <sp who="#huri" xml:id="TissaEssler_SP0027_a">
+          <speaker>הורי</speaker>
+          <p>| וואו ביסטו אזוי לאנג געלעגען? דוא ווייסט ניט אַז איך קען אן אביסעל ברוינפען<lb/>ניט איבער בייסען? אונד דוא דער לעבסט ניט צו קומען, נוא נוא. <stage type="business">(שלאגט זיא)</stage></p>
+        </sp>
+        <sp who="#chor" xml:id="TissaEssler_SP0028_a">
+          <speaker>קאָהר</speaker>
+          <p>| גענוג שלאגען. גענוג שלאגען (4) ווייל זיא איז אקינד<lb/>גענוג שרייען גענוג שרייען (4) ווייל זיא איז א קינד.</p>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0029_a">
+          <speaker>אסתר</speaker>
+          <lg n="21">
+            <l>(סאָלאָ) [מענטשען ליעבע רעטעט מיך גאר אונשולדיג בין איך</l>
+            <l>זיא שלאגט מיך אין פלאגט מיך גאר אין אפאר וואס</l>
+            <l>יונג בין איך נאך חלעבען גאר, און זיא רויבט מיר מיינע יאהר</l>
+            <l>איהר זעהט דאך, פערשטעהט דאך, וואס שווייגט איהר גאר דיא</l>
+            <l>דאס אויס צו שטעהן קען איך נישט מעהן אוי אוי איז דאס קיין זינד!</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="TissaEssler_SP0030_a">
+          <speaker>קאָהר</speaker>
+          <p>גינוג שלאגען, ז"וו</p>
+        </sp>
+        <sp who="#eyner" xml:id="TissaEssler_SP0031_a">
+          <speaker>איינער</speaker>
+          <p>לאסט מאדאם הורי, זיא איז א יונג קינד זיא וועט עלטער ווערען וועט זיא<lb/>קליגער ווערען.</p>
+        </sp>
+        <sp who="#huri" xml:id="TissaEssler_SP0032_a">
+          <speaker>הורי</speaker>
+          <p>גייט אייך נעהמט אייך נישט אן פאר איהר, איהר זייט ניט בעסער פון איהר<lb/><stage type="delivery">(צו אסתר)</stage> קום אהער נא דיר צו גרייצער און גייא געשוויינד צום<lb/>קויפֿמאנן יאזעף קאלסאר, קויף ניט אלע הייס דיר געבען ענגעל רויטה<lb/>הייס דיר געבען ענגעל רויטה נאר זעה ניט פאר ליהר דאס געלד אדער<lb/>דיא פארבען וועסטו דיין קאפ פערליהרען.</p>
+        </sp>
+        <pb n="8" facs="tissa_essler-81-175-56-95CROPPED-0008.jpg"/>
+        <sp who="#shndmsh" xml:id="TissaEssler_SP0033_a">
+          <speaker>שאנדאש</speaker>
+          <p>לאז זיא מיר אויך מיט נעמען פאר 2 גרייצער</p>
+        </sp>
+        <sp who="#iulin" xml:id="TissaEssler_SP0034_a">
+          <speaker>יוליאנא</speaker>
+          <p>| מיר גם פאר 2. אסתר, איך האב דיך לא געלאזט שלאגן</p>
+        </sp>
+        <sp who="#huri" xml:id="TissaEssler_SP0035_a">
+          <speaker>הורי</speaker>
+          <p>א זיא לא יעשה. קום אהער, אט תרו (<stage>צעהלט</stage>) 1, 2, 3, 4, 5,-<lb/>6, 7 ; מיר פאר 3 מאדאם שאַנדאַש פיר 2 אונד מאדאם ליענטעש פיר 2.<lb/>גייא אין פאר ליהר דאס געלד אדער וועסט זיך זוימען וועסטו פֿארליהרען<lb/>דיין קאפף. <stage type="exit">(אסתר אב)</stage></p>
+        </sp>
+        <sp who="#eyner" xml:id="TissaEssler_SP0036_a">
+          <speaker>איינער</speaker>
+          <p>האבען מיר האבען מיר, פארטריבען דיא הוזארען נוא ווייטער געלעבט.<lb/><stage type="delivery">("קאָהר זינגען צו "עס ווייסט ניט גאר דער אונגאר" ז"וו )</stage><lb/><stage type="exit delivery">N מעלאדראמא (טאנצענד אללע אב מוזיק שפילט מעלאדראמיא אסתר קומט צוריק)</stage></p>
+        </sp>
+        <sp who="#ssr_slumsi" xml:id="TissaEssler_SP0037_a">
+          <speaker>אסתר</speaker>
+          <p>ווען איין שלעכט וועטער קומט איבער איין אלטען בליק, וואס האט פיללע<lb/>ווארצלען אונד צווייגען וועלכע זאללען איהם באשיצען קען ער זיך מיט<lb/>אללע קרעפטע ערהאלטען ביי דאס שלעכטעס וועטער פֿאר איבער איזט,<lb/>אונד נאך האָפֿפֿען אמאהל אויף בעסערס צו ערלעבען, ווען דאס שלעכטע<lb/>וועטער קומט אבער אויף איין בוימעלע וואס איזט נאר וואס ארויס<lb/>געשפראצט, אזויא איזט אומזיסט יעדער מיהע, יעדע אנשטרענגונג<lb/>וואס דיא שוואכע בוימעל גיט זיך דעם שטארקען וועטער צו ווידער שטעהן<lb/>בין<lb/>וועען איך נאר וואס געבוירען האב איך קיין פאטער געהאבט ער זאל<lb/>מיך פערזארגען, דיא מוטטער האט מיך איבער געלאזט פֿראַן דעם שפיעל<lb/>פאן דעם שיקזאלס וועעללען, אזויא לאנג וועהניגסטענס אז איך האב געדינט<lb/>פאר אידען, בין איך גוט געהאלטען געווארען. זייט איך בין אבער<lb/>בייא מיין אייגענער מוהמע, איז מיר דער לעצטער לוסט צום לעבען אפ<lb/>געשניטען געווארען מען גיט מיר קיין עסען, דארום ווערט מיין קערפער<lb/>פערטריקענט, מען שלאגט מיך אויף יעדען טריט, אונד דאדורך ווערט מיין<lb/>קאפ פֿאר שלאגען, מען לאסט מיך קיין פרייע שטונדע אונד דאדורך ווערט מיין.<lb/>ליעבער<lb/>גייסט צור שקלאווען געמאַלס איידער אַזאַ אומגליקליך לעבען איז פיל גלייכער<lb/>איין אומגליקליכער טוידט.<lb/><stage type="delivery"> Returne N=</stage><lb/>(פֿאלט אריין אין וואססער)<lb/>מיסטער יעקב טער!דאס וויל איך אייער טאטען<lb/>מיטן שרייבעכץ אין איינעם ס. וויינשטיין</p>
+          <lg n="22">
+            <l>טרינקען זיך [טרינקען זיך] אט דאס טוהט מיין נאטה</l>
+            <l>איך קען נישט מעהר לעבען, איך מיר שטערבען צום טוידט</l>
+            <l>[צום טויט מוז איך געהען]</l>
+            <l>דעם טוידט טוה איך זעהען</l>
+            <l>איך טוה שוועבען נור צום טויט</l>
+            <l>אָ וועלט, מיט אללע דיינע זאכען</l>
+            <l>וואס דענקט</l>
+            <l>וואס דאנקט דעם מענטש גליקליך מאכען</l>
+            <l>פארגרעסערט איהם נאך זיין נויט</l>
+            <l>ווען ער הייבט זיך אן דער מאהנען</l>
+            <l>אין זיין גליקליכען טוידט.</l>
+            <l>דער וואָס איזט אומגליקליך געבוירען</l>
+            <l>ווייסט ניט איינס פיהלט ניט.</l>
+            <l>ווען ער ווערט פון דער וועלט פערלוירען</l>
+            <l>דאס פיהל איך, פון מיין געבוירען</l>
+          </lg>
+          <lg n="1" prev="true">
+            <l>אך מיין שמערץ, עס ציטערט מיין הערץ</l>
+            <l>אך נור דעם גליקליכען טוהט עס באַנק</l>
+            <l>ווען ער מוז גיין דעם שרעקליכען גאנג</l>
+            <l>איך בוימעלע וויא פארטרוקענט בין איך</l>
+            <l>פאר דארט געבראכען צווייגעלע צו לעבען האסטו קיין פעלד</l>
+            <l>יאה געה זע שטארב, אדיע, אדיע מיין וועלט</l>
+            <l>טרונקען זיך טרונקען זיך ז" וו"</l>
+            <l>יעצט איזט שוין מיין לעצטער גאנג</l>
+            <l>וואס איך פיהל איהם אויף מיין שווערער ברוסט</l>
+            <l>מיינע שמערצען קוועללען מיך שוין לאַנג</l>
+            <l>שרעקליך איז זיך צו שיידען מיטען לעבען לוסט</l>
+            <l>אך שרעקליך איז עס צו טייטען זיך אלליין</l>
+            <l>עס קען אבער אנדערש שוין ניט זיין</l>
+            <l>אדיע אדיע אדיע מיין וועלט.</l>
+            <l>איך גייה מיר אין מיין עוויגען געצעלט!</l>
+            <stage type="setting">פֿארהאנג פאלט.</stage>
+          </lg>
+        </sp>
+        <pb n="9" facs="tissa_essler-81-175-56-95CROPPED-0009.jpg"/>
+      </div>
+      <div type="act" n="2" xml:id="TissaEssler_Act2">
+        <head>צווייטער אַקט (סאַלון, בופעט)</head>
+        <stage type="entrance business">(פליעערן טאנצען, ערשיינען אָנאָדי פֿעטצעל. ווערהאוואַי.)</stage>
+        <sp who="#ndir" xml:id="TissaEssler_SP0038_a">
+          <speaker>אָנאָדי</speaker>
+          <p>מיינע הערען! דיא היטצע מוססען מיר מיט טאקייער לעשען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0039_a">
+          <speaker>פעטשעל.</speaker>
+          <p>| מיר וועללען איינסטווייל דינען דעם גאטט פֿון באַכוס.</p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0040_a">
+          <speaker>אנאדי</speaker>
+          <p>מיינע קאלעגען אונד העררן, וויר אונגארען קענען טרינקען פאר דער באראטהונג<lb/>אונד נאך דער בעראטהונג, מיינע מיינונגען איזט אז דער פלאן זאל איין<lb/>גליקליכעס ענדע האבען, מוססען וויר זיך אין אללעם אנפאנג מיט טאקייער לאָבען</p>
+        </sp>
+        <sp who="#alle" xml:id="TissaEssler_SP0041_a">
+          <speaker>אללע</speaker>
+          <p>איהר וואונש זאל ערפֿיהלט ווערען (<stage type="business">גיסען אן וויין)</stage></p>
+        </sp>
+        <sp who="#verhvi" xml:id="TissaEssler_SP0042_a">
+          <speaker>ווערהאוואי</speaker>
+          <p>"  איך ערהעבע דאס גלאז וויין - גליקליך זאל אונזער פלאן זיין<lb/>                " אללע אונזערע פיינדע צום טאָדע - האך לעבע אונזער גראף אָנאָדי! <lb/><stage type="delivery">(מוזיק טאָסט)</stage></p>
+        </sp>
+        <sp who="#chor" xml:id="TissaEssler_SP0043_a">
+          <speaker>קאהר.</speaker>
+          <p>" איך ערהעבע דעם טאָקאַיער- אונזערע פיינדע זאללען ברענען וויא פֿייער<lb/>טאדט דעם אידען מיט זייערע זיטטען - האך לעבען דיא אנטיסעמיטען. (טאָסט)</p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0044_a">
+          <speaker>אנאדי</speaker>
+          <p>. איך דאנק דעם הער אונטערזוכונגס ריכטער קאמיסאר באַרי.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0045_a">
+          <speaker>פֿעטשעלר</speaker>
+          <p>מיין וואונש איז נאָר דער איינער - דיא יודען דורטיג דורך ברעכען דיא ביינער<lb/>אבער איהרען קאָפ אָך אונד וועה - עס לעבע האק דעהוטירטער ווערהאוואי!<lb/><stage type="delivery">(מוזיק געשפיעלט אַ טאָסט)</stage></p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0046_a">
+          <speaker>אַנאדי</speaker>
+          <p>| וויא דער טאקאיער פערעלט אין בעכער. - און פארבט דאס גלאז בלוט רויטה<lb/>זאָ זאללען וויר יודין רעכער ערלעבען פייערען זייער טוידט! (טאָסט)<lb/>פעטשעל<lb/>" יעצט צור זאכע! הערר ראַב לאססען זיא הערען וואס אין טיסא עסלאר<lb/>הארגע האהלען איזט<lb/>פאר</p>
+        </sp>
+        <pb n="10" facs="tissa_essler-81-175-56-95CROPPED-0010.jpg"/>
+        <sp who="#khr_iden" xml:id="TissaEssler_SP0047_a">
+          <speaker>קאהר</speaker>
+          <p>הערר פעטשעלי! זיינען זיא זאָ גוט אונד לעזען זיא איבער דיא צייטונג</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0048_a">
+          <speaker>פעטשעלי.</speaker>
+          <p>לעזט: "איין קריסטליכעס מעדכען פערשוואונדען" אם 1טען אפריל איזט אין<lb/>איין מעדכען<lb/>דעם דאָרף טיססא עסלאר אסתר סאלאמאסי געשיקט געווארען פאר 7 קרייצער פארבען<lb/>צו קויפען, אונד איזט ביז הייטע נאך ניכט צוריקגעקעהרט. עס איז אין דאָרף<lb/>פאָרבערייטונג דיא מיינונג, דאס דיא יודען האבען דאס מעדכען געשלאכטעט<lb/>דאס געריכט האַלט דיא זאכע אין אונטערזוכונג.</p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0049_a">
+          <speaker>אנאדי</speaker>
+          <p>זעהר גוט! וואס ערצעהלען זיא הערר בארי? פון דער שעכטער פערזאמלונ?</p>
+        </sp>
+        <sp who="#khr_iden" xml:id="TissaEssler_SP0050_a">
+          <speaker>קאהר</speaker>
+          <p>אין דעם זעלבען טאג, זיינען 2 שעכטער, סאלאמאן שוואַרץ איין אונגארישער<lb/>יודע, אונד אברהם בוקסבוים איין גאליציאנער פאנאטשער יודע באי יאזעף<lb/>שווארץ געווען פאר זאממעלט אין דער סינאגאגע.</p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0051_a">
+          <speaker>אנאדי</speaker>
+          <p>בראווא בראוויסימא! דיא 2 פאר פֿעללע מוססען צו זאַממען געקניפט<lb/>ווערדען אונד איינע בלוט געשיכטע מוס דאפאן פאבריצירט ווערדען<lb/>אבער וויר מוססען זיך נעהמען מיט ענערגיע דערצו  ארבייטען</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0052_a">
+          <speaker>פעטשעלי</speaker>
+          <p>איך האבע דאס מייניגע שוין געטאן, איך האבע דיא אלטע הורי אונד נאהאונ!<lb/>סאלימאסי איין ווינק געגעבען זייא זאללען איין קליין קינד יאזעף שאַרפֿס<lb/>מיט דעם נאמען שאַמאַ אבריכטען ער זאל ערצעהלען דאס ער האט געזעהן<lb/>וויא מען האט דאס מעדכען באי זיין פאטער געשלאכטעט.</p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0053_a">
+          <speaker>אנאדי</speaker>
+          <p>זעהר גוט וואס מיינען זיא דאצו הערר בארי</p>
+        </sp>
+        <sp who="#khr_iden" xml:id="TissaEssler_SP0054_a">
+          <speaker>קאהר</speaker>
+          <p>איך ווערדע אללע מיינע קרעפטען אנווענדען דעם אנטיסימיטיזמוס צו אונטער<lb/>שטוצען.<lb/>ווער האווא אונד איך ווערדע דאס מייניגע טאָהן<lb/>איין               דיא</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0055_a">
+          <speaker>פעטשעלעי</speaker>
+          <p>באי מיר איזט דער פלאן שיין פערטיג. הערען זיא! דאמיט דאס בלוטיגע<lb/>באשולדיגונג זאל אויף אללע יודען פאללען אלס איינע ריטואלארנע מארד מוס<lb/>דאס הייסען דאס דיא יודען האבען דאס מעדכען געשלאכטעט אין זייער<lb/>סינאגאגע. מען זאל אויך פערהאפטען דעם קנאבע מאריץ שארף דער זאהן פאן<lb/>יאזעף שוואַרץ, ער זאל דורך מארטערען פאלטערען אונד פערשפרעכונגען בערעדעט<lb/>דאס ער האט גיזעהן<lb/>ווערען ער זאל דער צייגע זיין דאס איינער פֿאן דיא פֿערזאממעלטע שעכטער<lb/>האבען דעם מעדכען דעם האַלדז דורך געשניטען, מיט איין שעכט מעססער,<lb/>אונד דאס בלוט אין איינען טאפ געזאמעלט, אונד זאָ ווייטער, דיזעס אללעס זאל<lb/>ער האבען געזעהען  דורך דען שליססעל לאָך פאן דער שוהל טיהר.</p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0056_a">
+          <speaker>אנאדי</speaker>
+          <p>מיינע הערען! די גרעפֿי פֿוילער האט מיר ערצעהלט דאָס זיא איזט אויף דער<lb/>שפור געקאממען וואָצו דיא יודין ברויכען קריסטליך בלוט, זיא האבען איין גאלדערנעם<lb/>קאַלב דיעזעס קאַלב מאכט דיא יודין רייך, דיזעס קאלב ווערט יעדעס יאהר<lb/>צו געשיקט צו איין אנדער יודישע געמיינדע וואו עס בלייבט איינגעשפארט דאס<lb/>גאנצעס יאהר, דאס זאַגט זיא האט איהר דיא מוטטער און טרום ענטדענקט </p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0057_a">
+          <speaker>פעטשעלי</speaker>
+          <p>. | דיא גרעפין פערדינט און אונזער מוטטע אויפגענאממען צו ווערען</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0058_a">
+          <speaker>באַרי</speaker>
+          <p>איין גלאז טאקייער אויף דעם וואהל זיין, דער גרעפֿין אונד דאס גולדערנע קאַלב!</p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0059_a">
+          <speaker>אנאדי</speaker>
+          <p>יעצט איזט דער פלאן בעשלאסען. זיא הערר פעטשעלי זאללען אין דער זאכע<lb/>נישט רוהען. אונד זיא הערר בארי דאס זעלבע אונד עס ווערע זייער געשייט<lb/>מען זאל דיא יודען אמנסטווייל גאר אויס פריגלען.</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0060_a">
+          <speaker>באַרי</speaker>
+          <p>איך בין דער זעלבער מיינונג.<lb/><stage type="delivery">N</stage></p>
+        </sp>
+        <sp who="#ndir" xml:id="TissaEssler_SP0061_a">
+          <speaker>אנאדי</speaker>
+          <p>יעצט מיינע העררן געהן מיר צום טאנץ! <stage type="exit delivery">(טאנצען זינגען "וויר אלע אנטיסעמיטן ביז אב)</stage><lb/>אנפאנג 2טער אקט?</p>
+        </sp>
+        <pb n="11" facs="tissa_essler-81-175-56-95CROPPED-0011.jpg"/>
+        <div type="scene" n="2" xml:id="TissaEssler_Act2_Sc2">
+          <head>פערוואנדלונג (יאזעף שארפס ציממער)</head>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0062_a">
+            <speaker>יאזעף</speaker>
+            <p><stage type="entrance delivery">(קאמט אריין רופט)</stage> לאה! לאה! <stage type="entrance">(זיא טרעט אריין)</stage> לאז מאריץ אריין טראגען<lb/>דעם טיש מיט דיא ביינקלעך פֿון דער שול אהער אין דעם קהל שטיבעל<lb/>אריין, ווייל ביידע איינהארינס אונד זוסמאנן קומען באלד אהער עפעס<lb/>האבען זייא צוויישען זיך א בוררת, אין ליכטמאן וועט זיין אבורר, וואו<lb/>איז ערגעץ מאריץ?</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0063_a">
+            <speaker>לאה</speaker>
+            <p>(<stage type="delivery">רופט) </stage>מאריץ, מאריץ! (<stage type="entrance">ער קומט)</stage> מאריץ געה בריינג אריין דעם טיש מיט<lb/>דיא ביינקלעך פון דער שערל.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0064_a">
+            <speaker>מאָריץ</speaker>
+            <p>איך האב מורא אראפ צו גיין אין שול עס איז דארס דא מתים.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0065_a">
+            <speaker>יאזעף</speaker>
+            <p>געה געה! האב נישט קיין מורא. (מאריץ אב)</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0066_a">
+            <speaker>לאה</speaker>
+            <p>זאג נור יאזעף וויא אזויא אזויא געבליבען מיט דיא 3 שוחטים? וועלכער<lb/>בלייבט, סאלאמאן שווארץ, צו לעאפאלד ברוין?</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0067_a">
+            <speaker>יאזעף</speaker>
+            <p>מיר דאכט זיך גאָר אַז דער דריטטער,, אברהם בוקסבוים וועט בלייבען. לאה! וויא<lb/>אזויא איז דיר געפֿעללען זיין קדושה זאגען היינט באי מוסף?</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0068_a">
+            <speaker>לאה</speaker>
+            <p>מיר איז שוואַרץ בעסער געפעללען באי שחרית דאוונען אלס בוקסבוים מוסף<lb/>ער האט אקעלעכיל וויא אקאנאריקעל</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0069_a">
+            <speaker>יאזעף</speaker>
+            <p>זעהסטו, און מיר איז בעסער געפעללען בוקסבוים, ווייל ער האט א גוטע שטיממע<lb/>און ברוינס לייענען אין דער תורה, איז אמחיה צו הערען זייט איך בין שמש<lb/>האב איך נאך אַזאַ בעל קורא ניט געהערט, זאג נור לאה, וויא געפעלט דיר<lb/>בעסער, וואס פאר איין אייזערנעם קאפף אונזער מאריציל האט? וויא אר<lb/>היינט<lb/>האט שוין נאך געזינגען הייטע אללע שטיקלעך זייערע.<lb/>19.</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0070_a">
+            <speaker>לאה</speaker>
+            <p>ער זאל נאר ניט זיין אַזאַ עזות פּנים אַזאַ ליגנער, וואלט ער געווען אוואהל קינד<lb/>מעגסט זאגען אז ווייל איך בין א שטיף מאמע, איך קען זיינע ליגען ניט ליידען, פון<lb/>אשטיקעל צייט האט ער אנגעהויבען זאגען ליגען וויא געדרוקט.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0071_a">
+            <speaker>יאזעף</speaker>
+            <p>ווייס איך, עס דאכט זיך דיר אזויא, ער איז נאָך אקינד, ער וועט עלטער ווערען<lb/>וועט ער בעסער ווערען.</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0072_a">
+            <speaker>לאה</speaker>
+            <p>ער וועט עלטער ווערען וועט ער גרעסערע ליגען זאגען, אליגנער איז באַי מיר<lb/>ערגער וויא אגנב, פאר אגנב קען איך מיך היטען און פאר אליגנער ניט.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0073_a">
+            <speaker>מאריץ</speaker>
+            <p><stage type="entrance business">(קומט מיטען טיש)</stage> אוי פאטער, איך וואלט| מיך געווען בעסער אונטער גענומען זיך 10 פאָר<lb/>פאדעשוועס מיט 10 קנאַפֿעל אפ רייסען פון אלטע שטיוול, איידער דעם טיש<lb/>אהער צו בריינגען.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0074_a">
+            <speaker>יאזעף</speaker>
+            <p>וואס איז געווען?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0075_a">
+            <speaker>מאָריץ</speaker>
+            <p>עס איז איהם ניט געווען אפ צו רייסען פֿונעם אָרט וויא מרים וואלטען געווען<lb/>אין שוהל און איהם צו געהאלטען.<lb/><stage type="delivery">NO.</stage></p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0076_a">
+            <speaker>יאזעף</speaker>
+            <p>דוא האסט נאך איממער אין דיר נארישע פאנטאזיען.</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0077_a">
+            <speaker>לאה</speaker>
+            <p>ניין פשוט ליגענס.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0078_a">
+            <speaker>מאָריץ</speaker>
+            <p>אביא איהר זאגט אמת<lb/>בוקסבוים</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0079_a">
+            <speaker>לאה</speaker>
+            <p>אט קומט דער הערר קאמער, גראס, אונד גראסבערג אונד נאך יודען</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0080_a">
+            <speaker>יאזעף</speaker>
+            <p>עס וועט געוויס זיין יעצט דעם וואַהל פון דיא שוחטים.<lb/><stage type="entrance">שוחטים, גבאָים, קאָהר, מעננער </stage>NO</p>
+          </sp>
+          <sp who="#chor" xml:id="TissaEssler_SP0081_a">
+            <speaker>קאָהר</speaker>
+            <p>א גוטע וואך, א גוטע וואך! (ז" וו")</p>
+          </sp>
+          <sp who="#alle" xml:id="TissaEssler_SP0082_a">
+            <speaker>אללע</speaker>
+            <p>א גוטע וואך הערר שאַרף!</p>
+          </sp>
+          <sp who="#buksboym" xml:id="TissaEssler_SP0083_a">
+            <speaker>בוקסבוים</speaker>
+            <p>האט איהר שוין הבדלה געמאַכט הערר שארף?</p>
+          </sp>
+          <pb n="12" facs="tissa_essler-81-175-56-95CROPPED-0012.jpg"/>
+          <sp who="#mrits" xml:id="TissaEssler_SP0084_a">
+            <speaker>מאָריץ</speaker>
+            <p>יאַה, נאך נעכטען</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0085_a">
+            <speaker>לאה</speaker>
+            <p>עס איזט דאך ערשט היינט שבת.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0086_a">
+            <speaker>יאזעף</speaker>
+            <p>ער מיינט טאקע קידוש ער האט א טעות, נוא זעצט אייך ווייל איך האב<lb/>ווייניג ליכט, און קויפֿען איז ניטאָ וואו ווייל עס איזט אָסטערען זאנענאבענד<lb/>איז יעצט איבעראַלל צו. איז איבעראלע פערמאַכט<lb/>?וואס זאגט איהר הערר בוקסבוים וויא אזויא האט איהר זיך איבערלעגעט<lb/>?בלייבט איהר באי אונד חזן, שוחט, מוהל, אונד בעל קורא?</p>
+          </sp>
+          <sp who="#buksboym" xml:id="TissaEssler_SP0087_a">
+            <speaker>בוקסבוים</speaker>
+            <p>לעת עתה לאמיר זעהען דיא גבאים זאללען שיקען נאך אביסעל משקה,<lb/>וועט זיך גאר פֿרייליכער שמועסען.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0088_a">
+            <speaker>יאזעף</speaker>
+            <p>הערר בוקסבוים האט רעכט, וועללען זייא טאקע איבער זאגען מלכיות,<lb/>זכרונות, שופרות,<lb/>גראס נוא בריינגט עפעס אריין.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0089_a">
+            <speaker>יאזעף</speaker>
+            <p>מאריץ גיה אריין אין שטוב צו אונז, און בריינג אריין דיא פלאַש מיט ברוינפען<lb/>אין עטליכע קיכליך</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0090_a">
+            <speaker>מאָריץ</speaker>
+            <p>יאה, שאמא האט פריהער אנגעצוהדען אליכט האט ער אווארף געטאן דעם שנורץ<lb/>אויף דער פֿלאש, האט זיך אנגעצונדען דער ברוינפען.</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0091_a">
+            <speaker>לאה</speaker>
+            <p>דאס איז א ליגען אין 3 גאָרען, ערשטען איז שאַמא פון באי טאג אן ניטאָ<lb/>אין דער היים, 2טינס האט נאך קיין ליכט געברענט באי אונז זייט עס איז<lb/>אויס שבת געווארען, 3 טענס האב איך דיא פלאש גוט בעהאלטען און שראָנק</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0092_a">
+            <speaker>מאריץ</speaker>
+            <p>(<stage type="delivery">צו לאה)</stage> נוא געה דוא און בריינג <stage type="exit business">(אב לאה</stage>)</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0093_a">
+            <speaker>יאזעף</speaker>
+            <p>נוא דער ווייל זאגט עפעס אהינישעס, היינט איז דאך שבת הגדול, וועללען<lb/>מיר האבען אפֿרייליכע וואָך מיט אכשהרן פסח זאגט עפעס ה" בוקסבוים<lb/>הער שווארץ אדער גאר אללע אין איינעם, וואס וועט איהר געבען רבותים אַז<lb/>דער חזן<lb/>מיין מאריטץ וועט אויך נאך זינגען וואס איהר האט נעכטען באי נאכט געזונגען<lb/>באם גבאי?</p>
+          </sp>
+          <sp who="#buksboym" xml:id="TissaEssler_SP0094_a">
+            <speaker>בוקסבוים</speaker>
+            <p>איך גלויב עס ניט.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0095_a">
+            <speaker>יאזעף</speaker>
+            <p>אנוא מאריץ אייז זייא אוממיסטען. זינג.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0096_a">
+            <speaker>מאָריץ</speaker>
+            <p>איך שעהם מיך.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0097_a">
+            <speaker>יאזעף</speaker>
+            <p>נוא שעהם דיך ניט.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0098_a">
+            <speaker>מאַריץ</speaker>
+            <p>שאַ איך בין גאר הייזעריג.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0099_a">
+            <speaker>יאזעף</speaker>
+            <p>פאר וואס?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0100_a">
+            <speaker>מאריץ</speaker>
+            <p>איך בין דיא נאכט געשלאפען אויפען בוידים, האט אהאן געקרייט 12 אזייגער<lb/>אין האט געפאצט מיט דיא פליגלען, איז מיר אריין אלופט אין האלדז אריין אז איך<lb/>קען אזש ניט רעדען.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0101_a">
+            <speaker>יאזעף</speaker>
+            <p>ערשטענס רעדסטו דאך יאה, און 2טענס האבען מיר דען אהאן אין שטוב?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0102_a">
+            <speaker>מאָריץ</speaker>
+            <p>דאס הייסט באי דיר גערעדט? אַי עס איז ניטאָ קיין האן האט דאס מאָהל<lb/>געקעהרט דיא קאַץ קרעהען.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0103_a">
+            <speaker>יאזעף</speaker>
+            <p>שאדעט ניט זאג וויא דיא קאנסט.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0104_a">
+            <speaker>מאריץ</speaker>
+            <p>וועט איהר מיר מיט העלפען?</p>
+          </sp>
+          <sp who="#alle" xml:id="TissaEssler_SP0105_a">
+            <speaker>אללע</speaker>
+            <p>יאה!<lb/><stage type="delivery">קאָהר (מיט מאריץ זינגען) שישו ושמחו בשמחת תורה ז" וו"</stage></p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0106_a">
+            <speaker>לאה</speaker>
+            <p>(<stage type="entrance business">קומט מיט פלאַש)</stage> איך האב קוים דיא פלאַש געפינען</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0107_a">
+            <speaker>מאריץ</speaker>
+            <p>אאה דוא איז שיעור אויס געגאסען געווארען</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0108_a">
+            <speaker>יאזעף</speaker>
+            <p>נון יעצט מיינע העררן וועללען מיר נעהמען אביסעל משקה</p>
+          </sp>
+          <pb n="13" facs="tissa_essler-81-175-56-95CROPPED-0013.jpg"/>
+          <sp who="#buksboym" xml:id="TissaEssler_SP0109_a">
+            <speaker>בוקסבוים</speaker>
+            <p>הערר שארף, וואס הערט זיך וועגען דעם אונגארישען מיידל וואס איז פערשווינדען<lb/>געווארען?</p>
+          </sp>
+          <sp who="#shvrts" xml:id="TissaEssler_SP0110_a">
+            <speaker>שווארץ</speaker>
+            <p>מיר שרעקט זיך דאס האַרץ איך וואלט שוין גערען אוועק פאהרען.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0111_a">
+            <speaker>יאזעף</speaker>
+            <p/>
+          </sp>
+          <sp who="#grsmnn" xml:id="TissaEssler_SP0112_a">
+            <speaker>גראסס</speaker>
+            <p>דומהייטען, ווער ווייסט מיט וואס פאר אסאלדאט זיא האט זיך ערגעץ פאר שיכורת.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0113_a">
+            <speaker>יאזעף</speaker>
+            <p>אין נאַנאַס האט זיך אויך אַזא געשיכטע געטראפען, אקריסטליך מיידיל איזט<lb/>פערשווינדען געווארען. האט מן מן הסתם געזאגט איז אידען האבען זיא<lb/>געקוילעט, און אין עטליכע טעג ארוים איז דיא געקוילעטע צוריק געקומען.<lb/>פאן   </p>
+          </sp>
+          <sp who="#buksboym" xml:id="TissaEssler_SP0114_a">
+            <speaker>בוקסבוים</speaker>
+            <p>נוא אין דער ווייל דיא וואס מען האט איינגעקלאגט, איז געווען פארלוירן עס אי<lb/>ערב פסח, און איך פאָהר מארגען אהיים, אין וועגען מיין פערבלייבען <lb/>וועללען מיר שוין זעהען נאך פסח אי"ה.</p>
+          </sp>
+          <sp who="#shvrts" xml:id="TissaEssler_SP0115_a">
+            <speaker>שוואַרץ</speaker>
+            <p>איך זאל האבען פליגעל וואלט איך שוין אוועק געפֿלויגען.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0116_a">
+            <speaker>יאזעף</speaker>
+            <p>וועגען דעם איז זיך ניטא וואס צו שרעקען, ווען איך בין היינט געגאנגען<lb/>פון ראזענבערגען. האב איך באגעגענט יאהאננא סאַלומאָסי דעם מיידילס<lb/>מוטטער<lb/>מוטטער מומע און הורי דעם מיידעלס מומע, האב איך זייא דערציילט דיא<lb/>געשיכטע מיט דעם מיידיל פון נאנאס וואס איך האב אייך דאָ ערצעהלט<lb/>האב איך פון זייא פערשטאנען אז זייא האבען קיין שום פערדאכט אויף<lb/>דיא יודען.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0117_a">
+            <speaker>מאָריץ</speaker>
+            <p>און איך האב נאך נעכטען געהערט איז מען האט זיא געפינען</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0118_a">
+            <speaker>לאה</speaker>
+            <p>ערשט היינט איז זיא דאך פערשווינדען געווארען.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0119_a">
+            <speaker>מאָריץ</speaker>
+            <p>נוא איך מיין טאַקע היינט נור עס האט זיך מיר אויס געוויזען אז נעכטען</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0120_a">
+            <speaker>לאה</speaker>
+            <p>מיט דיינע ליגען בין איך שוין זאַטט נאר איך האב געהערט איין דרויסען<lb/>יעצט זייגענד אז מען האט זיא געפונען, עפעס זאגט מען האט זיא איהר<lb/><stage type="setting">ערשטן קלאפ צום מוזיק No</stage><lb/><stage type="setting">מומע הורי געשלאגען איז זיא אנטלאפען  צום גלח קיין שטראַבקע</stage></p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0121_a">
+            <speaker>מאָריץ</speaker>
+            <p>ניט דאס אייגענע האב איך געזאגט?</p>
+          </sp>
+          <sp who="#buksboym" xml:id="TissaEssler_SP0122_a">
+            <speaker>בוקסבוים</speaker>
+            <p>מיר מעגען לויבען גאטט, און אפילו גיין אטענציל, וואָרון וואס טוט מען אזא גלח<lb/>אז ער באהאלט זיא באי זיך? וואלטען אידען זיכער געווען דאס כפרה הינדעל.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0123_a">
+            <speaker>שאַרף</speaker>
+            <p>יאה, מיר מעגען דאנקען גאטט וואס ער האט אונז אב געהיט פון אונגליך.<lb/><stage type="business delivery">(טאנצן) No (זייא זינגען טאנצען מאריץ לויפט ארויס מען הערט געשרייען פון דרויסען)</stage><lb/><stage type="setting">צוויטען</stage></p>
+          </sp>
+          <sp who="#alle" xml:id="TissaEssler_SP0124_a">
+            <speaker>אללע</speaker>
+            <p>(<stage type="delivery">ערשראקען</stage>) וואס איז דאס פאר אקוֹלוֹת? פון פרייד צי פון נקמה?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0125_a">
+            <speaker>מאריץ</speaker>
+            <p>(<stage type="entrance">לויפט ארין)</stage> דאס גאנצע דאָרף האט זיך צוזאַממענגענומען און פיהרען אסתרן אהיים<lb/>זינגען שרייען טאנצען אין אויך אסתר טאנצט מיט זייא</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0126_a">
+            <speaker>לאה</speaker>
+            <p>(<stage type="business">קוקט אין פענסטער</stage>) וועה איז מיר, עס איז ליגען וואס מאריץ זאגט, איך זעה ניט<lb/> אסתרן, איך זעה נור וויא מען שלאגט א אידען צום טוידט, און מען שלאגט אויס<lb/>אהה הדע אין אידישע הייזער דיא פענסטער,</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0127_a">
+            <speaker>שאַרף</speaker>
+            <p>זאג דעם אמת מאריץ, האסטו געזעהען וויא מען פיהרט אסתרן?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0128_a">
+            <speaker>מאָריץ</speaker>
+            <p>יאה איך האב אלליין געזעהען וויא דאס גאנצע דאָרף איזט פערזאממעלט =</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0129_a">
+            <speaker>יאזעף</speaker>
+            <p>אבער אסתר?!</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0130_a">
+            <speaker>מאריץ</speaker>
+            <p>וועט געוויס אהיים קומען אויב זיא איז שוין ניט געקומען, וואס דען פרייען<lb/><lb/>זייא זיך אזויא?</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0131_a">
+            <speaker>לאה</speaker>
+            <p>(<stage type="business">קוקענד אין פענסטער</stage>) וועה איז מיר, זייא קומען אהער צו דער שוהל, עפעס אמאסע<lb/>מאגנאטען גייען מיט זייא, אללע מיט שטעקענס קומט לאמיר זיך בעהאלטען</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0132_a">
+            <speaker>יאזעף</speaker>
+            <p>קומט אידישע קינדער! ווער ווייסט וואס פיר איין אומגליק אונז ער וואַרטעט<lb/>(<stage type="exit business">אללע לויפען אב</stage>, <stage type="setting">פארהאנג פאלט.</stage>)<lb/><lb/>2 טעס בילד<lb/><stage type="delivery">N</stage></p>
+          </sp>
+          <pb n="14" facs="tissa_essler-81-175-56-95CROPPED-0014.jpg"/>
+          <sp who="#chor" xml:id="TissaEssler_SP0133_a">
+            <speaker>קאהר</speaker>
+            <p><lb/>שטעלט פאר דיא דאָרפס שוהל Returnal<lb/>אידען לויפען מיט יאממערליכע געשרייען דיא קריסטען נאך זייא<lb/>מען הערט אויס געשריעען! שלאגט זייא! טיידעט! ברענט!<lb/>מוזיק שטורם, פארהאנג פאלט.</p>
+          </sp>
+          <trailer>ענדע 2טען אַקט</trailer>
+        </div>
+      </div>
+      <div type="act" n="3" xml:id="TissaEssler_Act3">
+        <head>דריטטער אַקט. (קאמיטעט הויז)</head>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0134_a">
+          <speaker>פעטשעלי.</speaker>
+          <p>(<stage type="entrance">קומט אריין</stage>) פאנדור! ברינג אריין הורי, יאהאננא און דעם קליינעם שאַרף</p>
+        </sp>
+        <sp who="#fndur" xml:id="TissaEssler_SP0135_a">
+          <speaker>פאנדור</speaker>
+          <p>צו דיענען! <stage type="exit">(אב)</stage></p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0136_a">
+          <speaker>פעטשעלי</speaker>
+          <p>יעצט איזט דיא צייט איך זאל מיין נאמען באי דער וועלט גרויס מאכען. <stage type="entrance">(זייא קאממען</stage>)<lb/>קאם אהער שאַמאַ, האסט ליעב מאנדלען אין ניסלעך?</p>
+        </sp>
+        <sp who="#shm" xml:id="TissaEssler_SP0137_a">
+          <speaker>שאַמאַ</speaker>
+          <p>יאַה יאַה, איך האב ליעב ניסלעך</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0138_a">
+          <speaker>פעצעלי</speaker>
+          <p>איהר הערט הורי, "יאַה" זאגט ער. (שרייבט) זאג נאָר שאַמאַ האסט אליין געזעהען<lb/>דאס מיידעל? שווייגסט? זאל מען דיר נאך עטוואס געבען? (<stage type="business">קינד שאקאלט מיטען קאפ יאה</stage>)<lb/>יאה, הייסט עס. (<stage type="business">שרייבט</stage>) ער האט געזעהען וויא מאן האט דאס מיידיל געשלאכטעט.<lb/>שאַמאַ, ווען דער גרויסער באטשא, מיט דעם לאנגען מעססער האבען אסתרן<lb/>געקוילעט איז מאריץ אויך געווען דאבייא? לאס הערען וואס דוא ווייסט!</p>
+        </sp>
+        <sp who="#shm" xml:id="TissaEssler_SP0139_a">
+          <speaker>שאַמאַ</speaker>
+          <p>איך ווייס טאקע אז דיא מומע הורי וועט מיר קויפען אבייטשיל מיט אקצופילושעל</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0140_a">
+          <speaker>פעטשעלי</speaker>
+          <p>פאר וואס האט איהר איהם ניט אויס געלערענט בעסער אז מען פרעגט איהם<lb/>זאל ער שוין אנהייבען צו ערצעהלען?</p>
+        </sp>
+        <sp who="#huri" xml:id="TissaEssler_SP0141_a">
+          <speaker>הורי</speaker>
+          <p>ער איז אוואויל קינד, ער קען דער צעהלען! אנוא שאמא דער צייל דעם באטשאַ<lb/>דיא געשיכטע מיט דעם מיידעל.<lb/>א סאלדאטעל</p>
+        </sp>
+        <sp who="#shm" xml:id="TissaEssler_SP0142_a">
+          <speaker>שאַמאַ</speaker>
+          <p>מומע הורי, איהר האט דאך געזאגט איז איהר וועט מיר קויפען אבייטשיל מיט<lb/>אַ פֿייפֿיל פאר וואס גיט איהר מיר ניט וועל איך טאקע ניט ערצעהלען?</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0143_a">
+          <speaker>פעטשעלי</speaker>
+          <p>. (<stage type="business">גיט איהם געלט</stage>) נאַ דיר 4 קרייצער וועסטוא דיך קויפען, נוא ערצעהל!<lb/>עס</p>
+        </sp>
+        <sp who="#shm" xml:id="TissaEssler_SP0144_a">
+          <speaker>שאַמאַ</speaker>
+          <p>אָ מומע הורי איך האב טאַקע פארגעסען וויא אזויא הייבט זיך און? דיא<lb/>געשיכטע מיט דעם מיידעל?.</p>
+        </sp>
+        <pb n="15" facs="tissa_essler-81-175-56-95CROPPED-0015.jpg"/>
+        <sp who="#huri" xml:id="TissaEssler_SP0145_a">
+          <speaker>הורי</speaker>
+          <p>פאטערעל האט...</p>
+        </sp>
+        <sp who="#shm" xml:id="TissaEssler_SP0146_a">
+          <speaker>שאַמא</speaker>
+          <p>יאה איך געדאנק שוין. פאטערעל האט אסתרן גערופען לייכטער אראפ נעהמען<lb/>פערשטאפט איהר דאס מויל מיט אטיכעל געוואשען אין אַ..אַ.. אמולטעריל...<lb/>אגרויסער באַטשאַ מיט אמעסער חיק! נישטא אסתר, טויט אסתר!...</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0147_a">
+          <speaker>פעטשעלי</speaker>
+          <p>. געונג, פאר מיר איז עס גענוג, זעהען זיא לערנען זיא איהם דיא זאך בעסער<lb/>ערצעהלען פאר דעם גאנצען דאָרף.</p>
+        </sp>
+        <sp who="#huri" xml:id="TissaEssler_SP0148_a">
+          <speaker>הורי</speaker>
+          <p>קאם יאהאַננאַ מיר דארפען נוט רוהען, קום שאַמאַ דוא בינסט אוואויל קינד<stage type="exit"> (אב)</stage></p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0149_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דער אנפאנג איז זייער גוט, איך האפפע דיא אנטיסעמיטען ווערדען מיך<lb/>באלד פיר קאמיסאר מאכען. גאטט זאַי דאנק קיין מענטש ווייסט ניט פון דער<lb/>געשיכטע, ווען דיא לייטע זאללען וויסען דאס איך 12 יאהרע אין דעם קרימינאל<lb/>געזעסען בין, וועגען איין דומהייט, וואס איך האב איין פרויא ערמארדעט<lb/>וואלט מיין האפנונג אנוועהניג קלענער געווען.<lb/><stage type="entrance">סצענע פאנדר באקי מאָריץ</stage></p>
+        </sp>
+        <sp who="#fndur" xml:id="TissaEssler_SP0150_a">
+          <speaker>פאנדר</speaker>
+          <p>הערר פעטשעלי! איך גיב אייך איבער דיזען קנאבע מאריץ שאַרף</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0151_a">
+          <speaker>פעטשעלי</speaker>
+          <p>זאג נור מאריץ דוא ווייסט וואו מען פיהרט דיך יעצט?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0152_a">
+          <speaker>מאָריץ</speaker>
+          <p>קיין איך ווייס ניכט!</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0153_a">
+          <speaker>פעטשעלי</speaker>
+          <p>מען פיהרט דיך אין קרימנאַל נאך ניעריגהאזע, דיין פאטער זיצט שוין דארט<lb/>פערהאפטעט מאַן בעשולדיגט איהם דאס ער האט דאס מעדכען אסתר סאלומאסי<lb/>געשלאכטעט.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0154_a">
+          <speaker>מאריץ</speaker>
+          <p>מיין פאטער איז ניט קיין שוחט, ער האט נאַך אין זיין לעבען ניט געקוילעט.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0155_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דוא ווייסט יאַה דיא ווארהייט ליעבעס קינד ווארום זאלסטו נישט זאגען? דיא<lb/>גאנצע שולד ליעגט יעצט אויף דיינען פאטער, ווען דוא ווירסט מיר דיא<lb/>ווארהייט זאגען ווירד דין פאטער בעפרייעט ווערדען.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0156_a">
+          <speaker>מאָריץ</speaker>
+          <p>אז איהר זאגט מיר צו אז מיין פאטער ווירד פראי זיין, פרעגט מיך וועל איך אייך<lb/>זאגען דעם גאנצען אמת.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0157_a">
+          <speaker>פעטשעלי</speaker>
+          <p>זאגע נור אמתן מאריץ וועלכע יודין האבען דאס מעדכען געשלאכטעט?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0158_a">
+          <speaker>מאָריץ</speaker>
+          <p>וואס פיר איין מעדכען האבען דען דיא יודין געשלאכטעט?!</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0159_a">
+          <speaker>פעטשלי</speaker>
+          <p>דער שעכטער שווארץ אדער דער בעסלאֶר הערמאנן וואלנער?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0160_a">
+          <speaker>מאָריץ</speaker>
+          <p>וואס פאַר אמיידיל, וואס פאר אשלאכטען? איך ווייס פון גאר ניכט'ס<lb/>געש</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0161_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דיין פאטער האט שוין אללעס ענטשטאנדען ווארום זאלסטו נישט זאגען?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0162_a">
+          <speaker>מאָריץ</speaker>
+          <p>איך וועלט אייך שוין געקעט זאגען ליגען זעהר פֿיל, נור איהר האט דאך מיר<lb/>געזאגט איז איך וועל אייך דעם אמת זאגען וועט איהר מיין פאטער בעפרייען<lb/>דער פאר היט איך מיך שטאַרק איך זאל מיך חלילה נישט צוריק מיט אליגען ארויס<lb/>חאפען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0163_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דאס איזט אבער נאך נישט דיא ווארהיט, וואס דוא זאגסט יעצט.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0164_a">
+          <speaker>מאריץ</speaker>
+          <p>נוא אז איהר ווייסט ווידער בעסער פון מיר, וואס זעה דארפט איהר מיך פרעגען?<lb/>לאזט מיך בעסער געהן אהיים.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0165_a">
+          <speaker>פעטשעלי</speaker>
+          <p>. (<stage type="delivery">אפארט</stage>) מאן מוס מיט איהם גאר אנדערש גיין. (<stage type="exit">אב</stage>) זאגע נור דוא האסט אסתרן געקענט?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0166_a">
+          <speaker>מאריץ</speaker>
+          <p>ניין, איך האב זיא ניט געקענט.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0167_a">
+          <speaker>פעטשעלי</speaker>
+          <p>ניין?! (<stage type="business">שלאגט איהם</stage>) דיא יודענבראָה! דיא ווארהייט זאגע!</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0168_a">
+          <speaker>מאָריץ</speaker>
+          <p>איך זאג דאך דיא ווארהייט ווארום שלאגט איהר מיך ?</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0169_a">
+          <speaker>פעטש.</speaker>
+          <p>נישט דאס איזט דיא ווארהייט. הערט, דיא וואַרהייט!</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0170_a">
+          <speaker>מאָריץ</speaker>
+          <p>נוא זאגט איהר מיר אז איהר ווייסט דיא ווארהייט. לאמיך הערען</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0171_a">
+          <speaker>פעטשלי</speaker>
+          <p>דיין פאטער האט דיא ווארהייט ערצעהלט, דאס מען האט דאס מעדכען אין דער<lb/>סינאגאגע אומגעבראכט, נור דאס איינש איזט ניכט וואהר, דיין פאטער זאגט דאס דוא<lb/>האסט איהר דעם האלדז איבער געשניטען, אונד איך זאגע ניין, דוא האסט נור<lb/>געזעהען, וויא דער שעכטער שווארץ האט איהר דעם האלדז איבער געשניטען.</p>
+        </sp>
+        <pb n="16" facs="tissa_essler-81-175-56-95CROPPED-0016.jpg"/>
+        <sp who="#mrits" xml:id="TissaEssler_SP0172_a">
+          <speaker>מאריץ</speaker>
+          <p>מיין פאטער זאל קענען זאגען אַזאַ גרויסען ליגען איז שוין אויס וועלט.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0173_a">
+          <speaker>פעטשעלי</speaker>
+          <p>. איזט וואהר אז דיין פאטער האט איין ליגען געזאגט? איך זאג אייך דאס זעלבע<lb/>דאס דיין פאטער האט איינע <sic>ליגע</sic> געזאגט, דען איך ווייס דאס נישט דיין זאנדערען<lb/>סאלאמאן שוואַרץ האט דאס מעדכען געשלאכטעט.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0174_a">
+          <speaker>מאָריץ</speaker>
+          <p>ניין, דאַס איזט אויך איין ליגען, איך האבע שין אין מיין לעבען גינוג ליגען<lb/>געזאגט אבער אַזאַ ליגען האבע איך נאך נישט געזאגט.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0175_a">
+          <speaker>פעטשעלי.</speaker>
+          <p>וואס? זאגע איך איינע ליגע? פאנדור! נעהם איהם אונד דרעה אים דעם קאפף<lb/>הערונטער. (פאנדר לאזט זיך צו מאריצען)</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0176_a">
+          <speaker>מאָריץ</speaker>
+          <p><stage type="delivery">(שרייט מיט שרעק)</stage> ניין ניין! אה... זאגט אמת.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0177_a">
+          <speaker>פעטשעלי</speaker>
+          <p>אלזא, דער שווארץ האט דאס מעדכען אומגעבראכט?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0178_a">
+          <speaker>מאַריץ</speaker>
+          <p>(<stage type="business">קוקט אויף פאנדור צווייפעלט יאה ניין ענדליך) </stage>ניין! דאס קען איך נישט זאגען!</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0179_a">
+          <speaker>פעטשעלי</speaker>
+          <p>אַלזא, האסטו דאס מעדכען אומגעבראכט? פאנדור! גיב דעם אונדערש עהייטען<lb/>אפאר גוטע אויער פייגען. (<stage type="business">פאנדור וויל צו</stage>)</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0180_a">
+          <speaker>מאָריץ</speaker>
+          <p>לאזט מיך איך וועל אייך שוין זאגען. יאה...יאה!</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0181_a">
+          <speaker>פעטשעלי</speaker>
+          <p>בערעכען דיא זאכע נור גוט, מיין פאטער דער אומשטאנדע איזט אויף זיין אייגענער<lb/>קינד זאָ איינע ליגע צו זאגען פערדיענט נישט דאס דוא זאלסט איהם פֿערשוינען<lb/>2 1<lb/>אלזא עס איזט וואהר דאס דיין פאטער האט דאס מעדכען העריין גערופען<lb/>אונד דער בעטלער הערמאנן וואָלנער, האט זיא צו געהאלטען אונד דער שעכטער<lb/>סאלאמאן שווארץ האט איהר דורך געשניטען דעם האלדז, איזט וואהר מאריץ?!</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0182_a">
+          <speaker>מאריץ</speaker>
+          <p>איך האב מורא צו זאגען אזא ליגען, דיא יודען וועללען מיך דער הארגענען</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0183_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דארפסט זיך גאר ניכט פירכטען צו זאגען דיא ווארהייט.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0184_a">
+          <speaker>מאָריץ</speaker>
+          <p>יאַה ווען דאס זאל שוין זיין וואהר, עס איז דאך אבער אליגען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0185_a">
+          <speaker>פעטשעלי</speaker>
+          <p>אליגען? עי! פאנדור!</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0186_a">
+          <speaker>מאָריץ</speaker>
+          <p>ניין ניין! עס איז אמת.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0187_a">
+          <speaker>פעטשעלי</speaker>
+          <p>וואס איזט אמת?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0188_a">
+          <speaker>מאריץ</speaker>
+          <p>וואס איהר זאגט איז אמת.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0189_a">
+          <speaker>פעטשעלי</speaker>
+          <p>וואס איך זאגע?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0190_a">
+          <speaker>מאריץ</speaker>
+          <p>וואס דער פאטער זאַגט.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0191_a">
+          <speaker>פעטשעלי</speaker>
+          <p>וואס דאר פאטער זאַגט?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0192_a">
+          <speaker>מאָריץ</speaker>
+          <p>ניין וואס איך זאַג.. אבער מיין פאטער ווירד גאר נישט געשעהן?</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0193_a">
+          <speaker>פעטשעלי</speaker>
+          <p>ניין ער ווירד בעפרייעט ווערען, אונד פאר דיר ווירד דער מוניסטער פֿוילער<lb/>זארגען, אלזאָ איזט דאס וואהר דאס דיא יודין האבען דאס מעדכען אוימגעבראכט?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0194_a">
+          <speaker>מאָריץ</speaker>
+          <p>וויא אזויא זאל איך עס וויסען ? ...יאה יאה עס איז וואַהר.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0195_a">
+          <speaker>פעטשעלי</speaker>
+          <p>וואס איזט וואהר?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0196_a">
+          <speaker>מאריץ</speaker>
+          <p>אזויא גיך זאל איך עס וויסען נאך צו זאגען, שרייבט אן אויף אשטיקעל פאפיר<lb/>וועל איך מיר עס אנשטודירען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0197_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דאַ באי מיר איזט עס פערטעג. אז 1טען אפריל 1882 האט דיין פאטער אריין<lb/>גערופען דאס מעדכען אסתר סאלומאסי זיא זאל דיא לויכטער פאן דעם טיש<lb/>הערונטער נעהמען, דער בעטלער הערמאנן וויילנער אונד דער שעכטער<lb/>סאלאמאן שוואַרץ האבען זיא מיט גוואלד אריינגעשלעפט אין דעם פאר הויז<lb/>פון דער שוהל טיהר, האבען זיא אויס געצויגען ביז צום העמד...</p>
+        </sp>
+        <pb n="17" facs="tissa_essler-81-175-56-95CROPPED-0017.jpg"/>
+        <sp who="#mrits" xml:id="TissaEssler_SP0198_a">
+          <speaker>מאָריץ</speaker>
+          <p>וועה איז מיר וויא טאר מען עס גאר טאהן אין אשוהל!</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0199_a">
+          <speaker>פעטשעלי</speaker>
+          <p>שווייג הערע ווייטער! מען האט זיא געוואשען און איינעם טראָגעל...</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0200_a">
+          <speaker>מאָריץ</speaker>
+          <p>וואס האסט אטראגעל?</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0201_a">
+          <speaker>פעטשעלי</speaker>
+          <p>. איינע זא גענאנטע מולטער.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0202_a">
+          <speaker>מאריץ</speaker>
+          <p>וויא קומט אין אשוהל אמולטער גאר? <stage type="business">(פעטשעל ווינקט צו פאנדור)</stage> יאהר, יאה,<lb/>איך האב אלליין געזעהען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0203_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דאן האט מען זיא אנידער געלייגט אויף דער ערד, דער שעכטער סאלאָמאן<lb/>שווארץ האט איהר דעם האלדז דורך געשניטען דאס בלוט אין איינען טעללער<lb/>אויפגענאממען, איממער אונאיינגעגאסען אין איינען טאָפ, דאן האט מען דיא<lb/>לאכע דורך דעם פענסטער וועק געטראגען". דיזעס אללעס האסטו געזעהן<lb/>דורך דער שליססעל לאך פאן דער שוהל טיהר. איזט דאס וואהר?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0204_a">
+          <speaker>מאָריץ</speaker>
+          <p>אזויא פיל ליגען אויף איין מאהל?... ניין, ניין, איך מיין אזויא פיל אמת אויף איין<lb/>מאהל זיך אויס צו לערנען איז נישט פאר מיין קאָפף, צו ביסלעך וועל איך מיך שוין<lb/>אויס לערנען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0205_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דוא ביסט יאה איין בראוועס קינד אַלזא אונטערשרייבע מיך דאס דוא האסט<lb/>אללעס מיר ערצעהלט.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0206_a">
+          <speaker>מאָריץ</speaker>
+          <p>שרייבט איהר זיך בעסער אונטער איהר האט דאך עס מיר ערצעהלט...<lb/>יאה יאה... איך האבע עס אויך ערצעהלט. יאה איך שרייבע אונטער<lb/>(<stage type="business">נעהמט שרייבען צום רעכט פרייהר)</stage></p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0207_a">
+          <speaker>פעטשאלי</speaker>
+          <p>. אלזאָ! (<stage type="business">דרויעט איהם</stage>)</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0208_a">
+          <speaker>מאָריץ</speaker>
+          <p>מיין פאטער ווירד דאס נישט אויס האלטען</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0209_a">
+          <speaker>פעטשעלי</speaker>
+          <p>פאנדור!!</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0210_a">
+          <speaker>מאריץ</speaker>
+          <p>וואס בין איך שולדיג אַז דיא פעדער האט זיך צובראכען?</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0211_a">
+          <speaker>פעטשעלי</speaker>
+          <p>דאַ האסטו איינע אנדערע אבער ווען דוא ווירסט אויך דיזע צערברעכען ווערדע<lb/>איך דיר דיין קאָפף צערברעכען. <stage type="business">(מאריץ שרייבט זיך אונטער) </stage>אלזא לעזע דיין אונטערשריפט.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0212_a">
+          <speaker>מאריץ</speaker>
+          <p>(<stage type="delivery">לעזט</stage>) שאַרף, מאריץ</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0213_a">
+          <speaker>פעטשעלי</speaker>
+          <p>יעצט ווען דער הערר בארי ווירד דיך פרעגען, וועסטו שוין וויסען וואס צו זאגען?<lb/>איזט דאס וואַהר דאס איך האבע דיך נישט געצוואונגען צום אונטער שרייבען, מיט דיין<lb/>אייגענעם וויללען האסטו דיך אונזער געשריבען</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0214_a">
+          <speaker>מאָריץ</speaker>
+          <p>יאה, איך בין האנגעריג, לאמיך געהן עסען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0215_a">
+          <speaker>פעטשעלי</speaker>
+          <p>קאם איך ווערדע דיך געבען צו עסען.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0216_a">
+          <speaker>מאריץ</speaker>
+          <p>נור כשהרס זאלט איהר מיר געבען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0217_a">
+          <speaker>פעצעלע</speaker>
+          <p>פאנדור!</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0218_a">
+          <speaker>מאָריץ</speaker>
+          <p>יאה יאה טרפות.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0219_a">
+          <speaker>פעטשעלי</speaker>
+          <p>נוא געה גיבע דיא טעלעגראממע צום קאמיססאר בארי ער זאָל באלד קאמען (<stage type="exit">אללע אב)</stage><lb/><stage type="setting">פערוואנדלונג. Fervandlung</stage><lb/><stage type="setting">2טעס בילד שטעלט פאר דעם קערקער צו יודען קוקען ארויס פון</stage><lb/><stage type="setting">צווישען דיי גראַטעס פערשמאכטעט בלאַסס</stage>)</p>
+        </sp>
+        <sp who="#chor" xml:id="TissaEssler_SP0220_a">
+          <speaker>קאָהר</speaker>
+          <p>שמע קולנו שמע קולנו, רחם עלינו רחם עלנו א" ז" "וו<lb/>פאנדור (<stage type="entrance">קומט אָן</stage>)</p>
+        </sp>
+        <sp who="#fndur" xml:id="TissaEssler_SP0221_a">
+          <speaker>פאנדור</speaker>
+          <p>העריין אין אייערע ציעלען, עס איזט שוין מעהר פון איין פערטיל שטונדע<lb/>העריין! (<stage type="exit business">טרייבט אללעמען אנד יאזעף שארף אפ</stage>)</p>
+        </sp>
+        <sp who="#izef_shrf" xml:id="TissaEssler_SP0222_a">
+          <speaker>שארף</speaker>
+          <p>הערר קערקער מייסטער! איך בין ערשט פֿון מיין צעלע הערויס געלאססען<lb/>געווארען ערלויב מיר נאך אפאר מינוטען צו זיין! (<stage type="business">ער גיבט איהם געלד)</stage><lb/><stage type="entrance">קאהר קעמונט</stage></p>
+        </sp>
+        <pb n="18" facs="tissa_essler-81-175-56-95CROPPED-0018.jpg"/>
+        <sp who="#fndur" xml:id="TissaEssler_SP0223_a">
+          <speaker>פאנדור</speaker>
+          <p>יאה איהר קענט נאך בלייבען. <stage type="exit">(אב)</stage></p>
+        </sp>
+        <sp who="#izef_shrf" xml:id="TissaEssler_SP0224_a">
+          <speaker>שאַרף</speaker>
+          <p>(<stage type="business">אלליין</stage>) שוין 13 חדשים וויא איך ליג דאָ אין קרימנאל אויף דיא האַרטע<lb/>ברעטער, צוישען רויבער אונד מערדער; און פארוואס? ווייל איך בין איוד!<lb/>מיין ווייטאג אלליין וואלט איך דאך געקאנט מיט שמערצען איבערטראגען<lb/>און אויף גאטט ניט מתרעם זיין, אז איך דער זעה אבער דיא 15 ארעמע<lb/>אונשולדיגע אידען, וואס זיצען נעביך מיט מיר אין איין אונגליק פיהל איך מיין<lb/>וועהטאג אזויא גרויס, אז איך מוז אויף גאטט מתרעם זיין אין איהם פרעגען<lb/>דיא אלטע קשיא: דיא גאנצע וועלט האסטו באשאפען פון דיין כבוד וועגען<lb/>און מיר אידען זיינען דיין אתה בחרתנו פאָלק, וואס דוא האסט אונז אויס-<lb/>געקליבען אז מיר זאללען דיר כבוד אָנטאָן, פאר דיא אויגען פֿון אללע<lb/>פעלקער, אשעהנעם כבוד האסטו פֿון אונז, איעדער הונד איעדער גאר נישט<lb/>אביא ער איז נאר ניט קיין יוד, באדט זיך אין אונזער בלוט טרעט אונז מיט<lb/>גאטט<lb/>דיא פֿיס, און מאכט חוזק פֿון אונז אין פֿון אונזער אמונה יעצט האסטו מיך<lb/>נאך מעהר בעשטראפֿט, מיין אייגען קינד וואס מיינע אייגענע הענד האבען<lb/>איהם אויפגעצויגען, און מיט די שווייס פון געזיכט איהם ערנעהרט, הייבט אויף<lb/>זיין האַנד געגען מיר און געגען זיין גאנץ פאלק ישראל: מאריץ, מאריץ!<lb/>געגען וועמען פארזונדיגסט דוא דיך, געגען דיין פאטער? וואס האט דיר<lb/>דאס לעבען אונד צום לעבען געגעבען? מיט שווערע ביטטערע קללות פון<lb/>דער תוכחה וואלט איך דיך געשאָלטען, שווער זייער שווער וואלטען זייא<lb/>אויף דיר פאללען, נאר איך ווייס דוא ביסט ניט שולדיג, מן הסתם האב איך<lb/>מיך פארזינדיגט באַי גאטט וואס עס קומט מיר אַזאַ שטראף, און דוא ביסט<lb/>נור דער שליח דוא זאלסט מיך שטראנפפען, אָ מאָריץ! קוק קוק דיך אום<lb/>אַן  דעם חורבן וואס דוא האסט געמאכט, זעה וויא אונשולדיגע יודין פון פֿרויען אונד<lb/>קינדער ווערען געבייגט און געבראכען, פאר מיר בין איך דיר שוין מוחל. איך וועל<lb/>פאר דיר אבקומען אבער פאר דעם כלל ישראל וועל איך דיר ניט מוחל זיין, דערפאַר<lb/>וואס דוא ווילסט אז 15 אידען זאללען דורך דיר געהאנגען ווערען זאלסטו<lb/>אויפגעהאנגען ווערען, וויא אבשלום בן דוד!"</p>
+          <lg>
+            <l>No "</l>
+          </lg>
+          <lg n="24">
+            <l>נו צו האב איך מיר דאס ווען פארגעשטעלט</l>
+            <l>עס זאל פארגעהן אזאַ זינד?</l>
+            <l>אומבריינגען וועללען פֿון דער וועלט</l>
+            <l>אטאטען וועה איז מיר זיין אייגען קינד</l>
+            <l>וויפיל פלאג מען האָט אין וויפיל בעט מען גאטט</l>
+            <l>ביז מען דערלעבט דאס קינד צו זעהען</l>
+            <l>און ביז דאס וואקסט אויס און ביז דאס ווערט גרויס</l>
+            <l>וויפיל צרות האט מען ווען עס איז קלעהן</l>
+            <l>דער טאטע לויפט אין פראכט רוהט ניט טאג וויא נאכט</l>
+            <l>ביז ער פארזארגט דיא שטוב מיט ברויט</l>
+            <l>ער קריינקט זיך און זאָרגט    דאָ לייט ער אין באָרגט</l>
+            <l>פערהיט זיין קינד פון שלעכטס און נויט.</l>
+            <l>"      "      "    צו האב איך מיר דאס פארגעשטעלט ז" וו"</l>
+          </lg>
+          <lg n="25" prev="true">
+            <l>וויפיל בלוט פארגאסען קיין גוטע שעה גענאסען</l>
+            <l>האט דיא מוטטער דורך דעם קינד</l>
+            <l>זיא האט זיך געעקט דאס לעבען געשטרעקט</l>
+            <l>גוואלד דאס קינד איז ניט געזונד</l>
+            <l>פעלד האט זיא געמאססען     דאס לעבען זאל זיא קאסטען</l>
+            <l>זיא האט זיך שיעור ניט אומגעבראכט</l>
+            <l>זכות אבות געבעטען ניט אָפ געטרעטען</l>
+            <l>ביז זיא האט דאס קינד געזונד געמאַכט</l>
+            <l>צו האב איך מיר דאס פארגעשטעלט</l>
+            <l>עס זאל פארגעהן אַזאַ זינד.</l>
+            <l>אומבריינגען וועללען פון דער וועלט</l>
+            <l>אטאטען וועה איז מיר זיין אייגען קינד</l>
+            <stage type="entrance">ערשיינט</stage>
+            <stage type="entrance">פאנדור</stage>
+          </lg>
+        </sp>
+        <pb n="19" facs="tissa_essler-81-175-56-95CROPPED-0019.jpg"/>
+        <sp who="#fndur" xml:id="TissaEssler_SP0225_a">
+          <speaker>פאנדור</speaker>
+          <p>גייט באלד צוריק אין אייער ציעללע עס איז שוין שפעט, מאכט אייך פארטיג<lb/>באלד וועט איהר דארפען גיין צום געריכט. (<stage type="exit">שאַרף אב</stage>)<lb/><stage type="entrance">פעטשעלע - לאה (ערשיינען</stage>)</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0226_a">
+          <speaker>פעטשעלע</speaker>
+          <p>זינד אן זיא פֿרויא שאַרף? - גוט! ווארטען זיא דאָ ביז מאן ווירד איהם<lb/>ארויס בריינגען. (<stage type="delivery">שרייעט אויס</stage>) לאססען זייא ארויס קומען דעם ארעסטאנטען<lb/>יאזעף שארף, ער זאל דיך מיט זיינער פרויא זעהען. (<stage type="exit">פאנדור אב</stage>)</p>
+        </sp>
+        <sp who="#lh" xml:id="TissaEssler_SP0227_a">
+          <speaker>לאה</speaker>
+          <p>היינט האב איך ערלעבט זייט 13 מאנאטען דעם גליקליכען טאג מיין מאַנן<lb/>צו זעהען, נור אין אַזאַ לאגע זאללען זיך זעהען דיא אללע וועלכע ווינטשען<lb/>אידען שלעכטעס צו טהון.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0228_a">
+          <speaker>פעטשעלי</speaker>
+          <p>זיא זינדען דאך זעלבסט שולדיג דאריין, ווער הייסט איהנען זאָ דורשטיג זיין<lb/>נאך קריסטען בלוט?</p>
+        </sp>
+        <sp who="#lh" xml:id="TissaEssler_SP0229_a">
+          <speaker>לאה</speaker>
+          <p>לאסט מיך יעצט געמאקט מיט אייערע ווערטער וואס שטעכען וויא איין פערגיפטעטער<lb/>דאָלק. מיר ווייסען שוין ווער דיא מענטשען זיינען וואס זוכען אונזער אומגליק<lb/>איך וויל מיך יעצט נישט אויס טענהן, איך וויל זיך נישט ערגערען אין דעם גליקליכען<lb/>מאמענט און וועלכען איך דארף מיין מאנן זעהען.</p>
+        </sp>
+        <sp who="#fetsheli" xml:id="TissaEssler_SP0230_a">
+          <speaker>פעטשעלי</speaker>
+          <p>בעזיכען זיא מיך נאך אמאהל אין מיין קאנצעלאריע. (<stage type="exit">אב)</stage><lb/>גוואלט</p>
+        </sp>
+        <sp who="#lh" xml:id="TissaEssler_SP0231_a">
+          <speaker>לאה</speaker>
+          <p>איך וואַלט מיך שוין געוואונטשען מיט דיר אויף יענער וועלט זעהען מיר זאללען<lb/>שטעהן פאר דעם אמתן ריכטער. פאנדור (<stage type="entrance">פירט ארויס יאזעף שארף)</stage></p>
+        </sp>
+        <sp who="#izef_shrf" xml:id="TissaEssler_SP0232_a">
+          <speaker>יאזעף</speaker>
+          <p>(<stage type="business">ערבליקענד לאה)</stage> לאה!!</p>
+        </sp>
+        <sp who="#lh" xml:id="TissaEssler_SP0233_a">
+          <speaker>לאה</speaker>
+          <p>יאזעף פערצייע מיר מיין ליעבער מאנן אונד פאטער פאן דעם נייעם קינד, אפשר<lb/>וועט דאס קינד דיינע שמערצען פערגרעסערין אויף דיך ערמאנערין און דעם קינד<lb/>וועלכער איז יעצט אונזער תליון, אזויא בעט איך דיך אז דוא זאלסט דיך דער מאהנען אז<lb/>אונזער זיידע יצחק האט געהאט 2 זינן עשו איז געווען דער בכור אין יעקב איז געווען<lb/>דער צווייטער דער נייער קינד הייסט אויך יעקב און איך האף גאר זאל אויך מוי יעקב זיין!</p>
+        </sp>
+        <sp who="#izef_shrf" xml:id="TissaEssler_SP0234_a">
+          <speaker>יאזעף</speaker>
+          <p>לאה! גיב מיר מיין קינד! יעקב מיין קינד אז דוא וועסט אמאהל שלעכט ווערען זאל דיר<lb/>פארקומען דאס בילד אין וועלכען דיא זעהסט יעצט דיין פאטער צום ערשטען מאָהל.<lb/>צוקערליך</p>
+        </sp>
+        <sp who="#shm" xml:id="TissaEssler_SP0235_a">
+          <speaker>שמאי</speaker>
+          <p>(<stage type="delivery">וויינענד)</stage> איך בין ניט שולדיג מען האט מיר געגעבען ניסלעך מיט פערשיינדעיג איך<lb/>זאל דער ציילען דיא געשיכטע פון אמיידיל האב איך געזאגט אליגען אזויא וויא<lb/>מאריץ דער כל בוניק א רוח אין זיין נשמה אריין.</p>
+        </sp>
+        <pb n="20" facs="tissa_essler-81-175-56-95CROPPED-0020.jpg"/>
+        <sp who="#izef_shrf" xml:id="TissaEssler_SP0236_a">
+          <speaker>יאזעף</speaker>
+          <p>גיב מיר לאהס שמאן אהער! איך זאל אויף דיר ניט ברויגז זיין זאגסטוא? גאטט! דוא<lb/>מאכסט מיך גליקליך דאס צו הערען, אָ גאטט שענק מיר דיא פרייהייט איך זאל<lb/>קענען דיא 2 קינדער בעסער ערציהען וויא דעם אויס געמעקטען.</p>
+        </sp>
+        <sp who="#lh" xml:id="TissaEssler_SP0237_a">
+          <speaker>לאה</speaker>
+          <p>אמן! אויך דיין זאהן מאריץ וואס דוא האלטסט איהם פאר אויס געמעקט ער איז ניט<lb/>שולדיג גאטט וועט איהם אויך צו דיר צוריק קעהרען.<lb/><stage type="delivery">NO</stage> </p>
+        </sp>
+        <sp who="#izef_shrf" xml:id="TissaEssler_SP0238_a">
+          <speaker>שארף</speaker>
+          <p>אָ גאטט! גיב מיר קראפט דאס אללעס איבער צו טראגען.<lb/>(<stage type="delivery">צו לאה</stage>)</p>
+        </sp>
+        <sp who="#fndur" xml:id="TissaEssler_SP0239_a">
+          <speaker>פאַנדור</speaker>
+          <p>(<stage type="entrance">קומט אריין מיט אפאפיר אין האנד</stage>) געהט שנעל אהיים ווייל איך האב אבאפעהל<lb/>אללע ארעסטאנטען פיהרען צום געריכט.</p>
+        </sp>
+        <sp who="#lh" xml:id="TissaEssler_SP0240_a">
+          <speaker>לאה</speaker>
+          <p>(<stage type="business">לאה גשט שארפען וויינט)</stage> געה מיין ליעבער מאַנן און פאטער פאן מיינע קינדער<lb/>גאטט זאל דיר העלפען זאלסט קענען אויס האלטען דעם גרויסען יום הדין (<stage type="exit business">מען טרייבט זיא</stage>)<lb/>ארויס</p>
+        </sp>
+        <sp who="#fndur" xml:id="TissaEssler_SP0241_a">
+          <speaker>פאנדור</speaker>
+          <p>(<stage type="delivery">צו מיליטער</stage>) מען זאל ארויס בריינגען אללע ארעסטאנטען, זייא שליעסען אין<lb/>קעטטען און פיהרען צום געריכט.<lb/>(<stage type="entrance business">הוזארען קאממען שליססען זייא אין קעטטען)</stage><lb/>(<stage type="delivery">אין דער צייט ווען מען פירט זיא דורך קאהר פון קריסטען זינגען</stage>)<lb/>"קאָהר "געהט נור געהט, זעהט נור זעהט"<lb/>"אללע יודען בייזע וואונדער" ז" וו"<lb/><stage type="delivery">NO</stage></p>
+        </sp>
+        <trailer>ענדע 3טען אקט.</trailer>
+      </div>
+      <div type="act" n="4" xml:id="TissaEssler_Act4">
+        <head>פיערטער אקט.</head>
+        <stage type="setting">שעהן ציממער באי הענטערען מאָריץ אליין. זינגט פאלגענדעס)</stage>
+        <stage type="delivery">"No</stage>
+        <sp who="#mrits" xml:id="TissaEssler_SP0242_a">
+          <speaker>מאריץ</speaker>
+          <lg n="26">
+            <l>מאריצל ביסט געשייט -      טראלא לא טרולאַלאַ</l>
+            <l>ביסט שוין קיין יוד ביסט אלייט     טראלאלא טרולאלאַ</l>
+            <l>איך הייס שוין קריסט מיט אללע צוגלייך    "       "</l>
+            <l>אין פֿון דיא אידין שפעט איך און לאַך       "        "</l>
+            <l>ווען איך זאל קענען, דיא אידין ברענען</l>
+            <l>אדער זייא אללע היינגען טריינקען</l>
+            <l>וואלט איך ערשט דאמאלס געווען צופרידין</l>
+            <l>געמאכט אנעק פון אללע אידין!</l>
+          </lg>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0243_a">
+          <speaker>מאריץ</speaker>
+          <p>הער! איין <unclear>מאגיארעמבער</unclear> וועל איך זיין, דאס הייסט אלעבען, דער הערר הענטער<lb/>פיהרט מיך אללע אבענד אין איין אנדער טעאטער, פיהרט מיך אונטער דיא קוליסען<lb/>צו דיא אקטריסען, זייא לערנען מיך זינגען, לערנען מיך וויא אזויא מען קושט זיך מיט<lb/>אַגעליעבטער, און דער ווייל חאפען זיא אויס אללע קוסען (<stage type="business">מימיק קושען)</stage> איך האב שוין<lb/>אין מיין לעבען גענוג ליגען געזאגט, אבער אזויא גליקליך צו ווערען דורך אליגען האב<lb/>איך מיר ניע פארגעשטעלט, איך זעה איצט ארויס אז איך בין געבוירען געווארען דורך<lb/>ליגען גליקליך צו ווערען - הער מאריטצע איז יעצט איין מאגיארעמער דאס פריילין אנאדי<lb/>איז אין מיר שטערבליך פֿערליעבט, און איך האב זיא אויך ניט פיינד, באלד וועט מען מיך<lb/>מיט איהר פערהייראטען דער מיניסטער פֿוילער וועט מיר געבען נדן 10 גוטער דיא<lb/>בעסטע פאן אונגארען וואס מען וועט אוועק נעהמען פון דיא פערדאמטע יודין<lb/>ווערהאוואי אין אוסטאָצי וועללען זיין דיא אונטער פיהרער דיא גרעפֿין פֿוילער<lb/>ווירד זיין דיא ברויט פֿיהרערין פריידיגער שטעקער וועט אונז געבען חופה<lb/>יודישן, און אללע אידען וועט מען קוילען אויף מיין האכצייט, און... און...און מיין<lb/>פאטהר?. <stage type="delivery">(טרויערג)</stage> וועט מען אויך...<stage type="delivery"> (וויינט)</stage> וועט מען האנגען? דורך מיינע<lb/>ליגענס. (<stage type="delivery">וויינט שטילל קעמפט מיט זיך ענדליך</stage>) נאר וואס געהטער מיך אן? איך וויל<lb/>פון איהם גאר ניט וויסען, איך בין מעהר קיין יוד ער איז ניט מעהר מיין פאטער<lb/>איך בין שוין אקריסט, דאס עוואנגעליום לערענט מען מיך, איך קען שוין באַלד אויסוועהניג<lb/>דאס קריסטליכע געבעט, מיט "פאטער אונזער" קען איך שוין וויא אוואסער, וואס דען?<lb/>צו דיא אידען זאל איך צוריקגעהן? שטאַט אמיניסטער זאל איך בלייבען אַשוסטער?<lb/>צו אשמש ווערען? ניין, דאס טוהע איך נישט.<lb/>בארבארא (<stage type="entrance">ערשיינט</stage>)</p>
+        </sp>
+        <pb n="21" facs="tissa_essler-81-175-56-95CROPPED-0021.jpg"/>
+        <sp who="#brbr" xml:id="TissaEssler_SP0244_a">
+          <speaker>בארבארא</speaker>
+          <p>מאריטצע אזויא האלסטו דיין ווארט? וואס דוא האסט מיר פערשפראכען?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0245_a">
+          <speaker>מאָריץ</speaker>
+          <p>מיט וואס האלט איך עס נישט?</p>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0246_a">
+          <speaker>בארבארא</speaker>
+          <p>האסט דאך מיר צו געזאגט זאלסט דיין פאטער מיט דיא יודין מעהר קיין מאהל<lb/>דער מאָנען, און אז גאטט וועט געבען, דאס אללע יודין מיט דיין פאטער<lb/>וועללען דורך דיין צייגיניס צום טוידט פעראורטהיילט ווערען, וועט מען מיך<lb/>מיט דיר פערהייראטהען, אמענדע וויינסטו גאר? דאס איזט דיין טרייע<lb/>ליעבע וואס דוא האסט מיר געשוואהרען?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0247_a">
+          <speaker>מאָריץ</speaker>
+          <p>פֿריילין אנאט! איהר האט געוויס געהערט וויא איך האב מיין פאטער עראינערט<lb/>מיט געוויין? איך שעהם מיך פאר מיר אלליין איך זאל ניט קענען זיין הערר<lb/>אובער מיר, איבער הויפט אז איך האב אייך צו געשוואָרין איך זאל איהם<lb/>האססען מיט זיין גאנצער רעליגיאן, איך ווייס אבער ניט וואס דאס איז<lb/>אז איך בלייב אלליין זיצען קומט מיר פאר דאס טרויעריגע בילד וויא מיין<lb/>פאטער מיט פיעלע אידין, שטעהען פאר מיר, אין ברעכען דיא הענד<lb/>N<lb/>און מיט איין יאממערליך  קול פֿראגען זייא מיך מאריץ מאריץ וואס פאר אשלעכטעס האבען<lb/>מיר דיר געטאהן? וואס מיט דיינע ליגענס טוהסטו אונז אן איין אייביגע בושה און איין<lb/>גרויל געהט מיר איבער מיין לייב אז עס ווייזט זיך מיר אויס וויא איך זעה זייא היינגען<lb/>אויף תליות און זייערע קליינע קינדער שטעהן אונטען און שרייען וויינען און מיט<lb/>שעלטן<lb/>פערשידענע ביטטערע קללות פלוכטען זייא מיך אה... <stage type="delivery">(וויינט)</stage></p>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0248_a">
+          <speaker>בארבארא</speaker>
+          <p>הער שוין אויף מיט דיינע פוסטע פֿאנטאזיען, פערגעס ניט איז דיא יודען זוכען דיין<lb/>לעבען וועק צו נעהמען נאך ערגער וויא מיט ליגען, דיא נישט האבען זיך אריינגעגאנוועט<lb/>2 יודין מיט דעם אבזיכט דיך צו ערמארדען, ווען דער הערר האֶנטער זאל ניט<lb/>געווען אויף זייא שיסען ווער ווייסט וואו דוא וואלסט שוין היינט געוועזען, איך<lb/>וואלט שוין היינט געוועזען איין האלבע אלמנה, ווייל מיט איין אנדערען וואלט איך<lb/>מיך זיכער נישט מעהר פערהייראטען. (<stage type="delivery">וויינט</stage>)</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0249_a">
+          <speaker>מאָריץ</speaker>
+          <p>וויינט ניט פריילן אנאדי, איך זאג אייך צו, איך זאל זייער נאהמען מעהר<lb/>נישט דער מאָנען, איך וועל זייא האַסען, נאר וואס בעט איך אייך, אז איך וועל<lb/>אין געריכט שטעהן מיט מיין פאטער געזיכט צו געזיכט, זאלט איהר שטעהן אין<lb/>פובליקום מיר אנטקעגען, ווייל נור ווען איך זעה אייך בין איך אומשטאנדע אן<lb/>זייא פארגעסען.</p>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0250_a">
+          <speaker>בארבארא</speaker>
+          <p>און ווען איך וועל דיר ניט קענען אקעגען שטעהן זאל דיר מיין בילד אקעגען<lb/>שטעהן, זאגסטו עס מיר צו? </p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0251_a">
+          <speaker>מאריץ</speaker>
+          <p>יאה איך שווערע עס אייך צו<lb/><stage type="delivery">No</stage><lb/><stage type="delivery">דועט</stage><lb/><stage type="delivery">NO.</stage><lb/>בייא גאט</p>
+        </sp>
+        <pb n="22" facs="tissa_essler-81-175-56-95CROPPED-0022.jpg"/>
+        <sp who="#mrits" xml:id="TissaEssler_SP0252_a">
+          <speaker>ער</speaker>
+          <lg n="27">
+            <l>אך שעהן אונד ליעבעס פריילין איך שווער, איך שווער דא אללעס צו</l>
+            <l>פארגעסען אין דיא יודין וועל איך מיר געבען דיא מיה</l>
+            <l>זאגאר אויך מיין פאטער וועל איך מעהר נישט דער מאנען</l>
+            <l>פון היינט אן אונד ווייטער וויל איך זייא קיינעם קאנען</l>
+            <l>נאר איהר נור איהר                 זאלט זיין נור מיט מיר</l>
+            <l>זעלט איהר מיך</l>
+            <l>אונד ליעבען אן שיעור מיך ליעבען אן שיעור!!</l>
+            <stage type="delivery">דועט</stage>
+          </lg>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0253_a">
+          <speaker>זיא</speaker>
+          <lg n="28">
+            <l>פארגעס אן דיינע יודין          ער וואס טויגען מיר דיא יודין</l>
+            <l>וועט דער קריסטען גאט שיצען דיך " גאטט פון קריסטען שיצען מיך</l>
+            <l>וועל איך זיין דאן צופרידען         דאן וועסטו זיין צופרידען</l>
+            <l>אויף עוויג האבען וועסטו מיך      אייביג האבען וועל איך דיך</l>
+            <l>נוא זאג זע מיר דאס אללעס צו    איך זאג אייך אללעס צו</l>
+            <l>איך גיב דיר דיא מיה                איך גיב זיך דיא מיה</l>
+            <l>וויא איך הייס דיר             פונקט אזויא וויא דוא הייסט מיר</l>
+            <l>דאן וועסטו בלייבען איין מאַנן    איין גליקליך וועסטו דאך זיין</l>
+            <l>איך ליעבע דיך, איך ליעבע דיך זיא ליעבט ניר מיך זיא ליעבט נור מיך</l>
+            <l>אך ווען דוא וועסט פאלגען מיך   לעבען גליקליך וועללען מיר זיך</l>
+            <l>טרול לא טאלא לא טראולאַלאַ טרולאַ אאַ</l>
+            <stage type="exit">מאָריץ אב)</stage>
+            <stage type="delivery">ליגען גליקליך וועלן מיר</stage>
+          </lg>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0254_a">
+          <speaker>בארבארא</speaker>
+          <p>(<stage type="business">אליין</stage>) ח ח ח, פאן שאנדאש באַרבאַראַ האט מען געמאכט פריילין אנאדי<lb/>פילייכט איז מיר אמאהל באשערט געווען אויס דינסט צו ווערען בין איך דער מיט<lb/>אפ געקומען אשעהן פנים דארף איך האבען איין אַזאַ קאסטאם פון מעגרעפליך<lb/>חלום<lb/>קינד, נאר איך האב מורא צור דער חלום אז דער חלום זאל ניט אמת ווערען דדאס הייסט<lb/>איך מיין ניט איך זאל טאַקע ווערין פרייליך אנאדי, נאר איך זאל זיך אין איהם אין<lb/>א שעהנער יונגע <lb/>דער ווארהייט ניט פאַרליעבען, ווייל ער איז ווירקליך זייער אגוטער לויפער.. נאר<lb/>איך גלויב ניט צו ער וועט זיך קענען האלטען געגען זיין פאטער ביים געריכט.<lb/>אויב אללע לעקציאנען וואס מאן גיט איהם וועט איהם העלפֿען</p>
+          <lg n="29">
+            <l>אך דאס איז לוסטיג וואהר</l>
+            <l>אין קארעטען נאר שפאצירען</l>
+            <l>ניט דינסטען נאר זיך פיהרען</l>
+            <l>דאס איז א שענעהס פאנטאסיא..</l>
+          </lg>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0255_a">
+          <speaker>מאָריץ</speaker>
+          <p>(<stage type="entrance business">קומט מיט אפאפיר און האַנד</stage>) פריילין אָנאדי דיא פרויא הענטער האט מיר געזאגט<lb/>איך זאל מיר דיא לעקציאנען גיט איבער קוקען, ווייל דער הערר הענטער איז געקומען<lb/>מיט זיינעם אגוטען פֿריינד און וויל מיך פֿאַר הערען.</p>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0256_a">
+          <speaker>בארבארא</speaker>
+          <p>נוא לערען דיר גוט אויס זאלסט ניט בלייבען שטעהן אין מיטען מען זאל דיך ניט<lb/>דארפען דערמאנען. (<stage type="business">קושט איהם גייט אב</stage>)<lb/>(<stage type="business">מאריץ גייט ארום איבער ציממער הין און צוריק מיט דעם פאפיר אין האנד</stage>)<lb/>לערענט זיין לעקציאן מען הערט נור געחאפטע ווארטען:)</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0257_a">
+          <speaker>מאָריץ</speaker>
+          <p>1882. .. אשבת פאר פסח... לייכטער אראפ נעהמען... געוואשען. געקוילעט<lb/>בלוט טעלער...אַטאָפ...פענסטער ...שליססעל לאך... (ז" וו")<lb/>(<stage type="entrance">אויפטריט הענטער אונד דניאל בארטשי דעטעקטיף</stage>).</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0258_a">
+          <speaker>הענטער</speaker>
+          <p>איך האַבע דיא עהרע הערר דניאל באַרטשי, אייך פֿאָרצושטעללען דען יונגען<lb/>העררן שאַרף, זעהר אקלוגעס קינד. (<stage type="delivery">צו מאריצען</stage>) דער הערר ווינשט פון דיר צו<lb/>הערען דיא געשיכטע פון דעם מעדכען וועלכעס דיא יודין האבען געשלאכטעט</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0259_a">
+          <speaker>מאָריץ</speaker>
+          <p>אם 1טן אפריל 1882 אין אשבת פאר דעם אידישען פסח צוישען 11 אונד 12 אוהר<lb/>פאר מיטאג, האלט מיין פאַטער אריין גערופען דאס מעדכען אסתר סאלומאסי, זיא<lb/>זאָל דיא לייכטער פֿאָן דעם טיש אראפ נעהמען דער בעטלער הערמאנן וואָלנער<lb/>אונד דער שעכטער לעאפאלד ברוין האָבען זיא מיט גוואלד אריין געשלעפט<lb/> סאלאמאן שווארץ<lb/>אין דעם פארהויז פאן דער שולל, האבען זיא אויס געטאן ביז צום העמד, זיא געוואשען<lb/>איין אמולטער, אנידער געלייגט אויף דער ערד, דער טעכטשולער אונד דער לעגאליר<lb/>שוחט האבען זיא צו געהאלטען, אונד דער שוחט סאלאמאן שווארץ האט איהר מיט<lb/>אחלף דאס האלדז דורך געשניטען, דאס בלוט האט מען געלאזט אייין אטעללער<lb/>אריין רינען, און אללע מאהל אין א טאפ אריין געגאסען, דעם קערפער האט מען<lb/>וואהרשיינליך דורך דעם פענסטער ארויס געטראגען דאס אלס דינג האבע איך געזעהען<lb/>דורך דעם שליססעל לאָך פֿון דער שול טיהר.</p>
+        </sp>
+        <pb n="23" facs="tissa_essler-81-175-56-95CROPPED-0023.jpg"/>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0260_a">
+          <speaker>דניאל</speaker>
+          <p>נישט זאָ שנעלל יונגער הערר שאַרף, זעצען זייא זיך. (זעצט זיך) אנטווארטען זיא מיר<lb/>אויף מיינע פראגען.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0261_a">
+          <speaker>מאריץ</speaker>
+          <p>ווייסט איהר דען כסדר צו פרעגען?</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0262_a">
+          <speaker>דניאל</speaker>
+          <p>זאָ, נור נאך דער רייע ווען מען פרעגט דיך קאנסטו אנטווארטען, זאנסט ניכט?</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0263_a">
+          <speaker>הענטער</speaker>
+          <p>ער איז שוין אקלוגעס קינד. איך ווערדע איהם פראגען הערר באַרטשי ווערדען<lb/>זיא זעהען וויא געשווינד ער אנטווארטעט. (<stage type="delivery">צו מאריץ</stage>) זאגע נור מאריציל וואס ווייסטו<lb/>איבער דער זאך פאן אסתר סאלימאלי?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0264_a">
+          <speaker>מאָריץ</speaker>
+          <p>(<stage type="delivery">רעט גיך וויא אלעקציאן</stage>) אם 1טין אפריל 1882 יאהר (<stage type="delivery">אונד זאָ ווייטער וויא בעפאר</stage>)</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0265_a">
+          <speaker>הענטער</speaker>
+          <p>ווער האט איהר דעם האלדז דורך געשניטען?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0266_a">
+          <speaker>מאָריץ</speaker>
+          <p>דער שוחט סאלאמאן שוואַרץ (ז"וו )</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0267_a">
+          <speaker>הענטער</speaker>
+          <p>וואן איזט דאס געווען?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0268_a">
+          <speaker>מאָריץ</speaker>
+          <p>און יאהר 1882 אין אשבת פאר דעם יודישען פסח</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0269_a">
+          <speaker>הענטער</speaker>
+          <p>אום וויפיל אוהר?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0270_a">
+          <speaker>מאָריץ</speaker>
+          <p>צווישען 11 אונד 12 אוהר פאר מיטאַג.</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0271_a">
+          <speaker>דניאל</speaker>
+          <p>וויא איזט דיא אסתר דאן געווען געקליידעט?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0272_a">
+          <speaker>מאריץ</speaker>
+          <p>(<stage type="delivery">צו הענטער</stage>) דאס האט איהר דאך מיך נאך גאר נישט געלערענט.</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0273_a">
+          <speaker>הענט.</speaker>
+          <p>(<stage type="delivery">אפארט שטיל)</stage> אין ארויט קליידעל.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0274_a">
+          <speaker>מאָריץ</speaker>
+          <p>אין ארויט קליידעל.</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0275_a">
+          <speaker>הענט</speaker>
+          <p>פון רויטען טיעך.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0276_a">
+          <speaker>מאריץ</speaker>
+          <p>פון רויטען טיעך</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0277_a">
+          <speaker>הענט.</speaker>
+          <p>אונד אשאלעכען מיט פֿרענזאן אטוך מיט טופען</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0278_a">
+          <speaker>מאריץ</speaker>
+          <p>אונד אשאלכען מיט פרענזין א <sic>קוך</sic> מיט <sic>פופען</sic></p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0279_a">
+          <speaker>הענט</speaker>
+          <p>. אונד אטיכעל מיט פינטעלעך</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0280_a">
+          <speaker>מאריץ</speaker>
+          <p>און אקיכעל מיט הינטעלעך</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0281_a">
+          <speaker>דניאל</speaker>
+          <p>וואס איין קיעכעל מיט הינטעלעך? וואס איזט דאס?</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0282_a">
+          <speaker>הענטער</speaker>
+          <p>ער רעט אידיש... אטיכעל מיט פינטעלעך?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0283_a">
+          <speaker>מאָריץ</speaker>
+          <p>יאה יאַה...</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0284_a">
+          <speaker>דניאל</speaker>
+          <p>מאריץ, וואצו ברוכסטו דאס? זאגע ליעבער דיא ווארהייט.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0285_a">
+          <speaker>מאריץ</speaker>
+          <p>אָ, ווען איך זאל מעגען זאגען דעם אמת, זא האבע איך דאך גאר ניכט געזעהען</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0286_a">
+          <speaker>דניאל</speaker>
+          <p>ווארום האסטו דיזעס דעם אונטערזוכונג ריכטער נישט געזאגט?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0287_a">
+          <speaker>מאריץ</speaker>
+          <p>איך האב איהם יאה געזאגט נור ער האט זיך געמאכט נישט הערענדיג.<lb/>גלייב</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0288_a">
+          <speaker>הענטער</speaker>
+          <p>ניין ער האט עס געזאגט אונד האט עס צוריק גערופען באלד, ער איז שוין איין<lb/>געשייטעס קינד. (<stage type="business">מאכט מאריצען אצייכען ער זאָל שווייגען</stage>)</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0289_a">
+          <speaker>דניאל</speaker>
+          <p>(<stage type="delivery">אפארט</stage>) אַזאַ יאהר איהם וויא קלוג ער איז.</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0290_a">
+          <speaker>הענט</speaker>
+          <p>וואָצו הערר בארטשי דארפען זיא דיא נאטיצען?<lb/>(<stage type="exit">אב</stage>)</p>
+        </sp>
+        <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0291_a">
+          <speaker>דניאל</speaker>
+          <p>איך ברויך זייא נישט (<stage type="business delivery">צעררייסט, אפארט</stage>) שעהנע געשיכטען געהן דא פאר אדיע!<lb/>ערינערין</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0292_a">
+          <speaker>הענט</speaker>
+          <p>זעהסט מאריץ מען דארף דיר נאך אונטער זאגען זעה זיך לערנען פלייסיגער<lb/>קאם וויר געהן צור טושע.</p>
+        </sp>
+        <pb n="24" facs="tissa_essler-81-175-56-95CROPPED-0024.jpg"/>
+        <sp who="#mrits" xml:id="TissaEssler_SP0293_a">
+          <speaker>מאָריץ</speaker>
+          <p>מיר שיינט איך קען דיא לעקציאנען שוין איין ריימען אויך פאר זינגען. (<stage type="exit">ביידע אב</stage>)</p>
+        </sp>
+        <div type="scene" n="2" xml:id="TissaEssler_Act4_Sc2">
+          <head>פערוואנדלונג 2טעס בילד</head>
+          <stage type="setting">שטעלט פאר געריכטס זאאל פרעזידענט און מיטען באי דיא זייטען דיא מיטגליעדער)</stage>
+          <stage type="delivery">N</stage>
+          <stage type="setting">רעכטער זייטע פראקוראר, לינקס פערטהיידיגער, אנגעקלאגטע יודען זיצען אויף</stage>
+          <stage type="setting">באנק. אין זאלל פאלק אידען, קריסטען, מעננער פרויען עטצ.</stage>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0294_a">
+            <speaker>פרעזידענט</speaker>
+            <p>עס זאל ערשיינען יאהאננא סאַלאמאסי. (<stage type="entrance">ערשיינט</stage>) וואס וויסען זיא איבער דער<lb/>פערשווענדינג פון אייער טאכטער? אסתר</p>
+          </sp>
+          <sp who="#ihnn" xml:id="TissaEssler_SP0295_a">
+            <speaker>יאהאננא</speaker>
+            <p>אז מיין טאַכטער אסתר איז פלוצום פערשוואונדען אזויא האב איך באלד<lb/>געוויסט אז דיא יודין האבען זיא ערמארדעט.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0296_a">
+            <speaker>פרעז</speaker>
+            <p>. וויא קאממען זיא צו דיזען געדאנק? דאס דיא יודען האבען זיא ערמארדעט?</p>
+          </sp>
+          <sp who="#ihnn" xml:id="TissaEssler_SP0297_a">
+            <speaker>יאהאננא</speaker>
+            <p>עפעס אזויא וויא פֿון דעם היממעל איז מיר געזאגט געווארען אז דיא יודין האבען<lb/>זיא ערמארדעט.<lb/>אין הימעל ארויף</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0298_a">
+            <speaker>פרעז.</speaker>
+            <p>זייא קענען זעהן. (<stage type="exit">זיא אב</stage>) עס זאל ערשיינען מאָריץ שארף. (<stage type="entrance">ער קומט אריין)</stage><lb/> אויס זאגין <lb/>מאריץ! דיינע בעווייזע זיינען זייער וויכטיג, דאך זאלסטו נישט זאגען<lb/>וואס אַן דיינע עלטערען אנבעטריפֿט, נור וואס אנדערע זאלסטו זאגען וואס<lb/>ווייסטו וועגען דער זאַך?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0299_a">
+            <speaker>מאריץ</speaker>
+            <p>אז 1טען אפריל 1882..(<stage type="delivery">זא ווייטער</stage>)</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0300_a">
+            <speaker>יאזעף</speaker>
+            <p>עס איז אלסדינג ליגען, אפורים שפיעל האט מען איהם אויס געלערינט נאך זאגען</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0301_a">
+            <speaker>פרעז</speaker>
+            <p>. שווייגט! מאָריץ! דוא ווייסט דאס מיט דיינע צייגנעס מאכסטו 4 פערזאנען פיר מערדער?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0302_a">
+            <speaker>מאָריץ</speaker>
+            <p>יאַה איך ווייס עס!</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0303_a">
+            <speaker>פרעז</speaker>
+            <p>זאגע דאס געגענווארטיג סאלאמאן שוואַרץ</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0304_a">
+            <speaker>מאָריץ</speaker>
+            <p>יאה, פאר וואס ניט? (<stage type="delivery">צו שוואַרץ</stage>) איהר האט דאס מיידיל געקוילעט.<lb/>איינער בוקסבוים איך זאגסטו בין אויך דארט געווען? שקר וכזב, לייגסט וויא אהונט, בריינג עדות<lb/>אז דוא האסט רעכט.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0305_a">
+            <speaker>מאריץ</speaker>
+            <p>בריינגט איהר עדות אז איהר האט דאס מיידיל ניט געקוילעט.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0306_a">
+            <speaker>יאזעף</speaker>
+            <p>שטיל דוא כלב! (<stage type="business">מען ווארפט יאזעפען צוריק</stage>) עס זאל שוין מיט דיר אזויא ווארפען<lb/>וויא מען ווארפט מיט מיר.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0307_a">
+            <speaker>עטוואש</speaker>
+            <p>האהער געריכטסהאָף! זאָ וויא מאריץ איזט איין איינפאכער יודישער קנאבע<lb/>זאָ ווערדע איך ערזוכען דאס מאריץ זאל גאנץ איינפאך יודיש שפרעכען, דען<lb/>זיינע צייגנעס אונד ערצעהלונגען געמיינגט מיט דער דייטשע סע אונד אונגארישע<lb/>שפראכע, צייגען אויס וויא איין שוללער לעזט אויס וועהניג זיינע אונשטודירטע<lb/>לעקציאָנען.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0308_a">
+            <speaker>מאריץ</speaker>
+            <p>איך רעדע נור אונגאריש אונד דייטש, איך וויל ניט מעהר קיין יוד זיין.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0309_a">
+            <speaker>פרעז</speaker>
+            <p>מאכען זייא דען געפאללען דעם העררן פערטהיידיגער.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0310_a">
+            <speaker>מאָריץ</speaker>
+            <p>נוא אייך צו ליעב וועל איך ריידען יודיש חאטש איך האב קיין יודיש קיין מאהל גערעט</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0311_a">
+            <speaker>יאזעף</speaker>
+            <p>דוא זאגסט אליגען.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0312_a">
+            <speaker>מאָריץ</speaker>
+            <p>אז דוא וועסט זיך נישט רוהיג פערהאלטען ווירד מען דיך אין קעטטען שליססען.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0313_a">
+            <speaker>עטוואַש</speaker>
+            <p>איך ביטטע מאן זאל דאס אין פראטאקאל באמערקען, וויא איין זאָהן ערלויבט זיך<lb/>געגען איין פאַטער.</p>
+          </sp>
+          <sp who="#frkurf" xml:id="TissaEssler_SP0314_a">
+            <speaker>פראקוראר</speaker>
+            <p>דוא ערצעהלסט דאס דוא האסט דורך דעם שליססעל לאך געזעהען וויא מאן<lb/>האט אסתרן געשלאכטעט, ווארום האסטו באלד קיין ליארים געמאַכט?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0315_a">
+            <speaker>מאריץ</speaker>
+            <p>דער פאר ווייל איך האב קיין ליארים געמאכט.</p>
+          </sp>
+          <pb n="25" facs="tissa_essler-81-175-56-95CROPPED-0025.jpg"/>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0316_a">
+            <speaker>פרעז</speaker>
+            <p>. מאריץ קענסט געהן. (<stage type="exit">אב</stage>) וואס וויסען זיא הער שארף פאן דער פערשוואנדעטעס<lb/>מעדכען אסתר סאַלומאָסי?</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0317_a">
+            <speaker>יאזעף</speaker>
+            <p>זייט 4 יאהרע בין איך טעמפעל דינער אין דער טיססא עסלאר סינאגאגע דאבייא<lb/>בין איך אויך איין שעה מאַכער, דיא פערשוואונדעטע אסתר האב איך ניע געקענט.<lb/>מיט איהר מוטטער האבע איך זעהר אפט געשפראכען, מיין זאהן מאריץ האבע<lb/>איך שטענדיג גוט בעהאנדעלט וויא א גוטער פאטער, מאריץ פלעגט זיך<lb/>אויך גוט אויפפיהרען.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0318_a">
+            <speaker>פרעז</speaker>
+            <p>וואו האבען זיא דעם זאנטאג פון דעם פאר יאהריגען אסטערין צו געבראכט?</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0319_a">
+            <speaker>יאזעף</speaker>
+            <p>פאר מיטאג ביז 10 אויהר האבע איך געבעטעט אין דער סינאגאגע נאכהער<lb/>האבע איך אונד מיינע פרויא אונד מיינע קינדער צוזאמען מיטאג געגעסען<lb/>פֿון דיא אללע זאכען וואס מען בעשולדיגט אונז ווייס איך גאר נישט, נאך מיטאג<lb/>האבע איך געשלאפען, פאר נאכט בין איך געגאנגען צו ליכטמאנן אונד<lb/>נאכהער האבע איך געבעטען אין דער סינאגאגע דאס אבענדס געבעט<lb/>נאך</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0320_a">
+            <speaker>פרעז'</speaker>
+            <p>ווארן עטוואס שפעט מענטשען אין דער סינאגאגע?</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0321_a">
+            <speaker>יאזעף</speaker>
+            <p>יאַה ליכטמאנן גראסס אונד נאך אייניגע זיינען געזעסען באי דער שיין<lb/>פון אלשטעל פאר 2 גרייצער.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0322_a">
+            <speaker>פרעז</speaker>
+            <p>, מען זאגט דאס זייא ווארען אין דער סינאגאגע ביז טאג.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0323_a">
+            <speaker>יאזעף</speaker>
+            <p>דאס איזט אוממיגליך, אין שוהל איזט נישט מעהר קיין ליכט געווען, אויך דיא 2 שטונדען<lb/>זיינען זייא נישט געזעסען אין שול זאנדערען אין קהל שטיבעל.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0324_a">
+            <speaker>פרעז</speaker>
+            <p>. מאריץ זאגט עס איזט נישט וואהר.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0325_a">
+            <speaker>יאזעף</speaker>
+            <p>מען האט מאריצען אויס געלערינט ער זאל אזויא זאָגען. אללעס וואס ער זאגט<lb/>איזט ליגען.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0326_a">
+            <speaker>פרעז</speaker>
+            <p>מען זאל נאך אמאהל אריין בריינגען מאריץ שארף.<stage type="business"> (געשיהט)</stage> מאריץ איך פראַגע דיך<lb/>נאך איין מאָהל ווילסטו דיין פאטער אויך בעשולדיגען?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0327_a">
+            <speaker>מאָריץ</speaker>
+            <p>אז איהר וועט מיר הייסען וועל איך איהם בעשולדיגען.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0328_a">
+            <speaker>פרעז</speaker>
+            <p>איך קען דאס ניט הייסען.<lb/>מאָריץ נוא וויל איך ניט זאגען.</p>
+          </sp>
+          <sp who="#frkurf" xml:id="TissaEssler_SP0329_a">
+            <speaker>פראקוראר</speaker>
+            <p>מאריץ האט בעהויבטעט פריהער דאס ער האט געגען זיינע עלטערען עטוואס צו<lb/>זאגען, זאל ער שוין זאגען.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0330_a">
+            <speaker>פרעז.</speaker>
+            <p>רעכט! (<stage type="delivery">צו מאריץ</stage>) וויא האבען דיך דיינע עלטערין באהאנדעלט?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0331_a">
+            <speaker>מאריץ</speaker>
+            <p>ניט צו גוט, ניט צו שלעכט, אזויא מיטעלמעסיג.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0332_a">
+            <speaker>פרעז</speaker>
+            <p>זייא פלעגען דיך שלאגען?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0333_a">
+            <speaker>מאריץ</speaker>
+            <p>יאה דיא שטיפמוטער פלעגט מיר שלאגען און רופען ליגנער.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0334_a">
+            <speaker>פרעז</speaker>
+            <p>. ווילסטו זיך אין איהנען יעצט רעכנען</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0335_a">
+            <speaker>מאריץ</speaker>
+            <p>ניין זייא זיינען שוין גענוג בעצאהלט.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0336_a">
+            <speaker>פרעז</speaker>
+            <p>ערצעהלע נאך אמאהל וויא איזט דאמאלס געשעהען?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0337_a">
+            <speaker>מאריץ</speaker>
+            <p>אם 1טען אפריל...ז" וו"</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0338_a">
+            <speaker>פרעז.</speaker>
+            <p><stage type="delivery">(צו יאזעף</stage>) וואס האבען זיא דארויף צו זאגען?</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0339_a">
+            <speaker>יאזעף</speaker>
+            <p>איך זאל קענען וואלט איך דעם אומפערשעהמטען ליגנער דאָ צעררייסען, דיא גידיינקסט<lb/>וואס שטעהט אין דער תורה, "דוא זאלסט עהרען דיין פאטער אונד מוטטער אום<lb/>דוא זאלסט לאנג לעבען?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0340_a">
+            <speaker>מאריץ</speaker>
+            <p>איך האב אייער תורה ניט געלערענט.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0341_a">
+            <speaker>יאזעף</speaker>
+            <p>נישט וואהר דוא האסט יאה געלערינט דאַ אין נורגהאזע האב איך פאר<lb/>דיר גענוג שכר לימוד באצאהלט,- מאריץ קוק מיר גלייך אין דיא אויגען<lb/>שעהמסטו דיך ניכט צו זאגען אזעלכע ליעגען?</p>
+          </sp>
+          <pb n="26" facs="tissa_essler-81-175-56-95CROPPED-0026.jpg"/>
+          <sp who="#mrits" xml:id="TissaEssler_SP0342_a">
+            <speaker>מאריץ</speaker>
+            <p>ניין, איך שעהם מיך ניכט.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0343_a">
+            <speaker>יאזעף</speaker>
+            <p>זאג ווער האט דיך געלערענט?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0344_a">
+            <speaker>מאריץ</speaker>
+            <p>איך זאג דאס וואס איך האב געזעהען.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0345_a">
+            <speaker>יאזעף</speaker>
+            <p>אה דיא ליגנער. ..אמת יעצט זעה איך ארויס וואס מיין פרויא האט מיר איממער<lb/>געזאגט איז מיט דיינע ליגען קענסטו אמענטשען אויפען פייער בריינגען זאג<lb/>מיר מאריץ האסטו גאר קיין רחמנות? אויף 15 ארמע אידען זאללען פון דער<lb/>וועלט אונשולדיג אוועק געהן און מיט נאך אַזאַ בושה אז זייערע קינדער<lb/>זאללען הייסען דיא געהאנגענע?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0346_a">
+            <speaker>מאריץ</speaker>
+            <p>נוא ווער האט אייך געהייסען אקריסטליכע זעעלע אומבריינגען?</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0347_a">
+            <speaker>ש יאז</speaker>
+            <p>עף עס זאל שוין פון דיר דיא זעעלע ארויס, וויא מיר האבען אזעעלע אומגעבראכט</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0348_a">
+            <speaker>עטוואס</speaker>
+            <p>מאריץ, וואס דיינקסטו צו מאכען נאך דעם פראָצעס?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0349_a">
+            <speaker>מאריץ</speaker>
+            <p>דער מיניסטער פֿוילער ווירד פיר מיך זארגען, דער הערר באָרי אונד<lb/>דער הערר פעטשעלי האבען עס מיר דאַס פערשפרויכען.</p>
+          </sp>
+          <sp xml:id="TissaEssler_SP0350_a">
+            <speaker>פראקור</speaker>
+            <p>ווארום דיינקסטו האבען דיא יודין דאס מעדכען געשלאכטעט?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0351_a">
+            <speaker>מאריץ</speaker>
+            <p>געוויס האבען זייא אַזאַ געזעץ אין זייער תורה.</p>
+          </sp>
+          <sp xml:id="TissaEssler_SP0352_a">
+            <speaker>פראקור</speaker>
+            <p>דוא האסט יאה צו פֿאָר געזאגט דאס דוא האסט זייער תורה ניט געלערינט<lb/>מאריץ<lb/>וואָהער ווייסטו דאס קאטוילשע גייסטליכע האבען מיט דיר געשפראכען?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0353_a">
+            <speaker>מאריץ</speaker>
+            <p>שטעהט מיר אפשר ניט מין? און ווידער איך האבע עס געלעזען אין אייעדע<lb/>צייטונגען.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0354_a">
+            <speaker>עטוואס</speaker>
+            <p>איך וויל נאך איינע פרייגע שטעללען דעם יונגען מאַנן, ער ערצעהלט זאָ<lb/>דייטליך זאָ גענויא וויא דאס מעססער האט אויסגעזעהען. אונד זאָ ווייטער<lb/>איינע זאכע האט ער פערגעסען ערצעהלען, איך פראגע דיך מיין קינד זאגע<lb/>שנעל ווידער<lb/>מיר וויא האט דאס בלוט גערונען  לאנגזאם </p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0355_a">
+            <speaker>מאָריץ</speaker>
+            <p>עס האט גערונען אין טעללער העריין זעהר לאגזאם<lb/>דיעזע אונזאגע</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0356_a">
+            <speaker>עטוואס</speaker>
+            <p>לאנגזעם זאגסטו? דיזע אוסזאגע רעאונירט דיך, דאס צייגט דאס דוא איין ליגנער<lb/>פעטהער גערוכטס האער<lb/>ביסט, וואן מאן האט איהר מיט איין שלאכט מעססער דאס האלדז דורך געשניטען<lb/>זאל דאס בלוט לאגזאם פליססען? דאס ניין דאס בלוט האט געמוזט שפריצען<lb/>וויא איינען בויגען, אונד צוואר זאָ מעכטעג דאס עס וואר אוממיגליך דאס בלוט אין<lb/>מאריץ אב<lb/>איינען טעללער אויפצונעהמען דוא ביסט איין ליגנער האהער געריכטס האָף!<lb/>נאך איינע זאכע מעכטע איך ביטטען, עס איזט דא איין דעטעקטיף אויס פרעסבורג<lb/>מיט דעם נאמען דניאל בארשצו, איך האבע פערנאממען דאס מאריץ האט זיך<lb/>פיר איהם געווייסערט דאס אללע זיינע אויס זאגען זינד פאלש אונד אויס געלערינט<lb/>זאָ ערזוכע איך דאס האהע געריכט,ס האָף מעגע זא גוט זיין אונד דיזען צייגע<lb/>פאר צולאדען פאר דאס געריכט.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0357_a">
+            <speaker>פרעז</speaker>
+            <p>ער איזט שוין פארגעלאדען עס זאל ערשיינען קלמן פעטשעלי! (<stage type="entrance">ער קאמט)</stage><lb/>הערר פעטשעלי! וואס וויסען זיא פאן מאריץ שאַרף?</p>
+          </sp>
+          <sp who="#fetsheli" xml:id="TissaEssler_SP0358_a">
+            <speaker>פעטשעלי</speaker>
+            <p>אַלס איך נאך ניאגופאלע געקאממען בין זאָ וואר איך קראנק, אונד צום בעטטע<lb/>געלעגען, דאַ האט מיר דער קאמיסאַר באַרי געשיקט דיזען קנאבען<lb/>מאריץ שאַרף, זאָ פראגע איך איהם זיהע אמאהל ווארום זאלסטו דיא גאנצע<lb/>ווארהייט נישט זאגען, דיא גאנצע שולד ליגט יעצט אויף דיינען פאטער,<lb/>זאָ האט מאריץ אנגעפאנגען אללעס צו ערצעהלען וויא אסתר האט אויס-<lb/>געזעהען אין וואס פאר אקליידער זיא וואר געקליידעט אונד זאָ ווייטער<lb/>אונד האט זיך זעלבסט אונטער געשריבען דאס מען האט איהם ניכט געצווינגען</p>
+          </sp>
+          <pb n="27" facs="tissa_essler-81-175-56-95CROPPED-0027.jpg"/>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0359_a">
+            <speaker>עטוואש</speaker>
+            <p>, וויא קאממען זיא גראדע צו דיזער אידעע דאס מאריץ זאל אונטערשרייבען<lb/>דאס מאן האט איהם נישט געצוואנגען, אונד וויא קומט דאס זיא זאללען מאריצען<lb/>פראגען וועגען אסתרן?<lb/>געשטעלט<lb/>פרומער וויא האבען זיא דיא פראגען עס מאכטען מאריצען?</p>
+          </sp>
+          <sp who="#fetsheli" xml:id="TissaEssler_SP0360_a">
+            <speaker>פעטשעלי</speaker>
+            <p>. איך האב איהם גאר נישט נעהטיג געהאבט צו פראגען ער האט זעלבסט<lb/>אַללעס ערצעהלט.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0361_a">
+            <speaker>עטוואַש</speaker>
+            <p>הערר פעטשעלי! נישט וואהר אין פראטאקעל פאן 19 טען אונד 20טען מאַיי<lb/>שטעהט געשריבען דאס מען האט מאריצען געפראגט ווער האט אסתרן אריין<lb/>גערופען האט מאריץ געענטפערט, ער ווייסט ניכט און קען זיא ניכט, זאגען<lb/>זיא מיר, וויא אַלד זינד זיא?</p>
+          </sp>
+          <sp who="#fetsheli" xml:id="TissaEssler_SP0362_a">
+            <speaker>פעטשעלי</speaker>
+            <p>דאס האבע איך שוין געסטערין געזאגט.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0363_a">
+            <speaker>עטשוואש</speaker>
+            <p>איך ביטטע זיא נאך איינמאהל צו זאגען.</p>
+          </sp>
+          <sp who="#fetsheli" xml:id="TissaEssler_SP0364_a">
+            <speaker>פעטשעלי</speaker>
+            <p>2 מאהל אנטווארטע איך ניכט.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0365_a">
+            <speaker>(פרע</speaker>
+            <p>ז (<stage type="delivery">צו עטוואש</stage>) איך ביטטע זאלכע אומניצוגע פראגען נישט צו שטעללען (צו פעצעלען<lb/>אנטווארטען זיא וואן זיא ווערען געפרעגט</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0366_a">
+            <speaker>עטוואש</speaker>
+            <p>דיא פראגע איזט זעהר וויכטיג, אונד דער צייגע קאלמאן פעטשעלי וויל זיא נישט מיר<lb/>פעראנטווארטען, מיינע העררן צייט איך פערטהיידיגער קרימינאל פראצעססע בין<lb/>האבע איך נאך ניע זאלכע שמערצען געפֿיהלט וויא באי דיזען פראצעס וואו מען<lb/>דארף זאָ איינע טרויעריגע געשיכטע אויף קלעהרין, וויא איין קינד בעשולדיגט<lb/>זיין פֿאטער, אונד זיינע רעליגיאנס ברידער זאָ איין פערברעכען בעגאנגען<lb/>זייא קענען מיט <lb/>צו האבען, פיר וועלכעס מיט טאדעס שטראפפע פעראורטהיילט זיין לע<lb/>דער צייגע קלמן פעטשעלי שפיעלט אין דיזען פראצעס זעהר איינע גראססע<lb/>געהט<lb/>אונד וויכטיגע ראָללע, וויר מוססען ריכטיג אונד גרונדליך קאנען זיין לעבענסגעשיכטע<lb/>פֿראגע<lb/>אונד דאהער בין איך געצווינגען איינע זאַכס אַן העררן פעטשעלי צו צושטעללען<lb/>מיט 15 אדער מיט 17 יאהרע צוריק, וואר איך שטאטס פֿיסקאל און וועסט פרומער<lb/>קאמיטעט, דאַמאלס האבע איך ערהאלטען איין מאניפֿעסט פאן אונגארישען <lb/>מיניסטאריום, פֿיללע געפאנגענע אויס דעם קרימינאל צו בעפרייען פאר דער צייט<lb/>דורך איינער בעגנאדיגונגס אקט פאן זיינער מאיסטעט אונטער דיזע וועלכע<lb/>האבען דאס גליק געהאבט בעגנעדיגט צו ווערין, וואַר איינער מיט דעם נאמען<lb/>קלמן פעטשעלי, וועלכער וואר פעראורטהיילט צו 15 יאהרע צוכטהויז ווייל ער<lb/>האט זיינע פרויא אומערבארימליך ערמארדעט. 12 יאהרע וואר ער שוין ביז<lb/>דאמאלס אפ געזעסען אין דעם אליעווער קרימנאל דיא איבעריגע 3 יאהרען<lb/>וואהרען איהם דורך דעם מאניפעסט געשיינקט זאגען זיא מיר הערר פעטשעלי<lb/>זינדען זיא דאס ווירקליך דער זעלבער קליין פעטשעלי?<lb/>פעטשלי<lb/>פרעז<lb/></p>
+          </sp>
+          <sp who="#fetsheli" xml:id="TissaEssler_SP0367_a">
+            <speaker>פעטשעלי</speaker>
+            <p>עס טוהט מיר זעהר לייד דאס געריכט זאל ערלויבען מיר אינעם געזיכט<lb/>זאָ צו בעליידיגען.</p>
+          </sp>
+          <sp xml:id="TissaEssler_SP0368_a">
+            <speaker>פראקורער</speaker>
+            <p>דאַ זינד דיא אקטען פאן דעם אָליווער קרימינאַל.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0369_a">
+            <speaker>עטוואש</speaker>
+            <p>ביים שלוסס וועל איך פארלאנגען דיא אקטען, פאר צו לעזען באי דער<lb/>עפענטליכען זיצונג. הערר פעטשעלי זיא האבען געזאגט דאס אַם<lb/>21 טען האבען זיא זיך מיט קראנק געמעלדעט אונד זינד נאך דעם<lb/>ערלויב אויף דיא אסטערין נאך הויזע געפאהרען וויא האבען זיא אַלזאָ<lb/>אם 22טען 23טען 24טען געקענט פראטאקאלא אונטערשרייבען? אדער דיא<lb/>פראטאקאלע זינד פֿאַלש, אדער איהרע אונטערשריפט איזט פֿאַלש זיא ווארען<lb/>יאַ נישט דאַמאלס אין טיססאַ עסלאַר.</p>
+          </sp>
+          <pb n="28" facs="tissa_essler-81-175-56-95CROPPED-0028.jpg"/>
+          <sp who="#fetsheli" xml:id="TissaEssler_SP0370_a">
+            <speaker>פעטשעלי</speaker>
+            <p>. איך קען מיך נישט עראינערין און וועלכען טאג איך בין אוועק געפאהרען<lb/>איך עראונערע מיך נור דאס אין מאַרקטאגע וואר איך צו הויזע קראנק אין<lb/>מיין בעטטע.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0371_a">
+            <speaker>עטוואש</speaker>
+            <p>אַלזאָ גוט דער מארקטאג אין נורעגהאַזע איזט אם 24 מאַי און אין דעם<lb/>זעלבען טאג האבען זיא נאך פראטאקאלע אונטערגעשריבען אין טיססא עסלאַר?</p>
+          </sp>
+          <sp who="#fetsheli" xml:id="TissaEssler_SP0372_a">
+            <speaker>פעטשעלי</speaker>
+            <p>איזט איין אירטהום אין דאטום, ווייל עס האט זיך געמאכט דאס איך האב<lb/>אייניגע פראטאקאלע אין איין טאג אונטערגעשריבען.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0373_a">
+            <speaker>עטוואש</speaker>
+            <p>וואַס?? אייניגע פראטאקאלע אין איין טאגל?- האהער געריכטסהאָף דער<lb/>צויגע ערקלעהרט דאס אין טיססא עסלאר וואר איינע פראטאקאלע פאבריק וואו<lb/>פער גראסס<lb/>מען האט דיא פראטעגאלע פאר אויס פֿאַבריצירט, אונד הערר פעטשעלי וואר<lb/>דער פיהרער פאן דער פאַבריק איך פראטעסטירע פייערליך געגען זאָ איינע<lb/>נידערטרעכטיגע פאַלשע האנדלונגען. געגען דיא בעאַמטע דיא אומשטאנדע<lb/>זינד איהר אמט זאָ פערברעכעריש צו פערלעצען אללע פראטאקאלע פאן<lb/>מאריצעס צייגניס זינדען פאַלש אונד איינשטודירט אונד דער לעהרער וואהר<lb/>איין<lb/>דער געוויסער קלמן פעטשעלי</p>
+          </sp>
+          <sp who="#fetsheli" xml:id="TissaEssler_SP0374_a">
+            <speaker>פעטשעלי</speaker>
+            <p>איך קלאגע זיא איין פיר עהרע בעליידיגונג.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0375_a">
+            <speaker>עטוואש</speaker>
+            <p>פראקאר איך ביטטע הערר פרעזידענט דיא אקטע פארצולעזען</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0376_a">
+            <speaker>פרעז</speaker>
+            <p>עס זול געשעהן! (נעהמט פאפירע לעזט) אורטהיל שפרוך נאכדעם דאס עס איזט<lb/>קלאהר אבערצייגט דאס קלמן פעטשעלי געבוירען אויס טאָקאַי האט שולדיגער<lb/>ווייזע זיינע פֿרויא באַרבאַראַ געבוירינא יאָזעפינאַ ערמארדעט האט, אונד<lb/>זיין גאנץ לעבען גערויבט געשווינדעלט, זאָ פעראורטהיילען וויר איהם צו<lb/>15 יעהריגעס צוכטהייז שטראפֿפֿע פערשטערקט מיט 2 פֿאַסט טאגע אין מאָנאַט<lb/>(<stage type="business">פעטשעלי פאלט אוממאכט</stage>) מען זאל איהם אין שפיטאל בריינגען (<stage type="exit business">מען טראגט אם אב</stage>)<lb/>עס זאל ערשיינען דניאל בארטשי! (<stage type="entrance">אויפטריט דניאל בארטשי</stage>)<lb/>וואס וויסען זיא איבער מאריץ שאַרפס פראָטאָקאָלע?</p>
+          </sp>
+          <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0377_a">
+            <speaker>בארטש</speaker>
+            <p>. איך בין פאליצייא אגענט אין פרעסבורג! לעזענד און דיא צייטונגען פאָן<lb/>דער געשיכטע פאן טיססא עסלאר, האב איך לוסט בעקאממען דיא זאכע ריכטיג<lb/>צו ערפאהרען, אונד בין זאפארט נאך טיססא עסלאר געפאהרען, איך האבע<lb/>באלד געשפראכען מיט אסתר,ס מוטטער, זא האבע איך באלד ערפאהרען אז<lb/>דיא גאנצע בעשולדיגונג איזט פֿאַלש, קאם האב איך מיינע מיינונג געאויסערט<lb/>זאָ האט ער געהייסען דיא יודין האבען מיר געלד געגעבען, איך האבע מיר דאפאן<lb/>נישט געמאַכט, איך בין געפאהרען נאך נירעגהאזע איך האב מיך בעפריינדעט<lb/>מיט דעם געפענגיניס וועכטער הענטער, ער האט ניכט געוויסט וואס מיין אינטערעס<lb/>איזט, זאָ האט ער זיך פאר מיר נישט געהנטעט. אין איין טאג האט ער מיך<lb/>צו מאריצען געפֿיהרט, מאריץ האט דאן זיין לעקציאן געלערינט, וועלכע<lb/>ווארטע ער האט נאך דאמאלס ניכט געוואסט צום ביישפיל, וואס פיר איינע<lb/>קליידער, דאס גלייעען האט איהם הענטער סופֿלירט, אונד אלס איך האבע<lb/>מאריצען געזאגט: מאריץ, ווארום זאגסטו בעסער ניכט דיא ווארהייט?<lb/>דאן אנטווארטעט ער מיך: "אָ ווען איך זול מעגען דיא ווארהייט זאגען דאן<lb/>האב איך גאר ניכטס געזעהען". הענטער האט מיר דאבייא געאנטווארטעט<lb/>דאס ער איזט זעהער איין געשייט קינד!</p>
+          </sp>
+          <pb n="29" facs="tissa_essler-81-175-56-95CROPPED-0029.jpg"/>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0378_a">
+            <speaker>פערז</speaker>
+            <p>ווירדען זיא דאס זאגען מאָריצען אין געזיכט?</p>
+          </sp>
+          <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0379_a">
+            <speaker>בארטש</speaker>
+            <p>, יאה!</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0380_a">
+            <speaker>פרעז</speaker>
+            <p>. עס זאל קומען מאריץ שאַרף. (<stage type="business">געשיהט</stage>) הערע מאריץ וואס דער הערר זאַגט</p>
+          </sp>
+          <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0381_a">
+            <speaker>בארטש</speaker>
+            <p>. איזט דאס וואהר מאריץ, דאס דוא האסט מיר איינעס טאגעס געזאגט: אָ ווען<lb/>איך זאל מעגען דיא ווארהייט זאַגען דאַן האב איך גאר נישט געזעהען</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0382_a">
+            <speaker>מאָריץ</speaker>
+            <p>יאה, עס איזט וואהר איך האב אייך געוואלט אַזאַ ליגען זאגען</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0383_a">
+            <speaker>פרעז</speaker>
+            <p>ווארום האסטו איינע ליעגע געזאגט?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0384_a">
+            <speaker>מאריץ</speaker>
+            <p>אַזאַ אומגליק איז עס אז מען זאגט אמאהל אליגען? און ווידער איך האב גאר<lb/>אנדערס געזאגט, איך האב געזאגט אז איהר גלויבט מיר ניט, האב איך גארניט<lb/>געזעהן.</p>
+          </sp>
+          <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0385_a">
+            <speaker>בארשי</speaker>
+            <p>זאגסט יעצט איינע ליגע!</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0386_a">
+            <speaker>מאריץ</speaker>
+            <p>איהר זאגט ליגען, דיא אידין האבען אייך געלט געגעבען.</p>
+          </sp>
+          <sp who="#dnil_brtshi" xml:id="TissaEssler_SP0387_a">
+            <speaker>בארטשי</speaker>
+            <p>איך דיענע שאן 21 יאהרע בייא דער אונגארישער רעגירונג צום<lb/>צייכען זעהן זיא מיינען ארדען? זאל זיך וואגען זאָ איין קליינער<lb/>וואגעבונד מיך צו בעלעידיגען?! איך שוועהרע באי גאטט דאס אללעס וואס<lb/>איך היער געשפראכען האבע איזט דיא ריינע ווארהייט.<lb/>שאַרף</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0388_a">
+            <speaker>פרעזידענט</speaker>
+            <p>זיא קענען געהן! <stage type="exit">(בארטשי אב</stage>) עס זאל קומען לאה שארץ (<stage type="entrance">זיא קומט</stage>)<lb/>וויא האט זיך מאריץ אויפגעפיהרט צו הויזע?</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0389_a">
+            <speaker>לאה</speaker>
+            <p>אמאהל גוט אין אמאהל שלעכט.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0390_a">
+            <speaker>פרעז</speaker>
+            <p>ליעגענס פלעגטע ער צו מאהל זאגען?</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0391_a">
+            <speaker>לאה</speaker>
+            <p>אן ליגען האט ער ניכט געקענט לעבען.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0392_a">
+            <speaker>פרעז</speaker>
+            <p>איזט עס וואהר דאס ער האט איינען אמאהל איין מעססער געווארפען?<lb/>ערצעהלען זיא וויא זאָ איזט דאס געשעהן?</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0393_a">
+            <speaker>לאה</speaker>
+            <p>עס איז אזויא געווען, איך האבע איהם געבעטען ער זאל מיר אריינבריינגען<lb/>אביסעל וואסער איך זאל עטוואס אב קאכען. האט ער מיך נישט געוואלט פאלגען<lb/>האב איך איהם אקלאפ געגעבען האט ער מיר געווארפֿען אמעססער</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0394_a">
+            <speaker>מאָריץ</speaker>
+            <p>עס זאל אייך אזויא וועה טאהן דער קאפף וויא מיר דאמאלס אין דאַס<lb/>מעססער, איזט ליגען איך האב ניט געווארפֿען, וואס מיינט איהר איך בין<lb/>אין אייך אידין געראטען? מיט אמעסער אומצוגעהן, אומשולדיגע מוענטשען<lb/>צו קוילען?</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0395_a">
+            <speaker>פרעז.</speaker>
+            <p>מאריץ, ערצעהלע דיא מוטטער אין געזוכט וואס דוא ווייסט.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0396_a">
+            <speaker>מאָריץ</speaker>
+            <p>אם 1טין אפריל.... ז"וו"</p>
+          </sp>
+          <sp who="#lh" xml:id="TissaEssler_SP0397_a">
+            <speaker>לאה</speaker>
+            <p>אָ מיר זאללען שוין צו דיין לויה געהן</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0398_a">
+            <speaker>פרעז</speaker>
+            <p>. (<stage type="delivery">צו לאה</stage>) איהר קענט געהן. <stage type="exit">(לאה אב</stage>)</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0399_a">
+            <speaker>יאָזעף</speaker>
+            <p>זאגע מיר מיין זאהן ווער האט דיך געלערענט זאלסט זאגען זאָלכע ליגען</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0400_a">
+            <speaker>מאָריץ</speaker>
+            <p>איך האב קיין מאהל קיינע ליעגע געזאגט אונד יעצט אויך ניט</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0401_a">
+            <speaker>יאזעף</speaker>
+            <p>מאריץ! געדענקסטו דעם שבת אבענד ווען מיר זיינען געזעסען באַי דער<lb/>מלוה מלכה ביסטו אריינגעלאפען מיט אבשורה אז מען האט געפינען אסתרן?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0402_a">
+            <speaker>מאָריץ</speaker>
+            <p>יאה, איך האב אזויא געזאגט.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0403_a">
+            <speaker>,יאזעף</speaker>
+            <p>נין וויא קען דאס מעגליך זיין אז דיא זאגסט אַז מען האט זיא געקוילעט.<lb/>זאלסטו נאכהער אלליין זאגען אונז אז זיא קומט אהיים מען האט זיא געפינען?</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0404_a">
+            <speaker>פרעז</speaker>
+            <p>. גענוג געפרעגט. - זאגע מיר מאריץ דיין קליינער ברודער שאַמאַ האט פאן<lb/>דיר געהערט דיא געשיכטע ערצעהלען אדער דיא פון איהם?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0405_a">
+            <speaker>מאָריץ</speaker>
+            <p>וואהרשיינליך האט ער אויך געזעען</p>
+          </sp>
+          <pb n="30" facs="tissa_essler-81-175-56-95CROPPED-0030.jpg"/>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0406_a">
+            <speaker>פרעז</speaker>
+            <p>מען זאל אריין בריינגען דעם קליינעם שאַמאַ שאַרף. - מאריץ דוא זאלסט מיט<lb/>איהם רעדען אונד פראגען וואס ער האט געזעהען מיט דיר צו זאממען</p>
+          </sp>
+          <sp who="#fndur" xml:id="TissaEssler_SP0407_a">
+            <speaker>פאנדר</speaker>
+            <p>דיס קינד וויל ניט וועט געהן פון דער מוטער</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0408_a">
+            <speaker>יאזעף</speaker>
+            <p>איך געה אריין בריינגען מיין קינד ער זאל זיך מיט זיין ברודער זעהען (<stage type="exit">אב</stage>)</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0409_a">
+            <speaker>עטוואש</speaker>
+            <p>, מיט וועלכען אויג האסטו געשויעט דורך דער שליססעל לאָך?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0410_a">
+            <speaker>מאָריץ</speaker>
+            <p>מיט דעם לינקען ווייל מיט דעם רעכטען זעה איך ניט גוט.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0411_a">
+            <speaker>עטוואש</speaker>
+            <p>נון אונד דיינע אויגע האט גאר ניכט וועה געטאהן קוקענד 3/4 שטונדע און לאַך?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0412_a">
+            <speaker>מאריץ</speaker>
+            <p>ניין!</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0413_a">
+            <speaker>עטוואש</speaker>
+            <p>אַשאַדע!</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0414_a">
+            <speaker>יאזעף</speaker>
+            <p>(<stage type="entrance">קומט מיט שאמא</stage>) אָ מיין קינד דיא טרעהנען פון דיין פאטער רינען יעצט<lb/>אויף דיינע בעקעלעך, אונד דיינע אונשולדיגע ליפעלעך קושען דיא געזאלצענע<lb/>טרעהרין פון דיין פאטער. געה טענה דיך אויס מיט דיין ברודער וואס<lb/>דיין ברידער זייהן<lb/>וויל שוין מעהר קיין יוד ניט זיין.</p>
+          </sp>
+          <sp who="#shm" xml:id="TissaEssler_SP0415_a">
+            <speaker>שאַמאַ</speaker>
+            <p>גאה, איך דארף איהם אויף אכפרה, קום אהיים וועסטו זעהן מיר האבען שוין<lb/>איין אנדער ברידעריל וואס מאריץ מעג זיין, זיין כפרה.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0416_a">
+            <speaker>מאָריץ</speaker>
+            <p>וואס איז שאַמאַ, וואס ביסטו אַף מיר אזויא בעז? ביסטו דען ניכט נאך פאר מיר<lb/>ארויס געלאפען אין דאָרף, און האסט דערצעהלט דיא געשיכטע פון דעם<lb/>מיידעל ווייל מען האט דיר געגעבען צוקערקערלעך מיט ניס.</p>
+          </sp>
+          <sp who="#shm" xml:id="TissaEssler_SP0417_a">
+            <speaker>שאַמאַ</speaker>
+            <p>שטיל דוא כל בוניק אט איז דא דער פאטער, דאָ האב איך שוין קיין מורא<lb/>ניט דוא זאלסט מיך שלאגען.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0418_a">
+            <speaker>מאריץ</speaker>
+            <p>ווען האב איך דיך דען געשלאגען?</p>
+          </sp>
+          <sp who="#shm" xml:id="TissaEssler_SP0419_a">
+            <speaker>שאַמאַ</speaker>
+            <p>מיינסט איך געדאנק ניט ווען דיא מומע הוראַ פלעגט מיך געבען ניס<lb/>מיט קונפעקטליך איך זאל דער צעהלען דיא שעהנע געשיכטע<lb/>מיט דער מיידעל פלעגסטו מיך שלאגען פאר וואס איך זאג אַזאַ ליעגען און<lb/>פלעגסט פֿון מיר אויס חאפען אלסדינג דוא חאפער בייגעל.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0420_a">
+            <speaker>מאָריץ</speaker>
+            <p>נוא נוא נוא דיר יעצט אב און דערצעהל.</p>
+          </sp>
+          <sp who="#shm" xml:id="TissaEssler_SP0421_a">
+            <speaker>שאַמאַ</speaker>
+            <p>דער ווארג דוא דיך אלליין מיט דעם, איך וויל ניט דוא זאלסט מיר געבען.<lb/>צוקערקעס, גיב מיר בעסער אב מיין פאטער איך קען אן איהם נישט שלאפען<lb/>אונד דיא מאמא ביינקט אזויא.</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0422_a">
+            <speaker>מאָריץ</speaker>
+            <p>נוא וועסט איהם שוין זעהען.<lb/>שאַמאַ נוא גיב מיר זע דיא צוקערקעס?</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0423_a">
+            <speaker>מאריץ</speaker>
+            <p>פערצעהל מיר בעפאהר דיא געשיכטע מיט דער מאידעל.</p>
+          </sp>
+          <sp who="#shm" xml:id="TissaEssler_SP0424_a">
+            <speaker>שאַמאַ</speaker>
+            <p>ניין מען טאר ניט זאגען קיין ליעגען גאטט שטראָפֿט, ער וועט דיך אויך<lb/>שטראפען.<lb/>יידט הערט מאריץ גאטט שטראפֿט</p>
+          </sp>
+          <sp who="#mrits" xml:id="TissaEssler_SP0425_a">
+            <speaker>מאָריץ</speaker>
+            <p>איך זאג אבער קיין ליגען.</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0426_a">
+            <speaker>פרעז</speaker>
+            <p>דאס קינד קען געהן.</p>
+          </sp>
+          <sp who="#shm" xml:id="TissaEssler_SP0427_a">
+            <speaker>שאַמאַ</speaker>
+            <p>פאטעריל קום אויך! (שרייט וויל אן פאטער ניכט געהן מען רייסט איהם אב מיט גוואַלד)</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0428_a">
+            <speaker>פרעז</speaker>
+            <p>אמזעל פויגעל, דוד הירשקא, איגנאץ קליין, זייא זינדען בעשולדיגט דאס זיא<lb/>האבען איין קריסטליך מיידיל אויסגעגראבען אונד האבען זיא אנגעצויגען<lb/>אין דיא קלעידער פאן אסתר סאלומאסי, אונד זיא אין וואסער געווארפען דאמיט<lb/>מען זאל גלויבען, דאס זיא האט זיך זעלבסט דער טראנקען.</p>
+          </sp>
+          <sp who="#mzel" xml:id="TissaEssler_SP0429_a">
+            <speaker>אמזעל</speaker>
+            <p>מיר קענען אייך נור זאגען אַז אללעס איזט פֿאלש, מין האט אונד געצווונגען<lb/>מיר זאללען אזויא זאגען און מיר האבען אויף אללע פראגען געמוזט יאַה זאגען</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0430_a">
+            <speaker>פרעזי</speaker>
+            <p>הערר שטאטס אנוואלט האבען זיא נאך צייגען פארצושטעללען?<lb/>פערהאנדלונג</p>
+          </sp>
+          <sp who="#frkurf" xml:id="TissaEssler_SP0431_a">
+            <speaker>פראק</speaker>
+            <p>מיינער זייטע קען דיא צייגנוס ערפאהרונג אלס געשלאססען בעטראכטעט ווערדען.</p>
+          </sp>
+          <pb n="31" facs="tissa_essler-81-175-56-95CROPPED-0031.jpg"/>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0432_a">
+            <speaker>פרעז</speaker>
+            <p>האבען פיללייכט דיא העררן פערטהיידיגער נאך איין פערלאנגען אדער<lb/>זאנסטיגע אויפקלערונגען?</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0433_a">
+            <speaker>עטוואש</speaker>
+            <p>ניין הערר פרעזידענט וויר האבען נישט מעהר</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0434_a">
+            <speaker>פרעז</speaker>
+            <p>. הערר שטאטס אנוואלט זיא האבען דאס ווארט.</p>
+          </sp>
+          <sp who="#frkurf" xml:id="TissaEssler_SP0435_a">
+            <speaker>פראקוראר</speaker>
+            <p>האהער געריכטסהאף! נאך בעפאר דער פראצעס האט זיך אנגעפאנגען,<lb/>עפֿפֿענטליך און געריכט צו ערקלעהרען, האבע איך שוין בעשטימט געוויסט,<lb/>דאס דיא גאנצע בעשולדיגונג געגען דיא יודין איזט פֿאַלש. אבער דאך האבע איך<lb/>מיך נישט וואהללען צוריק ציהען, אונד מיך פאן איהר צו ענטזאגען, דאמיט דער<lb/>פראצעס זאל עפפענטליך אין געריכט זיך ערקלעהרין אום דיא אומשולדיגעקייט<lb/>פאן דיא אומזיסטע בעשולדיגטע ריין פאר דער גאנצער וועלט ערשיינען זאָלל!<lb/>אונד דאס קריסטליכע פאָלק זאל צו דיא יודען דאס צוטרויען ניכט פערליהרען<lb/>דיא גאנצע וועלט זאל איבערצייגט זיין דאס דיא דוממע זאגע, דאס דיא יודין<lb/>ברוכען קריסטען בלוט צו זייער אסטער קוכען איז פאלש אונד אויס דער<lb/>געגריפען<lb/>לופט געגרונדעט; נור זאלכע פערדארבענע מענטשען וויא ראללונג איסטאָצי<lb/>וואגען<lb/>אונד שטעקקער דיא וועגען זיך אין דיא בוכשטאבען פאן תלמוד צו פינדען<lb/>זאלכע<lb/>זאָ איינע שמוציגע פאלשע בעווייזע דאס דיא יודין בענעטהיגען קריסטען<lb/>בלוט צו זייערע אסטער קוכען, אויך דיא אלטע דארפס ווייבער אין שיינק הויז<lb/>דיא קענען ערצעהלען זאלכע איבער נאטירליכע פֿאַבלען אין דיא אויערען פאן<lb/>זייערע אבערגלויבישע מעננער. אַך ווען איך זאל אומשטאַנדע זיין ארויס צורייסען<lb/>דיזעס טרויעריגעס בלאטט אויף וועלכע דער טרויעריגער אקט אויפגעשריבען איזט<lb/>ניין אין אונגארען ווירד פאן הייטע אונד ווייטער דיא דוממע געשיכטען אויפהערען<lb/>פערשטומט ווערדען בלייבען דיא גיפטיגע מיילער וועלכע ווינטשען נור דורך<lb/>האסס<lb/>פערליימדונגען ליעגע אונד פארטיי ענטטה אויפ צו רייצען דעם צייג אונד<lb/>דעם<lb/>אויפיצורייצען דעם האַסס פאן ארדענטליכע בירגער אויף איין גאנצעס פאלק<lb/>דען ווען בעהיטטע גאטט זאלכע פערליימדינגען זאללען נאך ווייטער באי אונז<lb/>אין אונגערען עקסעסטירען, דאן ווירד גלייכהייט פרייהייט אונד ברידערשאפט<lb/>באי אונז איין אונגארען גענצליך אויף הערען אונד האַסס נייד אונד<lb/>געוואלדטהאטען דאס ווירד פערשמוצען אונזער פאטערלאַנד, אבגעמעקט<lb/>זאל ווערען פאן הייטע אין דיא דוממע זאגע דאס יודין ברויכען קריסטען בלוטט<lb/>צו איהרע אסטער קוכען. איך פראטיסטירע פייערליך געגען זאלכע ניעדער<lb/>טרעכטיגע האנדלונגען אונד אין נאהמען פון אונזער יוסטיץ ערקלעהרע איך<lb/>דיא אנגעקלאגטע פאר אונשולדיג אונד דיא פערקלאגער אונד פראצעספֿיהרער<lb/>פיר שולדיג. <stage type="delivery">(בראווא! בראווא]!</stage></p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0436_a">
+            <speaker>פרעז</speaker>
+            <p>דיא פערטהיידיגונג האט דאס ווארט!</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0437_a">
+            <speaker>עטוואש</speaker>
+            <p>האָהער געריכטס האָף אבוואהל דער הערר שטאטס אנוואלט האט שוין אין זיין<lb/>רעדע אלס געשפראכען, אונד עם איזט נישט מעהר נעהטיג דאס איך זאל נאך<lb/>אויך עטוואס ריידען, אבער טראָטץ דעם, וועל איך מיר ערלויבען אפאר וואָרטע<lb/>צו ריידען, אונד מאנכע ערקלעהרונגען צו מאכען ס אין דער גאנצען צייט פאן<lb/>דיעזען פראצעס, האבע איך געהערט פערשידענע רעדען פערשידענע<lb/>פראטאקאלע, אונד פערשידענע צייגע אונד אללעס ציעלט נור צו דעם פונקט,<lb/>דאס דיא יודין האבען איין מארד בעגאנגען אונד דאפיר זיצען פיללע<lb/>פיללע<lb/>אונגארישע בירגער <sic>ארעטירט,</sic> אונד שמאכטען שוין זייט אייניגע מאנאטען<lb/>איזט היער בלויז איינע פראגע, וואו איזט דיא ערמארדעטע ? אונד וואו איזט דער<lb/>מארד? אונד וואו זינד דיא מערדער? רעכנען מיר דאס דיא אסתר סולאמאסי<lb/>וואר געטעפעט? איזט איינע פראגע פֿאָם וועהר? פאן דיא 15 יודען?<lb/>אונד ווואפיר? ווערדע דיא אסתר סאלומאסי זא רייך געווען האט מען קענען<lb/>זאגען דאס דיא יודין זיינען זאָ רייך דורסטיג, אונד | אום | איהר פערמעגען צו רויבען<lb/>האט מען זיא ערמארדעט; אין פראטאקאל שטעהט אויס דריקליך דאס דיא אסתר<lb/>סאלומאסי גאנג מיט 7 גרייצער פארבען צו קויפֿען; אלזא, זאללען 15 יודען<lb/>טעדטען איין מעדכען דורך 7 גרייצער? דאס איזט מעהר אלס אוממעגליך קען<lb/>קען זיך יאַה מיט דער סוממע ניכט פארטהיילען עס קאמט ניכט אמאהל אויס איין<lb/>האלבען גרייצער פיר אפערזאהן, ניין אום איין האלבען גרוצער וועגען ווירד<lb/>איין יודע נישט טעדטען, אַלזאָ אננעמען דיזען מארד פיר איין רעליגיעזען<lb/>מארד, האט דער הערר פרעזידענט זעלבסט ערקלעהרט דאס ער שטומט ניכט מיט<lb/>דיזען מיינונג, דען וואן אידען זאללען ווירקליך דורך זייער רעליגיאן געצווינגען<lb/>זיין קריסטען בלוט אין זייערע אסטער קוכען צו מיינגען, ווערט דאך פערשידענע<lb/>פראגען דא, ערשטענס: דיא יודען צעהלען אונגעפעהר פאן 10 ביז  12 מיליאָן<lb/>זעעלען איז זיא היינרייכט דאס בלוט פאן איין מעדכען נור? זייא העטטען<lb/>דאך באדארפט יעדעס יאהר יעדען מאנאט אפריל צעהן טויזונד מעדכען<lb/>שלאכטען, אונד וויא האט מען ניכט געהערט דאס יעדעס יאהר איזט פערשווינדען<lb/>געוווארען דארט 20 דארט 30 אונד זאָ ווייטער. דאן נאך איינע פראגע<lb/>איינע נאציאן וואס שטעהט שאהן טויזונטער אונד טויזונטער יאהרע אונד<lb/>איהר רעליגיאן זאל ווירקליך בעפעהלען קריסטליך בלוט צו געברויכען<lb/>וויא העטטען זיך ניכט צו זאממען גענומען 200 מענטשען אויס איהרער<lb/>מיטטע קען וויא איז עס מעגליך פון אפאָלק וואס צעהעלען ביז 10 מיליאנען<lb/>זעעלען זיך זאללען זיך ניט פינדען 100 אדער 200 (זעעלען) פערזאנען<lb/>וועלכע זאללען מיטלייד האבען אויף דעם קריסטען בלוטט וואס דיא יודען<lb/>פערגיסען און זאללען אויפטרעטען אונד פייערליך פראטעסטירען געגען<lb/>זייער אייגענער נאציאן; אונד גאטט זאַי דאנק וויר האבען נאך קאנעם דעם<lb/>ארטיגען פראטעסט נישט געזעהן. - האהער געריכטסהאָף! איך האלטע פיר<lb/>אוננעהטיג נאך אנדערע בעווייזע און דיעזע בעציהונג צו געבען נור לויט דיא<lb/>אונטערשריבענע פראטאקאלע אונד צייגע שריפט נישט צו זאממען קא שטיממען<lb/>איבער הויפט באי דער לאקאל בעזיכטיגונג האט זיך דער צייגע מאריץ שאַרף וואַס<lb/>שפיעלט אין דיעזען פראצעס דיא הויפט ראללע יעדעס מאהל זיך זעלבסט ווידער<lb/>שפראכען. דאהער איזט צו ערקעננען דאס אללע זיינע אויס זאגען זינד פֿאַלש<lb/>אונד דאס גאנצעס פראצעס בערוהט נור אויף דוממע אבערגלויבען אונד פוסטע זאכען<lb/>אלזא ווערדע איך ערזיכען <unclear>אינעם</unclear> נאהמען דער גערעכטיגקייט אללע אנגעקלאגטע צו<lb/>בעפרייען אונד אללע אנקלאגער צו פערקלאגען!</p>
+          </sp>
+          <pb n="32" facs="tissa_essler-81-175-56-95CROPPED-0032.jpg"/>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0438_a">
+            <speaker>פרעז</speaker>
+            <p>דאס געריכט ציהט זיך צוריק אום צו בעשפרעכען וועגען דעם אורטהייל! (<stage type="exit">אב</stage>)</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0439_a">
+            <speaker>יאזעף</speaker>
+            <p>אָ מיין קינד! מאריץ מיין קינד! נאר האסטו צייט תשובה צו טאן שוב יום אחד<lb/>לפני מתתך האבען אונזערע חכמים געזאגט, איין שטונדע פאר דעם טויט ווען<lb/>דוא האסט שוין גאר ניט צו האפען טו אויך תשובה דען עס איזט בעסער פון<lb/>יענער גאנצער וועלט וואו מען קען שוין קיין תשובה ניט טאָן, פיין אונד אז מען<lb/>וועט מיך שוין אויף היינגען, דיינקסטו אז דוא וועסט גליקליך לעבען ? ניין מאריץ<lb/>איינע זאַכע מיט וועלכע מען בעדיענט זיך אומריינע זאכען וועק צו שאַרען,<lb/>נאך דעם ווען מען ברויכט עס ניכט מעהר, פערברענט מען עס; אויך דיך וועללען<lb/>דיא אנטיסעמיטען פערניכטען דען זיא וועללען פירכטען דוא זאָלסט<lb/>דיא ווארהייט נישט ענטדעקען, און וואן מען ווירד דיך שוין יאַ לעבען לאססען<lb/><stage type="business">אללעס  געהט</stage><lb/>ווירסטו דען גליקליך זיין? וואו דוא וועסט געהן און וואו דוא וועסט שטעהן<lb/>וועט זיך דיר אויס ווייזען אז דוא זעהסט דיין פאטער מיט דעם שטריק אויף<lb/> דעם האַלדז, עס וועט זיך דיר אויס ווייזען אז דוא הערסט מיין הייזעריגע <unclear>לוט</unclear><lb/>שטיממע דיך רופען מאָריץ! מאָריץ! וואס האסטוא צו מיר געהאט? אַה וויא<lb/>אמשוגענער הונט ווערסטו ארום לויפען איבער דוא גאססען וועסט שרייען: איך<lb/>האב אליגען געזאגט אבער אומזיסט, דאַמאלס וועט עס שוין צו שפעט זיין<lb/>יעצט האסטו נאך צייט, קאם צוריק צו דיין פאטער... אָ איהר אנטיסעמיטען<lb/>געבט מיר צוריק מיין קינד, מיין קינד!. (<stage type="business">פאלט אין אוממאכט</stage>)</p>
+          </sp>
+          <pb n="33" facs="tissa_essler-81-175-56-95CROPPED-0033.jpg"/>
+          <sp xml:id="TissaEssler_SP0440_a">
+            <speaker>דיענער</speaker>
+            <p>דאס געריכט קאמט!<lb/>(<stage type="entrance business">דער פרעזינדענט מיט דיא מיטגליעדער ערשיינען</stage>)</p>
+          </sp>
+          <sp who="#frezedent" xml:id="TissaEssler_SP0441_a">
+            <speaker>פרעז</speaker>
+            <p>. (<stage type="delivery">לעזט פון פאפיר</stage>) אורטהיילס שפרוך!<lb/>אין נאהמען זיינער מאייסטעט, דעס קעניגס, האט דער קעניגליכער געריכטסהאָף<lb/>פאן ניעריגהאזע אויס געהערט דיא עפֿענטליכע שלוסס פערהאנדלונג פאן<lb/>19 טען יולי ביז 31 יולי, אונד אויף גרונד דער אנקלאגע נאך דעם אויס<lb/>הערען פאן דעם שטאטסאנוואלד, דעם פריוואט קלעגער אונד דיא פער<lb/>טהיידיגער פאלגענדעס אורטהייל הערויס געגעבען.<lb/>דאס וואס דער שטאטס אנוואלד אונד דיא פערטהיידיגער האבען נאכגעוויזען<lb/>אונד איבערצייגט דאס איין רעליגיעזער רעטסלער מאָרד נאך קיין מאהל אין דער<lb/>וועלט שטאטפינדען האַט, אונד וואלטען דאדורך בעווייזען דאס אין טיססא עסלאר<lb/>אויך אונמעגליך וואר זאָ וואס זאל געשעהן זיין, זאָ געפינדעט דער געריכטסהאָף<lb/>פיר ניכט גענוג דיא אנגעקלאגטע דאדורך צו בעפֿרייען דען ערסטען איז<lb/>דאדורך נאך נישט בעוויזען דאס קיין מארד געשעהן איזט; צווייטענס<lb/>האט דער געריכטס האף פון אנפאנג אן נישט אנגענומען דיא מעגלייקיט איינעס רעטועלען<lb/>מארדעס זאל קענען בילדען איין גרונד צור אונטערזוכונג איין אורזאכע צום<lb/>פערטהיידיגען אונד אויך ניכט איין מאטיווירונג צור <unclear>פֿראו</unclear> שפרעכונג.<lb/>פאלגליך קענען דאדורך דיא אנגעקלאגטע פאן דער אונגלאגע איין מארד באגאנגען<lb/>צו האבען נישט בעפרייעט ווערדען. - נור נעהמען אין אַכט דאַס דיא צייגען<lb/>וועלכע האבען צייגעשאפט אבגעלעגט דאס זייא האבען פאן טעמפעל געהערט<lb/>וויינען אונד אום הילפע רופען, האבען זיך מעהרערע מאהל ווידער שפרעכען<lb/>אונד אלס אנוואהר הערויס געשטעלט, אונד פאר דער אנקלאגע איזט נור געבליעבען<lb/>דער איינציגער צייגע מאריץ שאַרף, וועלכער האט אין אונזער געגענווארט געצייגט<lb/>זאָ פיל האַסס אונד פעראכטונג געגען זיינען פאטטער אונד אללע זיינע<lb/>רעליגיאנס גענאסען, אונד באי דער לאקאל אויגען שיין אויפנאהמען האט זיך<lb/>דייטליך הערויס געוויזען דאס מאריץ קענטעניס געזעהען האבען דורך דאס<lb/>שליססעל לאך, וואס ער צייגענשאפֿט אבגעלעגט האַט, אונד קאנטע אויך נישט בעגלייבט<lb/>ווערדען, זא פונדעט דער געריכטס האף דיא אנגקלאגע פיר נישט איבערצייגעט<lb/>אונד דאַ דיא אנקלאנגע אויף מארד וועק פֿעלט, זאָ פאלט שוין געוויס דיא 2טע<lb/>קלאַגע וועגען לייכע שמוגעל אונד הילפע לייסטען צו איינען מאָרד, לויט<lb/>פאראגראף 20 b אונד 6 s פון זיך אלליין וועק, דען ווא קיין פערברעכען<lb/>עקזעסטירט קענען קיינע פערברעכער זיין דאהער אים נאמען זיינען מאייסטעט<lb/>דעם קעניגס ערקלעהרען וויר אַללע אַנגעקלאַגטע פֿיר פֿראי!!</p>
+          </sp>
+          <sp who="#alle" xml:id="TissaEssler_SP0442_a">
+            <speaker>אללע</speaker>
+            <p>(<stage type="delivery">מיט פריידענס געשרייע</stage>) פראַי פראַי פֿראַי!!</p>
+          </sp>
+          <trailer>ענדע 4טען אקט.</trailer>
+          <pb n="34" facs="tissa_essler-81-175-56-95CROPPED-0034.jpg"/>
+        </div>
+      </div>
+      <div type="act" n="5" xml:id="TissaEssler_Act5">
+        <head>5טער אקט ערשטעס בילד</head>
+        <stage type="setting">הענטערס ציממער הענטער, מאריץ זיצען בייא טיש</stage>
+        <sp who="#henter" xml:id="TissaEssler_SP0443_a">
+          <speaker>הענטער</speaker>
+          <p>מאָריץ נור ניכט וויינען, דיא יודין ווירדען נור דאמאלס פֿראי זיין ווען מיר<lb/>וועללען אויפהערין אונגארען צו הייסען.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0444_a">
+          <speaker>מאריץ</speaker>
+          <p>איך וואלט שוין געוואלט אויס אונגאר זיין אביא דיא אידען זאללען בלייבען בייא<lb/>זייער בעפרייאונג.. איהר, נאר איהר זענט דער יעניגער וואס האט מיך<lb/>געצווינגען, פאר וואס האט איהר מיר צוגערעדט איך זאל זאלכע מיזעראבלע<lb/>ליגענס זאגען?</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0445_a">
+          <speaker>הענטער</speaker>
+          <p>נוא מאריטץ, גייה לייג דיך שלאָפֿען ווירסט דיך אויס שלאפען ווירסטו ריינערע<lb/>געדאנקען האבען, דוא ביסט יאַה איין געשייטעס קינד.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0446_a">
+          <speaker>מאריץ</speaker>
+          <p>יאה געשייט ליעגען צו זאגען. יעצט זעה איך ארויס אז איך אונד איהר<lb/>וועללען ביידע האָבען הָמָנס מַפָלָה.</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0447_a">
+          <speaker>הענטער</speaker>
+          <p>אלזא גייא יעצט בעסער שלאפען.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0448_a">
+          <speaker>מאריץ</speaker>
+          <p>יאה איך געהע! נור ניכט דער שלאף קאן מיר יעצט בערוהיגען נור דער<lb/>טוידט, דער טוידט! (<stage type="exit">אב</stage>)</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0449_a">
+          <speaker>הענטער</speaker>
+          <p>וועלכע טויפֿעל האט מיך דאצו געבראכט איין ווערקצייג פיר דיא אנטיסעמיטען<lb/>צו ווערען? <unclear>בלויז</unclear> דורך 40 גילדען מאנאטליך וואס איך האבע גענאממען, ווירדע<lb/>איך יעצט 40 יאַהרע ברויטלאָז אומגעהן.<lb/><stage type="entrance">(אויפטריט) בארבאבא</stage></p>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0450_a">
+          <speaker>בארבארא</speaker>
+          <p>הערר! מאריץ האט זיך אויפגעהאנגען</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0451_a">
+          <speaker>הענטער</speaker>
+          <p>וואס?. איך האב דיך דאך געזאגט דוא זאלסט איהם ניט לאזען אלליין</p>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0452_a">
+          <speaker>בארבארא</speaker>
+          <p>איך האבע איהם דעם שטריק קע אבגעשניטען, אונד ער זעהט זאָ שלעכט אויס</p>
+        </sp>
+        <sp who="#henter" xml:id="TissaEssler_SP0453_a">
+          <speaker>הענטער</speaker>
+          <p>קאם שנעלל וויר זאללען איהם ניכט לאססען יעצט אלליין. איך ווייס מיר גארניכט<lb/>קיין ראטה צו פֿינדען וואו מען לייגט דעם קראנקען איזט איהם איממער שלעכט (אב)</p>
+          <stage type="delivery">סצנע מאריץ, בארבארא</stage>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0454_a">
+          <speaker>מאריץ</speaker>
+          <p>(<stage type="entrance">לויפט אריין זיא נאך איהם</stage>) לאסט מיך לאסט מיך פריילין אנאדי וואס ווילט איהר<lb/>פון מיר האבען פון איין ארעם דארפעס אינגעל?</p>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0455_a">
+          <speaker>בארבארא</speaker>
+          <p>מאריץ. זאלסט וויסען אז איך בין ניט פֿריילין אָנאָדי, איך בין ניכט מעהר וויא<lb/>איין ארום דינסט מעדכען.</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0456_a">
+          <speaker>מאריץ</speaker>
+          <p>וואס? מיר האט מען פון איין שוסטער פערשפראכען מאכען צו איין מיניסטער<lb/>אוין אדיענסט מיידיל פֿיר אגרעפֿין אָ לאסט מיך, לאסט מיך אלליין, אלס דינסט<lb/>געפעהלט איהר מיר בעסער אלס גרעפין</p>
+        </sp>
+        <sp who="#brbr" xml:id="TissaEssler_SP0457_a">
+          <speaker>בארבארא</speaker>
+          <p>איך געה נאר זאלסט וויסען אז איך ליעבע דיך אין דער ווארהייט. (<stage type="exit">אב</stage>)</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0458_a">
+          <speaker>מאריץ</speaker>
+          <p>(<stage type="business">אלליין)</stage> נון וואס זאל איך יעצט טאהן? וואו אהין זאל איך יעצט געהן? דיא<lb/>גאנצע וועלט איזט יעצט פאר מיר צו קליין אויך אויף יענער וועלט איזט פאר<lb/>מיר קיין חבר ניטאָ, אמיניסטער צו זיין האט זיך מיר געגלוסט אָ גליקליך<lb/>וואלט איך מיך געשעצט איך זאל צוריק זיין באי מיין פאטער אשוסטער!<lb/>אָ יעצט זעה איך ערשט ארויס אז איך בין ניכט מעהר געווען איין געגענשטאנד<lb/>מיט מיר אונריינע זאכען צו רייניגען, אונד אצינד ווען מען דאַרף מיך שוין ניט<lb/>שטעלט מען מיך אוועק אן אזייט, אָ מיינע געוויסען ברענען מיך דער קאפף<lb/>קערט זיך מיר איבער נאַ נאַ (שלאגט זיך אין קאפף) איין עברה צו טראגען<lb/>אף זיך אזא קאפף וואס איזט אומשטאנדע צו זאגען זאלכע ליעגען נור ניין<lb/>איך בין ניכט שולדיג דאס זיינען שולדיג זייא דיא אנטיסעמיטען דיא <unclear>מיר דער</unclear><lb/>זייא האבען מיך געפלאגט געצווינגען דאס צו זאגען, אָ עס איז איך שלעכט, דיא<lb/>גאנצע וועלט וועט מיך שעלטען, יעדער פאטער פאן אצינד אן אונד ווייטער<lb/>וועט זיין קינד בעשטראפען מיט דעם שענדליכען נאהמען ("מאָריץ שאַרף") אָה<lb/>איך זאל יעצט קענען זעהען מיין פאטער אָ פאטער פאטער איך בין ניט שולדיג!<lb/><stage type="delivery">No</stage> (<stage type="delivery">זינגט וויינענד</stage>)</p>
+          <lg n="30">
+            <l>גרויסער גאטט פון יהודה אונד ישראל</l>
+            <l>פערצייהע מיר נור דאס מאָהל</l>
+            <l>געזינדיגט פאר דיר אין פאר מיין פאטער</l>
+            <l>איך בעט דיך פערצייע מיך ווייטער</l>
+            <l>אוי איז מיר אוי איז מיר, געזינדיגט אן אשיער</l>
+            <l>אוי וועה איז מיר גאטט פערצייע מיר</l>
+          </lg>
+          <lg n="31">
+            <l>איין קינד זיין פאטער זאל וועללען אומבריינגען</l>
+            <l>און זיינע ברידער דיא אידען אויף היינגען</l>
+            <l>דיא שונאים האבען מיך פארפיהרט!</l>
+            <l>מיין אייגענע אמונה האב איך פארשמירט</l>
+            <l>אוי איז מיר אוי איז מיר וואס האב איך געטאהן</l>
+            <l>אָו איז מיר וועה איז מיר, מיין שטראפע הייבט זיך יעצט אן</l>
+            <stage type="exit">(אב)</stage>
+          </lg>
+        </sp>
+        <pb n="35" facs="tissa_essler-81-175-56-95CROPPED-0035.jpg"/>
+        <div type="scene" n="2" xml:id="TissaEssler_Act5_Sc2">
+          <head>פערוואנדלונג</head>
+          <stage type="delivery">אנפאנג אקט</stage>
+          <stage type="entrance">אלע יודען  אויף דער בינע</stage>
+          <stage type="setting">2טעס בילד, שלוסס.</stage>
+          <stage type="delivery">No</stage>
+          <stage type="setting">שטעלט פאר באי יאזעף שארף אין ציממער, אין מיטט אטיש ארום זיצען</stage>
+          <stage type="business">גלייך</stage>
+          <stage type="entrance">יאזעף , לאה שמאי אונד נאך אייניגע פון בעפרייעטע</stage>
+          <stage type="entrance">,עס קאממען פיללע לייטע גראטולירען מיט זייער בעפרייאונג</stage>
+          <stage type="delivery">קאהר זינגט גראטולווציאנס ליעדער טאנצען .)</stage>
+          <sp who="#eyner" xml:id="TissaEssler_SP0459_a">
+            <speaker>איינער</speaker>
+            <p>ליעבע בריעדער, מיר שיינט דער גוטטער הערר עטוואש קומט אהער</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0460_a">
+            <speaker>יאזעף</speaker>
+            <p>וואס? דער גוטער הערר עטוואש? אונזער רעטטער וואס זאל עס בעדייטען?</p>
+          </sp>
+          <sp who="#eyner" xml:id="TissaEssler_SP0461_a">
+            <speaker>איינער</speaker>
+            <p>לאמיר אללע איהם באדאנקען פור זיין פיל גוטעס וואס ער האט אונז געטאן<lb/><stage type="entrance">אויפטריט עטוואש</stage><lb/>(<stage type="business">באי זיין אריינטרעטען באפאהלען זייא איהם אללע ארום קוסען זיינע הענד)</stage></p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0462_a">
+            <speaker>עטוואש</speaker>
+            <p>איך בין אויך געקומען גראטולירען אונד גליק ווינטשען צו אייער בעפרייאונג.<lb/>גיבע גאטט דאס איהר זאלט ניע אין לעבען מעהר ליידען קיינע שמערצען<lb/>אללע אָ מיר דאנקען, מיר דאנקען אייך גוטטער הערר איהר זיינט אונזער רעטטעס<lb/>ענגעל.</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0463_a">
+            <speaker>עטוואש</speaker>
+            <p>הערר שארף, איך האב אויך צו אויך אביטטע אונד איך האף אז איהר וועט<lb/>איר דאס ניכט ענטזאגען.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0464_a">
+            <speaker>יאזעף</speaker>
+            <p>איהר צו מיר אביטטע? אָ אללעס אללעס זיינען מיר בערייט פיר איהנען<lb/>צו טאהן זאגאר צו גיין אין פייער און וואסער?</p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0465_a">
+            <speaker>עטוואש</speaker>
+            <p>מיין ביטטע בעשטעהט אין דעם, דאס איהר ה" שאַרף זאלט אייער זוהן<lb/>מאריצען פֿערצייהען זיינע זינדע אונד איהם צוריק און אייער הויז נעהמען<lb/>אונד אלס אייער קינד באטראכטען.</p>
+          </sp>
+          <pb n="36" facs="tissa_essler-81-175-56-95CROPPED-0036.jpg"/>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0466_a">
+            <speaker>יאזעף</speaker>
+            <p>וועהמען?... דעם מערדער, דעם ליגנער? וועלכער האט אונז אללעמען געוואלט מיט<lb/>זיינע ליעגען אומבריינגען?.. זיין נאהמען איזט שוין לאנג אָפ געמעקט אין<lb/>מיינען הערצען ער איזט שוין פאר מיר געשטארבען איך האב ניכט מעהר קיין<lb/>זאהן מאריץ ניין..</p>
+          </sp>
+          <sp xml:id="TissaEssler_SP0467_a">
+            <speaker>עטוואס</speaker>
+            <p>ה" שארף, זיא ווייסען דאס דיא יוגינד מאכט פיהלע פעהלער ער איזט ניכט שולדיג<lb/>ער וואהר נור איין ווערקצייג איך דיא האנד פון ניעדער טרעכטיגע מענטשען איך<lb/>ביטטע אייך טוהען זייא דיעסן געפאללען מיר ער איזט שוין גענוג געפלאגט פאן זיין<lb/>געוויסענע ביסע וועלכע גיבט איהם קיין רוהע..</p>
+          </sp>
+          <sp who="#alle" xml:id="TissaEssler_SP0468_a">
+            <speaker>אללע</speaker>
+            <p>ה" שאַרף טוען זייא דאס צו ליב אונזער רעטטער דעם גוטען העררן עטוואש<lb/>אונד פערצייהעט אייער קינד.</p>
+          </sp>
+          <sp who="#izef_shrf" xml:id="TissaEssler_SP0469_a">
+            <speaker>יאזעף</speaker>
+            <p>מיין קינד!?.. מיין קינד וועלכער האט קיינע מיטלייד געהאט אויף זיין עלינדען פאטער<lb/>אויף זיינע אונגליקליכע רעליגיאנס ברידער..אָ ר גאטט אלמעכטיגער! <stage type="delivery">(וויינט)</stage><lb/><stage type="delivery">מען הערט זינגען אונטער קוליסען פאסיגען נאמער מיט געוויין)</stage><lb/><stage type="delivery">"גרויסער גאטט פאן יהודא אונד ישראל ז" וו"</stage></p>
+          </sp>
+          <sp who="#etvsh" xml:id="TissaEssler_SP0470_a">
+            <speaker>עטוואש</speaker>
+            <p>דאס איזט דיא יאממערליכע שטיממע פאן דעם פערבלאנזעטען זאָהן וועלכער וויינט<lb/>אונד ביטטעט אום פערצייהונג נוא ה" שאַרף צאגערען זיא ניכט</p>
+          </sp>
+          <sp who="#alle" xml:id="TissaEssler_SP0471_a">
+            <speaker>אללע</speaker>
+            <p>יאה יאה פערצייען! פערצייען! (<stage type="setting">פאללען ארום שארף ער</stage> <stage type="setting">וויליגט איין, עטוואש פיהרט</stage>)<lb/>(<stage type="setting">אריין מארצען פילט צו דיא קניה וויינט, סצענע פערצייהונג נאכהער קווארטעט</stage><lb/><stage type="setting">טאנץ געזאנג עטוואש ווערט אויף געהויבען אללע טאנצען ארום מישמאש)</stage><lb/><stage>פארהאנג פאלט</stage></p>
+          </sp>
+          <trailer>ענדע אללעס</trailer>
+        </div>
+      </div>
+      <div type="addendum">
+        <stage type="delivery">סצענע מאריץ</stage>
+        <sp who="#mrits" xml:id="TissaEssler_SP0472_a">
+          <speaker>מאריץ</speaker>
+          <p>אה פאטער פערצייאונן. (<stage type="business">פאלט אויף דיא קניע</stage>)</p>
+        </sp>
+        <sp who="#izef_shrf" xml:id="TissaEssler_SP0473_a">
+          <speaker>יאזעף</speaker>
+          <p>מיין זאהן מיין מאריץ! (<stage type="business">אומארימונג</stage>)</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0474_a">
+          <speaker>מאריץ</speaker>
+          <p>מוטער ליעבע מוטטער, פערציייע מיר</p>
+        </sp>
+        <sp who="#lh" xml:id="TissaEssler_SP0475_a">
+          <speaker>לאה</speaker>
+          <p>גאטט זאל דיר פערצייען וויא מיר פערצייען דיר</p>
+        </sp>
+        <sp who="#shm" xml:id="TissaEssler_SP0476_a">
+          <speaker>שמאי</speaker>
+          <p>מאריץ וועסט שאן ניט זאגען קיין ליעגען?</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0477_a">
+          <speaker>מאריץ</speaker>
+          <p>אה ניין, יעצט זעה איך ערשט וויא טהייער מיינע ברידער<lb/>זענען מיר.</p>
+        </sp>
+        <sp who="#izef_shrf" xml:id="TissaEssler_SP0478_a">
+          <speaker>יאזעף</speaker>
+          <p>יאה מיינע ברידער וויר מעגען גאטט דאנקען וואס דער<lb/>בילבעל האט זיך ארויס געוויזען מיר מעגען זיך מאכען<lb/><unclear>סודות</unclear> פורים אין יעדעס יאהר זאללען מיר <sic>פייער</sic><lb/>איין<lb/>דען נס פון פורים, אין יעדער יוד זאלל דעם<lb/>אנדערן שיקען ח ש<sic>לות </sic>מנות צום אנדענקען</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0479_a">
+          <speaker>מאריץ</speaker>
+          <p>און איך וואלט געוואלט זיין דאס יונגעל וואס מען שיקט<lb/>מיט איהם דעם <sic>שלות</sic> מנות וואלט איך דאן געוויסט<lb/>דאס דיא יודען האבען מיר פערצייעט</p>
+        </sp>
+        <sp who="#etvsh" xml:id="TissaEssler_SP0480_a">
+          <speaker>עטוויש</speaker>
+          <p>מאריץ! זינגע אמאהל פאר דאס ליעד פון <sic>שלות</sic> מנות</p>
+        </sp>
+        <sp who="#mrits" xml:id="TissaEssler_SP0481_a">
+          <speaker>מאריץ</speaker>
+          <p>מיט פערגעניגען פון אייערט וועגען בין איך בערייט<lb/>זאגאר אין פייער צו לויפען<lb/><stage type="delivery">N</stage></p>
+          <lg n="32">
+            <l>דען ערשטען שלות מנות</l>
+            <l>האט אונז משהן גאטט געשיקט</l>
+            <l>ווען דיא יודען גאר רחמנות</l>
+            <l>האט מען אין מצרים געשטיקט</l>
+          </lg>
+          <lg n="33">
+            <l>האט משה אללע אין איינעם</l>
+            <l>פון מצרים עקספעדירט</l>
+            <l>מיט דעם תורהלע דעם שיינעם</l>
+            <l>קיין ירושלים אריין געפיהרט</l>
+            <l>אלאנד מיט אתורה</l>
+            <l>אמלך אבורה</l>
+            <l>אוי וויא.</l>
+            <l>כהנים לוים, סנהדרין נביאים</l>
+            <l>אוי וויא</l>
+            <l>אוי אוי [אוי וויא צוקער זיעס]</l>
+            <l>יודען שיקען שלוח מנות</l>
+            <l>איינס דאס אנדערע מתנות</l>
+            <l>אוי וויא צוקער זיעס</l>
+            <l>דען צווייטען שלוח מנות</l>
+            <l>וואס גאטט האט אונז געמאכט</l>
+            <l>ווען המן מיט זיין לצנות</l>
+            <l>האט דיא יודען שיער אומגעבראכט</l>
+            <l>האט אסתרל אללע בייא אחשורוש אין דערנארט</l>
+            <l>בייא אחשורוש אין דער נויטה</l>
+            <l>דיא יודען מצל געוועהן</l>
+          </lg>
+          <lg n="34">
+            <l>און המן נין געמאכט דען טויט</l>
+            <l>מרדכי און אסתר - אברודער אשוועסטער</l>
+            <l>אוי וויא...</l>
+            <l>אין המן דאס צרהלע - ווערט אכפרהלע</l>
+            <l>אוי וויא...</l>
+            <l>דער דריטער שלוח מנות</l>
+            <l>איז נור פון גאטט אלליין</l>
+            <l>ווען דיא רוססען גאר אן רחמנות</l>
+            <l>האבען זיך אין אונז נוקם געוועהן</l>
+            <l>אמעריקא זאגט גאטט איז דא</l>
+            <l>דארט לעבט איעדער פרייא</l>
+            <l>פארט יודאליך אין אגוטער שאה</l>
+            <l>גיט אויף רוססלאנד גאר אשפייע</l>
+            <l>אמעריקא האט שטעטעהליך</l>
+            <l>ביזניס מיט קלייט אליך</l>
+            <l>אוי וויא...</l>
+            <l>בעל מלכהליך יודאליך</l>
+            <l>אאוף אללע סטריטאליך</l>
+            <l>אוי וויא...</l>
+            <l>און איז איהר לעבט יאה אזוי גוט</l>
+          </lg>
+          <lg n="35" prev="true">
+            <l>אין דעם פרישען לאנד</l>
+            <l>דער קריסט וויא אויך דער יוד</l>
+            <l>געהן דארט האנד אין האנד</l>
+            <l>נא לעבטשע אייך צופרידען</l>
+            <l>און פערגעסט נישט גאטטס מתנה'ס</l>
+            <l>און שיקט אייך ליעבע יודען</l>
+            <l>פורים שלוח מונות</l>
+            <l>וויין פילע פלעשעלעך</l>
+            <l>מיט המן טעשעליך</l>
+            <l>אוי וויא</l>
+            <l>פלאדען וויא פישעליך</l>
+            <l>מאנדאליך קישיליך</l>
+            <l>אוי וואי...</l>
+          </lg>
+        </sp>
+        <pb n="37" facs="tissa_essler-81-175-56-95CROPPED-0037.jpg"/>
+        <pb n="38" facs="tissa_essler-81-175-56-95CROPPED-0038.jpg"/>
+        <sp who="#etvsh" xml:id="TissaEssler_SP0482_a">
+          <speaker>עטוויש</speaker>
+          <p>יעצט איינע פריינד ווערדער איך אייך מוט<lb/>טהיילען איינע פרעהליכע נאכריכט איך האב<lb/>פערנאמען דאס הייטע ווערדען דיא אנטיסימיטאן<lb/>ארעטירט הערר אנאדי. פעטשעלי אונד<lb/>הענטער  פאלס איהר ווילט רייכע נעהמען<lb/>אין זייא <unclear>פארנאכט</unclear> דיא פאר הענגע  ווירד<lb/>איהר גלייך זעהן וויא מאן פיהרט זייא<lb/><stage type="setting">פערוואנדלונג</stage><lb/><stage type="entrance">אנאדי פעטשעלי הענטער</stage><lb/><stage type="entrance">גטפיהרט פאן סאלדאטען</stage><lb/><stage type="delivery">N</stage><lb/><stage type="delivery">(שלוס נומר)</stage><lb/><stage type="business">געהט נור געהט זעהט</stage><lb/><stage type="setting">פארהאנג</stage><lb/><lb/><lb/></p>
+        </sp>
+        <pb facs="tissa_essler-81-175-56-95CROPPED-0039.jpg"/>
+        <pb facs="tissa_essler-81-175-56-95CROPPED-0040.jpg"/>
+      </div>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,1922 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-ben-hador">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">בן הדור</title>
+        <title type="sub">Ben HaDor</title>
+        <author>Moyshe Hurwitz</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>בן הדור</title>
+          <author>Moyshe Hurwitz</author>
+          <idno type="transkribus">https://app.transkribus.org/collection/2372172/doc/826910</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <classDecl>
+        <taxonomy xml:id="prod-cues">
+          <desc>Regie/prompter cue notation of the handwritten witnesses. The letter names the family (R = Returnel/ritornello, S = Szene); the Roman numeral is an in/out bracket state, not a serial number, which is why III never occurs. N/No + Arabic numeral is the serial of the musical number.</desc>
+          <category xml:id="cue-in">
+            <catDesc>Opening bracket of a cue: RI, IR, R.I, '1 Returnell:', and the bare I of MS_BasKoyen where the letter is dropped.</catDesc>
+          </category>
+          <category xml:id="cue-out">
+            <catDesc>Closing bracket of a cue: RII, IIR, R.II, 'II Return:', bare II. At a scene cue it falls on Vorhang/Verwandlung.</catDesc>
+          </category>
+          <category xml:id="cue-genre">
+            <catDesc>Names the kind of musical number rather than bracketing it: Chor, Marsch, Tanz, Terzett, Quarted, Duet, arya, Refrein. Carries no in/out state.</catDesc>
+          </category>
+          <category xml:id="cue-number">
+            <catDesc>The serial of the musical number: N, No 4., N=3. @n carries the normalised value.</catDesc>
+          </category>
+        </taxonomy>
+      </classDecl>
+    </encodingDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="shlmun">
+            <persName>שלמון</persName>
+          </person>
+          <person xml:id="sufur">
+            <persName>סופֿורא</persName>
+          </person>
+          <person xml:id="bn_hdur">
+            <persName>בן הדור</persName>
+          </person>
+          <person xml:id="khnu">
+            <persName>חנו</persName>
+          </person>
+          <person xml:id="elms">
+            <persName>עלמת</persName>
+          </person>
+          <person xml:id="rkhumh">
+            <persName>רחומה</persName>
+          </person>
+          <person xml:id="lfidus">
+            <persName>לפידות</persName>
+          </person>
+          <person xml:id="tsroyh">
+            <persName>צרויה</persName>
+          </person>
+          <person xml:id="mun">
+            <persName>אמון</persName>
+          </person>
+          <person xml:id="militer">
+            <persName>מיליטער</persName>
+          </person>
+          <person xml:id="leybgrdie">
+            <persName>לייבגארדיע</persName>
+          </person>
+          <person xml:id="ferbrekher">
+            <persName>פֿערברעכֿער</persName>
+          </person>
+          <person xml:id="shrfrikhter">
+            <persName>שארפֿריכטער</persName>
+          </person>
+          <person xml:id="fisher">
+            <persName>פֿישער</persName>
+          </person>
+          <person xml:id="medkhen_flk">
+            <persName>מעדכֿען פֿאלק</persName>
+          </person>
+          <person xml:id="lte">
+            <persName>אלטע</persName>
+          </person>
+          <person xml:id="iunge">
+            <persName>יונגע</persName>
+          </person>
+          <person xml:id="frzun">
+            <persName>פֿראזון</persName>
+          </person>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="BenHaDor" type="BenHaDor">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#shlmun">שלמון</role>
+        </castItem>
+        <castItem>
+          <role corresp="#sufur">סופֿורא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#bn_hdur">בן הדור</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khnu">חנו</role>
+        </castItem>
+        <castItem>
+          <role corresp="#elms">עלמת</role>
+        </castItem>
+        <castItem>
+          <role corresp="#rkhumh">רחומה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#lfidus">לפידות</role>
+        </castItem>
+        <castItem>
+          <role corresp="#tsroyh">צרויה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mun">אמון</role>
+        </castItem>
+        <castItem>
+          <role corresp="#militer">מיליטער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#leybgrdie">לייבגארדיע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ferbrekher">פֿערברעכֿער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shrfrikhter">שארפֿריכטער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fisher">פֿישער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#medkhen_flk">מעדכֿען פֿאלק</role>
+        </castItem>
+        <castItem>
+          <role corresp="#lte">אלטע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#iunge">יונגע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#frzun">פֿראזון</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb facs="בן_הדור-0001.jpg"/>
+      <pb n="2" facs="בן_הדור-0002.jpg"/>
+      <pb facs="בן_הדור-0003.jpg"/>
+      <pb n="4" facs="בן_הדור-0004.jpg"/>
+      <stage type="delivery">בן הדור</stage>
+      <stage type="business">א.ז. וו....</stage>
+      <div type="act" n="1" xml:id="BenHaDor_Act1">
+        <head>1. "Erster Act"</head>
+        <stage type="setting">עס שטעלט פֿאר אַ וואַלד 2 שייטערהופֿען.</stage>
+        <stage type="entrance">קאָהר  מארשירט אריין, פאלק, סאלדאטען, שארפריכטער</stage>
+        <stage type="delivery">2 מערדער קאהר זינגט פריער מארש</stage>
+        <stage type="delivery">נאך געזאנג</stage>
+        <stage type="entrance">"אויפטריט "אמון</stage>
+        <sp who="#mun" xml:id="BenHaDor_SP0001_a">
+          <speaker>אמון</speaker>
+          <p>ליעבע בירגער אונד טאפפֿערע קריעגער פֿאן אבר! הערט<lb/>דען בעפֿעהל פֿין אייער קעניג <stage type="delivery">"לעזט"</stage> ווירדיגער קעניגליכֿער<lb/>ראטה געבער אמון! גאטט איזט מיין צויגע דאַס איך האבע קיינע<lb/>שולד אין דעם טאָדט פֿאָֿן אייער קעניג שלמון בן עמיאַל<lb/>פֿין חבר!  היער שיקע איך אייך דיא 2 פֿער ברעכֿער<lb/>וועלכֿע האבען זיין הייליגעס בלוט פֿער גאססען שוועהרענד<lb/>ער האָט געקעפפֿט מיט מיר צוזאמען אויף דעם שלאכֿטפֿעלד<lb/>געגען אונזערע פֿיינדע דיא אראַבער פאָן בגדד!<lb/>אויף מיין בעפֿעהל זאללען זעה באַלד הינגעריכֿטעט ווערן<lb/>אונד מיט זייער בלוט זאל אָבגעוואשען ווערען דער<lb/>פֿערדאכֿט דאָס איך אלליין האבע אייער קעניג<lb/>ערמארדעט  <stage type="entrance">״ 3 פֿערורטהיילטע״</stage> האַבט איהר נאך עטוואש<lb/>צו זאגען צו. אייער פֿערטיידיגונג?</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0002_a">
+          <speaker>קאהר</speaker>
+          <p>זעה זענען אונשולדיג!</p>
+        </sp>
+        <pb n="5" facs="בן_הדור-0005.jpg"/>
+        <sp who="#mun" xml:id="BenHaDor_SP0003_a">
+          <speaker>אמון</speaker>
+          <p>דיעזע פֿערטיידיגונג קאן נישט גילטען! שארפֿריכֿטער! טהוט<lb/>איהע פפֿליכט <stage type="delivery">מען הערט שלמון זינגען לויט הינטער קוליסען</stage><lb/>האלט! איך הערע איינע שטיממע וועלכֿע רופֿט וואך<lb/>אין מיר איינען שרעקליכֿען געדאנקען! וויר ווער דען<lb/>מיט דער הינריכטונג אבווארטען ביז איך ווערדע דען<lb/>מאַן פֿאָן דער נעהע בעטראכֿטען<stage type="business"> קוקט ארוי</stage>ס עס איזט<lb/>איין ארמער אלטער מאן. עס טוהט מיר לייד ער זאל דיא<lb/>טרויעריגע הינריכֿטונג בייוואהנען. פֿער שטעלט דיא אפפֿער<lb/>ער זאלל זיא פֿארלויפֿיג ניכֿט זעהן <stage type="costume">קאהר פֿערשטעלט</stage><lb/><stage type="entrance">דיא פֿערברעכֿער</stage><lb/><stage type="entrance">אויפטריט שלמון</stage> <stage type="entrance costume">אלס בעטלער טריט אויף מיט</stage><lb/><stage type="delivery">פֿינאל פֿאן רעהפֿריין וואס ער זינגט דאס אין 2טן אקט</stage>] </p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0004_a">
+          <speaker>שלמון</speaker>
+          <p>נוא? האָט דער אלטער בעטלער מיט זיין ליעד אייערע הערצער<lb/>צו שטיינער געמאכֿט? צי האָב איך אפֿשר אייער שמחה<lb/>געשטערט? איז היינט עפעס אַ יום-טוב אין חבר? יאָ יאָ<lb/>מיר דאכֿט אויב איך האָב קיין טעות, איז היינט דער<lb/>געבורסטאג פֿין אייער קעניג שלמון. היינט וועהרט ער<lb/>אלט 40 יאהר!<lb/>אמון אפ<stage type="delivery">ארט ר</stage>יכטיג 40 יאהר! היינט ל"ג בעומר איז<lb/>געוועזען זיין געבורסטאג <stage type="delivery">לויט</stage> וויר דיגער אלטער!<lb/>ווי איך זעה ביסטו איין פֿריינד פֿין אונזער גאטטזעליגען<lb/>קעניג שלמון בן עמיאל פֿון חבר. עס טהוט מיר לייד דיר<lb/>דיא טרויעריגע נאכֿריכֿט צו מעלדען דאַס אונזער קעניג<lb/>שלמון איזט שאָן לענגסט טאָדט: היער שטעהן דיא 2<lb/>פֿערברעכֿער וועלכֿע האבען זיין הייליג בלוט פֿער גאססען<lb/>אונד אויף בעפֿעהל פֿאן אונזער נייעם קעניג זאללען<lb/>זייא באַלד הינגעריכֿטעט ווערען!</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0005_a">
+          <speaker>שלמון.</speaker>
+          <p>דאָס איז זעהר שעהן פֿין אייער קעניג! אבער לאָזט<lb/>מיך נאָר דיא מערדער זעהן.</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0006_a">
+          <speaker>אמון</speaker>
+          <p>לאָסט דיא מער דער פֿארטרעטען.<stage type="location"> קאהר אין אַ זייט</stage></p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0007_a">
+          <speaker>שלמון</speaker>
+          <p><stage type="business">קוקט זעה אן.</stage> חַַחַחַ דאָס זענען דיא מערדער? איך שוועהר<lb/>בייא גאטט אז דיא זעהן נישט אויס ווי א קעניגס מער דער!</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0008_a">
+          <speaker>אמון</speaker>
+          <p>דוא שועהרסט בייא גאָטט!</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0009_a">
+          <speaker>שלמון</speaker>
+          <p>| איך האָב נאָך ניא אין מיינעם לעבען פֿאַלש געשווארען</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0010_a">
+          <speaker>אמון</speaker>
+          <p>|וואָס מיינסטו דאַמיט אלטער?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0011_a">
+          <speaker>שלמון</speaker>
+          <p>| דוא פֿרייגסט מיך וואָס איך מיין דאמיט? האט שון<lb/>דאָס פֿאָלק פֿון חבר פֿער געססען זייער אלטען קעניג<lb/>מנהג? ווען אַ מענש ווערט פֿון מענשען פֿערורטהיילט<lb/>צו פֿייער אונד טאָדט איז איידער מען פֿערברענט<lb/>אים, זאל מען אים געבען געלעגענהייט.<lb/>ווען ער פֿיהלט זיך אונשולדיג ער זאל אפעלירען דורך<lb/>אַ געבעהט צו דעם גאָטט וואָס ווייסט אַללע געהיימניסע<lb/>ער זאלל אונז בע ווייזען און שיקען אַ רעגען דאָס פֿייער<lb/>אויס צולעשען.</p>
+        </sp>
+        <pb n="6" facs="בן_הדור-0006.jpg"/>
+        <sp who="#mun" xml:id="BenHaDor_SP0012_a">
+          <speaker>אמון</speaker>
+          <p>| דוא האָסט רעכֿט אַלטער! דאָס זאלל יעצט געשעהן<lb/><stage type="delivery">צו דיא מערדער</stage> איהר פֿערורטהיילטע איהר האט נאך<lb/>דאָס לעצטע רעכֿט מתפלל צו זיין צ גאטט תפֿילת הגשם<lb/>אויב איהר זענט  אונשולדיג זאלל ער בעווײזען איין נס, און<lb/>שיקען אַ רעגען דאָס פֿייער אויס צו לעשען  <lb/>איהר קענט אליין דיא  תּפֿילה מתפלל זיין אדער זיך<lb/>אוסוועהלען איינעם פֿון פֿאָלק ער זאלל פֿאר אייך מתפלל זיין</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0013_a">
+          <speaker>קאהר</speaker>
+          <p>| דער אַלטער זאלל פֿאר זעה בעטין.</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0014_a">
+          <speaker>אמון</speaker>
+          <p>| וויר דיגער אלטער דיא פֿערורט היילטע האבען דיך<lb/>אוסערוועהלט דוא זאלסט פֿאר זעה מתפלל זיין<lb/>תּפֿילת הגשם פֿיהלסט דוא דיך אין קראפֿט דאצו?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0015_a">
+          <speaker>שלמון</speaker>
+          <p>| אַ נור דאס פֿאָלק זאלל מיט מיר מיט בעטען.</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0016_a">
+          <speaker>אמון</speaker>
+          <p>| הזקן מתחיל בתּפֿילה. <lb/></p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0017_a">
+          <speaker>קאהר</speaker>
+          <p>| מיר בעהטען דיך גאטט העלף אונז אין דער נוט<lb/>מיר דיינע קינדער בעהטען דיך אצינדער<lb/>שיק אונז יעצט דיין רעגען און דיין זעגען</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0018_a">
+          <speaker>שלמון</speaker>
+          <p>| בעווײז אונז יעצט דיין גבורה וואָס דוא האסט אונז בעוויעזען אללע מוהל</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0019_a">
+          <speaker>קאהר</speaker>
+          <p>| דיינע קינדער ישראל</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0020_a">
+          <speaker>שלמון</speaker>
+          <p>| און מיר וועלען זינגען</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0021_a">
+          <speaker>קאהר</speaker>
+          <p>| צו דיר שירה <stage type="delivery">מוזיק</stage></p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0022_a">
+          <speaker>שלמו</speaker>
+          <p>ן | זכור הנולד געדענק אונז דוא גרוסער גאָטט.<lb/>פֿֿון אברהם, יצחק, ויעקב<lb/>און אונזער תּפֿילה בעהטען מיר קשום<stage type="delivery"> מוזי</stage>ק</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0023_a">
+          <speaker>קאהר</speaker>
+          <p>| שיק אונז דיין ברכֿה און הצלחה וועט זיין שיער און שבחה</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0024_a">
+          <speaker>שלמון</speaker>
+          <p>| רבונו של עולם של עולם פֿון דער וועלט<lb/>מיר בעהטען. דאך רעגען גיב שיק פֿון דיין געצעלט<lb/>אז מיר זאללען ניצול ווערען פֿון דעם ביטערין טודט<lb/><sic>שמא</sic> ישראל ד. אחד.</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0025_a">
+          <speaker>קאהר</speaker>
+          <p>| שיק אונז דיין ברכֿה, און הצלחה וועט זיין שיער און שבחה</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0026_a">
+          <speaker>שלמון</speaker>
+          <p>| אוי אוי בעבורי אוי אוי אל תמנע מום<lb/>צייג אונז געשווינדער בצדק! מון משרת מום</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0027_a">
+          <speaker>קאהר</speaker>
+          <p>| <stage type="delivery">דאס זעלבע ביז משרת מום</stage></p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0028_a">
+          <speaker>שלמון</speaker>
+          <p>| בעווייז אונז דיין גבורה. וואָס דוא האָסט אונז בעוויעזען אללע מאָהל</p>
+        </sp>
+        <pb facs="בן_הדור-0007.jpg"/>
+        <sp who="#chor" xml:id="BenHaDor_SP0029_a">
+          <speaker>קאהר</speaker>
+          <p>| דיינע בינדער ישראל</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0030_a">
+          <speaker>שלמון</speaker>
+          <p>| און מיר וועללען זינגען</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0031_a">
+          <speaker>קאהר</speaker>
+          <lg n="1">
+            <l>| צו דיר שירה</l>
+            <l>און מיר וועללען זינגען</l>
+            <l>צו דיר שירה</l>
+            <stage type="delivery business">מוזיק שטורם מיט רעגען</stage>
+          </lg>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0032_a">
+          <speaker>שלמון</speaker>
+          <lg>
+            <l>| משוב הרוח ומורד הגשם</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0033_a">
+          <speaker>קאהר</speaker>
+          <lg n="2">
+            <l>| משוב הרוח] ומורד הגשם</l>
+            <l>[לברכה] ולא לקלולה לקלולה לקלולה</l>
+            <stage type="delivery">" נאך טאנץ</stage>
+            <stage type="business">"Trompetenschall"</stage>
+          </lg>
+          <p> אמון | דער קעניג קאמט!</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0034_a">
+          <speaker>שלמון</speaker>
+          <p>| <stage type="delivery">״אפארט״</stage> איך האָב מורה ער זאל מיך נישט דערקענען <stage type="delivery">״לויט״</stage><lb/>עהר ווירדיגער מאַן איך פֿיהל מיך זעהר מיעד און שוואַך<lb/>קענסט דוא מיר ניט פֿערשאפֿען אַ פלאטץ וואוו איך זאלל<lb/>מיך אבריהען. איך זאלל כּוח האָבען ווייטער צו וואנדערין?</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0035_a">
+          <speaker>אמון</speaker>
+          <p>| געה אלטער דאוו נישט ווייט איז מיין געצעלט געה רוה<lb/>דיך אוס</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0036_a">
+          <speaker>שלמון</speaker>
+          <p>| איך דאַנק דיר פֿאר דיין חסד<stage type="exit"> [אב</stage>]</p>
+        </sp>
+        <sp who="#chor" xml:id="BenHaDor_SP0037_a">
+          <speaker>קאהר</speaker>
+          <p>|  <lb/>"<stage type="delivery">נאך געזאנג</stage>"<lb/><stage type="entrance">אופטריט חנו</stage></p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0038_a">
+          <speaker>אמון</speaker>
+          <p>| האך לעבע קעניג תנו</p>
+        </sp>
+        <sp who="#alle" xml:id="BenHaDor_SP0039_a">
+          <speaker>אללע</speaker>
+          <p>|  האך! האך!.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0040_a">
+          <speaker>חנו</speaker>
+          <p>| אמון! זינד שאָן דיא 2 מערדער  פֿערברענט געווארען לוט מיין<lb/>בעפֿעהל?</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0041_a">
+          <speaker>אמון</speaker>
+          <p>| גאטט דער שופֶֿט צדק האט דיין בעפֿעהל צוריק גערופֿען<lb/>דורך א נס פֿון דעם היממעל איז זייער אונשולד בעוויזען<lb/>געווארען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0042_a">
+          <speaker>חנו</speaker>
+          <p>| <stage type="delivery">״בייז״</stage> וואס? זא וואס וואגען מיינע אונטער טאהנען און מיין<lb/>געגענווארט צו בעהויבטען? זאגע! ווער האַט געוואַגט מיין<lb/>בעפֿעהל צו וויעדער שפרעכֿען?</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0043_a">
+          <speaker>אמון</speaker>
+          <p>| דיא שטימע גאטטעס האט געשפראכֿֿען צום פֿאָלק אין דאָננער<lb/>אונד בליטץ</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0044_a">
+          <speaker>חנו</speaker>
+          <p>| און ווער האָט דאָס פֿאָלק בעוואגען נאך דיעזער שטימע צו!<lb/>הערען? ווארסטו עס אמון?</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0045_a">
+          <speaker>אמון</speaker>
+          <p>| ניין מיין קענג? עס וואר איין ארמער אלטער בעטלער ער<lb/>האָט דאָס פֿאָלק ערינערט אין זעהר אלטען מנהג<lb/>אונד אוף זיין געבעט האָט גאטט זעהר לעבען גערעטעט</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0046_a">
+          <speaker>חנו</speaker>
+          <p>| ווער איז עס דער בעטלעה דער זאָוואַס געוואַגט האַט?<lb/>היר אויף דער שטעללע זאלל אים טרעפֿען דאָס זעלבע<lb/>שיקזאל וואָס האט זאללען. טרעפֿען דיא קעניגס מער דער.</p>
+        </sp>
+        <pb facs="בן_הדור-0008.jpg"/>
+        <sp who="#mun" xml:id="BenHaDor_SP0047_a">
+          <speaker>אמון</speaker>
+          <p>|  קעניג! ער וואר איין שליח פֿון גאָטט</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0048_a">
+          <speaker>חנו</speaker>
+          <p>| איין בעטריגער!.</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0049_a">
+          <speaker>אמון</speaker>
+          <p>|  איין איש אלויהם</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0050_a">
+          <speaker>חנו</speaker>
+          <p>| איין ניכֿטס וואר זאגער</p>
+        </sp>
+        <sp who="#alle" xml:id="BenHaDor_SP0051_a">
+          <speaker>אללע</speaker>
+          <p>| אַ נבי!</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0052_a">
+          <speaker>חנו</speaker>
+          <p>| וואַס? מיין פֿאָלק וואַגט מיר צו וויעדער שפּרעכען? נוא גוט<lb/>ענט פֿערינט אייך אַללע.</p>
+        </sp>
+        <sp who="#alle" xml:id="BenHaDor_SP0053_a">
+          <speaker>אללע</speaker>
+          <p>| <stage type="exit">אבגעהענד</stage> פֿאלקס שטימע איז גאָטטעס שטימע<stage type="exit">! [אללע א</stage>ב]</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0054_a">
+          <speaker>חנו</speaker>
+          <p>| <stage type="delivery">צו אמון וועלכֿער וויל אבגעהן</stage> אמון דוא בלייב צוריק...<lb/>זאגע אמון! פֿערדיענע איך דאַס דאַס פֿאָלק פאָן חבר<lb/>זאָלל מיך זאָ האססען? וואַס האבע איך ניכֿט געטאהן אום<lb/>אין פֿריעדען מיט אייך צו לעבען? גלייך וויא אייער קעניג<lb/>איזט ערמאר דעט ווארדען האַבע איך דען אנטראג<lb/>געשטעלט זיינען זאהן דען פרינץ בן הדור ער זאלל<lb/>צוזאמען מיט מיר דיא הער שאפֿט איבערנעהמען. אַבער<lb/>ער האַט זיך געווייגערט נאך מעהר ער האַט זיך מיט<lb/>אונזערע פֿיינדע פֿער ייניגט געגען מיר צו קעמפפֿען<lb/>איך האבע דיא קעניגען וויטווע צו מיר ברינגען לאססען<lb/>אונד זיא געבעהטען זיא זאלל מיט מיר הייריטען.<lb/>אונד מיט מיר דיא הער שאפֿט טיילען אבער אויך זיא האַט<lb/>מיינען אנטראג צוריק געוויעזען שאָן זייט 10 יאהרע זייט<lb/>זיא איזט אין מיינעם שלאס אונד נאך ווייגערט זיא זיך<lb/>מיר איהרע האנד צו רייכֿען. אבער דער מעכטיגע<lb/>קעניג תנו. ווירד לאנגע מיט זיך ניכֿט שפאטען לאַסען<lb/>האבע איך רעכֿט אמון</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0055_a">
+          <speaker>אמון</speaker>
+          <p>| איך האפֿע דער קעניג ווירד גנאדע שטאט רעכֿט פֿינדען</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0056_a">
+          <speaker>חנו</speaker>
+          <p>| אבער ווער איזט דיעזער בעטטלער וועלכֿער האט דאַס<lb/>פֿאָלק אויפֿגערייצט געגען זעהר קענג?</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0057_a">
+          <speaker>אמון</speaker>
+          <p>| דאַ קאמט ער עבען! דער קעניג זעלבסט מאַג מיט אים<lb/>שפרעכֿען.<lb/><stage type="entrance">אופֿטריט שלמון</stage></p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0058_a">
+          <speaker>חנו</speaker>
+          <p>| שפרעכֿען? מיט מײנעם דעגען <stage type="business">ציט דעגען  מיט צי צי </stage>אים<lb/><stage type="business">ער שרעקט צוריק</stage> אַך דיעזע געשטאלט? דער גייסט<lb/>מיינעס ברו דערס <stage type="delivery">געפֿאסט.</stage> דאך זייא ער ווער ער וויל<lb/>ער דארף ניכֿט לעבען! אלטער ווער ביסטו ?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0059_a">
+          <speaker>שלמון</speaker>
+          <p>| אך בין דער קעניג פֿון חבר</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0060_a">
+          <speaker>חנו</speaker>
+          <p>| <stage type="delivery">ערשראקען</stage> </p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0061_a">
+          <speaker>אמון</speaker>
+          <p>| <lb/> דער קעניג פֿין אבר?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0062_a">
+          <speaker>שלמון</speaker>
+          <p>| נוא? וואָס האָט איהר זיך אזוי ערשראקען?<lb/>נישט פֿאר יעדען קעניג דארף מען מורה האָבען! איך<lb/>בין דער קעניג פֿון דיא בעטלערס! אַראַביען איז בעריהמט מיט<lb/>זיינע בעטלער. און איך בין זעהר קעניג!</p>
+        </sp>
+        <pb n="9" facs="בן_הדור-0009.jpg"/>
+        <sp who="#khnu" xml:id="BenHaDor_SP0063_a">
+          <speaker>חנו</speaker>
+          <p>| זאָ דוא ביסט דער בעטלער קעניג? אונד וואַס מאכסט דוא<lb/>היער?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0064_a">
+          <speaker>שלמון</speaker>
+          <p>| איך בין געקימען אוסבעהטען דאָס לעבען פֿאַר 2 אונשולדיגע מענשען</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0065_a">
+          <speaker>חנו</speaker>
+          <p>| דאָס איז צו פֿיהל פֿערלאנגט פֿון איין בעטלער!</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0066_a">
+          <speaker>שלמון</speaker>
+          <p>| איך בין אבער דאך דער בעטלער קעניג!</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0067_a">
+          <speaker>חנו</speaker>
+          <p>| אונד ווער האַט דיך צום בעטלער קעניג געמאכֿט?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0068_a">
+          <speaker>שלמון</speaker>
+          <p>| דער קעניג איבער אללע קעניגע<lb/>חנו | אלטער! דוא געפֿעלסט מיר. איך ערלויבע דיר שטענדיג<lb/>אין מיין קענגגליכען האף צו פערבלייבען אונד אללעס<lb/>וואַס פֿאן מיינעם טיש אבפעלט זאל קענען אנדערין בעטלער<lb/>געהערען וויא נור דיר אלליין</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0069_a">
+          <speaker>שלמון</speaker>
+          <p>| ניין, איך בעטלער קעניג בעטעל ניע פֿיר מיך אלליין<lb/>איך בעטעל נור פֿיר מיין פֿאָלק</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0070_a">
+          <speaker>חנו</speaker>
+          <p>| אונד פֿאָן וואַס לעבסט דוא זעלבסט?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0071_a">
+          <speaker>שלמון</speaker>
+          <p>| 17 יאָהר האָב איך אויף איין אינזעל געלעבט פֿון<lb/>האפֿען אינד פֿאָן בעטען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0072_a">
+          <speaker>חנו</speaker>
+          <p>| אַלזאָ גענוג! אמון איך וויל דער אלטער זאל<lb/>געבראכֿט ווערדען נאך תי מא אמון אין מיין שלאָס פור<lb/>שטעהט איין שיף וועלכֿעס ערווארטעט אים אויף צו נעהמען<lb/>לעבע וואָהל אלטער! ביז אין 3 טאגען וויל איך דיך אין<lb/>מיין האָף זעהן. לעבע וואהל אמון! מיין בעפֿעהל זאל<lb/>פינקטליך אוסגעפֿיהרט ווערדען <stage type="delivery">אפארט</stage> דער אלטע<lb/>איזט מיר זעהר פֿערדעכטיג, דאַס שיף מוז זאמט אים<lb/>אויף דאס מעער פֿערברענט ווערין<stage type="exit"> [אב</stage>] </p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0073_a">
+          <speaker>אמון</speaker>
+          <p>| ניין! ניין! לענגער האלט איך עס ניט אוס! מיינע אויגען<lb/>טוישען מיך! אבער מיין הערץ זאָגט מיר דאָס דוא ביסט<lb/>עס מיין קעניג שלמון בן עמיאל <stage type="business">״קניעט״</stage></p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0074_a">
+          <speaker>שלמון</speaker>
+          <p>| שטעה אויף! שטעה אויף! אויף דיא זעלבע קניע וואָס דוא<lb/>ליגסט יעצט פֿאר מיר, האסטו ערשט געקניעט פֿאר איין<lb/>טיראן וואָס ער מיינט אז ער האט אייער קעניג ערמארדעט<lb/>און האָלט דיא קעניגען בייא זיך געפֿאנגען. אונד דעם<lb/>רעכֿט מעסיגען קרוינרינץ בן הדור האט ער שון  פֿילייכֿט<lb/>אויך געלאסט ערמארדען.</p>
+        </sp>
+        <sp who="#mun" xml:id="BenHaDor_SP0075_a">
+          <speaker>אמון</speaker>
+          <p>| אבער וויא קומט עס מיין קעניג וואָס דוא ביסט אזוי<lb/>ענטשטעלט? דאָס קיין מענש זעלבסט דער טיראן<lb/>איז נישט אומשטאנדע געוועהן דיך צו ערקענען.</p>
+        </sp>
+        <pb n="10" facs="בן_הדור-0010.jpg"/>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0076_a">
+          <speaker>שלמון</speaker>
+          <p>| אַלזאָ הערע אמין פֿאַר 17 יאָהר ווען איך בין מיט איהם צוזאמען<lb/>געגאנגען אין קריג געגען דיא אראבער זענען וויר ביידע<lb/>אויף איין שיף געפֿאהרען פלעצלים אום מיטער נאכט ווען<lb/>איך האָב פֿעסט געשלאפֿען אונד פֿאָן זיעגע געטרוימט<lb/>דאַ האבען מיך 2 פֿעסטע הענדע ערגריפֿען אונד מיך אין<lb/>דען זיעדענדען מעערע העריינגעשמיסען. אם נעכֿסטען<lb/>טאַג האָב איך ערוואכֿט אויף איינער שטיינערנען אינזעל<lb/> 17 יאָהר האָב איך אויף דיעזער אונזעל פֿערבראכֿט<lb/>וויא אזוי איך האָב דאָרט געלעבט קאנסט דוא אין מיין אוס=<lb/>זעהן ערקענען. פֿאר אייניגע טאגען האב איך ערבליקט<lb/>איין קויפֿמאַנס שיף פֿארבייא דער אינזעל פֿאריבער פֿאהרען<lb/>אין גאטטעס נאָמען האָב איך זיך העריינגעשטורצט אין<lb/>דיא גערייצטע וועללען, און אויף בעפֿעהל גאטטעס<lb/>האבען דיא וועללען מיך לעבענדעג צום שיף געבראכֿט<lb/>יעצט בין איך היר. אלט פערווילדעט אבער איך לעבע<lb/>דוא הערסט אמון? איך לעבע! קאם אמון מיט מיר.<lb/>אלס בעטלער וועל איך אין זיין הויז קאָממען. אבער<lb/>אלס קעניג וועל איך אַן אים ראכֿע נעהמען קאם אמון!<lb/>טאָד דעם טיראן! אונזער לאָזונגס וואָרט זאל זיין<lb/>קעניגען סופֿורא אונד פרינץ בן הדור <stage type="exit">[ביידע אב]</stage><lb/><stage type="setting">אין ציממיר באי לפידות</stage><lb/>״לפידות״ <stage type="delivery">שכור</stage></p>
+          <stage type="delivery">פֿערוואנדלונג</stage>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0077_a">
+          <speaker>לפידות</speaker>
+          <p>| בנאמנות שלי וויא איך בין א יוד דער צו עס איז אַ געשעפֿט<lb/><stage type="delivery">רופט</stage> קום קום אריין יונגער מאן האָב נישט קיין מורה<lb/>דוא איז קיינער נישטא!<lb/><stage type="entrance">אופטריט בן הדור</stage><lb/>זעץ דיך אנידער און ערקלעהר מיר נאך אמאל וואָס הייסט<lb/>דוא האָסט ערמארדעט פרינץ בן הדור? בנאמנות שלו<lb/>וויא איך בין אַ יוד דער צו אז עס איז אַ געשעפֿט, דאווקען<lb/>ארוס אַ פור שעהנע מטבעות אחיץ כּבוד און גדולה</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0078_a">
+          <speaker>בן הדור</speaker>
+          <p>| הער מיך אווס לפידות! וויא דוא זעהסט בין איך איין<lb/>איינפֿאכֿער פֿישער יונגע. צווישען דיא פֿישער געזעלען<lb/>האָב איך געהערט שמוסען אז דער קעניג חנו האט<lb/>אוסגעזעצט אַ פרייז פֿון 1000<add> דינרי זהב</add> פֿאר<lb/>דעם יעניגען וואָס וועט הרגענען דעם פרינץ בן הדור</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0079_a">
+          <speaker>לפידות</speaker>
+          <p>| בנאמנות שלי וויא איך בין אַ יוד דער צו עס איז אַ<lb/>געשעפֿט דער צעהל ווייטער. <stage type="business">טרינקט</stage></p>
+        </sp>
+        <pb n="11" facs="בן_הדור-0011.jpg"/>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0080_a">
+          <speaker>בן הדו</speaker>
+          <p>ר | אין אַ טאָג ווען איך בין ארומגעפֿורין מיט מיחן שיפֿעל פֿיש חאַפען<lb/>האָב איך געזעהן וויא אַ יונגער מאַן דרעהט זיך ביים פֿרעג און<lb/>רופֿט מיך איך זאל צו אים צו קומען. איין שפרינג מיט מיין שיפֿעל<lb/>און איך בין שון געוועהן נעבען אים. יונגער מאַן זאָגט ער צו מיר וויפֿיעל <lb/>אווילסטו דוא זאָלסט מיך אריבער פֿיהרען מיט דיין שיפֿעל נאך תּומא?<lb/>איך האָב באַלד פֿערשטאנען אז דאָס דארף זיין דער פרינץ<lb/>בן הדור. ער וויל דעם קעניג הערגענען און זיינע מוטער<lb/>בעפֿרייען פֿון געפֿענגניס. איך האָב נישט לאַנג געקלעהרט<lb/>איין שטאס און מיין דאָלך האָט שון געשטעבט און זיין ברוסט<lb/>אלעס וואָס ער האָט בייא זיך געהאָט האָב איך צוגענעמען<lb/>און דעם טוטען האַב איך אין וואסער אריינגעווארפֿען דיא פֿיש<lb/>זאללען אים אופֿעסען.</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0081_a">
+          <speaker>לפידות</speaker>
+          <p>| בנאמנות שלי וויא איך בין אַ יוד דער צו עס איז אַ געשעפֿט<lb/>אָדער מיט וואָס וועסטו דעם קעניג איבער צייגען אז דאס איז<lb/>געוועהן דער פרינץ בו הדור?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0082_a">
+          <speaker>בן הדור</speaker>
+          <p>| צווישען דיא אללע זאכֿען וואָס איך האָב בייא אים געפֿינען<lb/>איז איך געוועהן אַ מעדאַליאָן מיט דעם בילד פֿון דעם פרינץ?<lb/>ווען ער איז נאך 8 יאהר אלט געוועהן. <stage type="delivery">צו אים </stage>קענסט<lb/>עס זעהן</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0083_a">
+          <speaker>לפדות</speaker>
+          <p>| בנאמנות שלי וויא איך בין אַ יוד דערצו דאָס איז ער<lb/>בן הדור.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0084_a">
+          <speaker>בן הדור</speaker>
+          <p>| דוא קענסט אים דען?</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0085_a">
+          <speaker>לפידות</speaker>
+          <p>| דוא זאָגסט דאָך מיר. נאר דער קעניג וועט מיר שון גלויבען<lb/>נוא וואָס וועל איך האבן דערפֿון?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0086_a">
+          <speaker>בן הדור</speaker>
+          <p>| דיא הונדערט דינַרי ההב וואָס איך האָב בייא אים געפֿינען<lb/>גיב איך דיר שון. און 1000 וואָס דער קעניג דאַרף מיר<lb/>געבען וועלען יאך אוך דיר געהערען.</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0087_a">
+          <speaker>לפידות</speaker>
+          <p>| און וואָס וועסטו האבען דערפֿיל?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0088_a">
+          <speaker>בן הדור</speaker>
+          <p>| איך וויל נור דיא מצוה. און דעם כּבוד</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0089_a">
+          <speaker>לפידות</speaker>
+          <p>| אַ שעהן פנים קען ער האבען פֿון מצוה און כּבוד.<lb/>בנאמנות שלי וויא איך בין אַ יוד. דערצו עס איז אַ געשעפֿט<lb/>דער קעניג דארף באַלד אונקימען וועל איך דיך<lb/>פֿאר אים פֿארשטעללען דער טומל ווערט דוא אוס און<lb/>איך וועל געהן ברענגען אַ ביסעל וויין וועללען מיר טרינקען<lb/>לחיים צום נייעם געשעפֿט. בנאמנות שלי וויא איך בין<lb/>א יוד דערצו עס איז אַ געשעפֿט<stage type="exit"> [אב</stage>])</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0090_a">
+          <speaker>בן הדור</speaker>
+          <p>| אך! שרעקליכֿער טאָג מיינעס לעבענס! <lb/><stage type="business">״בעטראכט מעדאַליאָן״</stage> הייליגעס אנדענקען מיינעס ערמאר=<lb/>דעטען פֿאטערס. לערנע דוא מיך וויא צו האנדלען<lb/>גערעכֿט. איך וויל ראכֿע נעהמען פיר דיין פֿערגאסענעס<lb/>בלוט אונד פֿיר דיא ליידען מיינער מוטטער! גייסט<lb/>מיינעס פֿאטערס שטעה מיר בייא  .<lb/>1.<lb/>2.</p>
+          <lg n="3">
+            <l>דארט אין היממעל זעה איך שיינענדיג</l>
+            <l>קליינע שטערענדלאך לעכֿטיג אָן אַ שיער</l>
+            <l>דאך דערזעה איך איינעם וויינענדיג</l>
+            <l>און קיקט מיט טרויער אר אָב צו מיר</l>
+            <l>דוא שטערענדעל זאָג מיר פֿון ווייט</l>
+            <l>וואָס בעדייטעט דיין טרויערקייט</l>
+            <l>דוא שטערינדעל שעהנס איך פֿרעג בייא דיר</l>
+            <l>וואָס איז מיין צוקונפֿט זאָג עס מיר</l>
+            <l>צי וועל איך בעגליקען אדער ניין</l>
+            <l>פֿרעג איך בייא דיר דאָס מיט אַ געוועהן.</l>
+            <l>זארג נאר ניט, עס וועט דיר זיין גיט</l>
+            <l>ענטפֿערט מיר דאָס שטערענדעל פֿון ווייט</l>
+            <l>פֿערליהר קיין מוטה – זייא בערוּהט</l>
+            <l>און העלפֿען וועל איך דיר צו יעדער צייט</l>
+          </lg>
+          <lg n="4">
+            <l>פליצים זעה איך דעם היממעל שפאלטענדיג</l>
+            <l>און איין ער שיינונג זיך צו מיר בעווייזט</l>
+            <l>און 2 מלאכֿימלאך דאָס צו האלטענדיג</l>
+            <l>האָב איך דערזעהן מיין פֿאטערס גייסט</l>
+            <l>א שטימע האָב איך באלד דער הערט</l>
+            <l>נעהמע ראכֿע ער האט דאָס דעוועהרט</l>
+            <l>ער מארדעט דיין פֿאטער האט חַנַו</l>
+            <l>געפֿאנגען דיינע מוטטער אט דער טוראן</l>
+            <l>גאטט וועט דאך העלפֿען מיין ליעב קינד</l>
+            <l>ראכֿע צו נעהמען וויא געשווינד</l>
+            <l>פֿערשווייג נאר ניט דיין פֿאטערס בליט</l>
+            <l>האט דער גייסט געברילט צו מיר פֿון גאנץ ווייט</l>
+            <l>ראכֿע נעם למען השם</l>
+            <l>און העלפֿען וועל איך דיר צו יעדער צייט</l>
+            <stage type="exit">[אב]</stage>
+            <stage type="entrance">אופֿטריט לפידות</stage>
+            <stage type="business">שכּור מיט א קריגעל ווײן</stage>
+          </lg>
+        </sp>
+        <pb n="12" facs="בן_הדור-0012.jpg"/>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0091_a">
+          <speaker>לפידות</speaker>
+          <p>| מוזט מיר מוחעל זיין יונגער מאַן איך האָב געהאט אַ קריגעל<lb/>וויין אין שטיב און עס....... וויא איז ער אהינגעקימען?<lb/>ער איז גור נישטאָ? <stage type="business">זוכֿט.</stage> וויא אין וואסער אריין..<lb/> <sic>מיילה</sic> דער יונגער מאן האָט פֿיס איז ער אוועק געגאנגען אַבער<lb/>וויאהין איז אהינגעקומען דער וויין פֿון קריגעל! אה?! איך<lb/>דערמאן מיך אויף דעם וועג געהענדיג האט ער זיך פֿון<lb/>דעם קריגעל אויסגעגאסען אין האַט זיך אין מיר אריינגעגאסען<lb/>און טאקע דער פֿאר שרייא איך דאך אז אַ גלהעלע<lb/>  וויין מוז תּמוד זיין<lb/>1.</p>
+          <lg n="5">
+            <l>דאָס ביסעלע וויין איז גיט</l>
+            <l>עס שטארקט און ציווארימט דאָס בלוט</l>
+            <l>מען ווערט דאך גור איין אנדערמענש אַ בחור</l>
+            <l>דער אנדערע מענש דערנאך</l>
+            <l>אוב טרונקען מוז ער דאך</l>
+            <l>מיא טרינק איך דיין פֿאר אים און אויך פֿאר מיר</l>
+            <l>איך טרינק מיר וויא אַ טאטע</l>
+            <l>און ווער אנשלאפֿען וויא א פֿערד</l>
+            <l>איך האָב דיא וועלט אין פיאטע</l>
+            <l>און האב מיין ווייבעלע טיעף אין דער ערד</l>
+          </lg>
+        </sp>
+        <pb n="13" facs="בן_הדור-0013.jpg"/>
+        <sp xml:id="BenHaDor_SP0092_a">
+          <speaker>Refrain</speaker>
+          <lg n="6">
+            <l>| אביסעלע וויין זאל איממער זיין</l>
+            <l>עס איז זעהר פֿיין מען קנאקט עס אריין</l>
+            <l>דא האט מען שון רו בנאמנות שלי וויא איך בין אַ יוד דערצו</l>
+          </lg>
+          <lg n="7">
+            <l>עס וואר מיין משפחה גרוס</l>
+            <l>איך קום פֿון יחסנים ארום</l>
+            <l>רבנים גהונים גרוסע טרינקער אויך</l>
+            <l>זיי זענען טוט אייך קלאָג</l>
+            <l>איך האָב יאָרצייט אללע טאָג</l>
+            <l>און מאַך נאך זעה אַ קנאק אז עס געהט ארום</l>
+            <l>פֿאר זעהרע נשמות, פֿאר זייערע גרייז גרוע בערד</l>
+            <l>טרינק איך אָן רחמנות. איך האב זעה אללע טיעף אין דרערד</l>
+            <l>ווייל אביסעלע וויין...</l>
+          </lg>
+          <lg n="8">
+            <l>אַ שוויגער האָב איך געהאט</l>
+            <l>מיט איהר געוועזען בלאט</l>
+            <l>און פֿון איין פֿלאש געזופט וויא זיא אזוי איך</l>
+            <l>דעם וויין האָב איך געבראכֿט</l>
+            <l>פֿער בייסען האט זיא געמאכֿט</l>
+            <l>נאָר פֿון דער וועלט איז זיא אוועק צו גיך</l>
+            <l>איך דארף יעצט קריה רייסען</l>
+            <l>דען וואָס האב איך שון פֿאר אַ וועהרט</l>
+            <l>איך טרינק גור אָן פֿערבייסען</l>
+            <l>און האָב מיין שוויגער טיעף און דער ערד</l>
+          </lg>
+          <p>רחומה</p>
+        </sp>
+        <pb n="14" facs="בן_הדור-0014.jpg"/>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0093_a">
+          <speaker>רחומה</speaker>
+          <p>| צפֿרה טובה דעם אלטען לפידות</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0094_a">
+          <speaker>לפידות</speaker>
+          <p>| אַ גוטען מארגען דיר שעהנע מלמדת! וואָס האסטו דיך<lb/>עפעס היינט אזוי שעהן אויס געפוצט?</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0095_a">
+          <speaker>רחומה</speaker>
+          <p>| אונזער פרינצעסין עלמת האָט היינט איינגעלאדען אללע<lb/>מעדכֿען פֿון תימא צו אַ פֿיש פֿאנג פארטיע טא דארף<lb/>רחומהלע אוך דער בייא זיין.</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0096_a">
+          <speaker>לפדות</speaker>
+          <p>| זעהר שעהן! זאָג נאר רחומהלע אפֿשר וואלסטו מיך אויך געכאפט<lb/>אין דיין נעטץ?</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0097_a">
+          <speaker>רחומה</speaker>
+          <p>| איך מיין איידער צו חאפען אזא אלטען גרויען פֿיש וואס<lb/>שמעקט שון נאך ערד, וועל איך גיכֿער חאפען אַ יונג פֿישעלע<lb/>אַ גאלדענס עס זאל זיין אַ מחה אָנציקיקען. און אוף דיר וועל<lb/>איך דערצעהלען דער מומה צרויה אז דיא מאכֿסט ליעבעס<lb/>ערקלעהרונגען יונגע מיידלאך וועט זיא דיר מיט דיא נעגעל<lb/>אבקראצען דיא ליסקעס פֿונים פנים וועסטו האבען אפונים<lb/>וויא איין אָבגעשעהלטער הערינג</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0098_a">
+          <speaker>לפידות</speaker>
+          <p>| הע! דוא וועסט עס מיר נישט טהון? דוא ווילסט דאָך איך<lb/>זאל דיר געבען מיין זוהן פֿאר אַ חתין</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0099_a">
+          <speaker>רחומה</speaker>
+          <p>| דוא דארפֿסט מיר אים נישט געבען. איך האָב מיר אים.<lb/>שון אלליין גענעמען דיא חיות אין וואַלד, דיא פֿעגעל<lb/>אויף דיא בעהמער, דיא שטערין אויפֿין היממעל און<lb/>דיא פֿיש אין וואסער זענען עדות אז מיר האבען זיך ליעבע<lb/>צי געשוואהרען.</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0100_a">
+          <speaker>לפידות</speaker>
+          <p>| איך וועל אים אבער מיט געוואַלד פֿון דיר אוויק רייסען</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0101_a">
+          <speaker>רחומה</speaker>
+          <p>| דאָס קענסטו ניט! אז דוא וועסט קענען מיט פֿלאמען אוס=<lb/>לעשען דאָס פֿייער מיט אַ נעטץ אופֿהאלטען דעם ווינד<lb/>און מיט אַ האַק דאָס וואססער צו שפאלטען. דאמאלס וועסטו<lb/>קענען פֿין מיר רחמיליקלען אוועק נעהמען.</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0102_a">
+          <speaker>לפידות</speaker>
+          <p>| רחומהלע פֿאר דעם משל האסטו דע וועהרט. איך זאל<lb/>דיר געבען 100 קוש <stage type="business">ער וויל זיא קישען זיי אנטלויפֿט</stage><lb/><stage type="entrance">אופֿטריט צרויה</stage> <stage type="business">פאַקט אים פֿון הינטען אין</stage><lb/><stage type="exit business">שלעפט אים אב</stage> מיין טייער ווייבעלע איך האָב דיר<lb/>געוואלט מיט רחומהלען שיקען אפאר קיש, נאר אזוי וויא<lb/>דוא ביסט אלליין געקומען וועל איך זעה דיר אלליין<lb/>אָבגעבען <stage type="business">וויל זיא קישען זיא גיט איהם 2 פעטש</stage>.</p>
+        </sp>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0103_a">
+          <speaker>צרויה</speaker>
+          <p>| זעהסטו איך האָב מיך אלליין מטריח געוועהן<lb/>און האָב דיר אבגעבראכֿט 2 פֿעטש און וויש דיר<lb/>אָב דאָס מול און שווייג, אין דיר רחומהלע וועל איך<lb/>גור נישט טוען. איך וועל נור דערצעהלען רחמליליקלען<lb/>אלס דינג</p>
+        </sp>
+        <pb n="15" facs="בן_הדור-0015.jpg"/>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0104_a">
+          <speaker>I. Re</speaker>
+          <p>turnelle ?רחומה | אָוואַ! וואָס וועסטו דערצעהלען<lb/>אז איך האָב זיין טאטען געקושט? וועל איך אים דערצעהלען<lb/>אז דוא האָסט זיין טאטען געפאטשט</p>
+        </sp>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0105_a">
+          <speaker>צרויה</speaker>
+          <p>| פאטשען דארף מען אללע מעננער! עס איז גור נישטא אזוי פֿיעל<lb/>פעטש וויפֿיעל דיא מעננער פֿערדיענען</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0106_a">
+          <speaker>רחומה</speaker>
+          <p>| איך זאָג איידער זיך צו פאטשען מיט דיא ווייבלעך איז<lb/> .בעססער צו לעבען וויא דיא טייבלעך<lb/> </p>
+        </sp>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0107_a">
+          <speaker>צוריה</speaker>
+          <lg n="9">
+            <l>| איך זאָג אז איין יעדער מאן</l>
+            <l>איז איין שרעקליכֿער טיראן.</l>
+            <l>פֿאלש זענט איהר אויף שריט אונד טרייט</l>
+            <l>געוואלד! אוי, מענער מענער געוואלד איהר זענט ניט גיט.</l>
+          </lg>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0108_a">
+          <speaker>לפידות</speaker>
+          <lg n="10">
+            <l>| איך זאָג אַ גוט ווייב איז אַ גליק</l>
+            <l>אַ גוט ווייב איז דאך איין אנטיק</l>
+            <l>אבער אז זיא גיט און דאך</l>
+            <l>אוי! טרעפֿען גאטטעניא זאל זיא דער שלאק.</l>
+          </lg>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0109_a">
+          <speaker>רחומה</speaker>
+          <lg n="11">
+            <l>| און איך זאָג פאטשען זיך שעלטען זיך איז ניט גלייך</l>
+            <l>עס איז ניט שעהן זאָ וואַס צו צו זעהן</l>
+            <l>אַ מאן מיט אַ ווייב דארפֿין לעבען וויא טייבעלאך</l>
+            <l>נו זאגט אלליין צי האב איך רעכֿט צי ניין.</l>
+          </lg>
+        </sp>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0110_a">
+          <speaker>צורה</speaker>
+          <lg n="12">
+            <l>לפידות | יאָ יאָ רחומהלע דוא האסט רעכֿט</l>
+            <l>יאָ יאָ נשמהלע דוא זאגסט נישט שלעכֿט</l>
+            <stage type="delivery">בי</stage>
+            <l>דוא ביסט איין עדעלע קליג מיידעלע</l>
+            <l>מיר וועללען פֿאלגען וואָס דוא זאגסט אונז</l>
+            <stage type="delivery">אללע</stage>
+          </lg>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0111_a">
+          <speaker>רחומה</speaker>
+          <lg n="13">
+            <l>| יאָ יאָ אוואדע איך האָב רעכֿט</l>
+            <l>יאָ יאָ אוואדע איך זאָג ניט שטעכֿט</l>
+            <l>מעננער ווייבליך לעבט וויא טייבליך</l>
+            <stage type="delivery">ביס</stage>
+            <l>וועט זיין שעהן און פֿיין</l>
+            <stage type="delivery">ללע</stage>
+            <stage type="exit">[אללע אב]</stage>
+            <stage type="setting">פֿערוואנדלונג</stage>
+            <stage type="setting">הינטערגרונד וואסער פארנע גראז בענק אין לינקער זייט</stage>
+            <stage type="delivery">ארום פֿישער מעדכֿען זינגען דיא טענץ</stage>
+            <stage type="delivery">עלמת סאלא אויפֿין וואסער דיא  ש פ</stage>
+            <stage type="entrance">זיך דורך הינטער גרונד קומט אריין פֿאָן רעכֿטס</stage>
+          </lg>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0112_a">
+          <speaker>עלמת</speaker>
+          <p>| שוועסטער! וויר ערווארטען יעדע מיניט דער פֿאטער<lb/>זאל פֿאן קריעג צוריקקעהרען, זאָל וויל איך דיא<lb/>ערשטע זיין אים צו עמפפֿאנגען. אַלזאָ ענט פֿערענט<lb/>אייך אויף איינער קורצען צייט. דאן קאמט צוריק<lb/>מיט מיר צו זאמען דען קעניג צו בעגריססען. <stage type="business">מעדכען טאנצען</stage><lb/>[<stage type="exit">אב</stage>]<lb/>זאנדערין בן הדור פרינץ פֿאן אראביען דאַס איזט מיין נאמען<lb/>אונד אלס זאלכֿער בעטע איך דיך אַן</p>
+        </sp>
+        <pb n="16" facs="בן_הדור-0016.jpg"/>
+        <sp who="#elms" xml:id="BenHaDor_SP0113_a">
+          <speaker>עלמת</speaker>
+          <p>| <stage type="delivery">אפארט</stage> פרינץ בן הדור? <stage type="delivery">גוט</stage> אונד דוא ליעבסט מיך?<lb/>מיך דיא ארמע פֿישערין?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0114_a">
+          <speaker>בן הדור</speaker>
+          <p>| דיא ליעבע זיהט נאך קיינער קראנע. דיא ליעבע זעהט<lb/><add>איין</add><lb/>נור דאַס הערץ. אונד |בעססערעס הערץ וויא דוא האַסט<lb/>האַב איך נאך ניע געזעהן.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0115_a">
+          <speaker>עלמת</speaker>
+          <p>| אבער איין ארמעס הערץ</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0116_a">
+          <speaker>בן הדור</speaker>
+          <p>| איזט פֿיעל רייכֿער אלס איין געבראכֿענעס הערץ! הערע<lb/>עלמת! איין טיראן וועלכֿער נענט זיך דער קעניג פֿאן<lb/>תומא האָט מיין פֿאטער ערמארדעט. מיינע מוטטער<lb/>האלט ער בייא זיך געפֿאנגען אונד יעצט טראכֿט ער<lb/>אויך נאך מיין לעבען.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0117_a">
+          <speaker>עלמת</speaker>
+          <p>| <stage type="delivery">ערשראקען.</stage> עס קאן ניכֿט וואהר זיין פרינץ! יעמאנד<lb/>האָט דיך געמוזט טוישען.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0118_a">
+          <speaker>בן הדור</speaker>
+          <p>| ליידער בין איך ניכֿט געטוישט! אונד יעצט איזט דיא<lb/>צייט געקאממען איך זאלל אַן אים ראכֿע נעהמען.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0119_a">
+          <speaker>עלמת</speaker>
+          <p>| פרינץ! האבע מיטלייד מיט דער ארמער אונגליקליכֿער<lb/>עלמת געהע ניכֿט דען דיין לעבען איזט אין געפֿאהר!<lb/>.<lb/><stage type="business">(אלליין)</stage> יעצט בין איך אלליין דאָך מיינע געדאנקען מיין אללעס<lb/>צארן<lb/>געהער נור דיר געליעבטער מיין! ווען דיא וועללען אים שארען<lb/>רושען ווען דיא שיפֿער נאך ווילד לושען, הערע איך נור<lb/>דיך געליעבטער מיין.<lb/><stage type="entrance">אופטריט ״בן הדור״.</stage></p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0120_a">
+          <speaker>בן הדור</speaker>
+          <p>| מיין טהייערער ענגעל! דוא ווארטעסט מיין? זייא מיר 1000 מוהל<lb/>געגריסט<stage type="business"> אמארמונג</stage></p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0121_a">
+          <speaker>עלמת</speaker>
+          <p>| ווארווּם געליעבטער האסט דוא מיך זאָ לאנגע ווארטען לאסען?<lb/>דוא ווייסט דאך דאַס דאַס ארמע פֿישער מעדכֿען האט<lb/>קיינע אנדערע פֿריידע נור ווען זיא אומארמט איהר<lb/>ארמען פֿישער יונגע בן הדור.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0122_a">
+          <speaker>בן הדור.</speaker>
+          <p>| טייערע זעעלע דוא ווירסט מיר פֿערצייען! איך מוס<lb/>דיר יעצט איין געהיימניס ענדעקען. איך האבע דיך<lb/>געטוישט! </p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0123_a">
+          <speaker>עלמת</speaker>
+          <p>| עס גיבט קיינע זאַכֿע אין דער וועלט איך זאלל דיר<lb/>ניכֿט פֿערצייען.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0124_a">
+          <speaker>בן הדור.</speaker>
+          <p>| וויסע טייערע עלמת! דאָס איך בין ניכֿט דער<lb/>איינפֿאכֿע פֿישער יונגע בן מלך, פֿיר וועלכֿען איך<lb/>האבע איך דיר ביז יעצט פֿארגעשטעלט.</p>
+        </sp>
+        <pb n="17" facs="בן_הדור-0017.jpg"/>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0125_a">
+          <speaker>בן הדור</speaker>
+          <p>| עס גיבט קיינע זאכֿע אין דער וועלט וועלכֿע זאלל מיר זאָ<lb/> .הייליג זיין וויא ראכֿע צו נעהמען אַן דען טיראן</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0126_a">
+          <speaker>עלמות</speaker>
+          <p>| אויך ניכֿט דיינע געליעבטע עלמת?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0127_a">
+          <speaker>בן הדור</speaker>
+          <p>| דוא דארפֿסט מיך ניכֿט צוריקהאלטען ווען דוא ליעבסט מיך!</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0128_a">
+          <speaker>עלמת</speaker>
+          <p>| ווען דאדורך ווירסט דוא מיך אויך טעדטען?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0129_a">
+          <speaker>בן הדור</speaker>
+          <p>| איך פֿערשטעה דיך ניכֿט!</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0130_a">
+          <speaker>עלמת</speaker>
+          <p>| ווען דאדורך ווירסט דוא אויך מיך האססען מוססען?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0131_a">
+          <speaker>בן הדור</speaker>
+          <p>| קיינע זאכֿע אין דער וועלט קאן מיינע ליעבע צו דיר אבשוועכֿע</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0132_a">
+          <speaker>עלמת</speaker>
+          <p>| וועל איך זאלל אויך זיינע פריינדין זיין?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0133_a">
+          <speaker>בן הדור</speaker>
+          <p>| זאָגאַר זיינע טאכֿטער!</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0134_a">
+          <speaker>עלמת</speaker>
+          <p>| זאָ שווערע מיר דאַס איממער ווירסט דוא מיינער זיין!</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0135_a">
+          <speaker>בן הדור</speaker>
+          <p>|איך שווערע עס דיר.     <lb/>"<stage type="delivery">"</stage></p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0136_a">
+          <speaker>עלמת</speaker>
+          <p>| מיינע געדאנקען ווען איך [<stage type="business">בלייב אלליין</stage>].<lb/>געהערען נור דיר <stage type="delivery">[געליעבטער מיין]</stage><lb/>פֿריה מארגענס ווען דיא זאָנע שטראהלט<lb/>בייא נאכֿט ווען דער מאָנד אללעס מיט זילבער מאַהלט<lb/>דא דענקע איך נור אַן דיך געליעבטער מיין</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0137_a">
+          <speaker>בן הדור</speaker>
+          <p>| בייא טאַג ווען דער שטויב <stage type="business">[אין ווירבעל טאנצט]</stage><lb/>בייא נאכֿט ווען דער מאָנד איבער דעם שאטען גלאנצ<lb/>[זעה איך נור דיך געליעבטע מיין]</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0138_a">
+          <speaker>זיא</speaker>
+          <lg>
+            <l>| ווען דיא וועללען אים צארן רוישען</l>
+          </lg>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0139_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>| און דיא שיפֿער נאך ווינד לושען</l>
+          </lg>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0140_a">
+          <speaker>זיא</speaker>
+          <lg>
+            <l>| זעה איך נור דיך געליעבטער מיין</l>
+          </lg>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0141_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>| זעה איך נור דיך געליעבטע מיין. Musik</l>
+            <stage type="delivery">Bis</stage>
+          </lg>
+        </sp>
+        <sp who="#beyde" xml:id="BenHaDor_SP0142_a">
+          <speaker>ביידע</speaker>
+          <lg n="14">
+            <l>| דוא מעגסט זיין פֿון מיר וויא פֿערין</l>
+            <l>ווייט האָך איבער דיא שטערין.</l>
+            <l>איך בין נאר בייא דיר געליעבטער- טע מיין</l>
+            <l>טייערער-רע געליעבטער-טע דוא בלייבסט עוויג מיין</l>
+            <stage type="delivery">bis</stage>
+          </lg>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0143_a">
+          <speaker>זיא</speaker>
+          <lg>
+            <l>| דוא בלייבסט נור מיין</l>
+          </lg>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0144_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>| איך בלייב נור דיין</l>
+            <stage type="entrance business">נאך פֿינאל ערשיינט אין טהוּרים פֿענסטער</stage>
+            <stage type="entrance">״סופֿורא״</stage>
+          </lg>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0145_a">
+          <speaker>סופירא</speaker>
+          <p>| וועה! וועה איך זעה איין ברענענדעס שיף או פֿין מעער<lb/>און איין אלטער מאנן איז צום מאַסט צו געבונדען אָ!<lb/>רעטטעט אים!</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0146_a">
+          <speaker>בן הדור</speaker>
+          <p>| יאַ יאַ איך זעה איך מוס איך רעטען <stage type="exit">[ראש אב]</stage></p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0147_a">
+          <speaker>עלמת</speaker>
+          <p>| איך מוז אים מיט מיין שיפֿעל צו הילפֿע קאממען.<lb/><stage>״/״</stage><lb/><stage type="setting">פֿערוואנדלונג.</stage><lb/><stage type="setting">מען זעהט אַ שיף ברענען שלמון צום מאַסט צו געבונדען</stage><lb/><stage type="entrance business">בן הדור מיט עלמת ערשיינען אויף שיפֿעל בן הדור צער=</stage><lb/><stage type="business">שנייט דיא שטריק וואָס דער אלטער איז צוגעבונדען, און</stage><lb/><stage type="business">רעטעט אים אויף דעם קליינעם שיפֿעל אין דעם</stage><lb/><stage type="exit business">מאמענט ווען זיא פֿערלאזען דאָס גרויסע שיף עקס</stage>=<lb/>פלאדירט און ער וועהרט אויף שטיקער צעריססען. אויף <lb/>שטיקער. אללע 3 רודערין דאָס קליינע שיפֿעל וועג<lb/>פֿארהאנג פֿאלט</p>
+        </sp>
+        <pb facs="בן_הדור-0018.jpg"/>
+        <trailer>ענדע 1טען אקט</trailer>
+      </div>
+      <div type="act" n="2" xml:id="BenHaDor_Act2">
+        <head>2 "Zweiter Act"</head>
+        <stage type="setting">שעהנער גארטען רעכֿטס פאלאסט מיט פלאטפֿארפם לינקס</stage>
+        <stage type="setting">דיא פֿעסטונג. פֿאַרן גראז באנק. גארטען באנק גארטען טיהר</stage>
+        <stage type="delivery">N-10</stage>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0148_a">
+          <speaker>״שלמון״</speaker>
+          <p>
+            <stage type="delivery">געזאנג</stage>
+          </p>
+          <lg n="15">
+            <l>איך וואר אין סכּנות, האָט רחמונות</l>
+            <l>ווער עס האט ישר כוח</l>
+            <l>העלפֿט מיר אויס אין מיין נוט</l>
+            <l>ווער וואלט עס גור דענקען</l>
+            <l>אז מיר זאל מען דארפֿען שענקען</l>
+            <l>צום עסין אַ שטיקעל ברוט</l>
+            <l>גרויס איז מיין נוט!</l>
+            <l>ווייט פֿון דעם לעבען ווייט פֿון דעם שטרעבען</l>
+            <l>ווייט אויף איין אינזעל בין איך געוועהן</l>
+            <l>אַ צייט דאָרט געזעסען, דערנער געגעסען</l>
+            <l>קיין לעבענדיגען מענשען האב איך געזעהן</l>
+            <l>איך וואר באלד פֿערפֿאלען. נאר דער גאטט פֿון אללען</l>
+            <l>האָט מיר געהאלפֿען אַ נסֶ איז געשעהן.</l>
+            <l>העלפֿט מיר מענשען גוטע מענשען אין מיין פֿרא</l>
+            <l>לאזט מיך אין אַ שטוב אריין.</l>
+          </lg>
+          <lg n="16" prev="true">
+            <l>גיט מיין שווערען גרויען קאפף אַ שטיקעל אָרט</l>
+            <l>בעלוינען וועט מען אייך פֿיל דאָרט</l>
+            <l>שענקט אַ נדבה. זיין וועט איהר רייך</l>
+            <l>ניט פֿון הרחבה, בעט איך בייא אייך</l>
+            <l>איך וואר אין סכּנות.</l>
+            <stage type="business">א. ז. וו..</stage>
+          </lg>
+        </sp>
+        <pb n="19" facs="בן_הדור-0019.jpg"/>
+        <sp who="#frzun" xml:id="BenHaDor_SP0149_a">
+          <speaker>פֿראזון</speaker>
+          <p>| מיינע קעניגין געפֿאנגען! אונד דער ברוּדער מערדער זי צט<lb/>אויף דעם טראהן? אָ ראכֿע! פֿירכֿטערליכֿע ראכֿע וויל<lb/>איך האַבען! דיאָ גאנצע ראכֿע פֿון דעם גאטט וואָס ער<lb/>איז איין אל קנה ונוקם וועל איך פֿון דעם היממעל הערוס<lb/>רייסען אונד אויף דיין קאפף שליידערען יאָ אף דיין<lb/>קאפף חנו דוא שענדליכֿער טיראן.<lb/><stage type="entrance">אופֿטריט עלמת</stage></p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0150_a">
+          <speaker>עלמות</speaker>
+          <p>| אלטער! איך האבע דיר איינמאהל דיין לעבען גערעטען<lb/>אונד דאפֿיר איזט עס בייא מיר טייער. איך ביטטע דיך<lb/>מיידע אויס דעם וועג וועלכֿער פֿיהרט אין פאלאסט<lb/>דען דיין לעבען איז דוא קיין אוגענבליק ניכֿט זיכֿער</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0151_a">
+          <speaker>שלמון</speaker>
+          <p>| איך האָב פֿאר מיין לעבען קיין מורא ניט דען וואָס<lb/>פֿאַר אַ וועהרט האָט גור דאָס לעבען פֿון אַזאַ אלטען<lb/>בעטלער וויא איך? נאָר דיר צו ליעב דוא זאָלסט<lb/>דיך ניט ערגערען געה איך אוועק פֿון דאַנען<lb/>אָבער איך זאָג דיר נישט צו אַז איך וועל מעהר<lb/>אהרער נישט קוממען.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0152_a">
+          <speaker>עלמת</speaker>
+          <p>| וואָס עס וועט זיין מארגען זאל זיך גאָטט זארגען, אבער<lb/>איינסט ווייל וויל איך דוא זאלסט פֿון דאנען אוועק געהן</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0153_a">
+          <speaker>שלמון</speaker>
+          <p>| גוט איך געה! נור איך בעט דיך גיב מיר מיט דיין<lb/>ברכֿה אויף דעם וועג</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0154_a">
+          <speaker>עלמת</speaker>
+          <p>| אויב דיא ברכֿה פֿון אַ קינד האָט בייא דיר אַ וועהרט<lb/>וועל איך זיא דיר נישט פֿערווייגערען <stage type="exit">געהענד.</stage> געה<lb/>אלטער געה! אונד אויף אללע וועגען זאל דיר גאָטט שיקען<lb/>זעגען<stage type="exit"> (ביידע אב)</stage>]<lb/>"<stage type="entrance">אופטריט "רחומה</stage>, <stage type="delivery">רופֿענדיג</stage></p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0155_a">
+          <speaker>רחומה</speaker>
+          <p>| פרינצעסין עלמת! פרינצעסין עלמת! זיא איז אזוי שטארק<lb/>פֿערטיעפֿט מיט דעם אלטען בעטלער אז זיא הערט גאר<lb/>נישט וויא איך רוף זיא! איך קען אונזער פרינצעסין<lb/>גאר נישט פֿערשטעהן! וויא אַ בעטלער! וויא אַ קבצן! ווי<lb/>אַ דלות! איז מיט איהר אַ גוטער ברודער! האט<lb/>זיא דערזעהן אַ פֿישער יונג אַ קבצן האָט זיא זיך<lb/>אין אים פֿערליעבט איבער דיא אויערין. און זייט דער<lb/>יונגער דלות איז פֿערשווינדען געוואָרען האט זיא<lb/>זיך אָב געזוכֿט איין אלטען דלות.<lb/>און אלט אים אין איין נאַכֿלופֿען, מיר דאכֿט זיך ווען איך<lb/>זאל זיין אַ פרינצעסין וואלט אזא דלות ניט דער לעבט צו קומען<lb/>אויף מיין שוועל! נאר וויא וועהרט מען שון אַ פרינצעסין?<lb/>אוי געוואלד! איך וויל זיין אַ פרינצעסין!<lb/><stage type="entrance">אופטריט לפדות״</stage></p>
+        </sp>
+        <pb n="20" facs="בן_הדור-0020.jpg"/>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0156_a">
+          <speaker>לפידות</speaker>
+          <p>| מיין טייער קעלבעלע! וואָס האלסטו עפעס אין איין שרייען<lb/>פרינצעסין?</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0157_a">
+          <speaker>רחומה</speaker>
+          <p>| אַ מחותן דארף נישט וויססען פֿון אלעמען. איך וואָלט דיר יאָ<lb/>געזאָגט ווען דוא זאלסט זיין אלליין.</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0158_a">
+          <speaker>לפידות</speaker>
+          <p>| <stage type="business">קוקט זיך אום</stage> איך זעה קיינעם נישט ארום מיר</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0159_a">
+          <speaker>רחומה</speaker>
+          <p>| ווייל דיין גוטער ברודער האָט דיר דיא אויגען פֿערשטעלט</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0160_a">
+          <speaker>לפידות</speaker>
+          <p>| מיינסט אוואדע איך בין שכּור! <stage type="delivery">״מען הער חנוס שטימע</stage>.<lb/>אוי דער קעניג קומט! געה געשווינד אוועק ווייל איך<lb/>דארף מיט אים רעדען אַ סוד.</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0161_a">
+          <speaker>רחומה</speaker>
+          <p>| אַ סוד? דארף זיך רחומהלע הונטערהערען! <stage type="exit">[אב]</stage><lb/><stage type="entrance">אופטריט ״חנו״ </stage>   .</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0162_a">
+          <speaker>חנו</speaker>
+          <p>| לפידות, איך דאנקע דיר פֿאר דער גוטער נאכֿריכֿט<lb/>אבער איך וויל עס הערען פֿאָן שקלאוועס מול אלליין.</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0163_a">
+          <speaker>לפידות</speaker>
+          <p>| דאָס קען שון געשעהן <stage type="delivery">״רופֿט״</stage> הע! גראבער<lb/>פֿישער יונג קום אריין.<lb/><stage type="entrance">אופטריט ״"בן הדור.</stage><lb/>אט דוא גראססער קעניג איז דער מאן זיין נאמען איז<lb/>בן מלך ער האט ערמארדעט דעם פרינץ בן הדור.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0164_a">
+          <speaker>חנו</speaker>
+          <p>| קאנסט שאָן געהן!</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0165_a">
+          <speaker>לפידות</speaker>
+          <p>| אים איז גוט צו זאגען איך זאלל געהן! איך קען קום אויף<lb/>דיא פֿיס איינשטעהן <stage type="exit">[אב]</stage></p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0166_a">
+          <speaker>חנו</speaker>
+          <p>| דוא ביסט מיר ווילקאממען טאפפֿערער העלד! פֿון יעצט אָן<lb/>ביסט דוא מעהר קיין שקלאווע. איך שענקע דיר דיא<lb/>פֿרייהייט.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0167_a">
+          <speaker>בן הדור</speaker>
+          <p>| דיא פֿרייהייט שפיעלט ביים געבארענען שקלאפֿען זעהר<lb/>איינע קליינע ראללע! דיא פֿרייהייט האט נור איין וועהרט<lb/>בייא דעם יעניגען וועלכֿער ווייסט וויא דיא פֿרייהייט<lb/>צו שעטצען. איך האפֿע פֿאָן דיר איינע בעססערע בעלאה=<lb/>נונג</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0168_a">
+          <speaker>חנו</speaker>
+          <p>| אונד דוא זאלסט זיא האַבען. אבער צו ערשט ערצעהלע<lb/>מיר וויעזאָ האַסט דוא דען פרינצען ערמארדעט?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0169_a">
+          <speaker>בן הדור</speaker>
+          <p>| גאנץ איינפֿאַך! איך האבע דען פרינצען נאַכֿ שפיאָנירט<lb/>גאנצע 3 מאָנאַדע, אונד נאך שווערער מיהע אונד<lb/>פֿיהל ארבייט איזט עס מיר געלונגען צו ערפֿאהרען<lb/>דאָס ער האַט זיך פֿערשווארען דיך קעניג מיט איין</p>
+        </sp>
+        <pb n="21" facs="בן_הדור-0021.jpg"/>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0170_a">
+          <speaker>בן הדור</speaker>
+          <p>| קורצער צו מאכֿען. אונד דאַס ער ערווארטעט דיינע<sic> אַנק</sic>ו<lb/>ביים מעער אום דיין טייערעס לעבען וועג צו רויבען. זאָ<lb/>האַבע איך אים פֿערפֿאלגט אויף שריט אונד טריט ביז איך<lb/>בין ענדליך איבער אים געפֿאלען. אונד איין שטאָס! אונד<lb/>מיין דאָלך האַט שאָן געשטעקט אין זיינער ברוסט! מיט<lb/>איינער לעווענשטימע האַט ער אוסגעשריען חנו. חנו! דוא<lb/>געמיינער ניעדריגער שופֿט! דוא מערדער מיינעס פֿאטערס<lb/>פייניגער מיינער מוטטער! דוא שופֿט האַסט געדונגען<lb/>אויך מיך צו ערמארדען. ווארטע! גאטט ווירד דיך פֿיר<lb/>דאַס פֿער גאססענע בלוט שטראפֿען. אונד מיט דעם וואָרט<lb/>גאטטעס שטראפֿע דען מערדער איזט ער ניעדער געפֿאלען<lb/>איך האבע בייא אים דען מעדאליאָן ארונטער גענאמען<lb/>דיא לייכֿע אינס וואססער געווארפֿען אונד דאס איזט אלל</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0171_a">
+          <speaker>חנו</speaker>
+          <p>| זעהר גוט! יעצט הערע וויא איך וועל דיך בעלאהנען! איך<lb/>וועל דיר געבען מיינע טאָכֿטער צור פֿראו! זיא שיינט וויא<lb/>דיא זאָננע!</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0172_a">
+          <speaker>בן הדור</speaker>
+          <p>| דאַס איזט צו פֿיהל פֿיר איינען סקלאווען!</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0173_a">
+          <speaker>חנו</speaker>
+          <p>| דוא דארפֿסט פֿערגעססען ווער דוא ביזט געוועהן! יעצט<lb/>ביסט דוא איין פרינץ! אַלזאָ געוועהנע דיך מיט דען<lb/>נאמען פרינץ</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0174_a">
+          <speaker>בן הדור</speaker>
+          <p>| אַלזאָ איך בין איין פרינץ אונד פרינץ וויל איך איך אויך<lb/>בלייבען. אונד איך האפֿפֿע וויא איין פרינץ מיך צו האַלטען</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0175_a">
+          <speaker>חנו</speaker>
+          <p>| יעצט מיין טייערער פרינץ, הערע וואַס איך פֿארדערע<lb/>פֿאָן דיר סוּ פֿירא. דיא מוטטער פֿאָֿם ערמארדעטען<lb/>פרינצען בן הדור איזט בייא מיר אים שלאָסס געה צו<lb/>איהר, שטעלע דיך פֿאָר אלס פֿריינד פֿאן איהרען זאָהן<lb/>אונד זאגע איהר דאַס דוא וואַרסט אלס ער איז געשטארבען<lb/>אונד זיין לעצטער וואָנש וואַר דאַס זיינע מוטטער זאל<lb/>מיך הייראטען דאמיט בלוט פֿערגיסען זאָל אין אראביען<lb/>אופֿהערען אונד גליק אונד פֿריעדען זאל הערשען אין אונזער<lb/>פֿאטערלאנד.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0176_a">
+          <speaker>בן הדור</speaker>
+          <p>| איך זאל צור קעניגען געהן? גוט אבער וואָ בעפֿינדעט<lb/>זיך דיא קעניגען?</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0177_a">
+          <speaker>חנו.</speaker>
+          <p>| פֿארלויפֿיג געה אין מיין פאלאסט. לפידות וויר ד דיך<lb/>אנקליידען אין דיא קליידער אלס פרינץ בן מלך</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0178_a">
+          <speaker>בן הדור</speaker>
+          <p>| מעכֿטיגער הערשער. זייא זיכער דאַס איך ווערדע<lb/>אויף קיינע מינוטע פֿערגעססען וואַס דוא האַסט אין מיר<lb/>געטאהן. איך ווערדע אימער טראכֿטען דיינע טאהטען<lb/>אַן מיר צו בעלאהנען, איך דארף נור ניכֿט פֿערגעססען<lb/>דאַס איך בין איין פרינץ אונד וויא איין פרינץ ווערדע<lb/>איך אויך האנדלען<stage type="exit"> [אב]</stage></p>
+        </sp>
+        <pb n="22" facs="בן_הדור-0022.jpg"/>
+        <sp who="#khnu" xml:id="BenHaDor_SP0179_a">
+          <speaker>חנו</speaker>
+          <p>| אך! וויא שוועהר עס איז איינע קראָנע צו טראגען ציטערין פֿאר<lb/>יעדע פֿאלקס בעוועגונג. דאָך צוריק טרעהטען איז צו שפעט.<lb/>פרינץ בן הדור איז טאָד!! אונד אום דאַס פֿאָלק צו<lb/>בערוהיגען, מוס דיא קעניגען סאפֿירא מיינע פֿרוא ווערדען<lb/>יאַ! זיא מוז עס ווער דען אום יעדען פרייז <stage type="exit">[אב]</stage><lb/><stage type="setting">פֿערוואנדלונג</stage><lb/><stage type="setting">איינע פֿארהאללע לינקס און טראהנזעסעל</stage><lb/><stage type="entrance">״עלמת״ קאמט פֿאן רעכֿטס</stage></p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0180_a">
+          <speaker>עלמת</speaker>
+          <p>| גאטט איזט מיין צויגע איך מעכֿטע איהר דיא ווארהייט ניכֿט<lb/>זאַגען! דען איך פֿירכֿטע עס זאלל זיא ניכֿט טעדטען! אבער<lb/>איך האבע נאך איהר געשיקט אונד זיא מוסס אללעס ערפֿאהרע<lb/><stage type="entrance">אופֿטריט סו פֿיראַ צרויה פֿון לינקס</stage><lb/>עלמת | <stage type="delivery">וויינט</stage> אָ קעניגין</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0181_a">
+          <speaker>סופֿירא</speaker>
+          <p>| ווארוּם זאָ טרויעריג עדלע פרינצעסין?</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0182_a">
+          <speaker>עלמת</speaker>
+          <p>| אָ ווירדיגע קעניגין.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0183_a">
+          <speaker>סופֿירא</speaker>
+          <p>| רעדע פרינצעסין איך בין אויף אלעם געפֿאַסט</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0184_a">
+          <speaker>עלמת</speaker>
+          <p>| שלעכֿט קעניגין! זעהר אַ ביטטערע נאכֿריכֿט האבע איך<lb/>דיר געבראכֿט. אונזער פרינץ, אונזער בן הדור<lb/>איז טאָדט. איין שקלאווע האט אים ערמארדעט!</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0185_a">
+          <speaker>סוּפירא</speaker>
+          <p>| טאָדט? <stage type="delivery">פויזע</stage> גאטט דוא האסט מיר אים געגעבען<lb/>דוא האַסט אים גענאממען! דיין נאמען זייא געלאָבט</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0186_a">
+          <speaker>עלמת</speaker>
+          <p>| קעניגען! גאטט איזט מיין צויגע דאַס איך בין אונגליקליך<lb/>איך האבע פֿערלארען מיין ענגעל, מיין אללעס, אבער איך<lb/>קאַן דיר ליידער ניכֿטס העלפֿען. איך קאן נור מיט דיר<lb/>מיטוויינען.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0187_a">
+          <speaker>סופֿירא</speaker>
+          <p>| מיטליידס טרעהנען ברינגען טראָסט ווען מאן האט קיינע<lb/>אנדערע</p>
+        </sp>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0188_a">
+          <speaker>צרויה</speaker>
+          <p>| גוט איז דעם ארימאן אַ מכּה</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0189_a">
+          <speaker>סויפֿיר.</speaker>
+          <p>| מיין אונגליק איזט גרענצענלאז! דער מארד שרייט ביז<lb/>צו גאָטט!</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0190_a">
+          <speaker>עלמת</speaker>
+          <p>| נאך איין גרעסערעס אונגליק ער ווארטעט דיך קעניגין.<lb/>הייטע וויל צו דיר קאממען דער קעניג זעלבסט.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0191_a">
+          <speaker>סוּפֿיר.</speaker>
+          <p>| דער קעניג? ווער וואגט עס אביר אין מיינער געגענווארד<lb/>אין קעניג צו נעננען?</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0192_a">
+          <speaker>עלמת</speaker>
+          <p>| ווער אנד עס אלס מיין פֿאטער פֿאר דעם יעצט<lb/>אללעס ציטערט.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0193_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| ציטערט? נור פֿולע שקלאווען ציטערן! איך בין נור איין<lb/>הילפֿלאזעס ווייב אבער איך ציטטערע ניכט.<lb/>איך וויל אים מעהר ניכֿט זעהן.</p>
+        </sp>
+        <pb n="23" facs="בן_הדור-0023.jpg"/>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0194_a">
+          <speaker>צרויה</speaker>
+          <p>| ער זאלל אונזער שוועל ניט איבערטרעטען. איך וועל אים<lb/>דיא אויגען אוסקראצען.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0195_a">
+          <speaker>עלמת</speaker>
+          <p>| דיינע אוייגערונג אים צו עמפפֿאנגען וועט אים נאך<lb/>מעהר רייצען.</p>
+        </sp>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0196_a">
+          <speaker>צרויה</speaker>
+          <p>| נוא וואס איז? לאז אים דיא גאל צעפלאצט וועהרען.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0197_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| וואָס קען ער מיר נאך מעהר טיהן? מיך ערמארדען וויא<lb/>ער האָט מיין מאן מיין קינד ערמארדעט? זאל ער עס טהון<lb/>אונד זאלל איין ענדע נעהמען פֿאָן מיין ליידען.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0198_a">
+          <speaker>עלמת</speaker>
+          <p>| קעניגין! איך ביטטע דיך אים נאמען פֿאָן גאנץ יזראעל<lb/>צווינגע דיך אים פֿריינדליך צו עמפפֿאנגען.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0199_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| אונמעגליך. מיין בלוט שטייגט מיר ביז צום קאפף<lb/>ווען איך דען טיראן נור זעהע.</p>
+        </sp>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0200_a">
+          <speaker>צרויה</speaker>
+          <p>| און מיר קעהרט זיך פשוט דיא גאלל איבער אז איך<lb/>הער זיין נאמען דערמאָנענדיג פֿע!</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0201_a">
+          <speaker>עלמת</speaker>
+          <p>| איך דארף ניכֿטס מעהר זאגען דען עס איזט<lb/>מיין פֿאטער.</p>
+        </sp>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0202_a">
+          <speaker>צרויה</speaker>
+          <p>| <stage type="business">״קיקט ארויס״</stage> געשווינד פרינצעסין! דער קעניג<lb/>קומט. קומט מיט מיר.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0203_a">
+          <speaker>עלמת</speaker>
+          <p>| פֿערגעסע ניכט קעניגין דאַס לעבען פֿאָם גאנצען<lb/>פֿאָלק הענגט פֿאָן דיר אַב <stage type="exit business">[אב מיט צרה]</stage></p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0204_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| מיין פאָלקס לעבען הענגט דאפֿאָן אַב? גוט. איך<lb/>וועל מיך צווינגען מיט אים צו רעדען אונד דוא גאטט<lb/>העלפֿע מיר<lb/><stage type="entrance">אויפטריט חנו</stage></p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0205_a">
+          <speaker>חנו</speaker>
+          <p>| הייל אונד גליק. דער גראססער קעניגין! דער זיעגער פֿאָן<lb/>תומא קאמט דיר צו פֿיעסען לעגען זיינע זיעגעס=<lb/>לארבערקרענצע צוזאמען מיט זיינער ליעבע! אללע פֿעלקער<lb/>דיא איך בעזיעגט האַבע לאסען דיינע מאיעסט עט<lb/>דורך מיר בעגריססען.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0206_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| חנו! איך האבע מיט דער וועלט ניכֿטס מעהר צו טון<lb/>דער טאָדט פֿאן מיין מאַן האָט מיך פֿון דער וועל<lb/>אבגעשיעדען. איך קאן דיינע ליעבע ניכֿט ערווידערין<lb/>בעססער ברינגע דיינע ליעבע צוּ איינען אנדערין<lb/>ווייב, צו איינער גליקליכֿערין אלס איך בין</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0207_a">
+          <speaker>חנו</speaker>
+          <p>| דיין עדעל מוטה, דיין ערהאבענער גייסט איזט איין<lb/>מעער פֿאָן ליעבע וועהרט! אונד דוא זאגסט דוא<lb/>קאנסט קיינע ליעבע ערוויעדערין? ניין שעהנע<lb/>סאפירה! דוא מוזט מיין זיין.</p>
+        </sp>
+        <pb n="24" facs="בן_הדור-0024.jpg"/>
+        <sp who="#sufur" xml:id="BenHaDor_SP0208_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| ווילסט דוא מיך צווינגען ווייל איך בין שעהן? איין וואר וואר<lb/>בילד קאן פֿיעל שעהנער זיין אונד דאך קאנסט דוא<lb/>עס עהער 10 מאל בעלעבען אלס מיין הערץ צו ערווערמען<lb/>חנו! <stage type="business">״קניעט״</stage> זעה מיך אהיר צו דיינען פֿיעסען<lb/>זעה סופֿירה דיא קעניגין <stage type="business">שטעהט שנעל אויף</stage>. ניין! ניין.<lb/>דיא קעניגין דארף ניכֿט קניען! אָ! פֿער צייע מיר שלמון!<lb/>איך בין דיא קעניגין! זעהע מיך ניכֿט מיט זאלכֿען אויגען<lb/>אַן. דען דיא קעניגין סופֿירה לאָכֿט פֿאן דיין צארען חחֵחַ</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0209_a">
+          <speaker>חנו</speaker>
+          <p>| אונדאנקבארע! איזט דאַס דער לאהן ווייל איך זוכֿע פריעדען<lb/>מיט דיר?</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0210_a">
+          <speaker>סופֿירה</speaker>
+          <p>| פֿריעדען? דוא זוכֿסט פֿריעדען? טריווט דען ניכֿט דיין<lb/>שווערד פֿון אונשולדיג בלוט? האסט דוא ניכֿט אללע פֿון<lb/>חבר אוסשלאכֿטען לאססען וועלכֿע האבען נור בעוויינט<lb/>דען טאָדט פֿאָן מיין מאַן? אונד דאַס נענסט דוא פֿריעדען<lb/>טיראן! פֿאָרט פֿאן איהר.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0211_a">
+          <speaker>חנו</speaker>
+          <p>| אך סוּפֿירה <stage type="business">״ער וויל זיא שלאגען האלט זיך צוריק״</stage><lb/>אַך וויא שעהן דוא ביסט אין דיינען צאָרן. דאָך<lb/>זייא רוּהיג דען דוא טוּסט מיר לייד</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0212_a">
+          <speaker>סופֿירה</speaker>
+          <p>| וואָ נעהמע איך איין דאָלך דיין טיראנישעס<lb/>הערץ צו דרכֿבאָהרען מערדער! ווער האט<lb/>בעגאנגען דען נייעם מאָרד, ניכֿט דוא? <stage type="business">ער ציטערט</stage><lb/>אהוי! דוא ציטערסט! דיינע בייזע געוויסען פלאגען<lb/>דיך! שעהמע דיך דוא קליין מענשעלע! וויא ניעדריג<lb/>דוא זיהסט אוס אין מיינע אויגען. <stage type="business">ער ווענדעט זיך וועג</stage><lb/>דרעה ניכֿט וועג דיינע אוגען שוע מיר גראדע<lb/>אינס געזוכֿט! זאגע טיראן ווער האט געדונגען דעם<lb/>שקלאווען מיינען זאהן צוּ ערמארדען? ניכֿט דוא?</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0213_a">
+          <speaker>חנו</speaker>
+          <p>| חִחַחוּ אויך צוּ דיר איזט דיעזע ליעגע אנגעקאממען?<lb/>דאַן בעפֿעהלע איך דיר דוא זאָלסט ניכֿט גלויבען.<lb/>הערסטו עס ווייב? ציטערע ווען איך בעפֿעהלע</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0214_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| ציטערע דוא שקלאווע! איינע קעניגין ציטערט ניכֿט ווען<lb/>איין שקלאווע וויל זיא ערמארדען עהער מוס דיינע האנד<lb/>געלעהמט ווערדען בעפֿאר דוא ער העבסט זיא געגען<lb/>דיינער קעניגין! שקל אווע קניע ניעדער פֿאר דיינער<lb/>הערשערין. קניע ניעדער <stage type="business">״ער קניעט״</stage> טיראן איינע<lb/>יידעשע קעניגין קאן שטערבען! אבער ציטערין<lb/>ציטערט זיא ניכֿט ניע! <stage type="exit">[אב]</stage></p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0215_a">
+          <speaker>חנו.</speaker>
+          <p>| <stage type="business">״העבט זיך אויף״</stage> וואַס האבע איך געטאהן? געקניעט<lb/>פֿאָר איין ווייב? מיין קעניגליכֿען שטאלץ געבראכֿען?<lb/>אונד דאָך האט זיא מיט פֿעראכֿטונג מיך צו יקגעשטאסען?<lb/>דאס איזט צו פֿיהל! דוא שטאלצעס ווייב וויא איין<lb/>וואורים זאלסט דוא פֿאר מיר קריכֿען. אונד איך ווערדע<lb/>דאך מיט מיינע פֿוסע צערטרעטען! איך ווערדע דיך<lb/>לערנען דיינען קעניג צו רעספעקטיערען <stage type="exit">[אב]</stage><lb/><stage type="setting">פֿערוואנדלונג</stage><lb/><stage type="setting">דאס זעלבע וויא אנפאנג 2טן אקט</stage><lb/><stage type="entrance">אופטריט ״שלמון בן הדור״</stage></p>
+        </sp>
+        <pb n="25" facs="בן_הדור-0025.jpg"/>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0216_a">
+          <speaker>שלמון</speaker>
+          <p>| מיט דאפעלטער וואכֿע איזט איהר געפֿענגניס בעוואכֿט, קען<lb/>פֿוגעל קען צו איהר ניט צו קומען. אונד דאַס פֿאלק קאן דאס<lb/>זאָ רוּהיג צו זעהן?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0217_a">
+          <speaker>בן הדור</speaker>
+          <p>| אלטער האסט דוא עטוואַס צו דער קעניגין צו בעפֿעהלען. זאָ<lb/>טוּר עס דורך מיר דען באַלד ווערדע איך בייא איהר<lb/>זיין</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0218_a">
+          <speaker>שלמון</speaker>
+          <p>| קאנסט דוא מיר פֿילייכֿט זאַגען וואַס דוא האסט דער קעניגין<lb/>צו מעלדען? אדער איזט עס פֿילייכֿט איין געהיימניס?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0219_a">
+          <speaker>בן הדור</speaker>
+          <p>| אָ! ניין דיא גאנצע וועלט זאל עס וויססען. איך וויל<lb/>איהר זאַגען דאַס דער פרינץ בן הדור האַט פֿאר<lb/>זיין טאָדט געבעהטען דאַס זיינע מוטטער זאל הייראטען<lb/>דעם קעניג חנו. אונד דער שליח בין איך.</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0220_a">
+          <speaker>שלמון</speaker>
+          <p>| אונמעגליך! עס איזט איינע ליעגע, זאָ איין עדלער<lb/>יונגער מאן קען זאָוואַס ניט טוהן</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0221_a">
+          <speaker>בן הדור</speaker>
+          <p>| פֿערגעססע ניכֿט אלטער מיר קיין מאַן גלויבען דען איך זעלבסט<lb/>בין דער מערדער פֿון פרינץ בן הדור.</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0222_a">
+          <speaker>שלמון.</speaker>
+          <p>| <stage type="business">שפרינגט צוריק ציהט זיין דאלך</stage> דוא דער מערדער<lb/>פֿאן מיין..... פֿאן דעם פרינץ? עלענדער! דוא זאלסט<lb/>ניכֿט לעבען.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0223_a">
+          <speaker>בן הדור</speaker>
+          <p>| <stage type="business">פאקט אים בייא דער האנד</stage> אלטער איך בעקאממע<lb/>דאפֿיר דעם קעניגס טאכֿטער צור פֿרוא!</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0224_a">
+          <speaker>שלמון</speaker>
+          <p>| ניין, איך וויל אונד קאן מיך לענגער ניכֿט פֿערשטעללען<lb/>זאגע דען מערדער דער דיך געדונגען האט, דאס<lb/>זיינע מיהע וואר אומזאָנסט דען נאך לעבט איינער דער<lb/>אָן איהם ראכֿע נעהמען ווירד איך בין נאך יונג,<lb/>געזונד, פֿאל לעבען פֿאל לוסט. הערע עס געדונגענער<lb/>מערדער אונד ציטערע צוזאמען מיט דיינען העררען!</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0225_a">
+          <speaker>בן הדור</speaker>
+          <p>| וויא איך זעה יונגער אלטער ליעבסט דוא זעהר דען<lb/>פרינץ בן הדור? האָסט דוא אין פֿילייכֿט פערזענליך<lb/>געקאַנט?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0226_a">
+          <speaker>שלמון</speaker>
+          <p>| פֿילייכֿט אלס קליינעס קינד. אבער מיט זיינען פֿאטער<lb/>האַבע איך צוּזאמען געלעבט. צוזאמען געליטען. אונד<lb/>יעצט וויינע איך צוּזאמען מיט אים<lb/>איך זעלבסט בין פרינץ בן הדור!</p>
+        </sp>
+        <pb n="26" facs="בן_הדור-0026.jpg"/>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0227_a">
+          <speaker>שלמון</speaker>
+          <p>| וואַס זעה איך <stage type="business">טרעט צוריק</stage> וואכֿע איך.... דוא מיין<lb/>מיין פרינץ מיין קעניג... דיין פֿאט.... פֿאטערס פֿריינד<lb/>קניעט פֿאָר דיר. <stage type="business">קניעט</stage></p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0228_a">
+          <speaker>בן הדור</speaker>
+          <p>| <stage type="business">ציעט דאלך</stage>, דיעזער דאָלך זאל ביז אין 24 שטונדען<lb/>ראכֿע נעהמען פֿיר מיין ערמארדעטען פֿאטער אונד פֿיר<lb/>מיינע בעליידיגטע מוטטער!</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0229_a">
+          <speaker>שלמון</speaker>
+          <p>| דיין ארם איז צוּ שוואַך דאצוּ</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0230_a">
+          <speaker>בן הדור</speaker>
+          <p>| פֿירכֿטע ניכֿטס <stage type="business">נעמט הערוס מעדאליאן</stage> היר ביים שאטען<lb/>מיינעס פֿאטערס שוועהרע איך, ראכֿע פֿיר זיין<lb/>פֿערגאססענעס בלוט אדער שטערבען וויא ער <stage type="business">גערויש</stage><lb/>איך הערע יעמאנד קאמען! מאן דארף אונז איהר<lb/>ניכֿט טרעפֿען <stage type="exit">[ביידע אב]</stage><lb/><stage type="entrance">אופטריט עלמת רחוּמה.</stage></p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0231_a">
+          <speaker>עלמת</speaker>
+          <p>| רחומהלע! איך שווער דיר בייא מיין אנגליקליך לעבען<lb/>איך וויל ניעמאנדען קיין ווארט ערצעהלען. זאגע מיר<lb/>ווער וואר דער מערדער פֿאן פרינץ בן הדור?</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0232_a">
+          <speaker>רחומה</speaker>
+          <p>| איך וויל דיר נישט זאָגען און מוז דיר זאָגען, דער<lb/>מער דער פֿון דעם פרינץ איז געוועהן זעהר אַ<lb/>נאענטער פֿריינד פֿון דיר דאָס איבריגע שטוס דיך!<lb/>איבער דאַס פֿערגאססענע בלוט פֿאָן זיין איינציג קינד</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0233_a">
+          <speaker>בן הדור</speaker>
+          <p>| דיינע טרערען אלטער ריהרען מיך ביז צור זעעלע!<lb/>אלטער איך האבע דיר איינמאהל דיין לעבען גערעטעט, וואַן<lb/>דוא ווירסט מיך ניכֿט פֿעראהטען, זאָ ווערדע איך דיר עטוואַס<lb/>פֿערטרויען, וויסע דאַס איך האבע חנו. געטוישט פרינץ<lb/>בן הדור לעבט!</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0234_a">
+          <speaker>שלמון</speaker>
+          <p>| פרינץ בן הדור לעבט? נוא!</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0235_a">
+          <speaker>בן הדור</speaker>
+          <p>| אונד איזט ניכֿט ווייט פֿאָן וויהר, אונד וואַן דוא צווייפֿעלסט<lb/>קאן איך דיר אים באַלד פֿארשטעללען.</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0236_a">
+          <speaker>שלמון</speaker>
+          <p>| אָ ניין, ניין. גאָטט בעהיטע ליעבער וויל איך אים ניעמאלס<lb/>זעהן אלס אין דיעזעם מערדערישען פאלאסט דער געפֿאהר<lb/>אוסגעזעצט ערמארדעט צוּ ווערדען.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0237_a">
+          <speaker>בן הדור</speaker>
+          <p>| אבער וואַן ער איזט שאָן היר?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0238_a">
+          <speaker>שלמון</speaker>
+          <p>| זאָ ביטע איך דיך, איילע פֿליהע בעשוועהרע אים ווען<lb/>זיין לעבען איזט אים ליעב זאלל ער זיך זאָפֿאַרט<lb/>פֿאן איהר ענטפֿערנען, דען איהר איזט זיין לעבען<lb/>קיינען אוגענבליק זיכֿער.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0239_a">
+          <speaker>בן הדור</speaker>
+          <p>| ער ווייסט עס נור ער לאכֿט דאַפֿאָן</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0240_a">
+          <speaker>שלמון</speaker>
+          <p>| וואהער ווייסט דוא עס?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0241_a">
+          <speaker>בן הדור</speaker>
+          <p>| <stage type="business">קיקט זיך ארום</stage> פֿירכֿטע ניכֿט אלטער פֿריינד</p>
+        </sp>
+        <pb n="27" facs="בן_הדור-0027.jpg"/>
+        <sp who="#elms" xml:id="BenHaDor_SP0242_a">
+          <speaker>עלמת</speaker>
+          <p>| אָ איך ערשפארע דיר דיא וואָרטע! געוויס מיין פֿאטער<lb/>אך וויא עלענד אונד אונגליקליך איך בין <stage type="delivery">וויינט.</stage><lb/><stage type="entrance">״חנו״</stage></p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0243_a">
+          <speaker>חנו</speaker>
+          <p>| וואס איזט דאַס? אלעס פֿרייט זיך איבער מיינען זיעג, אונד<lb/>דוא מיינע טאַכֿטער וויינסט?</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0244_a">
+          <speaker>עלמת</speaker>
+          <p>| צורנע ניכֿט פֿאטער! עס זינד מיטליידס טרעהנען. איך<lb/>קאממע פֿאן דער געפֿאנגענער קעניגין. זיא ביטטעט דוא<lb/>זאָלסט זיא פֿערשאנען מיט דיין ליעבעס אנטראג</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0245_a">
+          <speaker>חנו</speaker>
+          <p>| ניין! מעהר זאלל זיא פֿון מיר ניכֿט שפאטען! זיא מוסס זיך<lb/>יעצט דאצו ענט שליסען! זיא מוסס מיינע זיין.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0246_a">
+          <speaker>עלמת</speaker>
+          <p>| פֿאטער! האבע מיטלייד מיר צוּ ליעב, זאָ לאנג סופֿירה<lb/>וויינט קאן איך מיך ניכֿט פֿרייען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0247_a">
+          <speaker>חנו</speaker>
+          <p>| וואַס? דאַס שפריכֿט מיינע טאכֿטער? ניין מיין באַס טארד!</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0248_a">
+          <speaker>עלמת</speaker>
+          <p>| פֿאטער!</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0249_a">
+          <speaker>חנו</speaker>
+          <p>| שווייגע! ווען דיין לעבען איזט דיר ליעב זאל איך זאלכֿע<lb/>טרעהרען ניכֿט מעהר זעהן. ציטערין מוסס יעצט אללעס<lb/>פֿאַר מיר! פֿאטער! זעלבסט הערשער און גאנץ<lb/>אראביען בין איך יעצט. אללע מיינע פֿיינדע זינד<lb/>בעזיעגט! דער איינציגע פֿיינד פֿיר דעם מיך<lb/>געפֿירכֿטעט איזט ניכֿט מעהר דואָ. פרינץ בן הדור<lb/>איזט טאָדט</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0250_a">
+          <speaker>עלמת</speaker>
+          <p>| וועה טאָדט! אונד פֿילייכֿט נאָך ערמארדעט פֿאן מיין...</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0251_a">
+          <speaker>חנו</speaker>
+          <p>| עלמת איך שעפפֿע פֿערדאכֿט דאַס דוא האסט דיך<lb/>מיט דעם פרינץ געקאנט אינס געהיים! זאפֿארט זאגע<lb/>מיר איך וויל עס וויססען!</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0252_a">
+          <speaker>עלמת</speaker>
+          <p>| אונד דוא זאלסט עס וויססען! פרינץ בן הדור איז טאָדט<lb/>ער פֿירכֿטעט דיינער ניכֿט מעהר אונד מיך קאנסט<lb/>דוא אונגליקליכֿער וויא איך בין ניכֿט מאַכען. וויססע<lb/>איך האבע געליעבט איין פֿישער יונגע</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0253_a">
+          <speaker>חנו.</speaker>
+          <p>| אונד. דיעזער פֿישער יונגע וואר?</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0254_a">
+          <speaker>עלמת</speaker>
+          <p>| בן הדור פרינץ פֿאָן אראביען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0255_a">
+          <speaker>חנו</speaker>
+          <p>| <stage type="business">פאקט זיא בייא דער האנד שליידערט זיא אין דער אנדערען</stage><lb/><stage type="business">זייטע</stage> שלאנגע! אוס מיינען אוגען! דוא ביסט ניכֿט<lb/>וועהרט מיינע טאָכֿטער צוּ זיין.</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0256_a">
+          <speaker>רחומה</speaker>
+          <p>| אמת קעניג דוא האַסט נישט דיא וועהרט אזא טאַכֿטער<lb/>צו האָבען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0257_a">
+          <speaker>חנו</speaker>
+          <p>| ווען דיין לעבען איז דיר ליעב וואַגע קיין וואָרט דער<lb/>קעניגין סוּפֿירה צוּ זאגען ביז זיא ווירד ניכֿט מיינע זיין.</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0258_a">
+          <speaker>עלמת</speaker>
+          <p>| דיא קעניגין ווייסט עס שאָן, איך האבע געשווארען איהר<lb/>איין טרייעס קינד צוּ זיין. אונד איך וויל זיא מיט אללע<lb/>מיינע קרעפֿטע שיצען געגען יעדע אונגערעכֿטיגקייט<lb/>יעצט טעדטע מיך!</p>
+        </sp>
+        <pb n="28" facs="בן_הדור-0028.jpg"/>
+        <sp who="#khnu" xml:id="BenHaDor_SP0259_a">
+          <speaker>חנו</speaker>
+          <p>| יאָ איך טעדטע דיך! מיט מיינע הענדע <stage type="business">ווארגט זיא</stage><lb/>מערדע איך דיך ערווארגען.</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0260_a">
+          <speaker>רחומה</speaker>
+          <p>| הילפֿע! הילפֿע!<lb/><stage type="entrance">שלמון</stage>. <stage type="business">פֿאנגט אים פֿון הינטער שליידערט</stage><lb/><stage type="business">אים וועק</stage></p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0261_a">
+          <speaker>שלמון</speaker>
+          <p>| שטעה מענש! הערע גאטטעס שטימע זיא בעפֿעהלט<lb/>לא צ תרצח דוא זאלסט ניט מאָרדען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0262_a">
+          <speaker>חנו.</speaker>
+          <p>| ווער האַט דיר דאַס רעכֿט געגעבען איך צו ווארנען?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0263_a">
+          <speaker>שלמון</speaker>
+          <p>| דער וועלכֿער האָט דעם ברודער קינס מערדער<lb/>געפֿראגט איהר אבל אחיך? וואָ איזט דיין ברודער?<lb/>מער דער איך הערע דיא שטימע זיינעס בלוטעס צוּ<lb/> מיר שרייען <stage type="business">קוקט אים שארף אָ</stage>ן</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0264_a">
+          <speaker>חנו</speaker>
+          <p>| מענש ביסט דוא וואהנזינניג? ווארוּם שוסט דוא מיך<lb/>זאָ שו דערליך אַן? וואכֿע! וואכֿע!<lb/><stage type="entrance">״אופטריט קאהר סאלדאטען״</stage><lb/>פֿערטיידיגט דיע עהרע אייער קעניגס</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0265_a">
+          <speaker>עלמת</speaker>
+          <p>| פֿאטער האבע מיטלייד מיט זיין גרויעס האַרר<lb/>רחומה | פֿערצייעט אים קעניג ער איז נישט מיט אלעמען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0266_a">
+          <speaker>חנו</speaker>
+          <p>| פֿארט פֿאן איהר! ער איזט איין שפיאָן איין פֿערעהטער<lb/> <stage type="delivery business">קאהר זינגט מאן שלעפט אים</stage> <lb/><stage type="setting">פֿארהאנג פֿאלט</stage></p>
+        </sp>
+        <trailer>ע נדע 2טען אקט</trailer>
+        <pb n="29" facs="בן_הדור-0029.jpg"/>
+      </div>
+      <div type="act" n="3" xml:id="BenHaDor_Act3">
+        <head>3 Driter Act</head>
+        <stage type="setting">דאַס זעלבע וויא אין צווייטען אקט מיט טובען שלאק</stage>
+        <stage type="entrance">״צרויה״</stage>
+        <sp who="#tsroyh" xml:id="BenHaDor_SP0267_a">
+          <speaker>צוריה</speaker>
+          <p>| מיינע קעניגין איז אויף איין מינוט אנשלאפֿען געווארען, וועל<lb/>איך מיך אויף איין מינוט אריבער חאפען און זעהן וואָס טיט<lb/><stage type="delivery"> " Dromel schläge</stage> דארט מיין לפידות<lb/>אוי וועה עס איז אפונים 12 בייא נאכֿט און מען געהט בייטען<lb/>דיא וואַך פֿונים שלאָסס אז מען וועט מיך דוא טרעפֿין<lb/>וועט מען מיינען אז איך בין אַ שפיאָן. וווא בעהאלט מען<lb/>זיך דוא? <stage type="business">דערזעהט בוים אין הינטערגרונד</stage> גוט איך<lb/>וועל מיך בעהאלטען אוף דעם בוים ביז דיא וואכֿע וועט<lb/>פֿאריבערגעהן. קלעטערט ארוף <stage type="business">בעהאלט זיך</stage><lb/> <stage type="entrance">אופטריט עלמת רחומה קאהר.</stage> <lb/><stage type="delivery">נאך געזאנג</stage> <stage type="entrance">אופטריט ״רחומה עלמת״</stage></p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0268_a">
+          <speaker>רחומה</speaker>
+          <p>| אזא יאהר אויף מיר טייערע פרינצעסין וואָס פֿאר אַ טייערע<lb/>לייב גאַר דע מיר האבען! אבער צו וואָס האט איהר זעה<lb/>אין מיטען דערנאכֿט צינוף גערופֿען?</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0269_a">
+          <speaker>עלמת</speaker>
+          <p>| דער פֿאטער איז אין גראססער געפֿאהר, איך פֿירכֿטע מען<lb/>זאלל דיעזע נאכֿט ניכֿט איבערפֿאלען דעם פאלאסט און<lb/> אים ערמארדען</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0270_a">
+          <speaker>רחומה</speaker>
+          <p>| איו דיא וואַכֿע ארום דען שלאָסס וועללען דאָס צו לאָזען?</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0271_a">
+          <speaker>עלמת</speaker>
+          <p>| איך האָב צו ניעמאנדען צוטרויען איך וויל אלליין<lb/>מיט מיין לייבגארדע דעם שלאָסס בעוואכֿען, איך זעלבסט<lb/>וויל וואכֿען בייא דער טיהר פֿון זיין שלאף געמאך!<lb/>  קאמט מיט מיר<lb/><stage type="delivery">קאהר וויעדערהאלט דאַס פֿאריגע נומער</stage><lb/><stage type="exit">[אללע אוב] </stage><stage type="modifier">אויסער רחומה</stage></p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0272_a">
+          <speaker>רחומה</speaker>
+          <p>| רחומהלען דארף חנו קיין פֿינגער אין מול נישט אריינלעגען ווייל זיא<lb/>קען אים נאך אָבייסען, זיא געפֿינט זיך איצט צווישען<lb/>2 פֿייערין וועט זיא אוס זאָגען דעם פֿאטער פֿעראטה זיא<lb/>דען געליעבטען, וועט זיא נישט אוסזאָגען פֿעראטה זיא דעם<lb/>פֿאַטער האָט זיא זיך מישב געוועהן אין דער זייט<lb/>ברענט אַ פֿייער, און אין דער זייט ברענט אַ פֿייער!<lb/>וועט זיא שטעהן אין דער מיט, און אזוי לאַנג זיא וועט נור קענען<lb/>וועט זיא דאָס פֿייער אופֿהאלטען, ווען ניט וועט זיא אויך<lb/>פֿערברענט ווערען. און דאָס האָט מען אלץ צוּ פֿערדאנקען<lb/>דער ליעבע! אוי איך דאנק דיר גאטטעניא! איך בין דאָך שון<lb/>נישט קיין יונג מעדעלע, איך בין שון אריבער 16 און נאָך<lb/>נישט פֿערליעבט. דערווייל דארף מען זיך דוא ערגעץ אָבזוכען<lb/>אַ גוטען פלאטץ איך זאל קענען זעהן וואָס עס געהט פֿאר<lb/>אין שלאָס נאר וויא בעהאלט מען זיך דוא? <stage type="business">ערבליקט דער בום</stage><lb/>אהא. איך וועל מיך בעהאלטען אויף דעם בוים. <stage type="business">וויל ארויף</stage><lb/><stage type="delivery">צוריה גיט אַ קוויטש.</stage> אוי עפעס אַ אלטע קאטשקע זיצט אוף<lb/>דעם בוים. <stage type="business">דערזעהט 2טען בום.</stage> איך וועל מיך בעהאלטען אוף<lb/>דעם בוים. <stage type="business">עס געשיעט</stage><lb/><stage type="entrance">אפֿטריט ״לפידות״</stage></p>
+        </sp>
+        <pb n="30" facs="בן_הדור-0030.jpg"/>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0273_a">
+          <speaker>לפידות</speaker>
+          <p>| איך האָב דעם פֿישער יונג יעצט אריינגעפֿיערט צו<lb/>דער קעניגען און איך בין זעהר נייעגיריג צו הערין וויא אזו.<lb/>אזא גראבער פֿישער יונג וועט רעדין מיט אַ קעניגין. אבער<lb/>וויא בעהאלט מען זיך דוא? <stage type="business">ערבליקט הינטער גרונד בום</stage><lb/>בנאמנות שלי וויא איך בין אַ יוד דערצו עס איז<lb/>אַ גישעפֿט! אוף דעם בוים וועל איך מיך בעהאלטען<lb/><stage type="business delivery">וויל ארויף צרויה קוויטשט.</stage> אוי עפעס אלטע דזשאַבעס<lb/>וואקסען אויף דעם ביים <stage type="business">דערזעהט צווייטען</stage> בנאמנות<lb/>שלי וויא איך בין אַ יוד דערצו אויף דעם בוים איז אַ<lb/>בעסער געשעפֿט <stage type="business">וויל ארויף רחמה מאכֿט קוקו</stage> צו אלדע<lb/>רחות אויף דעם בוים וואקסען גור קוקאווקעס, איצט<lb/>קומט מיר אנדערש ניט אוס וויא איך זאל מיך נור<lb/>בעהאלטען אין דער ערד <stage type="business">ערבליקט טובען שלאק </stage>אהא<lb/>אָט דוא וועל איך מיך בעהאלטען <stage type="business">עס געשיעט</stage><lb/><stage type="entrance">אויפֿטריט בן הדור סוּפֿירא</stage></p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0274_a">
+          <speaker>סופֿירא</speaker>
+          <p>| זאגע מיר יונגער העלד, ווער ביסטו?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0275_a">
+          <speaker>בן הדור</speaker>
+          <p>| איין פֿריינד פֿאָן דיינעם זאהן.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0276_a">
+          <speaker>סוּפֿירא</speaker>
+          <p>| אָ זייא מיר הערצליך ווילקאממען! וואָ האסט דוא מיינען<lb/>זאָהן געזעהן צום לעצטען מאַהל?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0277_a">
+          <speaker>בן הדור</speaker>
+          <p>| דער האט זיינע זעעלע אין מיינער האנד אוסגעהוכֿט<lb/>איך בעזיץ זיין נשמה</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0278_a">
+          <speaker>סופֿירה</speaker>
+          <p>| דוא האַסט זיינען לעצטען זויפֿצער געהערט? אונד מיר<lb/>דער ארמען מוטטער וואַר עס ניכֿט בעשטימט! אָ! זאגע<lb/>מיר וואַס ווארען זיינע לעצטע וואָרטע?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0279_a">
+          <speaker>בן הדור</speaker>
+          <p>| זיינע לעצטע וואָרטע ווארען דיעזע איילע צוּ<lb/>מיינער מוטטער אונד זאגע איהר דאַס שאָן לאנגע<lb/>פֿליסען איהרע טרענען אין געפֿענגניס<lb/>דאהער לאסט זיא איהר שטערבענדער זאָהן ביטטען זיא<lb/>זאלל הייראטען דעם קעניג חנו. דאמיט רוּהע אונד<lb/>פֿרייעדען זאל הערשין אין מיין ארמעס פֿאטער לאנד!</p>
+        </sp>
+        <pb n="31" facs="בן_הדור-0031.jpg"/>
+        <sp who="#sufur" xml:id="BenHaDor_SP0280_a">
+          <speaker>סוּפירה</speaker>
+          <p>| וואַס? איך זאלל הייראטען דען דאפעל מערדער? דען<lb/>מערדער פֿאָן מיין מאַן אונד קינד? אונד דאַס זאגסט דוא<lb/>ווארען זיינע לעצטע וואָרטע? עלענדער שופֿט! ביסט דוא<lb/>אויך איינער פֿאן חנוס געדונגענע מערדער! געה! איך<lb/>פֿעראכֿטע דיך צוזאמען מיט אים <stage type="exit business">זיא וויל אב ער פֿערשטעלט</stage><lb/><stage type="business">איהר דען וועג</stage>.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0281_a">
+          <speaker>בן הדור</speaker>
+          <p>| גראססע קעניגין. <stage type="delivery">וויינט</stage></p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0282_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| וואַס? דאַס קראקאדיל וויינט מיט טרעהנען? מענש בין איך<lb/>דען זאָ טיעף געזונקען דאַס איין שקלאווע זאָלל מיינער שפאטען?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0283_a">
+          <speaker>בן הדור</speaker>
+          <p>| בייא אללע וועלטען איך שפאטטע ניכֿט.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0284_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| ניין? זאגע מיר ווער ביסט דוא?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0285_a">
+          <speaker>בן הדור</speaker>
+          <p>| איך בין דיין..... זאה.... זאהנס פֿריינד, איך וויל<lb/>דיר יעצט דיא ווארהייט זאַגען דיין זאהן בן הדור לעבט<lb/>זאָוואר איך לעבע</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0286_a">
+          <speaker>סופֿירה</speaker>
+          <p>| ער לעבט? מיין זאהן לעבט? אונד ווארוּם האסט<lb/>דוא ערשט געזאגט דאַס ער טאָדט איז?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0287_a">
+          <speaker>בן הדור</speaker>
+          <p>| <stage type="delivery">אפֿארט</stage> גאטט געבע מיר קראפֿט מיך ניכֿט צו<lb/>פֿעראטהען טוט בן הדור לעבט אונד ער העטטע<lb/>יעצט פֿאר דיר געשטאנען ווען ער זאלל נייֿט פֿירכֿטען דאס<lb/>דיין מוטטער הערץ ווירד אים אוס פֿריידע פֿאר דער<lb/>צייט פֿעראטהען! גלויבע מיר קעניגין דאַס דיין זאהן שטעהט<lb/>דיר פֿיהל נעהער אלס דוא גלויבסט!</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0288_a">
+          <speaker>סופֿירה</speaker>
+          <p>| ווען דאַס וואהר איזט! זאָ ביטטע איך דיך איילע! פֿליהע<lb/>זאגע אים דאַס ער זאלל זיך זאפֿארט ענטפֿערנען, דען<lb/>דער טיראן דורסטעט נאך זיינעם בלוט.</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0289_a">
+          <speaker>בן הדור</speaker>
+          <p>| ער ווייסט עס קעניגין אבער ער לאכֿט אוס אים</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0290_a">
+          <speaker>סופֿירה</speaker>
+          <p>| יונגער מאַן! דוא אינטרעסירסט מיך! זאגע מיר ווער ביסט<lb/>דוא?</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0291_a">
+          <speaker>בן הדור</speaker>
+          <p>| איך בין אַ פֿישער פֿאן חבר אבער איך פֿערהערע דיך<lb/>קעניגין אלס ווערעסט דוא מיינע מוטטער</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0292_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| פֿרעמדילינג, איך בעשוועהרע דיך נאכֿמאלס זאגע מיר<lb/>לעבט מיין זאהן!</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0293_a">
+          <speaker>בן הדור</speaker>
+          <p>| איך שווערע ביים אל חי וקים דאַס אין איינער קורצען<lb/>צייט ווירסט דוא אים האלטען אין דיינע ארמע. לעבע<lb/>וואהל גראססער קעניגין. איך עמפפֿעהלע מיך</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0294_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| נאך איינען אוגענבליק! ווען איך זעהע דיך גלויבע<lb/>איך דאַס איך זעה מיינען זאָהן<lb/>מיין הערץ איזט ערפֿרייט, פֿרישען מוטה האַסט דוא מיר<lb/>געגעבען מיט געדולד ווערדע איך אללע מיינע ליידען<lb/>ערטראגען. איך דאנקע דיר יונגער עדעלמאן. יעצט<lb/>זאגע מיר, וואַס האַט מיין לעבענדיגער זאהן צו מיר בעפֿאהלען?</p>
+        </sp>
+        <pb n="32" facs="בן_הדור-0032.jpg"/>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0295_a">
+          <speaker>בן הדור</speaker>
+          <p>| דיין לעבענדיגער זאהן?... יאַ דאַס ווארען זיינע וואָרטע<lb/>גראדע וויא ער וואָלט יעצט פֿאר דיר געשטאנדען: מוטטער<lb/><stage type="delivery">וויינט</stage> זאָ זאגטע ער צו מיר מיט זאָ איין געוויין מוטטער!<lb/>גאטטעס וועגע זינד דונקעל אבער גערעכֿט אונד וואַן גאטט<lb/>האַט בעשלאָססען דאַס דיא יודעשע מלוכֿה אין אראביען<lb/>זאלל אופֿהערען, זאָ זאללען וויר אונטערגעהן וויא דיא<lb/>זאָננע אין פֿאָללען גלאנץ. זאָ שפראך בן הדור דיין זאהן<lb/>צוּ מיר דיר. אונד טרעהנען זינד איבער זיינע וואנגען<lb/>געפֿלאסען גראדע וויא יעצט בייא מיר</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0296_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| גאָטטעס זעגען זאָל דאפֿיר רוּהען אוף זיינען קאפף</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0297_a">
+          <speaker>בן הדור</speaker>
+          <p>| קעניגין ווען דוא ווילסט דיינען זאהן דיין ברכֿה שיקען.<lb/>זאָ מאכֿע מיך פֿיר דען שליח. איבערגעבע מיר דיין<lb/>ברוכֿה. אונד איך ווערדע זיא אים איבערגעבען היר<lb/><stage type="business">קניעט</stage> בין איך בערייט זיא צו עמפפֿאנגען.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0298_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| <stage type="business">העבט אוף דיא הענד </stage>גאטט מיינע ליידען זינד געהיילט<lb/>הערע דאַס געבעט איינער מוטטער! וואכֿע דוא<lb/> גאטט איבער מיין קינד<lb/>שיטצע זיינע יוגענד, זייא זיין פֿיהרער אין געפֿאהר!<lb/>רייכֿע אים דיינע האנד ווען ער פֿאלט אונד פֿיהרע<lb/>אים צוריק צום טראהן זיינעס פֿאטערס! אמן. אמן. אמן!</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0299_a">
+          <speaker>בן הדור</speaker>
+          <p>| אמן. איך ווערדע קיין וואָרט אין מיינעם לעבען פֿערגעססען.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0300_a">
+          <speaker>סופֿירה</speaker>
+          <p>| יעצט ווערדע איך דיא ערשטע נאכֿט זייט 17 יאָהר<lb/>רוּהיג איינשלאפֿען קענען. גאטט זאלל עס דיר בעלאהנען<lb/>גוטע נאכֿט <stage type="exit">[אב]</stage></p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0301_a">
+          <speaker>בן הדור</speaker>
+          <p>| גוטע נאכֿט <stage type="exit">[אב]</stage><lb/> <stage type="delivery"> ז</stage><stage type="delivery">עה קריכֿען זינגען אללע אליבען</stage><lb/></p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0302_a">
+          <speaker>ער</speaker>
+          <lg n="17">
+            <l>| קרא קרי קרא קרא</l>
+            <l>זאל מען מיינען איך בין אַ וואַראָנע</l>
+          </lg>
+        </sp>
+        <sp who="#lte" xml:id="BenHaDor_SP0303_a">
+          <speaker>אלטע</speaker>
+          <lg n="18">
+            <l>| איך שוועהר אז דאָס איז דער שכור מיין מתנה</l>
+            <l>קווא קווא קווא קווא</l>
+            <l>זאל מען מיינען איך בין אַ דזשאבע</l>
+          </lg>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0304_a">
+          <speaker>ער</speaker>
+          <lg>
+            <l>| איך וואלט געשוואהרען עס איז מיין אלטע שקראבע</l>
+          </lg>
+        </sp>
+        <sp who="#iunge" xml:id="BenHaDor_SP0305_a">
+          <speaker>יונגע</speaker>
+          <lg n="19">
+            <l>| קוּ קוּ קוּ קוּ קוּ</l>
+            <l>זאל מען מיינען איך בין אַ קאַקאָווקע</l>
+          </lg>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0306_a">
+          <speaker>ער</speaker>
+          <lg n="20">
+            <l>| דער קוקו זעהט איהר ער געפֿעלט מיר דאווקע.</l>
+          </lg>
+          <lg n="21" prev="true">
+            <l>קרא (4) ווער איז דארטען דא?</l>
+            <stage type="delivery">(4)</stage>
+            <l>קווא (4) קיינער איז נישטא</l>
+            <stage type="delivery">(4)</stage>
+            <l>קוּקוּ</l>
+            <stage type="delivery">(4)</stage>
+            <l>קרא</l>
+            <stage type="delivery">(4)</stage>
+            <l>קווא</l>
+            <stage type="delivery">(4) (ביסס)</stage>
+          </lg>
+          <lg n="22">
+            <l>וואָס קראקערסטו דוא אלטער שכּור</l>
+            <l>וואָס איז דיר געשעהן?</l>
+            <l>דוא קאַקאַווקע זיסס וויא צוקער.</l>
+            <l>איך וואָלט געוואלט זיא זעהן.</l>
+            <l>וואָס קוואָקעסט דוא דוא אלטע כלי</l>
+            <l>מאכֿסט מיין הערץ מיר שוועהר</l>
+            <l>דיא קאקאווקע ביזט אַ וואהילע</l>
+            <l>קום זישע נור אַהער אללע אראב</l>
+            <stage type="business">אללע אראב</stage>
+          </lg>
+        </sp>
+        <pb facs="בן_הדור-0033.jpg"/>
+        <sp who="#iunge" xml:id="BenHaDor_SP0307_a">
+          <speaker>יונגע</speaker>
+          <lg n="23">
+            <l>| נישט זיין אַ מענש נור זיין אַ קוּקו. איז שון באַלד כּדי</l>
+            <l>איך וואָלט געפֿלוגען וויא אַ פֿוגעל הויך נור פֿראנק אונד פֿרייא</l>
+          </lg>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0308_a">
+          <speaker>ער</speaker>
+          <lg n="24">
+            <l>| נישט זיין אַ מענש נור אַ וואַראָנע איז כּדי</l>
+            <l>געווארען וואָלט איך פֿון מיין צורה פֿרייא</l>
+          </lg>
+        </sp>
+        <sp who="#lte" xml:id="BenHaDor_SP0309_a">
+          <speaker>אלטע</speaker>
+          <lg n="25">
+            <l>| נישט זיין אַ מענש נור אַ דזשאבע איז כּדי</l>
+            <l>געגעבען וואלט איך אוף מיין שלאק אַ שפייא.</l>
+            <l>קו קו קו קו</l>
+          </lg>
+          <lg n="26">
+            <l>וואָס דארף מען זיך קריעגען וואָס דארף מען זיך שפייען</l>
+            <stage type="delivery">biss</stage>
+          </lg>
+          <lg n="27" prev="true">
+            <l>דאָס לעבען איז געקומען מיט פראכֿט און גלאנץ</l>
+            <l>וואָס דארף מען זיך קריעגען וואס דארף מען שרייען</l>
+            <l>פֿערברענגען דיא צייט מיט אַ זונג און טאנץ</l>
+            <stage type="exit">[אב]</stage>
+            <stage type="business">אללע טאנצן</stage>
+            <stage type="entrance">חנו</stage>
+            <stage type="entrance">עלמות,</stage>
+            <stage type="entrance">לפידות</stage>
+            <stage type="entrance">מענער קאהר</stage>
+          </lg>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0310_a">
+          <speaker>עלמת</speaker>
+          <p>| פֿאטער! גראסע געפֿאהר שוועבט איבער דיך נאך דיעזע<lb/>נאכֿט היטטע דיך.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0311_a">
+          <speaker>חנו</speaker>
+          <p>| דאמעס מעדכֿען! חנו לאכֿט פֿאן יעדע געפֿאהר! אדער<lb/>דענקסט דוא איך האבע איינע ווייבערשע זעעלע אין מיר<lb/>וויא דוא?</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0312_a">
+          <speaker>לפידות</speaker>
+          <p>| איך האָב געהערט מען שמוסט געשמאק אז פרינץ בן הדור<lb/>לעבט!</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0313_a">
+          <speaker>עלמת</speaker>
+          <p>| פֿאטער! איך האבע זעהר שלעכֿטע פֿארגעפֿיעלע</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0314_a">
+          <speaker>חנו</speaker>
+          <p>| זאלל איך פֿילייכֿט פֿאר דיעזען שקלאווען אוך פֿירכֿטען?</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0315_a">
+          <speaker>עלמות</speaker>
+          <p>| מיין בעהטען העלפֿט ניכֿט? גוט <stage type="delivery">״רופֿט״</stage> וואכֿע! וואכֿע!<lb/><stage type="entrance">אופטריט מעדכֿען רחומה</stage><lb/>מיינע טייערע פֿריינדינען. העלפֿט מיר דיא געפֿאהר<lb/>פֿער היטען. פֿאָן ביידע זייטען</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0316_a">
+          <speaker>רחומה</speaker>
+          <p>| מיר וועללען קעמפפֿען וויא דיא העלדען.<lb/><stage type="entrance">אופטריט ״סוּפֿירה בן הדור״ </stage></p>
+        </sp>
+        <pb n="34" facs="בן_הדור-0034.jpg"/>
+        <sp who="#khnu" xml:id="BenHaDor_SP0317_a">
+          <speaker>חנו.</speaker>
+          <p>| קוּם נעהער שקלאַפֿע! ביסט דוא דער פֿיר וועלכֿען דוא<lb/>האסט דיך אוסגעגעבען? <stage type="delivery">ער שווייגט</stage> דוא שווייגסט? שופֿט<lb/>ציטערע וואַו דוא האַסט מיך בעטראגען. <stage type="business">״וויל צו מיט שווערד״</stage></p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0318_a">
+          <speaker>עלמת</speaker>
+          <p>| <stage type="business">״פֿער האלט אים״</stage> האבע מיט לייד <stage type="delivery">צו בן הדור.</stage> ערינערע דיך<lb/>וואַס דוא האַסט געשוואהרען.</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0319_a">
+          <speaker>רחומה.</speaker>
+          <p>| לאָזט אים איבער אויף מיינע הענד איך וועל אים אבהיטען</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0320_a">
+          <speaker>חנו</speaker>
+          <p>| נון שטאלצע שעהנע! האַסט דוא דיא זאכֿע גוט ע איבערלעגט?<lb/>עס איזט שאַן צייט דאַס דיא פֿערנונפֿט זאל זיעגען איבער עקשנות<lb/>זאלסט איינמאהל הערען דיא שטיממע דער ליעבע!</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0321_a">
+          <speaker>סופֿירה</speaker>
+          <p>| אומזאָנסט דיין בעמיהען! מיין ענטשלוס ווייסט דוא שאן!</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0322_a">
+          <speaker>חנו</speaker>
+          <p>| ווילסט דוא דיך מיט געוואלט אונגליקליך מאכֿען?</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0323_a">
+          <speaker>סופֿירה</speaker>
+          <p>| ניין! אונד דאפֿיר וויל איך פֿאָן דיר ניכֿטס וויססען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0324_a">
+          <speaker>חנו</speaker>
+          <p>| רייצע מיין צארין מיט דיין שטאלץ ניכֿט סאפֿירה</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0325_a">
+          <speaker>סוּפֿירה</speaker>
+          <p>| קעניגין הייס איך דיר!</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0326_a">
+          <speaker>חנו</speaker>
+          <p>| אַלזאָ גוט קעניגין סאפֿירה. נאך אין דיעזער שטונדע<lb/>מוסט דוא מיר דיינע האנד רייכֿען.</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0327_a">
+          <speaker>סופֿירה</speaker>
+          <p>| דיר? דען מערדער מיינעס מאנעס? ניעמאלס!</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0328_a">
+          <speaker>חנו.</speaker>
+          <p>| איזט דאַס דיין לעצטער ענטשלוס?</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0329_a">
+          <speaker>סופֿריה</speaker>
+          <p>| יאַ מיין לעצטער! אונד דוא הערע מיך עוויגער גאָטט<lb/>שיטצע מיך פֿאר דיעזען מערדער!</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0330_a">
+          <speaker>רחומה</speaker>
+          <p>| שיס אים גאטט, עשוס איהם!</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0331_a">
+          <speaker>סופֿירה</speaker>
+          <p>| חנו! איך פֿערפֿלוכֿע דיך אונד ווען דוא ווילסט מיך צווינגען<lb/>זאָ זאל בלוט דיינע האכֿצייטס טאפֿעל בעדעקען. טאָדט אונד<lb/>פֿערדערבען זאלל דיין האָכֿצייטסבעט אומרינגען אללע טויפֿעל<lb/>אוס דער העללע זאללען מיט זייער ברויטגעזאנג איינשטימען<lb/>טיראן! מערדער!</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0332_a">
+          <speaker>חנו</speaker>
+          <p>| שווייגע וואהנזינניגע! וואכֿע טהוט אייער פפֿליכט שלעפט<lb/>זיא מיט געוואלד אין האַכֿצייטס זאל <stage type="business">סאלדאטען געהן צו</stage></p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0333_a">
+          <speaker>סופֿירה</speaker>
+          <p>| האבט מיטלייד מיט איינער שוטצלאָזען פֿרוא! גאטט נעהמע<lb/>דוא דיך מיינער אַן. בן הדור מיין זאָהן וואַן דוא זאלסט זעהן<lb/>וואַס דער טיראן מאכֿט אוס דיינער מוטטער</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0334_a">
+          <speaker>חנו</speaker>
+          <p>| פֿיהרט זיא וועק <stage type="business">מען וויל זיא פֿיהרען</stage>..</p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0335_a">
+          <speaker>בן הדור</speaker>
+          <p>| קעניג מעסיגע דיין צאָרין</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0336_a">
+          <speaker>חנו</speaker>
+          <p>| וואכֿע גרייפֿט אים אוך אַן <stage type="business">זעה איילין צו</stage></p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0337_a">
+          <speaker>בן הדור</speaker>
+          <p>| זאָ שטירב מערדער <stage type="business">וויל אים דערמאהרדען עלמות</stage><lb/><stage type="business">האלט אים צוריק</stage></p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0338_a">
+          <speaker>חנו</speaker>
+          <p>| מער דער עס איז דיר ניכֿט געלונגען! דוא זאלסט<lb/>איינען טוזענד פֿאכֿען טאָדט שטערבען. ביז דוא<lb/>ווירסט דיין געהיימניס ארויס געבען..</p>
+        </sp>
+        <pb n="35" facs="בן_הדור-0035.jpg"/>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0339_a">
+          <speaker>בן הדור</speaker>
+          <p>| עלענדער טיראן! איך פֿעראכֿטע דיך אונד דיינע<lb/>דראהונגען. איך דארף פֿאר דיך מיין געהיימניס ניכֿט<lb/>מעהר בעהאלטען איך בין בן הדור! פרינץ פֿאָן אראביען.<lb/>סופֿירה | מיין זאהן.<stage type="business"> אומארמונג</stage><lb/><stage type="business">פאזיציאן</stage><lb/><stage type="setting">פֿאר האנג פֿאלט</stage></p>
+        </sp>
+        <trailer>ענדע 3טען אקט</trailer>
+      </div>
+      <div type="act" n="4" xml:id="BenHaDor_Act4">
+        <head>4. "Vierte Act"</head>
+        <stage type="setting">גראסארטיגער פאלאסט טראהנטשערס מיליטער אוס=</stage>
+        <stage type="setting">שטעלט אוף דער בינע</stage>
+        <stage type="entrance">חנו</stage>
+        <stage type="entrance">״קאהר לפידות שלמון"</stage>
+        <stage type="costume business">קאהר אלס בעטלער לפידות פֿיהרט ארום שלמון אין איין האנד</stage>
+        <stage type="delivery">וועגעלע. נאך געזאנג.</stage>
+        <sp who="#khnu" xml:id="BenHaDor_SP0340_a">
+          <speaker>חנו.</speaker>
+          <p>| בראַוואָ מיינע געסטע! הויטע זאלט איהר בייא מיר זאפֿיעל<lb/>צוּ פֿרעססען אונד טרינקען האבען דאַס איין גאנצעס יאהר<lb/>זאללען אייערע מיילער פֿערשלאסען בלייבען.</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0341_a">
+          <speaker>שלמון</speaker>
+          <p>| מעג דער אלטער בעטלער אוך וויססען וואָס פֿאַר אַ יום טוב=<lb/>היינט איז?</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0342_a">
+          <speaker>חנו</speaker>
+          <p>| דיעזע פֿראגע ווירד דיר אוך באַלד בעאנטווארטעט ווערדען<lb/>וויא אַלט ביזט דוא?</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0343_a">
+          <speaker>שלמון</speaker>
+          <p>| אלס בעטלער בין איך 17 יאהר אלט</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0344_a">
+          <speaker>חנו</speaker>
+          <p>| בראווא! ביסט נאך גור איין יונגער מאַן 17 יאָהר געהסט<lb/>געוויס אויף דען 18טען? נון גוט בן שמונה עשרה לחופה<lb/>איך וועל דיך הויטע פֿערהייראטען מיט איינער<lb/>שעהנען יונגען דאמע.</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0345_a">
+          <speaker>שלמון</speaker>
+          <p>| דוא לאכֿסט פֿֿאָן דעם בעטלער קעניג?</p>
+        </sp>
+        <pb n="36" facs="בן_הדור-0036.jpg"/>
+        <sp who="#khnu" xml:id="BenHaDor_SP0346_a">
+          <speaker>חנו.</speaker>
+          <p>| אָ  ניין. איך לאכֿע ניכֿט! דוא זאלסט דיך באַלד איבער=<lb/>צייגען דאַס איך שפאטטע ניכֿט וואכע! ברענגט העריין<lb/>דיא קעניגען סוּפֿירא<stage type="exit"> [וואכע אב]</stage> איך וועל זיא פֿארשטעללען<lb/>פֿיר איהר צוקונפֿטיגען קעניג!</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0347_a">
+          <speaker>שלמון</speaker>
+          <p>| מיט וואַס האַט זיך דיא ארמע קעניגין זאָ פֿערזינדיגט?</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0348_a">
+          <speaker>חנו</speaker>
+          <p>| זיא האַט מיינע האַנד צוריקגעוויעזען מיך וואָלטע זיא ניכט<lb/>הייראטען זאָ שענקע איך זיא דֿיר וועג! דאַ קאָמט זיא.<lb/><stage type="entrance">סופֿירה</stage></p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0349_a">
+          <speaker>סופורה</speaker>
+          <p>| עלענדער שופֿט! נאָך וואגסט דוא פֿאָן דיינער קעניגין צו שפאַטען</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0350_a">
+          <speaker>חנו</speaker>
+          <p>| צו שפאַט אונד געלעכֿטער האַסט דוא דיך זעלבסט געמאכֿט!<lb/>דיעזעם בעטלער שענקע איך דיך וועג. ציהע אוס דיינע<lb/>קעניגליכֿע קראהנע דיא בעטלער קראהנע זאלסט דוא<lb/>טראגען. <stage type="business">וויל צו איהר צו</stage></p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0351_a">
+          <speaker>סוּפירה</speaker>
+          <p>| צוריק דיעזע קראהנע האַט מיר מיין מאַן געגעבען.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0352_a">
+          <speaker>חנו</speaker>
+          <p>| אונד איך רייסע עס דיר הערונטער<stage type="business"> וויל עס טהו</stage>.</p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0353_a">
+          <speaker>שלמון</speaker>
+          <p>| <stage type="business">פאקט אים פֿון הינטען שליידערט אים וועק</stage>.</p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0354_a">
+          <speaker>חנו.</speaker>
+          <p>| ווער וואגט עס? <stage type="costume">אללע דעמאסקירין זיך</stage></p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0355_a">
+          <speaker>שלמון</speaker>
+          <p>| איך שלמון דער קעניג פֿון חבר! <stage type="delivery">Musik </stage><stage type="delivery">Tuscz</stage></p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0356_a">
+          <speaker>סופירה</speaker>
+          <p>| מיין שלמון. מיין מאַן <stage type="business">גראססע אומארמונג</stage></p>
+        </sp>
+        <sp who="#khnu" xml:id="BenHaDor_SP0357_a">
+          <speaker>חנו</speaker>
+          <p>| פֿערעהטער! נאך זייט איהר אין מיינער מאכֿט דיין זאהן<lb/>איזט בייא מיר געפֿאנגען אונד מיט זיינעם לעבען זאל ער עס<lb/>בעצאהלען <stage type="business">וויל אב</stage>.<lb/><stage type="entrance">אופטריט בן הדור</stage></p>
+        </sp>
+        <sp who="#bn_hdur" xml:id="BenHaDor_SP0358_a">
+          <speaker>בן הדור</speaker>
+          <p>| דוא זאַגסט איינע ליעגע דוא זאלסט עס מיט דיינעם לעבען<lb/>בעצאהלען. <stage type="business">אלגעמיינע אומארמונג</stage></p>
+        </sp>
+        <sp who="#shlmun" xml:id="BenHaDor_SP0359_a">
+          <speaker>שלמון</speaker>
+          <p>| נון רוּפֿט אללע מיט מיר האך לעבע דער ניכער<lb/>קעניג בן הדור! .</p>
+        </sp>
+        <sp who="#sufur" xml:id="BenHaDor_SP0360_a">
+          <speaker>סופֿירה</speaker>
+          <p>| אונד אייערע קעניגין עלמת</p>
+        </sp>
+        <sp who="#elms" xml:id="BenHaDor_SP0361_a">
+          <speaker>עלמת</speaker>
+          <p>| קעניגין מוטטער! איך ביטטע אום דאַס לעבען מיינעס<lb/>פֿאטערס.</p>
+        </sp>
+        <sp who="#lfidus" xml:id="BenHaDor_SP0362_a">
+          <speaker>לפידות</speaker>
+          <p>| ער האט נישט דיע וועהרט.</p>
+        </sp>
+        <sp who="#rkhumh" xml:id="BenHaDor_SP0363_a">
+          <speaker>רחומה</speaker>
+          <p>| אָ דיא וועהרט נישט דיא וועהרט אזוי פֿיעל חייע חות<lb/>לעבען זאל ער אוך לעבען.<lb/>  <lb/><stage type="setting">פֿארהאנג פֿאלט</stage></p>
+        </sp>
+        <trailer>סופ</trailer>
+      </div>
+    </body>
+  </text>
+</TEI>

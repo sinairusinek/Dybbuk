@@ -1,0 +1,2297 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-yoysef-in-egipten">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">יוסף אין עגיפטען</title>
+        <title type="sub">Yoysef in Egipten</title>
+        <author>Joseph Lateiner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>יוסף אין עגיפטען</title>
+          <author>Joseph Lateiner</author>
+          <idno type="transkribus">https://app.transkribus.org/collection/2372172/doc/826832</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <classDecl>
+        <taxonomy xml:id="prod-cues">
+          <desc>Regie/prompter cue notation of the handwritten witnesses. The letter names the family (R = Returnel/ritornello, S = Szene); the Roman numeral is an in/out bracket state, not a serial number, which is why III never occurs. N/No + Arabic numeral is the serial of the musical number.</desc>
+          <category xml:id="cue-in">
+            <catDesc>Opening bracket of a cue: RI, IR, R.I, '1 Returnell:', and the bare I of MS_BasKoyen where the letter is dropped.</catDesc>
+          </category>
+          <category xml:id="cue-out">
+            <catDesc>Closing bracket of a cue: RII, IIR, R.II, 'II Return:', bare II. At a scene cue it falls on Vorhang/Verwandlung.</catDesc>
+          </category>
+          <category xml:id="cue-genre">
+            <catDesc>Names the kind of musical number rather than bracketing it: Chor, Marsch, Tanz, Terzett, Quarted, Duet, arya, Refrein. Carries no in/out state.</catDesc>
+          </category>
+          <category xml:id="cue-number">
+            <catDesc>The serial of the musical number: N, No 4., N=3. @n carries the normalised value.</catDesc>
+          </category>
+        </taxonomy>
+      </classDecl>
+    </encodingDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="iekb">
+            <persName>יעקב</persName>
+          </person>
+          <person xml:id="rubn">
+            <persName>ראובן</persName>
+          </person>
+          <person xml:id="shmeun">
+            <persName>שמעון</persName>
+          </person>
+          <person xml:id="loy">
+            <persName>לוי</persName>
+          </person>
+          <person xml:id="ihudh">
+            <persName>יהודה</persName>
+          </person>
+          <person xml:id="ishshkhr">
+            <persName>יששכר</persName>
+          </person>
+          <person xml:id="zbuln">
+            <persName>זבולן</persName>
+          </person>
+          <person xml:id="dn">
+            <persName>דן</persName>
+          </person>
+          <person xml:id="nfsli">
+            <persName>נפתלי</persName>
+          </person>
+          <person xml:id="gd">
+            <persName>גד,</persName>
+          </person>
+          <person xml:id="shr">
+            <persName>אשר,</persName>
+          </person>
+          <person xml:id="iusf">
+            <persName>יוסף,</persName>
+          </person>
+          <person xml:id="bnimn">
+            <persName>בנימן</persName>
+          </person>
+          <person xml:id="srkh">
+            <persName>סֶרח</persName>
+          </person>
+          <person xml:id="ikhtsel">
+            <persName>יאחצעל</persName>
+          </person>
+          <person xml:id="likhlf">
+            <persName>אליחלף</persName>
+          </person>
+          <person xml:id="freh">
+            <persName>פרעה</persName>
+          </person>
+          <person xml:id="zlikhh">
+            <persName>זליכה</persName>
+          </person>
+          <person xml:id="mrd">
+            <persName>מרד</persName>
+          </person>
+          <person xml:id="fstekher_flk_egiftish_elster">
+            <persName>פאסטעכער פאלק עגיפטיש עלסטער</persName>
+          </person>
+          <person xml:id="mnshh">
+            <persName>מנשה</persName>
+          </person>
+          <person xml:id="frim">
+            <persName>אפרים</persName>
+          </person>
+          <person xml:id="rkhl">
+            <persName>רחל</persName>
+          </person>
+          <person xml:id="khlimish">
+            <persName>חאלימיש</persName>
+          </person>
+          <person xml:id="diner">
+            <persName>דינער</persName>
+          </person>
+          <personGrp xml:id="medkhen_khhr">
+            <name>מעדכען חאהר</name>
+          </personGrp>
+          <personGrp xml:id="englen">
+            <name>ענגלען</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="YoysefInEgipten" type="YoysefInEgipten">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#iekb">יעקב</role>
+        </castItem>
+        <castItem>
+          <role corresp="#rubn">ראובן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shmeun">שמעון</role>
+        </castItem>
+        <castItem>
+          <role corresp="#loy">לוי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ihudh">יהודה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ishshkhr">יששכר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#zbuln">זבולן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#dn">דן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#nfsli">נפתלי</role>
+        </castItem>
+        <castItem>
+          <role corresp="#gd">גד,</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shr">אשר,</role>
+        </castItem>
+        <castItem>
+          <role corresp="#iusf">יוסף,</role>
+        </castItem>
+        <castItem>
+          <role corresp="#bnimn">בנימן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#srkh">סֶרח</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ikhtsel">יאחצעל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#likhlf">אליחלף</role>
+        </castItem>
+        <castItem>
+          <role corresp="#freh">פרעה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#zlikhh">זליכה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mrd">מרד</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fstekher_flk_egiftish_elster">פאסטעכער פאלק עגיפטיש עלסטער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mnshh">מנשה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#frim">אפרים</role>
+        </castItem>
+        <castItem>
+          <role corresp="#rkhl">רחל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khlimish">חאלימיש</role>
+        </castItem>
+        <castItem>
+          <role corresp="#diner">דינער</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0001.jpg"/>
+      <pb n="2" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0002.jpg"/>
+      <pb n="3" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0003.jpg"/>
+      <pb n="4" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0004.jpg"/>
+      <fw type="pageNum">170607</fw>
+      <pb n="5" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0005.jpg"/>
+      <fw type="pageNum">170609</fw>
+      <div type="act" n="1" xml:id="YoysefInEgipten_Act1">
+        <head>ערשטער אקט.</head>
+        <stage type="setting">% איין וואלד, דיא ברידער שטייען פארענט אונטער זייא פאסטיכער</stage>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0001_a">
+          <speaker>קאהר</speaker>
+          <p>מיר שעפער פירין ויין שענעס לעבען<lb/>לוסטיג מונטער אימער אין אונזער גיצעלט<lb/>פרייליך שפאצריין מיר שוועבין<lb/>מיט אונזערע שעפליך אוף דעם פעלד</p>
+        </sp>
+        <sp who="#damen" xml:id="YoysefInEgipten_SP0002_a">
+          <speaker>דאמען</speaker>
+          <p>דער שטאטמאן איז יא איממער שטארק צוטראגין.<lb/>זיין לעבען איך בא אים נאר געלד<lb/>קיין מאך גענוג ער מעג וויפעל פערמאגען<lb/>פאל קומער פאל זארגין לעבט ער אפ זיין וועלט<lb/>אבער אונזער לעבען אין פלא גליק<lb/>מיר זענין אימער צו פרידען געשטעלט<lb/>וויפעל מיר פארמאגען איז בא אונז גענוג<lb/>מיט אונזערע שעפלעך אוף דעם פעלד</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0003_a">
+          <speaker>קאהר</speaker>
+          <p>מיר שעפער... א.ז.וו.</p>
+        </sp>
+        <sp who="#mener" xml:id="YoysefInEgipten_SP0004_a">
+          <speaker>מענער</speaker>
+          <p>יעצט לאמיר ליעבע ברידער געבען אַלע אַ שבח<lb/>דעם ליעבען גאט אין הימעל וואס האט אונז ערנערט<lb/>זייט געגעסען און געטראנקען קען האבין מיר אויך אַסאַך<lb/>געלובט ביזטו גאט וואס דוא האסט אונז אלעס<lb/>בעשערט ווייל נאר דוא נאר דוא אליין<lb/>דוא ערנערסט פון גרויס ביז קליין שפייזט יעדען אוף דער<lb/>וועלט מיט אונזערע שעפליך אוף דעם פעלד</p>
+        </sp>
+        <pb n="6" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0006.jpg"/>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0005_a">
+          <speaker>קאהר</speaker>
+          <p>מיר שעפער..... א. ז.וו.<lb/><stage type="entrance business">% עס ווערט אַגעשרייע אונטער דיא קולסען יאחסעל ערשיינט%</stage></p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0006_a">
+          <speaker>יהודה</speaker>
+          <p>וואס איז דאס פאר אַגעשרייע?</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0007_a">
+          <speaker>יאחצעל</speaker>
+          <p>אַ טיגער.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0008_a">
+          <speaker>יהודה</speaker>
+          <p>נא איז אַריין צווישען דיא שאפע?</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0009_a">
+          <speaker>יאחצעל</speaker>
+          <p>דער ווייל נאך ניט מיר האבין אים דער זייען<lb/>פאן ווייטען ווארפען אוף אונז אייגיליך האבען מיר<lb/>אָן געהובין שרייען.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0010_a">
+          <speaker>יהודה</speaker>
+          <p>דומקאף וואס איהר זענט אלע איך האב גימיינט אַז<lb/>דער גאנצער בארג האט זיך אין בעוועגונג געזעצט<lb/>און דאס דער גאנצער וואַלד מיט זיינע רויב טהירע<lb/>האבען זיך אַער הערונטער געלאַזט</p>
+        </sp>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0011_a">
+          <speaker>לוי</speaker>
+          <p>קומט ברידער</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0012_a">
+          <speaker>יהודה</speaker>
+          <p>שטעהט! איך וועל אליין גייען געגען דעם קעצעלע<lb/>בעשטעהן, קאם יאַחצעל ווַייז מיר וויא איז דאָס קעצעלע<lb/><stage type="exit">ביידע אפ))</stage></p>
+        </sp>
+        <fw type="pageNum">170610</fw>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0013_a">
+          <speaker>ראובן</speaker>
+          <p>ברודער! פילייכט וועט יהודען זיין שווער אליין<lb/>דעם טיגער בייצוקומען זאלען פילייכט אייניגע איהם<lb/>גייען צו הילף?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0014_a">
+          <speaker>שמעון</speaker>
+          <p>זארג ניט ברודער ראובן, בא יהודען שפילט אַ<lb/>קליינע ראלע זאגאר אַ גאנץ דוצענט טיגערס איבער-<lb/>הובט נאך איינער</p>
+        </sp>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0015_a">
+          <speaker>לוי</speaker>
+          <p>שמעון האט רעכט, מיט יהודין האבין מיר גאנץ ווייניג<lb/>וואס צו זארגין נישט אזוי אפט זהעט מען אזא העלד<lb/>וויא יהודה איז, זייעט איהר מיינע ברידער, דער<lb/>פאטער זאהל אין מיין מיינונג זיין וואלט יהודה געברוכט<lb/>צו זיין דער ליעבלינג פון אלע זיינע קינדער ער האט<lb/>יָה פערדינט צו טראגען אַ זיידען העמדעל אבער נישט<lb/>דער שמייכלער יוסף!</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0016_a">
+          <speaker>שמעון</speaker>
+          <p>וויא קענסטו דאס בעהופטען ברידער לוי? איז דען יהודה<lb/>אומשטאנד צו קומען צום פאטער מיט אזוי פיל אויסגעטראכטע<lb/>נארישע ליעגענס וויא יוסף? איז דען יהודה אומשטאנד צו <lb/>קומען צום פאטער און זיך פערשטעלין פיר אזא פראמען<lb/>וויא יוסף? איז דען יהודה אומשטאנד צו קומען צום פאטער<lb/>מיט אזוי פיעל אויסגעטראכטע נארישע חלומות און דעם<lb/>פאטער דעם קאפף צו פערדרעהן וויא יוסף?</p>
+        </sp>
+        <pb n="7" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0007.jpg"/>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0017_a">
+          <speaker>ראובן</speaker>
+          <p>שמעון לוי מיינע ברידער הערט אויף מיט אייערע<lb/>בייזע רייד איהר פערזינדעגט אויך דאמיט קעגען<lb/>גאט, יוסף איז גאר אזוי פיעל ניט שלעכט וויא איהר<lb/>זאגט, ער איז נישט מעהר וויא אביסעל קינדערש,<lb/>אזא חלום איז בא אים אגאנצע פרייד און ער מוז<lb/>אים פור דער גאנצער וועלט הערציילין. דאפיר מוזען<lb/>מיר אים פערצייען ער איז דאך ניט מעהר וויא אַ קינד<lb/>פון 17 יאריגען פערשטאַנד? וואס וואך ווייסט ער? און דאס<lb/>וואס דער פאטער האט אים אומליעבסטען, וואס האט ער שולד<lb/>דַאבַאי? זיין מוטער רחל העט מעהר ניט איבער<lb/>גילאָזט וויא אים און בנימינען.</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0018_a">
+          <speaker>שמעון</speaker>
+          <p>פערצייע מיר ברודער ראובן ווען איך וועל דיר<lb/>זאגין אז דיא האסט אונרעכט, דאס וואס דער<lb/>פאטער האט יוסיפין אַמליעבסטען איז נישט דורך<lb/>עטוואַס אנדערש וויא נאר דורך זיין שמייכלערייע<lb/>אין פֿעהיגקייטען דעם פאטער צו בעטריגען אין<lb/>בעשווינדלען, האט מען נאך גיערט אין דער וועלט מען זאהל<lb/><sic>הייגינע </sic>ברידער אזוי פערליימדען וויא ער אונז!<lb/>דעם קלענסטען פעהלער וואס ער זעהט פון אונז לויפט<lb/>ער גלייך צום פאטער און דערציילט עס איהם מיט<lb/>נאך טויזינד ליעגינס צוגעלעגט נאטירליך מוז ער<lb/>בא אים הייסען דער פראמסטער און דער בעסטער<lb/>אין אויסער דיא אלע זאַכן האט ער גאר אן גיהובען<lb/>מיט חלומות איין גאנצען האנדעל צו טרייבען דער<lb/>בעל <sic>החולים  </sic>איז בא אים גאר געווארען איין גאנצער<lb/>הויזפריינד און ער ברענגט אים יעדע נאכט פרישע<lb/>סחורה, הערט איין אָנפַאל פאן איין אנגעל! ער קאמט צום<lb/>פאטער און דער ציילט איהם אַז עס האט אים גיחלימט<lb/>דאס מיר אלע זענין אין פעלד אין בינדין גארבען, זענין <lb/>אונזערע גארבען אופגישטאַנען און האָבען זיך גיביקט צו זיינע<lb/>גארבען, דאס וויל זאגען אַז דער בעל החולים האט אים<lb/>געגעבען אנצוגעהרען אז עס וועט קומען אַ מאָהל אַ צייט<lb/>אַז מיר וועלין זיך פאר אים ביקין, דער פאטער<lb/>נאטירליך האט בעמערקט אונזערע צארניגע געזיכטער<lb/>האט ער זיך אויף אים אָן גיבייזערט, דאפיר אַז איז ער<lb/>מיט אקורץ שטיקעל צייט געקאמען מיט אַפריש געבאקענעם<lb/>חלום אז דיא זונן און דיא לבנה און עלף שטערן האבען<lb/>זיך פור איך געביקט, פונקט עלף אזוי פיעל האט ער אָפ<lb/>גיציילט ניט מעהר אין ניט וועהניגער ווייסט איהר פאר וואס<lb/>עלף? ווייל אזוי פיעל ברידער זענין מיר אוסער אים, נא<lb/>פרעג איך אַייך מיינע ברידער? איז דאס ניט אַ <lb/>פֿרעכהַייט ווען אזא שנעק בילדעט זיך איין אונזער<lb/>קעניג צו זיין? מיר העלדען וואס מיר מאכען דיא גאַנצע<lb/>וועלט ציטערן פֿיר זיך זאלען מיר געצווינגען זיין<lb/>צו ליידען פון אזא נישטס? נון? פערדינט זאָ<lb/>איינער אונזער ברודער צו זיין? ניין און טויזענד<lb/>מאָהל <sic>נייען</sic>, ווען איין גליד פון דעם קערפער ווערט<lb/>פערדארבין דארף צו ד ליעב דעם פערדארבענעם<lb/>גליד דער גאנצער קערפער ניט ליידען, דאס פערדארבענע<lb/>גליד מוז אין גאנצען אויסגעשניטען ווערען און דער קערפער<lb/>מוז בלייבען ריין און געזונד. וויא געוועהן וויא<lb/>איז אייער מיינינג ברידער?</p>
+        </sp>
+        <pb n="8" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0008.jpg"/>
+        <fw type="pageNum">170611</fw>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0019_a">
+          <speaker>אלע</speaker>
+          <p>געוויס שמעון האט רעכט!</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0020_a">
+          <speaker>ראובן</speaker>
+          <p>אבער אום גאטעס ווילען מיינע ברידער, ווילט איהר<lb/>דען אַ מאָרד בעגעהן?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0021_a">
+          <speaker>שמעון</speaker>
+          <p>דיא ברודער ראובן זיכסט אים איממער צו פערטיידיגין<lb/>אבוואל אין הערצען ביזטו אים דער זעלבער פיינד.<lb/>וואס מיר, אבער אלס עלצטער ברודער ווילסטו ניט זיין<lb/>געמישט אין דער זאך, פאן מייניט ווייגין מעגסטו דיר<lb/>בלייבען נייטרַאל אבער נישט אונזער געגנער צו זיין</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0022_a">
+          <speaker>ראובן</speaker>
+          <p>גאט גיב מיר קרעפט אים צו רעטען %<stage type="business">עס ווערט אַ געשרייע</stage><lb/><stage type="entrance">יהודה אין יאחצעל מיטין טיגער</stage>%</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0023_a">
+          <speaker>קאהר</speaker>
+          <p>זעהט נאר זיין העלדיןטאט וויא שעהן<lb/>ער איינער גאנץ אליין האט גיטודט דעם טיגער<lb/>ער אליין זעהט נאר זיין העלדענטהייט<lb/>וויא שעהן ער איינער גאנץ אליין<lb/>יא יא ער איינער גאנץ אליין.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0024_a">
+          <speaker>יהודה</speaker>
+          <p>אזוי ליעג דוא בייזיס ווילדעס טהיער</p>
+          <lg n="1" prev="true">
+            <l>אויסגעשטרעקט האט ער זיך אויף דער ערד</l>
+            <l>ערשטאכין פון מיין שווערד</l>
+            <l>ווייט איז ער שוין ניט גיווען</l>
+            <l>אויף רויב וואר ער שוין בערַייט</l>
+            <l>צו רעטען דיא ארמיע שעפעלעך</l>
+            <l>בלייבט מיר וועניג צייט</l>
+            <l>הא הא הא אזוי מיין ליעבער</l>
+            <l>קום נאר מיר ענטקעגען.</l>
+            <l>איין שטויס נא דיר מיט מיין דעגען</l>
+            <l>איין שטויס איז ער שוין גיווען טוידט</l>
+            <l>הא הא הא אזוי אזוי</l>
+          </lg>
+        </sp>
+        <pb n="9" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0009.jpg"/>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0025_a">
+          <speaker>קאהר</speaker>
+          <p>זעהט נאר זיין העלדענטהאט.<stage type="business"> א. ז. וו.</stage><lb/>פראזע</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0026_a">
+          <speaker>ראובן</speaker>
+          <p>איך דֶענק יהודה דער טיגער האט דיך אַבעסיל<lb/>איינגעמידט</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0027_a">
+          <speaker>יהודה</speaker>
+          <p>אַה זייער ווייניג איין איענצגער שטויס איין איינציער<lb/>שטויס און איך בין מיט אים פערטיג גיווארען</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0028_a">
+          <speaker>יאחצעל</speaker>
+          <p>איך האב פריער גיוויסט אַז מיר וועלען מיט אים קיין סאך<lb/>ארבעט ניט האבען</p>
+        </sp>
+        <fw type="pageNum">170612</fw>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0029_a">
+          <speaker>שמעון</speaker>
+          <p>מיין ארעם קעצעלע עס האט זיך דיר פארגלוסט<lb/>אַ שעפעלע.</p>
+        </sp>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0030_a">
+          <speaker>לוי</speaker>
+          <p>יהודה האסט אים נעבעך דעם גאנצען אַפעטיט פערדארבען</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0031_a">
+          <speaker>יאחצעל</speaker>
+          <p>אַ מצוה אוף אים האט ער ניט גיזאלט גלאנצען מיט דיא <sic>הויגלי</sic>ק.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0032_a">
+          <speaker>יהודה</speaker>
+          <p>ברידער! איך דֶענק אַז מיר וועלען באלד פון אַ גרויס<lb/>געוויטער איבעראשט ווערין ווָאלט מיין ראטה גיוויין. אַז<lb/>מיר זאלען אונזערע שאפע איבערליווערין נאך דותן<lb/>ערשטענס איז דארט דער פלאץ גענוג פעט אין גרויס<lb/>אָום אונזערע שאפע צו פיטערען אונד דא זענין מיר<lb/>יעדען אויגינבליק און געפאהר אָיָבער גיפאלען צו ווערען<lb/>פון ווילדע טהירע</p>
+        </sp>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0033_a">
+          <speaker>לוי</speaker>
+          <p>יהודה האט רעכט, קאמט נאך דותן!</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0034_a">
+          <speaker>יהודה</speaker>
+          <p>הערט דינער! נעמט דיא שאפע אין געהט נאך דותן<lb/>און דוא יאחצעל זאלסט מיר דאס אוועק שאפען פון דאנין<lb/>אין דאס פֿעהל בריינגען צו מיר אַהיים.</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0035_a">
+          <speaker>קאהר</speaker>
+          <p>שארף איזט אונזער שווערד<lb/>ווען ווילדע בייזע טהירע<lb/>ערקענען איהר גבורה<lb/>איצט מעהר קען שוין געשטערט<lb/>אין אויך דער שטארקסטער קריגער<lb/>מיר בלייבען שטענדיג זיעגער<lb/>איבער פיינדע פיעל.<lb/>מיר קענען קעגען זייא בעשטעהן<stage type="exit business"> %אלע אב אויסער יאחצעלען</stage>%</p>
+        </sp>
+        <pb n="10" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0010.jpg"/>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0036_a">
+          <speaker>יאחצעל</speaker>
+          <p>אַ שיין שטיקעל ארבעט האט ער מיר דא איבער<lb/>גילאזט ער מיינט אַז עס איףז בא אים אַ קעצעלע איז<lb/>עס באַ יעדען אזוי, איך וואלט זיך גיכער אונטער<lb/>גענומין מיט 10 קוטערס מלחמה צו האלטען היידער מיט<lb/>איינס אַזא קעצעלע, נו וואס טהוט מען יעצט? זאל איך זיך<lb/>ניט וויסענדיג מאַכן אין עס לאזען אזוי ליעגען קען מיר י הודה<lb/>אנקלאפין אבראווא אוף דיא פלייצעס אז עס זאהל שוין אוף<lb/>זייא קיין מאהל קיין גראז ניט וואַקסין וואס זשע דען<lb/>טהוט מען? איך וועל געהן אַער ריפען עטליכע פאסטיכער<lb/>זייא זאלן מיר העלפען אים צו נעמען, דער ווייל אַדיע<lb/>מין שיין טיגעריל, טאמיר פארגליסט זיך דיר אַ שעפעלע<lb/>זאלסטו זיך דער מאנען אין מיר און אין יהודען נישקאשע<lb/>מעיגסט זיך דער מאנען אין מיר אליין אויך<stage type="delivery">% דיא מוזיק שפילט</stage><lb/>II<lb/><stage type="entrance business">אַ מעלאדראמע יוסף ערשייַנט%</stage></p>
+        </sp>
+        <fw type="pageNum">170613</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0037_a">
+          <speaker>יוסף</speaker>
+          <p>שטיל איז איבעראל קיין מענטשין קריגט מען צו זייען<lb/>וויא זאלען מיינע ברידער זיין? דער פאט ער האט מיך<lb/>געשיקט זייען וואס זייא זאמען זיך היינט לענגער וויא<lb/>איממער, אבער וואס זאל מיט זייא גישעהן? אויף דעם פלאץ<lb/>פלעג איך זייא איממער טרעפען, אבער יעצט זייא איך קיינעם<lb/>זאהל איך פילַייכט האבין דעם רעכטין וועג פערלוירין? אַך<lb/>עפעס שרעקט זיך מיט מיר זייער מיין הערץ עס קאמט<lb/>מיר פאס וויא מיין לעבען שטעהט אין אַ געפאַר, נאך ניע האט<lb/>זיך מיין הערץ זָא געשראקין וויא יעצט, נאר בין איך דען<lb/>ניט קיין נאַר? איך מאַך מיר אליין שרעק אנו אָהנע אָורזַאכע<lb/>קען מיר דען עטוואס שלעכסט גישעהן ווען איך געה<lb/>דורך מיין פאטערס בעפֿעהל? זיין לעהרע איז מיר<lb/>אימער אויף מיינע ליפען, טרייסט אין דער נוטה מוטה אין<lb/><stage type="delivery">געפאר %זינגט%</stage></p>
+          <lg n="2">
+            <l>געה בעפעלט גאט דער זעעלה</l>
+            <l>ווען ער שיקט זיא אוף דער וועלט אַראָפ</l>
+            <l>געה זאגט ער איז איהר מיט פריידע</l>
+          </lg>
+          <lg n="3" prev="true">
+            <l>דארט ווארט ביז איך נעם דיך אפ</l>
+            <l>און ווען דיר וועט שלעכט גייען דָארט</l>
+            <l>פערצווייפעל ניט מיין קינד</l>
+            <l>געדיינק נאר גוט דאס ווארט</l>
+            <l>וואס איך געבע דיר מיט אצינד</l>
+            <l>אל רחום אל רחום אל רחום איזט מיין נאמען } ביס</l>
+            <stage type="delivery">ביס</stage>
+            <l>פערגעס דאס ניט</l>
+            <stage type="entrance business">% יאחצעל ערשיַינט מיט עטליכע פאסטיכער%</stage>
+          </lg>
+        </sp>
+        <pb n="11" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0011.jpg"/>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0038_a">
+          <speaker>יאחציל</speaker>
+          <p>קאמט הָאט דָא איז ער, נעמט אים צו אט א יוסף! <lb/>דרייסט זיך דא אליין ארום?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0039_a">
+          <speaker>יוסף</speaker>
+          <p>יאחצעל ווייסטו ניט וויא מיינע ברידער זענין?</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0040_a">
+          <speaker>יאחצעל</speaker>
+          <p>דיינע ברידער זענען אַוועק מיט דעם וועג אין<lb/>מיט דעם וועג וועלן זייא באַלד צוריק קומען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0041_a">
+          <speaker>יוסף</speaker>
+          <p>זאגסטו אז איך וועל גייען מיט דעם וועג וועל איך<lb/>מיינע ברידער טרעפען?</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0042_a">
+          <speaker>יאחצעל</speaker>
+          <p>יא נאר גיב אכטינגד דען עס דרייען זיך דָא<lb/>ארום קעץ.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0043_a">
+          <speaker>יוסף</speaker>
+          <p>קעץ?</p>
+        </sp>
+        <fw type="pageNum">170614</fw>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0044_a">
+          <speaker>יאחצעל</speaker>
+          <p>יָא אזוי הייסין זייא באַ דיין ברודער<lb/>יהודה ווילסטו זייען איינעם?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0045_a">
+          <speaker>יוסף</speaker>
+          <p>יָא</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0046_a">
+          <speaker>יאחצעל</speaker>
+          <p>אט קוק אים אָן.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0047_a">
+          <speaker>יוסף</speaker>
+          <p>אַ טיגער!</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0048_a">
+          <speaker>יאחצעל</speaker>
+          <p>יא אַ טיגער! איך אין יהודה האבען אים גיחאפט</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0049_a">
+          <speaker>יוסף</speaker>
+          <p>דיא אין יהודה?</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0050_a">
+          <speaker>יאחצעל</speaker>
+          <p>געוויס, איך האב אים דערזעהן האב איך אָן<lb/>גיהובען צו שרייען אין יהודה האט אים גיחאַפט</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0051_a">
+          <speaker>יוסף</speaker>
+          <p>אָ יאחצעל ביסטו אַ גאנצער הולד גיווארען:</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0052_a">
+          <speaker>יאחצע</speaker>
+          <p>ל געוויס! אז מען איז צווישען העלדען ווערט מען אויך<lb/>אַ העלד</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0053_a">
+          <speaker>יוסף</speaker>
+          <p>זאגסטו אַז איך וועל גייען מיט דעם וועג וועל<lb/>איך בעגעגענען מיינע ברודער?</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0054_a">
+          <speaker>יאחצעל</speaker>
+          <p>יא נאר טאמיר מאַכט זיך דיר אַ בעגעגעניש<lb/>זאלסטו ריפען ריפען מיך אין יהודען. סמאכט ניט אויס<lb/>סמאַכט ניט אויס מעגסט רופין מיך אליין, נא וואס שטייט<lb/>איהר? איז ניט אַ שאנדע מע זאהל זיך פלאגען איבער אַזא<lb/>נאריש קעצעלע? וואס וואלט איהר געטאן ווען ער זאל<lb/>שטייען געגען אוייך אין גלאנצין מיט דיא אוגען<lb/>אין קריצען מיט דיא ציין וויא געגען מיר מיט יהודין<lb/>נא נעמט עס שוין צו פון דאַנין<stage type="exit"> % אלע אב</stage>%<lb/><stage type="setting entrance">% עס ווערט פינסטער דיא ברידער קומען%</stage></p>
+        </sp>
+        <pb n="12" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0012.jpg"/>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0055_a">
+          <speaker>ראובן</speaker>
+          <p>ברידער איך דֶענק אַז מיר זאלין גייען אַהיים<lb/>דען דער פאטער מוז שוין וועגען אונז שטאַרק<lb/>בעזארגט זיַין</p>
+        </sp>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0056_a">
+          <speaker>לוי</speaker>
+          <p>קאמט ברודער!</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0057_a">
+          <speaker>שמעון</speaker>
+          <p>היידָאט יֶחִי הַמֶלך</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0058_a">
+          <speaker>ראובן</speaker>
+          <p>וואס איז מיט דיר שמעון? מיט וועמען רעדסטו דָארט?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0059_a">
+          <speaker>שמעון</speaker>
+          <p>אבער זעהט נאך מיינע ברודער! אויף אַזא<lb/>העראובענעם גאסט האבין מיר זיך גאר ניט גירעכט</p>
+        </sp>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0060_a">
+          <speaker>לוי</speaker>
+          <p>יאָ יוסף דער בעל החָלום, דאס ציטעריגע קינד<lb/>מיט דעם זיידענעם העמדיל!</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0061_a">
+          <speaker>שמעון</speaker>
+          <p>וויא איז דיין רעספעקט לוי? דוא פאַרגעסט אַז ער<lb/>איז אונזער צוקינפטיגער קעניג? אויסלייטער<lb/>גוט הערציקייט האט ער זיך אַראפגעלאָזט אָונז<lb/>אַ וויזיט אָב צו שטאַטען</p>
+        </sp>
+        <fw type="pageNum">170615</fw>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0062_a">
+          <speaker>לוי</speaker>
+          <p>אַזאַ קעניג מעג מען דעם קאף אַרונטער נעמין</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0063_a">
+          <speaker>ראובן</speaker>
+          <p>שטעה! שטעה אונבעזאנענער וואס ווילסטו טָאהן.</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0064_a">
+          <speaker>שמעון</speaker>
+          <p>שטייע אונז ניט און וועג ראובן, מיר מוזען פון<lb/>דער שלאנג בעפרייט ווערען.</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0065_a">
+          <speaker>ראובן</speaker>
+          <p>איז יוסף בא דיר אַ שלאַנג, דוא פארגעסט אז דיא<lb/>וועסט נישט נאר אַ ברודער מערדער זַיין זאנדערען<lb/>אויך אַ פאטערמערדער!</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0066_a">
+          <speaker>שמעון</speaker>
+          <p>אין ווער האט דיך צו אונזער מא מאראל פֿריידיגער<lb/>גימאַכט? אז מיר הייסען בא דיר מערדער טָא<lb/>טהייל זיך אפ פון אונז</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0067_a">
+          <speaker>ראובן</speaker>
+          <p>און איך שווער בא גאט, אזוי לאנג וויא איך לעב<lb/>זאל קיין בלוט פערגאסען ווערען.</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0068_a">
+          <speaker>שמעון</speaker>
+          <p>מיט וואס פיר אַ רעכט געהסטו איינער געגען אונז אלע?</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0069_a">
+          <speaker>ראובן</speaker>
+          <p>ווייל איך בין אייער עלטסטער ברודער.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0070_a">
+          <speaker>יהודה</speaker>
+          <p>ברידער אום גאטעס ווילען, נאר קיין שטרייט צווישין<lb/>אונז. צוואַר האסטו רעכט ברודער דאס קיין בלוט<lb/>דארף פַארגָעסען ווערען ער איז דָאך אָונזער ברָודער,<lb/>אבער דוא דארפסט ניט פארגעסען אז עס איז שוין<lb/>פון אים ניט איבער צו טרָאגען, זיין בענעמען זיך<lb/>געגען אונז איז אונערטרעגליך, ניין מיר קענין<lb/>אים ווַייטער ניט לָאזען פירין אַזעלכע וועלטען, אַיין<lb/>שְרִיט מוז געמַאכט ווערין וויא אים אונשעדליך צו<lb/>מַאכען.</p>
+        </sp>
+        <pb n="13" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0013.jpg"/>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0071_a">
+          <speaker>ראובן</speaker>
+          <p>גָאט געבע מיר קרעפט אים צו רעטין.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0072_a">
+          <speaker>יהודה</speaker>
+          <p>יא אַלס עלסטער ברודער גיב דוא אונז. אַ ראַטה<lb/>וויא פון אים לאז צו ווערין</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0073_a">
+          <speaker>ראובן</speaker>
+          <p>קיין אנדערע רַאטה האב איך ניט. הערט מיך<lb/>אויס מיינע ברודער ליעבער זאלין מיר אים<lb/>אריין גייען ווַארפין אין איינעם פון דיא טיפסטע<lb/>גריבער, אָונבֶעקִימֶערט וואס פון אים ווירט ווַייטער ווערין<lb/>און אונזערע הענד וועלן ווייניגסטינס זיין ריין פון בלוט.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0074_a">
+          <speaker>יהודה</speaker>
+          <p>דער פלאן איז פָארטרעפליך</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0075_a">
+          <speaker>ראובן</speaker>
+          <p>יעצט האב איך נאך האפנונג אים צו רעטין און<lb/>צום פאטער צו בריינגען.</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0076_a">
+          <speaker>שמעון</speaker>
+          <p>רוהיג מיינע ברודער. זיינע מַיעסטֶעט קאמט.<lb/><stage type="entrance">%יוסף ערשיינט%</stage></p>
+        </sp>
+        <fw type="pageNum">170616</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0077_a">
+          <speaker>יוסף</speaker>
+          <p>פֿרידען צו אייך מיינע ליעבע ברודער</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0078_a">
+          <speaker>שמעון</speaker>
+          <p>פרידין צו דיר אונזער וועלטבערימטער קעניג<lb/>דיינע אונטערטעניגע שקלַאפין האבען שוין<lb/>הערווַארטעט דיינע קעניגליכע הָאהַייט.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0079_a">
+          <speaker>יוסף</speaker>
+          <p>ווַאס זאהלין בעדייטין דיינע שפאס רייד שמעון?</p>
+        </sp>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0080_a">
+          <speaker>לוי</speaker>
+          <p>דאס בעדייט גאנץ הַיינפַאך, אזוי מיר האבין<lb/>דיך אַנערקענט פיר אונזער קעניג, האבען מיר<lb/>דיר אןגעגרייט אַ טראן, וועלכער וועט פון פיר דיר זעהר<lb/>פַאסען דוא קענסט אים זעהן, דארט איז ער.<lb/>יוסף ברודער?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0081_a">
+          <speaker>שמעון</speaker>
+          <p>שווייג דוא הייכלער, דיין מויל זאהל ניט דאס ווארט<lb/>ברודער ארויס רופין רעדין, אויף אֵייוויג זאהל עס<lb/>דיר פערשלָאסין זיין</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0082_a">
+          <speaker>יוסף</speaker>
+          <p>גאט אין הימעל הער איך עס וואכענד אדער<lb/>איז עס בלויז איין טרוים?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0083_a">
+          <speaker>שמעון</speaker>
+          <p>געוויס נאר אַ חלום, דוא ביזסט דאך אויס לויטער<lb/>חלומות צו זאמען גֶעשטֶעלט.</p>
+        </sp>
+        <pb n="14" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0014.jpg"/>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0084_a">
+          <speaker>לוי</speaker>
+          <p>וויא עס שיינט האט ער דעם בעל החלום אפגעדונגען<lb/>אויף דעם יאהר, אים בריינגט ער גאנצע בערג מיט<lb/>חלומות אין אונז קיין איינציגען</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0085_a">
+          <speaker>יהודה</speaker>
+          <p>עס איז ווירקליך זאנדערבאר איך הָאב נאך<lb/>קיין מאהל ניט דָאס גֵלִיק געהאט דאס צו מיר זאהל<lb/>זיך ביקען איין איינציגער שטערען. צו אים דאגעגען<lb/>ביקען זיך דיא זונן, דיא לבנה אין עלף שטערין באלאגא<lb/>חַא חַא חַא</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0086_a">
+          <speaker>שמעון</speaker>
+          <p>בערוהיגט אייך מיינע ברודער אז מיר וועלען אים<lb/>איינשלֵעפין אין איינים פון דיא גריב בעטליך, מעג<lb/>אים שוין דער בעל החולום דעם גאנצען הימעל מיט חלומות<lb/>אראפ בריינגין.</p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0087_a">
+          <speaker>אלע</speaker>
+          <p>חַא חַא חַא</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0088_a">
+          <speaker>יוסף</speaker>
+          <p>און אזוי קל קאלט בלוטיג קאנט איהר אייך שפעטען און<lb/>לַאכין פון איין אֵייגינעם ברודער ווערענד איהר זענט<lb/>בערַייט זיין <sic>אונשולדיג </sic>בלוט צו פערגיסען? אָ ברודער<lb/>מיינע געדענקט, איבערקלערט אייך גאַנץ גוט בעפאהר<lb/>איהר ווילט בעגעהן אזא גרויסע זינד, וויא אזוי וועט איהר<lb/>קענין ריין וואַשין אַייערע הֶענט פֿאר גאט און פאר<lb/>אונזער טייערען פאטער יעקב? איהר וויייסט וויא<lb/>ליעב ער הָאט מיך. אין דוא ראובן מיין העלטסטער<lb/>ברודער, דוא שטייסט אויך פון ווַייטין, בא דיר איז<lb/>אויך רעכט אז איך זאהל אזוי אונבארימהערציג <lb/><sic>אנקאמען</sic> - אין דוא יהודה דוא וועלט בערימטער העלד<lb/>וועסט עס אויך איינצייגען צווישען דיינע העלדענטאהטען<lb/>מיך דעם יונגסטין דעם שווַאכסטין פון דער וועלט אומצו-<lb/>בריינגען? אין איהר אַלע מיינע ברודער? איז דען בַא<lb/>אייך אויס גֶעלָאָשֶען געווארען דער לעצטער פינק <sic>מורה </sic>פַאר<lb/>גאט? האבין דען אייך אונזערע עלטערען ניט גילערינט<lb/>צו פערגעסין דעם פעהלער פון איין פַיינד זָאגַאר איבערפ<lb/>איבערהופט נאך פון איין הייגינעם ברודער? אַ שמעון לוי<lb/>מיינע ברידער גיט ניט נאך אייער ווילדען צָארין ערקלערט<lb/>מיר אין וואס באשטעהט מיין זינד געגען אייך? איך שווער<lb/>בא גאט דאס נישט מעהר צו טהון אָ ברודער מיינע<lb/>הערבַארעמט אַייך איבער מיר! מיטלייד.</p>
+        </sp>
+        <fw type="pageNum">170617</fw>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0089_a">
+          <speaker>לוי</speaker>
+          <p>וויא געפעלט ער אייך וויא ער קען פלאפלען מיט זַיינע זַיידענע ליפעלעך<lb/>וויא קונסטליך ער קנאקט מיט זיין צינגעל וואלט איהר ניט<lb/>אז<lb/>געקענט מֵיינֶען אין אַ רוח הקודש רעדט פון אים ארויס<lb/>אָ ניין דוא הַייכלער. נישט אונז וועסטו דיא קעפף<lb/>פערדרייען, מיר קענען דיך שוין צו גוט, דיינע ליפען<lb/>טריפען האניג ווערענד דיין צונג איז פאל גיפט<lb/>דיין מויל פלודערט אויס אַ <sic>שֵבִעֶלה </sic>געגען אונז ניט צו<lb/>זינדעגען ווערענד דיין קאף איז פָאל מיט פלענער דיא<lb/>ליעבע צו אונז באם פאטער אַוועק צו רויבין. ניין, קיין<lb/>וויינען קיין יאמירען וועט דיר מעהר ניט העלפען, דיין<lb/><stage type="delivery">לעצטער שעה האט שוין געשלאגען.%</stage></p>
+          <lg n="4">
+            <l>אָ ברודער מיינע אָ ברודער מיינע</l>
+            <stage type="delivery">יוסף %זינגט%</stage>
+            <l>לאזט מיך לעבען</l>
+            <l>איז דען אייער הארץ פון שטיין ניין ניין ניין</l>
+            <l>יהודה לוי ראובן.</l>
+            <l>אָ גאט ווער וואלט עס אַ מאהל געגלייבט</l>
+            <l>אדיע מיין פאטער בלויב געזונד</l>
+            <l>צום טוידט האסטו געשיקט דיין קינד</l>
+            <l>דעם לעצטען גאנג געשיקט אַצינד</l>
+          </lg>
+          <lg n="5" prev="true">
+            <l>זייא געזונד זייא געזונד אדיע לעבע וואהל.</l>
+          </lg>
+        </sp>
+        <pb n="15" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0015.jpg"/>
+        <fw type="pageNum">170618</fw>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0090_a">
+          <speaker>קאהר</speaker>
+          <lg n="6">
+            <l>הערט אים ניט צו הערט איהם ניט.</l>
+            <l>דָא בלייב אין גריב איז דיין אָרט</l>
+            <l>ניין ניין רעד ניט מעהר קיין וואָרט</l>
+            <l>דא בלייב רעד ניט מעהר קיין וואָרט</l>
+            <l>דא בלייב אין גריב אַריין אַ עהר</l>
+            <stage type="costume business">מען טוט אים אויס דאס זיינ זיידינע העמדיל מען ווַארפט אים אריין</stage>
+            <stage type="exit entrance">אין גריב אלע גייען אב. עס הערשיינען דיא מדיָנים זינגענדיג אַ ליעד</stage>
+          </lg>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0091_a">
+          <speaker>אַליחליף</speaker>
+          <p>נו ברידער זעצט אייך דא אויס. וואסער איז דא וועלן מיר<lb/>אָנטרינקען אונזערע קעמלין אין אַליין אויך טרינקען, חאלָאמיִש<lb/>געה בריינג דיא העמער וועלען מיר נעמען וואסער</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0092_a">
+          <speaker>יוסף</speaker>
+          <p>%זינגט אין גריב% אדיע לעבע וואהל</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0093_a">
+          <speaker>אַליחליף</speaker>
+          <p>טהו נאר אַקוק ווער איז דָארט?</p>
+        </sp>
+        <sp who="#khlimish" xml:id="YoysefInEgipten_SP0094_a">
+          <speaker>חאלימיש</speaker>
+          <p>אַ מענטש זא ווַאר וויא לעב אַ מענטש.</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0095_a">
+          <speaker>אַליחליף</speaker>
+          <p>א מענטש? זאג נאר ווער ביזטו?<lb/>יוסף אַ מענטש, האט רחמונות און נעמט מיך אַרויס</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0096_a">
+          <speaker>אַליחליף</speaker>
+          <p>איהר הערט אַ מענטש אין בעט מע זאהל אים ארויס נעמין<lb/>חאלימישע, געה גיך בריינג שטרעך, וועלן מיר אים<lb/>אים ארויס נעמען.</p>
+        </sp>
+        <pb n="16" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0016.jpg"/>
+        <sp who="#khlimish" xml:id="YoysefInEgipten_SP0097_a">
+          <speaker>חאלימיש</speaker>
+          <p>נא האט האסטו אַ שטרעק נעם דיך אָן וועלען מיר דיך<lb/>ארויס נעמען</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0098_a">
+          <speaker>יוסף</speaker>
+          <p>איך קען נישט</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0099_a">
+          <speaker>אליחליף</speaker>
+          <p>פאר וואס קענסטו ניט</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0100_a">
+          <speaker>יוסף</speaker>
+          <p>ווייל מיינע הענד זענין געבונדין</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0101_a">
+          <speaker>אליחליף</speaker>
+          <p>איהר הערט ווייל זיינע הענד זענין איהם געבונדין<lb/>שפרינג אריין אין נעם אים אָן בא דעם <sic>קאף </sic>און ווארף<lb/>אים ארויס. %זייא נעמין אים ארויס%</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0102_a">
+          <speaker>יוסף</speaker>
+          <p>איך דאנק אייך מיינע ליעבע, איך דַאנק אַייך וואס<lb/>איהר האט מיר גירעטעט מיין לעבען.</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0103_a">
+          <speaker>אליחליף</speaker>
+          <p>אַ גאנץ שענער יאנג, זאג נאר וויא קאמסטו אַער!</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0104_a">
+          <speaker>יוסף</speaker>
+          <p>איך בין גיגאנגין דָא מיט דעם וועג בין איך פליצלינג<lb/>אריינגעפאלען.</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0105_a">
+          <speaker>אַליחליף</speaker>
+          <p>אַ גאנץ שענער יונג אין קען זאגען גאנץ שענע<lb/>ליגענס, דוא זאגסט אַז ביסט אריין געפאלען אין ווער<lb/>האט דיר דַיינע הענד געבונדען?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0106_a">
+          <speaker>יוסף</speaker>
+          <p>איך וועל אַייך זאגען דיא היי ווארהיַיט, איך בין<lb/>ניט אַריין געפאלען נאר מעהָאט מיך אַריין געוואָרפען</p>
+        </sp>
+        <fw type="pageNum">170619</fw>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0107_a">
+          <speaker>אליח</speaker>
+          <p>איהר הערט מען האט מיך אַריין גיווארפין, ווער האט דיך<lb/>אריינגעווארפען?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0108_a">
+          <speaker>יוסף</speaker>
+          <p>מיינע ברי.... מיינע פיינדע!...</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0109_a">
+          <speaker>אליח</speaker>
+          <p>איהר הערט זיינע פיינדע. איך רעכען אף מיר<lb/>וועלן פיר אים נעמען אַ שעהנעם פרייז קאם מיט<lb/>אונז מיר וועלן דיך ניט אַריין ווארפען אין קיין גרוב.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0110_a">
+          <speaker>יוסף</speaker>
+          <p>אָ האט <sic>מידלייד</sic>, פירט מיך ניט מיט אַייך, מיין פאטער<lb/>איז רייך ער וועט אַייך געבען געלד פֲאר מיר וויפיל<lb/>איהר וועט וועלען, פירט מיך צו מיין פאַטער.</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0111_a">
+          <speaker>אליחליף</speaker>
+          <p>אזוי? דוא האַסט אַ רייכען פאטער? נו קאם מיט אונז</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0112_a">
+          <speaker>שמעון</speaker>
+          <p><stage type="entrance">%לויפט אריין%</stage> וואס זעה איך? שנעלער ברידער!</p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0113_a">
+          <speaker>אלע</speaker>
+          <p>וואס איז?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0114_a">
+          <speaker>שמעון</speaker>
+          <p>זיג מיר וויא קומט דער יונגלינג צו דיר?</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0115_a">
+          <speaker>אליחליף</speaker>
+          <p>וואס פיר אַ רעכט האסטו צו פרייגין אויף אים?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0116_a">
+          <speaker>שמעון</speaker>
+          <p>ער איז אונזער קנעכט, ער האט זיך געגען אונז<lb/>פערזינדעגט האבען מיר אים אין גריב אַריין געווארפען</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0117_a">
+          <speaker>אליחליף</speaker>
+          <p>ער איז אייער קנעכט? איך וואלט גיקענט שווערין אז<lb/>עס פאסט אייך גיכער צו זיין זיינע קנעכט,<lb/>נא וואס קוקסטו מיך אן מיט אַַזעלכע <sic>אוגען</sic>? איך<lb/>האב געוויס דיא ווַארהַייט געזאָגט קומט, אונז מדינים<lb/>וועלען זייא נארען</p>
+        </sp>
+        <pb n="17" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0017.jpg"/>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0118_a">
+          <speaker>אלע</speaker>
+          <p>שטעהט</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0119_a">
+          <speaker>שמעון</speaker>
+          <p>ברידער עס איז גאר אַ שאנדע אַז מיר זאלען זיך<lb/>פלאגין מיט אַזעלכע שוואַכע פליגען, איך איינער געה<lb/>געגען דעם בעראבאקא<stage type="business">%גיט אים אווארף נעמט צו יוסיפען%</stage><lb/>נא <sic>באראבאקי </sic>וויא געפעלט דיר אַ בן יעקב?</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0120_a">
+          <speaker>אליחלף</speaker>
+          <p>אלע רעספעקט פאר אַ בן יעקב! און מיין, פיס. ווייסט<lb/>איהר וואס איך וויל אייך זאגען, איהר זאגט דאך אַז<lb/>דער קנעכט האט זיך געגען אייך פערזינדיגט, פערקופט<lb/>אים מיר בעסער, איהר האט מיר שוין צו ברָאכען אַפיעס<lb/>לאם איך חאטשע בא אייך פערדינין.</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0121_a">
+          <speaker>שמעון</speaker>
+          <p>20 זילבער גיב אַער און דער קנעכט איז דיינער</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0122_a">
+          <speaker>אליחלף</speaker>
+          <p>20 זילבער? ווער האט פון אייך 20 זילבער?</p>
+        </sp>
+        <sp who="#eyner" xml:id="YoysefInEgipten_SP0123_a">
+          <speaker>איינער</speaker>
+          <p>איך האָב <stage type="business">% גיט זייא דיא 20 זילבער און נעמט יוסיפען.%</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0124_a">
+          <speaker>יוסף</speaker>
+          <p>ברידער!</p>
+        </sp>
+        <fw type="pageNum">170620</fw>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0125_a">
+          <speaker>שמעון</speaker>
+          <p>שווייג</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0126_a">
+          <speaker>אליח</speaker>
+          <p>וואס רופט ער אייך ברודער?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0127_a">
+          <speaker>שמעון</speaker>
+          <p>בערוהיגט אייך א היינט רופט ער אונז ברודער<lb/>מארגען וועט ער אייך רופען ברודער קאמט <stage type="exit">%אלע אב%</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0128_a">
+          <speaker>יוסף</speaker>
+          <p><stage type="delivery">(וויינט)</stage> ברודער מיינע!</p>
+        </sp>
+        <sp who="#likhlf" xml:id="YoysefInEgipten_SP0129_a">
+          <speaker>אליח</speaker>
+          <p>עס מַאכט ניט אויס אזעלכע ברודער וועסטו איבעראל געפינען<lb/><stage type="exit">(אב)</stage><lb/><stage type="entrance">%אופטריט ראובן שטילערייד צום גריב%</stage></p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0130_a">
+          <speaker>ראובן</speaker>
+          <p>יעצט איז דיא בעסטע צייט אים צו רעטען און צום פאטער<lb/>צו בריינגען. יוסף יוסף איך בין דיין ברודער ראובן<lb/>איך וועל דיך רעטען, יוסף רופ דיך אָן, אָ ער שוַוייגט<lb/>פילַייכט הָאט אים דיא שרעק געטעצטעט?<lb/>יוסף מיין ברידער, א גאט געבע מיר קרעפט אים צו<lb/>רעטען <stage type="business">%ער שפרינגט אריין אין גריב שרייענדיק. דיא ברידער קומען</stage></p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0131_a">
+          <speaker>שמעון</speaker>
+          <p>קאמט ברידער איך רעכען אַז עס איז שוין צייט אַ היים<lb/>צו געהן ווער שרייט עס? ראובן! וואס שרייסטו? ווער<lb/>האט דיך אַער אריינגעווארפען? <stage type="business">%זייא נעמען אים ארויס%</stage></p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0132_a">
+          <speaker>ראובן</speaker>
+          <p>וויא איז יוסף? וואס שווַייגט איהר? וויא אי זיסף?</p>
+        </sp>
+        <pb n="18" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0018.jpg"/>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0133_a">
+          <speaker>יהודה</speaker>
+          <p>שא לארעם ניט אזוי, מיר האבען אים צו דיא מדיָנים<lb/>פערקופט.</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0134_a">
+          <speaker>ראובן</speaker>
+          <p>אזוי קאלטבלוטיג זאגסטו מיר יהודה, איין אייגינעם<lb/>ברודער פערקופט, ברודער מיינע וואס האט איהר<lb/>געטאהן? וואס וועלען וויר דעם פאטער ענטפערען ווען ער וועט<lb/>אונז פרעגין אוף אים?</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0135_a">
+          <speaker>שמעון</speaker>
+          <p>דיא זעלבע אנטוואַרט וויא ער וואלט אין גריב געבליבען</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0136_a">
+          <speaker>ראובן</speaker>
+          <p>אַ שמעון בא דיר איז אלעס אֵיינס זָאגאר איין אייגינעם<lb/>ברודער צו הערמארדען, אַ יוסף וואס וועל איך דעם דעם<lb/>פאטער אנטווארטען ווען ער וועט מיך פרייגען אויף דיר?<lb/>איך בין דאך מעהר פעראנטווארטליך פון אַייך</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0137_a">
+          <speaker>יהודה</speaker>
+          <p>נא וואס קומט ארויס פון דיין וויינין? מיר מוזען יעצט<lb/>קלערען איין פלאן. וואס זאלען מיר דעם פאטער אנטווארטען<lb/>ווען ער וועט אונז פרייגען אויף איהם</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0138_a">
+          <speaker>ראובן</speaker>
+          <p>מאַכט אייך אייערע פלענער אָן מיר, יוסף וויא וועל<lb/>איך קענין קומען צום פאטער אָן דיר.</p>
+        </sp>
+        <sp who="#loy" xml:id="YoysefInEgipten_SP0139_a">
+          <speaker>לוי</speaker>
+          <p>הערט אויס מיינע ברידער, אזוי דאס זיידענע העמדיל<lb/>איז אונז צוריק געבליבין פון איהם, איז מיין ראטה, אז<lb/>מיר זָאלין קוילען אַציגעלע און אנטינקען דאס העמדל<lb/>אין בלוט און עס צום פאטער בריינגען, דער פאטער<lb/>וועט עס גיוויס אנערקענין אלס יוסףס און וועט גלויבען אַז<lb/>איין ווילדע חַיה האט אים צוריסען</p>
+        </sp>
+        <fw type="pageNum">170621</fw>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0140_a">
+          <speaker>יהודה</speaker>
+          <p>. דער פלאן איז פארטרעפליך, נאר הערט מיך אויס<lb/>ברידער בעפאר מיר גייען צום פאטער מוזען מיר<lb/>דאס געהיימניס מיט איין שווור צו דעקען. מיר<lb/>נעמען זאגאר הימעל און הערד פיר עדות און דוא<lb/>ראובן מוזט אויך מיט אונז שווערין. II</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0141_a">
+          <speaker>קאהר</speaker>
+          <p>זייט איהר עדות הימעל און ערד<lb/>וויא מיר שווערען, הערט אָ הערט<lb/>מיר שווערען מיר שווערען<lb/>הייליג צו האלטען דיזע שוואַר<lb/>אליע הערט אלע שווערט אויף דעם ארט.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0142_a">
+          <speaker>יהודה</speaker>
+          <p>ניט פעראטין מיט איין ווארט</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0143_a">
+          <speaker>קאהר</speaker>
+          <p>נישט פעראטען מיט איין וואָרט<lb/>אלע הערט אלע שווערט אויף דעם ארט<lb/>דאס געהיימניס צו בעהאלטען<lb/>ווער עס ווערט קיין ווארט האַלטען<lb/>מיז שטערבען אויף דעם ארט<lb/>דאס געהיימניס צו בעהאלטען<lb/>נישט פעראטען מיט איין ווארט א. ז.וו.</p>
+        </sp>
+        <pb n="19" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0019.jpg"/>
+        <sp xml:id="YoysefInEgipten_SP0144_a">
+          <speaker>סע</speaker>
+          <p>מוז שטערבען אויף דעם ארט.</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0145_a">
+          <speaker>נאר</speaker>
+          <p>מוז שטערבען אויף דעם אַָרט<lb/><stage type="setting">פארהאנג</stage></p>
+        </sp>
+        <trailer>%ענדע ערשטער אקט%</trailer>
+      </div>
+      <div type="act" n="2" xml:id="YoysefInEgipten_Act2">
+        <head>"צווייטער אקט"</head>
+        <stage type="setting">%בא יעקיבען אין צימער מעדכען חאהר זינגען.%</stage>
+        <lg n="7">
+          <l>מיר גאט לויבען פון גרויס ביז קליין</l>
+          <l>דיך צו דאנק איז דאך זייער שיין</l>
+          <l>נאר דיך צו דינען יא נאר דיך אַליין</l>
+          <l>יא יא יא א יא נאר דיך אליין.</l>
+          <l>דוא ביסט אונזער הערשער דער שעפער פון דער וועלט</l>
+          <l>נור דוא קענסט העלפען וועם נור דיר גיפעלט.</l>
+        </lg>
+        <fw type="pageNum">170622</fw>
+        <lg n="8" prev="true">
+          <l>הער צו גאט דיין טרייען קנעכט</l>
+          <l>היט אונז אפ פון לייד</l>
+        </lg>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0146_a">
+          <speaker>קאהר</speaker>
+          <p>מיר גאט א. ז.וו.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0147_a">
+          <speaker>יעקב</speaker>
+          <p>בויימן מיין קינד, ווילסטו געהן זייען צי דיינע<lb/>ברידער זענין שוין געקומען פונים פעלד?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0148_a">
+          <speaker>בנימן</speaker>
+          <p>זייער גערן ליעבער פאטער <stage type="exit">%אב%</stage> ווייסט נישט</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0149_a">
+          <speaker>יעקב</speaker>
+          <p>אַך וויא שרעקט מיר מיין היינט מיין הערץ, -ווייסטו ניט<lb/>ליעבער סֶרח וואס איז מיט דיא קינדער געשעהן וואס<lb/>זייא זענין נאך פון דעם פעלד ניט דא?</p>
+        </sp>
+        <sp who="#srkh" xml:id="YoysefInEgipten_SP0150_a">
+          <speaker>סֶרח</speaker>
+          <p>זייא נישט אזוי בעזארגט ליעבער פאטער זייא וועלין<lb/>געוויס באלד קומען</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0151_a">
+          <speaker>יעקב</speaker>
+          <p>אַך גאט! איך האב מיין טרייען זוהן יוסף אַוועק גישיקט<lb/>צו זייא און מיר שרעקט מַיין הערץ פאר וואס ער<lb/>זאמט זיך אזוי לאנג.</p>
+        </sp>
+        <sp who="#srkh" xml:id="YoysefInEgipten_SP0152_a">
+          <speaker>סֶרח</speaker>
+          <p>ווייסטו דען נישט ליעבער פאטער וואס פיר אַ געהארכזאם<lb/>קינד יוסף איז? ער וועט דיר געוויס גוטע נאכריכטען בריינגען<lb/>פון דיינע קינדער.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0153_a">
+          <speaker>יעקב</speaker>
+          <p>מיין הערץ פילט זייער שרעקליכעס וואס מיין טייערער<lb/>יוסף איז נאך פון פעלד ניט געקאמען</p>
+        </sp>
+        <pb facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0020.jpg"/>
+        <sp who="#srkh" xml:id="YoysefInEgipten_SP0154_a">
+          <speaker>סֶרח</speaker>
+          <p>זייא נישט פערזארגט ליעבער פאטער זינג אונז בעסער<lb/>וואס<lb/>דאס וואס דוא לערינסט אונז אימער</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0155_a">
+          <speaker>יעקב</speaker>
+          <p>יא מיינע טייערע קינדער, איך וועל אייך זינגען דאס<lb/>הייליגע ליעד אבער איהר זאָלט ניט פערגעסען וואס אייער<lb/>פאטער לערינט אייך אימער.</p>
+        </sp>
+        <sp who="#srkh" xml:id="YoysefInEgipten_SP0156_a">
+          <speaker>סֶרח</speaker>
+          <p>זייער גערן ליעבער פאטער, זינג אונז דאס הייליגע ליעד. II</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0157_a">
+          <speaker>יעקב</speaker>
+          <p><stage type="delivery">%זינגט%</stage> געה בעפעלט גאט דער זעעלע<lb/>ווען ער שיקט זיא אויף דער וועלט אראפ<lb/>געה זאגט ער איהר פ מיט פריידע<lb/>דארט וואַרט ביז איך נעם דיך אָפ<lb/>און אז דיר וועט שלעכט גייען דָארט.<lb/>פערצווייפעל ניט מיין קינד<lb/>געדיינק נאר גוט דאס וואָרט<lb/>וואס איך געבע דיר מיט אַצינד</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0158_a">
+          <speaker>קאהר</speaker>
+          <p><lb/>אל רחום אל רחום אל רחום איז מיין נאמען } ביס<lb/>פערגעס דאס ניט</p>
+        </sp>
+        <fw type="pageNum">170623</fw>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0159_a">
+          <speaker>בנימן</speaker>
+          <p><stage type="entrance">%קאמט%</stage> פאטער מיינע ברידער קאמען.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0160_a">
+          <speaker>יעקב</speaker>
+          <p>זייא געבענטשט פון גאט מיין טייערער בנימן<lb/><stage type="entrance">%ברידער הערשיינען%</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0161_a">
+          <speaker>אלע</speaker>
+          <p>פרידען צו דיר פאטער!</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0162_a">
+          <speaker>יעקב:</speaker>
+          <p>פרידען צו אייך מיינע ליעבע קינדער! זענט איהר:<lb/>אלע דא? וואס שווייגט איהר? זענט איהר אלע דא? קיינער<lb/>וויל מיר ניט ענטפערען? ראובן שמעון לוי יהודה יששכר<lb/>זבולן דן נפתלי גד אשר, יוסף... וויא איז יוסף? וואס<lb/>שווייגט איהר? וויא איז יוסף?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0163_a">
+          <speaker>יהודה</speaker>
+          <p>יוסיפין האבין מיר היינט ניט גיזייען</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0164_a">
+          <speaker>יעקב</speaker>
+          <p>איך אליין האב אים צו אייך געשיקט און איהר<lb/>זאגט אַז איהר האָט איהם ניט גיזייען? וויא איז דאס<lb/>מעגליך?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0165_a">
+          <speaker>יהודה</speaker>
+          <p>ניין פאטער מיר האבין אים ניט גיזייען נור....</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0166_a">
+          <speaker>יעקב</speaker>
+          <p>וואס נאר?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0167_a">
+          <speaker>יהודה</speaker>
+          <p>נאר אהיים געהענדיג האבען מיר פֿער געפונין אַ דאס<lb/><stage type="business">%צייגט אים דאס העמדיל%</stage></p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0168_a">
+          <speaker>יעקב</speaker>
+          <p>געזונד אין פריש האב איך דיך אוויק גישיקט, און וואס<lb/>איז גיבליבען פון מיין ציטעריגען יוסף? גרוסער גאט<lb/>פאר וואס האסטו מיך בעסער ניט גענומען צו זיך, איידער<lb/>איך זאהל בא מיינע אלטע יארין דאס דערלעבען, איין ווילדע<lb/>חיה האט מיין קינדס ביינדלעך פערצעהרט... אַ יוסף יוסף<lb/>איך האב שולד אין דיין שרעקליכען טודט. דא מיט וואס<lb/>איך האב דיך געשקט אין אַזא געפערליכען ווייג, רָחל<lb/>מיין טייערע, שטעה אוף פון דיין קבר, און זייא וואס עס איז<lb/>גיבליבען פון דיין קינד, וויפיל יארען לאַנג האסטו גאט געבעטען<lb/>ביז דוא האסט אויסגעוויינט דעם ציטעריגען יוסף, און אם<lb/>ענדע ה זאלען דוך האבען דיא ווילדע חיות מיט זיין פלייש<lb/>געזעטיגט, אוי יוסף יוסף, ביז אין מיין טוידט וועל איך נישט<lb/>אופהערן צו קלאגין נאך דיר.</p>
+        </sp>
+        <pb n="21" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0021.jpg"/>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0169_a">
+          <speaker>קאהר</speaker>
+          <p>אָ הער אונז צו פאטער וויין נישט קלאג נישט אזוי<lb/>טרייסט דיך פאטער מיט אונז. — ביס</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0170_a">
+          <speaker>יעקב</speaker>
+          <p>דָארט לויפט איין קינד אוף אלע ווייגען.<lb/>זיינע ברידער זייען האט ער גיוואלט.<lb/>איין בייזע חיה קומט אים איינטקעגען<lb/>צערייסט זיין פלייש פערצערט אים בלוט באלד<lb/>אין דיא געדערמע פון אַחיה זיך געפינט<lb/>דָארט איז מיין קינד דארט איז מיין קינד<lb/>זא אַיין אָומגליק הָאט נאך קיינעם<lb/>ניט געטראפען אזוי מיר<lb/>געטראפן האט עס נאר מיך איינעם.<lb/>וואס שווייגט איהר טרערין גיסט אָן אַ שיער<lb/>טרויערט גלייך מיט מיר אַצינד<lb/>בעוויינט מיין קינד בעקלאגט מיין קינד</p>
+        </sp>
+        <fw type="pageNum">170624</fw>
+        <fw type="pageNum">2</fw>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0171_a">
+          <speaker>קאהר</speaker>
+          <p>טרייסט דיך פאטער א.ז.וו.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0172_a">
+          <speaker>יעקב</speaker>
+          <p>לַאסט מיך לַאסט מיך צו אים געשווינד<lb/>צו מיין ליעב קינד צו מַיין טַייער קינד<lb/><stage type="business">%ער פאלט אין אָונמאכט אלע אַרום אים פָאזִיצִיאן ביז.%</stage><lb/><stage type="setting">פארהאנג</stage></p>
+        </sp>
+        <div type="scene" n="1" xml:id="YoysefInEgipten_Act2_Sc1">
+          <head>פערוואנדלונג</head>
+          <pb n="22" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0022.jpg"/>
+          <stage type="setting">%אַ שעהן צימער בא זליכען./</stage>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0173_a">
+            <speaker>זליכה</speaker>
+            <p>יעצט בין איך אַַ שענהייט, שענער קען שוין ניט<lb/>זיין נור ניין, נאך אַַ ביסעל רויטעס אויף דיא ליפען<lb/>און אוף דיא בַאקין און שוין, יעצט בין איך אזוי שייען<lb/>דאס קיין מאהל בין איך נאך אזוי שעהן ניט געווייזען,<lb/>יעצט וועל איך זייען צו וועל איך אים היינט אויך ניט<lb/>געפעלן? אַך זייט מיין פויטיפער האט אריין גענעמען<lb/>דעם העברעאישען שקלאווע יוסף לֶעב איך גאר ניט,<lb/>וויא איך געה, וויא איך שטעה, שוועבט זיין שענעס בילד<lb/>פור מיינע אויגען, נאר ער וויל מיך גאר ניט קענין, איך<lb/>פערשטעה ניט, בין איך דען ניט גענוג שעהן איהם צו געפעלן<lb/>יעד הַיינט מוז איך מאכען דיא לעצטע פראבע, איך מוז<lb/>וויסען איין מאל פיר אלע מאהל לעב איך צי בין איך טוידט?<lb/>נון יעצט איז דיא בעסטע צייט מיין מאהן איז נישטא אין<lb/>דער היים איז דיא בעסטע זאך מיט אים זיך צו אונטעראלטין<lb/>יוסף יוסף % יוסף ערשַיינט%</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0174_a">
+            <speaker>יוסף</speaker>
+            <p>וואס ווינטשען זייא מיינע הערן?</p>
+          </sp>
+          <fw type="pageNum">170625</fw>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0175_a">
+            <speaker>זליכה</speaker>
+            <p>וואס איך ווינטש? דיין שענעס געזיכט צו זעהן איז<lb/>שוין גענוג פיר מיר... נאר נעם ליעבער יוסף דיא<lb/>שטיל און שטעל זיא דא אַ נידער, נאר איינס נעבען צווייטען<lb/><stage type="business">%געשיעט%</stage> יעצט ליעבער יוסף געה אונד בריינג מיר דעם<lb/>פרישטיק העריין.</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0176_a">
+            <speaker>יוסף</speaker>
+            <p>זעהר שעהן! <stage type="business">%וויל געהן.%</stage></p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0177_a">
+            <speaker>זליכה</speaker>
+            <p>יוספ....</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0178_a">
+            <speaker>יוסף</speaker>
+            <p>וואס ווינטשן זייא נאך?</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0179_a">
+            <speaker>זליכה</speaker>
+            <p>שטעה ווארט מען דארף ניט... איך וועל ניט עסין, איך<lb/>האב נאך קיין אַפעטיט, איך וועל שפייטֶער עסין</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0180_a">
+            <speaker>יוסף</speaker>
+            <p>זעהר שעהן! %<stage type="business">וויל געהן.</stage>%</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0181_a">
+            <speaker>זליכה</speaker>
+            <p>ווארום ענטליפסטו, ליעבער יוסף? איז דיר דען ניט אנגענעם<lb/>מיט מיר צאזאמען צו זיין? אין ווארום ביזטו זָאָ טרָאָערִיג?</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0182_a">
+            <speaker>יוסף</speaker>
+            <p>האבען זייא מיך דען ווען פרייליכער גיזעהן?</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0183_a">
+            <speaker>זליכה</speaker>
+            <p>אך וויא שעהן זענען דיא ווערטער וואס דיינע ליפען<lb/>רעדען אויס האסטו שוין געפרישטיגט ליעבער יוסף?</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0184_a">
+            <speaker>יוסף</speaker>
+            <p>יא מאַדאַם</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0185_a">
+            <speaker>זליכה</speaker>
+            <p>ווילסטו פילייכט טרינקען מיט מיר אבסיל וויין?</p>
+          </sp>
+          <pb n="23" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0023.jpg"/>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0186_a">
+            <speaker>יוסף</speaker>
+            <p><stage type="delivery">%אפארט%</stage> וואס וויל זיא פון מיר האבין?</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0187_a">
+            <speaker>זליכה</speaker>
+            <p>יוסף וויא שעהן זענין דיינע לאקען נעם מיין קעמעלע<lb/>און מַאך זייא אין ארדנונג.<lb/>אום</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0188_a">
+            <speaker>יוסף</speaker>
+            <p>הערשערען, איך בעקימערע מיך זייער ווייניג אוף מיינע<lb/>לָאקען. איך בעשטרעבע מיר נאר דאס מיין ארבייט<lb/>זאל אימער זיין אין דער בעסטער ארדנונג.</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0189_a">
+            <speaker>זליכה</speaker>
+            <p>אַ וויא שעהן זענין דיינע ליכטיגע אויגין ליעבער יוסף</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0190_a">
+            <speaker>יוסף</speaker>
+            <p>וויא העסליך זענין זייא אבער ווען זייא קוקען אַהין וויא.<lb/>מען דארף ניט</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0191_a">
+            <speaker>זליכה</speaker>
+            <p>אָה וויא עדעל וויא צערטלעך איז דיין גאנצער קערפער</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0192_a">
+            <speaker>יוסף</speaker>
+            <p>איך מאך קיין אונטערשעד פון קערפער אין ערד, איך<lb/>גיעב מיר נאר דיא מיע דאס מיין זעעלע זאל בלייבען ריין</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0193_a">
+            <speaker>זליכה</speaker>
+            <p>האב איך עס מיר ד פארדינט דוא זאלסט מיר אזוי<lb/>ענטפערען?</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0194_a">
+            <speaker>יוסף</speaker>
+            <p>פֿערצייעט הערשערען <stage type="business">%וויל געהן%</stage></p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0195_a">
+            <speaker>זליכה</speaker>
+            <p>וויא אַהין גייסטו ליעבער יוסף?</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0196_a">
+            <speaker>יוסף</speaker>
+            <p>צוריק צו מַיינער אַרבייט</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0197_a">
+            <speaker>זליכה</speaker>
+            <p>היר בלייב זעצע דיך</p>
+          </sp>
+          <fw type="pageNum">170626</fw>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0198_a">
+            <speaker>יוסף</speaker>
+            <p>גאט אין הימעל וויא ווערט מען לויז פון דעם שלאך?</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0199_a">
+            <speaker>זליכה</speaker>
+            <p>הַא יוסף נאך פילסטו ניט וויא ליעב איך האב דיך?<lb/>אָה ניין איך קען עס שוין מעהר ניט אויס האלטען! יוסף<lb/>נאך פערשטייסטו ניט וואס איך פערלאנג פון דיר?</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0200_a">
+            <speaker>יוסף</speaker>
+            <p>וואס קען דיא הערשערען פערלאנגען פון איהר ארמען שקלאווע</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0201_a">
+            <speaker>זליכה</speaker>
+            <p>ליעבע ליעבע, א יוסף איך בין שוין פעריקט, איך קען<lb/>עס שוין מעהר ניט אויס האלטין %<stage type="business">זיא חאפט אים אַרוב ער רייסט זיך</stage><lb/>ניין יוסף איך לָאז דיך ניט אפ פון מיר.</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0202_a">
+            <speaker>יוסף</speaker>
+            <p>אָ מיין פאטער, לאזט מיך צו מיין פאטער. %רייסט זיך אויס%<lb/><stage type="exit">אַב</stage></p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0203_a">
+            <speaker>זליכה</speaker>
+            <p>וואס טוט זיך דא מיט מיר? וואה בין איך? האט ער<lb/>זיך אויס געריסען פון מיינע הענד? ער האט מיר<lb/>צוריק געלאזען זיין מאַנטעל אין מיך האט ער געלָאזט<lb/>אַליין א איך אומגעקליכע אבער ניין? דאס זאהל איהם<lb/>נישט געשענקט ווערען, דאס זאהל אים זיין לעבען קאסטען<lb/>גֶעהָאַָנגעֶן זאהן ער ווערען דער שענדליכער שקלאפע, העלפע<lb/>דינער %<stage type="entrance">דינער ערשיינען</stage>%</p>
+          </sp>
+          <sp who="#diner" xml:id="YoysefInEgipten_SP0204_a">
+            <speaker>דינער</speaker>
+            <p>וואס איז גישעהן?</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0205_a">
+            <speaker>זליכה</speaker>
+            <p>וואס איז גישעהן פראגט איהר, שוין זייט צוויי<lb/>פֿילע שטונדען דאס איך שרייע הילפע אונד איהר<lb/>האט זיך קאם דערמאנט צו קומען.</p>
+          </sp>
+          <pb n="24" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0024.jpg"/>
+          <sp who="#diner" xml:id="YoysefInEgipten_SP0206_a">
+            <speaker>דינער</speaker>
+            <p>מיר שווערין בא גאט אַז מיר האבען גאר ניט גיערט</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0207_a">
+            <speaker>זליכה</speaker>
+            <p>נישט גיערט זאגט איהר? ווייל איהר זענט ניט בעסער<lb/>פון דעם מערדער ה וועלכער האט מיר מיין לעבען<lb/>געוואָלט רויבען</p>
+          </sp>
+          <sp who="#alle" xml:id="YoysefInEgipten_SP0208_a">
+            <speaker>אלע</speaker>
+            <p>מערדער ווער הָאט דָאס גיווַאגט?</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0209_a">
+            <speaker>זליכה</speaker>
+            <p>ווער האט עס גיוואגט פרייגט איהר? זעהט ערקענט<lb/>איהר וועמעס מאנטעל עס איז?</p>
+          </sp>
+          <sp who="#eyner" xml:id="YoysefInEgipten_SP0210_a">
+            <speaker>איינער</speaker>
+            <p>א גאט, דאס איז דאך אונזער אויזפערוואלטערס<lb/>יוסיפס.</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0211_a">
+            <speaker>זליכה</speaker>
+            <p>יָה צום דאַנק דאפיר ווייל איך האב אים הערהובען<lb/>איבער אלע שקלאווען האט ער געוואלט לייגען אַ הַאנד<lb/>אוף זיינער הערען.</p>
+          </sp>
+          <sp who="#alle" xml:id="YoysefInEgipten_SP0212_a">
+            <speaker>אלע</speaker>
+            <p>וואס הערען מיר?</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0213_a">
+            <speaker>זליכה</speaker>
+            <p>איך בין מיר אליין גיזעסען אין מיין צימער איז<lb/>ער אַריין געקאמען דער שענדליכער און האט<lb/>זיך געזעצט נעבען מיר, און העט מיר ליעבעס<lb/>ערקלערונגען געמאַכט אונד מיך זיינע הייגינע<lb/>העררן שענדין געוואָלט מיט אלע מיינע קרעפטען הָאב<lb/>איך מיך געוועהרט געגען איהם און געשריגען הילפע<lb/>אבער איהר זענט אלע וויא איינגעשלאפין, ענדליך איז<lb/>מיר געלינגען אליין אים בא צוקומען, אונד וויא<lb/>איך האב אים געפאקט בא זיין מאנטעל אן געהאלטען<lb/>האט ער צו ענדע זיך אויס גערופען און זיין<lb/>מאנטעל איז מיר צוריק געבליבען.</p>
+          </sp>
+          <fw type="pageNum">170627</fw>
+          <sp who="#alle" xml:id="YoysefInEgipten_SP0214_a">
+            <speaker>אלע</speaker>
+            <p>יָאגט אים נאך! גֶעהָאנגֶען זאהל ער ווערען %לויפין אַפ/</p>
+          </sp>
+          <sp who="#zlikhh" xml:id="YoysefInEgipten_SP0215_a">
+            <speaker>זליכה</speaker>
+            <p>וואס יוסיפין הענגען? וויא וועל איך דאס קענען איבער<lb/>I לעבען איך ליעב דָאָך אים, זיין טוידט איז דאך<lb/>אויך מיינער אך וואס רעד איך? עס קען נאך<lb/>אַ מאָהל דיא ווַארהַייט ארויס קאמען, און דאן וואס וועט<lb/>מיין מָאן פוטיפר אין דיא גאנצע וועלט זאגען? דָיין זליכה<lb/>ביסטו פערלוירען אויף הייוויג! נאר ניין! זליכה, קיין מוטה<lb/>פערלירען אין קערקער מוז ער פריער געהן, דארט וועט ער<lb/>צַייט הָאַבען זיך צו בעדענקען אַז עס איז בעסער געליבט<lb/>צו ווערען פון זליכען וויא צו זיצען אין נאסין קערקער<lb/><stage type="entrance business">אין קעטען געשלאסען %מען בריינגט יוסיפען אין קייטין </stage><metamark function="musicCue" ana="#cue-number" place="inline" n="9">No. 9</metamark>%</p>
+          </sp>
+          <pb n="25" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0025.jpg"/>
+          <sp who="#chor" xml:id="YoysefInEgipten_SP0216_a">
+            <speaker>קאהר</speaker>
+            <p>נו נעמט שוין קינדער נעמט שוין געשווינדער<lb/>דעם פארברעכער אין דיא הענד<lb/>זאהל הערפילען אין דעם ווייג דעם קילען<lb/>פון דעם קערקער דיא נאסע ווענט<lb/>זיין הערען האט ער שענדען גיוואלט<lb/>נו נעמט אים בינד אים אין קייטין שליסט אים<lb/>און פירט אים אין נאסען קערקער באַלד<lb/>זיין פערדינטע שטראפע לאז הערען אַ שרעק<lb/>נו נעמט שוין קינדער נעמט געשווינדיר<lb/>פירט אים אַוועק אַוועק!</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0217_a">
+            <speaker>יוסף</speaker>
+            <p>גענאדע מיטלייד הערט מיך ערשט אויס<lb/>הערט מיך הערט אויס<lb/>אַך גאט וואס האב איך הערלייבט<lb/>ווען איהר ווייסט פון וויימען איך קים ארויס<lb/>וואלט איהר אוף מיר דאס ניט געגלויבט<lb/>דארט בין איך בי מיין פאטער יעקב הערצויגען<lb/>אויף גאלד אין זילבער בין איך בא אים געוועזען<lb/>בא מיין פאטער אין דעם לאנד כנען<lb/>און יעצט מוז איך זא שנעל איין שקלאווע זַיין<lb/>% דאס קאר זינגט ביז פינַאל יוסף פאלד אוף דער ערד<lb/><stage type="setting">פֿאראהנג פאלט</stage></p>
+          </sp>
+          <fw type="pageNum">2</fw>
+          <fw type="pageNum">170628</fw>
+          <trailer>ענדע 2 אקט</trailer>
+        </div>
+      </div>
+      <div type="act" n="3" xml:id="YoysefInEgipten_Act3">
+        <head>דריטער אקט</head>
+        <stage type="delivery">%זינגט%</stage>
+        <pb n="26" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0026.jpg"/>
+        <stage type="delivery">/פראזע/</stage>
+        <fw type="pageNum">170629</fw>
+        <pb n="27" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0027.jpg"/>
+        <stage type="business">לעבע וואהל %ער לייגט זיך אין ווערט ענטשלאפען עס הייבט זיך</stage>
+        <stage type="setting">אויף אַ בילד רחל מיט מלאכים%</stage>
+        <sp who="#englen" xml:id="YoysefInEgipten_SP0218_a">
+          <speaker>ענגלען</speaker>
+          <p>פערצווייפעל ניט מענטש<lb/>ווען דיר גייט שלעכט<lb/>אין גאט פערטראו ער איז רעכט<lb/>האף נאך ליעבעס קינד אלעס קאמט צ מיט דער צייט</p>
+        </sp>
+        <sp who="#rkhl" xml:id="YoysefInEgipten_SP0219_a">
+          <speaker>רחל</speaker>
+          <p>יוסף יוסף מיין טייער קינד<lb/>געליטען האסטו שוין אזוי פיעל<lb/>געליטען אהן אַ שיער</p>
+        </sp>
+        <sp who="#englen" xml:id="YoysefInEgipten_SP0220_a">
+          <speaker>ענגלען</speaker>
+          <p>איין ענדע צו דיינע ליידען שוין<lb/>איין ענדע צו דיינע ליידען<lb/>דיין שטערען שיינט שוין ווידער</p>
+        </sp>
+        <sp who="#rkhl" xml:id="YoysefInEgipten_SP0221_a">
+          <speaker>רחל</speaker>
+          <p>און אויס לעשען וועט ער שוין קיין מאהל<lb/>קיין מאהל קיין מאהל ניט מעהר.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0222_a">
+          <speaker>יוסף</speaker>
+          <p>מוטער מוטער העלף דיין קינד<lb/>געליטען האב איך שוין אזוי פיעל</p>
+        </sp>
+        <fw type="pageNum">170630</fw>
+        <sp who="#englen" xml:id="YoysefInEgipten_SP0223_a">
+          <speaker>ענגלען</speaker>
+          <p>אין גאט פערטראע.. א. ז.וו.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0224_a">
+          <speaker>יוסף</speaker>
+          <p>אַ וויא שלעכט איז מיר אויס האלטען בין איך ניט<lb/>אומשטאנד העלף מוטער דיין קינד<lb/><stage type="delivery">%דיא ענגלין זינגין איבער דאס זעלבע נאכער פראזע%</stage></p>
+        </sp>
+        <sp who="#rkhl" xml:id="YoysefInEgipten_SP0225_a">
+          <speaker>רחל</speaker>
+          <p>הער מיך אויס מיין קינד יוסף, שווער איז דעם מענטשען<lb/>זיינע יִאַרֶען אב צו לעבין און דאַבי זיך ניט בעקלאגען<lb/>און דער באי נאך מענטש צו בלייבען אלזא מיין קינד הער<lb/>צו דיא ווערטער וואס דיין טרייע מַוטער זאגט דיר דאס<lb/>לעצטע מאָהל. זייא וויסען מיין קינד אז פון יעצט אָן פאנגט<lb/>אן דיין גליק שטערען צו שיינען ווַייט זייער וויַיט וועט<lb/>ער זיינע שטראלען צו שיקען, דיין נאמען ווירט זיך הערען<lb/>פון איין עק וועלט ביז אין דעם אנדערען, גאנץ פָאל וועט<lb/>זיין דער בעכער וואס דאס גליק וועט דיר געבען<lb/>אויס צו טרינקען, פון דעם קלענסטען ביז דעם גרעסטען<lb/>וועט יעדער קישען דעם שטויב פון דיינע פיס אבער<lb/>נעם דיר אין אַכט מיין קינד וואס דיין ו מוטער זאגט<lb/>דיר אַצינד, קרעץ אויס דיא ווערטער אויף דיינעם<lb/>הערצען, זאלסט ניט פערגעסען אַז דוא ביזט אַיין<lb/>שטערבליכער קערפער גלייך מיט אלע אהנע<lb/>אויס נעהמע זענין אַ יעדען מענטשען זיינע טייג צו<lb/>געציילט, אלזא מיין קינד זאלסט זעהן אַז דיין זעעלע<lb/>זאהל ניט בעפלעקט ווערען אַז ווען דער בעשעפער<lb/>וועט זיא פאן דיר פערלאנגען זאהלסטו זיא איהם<lb/>אב געבען זא ריין זא שיין וויא דוא האסט זיא<lb/>בא אים עמפפאנגען מעהר האט דיין טרייע מוטער ניט<lb/>צו זאגען לעבע וואָהל מיין קינד, לעבע וואהל מיין קינד יוסף.<lb/><stage type="delivery">%זינגט% געה בעפעהלט גאט דער נשמה. א. א. ז.וו.</stage><lb/><stage type="business">%טאבלא פערשווינדען און יוסף חאפט זיך אויף%</stage></p>
+        </sp>
+        <pb n="28" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0028.jpg"/>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0226_a">
+          <speaker>יוסף</speaker>
+          <p>מוטער מוטער אך וויא זיס וויא שיין וואר דער טרוים<lb/>אבער וויא גיך איז דער פערשווינדען, אָ שוין ווידער<lb/>קאמען מיינע פאניגער צו מיר, קאמט מאכט אַיין<lb/>ענדע צו מיין לעבען</p>
+        </sp>
+        <sp who="#mrd" xml:id="YoysefInEgipten_SP0227_a">
+          <speaker>מרד</speaker>
+          <p><stage type="entrance">%קאמט%</stage> יוסף הערקענסטו ניט דיין פריינד מָרד</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0228_a">
+          <speaker>יוסף</speaker>
+          <p>איך געדיינק ניט נאר עס קלינגט מיר דער נאמען</p>
+        </sp>
+        <sp who="#mrd" xml:id="YoysefInEgipten_SP0229_a">
+          <speaker>מרד</speaker>
+          <p>עס איז קיין ווינדער בא זעלכע מאטערען דאס געדעכטניש<lb/>צו פערלירען, יוסף מיין פריינד קענסטו זיך<lb/>הערינערען דאס צוריק מיט 2 יארע בין איך<lb/>מיט מיינעם קאמאַראַד אין דעם זעלבען קערקער<lb/>גיזעסען<lb/>ף יא איך געדיינק איך הערינערע מיך שוין<lb/>ד קענסט זיך אויך הערינערען ווען אין איינעם טַאגע<lb/>ביזטו צו אונז געקאמען אין האסט אונז געפרייגט ווארום<lb/>מיר זייען זא שלעכט אויס האבען מיר דיר גיזאָגט<lb/>דאס אונז ביידע האט געטרומט איין הענליכער<lb/>חלום קענסט זיך הערינערען דאס מיר האבען דיר<lb/>אונזערע טריימע געלאָזט הערען אין דוא האסט אונז<lb/>בעשיידאן און עס וואַהר אויך וואַר וויא דוא האָסט<lb/>אונז געזָאגט איך בין צוריק אויף מיין שטעלע געקאמען<lb/>אין מיין קאמעראד איז געהאנגען געווארען, יעצט ליע<lb/>יוסף זייא וויסין דאס דעם קעניג פרעה האט געטרוימט<lb/>אַיין זאנדערבארער טרוים אונד נימאנד איז אומשטאנד<lb/>דעם טרוים ריכטיג צו בעשיידען, און דער צייט האב<lb/>איך זיך ערינערט אין דיר ליעבער יוסף און האב<lb/>דעם קעניג געלאזט הערען וועגען דיר, און דער קענעם<lb/>האט בעפוילען דיך צו אים צו בריינגען, אלזא<lb/>ליעבער יוסף קאם מיט מיר איך וועל דיך אַנקליידען.<lb/>און צום קעניג פירען</p>
+        </sp>
+        <fw type="pageNum">170631</fw>
+        <pb n="29" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0029.jpg"/>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0230_a">
+          <speaker>יוסף</speaker>
+          <p>הייליגער גייסט פון מיין מוטער, בעגלייטע מיך<lb/>אויף דעם וועג צום קעניג לערען מיינע ליפען דעם<lb/>קעניג דיא ריינע ווַארהַייט צו זאגען הייליגער<lb/>גייסט פון מיין מוטער II<stage type="exit"> %בעטענד אב%</stage> פייניט<lb/><stage type="setting">פאראנג</stage> <add>פאלט</add></p>
+        </sp>
+        <div type="scene" n="1" xml:id="YoysefInEgipten_Act3_Sc1">
+          <head>פערוואנדלונג</head>
+          <stage type="setting">%באם קעניג פרעהן אין זאהל פרעה זיצט אויף זיין טראהן%</stage>
+          <sp who="#chor" xml:id="YoysefInEgipten_SP0231_a">
+            <speaker>קאהר</speaker>
+            <lg n="9">
+              <l>געטער שטיצט מיט אייער רעכטער האַנד</l>
+              <l>}ביס</l>
+              <l>אונזער קעניג און אונזער לַאנד</l>
+              <l>זעגניט אים מיט מַאכט } ביס</l>
+              <l>שטענדיג זיינע פיינדע בעזיגען איבעראל</l>
+              <stage type="exit">%אב%</stage>
+            </lg>
+          </sp>
+          <sp who="#mrd" xml:id="YoysefInEgipten_SP0232_a">
+            <speaker>מרד</speaker>
+            <p><stage type="delivery">% מעלדעט%</stage> דער העברייער יוסף</p>
+          </sp>
+          <sp who="#freh" xml:id="YoysefInEgipten_SP0233_a">
+            <speaker>פרעה</speaker>
+            <p>ער זאהל הערשַיינען<lb/><stage type="entrance costume">%יוסף קומט אריין אָנגעקליידעט שענער וויא פארער פערנאגט זיך%</stage></p>
+          </sp>
+          <sp who="#freh" xml:id="YoysefInEgipten_SP0234_a">
+            <speaker>פרעה</speaker>
+            <p>ביזסטו דער העברעער יוסף וואס דוא ביזט אומשטאנד<lb/>איין טרוים צו בעשיידען?</p>
+          </sp>
+          <fw type="pageNum">170622</fw>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0235_a">
+            <speaker>יוסף</speaker>
+            <p>אָהנע דיא הילפע פאן מיין גאט בין איך קיין<lb/>זַאך אָומשטַאנד</p>
+          </sp>
+          <sp who="#freh" xml:id="YoysefInEgipten_SP0236_a">
+            <speaker>פרעה</speaker>
+            <p>מען האט מיר פאן דיר פיעלע ווינדער הערציילט<lb/>אונד דַאפיר האָב איך דיך רופען לאסען דוא זאלסט<lb/>מיר מַיינע טריימע בעשיידען</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0237_a">
+            <speaker>יוסף</speaker>
+            <p>זאהל מיר דער קעניג זיינע טרוימע הערציילען<lb/>און וואס גאט וועט מיר אין מיין מונד שיקען דאס וועל<lb/>איך דעם קעניג זאגען.</p>
+          </sp>
+          <sp who="#freh" xml:id="YoysefInEgipten_SP0238_a">
+            <speaker>פרעה</speaker>
+            <p>מיר האט געטרוימט דאס איך בין גישטאנען באם<lb/>טייהך פלוס נילוס, און האב גיזייען וויא פון דארט זינד ארויס<lb/>7 פעטע קיע זעהר העסליך צום אנזעהן, דיא 7<lb/>מאגירע פערשלינגען דיא 7 פעטע אונד זינד געבליבן<lb/>זא העסליך אונד מאַגער וויא צו פאָהר נאך דיזען טרוים<lb/>האב איך הערוואַכט און בין ווידער אנגעשלאפין, האט מיך<lb/>ווידער גיטרוימט דאס איך שטייע באם פלוס נילוס<lb/>און זעה דוויא פון דָארט איז ארויס איין שטרוא מיט<lb/>7 פעטע זאנגען זעהר שעהן צום אנזעהן, בַאלד<lb/>דארוף זינד ארויס 7 מאגירע זאנגען זייער<lb/>העסליך צום אנזעהן, האבען אויך היר דיא 7 מאג[-]<lb/>זאנגען פערשלאנגען דיא 7 פעטע אונד זינד געבלי[בן]<lb/>זא מאגער אין העסליך וויא צופאָר, דאס זינד מיינ[ע]<lb/>ביידע טריימע וואס איך האב גיהָאט אין איין נַאכט<lb/>דוא קליגסטע אונד געלערינטע שטערנזעהר פון מיין לא[נד?]<lb/>האב איך רופען לַאסען אונד יעדער האט מיר מיין טרוי<lb/>אנדערש בעשידען, אבער איך וואר פון קיין איינציגען פון [זיי?] -<lb/>צופרידען, יעצט ביזסטו נאך דער לעצטער דוא זאהלסט<lb/>מַיינע טריימע בעשיידען, אבער הערע מיך אויס,<lb/>דוא ביזסט אַיין הייעברעהר, דוא ווַאגסט און דיינעם געגענווַארט<lb/>פון דיינעם גאט צו שפרעכען, דוא ביסט שטאלץ אויף אים<lb/>דוא גיי זאגסט וואס ער דיר און דיינעם מונד שיקען ווירד<lb/>דאס וועסטו מיר דיינעם קעניג זאגען, זא בין איך ווירקלעך<lb/>נייגעריג צו הערען, אבער בעפאר דוא בעגינסט צו שפרעכען<lb/>נעם דיר אין אַכט ווערדע איך דיר דיינער דייטונג<lb/>צו פרידען זיין, זא זאהלסטו בעלוינט ווערען וויא דער קעניג<lb/>פון עגיפטען בעלוינען קען , פָאלס אבער ניט, זא זאלסטו אוף<lb/>דער שטעלע געטעדטעט ווערדען, יעצט שפרעך.</p>
+          </sp>
+          <pb n="30" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0030.jpg"/>
+          <fw type="pageNum">170633</fw>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0239_a">
+            <speaker>יוסף</speaker>
+            <p>אוף מיין גאט בין איך אום זאנסט ניט שטאלץ, דען קיין<lb/>זַאך אוף דער וועלט געשיעט נישט ביז ער זאהל עס<lb/>פריער ניט האָבען בעשטימט, <add>פאזא</add> דיינע ביידע טריימע<lb/>קעניג, זענין נאר איין טרוים אונד אַיין ווינק אוף<lb/>דער / צוקונפט פון דיין לאנד עגיפטען, דיא 7 פעטע קיע<lb/>אדער דיא 7 פעטע זאַנגען בעדייטען אים 7 יאהר, דיא 7 מאגערע<lb/>קיע אדער דיא 7 מאגירע זאַנגין בעדייטען ווידער אים 7<lb/>אנדערע 7 יאהר אין איין זעהר שנעלער ציַיט וועט<lb/>זיך אַנפאַנגען אין דיין גאנצען לַאנד עגיפטען 7 פעטע יארען<lb/>אין דיין גאנצען לאנד וועט ווערען זא איין זעט, דאס זייט דיין<lb/>קלאנד עגסיסטירט איז נאך זא איין זעט ניט גיוועהן.<lb/>באלד דארוף נאך דיא 7 יאהר וועט זיך אַנפאנגען<lb/>7 אונגער יאהר אין דַיין גאנצען לַאנד וועט ווערען זא<lb/>איין אונגער, דאס דיא 7 פעטע יאהר וועלען מוזען אין<lb/>גאנצען פערגעסען ווערען, עס ווערד זיין זא איין אונגער!<lb/>דַאס זינד <add>זינד</add> דיין לאנד עקסעסטירט איז נאך צו איין הונגער<lb/>ניט געוויין אונד <unclear>דארוך</unclear> איז עס דיר 2 געצייגט געווארדען<lb/>איין צייכען דאס זייער אין אַ שנעלער צייט וועט עס גישעהן<lb/>און דער גאט וואס דוא ביזט אזוי נייגירעג צו וויסען פון אים<lb/>האט דיר געשיקט אָן זאגען אז דוא זאהלסט זיך זייען פָאר<lb/>בערַייטען פון דיא 7 פעטע יאהרע אויף דיא 7 הונגער<lb/>יאהרע, דאס דיין לאנד עגיפטען זאהל דורך דעם<lb/>הונגער צו גרונדע נישט געהן.</p>
+          </sp>
+          <pb n="31" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0031.jpg"/>
+          <sp who="#freh" xml:id="YoysefInEgipten_SP0240_a">
+            <speaker>פרעה</speaker>
+            <p>יוסף מיין פריינד טרעט צו נעהנטער, איך בין<lb/>איבערצייגט דאס דָוא דיא ריינע ווארהייט געשפראכען<lb/>הַאסט, דען דיא זעלבע דייטינג האב איך אויך אין מַיינע<lb/>טריימע גילייזען, יא דיא גרעסע פאן דיינעם גאט<lb/>אנערקענע איך יעצט, אונד איך דַאנק איהם דאס<lb/>ער האט דיך צו מיר צוגישיקט אויף מיינע אלטע יאהר,<lb/>איין שטיצע צו זיין, דען זא איין קלאגען געלערענטען<lb/>מאהן וועלכער זאהל בעזיצען גאטס גייסט און זיך<lb/>דעם ווירדע איך ניע פינדען אונד נאר דוא אַליין<lb/>פערדינסט אַיין שטעלפערטרעטער צו זיין, הערט מיך<lb/>אויס, פון דיעזען אויגינבליק הערקלערע איך דען<lb/>העברעער יוסף וועלכען איך גיעבע אַ נן נאמען<lb/>צָפנת פַענח אלס הערשער איבער גאנץ עגיפטען<lb/>זיינע בעפעלע זאלען רעגירען דאס גאנצע לַאנד<lb/>קיינער זאהל זיך נישט וואַגען דערווידער צו זיין<lb/>געגען זיין בעפעהל אונד ווער עס וועט זיך ווידערשפעניגען<lb/>געגען אים, דער הָאט זיך געגען אים אייער קעניג<lb/>פערזינדיגט, קיין אונטערשיד זאהל זיין צווישען מיר<lb/>אונד איהם אויסער דער טרָאָן אליין, יעצט מאכט אַייך<lb/>פערטיג צו דער גרויסער פאראדע וואס איך מאך<lb/>צו ליעב דעם נייעם וויצע קעניג, <add>עס</add> זיא זאל מיט דעם<lb/>זעלבען פראַכט געמַאכט ווערען אלס ווען איך איַיער<lb/>II קעניג געקריינט ווארדען בין <stage type="costume">%מען טוט יוסיפיען אן קעניגליכע</stage><lb/><stage type="costume entrance">קליידער דאס קאהר קומט אָן מארשירענדיג דיא בינע%</stage></p>
+          </sp>
+          <fw type="pageNum">170634</fw>
+          <sp who="#freh" xml:id="YoysefInEgipten_SP0241_a">
+            <speaker>פרעה</speaker>
+            <p><stage type="delivery">%געזאנג%</stage> צום וויצע קעניג ביזטו ערנַאנט<lb/>נאך דיין בעפעהל צו רעגירען דאס לַאנד<lb/>ווער דיין בעפֿעהל נאר איבער טרייט<lb/>מוז אויף דער שטעלע ווערען גיטייט<lb/>שווערע צו מיר געטרייע צו זַיין.</p>
+          </sp>
+          <sp who="#iusf" xml:id="YoysefInEgipten_SP0242_a">
+            <speaker>יוסף</speaker>
+            <p>איך דאנק דיר גרוסער הערשער<lb/>פיר דיין גרויסער גנאדע<lb/>אוי וויא גוט איז דיין הערץ }ביס<lb/>איך שווערע צו דיר געטרייע צו זיין</p>
+          </sp>
+          <pb n="32" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0032.jpg"/>
+          <sp who="#freh" xml:id="YoysefInEgipten_SP0243_a">
+            <speaker>פרעה</speaker>
+            <p>יוסף מיין פרַיינד יוסף מיין פריינד<lb/>אזוי איז רעכט דוא בלייבסט מיר טרייע<lb/>יָא טרייע אויף או אייוויג.</p>
+          </sp>
+          <sp who="#beyde" xml:id="YoysefInEgipten_SP0244_a">
+            <speaker>ביידע</speaker>
+            <p>יָא יָא מיין קעניג דוא בלייבסט מיר טרייע<lb/>אויף הייביג.<lb/>איך בלייב דיר טרייע, יא טרייע אוף אייוויג<lb/><stage type="delivery">%דאס חאהר זינגט ביז פינַאל פרעה פירט יוסיפען</stage><lb/><stage type="business">ארוב דיא בינע!</stage><lb/><stage type="setting">פארהאנג פאלט</stage></p>
+          </sp>
+          <trailer>ענדע פון 3טען אַקט</trailer>
+          <fw type="pageNum">170635</fw>
+        </div>
+      </div>
+      <div type="act" n="4" xml:id="YoysefInEgipten_Act4">
+        <head>פיערטער אַקט 4er Act</head>
+        <sp xml:id="YoysefInEgipten_SP0245_a">
+          <speaker>מעדכען קאהר</speaker>
+          <p>אוי אוי אוי אונגעריג זענין מיר דאך זייער<lb/>אוי אוי אוי פאסטען קענין מיר דאך שוין ניט }ביס<lb/><add>מעהר</add><lb/>עסען עסען עסען עסען}<lb/>ביס<lb/>אוי מיר ווילען עסען<lb/>עסען עסען עסען עסען עסען.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0246_a">
+          <speaker>בנימן</speaker>
+          <p>%<stage type="entrance">ערשיינט</stage>% אַ שטיקעל ברויט אזוי גרויס וויא דער פינגער<lb/>קען אונז דען שטילען דען הונגער.<lb/>ווארום גיבט מען אונז ניט אויך וויא אַ מאהל<lb/>עפעל בארען טייטלען אָן אַ שיער צאהל</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0247_a">
+          <speaker>קאהר</speaker>
+          <p>אוי אוי הונגעריג זענין מיר דאך זעהר! א. ז.וו.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0248_a">
+          <speaker>בנימן</speaker>
+          <p>שטילער זאל זיין זייע נאר פו וואס פאר אַ<lb/>געוואלדען זייא מאַכען, דער פאטער איז אזוי קראנק<lb/>און איהר לאזט אים ניט ריען</p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0249_a">
+          <speaker>אלע</speaker>
+          <p>מיר ווילען עסען עסען.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0250_a">
+          <speaker>בנימן</speaker>
+          <p>שיימען מעגט ז איהר זיך איהר עלטערע קינדער<lb/>אַנשטאט איהר זאָהלט דיא קלענערע קינדער אָנשטילען<lb/>מַאכט איהר נאך דעם ליארעם גרעסער</p>
+        </sp>
+        <pb n="33" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0033.jpg"/>
+        <sp xml:id="YoysefInEgipten_SP0251_a">
+          <speaker>אלע</speaker>
+          <p>אזוי מיר ווילען אבער עסין.</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0252_a">
+          <speaker>סֶרח</speaker>
+          <p>וויא לאנג אים אַז איך האב אַייך פרישטיג געגעבען?</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0253_a">
+          <speaker>אלע</speaker>
+          <p>זיא האט אונז געגיבין צו פיצליך ברויט.</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0254_a">
+          <speaker>בנימן</speaker>
+          <p>נא שאט מאכט קיין געוואלדען, הערט מיך בעסער אויס<lb/>האט איהר גיערט וואס פאר אַ גרויסער הוגער עס הערשט<lb/>יעצט אויף דער וועלט? אנדערע האבען פילייכט דאס אויך<lb/>ניט, מיר הָאבין דָאך וואַס צו עסען, איבער הופט אז<lb/>דיא ברידער וועלען צוריק קאמען פון עגיפטען דָאמאלס<lb/>וועלן מיר הָאבין זייער פיעל צו עסין, געהט בעסער<lb/>קינדער אין פעלד אַריין אין שפילט אַייך אין ווען איהר<lb/>וועט דערזעהן פון ווייטינס, אייערע פעטערס קומען<lb/>זאלט איהר גלייך מיר קומען זאגען</p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0255_a">
+          <speaker>אלע</speaker>
+          <p>איך וועל זאגין</p>
+        </sp>
+        <sp who="#srkh" xml:id="YoysefInEgipten_SP0256_a">
+          <speaker>סֶרח</speaker>
+          <p>וואס זאהל דאס בעדייטין ליעבער בנימען, וואס דוא ברידער<lb/>זאמען זיך אזוי לאנג, איך דענק אז זייא האבען נאך<lb/>געסטערן שוין געזאלט זיין צוריק.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0257_a">
+          <speaker>בנימן</speaker>
+          <p>פערגעס ניט ליעבערף סֶרח דאס דער פאטער הָאט<lb/>זייא אן געזאגט אַז זייא זאלן יעדער איינער<lb/>דורך אַ בעזונדער טייער אין שטאט אריין געהן.<lb/>פילַייכט וועלען זייא דארט אויסגעפונין אונזער<lb/>פערלורענק ברודער יוסף</p>
+        </sp>
+        <fw type="pageNum">170626</fw>
+        <sp who="#srkh" xml:id="YoysefInEgipten_SP0258_a">
+          <speaker>סֶרח</speaker>
+          <p>גאט זאהל מיר נאך העלפען אונזער ליעבען יוסף<lb/>לעבענדיג צו זייען</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0259_a">
+          <speaker>בנימן</speaker>
+          <p>וואס דארפען דיא האפנונג ניט פערליבען, דען דער<lb/>ליעבער גאט האט געשווירען אז בא זיין טרייען קנעכט<lb/>יעקבן זאהל ער קיין קינד צו נעמען בא זיין לעבען<lb/>אונד איך ליעבער סֶרח האט נאך מיין פערליריעניק ברודער<lb/>יעדעןטאג, ווידער צו זייען</p>
+        </sp>
+        <sp who="#srkh" xml:id="YoysefInEgipten_SP0260_a">
+          <speaker>סֶרח</speaker>
+          <p>א גאט! זאהל אאונזער ליעבער יוסף זיך בא מערדער<lb/>אין דיא הענד געפונין? מיר קענען אנדערש ניט<lb/>דייניקין נור ער איז צו מערדער אין דיא הענד<lb/>אריין געפאלען אין זייא האבין אים פאר אַ שקלאווער<lb/><stage type="entrance">פערקופט %יאחסעל הערשיינט %קינדער לייפין אים נאך</stage><lb/><stage type="delivery">שרייענדיג%</stage></p>
+        </sp>
+        <sp who="#kinder" xml:id="YoysefInEgipten_SP0261_a">
+          <speaker>קינדער</speaker>
+          <p>מיר איין עפיל! מיר איין עפיל</p>
+        </sp>
+        <pb n="34" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0034.jpg"/>
+        <sp xml:id="YoysefInEgipten_SP0262_a">
+          <speaker>יאחסעל</speaker>
+          <p>רחַאפט ניט איך וועל אייך אַליין געבען<lb/><stage type="exit business">%ער גיט זייא, קונדער אפ%</stage></p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0263_a">
+          <speaker>בנימן</speaker>
+          <p>יאחסעל הערצעלע מיר ווארום האט איהר זיך<lb/>אזוי לאַנג אוף דער רייזע געזאגט?</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0264_a">
+          <speaker>יאחסעל</speaker>
+          <p>וואס ווייסטו בנימטשיקעל ווַאס מיר האבען גיהאט?<lb/>עס איז גיווען אזוינס אז מיר האבען גיהאט צו זינגען<lb/>און צו זאגען, עס איז אַגליק וואס דוא ביזט מיט אונז?<lb/>ניט מיט גיוועהן, דען אזא קינד וויא דוא וואלסט פאר שרעך<lb/>אליין געשטארבען.<lb/><add>גישעהן</add></p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0265_a">
+          <speaker>בנימין</speaker>
+          <p>אַ יאחסעל הערצעלע שנעלער וואס איז דארט גיוויין?<lb/>זענט איהר אלע צוריק געקאמען??</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0266_a">
+          <speaker>יאחסעל</speaker>
+          <p>געוויס אלע נאר איין שמעון פייגט אונז.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0267_a">
+          <speaker>בנימן</speaker>
+          <p>שמעון פיילט הערצעלע גיכער לעבט ער, אדער<lb/>איזט ער טוידט?</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0268_a">
+          <speaker>יאחסעל</speaker>
+          <p>ער איז ניט טוידט ערלעבט שכיף דיך ניט</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0269_a">
+          <speaker>ביימן</speaker>
+          <p>ערצעלע גיכער וואס איז שמעון גיבליבען?</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0270_a">
+          <speaker>יאחצעל</speaker>
+          <p>ער איז צריק אין עגיפטען געבליבען</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0271_a">
+          <speaker>בנימן</speaker>
+          <p>וואס? שמעון צוריק אין עגיפטען? ווארום דען?</p>
+        </sp>
+        <fw type="pageNum">170637</fw>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0272_a">
+          <speaker>יאחצעל</speaker>
+          <p>הער מיך אויס, עס איז אזוי גיווען, אזוי מיר האבען<lb/>זיך בעשלאסען אז מיר זאלען קיין עגעפיטין אַריין<lb/>געהן זענין מיר גיגאנגין נאך עגיפיטען</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0273_a">
+          <speaker>בנימן</speaker>
+          <p>אבער יאחצעל הערצעלע שוין.</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0274_a">
+          <speaker>יאחצעל</speaker>
+          <p>האבין מיר זיך בעשלאסען אריין צו געהן יעדער<lb/>איינער דורך אַַ בעזונדערן טייער</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0275_a">
+          <speaker>בנימען</speaker>
+          <p>נו?</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0276_a">
+          <speaker>יאחצעל</speaker>
+          <p>אז דיא נעקיסט קען איך זיך ניט דערציילין אַז<lb/>דוא וועסט אויף הערען מאכן נונו וועל איך דיר דערציילין</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0277_a">
+          <speaker>בנימען</speaker>
+          <p>נא דערצייל שוין</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0278_a">
+          <speaker>יאחצעל</speaker>
+          <p>הערשע מיך אויס, האבען מיר בעשלָאסען צו געהן<lb/>נאך עגיפטען אין זוכען יוסיפען אין אַז מיר וועלען<lb/>איהם געפונין וואס זאהלין מיר טיהען? האבען מיר<lb/>זיך בעשלָאסען צו געבען געלד וויפיל מען וועט וועלען<lb/>אין יוסיפען אויס קויפען.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0279_a">
+          <speaker>בנימן</speaker>
+          <p>געוויס גאנץ ענטשידען</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0280_a">
+          <speaker>יאחצעל</speaker>
+          <p>אז דיא וועסט זאגען, געוויס, און גאנץ געוויס<lb/>ענטשידען וועל איך ניט העזציילין.</p>
+        </sp>
+        <pb n="35" facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0035.jpg"/>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0281_a">
+          <speaker>בנימין</speaker>
+          <p>אבנר הערצעלע דאך</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0282_a">
+          <speaker>יאחצעל</speaker>
+          <p>האבען מיר בעשלאסין צו געבען געלט, און<lb/>יוסיפען אויסלייזען, וואס זאהלן מיר האבער טיהען אז<lb/>דער עגפיטער וועט ניט וועלין אפ גיבען יוסיפען?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0283_a">
+          <speaker>בנימען</speaker>
+          <p>ערמארדען</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0284_a">
+          <speaker>יאחצעל</speaker>
+          <p>אזוי? נא געהיזשע דיא אַהין, וואס בין איך עפס<lb/>אַ מערדער?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0285_a">
+          <speaker>בנימן</speaker>
+          <p>אבער יאחצעל קוועל מיך ניט הערצעל.</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0286_a">
+          <speaker>יאחצעל</speaker>
+          <p>האבען מיר זיך בעשלאסין צו געבען געלט וויפעל דער<lb/>עגעפיטער וועט פערלאנגען אין יוסיפען אויס לאזען.<lb/>יוסף יוסף בנימטשיקעל דיך האָב איך זיך ליעב נאר<lb/>יוסיפין הָאב איך נאך ליעבער גיהאט. <stage type="delivery">%וויינט%</stage></p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0287_a">
+          <speaker>בנימן</speaker>
+          <p>יאחצעל, פלעג מיך ניט הערצעל</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0288_a">
+          <speaker>יאחצעל</speaker>
+          <p>וואַרט אויס איך וועל זיך אַביסעל אויס וויינען</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0289_a">
+          <speaker>בנימן</speaker>
+          <p>אַך פון דיעצען אלפין נאר איז קיין ווארט צו בעקומען<lb/>איך וועל בעסער אריין געהן צום פאטער, און וועל ווען<lb/>דיא ברידער וועלען קומען וועל איך שוין אלעס הערפאכען %אב%</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0290_a">
+          <speaker>יאחצעל</speaker>
+          <p>הערזשע מיך אויס עס איז אזוי גאליין, האבען מיר<lb/>זיך בעשלאסען מיר זאהלין נאך עגיפטען גייען אוןזוכין<lb/>יוסיפען.... אט איז ער גאר אווק גיגאנגען, אבער שטענדיג<lb/>איז אזוי ווען איך נעם זיך עפיס דערציילין לאזט מען<lb/>מיך שטעהן אין דער מיט אין מגעהט אַוועק, איך וואלט גקענט<lb/>ווייזען דער וועלט אַז פון מיר איז ניט דא וואס צו לאַכען, דען<lb/>איך בין אַהעלד, יא אז איך בין אַ העלד דאס ווייס איך<lb/>און יעכער ווייסט דאס, אבער וויא נעם איך עפיס אַ<lb/>פאנד, איך זאָהל זיך קענין מיט אים שלָאגין, לאם איך<lb/>זיך פאר שטעלן אז דָאס איז מיין פאנד. <stage type="business">%ער ווייזט אופין זאך%</stage><lb/>ער איז איין עגיפיטער און האט געקופט יוסיפען פיר<lb/>אַַ שקלאווע וואלט איך צו אים אזוי גיזאגט, וויפעל געלד<lb/>ווילסטו אַז דיא זאלסט מיר אבגעבען יוספין, וואס דיא<lb/>שוואגסט? ווילסט ניט קיין געלד? איך פרייג דיך וויפיל<lb/>געלד ווילסטו זאלסט אפ געבען יוסיפין? דיא ענטפערסט נט?<lb/>זאג ווַארים איך ווער בייז אין אַז איך בין בייז בין<lb/>איך בייז וואס? שווייגסט? ציטער דיא עגיפיטער פאר<lb/>מיין שווערד! וואס דוא ווילסט ניט אפ געבען? דוא ווילסט<lb/>מיך נאקע מאכען בייז? איך זאג דיר נאך צו מאהל, גיעב<lb/>אים אפ וואָס שווייגסט? איז איינס, נעם געלד זאג איך דיר.<lb/>ווילסטו ניט? איז צוויי, זאג אפ ווידיע זאג איך דיר. וואס שווייגסט?<lb/>איז 2 מיט 3/4 א צי אט ליעג איך דיך אין דרערד אַריין<lb/>נא נא <stage type="entrance business">%ער נעמט זיך שלאגען מיטין זאך דיא ברידער הערשיינען</stage><lb/><stage type="business">בלייבען הערשטינט%</stage></p>
+        </sp>
+        <fw type="pageNum">170628</fw>
+        <pb n="36" facs="30778104.jpg"/>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0291_a">
+          <speaker>יהודה</speaker>
+          <p>וואס איז דאס? <stage type="business">%ער שטעלט אים יאף%</stage></p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0292_a">
+          <speaker>יאחצעל</speaker>
+          <p>איך שלאג מיך מיט דעם ג עגיפיטער ער זאהל מיר<lb/>אפ געבען יוסיפען</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0293_a">
+          <speaker>יהודה</speaker>
+          <p>וואס פאר אַ עגיפאטער? עס איז דאך אַ זאך?</p>
+        </sp>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0294_a">
+          <speaker>יאחצעל</speaker>
+          <p>אַ זאך? אין איך האב גימיינט אַז עס איז איין עגיפטער.<lb/><stage type="exit business">%אב מיטין זיך%</stage></p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0295_a">
+          <speaker>ראובן</speaker>
+          <p>יעצט ברידער בעפאר מיר ריידען מיטען פאטער מוזען<lb/>מיר וויסען וואס מיר האבען צו טאהן, ערשטענס מוזען<lb/>מיר אים הערציילען פון שמעונס צוריק בלייבען באם<lb/>וויצע קעניג נור דעם פאטער ניט איבער צו שרעקען.<lb/>אויך מוזען מיר אים הערציילען דעם פערלאנג פון דעם<lb/>וויצע קעניג, אונזער ברידער בנימען נאך עגיפטען צו<lb/>בריינגען, איך דיינק אז דוא יהודה וועסט מוזען<lb/>איבער נעמען דיא ארבַיט אויף זיך, פלאכט וועט<lb/>דיר געלאנגען דעם פאטער איבער צו ריידען, ער זאה<lb/>מיט אונז מיט שיקען בנימינען</p>
+        </sp>
+        <fw type="pageNum">170633</fw>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0296_a">
+          <speaker>יהודה</speaker>
+          <p>זעהר שעהן ברודער, איך האף אז איך וועל<lb/>עס אויס פירין, אבער דוא ראובן זאלסט מיר<lb/>אויך בעהילפעג זיין, אָ דער פאטער קומט<lb/><stage type="entrance">%יעקב העשיינט מיט דא טעכטער אין אייניקליך%</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0297_a">
+          <speaker>אלע</speaker>
+          <p>פרידין צו דיר פאטער.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0298_a">
+          <speaker>יעקב</speaker>
+          <p>פרידען צו אייך מיינע ליעבע קינדער<lb/>וויא איז שמעון? וואס איז ווידער גישעהן?<lb/>וויא איז שמען?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0299_a">
+          <speaker>יהודה</speaker>
+          <p>שרעק דיך ניט פאטער, שמען לייבט און איז<lb/>געזונד, נאר ער האט געמוזט בלייבען אין עגיפטען<lb/>ביז מיר וועלען צוריק קומען.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0300_a">
+          <speaker>יעקב</speaker>
+          <p>אבער אים גאטעס ווילען, פאר וואס איז שמען געבליבען אין<lb/>עגיפטען? און צו וואס ברויט איהר נאך צוריק גייען?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0301_a">
+          <speaker>יהודה</speaker>
+          <p>קענסט זיך הערינערן וואס דוא האסט אונז בעפלילען<lb/>אז מיר זאלען יעדער איינער דורך אָ בעזאנדער<lb/>טויער אין שטאט אַריין געהן פילייכט וועלען<lb/>מיר אויסגעפין אונזער פערליכנים ברודער יוסף</p>
+        </sp>
+        <pb n="37" facs="30778106.jpg"/>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0302_a">
+          <speaker>יעקב</speaker>
+          <p>אָ יוסף יוסף</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0303_a">
+          <speaker>יהודה</speaker>
+          <p>דריי טיג און דריי נעכט זענן מיר ארום געגאנגען<lb/>איבער דער שטאט, אבער מיר האבען קיין שפור<lb/>פון יוסיפען ניט געפונין, אויף דעם דריטען טא זענין<lb/>מיר גערופען געווארען צום קעניג פון עגיפטען, דאס<lb/>הייסט צו זיין שטעלפערטרייטער, און ער האט אונז<lb/>אלס א שפיאנען ערקלערט, דאפיר וואס מיר זענין יעדער<lb/>דורך אַ בעזאנדערין טויער אין שטאט אַריין, מיר האבין<lb/>אים געזאגט דיא ווארהַייט אז מיר זוכען אונזער פערלורינעם<lb/>ברודער אין מיר זענין געקאמען קארן קויפען, אבער<lb/>ער האט אונז ניט גיוואלט גלויבען, און האט אונז<lb/>געפרייגט פון יעדען ענציגען געגענשטאנד, אבער אויב<lb/>מיר האבין נאך אַ פאטער אויב נאך ברידער<lb/>נאטירליך האבען מיר אים דיא ווארהייט גיזאגט<lb/>אז מיר האבען נאך איין אלטען פאטער, אין איין אנגסטען<lb/>ברודער בנימען, צו ענדע האט ער אונז געזאגט<lb/>אז דאמאלס וועט ער אונז גלייבען דאס מיר<lb/>זענען קיין שפיאנען, ווען מיר וועלען אים בריינגען<lb/>אונזער ברודער בנימען<lb/><add>דאס</add></p>
+        </sp>
+        <fw type="pageNum">170610</fw>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0304_a">
+          <speaker>יעקב</speaker>
+          <p>צו וואס האט איהר עס אים אלעס הערציילט?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0305_a">
+          <speaker>יהודה</speaker>
+          <p>פאטער, האבען מיר דען פאר אויס געקענט וויסען<lb/>אז ער וועט פערלאנגען בינימינען צו זיך? אין דאמיט<lb/>ער זאהל פאר זיכירט זיין אז מיר וועלען אים<lb/>בריינגען בנימינען, האט ער אלס משכן שמעונין בא<lb/>זיך פעראָהלטען</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0306_a">
+          <speaker>יעקב</speaker>
+          <p>יא קינדער קינדער וואס מאכט איהר אלס אייער<lb/>אלטען פאטער, האב איך צו אייך געשיקט יוסיפין זייען<lb/>וואס איהר טיט, האט איהר מיר גיבראכט זיין העמדיל<lb/>מיט בלוט, שיק איך אַייך נאך עגיפטען קארן קליפען<lb/>קאמט איהר צום ק אָהן שמעונין, און יעצט ווילט איהר<lb/>נאך מיין לעצטע טרייסט אויך פון מיר אַוועק נעמען?<lb/>א קינדער קינדער ווילט איהר שוין מיין גראהע עלטער<lb/>אין גראב זינקען? אָה נייען איך וועל פון זיך מיין ליעבען<lb/>בנימינען ניט אַוועק לאזען.</p>
+        </sp>
+        <pb n="38" facs="30778107.jpg"/>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0307_a">
+          <speaker>ראובן</speaker>
+          <p>פאטער בעדענקע דיך, דער הונגער איז גרויס<lb/>מיט געגעבען האט ער אונז ווייניג קארן אום מיר<lb/>זאהלין געצווינגען זיין נאך אַ מאהל זיך אים צו קעכען<lb/>וואס וועט זיין אז מיר וועלען צייגירין? מיר וועלען<lb/>דאך פון אונגער שטערבען, פאטער ליעבער פאטער<lb/>גיעב איבער דאס קינד אוף מיינע הענדע איך וועל<lb/>דיר איך געזונד אין פריש בריינגען צוריק און<lb/>פאל ווען איך בריינגע דיר אים נישט זאלסטו מיינע<lb/>קינדער טיידטען.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0308_a">
+          <speaker>יעקב</speaker>
+          <p>וואס ריידסטו אונבעזיינענער? זענין דען דיינע<lb/>קינדער אויך ניט מיינע? ניין ליעבער בנימען<lb/>דיא גייסט ניט דיא בלייבסט מיט דיין פאטער, און<lb/>דיעזע ביס ביטערע ליידען ביזסטו מיר מיין לעצטע<lb/>טרייסט, ניין אויף איין מונוט קען איך דיר דאס<lb/>קינד פון זיך ניט אוועק לאזען. 2</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0309_a">
+          <speaker>יהודה</speaker>
+          <p>פאטער ליעבער פאטער, פערטרוע דאס קינד<lb/>אוף מיינע הענדע וויא מיר שיינט זאהל דער ערשער<lb/>פון עגיפטען איין ערענמאהן זיין, ער האט אונד<lb/>פערשפראכען גלייך אַהיים צו שיקען מיט פיעל<lb/>אהערע אין פריידע ווען מיר וועלען אים צו שטעלען<lb/>אונזער ברודער בנימען, און זיין פערשפרעכען<lb/>וואר אזוי ערענסט אַז מיר קענין אים גלייבען<lb/>אבער פאטער זאהל דיעזער שטאלצער עגיפטער זיין<lb/>פערשפרעכען ניט האלטען? איז דיר פאטער יהודער<lb/>העלדענמוטה גוט בעקענט, פערטרייע אים פאטער<lb/>אויף מיינע הענדע, געזונד מונטער שטעל איך אים<lb/>דיר צו צוריק אוף דעזען אָרט.</p>
+        </sp>
+        <fw type="pageNum">170611</fw>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0310_a">
+          <speaker>יעקב</speaker>
+          <p>וויא אזוי איז דער נאמען פון דיעזען הערשער?<lb/>יהודה זיין נאמען איז צָפנַת פַּנֵח</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0311_a">
+          <speaker>יעקב</speaker>
+          <p>צָפנַת פַנח?, ניין ניין איך קען דאס קינד<lb/>ניט אוועק לָאזען פון זיך דאס אומגליק פון<lb/>זיין ברודער שטעהט מיר נאך פאר מיינע אויגען.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0312_a">
+          <speaker>בנימען</speaker>
+          <p>פאטער, ווירסט הערליבען, דעם יונגסטען פון<lb/>דיינע קינדער אפאָר ווארטען צו שפרעברן?</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0313_a">
+          <speaker>יעקב</speaker>
+          <p>זאג זאג, מיין ליעבער בנימען, דאן פאטער<lb/>הערט דיך געהרן.</p>
+        </sp>
+        <pb n="39" facs="30778109.jpg"/>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0314_a">
+          <speaker>בינימן</speaker>
+          <p>ווער נאך אויסער דיינע קינדער קאן זיך<lb/>רוהמען מיט זא איין פאטער וויא דוא ביסט?<lb/>אבער דאך פאטער איז דיר דיין הערץ זא צער<lb/>שמעטערט פון דעם אַ מאליגען אונגליק וואס דיך האט געטראפען<lb/>אבער זייא ניט זא פערצווייפילט ליעבער פאטער, דער<lb/>ליעבער גאט וועט דיך בא דיין לעבען זא שווער<lb/>ניט שטראפען, זאהל דען דאס זיין דער לאהן פון דיין<lb/>גרויס פאטער אברהם וועלכער האט זיך גילאזט און<lb/>באלד אויווען אריין ווארפען צו ליעב זיין הייליגע אמונה<lb/>זאהל דען דאס זיין דער לאָהן פון דיין פאטער יצחק<lb/>וועלכער האט זיך גילאזט אויף דער עקדה בינדען אלס<lb/>קרבן צו יעקב זיין הייליגען נאמען? אין ניין עס<lb/>איז אונמעגליך, דוא וועסט פילייכט בעטראכטען דיין<lb/>בנימן פיר צו קינדערש, אבער דאך פאטער<lb/>מוז איך דיר זאגען דאס מיין הערץ איז מיר<lb/>פאל האפנונג דאס דוא וועסט נאך אַ מאהל דיין<lb/>פערלוירענים זאָהן יוסף ווידער זייען, אונזער<lb/>גאט איז בארימהערציג, ער ווירד בא זיין<lb/>טרייען קנעכט יעקב בא זיין לויבען קיינע<lb/>קינדער ניט צו נעמען, בעטראכטע פאטער דיא<lb/>טרויעריגע געזיכטע פון אלע דיינע קינדער<lb/>האבען וויר דען איין אנדער אויסווייג? זאהל דען<lb/>דָארט צוליעב מיר שמעון ליידען? אָ ניין פאטער<lb/>פערטרוע דיין יהודען, איבערהופט וויא מיר הערען<lb/>זאל דיר הערשער פון עגיפטען איין עהרענמאהן<lb/>זיין, אונד ער וועט מיר געוויס קיין שלעכטיס ניט<lb/>טאָהן, א ליעבער פאטער זייא ניט צו פערצווייפעל<lb/>גיעב אונז מיט דיינעם זעגען אויף דעם ווייג, מיר<lb/>פראפעצייעט מיין הערץ דאס דיעזע רייזע<lb/>ווארד אונז פערשאפען פריידע איבער פריידע.</p>
+        </sp>
+        <fw type="pageNum">170612</fw>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0315_a">
+          <speaker>יעקב</speaker>
+          <p>זייא געבענטשט פון גאט מיין ליעבער בנימען<lb/><add>פאָזא</add><lb/>פיר דיינע טרייסט ווערטער. אלעכטיגער גאט<lb/>אין הימעל צו דיר האב איך אויף מיינע אויגען<lb/>הער צו דאס געבעט פון דיין טרייען קנעכט יעקב.<lb/>בעשיצע מיינע קינדער נעהב זיין אונטער דיינע<lb/>פליעגעל שיין גאט דיינע גוטע מלאכים זייא זאלען שטיצען<lb/>מיין ליעבען בנימן עס זאהל אים חלילה קיין שלעכטעס<lb/>געשעהן, שיק אויך דיין זעגען אויף דעם הערשער<lb/>צַפנת פַנח, ער זאהל מיינע קינדער צוריק קערען<lb/>בשלום, געהט מיינע ליעבע קינדער מיט גאטעס זעגין<lb/>אין אייער צוריק קערען זאהל אונז ברענגען פריידע<lb/>איבער פריידע אַמן.</p>
+        </sp>
+        <pb n="40" facs="30778111.jpg"/>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0316_a">
+          <speaker>קאהר</speaker>
+          <p>ציגער מיט פאטער צייגער מיט פאטער<lb/>דיין זעגין גיעב אונז מיט אויף דעם אָרט ווייג<lb/>פערטרייע דיין יהודה פערטרוע אים דאס קינד<lb/>גיעב ליעבער פאטער שרעק דיך ניט גיעב אים<lb/>דאס קינד</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0317_a">
+          <speaker>יהודה</speaker>
+          <lg n="10">
+            <l>פאטער העלע מיך איין פאטער</l>
+            <l>גיעב אים איבער מיר} ביס</l>
+            <l>אויף מיינע הענדע בא גייט שווער איך דיר</l>
+            <l>איהם בריינגען צוריק</l>
+            <l>דיין זעגין גיעב אונז מיט</l>
+            <l>אויף דעם ווייג מיט גליק מיט גליק</l>
+            <l>פאטער צייגער ניט פאטער</l>
+          </lg>
+          <lg n="11" prev="true">
+            <l>מיר קאמען באלד צוריק</l>
+          </lg>
+        </sp>
+        <fw type="pageNum">170633</fw>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0318_a">
+          <speaker>יעקב</speaker>
+          <lg n="12">
+            <l>דאך איז גרויס מיין שמערץ</l>
+            <l>געבראכען איז שוין דאס אלטע פאטער הערץ</l>
+            <l>וויא וועל איך עס נאך הערטראגען אצינד }</l>
+            <l>ביס</l>
+            <l>צו פערלירען חלילה דאס צווייטע קינד}</l>
+          </lg>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0319_a">
+          <speaker>בנימען</speaker>
+          <lg n="13">
+            <l>X גרויס איז מיין הערגער עס שמערץ מיך אָן אַשער</l>
+            <l>XX וויא מיַין פאטער וועלט זיך אזוי דורך מיר</l>
+            <l>אַ אַ אַ  אַ הער וויא עס בייט דיך אַ יעדער בעזונדער</l>
+            <l>אויף דיינעם זעגען ווארטא דיינע קינדער</l>
+            <l>דוא אַליין מיט דיינע קינדער.</l>
+            <l>פלעגסט לערנען לערען אזוי</l>
+          </lg>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0320_a">
+          <speaker>יעקב</speaker>
+          <p>וואס פלייג איך מיט אַייך מיינע ליעבע קינדער<lb/>לערניין, לערנען אזוי.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0321_a">
+          <speaker>בנימן</speaker>
+          <p>געה בעפעלט גאט דער זעעלע א. ז. וו. <lb/>אֵל רחום <stage type="setting">"פארהאנג פאלט"</stage>.</p>
+        </sp>
+        <trailer>ענדע 4 טער אקט</trailer>
+        <pb n="41" facs="30778112.jpg"/>
+      </div>
+      <div type="act" n="5" xml:id="YoysefInEgipten_Act5">
+        <head>פונפטער אקט.</head>
+        <stage type="setting">%אין עגיפטען ביי יוסיפין%</stage>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0322_a">
+          <speaker>קאהר</speaker>
+          <lg n="14">
+            <l>זייא געגריסט פון אונז אלע ברידער</l>
+            <l>צו דער צו דיר קאמען וויס שוין געווידער</l>
+            <l>מיר קומען מיר קומען}</l>
+            <l>ביס</l>
+            <l>מיר קומען פאר זיין הערליכניט}ץ</l>
+          </lg>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0323_a">
+          <speaker>יהודה</speaker>
+          <p>דיין ווינטש גרויסער הערשער איז גישעהן<lb/>דעם יונגסען פון אונז פערלאנגסטו צו זעהן<lb/>פון פאטער אין פון אונז געליבט אין אַ שיער.<lb/>בנימן דיין קנען דער שטאט פאר דיר.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0324_a">
+          <speaker>יוסף</speaker>
+          <p>ביזסטו דער בנימען מיין שענעס ליעבעס קינד<lb/>זא זייא מיר הערליך וויל קאמען אצינד<lb/>יא עס פרייט מיך דיך צו זעהן<lb/>זא יא עס פרייט מיך נאהן אַ שיער<lb/>ער גאט זעגנע, דיך דאפיר<lb/>בנימן אך וויא גוט איזט ער וויא פריינדליך איז<lb/><add>איך</add><lb/>זיין בלין פאלען אויף דעם האלדז אין דעם<lb/>אויגינבליק איך האב אים שוין ליעב בעקאמען<lb/>אלען דעם אויגינבליק</p>
+        </sp>
+        <fw type="pageNum">170634</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0325_a">
+          <speaker>יוסף</speaker>
+          <p>מנשה בריינג זיין אריין זייער ברודערצוריק</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0326_a">
+          <speaker>קאהר</speaker>
+          <p>אַ אונזער ברודער שמעון אונזער ברודער<lb/>האבען מיר שוין ווידער</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0327_a">
+          <speaker>יוסף</speaker>
+          <p>אבער מיינע פריינדע נאך איין אויגינבלע<lb/>דיין וועט איהר גייען אין פרידען צוריק</p>
+        </sp>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0328_a">
+          <speaker>קאהר</speaker>
+          <p>עס זאהל גישעהן עס זאהל גישעהן. <stage type="delivery">%ברוז%</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0329_a">
+          <speaker>יוסף</speaker>
+          <p>מנשה געה בריינג מיר מיין צוויבער בעכער געשווינד<lb/>איך מוז פון אים אַלס הערפארען אצינד אין דעם<lb/>קען איך מיין קונסט פריווין II געזאנג<lb/><stage type="business">%עגעשעט%</stage> אלע ברידער מוזען צו זאלען צו זאמען<lb/>ברידער פון איין מאמען לאה איז איהר נאמען<lb/>דין נפתלי מוזען זיצען צו זאמען<lb/>ברידער פון איין מאמען בלהה איז איהר נאמען<lb/>גד און אשר מוזען זיצען צו זאמען</p>
+          <lg n="15">
+            <l>ארישער פון איין מאמען זלפה איז איהר נאמען</l>
+            <l>איך האב אלענס געטראפען חַ חַ חַ</l>
+            <l>מיין צויבער בעק בעכער ענדעקט מיר</l>
+            <l>דיא גרעסטע סעקרעטין.</l>
+            <l>אבער בנימן דער יונגסטער וואס טהוט מען יעצט</l>
+            <l>ער האט קיין פאר אין איז גיבליבען צו לעצט</l>
+            <l>ווילסטו מיין קינד}</l>
+            <l>עס וועט איך פרייען}</l>
+            <l>ביס</l>
+            <l>פאר דיין פאהר}</l>
+            <l>נעם מיך אַליין}</l>
+          </lg>
+        </sp>
+        <pb n="42" facs="30778114.jpg"/>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0330_a">
+          <speaker>קאהר</speaker>
+          <p>עס איז ווינדער באר וואס איז גישעהן<stage type="exit business"> %אב%אל אב%</stage></p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0331_a">
+          <speaker>בנימין</speaker>
+          <p>דעם דארף דער זיין ווער עס גלויבט ווערגליך<lb/>אז דער בעכער איזט אומשטאנדע געהיימניסע<lb/>צו ענטדעקען, ווער ווייסט דורך וועלכן צופאל עהר<lb/>ער האט הערפארען אלע אונזער נעמען אין שפילט<lb/>פיר אונז דיא ראלע אַלס וויסענדער, נאר דָאף וויא<lb/>עס איז, איינס קען איך ניט בעגרייפען, ווארום<lb/>האט דער גרויסער הערשער אויף מיר זָא איין<lb/>אנדריק געמאַכט? פון דעם ערשטין מאמענט<lb/>וויס איך איהם הערבליקט הָאיבע וואלטע איך<lb/>שוין אויף זיין האלדז פאלען און צו מיינעם<lb/>הערצען אים צו דריקען, זא לאבליך קאמט ער<lb/>מיר פאר, אַך! איך הערע אים קאמען, מען דארף<lb/>זיך ניט ציגען פאר שווַאפער צום, דען עס פאסט<lb/>ניט פאר אַ בן יעקב</p>
+        </sp>
+        <fw type="pageNum">170613</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0332_a">
+          <speaker>יוסף</speaker>
+          <p><stage type="entrance">%ערשיינט%</stage> פערצייע מיר ליעבער בנימן וואס<lb/>איך האב דיך זא לאנג וואַרטען געלאָזט, איך האב<lb/>דיינע ברידער צום טיש בעגלייטעט, דען דיא<lb/>העברעער מיט דיא עגיפטער קענין בא איין טיש<lb/>ניט עסען, יעצט ליעבער נאמען זענין מיר אַליין<lb/>ווילסטו מיר דאס פערגאנגען צו טהיילען אין מיט<lb/>מיר אליין פערבריינגען?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0333_a">
+          <speaker>בנימן</speaker>
+          <p>איך וועל אלס געפעלן וואס דער גראָסער הערשער<lb/>וורד בעפעהלין<lb/><add>פאָזא</add></p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0334_a">
+          <speaker>יוסף</speaker>
+          <p>שעהן מיין קינד... זעצע דיך... הערצעלע<lb/>מיר מיין קינד וויא גייט עס דיין אלטען פאטער<lb/>און געזונד, הערצעלע מיר אלעס לייבער פאנימען<lb/>אך דוא קאמסט מיר זאפאר דאס גלייך וויא<lb/>דוא ווילסט מיין אייגינער ברודער גיוויין.</p>
+        </sp>
+        <pb n="43" facs="30778116.jpg"/>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0335_a">
+          <speaker>בנימן</speaker>
+          <p>קאהן איך פראגען גרויסער הערשער, ווארום האב<lb/>איך אוף דיר מעהר איינדריק געמאַכט אלס אלע<lb/>מיינע ברידער?<lb/><add>האט</add></p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0336_a">
+          <speaker>יוסף</speaker>
+          <p>וועל איך איך עס אייניט גער<lb/>בא מיר איז אויך איין עלטעריר ברודער פערליכען<lb/>געגאנגען</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0337_a">
+          <speaker>בנימן</speaker>
+          <p>נו אין דוא אלס גרויסער הערשער בייזט ניט<lb/>אומשטאַנד איהם אויס צו פינדען?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0338_a">
+          <speaker>יוסף</speaker>
+          <p>איך האב שוין איבעראל אויסגעפרייגט, אבער<lb/>איך האב קיין שפור פון א אים ניט געפונין<lb/>נו הערצעלע מיר ליעבער בנימען וויא זא איז<lb/>דיין ברודער פערלירען געגאנגען?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0339_a">
+          <speaker>בנימין</speaker>
+          <p>אין איינעם טיגע האט אים מיין פאטער<lb/>געשיקט נאך שקב צו מיינע ברודער, ער<lb/>איזט וועק אין איזט שוין צוריק ניט געקאמען<lb/>אויף דעם צווייטען טאג זענין מיינע ברודער<lb/>פון פעלד געקאמען אין האבען געבראַכט<lb/>זיין זיידען העמדיל צו דיסען אין מיט בלוט.</p>
+        </sp>
+        <fw type="pageNum">170613</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0340_a">
+          <speaker>יוסף</speaker>
+          <p>צוריסען? אין מיט בלוט?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0341_a">
+          <speaker>בנימין</speaker>
+          <p>אָ ווער איזט אומשטאנד צו הערציילען דיא<lb/>מיליאנען טרעהנין וואס מיין פאטער האט<lb/>זייט יענער צַייט פארגאסען</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0342_a">
+          <speaker>יוסף</speaker>
+          <p>אָ פאטער, וויא גרויס ווארען דיינע שמעכען<lb/><stage type="delivery">%וויינט%</stage><lb/>בנימען וואס דיא וויינסט?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0343_a">
+          <speaker>יוסף</speaker>
+          <p>וויא זאהל דאס הערץ ניט ברעכען אויף זָא אַיין<lb/>אונגליקליכען פאטער?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0344_a">
+          <speaker>בנימין</speaker>
+          <p>דוא ביסט זייער איין גוטער מענטש!</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0345_a">
+          <speaker>יוסף</speaker>
+          <p>זא האלסטו מיך ווירקליך פיר איין גוטען<lb/>מענטש, זאג מיר ליעבער בנימען איז דיין<lb/>פערלוירינער ברודער אויך גיוויין אַ גוטער מענטש?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0346_a">
+          <speaker>בנימין</speaker>
+          <p>ער וואהר זא גואט זא לעבענס וויירדיגע</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0347_a">
+          <speaker>יוסף</speaker>
+          <p>אין וויא גלויבסטו ליעבער בנימן? הַאפט נאָך דַיין<lb/>פאטער דיין פערלוירינעם ברודער צו ווידער<lb/>צו זייען?</p>
+        </sp>
+        <pb n="44" facs="30778118.jpg"/>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0348_a">
+          <speaker>בנימין</speaker>
+          <p>יָה וויס האבין נאך דוא האפנונג ניט פערלארען<lb/>דען אונזער גאט איז בארמהערציג, ער ווירד<lb/>בא זיין טרייען קנעכט יעקב קיין קינד בא<lb/>זיין לייבען ניט צו נעהמען אונד מיין אלטער<lb/>פאטער ווירד נאך פאס זיינע ליידען פיעל פריידע<lb/>האבען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0349_a">
+          <speaker>יוסף</speaker>
+          <p>יא דיין אלטען פאטער זאלל עס דערלעבען<lb/>דאס שווער איך</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0350_a">
+          <speaker>בנימן</speaker>
+          <p>דוא שווערסט? ווייסטו פילייכט פון מיין<lb/>פערלארענים ברודער אָ זאגע, זאגע גרויסער<lb/>הערשער <stage type="business">%קייעט%</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0351_a">
+          <speaker>יוסף</speaker>
+          <p>שטעה אויף ליעבער בנימן, זייא נישט זא<lb/>איבערַאשט עס קען נאך אלס קאמען, נור זאגע<lb/>מיר ליעבער קומען, לויט דער דוא דערציילסט<lb/>מיר וועק דיין ברודער איזט פערלירען געווארען<lb/>ווארסטו נאך איין קליינעס קינד, און דיא<lb/>האסט אום גאר ניט גיקענט?<lb/><add>אַיין</add></p>
+        </sp>
+        <fw type="pageNum">170617</fw>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0352_a">
+          <speaker>בנימין</speaker>
+          <p>איך וואר נאך צוואר גאנץ קליינעס<lb/>קינד, אבער זיין בילד שוועבט מיר אימער<lb/>פיר מיינע אומגין יעדע נאכט זייע איך<lb/>אים פיר מיינע אויגען אין מיינע טריימע<lb/>זאגאר, ווערענד ווען איך וויל אים זעהן אייך<lb/>איך נאר פעסט מיינע אויגען צו זיי זעה איך<lb/>איהם באלד.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0353_a">
+          <speaker>יוסף</speaker>
+          <p>זא? נא אייך וועלט דיינע אויגען צו איין שטעל דער<lb/>איהם פאר וויא זעהט ער יעצט אויס?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0354_a">
+          <speaker>בנימן</speaker>
+          <p><stage type="business">%מאכט דיא אויגענצען%</stage> דא זעה איך אים, דאס איצט<lb/>זיין שעהנעס בילד, זא ליעבליך! זא מילד!<lb/>דא פאלט ער מיר אויף מיין האלדז, דא דריק איך אים<lb/>צו מיינע ברוסט... אך גרויסער הערשער.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0355_a">
+          <speaker>יוסף</speaker>
+          <p>ניין זאגע ניט גרויסער הערשער, זאגע ברודער<lb/>איך בין דיין פערלוירענער ברודער יוסף.<lb/>נישט און דער פאנטעזיע זאנדערען אין דער ווירקלעכקייט<lb/>אומארעמסטו דיין ברודער, בנימען מיין ברודער.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0356_a">
+          <speaker>בנימין</speaker>
+          <p>דיא גרויסער הערשער האלט מיין ברודער?<lb/>איזט דאס מעגליך? יוסף מיין ברודער <stage type="business">%אומווארמונג%</stage><lb/>לאס מיך איך וועל לייפען מיינע ברודער דיא גוטע<lb/>נאפרישט זאגען.</p>
+        </sp>
+        <pb n="45" facs="30778119.jpg"/>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0357_a">
+          <speaker>יוסף</speaker>
+          <p>שטעה ליעבער ברודער, איך וועל מיך נאך צו<lb/>זייא ניט הערקענען, דען איך וועל נאך מיט זייא<lb/>איין וועהליג שפאסען, איך וויל זייען צו זייא וועלען<lb/>מיך אנערקענין.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0358_a">
+          <speaker>בנימין</speaker>
+          <p>צווייפעלסטו ליעבער ברודער צו זייא וועלען אנערקענען<lb/><add>איין</add><lb/>זייער פערלאנים ברודער אין זא אימן גרוסען שטאנד<lb/>ווערענד דיא דענקען דאס דיא אלס שקלאווא<lb/>פערקופט ביזט?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0359_a">
+          <speaker>יוסף</speaker>
+          <p>איך מוז צווייפלען, דען זייא האבען מיך אלס<lb/>שקלאווע פערקויפט<lb/><add>דאס</add></p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0360_a">
+          <speaker>בינימין</speaker>
+          <p>אין ווארען דיא ביי יעקב אונשטאנדע צו טאהן מיט<lb/>זייער ברודער?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0361_a">
+          <speaker>יוסף</speaker>
+          <p>זא לייעבער ברידער, אבער עס וואר גאטעס ווען אזוי<lb/>עה האט אנדערש מיט מיר געמיינג וויא דוא זעהסט<lb/>מיך יעצט אין דאדורך וועל איך יעצט זעהן<lb/>צו מיינע ברידער בערייען זייער אַ<lb/>מאליגען טהאט, הער מיך יעצט אויס וואס איך וויל<lb/>יעצט טאהן. איך וועל נעמען דעם גאלדינעם ביעכער<lb/>און וועל אים צו דיר אייון זאך קארן על אריין לייגען אין<lb/>וועל אייך שיקען צו הויזע, גלייך דארום וועל איך אַייך<lb/><add>אויס קיין</add><lb/>אומקערען מיט דעם פָאָרווַאנד דאס איהר האט בא<lb/>מיר דעם בעכער געשטאהלען, דען דיעבשטאל וועט מען<lb/>בא דיר געפונין, איך וועל דיך אַלס דיעב ערקלערין<lb/>און איך וועל דיך בא מיר אַלס שקלאווע פעראלטען, דאן<lb/>וועל איך זייען, אויב זייא וועלן זיך דַיינער אַן נעמען<lb/>איז איין צייכען דאס זייא בערויען זייער אַ<lb/>מאליגען טהאט אין דיין וועט קאמען דאס גליקליכע ענדע</p>
+        </sp>
+        <fw type="pageNum">170618</fw>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0362_a">
+          <speaker>בנימן</speaker>
+          <p>אַבוואָל עס טועט מיר לייד מיינע ברודער זא פיעל<lb/>שמערצען צו פערשאפען, נור אים זיך איבער צו<lb/>צייגען דאס זייא בערייען אויף דער פערגאנגענער<lb/>טהאט געה איך איין דארוף.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0363_a">
+          <speaker>יוסף</speaker>
+          <p>אין דיין וועלען וויס אלע גליקליך לעבען <stage type="delivery">%זינגען %</stage><lb/><stage type="exit">(בנימן אַב)</stage></p>
+          <lg n="16">
+            <l>וויר דאנקען דיר גאט</l>
+            <stage type="delivery">%ביידע%</stage>
+            <l>פיר דיינע גרויסע ווינדער}</l>
+            <l>ביס</l>
+            <l>עה ווינדער טהוסטו גאר אָהנע צאהל.}</l>
+            <l>אלס קינד מיך צוריק</l>
+            <l>געלאסען האסטו</l>
+            <l>דאך פערגעסען איז דיין בילד</l>
+            <l>פיר מיר ניע</l>
+            <l>שטענדיג פיר מיינען אייגען געשווייבט</l>
+            <l>שטענדיג מיט האפנונג געלעבט</l>
+            <l>טאג וויא נאכט</l>
+            <l>קעגען</l>
+            <l>אין וויינען פערבראכשט</l>
+            <l>מיין ברידער יוסף צו זייען</l>
+            <l>אין מיין ברודער יוסף</l>
+            <l>היים איך שוין ווידער</l>
+            <l>איך גאט האט דער הערט איין גיווען</l>
+            <l>אין מיין ברודער יוסף אַ אַ אַ</l>
+            <l>גאט האט דער הערט מיין גיווען</l>
+            <l>וויר דאנקין דיר גאט א.ז.וו</l>
+            <stage type="delivery">%ביידע%</stage>
+            <stage type="exit">%בנימן אב%</stage>
+          </lg>
+        </sp>
+        <pb n="46" facs="30778121.jpg"/>
+        <fw type="pageNum">170619</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0364_a">
+          <speaker>יוסף</speaker>
+          <p>מנשה אפרים מיינע גאט אהרן <stage type="entrance">%צווא קאמען%</stage><lb/>איך האב אייך שוין לאנג געזָאגט דאס דוא זענין<lb/>מיינע ברידער אין פאר וואס איך דער קען זיך<lb/>ניט צו זייא אז וויל איך וועל נאך מיט זייא שפאסען<lb/>X יעצט ליעבער מנשה הער וואס איך וויל טאהן.<lb/>דיא נעם דעם ביעכער אין לאג אים אַריין צו<lb/>בנימיינין און זאך און ווען זייא וועלן אַוועק גייען זאהלסטו<lb/><add>פערדאבט</add><lb/>זייא צוריק קעהרען מיט דעם פארוואנד דאס<lb/>זייא האבן בא מיר דעם בעכער געשטאהלען.</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0365_a">
+          <speaker>מנשה</speaker>
+          <p>אוגינבליקליך פאטער.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0366_a">
+          <speaker>יוסף</speaker>
+          <p>און דיא אפרים נעם דאס געלט וואס זייא האבען<lb/>בעצאָלט פיר דעם קארן און לעג עס אריין אין דיא<lb/>זעק צוריק און זאג אָן דיא עגיפטער דאס ניעמענד<lb/>זאהל וואגען דיא עברייער אנצוגרייפען שנעל.</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0367_a">
+          <speaker>אפרים</speaker>
+          <p>אויגינבליקליעך פאטער <stage type="exit">%אב%</stage> עס קאמט אריין מנשה מיט דיא<lb/>ברידער.</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0368_a">
+          <speaker>מנשה</speaker>
+          <p>היר זינד דיא עברעער פאטער.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0369_a">
+          <speaker>יהודה</speaker>
+          <p>גרויסער הערשער, דוא האסט אונז רופען לאסין<lb/>מיט דער בעשולדיגינג דאס מיר האבען בא דיר אַ<lb/>בעכער געגאנבעט, וועסט מיר פערצייען גרויסער<lb/>הערשער ווען איך וועל ווַאגין צו זאגען דָאס<lb/>איין בן יעקב וועט זא איין פערברעכען ניט<lb/>גע בעגעהן צו גאנגענען פון זיין הערענס הויז<lb/>זילבער אדער גאלד.</p>
+        </sp>
+        <pb n="47" facs="30778122.jpg"/>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0370_a">
+          <speaker>יוסף</speaker>
+          <p>מיין צויבער בעסער העט מיר דאך, אין איך<lb/>שווער באם לעבען פון קעניג פרעה אז קיין אנדערער<lb/>האט איהם געשטאלען אויסער איינער פון אַייך</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0371_a">
+          <speaker>יהודה</speaker>
+          <p>קענסט לאזען איבער זוכען אונזערע אלע זען<lb/>וועסטו זיך איבערצייגען דאס מיר זענין אונשולדיג</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0372_a">
+          <speaker>יוסף</speaker>
+          <p>דאס ווערדען וויר גלייך זעהן, מנשה שנעל זאהל<lb/>איבערגעזיכט ווערען דיא זעק פון דיא עברעער</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0373_a">
+          <speaker>יהודה</speaker>
+          <p>זעהר געהן גרויסער הערשער! זאהל דער<lb/>בעכער געפונין ווערין בא איינעם פון אונז פ<lb/>זא זאהל דער געטעדטעט ווערען, און מיר אלע<lb/>בלייבען דיינע שקלאווען</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0374_a">
+          <speaker>יוסף</speaker>
+          <p>א נייען! זא שטריינג וועל איך קעגען אַייך ניט<lb/>היינדלען, איך וועל נאר טוהן דאס, וואס דיא געזעצע<lb/>אונז פארשרייבען, דער יעניגער בא וועמען דער<lb/>דיעבשטאהל וועט געפונין ווערען דער בלייבט מַיין<lb/>רינדן שקלאווע אבער איהר אלע קענט געהן אין פריעדען<lb/><add>יהוודא</add></p>
+        </sp>
+        <fw type="pageNum">170630</fw>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0375_a">
+          <speaker>בנימן</speaker>
+          <p>זעהר שעהן גרויסער הערשער <stage type="entrance business">% מנשה מיט דעם בעכער</stage></p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0376_a">
+          <speaker>מנשה</speaker>
+          <p>היר איזט דער בעכער.</p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0377_a">
+          <speaker>אלע</speaker>
+          <p>הא?...</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0378_a">
+          <speaker>יוסף</speaker>
+          <p>בא וועמען האסטו אים געפונען?</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0379_a">
+          <speaker>מנשה</speaker>
+          <p>באם אונגסטען פון זייא בנימן</p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0380_a">
+          <speaker>אלע</speaker>
+          <p>בנימען?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0381_a">
+          <speaker>יוסף</speaker>
+          <p>נא וואס זאגט איהר יעצט מיינע בראווע לויטע?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0382_a">
+          <speaker>יהודה</speaker>
+          <p>יא גָאָט האט געפונען זיינע זינד, אין מיר בלייבען<lb/>דיינע שקלאווען</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0383_a">
+          <speaker>יוסף</speaker>
+          <p>אָ ניין איך האב פריער געזאגט, דאס נאר דער<lb/>איינער בי וועם דער דיעבשטאל איזט געפאנען<lb/>געווארען דער בלייבט מיין שקלאווע, אבער איהר<lb/>אלע זענט פרייע, מנשה נעם דעם אנגסטען פון זא<lb/>בנימינען פערשפאר איהם אַיין אין קערקער צו טייג<lb/>און צו נעכט זאהל אים ריין עסען אין קיין טרינקען<lb/>געגעבען ווערען אין יעדין טאָג זאהל עק בעקומען 100 שלעגע<lb/><stage type="business">% מנשה וויל נעמען בנימענען אלע ברודער רופען האלט%</stage></p>
+        </sp>
+        <pb n="48" facs="30778124.jpg"/>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0384_a">
+          <speaker>יוסף</speaker>
+          <p>אבער מיינע פריינדע פערגעסט ניט וויא איהר<lb/>געפונט אייך<stage type="exit business"> %בנימנין פירט מען אַוועק%</stage> יעצט מיינע<lb/>פריינדע קענט איהר געהן אין פריעדען, גריסט<lb/>פון מיינעט ווייגען אַייער אלטען פאטער, זאגט אים דאס<lb/>אויב יענער פערלורינער ברודער זאהן איצט אויך<lb/>זא רעכטשאפען געוויין וויא דער זאהן, זא מעג ער שוין<lb/>אויפערען צו קלאגען נאך ד איהם... אַ גליקליכע רייזע<lb/><stage type="exit">(אב)</stage></p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0385_a">
+          <speaker>יהודה</speaker>
+          <p>הערט מיך אויס מיינע ברודער וויא מיין נאמען<lb/>איזט יהודה דאס בנימען איזט אונשלדיג אבזאלטליך<lb/>איזט אים דער בעכער אין זאק אַריין געלייגט געווארען<lb/>אים אונז היר צו פערהאלטען, פון אנפאנג אָן האט<lb/>זיך דער שטאלצער עגיפטער פארגענומען אונז צו<lb/>פערפאלגען אבער ווייא איז דיר אין דיינעם גאנצען<lb/>לאנד ווען איך וועל געצוונגען זיין מיין שווערד אויס<lb/>דער שייד צו ציהען, הערט מיך אויס מיינע<lb/>ברודער! איך וועל פראבירען מיט דעם שטאלצען<lb/>עגיפטער נאך איין מאָהל צו רעדען, פילַייכט וועט<lb/>ער מיר אבגעבען בנימענען, און ווען נישט זא זאלען<lb/>וויר אונזערע זעבלען בעניצען ברודער! זאלען וויר<lb/>דיא שטאדט איינטהיילען אין 12 טהיילען, וויר זינד<lb/><add>10, </add>איהר נעמט יעדער איינער איין טהייל, איך דאגעגען<lb/>נעם אוף זיך צווייט היילען דיא נפתלי ביזט דער<lb/>פלינגסטער צום לויפען, באם ערשטען סיגנאל זאלסטו<lb/>מיר איין צויכען געבען, און דאס וואס שמעון לוי<lb/>האבען גאטאהן מיט דער שטאט שכם פיר אונזער<lb/>שוועסטער דינה זאלען וויר יעצט טָאהן מיט דער<lb/>שטאט, פיר אונזער ברודער בנימען זאהלען דיא<lb/>עגיפטער פיהלען וואס דוא בי יעקב זענין אומשטאנד<lb/>צו טאהן.</p>
+        </sp>
+        <fw type="pageNum">170631</fw>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0386_a">
+          <speaker>אלע</speaker>
+          <p>היידָאט היידָאט !...<lb/>יהודה <stage type="business">%קלאפט אין אין דער טיער% </stage>הע! הע! <stage type="entrance">%מנשה קומט אריין%</stage></p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0387_a">
+          <speaker>מנשה</speaker>
+          <p>וואס פערלאנגסטו?</p>
+        </sp>
+        <pb n="49" facs="30778126.jpg"/>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0388_a">
+          <speaker>יהודה</speaker>
+          <p>געה זאג דיין פאטער דאס איך פערלאנג<lb/>מיט איהם צו שפרעכען.</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0389_a">
+          <speaker>מנשה</speaker>
+          <p>עס געהט ניט, דער שולדיגער מוז זיין שטראפע<lb/>קריגען, אבער איהר קענט גייען אין פרידען.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0390_a">
+          <speaker>יהודה</speaker>
+          <p>געה זאג דיין פאטער, דאס איך פערלאנג<lb/>מיט איהם צו שפרעכען, האסטו פערשטאנען?</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0391_a">
+          <speaker>מנשה</speaker>
+          <p>אבער נישט זָא אוף גירייגט<stage type="exit business">%גיט אים אקלאפ אין אקסעל%(אב)</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0392_a">
+          <speaker>יוסף</speaker>
+          <p><stage type="entrance">%הערשיינט% </stage>ווער וואלט עס מיר צו שטערען?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0393_a">
+          <speaker>יהודה</speaker>
+          <p>איך וואג עס, האסטו מיט געבראכט דיין צויבער<lb/>בעכער זא פראג אים ווער איך בין און וואס<lb/>איך בין אומשטאנד צו טאהן</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0394_a">
+          <speaker>יוסף</speaker>
+          <p>וואס איז דאס פיר איין שפראכע פיר אייער גרויסען<lb/>קעניג.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0395_a">
+          <speaker>יהודה</speaker>
+          <p>דאס איז דיא שפראכע פון איינעם פערצווייפילטען<lb/>בא וועלכען מען האט מיט אונרעכט איין ברודער צו<lb/>גינעמען, דאס איז דיא שפראכע פון איינעם העלדען<lb/>וועלכער איהם וועה טוהייט, דאס איז דיא שפראכע<lb/>פון איינעם גוט אווטיגען מענטשען וועלכערפאדערט<lb/>נאר גירעכטיקייט, דאס אונשולדיגע מיט שולדיגע<lb/>ניט ליידען זאהלין.</p>
+        </sp>
+        <fw type="pageNum">170612</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0396_a">
+          <speaker>יוסף</speaker>
+          <p>וואס פערלאנגסטו פאן מיר?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0397_a">
+          <speaker>יהודה</speaker>
+          <p>איך פערלאנג מיט דיר צו שפרעכען</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0398_a">
+          <speaker>יוסף</speaker>
+          <p>שעהן איך וועל דיך אויס הערען</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0399_a">
+          <speaker>יהודה</speaker>
+          <p>גרויסער הערשער אב וואהל איך בין איבערצייגט<lb/>דאס בנימען איזט אונשולדיג, אבזיכט ליך האט<lb/>ווען אים דעם בעכער אין זיינעם זאך אריין<lb/>געלייגט נאר איך בייט דיך, לאז א איהם פרייע<lb/>נעם מיך אוף זיינער שטעלע, ער איזט נאך אונג<lb/>אונד שוואך, פון אים קענסטו קיינע נוטיצען האבען<lb/>איך דאגעגען ביין גענוג שטארק אין קרעפטיג, קענסטו<lb/>פון מיר פוולע נוטיצען האבען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0400_a">
+          <speaker>יוסף</speaker>
+          <p>עס טהוט מיר לייד גרויסער העלד דיר אָפ צו<lb/>זאגען, דען ליידער מוז אויך טאהן דאס וואס דיא<lb/>געזעצע אונז פארשרייבען, דער אונגערער בא<lb/>וועלכען מע האט דעם בער דיעבשטאל געפונען.<lb/>דער מוז בלייבען מיין שקלאווע, אבער דוא ביזט פרייע<lb/>נאר גענטליך וואלט איך געוואלט וויסען, ווארום<lb/>שטעלסטו דיך מעהר ארויס פון אלע דיינע ברידער?</p>
+        </sp>
+        <pb n="50" facs="30778128.jpg"/>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0401_a">
+          <speaker>יהודה</speaker>
+          <p>וויל מיר האט דער פאטער איהם אנדער<lb/>טרועט אויף מיינע הענד, נו וויא קען איך יעצט<lb/>צום פאטער קאמען אן איהם?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0402_a">
+          <speaker>יוסף</speaker>
+          <p>דאס איז גראדע איין קליינק הייט לויט מיין<lb/>צו בעכער האט מיר ענטרעקט, טהוט דעס.<lb/>וואס איהר האט געטין מיט יענעם פערליבנים<lb/>ברודער, נעמט איין זיידען העמדעל, צורייסט עס אין<lb/>שמירט עס אין אין בלוט, אונד זאגט דאס איין<lb/>ווילדעס טהיר האט אים צו ריסען... נאר אוים דיך<lb/>צו בערוהיגען שענק איך דיר דעם בעכער<lb/>איין ערזאץ פיר דיין ברודער בנימען.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0403_a">
+          <speaker>יהודה</speaker>
+          <p>וויא איך זייע האסטו דיר פארגינעמען<lb/>ניט נאר אונז צו פערפאלגען זאנדערען אונז מיט<lb/>דיינע רייד וועה צו טאהן</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0404_a">
+          <speaker>יוסף</speaker>
+          <p>וואס? האנדעל איך ניט גענוג הארינטליך געגען איך?<lb/>איצט דען אייער פערליבענער מעהר ווערט אלס<lb/>דער בעכער?</p>
+        </sp>
+        <fw type="pageNum">170633</fw>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0405_a">
+          <speaker>יהודה</speaker>
+          <p>פילַייכט בא איין עגיפטער האט איין ברידער<lb/>מעהר ניט דיא ווערטה אלס איין שטיק גאלד<lb/>אדער זילבער, אבער בא מיר ווילסטו נעמען<lb/>איין רייכטהום פון דער וועלט מיר גיבסט, גיעב<lb/>איך דיר מיין ברודער?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0406_a">
+          <speaker>יוסף</speaker>
+          <p>אונד ווארום האט איהר יענעם ברודער בלויז.<lb/>פיר 20 זילבער פערקופט? אן דוא שטוינסט?<lb/>פיר מיין צויבער בעכער זאלסטו זיך היטין, פיר<lb/>אים זענין קיינע געהיימנעס נישטא.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0407_a">
+          <speaker>יהודה</speaker>
+          <p>נאך אין מעל זאג איך דיר געב אויס מיין<lb/>ברודער צורעק.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0408_a">
+          <speaker>יוסף</speaker>
+          <p>און ווען אלע קענגען פון דינען קומען אבער וועט<lb/>איהר בנימענין ניט בעפרייען פון מיינע הענד<lb/>דאס שווער איך באם לעבען פון קעניג פרעה.</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0409_a">
+          <speaker>יהודה</speaker>
+          <p>דיין קעניג פרעה איז אזא ליגנער וויא דיא<lb/>און דא נאך אַ מאָהל מעהר אונפערשעמטער אלס ער.<lb/>וועה טויזינד מאהל וועה איז דיר און דיינעם<lb/>גאנצען לאנד, ווען איהר טהאט דיא בוי יעקב<lb/>אונדעכט, גאט איז מיין עדות דאס איך געבע<lb/>מיר דיא גרעסטע מיע מיין צארען צוריק צו<lb/>האלטען נאך ריעט נאך מיין שווערד און איהר שֵמד<lb/>נאך זענין דיא גאסען פון עגיפטען מיט בלוט ניט<lb/>פערגאסען, נאך איין מאהל זאג איך דיר, גיעב<lb/>מיר מיין ברידער צוריק.</p>
+        </sp>
+        <pb n="51" facs="30778129.jpg"/>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0410_a">
+          <speaker>יוסף</speaker>
+          <p>זא האלסטו זיך ווירקליך פיר איין גרויסען<lb/>העלד? גלויבסטו דאס עגיפטען האט קיינע<lb/>העלדען צו בעווייזען? זא וואַר וויא דער קעניג<lb/>פרעה לעבט דאס מיט איין מונוט שפעטער וועסטו<lb/>אנדערש דַאנקען אין אנדערש לַאכען.<lb/><stage type="business">%ער פאטכט מיט דיא הענד עס הייסט זיך אויף אַ טאבלע מיט</stage><lb/><stage type="entrance">עגיפטישע סאלדאטען%</stage> נו מיין העלד דוא ביזסט<lb/>ביזסט מיין געפאנגענער! דיין שווערד!</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0411_a">
+          <speaker>יהודה</speaker>
+          <p>היר איזט מיין שווערד און מאכט פלאץ דעם<lb/>לעווע איהר שוואכע פליגען, %קלופט אריין צווישען<lb/>דיא העלדען עס לאזט זיך אַ ראפ דיא טאבלן מען הערט<lb/>זיך שלאגען איין סיגנאט פון דיא קאטען %</p>
+        </sp>
+        <fw type="pageNum">170634</fw>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0412_a">
+          <speaker>בנימן</speaker>
+          <p><stage type="entrance">%לויפט אריין%</stage> וואס האסטו גאמאכט ביזט צווייט<lb/>געגאנגען, איך שרעק זייער עס זאהל דיר עטוואס<lb/><add>זעה</add><lb/>ניט גישעהן אדער זייא שנעל אים גאטעס ווילען<lb/>רופ זייא צוריק.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0413_a">
+          <speaker>יוסף</speaker>
+          <p>אבער מיין קינד בערוהיג זיך ציטער ניט<lb/>אזוי עס איז ניט קיין געפאר פיר זייא און<lb/>ניט פאר מיר אומגעגענטהייל איך בין צו פרידען<lb/>וואס עס האט זיך געמאַכט איין געלעגענהַייט דאס<lb/>דיא עגיפטער זאלען קענען לערען אונזערע ברודער<lb/>זייא זאלען זייא וויסען צו רעספעקטירען, שפייטעה<lb/>ווען זייא וועלען בלייבען בא מיר ליעגיפטען.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0414_a">
+          <speaker>בנימען</speaker>
+          <p>אבער לאז עס ניט זאלאנג דוערען, הערע אבער<lb/><stage type="delivery">%סיגנאלען%</stage></p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0415_a">
+          <speaker>מנשה</speaker>
+          <p>} פאטער וואס האסטו געמאכט?</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0416_a">
+          <speaker>אפרים</speaker>
+          <p>}</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0417_a">
+          <speaker>יוסף</speaker>
+          <p>שנעל גייט זאגט זיי דאס זייא זוולען גיפען איך<lb/>וועל זייא זייער ברודער צוריק געבען<lb/><stage type="exit entrance">%מנשה אב ער קאמט באלד מיט דיא ברידער%</stage></p>
+        </sp>
+        <pb n="52" facs="30778131.jpg"/>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0418_a">
+          <speaker>יהודה</speaker>
+          <p>נא גרויסער הערשער איך האב גיהאט דיא<lb/>הערע בעקאנט צו ווערען מיט דיינע עגיפטישע<lb/>בעל דין, מעגסט ווירקליך מיט זייא שטאלצערען<lb/>בראווא יונגען מוטהיג וויא דיא האזען איין שטארק<lb/>וויא דיא פליגען. נו גרויסער הערשער דוא האסט<lb/>מיך געלאזט רופען מיט דעם פערשפרעכען דאס<lb/>דוא וועסט מיר מיין ברודער צוריק געבען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0419_a">
+          <speaker>יוסף</speaker>
+          <p>אייער ברודער וועל איך איך אייך צוריקגעבען<lb/>אבער הערשט פערגעסט ניט דאס איהר שטייט פיר<lb/>דעם הערשער פון עגיפטען.<lb/><add>מיין</add></p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0420_a">
+          <speaker>יהודה</speaker>
+          <p>האסט רעכט הערשער, ברודער מיינען בישפיל נאך<lb/><stage type="business">%לייגען דיא שווערדען אריין%</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0421_a">
+          <speaker>יוסף</speaker>
+          <p>יא אייער גערודער וועל איך אייך צוריק געבען<lb/>אבער וואס וואלט איהר געזאגט ווען איך זאהל<lb/>אייך אייער פערלורינעם ברודער יוסף<lb/>אויך צוריק געבען?<lb/>יהודה דיא ווייסט וויא מיין ברודער יוסף איז? גיב<lb/><lb/><lb/><lb/><lb/>גייניט<lb/>אויך מיר אפ.</p>
+        </sp>
+        <fw type="pageNum">170633</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0422_a">
+          <speaker>יוסף</speaker>
+          <p>שטעה אויף איך וועל אייך אים באלד אריין רופען<lb/>נור איין זאך האט ער מיך געבייטין אז איך זאל<lb/>אייך זאגען דאס ער האט אייך שוין לאנג פערצייגט<lb/>און איהר זאלט אים אָומארמען וויא צערטליכע ברודער<lb/>אלזא מוטה, ער קאמט, יוסף יוסף, קאם אריין אומוורמע<lb/>דיינע ברודער, ער שרעקט זיך, ער האט מורה<lb/>פילַייכט ווילט איהר אים ניט הערקענין, אלזא הערט<lb/>דעם צַייכען וואס ער האט מיך געהייסען אייך<lb/>איבערגעבען <stage type="delivery">%זינגט% אל רחום א% א.ז.וו</stage>.<lb/>נא? איז דער ציכין ריכטיג?</p>
+        </sp>
+        <sp who="#alle" xml:id="YoysefInEgipten_SP0423_a">
+          <speaker>אלע</speaker>
+          <p>יא אבער וויא איזט יוסף?</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0424_a">
+          <speaker>יוסף</speaker>
+          <p>נאך ערקענט איהר ניט אייער ברודער יוסף? איך<lb/>בין אייער פערלורינער ברודער יוסף, ברידער<lb/>מיינע וואס שרעקט איהר אַייך, ביזיין זייג זייא<lb/>דאס איך ביין יוסף.</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0425_a">
+          <speaker>בנימין</speaker>
+          <p><stage type="entrance">%ערשענט%</stage> זא וועריק אמוורעמט איהר ניט אייער<lb/>פערליכענש ברודער יוסף?</p>
+        </sp>
+        <pb n="53" facs="30778133.jpg"/>
+        <sp who="#ikhtsel" xml:id="YoysefInEgipten_SP0426_a">
+          <speaker>יאחצעל</speaker>
+          <p>איך האב אבער גיוואלט זאגען אַז דאס איז יוסף.</p>
+        </sp>
+        <sp who="#rubn" xml:id="YoysefInEgipten_SP0427_a">
+          <speaker>ראובן</speaker>
+          <p>גאט איז דאס מעגליך דאס דוא ביזט מיין<lb/>פערלירינער ברודער.</p>
+        </sp>
+        <sp who="#shmeun" xml:id="YoysefInEgipten_SP0428_a">
+          <speaker>שמעון</speaker>
+          <p>יוסף דיא ווילסט זיך ערהינערען אז דוא ביסט<lb/>נאך אקליין קינד, אונז האט דעמעלס פערדראסען<lb/>א פערצייע אונז יוסף.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0429_a">
+          <speaker>יוסף</speaker>
+          <p>איך האב אייך שוין פערצייעט אין איך דאנק אייך<lb/>זעהר דאפיר, דען דאס האט מיך געפירט נאך<lb/>עגיפטען צו מיין גליק דארום ער גערט אַייך ניט.<lb/>דענקט ניט מעהר דאראן מיר זענין ווידער אלע<lb/>צו זאמען גליקליך איבער גליקליך, מענשה בריינג<lb/>אריין וויין וועלען מיר טרינקען אוף דעם געזונד<lb/>פון אונזער אלטען פאטער! נאר איך בייט אַייך<lb/>מיינע ברידער נישט מיט אַ מאהל איבעראשען<lb/>דעם פאטער עס זאהל אים צו זיין געזונד<lb/>ניט שאדען</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0430_a">
+          <speaker>בנימין</speaker>
+          <p>איך וועל זיין דער שלען אין ליפען אין זאגען<lb/>דעם פאטער דיא גאטע נארישט.</p>
+          <lg n="17">
+            <l>איך דאנק אייך אלע פריער</l>
+            <stage type="delivery">ער זינגט%</stage>
+            <l>ליך דאנקופיר דעם שיין</l>
+            <l>איך דאנק אייך אלע ברידער</l>
+            <l>איהר זאלט דעם פאטער</l>
+            <l>מיט דער נאכריכט ערפרייען</l>
+            <l>דאס אין עגיפטען לעבט יוסף.</l>
+            <l>יוסף בעפאר איהר געהט</l>
+            <l>דער קוויקט אייער הערץ מיט וויין</l>
+            <l>אלע שטויסט אן שטויסט אן</l>
+            <l>אל רחום אל רחום</l>
+            <stage type="setting">פארהאנג פאלט</stage>
+            <stage type="setting">פערוואנדלונג</stage>
+          </lg>
+        </sp>
+        <fw type="pageNum">170633</fw>
+        <trailer>עפילאָג</trailer>
+        <pb n="54" facs="30778134.jpg"/>
+      </div>
+      <div type="epilog" xml:id="YoysefInEgipten_Epilog">
+        <head>עפילאג</head>
+      </div>
+      <div type="addendum">
+        <stage type="entrance business">%מען טראגט יעקיבען אריין אויף אַ ראלדאכען אין</stage>
+        <stage type="business">בלייבען שטייען%</stage>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0431_a">
+          <speaker>יעקב</speaker>
+          <p>וויא זענין מיר יעצט?</p>
+        </sp>
+        <sp who="#ihudh" xml:id="YoysefInEgipten_SP0432_a">
+          <speaker>יהודה</speaker>
+          <p>מיר זענין ניט ווַייט פון עגיפטען, דָא האט<lb/>אונז יוסף בעשטימט מיר זאהלען אים הערווארטען<lb/>דָא וויל ער דיר איינטקעגען קומען.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0433_a">
+          <speaker>יעקב</speaker>
+          <p>יוסף וויל מיר ענטקייגען קומען? מיין פערוהינס<lb/>קינד וועל איך ווידער אומארמען? איז דאס<lb/>אלס וואהר?</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0434_a">
+          <speaker>בנימין</speaker>
+          <p>יא פאטער זא וואהר וויא גאט לעבט אין<lb/>זא ווַאהר וויא מיר שטייען יעצט אלע ארום דיר.<lb/>פאסע מוטה פאטער זייא שטארק בא זיך.</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0435_a">
+          <speaker>יוסף</speaker>
+          <p><stage type="business">קען דריסען%</stage> וויא איזט מיין פאטער? וויא איזט ער?<lb/><stage type="entrance">%ער ליפט אריין מיט מעלטער מענטה אפריב%</stage></p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0436_a">
+          <speaker>יעקב</speaker>
+          <p><stage type="business">%אמארעמט איב%</stage> דוא ביסט מיין קינד יוסף<lb/>דיך מיין פערלירינעס קינד האלט איך ווידער<lb/>אין מיינע ארמעס?</p>
+        </sp>
+        <fw type="pageNum">170633</fw>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0437_a">
+          <speaker>יוסף</speaker>
+          <p>ער פאטער וועט יא אט אוף<lb/>דוא האסט געליטען?</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0438_a">
+          <speaker>יעקב</speaker>
+          <p>דער יעצטיגער מאמענט בעצאלט מיר פיר<lb/>אלעס מיין קינד דאס איז שוין גענוג פיר מיר<lb/>יעצט וועל איך שוין קענין רוהיג שטערבען</p>
+        </sp>
+        <sp who="#iusf" xml:id="YoysefInEgipten_SP0439_a">
+          <speaker>יוסף</speaker>
+          <p>אנין ליבען זאהלסטו געבען נאך פעל געבע<lb/>יארען מיט מיר, דער קעניג פרעה האט מיך<lb/>ערזיצט זאבאלד איהר אלע ווירד קאמען אייך אים<lb/>פארצעשטעלען.</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0440_a">
+          <speaker>יעקב</speaker>
+          <p>אַ מיין זיין ביזט ווילען זא גרויס?</p>
+        </sp>
+        <sp xml:id="YoysefInEgipten_SP0441_a">
+          <speaker>יאחסעל</speaker>
+          <p>בנימטשנעל הערצעלע אונז בעסער דאס וואס<lb/>האסט פריער געזאגט נו דיא ווייסט שוין</p>
+        </sp>
+        <sp who="#bnimn" xml:id="YoysefInEgipten_SP0442_a">
+          <speaker>בנימין</speaker>
+          <p><stage type="delivery">%זינגט%</stage> איין קעניג לייבט אין עגיפטען לאנד<lb/>בערימט ע איזט ער מיט זיין פערשטאנד<lb/>זיין נאמען זאהל מיר טרעף געשווינד<lb/>דאס איז יוסף זיין ליעב קינד</p>
+        </sp>
+        <sp who="#iekb" xml:id="YoysefInEgipten_SP0443_a">
+          <speaker>יעקב</speaker>
+          <p>הערצעלע מיין קינד הערצעלע מיין קינד</p>
+        </sp>
+        <pb n="55" facs="30778136.jpg"/>
+        <fw type="pageNum">[104]</fw>
+        <sp who="#chor" xml:id="YoysefInEgipten_SP0444_a">
+          <speaker>קאהר</speaker>
+          <p>איין קעניג לעבט א. ז.וו.<lb/><stage type="setting">פארהאנג פאלט</stage></p>
+        </sp>
+        <trailer>"ענדע"</trailer>
+        <pb facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0056.jpg"/>
+        <pb facs="ya-rg8-1-f4179_-_יוסף_אין_עגיפּטען_-_Yoysef_in_Egipten_-_Historical_operetta_in_5_act-0057.jpg"/>
+      </div>
+    </body>
+  </text>
+</TEI>

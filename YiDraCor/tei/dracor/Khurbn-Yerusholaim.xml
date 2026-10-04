@@ -1,0 +1,1710 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-khurbn-yerusholaim">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">חורבן ירושלים</title>
+        <title type="sub">Khurbn Yerusholaim</title>
+        <author>Joseph Lateiner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>חורבן ירושלים</title>
+          <author>Joseph Lateiner</author>
+          <idno type="transkribus">https://app.transkribus.org/collection/2372172/doc/838368</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <classDecl>
+        <taxonomy xml:id="prod-cues">
+          <desc>Regie/prompter cue notation of the handwritten witnesses. The letter names the family (R = Returnel/ritornello, S = Szene); the Roman numeral is an in/out bracket state, not a serial number, which is why III never occurs. N/No + Arabic numeral is the serial of the musical number.</desc>
+          <category xml:id="cue-in">
+            <catDesc>Opening bracket of a cue: RI, IR, R.I, '1 Returnell:', and the bare I of MS_BasKoyen where the letter is dropped.</catDesc>
+          </category>
+          <category xml:id="cue-out">
+            <catDesc>Closing bracket of a cue: RII, IIR, R.II, 'II Return:', bare II. At a scene cue it falls on Vorhang/Verwandlung.</catDesc>
+          </category>
+          <category xml:id="cue-genre">
+            <catDesc>Names the kind of musical number rather than bracketing it: Chor, Marsch, Tanz, Terzett, Quarted, Duet, arya, Refrein. Carries no in/out state.</catDesc>
+          </category>
+          <category xml:id="cue-number">
+            <catDesc>The serial of the musical number: N, No 4., N=3. @n carries the normalised value.</catDesc>
+          </category>
+        </taxonomy>
+      </classDecl>
+    </encodingDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="tsdkihu">
+            <persName>צדקיהו</persName>
+          </person>
+          <person xml:id="khmutil">
+            <persName>חמוטיל</persName>
+          </person>
+          <person xml:id="hdsh">
+            <persName>הדסה</persName>
+          </person>
+          <person xml:id="ishmel">
+            <persName>ישמעאל</persName>
+          </person>
+          <person xml:id="gdilihu_bn_khikum">
+            <persName>גדיליהו בן אחיקום</persName>
+          </person>
+          <person xml:id="tsfnihu">
+            <persName>צפניהו</persName>
+          </person>
+          <person xml:id="khnnihu">
+            <persName>חנניהו</persName>
+          </person>
+          <person xml:id="likum">
+            <persName>אליקום</persName>
+          </person>
+          <person xml:id="snkhumus">
+            <persName>תנחומות.</persName>
+          </person>
+          <person xml:id="irmihu_hnbi">
+            <persName>ירמיהו הנביא</persName>
+          </person>
+          <person xml:id="shrtsr">
+            <persName>שראצר.</persName>
+          </person>
+          <person xml:id="fitser">
+            <persName>אפיצער</persName>
+          </person>
+          <person xml:id="flk_sldten">
+            <persName>פאלק סאלדאטען</persName>
+          </person>
+          <person xml:id="shenk">
+            <persName>שענק</persName>
+          </person>
+          <personGrp xml:id="helden">
+            <name>העלדען</name>
+          </personGrp>
+          <personGrp xml:id="khhnim">
+            <name>כהנים</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="KhurbnYerusholaim" type="KhurbnYerusholaim">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#tsdkihu">צדקיהו</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khmutil">חמוטיל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#hdsh">הדסה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ishmel">ישמעאל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#gdilihu_bn_khikum">גדיליהו בן אחיקום</role>
+        </castItem>
+        <castItem>
+          <role corresp="#tsfnihu">צפניהו</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khnnihu">חנניהו</role>
+        </castItem>
+        <castItem>
+          <role corresp="#likum">אליקום</role>
+        </castItem>
+        <castItem>
+          <role corresp="#snkhumus">תנחומות.</role>
+        </castItem>
+        <castItem>
+          <role corresp="#irmihu_hnbi">ירמיהו הנביא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shrtsr">שראצר.</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fitser">אפיצער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#flk_sldten">פאלק סאלדאטען</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shenk">שענק</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0001.jpg"/>
+      <pb n="2" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0002.jpg"/>
+      <pb facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0003.jpg"/>
+      <pb n="4" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0004.jpg"/>
+      <pb n="5" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0005.jpg"/>
+      <pb n="6" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0006.jpg"/>
+      <stage type="delivery">חֻרְבן יְרושָלַיִם</stage>
+      <pb n="7" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0007.jpg"/>
+      <stage type="delivery">היסטארישע אפערעטא אין 5 אקטען פֿון יוסף לאטיינער</stage>
+      <div type="act" n="1" xml:id="KhurbnYerusholaim_Act1">
+        <head>ערשטער אקט }</head>
+        <stage type="setting">א זאל ביי צדקיהו א טרעפ ארוב</stage>
+        <stage type="setting">צו געהן צו א ווארענדע כאהר איז</stage>
+        <stage type="setting">אויף דער ביהנע!</stage>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0001_a">
+          <speaker>כאהר</speaker>
+          <p>האב לעבען זאל צדקיהו דער קעניג.<lb/>האך לעבע אונזער הייליג לאנד.<lb/>האב לעבע אונזערע העלדען בעריהמט גאר אָן א צאָהל<lb/>נבוכדנצר מלך בבל ציטערט פֿאר אונזערע קרעפֿטיגע האנד.<lb/>נידער מיט די כאַלדעער. האך לעבע די גיבורי ישראָל<lb/><stage type="entrance">אויפֿטריט צידקיהו</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0002_a">
+          <speaker>אלע</speaker>
+          <p>יחי המלך! יחי המלך! יחי המלך! הידד!</p>
+        </sp>
+        <sp who="#tsdkihu" xml:id="KhurbnYerusholaim_SP0003_a">
+          <speaker>צדקיהו</speaker>
+          <p>גאט מיט אייך געליעבטע העלדען אייער מוטה איז מיר בעקאנט.<lb/>דאך איז די געפֿאהר צו גרויס. אייער עצה לאזט הערען יעצט. <lb/>נבוכדנצר מלך בבל, וויל צעשטערען אונזער הייליג לאנד.<lb/>זאגט. זאלען מיר זיך אונטער געבען. אדער קעמפפֿען ביז צו לעצט.</p>
+        </sp>
+        <sp who="#khhnim" xml:id="KhurbnYerusholaim_SP0004_a">
+          <speaker>כהנים</speaker>
+          <p>אונטערגעבען! פֿערלאהרען איז אונזער מוטה</p>
+        </sp>
+        <sp who="#helden" xml:id="KhurbnYerusholaim_SP0005_a">
+          <speaker>העלדען</speaker>
+          <p>שווייגט איהר פֿאלשע כהנים! איהר רויבט אונזער מוטה.<lb/>קעמפפֿען מוזען מיר ביז צום לעצטען טראפען בלוט.</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0006_a">
+          <speaker>ירמיה</speaker>
+          <p>/<stage type="setting">פֿון דרויסן</stage>/ נָפֿלה עטֶרֶת ראשינו אוי נאָ לָנו כי חטאנו.</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0007_a">
+          <speaker>אלע</speaker>
+          <p>שרעקליך איז די שטימע פון ירמיה הנביא.</p>
+        </sp>
+        <pb n="8" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0008.jpg"/>
+        <sp who="#tsdkihu" xml:id="KhurbnYerusholaim_SP0008_a">
+          <speaker>צדקיהו</speaker>
+          <p>ברענגט איהם אריין. <stage type="business">/געשיהט/</stage> דעם אמת וויל איך הערען פון דיר יעצט<lb/>און אונזער גרויסער נויט אוף אונזער לאַנד. אויף זיינזער פֿאלק. לאז אונז<lb/>הערען דעם ווילען פון גאט.<lb/><add>געזאנג</add></p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0009_a">
+          <speaker>ירמיהו</speaker>
+          <p>אָה צדקיהו מיין קעניג אה קעניג, און איהר אַלע אַללע צוזאמען גאט'ס ווארט פֿון מיר הערט.<lb/>פאר וואס לאזט איהר מיין פֿאָלק אזוי און רחמנית! אומקומען, דורך הונגער און.<lb/>שווערד, נבוכדנצר מלך בבל מוז אייער הערשער זיין! איהר וועט געגען<lb/>איהם נישט באַשטיין. ברענגט איייער האלז אונטער זיין יאָך!<lb/>דאמיט איהר זאלט ניט צו גרונדע געהן!<lb/><add>און איהר וועט זיין</add><lb/>וועט איהר אבער ווייטער אזוי הארטנעקיג בלייבען, געגען מיין ווילען.<lb/>[אזוי וועל איך מיין שרעקליכע בעשטימונג אויף אייך באלד ערפֿיהלען]<lb/>"כה אמר ד' צבאות אֶלהֵי ישראל."<lb/>שרעקליך ברענט מיין צארען פאר אייערע זינד, אָהן צאָל!<lb/>פֿערברענען. פֿערניכטען. וועט נבוכדנצר דאס גאנצע לאנד.<lb/>אומקומען וועלען אלע. קיינער וועט ענטלויפען פון זיין האנד.<lb/><add>קעניג</add><lb/>און די צדקיה וועלכער דו זיצט נאך אויף דיין טראָהן<lb/>געפאנגען אין שווערע קייטען ווערסטו באלד געשלעפט נאך בוויליאָן</p>
+        </sp>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0010_a">
+          <speaker>כאהר</speaker>
+          <p>האלט איין קעניג פֿאלש איז אלעס ער איז איין בעטריגער.<lb/>דען מוטה אונז צו רויבען האבען איהם געדונגען די. כאלדעער.<lb/><add>-בת ציון</add></p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0011_a">
+          <speaker>ירמיהו</speaker>
+          <p><stage type="business">/קניעט/</stage> [וויי איז צו טאכטער ירושלים.] עס איז שוין דיינע לעצטע שטונדע<lb/>דיינע שלעכטע קינדער<lb/>[<stage type="delivery">ריכטען דיך ריכטען דיך צו גרונד</stage>]<lb/>דיינע מיניטען זענען גיציילט. עס ס'איז שוין די לעצטע שטונדע<lb/>שוין זעה איך דאס פֿייער ברענט דאס הייליגטוהם גאטעס פון גאטט<lb/><add>אללע.</add><lb/>פֿרייד אייך אונזערע פיינדע <stage type="delivery">[לאכט]</stage> מאכט פֿון אונז געשפאָט<lb/>נָפלָה עַטֶרֶת ראשֵינִו אוי נאָ לָנִו כִי חָטָאנִו.</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0012_a">
+          <speaker>אלע</speaker>
+          <p>אוועק פון דאנען דו פֿאלשער פֿערקויפֿער<lb/>ער וויל אונז איבערגעבען צו די כאלדעער<lb/>הער איהם ניט קעניג פאר דיינע אויגען זאל ער ניט קומען מעהר-<lb/>ניעדער מיט נבוכדנצר! האב לעבע צדקיהו.<lb/>האב לעבען די גבורי ישראל! יחי המלך! יחי המלך! יחי המלך! /<stage type="exit">אב</stage>/</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0013_a">
+          <speaker>ישמאל</speaker>
+          <p>חַחַחַ יחי המלך. דער קעניג צדקיהו זאל לעבען. יא. יא. מיין טייערער<lb/>קעניג. זאלסט לעבען אזוי לאנג. ביז דו וועסט מיט אקאפ קירצער ווערען.<lb/>די נארישער צדקיהו די האסט מיך פאר דיין טייערסטען דיענער. פאר<lb/>דיין קליגסטען עצה געבער געהאלטען. און דו האסט ניט געפֿיהלט דאס מיין)<lb/>טריישאפֿט צו דיר איז נאר געוועהן א נעץ דיך צו חאפען. דו האסט<lb/>מיין עצה געפֿאלגט. געגען דעם קעניג נבוכדנצר רעוואלוציאָנירען.<lb/>ירשלים איז יעצט בעלאגערט פון אַנ'אָנגעהיירע מחנה כאלדעער. היינט<lb/>אדער מארגען. פֿאלען איז עס. יא פאלען צו זאמען מיט דעם קעניג צדקיהו<lb/>דאס האב איך געוואלט. פאר וואס האט מען מיר די קרוין צוגענומען?<lb/><add>דאס</add><lb/>איך ישמאל. איך בין עלסטע אייניקעל פון יהושוע המלך, און נאך דעם<lb/><add>האט</add><lb/>ווי יהוכין איז געפאנגען איז דו קעניקגליכע קרוין געהערט צו מיר. נאך<lb/>איהם האב איך געברויכט די קעניגליכע <sic>קרוי </sic>בעזיצען. אבער מיין<lb/>פֿעטער צדקיהו האט פערשטאנען ביי נבוכדנצר איינצוליעבען זיך<lb/>דערפאר האט ער איהם מיין קרוין אוועקגעגעבען. 11 יאהר זענען שוין<lb/>אריבער זייט דו האסט ביי מיר מיין רעכט צוגענעמען אבער שרעקליך<lb/>וועט די ענדע זיין. היינט זיץ נאך פעסט אויף דיין שוואכע מלוכה<lb/>זעטיג דיינע אויגען מיט דעם גלאנץ פון דער געקויפֿטער מלוכה. אבער<lb/>באלד זעהר באלד וועסטו זי ניט מעהר זעהן מיין נקמה האט ענדליך<lb/>געזיעגט, נו און דו נבוכדנצר מלך בבל. גלויבסט דאס זיך האב איך<lb/>ניט זיין זינען געהאט? דו ווילדער מענשענפֿרעסער, דו זאלסט זיך<lb/>אויך ניט פֿרייען פאר דער צייט. איך דער צייט ווען דו גלויבסט<lb/>אז די האסט שוין גאנץ יהודה איינגעשלונגען וועט פליצלינג אונטער<lb/>דיין רוקען אויסוואקסען א פֿיינד. וועלכער וועט דיר דעם פֿעטען<lb/>ביסען פון דיין מויל ארויסרייסען צעזאמען מיט דיינע ציינער!<lb/>דאס איז בעליס דער קעניג פון עַמון ער איז איינגעגאנגען אויף<lb/>מיין פֿארשלאַג דאס מיר ביידע זאלען זיך טייהלען דאס לאנד<lb/>יהודה ווען ער וועט מיר העלפֿין די קרוין אויף מיין קאפ ארויף<lb/>זעצען דאס איז איין איינציגעס שטרעבען. דער איינציגער צוועק<lb/>פון מיין לעבען, איך וויל און מוז קעניג זיין. און זאל דאס<lb/>מיר ניט געלונגען אזוי זאל אלעס צו גרונדע געהן. די<lb/>שטאלצע שטאדט ירשלים זאל אין א בארג אַש פערוואנדעלט ווערען<lb/>תהו ובהו זאל ווערען פון גאנצען לאנד. האב איך מיין רעכט<lb/>פערלאָרען זאל גאנץ יהודה צו גרונדע געהן די מלוכה איז מיינע<lb/>יא זי איז מיינע /<stage type="exit">אב/</stage> /<stage type="delivery">מוזיק שפילט/</stage><lb/><stage type="entrance">אויפטריט הדסה</stage></p>
+        </sp>
+        <pb n="9" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0009.jpg"/>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0014_a">
+          <speaker>הדסה</speaker>
+          <p>איינזאם בין איך געבליבען מיט קומער און שמערצען - פֿערשווינדען<lb/>איז פון מיר יעדע רוהע. געליעבטער פון מיינעם הערצען.<lb/>וואו ביזטו? אָה גדליהו וואו ביזטו? <add>געהט ניט</add><lb/>Refrein }</p>
+          <lg n="1">
+            <l>מיטען רוהיגער שטילער נאכט. ווען אלץ רוהט אין זיעסען שלאף.</l>
+            <stage type="delivery">זינגט</stage>
+            <l>ווען קיין לעבענד וועזען וואכט. הערט זיך דייטליך מיין ליעבע רוף</l>
+            <l>קום געליעבטער. קום מיין לעבען. איך ערווארט פון דיר מיין גליק.</l>
+            <l>מיט אלע כוחת וועל איך שטרעבען. דיך ביי מיר צו זעהן צוריק.</l>
+          </lg>
+          <lg n="2" prev="true">
+            <l>שרעק זיך ניט און קום שנעל צו מיר. ווייל בענקען טוהט נאך דיר מיין הארץ</l>
+            <l>קום ניר קום איך ווארט אויף דיר. מיט דיר צו טיילען פרייד און שמערץ</l>
+            <l>גרויסער גאט מאך בעגליקען. ערבארם זיך איבער מיין שמארץ</l>
+            <l>זאלסט מיר מיין גדליהו צושיקען. ער זאל היילען מיין פערוואונדערט הארץ</l>
+            <l>זיין שטימע הער איך אין טרוים. ווארט מיין ליעבע איך פֿליה צו דיר.</l>
+            <l>פֿערליער קיין מוטה איך קום איך קום זאגט מיין הארץ שטענדיק אין מיר.</l>
+          </lg>
+          <lg n="3">
+            <l>שרעק זיך און קום שנעל צו מיר. ווייל בענקען טוהט נאך דיר מיין הארץ</l>
+            <stage type="business">א. ז. וו.</stage>
+            <stage type="entrance">אויפטריט חמוטיל</stage>
+          </lg>
+        </sp>
+        <pb n="10" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0010.jpg"/>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0015_a">
+          <speaker>חמוטיל</speaker>
+          <p>הדסה!</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0016_a">
+          <speaker>הדסה</speaker>
+          <p>אָה באָבע<lb/><add>קעניגען</add>.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0017_a">
+          <speaker>חמוטיל</speaker>
+          <p>איך האב דיר געוויס געשטערט נישט אמה?</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0018_a">
+          <speaker>הדסה</speaker>
+          <p>געשטערט?!</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0019_a">
+          <speaker>חמוטיל</speaker>
+          <p>גאנץ געוויס. זעה זיך דען ניט אין דיינע אויגען דאס דו האסט שוין<lb/>ווידער פאנטאזיערט פון דיין געוועזענעם געליעבטען? ווילסטו דען נאך<lb/>אלץ ניט פערגעסען אָן יענעם פאלשען קנעכט גדליהו? מיר די אלטע<lb/>קעניגען דיין געטרייע באבע ביזטו גזנץ פֿרעמד געווארען צו דיין<lb/>קעניגליכען פאטער צדקיהו האסטו דיין גאנץ צוטרויען פערלוירען?!<lb/>אָה דו אוימגליקליך קינד צו ליעב וועמען <sic>טרעסטו </sic>מיט די פֿיס דיינע<lb/>ליעבע עלטער'ן? צוליעב אזא געמיינעם און שלעכטען מענשען.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0020_a">
+          <speaker>הדסה</speaker>
+          <p>שטיל באבע פאר וואס קומט איהם צושעלטען? איז דען נאך<lb/>ווייניג דאס אָנרעכט וואס עס איז איהם דורך אייך געשעהן.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0021_a">
+          <speaker>חמוטיל</speaker>
+          <p>אונרעכט?!</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0022_a">
+          <speaker>הדסה</speaker>
+          <p>פאר וואס איז ער אזוי שרעקליך בעשטראפֿט גיווארען. איז ער דען<lb/>ניט געליעבט ביים גאנצען פֿאלק העט ער זיך ווייניג בעריהמט<lb/>געמאכט דורך זיינע העלדענט האטען? איז דען דער נאמען גדליהו<lb/>ניט גיוועהן געשעצט אין געהערט ביי יעדען מענשען. און טאקע דערפאר<lb/>האט ער אויך מיין הארץ געווינען מיין פֿאטער האט איהם אלע<lb/>זיינע גוטער אוועקגענימען און האט ביי איהם זיין שטארבענדע<lb/>מוטער צוגענומען און אִיהם אליין האט ער פערשיקט נאך בוויליאָן<lb/><add>פאר</add><lb/>אלס א שקלאוו. צו דעם קעניג נבוכדנצר / וואס האט איהר איהם<lb/>אזוי שרעקליך בעשטראָפֿט? פאר וואס? פֿאר וואס?</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0023_a">
+          <speaker>חמוטיל</speaker>
+          <p>פאר וואס? א שיינע פֿראגע פֿאר וואס. ווי האט אזא איינער געוואגט<lb/>אויפֿצוהייבען זיינע אויגען צו דיר דעם קעניג צדקיהוס טאכטער.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0024_a">
+          <speaker>הדסה</speaker>
+          <p>פערצייהע מיר באבע? דו האסט א טעות. נישט ער העט ער זיינע<lb/>אויגען צו מיר אויפגעהויבען. נאר איך.... זיך האב מיינע אויגען<lb/>צו איהם אויפגעהויבען</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0025_a">
+          <speaker>חמוטיל</speaker>
+          <p>וואס איז</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0026_a">
+          <speaker>הדסה</speaker>
+          <p>אין מיינע אויגען שטעהט ער פֿיעל העכער אלס איך</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0027_a">
+          <speaker>חמוטיל</speaker>
+          <p>וואס? וואס פלוידערסטו? האסטו דען פערגעסען ווער דו ביזט און ווער<lb/>עס איז? די א פרינצעסען און ער? וואס איז ער? אַנ'איינפֿאכער<lb/>מענש פֿון פֿאָלק!....</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0028_a">
+          <speaker>הדסה</speaker>
+          <p>בלויז אַנ'איינפאכער מענש פון פאלק, איין וואס בין איך דען אלס פֿרינ-<lb/>צעסען? קען איך דען דאדורך אַ צווייפֿאכֿער מענש זיין. פון<lb/>וועהמען האט דאס פֿאטערלאנד מעהר ניצען געהאט? ווער האט דאס<lb/>פֿאָלק מעהר אויפגעמינטערט? איך. דאמיט וואט איך בין דעם<lb/>קעניגס צדקיה'ס טאכטער? אדר ער דאמיט וואס ער האט מיט<lb/>זיין שווערד אזוי פיעל מאל דאס פֿאלק בעפרייט פון פֿערשידענע פֿיינד?</p>
+        </sp>
+        <pb n="11" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0011.jpg"/>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0029_a">
+          <speaker>חמוטיל</speaker>
+          <p>נארישקייטען. וואָס ארט מיך וואס ער האט פאר'ן פֿאלק, ווער עס<lb/>שטאמט ניט פון א קעניגליכע פאמיליע. דער איז גאר נישט.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0030_a">
+          <speaker>הדסה</speaker>
+          <p>גאר קיין מענש ניט?</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0031_a">
+          <speaker>חמוטיל</speaker>
+          <p>אה מיין ליעבעס קינד. ווען וועסטו שוין א מאל קומען צום שכל<lb/>אז די האופט ראלע שפיעלט דער קעניג און מיר אלע וועלכע האבען <lb/>קעניגליכעס בלוט, אבער דאס פאלק... דאס איז בלויז א נעבען זאך</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0032_a">
+          <speaker>הדסה</speaker>
+          <p>אה מיין ליעבע באבע. ווען וועסטו שוין אמאל פֿעשרטיין אז<lb/>דאס אלעס וואס דו האסט דאָ גערעדט איז ניט ריכטיג.<lb/>חמוטיל וואס? האבען מיינע אויערין ריכטיג געהערט? דעם קעניגס<lb/>טאכטער, זאגט עס?</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0033_a">
+          <speaker>הדסה</speaker>
+          <p>איך. דעם קעניג׳ג טאכטער. זאג עס.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0034_a">
+          <speaker>חמוטיל</speaker>
+          <p>/<stage type="business">ברעכט די הענד</stage>/ וויי צו מיינע אלטע יאהר. וואס איך האב דערלעבט<lb/>צו הערען? וואס זאגסטו? ניין מיין הדסה, דו ביזט פֿערפֿיהרט<lb/>אין שולדיג אין דעם איז נאר דער קנעכט גדליהו. אויס. איך האב<lb/>מיט דיר נישט מעהר וואס צו ריידען. דו ביזט פערפיהרעט /<stage type="exit">אב</stage>/<lb/>הדסה ווי וויי אונד ביטער איז דעם מענש. וועלכער מוז זיך בעקלאגען<lb/>פאר אזעלכע מענשען וועלכע די פֿליכט הייסט ליעבען און <sic>אָכטין</sic><lb/>די אלטע איז אזוי ווייט <sic>פֿענארט </sic>און איהר יחוס דאס זי רעכענט<lb/>זנך פאר דעם ניצליכסטען מענש אויף גאט׳ס ערד און אלע אנדערע<lb/>מענשען זענען בלויז פאר איהר בעשאפֿען, אך גדליהו דו עדעלער<lb/>העלד. וואס האט דיר געניצט וואס דו האסט פאר דיינע ברודער אזוי<lb/>פֿיעל דיין בלוט פֿערגאסען? וואס איז געוועהן דער לאהן פאר דיינע<lb/>העלדענטהאטען? איין שרעקליך באהאנדלונג פון דיין קעניג. 3<lb/>יאהר זענען שוין אריבער זייט יענעם שרעקליכען טאָג. אבער מיין<lb/>שמערץ איז היינט נאך דער זעלבער וואס דאמאלס.. ניין גדליהו<lb/>איך וועל דיך ניט פערגעסען. ביז מיין לעצטען אויגענבליק. דיין<lb/>נאמען בלייבט ביי מיר א הייליגטוהם. און ווען איך וועל ברעכען <lb/>מיין שבועה צו דיר, זאל מיין הארץ פריהער צעבראכאן ווערען.<lb/><stage type="entrance">אויפֿטריט צפֿניה</stage></p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0035_a">
+          <speaker>צפֿניה</speaker>
+          <p>אה ניין פרינצעסען זאל גאט היטען. דיין הארץ איז צו עדעל. צו<lb/>גוט. עס זאל ניט ברעכען. עס דארף ניט ברעכען./<stage type="delivery">הוסט</stage>/</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0036_a">
+          <speaker>הדסה</speaker>
+          <p>ווער ביזטו?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0037_a">
+          <speaker>צפניה</speaker>
+          <p>/<stage type="business">שטעהט מיליטעריש</stage>/ פרינצעסען דערקענסטו ניט דעם אלען אויסגעדיענטען<lb/>סאלדאט?</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0038_a">
+          <speaker>הדסה</speaker>
+          <p>צפניה?!!!</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0039_a">
+          <speaker>צפניה</speaker>
+          <p>ריכטיג. מיינע גוטע פרינצעסין. איך בין עס דער אלטער<lb/>צפניה. איינער פון גדליה׳ס דינער, אֵיינער וואס איך וואלט אוועקגעגעבען<lb/>מיין גראָען קאָפ אבצושניידען פאר גדליהו׳ס מינדעסטען פֿינגער<lb/>איינער וואס איך....</p>
+        </sp>
+        <pb n="12" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0012.jpg"/>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0040_a">
+          <speaker>הדסה</speaker>
+          <p>ש... ש.. גענוג מיין ליעבער אלטער. די רעגסט דאך צו פיעל<lb/>אויף. דערצעהל מיר בעסער וועגען וואס ביזטו אהער געקומען?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0041_a">
+          <speaker>צפניה</speaker>
+          <p>איך בין א שליח פרינצעסען. איך האב דיר געבראכט א גוטע<lb/>בשורה דאס דיין גדליהו דאס הייסט מיין גדליהו.. דאס הייסט<lb/>אונזער גדליהו... איך מיין אונזער...</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0042_a">
+          <speaker>הדסה</speaker>
+          <p>נו וואס? וואס גדליהו?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0043_a">
+          <speaker>צפניה</speaker>
+          <p>גדליהו לעבט און איז פֿריי</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0044_a">
+          <speaker>הדסה</speaker>
+          <p>וואס זאגסטו?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0045_a">
+          <speaker>צפניה</speaker>
+          <p>יא ער לעבט און איז פֿריי</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0046_a">
+          <speaker>הדסה</speaker>
+          <p>פֿריי? וואו? ווי איז ער?!!<lb/><stage type="entrance">אויפֿטריט גדליהו</stage></p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0047_a">
+          <speaker>גדליהו</speaker>
+          <p>דא ביי דיינע פֿיס קניע זיך</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0048_a">
+          <speaker>הדסה</speaker>
+          <p>גדליהו?!!!</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0049_a">
+          <speaker>גדליהו</speaker>
+          <p>הדסה?!!! /<stage type="business">אומארמונג</stage>/</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0050_a">
+          <speaker>הדסה</speaker>
+          <p>מיין גדליה דו לעבסט, און ביזט ווידער נעבען מיר.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0051_a">
+          <speaker>גדליה</speaker>
+          <p>הימלישע הדסה דו ליעבסט מיך נאך עזוי ווי פֿריה</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0052_a">
+          <speaker>הדסה</speaker>
+          <p>האסטו דען אין דעם געצווייפֿעלט /<stage type="business">אומארמונג/</stage></p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0053_a">
+          <speaker>צפניה</speaker>
+          <p>מיין ליעבער אלטישטקער. די הערסט פון וואס דא ווערט גערערט. פערשטיי<lb/>אליין וועס דו האסט צו טוהן /<stage type="delivery">קאמענדעוועט</stage>/ סמירנא נא פראוואָ מארש אַט<lb/>אַט /<stage type="exit business">אב מארשירענדיג</stage>/</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0054_a">
+          <speaker>גדליה</speaker>
+          <p>טהייערע הדסה, דו האסט געליטען איך זעה עס. זיין שעהן געזיכט איז.)<lb/>מיט טרויער בעדעקט, יא פערגעסען וועל איך דאס וואס איך העב<lb/>דורך דיין פאטער געליטען. ווייל איך האב יעצט ווידער די ליעבע<lb/>פון זיין הימלישע טאכטער.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0055_a">
+          <speaker>הדסה</speaker>
+          <p>ביז מיין טוידט. יא גדליה און דער גאנצער צייט וואס דו ביזט ניט<lb/>דא געוועהן האט מיך דיין בליק קיין איין מינוט פערלאזט. וואכענד<lb/>ווי אויך אין שלאָף האבען שטענדיג דיינע ליעבע אויגען אריינ-<lb/>געבליקט צו מיר אין מיין פֿערוואונדערט הערץ. אבער דערצעהל מיר)<lb/>גדליהו, ווי אזוי האט דיך נבוכדנצר בעפֿרייט?</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0056_a">
+          <speaker>גדליה</speaker>
+          <p>. דער ליעבער גאט האט דאס הארץ פון דעם באוויליאנישען קעניג<lb/>נבוכדנצר דערפיהלט מיט מיטלייד און ער האט מיך פֿרייגעלאזט.<lb/>בין איך אהער געקומען מיט דיין פֿאטער רעדען. איך מוז איהם<lb/>איבערצייגען וואס פאר א שרעקליך געפאהר עס הענגט איבער זיין<lb/>קאפ, און איבער אונזער גאנץ פֿאָלק, ער מוז געשווינד עפֿינען<lb/>די טויערען פון ירושלים. און זיך ווארפֿען צו די פיס צו נבוכדנצר<lb/>און איהם בעטען הילף. דאס איז דאס איינציגסטע מיטעל דאס גרויסע<lb/>אומגליק צו פֿערהיטען</p>
+        </sp>
+        <pb n="13" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0013.jpg"/>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0057_a">
+          <speaker>הדסה</speaker>
+          <p>אה גדליהו ווי שנעל דו האסט פערגעסען מיין פאטער'ס בעסקייט. צאן<lb/><add>צאן</add></p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0058_a">
+          <speaker>גדליה</speaker>
+          <p>בעסקישט? ווען עס האנדעלט זיך וועגען א גאנץ פֿאלק צו רעטען<lb/>רעדסטו פון גיהייט? צארן</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0059_a">
+          <speaker>הדסה</speaker>
+          <p>דער הייליגער ירמיה הנבי האט שוין דארויף גענוג טרעהרען פערגאסען<lb/>אבער מיין פאטער און דו שלעכטע עצה געבער'ס. האבען איהם אויסגעלאכט<lb/>אָה גדליהו! דו האסט דיין לעבען אומזיעסט איינגעשטעלט. אנשטאט<lb/>דו זאלסט עפיס אויספֿיהרען וועסטו נאך גאט בעהיט מיט דיין<lb/>לעבען בעצאהלען. דו מוזט ענטלויפען רעטע זיך שנעל. איידער<lb/>אומעצער וועט דיך דערקענען רעטע דיין לעבען מיין גדליהו<lb/>רעטע דיך.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0060_a">
+          <speaker>גדליהו</speaker>
+          <p>וואס זאגסטו הדסה? איך זאל מיך רעטען? מיינסטו דאס נאך<lb/>דעם ציונס ליכט וועט זיין פֿערלאשען. וועל איך נאך זעהן די ליכטי-<lb/>גע וועלט? ניין דא צעזאמען מיט דעם בלוט פון מיינע ברודער זאל<lb/>אויך מיין בליט רינען איידער צו לעבען ווי א פֿירסט אויף פרעמדע ערד<lb/>איז מיר ליעבער צו שטארבען אויף די ערד פון מיין הייליגעס פאטערלאנד</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0061_a">
+          <speaker>הדסה</speaker>
+          <p>און אויך איך. צוזאמען מיט דיר, קיין זאך זאל אונז מעהר ניט<lb/>שיידען זאגאר דער טוידט /<stage type="business">אומארמונג</stage>/<lb/><stage type="delivery">דועט געהט ניט</stage></p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0062_a">
+          <speaker>הדסה</speaker>
+          <p>איך שווער ביי דעם אלמעכטיגען גאט. אז הייליג בלייבט מיר דיין געבאָט<lb/>איך בלייב דיר א קנעכט א געטרייער. און פאר דיר לויף איך און פֿייער.<lb/>איך וועל ניט בלייבען רוהיג שטיל. ביז איך וועל עררייכען אונזער ציעל.<lb/>אויך מיינע יאהרען מיין גאנץ לעבען. איז נאר פאר דיין בעפֿעהל איבערגעגעבען</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0063_a">
+          <speaker>גדליהו</speaker>
+          <p>און איך שוועהר ביי דעם גרויסען גאט. אז איך בלייב דיר טרוי ביז אין מיין טוידט<lb/>אונז צעשיידען איז קיינער אומשטאנד. נאר גאט אליין מיט זיין שטארקע האנד.<lb/>געדולדיג וועל איך ערוואטען די צייט. ביז איך וועל בעזיגען דעם פיינד<lb/>צו ליעב דיר מיין מלאך מיין גאנץ לעבען. טראג איך אלס געפאהר ערגעבען</p>
+        </sp>
+        <sp who="#beyde" xml:id="KhurbnYerusholaim_SP0064_a">
+          <speaker>ביידע</speaker>
+          <p>גאט זאל אונזער שבועה דער הערען. און זאל זיין אָמֵן זאגען דאביי<lb/>קיין זאך זאל אונזער פלאן ניט שטערען. מיר בלייבען זיך עוויג טריי<lb/><stage type="entrance">אויפֿטריט חמוטיל</stage></p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0065_a">
+          <speaker>חמוטיל</speaker>
+          <p>אוי וויי. וואס זעהען מיינע אויגען</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0066_a">
+          <speaker>הדסה</speaker>
+          <p>מיין באַבע</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0067_a">
+          <speaker>גדליה</speaker>
+          <p>קעניגין</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0068_a">
+          <speaker>חמוטיל</speaker>
+          <p>אוועק פון מיר דו פאלשער קנעכט. ווי האסטו געוואגט? סאלדאטען! סאלדאטען!<lb/><stage type="entrance">סאלדאטען</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0069_a">
+          <speaker>אלע</speaker>
+          <p>אה. וואס זעהן מיר. זאלען מיר גלויבען וואס אונזערע אויגען זעהן<lb/>גדליהו בן אחיקם צוריק. וואס פאר א ווינדער איז מיט איהם געשעהן<lb/>צדקיהו</p>
+        </sp>
+        <pb n="14" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0014.jpg"/>
+        <sp who="#tsdkihu" xml:id="KhurbnYerusholaim_SP0070_a">
+          <speaker>צדקיה</speaker>
+          <p>נידערטרעכטיגער שקלאוו. ווי האסטו יעצט געוואגט? אויב דו ווילסט חאטש מיט<lb/>א לייכטען טויט שטארבען זאג שנעל די ווארהייט וואס האט דיך אהער<lb/>געבראכט זאג שנעל אויב נישט איז וויי דיר.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0071_a">
+          <speaker>גדליה</speaker>
+          <p>פערצייהע מיר קעניג, וואס איך האב געוואגט. דיר צו ערשיינען געגען דיין פערדא-<lb/>=כט<lb/>געטריבען האט מיך אהער צו מיין פֿאטער לאנד די שרעקליכע נויטה<lb/>איך קום פון פיינדליכען לאגער פון נבוכדנצר אה שטארק איז זיין מאכט.</p>
+        </sp>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0072_a">
+          <speaker>כאהר</speaker>
+          <p>פערלוירען מיין קעניג איז יעדע העפֿפֿגענונג. פערשפיעלט האסטו דו שלאכט.<lb/>צעשמעטערט צעבראכען ביז צו דער ערד. פערניכטען וועט אונז אלע די כאלדעעשע<lb/><add>=שווערד</add><lb/><stage type="business">/שטירם הונטער קוליסען</stage>/ /<stage type="delivery">ערשראקען</stage>/ הערט וואס זאל דאס בעדייטען</p>
+        </sp>
+        <sp who="#tsdkihu" xml:id="KhurbnYerusholaim_SP0073_a">
+          <speaker>צדקיה</speaker>
+          <p>א געשריי פון אונזערע העלדען די העברעער</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0074_a">
+          <speaker>גדליה</speaker>
+          <p>אה ניין דאס זענען אונזערע פיינד די כאלדעער.<lb/>ירמיה /<stage type="entrance">ווילד אריין/</stage></p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0075_a">
+          <speaker>ירמיה</speaker>
+          <p>געפֿאלען איז ירושלים פון פלאמען פייער פערברענט! פֿערניכטעט ווערען<lb/>ציונס קינדער. פערצעהרט פון נבוכדנצר'ס שווערד.</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0076_a">
+          <speaker>אלע</speaker>
+          <p>אה וויי איז אונז וואס הערען מיר.</p>
+        </sp>
+        <sp who="#tsdkihu" xml:id="KhurbnYerusholaim_SP0077_a">
+          <speaker>צדקיה</speaker>
+          <p>נעמט אלע די שווערדען געשווינד</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0078_a">
+          <speaker>אלע</speaker>
+          <p>/<stage type="business">ווילען נעמען די שווערדען</stage>/ געשווינד. געשווינד.</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0079_a">
+          <speaker>ירמיהו</speaker>
+          <p>אומזיסט זעהט אונזער חורבן. זעהט</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0080_a">
+          <speaker>אלע</speaker>
+          <p>/<stage type="business">פֿאלען</stage>/ וויי אונז וויי /<stage type="setting">ס'ווייזט זיך א בילד פון חורבן ירושלים/</stage></p>
+        </sp>
+        <trailer>פֿארהאנג ענדע 1טער אקט</trailer>
+      </div>
+      <div type="act" n="2" xml:id="KhurbnYerusholaim_Act2">
+        <head>צווייטער אקט</head>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0081_a">
+          <speaker>/די</speaker>
+          <p>ביהנע שטעלט פאר א גארטען רעכטס פון גדליהו'ס הויז/ כאהר</p>
+        </sp>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0082_a">
+          <speaker>כאהר</speaker>
+          <lg n="4">
+            <l>נור מיטה געפֿאסט. די האפפֿינונג ניט פֿערליערען. אה. ברודער.</l>
+            <l>גאט פֿערלאזט אונז ניט ער שיקט אונז זיין הילף ווידער</l>
+            <l>גדליהו בן אחיקם גאט בענש איהם מיט גליק.</l>
+            <l>אונזער העלד אונזער רעטער איז ווידער ביי אונז צוריק.</l>
+            <l>אונזערע פיינד די עמונים. האט ער געמאכט צו שאנד און צו שפאט.</l>
+            <l>גדליהו אונזער העלד! אונזער העלד! זאל לעבען לאנג! הֵידָד!</l>
+          </lg>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0083_a">
+          <speaker>ירמיהו</speaker>
+          <p>/<stage type="location">פֿון דרויסען/</stage> נָפלה עַטֶרֶת רֹאשֵנִו אוי נָא לָנו כִי חָטָאָנִו.</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0084_a">
+          <speaker>אלע</speaker>
+          <p>הערט. הערט דאס איז ירמיהו /<stage type="business">אלע געהען איהם אנטקעגען </stage>/ <stage type="entrance">ירמיה</stage></p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0085_a">
+          <speaker>ירמיה</speaker>
+          <p>ניין אומזיעסט שטרענג איך אָן מיינע אויגען. איך קען ניט זעהן. דו טויזענדטער<lb/>ביטערע טרעהרין וואס איך האב פֿערגאסען איבער דעם אונגליק פון מיין<lb/>פאלק, זאגט מיר גוטע מענשען ווי בין איך? בין איך צווישען מיינע ברודער?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0086_a">
+          <speaker>צפניה</speaker>
+          <p>יא. הייליגער ירמיהו דא ביזטו אויף דעם בארג מצפה צווישען דעם פאלק ישראל</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0087_a">
+          <speaker>ירמיהו</speaker>
+          <p>דו שטימע איז מיר ניט פֿרעמד. ווער רעדט עס צו מיר?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0088_a">
+          <speaker>צפֿניה</speaker>
+          <p>געטליכער מאנן. דערקענסטו ניט מעהר דיין אלטען סאלדאט צפֿנִיה?</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0089_a">
+          <speaker>ירמיהו</speaker>
+          <p>ליעבער גוטער אלטער פֿריינד דו ביזט עס? /<stage type="business">אָמארמונג</stage>/ אויך דו ביזט נאך<lb/>צווישען די לעבעדיגע. וואס דער בארמהערציגער גאט האט צוריק געלאזט<lb/>נאך דעם גרויסען חורבן? אין דיינע איבעריגע 3 ברודער לעבען דאָ נאך?</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0090_a">
+          <speaker>אלע 3</speaker>
+          <p>יא הייליגער ירמיהו אויך מיר לעבען.</p>
+        </sp>
+        <pb facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0015.jpg"/>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0091_a">
+          <speaker>ירמיהו</speaker>
+          <p>/<stage type="business">אומארמט זיי</stage>/ אזוי בין איך צווישען לויטער גוטע פֿריינד. גוטער גאט איך דאנק<lb/>דיר פאר די טרייסט</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0092_a">
+          <speaker>צפֿניה</speaker>
+          <p>דו קומסט פון ירושלים? וואס הערט זיך איצט דארט? ווי מוז זי איצט אויסזע-<lb/><add>הען?</add></p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0093_a">
+          <speaker>ירמיהו</speaker>
+          <p>ירושלים /<stage type="delivery">וויינט</stage>/ אונגליקליך ירושלים! איך האב דיין גרויסען חרבן פריהער אויס<lb/>געזעהן. דאס בית המקדש. דער קדשי קדשים איז פערברענט און צעשטערט ביז<lb/>צום גרינד. דער בארג ציון. דו גאסען פון ירושלים. זענען פערפלייצט פון טוידטע<lb/>קערפערס וועלכע דעם שונא'ס שווערד האט געשלאגען. די ערד איז צו קליין אום<lb/>די טוידטע צו בעגראבען. דארט אויף די ארמען פון זיין יונגען זוהן ליגט דער<lb/>אלטער פאטער, די פרוי איבער דעם קערפער פֿון איהר מאַן. דאס זייגענדיגע קינד<lb/>אויף די ברוסט פון זיין מוטטער, צעשטאכען, צעשניטען. צערטרעטען אה פליסט<lb/>מיינע טרעהרין רינט און הערט ניט אויף... אונגליקליך איז בת ציון.</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0094_a">
+          <speaker>צפֿניה</speaker>
+          <p>הייליגער ירמיהו. זאלען מיר יעצט האפֿען. דאס אונזער פרומער העלד גדליהו איז<lb/>דער גוטער שליח פון גאט און דורך זיין האנד וועלען מיר ווידער געהאלפען ווערען.</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0095_a">
+          <speaker>ירמיהו</speaker>
+          <p>גדליהו? פיהרט מיך צו איהם, איך וויל איהם זעהן</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0096_a">
+          <speaker>צפניה</speaker>
+          <p>ער איז איצט דאָ ניט דאָ אבער מיר ערוואטען איהם יעדען אויגענבליק אלס זיגער</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0097_a">
+          <speaker>ירמי</speaker>
+          <p>ה זיעגער?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0098_a">
+          <speaker>צפֿניה</speaker>
+          <p>געוויס. האסטו ניט געהערט פון דעם גרויסען געיעג. וואס ער האט געמאכט באלד<lb/>נאך ישראל'ס פֿאלען. זעה דעם פאראד וואס מיר האבען איהם אָנגעגרייט</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0099_a">
+          <speaker>ירמיהו</speaker>
+          <p>וואס פֿאר א זיעג? וועלכען פֿיינד האט ער בעזיעגט</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0100_a">
+          <speaker>צפניה</speaker>
+          <p>די בני עמון. בעליס. דער קעניג פון עמון האט געוואלט ניצען ציהען פון אונזער<lb/>אונגליק. אבער גדליהו אונזער עדעלער בעשיצער האט דערהערט דאס געשריי פון<lb/>אונזערע שוואכע ברודער. און שנעל ווי א שטורם איז ער מיט זיינע מענשען אַ<lb/>אויפֿגעפֿאַלען אויף די מערדערישע באנדע פֿון די עמונים, דער גרעסטער טייהל<lb/>פון זיי האט ער טוידט צו דער ערד געוואָרפֿען. צו איבעריגע האט ער צעטריבען<lb/>יא הייליגער ירמיהו. דאס פאלק ישראל הייבט שוין ווידער זיין קאפ אויף נאך<lb/>האט ער זיינע ביינער אויסגעגלארען פון דעם גרויסען שלאַג. וואס ער האט<lb/>ערשט בעקומען און שוין פייערט ער היינט זיין ערשטען זיעג!</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0101_a">
+          <speaker>ירמיהו</speaker>
+          <p>עמון! צום פערשאלטען פֿון גאט! ווייל ישראל איז ביז צו דער ערד געפֿאלען. שטרעקסט<lb/>דו אויס דיין שווערד געגען זיין פערווינדערט הארץ. ווייל ישראל ריהרט זיך<lb/>ניט, האלסטו איהם שוין פֿאר טוידט און ווילסט זיין טויטען קערפער אויף שטיקער<lb/>צערייסען? אָה ניין ישראל איז נאך ניט טוידט. פֿערווינדערט איז ער. נאר<lb/>הערט איהר. דאס זיין פאטער אין הימעל האט איהם נאר געשלאגען אבער<lb/>ניט געטייטעט מיין יעקב לעבט און וועט לעבען</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0102_a">
+          <speaker>אלע</speaker>
+          <p>הייליגער מאן /<stage type="business">קושען איהם/</stage><lb/><stage type="delivery">געזאנג</stage></p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0103_a">
+          <speaker>ירמיהו</speaker>
+          <p>/<stage type="delivery">זינגט</stage>/ פערגיסט נישט מעהר קיין טרעהרין! פערגיסט ניט קיין געוויין.<lb/>דיין וויינען און דיין קלאגען האָט ער דער הערט אַצינד! ער וועט אונז ניט שטראפֿען מעהר.<lb/>יא ניט שטראפֿען מעהר! זיין יעקב זיין געליעבטער פֿאלק /<stage type="delivery">כאהר ביסס</stage>/</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0104_a">
+          <speaker>צפניה</speaker>
+          <p>/<stage type="business">ס'הערט זיך א סיגנאל/</stage> אונזער העלד גדליהו איז שוין ניט ווייט נור מיטה געפֿאסט</p>
+        </sp>
+        <pb facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0016.jpg"/>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0105_a">
+          <speaker>כאהר</speaker>
+          <p>/<stage type="delivery">זינגט</stage>/ נור מוטה געפאסט! די האפֿפֿינינג ניט פֿערליערען. אה ברודער גאט<lb/>פֿערלאזט אונז ניט. ער שיקט אונז זיין הילף ווידער גדליהו אונזער העלד<lb/>זאל לעבען. לאנג. לעבען לאנג. הֵידָד! הֵידָד! /<stage type="exit">אללע אב</stage>/<lb/><stage type="entrance">אויפֿטריט ישמעאל</stage> /<stage type="entrance">געפֿענטעט/</stage></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0106_a">
+          <speaker>ישמעאל</speaker>
+          <p>ענדליך איז מיר געלונגען פון זיינע הענד צו אנטלויפֿען. יעצט בין איך<lb/>פון זייערע אויגען פֿערשווינדען. זיי זעהען מיך שוין ניט מעהר. אך ווי<lb/>מיעד איך בין פֿון דעם לויפֿען. פערשאלטענע כאלדעער געפאנגען האט<lb/>איהר מיך. נאך בבל האט איהר מיך געוואלט שלעפען. צעזאמען מיט<lb/>דעם אונגליקליכען צדקיהו? אה ניין נבוכדנצר. דו ווילדער טיראַן<lb/>אזא טרומפף זאלסטו ניט דערלעבען ישמאל איז ווידער פֿריי און לאכט פון דיר<lb/><stage type="delivery">שטימען</stage> /<stage type="business">גערויש</stage>/ <stage type="delivery">דארט מיט יענעם וועג.</stage></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0107_a">
+          <speaker>ישמאל</speaker>
+          <p>וועס איז דאס? אה מיינע פֿערפֿאלגער די כאלדעער זיי יאגען מיך<lb/>נאך. זיי קומען אהער. וואס זאל איך איצט טוהן? ווייטער לויפֿען<lb/>קען איך ניט מעהר איך בין צו מיעד /<stage type="business">רייסט די קייטען</stage>/ ניין אונמעגליך זיי<lb/>זענען שוין גאנץ נאהענט. איך מוז מיך ווי בעהאלטען. אבער וואו? אין<lb/>דעם הויז אפשר? זיי וועלען מיך דא געוויס זוכען. אה אויף דעם בוים <stage type="exit">/אָב</stage>/<lb/><stage type="entrance">אויפטריט שראצר</stage> /<stage type="entrance">מיט סאלדאטען</stage>/<lb/>שראצר דא. דא. מיט דעם וועג איז ער געלאפֿען. דא איז ער פליצלינג פון אונזערע<lb/>אויגען פערשווינדען געווארען. ער ליגט דא געוויס בעהאלטען. /<stage type="business">זוכט/</stage></p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0108_a">
+          <speaker>צפֿניה</speaker>
+          <p>זעהט איהר. מיינע ברודער. האב איך אייך געזאגט. דאס איך האב באמערקט<lb/>פון ווייטען כאלדעעשע סאלדאטען. לויפֿען אהער מיר מוזען זיך ערקונדיגען.</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0109_a">
+          <speaker>שראצר</speaker>
+          <p>הע קומט נאר... איך בין שראצר א כאַלדעעשער קאמענדאנט. און נאמען<lb/>פֿון זיין מייעסטעט אונזער גרויסער הערשער נבוכדנצר פערלאנג איך<lb/>פֿון אייך איהר זאלט מיר אויף אלעם ענטפערען אבער נאר דעם אֶמֶת. איהר<lb/><add>הערט?</add></p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0110_a">
+          <speaker>אלע 4</speaker>
+          <p>צום בעפעהל הערר קאמענדאט יאָ /<stage type="business">מיליטעריש</stage>/</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0111_a">
+          <speaker>שארעצער</speaker>
+          <p>אזוי זאגט מיר ווי ליגט ישמאל בן נתניה בעהאלטען?</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0112_a">
+          <speaker>אללע 4</speaker>
+          <p>ישמאל?</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0113_a">
+          <speaker>שראצר</speaker>
+          <p>יא. דער פרינץ פון אייער געוועזענעם קעניג צדקיהו׳ס פֿאמיליע. מיר<lb/>האבען איהם געחאפט צעזאמען מיט צדקיהו'ן. מיר זענען שוין געוועהן אויף<lb/>דעם וועג דמשק און די געפאנגענע צו צו פֿיהרען. האט זיך שמאל אַ=.<lb/>רויסגעריסען, מיר האבען איהם נאכגעיאגט ביז אהער. אבער אויף דעם<lb/><add>אויגען</add><lb/>ארט. איז ער פליצלינג פֿון אונזערע הענד פערשווינדען געוואהרען.<lb/>איך בין זיכער דאס ער האט זיך דא ערגעץ בעהאלטען יעצט זאגט מיר<lb/>האט איהר איהם געזעהן?</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0114_a">
+          <speaker>אלע 4</speaker>
+          <p>צום בעפעהל הערר קאמענדאט. ניין.</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0115_a">
+          <speaker>שראצר</speaker>
+          <p>ווייסט איהר ניט ווי ער ליגט בעהאלטען?</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0116_a">
+          <speaker>אלע 4</speaker>
+          <p>צום בעפעהל הערר קאמענדאנט ניין.</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0117_a">
+          <speaker>שראצר</speaker>
+          <p>זאגט איהר דעם אמת?</p>
+        </sp>
+        <pb facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0017.jpg"/>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0118_a">
+          <speaker>אלע 4</speaker>
+          <p>צום בעפעהל הערר קאמענדאנט. יאָ!</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0119_a">
+          <speaker>שראצר</speaker>
+          <p>ווער זענט איהר?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0120_a">
+          <speaker>צפניה</speaker>
+          <p>4 ברודער צפניה. חנניה. אליקים. תנחומות. אלטע אויסגעדיענטע<lb/>העברעעשע סאלדאטען. אונזער געוועזענעמ׳ס גדליהו'ס געטרייע קנעכט</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0121_a">
+          <speaker>שראצר</speaker>
+          <p>געהערט דאס הויז צום גובערנאטאר גדליהו?</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0122_a">
+          <speaker>אלע 4</speaker>
+          <p>צום בעפעהל הערר קאמענדאנט יאָ</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0123_a">
+          <speaker>שראצר</speaker>
+          <p>אלזא דער גובענאטאר גדליהו, וועט מיר מוחל זיין איך מוז זיין<lb/>הויז אונטערזוכען</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0124_a">
+          <speaker>אלע 4</speaker>
+          <p>צום בעפעהל הערר קאמענדאנט /<stage type="exit">שראצר אב</stage>/</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0125_a">
+          <speaker>צפֿניה</speaker>
+          <p>ווערען זאלסטו די כפרה הערר קאמענדאנט הערסט א פֿרעכהייט. מיט וואס<lb/>פאר א רעכט קומט אזא כאלדעאישער מענש אין דעם הויז פון אונזער עדעלע<lb/><add>גדליהו</add></p>
+        </sp>
+        <sp who="#khnnihu" xml:id="KhurbnYerusholaim_SP0126_a">
+          <speaker>חנניה</speaker>
+          <p>דו הערסט דאך עס איז איהם פערלוירען געווארען אנ'<sic>עוצר</sic>.</p>
+        </sp>
+        <sp who="#likum" xml:id="KhurbnYerusholaim_SP0127_a">
+          <speaker>אליקים</speaker>
+          <p>גע דער געפאנגענער פרינץ ישמאָל</p>
+        </sp>
+        <sp who="#snkhumus" xml:id="KhurbnYerusholaim_SP0128_a">
+          <speaker>תנחומות</speaker>
+          <p>אבער ווי קומט ער דא אהער?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0129_a">
+          <speaker>ישמאל</speaker>
+          <p>פסט... פסט...</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0130_a">
+          <speaker>צפניה</speaker>
+          <p>שש... הערט נאר.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0131_a">
+          <speaker>ישמאל</speaker>
+          <p>צפניה!</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0132_a">
+          <speaker>צפֿניה</speaker>
+          <p>ווער רופֿט עס מיין נאָמען. איך האב מורא אויב דאס איז ניט אַ בת קול.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0133_a">
+          <speaker>ישמאל</speaker>
+          <p>וואס מאכט איהר אייך נאריש איהר אלטע פֿערד.</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0134_a">
+          <speaker>אלע</speaker>
+          <p>אלטע פערד?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0135_a">
+          <speaker>ישמאל</speaker>
+          <p>קומט נעהנטער צום בוים</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0136_a">
+          <speaker>צפֿניה</speaker>
+          <p>צום בוים ני קום <stage type="business">/בלייבען שטעהן</stage>/ נו וואס שרעקט איהר אייך. קומט מיט<lb/>מיר /<stage type="business">געהן</stage>/ רייד דו בת=קול ביזטו א ריינע זאך אזוי בעווייז דיך<lb/>אויב ניט זאלסטו שוין פֿערשווינדען ווערען</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0137_a">
+          <speaker>ישמאל</speaker>
+          <p>שִשִ.. מאכט ניט קיין ליארם איך בין עס ישמאל</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0138_a">
+          <speaker>אללע</speaker>
+          <p>ישמאל??!!</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0139_a">
+          <speaker>ישמאל</speaker>
+          <p>שטיל. רעדט ניט אויס מיין נאמען. איך האב מיך בעהאלטען פאר די כאלדעער</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0140_a">
+          <speaker>צפֿניה</speaker>
+          <p>דאס האסטו אונז געקריינט מיט דעם נאמען אלטע פערד.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0141_a">
+          <speaker>ישמאל</speaker>
+          <p>פערצייהעט מיר מיינע פֿריינד איך בין נערווייז קראנק. איך ווייס ניט<lb/>וואס איך רייד פֿון שמערצען. איך בעהט אייך רעטעט מיך. ווען די כאלדעער<lb/>וועלען צוריק קומען גוט אכטונג אז זיי זאלען ניט מעהר זוכען דא אויף דעם.<lb/>ארט. איהר זאלט זיי איינרעדען דאס איך בין ווייטער געלאפֿען. רעטעט מיך<lb/>דען מיין לעבען איז אין געפֿאַהר ווען איך וועל ענדענט ווערען בין איך<lb/>פֿערלוירען. און מיין בלוט וועט פאלען אויף אייערע קעפ.</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0142_a">
+          <speaker>צפֿניה</speaker>
+          <p>אויף אונזערע קעפ? וואס זאגט איהר אויף אזא אנשיקעניש? ש. מ'קומט /<stage type="exit">ישמאל ענטלויפט</stage>/</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0143_a">
+          <speaker>שראצר</speaker>
+          <p>אומזיעסט. דארט איז ער ניטאָ אבער דאך ווי איז ער פערשווינדען?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0144_a">
+          <speaker>צפֿניה</speaker>
+          <p>הערר קאמענדאנט איך רעכען... מיין מיינונג איז..</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0145_a">
+          <speaker>שראצר</speaker>
+          <p>וואס?</p>
+        </sp>
+        <pb facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0018.jpg"/>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0146_a">
+          <speaker>צפניה</speaker>
+          <p>צו בעפעהל הערר קאמענדאנט.</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0147_a">
+          <speaker>שראצר</speaker>
+          <p>אלזא וואס רעכענסטו?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0148_a">
+          <speaker>צפניה</speaker>
+          <p>איך רעכען דאס דו וועסט איהם און די געגענד ניט געפֿינען. איך מיין<lb/>דאס עס איז בעסער דו זאלסט איהם זוכען דארט צווישען די בערג.<lb/>דארט בעהאלטען זיך שטענדיג די אנטלאפֿענע</p>
+        </sp>
+        <sp who="#shrtsr" xml:id="KhurbnYerusholaim_SP0149_a">
+          <speaker>שראצר</speaker>
+          <p>דו האסט רעכט. אה ער מוז מיר צוריק אין מיינע הענד אריינפאלען נו מארש<lb/>/<stage type="exit">אב/</stage></p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0150_a">
+          <speaker>צפֿניה</speaker>
+          <p>געה זוך דעם נעכטיגען טאג חַחַחַ /<stage type="delivery">אלע לאכען/</stage></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0151_a">
+          <speaker>ישמאל</speaker>
+          <p>איך דאנקע אייך מיינע פריינד. אך ווי מיעד איך בין!</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0152_a">
+          <speaker>צפֿניה</speaker>
+          <p>דו רעכענסט דא צו בלייבען אין גדליהו׳ס הויז אין דיך אויסרוהען ביז<lb/>גדליהו וועט קומען.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0153_a">
+          <speaker>ישמאל</speaker>
+          <p>ווי איז דען יעצט גדליהו?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0154_a">
+          <speaker>צפניה</speaker>
+          <p>מיר ערווארטען איהם יעדע מיניט. מיר וועלען איהם אויפֿנעמען מיט דער<lb/>שענסטער פאראדע. פאר זיין גרויסע זיעג איבער די עמונים.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0155_a">
+          <speaker>ישמאל</speaker>
+          <p>וואס הער איך?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0156_a">
+          <speaker>צפֿניה</speaker>
+          <p>געוויס. די מערדערישע באנדע פֿון עמונים פלעגען אונז יעדעס מאהל<lb/>איבערפֿאלען. אבער אונזער גובערנאטאר גדליהו. האט זיך מיט זיי שעהן אָב=<lb/><add>גערעכענט</add></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0157_a">
+          <speaker>ישמאל</speaker>
+          <p>/<stage type="delivery">פֿאר זיך</stage>/ די עמונים פון וועלכע איך ערווארטע הילף. האט גדליהו געשלאגען?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0158_a">
+          <speaker>צפניה</speaker>
+          <p>אלזא מיינע ברודער מיר געהן. עס איז שוין די העכסטע צייט.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0159_a">
+          <speaker>ישמאל</speaker>
+          <p>איין מיניט מיינע פֿריינדע העלפט מיר זיך בעפרייען פֿון די קייטען<lb/>/<stage type="business">פראבירען רייסען/</stage> איך לאזט מיך /<stage type="business">פֿאלען/</stage> איהר טוהט מיר אומזיעסט<lb/>וועה אך דו פערשאלטענער נבוכדנצר.</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0160_a">
+          <speaker>צפֿניה</speaker>
+          <p>נבוכדנצר האט איהם שוין געפענטעט אין קייטעלעך?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0161_a">
+          <speaker>ישמאל</speaker>
+          <p>איהר קענט שוין געהן מיינע פֿריינדע איך וועל מיך שוין אויסרוהען<lb/>אין גדליהו'ס הויז.</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0162_a">
+          <speaker>צפֿניה</speaker>
+          <p>דו קענסט דא זיכער בלייבען גדליהו וועט דיך געוויס אונטער זיין<lb/>שוץ נעהמען. קומט מיינע ברודער. רעכט מארש /האָבט רום אָט אָט /<stage type="exit">אב/</stage></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0163_a">
+          <speaker>ישמאל</speaker>
+          <p>גדליהו וועט מיך אונטער זיין שוץ נעהמען. אלזא דארויף בין איך<lb/>איבערגעקומען. האב איך צו ליעב דעם מיין פאטער לאנד צו אזא<lb/>לאגע געברענגט. אים צו לעבען ווי א בעטלער פֿון גדליהו׳ס גוט'ס<lb/>אַה ניין גדליהו! צדקיהו'ס סוף איז געוועהן שרעקליך. זיינע קינדער<lb/>האט דער פיינדע פאר זיינע אויגען געשאכטען. איהם אליין בלינד געמאכט<lb/>און אוועקגעשיקט נאך בבל אלס געפֿאנגענער. און דאס אלעס האט ער אים<lb/>צו פערדאנקען. ווייל ער האט ביי מיר מיין רעכט צו גענומען. אלזא גדליהו נעם<lb/>דיר אויך אין אכט אויב צו ווילסט זיין רוהיג. מיר וועלען באלד זעהן. מיר זאגט<lb/>דאס איך וועל באלד דעם טראן פון יהודן?<lb/>מיין הארץ דאס איך וועל באלד זעהן יהודהן א געזיעגטען  /  אין אויך זיין קאפ<lb/>בעשטייגען<lb/>וועט די קרוין זיצען. יא איך פיהל מיך איצט ניי בעלעבט פון<lb/>פרישען מוטה און קראפֿט. יעדעס טראפען בלוט אין מיינע אדערען<lb/>רופֿט נאך דער קעניגליכע קרוין. די קראפֿט פיהל איך מיך<lb/>I<lb/>יעצט ווידער. אלזא גוט די יעצטיגע מינוט זאל בעשיידען. וועל איך<lb/>זיין אומשטאנד יעצט מיך פון די קייטען צו בעפֿרייען איז א סימָן<lb/>דאס איך וועל מיין ציעל עררייכען. אלזא כוח מוטה. די מיין גליק שטערען<lb/><lb/>שטעה מיר ביי / <stage type="delivery business">מוזיק שפיעלט נאך פיעל ארבייט צערייסט ער די קייטען </stage>/ איך<lb/>ווינש דיר גליק קעניג פון יהודה /<stage type="exit">אב/</stage> /<stage type="delivery">ארקעסטער מארש/</stage><lb/>(<stage type="setting">צערמאניע בעגינט ביז פֿארהאנג פֿאלט</stage>)<lb/><stage type="setting">פֿארהאנג פֿאלט</stage></p>
+        </sp>
+        <pb n="19" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0019.jpg"/>
+        <trailer>ענדע 2-טער אַקט</trailer>
+      </div>
+      <div type="act" n="3" xml:id="KhurbnYerusholaim_Act3">
+        <head>דריטער אַקט</head>
+        <stage type="setting">/א רייכער סאלאָן ביי גדליהו'ן</stage>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0164_a">
+          <speaker>כאהר</speaker>
+          <lg n="5">
+            <l>מיר מעגען טרונקען זיין נאר פרייליך</l>
+            <l>דליהו אונזער רעטער איז דאך אונזער העלד.</l>
+            <l>ביי זיין נאמען מוזען מיר שוועהרען.</l>
+            <l>פֿערניכטען צו שטערען. פֿערניכטען צעשטערען</l>
+            <l>פֿערניכטען צעשטערען צעשטערען האך לעבע גדליהו</l>
+            <stage type="exit">אב/</stage>
+            <stage type="entrance">אויפֿטריט ישמאל</stage>
+          </lg>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0165_a">
+          <speaker>ישמאל</speaker>
+          <p>בראווא. גדליהו. בראווא. דו האסט דיך ארויף געארבייט. יעצט<lb/>פֿעהלט דיר נאר די קרוין, און דו ביזט א גאנצער קעניג. נו און<lb/>איך דער פרינץ ישמאל. דער נאֵכפֿאלגער פון צדקיהו. איך בין<lb/>ביי איהם אַנ'איינגעבעטענער גאסט. איך זאל לעבען אונטער זיין שוץ<lb/>ניין מיין ליעבער גדליהו. עס קען ווייטער אזוי ניט געהן. איך האב מיין<lb/>רעכט אויף די קרוין נאָך ניט אויפגעגעבען. און ווען דער שונא גלויבט<lb/>/ <add>ער </add>\<lb/>דאס האט די מלוכה פון יהודה צעשטערט. וועל זיך א נייעם מלוכה טראן<lb/>אויפֿבויען א קעניג מוז איך זיין אזוי לאנג ווי אין דעם קערפער<lb/>נשמה<lb/>איז א הארץ פֿארהאַן. דאס פאלק הענגט אָן דיר דעסטאָ בעסער.<lb/>דעסטא לייכטער וועט פֿאר דיר זיין. די זאלסט מיר העלפֿען מיין ציעל<lb/>צו עררייכען. יא דאס איז דיין פפֿליכט ווילסטו אבער ניט הערען<lb/>דאן וועה איז דיר עפין דיינע אויגען גדליהו. דו האסט אין דיין.<lb/>הויז א געפעהרליכען שלאנג אריינגענומען.<lb/><stage type="entrance">אויפֿטריט גדליהו</stage></p>
+        </sp>
+        <pb n="20" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0020.jpg"/>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0166_a">
+          <speaker>ישמאל</speaker>
+          <p>לאז דיך אומארמען. מיין ליעבסטער מיין טרייעסטער פריינד<lb/>איך גריסע דיך מיין העלד צו דיין שיינעם זיעג. איך ווינש דיר גליק</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0167_a">
+          <speaker>גדליה</speaker>
+          <p>איך דאנק דיר מיין פרינץ און איך פון מיין זייט ווינש דיר אויך גליק<lb/>צו דיין רעטען זיך. איך האף נבוכדנצר אויסצופוילען דיין בעפֿרייאָנג</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0168_a">
+          <speaker>ישמאל</speaker>
+          <p>איך דאנק דיר גדליהו. איך ווייס אז דו האסט אַנ'עדעל הארץ און דעפֿאר<lb/>האף איך פיעל אויף דיין גערעכטיגקייט.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0169_a">
+          <speaker>גדליהו</speaker>
+          <p>וואס מיינסטו דאמיט מיין פרינץ?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0170_a">
+          <speaker>ישמאל</speaker>
+          <p>גדליהו. דו רופסט מיך נאך איצט פרינץ. דאס איז נישט רעכט איצט<lb/>בין איך נישט קיין פרינץ נאר אקעניג / <stage type="business">מאכט מימין</stage>/ יא מיין גלדיהו איך.<lb/>בין קעניג און זיך מוז עס זיין איינמאהל האט מען ביי מיר מיין רעכט<lb/>צוגענעמען אנשטאט מיר האט מען צדקיהו'ן געגעבען די מלוכה<lb/>יעצט אבער ווען צדקיהו איז געפֿאלען בין איך זיין נאָכפֿאָלגער<lb/>טראן<lb/>יעצט געהערט דער מלוכה מיר. יא מיר.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0171_a">
+          <speaker>גדליהו</speaker>
+          <p>אבער מיין פרינץ זיך פֿערשטיי דיך ניט די רעדסט יעצט פון א<lb/><add>טראן</add><lb/>מלוכה וועהרענד דיין איז פערברענט איך די מלוכה איז צעשטערט<lb/>דער טראן טראל דעם טראן<lb/>ישמאל די קרוין דער בין איך ווי איך בין דארט איז דער קרוין די מלוכה מאכען<lb/>מענשען דער קעניג אבער, דער איז פון גאט געזאלבט וואהין. דער<lb/>קעניג געהט. געהט מיט איהם מיט די קעניגליכע מייעסטעט. אזוי ווי די<lb/>זעלע מיט דעם קערפער.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0172_a">
+          <speaker>גדליהו</speaker>
+          <p>גאנץ רעכט אבער זאג מיר ווי האסטו געזעהן א קעניג אָהן א פֿאָלק.<lb/>איבער וועהמען אייגענטליך ווילסטו קעניג זיין?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0173_a">
+          <speaker>ישמאל</speaker>
+          <p>מיר איז דערווייל געניג דאס ביסעל פֿאלק, דוך הערען זיי, גיב זיי איבער<lb/>מיר, און נאך דעם די כאלדעער וועלען זיך צוריק ציהען פון אונזער<lb/>לאנד. דאן וועלען מיר פערזאמלען א שטארקע מחנה. און מיר בויען צוריק<lb/>אויף דיין, אין בעזעצען דארט אונזער פֿאלק ירושילימ'ער מויערען זאלען<lb/>באלד ווידער צום הימעל דערגרייכען צו להכעיס אלע אונזערע פֿיינדן</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0174_a">
+          <speaker>גדליהו</speaker>
+          <p>אזוי זאל דאס פאלשע שפיעל ווידער זיך ווי אָנהייבען, זאל דאס<lb/>פֿאלק פֿערליערען זיין לעצטעס טראפען בלוט וואס דו צוליעב<lb/>דעם גאלדענעם קריינדעל וואס דו זיכסט אויף זיין שטערען? הערן<lb/>ישמאל אַנ'עצה פון א טרייען פֿריינד דו ביזט דאס לעצטע צווייגעלע פון<lb/>מלכות בית דוד, שטעל דיך אקעגען דעם שטורם וועלכער קען דאס<lb/>זעהר לייכט צעברעכען. יאג זיך ניט נאך דעם פאלשען גלאנץ<lb/>בשעת דו קאנסט איהם ניט עררייכען... דאך געניג, לאמיר<lb/>ניט ריידען מעהר דערפֿון דו ביזט מיין גאסט. גלויב מיר איך<lb/>בין דיר גוט פון הערצען איך וויל דיין ברודער זיין. אויב די וועסט<lb/>עס אויך.</p>
+        </sp>
+        <pb n="21" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0021.jpg"/>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0175_a">
+          <speaker>ישמאל</speaker>
+          <p>יא איך וויל עס / <stage type="business">גיעט איהם די האנד </stage>/ אויפֿס ווידערזעהן!<lb/>גדליהו אדיע!</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0176_a">
+          <speaker>ישמאל</speaker>
+          <p>/<stage type="delivery">פאר זיך</stage>/ איך וועל דיך פֿערניכטען. /<stage type="exit">אב</stage>/</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0177_a">
+          <speaker>גדליהו</speaker>
+          <p>יא ישמאל איך קען דיין פאלשעס הארץ ניט אפיעלע דאס אונגליק<lb/>I<lb/>איז ניט גיוועהן בכוח דיך א ביסעל אויסצובעסערען ניט אפילע צו<lb/>שרעקליכע ענדע פון דיין פעטער צדקיהו האט אויף דיר דען מינדעס-<lb/>טען איינדרוק געמאכט. איך וועל לעבען פאר מיינע ברודער. איך<lb/>וויל פאר דו שוואכע ביימעלעך איין געטרייער גערטנער זיין. ווי אַ<lb/>פאטער זיין איינציג קינד אזוי וועל איך דיך היטען מיין פאלק ישראל<lb/><stage>I</stage> /<stage type="delivery">זינגט/</stage><lb/>נאר אֵינס פערביטערט מיר מיין לעבען. הדסה די גוטע הערליכע<lb/><add>קומען</add><lb/>זעעלע פאר וואס ביזטו אזוי אונבארמהערציג אומגעקינד. הימלעשיס<lb/>קינד. דיך קען איך ניט פערגעסען איך וועל דיך ניט פערגעסען<lb/>ביז אין מיין לעצטען אויגענבליק.</p>
+          <lg n="1">
+            <l>שלאף מיין קינד א גליקליכען שלאף. שלאף איין אונטער מיין ליעד.</l>
+            <l>דו ביזט נאך יונג צו פֿיהלען דיין שטראָף. דער מיט וואס דו ביזט אַ יוד</l>
+            <stage type="delivery">} Refrein</stage>
+          </lg>
+          <lg n="2" prev="true">
+            <l>שלאף זשע יודעלע שלאף. דו וועסט דערפיהלען דיין שלאף.</l>
+            <l>שלאף זשע יודעלע שלאף, דו וועסט דערפֿיהלען דיין שלאף.</l>
+          </lg>
+          <lg n="3">
+            <head>II</head>
+            <l>דו וועסט אויפוואקסען גרויס דו וועסט קומען אין יאהרען</l>
+            <l>ארמוטה וועט זיין דיין געמיט.</l>
+            <l>צו וועסט שילטען דעם טאָג וואס צו ביזט געבוירען</l>
+            <l>וואס דו טראגסט דעם נאמען יוד. שלאף זשע יודעלע שלאף</l>
+            <stage type="business">א.ז.וו.</stage>
+          </lg>
+          <lg n="4">
+            <head>III</head>
+            <l>דו וועסט געהן אין דער וועלט אום א שטיקעלע ברויט</l>
+            <l>צו זוכען און ניט ווערען מיעד.</l>
+            <l>דו וועסט טרעפֿען פער פאלגונגער הונגער און נויט</l>
+            <l>דערפאר ווייל דו ביזט א יוד! שלאף זשע יודעלע שלאף</l>
+            <stage type="business">א. ז. וו.</stage>
+          </lg>
+          <lg n="5">
+            <head>IV</head>
+            <l>אין קיין לאנד דיך רוהיג זיצען</l>
+            <l>לאזען וועט מען דיך ניט</l>
+            <l>נאר יאגען און טרייבען מיט דונער'ן בליטצען.</l>
+            <l>דעפאר ווייל דו ביזט א יוד. שלאף זשע...</l>
+            <stage type="business">א. ז. וו.</stage>
+          </lg>
+          <lg n="6">
+            <head>V</head>
+            <l>דו פֿרעהסט דיך אט שוין די צייט מאכט דיך גליקליך</l>
+            <l>אכטען וועט מען דיך ווי אלע גלייך</l>
+            <l>צום סוף שלאגט מען דיך נאך שטארקער. מען ברעכט דיך אויף שטיקלעך</l>
+            <l>א יוד האט קיין ווערטה פֿאר קיין זאך</l>
+            <l>וואך שוין אויף, יודענע וואך</l>
+            <l>מעגסט ווערען מיט דיין אייגען לאנד רייך</l>
+            <l>וואך שוין אויף, יודענע וואך</l>
+            <l>אין דער הייען וועלען מיר אלע זיין גלייך</l>
+            <stage type="entrance">אויפטריט צפֿניה /</stage>
+          </lg>
+        </sp>
+        <pb n="22" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0022.jpg"/>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0178_a">
+          <speaker>צפניה</speaker>
+          <p>גדליהו. עטוואס נייעס א כאלדעעשער אפיצער מיט א גאנצע מחנה<lb/>ווייבער שטעהן אין דרויסען. ער זאגט ער האט זיי דיר געבראכט.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0179_a">
+          <speaker>גדליהו</speaker>
+          <p>ווער זענען זיי?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0180_a">
+          <speaker>צפניה</speaker>
+          <p>דאס האט ער מיר ניט געזאגט. איך ווייס אויך צו זיי זענען יונגע<lb/>צו אלטע ווייל זיי געהן פערדעקט די פנימ'ער מיך שרעקט מיין הארץ</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0181_a">
+          <speaker>גדליהו</speaker>
+          <p>פאר וואס?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0182_a">
+          <speaker>צפניה</speaker>
+          <p>איך ווייס. וואס איז פליצלים אַנ'אָנ'שיקעניש פֿון ווייבער</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0183_a">
+          <speaker>גדליהו</speaker>
+          <p>זאל גאט געבען עס זאל זיין צום גוטען. איך האב זעהר מורא פאר<lb/>די ווייבער <stage type="exit">/אב</stage>/<lb/><stage type="entrance">אויפֿטריט אַנ'אפֿיצער</stage></p>
+        </sp>
+        <sp who="#fitser" xml:id="KhurbnYerusholaim_SP0184_a">
+          <speaker>אפיצער</speaker>
+          <p>אין נאמען פון אונזער גרויסען הערשער נבוכדנצר קום איך צו<lb/>דיר גדליהו מיט די פרויען. זיי זענען אלע פון דעם געוועזענעמ׳ס קעניג'ס<lb/>צידקיהו׳ס פאמיליע. דער קעניג האט אויף זיין רחמנות געהאט און<lb/>געשענקט זיי דאס לעבען. אבער נאר אויף דעם בעדונג, דאס דו זאלסט<lb/> זיי האלטען אונטער דיין שוץ. און גראנאטירען אז זיי וועלען נישט<lb/>מאכען קיין אויפֿשטאנד און נישט העצען אונטער דעם פֿאלק. ווילסטו<lb/>זיי <sic>אַנעהמען </sic>איז גוט ווען ניט דאן מוז איך זיי נאך בבל אלס געפֿאַנג-<lb/>גענע פֿיהרען</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0185_a">
+          <speaker>גדליה</speaker>
+          <p>איך נעהם <sic>זיין</sic> אָן /<stage type="exit">אפֿיצער אב</stage>/</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0186_a">
+          <speaker>צפניה</speaker>
+          <p>פֿערדעקטע פנימ'ר קומט אריין. <stage type="entrance">II דאמען</stage> /<stage type="entrance">קימען</stage>/</p>
+        </sp>
+        <sp who="#damen" xml:id="KhurbnYerusholaim_SP0187_a">
+          <speaker>דאמען</speaker>
+          <p>מיר זענען געקומען. דיך צו בעטען. די בעפרייאָנג פון דעם הערר<lb/>האב מיטלייד. האב מיטלייד, האב מיטלייד. האב מיטלייד.<lb/>נעהם אונז אונטער דיין שוטץ. מיר בעטען דיך גרויסער הערר<lb/>יא מיר בעטען דיך נאך א מאָל מיר זענען געפלאגט אָן אַ צאָהל<lb/>גרויסער הערר האב מיט אונז מיטלייד. בעפֿרייע אונז פון דעם טונאי'ס הענד.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0188_a">
+          <speaker>גדליהו</speaker>
+          <p>איך בעגריס אייך עדעלע פֿרויען. און ווינש אייך גליק צו אייער רעטונג<lb/>זייט מיר אלע הערצליך ווילקאמען. יעצט זייט אזוי גוט און נעמט אראב<lb/>פון זיך די שלייער'ס אים איך זאל וויסען וועמען איך האב דאס גליק<lb/>אין מיין הויז צו האבען /<stage type="exit business">חמוטיל דעקט אב איהר שלייער</stage>/ חמוטול?!!</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0189_a">
+          <speaker>צפניה</speaker>
+          <p>אוי א גליק, נו וואס זאגט איהר צו דעם גלוק? אזא אלטע</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0190_a">
+          <speaker>חמוטל</speaker>
+          <p>יא חמוטול, אלזא פאר וואס קניעסטו ניט. פאר וואס ווארפסטו זיך ניט<lb/>צו דער ערד צו דיין אלטע קעניגען?</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0191_a">
+          <speaker>גדליה</speaker>
+          <p>קעניגען. זיי זיכער אז איך וועל ניט פֿערגעסען דעם רעספערט וואס איך<lb/>בין דיר שולדיג. אבער פערצייהע מיר: די ווייסט עס אויך אז פאר<lb/>דיין קעניגליכען זוהן צדקיהו האב איך אויך געקניעט איך<lb/>האב שטענדיג פֿעראכטעט די אלע זיטען פון די געצענדיענער<lb/>מיין קניע בייג איך נאך פאר איינעם וועלכער זיצט דארט אויף<lb/>די מלוכה אין הימעל.</p>
+        </sp>
+        <pb n="23" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0023.jpg"/>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0192_a">
+          <speaker>חמוטיל</speaker>
+          <p>יא מיין פרימער גדליהו. איך קען דיך דו ביזט שטענדיק אין מיין<lb/>קעניגליכעס הויז איין שונא געוועהן. דו אין דער אלטער ירמיהו<lb/>מיט זיין גאנצער סעקטע איהר זענט שולדיג אין אונזער אונגליק.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0193_a">
+          <speaker>גדליהו</speaker>
+          <p>/<stage type="delivery">ערשטוינט/</stage> וואס? חמוטיל וואס האסטו געזאגט?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0194_a">
+          <speaker>צפניה</speaker>
+          <p>בייזער דיך ניט גוטער גדליהו. זי ווייס דען וואס זי רעדט? זי<lb/>איז שוין עובר בטל</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0195_a">
+          <speaker>חמוטיל</speaker>
+          <p>עס פערדריסט דיך פון מיר דעם אמת צו הערען. זאג פאר וואס<lb/>ביזטו יעצט גובערנאטאר פון יהודה? ניט ווייל דו ביזט געוועהן פאלש<lb/>דיין אייגענעם פאטער לאד? ניט ווייל דו ביזט געוועהן איין טרייער<lb/>קנעכט דעם קעניג נבוכדנצר?</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0196_a">
+          <speaker>גדליהו</speaker>
+          <p>/<stage type="delivery">אויסער זיך</stage>/ גענוג. איך קאָן ווייטער נישט הערען אז דאס הארץ זאל אין<lb/>מיר ניט פלאטצען. וויפיעל ווינדען האט שוין דער קערפער בעקומען<lb/>אויף די פערשיעדענע שלאכט פעלדער. ווי פיעל מאל האב איך גערעטעט<lb/>דאס לעבען פון דיין זוהן צדקיהו ווען ער איז גיוועהן אין פערשיעדענע<lb/>שלאַכטען? און מיט וואס האט ער מיך בעלוינט? ער האט מיך פערשיקט<lb/>צו נבוכדנצר אלס א שקלאוו. מיין עהרע אוועק גענומען ביי מיר. און מיר<lb/>גראזאם אוועק געריסען פון מיין אלטע מוטטער וועלכע איז דעם זעלבען טאג<lb/>פאר שמערצען געשטארבען.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0197_a">
+          <speaker>חמוטיל</speaker>
+          <p>האט ער דען ניט רעכט געהאנדעלט? ווי האסטו געוואגט צו פאנגען דאס<lb/>הארץ פון דעם קעניגס טאכטער? די פרינצעסען איז בעשטימט גיוועהן<lb/>פאר דעם קעניג פון עמון, בעליס דער קעניג פון די עמונים האט זי<lb/>פערלאנגט פאר זיין פרוי און מיין זוהן צידקיהו האט זי איהם צו<lb/>געזאגט. אבער א דאנק דיר האט זי איהר פאטער נישט געוואלט<lb/>הערען און האט איהם אזא שאנדע געמאכט</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0198_a">
+          <speaker>גדליהו</speaker>
+          <p>א שאנדע? פערצייהע מיר קעניגען. מיר דאכט זיך אז צדקיהו<lb/>איז נישט געוועהן אזוי גרויס דאס גדליהו זאל פאר איהם זיין<lb/>א שאנדע די מלוכה פון יהודה איז ניט גיוועהן אזוי גרויס<lb/>ער זאל ניט קענען געפינען א שידוך צווישען אייגענע. אויסער זענען<lb/>ניטאָ קיין מיחסים מיר זענען אללע גלייך, אבער געניג דו ביזט<lb/>מיין גאסט. מיין גאנץ הויז שטעהט פאר דיר אָפֿען דעם כבוד וואס<lb/>איך בין דיר שולדיג וועל איך געוויס ניט פֿערגעסען. ווייל איך<lb/>טראג איהם ביי מיר אין הארצען.</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0199_a">
+          <speaker>צפֿניה</speaker>
+          <p>גאט זיי דאנק עס איז איהר שוין אויסגעגאנען דאס לשון</p>
+        </sp>
+        <pb n="24" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0024.jpg"/>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0200_a">
+          <speaker>חמוטיל</speaker>
+          <p>ווילסטו מיר אנווייזען ווי וועט זיין מיין געפֿענגעניס?</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0201_a">
+          <speaker>גדליה</speaker>
+          <p>געפֿענגעניס?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0202_a">
+          <speaker>צפֿניה</speaker>
+          <p>אה דו אלטע מכשפֿה</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0203_a">
+          <speaker>גדליה</speaker>
+          <p>קעניגען דאס איז דאס איינציגסטע הויז וואס איך פֿערמאָג דאס איז<lb/>פאר דיר, צפניה בעגלייט די קעניגען.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0204_a">
+          <speaker>חמוטיל</speaker>
+          <p>איך דאנק דיר. איך דארף נישט קיין דיענערשאפֿט איך האב<lb/>מיין אייגענע מיט מיר. פֿרויען בעגלייטעט מיך /<stage type="exit">אַללע אָב/</stage></p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0205_a">
+          <speaker>צפֿניה</speaker>
+          <p>קוק אָן א ביסעל א שטאלץ פון אַנ'אלטע מכשפֿה</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0206_a">
+          <speaker>גדליהו</speaker>
+          <p>ניין מיין הדסה איז ניט צווישען די פרויען. מיין הדסה לעבט ניט מעהר?</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0207_a">
+          <speaker>הדסה</speaker>
+          <p>/<stage type="exit">ענטלויפט</stage>/ יא זי לעבט/ <stage type="business">לויפֿט צו גדליהו'ן/</stage></p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0208_a">
+          <speaker>גדליה</speaker>
+          <p>מיין טייערע הדסה</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0209_a">
+          <speaker>הדסה</speaker>
+          <p>מיין ליעבער גדליהו מיין איינציגער פֿריינד /<stage type="business">אומארמונג</stage>/</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0210_a">
+          <speaker>צפֿניה</speaker>
+          <p>הדסה. אה טייערע ליעבע גוטע שיינע פרינצעסען.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0211_a">
+          <speaker>הדסה</speaker>
+          <p>אויך דו ביזט דא גוטער אלטער.</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0212_a">
+          <speaker>צפניה</speaker>
+          <p>צו בעפעהל. צפניה לעבען האט שכל און נעם דיר דעם וועג<lb/>האבט אכט רעכט אום מארש. מארש /<stage type="exit">אב</stage>/</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0213_a">
+          <speaker>גדליהו</speaker>
+          <p>איך דאנק דיר גאט פאר דעם גליק. יעצט שטעהסטו ווידער נעבען<lb/>מיר לעבענדיג און פֿריי אָה מיין הארץ הדסה ליעבעס קינד האסטו פיעל געליטען?</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0214_a">
+          <speaker>הדסה</speaker>
+          <p>פֿרעג ניט מיין פֿריינד, מיר ביידע האבען געליטען. אבער מיר האבען<lb/>עס אריבער געטראגען איך גדליה וואס פאר א ווילדער שטורם איז דאס<lb/>געוועהן <stage type="delivery">/וויינט/</stage></p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0215_a">
+          <speaker>גדליהו</speaker>
+          <p>איך האב אלעס מיטגעפֿיהלט. זייט דאמאל'ס האב איך מיין לעבען<lb/>געאפפֿערט דעם "שארית ישראל"</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0216_a">
+          <speaker>הדסה</speaker>
+          <p>און אזוי האט אונז דאס שיקזאל ווידער צעזאמען געפֿיהרט. נאך אזא שווערע<lb/>שרעקליכע צייט. גיעב מיר דיין האנד גדליהו. דא האב איך דיר צוריק<lb/>מיט דריי יאהר מיין האנד געגעבען צום אבשייד ווען מיין פֿאטער'ס<lb/>צאר'ן האט אונז צעשיידט, און יעצט גיעב איך דיר ווידער צעזאמען<lb/>מיט מיין הארץ אויף אימער אין עוויג.</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0217_a">
+          <speaker>גדליהו</speaker>
+          <p>אונזער ליעבע זאל ריינער זיין אלס די פֿעלזען פון דעם בארג חֶרְמֹן יעצט האב)<lb/>איך נאך א שעהנעם ציעל צו לעבען פאר מיין ליעבע טייהרע הדסה /<stage type="business">אומארמען זיך/</stage></p>
+          <stage type="delivery">2 cm Duet II</stage>
+        </sp>
+        <sp xml:id="KhurbnYerusholaim_SP0218_a">
+          <speaker>Beide</speaker>
+          <lg n="12">
+            <l>מיר דאנקען דיר גאט פעראייניגט האסטו ווידער צוויי טרייע הערצער.</l>
+            <l>פֿֿיעל</l>
+          </lg>
+          <lg n="13">
+            <l>נאך אזוי פיעל ליידען נאך אזוי שמערצען</l>
+            <l>ווי גליקליך זענען מיר נאך דעם מיר האבען געליטען אזוי פיעל.</l>
+            <l>צעזאמען געפיהרט האט אונז גאט ביידע. עררייכט איז אונזער ציעל.</l>
+          </lg>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0219_a">
+          <speaker>גדליהו</speaker>
+          <p>און איך שווער דיר יעצט ווידער אויפֿסניי<lb/>דיר געהערט מיין הארץ מיין עוויגע ליעבע מיט עוויגע טרייע<lb/>אה ווי גליקליך בין איך איצטער איין הייליגען ציעל האט מיין לעבען אצינד<lb/>דאס גליק פֿאָן מיין פֿאלק, אין דיין ליעבע טהייערעס קינד.</p>
+        </sp>
+        <pb n="25" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0025.jpg"/>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0220_a">
+          <speaker>הדסה</speaker>
+          <p>שטיל האט א מאל די ליעבע מיין הארץ פֿערצעהרט.<lb/>יעצט זאגאר אויך עסלוערט די גאנצע וועלט עס הערט<lb/>נור דיינע בין איך. איך שוועהר עס דיר הייליג ביי גאט<lb/>עוויג טריי נאר דיר אליין. עוויג טריי ביז צום טוידט<lb/>/<stage type="delivery">ביידע ווידער האלען דעם דועט</stage>. <stage type="exit">אב</stage>/ <stage type="entrance">אויפֿטריט חמוטיל</stage></p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0221_a">
+          <speaker>חמוטיל</speaker>
+          <p>אך א שעהנע עלטער גדליהו דער שונא פון מיין הויזגעזינד. איז יעצט מיין<lb/>הערשער. מיין לעבען. מיין פֿרייהייט איז יעצט און זיין האַנד וואס וועט<lb/>מיין סוף זיין? אלעס האב איך פֿערלוירען. זאגאר הדסה מיין איינציגעס<lb/>אייניקעל איז מיר אויך פֿרעמד געווארען. זי איז יעצט ווידער ביי איהר<lb/>געליעבטען. און זארגט זיך ווייניג וועגען די צרת פֿון איהר באַבע. איך<lb/>בין אנגליקליך!!! <stage type="entrance">אויפֿטריט ישמאל</stage></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0222_a">
+          <speaker>ישמאל</speaker>
+          <p>אה קעניגען. טאנטע</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0223_a">
+          <speaker>חמוטיל</speaker>
+          <p>וואס זעה איך ישמאל? מיין טהייערער דו ביזט דאָ?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0224_a">
+          <speaker>ישמאל</speaker>
+          <p>/<stage type="business">קישט זי</stage>/ יא טאנטע אויך איך האב מיך פון די כאלדעעשע<lb/>הענד געראטעוועט, מיין שיקזאל האט מיך צו איין העכערען צוועק<lb/>בעשטימט ווי צו זיין א שקלאווע ביי דעם קעניג נבוכדנצר.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0225_a">
+          <speaker>חמוטיל</speaker>
+          <p>אָך מיין ליעבער פרינץ, ווי פֿרייט מיך דיר ווי דער צו זעהן מיר זענען<lb/>צוויי שיפֿען וועלכע האבען זיך קוים גערעטעט פֿון דעם שטורמווינד</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0226_a">
+          <speaker>ישמאל</speaker>
+          <p>יא אונזער לעבען האבען מיר גערעטעט. יא דאס איז אמת. אבער וואס<lb/><add>פריהיט</add><lb/>הערט מען מיט אונזער פֿרייד, וואס פאר א צוועק האט איצט אונזער<lb/>לעבען. זאג מיר דעם אמת טאנטע. ווי פיהלסטו זיך יעצט אין גדליהו׳ס<lb/><add>הויז?</add></p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0227_a">
+          <speaker>חמוטיל</speaker>
+          <p>דו פרעגסט נאך? זעה בעטראכט מיין וואהנונג, איז דאס אַ וואהנינג<lb/>פאר א קעניגען? ווי זענען די אלע בעדיענטע? ווי זענען די סאלדאטען?<lb/>ווי עס פאסט פֿאר א קעניגען</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0228_a">
+          <speaker>ישמאל</speaker>
+          <p>טאנטע ווילסטו גיעבען די האנד דעם וועלכער וועט דיך דא פון<lb/>דער תפֿיסה בעפֿרייען. און דיך צוריק שטעלען אין דיין פֿריהרידיגען<lb/>גלאנץ און פראכט?!</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0229_a">
+          <speaker>חמוטיל</speaker>
+          <p>אויב איך וויל? דא האסטו מיינע ביידע הענד!</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0230_a">
+          <speaker>ישמאל</speaker>
+          <p>הער טאנטע פון הדסה'ן הענגט יעצט אב דאס מיר זאלען צוריק<lb/>בעקומען די קרוין פון דעם קנעכט קעניג דוד. אדער מיר זאלען<lb/>בלייבען קנעכט ביי גדליה'ן אונזער גאנץ לעבען</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0231_a">
+          <speaker>חמוטיל</speaker>
+          <p>ערקלעהר מיר ישמאל. אלעס.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0232_a">
+          <speaker>ישמאל</speaker>
+          <p>אין אונטערהאנדעל און געהיים מיט בעליס דער קעניג פֿון עמון. איך האב היינט<lb/>גערעדט מיט אַ שפיאָן. ער וויל נקמה נעהמען אָן גדליהו פיר דעם גרויסען<lb/>שָדען וואס ער האט פֿון איהם געהאט. און בעהט מיך זיך זאל איהם<lb/>בייהילפיג זיין.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0233_a">
+          <speaker>חמוטיל</speaker>
+          <p>ווי אזוי בייהילפיג זיין?</p>
+        </sp>
+        <pb n="26" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0026.jpg"/>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0234_a">
+          <speaker>ישמאל</speaker>
+          <p>ער שיקט אהער א שטארקע מחנה עמונים. זיי וועלען ליגען בעהאלטען ניט<lb/>ווייט פֿון דאָ צווישען די בערג. און ווען איך וועל פערשטעהן אז עס<lb/>מוז שוין צייט עטוואס צו טוהן. בעפאלען זיי פלוצלינג גדליהו'ן און<lb/>מאכען פון איהם א תֶל. דאן שלינגען מיר דאס ביסעל כאלדעער וואס<lb/><add>טראן</add><lb/>איז נאך דא איבערגעבליבען. און דער מלוכה פון קעניג דוד וועט אויפֿסניי<lb/>אויפגעבויעט ווערען פאר דעם קעניג ישמאל מיט זיין טייהערע טאנטע<lb/>די אלטע קעניגען צו זיין רעכטע האנד.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0235_a">
+          <speaker>חמוטיל</speaker>
+          <p>נו וואס שטעהסטו? וואס קלערסטו נאך? וואס <sic>ווארסטו </sic>נאך?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0236_a">
+          <speaker>ישמאל</speaker>
+          <p>נאך איין זאך שטעהט מיר אין וועג. און דאס איז הדסה.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0237_a">
+          <speaker>חמוטיל</speaker>
+          <p>הדסה? וואס הארט דיך הדסה?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0238_a">
+          <speaker>ישמאל</speaker>
+          <p>בעליס דער קעניג פון עמון וויל הדסה'ן פאר א פרוי, און איך האב<lb/><add>צו</add><lb/>זי איהם געזאָגט</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0239_a">
+          <speaker>חמוטיל</speaker>
+          <p>אבער ווי אזוי האסטו איהם געקענט צוזאגען. ווייסטו דען ניט פאָן<lb/>איהר ליעבע צו גדליהו?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0240_a">
+          <speaker>ישמאל</speaker>
+          <p>דער פאר ווענדע איך מיך צו דיר דו זאלסט מיר העלפען מיט איהר<lb/>איבערריידען</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0241_a">
+          <speaker>חמוטיל</speaker>
+          <p>אומזיעסט וועט זיין אונזער מיה. צי איז פֿערליעבט אין גדליהו'ן<lb/>שרעקליך. אך דאס קען ניט זיין.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0242_a">
+          <speaker>ישמאל</speaker>
+          <p>אויב אזוי מוזען מיר אַנ'אנדער מיטעל געפֿינען מיר גילען זי נייטען.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0243_a">
+          <speaker>חמוטיל</speaker>
+          <p>נייטען? ווי אזוי איז דאס מעגליך?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0244_a">
+          <speaker>ישמאל</speaker>
+          <p>הער מיך אויס טאנטע. אין דער קירצער צייט וואס איך בין דאָ<lb/>האב איך דורך שפיאָניערט די גאנצע גיעגענד. ווי אויך גדליה'ס<lb/>הויז. דארט אין יענער זייט שטעהט א קליין שטיבעלע אָהנע פֿענסטער אַנ'אוי-<lb/>סגעצייכענט תפיסה'לע פאר אזא אייניקעל וואס וויל ניט פֿאלגען א באבע<lb/>אלזאָ ווען זי וועט זיך אֵיינעַקשֶענֶען שלעפען מיר זי דארטען אין<lb/>יענעם שטיבעלע, מיר האלטען צו דארט אזוי לאנג ביז עס וועט קימען<lb/>די ריכטיגע צייט עפיס צו טוהן.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0245_a">
+          <speaker>חמוטיל</speaker>
+          <p>שטיל, זי קומט <stage type="entrance">אויפֿטריט הדסה</stage></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0246_a">
+          <speaker>ישמאל</speaker>
+          <p>מיין האכגעשעצטע ליעבע קאזינע, זיי מיר הערצליך ווילקאמען</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0247_a">
+          <speaker>הדסה</speaker>
+          <p>גדליהו האט מיר שוין דערציילט פון דיר. עס פֿרייט מיך דיך ווידער<lb/>צו זעהן גערעטעט און פֿריי.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0248_a">
+          <speaker>ישמאל</speaker>
+          <p>איך <sic>האבען</sic> טאקע יעצט גערעכט מיט די באבע אונזער אלטע קעניגען<lb/>מיר זענען צו דער איבערצייגונג געקאמען דאס ניט אומזיעסט האט אונז<lb/>גאט געלאזט לעבען. ניט אומזיעסט האט אונז אונזער גליק=שטערען צעזאמען<lb/>געפֿיהרט. דאס איז אַ סימן דאס באלד זעהר באלד מוזען מיר ווידער צוריק<lb/>קומען צו אונזער פֿריהרידיגען גלאנץ. איז דאס אויך ניט דיין מיינונג הדסה?</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0249_a">
+          <speaker>הדסה</speaker>
+          <p>ניין. פאר וואס זאלסטו זיך טרייסטען מיט פֿאלשע האפֿפֿענינגער? צו וואס<lb/>ניצט דיר דאס פאנטאזירען? דאס פערסאמט נאר דאס בלוט און דיינע<lb/>אָדערען. איבעריגענס מיט מיר רייד נישט מעהר פון פֿריהריקען גלאנץ<lb/>איך זארג מיך זעהר ווייניג דער פֿון.</p>
+        </sp>
+        <pb n="27" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0027.jpg"/>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0250_a">
+          <speaker>ישמאל</speaker>
+          <p>הדסה. איך וויל מיט דיר יעצט ריידען פון דיר אליין. גלויב מיר יעדער<lb/><add>פיגור</add><lb/>וועלכער וועט זעהן זעהט דיין העלדענטהאַט דיין העלדענס געשטאלט<lb/>דיינע פריהריגע פֿייערדיגע בליקען מיט איין ווארט - דיין גאנצעס<lb/>וועזען. יעדער מוז צו געבען אז דו ביזט נאר צו דעם בעשאפען גיווארען<lb/>צו זיצען אויף דעם טראָהן פֿון איינען גרויסען מעכטיגען פֿירשטען<lb/>וועלכער זאל זיין קרוין אויף דיין קאפ זעצען פאר דיר זאלען קניען<lb/>די גרעסטע מענשען פֿונ'ם לאנד. דאס פֿאלק זאל זיך פאר דיינע פֿיס<lb/>ווארפֿען דו זאלסט....</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0251_a">
+          <speaker>הדסה</speaker>
+          <p>האלט איין. וואס ווילסטו? זאג עס מיר קורץ, וואס ווילסטו?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0252_a">
+          <speaker>ישמאל</speaker>
+          <p>דיך גליקליך מאכען. בעליס דער קעניג פון עמון וויל דיך צו זיינע<lb/>קעניגען מאכען. ער האט עס פון מיר פערלאנגט און איך האב עס איהם<lb/>צוגעזאגט.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0253_a">
+          <speaker>הדסה</speaker>
+          <p>מיט וועלכע רעכט?<lb/><add>עלטסטער</add></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0254_a">
+          <speaker>ישמא</speaker>
+          <p>ל ווייל יעצט בין איך דער איינציגסטער פֿון אונזער פֿאמיליע</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0255_a">
+          <speaker>חמוטיל</speaker>
+          <p>געוויס מיין קינד. ער האט רעכט. קום אהער מיין קינד קום צו דיין<lb/>געטרייע באבע איך וויל דיר גיבען מיין ברכה /<stage type="business">וויל זי בענשען/</stage></p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0256_a">
+          <speaker>הדסה</speaker>
+          <p>לאז מיך אב מיט דיין ברכה.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0257_a">
+          <speaker>חמוטיל</speaker>
+          <p>די איבערגעקעהרטעס קינד. ווילסטו ווידער פֿערשטויסען פון דיר דיין גליק?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0258_a">
+          <speaker>ישמאל</speaker>
+          <p>הדסה, דו ביזט אלע מאל גיוועהן אזוי עדעל אזוי גיט הערציג. זעה מיר<lb/>בעטען דיך מיט טרעהרין אין די אויגען, מיר זענען <sic>פֿערלואזען</sic>. מיר זענען<lb/>בעדעקט מיט שטויב און אַש. מיר זענען אין אונזער אייגענלאנד ווי אנטלאפֿענע<lb/>מיר עססען דאס ברויט פון אונזער שונא. אבער ווען ווערסט קעניגען פון<lb/>עַמוֹן וועסטו אונז רעטען פון אונזער עלענדקייט און נויט.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0259_a">
+          <speaker>הדסה</speaker>
+          <p><stage type="delivery">שווייג</stage>. קיין ווארט זאל איך מעהר ניט הערען פון עמון. וואס? פון דעם<lb/>שרעקליכען מערדער ערווארטעסט דו הילף? דעם ווילדען מענשענפֿרעסער<lb/>ווילסטו מאכען פֿאר א פאסטיך איבער אונזער לעצט ביסעל שעפֿעלעך?<lb/>וועט ער דען ניט פון זיי ארוברייסען די פֿעל מיט די הויט צעזאמען? פֿריי<lb/>זיין און גליקליך לעבען קענט איהר נאר אונטער דעם שוטץ פון אונזער<lb/>עדעלעם און גוטהערציגען גובערנאטאר גדליהו!</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0260_a">
+          <speaker>חמוטיל</speaker>
+          <p>גדליהו. און גדליהו. און ווידער גדליהו, ווען די ווילסט ניט הערען דיין<lb/>באבע אזוי פֿאלג דעם בעפֿעהל פֿון דער קעניגען. איך בעפעהל דיר. אז<lb/>דו זאלסט מעהר פון איהם נישט טראכטען.<lb/><add>דער טראן</add></p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0261_a">
+          <speaker>הדסה</speaker>
+          <p>אזוי ווייט האט אייך די איינבילדונג פֿערפֿיהרט די קרוין איז צעבראכען<lb/>פארברענט. דער ווינד האט איהר אש פֿערשפרייט אויף אלע 4 זייטען און<lb/>דאך יאגט איהר נאך דעם שָטֶן און צוליעב דעם שָטֶן ווילט איהר אייערע<lb/>קינדער מַקרִיבְ זיין? ניין אזא קעניגען הער איך ניט.</p>
+        </sp>
+        <pb n="28" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0028.jpg"/>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0262_a">
+          <speaker>חמוטיל</speaker>
+          <p>איך האב עס פריהער געוואוסט.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0263_a">
+          <speaker>ישמאל</speaker>
+          <p>לאזט טאנטע! יעצט לאז מיך אויך מיט איהר א פאר ווערטער ריידען זעה<lb/>הדסה <stage type="business">/ווייזט שווערד</stage>/ בעטראכט די שווערד פרוביר זיינע שארפע שפיצען.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0264_a">
+          <speaker>הדסה</speaker>
+          <p>/<stage type="delivery">דערשראקען/</stage> וואס איז דאס? און וואס ווילסטו טוהן?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0265_a">
+          <speaker>ישמאל</speaker>
+          <p>מיט די שווערד וועל איך גדליהו׳ס שווערד הערץ דורכבויען.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0266_a">
+          <speaker>הדסה</speaker>
+          <p>/<stage type="delivery">שרייט</stage>/ וואס? דאס? וואס? דאס ווילסטו טוהן?!</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0267_a">
+          <speaker>ישמאל</speaker>
+          <p>און ווען דו צווייפֿעלסט נאך אין דעם, אזוי שווער איך דיר ביי די קרוין<lb/>פון קעניג דיר. דו האסט מיך שטענדיג צו נארען געמאכט. יעצט ענדליך<lb/>זאלסטו מיך קענען לערנען און זיך איבער צייגען דאס פאר מיין<lb/>קרוין קעמפף איך אזוי לאנג אזוי מוטהיג ווי א לייב און גרויזאם וויאו<lb/>טיגער</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0268_a">
+          <speaker>הדסה</speaker>
+          <p>ניין. ניט א לייב ביזטו נאר א פאלשע קאטץ. ניט א טיגער נאר בלוט<lb/>דורסטיגער וואלף, אונמענש אזוי בעצאהלסטו דיין וואהלטעטער וועלכער<lb/>האט דיך אויס רחמנות אין זיין הויז אריינגענומען פאר זיין גוט הערציגקייט<lb/>ווילסטו איהם מיטן טוידט בעצאהלען?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0269_a">
+          <speaker>ישמאל</speaker>
+          <p>קיין שרייען און קיין שעלטען וועט דיר יעצט ניט העלפֿען. אין דיין האנד<lb/>ליעגט יעצט דאס לעבען פון דיין גדליהו'ן. ווילסטו אונז פֿאלקען און גיבען.<lb/>דיין האנד דעם קעניג פון עַמוֹן אזוי וועט גדליהו לעבען בלייבען ווען<lb/>אבער ניט וועל איך זיין קאפ צו דיינע פֿיס לייגען. יעצט זאג בעווייז<lb/>וועהמען האסטו בעסער ליעב. דיך אדער איהם?!</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0270_a">
+          <speaker>הדסה</speaker>
+          <p>אה בארמהערציגער גאט. פאר וואס בין איך ניט בעסער געפאלען צעזאמע<lb/>מיט די טויזענדטער פון מיינע שוועסטער און ברודער?! /<stage type="business">קניעט</stage>/ האט מיטלייד<lb/>ערבארמט אייך אויף מיר וואס פאר אַ שלעכטעס האב איך אייך געטוהן?<lb/>פאר וואס ווילט איהר מיך פֿערקויפֿען? אבער ניט נאר מיך אייך אליין<lb/>פֿערקויפֿט איהר אויך פֿאר נידעריגע שקלאווען צו די ווילדע עמונים. איהר<lb/>פערקויפט דאס ארמע אונגליקליכע פֿאלק פון יהודה אַך באבע, ישמאל<lb/>בעדענקט איבערלייגט אייך וואס איהר טוהט איהר זענט פֿערבלענדעט<lb/>אָה וועה וואס ווילט איהר טוהן?! /<stage type="delivery">וויינט</stage>/</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0271_a">
+          <speaker>ישמאל</speaker>
+          <p>וואס איך האב צו טוהן ווייס איך גאנץ גיט. איך פערלאנג<lb/>פון דיר אַנ'ענטווער. ווילסטו דיין האנד גיעבען דעם קעניג פון עמון. אדער<lb/>ניין? די צייט איז קורץ בעשליס דיך! ...</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0272_a">
+          <speaker>הדסה</speaker>
+          <p>/<stage type="business">שפרינגט אויף</stage>/ וואס איז דא צו בעשליסען? ווען אלע מיינע נערווען שרייען<lb/>ניין. ווען יעדעס טראפען בלוט אין מיינע אדערען שרייט ניין ווי קענען<lb/>מיינע ליפען אויסריידען יא? א בעשליסונג ווילט איהר פון מיר הערען?<lb/>אזוי הערט. ניין. און טויזענדט מאל ניין.</p>
+        </sp>
+        <sp who="#khmutil" xml:id="KhurbnYerusholaim_SP0273_a">
+          <speaker>חמוטיל</speaker>
+          <p>איך האב עס פֿריהער געוויסט</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0274_a">
+          <speaker>ישמאל</speaker>
+          <p>זעהר גיט יעצט געה און איבערלאנג עס דיר /<stage type="business">זי געהט צו</stage> <stage type="business">די טיהר</stage>/ ווו אהין? ניט דא<lb/>איז דיין וועג! האלסטו אונז פאר קינדער גלויבסטו דאס מיר וועלען דיך<lb/>פֿריילאזען. די זאלסט דיין געליעבטען אלעס דערציילען? דארטען געה אין א פֿינסטערין.<lb/><sic>קערקער </sic>איינגעשפארט זאלסטו אין שרעק אזוי לאנג בלייב ביז דיין הייס<lb/>ליעבענדעס הערץ וועט אזוי ווי אייז קאלט ווערען. יעצט געה.</p>
+        </sp>
+        <pb n="29" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0029.jpg"/>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0275_a">
+          <speaker>הדסה</speaker>
+          <p>הילפֿע! הילפע</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0276_a">
+          <speaker>ישמאל</speaker>
+          <p>אומזיעסט איז דיין געשריי קיינער הערט דיך ניט /<stage type="business">ראנגעלען זיך</stage>/<lb/><stage type="entrance">אויפֿטריט גדליהו</stage></p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0277_a">
+          <speaker>גדליהו</speaker>
+          <p>האלט!</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0278_a">
+          <speaker>הדסה</speaker>
+          <p>/<stage type="business">לויפֿט צו. צו איהם</stage>/ מיין גדליהו! מיין רעטער!</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0279_a">
+          <speaker>ישמאל</speaker>
+          <p>רחמנות!</p>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0280_a">
+          <speaker>גדליהו</speaker>
+          <p>/<stage type="delivery">איראניש</stage>/ רחמנות! וואס? דו בעהסט רחמנות? דו גרויסער מאן פון<lb/>קעניגליכען שטאם. דו קענסט דיך אזוי ווייט נידעריג מאכען און קניען<lb/>פאר אַנ'איינפאחען אונטערטאהן! טפו ווי שענדליך. און אזא איינער יאגט זיך<lb/>נאך אַקרוין? דו ווילסט קעניג זיין אין בעשיצען א פֿאלק, וועהרענד דו אליין<lb/><add>א שוואכע פֿרוי</add><lb/>ציטערסט פֿאר דעם טוידט ווי אנ'אלט ווייב / <stage type="business">די שווערדט</stage>/ רעכט וואלט גיוועהן איך<lb/>זאל דיר דיין פֿאלש הארץ דורכֿבויען מיט די זעלבע שווערד וואס דו האסט געוואלט<lb/><add>(ניט)</add><lb/>מיין לעבען נעמען. אבער ניין מיין האנד זאל קיין בלוט פֿערגיסען, זאל קיינער זאגען<lb/>I דאס גדליהו האט דערפאר געהארגעט ישמאָלען דעפאר וואס ער האט געוואלט זיין<lb/>הערשאפֿט זיכערען, דער נאמען גדליהו זאל בלייבען ריין אונבעפֿלעקט איך שוין</p>
+        </sp>
+        <sp who="#shenk" xml:id="KhurbnYerusholaim_SP0281_a">
+          <speaker>שענק</speaker>
+          <p>דיר דאס לעבען. נאר אונטער מיין שוטץ ביזטו ניט מעהר. און ווען די וועסט<lb/>ווידער געפאנגען ווערען פון די כאלדעער וועט עס זיין דיין אייגענע<lb/>שולד. די אלטע בלייבסט דא מיין געפאנגענע. קיין שריט מאכסטו ניט<lb/>מעהר אָהנע וואכע /<stage type="business"> ישמאל פאקט א שווערט גדליהו אויך</stage> <stage type="business">פערטען זיך ביידע ישמאל</stage><lb/><stage type="business">פֿערליערט ביטטע אום רחמנות</stage>/ געה.!<lb/><stage type="setting">פֿאָרהאַנג</stage><lb/><stage type="business">פֿאַלט</stage></p>
+        </sp>
+        <trailer>ענדע דריטער אַקט</trailer>
+        <pb n="30" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0030.jpg"/>
+      </div>
+      <div type="act" n="4" xml:id="KhurbnYerusholaim_Act4">
+        <head>פֿיערטער אַקט</head>
+        <stage type="setting">/א וואלד/</stage>
+        <stage type="entrance">צפניה מיט די 4 ברודער/</stage>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0282_a">
+          <speaker>צפניה</speaker>
+          <p>ברודער זאלען מיר דעם היינטיגען פֿייער טאג ניט בעטריבען מיט<lb/>טרויעריגע געדאנקען. גאט וועט אונז ניט פֿערלאזען. 20 שטעדט<lb/>האט מען אונז ערלויבט ווידער אויפֿצובויען. אונזער לאנד ווערט<lb/>ווידער לעבידיג, און מיר איהר ווידער זעהן און איהר פֿריהריגען<lb/>גלאנץ ניט אמת מיינע ברודער?<lb/>/ אין בית המקדש. כהנים, לוים. מיליטער קניען. גדליהו און הדסה שטעהן<lb/>אויף אַ טראָהן און דער כהן גדול בענשט זיי/</p>
+          <lg n="14">
+            <head>I</head>
+            <l>געליטען אָן צאָל!</l>
+            <l>האט אונזער פאלק ישראל!</l>
+            <l>פאר זיינע שווערע זינד!</l>
+            <l>געשטראפט האט גאט זיין געליעבטעס קינד!</l>
+            <l>די צייט קומט שוין באלד ווידער</l>
+            <l>דאס אונזער פרומע ברודער</l>
+            <l>וועלען זינגען הייליגע לידער - אין בית המקדש פריי</l>
+            <l>כהנים און פֿראפֿעטען - וועלען פֿאר אונז בעטען</l>
+            <l>לוים מיט טראמפעטען - וועלען שפילען אויפֿסניי.</l>
+            <l>הלליה, זינגט מיט חשק איהר יודילעך, גרויס איז אונזער גאט, אָ גאט.</l>
+            <l>הלליה. זינגט פאר איהם פרומע יודילעך. שרייט אלע אינאיינעם אחד אחד</l>
+          </lg>
+          <lg n="15">
+            <head>II</head>
+            <l>אונזער פֿאלק בעפרייט. דאס בית המקדש בענייט.</l>
+            <l>מיט גלאנץ און פראכט ווי פֿריהער-</l>
+            <l>העלף גאט דערלעבען זאלען דאס מיר.</l>
+            <l>אונזער לאנד וועט ווידער גלאנצען.</l>
+            <l>מיט בלומען און מיט קראנצען.</l>
+            <l>פֿרייען זיך טאנצען</l>
+            <l>וועלען מיר אין א צאָהל</l>
+            <l>אין די לוימ'לעך די יונגען.</l>
+            <l>וועלען ווידער זינגען.</l>
+            <l>די הארפען וועלען ווידער צוקלינגען ווי א מאָל.</l>
+            <l>הלליה...</l>
+            <stage type="setting">א. ז. וו.</stage>
+            <stage type="setting">טאנצען ארויס/</stage>
+            <stage type="setting">פֿערוואנדלונג/</stage>
+          </lg>
+        </sp>
+        <pb n="31" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0031.jpg"/>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0283_a">
+          <speaker>כאהר</speaker>
+          <lg n="16">
+            <l>/זינגט/ אונזער געבעהט פֿערנעם גאט</l>
+            <l>בעשיצען מעגסטו גדליה'ן. - בעשיצען מעגסטו איהם</l>
+            <l>היט איהם אב פון שאנד און שפאָט.</l>
+            <l>מיט דיין הייליגע האנד. העלף איהם גאט.</l>
+            <l>דיך דיענען מיר גרויסער גאָט. דיין קראפֿט איז איבעראל</l>
+          </lg>
+          <lg n="17" prev="true">
+            <l>דיין קראפט. דיין קראפט איז איבעראל.</l>
+            <l>נעהם אונזער געבעהט צו בענש פון אויבען אונזער מיה</l>
+            <stage type="entrance business">ישמאל לויפֿט אריין מיט עמונים וועלכע חאפען הדסה'ן</stage>
+            <stage type="business">און פֿעריאגען די יודין ישמאל ערמארדעט גדליהן</stage>
+            <stage type="exit">אללע אָב/</stage>
+          </lg>
+        </sp>
+        <sp who="#gdilihu_bn_khikum" xml:id="KhurbnYerusholaim_SP0284_a">
+          <speaker>גדליהו</speaker>
+          <p>אויס איז מיט מיר מיינע כוחות פערשווינדען פון מיר לעב גליקליך<lb/>מיין ליעבע הדסה. לעבט גליקליך מיין ליעב פֿאלק. לעבט גליקליך אלע<lb/>זיי גליקליך, הדסה זיי געזונד<lb/><stage type="entrance">אויפֿטריט ישמאל /מיט עמונים/</stage></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0285_a">
+          <speaker>ישמאל</speaker>
+          <p>ווי שעהן איז דער זיעג. יעצט ענדליך האב איך מיין ציעל עררייכט<lb/>דא ליגט ער דער שעהנער העלד טוידט פון מיין שווערד אזא ענדע<lb/>וועלען אלע האבען וועלכע וועלען ניט פֿאלגען דעם קעניג<lb/>ישמאל יעצט ברענגט מיר אהער די פרינצעסען הדסה<lb/>יעדען פאלס איז ער מיט א שעהנעם טויט געשטארבען א העלדענ-.<lb/>טוידט <stage type="entrance">אויפֿטריט הדסה</stage></p>
+        </sp>
+        <sp who="#eyner" xml:id="KhurbnYerusholaim_SP0286_a">
+          <speaker>איינער</speaker>
+          <p>האך לעבע הדסה די קעניגען פון עמון! 'הידד!.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0287_a">
+          <speaker>ישמאל</speaker>
+          <p>אזוי מיין ליעבע קאזינע. מיט א פריידענגעשריי וועט באלד<lb/>דאס פאלק דיך בעגלייטען צום טראהן פֿון עמון וועהרענד<lb/>דא וועט ווידער אויפֿשטעהן די מלוכה פון קעניג דוד. קום<lb/>הדסה צו דיין העלד וועלכער וועט דיך פיהרען צו דיין<lb/>געקרוינטען הערשער<lb/>עס פילט</p>
+        </sp>
+        <pb facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0032.jpg"/>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0288_a">
+          <speaker>הדסה</speaker>
+          <p>אַוועק פון מיר, בעריהר מיך ניט. דיינע הענד שפירט זיך<lb/>נאך דאס בלוט. ווי בין איך? איז דאס ניט גדליהו'ס<lb/>הויז? ווי איז גדליהו מיין מאנן? האסטו איהם ערמארדעט?<lb/>ישמאל דו האסט איהם ערמארדעט? אויף דיין שטערען זעה<lb/>איך ברענען דעם צייכען פון דעם מערדער קין...</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0289_a">
+          <speaker>ישמאל</speaker>
+          <p>בערוהיג דיך ליעבעס קינד דו האסט יעצט ניט קיין אנדער<lb/>אויסוועג נאר קעניגען פון עַמוֹן צו ווערען. אדער ווילסטו<lb/>געהן ווי א בעטלערען פון טיהר צו טיהר א שטיקעל ברויט<lb/>און א נאכט לעגער פאר דיר בעטען? פערגעס אלע נאריש-<lb/>קייטען פאלג מיין עצה און דו וועסט זיין גליקליך.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0290_a">
+          <speaker>הדסה</speaker>
+          <p>ווי איז גדליהו? ווילסטו מיר א מאל ענטפֿערען? גיעב מיר<lb/>צוריק מיין גדליה'ן. וויט איהם וועל איך געהן בעטלען<lb/>האט איהם דיין שווערד פֿער ווינדערט? איך וועל איהם<lb/>היילען. מיט מיינע ליפען וועל איך אָבוואשען דאס<lb/>רינענדעס בלוט, מיט מיין האנד איהם פֿערשטעלען זיינע<lb/>ווונדען. האט איהם דיין שווערד בלינד געמאכט? נו וואס<lb/>אזוי וויל איך דיינע אויגען פערלרייטיק<lb/>שווייגסטו? זאג וואס האסטו מיט איהם געמאכט? ווי איז מיין<lb/>גדליהו? זאג מיר שנעל.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0291_a">
+          <speaker>ישמאל</speaker>
+          <p>ווען די ביזט אזוי <sic>איינגעאכשענט </sic>אזוי זעה. דאס דו<lb/>האסט ניט מעהר צו האפֿען. שוין דאָ דאָ איז דיין גדליהו /דראמע/</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0292_a">
+          <speaker>הדסה</speaker>
+          <p>אה. ניין. ניין עס איז ניט מעגליך. עס קען ניט זיין גדליהו<lb/>שטעה אויף. עפֿען דיינע אויגען. דיין פֿאלק רופֿט דיך<lb/>דיין הדסה רופט דיך. אה מיין גדליהו איז טוידט, און דאס<lb/>האסטו געטוהן. דער ווילדעסטער מענש וואלט דאך ניט<lb/>געהאט דאָס ה<sic>אָ</sic>רץ צו פֿערגיסען דאס בלוט פֿאָן אזא<lb/>העלדענמוהטיגען העלד. די שלאנג אין מענשענגעשטאלט. געה<lb/>און שלעפ דיך ארום. וואנדער פון לאנד צו לאנד. און געפין<lb/>גאר ניט. און ווען דו וועסט עפיס געפינען זאל עס דיר פון<lb/>פ דיינע הענד פֿאלען ווי דו וועסט געהן זאלען זיך דיר<lb/>צו גייסטער<lb/>די ווילדע רוחית פֿארשטעלען וועלכע דו האסט ערמארדערט<lb/>אָהן אויפֿהער זאלען זיי דיך פֿון ארט צו אורט יאגען דו זאלסטו<lb/>דעם טויט זוכען און ניט געפינען לעב, לעב, אין שרעק און אין מורא</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0293_a">
+          <speaker>ישמאל</speaker>
+          <p>איך האב שוין קיין געדולד ניט אונבעזאנענע ווייסטו דען<lb/>נישט דאס איך וועל דיך צווינגען מיט געוואלד. קום!!!</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0294_a">
+          <speaker>הדסה</speaker>
+          <p>האלט ניט פון ארט. א נישט רייס איך ארויס פֿון דיר דיין הארץ<lb/>און צעטרעט עס מיט מיינע פֿיס חאטש דיין קערפער האט ניט.<lb/>די ווערטה צו בעריהרען דאס אָרט ווי דער הייליגער ליגט, גלויבסטו<lb/>דאס איך וועל נאך פאר מיר די זוהען זעהן. נאך דעם ווי די <lb/>אויגען זעהען מעהר נישטאָ? מיינסטו איך וועל נאך אָהטעמען ווען<lb/>I<lb/>דיעזע ברוסט האט אויפגעהערט צו אהטעמען?.. דא בין איך<lb/>מיין גדליהו? דיינע בין איך! דיין טרייע הדסה געהט מיט<lb/>דיר אויך נאך דעם טוידט איך קאם צו דיר /<stage type="business">שטעכט זיך</stage>/</p>
+        </sp>
+        <pb n="33" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0033.jpg"/>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0295_a">
+          <speaker>ישמאל</speaker>
+          <p>האלט איין דו שרעקליכעס וועזען.</p>
+        </sp>
+        <sp who="#hdsh" xml:id="KhurbnYerusholaim_SP0296_a">
+          <speaker>הדסה</speaker>
+          <p>יעצט איז מיר גוט איך בין ווידער צעזאמען מיט מיין<lb/>גדליהו איך דאנק דיר גאט /<stage type="business">שטארבט/</stage></p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0297_a">
+          <speaker>ישמאל</speaker>
+          <p>/<stage type="delivery">מיט צארן</stage>/ דאס איז שרעקליך אזא סוף האב איך זיך ניט גערעכט</p>
+        </sp>
+        <sp who="#fitser" xml:id="KhurbnYerusholaim_SP0298_a">
+          <speaker>אופֿיצער</speaker>
+          <p>ליידער האט די גאנצע זאך יעצט אַנ׳אנדער ווענדונג אָנגע-<lb/>נומען א שאָד דאס פערגאסענע בלוט.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0299_a">
+          <speaker>ישמא</speaker>
+          <p>ל וואס זאגסטו? און מיין צוגעזאגטע קרוין?!!</p>
+        </sp>
+        <sp who="#fitser" xml:id="KhurbnYerusholaim_SP0300_a">
+          <speaker>אפיצער</speaker>
+          <p>דו בעקאמסט זי דאן ווען די פרינצעסען הדסה וועט<lb/>לעבעדיג ווערען /<stage type="business">שירם שלאכט/</stage><lb/> <lb/><stage type="setting">פֿאָרהאנג פֿאַלט</stage></p>
+        </sp>
+        <trailer>ענדע 4טער אַקט</trailer>
+      </div>
+      <div type="act" n="5" xml:id="KhurbnYerusholaim_Act5">
+        <head>פֿינפֿטער אַקט</head>
+        <stage type="setting">/שטעלט פאר דעם כותל מעריבה/.</stage>
+        <stage type="entrance">ירמיה /זיצט'</stage>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0301_a">
+          <speaker>ירמיה</speaker>
+          <p>אה וויין און קלאָג מיין אונגליקליך פֿאלק ישראל פערלוירען האסטו<lb/>דיין לעצטען בעשיצער. האסט אלעס פֿערלוירען אלעס יעצט ערשט<lb/>זעהט מען ארויס אונזער חרבן חורבן גדליהו אונזער עדעלער<lb/>העלד. דו געטרייער אקט פאסטוך אויף וועהמען האסטו איבערגעלאזט<lb/>דיינע שעפֿעלעך. יא יענער טאג זאל אַנ'עוויגער טרויעריגער בלייבען<lb/>אַ פֿאַסט טאָג צום אנדענקען אָן אונזער אויסגעלאשענעם שטערען<lb/>יענער טאָג זאל הייסען צום=גדליהו /<stage type="delivery">זינגט/</stage></p>
+          <lg n="18">
+            <head>I</head>
+            <l>איכה. ווי אזוי בין איך געבליעבען אצינד</l>
+            <l>קלאגט בת ציון מיט געוויין</l>
+            <l>פֿארוואס מיין גאט האסטו אזוי ביטער געשטראפֿט דיין קינד</l>
+            <l>פֿאר וואס איז איהם אזוי געשעהן?</l>
+            <l>געשלאגען דיך האסטו אַליין אוי מיט דיין אייגענער האנד. - דער</l>
+            <l>גרעסטער שונא ביזטו נאר געוועהן אוי דיין אייגען פֿאטערלאנד.</l>
+            <l>גיס מיט טרעהרען, זאלסט ניט אויפֿהערען.</l>
+          </lg>
+          <lg n="19" prev="true">
+            <l>אויף דיין חורבן וואס דיר, איז געשעהן.</l>
+            <l>אוי קלאג און וויין.</l>
+            <l>אוי קלאג און וויין. אין דיין אָנגליק שולדיג ביזטו נאר אליין.</l>
+          </lg>
+          <lg n="20">
+            <head>II</head>
+            <l>איכה ווי איז מיין שעהנהייט און שטאלץ פֿון פֿריהער</l>
+            <l>קלאג ישראל און ברעך די הענד</l>
+            <l>זעה מיין גאט ווי דער שונא איז זיך נוקם אָן מיר.</l>
+            <l>פערוויסט איז אלעס. צעשטערט. פֿערברענט</l>
+            <l>אליין דו שלעכטער זוהן:</l>
+            <l>מיין בית המקדש האסטו פֿערברענט</l>
+            <l>אויסגעלאשען דאס לייט פֿון ציון</l>
+            <l>האסטו אליין מיט דיינע הענד</l>
+            <l>האסט געגזלט גערויבט</l>
+            <l>דיין ברודער'ס בלוט אומזיסט פֿערגאסען</l>
+            <l>דורך שִנְאַת חִנָם איז בלוט געפֿלאסען</l>
+            <l>אין דיין אונגליק שולדיג ביזטו נאר אליין.</l>
+          </lg>
+          <lg n="21">
+            <head>III</head>
+            <l>איכה ווי איין אלמנה וויינט אין קלאגט</l>
+            <l>ירושלים די שטאלצע, שטאלצע שטאָדט</l>
+          </lg>
+          <lg n="22">
+            <l>איהר איינציג קינד האט א פֿרעמדער ארויסגעיאגט</l>
+            <l>און זיי בערויבט פון אלע איהר גוט'ס</l>
+            <l>געדענק מיין גאט. געדענק דיין קינד</l>
+            <l>אוי לאָז מיך ניט ווערען צו שאַנד.</l>
+            <l>האסט מיך געשלאגען וויי און ווילד.</l>
+            <l>אוי גאט גענוג רייך מיר דיין האַנד</l>
+            <l>השיבני חדש ימינו</l>
+            <l>איך וועל שוין ניט זינדיגען. אוי ניין</l>
+            <l>זעה מיינע טרעהרען. מיין געוויין.</l>
+            <l>מיר העלפֿען ווידער קענסטו נור אליין.</l>
+            <l>נאר דו מיין גאט. נאר דו אליין</l>
+            <stage type="exit business">אב מעלאדראמע/</stage>
+            <stage type="delivery">משוגע/</stage>
+            <stage type="entrance">אויפֿטריט ישמאל</stage>
+          </lg>
+        </sp>
+        <pb n="34" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0034.jpg"/>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0302_a">
+          <speaker>ישמאל</speaker>
+          <p>אט איז דער ריכטיגער פלאץ דא זאל מיין קריינונג פארקומען! <stage type="business">קניעט</stage><lb/>אלע אנידער! אזוי, אזוי יעצט געהט עס. איך האב מיין ציעל<lb/>עררייכט. ענדליך בין איך קעניעק קעניג. יעצט שרייט אללע<lb/>מיט מיר, עס לעבע ישמאל דער קעניג פון ישראל, וואס? איהר<lb/>שווייגט? /<stage type="delivery">ערענסט</stage>/ ווי זענען זיי אהינגעקומען? אלעס מיט אמאל פערשווי-<lb/>נדען. ווי זענט איהר מיינע טרייע סאלדאטען. ווי? ווי? /<stage type="business">ציטערט/</stage> אה<lb/>א גערויש מ'קומט /<stage type="setting">עס בעויויזען זיך סקאלעטען</stage>/ איהר זייט עס איהר שרעקליכע<lb/>רוחות, איהר קומט שוין ווידער מיך אזוי שרעקליך מאטערען<lb/>יעב<lb/>אוועק, אוועק איך קען מעהר די שרעקליכע קוואהלען ניט מעהר<lb/>אויסהאלטען. אה ווי עס רוישט. ווי עס שטירמט! וואהין זאל איך<lb/>לויפֿען? גענוג. גענוג... איך קען ניט מעהר אויס האלטען<lb/>האט רחמנות. נעמט מיר מיין לעבען איך גיב עס אייך גערן<lb/>ניין איהר ווילט ניט? איהר ווילט מיך לעבעדיגערהייד<lb/>IICV בעגראבען /עס פֿערשווינדט שרייט פֿאלט/ <stage type="entrance">צפניה מיט 4 ברודע</stage>ר/</p>
+        </sp>
+        <pb n="35" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0035.jpg"/>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0303_a">
+          <speaker>צפניה</speaker>
+          <p>פון דא קומט דאס יאמער געשריי, ווער זאל דאס זיין. /<stage type="business">דערזעהט איהם/</stage><lb/>זעהט נאר מיינע ברודער דא ליגט דער טייערער <sic>עוצר </sic>וועלכען.<lb/>מיר זוכען שוין אזא לאנגע צייט ארום הע יונגע און<lb/>אזא לאגע זעה איך דיך ווידער אזוי טרעפט גאט'ס שטראף<lb/>איינעם נאך דעם אנדערען די אלטע חמוטיל איז פאר שרעק אויף<lb/>די בערג געלאפען און היינט אין דער פריה האט מען זי געפֿונען<lb/>ליגען צעשמעטער אויף טוידט אודאי פון אַ הויכען פעלזען<lb/>ארוב געפֿאלען. און דער העלד קוקט איהם נאר אָן מיינע<lb/>ברודער ווער עס וואונשט אונז שלעכט זאל איבערקומען אויף<lb/>זיין לאגע.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0304_a">
+          <speaker>ישמא</speaker>
+          <p>ל אה! איהר זענט עס מיינע בראוו"א סאלדאטען?</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0305_a">
+          <speaker>צפֿניה</speaker>
+          <p>וואס? דיינע ברא"ווא סאלדאטען? וועמען רופסטו בראוועויינע סאלדאטען?<lb/>/<stage type="business">לויפט מיט'ן שווערד</stage>/ אבער ניין. די שווערד וועלכע האט געקעמפֿט<lb/>פאר גדליה'ן זאל ניט אנריהרען דיין שמוטציגען קערפער<lb/>גדליהו. הערסטו דעם נאמען? מערדער אה ווי ער ציטערט! זעהט<lb/>ווי ער בייגט זיך צו זאמען. ניין איך דארף איהם ניט בעשטר-<lb/>=אָפען ער איז שוין פאר דיינע זינד אבגעקומען</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0306_a">
+          <speaker>ישמאל</speaker>
+          <p>גוטע מענשען הערט מיך אויס איך זאג מיך אב פֿון די מלוכה!</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0307_a">
+          <speaker>צפניה</speaker>
+          <p>/<stage type="delivery">לאַכט/</stage> אזוי? און דו מיינסט עס ערענסט? הערט ברודער א גוט'סקייט<lb/>פֿון א קעניג.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0308_a">
+          <speaker>ישמאל</speaker>
+          <p>דא לייג איך צו אייערע פוס מיין קרוין /<stage type="business">לייגט/</stage> נאר איין זאך<lb/>בעהט איך אייך האט רחמנות אויף מיר נעמט מיר דאס לעבען<lb/>איך בעהט אייך</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0309_a">
+          <speaker>צפֿניה</speaker>
+          <p>מיינע ברודער, ווער פון אייך וויל דורכשטעכען דאס הארץ פון<lb/>דעם אָרמען זינדער?</p>
+        </sp>
+        <sp who="#alle" xml:id="KhurbnYerusholaim_SP0310_a">
+          <speaker>אללע</speaker>
+          <p>איך נישט.</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0311_a">
+          <speaker>צפניה</speaker>
+          <p>גאט איז גערעכט. געה ווייטער און קום אויף אנדערע הענד.</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0312_a">
+          <speaker>ישמא</speaker>
+          <p>ל אזוי! <stage type="business">ציטערט</stage>! איהר פֿאלשע קנעכט</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0313_a">
+          <speaker>צפניה</speaker>
+          <p>וואס?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0314_a">
+          <speaker>ישמאל</speaker>
+          <p>ציטערט פאַר אייער מעכטיגען קע... אה ניין רעטעט מיך אה איהר<lb/>זייט מ'קומט שוין ווידער.</p>
+        </sp>
+        <pb n="36" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0036.jpg"/>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0315_a">
+          <speaker>צפניה</speaker>
+          <p>ווער קומט?</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0316_a">
+          <speaker>ישמאל</speaker>
+          <p>די שרעקליכע רוחות זיי פֿערפֿאלגען מיך שוין ווידער איך<lb/>בעהט אייך לאזט ניט מ'רייסט מיר שוין ווידער מיין קערפער<lb/>לאזט ניט העלפֿט מיר חַ חַ חַ</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0317_a">
+          <speaker>צפניה</speaker>
+          <p>גאט איז גערעכט און ער איז משוגע</p>
+        </sp>
+        <sp who="#ishmel" xml:id="KhurbnYerusholaim_SP0318_a">
+          <speaker>ישמאל</speaker>
+          <p>זיי שארען זיך, ריקען זיך צו מיר, א גאנץ פֿאלק<lb/>רוחות, טייפֿלונים מתים, ערמארדעטע, געקוילעטע, אַוועק.<lb/>אוועק פֿון מיר, מאכט מיר פֿריי דעם וועג, אוועק פֿון<lb/>מיר איהר שרעקליכע בילדער, אָה! הדסה! גדליהו<lb/>יא, איך האב אייך ערמארדעט.. נעמט מיך צו פֿון דער<lb/>וועלט אין איהר אַלע וועלכע איך האב ערמארדעט, איהר רופֿט<lb/>מיך. איך געה! איך געה, איהר ווילט מיך לעבעדיג<lb/>צערייסען אויף שטיקער. ניין! ניין פֿון די <sic>געבירג </sic>וועל<lb/>איך מיך אראב ווארפֿען אין צעשמעטערט ווערען<lb/><stage type="setting">%מוזיק שטורם</stage>   <stage type="setting">פֿאַלט פֿארהאנג</stage><lb/><stage type="entrance">אויפטריט ירמיה</stage></p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0319_a">
+          <speaker>ירמיה</speaker>
+          <p>. נפלה עטרת ראשנו אוי נא לנו כי חטאנו גאט איז מיט אייך<lb/>[53]<lb/>מיינע קינדער</p>
+        </sp>
+        <sp who="#tsfnihu" xml:id="KhurbnYerusholaim_SP0320_a">
+          <speaker>צפֿניה</speaker>
+          <p>הייליגער ירמיהו, מיר זענען צו דיר געקומען זאלסט אונז ווייזען דעם<lb/>וועג אין וועלכען מיר זאלען געהן און וואס מיר זאלען טוהן מיר זענען<lb/>אלע בערייט נאך מצרים צו געהן דארפֿען מיר דאס?</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0321_a">
+          <speaker>ירמיה</speaker>
+          <p>זאל אייך גאט אבהיטען מיינע קינדער פון אזעלכע זאכען<lb/>פון אזעלכע געדאנקען. פֿערדארבען אין אונטערגאַנג דאס<lb/>שטעהט אייך פאר דאכט. ווער עס וועט פערלאזען די הייליגע<lb/>ערד, דער וועט נישט מעהר דערלעבען זי צו זעהן בלייב.<lb/>אין דעם הייליגען לאנד /<stage type="delivery">מ'הערט זינגען פון שוהל/</stage></p>
+        </sp>
+        <sp who="#chor" xml:id="KhurbnYerusholaim_SP0322_a">
+          <speaker>כאהר</speaker>
+          <p>לויבט גאט אונזער הער'ן עוויג זיין גנאדע הלליה</p>
+        </sp>
+        <sp who="#irmihu_hnbi" xml:id="KhurbnYerusholaim_SP0323_a">
+          <speaker>ירמיה</speaker>
+          <p>/<stage type="business">קניעט</stage>/ איך זעה ווידערן ציון אין פֿריהריגען גלאנץ<lb/>דאס הייליגע הויז פון גאט איז ווידער אויפגעבויעט! קומט<lb/>מיינע ברודער <stage type="exit">/אלע אב</stage> <stage type="delivery">כאהר זינגט/</stage></p>
+        </sp>
+        <trailer>ענדע</trailer>
+        <pb n="37" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0037.jpg"/>
+      </div>
+      <div type="addendum">
+        <lg n="23">
+          <l>שטיל האט די וואל די ליבע מיין הארץ ערגרייפט</l>
+          <l>דיין זיך איך דיין בלייב איך</l>
+          <l>יא דאס שווער איך דיר</l>
+          <l>אז מיר בלייבען עוויג טריי</l>
+          <l>דאס שווער איך דיר צו</l>
+          <l>דאס קענסטו מיר גלייבען</l>
+          <l>האסטו אַ גאראנטיע</l>
+          <l>דיין ביין איך דיין בלייב איך</l>
+          <l>יא דאס גלייב מיר איז מיין עהרען ווארט</l>
+          <l>ייז איך געה גאנץ געשווינדער</l>
+          <l>גאנץ געשווינדער געה מיט דיר</l>
+          <l>אלע מענשען זלען זעהען</l>
+          <l>אונזער בונד זאלען בלייבען פעסט</l>
+        </lg>
+        <pb facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0038.jpg"/>
+        <pb n="39" facs="ya-rg8-1-f4176 חורבן ירושלים Khurbn Yerusholaim - Historical operetta in 5 acts 1916-0039.jpg"/>
+      </div>
+    </body>
+  </text>
+</TEI>

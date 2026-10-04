@@ -1,0 +1,2150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-meshumed">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">דער משומד</title>
+        <title type="sub">Meshumed</title>
+        <author>Joseph Lateiner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>דער משומד</title>
+          <author>Joseph Lateiner</author>
+          <idno type="transkribus">https://app.transkribus.org/collection/18874/doc/534187</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <classDecl>
+        <taxonomy xml:id="prod-cues">
+          <desc>Regie/prompter cue notation of the handwritten witnesses. The letter names the family (R = Returnel/ritornello, S = Szene); the Roman numeral is an in/out bracket state, not a serial number, which is why III never occurs. N/No + Arabic numeral is the serial of the musical number.</desc>
+          <category xml:id="cue-in">
+            <catDesc>Opening bracket of a cue: RI, IR, R.I, '1 Returnell:', and the bare I of MS_BasKoyen where the letter is dropped.</catDesc>
+          </category>
+          <category xml:id="cue-out">
+            <catDesc>Closing bracket of a cue: RII, IIR, R.II, 'II Return:', bare II. At a scene cue it falls on Vorhang/Verwandlung.</catDesc>
+          </category>
+          <category xml:id="cue-genre">
+            <catDesc>Names the kind of musical number rather than bracketing it: Chor, Marsch, Tanz, Terzett, Quarted, Duet, arya, Refrein. Carries no in/out state.</catDesc>
+          </category>
+          <category xml:id="cue-number">
+            <catDesc>The serial of the musical number: N, No 4., N=3. @n carries the normalised value.</catDesc>
+          </category>
+        </taxonomy>
+      </classDecl>
+    </encodingDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="iekb_eyzenshteyn">
+            <persName>יעקב אייזענשטיין</persName>
+          </person>
+          <person xml:id="iusf">
+            <persName>יוסף</persName>
+          </person>
+          <person xml:id="mekhil">
+            <persName>מעכיל</persName>
+          </person>
+          <person xml:id="shrhke">
+            <persName>שרהקע</persName>
+          </person>
+          <person xml:id="sender">
+            <persName>סענדער</persName>
+          </person>
+          <person xml:id="liubv_bulvn">
+            <persName>ליובאוו אבאולאוונא</persName>
+          </person>
+          <person xml:id="nikli_nikitin">
+            <persName>ניקאלאי ניקיטין</persName>
+          </person>
+          <person xml:id="ivn">
+            <persName>איוואן</persName>
+          </person>
+          <person xml:id="gregur_mrksenel">
+            <persName>גרעגואר מארקסענעל</persName>
+          </person>
+          <person xml:id="vsk">
+            <persName>וואסקא</persName>
+          </person>
+          <person xml:id="geheym_flitsist">
+            <persName>א געהיים פאליציסט</persName>
+          </person>
+          <person xml:id="rikhtir_fun_geheyms_gerikht">
+            <persName> ריכטיר פֿון געהיימס געריכט</persName>
+          </person>
+          <person xml:id="shreybir_bey_gerikht">
+            <persName>א שרייביר ביי געריכט</persName>
+          </person>
+          <person xml:id="vekhtir">
+            <persName>א וועכטיר</persName>
+          </person>
+          <person xml:id="flismn">
+            <persName>פֿאליסמאן</persName>
+          </person>
+          <personGrp xml:id="kinder">
+            <name>קינדער</name>
+          </personGrp>
+          <person xml:id="fv">
+            <persName>פֿאוו</persName>
+          </person>
+          <person xml:id="iud">
+            <persName>יוד</persName>
+          </person>
+          <person xml:id="sld">
+            <persName>סאלד</persName>
+          </person>
+          <person xml:id="ktsf">
+            <persName>קאצאפ</persName>
+          </person>
+          <person xml:id="shfin">
+            <persName>שפיאן</persName>
+          </person>
+          <person xml:id="geyst">
+            <persName>גייסט</persName>
+          </person>
+          <person xml:id="kind">
+            <persName>קינד</persName>
+          </person>
+          <person xml:id="ivniv">
+            <persName>איוואניוו</persName>
+          </person>
+          <personGrp xml:id="flitsey">
+            <name>פאליציי</name>
+          </personGrp>
+          <personGrp xml:id="froyen">
+            <name>פֿרויען</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="Meshumed" type="Meshumed">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#iekb_eyzenshteyn">יעקב אייזענשטיין</role>
+        </castItem>
+        <castItem>
+          <role corresp="#iusf">יוסף</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mekhil">מעכיל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shrhke">שרהקע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#sender">סענדער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#liubv_bulvn">ליובאוו אבאולאוונא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#nikli_nikitin">ניקאלאי ניקיטין</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ivn">איוואן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#gregur_mrksenel">גרעגואר מארקסענעל</role>
+        </castItem>
+        <castItem>
+          <role corresp="#vsk">וואסקא</role>
+        </castItem>
+        <castItem>
+          <role corresp="#geheym_flitsist">א געהיים פאליציסט</role>
+        </castItem>
+        <castItem>
+          <role corresp="#rikhtir_fun_geheyms_gerikht"> ריכטיר פֿון געהיימס געריכט</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shreybir_bey_gerikht">א שרייביר ביי געריכט</role>
+        </castItem>
+        <castItem>
+          <role corresp="#vekhtir">א וועכטיר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#flismn">פֿאליסמאן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fv">פֿאוו</role>
+        </castItem>
+        <castItem>
+          <role corresp="#iud">יוד</role>
+        </castItem>
+        <castItem>
+          <role corresp="#sld">סאלד</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ktsf">קאצאפ</role>
+        </castItem>
+        <castItem>
+          <role corresp="#shfin">שפיאן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#geyst">גייסט</role>
+        </castItem>
+        <castItem>
+          <role corresp="#kind">קינד</role>
+        </castItem>
+        <castItem>
+          <role corresp="#ivniv">איוואניוו</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb facs="Lateiner_Meshumed-0001.jpg"/>
+      <pb facs="Lateiner_Meshumed-0002.jpg"/>
+      <pb facs="Lateiner_Meshumed-0003.jpg"/>
+      <fw type="pageNum">170692</fw>
+      <stage type="delivery">דער משמד</stage>
+      <fw type="pageNum">474</fw>
+      <fw type="pageNum">3735</fw>
+      <pb facs="Lateiner_Meshumed-0004.jpg"/>
+      <stage type="delivery">גלות רוססלאנד</stage>
+      <fw type="pageNum">170693</fw>
+      <stage type="delivery">פערזאנען</stage>
+      <div type="act" n="1" xml:id="Meshumed_Act1">
+        <head>1ter Act</head>
+        <stage type="setting">איין שענק</stage>
+        <stage type="delivery">קאצאפעס זינגען)</stage>
+        <sp who="#mekhil" xml:id="Meshumed_SP0001_a">
+          <speaker>מעכיל</speaker>
+          <p>. | כאראשא כאראשא. נישקשה געטאנצט. געשמאק געטרונקען.<lb/>אביר <foreign>דענגי דענגי</foreign> פֿון דער פֿריה אן זענט איהר אזוי פֿרעהליך  <lb/>און איך האב פֿון אייך קיין <foreign>קאפעקע</foreign> ניט גיזעהן.</p>
+        </sp>
+        <sp who="#ktsf" xml:id="Meshumed_SP0002_a">
+          <speaker>קאצאפ</speaker>
+          <p>. | שלושיי מעכעלע דיע ווילסט מיר זאלען דיר בעצוהלען?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0003_a">
+          <speaker>מעכיל</speaker>
+          <p>. | אויב איך וויל? אזוי וויע איהר האט נאר אנגעפֿאנגען צו טרינקען<lb/>האב איך שוין אנגעפֿאנגען צו ווילען.</p>
+        </sp>
+        <sp who="#ktsf" xml:id="Meshumed_SP0004_a">
+          <speaker>קאצאפ.</speaker>
+          <p>| אויב דיע ווילסט מיר זאלען דיר בעצוהלען מוזטו אונז צו<lb/>ערשט פֿרעהליך מאכען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0005_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס? איהר ווילט זיין נאך פֿרעהליכיר וויע איהר זענט?<lb/><metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark> | וועה איז מיר, מיינע <foreign>קישקיס</foreign> זוגען שוין ווידע</p>
+        </sp>
+        <sp who="#ktsf" xml:id="Meshumed_SP0006_a">
+          <speaker>קאצאפ.</speaker>
+          <p>| אה זו? .<metamark function="musicCue" ana="#cue-in" place="inline">R.I</metamark></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0007_a">
+          <speaker>מעכיל</speaker>
+          <p>. | עפֿשיר ווילט איהר איך זאל מיך שטעלען פֿאר אייך טאנצין?</p>
+        </sp>
+        <sp who="#ktsf" xml:id="Meshumed_SP0008_a">
+          <speaker>קאצאפ.</speaker>
+          <p>| יא יא טאנצין טאנצין.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0009_a">
+          <speaker>מעכיל.</speaker>
+          <p>| <foreign>טאק דאוואטע דענגי</foreign><lb/><foreign>רעביאטא</foreign></p>
+        </sp>
+        <sp who="#ktsf" xml:id="Meshumed_SP0010_a">
+          <speaker>קאצאפ</speaker>
+          <p>. | <foreign>פאידאם</foreign> רעכייטע ווועלען געהן.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0011_a">
+          <speaker>מעכיל</speaker>
+          <p>. | שטעהט שטעהט. ווארט אויס. און פֿאר דעם וואס איהר<lb/>האט געטרונקען...</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0005.jpg"/>
+        <sp who="#ktsf" xml:id="Meshumed_SP0012_a">
+          <speaker>קאצאפ.</speaker>
+          <p>| טאנצין טאנצין</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0013_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אוי אז טאנצין זאל איך שוין נאך אייער <foreign>לויה</foreign>. <metamark function="musicCue" ana="#cue-out" place="inline">R. II</metamark><lb/>(<stage type="business">קאהר דוס זעלבע פֿריהר. מעכיל טאנצט.</stage> <stage type="exit">אלע אב</stage>)<lb/><stage type="business">(מעכיל בלייבט)</stage><lb/>שרה</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0014_a">
+          <speaker>שרה.</speaker>
+          <p>| וואס איז דאס מעכיל. נישט אנדערש מיינע שנאים דוע ביזט<lb/>משוגה גיוואהרען. ביי אונז אין שטועב איז אזא טרויער און<lb/>פֿון גרויס ערגעניש האסטו זיך גישטעלט טאנצין. גלייך מיט<lb/>    אלע שאניירה <foreign>קאצאפעס</foreign> <foreign>שיכרע</foreign> קאצאפעס</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0015_a">
+          <speaker>מעכיל.</speaker>
+          <p>| עס איז ניט אומזיסט שרה לעבין. ניט אומזיסט האב איך<lb/>געטאנצט. פֿאר געלד.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0016_a">
+          <speaker>שרה.</speaker>
+          <p>| וואס הייסט פֿאר געלד?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0017_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אַדוס הייסט זיי האבען אנדערש ניט געוואלט בעצוהלען<lb/>פֿאר דעם בראנפֿען.<lb/><add>אוי</add></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0018_a">
+          <speaker>שרה.</speaker>
+          <p>| מיינע צרות אויף זייערע קעפ. <foreign>ר. ש.</foreign> ווען וועלען מיר<lb/>שוין <foreign>פוטיר</foreign> ווערען פֿון דער פֿינסטערער פרנסה. ניט<lb/>עס טרוגט אויף א שטיקעל ברויט. און דערצו זענען<lb/>מיר גור ניט זעכער מיט אונזער לעבען. טאג און באנאכט<lb/>איז מען נא בייא דיא <foreign>שיכרה ערָלים</foreign> אין דיע<lb/>הענד.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0019_a">
+          <speaker>מעכיל.</speaker>
+          <p>| שא שא שרהקע לעבען. דיע דערפֿט דיך אויף<lb/>אונזער פרנסה ניט בעקלוגען. מיר וועלען זיא <foreign>פטור</foreign> ווערען<lb/>סייוויסיי.</p>
+        </sp>
+        <fw type="pageNum">170694</fw>
+        <sp who="#shrhke" xml:id="Meshumed_SP0020_a">
+          <speaker>שרה.</speaker>
+          <p>| טאקע... אוי איך דאנק דיר <foreign>רבשע</foreign>. האסט אוואדע געפֿינען<lb/>איין אנדערע פרנסה. <foreign>חאטש</foreign> א זיכיר שטיקעל ברויט?<lb/><add>ער</add></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0021_a">
+          <speaker>מעכיל.</speaker>
+          <p>| נאך וויע אזוי זעכיר, אזוי זיכער זאל זיין מיט זיין לעבען<lb/>דער שכורסקע.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0022_a">
+          <speaker>שרה.</speaker>
+          <p>| ווער ער?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0023_a">
+          <speaker>מעכיל.</speaker>
+          <p>| ער דער גרויסיר פֿון פעטערסבורג.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0024_a">
+          <speaker>שרה.</speaker>
+          <p>| אביר וועהמין מיינסטו?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0025_a">
+          <speaker>מעכיל.</speaker>
+          <p>| האנט געה רעד מיט א אידענע פאליטיק. ער וואס טרוגט א<lb/>קרוין אויף דעם קאפ און איז טוג וויע נאכט שיכור וויע<lb/>א בעסטיע.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0026_a">
+          <speaker>שרה.</speaker>
+          <p>| שא מעכעלע, וואס טוהסטי?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0027_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס שא? דיע ווייסט נאך ניט וואס עס טוהט זיך ביי<lb/>אונז אין מאסקווע? האסט נאך ניט גיהערט פֿון דעם<lb/>נייעם <foreign>אוקאז</foreign>?</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0028_a">
+          <speaker>שרה.</speaker>
+          <p>| וואס פֿאר א נייעם <foreign>אוקאז</foreign>?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0029_a">
+          <speaker>מעכיל</speaker>
+          <p>. | יא. מין זאל אונס אלע יודען ארוסטראבען פֿון דאנען</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0030_a">
+          <speaker>שרה.</speaker>
+          <p>| וועה איז מיר. פֿאר וואס?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0031_a">
+          <speaker>מעכיל.</speaker>
+          <p>| פֿור קען פעטערבורג און פֿרעג איהם דעם שיכר פֿאר וואס?<lb/><foreign>אליוויי</foreign> זאל ער אזוי וויסען פֿון זיין לעבען דער <foreign>שיכער</foreign>עקע דוך.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0006.jpg"/>
+        <sp who="#shrhke" xml:id="Meshumed_SP0032_a">
+          <speaker>שרה.</speaker>
+          <p>| מעכעלע וואס טוהסטו?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0033_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס האסטו זיך אזוי דערשראקען? האלט צו דיע טיהר. נו<lb/>וואס האסטו <foreign>מוירה</foreign> נאריניו.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0034_a">
+          <speaker>שרה.</speaker>
+          <p>| אביר ווען עמיציר זאל דיך אזוי עהרין רעדען?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0035_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס הערען. ווען הערען. אזוי וויע ער ערט ניט אזוי זאל ער ניט<lb/>געהן און זעהן. אופנעמען זאל איהם דוס <foreign>לושין</foreign>. הענד און<lb/>פֿיעס לייב און לעבען. ער זאל הובען צו טוהן מיט זיין אייגען<lb/>העמד. כדי ער זאל אין אונז פֿערגעסען. <foreign>ימח שמא וזכרא</foreign><lb/><foreign>אמן סלה</foreign>. מאך צוריק אויף דיע טיער. </p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0036_a">
+          <speaker>שרה.</speaker>
+          <p>| <stage type="location">(אין פֿענסטער)</stage> מיר דאכט זיך אלעקסענדער געהט.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0037_a">
+          <speaker>מעכעלע.</speaker>
+          <p>| וועה איז מיר אלעקסאנדיר? <stage type="business">(חאפט ארום דוס היטעל)</stage></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0038_a">
+          <speaker>שרה</speaker>
+          <p>| חחח טיפיש וואס האסטו זיך אזוי דערשראקען? איך מיין<lb/>אונזער קינד אלעקסאנדיר. ער קומט פֿון דער שוהלע.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0039_a">
+          <speaker>מעכעל.</speaker>
+          <p>| אוי וועה זוגשע סענדיר ניט אלעקסאנדיר. וויעפֿיעל מוהל<lb/>האב איך דיך געבעטען אז אין דער היים זאלסטו איהם<lb/>ניט רופֿען וויע אין דער שוהלע.<lb/><add>אַ וואָה</add></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0040_a">
+          <speaker>שרה.</speaker>
+          <p>| אביר איא דוא האסט זיך דערשראקען? וואסזשע לאכסטו<lb/>פֿון מיר?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0041_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אקלייניקייט אלעקסאנדיר. עס איז עפיס ניט קען שפיליכיל<lb/>אלדעקס אלעקסאנדער (אדער סענדער)</p>
+        </sp>
+        <fw type="pageNum">170695</fw>
+        <sp who="#sender" xml:id="Meshumed_SP0042_a">
+          <speaker>סענדער.</speaker>
+          <p>| <foreign>דראסטווי פאפאשא</foreign>! <foreign>דראסטווי מאמאשא</foreign>! (<stage type="business">קישט הענד</stage>) וואס<lb/>זאל דאס הייסען <foreign>פאפאשא</foreign>? ווען איך בין דורך געגאנגען דורך<lb/><add>דעם</add><lb/>דעם 'פֿעטער יענקעלס' פֿענסטיר האב איך גיזעהן פֿעטער יענקל<lb/>זיצין אויף דער ערד אין אוילע זאקען און האט שטארק גיוויינט<lb/>וואס זאל דאס זיין <foreign>פאפא</foreign>?</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0043_a">
+          <speaker>שרה.</speaker>
+          <p>| אז וועה איז צו אונז וואס מיר האבען דערלעבט.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0044_a">
+          <speaker>מעכעל.</speaker>
+          <p>| גוט מארגען געלן רעטיך טרוג איך. האט האסטו דיר א יודענע<lb/>דאס קינד פֿרעגט פֿארוואס ענטפֿערסטו איהם ניט וויע עס<lb/>געהער צו זיין. קום אהער סענדער. ביז אהער איז דוס צוגעגאנגין<lb/><add>בסוד</add><lb/>בעסאט. איצט אבער מעג מען עס דיר זוגען. ווייל עס איז שוין<lb/>גישעהן. זאלסט וויסען מיין קינד אז ביי מיין ברועדער דיין<lb/>פֿעטיר איז האנט א תשעָה באָב. ניין נאך מעהר וויע<lb/>א תשעה באב יוסעלע זיין <foreign>בן יחד</foreign> טרהט האנט אוב פֿון<lb/>יידישקייט. האנט געהט ער זיך <foreign>שמאדען</foreign>.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0045_a">
+          <speaker>שרה.</speaker>
+          <p>| אז אך און וועה איז צו אונס וואס מיר האבען עס גור דערלעבט.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0046_a">
+          <speaker>מעכיל.</speaker>
+          <p>| שא שרהקה לעבען. הער אויף צו וועהנין. לאז מיך נאר<lb/>רעדין א פאאר ווערטיר מיטען קינד סענדירל, קום אהער <lb/>צום טאטען.</p>
+        </sp>
+        <sp who="#sender" xml:id="Meshumed_SP0047_a">
+          <speaker>סענדיר.</speaker>
+          <p>| איך געה <foreign>פאפאשא</foreign>.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0048_a">
+          <speaker>מעכיל.</speaker>
+          <p>| הערזשע מיך אויס מיין קינד. דיין טאטע הייסט מעכיל א גאנץ<lb/><foreign>פראסט</foreign>יר יודעל.<lb/>איין אורעם יודעל. אביר אויך איין עהרליך יודעל. דיע הערסט וואס<lb/>איך רעד צו דיר סענדערל?</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0007.jpg"/>
+        <sp who="#sender" xml:id="Meshumed_SP0049_a">
+          <speaker>סענדער.</speaker>
+          <p>| <foreign>שלושיי פאפאשא</foreign>.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0050_a">
+          <speaker>מעכיל.</speaker>
+          <p>| איין עהרליך יודעל און ניט קען נעריש יודעל. זעהסטו האט<lb/>האב איך דיך געמאכט פֿאר א סטודענט. און לאז דיך<lb/>לערנען וואס דיין הערץ גלוסט. לערן דיר אזוי לאנג ביז<lb/>עס וועט פֿון דיר ווערען א דאקטאר | צי עפעס אנדערש. קורץ<lb/>צו וואס דיע האסט <foreign>חשק</foreign>. נאר איינס זוג איך דיר. היט<lb/>אויב אידישקייט סיי וואס עס וועט פֿין דיר וועהרין אביר א יוד<lb/>זאלסטו זיין. דיע הערסט? נאר <foreign>חלילה</foreign> טאמיר, טאמיר זוג איך<lb/>וועסטו אמאָל בעקומען אזא געדאנק וויע דיין געשוועסטיר קינד<lb/>זאל א <foreign>משה משונה</foreign> זאל שוין....</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0051_a">
+          <speaker>שרה..</speaker>
+          <p>| טפו טפו אויף אלע <foreign>פוסטע</foreign> פֿעלדיר אויף אלע <foreign>פוסטע</foreign><lb/>וועלדיר טפו טפו</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0052_a">
+          <speaker>מעכיל.</speaker>
+          <p>| יודענע וואס האסטו זיך אזוי דערשראקען? איך זוג דיך נאר<lb/>נטאמער.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0053_a">
+          <speaker>שרה.</speaker>
+          <p>| דער טאמיר וועט אביר גור קיין יודיל ניט זיין. און מיר זאלען<lb/>עס גור ניט דערלעבען.<lb/>מעכיל. | ערסטו וואס דען זוג איך? געלויבט איז דער עבירשטיר<lb/>קיין <foreign>עשרות</foreign> האט ער אונז געגעבין. דערפֿאר האט ער אונז<lb/><add>כ</add><lb/><foreign>מזנה</foreign> גיוועהן מיט א גאנץ <foreign>טשערעדע</foreign> לעמעליך. 7 כּשרה<lb/>לעמעליך. סענדערל חייקעלע יודילע ישראליקעל משהלה הענעלע<lb/>מיין בערעלע. איז 7. און דוס אכטע שטעהט שוין מיט<lb/>א פֿיעסעל אויף דער וועלט. האסטו שוין 1/2 7</p>
+        </sp>
+        <fw type="pageNum">170696</fw>
+        <sp who="#shrhke" xml:id="Meshumed_SP0054_a">
+          <speaker>שרה.</speaker>
+          <p>| עס איז שוין 3/4 7</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0055_a">
+          <speaker>מעכיל.</speaker>
+          <p>| איך געדענק ניט חלעבען. אין וויעפֿילטין <foreign>חודיש</foreign> ביזטו?</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0056_a">
+          <speaker>שרה.</speaker>
+          <p>| דעם <foreign>שבת</foreign> בענטשט מען מיט <foreign>מזל</foreign> דעם 7 טען.<lb/><add>דאָס</add></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0057_a">
+          <speaker>מעכיל.</speaker>
+          <p>| קיין <foreign>ע. ה.</foreign> הייסט א שטיקליך אין א פֿערטיל פֿארשט=<lb/>עסטו מיך שרה לעבען אז אלע אונזערע לעמעליך זאלען זיך<lb/>אויסחאווען אין גוטער ידישקייט און איידיר חלילה איינס<lb/>נאר פֿון אונזערע שעפֿעליך זאל זיך וועלען ארוסכאפען<lb/>פֿין אונזער <foreign>טשערעדע</foreign> זאלען מיר בעסער אצינד אונלעגען<lb/>מיטען קאפף א <foreign>מיתה משנה</foreign>.<lb/><add>פא</add></p>
+        </sp>
+        <sp who="#sender" xml:id="Meshumed_SP0058_a">
+          <speaker>סענדער.</speaker>
+          <p>| אביר <foreign>פאשא</foreign> פֿארוואס זאלסטו גור אין דעם דענקען? גלייב מיר<lb/><foreign>פאפאשא</foreign> וויע קינדיש איך בין דאך איז מיין יונגעס הערץ <lb/>פֿאל מיט ליעבע צו מיינע ידישע בריעדער. און ווענ איך זאל<lb/>זאגאר צוליעב דעם מוזען אויסשטעהן דיע גרעסטע <foreign>צורות</foreign> פֿיהל<lb/>כ פֿיהל<lb/>פֿיעל איך מיך גענוג שטארק און וועל איממער בלייבען מיט מיינע<lb/>ידישע בריעדער.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0059_a">
+          <speaker>שרה.</speaker>
+          <p>| נו איז ניט וואהל דער מאמען?</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0008.jpg"/>
+        <sp who="#mekhil" xml:id="Meshumed_SP0060_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אין דעם טאטען איז דיך וואהר. האט דוס האט איהם דער<lb/>טאטע געלערנט. סענדערל ווארף אראן א קוש דעם טאטען <stage type="business">(געשיהט)</stage></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0061_a">
+          <speaker>שרה.</speaker>
+          <p>| און דער מאמען אויך (<stage type="business">געשיהט</stage>) (<stage type="business">מע קלאפט</stage>)</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0062_a">
+          <speaker>מעכיל.</speaker>
+          <p>| געה נאר זעה ווער איז דארט?</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0063_a">
+          <speaker>שרה.</speaker>
+          <p>| <stage type="business">(עפֿענט דיע טיהר) </stage>אוי וועה איז מיר. דאס איז יוסעלע אונזער <foreign>פלימעניק</foreign>.<lb/><add>יוסף</add></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0064_a">
+          <speaker>מעכיל.</speaker>
+          <p>| דער <foreign>משמד</foreign> וואס וויל ער? יוסף</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0065_a">
+          <speaker>יוסעל.</speaker>
+          <p>| <foreign>סדאסטוויטע</foreign> אנקעל. איך מעכטע מיין פֿאטער זעהן</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0066_a">
+          <speaker>מעכיל.</speaker>
+          <p>| שרה. געה אראן מיט דעם קינד אין <foreign>ספאלנע</foreign> און נאז מיך דוא<lb/>אליין מיט דעם קדישל.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0067_a">
+          <speaker>שרה.</speaker>
+          <p>| וועה איז דער מוהמען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0068_a">
+          <speaker>מעכיל.</speaker>
+          <p>| נא נא וועה איז דער מוהמען און אוי איז דעם פֿעטער מע<lb/>האט שוין גיהערט. געה געה.<stage type="exit business"> (שליסט זיא מיט סענדיר ארויס) </stage>נו<lb/><foreign>פלימעניק</foreign> וואס הערט זיך. שטעהסטו נאך גלייך צי האסטו דוך שוין<lb/>איבערגעקעהרט.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0069_a">
+          <speaker>יוסעל.</speaker>
+          <p>| איך פֿארשטעה ניט וואס זיא מיינען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0070_a">
+          <speaker>מעכיל.</speaker>
+          <p>| פֿארשטעהסטו שוין גור קיין ידיש ניט? איך מיין צי קענסטו<lb/>נאך זוגען מיט דעם פֿולען מויל אחד נאר איין גאטט וויע דיין<lb/>טאטע האט דיך געלערנט צי האסטו שוין איהם צעשניטען<lb/>אויף דרייען. ביזטו נאך צופֿריעדען מיט דער אלטיר <foreign>תורה</foreign>ה<lb/><add>הגר</add><lb/>פֿון דעם אלטען <foreign>רב</foreign> מושה. וואס האט געזוגט <foreign>ואהבתם את הגר</foreign><lb/><foreign>ואהבת את ד'</foreign><lb/>האבען דיין גאטט<lb/>דיע זאלסט ליעב הובען דעם פֿרעמדען צי האסטו שוין <lb/>געקישט דיע <foreign>תורה</foreign> פֿין איוואן איוואנעוויטש? אזא פֿרעמדען <lb/>דארף מען <foreign>הרגענען</foreign> שלוגען טראבען און יוגען. קורץ גערעט<lb/>האלסטו נאך פֿאַר דעם <foreign>שמד</foreign> צי נאך דער <foreign>שמ</foreign>ד?</p>
+        </sp>
+        <fw type="pageNum">170697</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0071_a">
+          <speaker>יוסיף</speaker>
+          <p>| מיט דעם זעלבען יודישען הערץ וואס איך בין געבוירען מיט דעם<lb/>,זעלבען וויל איך אויך שטערבין</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0072_a">
+          <speaker>מעכיל.</speaker>
+          <p>| דיע רעד ניט צו מיר קיין רעטעניש <foreign>לושען</foreign>. איך בין א <foreign>פראסט</foreign>ער יוד<lb/>און ענפֿער מיר אויף <foreign>פראסט</foreign> יודיש. ביזט נאך א יוד צי איז<lb/>שוין נאך אלעמען?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0073_a">
+          <speaker>יוסיף</speaker>
+          <p>| א יד בין איך און א יד וויל איך אויך בלייבען.... אין הערצין...</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0074_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0075_a">
+          <speaker>יוסיף</speaker>
+          <p>| דיע <foreign>צערעמאניע</foreign> וועט מיך גור ניט איבערמאכען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0076_a">
+          <speaker>מעכיל.</speaker>
+          <p>| פֿע אזוינע יודען אויף <foreign>כּפרת</foreign>. אזוינע יודען מעגען מיר<lb/><add>העכער</add><lb/>בעסער צום ערשפארען. פֿון אזא יודען שטעהט ביי מיר עכיר איוואן.<lb/>טפו אויף אזוינע יודען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0077_a">
+          <speaker>יוסיף.</speaker>
+          <p>| אנקעל ניט צו אייך בין איך געקימען. איך בין געקימען צו מיין פֿאטיר.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0078_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אוי פֿאר וואס בין איך ניט דיין טאטע? איך וואלט דיך שוין ניט<lb/>געלאזט געהן צו דער <foreign>שמד</foreign>. מיט מיינע אייגענע הענד וואלט איך<lb/>דיך דערווארגען. אבער איך וויל גור ניט דיין <foreign>טרעפֿע פרציוו</foreign><lb/>ניט אונקוקען. זאך <foreign>משמד</foreign> טארבע <foreign>ימח שמוא</foreign> טפו<stage type="exit"> (אב)</stage></p>
+        </sp>
+        <pb n="9" facs="Lateiner_Meshumed-0009.jpg"/>
+        <sp who="#iusf" xml:id="Meshumed_SP0079_a">
+          <speaker>יוסיף.</speaker>
+          <p>| ניין אנקעל. איך קען אויף דיר ניט בעז זיין. ווען דוע זאלסט<lb/>מיך זאגאר 1000 מוהל מעהר שימפֿפֿען און שעלטען איך<lb/>קען ניט גראב זיין.<lb/>יעקב</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0080_a">
+          <speaker>יעקב</speaker>
+          <p>| אך יוסיף מיין קינד. נאך קען איך דיך רועפֿען מיין קינד<lb/>מיין ידיש קיינד. דיע האסט געוויס צום <foreign>גו</foreign>טען איבערלעגט. און<lb/>דארום ביזטו געקאמען צו דיין פֿאטיר. ניכט וואהר?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0081_a">
+          <speaker>יוסף.</speaker>
+          <p>| פֿאטיר איך בין געקומען דיך אום פֿערצייונג ביטטען.</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0082_a">
+          <speaker>יעקב.</speaker>
+          <p>| פֿערצייונג?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0083_a">
+          <speaker>יוסף.</speaker>
+          <p>| פֿאטיר איך שוועהר עס דיר ביים אלעם הייליגען דאס איך בלייב<lb/>פֿיר אימער אונד עביג דיין טרייעס ידישעס קינד אביר<lb/>פֿאטיר...<lb/>יעקב. | ווארום ביזטו נאך צוריק געקאמען? ווארום?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0084_a">
+          <speaker>יוסף.</speaker>
+          <p>| פֿאטיר איבערלעג עס דיר מיט קאלטעס בלוט. איך בין שוין איין<lb/>ערוואקסעניר מענש. מיין יוגענד האב איך פֿערבראכט אין<lb/>לערנען און שטודיערען. אך וועלכי גלענצינדיר צוקונפֿט האט<lb/>זיך מיר אובגעשטעלט. איך האב מיר פֿארגעשטעלט דאס איך<lb/><add>איין</add><lb/>ווערדע איינען אלטען ליעבען פֿאטיר אויף זיין עלטיר<lb/>בעלאנען. פֿיר אלע זיינע מיהע אונד פלאגען פֿיר דיע<lb/>גאנצי 20 יאהר. אונד וואן איך בין שאן זא נאה מיין<lb/>ציעל צו ערייכען איך זאל שוין מיין דיפלאם אלס ד״ר הערויסקריגען<lb/>האט מען מיך פלעצליך אויס דער שוהלע ערויסגעיוגט אונד נור<lb/>דארום ווייל איך בין איין יוד. נון שטעל דיר פֿאר מיינע ביטערע<lb/>לאגע. האב איך דען איינען אנדערן וועג. בין איך דען ניט געצוונגין<lb/>דיעזען געפֿערליכען שריט צו מאכען? אה ווענדע דיך ניט אב פֿאן<lb/>מיר ליעבער פֿאטיר. אנטווארטע מיר. דיינען קינדע דיינען טרייען <lb/>עהרליכען ידישעס קינד.</p>
+        </sp>
+        <fw type="pageNum">170698</fw>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0085_a">
+          <speaker>יעקב.</speaker>
+          <p>| נון און וואס פֿאר איין אנטווארט ערווארסטו פֿון מיר? זאל איך<lb/>דיך פֿילייכט גראטוליערען און גליק ווינטשען צו דער <foreign>שמד</foreign>? וויא?<lb/>איין אידישעס קינד זוגסטו ווירסטו אויך נאכהער בלייבען? און וואָס<lb/>הייסט ביי דיר איין אידישעס קינד? דאמיט וואס דוע גיסט<lb/>עפֿענטליך א שפיי אויף כּל ישראל? דאמיט וואס דוע אומארמסט<lb/>דיא <foreign>תורה</foreign> פֿין אונזירע אונמענשליכע <foreign>פאניגער</foreign>? 5 מיליאן<lb/><add>הייסט</add><lb/>יודען טרינקען זיך אין דוע אייניר אליין זוכט זיך צו רעטטען? הייסט דוָס ביי<lb/>דיר איין אידיש הערץ? יוסיף מיין זוהן נאך קען איך דיך ביי דיעזען<lb/>נאמען רופֿען מיין זאהן! ווייסטו וואס עס הייסט איין <foreign>משמד</foreign>?<lb/>א <foreign>משמד</foreign> הייסט א סאלדאט וועלכי האט זיינע קאמאראדען פֿערלאסט<lb/>אין דעם גרעסטען געפֿאהר און איזט צום פֿיינד איבערגאנגען. און נאר צוליעב<lb/>דעם וויילדער פֿיינד וואר שטארקער. נון מיט ווילכיר פֿערהאכטונג<lb/>ווירסטו אויף זא איין פֿערעטיר בליקען? ווירסטו איהם דייען ניכט זעלבסט<lb/>בעטראכטין אלס דעם געמיינסטען ניעדריגסטען שורקע אויף גאטטעס<lb/><add>ווייל ער פערדיענט</add><lb/>ערדע? ווייל ער פֿערדיענט זאגאר ניט דעם נאמען מענש אויף זיך<lb/>צו טרוגען? אונד זא איין פֿערעטיר ווילסטו יעצט ווערען? וויר<lb/>יודען שטעהן שוין מעהר אלס 5 טויסענט יאהר אויף דעם<lb/><add>הייליגע</add><lb/>שלאכטפֿעלד! דיע הייליקע אמנה איז אונזער פֿאהנע אונד<lb/>פֿאר דיעזע הייליגע פֿאהנע קעמפפֿען וויר וויע דיע <foreign>בראוו</foreign>סטע<lb/><add>אפפערן</add><lb/>אונד סאפפֿערסטע העלדען. מיר שאהנען אונזער לעבען אביר<lb/>אונזער פֿאהנע געבין וויר ניכט אויף. ערינערע דיך מיין זאהן!<lb/>דיע געשיכטע פֿאן דן יוהדי הברבנעל דארף דיר ניכט<lb/>אונבעקאנט זין. ער וואר ערשטיר מיניסטער ביים שפאנישען קעניג<lb/>און ווען מען האט פֿון דארטען דיע יודען בעפֿלעקערונג דעריאגעווען<lb/>און דער קעניג האט איהם ניט נאר ערלויבט זאנדערן געבעטען<lb/>ער זאל ביי איהם בלייבען ערשטיר מיניסטיר. נון און וואס האט<lb/>ער געטהון? האט ער זיינע בריעדער פֿערלאסען אום דעם<lb/>טיטעל ווייטיר צו טרוגען זא וויע דו ווילסט יעצט דיינע<lb/>בריעדער פֿערלאסען צו ליעב דעם טיטעל ד"ר צו ערייכען? ניין!<lb/>דער עדלער אבארבאנעל האט זיין עהרע שטעלע פֿערלוירען. ער<lb/>האט פֿערלאסט עהרע רייכטום אונד גליק און מיט דעם זאק אויף<lb/>זיינע שולטיר האט ער גלייך מיט זיינע ארויסגעטריבענע בריעדער <lb/>געוואנדערט. און גלייך מיט זיי אלע צאריס אויסגעשטאנען.<lb/>דוס הייסט איין אידישעס הערץ. איין אידישעס קינד.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0010.jpg"/>
+        <fw type="pageNum">170699</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0086_a">
+          <speaker>יוסיף.</speaker>
+          <p>| פֿאטיר דוא האסט מיך בעזיעגט. דיינע זיעסע ווארטען האבען<lb/>מיך נייע בעלעבט. דוא האסט אין מיר ערוועקט דאס הייליגע<lb/>נאציאנאל געפֿיהל. אה גערנע טייל איך דאס שיקזאל מיט<lb/>מיינע ליידענדע בריעדער. פֿאטיר איין יודע בין איך און איין<lb/>יודע ווערדע איך אויך ווייטיר בלייבען. פֿאטיר <stage type="business">(אומארמונג)</stage><lb/>יעקב. | מיין זאהן, וויע יעקב <foreign>אבנו</foreign> קען איך יעצט אויך אויסשרייען<lb/><add>חי</add><lb/><foreign>עוד יוסף בני</foreign> וני. מיין זאהן יוסף לעבט און דער אלטיר<lb/>פֿאטיר קען צופֿריעדען שטערבין. מעכעלע ברועדער שוועגערין<lb/>קומטאראן. מ<stage type="entrance">עכיל שרה סענדיר קינדער</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="Meshumed_SP0087_a">
+          <speaker>אלע.</speaker>
+          <p>| מיר האבען גיהערט מיר האבען גיהערט.</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0088_a">
+          <speaker>יעקב.</speaker>
+          <p>| גיט מיר אוב <foreign>מזל טב</foreign> מיט איין ניי געבוירענים זוהן<lb/><stage type="business">(אלע ווינטשען מזל טב)</stage></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0089_a">
+          <speaker>מעכיל.</speaker>
+          <p>| איי דיע וואלינקער. האסט זיך <foreign>מישב</foreign> געוועהן הא? ביזט<lb/><foreign>אוואדע</foreign> בעז אויף מיר וואס איך האב מיך אויפגעבעזערט<lb/>אויף דיר? אביר איך הער דיך וויע דעם קוטיר. דיע ביזט<lb/>אונזערער <stage type="business">(קושען זיך)</stage></p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0090_a">
+          <speaker>יעקב.</speaker>
+          <p>| נו מעכיל ברענג אראן שנאפס. איך וועל טרינקען <foreign>לחיים</foreign> מיט מיין<lb/>ניי געבוירענעם זוהן.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0091_a">
+          <speaker>שרה</speaker>
+          <p>| אט געה איך אראנטרוגען פֿרישען בראנפֿען פֿון קעלער <stage type="business">(וויל געהן)</stage></p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0011.jpg"/>
+        <sp who="#mekhil" xml:id="Meshumed_SP0092_a">
+          <speaker>מעכעל</speaker>
+          <p>. | שטעה! פֿאר גרויס <foreign>שמחה</foreign> האבען מיר פֿארגעסען אין <foreign>עיקר</foreign>. זוג<lb/>נאר יוסעלע. עס האט דיך האנט געזאלט זיין דיין <foreign>ברית מלה</foreign><lb/>טא <foreign>המבדיל בן טומאה לטהרה</foreign> איך מיין דעם <foreign>עסיק</foreign> דערפֿאן<lb/>רייכע<lb/>אין וועדליג וויע איך האב גיהערט האט א ריינע שיקסע געזאלט<lb/>נעהמען ביי דיר קוואטירשאפֿט מיט דיע <foreign>גלחם</foreign> מיט דיע אנדערע<lb/>שווארץ יורען וועלען דיך <foreign>אוואדע</foreign> אויף דיר ווארטען. וואס<foreign>זשע</foreign><lb/>וועסטו טוהן?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0093_a">
+          <speaker>יוסף.</speaker>
+          <p>| אך מיין גאטט איך האב גאנץ פֿארגעסען. אום מיין ענטשלוס<lb/>זיי בעקאנט צו מאנען. <stage type="business">(וויל אב)</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="Meshumed_SP0094_a">
+          <speaker>אלע.</speaker>
+          <p>| וווהין געהסטו?   .<metamark function="musicCue" ana="#cue-in" place="inline">R.I</metamark></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0095_a">
+          <speaker>יוסף.</speaker>
+          <p>| שרעק דיך ניט ליעבער פֿאטיר. איך בין באלד וויעדער צוריק. אין<lb/>מיין אידישער פֿאמיליע. <foreign>אדיע</foreign> ליעבער פֿאטיר. <foreign>אדיע</foreign> ליעבער<lb/>אנקעל. אדיע ליעבע טאנטע. <stage type="exit">(אב)</stage></p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0096_a">
+          <speaker>יעקב.</speaker>
+          <p>| <foreign>לך לשלם בני לך לשלם</foreign><stage type="exit business"> (אלע אב אויסער מעכיל)</stage></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0097_a">
+          <speaker>מעכילע</speaker>
+          <p>| געה געזונטערהייט. קוש דיע <foreign>מזוזה</foreign> אין דוס אידישע הערץ<lb/>.<metamark function="musicCue" ana="#cue-out" place="inline">R/II</metamark><stage type="delivery"> Zingen pintale id</stage><lb/><stage type="setting">פֿערוואנדלונג</stage><lb/>(דאס הויסוועניגסטע פֿון א קירכע.)   לובאוו.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0098_a">
+          <speaker>לובאוו.</speaker>
+          <p>| <foreign>באזשע מאי</foreign>! וואס זאל דוס בעדייטען? איז אים פֿילייכט<lb/>איין אומגליק גישעהן? זאנסט קען איך מיר ניט ערקלעהרען?<lb/>ווארום ער לאזט אויף זיך אזוי ווארטען... אך ענדליך<lb/>קומט ער (<stage type="business">לויפֿט ענטגעגען</stage>)<lb/>יוסיף</p>
+        </sp>
+        <fw type="pageNum">170700</fw>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0099_a">
+          <speaker>לובאוו.</speaker>
+          <p>| גאלובשיק. ענדליך ביזטו היער. וויע אונגעדולדיג האבע איך<lb/>דיך ערווארטעט. אביר מיין גאטט דוא זיהסט זא פֿערענדערט<lb/>אויס. האט דיר פֿילייכט עטוואס פאסיערט? <lb/>מיכאילאוונא</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0100_a">
+          <speaker>יוסף</speaker>
+          <p>| ליובאוו מילאילאוונא איך בין דיר געקומען זוגען דאס מיינע<lb/>טויפֿע קענען ניט מעהר שטאט פֿינדען. איך האב מיין ענטשלוס<lb/>געענדערט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0101_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| וואס אסיפ ביזטו ביים זיינען. וואס ווילסטו טוהן? האסטו גאר קיינע<lb/>מיטלייד מיט מיינע עהרע? צו דיינור טויפֿונג האב איך דיר <lb/>זאפֿיעל פֿארבערייטונגען געמאכט. אונד יעצט אין דעם אויגענבליק<lb/>ווילסטו מיר זא איינע שאנדע מאכען?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0102_a">
+          <speaker>יוסף</speaker>
+          <p>| מוזט מיר פֿערצייען עדעלע ליובאוו. עס איזט מיר אונמעגליך איך<lb/>קען ניט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0103_a">
+          <speaker>לובאוו.</speaker>
+          <p>| מיין גאטט דוס האב איך ניט ערווארטעט. אסיפ ערינערע דיך<lb/>אויף וועלכיר זאנדערבארע ארט מיר האבען בעקאנטשאפֿט<lb/>געמאכט. איך וואר אויף דער <foreign>פראמענאדע</foreign> אין מיינים <foreign>עקיפאזש</foreign>.<lb/>מיינע פפֿערדע זינד פלעצליך ווילד געווארען אונד איך <lb/>האבע ביינאה דעם טויט פֿאר מיינע אויגין געזעהן. דוא<lb/>האסט מיט דיינים לעבין רעזיקירט.<lb/>אונד דאס מייניגע גערעטעט. אונד זייט דאמאלס איז שוין<lb/>מעהר אלס איין יאהור קען דיך יעדער אלס דעם בעסטען פֿריינד.<lb/>פֿין ליובאוו מיכאילאוונא. יעדען איז בעקאנט וועלכי אינטימע<lb/>פֿריינדין דוא האסט אין מיר געטראפֿען. אונד יעצט ווילסטו<lb/>דיעזע אויפריכטיגע פֿריינדין דיינע זא לעכערליך מאכען ביי<lb/>הא<lb/>יעדען אין דיע אויגען? ניין ניין אונטערברעכע מיך ניט אסיפ.<lb/>איך קאן דיך גיט. איך ווייס דוא ביזט איין פֿריי דענקער. רעליגיאן<lb/>שפיעלט ביי דיר איינע קליינע ראלע. יא! היער מוז איינע<lb/>אנדערע אורזאכע זיין. זאגע מיר. איך בעשוועהרע דיך ביי<lb/>אונזער פֿריינדשאפט. זאגע מיר דיע ווארהייט ווארום ענטזאגסטו זיך!</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0012.jpg"/>
+        <sp who="#iusf" xml:id="Meshumed_SP0104_a">
+          <speaker>אסיפ.</speaker>
+          <p>| ווען איך טויפֿע מיך בעגעה איך איין מארדט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0105_a">
+          <speaker>לובאוו.</speaker>
+          <p>| איינען מארד?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0106_a">
+          <speaker>יוסף.</speaker>
+          <p>| מיין אלטיר פֿאטיר ווירד דיעזע שאנדע ניט איבערלעבען</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0107_a">
+          <speaker>לובאוו.</speaker>
+          <p>| זא. האבע איך אומזאנסט געטרוימט פֿאן איינער שעהניר צוקונפֿט<lb/>אומזאנסט פֿאנטאזירט פֿאן גליקליכע ליעבע <stage type="delivery">(וויינט)</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0108_a">
+          <speaker>יוסף.</speaker>
+          <p>| וואס זעה איך. דוא וויינסט ליובאוו?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0109_a">
+          <speaker>לובאוו.</speaker>
+          <p>| יא איך בעוויינע אונד פֿערפֿלוכע יענע שטונדע וועלכי האט<lb/>אונז צוזאמען געפֿיהרט. ווארום האסטו מיר דאמאלס מיין<lb/>לעבען גערעטעט? ווארום האסטו דאמאלס ניט צוגעלאזט דיע<lb/>פֿערד. זיי זאלען מיך אין שטויב צושמעטערן? דוא העטעסט<lb/>מיר דאמיט מעהר פֿריינדשאפֿט געצייגט</p>
+        </sp>
+        <fw type="pageNum">170701</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0110_a">
+          <speaker>אסיפ.</speaker>
+          <p>| וואס שפריכסטו לובאוו?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0111_a">
+          <speaker>לובאוו.</speaker>
+          <p>| ביזטו ווירקליך זא קינדיש זא נאיוו. האסטו דען ניט דיע גאנצע <lb/>צייט פֿון אונזער בעקאטשאפֿט בעווייזע געהאט. דאס צווישען<lb/>מעהר<lb/>אונז איז עס ניט געבליבען וויע געוועהנליכע פריינדשאפֿט?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0112_a">
+          <speaker>יוסף.</speaker>
+          <p>| וואס? דואך דיע רייכע אונגעזעהנע לובאוו זאלסט דיך<lb/>קימערן וועגען זא איין ארמען סטודענט. איבערהויפט וועגען איינען<lb/>יודע. אך דוא שפאטעסט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0113_a">
+          <speaker>לובאוו.</speaker>
+          <p>| דוא גרויסעס קינד. עס פאסט גורניט פֿיר איין סטודענט זא וועניג<lb/>מוט צו בעזיצין. האב איך דען ניט גיזעהן וויעפֿעל מארטער דוע<lb/>ביזט דיע גאנצי צייט אויסגעשטאנען? דוא האסט עס אביר<lb/>פֿערדיענט? דוא נארישעס קינד. ווארום האסטו ניט<lb/>געוואגט אויסצורעדען מיט דיינע ליפֿען דאס וואס דיין<lb/>הערץ האט געפֿיהלט. שעהמע דיך פֿור מיך. איך בין<lb/>פֿיעל מוטיגער פֿון דיר איך זאג עס דיר פֿריי הערויס<lb/>אסיפ איך ליעבע דיך מיט מייניר גאנציר זעהלע... נון<lb/>ווארום שווייגסטו?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0114_a">
+          <speaker>יוסף.</speaker>
+          <p>| גאטט אלמעכטיגער. עהרע איך דיע ווארטע וואכענד א דער איז<lb/>עס בלאז איין טרוים?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0115_a">
+          <speaker>לובאוו.</speaker>
+          <p>| ניין אסיפ עס איז דיע ווירקלעכקייט נון ערוואכע פֿאן דיינים<lb/>טרוים אונד קאממע. אלעס איזט פֿארבערייטעט אונד נאך דער<lb/><foreign>צערעמאניע</foreign> און נאך הויטע פֿייערן וויר אונזער פֿערלאבונג.<lb/><stage type="business">(פֿיהרט איהם)</stage></p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0013.jpg"/>
+        <fw type="pageNum">170702</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0116_a">
+          <speaker>אסיפ.</speaker>
+          <p>| אה ניין וואס וויל איך טהון? אוועק פֿון מיר בייזע געדאנקען. אה<lb/>לאסע מיך. לאסע מיך צוריק צו מיינע בריעדער. אה פֿאטער ווא ביזטו<lb/>קאם העלפֿע דיינען זאהן. אה וועה איך קאן מיר קיין ראטה געבען.<lb/>איך בין דער אומגליקליכסטיר מענש אויף גאטטעס ערדע. <stage type="delivery">(וויינט)</stage></p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0117_a">
+          <speaker>לובאוו.</speaker>
+          <p>| פֿריינד אסיפ קאמע צו דיר <foreign>גאסלובטשיק</foreign>. שטערקע דיך. איך<lb/>ווערדע דיר אייניגע ווארטע זאגען. איך ביטע דיך הערע מיך<lb/>אויס. מיר שיינט דוא האסט שוין גענוג געלעגענהייט געהאט דיך צו<lb/>איבערצויגין דאס אבוואהל איינע געבארענע רוסין דאך בין איך<lb/>נישט פֿאנאטיש. און העטען וויר און איינען פֿרייען לאנד<lb/>געלעבט ווערע מיר ניע אנגעפֿאהלען דיך צו זא איינים<lb/>שריט צו בעוועגען ליידיר איזט אביר דאס ליכט פֿאן אנדערע<lb/>ציוויליזירטע לענדיר נאך ניט איינגעדרונגען אין אונזערן פֿינסטערן.<lb/>רוסלאנד אונד דאס היזיגע פֿערדאמטע געזעץ פֿערביטערט<lb/>ווער<lb/>אונזער פֿערייניגונג. אונד וואר זאל אונס אין וועגע שטעהן?<lb/>דיין פֿאטער? אונד ביזטו ווירקליך אומשטאנדע צו אפפֿערן וויע<lb/>איין קינד דיין לעבען צוליעב איין אלטען פֿאנאטיקער? דיין אלטיר<lb/>פֿאטיר האט שאן זיין לעבען באלד געענדיגט אביר אונזער לעבען<lb/>פֿאנגט ערשט אן. איבריגענס האסטו ערשט יעצט איינע<lb/>גוטע געלעגענהייט פֿור דיינע אומגליקליכע גלויבענגענאסע<lb/>איין גוטער ענגעל צו זיין. דורך דעם אוממענשליכען <foreign>אוקאז</foreign><lb/>וואס מאן טראבט יעצט אלע ידישע אנוואהניר ארוס פֿון<lb/>מאסקאוו. און פֿיעלע אומגליקליכע מענשין זעלבסט<lb/>פֿארגעלאפֿען נור זיי האבען קיין מיטעל דאצו. איך בין איין די איין<lb/>איינציגע ערבין פֿאן זא איין גרויסעס פֿערמעגען נעם עס.<lb/>עס איזט דיינס. טוהע דאמיט וואס דיר געפֿאהלט.<lb/>אונטערשטיצע דאמיט דיינע אומגליקליכע בריעדער<lb/>עס איז אלעס דיין אייגענטום. נון שווייגסטו נאך איממער?<lb/>ווילסטו מיר קיין אנטווארט געבין?</p>
+        </sp>
+        <pb n="14" facs="Lateiner_Meshumed-0014.jpg"/>
+        <sp who="#iusf" xml:id="Meshumed_SP0118_a">
+          <speaker>אסיפ.</speaker>
+          <p>| האב איך דען פֿאר דיר איין אנדערן אנטווארט? טוהע<lb/>מיט מיר וואס דוא ווילסט. איך בין דיין ווילענלאזער סקלאווע<lb/>לובאוו. | ניין! ניט מיין סקלאווע נור מיין הערר זאלסטו זיין. אונד <stage type="business">(קניעט)</stage><lb/>אימער בלייבען. קניע פֿיר מיך ניכט. ניכט צו מיינע פֿיעסע<lb/>נאר צו מיינים הערצין. וועלכיס איזט דיינס פֿיר אימער<lb/>אונד עוויג. <stage type="business">(אומארמוננג)</stage><lb/>ניקיטין</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0119_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| <stage type="delivery">(אפארט)</stage> <foreign>קאנאליע פראקלאטא</foreign> <stage type="delivery">(לויט)</stage> <foreign>איזוואניטיע</foreign> איך האב<lb/>אייך פֿילייכט גישטעהרט?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0120_a">
+          <speaker>לובאוו.</speaker>
+          <p>| אה ניין! דורך אויס ניכט. מיין פֿריינד ניקאלאי ניקיטין<lb/>אסיפ יאקעלעוויטש מיין צוקונפֿטיגער געמאהל <stage type="exit business">(וויל מיט אים אב)</stage></p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0121_a">
+          <speaker>ניקיטיוו</speaker>
+          <p>| <foreign>אט שען פרייייטנאה</foreign> <stage type="exit">(אפ)</stage> אך דוא <foreign>זשידאווקסקא</foreign><lb/><foreign>מארדא</foreign> ליובאוו מיכאילאוונא ווילען זיא מיר איין אויגענבליק<lb/>שענקען?<stage type="exit"> (אסיפ אב)</stage></p>
+        </sp>
+        <fw type="pageNum">170703</fw>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0122_a">
+          <speaker>לובאוו.</speaker>
+          <p>| וואס ווינטשען זיה מיין הערר?</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0123_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| ליובאוו מיכאילאוונא ערלויבען זוא מיר זיא אויפֿמערקזאם<lb/>צו מאכען אויף איהר יעצטיגען שריט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0124_a">
+          <speaker>לובאוו.</speaker>
+          <p>| אביר מיין פֿריינד איך האבע איהנען שאן פֿיהלע מאהל געדאנקט<lb/>פֿיר אייערע פֿריינדשאפֿט אונד פֿיר איהרען קלוגען<lb/>ראטהע. און וואלען זיא מיך גארניכט אויפֿהערן צו <lb/>פֿערפֿאלגען?</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0125_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| אלס פֿריינד פֿון איהרען פֿאטיר איז מיין פֿליכט אייער<lb/>שוץ ענגעל צו זיין.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0126_a">
+          <speaker>לובאוו.</speaker>
+          <p>| אביר ווען איך בעדאנקע אייך שעהן אונד בעפֿריי זיא<lb/>פֿון איהרע פֿליכט.</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0127_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| ליובאוו מיכאילאוונא! ערינערן זיא זיך וואן איהיר<lb/>גאטזעליגער פֿאטער האט נאך געלעבט אונד איך<lb/>האבע איהם אום אייערע האנד געבעטען. אונד ער האט<lb/>זיא מיר פֿערשפראכין. ליידיר אביר איזט ער באלד<lb/>געשטארבען.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0128_a">
+          <speaker>לובאוו.</speaker>
+          <p>| יא ליידיר! טויזענד מאהל ליידיר. אביר געשטארבען איזט געשטארבען<lb/>און יעטצט נאך זיינעם טויהט בין איך מיין אייגינע הערין.<lb/>און עס שטעהט מיר פֿריי וויעדער צו טוהן וואס<lb/>איך וויל פֿערשטאנדען?<stage type="business"> (וויל אב)</stage></p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0015.jpg"/>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0129_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| ליובאוו בעדענקען זיא נור גוט וויע טיעף זיא ערנידריגען<lb/>פֿערשענקען.<lb/>זיך ביי דער וועלט דאמיט וואס זיא פֿערשענקען איהרעס<lb/>אונשעצבארעס הערץ איינעם <foreign>זשיטד</foreign> איינען פֿערדאמטען<lb/><foreign>זשיד</foreign>.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0130_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| נון זיא זעהן דאך ויע מיין געליעבטיה יאסיפ לעגט<lb/>פֿון זיך אוב דעם פֿערהאסטען <foreign>זשיד</foreign> און איבערגיהט<lb/>צו אונס עדלע קריסטען צו אונז מענשענפֿריינדליכע<lb/>קריסטען.</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0131_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| און דענקען זיא ווירקליך דאמיט וואס ער טויפֿט<lb/>זיך איז ער ניט מעהר <foreign>זשיד</foreign> גלויבען זיא מיר דאס<lb/>אויך נאך דעם טויפֿען בלייבט דיע זעעלע איינע<lb/><foreign>זשידאווסקי</foreign> וויע פֿריהר.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0132_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| גלויבען זיא אויך מיר זא איינע <foreign>זשידאווסקי</foreign> זעעלע איזט<lb/>מיר י 1000 מאהל ליעבער אלס מאנכע געבארענע קריסטען<lb/>וועלכע בעזיצען הונטישע זעעלען <stage type="exit">(אב)</stage></p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0133_a">
+          <speaker>ניקיטיין.</speaker>
+          <p>| דאס האט זיא מיך גימיינט איך בין א קריסט מיט<lb/>א הונטישע זעעלע. נאר בין איך אביר א הונד וועל<lb/>איך דיר ווייזען מיינע שארפֿע גיפֿטיגע ציין. <stage type="exit">(אב)</stage><lb/>יעקב</p>
+        </sp>
+        <fw type="pageNum">170704</fw>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0134_a">
+          <speaker>יעקב.</speaker>
+          <p>| איך האב איהם שאן איבעראל געזוכט און ער איז ניט<lb/>צום פֿינדען. מיינע אלטע פֿיעס האבען מיך אהער געבראכט.<lb/>ווארום בין איך דען היער געקאמען? זאל דען מיין יוסיף<lb/>אומשטאנדע זיין זיין אלטין פֿאטיר זא צו בעטריגען? אה<lb/>יוסיף דו ווילסו שאנדע ברינגסטו יעצט דיין אלטין<lb/>צובראכינים פֿאטיר. ניין אויסראסען מוז איך מיינע<lb/>אויגען און מיך איבערצייגען אז איך בעשולדיקע מיין קינד<lb/>אומזינסט. איך בין א אלטיר נאאר איך בין <foreign>עובר</foreign><lb/><foreign>בטל</foreign> איך ווייס ניט וואס איך רעדט.. ווען מיין יוסיף וועט<lb/>נאך הויזע קאמען וועל איך עס איהם דערצעהלין. <metamark function="musicCue" ana="#cue-in" place="inline">RI</metamark><lb/>און ער ווירד מיך אויסלאכען. <stage type="business">(מען הערט געזאנג ער געהט ניכט צום</stage><lb/><stage type="business">קלאס</stage>)<lb/><metamark function="sceneCue" ana="#cue-in" place="inline">SI</metamark> | אה יאסיף יוסיף איז דוס ניט דאס גראב געזאנג מיט ווילכין<lb/>דוא בעגראבסט יעצט דען לעצטין פֿונק ידישקייט <stage type="business">(ער ציטערט)</stage><lb/>ניין מיינע פֿיעס בעגען זיך. איך האב קיין קראפֿט ביז<lb/>צו דער טיהר צוגעהן <stage type="business">(שלעפט זיך צו צו דער טיהור און עפֿענט זיא</stage>) אה<lb/>אה טרוף טרוף יוסיף חיה רעה אכל תהו מיין<lb/>קינד איז פֿון ווילדע טיערע ציריסען גיווארען. אה מענשין<lb/> גיט מיר צוריק מיין קינד גיט מיר. <stage type="business">(פֿאלט און קירכע. זינגט מען פֿארטא</stage>)<lb/><metamark function="musicCue" ana="#cue-out" place="inline">R.II</metamark><lb/><stage type="setting">פֿארהאנג</stage><lb/><metamark function="sceneCue" ana="#cue-out" place="inline">S II</metamark></p>
+        </sp>
+        <trailer>ענדע ערשטען אקט.</trailer>
+        <pb facs="Lateiner_Meshumed-0016.jpg"/>
+      </div>
+      <div type="act" n="2" xml:id="Meshumed_Act2">
+        <head>2ter Act</head>
+        <stage type="setting">(איין צימער בא מעכלין. געדעקטע טישען. ברענען דיע לעכט. פֿראטיג צי נאכטס)</stage>
+        <sp who="#mekhil" xml:id="Meshumed_SP0135_a">
+          <speaker>מעכיל.</speaker>
+          <p>| שרהקע לעבען דיע שלעפֿסט?<lb/><add>עבירה</add></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0136_a">
+          <speaker>שרה.</speaker>
+          <p>| אוי מעכיל דיע האסט געהאט א נורה אין מיר. איך האב<lb/>געהאט אזא שעהנים <foreign>חלום</foreign>. איך האב <foreign>געחולומט</foreign> אז מיר זעמיר<lb/>געפֿורן קיין אמעריקא און ווען דיע וועקסט מיך ניט אויף<lb/>וואלט מיר שאן לאנג גיוועהן גיוועהן אין אמעריקא</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0137_a">
+          <speaker>מעכיל.</speaker>
+          <p>| הערזשע טאקע שרה וואס איך וויל דיך בעטען. דיע זאלסט<lb/>אויפֿהערן צו פֿיהרען גישעפֿטען מיטען <foreign>בעל חלום. ראשית</foreign><lb/>איז ער א <foreign>אפיקורת</foreign> האט איז ער מיט דיר געפֿוהרען<lb/>אין <foreign>שבת. והשנית</foreign> איז ער א <foreign>פָשִטֶ</foreign>יר שווינדלער האט<lb/>איז ער מיט דיר געפֿלויגען איבער טוהל און בערג און האט<lb/>האט ער דיך איבערגעלאסט און געה טהו איהם עפיס.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0138_a">
+          <speaker>שרה.</speaker>
+          <p>| אוי! וואלט דען ניט גיוועהן א <foreign>יושר</foreign> אז דער אויבירשטיר<lb/>זאל אונס טוהן אזא נס אז מיר זאלען <foreign>פטור</foreign> ווערען<lb/>פֿין דעם רושישען <foreign>גלות</foreign> און עהר זאל אונז ברענגען<lb/><foreign>בשלום</foreign> אין יענער מדינה.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0139_a">
+          <speaker>מעכיל.</speaker>
+          <p>| האט אזוי רעדט. דיע פֿארגעס אין <foreign>בעל חלום</foreign> און האב<lb/>אין זיהנען <foreign>יושר</foreign>. ביים אייבירשטין. נאר דערווייל שרה<lb/>לעבען ביז דער אייבירשטיר וועט וועהרין א<foreign>בעל יושר</foreign> <lb/>גיב אהער דערווייל דעם צימיס.<lb/><add>וויא?</add></p>
+        </sp>
+        <fw type="pageNum">170705</fw>
+        <sp who="#shrhke" xml:id="Meshumed_SP0140_a">
+          <speaker>שרה.</speaker>
+          <p>| וואר? איך האב דיר נאך ניט געגעבין דעם צימיס?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0141_a">
+          <speaker>מעכיל.</speaker>
+          <p>| הערסטו? וויע אזוי האסטו גור גיקענט גיבען דעם צימיס אז<lb/>דיא ביזט גיוועהן גור אין האמבורג. הערסטו סורקע<lb/>אין דער צייט וואס דוא האסט גע<foreign>חולימ</foreign>ט האב איך<lb/>דערווייל אויסגעזונגען אלע <foreign>זמירעס</foreign>. און יעצט ווען<lb/>גאטט האט געהאלפֿען אז דוא ביזט אהיים געקומען גיב<lb/>זשע אהער דעם צימעס.<lb/><add>נאך איינמאהל</add></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0142_a">
+          <speaker>שרה.</speaker>
+          <p>| אוי מעכיל טאמיר וואלט איך אראנגעגאנגען צו דיין<lb/>ברועדער יעקב און איהם בעטען ער זאל אראנקומען<lb/>און זיצין מיט אונז ביים טיש. עפֿשיר וועט ער קענען<lb/>אויך עפיס געניעצען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0143_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אוי איז מיר גישעהן, דערפֿסט נאך פרעגין? געה זשע<lb/>טאקע שרה און ווארט נאך אויס מיטען צימיס<stage type="exit"> (שרה אב)</stage> .<metamark function="musicCue" ana="#cue-in" place="inline">R.I</metamark></p>
+        </sp>
+        <sp who="#sender" xml:id="Meshumed_SP0144_a">
+          <speaker>סענדער.</speaker>
+          <p>| <foreign>פאפאשא</foreign> איז דאס <foreign>עמת</foreign> אז יוסיף וועט הייראטען א<lb/>שיקסע</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0145_a">
+          <speaker>מעכיל.</speaker>
+          <p>| ששש. דערמאנן מיך ניט זיין <foreign>טרעפֿ</foreign>ענען נומען. וואס ריעפֿסטו<lb/>איהם יוסיף. יעצט הייסט ער שאן יוואן יוואנעוויטש<lb/>וויע דער טרעפֿנאק האט אביסעל אראנגעלעגט<lb/>דיע שמד שטיק און דער יראה סטאטש ער קען ניט<lb/>ווייטער שטודיערען לאזט זיך גור צום <foreign>סאף</foreign> אויס אז ער<lb/>האט זיך נאר דורך דעם געשמד ווייל עס האט זיך איהם<lb/>שרה<lb/>פֿארגלוסט א שיקסע </p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0017.jpg"/>
+        <sp who="#shrhke" xml:id="Meshumed_SP0146_a">
+          <speaker>שרה.</speaker>
+          <p>| געלויבט איז זיין ליעבער נומען ער פֿיעלט זיך שוין אביסעל<lb/>בעסער. ער וועט באלד אראנקומען. אט געהט ער שוין אריין<lb/>מיט א פאר יודען וואס זענען בייא איהם</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0147_a">
+          <speaker>מעכיל.</speaker>
+          <p>| ביז מיין בריעדער וועט אראן קומען וועלען מיר אין דערוואל <foreign>קונטש</foreign>ען<lb/>דיע <foreign>זמירעס</foreign>.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0148_a">
+          <speaker>שרה.</speaker>
+          <p>| יא יא זינג טאקע <metamark function="musicCue" ana="#cue-out" place="inline">R.II</metamark><lb/><foreign>מנחה ושמחה אור ליהודים</foreign><lb/><foreign>יום שבתון יום מחמדים</foreign></p>
+        </sp>
+        <sp who="#chor" xml:id="Meshumed_SP0149_a">
+          <speaker>קאהר</speaker>
+          <p>. | אויי מנחה...</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0150_a">
+          <speaker>מעכיל.</speaker>
+          <lg n="1">
+            <l>| אין דער אלטיר צייט אמוהל — ווען נאך ערץ ישראל</l>
+            <l>האבען אידאלעך געקעהרט — בעלבתימליך גאנץ שעהן</l>
+            <l>זענען מיר גיוועהן אויף אונזער אייגענע ערד</l>
+            <l>איז גיוועהן מנחה..</l>
+          </lg>
+          <lg n="2">
+            <head>II</head>
+            <l>האנט קוקט דעם יודען און - וואס מען האט מיט איהם צו טוהן</l>
+            <l>דעם אמוליגען העלד ס איבריג איז ער נעביך אויף דער וועלט.</l>
+            <l>אוי אוי דוא טראבט מען איהם ארוס — דארט לאזט מען איהם ניט אראן</l>
+          </lg>
+          <lg n="3" prev="true">
+            <l>זוגשע גאטט דעם סוד — מיר אויס.</l>
+            <l>וואס וועט דער טחלית פֿון אונז זיין</l>
+            <l>ווען וועט זיין מנחה...</l>
+          </lg>
+          <lg n="4">
+            <head>III</head>
+            <l>המן איז גיוועהן א הייד א הונד מיט שארפֿע צעהן.</l>
+            <l>אונס באשען האט ער געוואלט אמוהל</l>
+            <l>איז א נס גישעהן — גיווארען איז ער אליין</l>
+            <l>דיע קפרה פֿאר כּל ישראל.</l>
+            <l>איז גיוועהן מינחה..</l>
+          </lg>
+          <p>IIII</p>
+          <lg n="5">
+            <l>אוי אוי דער המן פֿון אצינד אוי איז דוס א הונד</l>
+            <l>ער טרינקט אזויפֿיעל יידיש בלוט</l>
+            <l>ון קען באמבע טרעפֿט איהם אלץ נאך ניט.</l>
+            <l>אוי אוי זוגזשע גוטער גאטט — ביז ווען וועט דער דיספאט</l>
+            <l>אונס מוטשען אללע און א שיער.</l>
+            <l>נעם איהם גאטעניו שוין צו צו דיר.</l>
+            <l>וועט אויך זיין מנחה.</l>
+          </lg>
+        </sp>
+        <fw type="pageNum">170706</fw>
+        <sp who="#mekhil" xml:id="Meshumed_SP0151_a">
+          <speaker>מעכיל.</speaker>
+          <p>| נו שרהקע גיב אהער דעם צמיס.<lb/>יעקב קאהר</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0152_a">
+          <speaker>יעקב.</speaker>
+          <p>| גוט שבת בריעדער.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0018.jpg"/>
+        <sp who="#mekhil" xml:id="Meshumed_SP0153_a">
+          <speaker>מעכיל.</speaker>
+          <p>| שרה קינדער שטעהט אויף. האב מיר ניט קיין פֿאריבעל דיע<lb/>ביסט עלטיר פֿון מיר דארף איך דיר דען זוגען <foreign>מוסער</foreign>? זעהסטך<lb/>אז אזוי איז דיר באשעהרט אז דוא זאלסט הובען <foreign>צרות</foreign>.<lb/>גענוג וויינען איך בעהט דיך דאן קינד איז געשטארבען<lb/>וואס העלפֿט דוס וויינען און קלוגען <metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark></p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0154_a">
+          <speaker>יעקב.</speaker>
+          <p>| ניין מעכיל דוא האסט א <foreign>טועת</foreign> איך וויין ניט אויף מיין<lb/>אומגליק. איך וויין אויף דעם אומגליק פֿון <foreign>כּלל ישראל</foreign>. אך<lb/>בריעדער דיעזער <foreign>גולעס</foreign> רוסלאנד איז נאף ערגער<lb/>פֿין דער שפאנישער אינקוויזיציאן. אין שפאניען האט מען<lb/>דאך וועניגסטענס צייט געגעבין צו ענטלויפֿען. דוא אבער<lb/>איבערפֿאלגט מען. קינדער, נאכט!  פֿון דיע בעטען שלעפט<lb/>מען ארויס גרייזען פֿרויען אין קינדער. פֿון דיע<lb/>בעזויפֿענע <foreign>קאצאפֿעס</foreign> ווערען דיע אומשולדיגע געשלעפט פֿון<lb/>איין געפֿענגניס צום אנדערען. אוי גאטט ווען וועט דיעזער<lb/>לאנגער <foreign>גלות</foreign> א ענדע נעמען?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0155_a">
+          <speaker>מעכיל.</speaker>
+          <p>| ווען? האט דיע <foreign>שעלה</foreign> האט אויך אונזער טאטע געפֿרעגט<lb/>אונזער זיידע און אונזער זיידע זיידענס זיידע. אונזערע<lb/>קינדער און אונזערע קינדס קינדער וועלען אויך אזוי<lb/>פֿרעגין. נאר געה שריי <foreign>חי וקים</foreign> אז דער <foreign>חי וקים</foreign><lb/>האט זיך דארט ארגיץ פֿארשטופט אין א ווינקעל און<lb/>האט זיך גור אויף גיהערט צו מישען אין פאליטיק. וואס<lb/><add>בביאת</add><lb/>העלפֿט עס וואס איך זוג אלע טוג <foreign>אני ממין בבות המשיח</foreign>. איך<lb/>גלויב <foreign>אוואדע</foreign> אז <foreign>משיח</foreign> וועט קומען. וואס העלפֿט מיר מיין גלעבין?<lb/>איך שריי <foreign>אני ממין</foreign> שרייט אלעקסאנדיר נאך פֿריהר <foreign>פאשאל</foreign><lb/><foreign>וואן זשיד</foreign>.</p>
+        </sp>
+        <fw type="pageNum">170707</fw>
+        <sp who="#shrhke" xml:id="Meshumed_SP0156_a">
+          <speaker>שרה.</speaker>
+          <p>| מעכיל וואס טוהסטו?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0157_a">
+          <speaker>מעכיל.</speaker>
+          <p>| האסט גיזעהן וויע א אידענע האט <foreign>מורה</foreign>? האלט נאר צו דיע<lb/><add>איך</add><lb/>טיהר איך מוז מיר <foreign>חאטשע</foreign> אוברעדען פֿינעם הערצין. אוי גאטט<lb/>מיין הארץ ווייטיג זאל אויף דיין קאפף פֿאלען. איך וואלט איהם<lb/>נאר איין זאך גיוואלט פֿרעגין, זוג מיר נאר דיע מיעסער <foreign>שקר</foreign><lb/>דיע פֿינסטערער <foreign>בולוואן</foreign> דיע <foreign>פאסקודנער</foreign> <foreign>צעלימ</foreign>ניק וואס<lb/>טויג דיר א קרוין אפֿען קאפ אז דיע בעהאלסט דיך<lb/>טוג און נאכט בחדר חדרים. און דוע האסט <foreign>מוירה</foreign><lb/>דיין <foreign>טרעהפֿ</foreign>ינים <foreign>פֿרצוו</foreign> אויף דער גאס ארויסצווויזען.<lb/>האסט גיהערט א העלד א מאנס פערסאן האט האט פֿליהט<lb/>א באמבע און שיקט דיך גלייך אין דער <foreign>שלחטיה</foreign> אראן<lb/>אומשטעהנס געזוגט אזא <foreign>מזל</foreign> אויף דיר וואס פֿאר א פנים דוא<lb/>האסט ביי מיר.</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0158_a">
+          <speaker>שרה.</speaker>
+          <p>| מעכיל לאז שוין זיין גענוג.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0159_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס הייסט גענוג? און פֿאר וואס גענוג? פֿאר וואס איז איהם<lb/>ניט גענוג צום לעבין. אלעקסאנדער <foreign>שכר</foreign>. איך האב דיך אין<lb/>דער ערד. שרייב צוזעצטער מיט איין <foreign>אוקאז</foreign> נאך דעם<lb/>אנדערן און איך וועל ווייטער שרייען <foreign>אני ממין</foreign> און וויע<lb/>איך בין א יוד איך וועל דיך איבערלעבען. ישראליקס בענדאלך<lb/>זענען שטארקיר פֿון שטולענע אזענס. איהר מעגט מיך שלוגען<lb/>איהר באנדיטען קלאפט מיר דאחך דיע בעהניר איהר<lb/>לומפיקע אנטיסעמיטען איך בין שוין אזוי פֿיעל המנס איבער<lb/>געקומען איך וועל אייך אויך איבערקוממען. שרהקע לאז <lb/>אוב דיע טיער און זעץ דיך.<lb/><add>אה</add></p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0019.jpg"/>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0160_a">
+          <speaker>יעקב.</speaker>
+          <p>| גליקליכיר מענש. וויע בעניידענסווערט ביזטו מיט דיין<lb/>שטענדיג פֿרעהליכער נאטור<lb/><metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0161_a">
+          <speaker>מעכיל.</speaker>
+          <p>| פֿאלג מיך מיין בריעדער זיי אויך ניט אזוי בעזארגט. וויע<lb/>אזוי גאטט וועט שוין מיט אונס פֿיהרען. דערווייל<lb/>פֿערשטעהסטו מיך לאז מיר ניט אונוועהרין דעם צמיס<lb/>שרהקע דערלאנג דעם צימעס.<lb/><add>וויל</add></p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0162_a">
+          <speaker>יעקב.</speaker>
+          <p>| ווארט שוועגערין לעבין. איך זאל אויכעט עפיס געניסען.<lb/>אבער צו ערשט וויל איך מאכען <foreign>קידוש</foreign>. <metamark function="musicCue" ana="#cue-in" place="inline">R.I</metamark></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0163_a">
+          <speaker>מעכיל.</speaker>
+          <p>| קינדערליך שטעהט אללע אויף און זוגט נאך <foreign>ברך</foreign><lb/>א<foreign>הוא וברוך שמו</foreign>י. <foreign>אמן</foreign>. <metamark function="musicCue" ana="#cue-out" place="inline">IIR</metamark><lb/><stage type="delivery">(זינגען קידוש) </stage><metamark function="musicCue" ana="#cue-out" place="inline">R.II</metamark></p>
+        </sp>
+        <fw type="pageNum">170708</fw>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0164_a">
+          <speaker>יעקב.</speaker>
+          <p>| יום השישי האט גאטט זיין ווערק פֿאלבראכט<lb/>דעם זיביטין גיהייליגט און צום רוהע טאג גימאכט<lb/>דעם שבת קודיש פֿאר א <foreign>מטנה</foreign><lb/>האסטו גיגעבין דיין פֿאלק ישראל<lb/><foreign>כי בנו בחרתא</foreign><lb/>פֿון אלע פֿולקיר אונז אויסערוועהלט יאוואהל<lb/>כהר. |</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0165_a">
+          <speaker>יאקב.</speaker>
+          <lg n="6">
+            <l>| אויסער וועהלט וועלאן צרות</l>
+            <l>האסטו דיין גיליעבטיס קינד</l>
+            <l>אונד שטיקין אונד דריקען</l>
+            <l>אוי אזויפֿיעל שונים. וויא דיא הונד</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="Meshumed_SP0166_a">
+          <speaker>כהר</speaker>
+          <p>|</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0167_a">
+          <speaker>יעקב</speaker>
+          <lg n="7">
+            <l>| אזויפֿיעל צרות אויסצוהאלטין</l>
+            <l>האבין מיר שוין מעהר קיין קוח</l>
+            <l>און מען יאגט אונז און מען פלאגט אונז</l>
+            <l>אין דער וואכין און שבת אויך.</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="Meshumed_SP0168_a">
+          <speaker>כהר</speaker>
+          <p>|</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0169_a">
+          <speaker>יעקב</speaker>
+          <lg n="8">
+            <l>| שענק אונז אמָהל דעם אמת שבת.</l>
+            <l>רוהע פֿון אונזער עלענד און נויט</l>
+            <l>מאך איין ענדע צו אונזער גלות</l>
+            <l>געניג שוין צו דיין נו ונד</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="Meshumed_SP0170_a">
+          <speaker>כהר</speaker>
+          <p>|</p>
+        </sp>
+        <pb n="20" facs="Lateiner_Meshumed-0020.jpg"/>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0171_a">
+          <speaker>יעקב</speaker>
+          <lg n="9">
+            <l>| דאמאלס ווערדין וויר</l>
+            <l>אלע דיינע יודיליך צוזאמען</l>
+            <l>פֿרייליך לויבען דיין הייליגין נאמין</l>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="Meshumed_SP0172_a">
+          <speaker>כהר</speaker>
+          <p>|</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0173_a">
+          <speaker>יעקב.</speaker>
+          <p>| <foreign>מקדש השבת</foreign></p>
+        </sp>
+        <sp who="#chor" xml:id="Meshumed_SP0174_a">
+          <speaker>כהר</speaker>
+          <p>| <foreign>אמן</foreign>. (ז<stage type="business">עצען זיך מע קלאפט)</stage></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0175_a">
+          <speaker>שרה.</speaker>
+          <p>| אוי וועה איז מיר <foreign>אפֿשיר</foreign> איז דוס <foreign>קאזאקען</foreign><lb/>קומט אהער מיינע קינדער לאמיר <foreign>חאטש</foreign>י נישט<lb/>צעטיילט ווערין אין אונזער אומגליק.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0176_a">
+          <speaker>מעכיל.</speaker>
+          <p>| גאטט איז מיט אונז שרעק דיך ניט שרקה לעבין<lb/>איך זעה נישט קיין <foreign>קאזאקין</foreign>.<lb/><stage type="business">יוסף. בלייבט שטעהן ביי דער טיהר.</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="Meshumed_SP0177_a">
+          <speaker>אללע</speaker>
+          <p>| אה. <sic>ער</sic>?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0178_a">
+          <speaker>מעכיל.</speaker>
+          <p>| שרה. נעם דיע קינדער און געה מיט זיי אראן אין <foreign>ספאלניש</foreign><lb/>אראן. נו שטעה ניט. לאזען דיע קינדער ניט זעהן זיין<lb/><foreign>טרעפֿענים פרציוו</foreign>. געהט געהט. <stage type="exit business">(שרה קינדער אב)</stage> וויע<lb/><stage type="delivery">קאָר</stage><lb/>ווהין געהסטו בריעדער?</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0179_a">
+          <speaker>יעקב.</speaker>
+          <p>| לאז מיך ברועדער. איך פֿיעל וויע דוס <foreign>גהנום</foreign> ברענט אונטער<lb/>מיינע פֿיעס. איך קען מיט איהם ניט שטעהן אונטער<lb/>איין דאך.<stage type="business"> (וויל געהן.)</stage></p>
+        </sp>
+        <fw type="pageNum">170709</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0180_a">
+          <speaker>יסוף.</speaker>
+          <p>| ניין פֿאטער דוע געהסט ניט ביז וואנען דוע הערסט מיך ניט<lb/>אויס.</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0181_a">
+          <speaker>יעקב.</speaker>
+          <p>| וועק פֿון מיר <foreign>משמד</foreign> בעריהר מיך ניט מיט דיעזער האנד<lb/>וואס דוא האסט אויסגישטרעקט צו אונזערע פֿיינדע אין פייניגער.<lb/>אונשולדיגעס בליט קלעבט זיך נאך אויף דיינע הענד. גראדע<lb/>וויע ביי דיינע נייע בריעדער דיע באסקאמאנדיניקעס שטעקער<lb/><foreign>ימח שמום</foreign> דיע זענען יעצט דיינע בריעדער.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0182_a">
+          <speaker>מעכיל.</speaker>
+          <p>| בערוהיג דיך. פֿארגעס ניט אז דיין יוסיף איז גישטארבין<lb/>אין פֿאר אונס שטעהט יעצט איין קריסט וואס מיר קענען איהם<lb/>גור ניט. <stage type="costume">(טוט אויס דיר היטעל)</stage> <foreign>גאספאדין</foreign> איוואן איוואנעוויטש<lb/>וואס פֿערלאנגט איהר פֿון אונס אורעמע יודען?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0183_a">
+          <speaker>יוסיף.</speaker>
+          <p>| שימפפֿט מיך. שעלט מיך. איך וועל מיט אייך ניט דישקורירען<lb/>הערט ליעבער דעם צוועק פֿון מיין אהער קומען איהר ווייסט נאך<lb/>גורניט וואס עס געהט פֿאר בא אונז אין מאסקאוו. עס איז<lb/>שרעקליך. איך האב שוין מעהרערע מענשען גערעטעט<lb/>דאמיט וואס איך האב זיי געלד אויף רייזע שפעזען<lb/>געגעבען. אנקעל פֿאטער ענטפֿליהט בעפֿאהר דיע פאליציי<lb/>וועט אייך איבערפֿאלען. היער האט איהר געלד. נעמט דוס<lb/>אין ענטפֿליהט. און ווען איהר האט קיין מיטלייד אויף<lb/>אייך ערבארמט אייך אויף אייער פֿרוי און קינדער....</p>
+        </sp>
+        <pb n="21" facs="Lateiner_Meshumed-0021.jpg"/>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0184_a">
+          <speaker>יעקב.</speaker>
+          <p>| בריעדיר וויע גאטט איז דיר ליעב נעם ניט דוס געלד פֿון<lb/><add>איידער</add><lb/>איהם. דען בעפֿאר עטוואס פֿון איהם צו נעהמען איז מיר ליעבער<lb/>מיין לעבען צו פֿערליערען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0185_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס רעדסטו בריעדער? דער גוי איז טאקע <foreign>טרעהף</foreign><lb/>אביר זיין געלד איז <foreign>כּשר</foreign></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0186_a">
+          <speaker>יוסף.</speaker>
+          <p>| אה פֿאטער דיינע שטראפֿע איז צו הארט, אבער ניין.<lb/>איך לאס דיך ניט, אויף מיינע הענד וועל איך דיך<lb/>וועקטרוגען.<lb/><add>נדבות</add></p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0187_a">
+          <speaker>יעקב.</speaker>
+          <p>| פֿערצייעט אונס עדלער קריסט וויר קענען אייערע אלמוזעך<lb/>ניט אנעמען. וויר וואלען ליעבער ליידען מיט <foreign>כּלל ישראל</foreign></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0188_a">
+          <speaker>יוסיף.</speaker>
+          <p>| זא נעמען זיא דאס געלד אנקעל. .<metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark> <metamark function="musicCue" ana="#cue-in" place="inline">R.I</metamark></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0189_a">
+          <speaker>מעכיל.</speaker>
+          <p>| <foreign>גאספאדין</foreign> איוואן איווואנעוויטש ווער האט נאך אייך געשיקט? און<lb/>ווער בעט פֿון אייך <foreign>טויבות</foreign>? געלד האט איהר אונז געבראכט?<lb/>וויע האט איהר עס גענעמען? ביי אייער שיקסע? מיט שיקסע<lb/>געלד טוהט מען ניט <foreign>צדקה</foreign>. <foreign>משמד</foreign> נעם ארוב דיע לאכטיר. <lb/>שרה קינדער</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0190_a">
+          <speaker>שרה.</speaker>
+          <p>| וועה איז מיר. <foreign>קאזאקען</foreign> זענען אונזער הויז איבערפֿאלען.</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0191_a">
+          <speaker>יעקב.</speaker>
+          <p>| וועה איז מיר וואס טוהט מען?</p>
+        </sp>
+        <sp who="#kind" xml:id="Meshumed_SP0192_a">
+          <speaker>קינד.</speaker>
+          <p>| <foreign>מאמאשא</foreign><stage type="delivery business"> (וויינט) (מוזיק שטורם)</stage> <metamark function="musicCue" ana="#cue-out" place="inline">IIR</metamark> <stage type="delivery">מעלאדראמע</stage> <metamark function="musicCue" ana="#cue-out" place="inline">R.II</metamark><lb/>ניקיטין סאלדאטען</p>
+        </sp>
+        <fw type="pageNum">170710</fw>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0193_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| <foreign>וויא וואדיט ווסעך</foreign> <stage type="exit business">(סאלדאטען שלעפען זיי אלע ארויס)</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0194_a">
+          <speaker>יוסף.</speaker>
+          <p>| אך דוא אונמענש פֿערפֿלוכטיר בארבאר</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0195_a">
+          <speaker>ניקיט.</speaker>
+          <p>| נון ווארום זא פֿערצווייפֿעלט? יעצט ביזטו שאן איין<lb/><foreign>קריסטיאנין</foreign>. אונד וואס קימערן דיך דיע פֿערפֿלוכטע <foreign>זשיד</foreign>עס!<lb/>זעהסטו מיין פֿריינד אבוואהל ליובאוו מיכאילאוונא וואר מיר<lb/>שוין אמוהל פֿערשפאכען און דוא האסט מיר דעם פֿעטען ביסען<lb/>פֿון דעם מויל ארויסגעריסען. יעדאך ווערדע איך אין דייניר<lb/>פֿריידע איין טייעל נעמען. איך האב צו דיינער<lb/>פֿערלאבונג פֿארבערייטעט איינע <foreign>סערענאדע</foreign> אביר ווירד<lb/>דאס זיין איינע מוזיק. דאס עס ווירד דיר אלע דיינע גליעדער<lb/>דורך בארען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0196_a">
+          <speaker>יוסיף!</speaker>
+          <p>| וואס וויל נאך דיעזער פֿערפֿלוכטיר בארבאר פֿון מיר?</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0197_a">
+          <speaker>ניקיט.</speaker>
+          <p>| אונד דוא ווייסטו ווער דיע זענגער ווערדען זיין? איין <foreign>זשידאווסקא</foreign><lb/>קאהר פֿין הונדערטע שטימען אלטע, קראנקע, פֿרויען, קינדער<lb/>אלע געשמיעדערט אין קעטען אונד וואן דוא ווירסט ערהעבען<lb/>דאס גלאס <foreign>שאמפאניע</foreign> אויף דאס וואהל פֿאן דיינער ברויט<lb/><metamark function="sceneCue" ana="#cue-in" place="inline">SI</metamark> | ליובאוו ווירסטו אונטער דיינע פֿענסטיר הערין דיע שטיממע<lb/>פֿאן דיע יודען וועלכע ווערדען שריין וועה אוי וועה. <metamark function="musicCue" ana="#cue-in" place="inline">R.I</metamark></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0198_a">
+          <speaker>יוסיף.</speaker>
+          <p>| <stage type="business delivery">(וויל איהם ווארפֿען א בענקעל. שרייט)</stage> <foreign>מאלטשאט</foreign>. <foreign>מערזאוויעץ סקאטינא</foreign> <lb/>דראסננעבדע</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0199_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| איך טו זשידאווסקא מארדא. צוערשטנס מעניא פריסטאווא<lb/>מיר דעם <foreign>מאסקאווסקי פריסטאוו</foreign> וואגסטו דאס זאגען?<lb/><add>סעֶי טשאַס</add><lb/><foreign>טאקום אייענאם אזיוואט? יא טעביו סאשאס פאקאזשא</foreign><lb/><foreign>פראקלאטעי זשיד</foreign><stage type="business"> (ווארפֿט זיך אויף איהם. אסיפ ווארפֿט)</stage><lb/><stage type="business">איהם צוריק. ניקיטין חאפט זעסעל. אסיפ שיעסט איהם. ער פֿאלט   )</stage><lb/>איוואן</p>
+          <stage type="delivery">פֿערוואנדלונג R.II SII</stage>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0022.jpg"/>
+        <sp who="#gregur_mrksenel" xml:id="Meshumed_SP0200_a">
+          <speaker>גרעגואר.</speaker>
+          <p>| איך האב גורניט געוווסט אז ווען איך וועל מיך צוריק אומקערען<lb/>פֿאן מיין לאנגער רייזע זאל איך זאפֿיעל נייעס הערן. זא זא<lb/>דיע רייכע ליובאוו מיכאילאוונא ווירד הייאראטען אונזער פֿריינד<lb/>אסיפ יעקעלעוויטש.</p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0201_a">
+          <speaker>איוואן</speaker>
+          <p>| טאק טושנא. איך זוג דיר האט אונזער פֿריינד וווירד<lb/>מיט דער צייט  אייניר פֿאן אונזיר טרייעסטע פֿ רייהייטס קעמפפֿער<lb/>זיין. ער איזט איין מאנן מיט וועלכין מיר קענען שטאלציערען<lb/><foreign>באזשע מאי</foreign>! וואס זעה איך אונזער פֿריינד. אסיפ לויפֿט<lb/>גראדע אהער. וויע שרעקליך ער זעהט אויס.<lb/>אסיפ <stage type="entrance business">(לויפֿט אראן פֿאלט ניעדער)</stage></p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0202_a">
+          <speaker>איוואן.</speaker>
+          <p>| שנעל איין שטיהל. איין ביסכען וויין סקארע.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0203_a">
+          <speaker>אסיפ.</speaker>
+          <p>| הא? <foreign>באראשא</foreign>!.... וויע בין איך דען? אה מיינע<lb/>פֿריינדע גיט מיר אייער האנד.</p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0204_a">
+          <speaker>איוואן.</speaker>
+          <p>| אין וועלכין צושטאנד טרעפֿען וויר דיך אסיפ אונזער פריינד.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0205_a">
+          <speaker>אסיפ.</speaker>
+          <p>| איך וועל אייך ערצעהלען. זיא וויסען דאך דעם שרעקליכען <lb/><foreign>אוקאז</foreign> וועלכין מען האט יעצט ארוסגעגעבין דאס מען<lb/>זאל אלע אידען ארויסטראבען זא וואלטע איך מיינען<lb/>פֿאטער געלד אויף רייזע שפעזין געבין. ער אבער<lb/>וואלטע דאס ניט נעהמען. ווארום? איזט מיר אויך ניט נאטה<lb/>ווענדיג צו ערצעהלען אביר אין דען זעלבען אויגענבליק<lb/>איזט העריינגעקאמען דער פֿערפֿלוכטע <foreign>פריסטאוו</foreign> ניקאלאי<lb/>ניקיטין אונד האבען מיין פֿאטער מיט דער גאנציר פאמיליע<lb/>אין קעטען געשמיעדעט אונד פֿיר מיינע אויגען אין<lb/>געפֿענגניס געפֿיהרט. אונד דער פֿערפֿלוכטיר<lb/><foreign>פֿריסטאוו</foreign> וואר נאך זא פֿרעהליך דאס ער האט געלאכט<lb/>און געשפאטעט פֿון מיר. אויס פֿערדריס און אויפֿרעגונג<lb/>האב איך קיין אנדער מיטעל געפֿונען איך האבע<lb/>איהם ניעדערגעשאסען וויע איין הונד</p>
+        </sp>
+        <fw type="pageNum">170711</fw>
+        <sp who="#ivn" xml:id="Meshumed_SP0206_a">
+          <speaker>איוואן.</speaker>
+          <p>| נון איצט דער <foreign>פריסטאוו</foreign> טאט?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0207_a">
+          <speaker>אסיפ.</speaker>
+          <p>| דאס ווייס איך ניט.</p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0208_a">
+          <speaker>איוואן.</speaker>
+          <p>| אונד ליובאוו ווייסט שאן פֿון דער געשיכטע?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0209_a">
+          <speaker>יאסיפ.</speaker>
+          <p>| ניין איך בין פֿאן דארט וועקגעלאפֿען איך בין גראדע צו אייך<lb/>געקומען. יעצט גיבט מיר איין ראטה! איך ווייס מיינע פֿריינדע<lb/>דאס אבוואהל איהר טראגט דיעזע אוניפארם זייט איהר<lb/>ניהיליסטען. נעמט מיך אויף אין אייער בונד דוע שוועהרסטי<lb/>מיסיאן ווערדע איך אויף מיר נעהמען. שיקט מיך אין פֿייער אונד<lb/>איך ווערדע געהן. אה יעצט ערשט ווערדע איך לעבען לעבין<lb/>אום זיך צו רעכענען אין דיע גרויזאמע באנדיטען. ראכע<lb/>דאס זאל יעצט דער צוועק מיינעס לעבענס זיין. ראכע ביטערע ראכע.</p>
+        </sp>
+        <pb n="23" facs="Lateiner_Meshumed-0023.jpg"/>
+        <sp who="#ivn" xml:id="Meshumed_SP0210_a">
+          <speaker>איוואן.</speaker>
+          <p>| פֿריינד איך מוס דיר זאגען דאס דוא האסט איין גראסעס אונרעכט<lb/>געטהון דאמיט וואס דוא האסט אונס אלעס ערצעהלט. וויע האסטו<lb/>געוואגט פֿיר אונס זא וואס אויסצושפרעכין. פֿיר אונז דעם<lb/><foreign>צאר</foreign>ס טרייע בירגער. מעגליך דאס וויר האבען דיע זאכע<lb/>אנדערש איבערלעגט.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0211_a">
+          <speaker>אסיפ.</speaker>
+          <p>| וואס? הערע איך רעכט? איזט דאס קיין טרוים? אדער שפיעלט<lb/>איהר מיט מיר בלויז איינע קאמעדיע?   <lb/><metamark function="sceneCue" ana="#cue-in" place="inline">SI</metamark></p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0212_a">
+          <speaker>איוואן</speaker>
+          <p>|</p>
+        </sp>
+        <sp who="#gregur_mrksenel" xml:id="Meshumed_SP0213_a">
+          <speaker>גרעגואר.</speaker>
+          <p>| חחח און וואס העטעסטו געזאגט ווען דוא געהסט ניט מעהר<lb/>וועקפֿאן היער ביז וויר ווערדען דיך דעם פאליציא אין<lb/>דיא הענדע איבערגעבען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0214_a">
+          <speaker>אסיפ.</speaker>
+          <p>| אונ... אונמעגליך</p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0215_a">
+          <speaker>איוואן.</speaker>
+          <p>| און דאך זאגע איך דיר קאממע מיט אונדז. <metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0216_a">
+          <speaker>אסיפ.</speaker>
+          <p>| וואהין?<lb/>נישט דיין זאך</p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0217_a">
+          <speaker>איוואן.</speaker>
+          <p>| דוא צעגערצט נאך? קאמע מיט אונז זאגע איך.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0218_a">
+          <speaker>אסיפ.</speaker>
+          <p>| ניין ניין איהר וועט מיך ניט פֿערה<sic>אט</sic>ען. איך געבע מיך איבער<lb/>אין אייערע הענדע און פֿיהרט מיך וווהין איהר ווילט. <stage type="exit">(אלע אב)</stage><lb/><metamark function="sceneCue" ana="#cue-out" place="inline">SII</metamark><lb/><stage type="setting">פֿערוואנדלונג</stage><lb/><metamark function="musicCue" ana="#cue-out" place="inline">IIR</metamark> | געריכט הויז. מוזיק שפיעלט. ב<foreign>אזשע צאריא חראני </foreign>ריכטיר איוואן<lb/><stage type="entrance">סטאטיסטען</stage>. <stage type="entrance">באלם</stage>. אסיפ</p>
+        </sp>
+        <fw type="pageNum">170712</fw>
+        <sp who="#rikhtir_fun_geheyms_gerikht" xml:id="Meshumed_SP0219_a">
+          <speaker>ריכטיר.</speaker>
+          <p>| פֿיהרט פֿאר דעם אנגעקלאגטען <foreign>יאסיפ יאנקעלעוויטש</foreign></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0220_a">
+          <speaker>אסיפ.</speaker>
+          <p>| מיין גאטט ווא בין איך?</p>
+        </sp>
+        <sp who="#rikhtir_fun_geheyms_gerikht" xml:id="Meshumed_SP0221_a">
+          <speaker>ריכטיר.</speaker>
+          <p>| האסטו קיינע אויגען צו זעהן ווא דוא בעפֿינדעסט דיך.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0222_a">
+          <speaker>אסיפ.</speaker>
+          <p>| גאטט בין איך ווירקליך צו דיא באנדיטען אין דיע הענד העריינגעפֿאלען?<lb/><add>סטאפאנאוויטש.</add></p>
+        </sp>
+        <sp who="#rikhtir_fun_geheyms_gerikht" xml:id="Meshumed_SP0223_a">
+          <speaker>ריכטיר.</speaker>
+          <p>| שטעפֿאן איוואניוו ערצעהל אונס וואס דוא ווייסט פֿאן דעם אנגעקלאגטען.<lb/><foreign>גאספאדא פֿריסאזשניע זאסאדאטעל</foreign></p>
+        </sp>
+        <sp who="#ivniv" xml:id="Meshumed_SP0224_a">
+          <speaker>איוואניוו.</speaker>
+          <p>| האהעס געריכט. הויטע איזט דער אנגעקלאגטור געקאמען צו מיר אין<lb/>הערר ריכטער<lb/>הויז. אונד וויע עס שיינט זאל ער ניט וויסען דאס איך איין טרויער<lb/><add>פֿיר</add><lb/>דיענער פֿאן אונזער <foreign>צאר</foreign> בין. אונד האט ער זיך וועגען מיך<lb/><add>און</add><lb/>וועגען איינע טרויריגע געשיכטע געהויסערט. נעמליך ער האט<lb/>נור ערצעהלט דאס ער האט דעם <foreign>פריסטאוו</foreign> ניקאלאי ניקיטין<lb/>ערשאסען. אונד זאגטע מיר דאס ער ווייסט נאך פֿאן איין גאנציר<lb/>געהיימע געזעלשאפֿט ניהיליסטען וועלכע האבען אויף זיך<lb/>דיא אויפֿגאבע אלע טיראנען פֿון דער וועלט וועק צו שאפֿען</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0225_a">
+          <speaker>אסיפ.</speaker>
+          <p>| אוממעגליך. עס איז ניט דיע ווירקליכקייט עס איז נור איין טרוים.</p>
+        </sp>
+        <sp who="#rikhtir_fun_geheyms_gerikht" xml:id="Meshumed_SP0226_a">
+          <speaker>ריכטיר.</speaker>
+          <p>| אונגליקליכיר. שויע דארטען. שויע אונד ציטערע. נישט נור איין מענש<lb/>האט שאן דארטען זיין לעבען געענדיגט. ווירסטו אביר דיע ווארהייט<lb/>גישטעהן. זא זאלסטו לעבין בלייבען. אונד ווירסט נאך בעקאמען<lb/>איין פאסטען אלס פאליציינא שפיאן.</p>
+        </sp>
+        <pb n="24" facs="Lateiner_Meshumed-0024.jpg"/>
+        <sp who="#iusf" xml:id="Meshumed_SP0227_a">
+          <speaker>אסיפ.</speaker>
+          <p>| דיא ווארהייט? יא דיא ווארהייט איזט דאס איך בין העריינגעפֿאלען<lb/><add>ווילט</add><lb/>צו אייניר מיזעראבילער באנדע אין דיא הענדע איהר דאס איך זאל<lb/>אייך מיינע בריעדער פֿערהאטען. ניין אונד טויזענד מאהל ניין. איך וויל<lb/>אויך קען גנאדע פֿון אייך הובען. יא איך בין ניהיליסט טעטעט מיך<lb/>אונד אויף מיין פלאץ ווערדען אויפֿשטעהן טויזענד אנדערע.אה אה!<lb/>איהר באנדיטען זעהט איהר דען ניט דאס אייער ענדע איז<lb/>נאהע. ציטערט פֿאר דער גערעכטיקייט ניעדער מיט אייער<lb/>מענשען פֿרעסער האך לעבע דער ניהיליזמוס.</p>
+        </sp>
+        <sp who="#rikhtir_fun_geheyms_gerikht" xml:id="Meshumed_SP0228_a">
+          <speaker>ריכטיר.</speaker>
+          <p>|<stage type="business"> (קלינגט אלעס שטעהט אויף)</stage> <foreign>פא אוקאז יעווא אימפעראטערסקאייא</foreign><lb/><foreign>וועליטשעסטווא גאסודארא</foreign> אלעקסאונדיר אלעקסאנדראוויטש. ביזטו<lb/>פֿערורטיילט צום טאט. <stage type="exit business">(מען פֿיהרט איהם צום גאלגען. ער טוהט איהם און)</stage><lb/><stage type="business">(דיע שטריק)</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0229_a">
+          <speaker>אסיפ.</speaker>
+          <p>| אך דוא גרויזאמער מארטער.<lb/>גרעגואר <stage type="business">(מיט א פאפיער)</stage> <metamark function="musicCue" ana="#cue-in" place="inline">R.I</metamark></p>
+        </sp>
+        <sp who="#gregur_mrksenel" xml:id="Meshumed_SP0230_a">
+          <speaker>גרעגואר</speaker>
+          <p>| האלט! האלט! (גיט פאפיער ריכטיר)</p>
+        </sp>
+        <sp who="#rikhtir_fun_geheyms_gerikht" xml:id="Meshumed_SP0231_a">
+          <speaker>ריכטיר.</speaker>
+          <p>| אנגעקלאקטיר דוא שטעהסט יעצט אויף דער שטעלע דעס טאדעס זאגע<lb/>אונס דיע נעהמין פֿון אלע ניהיליסטען וועלכי דוא קאנסט זא בלייבסטו<lb/>לעבען. <metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0232_a">
+          <speaker>אסיפ.</speaker>
+          <p>| שורקען! בעסטיען! ניעדריגע פֿערעטיר איך לאסע מיר ליעביר<lb/>מיינע צונגע הערויסרייסען בעפֿאר איך זאל איינים פֿון<lb/>מיינע גענוסען פֿעראטען.</p>
+        </sp>
+        <fw type="pageNum">170713</fw>
+        <sp who="#rikhtir_fun_geheyms_gerikht" xml:id="Meshumed_SP0233_a">
+          <speaker>ריכטיר.</speaker>
+          <p>| זא טוהט אייער פפֿליכט.</p>
+        </sp>
+        <sp who="#alle" xml:id="Meshumed_SP0234_a">
+          <speaker>אלע.</speaker>
+          <p>| חחח (מע בעפֿרייעט איהם) האך לעבע אונזער קאמראד</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0235_a">
+          <speaker>אסיפ.</speaker>
+          <p>| וואס געהט דוא מיט מיר פֿאר?</p>
+        </sp>
+        <sp who="#rikhtir_fun_geheyms_gerikht" xml:id="Meshumed_SP0236_a">
+          <speaker>ריכטיר.</speaker>
+          <p>| דאס דוא ביזט אייניר פֿון אונזערע פֿריי פֿרייהייטס גענוסען<lb/>קאמט און עמפפֿאנגט אייער נייען ברודער <metamark function="musicCue" ana="#cue-out" place="inline">R.II</metamark><lb/>(<stage type="business delivery">אלע רייכען זיך דיע הענדע. מוזיק מארסעליעזע</stage>)<lb/><metamark function="musicCue" ana="#cue-out" place="inline">IIR</metamark><lb/><stage type="setting">פֿארהאנג</stage></p>
+        </sp>
+        <trailer>ענדע 2טען אקט.</trailer>
+        <pb n="25" facs="Lateiner_Meshumed-0025.jpg"/>
+      </div>
+      <div type="act" n="3" xml:id="Meshumed_Act3">
+        <head>IIR דריטער אקט (קערקיר)</head>
+        <stage type="delivery">(קאהר זינגט)</stage>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0237_a">
+          <speaker>יעקב.</speaker>
+          <p>| קלוג אין וויין עלענד ידעלע דיין אומגליק בעוויין און עהר ניט אויף<lb/>ביטערער מזל און דעם פֿינסטערן גלוס ווען אוי ווען נעמט א סוף</p>
+        </sp>
+        <sp who="#chor" xml:id="Meshumed_SP0238_a">
+          <speaker>קאהר.</speaker>
+          <p>| אה גאטט ווען וועט שוין ענדליך איין ענדע זיין<lb/>פֿון דאנעט טרייבט מען אונז און דארטען לאזט מען ניט אראן.</p>
+        </sp>
+        <sp who="#duet" xml:id="Meshumed_SP0239_a">
+          <speaker>דועט.</speaker>
+          <p>| מען האט אונז גור פֿערגעסען - אז מיר לעבען דוא און עססען<lb/>פֿארוואס קומט אונס דוס אונס לאזען דוא פֿערדארבען<lb/>מיט געבונענע הענד זאלען מיר פֿאר הונגער שטערבין<lb/>אין דיע נאסע ווענט.</p>
+        </sp>
+        <sp who="#froyen" xml:id="Meshumed_SP0240_a">
+          <speaker>פֿרויען.</speaker>
+          <p>| זעה דיין נאמען גאטט - ווערד צו שאנד און שפאט<lb/>דיין פֿאלג צו העלפֿען צי העלפֿען זוגט דער <foreign>שונה</foreign> אליין האסטו מעהר קיין <foreign>קוח</foreign><lb/>XX | אסיפ (<stage type="costume">אלס גייסטליכיר אונטער זייא</stage>)<lb/><add>זייא</add></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0241_a">
+          <speaker>שרה.</speaker>
+          <p>| וועה איז מיר <foreign>גלחים</foreign> גור? וועלען אונס עפֿשר פֿיהרען צו דער <foreign>שמד</foreign>.<lb/>בעסער זאלען מיר דוא אליין אויספעגערן אללע אויסשטארבען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0242_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אינא אינא הא</p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0243_a">
+          <speaker>שרה.</speaker>
+          <p>| מעכיל גיב נאר א קיק ווער דוא געהט. וואס טוהסטו דאווענסט?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0244_a">
+          <speaker>מעכיל.</speaker>
+          <p>| הו הו <foreign>גלונו לשבת לעודול הכל</foreign></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0245_a">
+          <speaker>שרה.</speaker>
+          <p>| מעכיל גיב נאר א קיק ווער דוא איז געקומען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0246_a">
+          <speaker>מעכיל.</speaker>
+          <p>| טפו <foreign>ימח שמם וזכרם ואנחנו כורעם ומשתחם</foreign></p>
+        </sp>
+        <fw type="pageNum">170714</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0247_a">
+          <speaker>אסיפ.</speaker>
+          <p>| זעהט איהר דיעזען מאנן דער שיינט איין <foreign>רַבִוי</foreign> צו זיין און זא איין<lb/>געווונשען<lb/><foreign>רבי</foreign> איז וויע געווינען פֿיר אונז. דאן קאנען וויר מיט דיע<lb/>איבריגע גאנץ לייכט פֿערטיג ווערען. אלזא איהר נעמט איבער<lb/>אויף זיך דיעזע אלע יודען. און איך וועל אליין מיט דיעזען<lb/><foreign>רבי</foreign> בלייבען. אונד וואן איך ווערדע מיט איהם פֿערטיג וועהרין דאן<lb/>געהן וויר אין קירכע. דיע נעהטיגע פאפיערע האבע איך דיר <lb/>געגעבין.</p>
+        </sp>
+        <sp who="#flitsey" xml:id="Meshumed_SP0248_a">
+          <speaker>פאליציי.</speaker>
+          <p>| <foreign>טאַק טאַשנא באַטושקאַ</foreign></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0249_a">
+          <speaker>אסיפ.</speaker>
+          <p>| <foreign>בלאגאסלאוו טעבי גאספאדא</foreign></p>
+        </sp>
+        <sp who="#flitsey" xml:id="Meshumed_SP0250_a">
+          <speaker>פאליציי</speaker>
+          <p>. | <foreign>פאידאם זשיד</foreign>.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0251_a">
+          <speaker>אסיפ.</speaker>
+          <p>| ניין מיין זאהן רופֿע זעה ניט <foreign>זשידע</foreign> ווייל באלד ווערדען זיי זיין<lb/>אונזערע בריעדער</p>
+        </sp>
+        <sp who="#flitsey" xml:id="Meshumed_SP0252_a">
+          <speaker>פאליציי.</speaker>
+          <p>| <foreign>פאדאם בראַטצי</foreign> <stage type="business">(אלע הייבען זיך אויף אויסער שרה)</stage></p>
+        </sp>
+        <sp who="#shrhke" xml:id="Meshumed_SP0253_a">
+          <speaker>שרה.</speaker>
+          <p>| ניין, איך געה ניט. מען זאל מיך אפֿיהלע דוא דער<foreign>הארג</foreign>ענען געה איך<lb/>ניט מיט דיע פֿינסטערע גלחים.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0254_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס רעדסטו נארעניו? וואס הייסט דוע געהסט ניט? וועט מען דיך<lb/><foreign>אוואדע</foreign> מוזען טרוגען. לאזען זיי רעדען צוזעצטערהייט פֿון זייער<lb/>הייליגען איוואן איוואנעוויטש און פֿון זעהר אלע <foreign>שקוצים</foreign><lb/>און שיקסעס און מיר וועלען דערביי זוגען טפוי <foreign>ימח שמם וזכרם ואנחנו</foreign><lb/><foreign>כוערם ומשתחוים ומודים לפני מלך מלוכי המלכים הק</foreign>-.<lb/>ב.ה. <stage type="exit business">(אלע אב אויסיר יעקב)</stage></p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0026.jpg"/>
+        <sp who="#iusf" xml:id="Meshumed_SP0255_a">
+          <speaker>אסיפ.</speaker>
+          <p>| רבי</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0256_a">
+          <speaker>יעקב.</speaker>
+          <p>| ווארום האבען זיא מיך אליין צוריקגעלאססען? ווארום מארטערן זיא<lb/><add>אייך</add><lb/>מיך אומזאנסט? איז דען וועניג וואס איך האב מיך שאן פֿון<lb/>לאנגע איין אפפֿער געבראכט? איין דיאמאנט בין איך בעזעסען אונד<lb/>איהר האט איהם פֿון מיר וועק גערויבט? און וואס נאך ווילט איהר<lb/>פֿון מיר? פֿערשוינען זיא מיך מיט אייער קריסטענטוהם?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0257_a">
+          <speaker>אסיפ.</speaker>
+          <p>| <stage type="delivery">(פֿארזיכטיג)</stage> רבי איך בין ניט דער וואס אייך שיינט. איך בין קיין<lb/>גייסטליכיר איך בין דער בעסטיר פֿריינד פֿון אייער זאהן.</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0258_a">
+          <speaker>יעקב.</speaker>
+          <p>| פון מיין קינד?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0259_a">
+          <speaker>אסיפ.</speaker>
+          <p>| יא אין זיין נאמען בין איך געקאמען. איז אייער ליעבע צו איהם<lb/>נאך ניט אויסגעלאשען?</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0260_a">
+          <speaker>יעקב.</speaker>
+          <p>| אה. וויע מיין פֿעטערליך הערץ פֿאנגט אן צו קלאפען פֿיר מיינים<lb/>קינד. אה קאממע צוריק צו דיינעם פֿאטיר. ויא ביזטו מיין קינד?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0261_a">
+          <speaker>אסיפ.</speaker>
+          <p><stage type="business">|(דעסמארקירט זיך)</stage> היער בין איך דיין יוסיף דיין זאהן.<lb/>יעקב. | מיין זאהן! מיין יאסיף! <stage type="business">(אומארמען. לאנגע פויזע)</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0262_a">
+          <speaker>אסיפ.</speaker>
+          <p>| שנעל פֿאטער מוזטו וועק פֿאן היער אויך דיע איבריגע גייסטליכע<lb/>זענען בלאז פֿערשטעלטע. וויר זינד געקאמען נור אייך צו רעטען.</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0263_a">
+          <speaker>יעקב.</speaker>
+          <p>| וויע זא דען מיין קינד?<lb/><metamark function="musicCue" ana="#cue-in" place="inline">R.I</metamark></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0264_a">
+          <speaker>אסיפ.</speaker>
+          <p>| דאפֿיר האבען וויר שאן געזארגט. וויר ווערדען אייך עקספעדיערען<lb/>איבער דער גרעניץ.</p>
+        </sp>
+        <fw type="pageNum">170715</fw>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0265_a">
+          <speaker>יעקב.</speaker>
+          <p>| אה מיין קינד ווען דאס ווירד אייך בעהיטע גאטט ניכט<lb/>געלונגען דאן זינד וויר אלע פֿערלוירען.<lb/><metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0266_a">
+          <speaker>אסיפ.</speaker>
+          <p>| האבע קיין אַנגסט ליעבער פֿאטער וויר האבען אללעס בערעכענט. עס<lb/>ווירד קיין שלעכטעס גישעהן.</p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0267_a">
+          <speaker>יעקב.</speaker>
+          <p>| מיין גוטעס ליעבעס קינד</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0268_a">
+          <speaker>אסיפ</speaker>
+          <p>. | פֿאטער דוא פֿערצייעסט מיר?<lb/><add>דען</add></p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0269_a">
+          <speaker>יעקב.</speaker>
+          <p>| קען דיע קינדערליכע ליעבע אין דען פֿאטיר הערץ אמוהל<lb/>אויסגעלאשען וועהרין? און וועלכיר פֿאטיר פֿערצייעט ניט גערנע<lb/>זיין קינד?<lb/><stage type="exit">(אב)</stage><lb/>אלזא ווארט איין אייגענבליק איך וועל געהן זעהן צו אללעס איז פאבערייטעט</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0270_a">
+          <speaker>אסיפ.</speaker>
+          <p>| זא קאממע פֿאטער וויר דערפֿען קיין צייט פֿערליערען.<lb/><metamark function="musicCue" ana="#cue-out" place="inline">IIR</metamark> <metamark function="musicCue" ana="#cue-out" place="inline">R.II</metamark></p>
+        </sp>
+        <sp who="#iekb_eyzenshteyn" xml:id="Meshumed_SP0271_a">
+          <speaker>יעקב.</speaker>
+          <lg n="10">
+            <l>| גאטט העלף אונז. (זינגען)</l>
+            <l>גאטט העלף אונז רעטע אונס פֿון דעם גלות אוי</l>
+            <l>דיע אידישע פֿראגע אונזערע ביטערע פלאגע</l>
+            <l>ווען נעמט א סוף ווען הערט שאן אמוהל אויף</l>
+            <l>מען שלוגט פון רחמונת מען יוגט און סקונת.</l>
+            <l>דיא אידישע פֿראגע אוי העלף אין רעטטע אונס גאטט</l>
+          </lg>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0272_a">
+          <speaker>אסיפ.</speaker>
+          <lg>
+            <l>| פֿערצווייפֿעלט ניט ליעבעס פֿאלק עס נאהענט דיע גאלדענע צייט</l>
+          </lg>
+          <lg>
+            <l>פֿון איבעראל זעהט מען א שטראהל</l>
+          </lg>
+          <lg>
+            <l>פֿון פֿרייהייט אלע גלאך גישטעהט</l>
+          </lg>
+          <lg>
+            <l>קיין טיראניי קיין שקלאפֿעריי אויף דער וועלט</l>
+          </lg>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0027.jpg"/>
+        <sp who="#beyde" xml:id="Meshumed_SP0273_a">
+          <speaker>ביידע.</speaker>
+          <p>| <foreign>אדיע</foreign> מיין פֿאטער אדיע מיין קינד לעבע וואהל<lb/>אויפֿס וויעדערזעהן האב גור קיין <foreign>פַחד</foreign> האב גור קיין אנגסט<lb/><foreign>אדיע</foreign> אויפֿיס | <stage type="business">וויעדער זעהן |</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0274_a">
+          <speaker>אסיפ.</speaker>
+          <p>| אוועק פֿון דעם בארבארען לאנד ווא וויר זינד צו שפאט און שאנד<lb/>וויע עס הערשט קיין טיראניי דארט וויע יעדער לעבט זיך פֿריי<lb/>אסיפ<lb/><metamark function="sceneCue" ana="#cue-out" place="inline">SII</metamark><lb/><stage type="setting">פֿערוואנדלונג</stage><lb/><stage type="setting">(צימער ביי ליובאוו) </stage>נ<stage type="entrance">יקיטין סאלדאטען</stage></p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0275_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| דא איזט ער אויך ניט צום פֿינדען. נאר דער טויפֿעל האט איהם<lb/>גיקענט העלפֿען. געהט שנעל הערונטער און קעלער זוכט אין איעדען<lb/>ווינקעלע עקארה <stage type="exit">(סאלדאטען אב)</stage> שוין מעהר אלס 2 וואכען אז<lb/>ער גיבט מיר קיין רוה נאר איך האלט איהם אין איין זוכען. און  <lb/>דער <foreign>פראקלאטע זשיד</foreign> איז ניט צו פֿינדען נאר דער טויפֿעל<lb/>האט איהם געמוזט העלפֿען <foreign>טשארט וואזמי</foreign>.<lb/>ליובאוו.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0276_a">
+          <speaker>לובאוו.</speaker>
+          <p>| <foreign>גאספאדין פריסטאוו</foreign>. דאס איזט דאך שוין ווערקליך ניט צום<lb/>ערטראגען טאג טעגליך צו איבערפֿאלען מיין הויז. זיא זעהן דאך דאס<lb/>דער וועלכין זיא זוכען איזט אין מיין הויז ניכט צו פֿינדען. אלזא<lb/>ביז וואן מוז איך דולדען זאלכע פלעצליכע איבערפֿאלע?<lb/>ווערדע איך פֿאן איהנען ניע קיין רוהע האבען?</p>
+        </sp>
+        <fw type="pageNum">170716</fw>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0277_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| ביז איך פֿינדע איהם</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0278_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| אביר וואו איך שוועהרע דאס זייט יענעער שטונדע וואס ער האט אויף<lb/>איהנען געשאסען האב איך זעלבסט איהם אויך ניט גיזעהן. איך אליין ווייס<lb/>אויך ניט וואס מיט איהם איז גישעהן. איך בין פֿון שמערצין<lb/>אין דער גרעסטיר פֿערצווייפֿלונג. אונד ווארום מארטערן זיא מיך נאך?</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0279_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| זיא זינד אין דער גרעסטיר פֿערצווייפֿלונג? זיא קאנען ניכט פֿערגעסען<lb/>אין דען פֿערדאמטען <foreign>זשיד</foreign>ר און האפֿען זיא דען איהם<lb/><add>און וויא קענט איהר איהם דען זעהן ווען נישט</add><lb/>איהרגענדוואה איהם צו זעהן אלס אין סיביר? אה גלויבען זיא מיר<lb/>דאס מיינע פֿערוואנדעטע האנד ווירד איהם זיין גאנציס לעבין קאסטין</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0280_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| אביר וואס וואלען זיא פֿאן מיר? ווארום געבין זיא מיר קיינע רוהע?<lb/>זיא האבען איהרע פפֿליכט געטהאן. זיא האבען מיין הויז דורך<lb/>און דורך געזוכט אונד ניכטס געפֿונדען. יעצט ביטע איך<lb/>אום רוהע.</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0281_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| אה דאס זעה איך שאן אין אייערע וויטענדע בליקען דאס זיא ווינטשען<lb/><add>פין מיר לאז ווערען</add><lb/>מיך צום טויפֿעל ווערענד איך אומגליקליכער קאן ניט קיין איינציגע מינוטע<lb/>אהנע איהנען לעבען. איך פֿיעלע דאס מיין לעבין איזט מיר איין לאסט.<lb/>אה זאגט מיר מיט וואס קען איך אייערע ליעבע געווינען?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0282_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| ווארהאפֿטיג. איך האב גורניט געוווסט דאס זיא זינד אין מיר זא<lb/>שטעבליך פֿערליעבט. אלזא דאריבער איבערפֿאלען זיא מיין הויז<lb/>יעדען טאג אום מיינע ליעבע צו געווינען.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0028.jpg"/>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0283_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| אה פֿערצייען זיא מיר. איך בין זא אויפֿגערעגט געגען דעם מערדיר פֿאן<lb/>מיין גליק. דאס איך העטע איין טייל פֿאן מיין לעבען געאפפֿערט אום איהם<lb/>צופֿינדען. אבער ווען דאס פֿערשאפֿט איהנען ערגעניסע דאן ווערדע<lb/><add>צוריק ציהען</add><lb/>איך מיינע נאכפֿארשונגען אונשטעלען וויע זיא ווערדען מיר<lb/>דיקטירען זא ווערדע איך טוהן! אה ליובאוו זאגען זיא מיר וויע<lb/>זא קען איך איהרע ליעבע פֿיר מיך געווינען? וויע זא?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0284_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| און זיא וואלען ווירקליך מיינע ליעבע געווינען.<lb/><add>דאס</add><lb/><add>אפפֿער</add></p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0285_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| זאגט נור וואס זאל איך טאן? מאג עס אויך זיין דיע גרעסטע אפפע<lb/><add>קיין זאך</add><lb/>זאכע ניכטס ווירד מיך צוריק האלטען. אום אייך מיין אויפֿריכטיגע<lb/>ליעבע צו איבערצויגען זאגט וואס זאל איך טהון?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0286_a">
+          <speaker>ליובאוו</speaker>
+          <p>| זיא זאלען מיך יעצט פֿערלאסען און ניע מעהר פֿיר מיינע אויגען<lb/>קאממען. דאס איזט אלעס פֿערשטעהסטו?<stage type="exit"> (אב)</stage></p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0287_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| אלזא זיא האט מיר ענטזאגט און איך האב קיין האפֿנונג מעהר.<lb/>זיא קען מיך זאגאר אין איהרע נעהע ניט דולדען. <foreign>חאראשא</foreign>!<lb/>ווארטע ליובאוו איך ווערדע שאן איבער דיר וואכען. איך<lb/>ווערדע דיר דיין לעבען זא פֿערביטערן זא וויע דוא האסט<lb/>דאס מייניגע פֿערביטערט.<lb/><stage type="entrance">אסיפ</stage>. <stage type="costume">(אלס גייסטליכער)</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0288_a">
+          <speaker>אסיפ.</speaker>
+          <p>| <foreign>בלאגאסלאווא טעבי גאספאדא</foreign>. <stage type="business">(שטעלט אונטער א האנד. ניקיטין גיט איהם)</stage><lb/><stage type="business">א קוש. און א מונצע)</stage></p>
+        </sp>
+        <fw type="pageNum">170717</fw>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0289_a">
+          <speaker>ניקיטין</speaker>
+          <p>. | <stage type="exit">(אפ)</stage> <foreign>סטופייא איך שטארטא</foreign><stage type="exit"> (אב)</stage></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0290_a">
+          <speaker>אסיפ.</speaker>
+          <p>| חחח וואו דוא זאלסט וויסען וועהם דוא האסט איין מונצע אונד איין<lb/>קוס געגעבען העטעסטו אויף דעם פלאץ קראפיערט פֿיר שאנדע. דאס<lb/><add>פֿון</add><lb/>בעהאלט איך צום עוויגען אנדענקען אלס איין בעסטין פֿריינד חחח<lb/>ליובאוו</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0291_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| גאטט זיי דאנק דאס איך בין פֿאן איהם לאז גיווארען. <stage type="business">(בעמערקט אסיפען. גיט איהם א)</stage><lb/>(<stage type="business">מינצע און א קוש</stage>) נון וואס נאך פֿערלאנגען זיא?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0292_a">
+          <speaker>אסיפ.</speaker>
+          <p>| דיר צוריק געבין דעם קוס מיט פראצענט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0293_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| וואס איזט דאס?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0294_a">
+          <speaker>אסיפ.</speaker>
+          <p>| ווילסטו ווירקליך ניכט?<stage type="business"> (דעמאסקירט זיך)</stage></p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0295_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| אסיפ דוא ביזט עס מיין הערצענס פֿריינד מיין אלעס. דיך האב איך<lb/>וויעדער. מיין איינציגער און געליעבטיר אסיפ.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0296_a">
+          <speaker>אסיפ.</speaker>
+          <p>| שפריך ניט זא לויט מיין נאמען אויס. זייא פֿארזיכטיג מיט דעם נעהמען.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0297_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| איך בין פֿאן פֿריידע אויסיר מיך דאס איך פֿערגעסע דיינע לאגע<lb/>אך געליעבטיר מייניס הערצינס ווייסטו וואס איך בין דוא גאנצי צייט אויס=<lb/> געשטאנדען. דיא אונגעוויסהייט וואס מיט דיר טהוט טהוט זיך.<lb/>האט מיר ביינאה מיין פֿערשטאנד גערויבט נון זינד וויר גאטט זיי<lb/>דאנק וויעדער צוזאמען און צוזאמען בלייבען וויר שוין פֿיר אונזער<lb/>לעבען לאנג. צוזאמען מיט דיר וועל איך ענטפֿליהען פֿאן דיעזען<lb/>בלוט בעפֿלעקטען לאנד. רייך בין איך גענוג אום אונזער<lb/>לעבען אין פֿרדייען פֿריידען צו געניעסען. נון ווארום ביזטו זא<lb/>ניעדערגעשלאגען?</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0029.jpg"/>
+        <sp who="#iusf" xml:id="Meshumed_SP0298_a">
+          <speaker>אסיפ.</speaker>
+          <p>| איך בין געקאמען פֿאן דיר אבשיעד צו נעהמין.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0299_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| אבשיעד? דוא פֿערלאסט מיך?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0300_a">
+          <speaker>אסיפ.</speaker>
+          <p>| בלאז אויף אייניר קורציר צייט</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0301_a">
+          <speaker>לובאוו.</speaker>
+          <p>| וואהין געהסטו אהנע מיך?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0302_a">
+          <speaker>אסיפ.</speaker>
+          <p>| פֿילייכט צום טויט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0303_a">
+          <speaker>לובאוו.</speaker>
+          <p>| מיין גאטט.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0304_a">
+          <speaker>אסיפ.</speaker>
+          <p>| הערע מיך אויס מיין געליעבטע. איך האב יעצט איין אנדערע מיסיאן. וועלכע<lb/>איזט מיר טייערער וויע מיין גאנציס לעבען איך האב געשוואהרען<lb/>טרויהייט אונטער דער פֿאהנע אויף וועלכען מיט פֿייעריגער<lb/>בוכשטאבען אויסגעקריצט זינד דיא ווארטע. פֿרייהייט,<lb/> גלייכהייט פֿיר אונז אלע.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0305_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| דוא ביזט איין ניהיליסט?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0306_a">
+          <speaker>אסיפ.</speaker>
+          <p>| נון ווארום האסטו דיך זא ערשראקען? איזזט דען דיעזער נאמען<lb/>אויך דיר פֿערהאסט?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0307_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| ניין! ניין! ניכט האס נור פֿורכט. יא אנגסט און פֿורכט<lb/>ליעגט אין דיעזענווארט. צו טייער איז מיר דיין לעבין. אונד דארום<lb/>ציטערע איך זא. איז וויעפֿיעל טויזענדער אפפֿער האט שאן<lb/>דוס שרעקליכע ווארט פֿון דער וועלט געשאפֿט. מוזטו דען אויך אין<lb/>דער רייע קאמען?</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0308_a">
+          <speaker>אסיפ.</speaker>
+          <p>| יא אויך איך און טויזענדיר נאך מיר. ביז אונזער<lb/>הייליגעס ציהל איזט ערייכט. אך ווען דוא<lb/>זאלסט וויסען וויא גוט עס איז פֿיר איין<lb/>עדלע אידעע צו לעבין און פֿיר דער<lb/>זעלביר צו שטערבין.</p>
+        </sp>
+        <fw type="pageNum">170718</fw>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0309_a">
+          <speaker>ליבאוו.</speaker>
+          <p>| אלזא ביזטו צו איין גיפערליכער מיסיאן<lb/>בעשטימט?<lb/><add>דיא אנטווארט</add></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0310_a">
+          <speaker>אסיפ.</speaker>
+          <p>| דוא מוזט מיר פֿערצייען מייינע טייערע דיין<lb/>פֿראגע מוז איך דיר שולדיג בלייבען לעבע וואהל.<lb/>פֿילייכט ווערדען מיר אונז נישט מעהר זעהן <stage type="exit">(אב)</stage></p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0311_a">
+          <speaker>לובאוו.</speaker>
+          <p>| נור וויא איין טרוים קומט מיר דאס אללעס פֿאר<lb/>האבע איך איהם נור <foreign>צרות</foreign> גיפֿונדען אום<lb/>איהם וויעדער צו פֿערליערען ניין אסיפ דוא געהסט<lb/>נישט אהנע מיך. איך האבע גישוואהרין דיין<lb/>לעבינס בעגלייטערין צו זיין און איך וויל דיר<lb/>נאכפֿאלגען. דיין שיקזאל זאל אויך דאס<lb/>מייניגע זיין. דוא געהסט אין פֿייער איך<lb/>געה מיט דיר מיט און ווען איך ווערדע<lb/><add>קענען</add><lb/>דיך ניע רעטטען קענען זא ווערדע איך<lb/>צוזאמען מיט דיר אינס פֿייער שפרינגין <stage type="exit">(אב)</stage><lb/><metamark function="musicCue" ana="#cue-out" place="inline">IIR</metamark><lb/><stage type="exit business">(זיין געזאנג אב)</stage><lb/><stage type="entrance">ניקיטין </stage><stage type="entrance">שפיאן</stage></p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0030.jpg"/>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0312_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| <foreign>עטא אזשאסנא</foreign>! דאס איז נאך נישט<lb/>גיהערט גיווארין אין דער גאנציר וועלט דריי<lb/>גייסטליכע האסטו געזאגט?</p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0313_a">
+          <speaker>שפיאן</speaker>
+          <p>| יא און אלע דריי וואהרין פֿערשטעלטע ניהיליסטין<lb/>זיי האבין דעם קערקער מייסטיר פאפיערען פֿאן<lb/>דער פאליציי געצייגט דאס זיי פֿיהרען דיא<lb/>יודין צו דער טויפֿע און אם ענדע וואר עס גאר<lb/>ניהיליסטען.</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0314_a">
+          <speaker>ניקיט</speaker>
+          <p>| זא איין הונד פֿון איין קערקירמייסטיר אין<lb/>זיינער הויט ווינש איך מיר נישט צו שטעקין<lb/>נור זאגע מיר וועניגסטינס וויא אזוי דיא לייטע<lb/>האבין אויסגיזעהן.</p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0315_a">
+          <speaker>שפיאן</speaker>
+          <p>| יא יא איך האב ביי מיר דאס פראטאקאל<lb/>אללעס איז דייטליך פֿערשריעבען <stage type="business">(גיט פאפיר)</stage>. </p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0316_a">
+          <speaker>ניקיט</speaker>
+          <p>| וואס זעה איך פֿון דיא דריי גייסליכע האט<lb/>איינער זא אויסגיזעהן גראדע וויא דער וועלכין<lb/>איך האב צופֿאר דא אין ציממער גיטראפֿען<lb/>און עס וואר קיין אנדעריר וויא דער פֿערפֿלוכטע<lb/>אסיפ. אה וועה מיין ערגסטין פֿיינד<lb/>האבע איך אין מיין האנד גיהאלטין נאך<lb/>מעהר איך האב איהם איין קוס גיגעבין<lb/>אה וועלכי שאנדע איך ניקוליי ניקיטין<lb/><foreign>מאסקאווסקי פריסטאוו</foreign>. דאך איין<lb/>טרעסט האבע איך נאך. יעטצט לובאוו<lb/>מיחאלאוונע יעטצט ביזטו מיינע.</p>
+        </sp>
+        <fw type="pageNum">170719</fw>
+        <sp who="#shfin" xml:id="Meshumed_SP0317_a">
+          <speaker>שפיאן.</speaker>
+          <p>| איך האב איין בעפֿעהל ארויסגיגעבין דאס<lb/> מען זאל דיא אייגין אפֿען האלטען אויף יעדין <lb/>גייסטליכן און פֿילייכט קומט אייניר נור<lb/> פֿער דעכטיג פֿאר זאל מען איהם זאפֿארט <lb/>(גערויש)<lb/>אהער ברענגען. יא דא איזט אייניר מען<lb/>האט איהם געכאפט</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0318_a">
+          <speaker>ניקיט.</speaker>
+          <p>| <foreign>מאלאדעץ וואט מאלָאדעץ</foreign>.<lb/><stage type="entrance">פאליציסט גייסטליכער</stage></p>
+        </sp>
+        <sp who="#flismn" xml:id="Meshumed_SP0319_a">
+          <speaker>פוליצ.</speaker>
+          <p>| <foreign>אך טו סאבאקא</foreign></p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0320_a">
+          <speaker>ניקיט</speaker>
+          <p>| הערונטיר מיט דער בורד. <stage type="business">(וויל רייסין)</stage></p>
+        </sp>
+        <sp who="#geyst" xml:id="Meshumed_SP0321_a">
+          <speaker>גייסט.</speaker>
+          <p>| <foreign>גאספאדא באזשע מאי</foreign> דאס איז מיין<lb/>אייגינע בארד</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0322_a">
+          <speaker>ניקיט.</speaker>
+          <p>| ווער ביזטו דיין נאמען?</p>
+        </sp>
+        <sp who="#geyst" xml:id="Meshumed_SP0323_a">
+          <speaker>גייסט.</speaker>
+          <p>| איך בין דאך דער אלטיר וואסילע<lb/>וואסילאוויטש <foreign>באג איס וואמין</foreign>.</p>
+        </sp>
+        <pb n="31" facs="Lateiner_Meshumed-0031.jpg"/>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0324_a">
+          <speaker>ניקיט.</speaker>
+          <p>| אה <foreign>איזוואניטי פראשא וואס איזוואניטי</foreign><lb/><stage type="business">(קושט האנד)</stage></p>
+        </sp>
+        <sp who="#geyst" xml:id="Meshumed_SP0325_a">
+          <speaker>גייסטל.</speaker>
+          <p>| <foreign>בלאגאסלאוו טעבי גאספאדא</foreign>.<stage type="exit business"> (אב מיט פאליצ)</stage></p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0326_a">
+          <speaker>ניקיט</speaker>
+          <p>| דער טויפֿעל זאל אייך האללען. הע גיט<lb/>מיר אבאכט דאס זאל זאוואס נישט מעהר<lb/>פֿארקאמען<stage type="business"> (וויל אב)</stage></p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0327_a">
+          <speaker>שפיאן.</speaker>
+          <p>| וויארטע ניקוליי איך האב דיר זעהר א וויכטיג<lb/>נייעס מיט צוטיילען</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0328_a">
+          <speaker>ניקיטין</speaker>
+          <p>| איין וויכטיגי זאכע נון נון.</p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0329_a">
+          <speaker>שפיאן</speaker>
+          <p>| איך בין אויף דער שפור גיקאמען פֿון אין<lb/>וויכטיגיר ענטדעקונג איך האב ערפאהרען אין<lb/>גיהיימין פלאטץ ווא דיא ניהיליסטען פֿערזאמלין<lb/>זיך. און עס איז מיר אויך מעגליך אין זייער<lb/>מיטטע צו קומען. אלזא מיין פֿריינד דוא זיי<lb/><metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark><lb/>פֿארבערייטעט מיט אייניגע פאליציי שפיאנען<lb/><metamark function="sceneCue" ana="#cue-in" place="inline">SI</metamark><lb/>און וויר ווערדין גאנץ לייכט זעהר הויז איבער=<lb/>פֿאלען קענין</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0330_a">
+          <speaker>ניקיט.</speaker>
+          <p>| יא מיין פֿריינד לאססע דיך אומארמען, ווען<lb/>דאס זאל אונז גילונגין דאן זינד וויר דיא<lb/><metamark function="musicCue" ana="#cue-in" place="inline">RI</metamark> | גליקליכסטע מענשין אויף דער וועלט. יעטצט<lb/>לובווו ביזטו רעכט אין מיינער האנד!<lb/>געצווונגין אביר מיינע מוזטו זיין.<lb/><metamark function="musicCue" ana="#cue-out" place="inline">RII</metamark><lb/><metamark function="sceneCue" ana="#cue-out" place="inline">SII</metamark><lb/><metamark function="musicCue" ana="#cue-out" place="inline">IIR</metamark><lb/><stage type="setting">פֿערוואנדלונג</stage><lb/>(<stage type="entrance">ניחיליסטין כהרי</stage>)<lb/><stage type="entrance">אסיפ</stage></p>
+        </sp>
+        <fw type="pageNum">170720</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0331_a">
+          <speaker>אסיפ</speaker>
+          <p>| גענאסען וויר האבין איינע פֿערדעכטיגע<lb/>פערזאן אין אונזערע מיטטע. מיר שיינט אז מיר<lb/>האבין מיט איין פאליציי שפיאן צו טוהן. אלזא<lb/>זייט אללע פֿארבערייטעט. איך האבע שאן<lb/>אללע אונזערע גענאסען בעקאנט גימאכט אונד<lb/>מיר ווערדין איהם באלד צור פראגע שטעלען.<lb/>איהר ווייסט דוך שוין וויא זא. .. ש.ש.<lb/>אט קומט ער<lb/><stage type="entrance">שפיאן</stage></p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0332_a">
+          <speaker>שפיאן</speaker>
+          <p>| גריעסט אייך גענאסען אביר ווארום<lb/>שויען זייי מיך זא פֿערדעכטיג אן עס איזט<lb/>וואר איך בין איין פֿרעמדער איך קאמע<lb/>ערשט געסטורין פֿון פעטערסבורג אבער<lb/>האבע איך אייך דען נישט געצייגט פאפיערע<lb/><add>ארגאניזאציאן</add><lb/><add>דער</add><lb/><add>בין</add><lb/>פֿון דיא דארטיגע גענאססען דאס איך איין<lb/>טרייעס מיעדגליעד פֿאן אונזערע פֿרייהייטס<lb/>קעמפפֿער בין.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0032.jpg"/>
+        <sp who="#iusf" xml:id="Meshumed_SP0333_a">
+          <speaker>אסיפ.</speaker>
+          <p>| ווער גאראנטיערט דאס דיעזע פאפיערע<lb/>זינד נישט גיפֿעלשט.</p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0334_a">
+          <speaker>שפיאן.</speaker>
+          <p>| גענאסע ציהע דיינע ווארטע צוריק וואס מאכט<lb/>דיך אייגינטליך דאס מיר נישט צו גלויבען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0335_a">
+          <speaker>אסיפ.</speaker>
+          <p>| דיינע בליקען דען זאלכע בליקען האט נור<lb/>איינע פאליציי שפיאען. <stage type="business">(לערם)</stage><lb/><metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark></p>
+        </sp>
+        <sp who="#eyner" xml:id="Meshumed_SP0336_a">
+          <speaker>איינער</speaker>
+          <p>| אה וועה דיא פאליציי קאמט.</p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0337_a">
+          <speaker>שפיאן.</speaker>
+          <p>| זעהר גוט זיא קאמט צו ריכטיגער צייט.<lb/><stage type="entrance">פאליציי</stage> <stage type="entrance">סאלד</stage>.</p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0338_a">
+          <speaker>איוואן</speaker>
+          <p><lb/>פאליצ | אין נאמען זיינער מייעסטעט בעפֿעהל איך אייך<lb/>איהר זאלט אייך אונז איבערגעבין. עס<lb/>ווירד אייך יעטצט קיינע זאכע העלפֿין<lb/>דען איהר זענט אומרינגט מיט סאלדאטען<lb/>וואגט נור איין שריט צו מאכען זא ווירד<lb/>איהר אללע ניעדער געשאסען.</p>
+        </sp>
+        <fw type="pageNum">170721</fw>
+        <sp who="#shfin" xml:id="Meshumed_SP0339_a">
+          <speaker>שפיאן</speaker>
+          <p>| האלט איין! <stage type="business">(לויפֿט צו דער טיהר)</stage><lb/>יעטצט קאנסטו שיעסען.<lb/><metamark function="musicCue" ana="#cue-in" place="inline">RI</metamark></p>
+        </sp>
+        <sp who="#ivn" xml:id="Meshumed_SP0340_a">
+          <speaker>איוואן</speaker>
+          <p>|<lb/>פאליצ | ווער ביזטו.</p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0341_a">
+          <speaker>שפיאן.</speaker>
+          <p>| איך בין קיין ניחיליסט איך האב מיך נור<lb/><metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark><lb/>היער אריין גישמוגילט איך בין איין פאליציי<lb/>שפיאן יעטצט קענט איהר שיעסען.<lb/><add>איוואן</add> |<lb/>פאליצ. |<stage type="business"> (ווארפֿט איהם צו באדין)</stage> זא דוא הונד<lb/>דוא האסט דיך נור העריין גישמוגילט.<lb/>יעטצט זאלסטו דיין שטראפֿע ערהאלטען</p>
+        </sp>
+        <sp who="#shfin" xml:id="Meshumed_SP0342_a">
+          <speaker>שפיאן.</speaker>
+          <p>| זא האט מאן מיר <sic>ב</sic>לאס איין שפאס גישט<sic>ל</sic>ט<lb/>אונד וואס דענקט איהר מיט מיר צו טוהן.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0343_a">
+          <speaker>אסיפ.</speaker>
+          <p>| דיך אונשעדליך צו מאכען.<stage type="exit business"> (מי פֿיהרט איהם וועק)</stage><lb/><metamark function="musicCue" ana="#cue-out" place="inline">IIR</metamark><lb/><metamark function="musicCue" ana="#cue-out" place="inline">RII</metamark> <stage type="delivery">כהר זינגט</stage></p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0344_a">
+          <speaker>ניקיטין</speaker>
+          <p>| <stage type="entrance business">סאלדאטען איבערפֿאלין דאס הויז. מי שיעסט</stage><lb/><stage type="business">און מי פֿעכט זיך ניקיטין חאפט אסיפען.</stage><lb/><stage type="setting">פֿארהאנג</stage></p>
+        </sp>
+        <trailer>III אקט</trailer>
+        <pb facs="Lateiner_Meshumed-0033.jpg"/>
+      </div>
+      <div type="act" n="4" xml:id="Meshumed_Act4">
+        <head>פֿערטער אקט.</head>
+        <stage type="setting">קערקער</stage>
+        <stage type="business">אסיפ ליגט אוף באדען</stage>
+        <sp who="#sld" xml:id="Meshumed_SP0345_a">
+          <speaker>סאלד.</speaker>
+          <p>| הע <foreign>ארעסטאנט ספיש</foreign>!</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0346_a">
+          <speaker>אסיפ</speaker>
+          <p>| <foreign>ניעט</foreign></p>
+        </sp>
+        <sp who="#sld" xml:id="Meshumed_SP0347_a">
+          <speaker>סאלד.</speaker>
+          <p>| <foreign>חאראשא</foreign>! (געהט הין און צוריק.)</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0348_a">
+          <speaker>אסיפ</speaker>
+          <p>| אך וויא מיעד איך בין זיי גיבין מיר גור ניכט<lb/>דעם זיעסען שלוף, מיין קאפף! מיינע גיהירען ווערין<lb/>מיר צערשפאלטין פֿון דיא ביטערע ביילען וואס מען<lb/>מארטערט מיך דוא. מיינע אויגין קלעבין זיך מיר<lb/>צו זיעכין דעם שלוף וויא איין דורסטיגיר דוס וואסער<lb/>אך וויא זיעס איז דער שלוף פֿון דער נאכט.</p>
+        </sp>
+        <sp who="#sld" xml:id="Meshumed_SP0349_a">
+          <speaker>סאלד.</speaker>
+          <p>| <foreign>ארעסטאנט שפיש</foreign></p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0350_a">
+          <speaker>אסיפ</speaker>
+          <p>| <foreign>ניעט</foreign></p>
+        </sp>
+        <sp who="#sld" xml:id="Meshumed_SP0351_a">
+          <speaker>סאלד.</speaker>
+          <p>| <foreign>חאראשא</foreign>.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0352_a">
+          <speaker>אסיפ</speaker>
+          <p>| אה פֿערפֿלוכט טויזינד מאהל פערפֿלוכט<lb/>אה רוסלאנד מעגסט שטאל צירין מיט דיין נייער<lb/>ערפֿינדונג זיי האבין אויסגעפֿונין איינע נייע<lb/>מעטאדע איינע נייע אינקוויזיציאן. וויא זיי דיא<lb/>מענשין צו מארטערן. שוין דריי טוג און דריי<lb/>נאכט זייט מע לאזט מיך קיין אויג צו מאכען<lb/>אביר מיין קערפֿיר איז נאך גיניג שטארק<lb/>דיעזע שרעקליכע קוואהל אויסצוהאלטין ווען<lb/>איך זאל זאגאר צוזאמען ברעכין ווערדע איך<lb/>דאך קיין איינציגין פֿון מיינע בריעדער<lb/>פֿעראטען. יא ליידין וויל איך פֿיר דער<lb/>מענשהייט! אך וויא עס שיינ דעלט מיר<lb/>פֿאר דיא אויגין אך וויא גערנע וואלטע<lb/>איך גישלאפֿען אביר.</p>
+        </sp>
+        <fw type="pageNum">170722</fw>
+        <sp who="#sld" xml:id="Meshumed_SP0353_a">
+          <speaker>סאלד.</speaker>
+          <p>| אביר <foreign>ארעסטאנט ספיש</foreign>.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0354_a">
+          <speaker>אסיפ</speaker>
+          <p>| <foreign>ניעט ניעט סטופיי אך טשארטי</foreign></p>
+        </sp>
+        <sp who="#sld" xml:id="Meshumed_SP0355_a">
+          <speaker>סאלד</speaker>
+          <p>| <foreign>חאראשא</foreign>.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0356_a">
+          <speaker>אסיפ</speaker>
+          <p>| ארמיר סאלדאט דארף איך דען אוף דיר<lb/>בעזע זיין דוא ביזט דאך נישט מעהר אלס<lb/>איין ווערק צויג ביי דער פֿערפֿלוכטער טיראניי.<lb/>אך. וויא איך זעה ווערדע איך דיעזע<lb/>נאכט נישט שלופֿען קענען איינסט נור בעאונרוהיגט<lb/>מיך ווען איך זאל וועניגסטינס וויסין וואס מיין<lb/>פֿאטיר אנקיל און זיין דיא אן גאנצי פֿאמיליע<lb/>מאכען. אויב זיי האבין גליקליך זיין גריינעץ<lb/>דורך פאסיערט ווען איך זאל דוס זעכיר<lb/>וויסין העטטע איך מיט מיין שיקזאל צופֿריעדען<lb/>גיוועהן. אה ליובאוו דוא ביזט יעטצט איינזאם<lb/>ווער ווייסט וועלכי שרעקליכע קוואהלען דוא ליידעסט<lb/>יעטצט דעריק מיר. דיעזער געדאנק בוירט מיר<lb/>דעריק מיין ברוסט<stage type="business"> (מע הערט שטימען) </stage>מאן קומט<lb/>געוויס מיין הענגיר אום מיך צום גלגן צופֿיהרען<lb/>אדער טוישין מיך פֿילייכט מיינע אהרען. איהר<lb/>שטימע יא זיא איזט עס לובאוו וויא קאמט זיא<lb/>היער.<lb/><stage type="entrance">ליובאוו</stage>. (<stage type="costume">און ברוט שלייער</stage>)</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0034.jpg"/>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0357_a">
+          <speaker>ליובאָוו</speaker>
+          <p>| דוא ביזט גירעטיט דוא ביזט פֿריי דאס<lb/><add>קען</add><lb/>איזט אלעס וואס איך דיר זאגען קאן.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0358_a">
+          <speaker>אסיפ</speaker>
+          <p>| וויא קאמסט דוא היער אין דיעזע קליידער<lb/>ערקלעהרע.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0359_a">
+          <speaker>לובאוו</speaker>
+          <p>|. צעגערע נישט שטעלע מיר נישט קיינע פֿראגען<lb/>דיא מינוטין זינד געצעהלט פֿערליערע זיא<lb/>נישט אומזאנסט דיא טהיערען פֿון גיפֿענגניסע<lb/>שטעהן יעטצט אפֿפֿען פֿאר דיר דיא וואכע<lb/>זינד יעטצט בלינד פֿאר דיך געה אביר ניין ניין<lb/>נאך איין מינוטע לאס מיך נאך איין מאהל<lb/>אין דיינע אויגין זעהן נאך איין איינציגיס<lb/>אויגענבליק איינען און דעם לעצטין<lb/>(פֿאַלט בעוואסטלאז אוף איהם) יעטצט געה</p>
+        </sp>
+        <fw type="pageNum">170723</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0360_a">
+          <speaker>אסיפ</speaker>
+          <p>| אה ענגיל אין מענשענגישטאלט זאגע מיר ווער<lb/>האט פֿיר מיינע בעפֿרייהונג געזארגט<lb/>געוויס דוא ניכט וואהר?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0361_a">
+          <speaker>לובאוו</speaker>
+          <p>| אום גאטטעס וויללען פֿערליערע נישט דיא<lb/>קאסטבארע צייט און געה.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0362_a">
+          <speaker>אסיפ.</speaker>
+          <p>| (ערשראקין) גאטט איך האבע גאר נישט בעמערקט<lb/>וואס מיט דיר געהט פֿאר מיינע אויגין<lb/>ווארען וויא פֿערשלאססען ליובאוו וואס איז מיט<lb/>לובאוו| דיר וואס זאל בעדייטין דיעזיס אויסזעהן</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0363_a">
+          <speaker>לובאוו.</speaker>
+          <p>| איך וואלטע דיך אום יעדען פרייז בעפֿרייען<lb/>אונד איך האבע דאפֿיער טייער בעצאהלט<lb/>איין זעהר טייערען פּרייז מיינע ליפפען<lb/>וואגין עס קוים אויסצושפרעכין אסיפ מיין<lb/>איינציגער הערצינס פֿריינד צעגערע נישט<lb/>רעטטע דיין לעבין וועלכיס איך האב מיט<lb/>מיין לעבין בעצאהלט.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0035.jpg"/>
+        <sp who="#iusf" xml:id="Meshumed_SP0364_a">
+          <speaker>אסיפ</speaker>
+          <p>|. ניין ניין איך וויל ניט בעפֿרייט וועהרין פֿון דעם קערקיר אלעס<lb/>וואס איך וויל וויסען וואס בעדייטעט דער קראנץ און<lb/>שלייער? האסטו פֿילייכט דיין האכצייט גיפֿייערט? זאגע<lb/>מיר ווער איז דער גליקליכיר?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0365_a">
+          <speaker>ליוב.</speaker>
+          <p>| דוע דערפֿסט אויף מיר ניט צערנען אסיפ ניין דאס<lb/>זאלסטו ניכט. איך וואלטע דיך רעטען פֿאן איינען זיכערן<lb/>טאדט ער האט מיר איבערצייגט דאס ער איז אומשטאנד ן<lb/><add>עס</add><lb/>צו טוהן אביר מיט דעם בעדונג איך זאל זיינע פֿרוי<lb/><add>זייט</add><lb/>וועהרין. זא ווירד ער דיך בעפֿרייען אונד זייד איינע<lb/>אלבע שטונדע בין איך זיינע פֿרוי.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0366_a">
+          <speaker>אסיפ.</speaker>
+          <p>| היממעל האבען דאס מיינע אהרען גיהערט? אדער איזט<lb/>עס נור איין טרוים? וואס האסטו געזאגט? וועסען פֿרוי<lb/>ביזטו?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0367_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| ניקיטעס.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0368_a">
+          <speaker>אסיפ.</speaker>
+          <p>| אה וואן דוא העטעסט 10000 קאנאנען אויף איין<lb/>מאהל אין מייניר ברויסט העריינגעשאסען וואלט מיין שמערץ<lb/>ניט אזוי גרויס גיוועהן. וויע דער יעצטיגער. אה ליובאוו וואמיט<lb/>האב איך עס ביי דיר פֿערדיענט?<stage type="delivery"> (וויינט)</stage></p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0369_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| דיא פֿערצווייפֿלונג האט מיך דאצו געטריעבען. איך<lb/>האב געוויסט וועלכע גרויזאמע מארטער דוא האסט<lb/>אויסצושטעהן. איך האב גיזעהן וואס פֿאר א<lb/>שרעקליכע ענדע דיך ערווארטעט. אנד ער האט מיר<lb/>געצייגט איין וועג וויע זא דוא זאלסט פֿאן דיין מארטיר<lb/><add>קיין זאך</add><lb/>ערלעזט וועהרין. נישט וואר מיר צו טייער דאפֿיער צו דאפֿיר צו<lb/>בעצאהלען. פֿאן דער קירכע ווא וויר ווארען יעצט<lb/>געטרויט בין איך איהער צו דיר געלאפֿען אום דיך צו<lb/>בעפֿרייען. איך האבע דיר גיבראכט פֿרייהייט. נעהמע פֿאן<lb/>מיר דאס גישאנק. איך האב דעם געוואגטען שריט געטהון<lb/>נור אויס ליעבע צו דיר. געה אונד לאסע מיך שטערבין היער<lb/>אויף דיינער שטעלע. געה מיין איינצינער זיעסער פֿריינד<lb/><add>געדענק</add><lb/>אונד געפֿענק דיע יעניגע וועלכע האט איהר לעבין פֿאר<lb/>דיין לעבין געאפפֿערט. געה און פֿערגעס ניעמאלס דיינע<lb/>טרייע ליובאוו. <stage type="business">(פֿאלט אין זייניר ארמס)</stage><lb/><stage type="entrance">ניקיטין </stage><stage type="business">(ווארפֿט ליובאווען)</stage></p>
+        </sp>
+        <fw type="pageNum">170724</fw>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0370_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| פֿאלשע! האסטו שאן זא שנעל פֿערגעסען דאס דוא ביזט<lb/>מיינע פֿרוי?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0371_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| איך בין דאך אין דיינים נאמען היער געקאמען איהם<lb/>זאגען דאס דיע טיער איזט פֿיר איהם אפֿען</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0372_a">
+          <speaker>ניקיט.</speaker>
+          <p>| יא דיע טיהר אביר ניט דיינע הענד.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0373_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| ווילסטו מיר פֿערביטען פֿון מיינען פֿריינד אבשיעד צו נעהמין?</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0036.jpg"/>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0374_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| נון אלזא ביזטו שאן איינמאהל פֿערטיג?</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0375_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| פֿערטיג. <stage type="delivery">(צו יאסיפ) </stage>יעצט געה.</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0376_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| שטעה. ניין דוא געהסט ניט מעהר. יעצט איז שאן צו שפעהט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0377_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| שורקע.</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0378_a">
+          <speaker>ניקיטין.</speaker>
+          <p>| ליובאוו. דיע ליעבע פֿין דיין פֿריינד האט דיר איין וועניג דיין<lb/>קאפף פֿערדרעהט? האסט פֿערגעסען דאס צו דיין מאנן<lb/>מוזטו מיט מעהר רעספעקט שפרעכען? איך האב דיר ערלויבט<lb/>נור איין פאאר סעקונדען נור פֿאן איהם אבשיעד צו<lb/>נעהמין. אונד דוא האסט דיא אייניגע סעקונדען<lb/>פֿערבראכט אין פלוידערווין. יעצט איזט עס שאן צו<lb/>שפעהט. דיין פֿריינד בלייבט היער. אונד דוא קאם מיט<lb/>מיר מיט דיינען מאנן.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0379_a">
+          <speaker>ליובאוו.</speaker>
+          <p>| לאז מיך דוא באנדיט. קאם ניט אין מייניר נעהע. דיינע פֿרוי<lb/>בין איך זא גלויבסטו? חחח אונד דוא האסט געגלויבט<lb/>דאס איך ווערדע מיך לאסען אומארמען פֿאן זא איינען עקעלאפֿטען<lb/>קראקאדיל וויע דוא. דיינע פֿרוי ניעמאלס. דיינע בין איך<lb/>נור גיווארען אום צו רעטען מיין געליעבטען. אביר דיך האס איך אין<lb/><add>איהר האנד</add><lb/>פֿערהאכט. איינע זאכע האט דיר ביים אלטאר גערייכט איינים<lb/><add>דען</add><lb/>טויטען קערפיר האסטו געהייראטעט. בעפֿאר איך האבע דיר מיינע<lb/>האנד גערייכט וואר אך שאן פֿערגיפֿטעט. לעבע וואהל מיין<lb/>ליעבער הערצינספֿריינד אסיפ.</p>
+        </sp>
+        <fw type="pageNum">170725</fw>
+        <sp who="#iusf" xml:id="Meshumed_SP0380_a">
+          <speaker>אסיפ.</speaker>
+          <p>| אה לובאוו וואס האסטו געטהאן? לאסע מיך אין דיעזער<lb/>שטעלע שטערבין. לויפֿף שנעל נעהמע געגענ גיפֿט<lb/>בעפֿאר עס ווערד צו שפעהט.</p>
+        </sp>
+        <sp who="#liubv_bulvn" xml:id="Meshumed_SP0381_a">
+          <speaker>לובאוו.</speaker>
+          <p>| ניין עס איז שאן צו שפעהט איך שטארב גערן. אביר דוא<lb/>פֿילייכט אזיט עס פֿיר דיך נאך ניט צו שפעהט. <stage type="business">(גיט אים רעווילוויר)</stage><lb/>היער האב איך דיר גיבראכט איין מיטעל אין געפֿאהר.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0382_a">
+          <speaker>אסיפ.</speaker>
+          <p>| איך דאנק דיר פֿאר דעם געשאנק.</p>
+        </sp>
+        <sp who="#nikli_nikitin" xml:id="Meshumed_SP0383_a">
+          <speaker>ניקיט.</speaker>
+          <p>| טייפֿעל אונד העלע וואס פֿיר איין העלישיס פֿייער עס<lb/>ברענט אין מייניר ברוסט. אה דוא <foreign>קאנאליע</foreign> גוט דוא<lb/>האסטיך פֿערגיפֿטעט דוא האסט נאך אייניגע<lb/>מינוטען צו לעבין אונד דיעזע ווערדע איך דיר <lb/>פֿערביטערן. מיט דיינע אויגען ווירסטו זעהן וויע דיין<lb/><metamark function="musicCue" ana="#cue-in" place="inline">IR</metamark><lb/>פֿריינד ווירד פֿאן דיע סאלדאטען ערמארדעט ווערדען.</p>
+        </sp>
+        <sp who="#iusf" xml:id="Meshumed_SP0384_a">
+          <speaker>אסיפ.</speaker>
+          <p>|<stage type="business"> (לויפֿט אונטער שליידירט איהם שטיקט איהם און שיעסט איהם)</stage><lb/>יעצט ווירסטו שאן אויף עביג שטום בלייבען. אה ערשענדע<lb/>טיראנייא האסטו נאך מעהר אפפֿער פֿערשלינגע אפפֿער<lb/>נאך אפפֿער. דוא אונזעטליכע בלוט זויגערין אביר דיין ענדע<lb/>איזט שאן נישט ווייט. זעהסטו דען ניט דיע געטליכע שטראלען<lb/>דער פֿרייהייט דיא קאמט מיט ריעזען שריטטע אום דיך<lb/>גענצליך צו פֿערניכטין. אה געטין דער פֿרייהייט. איך בעגריעסע<lb/>דיך. איך שטערבע פֿיר דיך. <stage type="business">(שיסט זיך. פֿאלט)</stage><lb/><metamark function="musicCue" ana="#cue-out" place="inline">R II</metamark> <metamark function="sceneCue" ana="#cue-out" place="inline">S II</metamark><lb/><stage type="setting">פֿארהאנג</stage></p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0037.jpg"/>
+        <trailer>ענדע פֿיערטען אקט.</trailer>
+        <fw type="pageNum">170726</fw>
+      </div>
+      <div type="addendum">
+        <stage type="delivery">פֿערוואנדלונג</stage>
+      </div>
+      <div type="act" n="5" xml:id="Meshumed_Act5">
+        <head>אדער דיע 5טע אקט</head>
+        <stage type="business">(מיט א זאק)</stage>
+        <stage type="setting">א סטריט אין נע יארק</stage>
+        <stage type="entrance">מעכיל</stage>
+        <sp who="#mekhil" xml:id="Meshumed_SP0385_a">
+          <speaker>מעכיל.</speaker>
+          <p>| <foreign>אכלל</foreign> האט בין איך שאין אויך דוא אין אמעריקא. <foreign>שלם הלכם</foreign> אמעריקא<lb/><foreign>שלום הלכים</foreign> וואס טוהסטו? געלויבט איז גאטט מען זעהט זיך<lb/>געזונטערהייט וויע איך בין א יוד ווען איך זאל מיך ניט שעהמען<lb/>וואלט איך געקושט דיע שטייניר וואס איך טרעהט אויף<lb/>זעה... א <foreign>מיחייע</foreign> עס פֿארגעהט מיר גור פֿריי<lb/>דער אטהעם עפיס דאכט זיך מיר אז איך<lb/>בין גור ניי גיבוירין. וויא איז ערגיץ א <foreign>קאזאק</foreign><lb/>נישטו א <foreign>זשאנדאר</foreign>. נישטו אליקסאנדער <foreign>ימח שמו</foreign><lb/>מיט א נייען <foreign>אוקאז</foreign> <foreign>ברוך שפטרוני</foreign> דוא קען<lb/>איך ווואהנין וווא איך וויל מע טרייבט מיך<lb/>ניט וויל איך שטעה איך וויל איך זיץ<lb/>איך. איך בין טאקי אביסעל מיעד פֿון<lb/>דעם ווייטין וועג לאס איך מיך אביסיל<lb/>אוברוהען. <stage type="business">(זעצט זיך)</stage> א מיחיי גור נישטו<lb/>ווער זאל מיך א דעהי זוגין.<lb/>פֿאליסמאן.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0038.jpg"/>
+        <sp who="#flismn" xml:id="Meshumed_SP0386_a">
+          <speaker>פֿאליס</speaker>
+          <p>| אה. סען.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0387_a">
+          <speaker>מעכיל</speaker>
+          <p>| א פֿריילאנד פֿרייע מענשין עפיס א קלייניגקייט<lb/>דוס ווארט פֿריי</p>
+        </sp>
+        <sp who="#flismn" xml:id="Meshumed_SP0388_a">
+          <speaker>פאליסמ</speaker>
+          <p>.| <foreign>מוף אן</foreign>. (שטורקיט איהם) וואס איז דוס א <foreign>רוסקע</foreign><lb/><foreign>טשעלעוועק</foreign>.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0389_a">
+          <speaker>מעכיל.</speaker>
+          <p>| איך הייס נישט איוואן איך בין א יוד<lb/>איך הייס ר׳ מעכיל איך בין גיקומין פֿין<lb/>פֿינסטערן רוסלאנד אין אייער פֿריי אמעריקע</p>
+        </sp>
+        <sp who="#flismn" xml:id="Meshumed_SP0390_a">
+          <speaker>פאליסמ.</speaker>
+          <p>| <foreign>מוף אן</foreign>. (שטורקיט איהם)</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0391_a">
+          <speaker>מעכיל.</speaker>
+          <p>| <foreign>רב</foreign>שע וואס איז דער <foreign>חיליק</foreign> דוא איז אויך<lb/>דיא <foreign>זשאנדארן</foreign>.</p>
+        </sp>
+        <sp who="#flismn" xml:id="Meshumed_SP0392_a">
+          <speaker>פאליסמ.</speaker>
+          <p>| <foreign>מוף אן</foreign>.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0393_a">
+          <speaker>מעכיל.</speaker>
+          <p>| <foreign>רב</foreign>שע לאז מיך <foreign>חאטשי</foreign> נעמען מיין זאק מיט<lb/>מיין פֿערמעגין<stage type="exit"> (אב)</stage></p>
+        </sp>
+        <sp who="#flismn" xml:id="Meshumed_SP0394_a">
+          <speaker>פֿאליסמ.</speaker>
+          <p>| <stage type="exit">(אב)</stage><lb/>מעכיל</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0395_a">
+          <speaker>מעכיל.</speaker>
+          <p>| <foreign>ברוך שגיל לחיי בים טובות שגמל נודה</foreign><lb/>אוי איך בין קוים מיט דעם לעבין ארויס<lb/>אזוי אזוי. אט האב איך דיר גיזאגט <foreign>שלום הליכים</foreign><lb/>און אט האסטו מיר געענפֿירט <foreign>הלכים שלום</foreign><lb/>און מיינע צעבראכינע פלייציס נעביך <foreign>אפנים</foreign> איך האב<lb/>דוא גיהאט א שטיקיל <foreign>טועת</foreign> עס איז עפיס גור ניט<lb/>אזוי וויא איך האב מיר פֿארגישטעלט דוס האט<lb/>מיר דער <foreign>זשאנדאר</foreign> פֿערשטעהן גיגעבין אז דוא<lb/>איז אויך דוא <foreign>זשאדארען</foreign> פונקט וויא אין רוסלאנד<lb/>און לויט מיין <foreign>דעה</foreign> דאס ארט און לויט איך<lb/>פֿיהל  האט דער היזיגיר <foreign>זשאנדאר</foreign> א <lb/>גאנצי שטארקי <foreign>דע</foreign>ה, פונקט וויא דער<lb/>היימישער <foreign>זשאנדאר</foreign> נור יעניר שלוגט מיט א <foreign>נאגייקע</foreign><lb/>און דער היגיר שלוגט מיט א גאנצין <foreign>ביטשיק</foreign><lb/>יעניר האט מיך גירועפֿין <foreign>זשיד</foreign> און דער<lb/>האט מיר א נומין גיגעבין איוואן נור אויב אזוי<lb/>בלייבט דאך ווייטער דיא <foreign>קשה</foreign> וואס איז דער<lb/><foreign>חיליק</foreign>?<lb/><stage type="entrance">אמעריקאנער יוד</stage></p>
+        </sp>
+        <fw type="pageNum">170727</fw>
+        <sp who="#mekhil" xml:id="Meshumed_SP0396_a">
+          <speaker>מעכיל.</speaker>
+          <p>| זייטשי <foreign>מוחל</foreign> איהר זייט א היגער? איך געה שוין<lb/>ארום פֿון גאנץ פֿריה צו פֿיעס און קען נישט מיך<lb/>דערפֿרעגין <foreign>אפשיר</foreign> ווייסט איהר וויא עס<lb/>וואהנט דוא אייניר פֿאוועל קוטער.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0039.jpg"/>
+        <sp who="#iud" xml:id="Meshumed_SP0397_a">
+          <speaker>יוד</speaker>
+          <p>. | פֿאוויל קוטער?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0398_a">
+          <speaker>מעכיל.</speaker>
+          <p>| יא פֿאוועל קוטער. פֿאוועל האט ער נאך<lb/>אין דער היים גיהייסין ער איז מיינס א פריינט<lb/>און מען זוגט האט ער זיך דוא א נומין גיגעבין<lb/>קוטער.</p>
+        </sp>
+        <sp who="#iud" xml:id="Meshumed_SP0399_a">
+          <speaker>יוד.</speaker>
+          <p>| פֿילייכט הייסט ער פֿאוועל קאַטער דוס הייסט<lb/>צישניידער</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0400_a">
+          <speaker>מעכיל.</speaker>
+          <p>| קוטער צי קאטער וואס ווייס איך <foreign>אפֿשיר</foreign> הייסט<lb/>ער אין יודישין קוטער פֿיין אויף דייטש<lb/>קאַטער וויא קען איך איהם ערגיץ<lb/>געפֿינין.</p>
+        </sp>
+        <sp who="#iud" xml:id="Meshumed_SP0401_a">
+          <speaker>יוד.</speaker>
+          <p>| קענט איהר מיר נישט זוגין זיין <foreign>סטריט</foreign>?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0402_a">
+          <speaker>מעכיל.</speaker>
+          <p>| זיין <foreign>סטריט</foreign>! איך וועל אייך זוגין אין דער<lb/>היים האט ער זיך גיפֿיהרט גור אויף א <lb/>שיינים <foreign>סטריה</foreign> דוא ווייס איך נישט.</p>
+        </sp>
+        <sp who="#iud" xml:id="Meshumed_SP0403_a">
+          <speaker>יוד.</speaker>
+          <p>| איך מיין נישט <foreign>סטריה</foreign> איך מיין דיא גאס.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0404_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אה דיא גאס גידענק איך נישט <foreign>אקוראט</foreign><lb/>עפיס גידענק איך יא. איך האב מיר גימכט<lb/>א <foreign>סימין</foreign> נוך א זויער מאכיל. איז נישט א גאס<lb/>וואס זיא הייסט <foreign>בארשט</foreign>. ניין. ניין. ווארט נור<lb/><foreign>אפֿשיר</foreign> לימיני אויך נישט. שטעהט <foreign>אפֿשיר</foreign><lb/>עססיג.</p>
+        </sp>
+        <fw type="pageNum">170728</fw>
+        <sp who="#iud" xml:id="Meshumed_SP0405_a">
+          <speaker>יוד.</speaker>
+          <p>| וויא עס ווייזט אויס זענט איהר נוך א גריענער</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0406_a">
+          <speaker>מעכיל</speaker>
+          <p>| איך ווייס נישט חלעבין צי בין איך גריען<lb/>צי געהל איך האב מיך נאך היינט נישט<lb/>אונגישפיגילט</p>
+        </sp>
+        <sp who="#iud" xml:id="Meshumed_SP0407_a">
+          <speaker>יוד</speaker>
+          <p>| זענט איהר א <foreign>פונים</foreign> ערשט נישט גיקימען קיין<lb/>אמעריקע אט האסטו דיר א גריעניר מיט גלייכע<lb/>ווערטליך אויף מאיין קאפ. <stage type="exit">(אב)</stage><lb/><stage type="entrance">פֿאוויל</stage></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0408_a">
+          <speaker>מעכיל</speaker>
+          <p>| זייט אזוי גיט ווייסט איהר ניט וויא עס וואהנט<lb/>דוא אייניר מיט דעם נומין קוטער אדער<lb/>קאטער ווייסט איהם דער גיטיר יאהר.</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0409_a">
+          <speaker>פֿאוויל</speaker>
+          <p>| מעכיל דוא דערקענסט מיך נישט.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0410_a">
+          <speaker>מעכיל</speaker>
+          <p>| אוי איז מיר גישעהן. פֿאוויל דוא ביזט עס<lb/>מיין הערץ פֿריינד.</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0411_a">
+          <speaker>פֿאוו.</speaker>
+          <p>| וואסזשע מאכט איהר מיין פריינד?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0412_a">
+          <speaker>מעכיל</speaker>
+          <p>| געלויבט איז <foreign>השים</foreign> מי זעהט זיך גיזינטירהייט<lb/>און איך האב שוין קיין כ<foreign>וח</foreign> מיך ארומצושלעפען.<lb/>דיך זוכינדיג יא אביע איך האב דיך<lb/>גיפֿינין.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0040.jpg"/>
+        <sp who="#fv" xml:id="Meshumed_SP0413_a">
+          <speaker>פֿאוו.</speaker>
+          <p>| זוגט מיר איך בייט אייך זענט איהר אליין גיקימין?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0414_a">
+          <speaker>מעכיל.</speaker>
+          <p>| וואס פֿאלט דיר אן? וואס הייסט אליין איך האב<lb/>זיי איבירגלאזט ביים וואסער און איך האב<lb/>מיך אוועק גילאזט דיך צו זיעכען.</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0415_a">
+          <speaker>פֿאוועל</speaker>
+          <p>| וואסזשע איהר האט נאך איימיצין מיט<lb/>זיך?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0416_a">
+          <speaker>מעכיל.</speaker>
+          <p>| מיין גאנץ פֿערמעגין מיין ווייב שרקה<lb/>און מיינע 8 שטיקליך קליין ווארג.</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0417_a">
+          <speaker>פֿאוו</speaker>
+          <p>.| קיין <foreign>ע.ה</foreign> 8 שטיקליך.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0418_a">
+          <speaker>מעכיל.</speaker>
+          <p>| ערזשע מיך אויס פֿראנטינו אז איך האב דיך<lb/>שוין אובגירזיעכט וועסטו אונז <foreign>אוואדע</foreign> מוזין אריין<lb/>נעמין צו דיר אויף דיא ערשטע עטליכע נעכט<lb/>ס׳וועט דיר גור נישט העלפֿין.</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0419_a">
+          <speaker>פֿאוועל</speaker>
+          <p>| זארגט אייך ניט ר' מעכיל איך וועל שוין<lb/>זעהן פֿון איינעריט וועגין עפיס צו טוהן<lb/>איך בין גאטט זיי דאנק א מענש מיט לייטען<lb/>גלאַך דוא אין אמעריקא לאזט מען<lb/>קיין פֿרעמדין הערפֿאלין ווערין</p>
+        </sp>
+        <fw type="pageNum">170729</fw>
+        <sp who="#mekhil" xml:id="Meshumed_SP0420_a">
+          <speaker>מיכעל.</speaker>
+          <p>| אויב אזוי ביזט א מענש. לאנג לעבין זאלסטו<lb/>פֿאוועל דוא ווייסט איך בין א גאנציר<lb/>אמעריקאנער.</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0421_a">
+          <speaker>פֿאוו.</speaker>
+          <p>| וואס הייסט?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0422_a">
+          <speaker>מעכיל</speaker>
+          <p>| א היגער <foreign>זשאנדאר</foreign> האט שוין אויף מיר גילעגט<lb/>זיין <foreign>חותם</foreign>.<stage type="business"> (צייגט פלעצי) </stage>זאג מיר פֿאוועל אין<lb/>אמעריקע טרייבט מען אונז יודען?</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0423_a">
+          <speaker>פֿאוועל</speaker>
+          <p>| בעהיטע גאטט</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0424_a">
+          <speaker>מעכיל</speaker>
+          <p>| פֿארוואסזשע האט ער מיך גיטריעבען?</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0425_a">
+          <speaker>פֿאוו.</speaker>
+          <p>| ווייל איהר זעהט אוס פֿאר א <foreign>קבצין</foreign>?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0426_a">
+          <speaker>מעכיל.</speaker>
+          <p>| אזוי? איצט פֿערשטעה איך שוין אויף אמעריקאניר<lb/><foreign>לשון</foreign> הייסט <foreign>קאבצין</foreign> א איוואן. </p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0427_a">
+          <speaker>פֿאוו.</speaker>
+          <p>| וואס?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0428_a">
+          <speaker>מעכיל</speaker>
+          <p>| ער האט גיהאלטין אין איין שרייען איוואן.<lb/>און גיהאקט און קראט אריין?</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0429_a">
+          <speaker>פֿאוועל</speaker>
+          <p>| אה ער האט גימאכט שרייען <foreign>מוף אן</foreign>. דוס<lb/>הייסט איהר זאלט ווייטער געהן.</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0430_a">
+          <speaker>מעכיל</speaker>
+          <p>| א איוואן הייסט איהר זאלט ווייטיר געהן.<lb/>דוס הייסט <foreign>פשוט</foreign> דלגעה <foreign>הולך קבצין</foreign>.<lb/>אין דרערד אריין <foreign>קבצין</foreign>. זוג מיר נור<lb/>פֿאוועל וויא איך זעה ביסטו דוא<lb/>אויך א מאכער און <foreign>אפֿשיר</foreign> גור אייניר פֿון<lb/>דיא <foreign>נאטשאלסטווא</foreign>.</p>
+        </sp>
+        <pb facs="Lateiner_Meshumed-0041.jpg"/>
+        <sp who="#fv" xml:id="Meshumed_SP0431_a">
+          <speaker>פֿאוו</speaker>
+          <p>.| וואס מיינט איהר דאמיט?</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0432_a">
+          <speaker>מעכיל</speaker>
+          <p>| עפיס ווייסטו אויס וויא א גאנציר גענעראל</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0433_a">
+          <speaker>פֿאוו</speaker>
+          <p>.| היינט איז דער ערשטיר מאי</p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0434_a">
+          <speaker>מעכיל</speaker>
+          <p>| וואס איז אוף דיר אזא <foreign>גדולה</foreign>?</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0435_a">
+          <speaker>פֿאוול</speaker>
+          <p>| דער ערשטיר מאי איז אזא טוג וואס אלע<lb/>פֿעריינען פֿין דער ארבייטס קלאסע.<lb/>נעמין זיך צוזאמען און מארשיערען אויס<lb/>אלע גאסען פֿין דער שטאדט אום צו <lb/>זאגען דיא קאפיטאליסטין וויא שטארק<lb/>זיי זענין וויא זיי געהן האנד אין האנד<lb/>איינער פֿאר אלע און אלע פֿאר איינים<lb/><stage type="delivery">מי הערט מוזיק</stage></p>
+        </sp>
+        <sp who="#mekhil" xml:id="Meshumed_SP0436_a">
+          <speaker>מעכיל</speaker>
+          <p>| איך זעה נור עפיס גן גילויף מענשין מיט<lb/>מוזיק.</p>
+        </sp>
+        <sp who="#fv" xml:id="Meshumed_SP0437_a">
+          <speaker>פֿאוו.</speaker>
+          <p>| אט דוס מארטשען דיא ארבייטער פֿון<lb/>מיין <foreign>יוניאן</foreign> איך מוז געהן ווייל איך<lb/>בין דאמיט מארשאל</p>
+        </sp>
+        <fw type="pageNum">170730</fw>
+        <sp who="#mekhil" xml:id="Meshumed_SP0438_a">
+          <speaker>מעכיל.</speaker>
+          <p>| א מארשאל נעמסט <foreign>חאט</foreign>שי א שעהן גיהאלט<lb/>דערפֿאר?<lb/>(<stage type="exit business">פֿאוועל אב מארטש דערוך מעכיל נייגט</stage><lb/><stage type="business">(זיך פֿאר אלעמען.</stage><lb/><stage type="setting">פֿארהאנג</stage></p>
+        </sp>
+        <trailer>ענדע</trailer>
+        <pb facs="Lateiner_Meshumed-0042.jpg"/>
+        <pb facs="Lateiner_Meshumed-0043.jpg"/>
+        <pb facs="Lateiner_Meshumed-0044.jpg"/>
+      </div>
+    </body>
+  </text>
+</TEI>
