@@ -1,0 +1,2746 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="yid-di-tsvey-tnoim">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">די צווי תנאים</title>
+        <title type="sub">Di Tsvey Tnoim</title>
+        <author>Moyshe Hurwitz</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>YiDraCor</publisher>
+        <pubPlace>Jerusalem</pubPlace>
+        <date>2026</date>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>די צווי תנאים</title>
+          <author>Moyshe Hurwitz</author>
+          <idno type="transkribus">https://app.transkribus.org/collection/2372172/doc/838430</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <classDecl>
+        <taxonomy xml:id="prod-cues">
+          <desc>Regie/prompter cue notation of the handwritten witnesses. The letter names the family (R = Returnel/ritornello, S = Szene); the Roman numeral is an in/out bracket state, not a serial number, which is why III never occurs. N/No + Arabic numeral is the serial of the musical number.</desc>
+          <category xml:id="cue-in">
+            <catDesc>Opening bracket of a cue: RI, IR, R.I, '1 Returnell:', and the bare I of MS_BasKoyen where the letter is dropped.</catDesc>
+          </category>
+          <category xml:id="cue-out">
+            <catDesc>Closing bracket of a cue: RII, IIR, R.II, 'II Return:', bare II. At a scene cue it falls on Vorhang/Verwandlung.</catDesc>
+          </category>
+          <category xml:id="cue-genre">
+            <catDesc>Names the kind of musical number rather than bracketing it: Chor, Marsch, Tanz, Terzett, Quarted, Duet, arya, Refrein. Carries no in/out state.</catDesc>
+          </category>
+          <category xml:id="cue-number">
+            <catDesc>The serial of the musical number: N, No 4., N=3. @n carries the normalised value.</catDesc>
+          </category>
+        </taxonomy>
+      </classDecl>
+    </encodingDesc>
+    <profileDesc>
+      <particDesc>
+        <listPerson>
+          <person xml:id="rbi_iukhnn_br_nskhh">
+            <persName>רבי יוחנן בר נסחה</persName>
+          </person>
+          <person xml:id="izrelis">
+            <persName>יזראעלית</persName>
+          </person>
+          <person xml:id="rbi_shmeun_bn_lkish">
+            <persName>רבי שמעון בן לקיש</persName>
+          </person>
+          <person xml:id="bn_fdus">
+            <persName>בן פּדות</persName>
+          </person>
+          <person xml:id="tsenbi">
+            <persName>צענאַביאַ</persName>
+          </person>
+          <person xml:id="hiln">
+            <persName>הילנא.</persName>
+          </person>
+          <person xml:id="br_nzir">
+            <persName>בר נזיר</persName>
+          </person>
+          <person xml:id="khgle">
+            <persName>חגלע</persName>
+          </person>
+          <person xml:id="nkhmn">
+            <persName>נחמן</persName>
+          </person>
+          <person xml:id="fldsh">
+            <persName>פלדש</persName>
+          </person>
+          <person xml:id="khr_fun_royber">
+            <persName>קאהר פֿון רויבער</persName>
+          </person>
+          <person xml:id="snim">
+            <persName> תנאים,</persName>
+          </person>
+          <person xml:id="sldten">
+            <persName>סאָלדאַטען,</persName>
+          </person>
+          <person xml:id="hf_herren_un_dmen">
+            <persName>האָפֿ העררען און דאַמען,</persName>
+          </person>
+          <person xml:id="msim">
+            <persName>מתים</persName>
+          </person>
+          <person xml:id="mlkhim">
+            <persName>מלאכים</persName>
+          </person>
+          <personGrp xml:id="chor">
+            <name>כאָהר</name>
+          </personGrp>
+          <personGrp xml:id="ndere">
+            <name>אַנדערע</name>
+          </personGrp>
+        </listPerson>
+      </particDesc>
+    </profileDesc>
+  </teiHeader>
+  <text xml:id="DiTsveyTnoim" type="DiTsveyTnoim">
+    <front>
+      <castList>
+        <head>פּערזאָנען</head>
+        <castItem>
+          <role corresp="#rbi_iukhnn_br_nskhh">רבי יוחנן בר נסחה</role>
+        </castItem>
+        <castItem>
+          <role corresp="#izrelis">יזראעלית</role>
+        </castItem>
+        <castItem>
+          <role corresp="#rbi_shmeun_bn_lkish">רבי שמעון בן לקיש</role>
+        </castItem>
+        <castItem>
+          <role corresp="#bn_fdus">בן פּדות</role>
+        </castItem>
+        <castItem>
+          <role corresp="#tsenbi">צענאַביאַ</role>
+        </castItem>
+        <castItem>
+          <role corresp="#hiln">הילנא.</role>
+        </castItem>
+        <castItem>
+          <role corresp="#br_nzir">בר נזיר</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khgle">חגלע</role>
+        </castItem>
+        <castItem>
+          <role corresp="#nkhmn">נחמן</role>
+        </castItem>
+        <castItem>
+          <role corresp="#fldsh">פלדש</role>
+        </castItem>
+        <castItem>
+          <role corresp="#khr_fun_royber">קאהר פֿון רויבער</role>
+        </castItem>
+        <castItem>
+          <role corresp="#snim"> תנאים,</role>
+        </castItem>
+        <castItem>
+          <role corresp="#sldten">סאָלדאַטען,</role>
+        </castItem>
+        <castItem>
+          <role corresp="#hf_herren_un_dmen">האָפֿ העררען און דאַמען,</role>
+        </castItem>
+        <castItem>
+          <role corresp="#msim">מתים</role>
+        </castItem>
+        <castItem>
+          <role corresp="#mlkhim">מלאכים</role>
+        </castItem>
+      </castList>
+    </front>
+    <body>
+      <pb n="1" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0001.jpg"/>
+      <pb n="2" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0002.jpg"/>
+      <pb n="3" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0003.jpg"/>
+      <pb n="4" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0004.jpg"/>
+      <pb n="5" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0005.jpg"/>
+      <stage type="setting">יאַהרעס צייטען. פֿריהלינג זאָמער. הערבסט, ווינטער.</stage>
+      <stage type="location">רעכטס און לינקס פֿון שוישפּיעלער.</stage>
+      <div type="act" n="1" xml:id="DiTsveyTnoim_Act1">
+        <head>ערשטער אקט.</head>
+        <stage type="setting">(געבירגע, הינטן איינגענגע און אונטער איהר דיילע העהלען.)</stage>
+        <stage type="setting">(ווי פֿאָרהאַנג אויף גרויסער שטורם און ווינד)</stage>
+        <stage type="business">(חגלה שטעקט ארויס דעם קאָפּף פֿון העהלע)</stage>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0001_a">
+          <speaker>חגלה</speaker>
+          <p>הי דאָס הייסט אַ שטורם געוועזען. (<stage type="exit">צוריק אב)</stage><lb/>בן פּדות N</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0002_a">
+          <speaker>בן פּדות</speaker>
+          <p>(<stage type="delivery">זינגט</stage>)<lb/><stage type="business">(ציהעט זיך צוריק, בעהאַלט זיך)</stage><lb/><stage type="business">(קאָהר טראָגען אַ קאַסטען ווי אלוה מיט שטור קאַטצען</stage>)</p>
+        </sp>
+        <sp who="#chor" xml:id="DiTsveyTnoim_SP0003_a">
+          <speaker>קאָהר:</speaker>
+          <p>ענגעל געביטען...<lb/><stage type="costume">(נאָך דעם זינגען וואַרפֿען זיי אַוועק די שוואַרצע דאָמינאָס שטעלען זיך</stage><lb/><stage type="business">קניען פֿאַר'ן אָרוּין)</stage><lb/> חגלה. <stage type="location">(פֿון דער העהלע)</stage></p>
+        </sp>
+        <pb n="6" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0006.jpg"/>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0004_a">
+          <speaker>חגלה</speaker>
+          <p>. גענוג כּורְעִים געלעגען! אַלע סאָלדאַטען זעגען שוין אַריבער דעם טיבער<lb/>פֿלוסס!</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0005_a">
+          <speaker>אללע</speaker>
+          <p>. שוין? <stage type="business">(שטעהן אויף)</stage></p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0006_a">
+          <speaker>פּלדש.</speaker>
+          <p>מעג מען שוין דעם מת מצוה זיין רעכט טהון?</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0007_a">
+          <speaker>חגלה.</speaker>
+          <p>נו חברה קדושה האָט איהר חאָטש עפּעס אַ פֿעט מת געבראַכט?</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0008_a">
+          <speaker>פּלדש</speaker>
+          <p>. דאס וועלען מיר באַלד זעהן. (עפֿענט דעם קאַסטע) ווארפֿען זאַכען ארויס)</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0009_a">
+          <speaker>אללע</speaker>
+          <p>.<stage type="business"> (ווארפֿען זאַכען)</stage> דאָס איז פֿון דיין כּבוד וועגען.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0010_a">
+          <speaker>פּלדש</speaker>
+          <p>. <stage type="business">(נעהמט אַרויס אַ גילדען קעסטעלע)</stage> שאַט, אָט איז דער אוצר.<stage type="business"> (מען נעהמט אַרויס</stage><lb/><stage type="business">אַ בריעף פֿון קעסטעלע, אַלע שטעלען אַרום)</stage></p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0011_a">
+          <speaker>בן פּדות</speaker>
+          <p>. (פֿון זיין פֿערשטעק ארויס) די באַנדיטען האָבען מיין וואָגען בערויבט און דאָס איז<lb/><add>קאסע</add><lb/>מיין רייזע קאָפֿער (<stage type="exit">אָב</stage>)</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0012_a">
+          <speaker>חגלה.</speaker>
+          <p>(ו<stage type="business">ועלכע האָט וועהרענד דער צייט בריעף געלעזען)</stage> אין דעם בריעף זעה איך<lb/>ווי עס ווערד פֿיעל מאָל דער מאַנט דער נאַמען פֿון אונזער רויבער הויפט מאַן<lb/>שמעןן בר. לקיש. דער מוז זיין אַ שפּיאָן,. און פֿאַר וואָס האָט איהר דעם<lb/>שפּיאָן ניט געכאַנּט. און ניט אַהער געבראַכט אין איינעם מיט דעם קאַסטען?</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0013_a">
+          <speaker>פּלדש.</speaker>
+          <p>מיר האָבען געטראָפֿען אַ וואָגען שטעהן אין טהאָל אָהן אַ ב"ב האָבען מיר<lb/>דעם קאַפֿעע דערווייל צוגענומען און געגאַנגען זוכען דעם ב"ב האָבען מיר<lb/>דערזעהן סאָלדאַנען געהן. זיעבען. — שנעלל האָבען מיר זיך פֿערקליידט<lb/>פֿאַר אַ חברה קדושה וואָס טראָגען אמת מקבר זיין אין די מערות פֿון<lb/>טבריה.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0014_a">
+          <speaker>חגלה.</speaker>
+          <p>אַזוי הערט! איהר האָט געבראַכט דעם ב"ב קאַסטען. און איך האָב געכאַפּט<lb/>דעם קאַסטענ'ס ב"ב, אָט שטעהט ער דאָרטען און הערט זיך אונטער. (<stage type="business">צייגט אָן</stage><lb/><stage type="location">זיין פּלאַטץ</stage>)</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0015_a">
+          <speaker>אללע</speaker>
+          <p>. אַ שפּיאָן, אַפֿעררעטער טהעטעט איהם ! (<stage type="business">שלעפֿען פֿאַרנע בן פּדות ווילען איהם</stage><lb/><stage type="business">ערגרייפֿען</stage>)</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0016_a">
+          <speaker>פּלדש.</speaker>
+          <p>שטעהט. צוערשט אויסהערען וואָס ער וועט זאָגען.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0017_a">
+          <speaker>חגלה.</speaker>
+          <p>צוערשט איהם בעזוכען. אויף מרריען גנבישע פּלעצער צו זוכען האָט<lb/>חגלה די אַלטע גנבטה 101 יאָהר פּֿראַקטיצירט.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0018_a">
+          <speaker>בן פּדות.</speaker>
+          <p>איך האב קיין ווערט זאַכען, אויסער מיין לעבען. און וואס פאַר אַ<lb/>ווערט קענן עס ביי אייך האָבען?</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0019_a">
+          <speaker>פּלדש.</speaker>
+          <p>אַזוי רעדט יעדער שפּיאָן. דו האָסט דיך אונטער געהערט צו אונזער<lb/>געהיימניסס, טעטעט איהם!</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0020_a">
+          <speaker>אללע</speaker>
+          <p>. טאָדט דעם שפּיאָן. <stage type="business">(ווילען שטעכען.)</stage></p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0021_a">
+          <speaker>חגלה</speaker>
+          <p>. לאָזט מיר די מציה, איך וויל דאָס עויף כּשר מאַכען. (<stage type="business">וויל איהם שטעכען)</stage><lb/><stage type="entrance">Auftrit</stage> (שמעון צענאביא <stage type="location">(פֿון העהלע</stage></p>
+        </sp>
+        <sp who="#beyde" xml:id="DiTsveyTnoim_SP0022_a">
+          <speaker>ביידע.</speaker>
+          <p>שטעהט!</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0023_a">
+          <speaker>צענאַב:</speaker>
+          <p>| איך בעפֿעהלע!</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0024_a">
+          <speaker>חגלה.</speaker>
+          <p>עס לעבע די באַנדיטן קעניגין בת ציביע!</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0025_a">
+          <speaker>פּלדש.</speaker>
+          <p>עס לעבע דער הויפּטמאַן בן לקיש!</p>
+        </sp>
+        <pb n="7" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0007.jpg"/>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0026_a">
+          <speaker>שמעון</speaker>
+          <p>. וויעדער לוסט נאָך מאָרד? וויעדער לוסט נאָך מענשענבלוט?</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0027_a">
+          <speaker>צענאַביאַ</speaker>
+          <p>. ווירד איהר וועניג פֿיר אייער אַרבייט בעלאָהנט? וואָצו נאָך רויבען און מאָרדען?</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0028_a">
+          <speaker>שמעון.</speaker>
+          <p>געהט יעדער צו זיין ארבייט. איך פֿערלאַנג עס! געהט!<lb/>זוך</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0029_a">
+          <speaker>אַללע</speaker>
+          <p>. עס לעבע דער הויפּטמאַן! <stage type="exit">(געהן אַב, שמעןן בעגלייטעט זיי) (וועהרענד שמעון</stage><lb/><stage type="business">געהט מיט זיי ,,רעדען פֿאָרנע: בן פּדות צענאַביאַ. חגלה געהט ניט אַב. ציהעט זיך</stage><lb/><stage type="location">און הינטערגרונד</stage>)</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0030_a">
+          <speaker>צענאב</speaker>
+          <p>. פֿירכטע ניכטס, יונגערמאַנן. עס ווירד דיר היער קיין אונרעכט געשעהן.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0031_a">
+          <speaker>בן פּדות.</speaker>
+          <p>ביז יעצט האָב איך בעוואונדערט דיינע שעהנהייט. יעצט בעוואונדערע איך דיינע<lb/>עדלעס הערץ און זעה פֿאַר מיר איין געטליכעס וועזען און איין באַנדיטען<lb/>קלייד.</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0032_a">
+          <speaker>שמעון.</speaker>
+          <p><stage type="business">(וועלכער איז צוריק געקעהרט) </stage>דיינע קליידער זאָגען מיר אַז דו קומסט פֿון בבֿל<lb/>און ווייזט אויס איינער פֿון די חוכמי תלמוד בָּבֶֿל צו זיין. ווי קומסטו אין<lb/>אַזאַ נאַכט צו פֿערוויילען און אַזאַ מקום סכּנה ווי רויבער, מערדער, באַנ=<lb/>דיטען פֿאלשמינצער אין יעדען ווינקעל געפֿינען זיך.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0033_a">
+          <speaker>בן פּדות.</speaker>
+          <p>ווי עס וואָהנען אַזעלכע מלאכים ווי איהר, ווי עס לאָזט זיך זעהן אַזאַ געטטליכעס<lb/>וועזען ווי די מאַטראַני מיט אויגען ווי די כרובים, קען קיין מקום סכנה<lb/>ניט זיין</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0034_a">
+          <speaker>שמעון</speaker>
+          <p>. צו פֿיעל הייכלעריי צו שנעל האָבען די שענע אויגען דיך בעגייסטערט.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0035_a">
+          <speaker>צענאב.</speaker>
+          <p>הויפּטמאַנן! דו האָסט איין אירטום, דער גאָטט דער ליעבע שיצט<lb/>זיינע פּפֿיילען פֿיעל שנעלער ווי דער גאָטט פֿון קריעג איך גלויב נישט אַז<lb/>אין אַזאַ שרעקענס מאָמענט זאל אַ מענש נאָך קענען הייכלען.<lb/> <stage type="entrance">Auftr</stage></p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0036_a">
+          <speaker>חגלה.</speaker>
+          <p><stage type="business">(טרעט פֿאָר)</stage> מאַטראַניססע אין די זאַכען פֿרעג די אַלטע חגלה. ניט איינמאָהל<lb/>האָט די חברה מיר איבער איבערגעבען. אַזאַ בחור איך זאָל אַהיים ברענ=<lb/>גען לקבר ישראל און וואָס נעהמט ער די נשמה האָט געזאָלט זיך אַרויס<lb/>ציהען פֿונ׳ם גוף אַלס מעהר ליעבע האָט ער מיר ער קלערט און ניט<lb/>איינער איז געשטאָרבען ביי מיר מיט אַ קוש. דאָס הייסט ווען ער האָט מיך<lb/>אַרום געכאַפט און געקושט האָב איך איהם הינטען אַ רומער אַרייינגע=,<lb/>רוקט מיין מעסער. הויפּטמאַנן יאַ דו ווילסט וויסען ווער דער מאַנן איזט<lb/>אָט האָסטו אַ בריעף וואָס מען האָט געפֿוגען אין זיין קאַסטען דיין נאַַה-<lb/>מען שטעהט דאָ פֿיעל מאָהל דערמאַנט. נאַ לעז איהם איבער<lb/>און נאָכדעם זעה צי מעג ער פֿון דאַנען אַוועקגעהן אַ לעבענדיגער.<lb/>די אַלטע חגלה ווערט ניט איבערראַשט פֿון שעהנע ווערטער <stage type="exit">(אַב)</stage></p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0037_a">
+          <speaker>שמעון.</speaker>
+          <p>דער בריעף מאַכט מיך נייגעריג איך מוז איהם לעזען.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0038_a">
+          <speaker>צינאַב</speaker>
+          <p>. <stage type="business">(בעגלייטעט שמעון, וועלכער געהט אין הינטערגרונד)</stage> איך פֿערשטעה. דער בריעף<lb/>ענטהאַלט דיינע בעזאָנדערע אינטערעססע איך וויל דיך ניט שטערן. <stage type="delivery">(רעדען</stage><lb/><stage type="delivery">ביידע הינטען שטיל)</stage></p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0039_a">
+          <speaker>בן פּדות</speaker>
+          <p>. <stage type="delivery">(אַפֿאָרט) </stage>מיין לעבען שטעהט וואָס א מאָהל מעהר אין געפֿאַהר, מיין רעטונג קען<lb/>נור קומען ווען די יונגע רייבערין וועט מיין ליעבעס ערקלערונג פֿיר<lb/>אמת אָננעהמען. <stage type="entrance">(צענאַביאַ קומט דערווייל צוריק)</stage> ער לויב מיר גוט הערצי=<lb/>גער ענגעל. ווי קומט עס, אַזאַ מלאך אָבהאַלטען צווישען רוחות! אַזאַ לעכ=<lb/>טיגע זונן זאָל לייכטען אויף אַ באַרג מיסט? פֿיעלייכט ביזטו געצוואונגען<lb/>היער צווישען רויבער צו זיין? פֿיעלייכט ביזטו דאָס געפאַנגען? מיט מיין<lb/>בל בלוט, מיט מיין לעבען וויל איך העלפֿען דיך צו בעפֿרייען?</p>
+        </sp>
+        <pb n="8" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0008.jpg"/>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0040_a">
+          <speaker>צענאַב</speaker>
+          <p>. איך דאַנקע דיר שעהנער העלד, אָבער עס איז ניט נעטיג דיין בלוט<lb/>מיינעטוועגען צו פֿערגיעסען. בר לקישא איז גענוג היערצו שיצען<lb/>מיך פֿון יעדער געפֿאַהר.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0041_a">
+          <speaker>בן פּדות.</speaker>
+          <p>איז בר לקישא דער זעלבער ר׳ שמעון בן שלקישא דער שוואָגער פֿון<lb/>ר׳ יוחנן בר נפֿחה?</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0042_a">
+          <speaker>שמעון</speaker>
+          <p>.<stage type="business"> (טרעט פֿאר)</stage> דערזעלבער! דיין נאַמען איז פּדות און די געהסט יעצט<lb/>מיין פּלאַטץ צו פֿענעהמען. קומסט אויף מיין אַלטען פּלאַטץ!</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0043_a">
+          <speaker>בן פּדות</speaker>
+          <p>. דירבנים פֿון ירושלים האָבען נאָך מיר געשיקט איך זאָל קומען צו ר"<lb/>יוחנן אין דער ישיבה צו פֿערנעהמען זיין פּלאַטץ, ווייל ר' יוחנן<lb/>בענקט זעהר שטאַרק נאָך דיר, און קיינער קען איהם טרייסטען.</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0044_a">
+          <speaker>שמעון.</speaker>
+          <p>אַזוי געה! יד״ יצליח דרכך טרעסט איהם. איך ווינשעס פֿון גאַנצען<lb/>הערצען.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0045_a">
+          <speaker>פּדות</speaker>
+          <p>. מעג איך פֿרעגען, וואָס איז אַזוינס געוועהן? פאַר וואָס האָסטו דיך מיט<lb/>דיין שוואָגער אַזוי צוקריגט?</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0046_a">
+          <speaker>שמעון.</speaker>
+          <p>עס איז געשעהן דורך אַ דין תורה. דאָס איב ריגע וועסטו דיך ערפֿאַֿהרען<lb/>ווען דו וועסט דאָרט זיין. איך בעט דיך נאָך איין טובה, דו וועסט דאָרט<lb/>זעהן מיין ווייב יזראַעלית ר' יוחענ'ס שוועסטער- זאָג איהר ניט אַז דו<lb/>האָסט מיך געה זעהן אין אַזאַ פּלאַטץ. טרעסט זי אַז איהר מאַנן וועט באַלד<lb/>צו איהר אַהיימקומען איך וויל זאָלסט עס מיר צו שווערען</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0047_a">
+          <speaker>פּדות</speaker>
+          <p>. און זי וועט מיר דאָס גלויבען?</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0048_a">
+          <speaker>שמעון</speaker>
+          <p>. דאָ האָסטו איהר טבעת קדושין איך וועל דיר אויך אַ בריעף מיטגעבען צום<lb/>צייכען אַז איך קום באַלד אַהיים</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0049_a">
+          <speaker>פּדות.</speaker>
+          <p>איך שווער דיר אַז איך וועל זעהן שלום צו מאַכען צווישען דיר אין דיין<lb/>שוואָגער און טרייסטען דיין ווייב ווי ווייט מעגליך.</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0050_a">
+          <speaker>שמעון.</speaker>
+          <p>איך נעהם אָן דיין שביעה.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0051_a">
+          <speaker>צענאב.</speaker>
+          <p>| אויך מיר זאָלסטו שווערען אַלעס צו פֿערשווייגען.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0052_a">
+          <speaker>פּדות</speaker>
+          <p>. אויך דיר שווער איך צו טהון וואָס דו הייסט מיר גא</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0053_a">
+          <speaker>אַלע צוזאַמען.</speaker>
+          <p>גאָטט איז אונדזער עדות אָמן! אָמן!<lb/><stage type="delivery">טערצעט</stage></p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0054_a">
+          <speaker>פּדות.</speaker>
+          <lg n="1">
+            <l>ווען די וועסט אַ מאָהל זיין אין אַ געפֿאַהר</l>
+            <l>געפֿאַנגען צו ווערען פֿון אַ רויבער שאַר</l>
+            <l>דיך צורעטען - צערברעכען דיינע קעטטען.</l>
+            <l>ניט פֿערליערען ווען איך איין מינוט עס זאָל קאָסטען מיין לעבון.</l>
+          </lg>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0055_a">
+          <speaker>צענאב.</speaker>
+          <lg n="2">
+            <l>דיין מוט און בלוט ווילסט פֿאַר מיר פֿערגיעסען</l>
+            <l>צעררייסען מיינע קעטטען - פֿאָן געפֿאַהר מיך רעטטען.</l>
+            <l>קוים ער בליקט שאָן פֿעריקט ליעבעס טהרערען פֿליעסען.</l>
+            <l>דאָס איז שעהן דאָס האָט איין זינן.</l>
+            <l>אַלעס ליעבט די רויבער קעניגין.</l>
+            <l>אָבער וואָס איז מיט דיר געשעהן וואַרום שטעהסטו פֿון ווייטען?</l>
+          </lg>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0056_a">
+          <speaker>שמעון.</speaker>
+          <lg n="3">
+            <l>בעטראַכט נור דיעזע שטעללע.</l>
+          </lg>
+          <lg n="4" prev="true">
+            <l>די ווילדע און די רויבערשאַר.</l>
+            <l>מאַנכע גלויבען היער איז די העהלע.</l>
+            <l>מיר קאָמט עס איין פאַראַדיז פֿאָר.</l>
+          </lg>
+        </sp>
+        <pb n="9" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0009.jpg"/>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0057_a">
+          <speaker>אַללע.</speaker>
+          <lg n="5">
+            <l>רעכט גוט. רעכט שעהן.</l>
+            <l>ניכט יעדער קען אלעס פֿערשטעהן. - אַלעס פֿערשטעהן?</l>
+          </lg>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0058_a">
+          <speaker>שמעון.</speaker>
+          <lg n="6">
+            <l>און יעצט בן פּדות נאָך דער שטורמישער נאַכט</l>
+            <l>שווער אונז ביי גאָטט דער אַלמאַכט</l>
+            <l>אַלעס וואָס דו האָסט געזעהן</l>
+            <l>איז גלייך, איז ניט געשעהן.</l>
+          </lg>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0059_a">
+          <speaker>צענאב.</speaker>
+          <lg n="7">
+            <l>| דאָ אויף דעם געפֿעהרלרכען אָרט</l>
+            <l>שוועהר אונז ביי דיינעם וואָרט</l>
+            <l>אַלעס וואָס דו האָסט געזעהן</l>
+            <l>איז גלייך עס איז קיינמאָל ניט געווען.</l>
+          </lg>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0060_a">
+          <speaker>פּדות.</speaker>
+          <lg n="8">
+            <l>איך שווער ביי גאָטט דער אַלמאַכט</l>
+            <l>אַלעס פֿערשווייגען וואָס איז געשעהן וואָס עס איז געשעהן.</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0061_a">
+          <speaker>אַללע</speaker>
+          <lg>
+            <l>. היעצט הייסט עס שיידען! אויפֿסוויעדערזעהן! אונז ביידען!</l>
+          </lg>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0062_a">
+          <speaker>שמעון</speaker>
+          <lg n="9">
+            <l>, פּדות. אין איין אַנדער לאַנד</l>
+            <l>צום עביגען באַנד</l>
+          </lg>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0063_a">
+          <speaker>צענאב</speaker>
+          <lg>
+            <l>. זיך רייבען פֿרעהליך די הענד</l>
+          </lg>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0064_a">
+          <speaker>שמעון</speaker>
+          <lg>
+            <l>פּדות. יעצט הייסט עס אויס אנ׳נאַנדערגעהן</l>
+          </lg>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0065_a">
+          <speaker>צענאב.</speaker>
+          <lg>
+            <l>מעהר צו זאָגען נישט שטעהן.</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0066_a">
+          <speaker>אלע</speaker>
+          <lg n="10">
+            <l>. יעצט הייסט עס שיידען</l>
+            <l>אויפֿס וויעדערזעהן</l>
+            <l>די וועלט איז גרויס</l>
+            <l>די וועלט איז ברייט</l>
+            <l>גוטע נאַכט, וויר שיידען</l>
+            <l>גוטע נאַכט.</l>
+            <stage type="exit">(אַלע אַב</stage>
+            <stage type="entrance">Auf</stage>
+          </lg>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0067_a">
+          <speaker>חגלה.</speaker>
+          <p>דער וועג וואָס פֿיהרט קיין טבירה, דא מוז עס פֿֿאָראיבערגעהן. און<lb/>חגלה מוז שפּיאָנירען. אַ שעהן פּנים האָט די באַנדע ביי<lb/>מיר. זינד די נייע בַעַלֵי בַתִים זענען אויסגעקומען. פֿון דער חברה<lb/>גמילות חסדים. איך מוז וויסען וואָס דאָ געהט פֿאָר (<stage type="delivery">רופֿט נחמניו</stage>.<lb/>נחמינוי! ער קומט ניט - זייט איך האָב איין אייניקעל נחמן. אַלס מיידעל<lb/>פֿערקליידעט אום ער זאָל קאָנען אויספֿאָרשען אַלע סודות ביי דעם יונגען<lb/>משרת איז פֿון איהם ניט אויס צו האַלטען. ער האָט אין זיין אמתן נאָמען<lb/>פֿערגעסען. <stage type="delivery">(רופֿט) </stage>הע! הע! נחמהילע!<lb/><stage type="entrance">Auftr</stage> נחמן (אַ<stage type="costume">לס מיידעל)</stage></p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0068_a">
+          <speaker>נחמן</speaker>
+          <p>. נו' וואָס ווילסטו ווייטער? דו ווייסט אַז מען רופֿט מיך אויף דעם אנקעל=<lb/>שען נאָמען, רוף איך מיך ניט אָן?</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0069_a">
+          <speaker>חגלה.</speaker>
+          <p>נו, וואָס וועט זיין דער סוף ? ווי לאַנג נאָך וועסטו אַזוי אַרומגעהן פֿער<lb/>שטעלט פֿאַר איין מיידעל ? דו קענסט דאָך גאָר ניט געוואָהר ווע=<lb/>רען!?!?</p>
+        </sp>
+        <pb n="10" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0010.jpg"/>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0070_a">
+          <speaker>נחמן.</speaker>
+          <p>איך ווייס שוין אַלסדינג.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0071_a">
+          <speaker>חגלה</speaker>
+          <p>. נו, לאָז מיך אויך עפּעס וויסען.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0072_a">
+          <speaker>נחמן</speaker>
+          <p>. איך האָב דער טאַפּט ביי איהר משרות הילל אַלע בריעף און ווייס שוין אַלסדינג<lb/>הער וואָס דאָ געהט פֿאָר: אונזער נייע באַנדיטען מאַטראַניססען איז ניט<lb/>דעם הויפּטמאַנס שוועסטער קינד ווי זי גיעבט זיך אויס, זי איז אַליין די<lb/>קעניגין צענאַביאַ פּון פּאַלמיראַ.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0073_a">
+          <speaker>חגלה.</speaker>
+          <p>וועה איז מיר. וואס טהוט זי דאָ? אַ שפּיאָנקע אפֿשר? נו, און מיר לאָזען זיע<lb/>נאָך לעבען?</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0074_a">
+          <speaker>נחמן.</speaker>
+          <p>| כאַפּ ניט די נעץ פֿאָר די פֿיש. הער קוידעם אויס: אין דער צייט ווען זי האָט<lb/>קריעג געפֿיהרט מיט די רעמער האָט זי פֿערזעצט די קרוין מיט אַלע ברי=!<lb/>ליאַנטען דאָס פֿאָלק זאָל ניט דאַרפֿען צאָהלען אַזוי פֿיעל שטייערן. יעצט איז<lb/>געקומען די צייט מען זאָל זי קרענען און די קרוין איז ניט דאָ אַזוי האָט<lb/>אונזער הויפּטמאַן איהר איין עצה געגעבען זי זאָל זיך לאָזען ביי אונזער<lb/>באַנדע מאַכען איין פֿאַלשע קרוין מיט פֿאַלשע דיאַמאַנטען. דאַמיט זי<lb/>זאָל זאָל ניט ה ליידען אַ בושה ביי דער קרעהנונג, אין דאַפֿיר איז זי שטענ=<lb/>דיג דאָ צווישען אונז. זי זאָל קענען צייגען ווי אַזוי די קרוין זאָל גע=<lb/>מאַכט ווערען.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0075_a">
+          <speaker>חגלה.</speaker>
+          <p>פֿאַר וואָָס לעזט זי די קרוין ניט אויס?</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0076_a">
+          <speaker>נחמן.</speaker>
+          <p>עס הייסט אַז דער יוד וואָס די קרוין איז ביי איהם פֿערזעצט גע=<lb/>ווען האָט די קרוין ערגיץ בעהאַלטען. די רעמער זאָלען איהם ניט<lb/>בערויבען. און יעצט איז ער געשטאָרבען און מען ווייסט ניט וואוּ<lb/>ער האָט זי בעגראָבען.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0077_a">
+          <speaker>חגלה.</speaker>
+          <p>אָבער ווי קומט זיך אונזער הויפּטמאַן מיט איהר צו בעגעגענען?</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0078_a">
+          <speaker>נחמן.</speaker>
+          <p>דאָס ווייס איך נאָך ניט, ה שאַ, אָט קומט איהר משרות פֿרעג<lb/>איהם אַליין.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0079_a">
+          <speaker>חגלה</speaker>
+          <p>. מיר דאַכט זיך אַז דער בחור איז ניט קיין זכור.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0080_a">
+          <speaker>נחמן</speaker>
+          <p>. אַזוי ווי דו ביזט קיין גנבטע ניט.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0081_a">
+          <speaker>חגלה</speaker>
+          <p>. מיר דאַכט זיך אַנדערש. דער בחור מוז אַזוי זיין אַ זכור ווי דו<lb/>אַ מיידעל.<lb/>זאָל זיין שטיל, ער קומט אן קום אָן אַ זייט ער זאָל אונז ניט זעהן.<lb/><stage type="business">(ביידע פֿערשטעהען זיך)</stage><lb/><stage type="entrance">Auftr</stage> (הילנא. (<stage type="costume">אלס מאַנן</stage></p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0082_a">
+          <speaker>הילנא.</speaker>
+          <p><stage type="costume">(מיט אַ גרויסען דיאַמאַנטרינג)</stage> אַ פּראַכטפֿאָלער ברילאַנט לייכט ווי די<lb/>זונן און איז פֿאַלש ווי די גאַנצע וועלט. ווען איך זאָל אַליין ניט זעהן<lb/>ווי די גנבים האָבען איהם געמאַכט פֿון כעמישע מעטאַלען וואָלט איך<lb/>געשוואָהרען אַז  עס איז אַ אמת'ער בריליאַנט, מיט מיר איז אויך דאָס<lb/>אייגענע, ווען איך זאל ניט וויסען, אַז איך בין אַ מיידעל וואָלט איך<lb/>געמיינט און וואָלט געקענט שווערען אַז איך בין אַ בחור. הילנאַ זאָגטו<lb/>מיין קעניגין צו מיר, מיר זענען צווישען אַ באַנדע רויבער און מער=<lb/>דער, עס וואָלט בעססער געוועהן זאָלסט זיך אָנהון פֿאַר אַ בחור.<lb/>אַזוי איז געוואָרען פֿון אַ האָפֿ-דאַמע ביי אַ קעניגין אַ משרות ביי אַ<lb/>באַנדיטין. חאַ-חאַ-חאַ. שעהן ווי די יונגע באַנדיטין נחמה׳לע האָט זיך<lb/>אין מיר פֿערליעבט. איך האָב זי אַפֿילו אויך ניט פֿיינט. נור אַ שעהנע<lb/>ליעבע קען אַרויס אַ ליעבע צווישען אַ מיידעל מיט אַ מיידעל. חאַ-חאַ-חאַ!<lb/>חגלה, נחמן, פּלדש. <stage type="entrance">Auftr</stage></p>
+        </sp>
+        <pb n="11" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0011.jpg"/>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0083_a">
+          <speaker>נחמן.</speaker>
+          <p>וואָס לאַכסטו אַזוי אונזער מאַנן. ווייל איך בין אין פֿערליעבט?</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0084_a">
+          <speaker>הילנא.</speaker>
+          <p>געוויס, לאַך איך פֿון וואַנען ווייסט דו אַז איך האָב שוין קיין אַנדער<lb/>ווייב?</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0085_a">
+          <speaker>נחמן.</speaker>
+          <p>פֿון מיינעטוועגען מעגסט האָבען אַ טוץ און מיך אַ חוץ.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0086_a">
+          <speaker>הילנא:</speaker>
+          <p>דאָס טהוען נור די גריקען, מיר יודען ליעבען נאָר איין פֿרוי אַזוי<lb/>גוט ווי אַ פֿרוי דאַרף נור האָבען אויף  איין מאַנן אַזוי זאָל אַ מאַנן<lb/>האָבען נאָר איין פֿרוי.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0087_a">
+          <speaker>חגלה.</speaker>
+          <p>מענער אָבצוהיטען איז זייער שווער ווייל ווי פֿיעל זיי האָבען ווילען זיי<lb/>נאָך מעהר.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0088_a">
+          <speaker>פּלדש</speaker>
+          <p>. און איך זאָג פּונקט פֿערקעהרט. ווייבער אָב צו היטען איז זעהר שווער<lb/>ווייל וויפֿיעל זיי האָבען, ווילען זיי נאָך מעהר.<lb/><stage type="delivery">קוואַרטעט.</stage></p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0089_a">
+          <speaker>הילנא</speaker>
+          <p>. איהר זאָלט אייך מערקען. אַז די גרעקען<lb/>הייראַטהען פֿיעל ווייבער נאָר איך בין דאָך אַ יוד<lb/>און איך קען נאָר מיט איינער זיין.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0090_a">
+          <speaker>נחמן</speaker>
+          <p>. מען האָט צרות גרויסע צרות.<lb/>אז מען האָט נאָר איינע, און די גריקען<lb/>ווילען לעבען מיט אַ גאנצען טוץ</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0091_a">
+          <speaker>נחמן</speaker>
+          <p>וואָס ווילט איהר פֿון די ווייבער עלענד ווי די שטיינער<lb/>זיי העלפֿען אייך אין הויז אויפֿהויבען, איהר רוהןט אייך אויס די<lb/>בי    ביינער</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0092_a">
+          <speaker>אַלע.</speaker>
+          <p>, יאַ, יאַ, יאַ. דאָ געהט עס מיט די פֿרויען.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0093_a">
+          <speaker>חגלה.</speaker>
+          <p>מעננער אָבצו היטען איז דאָך זעהר שווער<lb/>ווייל ווי פֿיעל זיי וואָלען האָבען זיי נאָך מעהר<lb/>גענוג איז ביי זיי קיימאָל נישטאָ.<lb/>די ליעבע איז דאָך זייער גאַנצער צייט פֿערטרייב<lb/>איך דאַנק גאָט, וואָס איך בין געבליבען אָהן אַ מאַנן<lb/>איך בין פֿערזיכערט פֿון גרויס אייפֿער זוכט.</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0094_a">
+          <speaker>אלע</speaker>
+          <p>. יאַ,יאַ,יאַ!</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0095_a">
+          <speaker>פלדש</speaker>
+          <p>.<stage type="delivery"> (דאָס זעלבע וואָס חגלה, נאָר אַנשטאַט ,,מעננער״ איז ,,ווייבער")</stage><lb/><stage type="delivery">ביס</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0096_a">
+          <speaker>אלע.</speaker>
+          <lg n="11">
+            <l>יאַ. די מעננער (ווייבער) זענען זעהר שלעכט</l>
+            <l>יאַ, די ווייבער (מעננער) זענען זעהר גוט און ליעבליך</l>
+            <stage type="delivery">(מעננער)</stage>
+            <l>זיי פֿערגיעסען דאָס זעלבע פֿון אַ יעדען מאַנן</l>
+            <stage type="exit business">אַלע מאָהל לויפֿט איינער אַוועק אין מיטין רעפֿריין. הילנאַ בלייבט די לעצטע זינגענד</stage>
+            <stage type="exit business">און לויפֿט אויך אַב)</stage>
+          </lg>
+        </sp>
+        <pb n="12" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0012.jpg"/>
+        <div type="scene" n="1" xml:id="DiTsveyTnoim_Act1_Sc1">
+          <head>Verwandlung.</head>
+          <stage type="setting">(צימער ביי ר' יוחנן און 2 טישעל 2 טשערס)</stage>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0097_a">
+            <speaker>פדות.</speaker>
+            <p>גרויסער רבי פיהלסט זיך שוין בעסער?</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0098_a">
+            <speaker>יוחנן.</speaker>
+            <p>יאַ מיין תלמיד, יעצט זענען מיר אַליין ערצעהל מיר אַלעס. וואָס דו<lb/>ווייסט פֿון מיין שוואָגער בר לקישען</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0099_a">
+            <speaker>פּדות</speaker>
+            <p>. ״מורא רבך כמורא שמים" זאָגען אונזערע חכמים. איך וואָלט געשטאַ=.<lb/>נען פֿאַר גאָטט. איך מוז פֿאַר דיר דעם אמת זאָגען, איך האָב איהם געטראָ=<lb/>פֿען צווישען אַ באַנדע רויבער באַנדיטען און פֿֿֿאַלש מינצער. ער פֿיהרט<lb/>מיט זיך מיט אַ יונגע דאַמע אַלס זיין געליעבטע מאַטרעססע, זי צייגט גאָר ניט<lb/>אויס אַ יודיש קינד צו זיין דעם עול התורֶה האָט ער אין גאַנצען פֿון זיך אָב=.<lb/>געלעגט.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0100_a">
+            <speaker>יוחנן</speaker>
+            <p>. גענוג! גענוג! די שלעכטע בשורה רויבט מיר אַוועק מיין פֿער=.<lb/>שטאַנד!</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0101_a">
+            <speaker>פדות</speaker>
+            <p>. אַזוי בלייבען מיינע ליפפען פֿערשלאָסען. ווען איך זאָל מיין.ס.. רבין נאָך ווייטער)?<lb/>ערצעהלען אַזוי וועל איך געגען איהם איין מערדער זיין. דען עס איז גאָר קיין צוויי=<lb/>פֿעל ניט אַז דו וועסט הערען די בושה, די חרפּה, וואָס ער טיילט מיט אַלע. תנאים<lb/>יאמוראים די חכמי התלמוד אין דעם גאַנצען כּלל ישראל וועסטו די שמערצען<lb/>ניט קענען ערטראָגען.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0102_a">
+            <speaker>יוחנן</speaker>
+            <p>. בר לקיש, בר לקיש, אַך ווי שעהן זענען מיינע חלומות וועגען דיר געווען. ער איז<lb/>געווען אַ רויבער און זיינע יונגע יאָהרען. איך האָב איהם צומיר גענומען מיט<lb/>איהם געלערנט גאָטט׳סס תורא ער איז געוואָרען מיין תלמוד. מיין חַבֶער מיין גליי=<lb/>בען איין אמורה בישראל גלייך מיט מיר איך האָב איהם חתונה מיט מיין שוועס=<lb/>טער יזראַעלית וואָס זי איז נאָך שענער פֿון מיר און יעצט זאָל ער מיר אַזוי<lb/>אָב דאַנקען מיט אַזוי פֿיעל בזיין אין חרפּה?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0103_a">
+            <speaker>פדות.</speaker>
+            <p>רבי, פֿאַר וואָס האָט ער זיך מיט דיר צוקריגט?</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0104_a">
+            <speaker>יוחנן.</speaker>
+            <p>זייט ער איז געוואָרען גלייך מיט מיר אין דער תורה האָט ער געוואָלט פֿון מיר נאָך<lb/>איינצווואר=<lb/>גרעסער זיין. יעדען הלכה וואָס איך האָב געפּאַסקענט האָט ער געזוכט אומצנאר<lb/>כרבי<lb/>פֿען אין די רבנים האָבען תמיד געפּאַסקענט הלכה כרב כריב שמעון בון לקיש<lb/>פֿאַר עטליכע וואָכען איז געווען אַ שאלה איבער אַ מעסער און בר לקיש האָט מיך<lb/>וויעדער איבערגעשפּאַרט][אַזוי האָט אין מיר זיך צוהיצט דער כָּבוד התורה און<lb/>אַז<lb/>איך האָב איהם פֿאָרגעוואָרפֿען ולובטיא בלופעתיא דען אַ רויבער איז בעקאַנט<lb/>און רויברווערקצייג אַנשטאַט ער זאָל מיר אָבער שווייגען דער כּעס זאָל מיר פֿאָר=<lb/>איבערגעהן האָט ער מיר מיט חוצפּה געענטפֿערט מה אהס נוכל? וואָס פאַר אַ<lb/>התם רבי קראו לי, הסאריר קראי לי<lb/>טובה האָסטו מיר געטהון? התדרבי הלול. הכם רבי קרוילי. אַז איך בין געוועהן<lb/>אַ רובער האָט מען מיך רבי גערופֿען ווייל איך בין געוועהן אַ רויבער הויפּטמאַנן<lb/>און יעצט אַז ע איך בין אַ תלמוד חכם בין איך אויך אַ רֶבי, אַזוי פֿיעל חוצפּה<lb/>אַזוי פֿיעל האָב איך ניט געקענט פֿערשווייגען.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0105_a">
+            <speaker>פּדות]</speaker>
+            <p>[ און ווען דער רבי זאָלט איהם געווען מוחל זיין, וואָלט איהם גאָטט ניט געווען<lb/>מוחל געווען. דו האָסט רעכט רבי, דו מעגסט איהם שעלטען. איך האַלט דיך ניט<lb/>צוריק.</p>
+          </sp>
+          <pb n="13" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0013.jpg"/>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0106_a">
+            <speaker>יוחנן.</speaker>
+            <p>ניין. איך קען איהם ניט שעלטען. ער פֿעהלט מיר אויס ביים לערנען. זיין<lb/>חריפֿות. זיין גוטער קאָפּף פֿלעגט מיר מחיה זיין. ווער אַ זאָל יעצט<lb/>ביי מיר זיין פּלאַץ פֿערנעהמען?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0107_a">
+            <speaker>פדות</speaker>
+            <p>. דאָס רבי זאָל דיין לעצטע דאגה זיין, פֿרעג די אָן אין בבל מיין חריפֿות<lb/>איז בעריהמט. איך בין א גרויסער תלמוד בבל און איך וועל מיך<lb/>פֿלייסען דיר צו געפֿעלען.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0108_a">
+            <speaker>יוחנן</speaker>
+            <p>. אָבער וואָס טהוט מען מיט מיין שוועסטער? זי לאָזט מיך ניט רוהען. איהר<lb/>לעבען איז צוגעקלעפּט צו זיין לעבען, קיין קינד האָב איך ניט נור<lb/>די איינציגע שוועסטער. איך קען איהרע טהרערען ניט צוזעהן.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0109_a">
+            <speaker>פדות.</speaker>
+            <p>גאָטט איז אַ דין אלמנות דו טהאָרסט אויף איהם קיין רחמנות ניט<lb/>האָבען. זאָלסט וויסען רבי אַז ווען איך האָב איהם דאָרטען געטראָפָֿען ניט.<lb/>האָט ער גאָר פֿון זיין עהרליכער יזראַעלית ניט געוואָלט הערען און וויסען .ליעגען<lb/>דיג ביי זיינע פֿיסס, מיט טהרערען אין די אויגען האָב איך קוים געפּויעלט ביי איהם<lb/>גער זאָל איהר איין גט שיקען. זי זאָל חאָטש קיין עגונה ניט בלייבען.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0110_a">
+            <speaker>יוחנן.</speaker>
+            <p>תִפַֿח רוחי ונשמתן. פֿערששפּיעגען זאָל ווערען זיין גייסט און זיין זעעלע.<lb/>ער זאָל ניט האָבען קיין חלק לעולם הבא און אַז ער וועט אַ מאהל וועלען תשו.<lb/>בה טהון, זאָל מען איהם ניט העלפֿען. מיט מין הַשָמַיִם איךטהון גבין איהם<lb/>מַחְרִים מיט כל הַחרמות שבתורה <stage type="delivery">(צעוויינט זיך)</stage> בַר לקיש. בַר לקיש ווי ווייט<lb/>ביזט געזונקען.....בן פּדות מיין נייער תלמוד שרייב צו בר לקישען אין מיין נאַמען<lb/>אַז איך האָב איהם אויף עביג פֿערשאָלטען. פֿערשאָלטען האָב איך דעם טאָג אין<lb/>וועלכעם עקר איז געבוירען געוואָרען. דער טאָג זאל ניט געצעהלט ווערען אין די <lb/>טעג פֿון דעם יאָהר.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0111_a">
+            <speaker>פּדות.</speaker>
+            <p>עס איז מיר שווער רבי אַזאַ בריעף צושרייבען. נור אַז עס איז דיין<lb/>רצון איז עס געוויס דער רצון פֿון גאָטט, אונד איך וועל דיין<lb/>שליח זיין.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0112_a">
+            <speaker>יוחנן</speaker>
+            <p>. געה. שיק מיר אַריין מיין שוועסטער, און בערייטע זי פֿאַר מיין לעצטען<lb/>ווילען צו הערען.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0113_a">
+            <speaker>פדות.</speaker>
+            <p>אויך דאַמיט וועל איך דיין שליחות טהון. איך וועל זיך פֿאָרבערייטען<lb/>דאצו. <stage type="exit">(אַב)</stage></p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0114_a">
+            <speaker>יוחנן.</speaker>
+            <p>דער כָּבוד התורה איז מיר טהייערער ווי אַלעס אין דער וועלט תורה איז<lb/>אלדינג אין לעבען.<stage type="delivery"> (זינגט)</stage></p>
+            <lg n="12">
+              <head>I.</head>
+              <l>דאָס לעכט פֿון תורה אויז בילדונג נור</l>
+              <l>די ביל דונג ברענגט אונז ליכט, דאָס ווייס מען קלאָהר</l>
+              <l>דאָס ליכט פֿון אַנפֿאַנג  ווער האָט אויפֿגעשטעלט?</l>
+              <l>דער יוד. דער עלטעסטער לעהרער אויף דער וועלט</l>
+              <l>די קליינע תורה זעהט ווי זי איזט גרויס</l>
+              <l>זי שיינט און לייכט ביי יעדען אין הויז.</l>
+              <l>אין אַלע שפראַכען איבערזעצט איז זיע</l>
+              <l>און איהרע שטראַהלען שאַפֿען די זשעניע</l>
+            </lg>
+            <lg n="13">
+              <l>די תורה די בעסטע סחורה</l>
+              <l>לערן גוט און ווער ניט מיעד</l>
+            </lg>
+            <lg n="14" prev="true">
+              <l>זיי לעהרער און זעה וואָס מעהרער</l>
+              <l>צו ברענגען פֿיעלנוצען יוד.</l>
+              <stage>2. (II)</stage>
+            </lg>
+            <lg>
+              <l>דער יוד איז גלייך צום הייליגען ת.נ.ח - תנ"ך</l>
+            </lg>
+            <lg>
+              <l>וואָס איבערזעצט איז אין יעדען שפּראַך</l>
+            </lg>
+            <lg>
+              <l>אין אַלע לענדער איז דער יוד שצערשפּרייט</l>
+            </lg>
+            <lg>
+              <l>פֿערטריעבען איז ער פֿון דער היים גאַנץ ווייט</l>
+            </lg>
+            <lg>
+              <l>דער יוד אין זיין געשטאַלט</l>
+            </lg>
+            <lg>
+              <l>זיי זענען פֿריש און יונג אָבוואָהל שוין אַלט</l>
+            </lg>
+            <lg>
+              <l>זיי זענען שטאַרקער מעהר פֿון אייזען אין שטיין</l>
+            </lg>
+            <lg>
+              <l>זיי וועלען לעבען און קייימאָל ניט אונטערגעהן.</l>
+              <l>די תורה..........א...ז.....וו.....</l>
+              <stage>3. (III)</stage>
+            </lg>
+            <lg>
+              <l>דו יוד, דו האַלט זיך מיט דיין תורה נור</l>
+            </lg>
+            <lg>
+              <l>און לערן ווייטער אַלעס דייטליך און קלאר</l>
+            </lg>
+            <lg>
+              <l>צו וואַרף די שטראַהלען פֿון דיין ביל דונגסליכט</l>
+            </lg>
+            <lg>
+              <l>די לעהרער דו גיב נור גוט דיין אונטערריכט</l>
+            </lg>
+            <lg>
+              <l>דו מאַך דיין תלמוד תורה איבעראַל</l>
+            </lg>
+            <lg>
+              <l>לערן מיט אַ רעגל און מיט אַ כְּלַל</l>
+            </lg>
+            <lg>
+              <l>און צוואַר מען גיט דיר שטיינער אַנשטאָט געלד</l>
+            </lg>
+            <lg>
+              <l>דאָך דו לעהרער דו ביזט דאַרויף געשטעלט.</l>
+              <l>דיע תורה..........א...ז..וו...</l>
+              <stage type="exit">(אַב)</stage>
+              <stage type="entrance">Auftr</stage>
+            </lg>
+          </sp>
+          <pb facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0014.jpg"/>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0115_a">
+            <speaker>פּדות.</speaker>
+            <p>דו ביזט זעהר גיעערגערט יזראעלית ווייל דו האָסט פֿון מיר געהערט<lb/>ווי דיין ברודער האָט דיין מאנן פֿערשאָלטען.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0116_a">
+            <speaker>יזרעאלית.</speaker>
+            <p>איהר מעגט אייך שעמען איהר תלמידים חכמים דורך אייער כּבוד<lb/>קענט איהר וועלטען חרוב מאַכען דורך אייער קנאה שנאה קענט<lb/>איהר מלאכים פערברענען. וואָס האָט מיין ברודער שמעון אַזוינס<lb/>געזינדיגט? ער האָט דעם אמת געזאָגט? נעהמט מען אַזאַ גרויסען<lb/>מאַנן אַזאַ גדול בישראל. און מען פֿעריאָגט איהם פֿון זיין ישיבה פֿון<lb/>זיין שטאָדט און הויז און פֿון זיין געליעבטע פֿרוי?!! שעהמט אייך<lb/>רבנים אַ סאַך אַזעלכע ר' שמעונ'ס איז יעצט אין דעם דור ֿפֿערהאַנדען?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0117_a">
+            <speaker>פּדות.</speaker>
+            <p>בן פּדות איז יעצט ר׳ יוחנָָן'ס תַּלְמִיד</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0118_a">
+            <speaker>יזראעלית</speaker>
+            <p>. אַזעלכע תַּלְמידים דאַרף מיין ברידער האָבען. הייכלער, שמייכלער אַזאַ וואָס<lb/>ער וועט זאָגען פֿאָר אַ הלכה זאָל ער איהם ענפֿערן איך האָב אויך אַזוי אין<lb/>בבל אַזוי גילערנט, ניט וויע מיין שמעון פֿלעג איהם איבעשפּֿאַרען אָבער איך<lb/>בין מיין בריעדער ניט מקנען מיט אַזעלכע תלמידים)</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0119_a">
+            <speaker>פּדות.</speaker>
+            <p>נאך ליעבסטו אַזאַ מאַנן וואס האָט דעם כלל אישראל אזא בושה<lb/>אנגעטהון?</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0120_a">
+            <speaker>יזראעלית</speaker>
+            <p>. מיר האט ער גאָר קיין בושה ניט אנגעטהון, מיין שמעון וועט<lb/>זיכער באַלד צוריק קומען צוא זיין יזרעאלית, און וועט<lb/>לערנען תורה אין ישראל ווי פֿריהער.</p>
+          </sp>
+          <pb n="15" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0015.jpg"/>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0121_a">
+            <speaker>פּדות</speaker>
+            <p>. אַך. ווי בעדויערע איך דיך אַזאַ טרייע גוטע זעלע מיט אַזאַ הערץ זאָל<lb/>אַזוי גענאַררט ווערען ווען שמעון זאָל דיך וועניגסטענס דעם הונדער=<lb/>טען טייל אַזוי ליעבען ווי דו איהם אבער ער זאָל דיך גאָר ניט<lb/>ליעבען נור ער זאָל דיך וועניגסטענס אַזוי ניט האַסען און<lb/>דיך שעהנע יזראעלית איינע וועלט בעריהמטע שעהנהייט<lb/>זוכען צו פֿערבאַטען אויף אַ.... בעסער זאָל מיין מויל<lb/>שווייגען.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0122_a">
+            <speaker>יזראַעלית</speaker>
+            <p>. עס איז איין ליעגען, בן פּדות - אייפֿערזוכט, קנאה. שנאָה<lb/>רעדט פֿון דיר אַרויס.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0123_a">
+            <speaker>פּדות.</speaker>
+            <p>קענסט דען רינג, יזראַעלית? <stage type="business">(צייגט איהר רינג)</stage></p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0124_a">
+            <speaker>יזראַעלית.</speaker>
+            <p><stage type="business">(ציטטערט)</stage> יאַ עס איז מיין טבעת קדושין. וואָס טהוט ער ביי<lb/>דיר? האָט מיין שמעון דיר איהם געגעבען?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0125_a">
+            <speaker>פּדות</speaker>
+            <p>. ניין, זיין געליעבטע. אום זיין געליעבטע צו איבער צייגען, אַז ער<lb/>וויל פֿון דיר ניט מעהר וויססען, האָט ער דיין טבעת קדושין איהר<lb/>אַוועק געגעבען, און זי האָט איהם דער פֿאַר בעדאַנקט מיט<lb/>אַפּאָאָר קיש.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0126_a">
+            <speaker>יזראַעלית.</speaker>
+            <p>הער אויף בן פּדות מיר אַזעלכע בילדער פאָרצושטעלען.<lb/>דאָס סקאַנדאַל-בילד קומט פֿון דיין קראַנקער פֿאַנטאַזיע.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0127_a">
+            <speaker>פּדות.</speaker>
+            <p>נו. און זיין רינג, קומט ער אויך פֿון מיין קראַנקער<lb/>פֿאַנטאַזיע</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0128_a">
+            <speaker>יזראעלית.</speaker>
+            <p>דער רינג? אַ שטומער עדות, ער קענן ניט ערצעהלען<lb/>וואָס מיט איהם איז דאָרט געשעהן.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0129_a">
+            <speaker>פּדות.</speaker>
+            <p>האָסט רעכט יזראַעלית. דער רינג איז זעהר מעגליך אַז שמעון<lb/>האָט איהם פֿערלאָרען און זיע האָט איהם געפֿונען.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0130_a">
+            <speaker>יזראעלית.</speaker>
+            <p>ניין, און דו האָסט איהם געפֿונען! ווילסטו זאָגען.</p>
+          </sp>
+          <sp xml:id="DiTsveyTnoim_SP0131_a">
+            <speaker>פּדות</speaker>
+            <p>. אַלס דינג קען מעגליך זיין, דען צווישען דיער מערדער פֿאַלש<lb/>מינצער און אַלע גאַטונגען פֿון פֿערברעכען האָב איך אין<lb/>איהם דערקענט דעם עדעלמאַנן. דעם תלמוד חכם, צווישען<lb/>אַלע האָט ער אַרויסגעשיינט ווי אַ בריליאַנט צווישען דער<lb/>בלאָטע - ניט מיט זיין שעהן פּנים, מיט זיינער פֿיגור<lb/>אָדער געלעהרנהייט. ניין נור מיט זיין מענשען=געפֿיהל.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0132_a">
+            <speaker>יזראעלית.</speaker>
+            <p>דיינע שעהנע וואָרטע זענען געוועהן אַ זאָננען שיין פֿאַר איין<lb/>וואָל קענבראָך</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0133_a">
+            <speaker>פּדות</speaker>
+            <p>. יאַ, אַ וואָל קענבראָך פֿון טהרערען וויל איך פֿערגיסען פֿאַר מיין<lb/>הייליגען רבי אַז ער זאָל דעם חרם און די קללות פֿון איהם אַראָב=<lb/>נעהמען נאָר פֿאַר זיינע שעהנע טהאָט פֿערדיענט ער מען זאָל<lb/>איהם נאָר בעדויערן, אָבער ניט פֿעראַכטען. איך קענן מיינע טהרע=<lb/>רען ניט צוריק האַלטען, זיי בעוויינען דעם פֿאַל פֿון אַ גרויסען<lb/>מאַנן אין ישראל. <stage type="delivery">(וויינט)</stage></p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0134_a">
+            <speaker>יזראַעלית.</speaker>
+            <p>ווען נור איין טראָפפֿען פֿון דיינע טרעהרען זאָל אמת זיין<lb/>אַזוי פֿערצייהע איך דיר דעם ים פאַלשקייט וואָס דו<lb/>האָסט פֿאַר מיינע אויגען אויסגעגאָסען.</p>
+          </sp>
+          <pb facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0016.jpg"/>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0135_a">
+            <speaker>פדות</speaker>
+            <p>דיין שמעון האָט מיר בעוויזען אַז ער האָט געזאָגט. הנה<lb/>אַנוכי הולֶך למות - איך בין יעדען טאָג אָ ווגעזעצט דער<lb/>געפֿאַהר געהרגעט צו ווערען און מיין ווייב זאָל איין עביגע<lb/>עגונה בלייבען און מיט אַ קויל פֿון חרטה און זעלבסט.<lb/>פֿעראַכטונג האָט ער אויסגערופֿען: בן פּדות מיין טייערער<lb/>חבר דו ביזט דער איינציגער וואָס האָט דען ווערטה אַזאַ<lb/>מַלְאָך ווי יזראַעלית פֿאַר דיין ווייב צו נעהמען - און מיט<lb/>איין קוש פֿון זיינע ליפּען אויף מיין שטערן האָט זיינע<lb/>ווערטער פֿערזיעגעלט. און איך האָב דערצו געזאָגט:<lb/>אָמן! אָמַן! אָמן!</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0136_a">
+            <speaker>יזראעלית.</speaker>
+            <p><stage type="business">(גוט איהם אַ שפיי אין פּנים)</stage> און מיט אַ שפּיי אין דיין פָּנים רייס<lb/>איך די חסימה אויף און זאָג אָרור, ַָאָרור, אָרור.<lb/>3 מאָהל זאָלסט דו פֿערשאָלטען ווערען פֿון גאָטט און פֿון<lb/>מענשען, און פֿון אַלע רוחות אין שדוד.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0137_a">
+            <speaker>פּדות.</speaker>
+            <p>גוט, דו האָסט מיר געגעבען איין שפּיי! - אַ שפּיי ווישט<lb/>זיך אָב, אַבער אַ וואָרט קיינמאָהל ניט. אַזוי הער מיין<lb/>לעצטעס וואָרט! <stage type="business">(נעהמט ארויס אַ פּאַפּיער)</stage>. דאָס איז איין<lb/>גֶט פֿון דיין מאַנן שמעון בר לקיש, מיט דעם גט האָט ער<lb/>מיך זיין שלִיַח מיוחד געגֶט, און איך גֶט דיך - הרי את<lb/>מגורשת מומני לכל אָדָם, כדת משה וישראל. <stage type="business">(צערייסט דעם</stage><lb/><stage type="business">גֶט און וואַרפֿט עס וועק)</stage></p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0138_a">
+            <speaker>יזראעלית.</speaker>
+            <p>ניין. ניין! איך האָב דעם גט ניט מִקַבל געוועהן און איך<lb/>בין נאָך די פֿרוי פֿון מיין מאַנן שמעון, פֿעררעטער, פֿאַר<lb/>דיין שליחות זאָל דיר גאָט בעצאָהלען. איך פֿער אַכטע<lb/>דיך! <stage type="exit">(אַב)</stage></p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0139_a">
+            <speaker>פּדות.</speaker>
+            <p>חאַ-חאַ-חאַ! די שמות הקדושה וואַלגערן זיך אַרום אויף<lb/>דער ערד, עס איז אַ עבירה חלעבען, מען מוז זיי אויפֿקלויבען. <stage type="business">(טהוט</stage><lb/><stage type="business">עס)</stage> און פֿערברענען, אַלאָ ניט קענן מען נאָך אַז עס איז קיין גֶט<lb/>געוועהן. דער איינפֿאַל מיט דעם גֶט איז אויסגעצייכענט. דאָס<lb/>וועט מיר עפֿנען די טיהר צו איהר הערץ, שמעון האָט מיך<lb/>צוערשט אויס דעם הויז פֿערטריבען און איך וועל איהם יעצט<lb/>פֿון דער וועלט פֿעריאַגען. די כִּסְאֵ-הַרַבָנות אויף וועלכער<lb/>ר׳ יוחנן זיצט מוז איך יַרְשֶענֶען און יזראַעלית מוז מיר<lb/>געהערן. אַלעס וואָס וועט מיר אין וועג שטעהן מוז אָבגע=<lb/>רוימט ווערען, שמעון מיט זיין באַנדע ווי זיי האַלטען זיך אויף<lb/>מוז איך דעם גובערנעהר צייגען, יאַ איך מוז מיר נעהמען<lb/>מיט געוואַלד דאָס וואָס די רביניע וויל מיר מיט גוטען<lb/>ניט געבען <stage type="exit">(אָב)</stage></p>
+          </sp>
+        </div>
+        <div type="scene" n="2" xml:id="DiTsveyTnoim_Act1_Sc2">
+          <head>Verwandlung</head>
+          <pb n="17" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0017.jpg"/>
+          <stage type="setting">(די העהלע אינווענדיג)</stage>
+          <stage type="setting">(פֿייער אויבען),</stage>
+          <stage type="setting">שלייפֿמאַשינען. האמער און אמבאָס. בערגעל גאָלד</stage>
+          <stage type="setting">בערגען בריליאַנטען. אויף אַ געשטעל אַ קרוין עטץ, עטץ)</stage>
+          <stage type="costume business">כאָהר אַלס רויבער, פּלדש, אַרבייטען)</stage>
+          <sp who="#chor" xml:id="DiTsveyTnoim_SP0140_a">
+            <speaker>כאָהר</speaker>
+            <p>. <stage type="delivery">"No</stage><lb/>חגלה</p>
+            <lg n="17">
+              <l>אויף אַלע צו דער אַרבייט, אַרבייט נור אַלע פֿלייסיג.</l>
+              <l>באַלד קומט שוין דער מאָרגען, ערוואַרטען וויר די פֿרייהייט.</l>
+              <l>טאַם... טאַם...טאַם....טאַם... טאָם... פֿעראייניגט אונד וויר</l>
+              <l>קינדער שלאָגט אַלע טאַם... טאַם... שלאָגט אַלע טאַם...טאַם.....</l>
+            </lg>
+          </sp>
+          <sp who="#khgle" xml:id="DiTsveyTnoim_SP0141_a">
+            <speaker>חגלה.</speaker>
+            <p>נו, מיינע טייערע בעלי מלאכים, אַפֿשר וואָלט איהר שוין אַוועק געלעגט<lb/>די אַרבייט און געגאַנגען עססען?</p>
+          </sp>
+          <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0142_a">
+            <speaker>פּלדש.</speaker>
+            <p>נאָך אַפּאָר מינוט און מיר לעגען אַוועק די אַרבייט אויף אַ לאַנגער<lb/>צייט.</p>
+          </sp>
+          <sp who="#khgle" xml:id="DiTsveyTnoim_SP0143_a">
+            <speaker>חגלה</speaker>
+            <p>. ווי איך פֿערשטעה האָט איהר בדעה צו ווערען רבינים און לעבען<lb/>פֿון קָהָל?</p>
+          </sp>
+          <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0144_a">
+            <speaker>פּלדש.</speaker>
+            <p>אַזוי ווי אונזער הויפּטמאַנן האָט געטהון פֿאַר 10 יאָהר. ער האָט<lb/>איבערגעלאָזט זיין חברה וואָס פֿלעגט מיט איהם רויבען אין מיטין<lb/>העללען טאָג.</p>
+          </sp>
+          <sp who="#alle" xml:id="DiTsveyTnoim_SP0145_a">
+            <speaker>אַלע.</speaker>
+            <p>בראַוואַ. פּלדש האָט רעכט!</p>
+          </sp>
+          <sp who="#khgle" xml:id="DiTsveyTnoim_SP0146_a">
+            <speaker>חגלה.</speaker>
+            <p>דערווייל זאָל זיין שטילל מיר זענען אַרומגערינגעלט מיט שפּיאָנען<lb/>יעדער וואַרט וואָס מיר רעדען דאָ צווישען אונז ווירד איהם<lb/>אַב דערצעהלט. אבגעוואשען</p>
+          </sp>
+          <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0147_a">
+            <speaker>פּלדש.</speaker>
+            <p>איך וואָלט געווען מיין פֿליישיג מעססער אָבגעשוואַשען אין זיין<lb/>ריינער נשמה. אַ שפּיאָן איז ביי מיר ערגער ווי אַ תנאַ.<lb/><stage type="entrance">Auft </stage>הילנא <stage type="entrance">(איז עוואַס פֿריהער געקומען)</stage></p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0148_a">
+            <speaker>הילנא.</speaker>
+            <p>שוין וויעדער אַ פֿערשווערונג געגען אונזער הויפּטמאַנן? דיר פּלדש<lb/>געפֿעהלט שוין ניט וויעדער דער תנא?</p>
+          </sp>
+          <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0149_a">
+            <speaker>פּלדש.</speaker>
+            <p>דער תנא געפֿעלט מיר שוין גאַנץ גוט, נאָר ווער האָט איהם גע=<lb/>שיקט ער זאָל צוריקקומען פֿאַראַ רויבער הויפּטמאַנן? <stage type="business">(ציהט</stage><lb/><stage type="business">דען דאָלך</stage>)</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0150_a">
+            <speaker>הילנא.</speaker>
+            <p><stage type="business">(ציהט אויך דען דאָלך) </stage>פֿייגלינג, קוק ווער צו דאָ ציהעט אַ מעססער? מיר<lb/>דאַכט זיך אַז דו הערסט זשאַבעס קוואַקען. לעזט 3 מאָהל קְריאַת<lb/>שְמַע. <stage type="business">(לויפֿט נאָך אַרום און ארום)</stage> והִי נועַם, ווִִהִי נועַם, ווער<lb/>פֿערשוואונדען!</p>
+          </sp>
+          <sp who="#eyner" xml:id="DiTsveyTnoim_SP0151_a">
+            <speaker>איינער.</speaker>
+            <p>דער הויפּטמאַנן קומט!<lb/><stage type="entrance">Auft</stage> שמעון - צענאַביאַ</p>
+          </sp>
+          <sp who="#alle" xml:id="DiTsveyTnoim_SP0152_a">
+            <speaker>אללע</speaker>
+            <p>. עס לעבע אונזער הויפּטמאַנן!</p>
+          </sp>
+          <sp who="#ndere" xml:id="DiTsveyTnoim_SP0153_a">
+            <speaker>אַנדערע.</speaker>
+            <p>עס לעבע אַונזער באַנדיטען-קעניגין!</p>
+          </sp>
+          <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0154_a">
+            <speaker>פּלדש.</speaker>
+            <p>עס לעבע אונזער בראַווער הויפּטמאַנן!</p>
+          </sp>
+          <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0155_a">
+            <speaker>שמעון.</speaker>
+            <p>בריעדער, איך האָב אייך אַ גוטע בשורה געבראַכט, היינט פֿערלאָזען מיר<lb/>מיר די פֿינסטערע וועלט וועלט. די לעכטיגע זונן וואָס שיינט<lb/>פֿריי איבער אַלע מענשען, וועט אויך איבער אייך איהרע שטראַהלען<lb/>שיקען.</p>
+          </sp>
+          <pb n="18" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0018.jpg"/>
+          <sp who="#khgle" xml:id="DiTsveyTnoim_SP0156_a">
+            <speaker>חגלה</speaker>
+            <p>. און ווער וועט אונז שיצען פֿאַר די באַנדיטען פֿון דער ליכטיגער<lb/>וועלט?</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0157_a">
+            <speaker>צענאַב.</speaker>
+            <p>איך! איהר קינדער דער נאַכט איך האָב מיטלייד מיט אייך, ניט<lb/>איין מענש קענן אייך אויף דער לעכטיגער וועלט וואָס די זאָננע<lb/>איז איהם אונטערגעגאַנגען אין מיטען העלען טאָג, אין די <lb/>פֿער צווייפֿלונג האָט איהם אין אייער מיטען געבראַכט, בעפֿאָר<lb/>איהר אַלע פֿערלאָזט דיעזען פּלאַץ וויל איך אייך דערצעהלען איבער<lb/>איין אונגליקליכען וואָס דאָס שיק זאָל האָט איהם געטריבען.<lb/>ער זאָל געהן צווישען די קינדער דער נאַכט.<lb/><stage type="delivery">No</stage><lb/>I. (<stage type="delivery">נאָכן באַלעט) </stage><stage type="entrance">Auftr</stage></p>
+          </sp>
+          <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0158_a">
+            <speaker>נחמן.</speaker>
+            <p>שנעלל רעטעט אייך, סאָלדאַטען האָבען אָבגעלאָזט א דאָס וואַסערפֿונים<lb/>וואסער טיבער פֿלוס מיר ווערדען דערטרונקען.</p>
+          </sp>
+          <sp who="#alle" xml:id="DiTsveyTnoim_SP0159_a">
+            <speaker>אלע.</speaker>
+            <p>וועה, מיר זענען פֿערלוירען.</p>
+          </sp>
+          <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0160_a">
+            <speaker>שמעון.</speaker>
+            <p>שנעל לאָזט העראונטער די צוג בריקע!<lb/><stage type="setting">Vorang</stage></p>
+          </sp>
+          <trailer>End von Ien Act.</trailer>
+        </div>
+      </div>
+      <div type="act" n="2" xml:id="DiTsveyTnoim_Act2">
+        <head>2 ער אקט</head>
+        <sp who="#chor" xml:id="DiTsveyTnoim_SP0161_a">
+          <speaker>כאהר.</speaker>
+          <p>
+            <stage type="delivery">No</stage>
+          </p>
+          <lg>
+            <l>מיר רויבער מיר זענען שטענדיג אין דעם בעסטען שטאַנד</l>
+          </lg>
+          <lg>
+            <l>מיר האַלטען זיך צוזאַמען ווי איין האַנד</l>
+          </lg>
+          <lg>
+            <l>מאָרדען, רויבען. איז ביי אונז איין רויבער שפּיעל</l>
+          </lg>
+          <lg>
+            <l>וואָס עס קומט אונז אין וועג, וועניג אָדער פֿיעל</l>
+          </lg>
+          <lg>
+            <l>פֿרעהליך לאָמיר זיין</l>
+          </lg>
+          <lg>
+            <l>מיר רובער זענען..........א...ז... וו...</l>
+          </lg>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0162_a">
+          <speaker>חגלה.</speaker>
+          <lg>
+            <l>(סאָללאָ) דאָס וועה גישריי פֿון קינדער און מוטטער</l>
+          </lg>
+          <lg>
+            <l>דאָס געווען פֿון חתן כלה</l>
+          </lg>
+          <lg>
+            <l>מאַכען אונז אונזער לעבען גאָר ניט ביטטער</l>
+          </lg>
+          <lg>
+            <l>מיר רויבען און מאָרדען גאָר אָהן אַ שאַלָה</l>
+            <stage type="delivery">כאהר מיט</stage>
+            <stage type="delivery">אלע ביס</stage>
+          </lg>
+          <lg>
+            <l>איין לוסטיג לעבען ווערקען עס נור געבען</l>
+          </lg>
+          <lg>
+            <l>דאָס בעסטע פֿערגניגען פֿיהרט נור דער באַנדיט</l>
+          </lg>
+          <lg>
+            <l>ער וויל ניט זאָרגען וואָס ס'וועט זיין מאָרגען</l>
+          </lg>
+          <lg>
+            <l>ער טרינקט וויין גענישט מיט מענשען בלוט</l>
+          </lg>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0163_a">
+          <speaker>הילנא</speaker>
+          <lg>
+            <l>. מאָרדען רויבען גאָר אָהן רחמנות</l>
+          </lg>
+          <lg>
+            <l>לאזען יעדען אַנטלויפֿען קריעה בליה</l>
+          </lg>
+          <lg n="22" prev="true">
+            <l>דאָס הייסט ביי די באַנדיטען גאָר ישרנות</l>
+            <l>זיי האָבען ניט מורא פֿאַר דער תליה</l>
+            <l>איין לוסטיג לעבען...... א...ז...וו....</l>
+          </lg>
+        </sp>
+        <pb n="19" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0019.jpg"/>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0164_a">
+          <speaker>נחמן.</speaker>
+          <lg n="23">
+            <l>מיר באַנדיטען ווילען גאָר ניט זאָרגען</l>
+            <l>וואָס מיט אונז וועט געשעהן מאָרגען</l>
+            <l>פֿעסט בעשטעהט אונזער ברודערשאַפֿט</l>
+            <l>ווען מיר באָדען אונזער גאָרגעל אין טרויבענזאַפֿט</l>
+            <l>איין לוסטיג לעבען... א. ז. וו.</l>
+            <stage type="exit entrance">(אלעס טאַנצט אַרויס, עס קומט צוריק)</stage>
+            <stage type="entrance">Auft</stage>
+          </lg>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0165_a">
+          <speaker>פּלדש.</speaker>
+          <p>אָבער זאָג נאָר פֿרוילין נחמן, ווי לאַנג וועסטו אַ וועשען ביי<lb/>אונז? האָסט דאָך שוין בעקומען אַזוינע פֿיינע הענד אַז דו ווייסט<lb/>שוין גאָר ניט ווי מען שטעקט אַריין אַ מיליכיג קלינגעל אין אַ<lb/>אַ פֿליישיקען בויך.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0166_a">
+          <speaker>נחמן.</speaker>
+          <p>אַז דו וועסט ניט שווייגען וועל איך דיר ווייזען אַז איך האָב מיין<lb/>מלכה ניט פֿערגעסען, עס איז נישט דיין געשעפֿט. ווי אַזוי איך געה<lb/>אַנגעטהון.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0167_a">
+          <speaker>פּלדש.</speaker>
+          <p>אַזאַ יאָהר אויף דיר וואָס פֿאַר אַ פּנים. דו האָסט ביי מיר פֿער=<lb/>שטעהסט דען ווי אַזוי דיך צו האַלטען אין דער מאַסקע.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0168_a">
+          <speaker>חגלה</speaker>
+          <p>. וואָס געהט דיך און צו ער געפֿעהלט דעם יונגען לייב שפּיאָן. און<lb/>ער פֿאָרשט ביי איהם אַלעס אויס.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0169_a">
+          <speaker>נחמן</speaker>
+          <p>. אָט קומט ער וועל איך אייך צייגען ווי גוט איך שפיל מיין ראַללע.<lb/><stage type="entrance">(הילנאַ) </stage>מיין טייערער הילל, אַיך מיין הערץ. מיינע געפֿיהלע, מיין<lb/>גאַנץ טראַכטען און דענקען איז נאָר געוועהן פֿון דיר מיין טייערער<lb/>געליעבטער הילל.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0170_a">
+          <speaker>הילנא.</speaker>
+          <p>מיר מעננער קומערן זיך וועניג פֿון וועמען איהר פֿרויען טראַכט און<lb/>דענקט ווען איהר שטעהט ביי צייעבערשטעש. און דרעהען אייערע קאָל=<lb/>נערס אַז דער שווייסרינט אַזש פֿון איהם דאַמאָלס קימערט אונז ניט<lb/>וואָס איהר דענקט דאַביי.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0171_a">
+          <speaker>נחמן</speaker>
+          <p>. <stage type="delivery">(צווויינט זיך ווי אַ קאָקעטקע.)</stage> יאַ, אַזוי זענט איהר אַלע מעננער, ווען<lb/>מיר פֿרויען נעהמען זיך אַרויס די נשמה פֿון אייערעט וועגען און בליי=<lb/>בען אַזש אָן כוחות. לאַכט איהר זיך אויס פֿון אונז קעכענט, וועשענס,<lb/>און נאָך, און נאָך.... דאָס אָבער קומט נאָר דער פֿאַר ווייל מיר.<lb/>פֿרויען זענען שוואַך און מיר קענען זיך ניט פֿערטיי דיגען <stage type="delivery">(וויינט)</stage></p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0172_a">
+          <speaker>הילנא.</speaker>
+          <p>פֿאַר וואָס זענט איהר שוואַך, נעהמט אויך צונויף אַלע פֿרויען צוזאַמען, מאַכט<lb/>אייך איין בונד, וועט ווערען פֿון אַלע שוואַכע איין שטאַרקע.<lb/>און וועלכען מאַנן איהר וועט דערטאַפּען זאָלט איהר איהם<lb/>צעררייסען אויף שטיקלעך.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0173_a">
+          <speaker>נחמן.</speaker>
+          <p>נו וואָס וועט יעדע, פֿרוי האָבען איהר חלק? אַ שטיקעל מאַנן?<lb/>נאָך וואָס טויג עס איהר? בעססער טראַכט יעדע פֿרוי<lb/>אַללע איבריגע פֿרויען צו צעררייסען אָבי ס' זאָל איהר אַליין<lb/>בלייבען דער מאַנן אין גאַנצען.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0174_a">
+          <speaker>פּלדש.</speaker>
+          <p>און אַז זיי האָבען שוין דערטאַפּט דעם מאַנן אין גאַנצען. ליעגט<lb/>ליעגט ער ערשט ביי איהר 9 איילען טיעף אין דער ערד.<lb/>און זי טרעט אויף איהם מיט איהרע פּאַנטאָפֿעל.</p>
+        </sp>
+        <pb n="20" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0020.jpg"/>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0175_a">
+          <speaker>חגלה</speaker>
+          <p>. דאָס קומט דערפֿאַר, ווייל מיר האָבען 9 מאָס רעד און מיר אַליין<lb/>רעדען אייך איין דאָס אַלסדינג, אָבער אין אמת'ן אַריין גע=<lb/>רעדט רעדען אַזא דער מאַנן ליעגט אין דער ערד און די פֿרוי<lb/>פֿליהט שוין גאָר ביז אין הימעל אַריין טהוט דער מאנן<lb/>נאָר איין דריי דאָס דרעדיל בלייבט דער מאַנן אַלס פֿון<lb/>אויבען.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0176_a">
+          <speaker>הילנא</speaker>
+          <p>. וואָס זאָגסטו פֿרייליין נחמהילע צו דיין באָבעס תורה?<lb/>וועסטו נאָך אַ מאָהל וואַגען אין דיין לעבען חתונה צו האָבען?</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0177_a">
+          <speaker>נחמן.</speaker>
+          <p>פֿון אַזאַ העלד ווי דו ביזט וואָלט מיך גאָר ניט געהאַרט ווען<lb/>איך זאָל אַפֿילו צערריסען ווערען ווי דער לייב פֿון<lb/>שמשון הגיבור.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0178_a">
+          <speaker>הילנא</speaker>
+          <p>. דערפֿאַר מיין ליעבעס פֿרייליין גיב איך דיר אַ הערצלעכען קוש <stage type="business">(געשיהט)</stage></p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0179_a">
+          <speaker>פּלדש.</speaker>
+          <p>בראַוואָ נחמן! האָסט דיין ראָלע גוט געשפּיעלט, האָסט דעם ווערט דיין<lb/>נשמה זאָל מגולגול ווערען אין אַ מויד, אָבער דו מיין ליעבער<lb/>בחור הילל האָסט דיין קוש גאָר אַרויסגעוואָרפֿען אַ בחור האָט אַ<lb/>קוש גאָר אַרויס געוואָרפֿען אַ בחור האָט אַ קוש געטהון אַ זָכור.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0180_a">
+          <speaker>חגלה</speaker>
+          <p>אַליעגען! אַ זכור אין אַ קליידעל האָט געקושט אַ בחור אַ מיידעל.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0181_a">
+          <speaker>הילנא.</speaker>
+          <p>נאַחמהילע, זאָלסט מיר שוין זאָגען דעם אמת, ביזט אַ מיידעל<lb/>צו אַ בחור.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0182_a">
+          <speaker>נחמן.</speaker>
+          <p>איך בין אַזוי אמת אַ מיידעל, ווי דו ביזט אמת אַ בחור.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0183_a">
+          <speaker>פּלדש.</speaker>
+          <p>און ער איז אַזוי אמת אַ בחור ווי דו אַ בתולה.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0184_a">
+          <speaker>הילנא</speaker>
+          <p>. יאַ וואָס איז אַזוינס פֿערביטען געוואָרען די אצרות, אין הויזען געהט<lb/>דאָס מיידעל און דער בחור אין אַ קליידעל אַזוי איז די גאַנצע<lb/>וועלט איבער געקעהרט<lb/><stage type="setting"> No.</stage><lb/><stage>ביסס</stage></p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0185_a">
+          <speaker>אַלע 4.</speaker>
+          <lg n="24">
+            <l>אין איבערקעהרעניש. איין פֿערוויסטעניש</l>
+            <l>איז די וועלט. די גאַנצע וועלט.</l>
+            <l>אַ צודרעהעניש, אַ צומישעניש</l>
+            <l>פֿון בליטץ און דאָנער, היץ און קעלט.</l>
+          </lg>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0186_a">
+          <speaker>חגלה.</speaker>
+          <lg>
+            <l>אַ דור הפֿלגה ניט צו פֿערשטעהען</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0187_a">
+          <speaker>אַלע.</speaker>
+          <lg>
+            <l>יאַ, דאָס איז אמת.</l>
+          </lg>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0188_a">
+          <speaker>חגלה</speaker>
+          <lg>
+            <l>. זאָגט איינער גוט, זאָגט דער צווייטער שלעכט.</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0189_a">
+          <speaker>אַלע.</speaker>
+          <lg>
+            <l>יאַ, דאָס איז אמת.</l>
+          </lg>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0190_a">
+          <speaker>חגלה.</speaker>
+          <lg>
+            <l>ברעכט איינער אַ פֿוס זאָגט דער צווייטער רעכט</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0191_a">
+          <speaker>אלע</speaker>
+          <lg>
+            <l>. יאַ, דאָס איז אמת. איין איבערקערעניש..... א.ז.וו.</l>
+          </lg>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0192_a">
+          <speaker>הילנא.</speaker>
+          <lg>
+            <l>טהוט איינער וועה, האָט דער צווייטער לייד פֿרייד.</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0193_a">
+          <speaker>אלע</speaker>
+          <lg>
+            <l>. יאַ, דאָס איז אמת.</l>
+          </lg>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0194_a">
+          <speaker>הילנאַ.</speaker>
+          <lg>
+            <l>האָט איינער גליק, האָט דער צווייטער לייד.</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0195_a">
+          <speaker>אַלע.</speaker>
+          <lg>
+            <l>יאַ, דאָס איז אמת.</l>
+          </lg>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0196_a">
+          <speaker>הילנא.</speaker>
+          <lg>
+            <l>זאָגט איינער עס איז טאָג, זאָגט דער אַנדערער נאַכט.</l>
+          </lg>
+        </sp>
+        <pb n="21" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0021.jpg"/>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0197_a">
+          <speaker>אלע</speaker>
+          <lg>
+            <l>. יאַ, דאָס איז אמת. איין איבערקעהרעניש..... א.ז.וו.</l>
+            <l>זעהט איהר דאָרט די דאַמע שטעהן?</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0198_a">
+          <speaker>אלע</speaker>
+          <lg>
+            <l>. יאַ, דאָס איז אמת.</l>
+          </lg>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0199_a">
+          <speaker>נחמן</speaker>
+          <lg>
+            <l>. פֿאַלשע האָאָר אין פֿאַלשע צעהן.</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0200_a">
+          <speaker>אַלע</speaker>
+          <lg>
+            <l>. יאַ. דאָס איז אמת.</l>
+          </lg>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0201_a">
+          <speaker>נחמן.</speaker>
+          <lg>
+            <l>איינער גלאָצט די אויגען, און האַלט זיך פֿרום און פֿיין.</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0202_a">
+          <speaker>אלע.</speaker>
+          <lg>
+            <l>יאַ, דאָס איז אמת. איין איבערקעהרעניש... א. ז. וו.</l>
+          </lg>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0203_a">
+          <speaker>פּלדש</speaker>
+          <lg>
+            <l>. איינער לאָזט זיינע פֿאַר'ן הויז. און זוכט זיך גאָר איין מיידעל אויס.</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0204_a">
+          <speaker>אלע</speaker>
+          <lg>
+            <l>. יאַ, דאָס איז אמת.</l>
+          </lg>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0205_a">
+          <speaker>פּלדש</speaker>
+          <lg>
+            <l>. און דאָס ווייבעל האָט אַמאַנן און קושט אַ פֿרעמדען זיסס</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0206_a">
+          <speaker>אַלע.</speaker>
+          <lg>
+            <l>יאַ, דאָס איז אַמת.</l>
+          </lg>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0207_a">
+          <speaker>פּלדש</speaker>
+          <lg>
+            <l>. אַז אויסדרעהען מעג מען איהם די פֿיסס. (אַב)</l>
+          </lg>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0208_a">
+          <speaker>אלע.</speaker>
+          <lg>
+            <l>יאַ, דאָס איז אמת. איין איבערקעהרענש...... א.ז.וו. (טאַנצען אַב)</l>
+            <stage type="business">מיט אַ ראַללע פּאַפּיער)</stage>
+            <stage type="entrance">Auftr</stage>
+          </lg>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0209_a">
+          <speaker>צענאַבע</speaker>
+          <p>. ווי זאָל בר לקיש זיין? דער בריעף וועט איהם וועט געוויס דערקוויקען,<lb/>דאָס איז געוויס פֿון זיין געליעבטער פֿרוי. ער קוקט אויף<lb/>איהר אַרויס ווי אויף משיחין. איך וויל מיר די מצוה קויפֿען<lb/>און איהם אַליין דעם בריעף אָבגעגעבען. <stage type="business">(קוקט און צעלט)</stage> ער שלאָפֿט?<lb/>איך וויל איהם ניט וועקען איך וועל דעם בריעף ביי זיין בעט ניעדער=<lb/>לעגען און ווען ער וועט ער וואַכען זאָל, ער איהם פֿינדען. <stage type="exit">(געהט</stage><lb/><stage type="entrance">אַריין און קומט אַרויס אָן פּאַפער)</stage> ווי טאָפפֿער ער האָט געקעמפט מיט<lb/>די וואַסער עלעמענטען וועלכע האָבען די העהלע אָנגעפֿיהלט,<lb/>ער האָט ניט גערוהט ביז ער האָט ניט דעם לעצטען גערעטעט<lb/>געזעהן. ווי גליקליך וואָלט איך געקענט זיין, איך זאָל קענען זיין<lb/>די פֿערמיטלערין, שלום צו מאַכען צווישען איהם און זיין פֿרוי<lb/>און זיין שוואָגער.<lb/>אַריע -Aro<lb/><stage type="entrance">Auftr</stage> II<lb/><stage type="entrance">כאָהר</stage> (<stage type="entrance">רויבער) </stage>נ<stage type="entrance">חמן, פלדש, הילנא, חגלה</stage></p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0210_a">
+          <speaker>חגלה.</speaker>
+          <p>איך האָב קיין מורא ניט פֿאַר דעם אמת, די קעניגין אַליין האָט<lb/>די סאָלדאַטען אויף אונז אָנגעשיקט.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0211_a">
+          <speaker>צענאַב</speaker>
+          <p>. רוהיג! פֿורכטעט ניכט'ס. אַלעס ווירד גוט זיין איהר זייט נור<lb/>גוטע מענשען.<lb/><stage type="entrance">Auftr</stage> (שמעון. <stage type="delivery">(אויפגערעגט מיטין בריעף</stage></p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0212_a">
+          <speaker>שמעון.</speaker>
+          <p>עהרליכע מענשען, בראַווע מענשען. חַ-חַ-חַ, די זענען נאָך ניט<lb/>געבוירען, ווילדע בלוט דורסטיגע טיערע, פֿאַלשע קראָקאַדילע.<lb/>גיפֿטיגע שלאַנגע איז עס, און די געהען אַרום מאַסקירט פֿאַר<lb/>מענשען הערט איהר וואָס איהר רופֿט אייך מענשען. רבי יוחנן<lb/>וואָס הייסט מיין גייסטיגער פֿאָטער, רעטער פֿון מיין נשמה, דער ברענ=<lb/>גער פֿון מיין גליק. איך האָב נור אַ ביסעלע פֿון כּבוד אָנגעריהרט<lb/>נור אַ פינטעלע, נאָר אַ שטראַהל פֿון אמת האָב איך געוואָלט אַרויפֿ=<lb/>ברענגען אויף דעם יַם התלמוד איז פֿון דעם גייסטיגען פֿאַטער<lb/>געוואָרען אַ ווילדער טיגער. די פֿרוי וועלכע האָט מיך פֿערגעטטערט?<lb/>פֿער האַסט מיך יעצט, אויס דער הימלישער געליעבטער איז געוואָ=<lb/>רען איין פֿעררעטערישעס ווייב.</p>
+        </sp>
+        <pb n="22" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0022.jpg"/>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0213_a">
+          <speaker>צענאב</speaker>
+          <p>. עס איז אונגליק. עס איז אַ טעות א טעות</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0214_a">
+          <speaker>שמעון.</speaker>
+          <p>אַה זעהט! אַה זעהט!</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0215_a">
+          <speaker>אלע.</speaker>
+          <p>וואָס איז געשעהן. הויפּטמאַנן?</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0216_a">
+          <speaker>שמעון.</speaker>
+          <p>איך האָב מיט בן פּדות אַ בריעף מיטגעגעבען אין דעם בריעף<lb/>האָב איך געשילדערט מיין חרטה. אַ ווילדע בעסטיע האָט געקענט<lb/>צו שמאָלצען ווערען. און הערט וואָס דיעזער בריעף דער ענטפֿער<lb/>אויף מיין בריעף ענטהאַלט! חרם! קללות! פֿעראַכטונג! און<lb/>ביטטערע ראַכע <stage type="delivery">(וויינט)</stage> חַ ח ח וואָס פֿאַר אַ נאַרר איך בין געווען<lb/>איך האָב געוואָלט צוריק אין דעם מענשענגעפֿענגעניש אַריינגעהן<lb/>אָבער ניין! ניין! פֿרייהייט וועל איך נאָר צווישען רויבער און מערדער<lb/>פֿינדען! בלוט און טאָדט זאָל מיך מאַכען פֿערגעסען אין דער<lb/>בעסטיע מענש. קאַמעראַדען איך בלייבע אייער הויפּט=<lb/>מאַנן!</p>
+        </sp>
+        <sp who="#alle" xml:id="DiTsveyTnoim_SP0217_a">
+          <speaker>אַלע.</speaker>
+          <p>האָך דער הויפּטמאַנן! קראו לי</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0218_a">
+          <speaker>שמעון.</speaker>
+          <p>פֿיהלט די קאַנען מיט וויין. התם רבי קראַלי און הבא רבי<lb/>קראַלי! שפיעלט מיין בלוט מאַרש נור רויב! מאָרד! גיפֿט<lb/>און טאָדט זאָל מיין לעבען זיין.<lb/><stage type="delivery">Aro.</stage><lb/><stage type="entrance">hintergrund chor on</stage></p>
+        </sp>
+        <div type="scene" n="1" xml:id="DiTsveyTnoim_Act2_Sc1">
+          <head>Verwandlung</head>
+          <stage type="entrance">בן פדות</stage>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0219_a">
+            <speaker>פדות.</speaker>
+            <p>צו לאַנגזאַם נעהמט עס מיר, תלמיד חכם צוריק להיות נוקם אונטר<lb/>בנש" די חכמים זאגען אַז אַ תלמוד חכם מוז זיין ראַכע ריכטיג<lb/>ווי אַ שלאַנג - דאָס הייסט קלוג ווי אַ שלאַנג. ווען זי לאָזט דעם<lb/>גיפֿט דעם פֿערד אין פֿוס אַריין אין דער רייטער מוז אַראָבפֿאַה=<lb/>לען. דער אַלטער האַלט אין איין בענקען נאָך זיין תלמיד חָכָם<lb/>און שוואָגער, בר לוקיש. און איך בין גאַנץ זיכער אַז ער זאָל הייטע<lb/>קומען וועט ער איהם אַרומכאַפּען מיט ביידע הענד און איהם נאָך<lb/>איבערבעטען איך מוז זעהן זיך אַ ביסעל צו איילען..... דער אלטער<lb/>מוז ווי אַמשנעלסטען שטאַרבען און דאַנן וועט די שטוהל פֿון<lb/>רבנות מיר געהערען, איזראַעלית וועט דאַנן זיך מוזען געפֿעלען<lb/>לאָזען, וואָס איך וועל בעפֿעהלען די שאלה איז נאָר ווי ווערט<lb/>מען דעם אַלטענס פטור?....... איינפֿאַך פֿעגיפֿטען?<lb/>טויג ניט מען וועט עס באַלד אויסגעפֿונען. ער מוז שטאַרבען<lb/>אַ נאַטירליכען טויט דורך ערגערניש און פֿערצווייפֿלונג.<lb/><stage type="delivery">(פֿויזע) </stage>שאַ, דער געדאַנק איז גוט....... איך מוז יעמאַנ=<lb/>דען אויפֿזוכען ער זאָל מיר עדות זאָגען אַז בר לוקיש האָט<lb/>זיך אויפֿגעהאַנגען אויף אַ בוים אויס פֿערדרוס וואַס רבי<lb/>יוחנן האָט איהם פֿעריאָגט און דאָס וועט גיך דעם אלטען<lb/>דערהרגענען. ווי נעהמט אָבער דעם אדות?<lb/>הילנא. <stage type="entrance">Auftrit</stage></p>
+          </sp>
+          <pb n="23" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0023.jpg"/>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0220_a">
+            <speaker>הילנא.</speaker>
+            <p>גאָטט מיט אייך!</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0221_a">
+            <speaker>פּדות.</speaker>
+            <p>עפּעס זעהר אַ בעקאַנטער יונגער מאַנן?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0222_a">
+            <speaker>הילנא.</speaker>
+            <p>איהר זייט דאָך איין תלמיד חכם און איין תלמיד חכם דאַרף האָבען<lb/>איין טביעת עין דאָס הייסט אַ גוט אויג.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0223_a">
+            <speaker>פּדות</speaker>
+            <p>. אַך, יאַ, איך ערינערע מיך שוין........... חאַ- חאַ-חאַ, דאָס איז<lb/>דאָך דאָס יונגע באַנדיטעל..............</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0224_a">
+            <speaker>הילנא.</speaker>
+            <p>קודם ניט בעליידיגען! איך בין ניט קיין באַנדיט, און אַז יאָ<lb/>אז איך הייס יאָ איין באַנדיטעל דאָפֿיר ווייל דו האָסט מיך גע=<lb/>זעהן צווישען די באַנדיטען, אַזוי מוזטו אויך זיין איין גרוי=<lb/>סער באַנדיט, ווייל איך האָב דיך דאָר אויך געזעהן.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0225_a">
+            <speaker>פּדות.</speaker>
+            <p>האָסט רעכט אָבער וואָס ברענגט דיך אַהער? צו מיר.</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0226_a">
+            <speaker>הילנא.</speaker>
+            <p>מיך ברענגט גאָר ניט אַהער, מען האָט מיך געשיקט<lb/>אהער.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0227_a">
+            <speaker>פּדות.</speaker>
+            <p>אַוואַדע מיין געליעבטע, ווי האָט זי געהייסען? בת ציביע.</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0228_a">
+            <speaker>הילנא.</speaker>
+            <p>אַ שעהן פָּנים האָט עס ביי מיר. זי מיינט אַז דו<lb/>שטאַרבסט נאָך איהר און דו קענסט זיך קוים דערמאַנען<lb/>ווי זי הייסט!<lb/>דער</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0229_a">
+            <speaker>פדות.</speaker>
+            <p>ביי ליעבע איז ניט קיין עיקר דער נאָמען. דו הויפֿט=<lb/>זאַך איז איהר שעהן לעכטיגע פּנים. און דאָס שטעהט עביג<lb/>פֿאַר מיינע אויגען.</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0230_a">
+            <speaker>הילנא.</speaker>
+            <p>אַזוי! דאָס הייסט גערעדט ווערטער - זאָלסט וויסען אַז מיין<lb/>קעניגין האָט מיך געשיקט צו דיר.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0231_a">
+            <speaker>פּדות.</speaker>
+            <p>וואָס הייסט דיין קעניגין?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0232_a">
+            <speaker>הילנאַ.</speaker>
+            <p>ענטשולדיג מיר. איך בין נאָך געוואָהנט זי צו רופֿען אויף דעם<lb/>נאָמען ווי די באַנדיטען פֿלעגען זי רופֿען די רויבער=<lb/>קעניגין.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0233_a">
+            <speaker>פּדות</speaker>
+            <p>נו, און זי איז שוין ניט מעהר דאָרט?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0234_a">
+            <speaker>הילנא</speaker>
+            <p>. ווייס איך וואָס, וואו איז נאָך דאָ אַ סימן פֿון אַ באַנדע.<lb/>מיר דאַכט זיך זיי דאַרפֿען שוין אַלע זיין אויף יענער<lb/>וועלט.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0235_a">
+            <speaker>פּדות</speaker>
+            <p>. ווי מיינסטו? דאָס וואַסער האָט זיי אפֿשר דערטרונקען?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0236_a">
+            <speaker>הילנא.</speaker>
+            <p>דאָס ניט. זאָנסט ווי אַזוי וואָלט איך איצט דאָ געוועהן? מיר<lb/>האָבען זיך גערעטעט אָבער דאָ נעכטען האָט עס געהייסען דער<lb/>הויפּט מאַנן בר לוקיש טהוט וויעדער תשובה און געהט זיך<lb/>צוריק צו די תַּנָאִים. און אַלע באַנדיטען האָבען זיך<lb/>שוין געשלאָגען אין די הערצער על חֶטְא, פּלוצים היינט<lb/>אין דער פֿיה האָט דער הויפּטמאַנן ערהאַלטען פֿון ערגיץ<lb/>אַ בריעף און ווי ער האָט איהם נאָר איבער געלעזען האָט<lb/>ער געגעבען אַ וואָרף אַ וועק דעם טלית און תפֿילען גע=<lb/>כאַפּט די שווערד און אַלע מיט איהם, מתים זאָלען פֿלי=<lb/>הען אין דער לופֿטען, פגרים זאָלען פֿאַלען פֿון דעם<lb/>הימעל, און שוין.</p>
+          </sp>
+          <pb n="24" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0024.jpg"/>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0237_a">
+            <speaker>פּדות.</speaker>
+            <p>וואָס, ווייסט גאָר נישט, וואָס מיט בר לוקיש געשעהן איז?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0238_a">
+            <speaker>הילנא.</speaker>
+            <p>איך ווייס נאָך זעהר אַ סאַך, איך ווייס, אַז אַרום וואַלד<lb/>זענען געשטאַנען סאָלדאַטען און זיי האָבען זיך געמוזט<lb/>דורך שלאָגען דורך די סאָל דאַטען, און געוויס זיענען אַ<lb/>אַפּאָאָר דערשלאָגען געוואָרען.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0239_a">
+            <speaker>פּדות.</speaker>
+            <p>אַזוי יעצט פֿערשטעה איך אַז עס איז אמת, אַבי בר לוקיש האָט<lb/>זיך אויפֿגעהאַנגען אויף אַ בוים......................</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0240_a">
+            <speaker>הילנא</speaker>
+            <p>. דאַפֿאָן ווייס איך ניכטס, אָבער עס קען אמת זיין. ווייל ער<lb/>איז געווען זעהר פֿערצווייפֿעלט. ער האָט נאָר געוואָלט<lb/>שפרינגען אין פֿייער.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0241_a">
+            <speaker>פּדות.</speaker>
+            <p>און ווער עס שפרינגט אין פֿייער, מוז פֿערברענט ווע=<lb/>רען: ניט זאָ?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0242_a">
+            <speaker>הילנאַ</speaker>
+            <p>. דו זאָגסט דאָך אַליין אַזוי?!</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0243_a">
+            <speaker>פּדות.</speaker>
+            <p>זאָג נאָר יונגער מאַנן. ווען איך זאָל דיך בעטען זאָלסט<lb/>דאָס אַלסדינג ערצעהלען איין אַלטען מאַנן דו וועסט דיר <lb/>אַ גרויסע מצוה קויפֿען. וועסט דאָס טהון?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0244_a">
+            <speaker>הילנא.</speaker>
+            <p>מיינע קעניגין! דאָס הייסט די רויבער קעניגין זי איז מיט איהם<lb/>בעסער בעקאַנט געווען לאָז זי זיך קויפֿען די מצוה. איך האָב<lb/>נאָך גענוג צייט מִצְוָס צו טהון.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0245_a">
+            <speaker>פּדות.</speaker>
+            <p>און ווי מיינסטו, וועט זי דאָס טהון?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0246_a">
+            <speaker>הילנא.</speaker>
+            <p>איך ווייס אַז זי האָט דיך זעהר ליעב וועט זי דיר די ביטטע<lb/>ניט ענט זאַגען.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0247_a">
+            <speaker>פּדות.</speaker>
+            <p>וויע קען איך זי זעהן?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0248_a">
+            <speaker>הילנא.</speaker>
+            <p>זי וואַרט אויף דיר אין גאָרטען. און ווייס זיכער זי צעהלט די<lb/>מינוט דיך צו זעהן.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0249_a">
+            <speaker>פּדות.</speaker>
+            <p>אַזוי, ענטשולדיג מיר איך וויל זי לאַנג ניט לאָזען וואַרטען מיין הערץ<lb/>ווירד פֿערברענט נאָך איהר. <stage type="exit">(:אב:)</stage></p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0250_a">
+            <speaker>הילנא.</speaker>
+            <p>ווער פֿערברענט און פֿערסאַרפֿעט <supplied>(:אָב נאָך איהם:)</supplied><lb/><stage type="entrance">Auftr</stage> <stage type="entrance">יוחנן - איזראעלית</stage><lb/>יוחנן. איך ווייס. איך האָב גוט געפֿסקענט אַך, דאַרפֿסטניט בן פּדות הסכּמה<lb/>איך וויל בעסער הערען ווי בר לוקיש פֿרעגט מיך אַלע טאָג 24    <lb/>קשיות און איך ענטפֿער איהם 24 תרוצים, אך וואו ביזטו בר.<lb/>לוקיש. וואו ביזטו. <stage type="business">(:שלאָפֿט איין:</stage>)</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0251_a">
+            <speaker>יזראעלית.</speaker>
+            <p>ער שלאָפֿט. ווי שעהן זיין פָּנים לייכט די שכינה רוהט אויף<lb/>איהם, שלאָף! שלאָף געזונד און וואַך אויף געזונד און<lb/>פֿריש. מיין עלענד און מיין נויט וועל איך אַליין ער=<lb/>טראַגען.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0252_a">
+            <speaker>יוחנן</speaker>
+            <p>. <stage type="delivery">(פֿון חָלום)</stage> וואו ביזטו בר לוקיש מיין תלמיד מיין חבר</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0253_a">
+            <speaker>יזראעלית.</speaker>
+            <p><stage type="business">(ערגרייפֿט זיין האַנד) </stage>ער חָלומט פֿון מיין מאַנן זיין תלמיד.</p>
+          </sp>
+          <pb n="25" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0025.jpg"/>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0254_a">
+            <speaker>יוחנן</speaker>
+            <p>. ביזט צוריק געקומען מיין טייערער תלמיד און שוואָגער, אַך. ווי<lb/>שלעכט דו זעהסט אויס. קוק ניט אַזוי בעז אויף מיר, איך<lb/>ערגער מיך גענוג וואָס איך האָב דיך אַזוי שלעכט<lb/>בעהאַנדעלט.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0255_a">
+            <speaker>יזראַעלית.</speaker>
+            <p>שטעה אויף מיין ברודער דאָס איז נאָר אַ חָלום, ערגער<lb/>דיך ניט.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0256_a">
+            <speaker>יוחנן.</speaker>
+            <p><stage type="business">(ערוואַכט) </stage>וואָס? איז דאָ שמעון ניט געווען? האָב איך ניט זיין<lb/>האַנד אין מיינער געהאַלטען? אַה, דו ביזט עס איז=<lb/>ראַעלית? איך האָב זעהר אַ גוטען חָלום געהאַט. איך<lb/>האָב דיין מאַנן ביי מיר געזעהן און ער האָט מיר מוחל גע=<lb/>ווען. דאָס האָב איך פֿון זיין מויל געהערט.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0257_a">
+            <speaker>יזראעלית.</speaker>
+            <p>איך בין זיכער, אַז ער האָט מוחל געווען און איך אַליין בין דיר<lb/>אויך מוחל.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0258_a">
+            <speaker>יוחנן.</speaker>
+            <p>ניין. שוועסטער טייערע דיין באלאַסס פּנים מיט דיינע פֿערוויינטע<lb/>אויגען זאָגען מיר אַז דו קענסט מיר ניט מוחל זיין, אַרמע שוועסטער.<lb/>איך האָב דיין גליק דיר צערשטערט, האָב מיטלייד מיט מיר און<lb/>שעלט מיך ניט.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0259_a">
+            <speaker>יזראַעלית.</speaker>
+            <p>איך קען ניט און וויל דיך ניט שעלטען. <stage type="business">(קושט זיין האַנד)</stage><lb/>וואָס דו האָסט געטהון איז געוויס געווען דער רצון פֿון<lb/>גאָטט, און גאָטטס ווילען מוז געשעהן.<lb/>בן - פּדות.<lb/>BX...Draw</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0260_a">
+            <speaker>פּדות.</speaker>
+            <p>רבי, זעהר אַ שלעכטע בשורה האָט מען אונז געבראַכט.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0261_a">
+            <speaker>יזראעלית.</speaker>
+            <p>און וועמען בעטרעפֿט זי?!</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0262_a">
+            <speaker>פּדות.</speaker>
+            <p>דיין מאַנן - מיין טהייערע חבר - און דיין תלמיד רבי, מען<lb/>דערצעהלט אַז...........</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0263_a">
+            <speaker>יזראעלית.</speaker>
+            <p>הויכלער! ווילסט מיך מיט מיין ברודער טעטען, ליעבער ברו=<lb/>דער הער איהם ניט!</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0264_a">
+            <speaker>פּדות.</speaker>
+            <p>אויבאַזוי ווייס איך גאָר ניט. <stage type="business">(וויל געהן)</stage></p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0265_a">
+            <speaker>יוחנן.</speaker>
+            <p>ניין האָסט אָנגעהויבען, ענדיג.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0266_a">
+            <speaker>פּדות</speaker>
+            <p>. <stage type="delivery">(צו יזראעלית)</stage> איך מוז טהון. וואָס מיין רבי הייסט מיר: מען<lb/>האָט מיר ערצעהלט אַז ווען שמעון האָט ער האַלטען מיין בריעף<lb/>מיט דעם חרם און קְלָלות - וואָס - דו - רבי האָסט מיר<lb/>געהייסען איהם שרייבען, איז ער זעהר טרויעריג געוואָ=<lb/>רען, און האָט טאָג און נאַכט געשריגען: מיר? זאָל רבי<lb/>יוחנן דאָס טהון? איך ווייס, איך בין זיין בעסטער תלמיד גע=<lb/>ווען, איך וואָס פֿלעג איהם יעדען טאָג פֿרעגען 24 קַשְיות<lb/>און ער האָט מיר געענטפֿערט 24 תרוצים - און פֿאַר איין<lb/>וואָרט וואָס האָט זיין כבוד בעריהרט זאָל ער מיך אַזוי זידלען, און<lb/>מיט דעם געשריי פֿון פֿערצווייפֿלונג איז ער אַריינגעשפּרונגען<lb/>צווישען אַ מחנה פֿון סאָלדאַטען, וואָס זענען געקומען איהם<lb/>צו פֿערהאַפֿטען אַלס רויבער הויפּטמאַנן און ער איז געשטאָכען<lb/>געוואָרען אויף טוידט.</p>
+          </sp>
+          <pb n="26" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0026.jpg"/>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0267_a">
+            <speaker>יוחנן.</speaker>
+            <p>וועה! וועה! מיינע קלָלות האָבען איהם פֿער צווייפֿעלט, מיינע<lb/>חרמים האָבען איהם געטעטעט.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0268_a">
+            <speaker>יזראעלית.</speaker>
+            <p>מיין מאַנן טוידט דורך מיין אייגענעם ברודער. <stage type="delivery">(וויינט)</stage></p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0269_a">
+            <speaker>יוחנן.</speaker>
+            <p>ניין. ניין, בן פּדות קום נעהער צו מיר לאָז מיך דיר זעהן אין<lb/>דיינע אויגען.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0270_a">
+            <speaker>פּדות</speaker>
+            <p>. <stage type="business">(קניענד נעבען רבי יוחנן ווישט זיך די אויגען)</stage> זעה רבי די<lb/>טהרערען אין מיינע אויגען וואָס איך פֿערגיעס איבער מיין<lb/>געפֿאַלענעם חבר'ס טוידט שפּיעגעלט זיך אָב זיין<lb/>בילד.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0271_a">
+            <speaker>יוחנן</speaker>
+            <p>. <stage type="business">(קוקט איהם אָן מיט צווייפֿעל) </stage>איך זעה ניט זיין בילד אין דיינע<lb/>אויגען. שמעון איז געווען אַ מלאָך אַ אבן טוב פֿון גאָטטעס<lb/>קרוין - די קלָלות זאָלען אויף מיר פֿאַלען! דער חכם<lb/>זאָל מיך פֿערוויסטען. איך האָב געהרגעט אַ גָדול בישראל<lb/>אַ גרויסען מענשען האָב איך אַוועקגערויבט פֿון דער ישיבה.<lb/><stage type="business">(ערגרייפֿט זיין קאָפּ)</stage> אונגעהייער הייכלער! בן פּדות מיט דיין<lb/>ייתניא דֶע מָסַאי״. דו האָסט מיך צו דעם אַלעם געבראַכט.<lb/><stage type="exit business">(לאָזט איהם אַב)</stage> אַך, בר לוקיש. וואו ביזטו? וואו ביזטו<lb/>בר לוקיש?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0272_a">
+            <speaker>פּדות</speaker>
+            <p>. גאָטט איז מיין עדות, אַז איך בין מקבל דיין שטראַף אויף<lb/>מיר בֶאַהַבַה- נאָר דיין חרטה רבי, איז צו שפּעט, פֿון<lb/>דעם קבֿר קומט קיינער צוריק.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0273_a">
+            <speaker>יזראעלית</speaker>
+            <p>. ברודער, מיין הערץ זאָגט מיר, אַז וואָס בן פּדות זאָגט<lb/>איז אַ ליעגען.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0274_a">
+            <speaker>פּדות.</speaker>
+            <p>דאָ אין הויז איז דאָ איין פֿרוי. זי האָט מיט איהרע<lb/>אויגען אַלעס געזעהן. איך ברענגע זי אַריין, וועט זי<lb/>פֿאַר אייך אַלעס ערצעהלען <stage type="exit">(:אב)</stage></p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0275_a">
+            <speaker>יזראַעלית</speaker>
+            <p>. בן פּדות..... ניין. איך מוז דיר דעם אמת זאָגען הייליגער<lb/>ברודער, דו האָסט איהם פֿערלוירען.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0276_a">
+            <speaker>יוחנן.</speaker>
+            <p><stage type="delivery">(פֿאַנטאַזירט. קריכט אריין אין וואַהנזינן)</stage> די מלאכים פֿערלאָזען מיך עס<lb/>ווירד פֿינסטער אויף דער וועלט מיין תלמיד קלאָגט מיך צו<lb/>פֿאַר גאָטטעס שטוהל. איך ווער פֿערמשפּט, מען וואַרפֿט<lb/>מיך פֿון דעם היממעל אַראָב. עס קומען צו געהן צו געהן<lb/>מיך צו פֿערקלאָגען. איך וויל אייך ניט לייקנען איך בין זיין<lb/>מערדער געוועזען.<lb/><stage type="entrance">בן פּדות - צענאביא</stage>ַ. <stage type="entrance">Auft</stage></p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0277_a">
+            <speaker>פּדות</speaker>
+            <p>דאָ רעבי איז מיין עדות, וואָס קען אייך אַלעס דער צעהלען.</p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0278_a">
+            <speaker>יזראַעלית</speaker>
+            <p>. איך וויל קיין עדות הערען.</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0279_a">
+            <speaker>יוחנן.</speaker>
+            <p>ליעבער מלאך, זיי מיין מליץ יושר, דאָ וועל איך ליעגען בלייבען<lb/>און מיין נשמה שיקען אַרויף אין הימעל אַריין. ער צעהלען,<lb/>ערצעהל מיר. וואָס ווייסטו פֿון זיין טוידט?</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0280_a">
+            <speaker>צענאב.</speaker>
+            <p>איך וויל אַלסדינג ערצעהלען. ער איז געווען זעהר אַ פֿיינער מענש.<lb/>צווישען ענגעל איז ער געווען אַ גאָטט, צווישען רויבער אַ מענש.<lb/>קיין קינד איז דורך איהם בערויבט געוואָרען קיין פֿליעג<lb/>געטעטעט, ער איז געפֿאַלען אויס פֿער צווייפֿלונג דורך<lb/>איין בריעף וועלכען ער האָט ער האַלטען פֿון זיין היים.</p>
+          </sp>
+          <pb n="27" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0027.jpg"/>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0281_a">
+            <speaker>יזראַעלית</speaker>
+            <p>. גענוג! גענוג! דו טעטעסט מיין ברודער!</p>
+          </sp>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0282_a">
+            <speaker>יוחנן</speaker>
+            <p>. <stage type="delivery">(מעשוגע)</stage> ניין, מיך קען קיינער ניט טעטען. איך בין גאָטט<lb/>איך בין דאָס עוויג קייט עדות, איך בעפֿעהלע דיר ערצעהלע<lb/>אַלסדינג וואָס דו ווייסט, איך בעפֿעהל!<stage type="business"> (לעגט זיך)</stage></p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0283_a">
+            <speaker>פּדות</speaker>
+            <p>. ערצעהל בת ציביע! עס איז דער בעפֿעהל פֿון<lb/>גאָטט!</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0284_a">
+            <speaker>צענאב.</speaker>
+            <p>איך וויל עס טהון. אפֿשר וועט עס איהם טרעסטען.<lb/>Bild<lb/>(<stage type="setting">סקרין דראָק ווערט בעלייכטעט. הינטען זעהט מען אַ וואַלד, אויף דער ערד</stage><lb/><stage type="setting">ארום. אין בעק ליעגען רויבער און שלאָפֿען אין דער מיט אָנגע=</stage><lb/><stage type="setting">שפּאַרט אויף אַ שטאַם ליעגט בר לוקיש האַלב זיצענד מיט אַ</stage><lb/><stage type="setting">ראַללע פּאַפֿיר אין דער האַַנד און שלאפֿט</stage>.)<lb/><stage type="delivery">Aro</stage><lb/><stage type="delivery">אנסאַמבעל</stage></p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0285_a">
+            <speaker>צענאב</speaker>
+            <lg n="25">
+              <l>. אין טיעפֿען וואַלד נאָך האַלבער נאַכט</l>
+              <l>זעה איך רויבער שלאָפֿען גאַנץ פֿערשטערט</l>
+              <l>נור בר לוקיש דער באַנדע הויפּטמאַן וואַכט</l>
+              <l>איין בריעף פֿון זיין געליעבטער האָט איהם אויפֿגעוועקט.</l>
+              <stage type="business">(שמעון ערוואַכט לעזט בריעף אין בילד:)</stage>
+              <stage type="business">Feuer</stage>
+            </lg>
+            <lg n="26" prev="true">
+              <l>פּלוצים הערט הונדע פֿון ווייטען ביללען</l>
+              <l>גלייך אַלע מענשען לויפֿען היער און הער</l>
+              <stage type="business">(:רויבער שטעהן אויף:)</stage>
+              <l>אַלעס כאַפּט זיך אויף גאַנץ אין שטילען</l>
+              <l>עדעס כאַפּט זיין שווערד. זיין געוועהר.</l>
+              <stage type="business">Feur</stage>
+              <stage type="business">אלעס כאַפּט געוועהר</stage>
+              <stage type="business">אין בילד:)</stage>
+            </lg>
+            <p>(בר לוקיש רופֿט אויס אין צווייפֿעל: ברידער פֿערלירט<lb/>ניט קיין מוטער<lb/><stage type="entrance">כאָהר</stage><lb/><stage type="location">הינטען</stage><lb/><stage type="delivery">אַנסאַמבעל</stage> |. מאָרדעט, רויבט, קעמפפֿט ווי די טייפֿעל טרינקט אייך זאַט מיט מענשענבלוט<lb/>שמעון מיט<lb/>צענאַביא </p>
+            <lg n="27">
+              <l>פלוצים ווערט ער אַרומגעשלאָסען</l>
+              <l>מיט סאָל דאַטען דערגאַנצער וואָהל</l>
+              <l>מיט פּפֿיילען ווירד אויף איהם געשאסען</l>
+              <l>זיין בלוט פֿליעסט ביז ער פֿאַלט</l>
+              <stage type="delivery">איין</stage>
+              <stage type="delivery">דועט</stage>
+              <stage type="delivery">ַנסאמבעל</stage>
+            </lg>
+            <lg n="28">
+              <l>און דיר רבי יוחנן גיב איך צוריק מיינע קלָלות</l>
+              <l>נור דיין נאַרעשער כּבוד האָט מיך דערצו געבראַכט</l>
+              <l>אויף דיר זאָלען פֿאַלען מיינע יֶלָלות</l>
+              <l>וואָס פֿליעסען און דער פֿינסטערער נאַכט</l>
+              <stage type="entrance">בר נזיר מיט סאָלדאַטען קומען</stage>
+              <stage type="business">אָן, בר נזיר ריכטעט</stage>
+              <stage type="business">זיין פּפֿייל געגען שמעון. יעדער</stage>
+              <stage type="business">סאלדאט ריכטעט זיין שווערד</stage>
+              <stage type="business">געגען איין יעדען רובער</stage>
+            </lg>
+            <lg n="29">
+              <l>פֿון איין ארויבער צו אַ תנה</l>
+              <l>האָסט מיך אויפגעהויבען.</l>
+              <l>און צו לעצט האָסטו פֿון מיר גענומען.</l>
+              <l>ביטערע - שרעקליכע נקמה.</l>
+              <stage type="delivery">אללע.</stage>
+            </lg>
+          </sp>
+          <pb n="28" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0028.jpg"/>
+          <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0286_a">
+            <speaker>יוחנן</speaker>
+            <lg n="30">
+              <l>. ווער וואַגט עס מיך צו בעלעדיגען?</l>
+              <l>איך קען טעטען, לעבענדיג מאַכען.</l>
+              <l>איך דאַרף מיך ניט פֿערטיידיגען</l>
+              <l>איך קען פֿון אייך אַלע לאכען</l>
+              <l>איך בין גאָטט! אייער גאָטט - ד' אלוהי אַחד</l>
+              <stage type="delivery">אלע........</stage>
+              <stage type="business">אין שלוס געזאַנג שטעכט בר נזיר שמעון און ער פֿאַלט. יעדער</stage>
+              <stage type="business">סאָלדאַט שטעכט איינען פֿאָן די רויבער, וועלכע פֿאַלען. אַז דאָס</stage>
+              <stage type="business">בילד קומט אויס ביים פֿינאַהל, פֿאַלט שמעון מיט אַלע רויבער-</stage>
+              <stage type="business">סאָלדאַטען בלייבען שטעהן מיט די פּיקעס. דאָס איז אַלעס</stage>
+              <stage type="location">הינטען)</stage>
+              <stage type="location">(פֿאָרנע בלייבען. יוחנן. פּדות, יזראַעלית, צענאַביאַ.)</stage>
+              <stage type="setting">Vorhang</stage>
+            </lg>
+          </sp>
+          <trailer>Schluss des zweiten Aktes</trailer>
+        </div>
+      </div>
+      <div type="act" n="3" xml:id="DiTsveyTnoim_Act3">
+        <head>ער אקט III (ער3)</head>
+        <stage type="setting">(אַ שעהנער גאָרטען מיט בוימער און בושעס, רעכטס און לינקס שעהנע היי</stage>
+        <stage type="setting">זער מיט טרעפּליך. לינקס איז די ישיבה רעכטס איז ר' יוחנס</stage>
+        <stage type="setting">הויז</stage>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0287_a">
+          <speaker>חגלה.</speaker>
+          <p><stage type="business">(וועלכע שטעהט אויף די טרעפּ און קוקט אין הויז רעכט'ס)</stage> פּלדש, ווי וואָה<lb/>נען די מערדער אין וואַלד צו אין די פּאַלעסטע.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0288_a">
+          <speaker>פּלדש</speaker>
+          <p>. <stage type="business">(וועלכער קוקט אין הויז לינקס)</stage> אָט אַזוי איז דאָס חגלה. גרויסע<lb/>גנבים שענקט מען און קליינע גנבים הענגט מען.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0289_a">
+          <speaker>חגלה.</speaker>
+          <p>אָבער די גנבים וואָס טראָגען טלית און תפֿילין אַ גאַנצען טאָג<lb/>אין בעגאַנבענען גאָטט און מענשען? וואָס זאָגסטו צו זיי?</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0290_a">
+          <speaker>פּלדש.</speaker>
+          <p>אַז דו ווילסט חגלה, שפרינג איך אַריין דורך דעם<lb/>פֿענסטער און כאַפּ דעם צדיק ביים גאָרגעל און קוועטש<lb/>איהם אויס דעם לעקער ביז ע דעם קאַרטעל.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0291_a">
+          <speaker>חגלה.</speaker>
+          <p>איך וואָלט פֿון איהם געוואָלט מאַכען אַ קוגעל און איהם<lb/>אריבער וואַרפֿען איבערן דאַך.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0292_a">
+          <speaker>פּלדש.</speaker>
+          <p>אַזוי ווי ער איז דאָרט געשטאַנען און געדאַרשעט אַזוי האָב<lb/>איך געוואָלט דעם בריק אונטער איהם אונטערצינדען.<lb/>(<stage type="business">קומען זיך ביידע צו זאַמען אין מיט ביהנע</stage>)</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0293_a">
+          <speaker>חגלה.</speaker>
+          <p>פּלדשף, איך בין בְכָּבוד, אַלט געוואָרען צווישען גנבים, נור<lb/>אַזאַ גאָטט- גנב האָב איך נאָך ניט געזעהן, מיר מאַכען פֿאַלש<lb/>געלד, פֿאַלשע צי רונג און אַז מען כאַפּט אונז קומט אונז אויפֿ-<lb/>צו הענגען. און זיי מאַכען פֿאַלשע מענשען, פֿאַלשען אמת.<lb/>און מען כאַפּט זיי גאָר ניט.</p>
+        </sp>
+        <pb n="29" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0029.jpg"/>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0294_a">
+          <speaker>פּלדש.</speaker>
+          <p>ווייל די כאַפּערס אַליין זענען פֿאַלשע מענשען.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0295_a">
+          <speaker>חגלה.</speaker>
+          <p>נו, דאַרף מען דאָך, די כאַפֿער'ס כאַפּען?</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0296_a">
+          <speaker>פּלדש.</speaker>
+          <p>די כאַפּער'ס כאַפּער ווערען פֿריהער אויסגעכאַפּט, יעצט<lb/>חגלה וויל איך וויסען, וואָס האָסטו מיך אַהער געבראַכט.<lb/>וואָס האָבען מיר באַנדיטען צו מישען זיך צווישען רַבָנִים?</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0297_a">
+          <speaker>חגלה.</speaker>
+          <p>ווייל זיי זענען בעסערע באַנדיטען פֿון אונז - און מיר מוזען<lb/>פֿון זיי לערנען, צווייטענס דרעהט זיך דאָ די קעניגין צענאַביאַ,<lb/>אויך אַרום. און ביי אַזאַ פֿערדרעהעניש מוז חגלה זיך אויך<lb/>דרעהען וועל איך אויך עפּעס אויסדרעהען.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0298_a">
+          <speaker>פּלדש.</speaker>
+          <p>ווי קומט צו דיר אַז דו זאָלסט וויסען דאָס גאַנצע דרעדעל?</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0299_a">
+          <speaker>חגלה</speaker>
+          <p>. מיין ענקעל נַחְמָן דרעהט זיך מיר דאָ אויך עפּעס צופֿיעל אין די<lb/>בכבודע חגלה האָט פֿון איהם דאָס אַלעס אויסגעדרעהט.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0300_a">
+          <speaker>פּלדש</speaker>
+          <p>. נאָ, און וואָס וועט זיין דער סוף?</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0301_a">
+          <speaker>חגלה.</speaker>
+          <p>דערווייל קום צוריק און וואַלד מיר דאַרפֿען צו ערשט אַכטונג<lb/>געבען אויף דעם אַלטען תַנאֶ, דער משוגענער רבי יוחנן. ער<lb/>זאָל דערווייל ניט שטאַרבען פֿאַר הונגער, און וואָס עס וועט זיין<lb/>מאָרגען וועט חגלה שוין פֿערזאָרגען. <stage type="exit">(אב)</stage></p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0302_a">
+          <speaker>פּלדש.</speaker>
+          <p>יאַ, אַזוי איז שוין די וועלט פֿיעל מיט גרויסע און קליינע פֿער=<lb/>ברעכערס, נור די גרויסע גנבים שענקט מען און די קליינע<lb/>הענגט מען<lb/><stage type="delivery">Aro</stage> <stage type="delivery">קופּלעט</stage><lb/>II. (2)<lb/>III. (3)</p>
+          <lg n="31">
+            <l>די וועלט איז פֿערזאָרגעט מיט פֿערברעכער.</l>
+            <l>דרום עקזעסטירט קרימינאַל</l>
+            <l>דאָס לעבען וואָלט ניט געווען זיכער.</l>
+            <l>מען וואָלט נאָר געוואָלט גערויבט איבעראַל.</l>
+            <l>מיר האָבען רעגיערער און ריכטער.</l>
+            <l>בעשיצער דורך אייזערנע ווענד</l>
+            <l>נור זעלטען גאָר טרעפֿט מען זיי ניכטער</l>
+            <l>ווייל זיי האָבען אויך לעפּקע הענד</l>
+            <l>דער גביר לעבט גוטע טעג</l>
+            <l>אין זאַמלען קאַפּיטאַל</l>
+            <l>דער אָרעמאַנן אויס נויט</l>
+            <l>ער גנבעט נור ברויט</l>
+            <l>איז דאָ קרימינאַל.</l>
+          </lg>
+          <lg n="32">
+            <l>אָט דאָ איז דאָס שפּריכוואָרט אַם פּלאַטץ:</l>
+            <l>גערעכטיג קייט הערט מען ווי די קאץ</l>
+            <l>און גרויסע גנבים שענקט מען</l>
+            <l>קליינע גנבים הענגט מען.</l>
+          </lg>
+          <lg n="33">
+            <l>די רייכע וואָס זיי זיך ערלויבען</l>
+            <l>וואָס וואַרפֿען און זיך אַריין</l>
+            <l>זיי פֿרעסען געבראָטענע טויבען</l>
+            <l>און זויפֿען און טרינקען פֿיעל וויין.</l>
+            <l>זיי מאַכען זיך אַלע טאָג בעללער</l>
+            <l>און טאַנצען און שפּרינגען אָן מאָס</l>
+            <l>און נאָך אַ מאָהל פֿולע טעלער.</l>
+            <l>און פֿיהרעהן נאָך יענעם ביי דער נאז.</l>
+            <l>זיי טרינקען אָהן אַ שיעור</l>
+            <l>דעם גוטען וויין און ביער.</l>
+            <l>דעם אַרבייטערס פֿליסט זיין גאַלל</l>
+            <l>און דער אָרעמאַנן אויס פּיין</l>
+            <l>אַז ער נור וואַרפֿט אַריין</l>
+            <l>איז דאָ קרימינאַל</l>
+            <l>אָט דאָ איז...........א.ז.וו.</l>
+          </lg>
+          <lg n="34">
+            <l>דער רייכער האָט זוהן און טעכטער</l>
+            <l>וואָס גאָלד אין זייערע העלזער ער גיעסט.</l>
+            <l>זיי האָבען קיין שומר, קיין וועכטער</l>
+            <l>און וואָס זייער הערץ גלוסט.</l>
+          </lg>
+          <lg n="35" prev="true">
+            <l>דער זוהן שפיעלט גאַנצע נעכט אין קאָרטען</l>
+            <l>די טאָכטער גאָר איין אַנדער שפּיעל.</l>
+            <l>מען זעהט זי גאָר שפעט אין גאָרטען.</l>
+            <l>מיט איינעם, ווי טייבעלעך שטילל</l>
+            <l>די טאָכטער פֿון דעם גביר</l>
+            <l>פֿערשאַרט גאָר אָן אַ שיער</l>
+            <l>פֿערדעקט מיט אַ קאַפּיטאַל</l>
+            <l>די דיענסמויד ווען מען טרעפֿט</l>
+            <l>אויך ביי אַזאַ געשעפֿט</l>
+            <l>איז דאָ קרימאַנאַל</l>
+            <l>אָט דאָ.......... א. ז. וו</l>
+            <stage type="exit">(אַב)</stage>
+            <stage type="costume">אַלס מאַנן פֿון רעכטס)</stage>
+          </lg>
+        </sp>
+        <pb n="30" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0030.jpg"/>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0303_a">
+          <speaker>נחמן.</speaker>
+          <p>מיין בחור הילנאַ איז נאָך נישטאָ?<lb/>Auftr הילנא. (<stage type="costume">אָלס פרוי פֿון לינקס)</stage><lb/>פֿרייליין<lb/>הילנא. מיין נחמן איז נאָך דאָ?<stage type="business"> (ער בליקט איהם)</stage> אַה, ווי געהט עס<lb/>פֿרייליין בחור</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0304_a">
+          <speaker>נחמן.</speaker>
+          <p>וואָס מאַכסטו פֿרייליין זכר?</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0305_a">
+          <speaker>הילנא.</speaker>
+          <p>וואָס טהוסטו עפּעס דאָ צווישען מענשען? וועמען זוכסטו?</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0306_a">
+          <speaker>נחמן.</speaker>
+          <p>איך זוך עפּעס וואָס איך האָב קיין מאָל ניט פֿערלוירען.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0307_a">
+          <speaker>הילנא</speaker>
+          <p>. <stage type="delivery">(אַ פּאַרט)</stage> ער מיינט מיך <stage type="delivery">(לויט)</stage> דאפֿיר וועסט עס קיינמאָל<lb/>ניט געפֿינען<lb/>נחמן. איך האָב עס שוין געפֿונען, אָבער.......</p>
+        </sp>
+        <pb n="31" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0031.jpg"/>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0308_a">
+          <speaker>הילנא.</speaker>
+          <p>יאַ, וועסט עס צוריק פֿערליערען. <stage type="business">(וויל געהן)</stage></p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0309_a">
+          <speaker>נחמן</speaker>
+          <p>. <stage type="business">(האַלט זי צוריק)</stage> דו געהסט ניט ביז די וועסט מיר ניט זאָגען וואָס<lb/>האָסטו געטהון ביים גובערנעהר בר נזיר.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0310_a">
+          <speaker>הילנא.</speaker>
+          <p>ווי אַזוי ווייסטו אַז איך בין דאָרט געווען?!</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0311_a">
+          <speaker>נחמן</speaker>
+          <p>. ווייל ווי מען זעהט הילנאַ געהן. מוז מען זעהן נחמענ׳ן פֿון<lb/>הינטען שטעהן.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0312_a">
+          <speaker>הילנא.</speaker>
+          <p>אַזוי? דו ביזט אַ שפּיאָן? דו ווייסט דאָך וואָס אייער חבר<lb/>טהוט אַ שפּיאָן?</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0313_a">
+          <speaker>נחמן.</speaker>
+          <p>יאַ, מען הענגט איהם אויף אָדער מען מאַכט איהם חתונה.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0314_a">
+          <speaker>הילנא.</speaker>
+          <p>וואָס? חתונה האָבען און הענגען איז ביי אייך איינס?</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0315_a">
+          <speaker>נחמן</speaker>
+          <p>. נאָך מעהר. חתונה האָבען הייסט 2 מאָהל אויפֿגעהאַנגען. קוידעם<lb/>החתונה הענגט ער זיך אויף דער מויד מיט ליעבע און אַ חַר<lb/>החתונה הענגט ער זיך אויף. אויף אַ בוים מיט מיט אַ שטריק.<lb/>נור דו מיין טהייערעס, ביזט מיין אַלעס. און מיט דיר וועל איך תמיד<lb/>גליקליך זיין.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0316_a">
+          <speaker>הילנא.</speaker>
+          <p>יאַ, דו ביזט מיין חתנה, שיינסט ווי די לבנה מיין שעהנער<lb/>נחמן.<lb/><stage type="delivery">Aro.</stage><lb/><stage type="delivery">דועט.</stage><lb/><stage type="delivery">מתנה׳לע.</stage></p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0317_a">
+          <speaker>הילנא.</speaker>
+          <lg n="36">
+            <l>דו ביזט מיר אַ גרויסער שאַטץ</l>
+            <l>ווען איך האָב דיך, ווער איז צו מיר גלייך</l>
+            <l>איך הער יעדען ווי די קאַטץ</l>
+            <l>איך בין גליקליך און רייך.</l>
+          </lg>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0318_a">
+          <speaker>נחמן.</speaker>
+          <lg n="37">
+            <l>ווען איך דיך נור בעזיץ</l>
+            <l>בין איך רייך, און האָב פֿיעל געלד.</l>
+            <l>איך האָב שוין אַלס דאָס גוטס</l>
+            <l>דו ביזט נור מיין וועלט.</l>
+          </lg>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0319_a">
+          <speaker>הילנא</speaker>
+          <lg>
+            <l>. ביזט אַ גוטער, מעג מיר זיין אַזאַ יאָהר.........</l>
+          </lg>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0320_a">
+          <speaker>נחמן.</speaker>
+          <lg>
+            <l>צו דיין גוטסקייט גיבט עס קיין מַלְאָך גאָר......</l>
+          </lg>
+          <lg n="38">
+            <l>יאַ. ביזט מיין מתנה</l>
+            <l>שיינסט ווי די לבנה</l>
+            <l>שטראַהלסט ווי די זאָננע</l>
+            <l>לייכסט און וואַרמסט מיך אַי אַי אַי</l>
+            <l>יאַ, מיט דיינע בליקען</l>
+            <l>קענסטו מיך ערקוויקען</l>
+            <l>איך דאַרף קיין גליקען</l>
+            <l>ווען איך האָב נור דיך.</l>
+            <l>ביידע ביסס</l>
+            <stage type="delivery">ביידע ביסס</stage>
+          </lg>
+          <p>A II.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0321_a">
+          <speaker>הילנא.</speaker>
+          <lg n="39">
+            <l>איך וועל וואַכען ווי אַ העלד</l>
+          </lg>
+          <lg n="40" prev="true">
+            <l>איבער דיין בעטט, ווען דו וועסט קראַנק נור זיין</l>
+            <l>געה איך און וועל מעסטען פֿעלד</l>
+            <l>קברים רייס איך איין.</l>
+          </lg>
+        </sp>
+        <pb n="32" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0032.jpg"/>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0322_a">
+          <speaker>נחמן.</speaker>
+          <lg n="41">
+            <l>קיין זאַך וועט מיר ניט זיין שווער</l>
+            <l>פֿאַר דיר לויף איך דאָ און דאָרט</l>
+            <l>ווען איך זעה פֿון דיר אַ טהרער</l>
+            <l>שטאַרב איך אויף איין אָרט.</l>
+          </lg>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0323_a">
+          <speaker>הילנא.</speaker>
+          <lg n="42">
+            <l>ביזט אַ גוטער, מעג מיר זיין אַזאַ יאָהר........</l>
+            <l>צו דיין גוטסקייט גיבט עס קיין גלייכען גאָר.......</l>
+            <l>יאַ, ביזט מיין מתנה.......... א.ז. וו.</l>
+            <stage type="exit">(טאַנצען אַב)</stage>
+            <stage type="entrance">צענאביא. נאַכהער הילנא.</stage>
+            <stage type="entrance">Auftr</stage>
+          </lg>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0324_a">
+          <speaker>צענאַב.</speaker>
+          <p><stage type="delivery">(רופֿט)</stage> הילנאַ! הילנאַ! האָסט געטראָפֿען דעם גובערנעהר בר<lb/>נזיר אין דער היים.</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0325_a">
+          <speaker>הילנא.</speaker>
+          <p>יאַ, מאַיעסטעט. איך האָב איהם איבערגעגעבען דעם בריעף.<lb/>דעם קעניגליכען זיעגעל.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0326_a">
+          <speaker>צענאב.</speaker>
+          <p>האָסט איהם אויך מונד ליך אַלעס ערצעהלט?</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0327_a">
+          <speaker>הילנא</speaker>
+          <p>. יאַ, קעניגליכע האָהייט, איך האָב איהם געזאָגט אַז ער וועט<lb/>דיך דאָ צווישען די געסט אַלס אַ געוועהנליכע מאַטראַנע זעהן.<lb/>זאָל ער זיך מאַכען אַז ער קען דיך גאָר ניט. און טאָמער וועט מען<lb/>קומען אַז ער וועט דאַרפֿען יעמאַנדען אַרעטירען און דו וועסט<lb/>אויך זיין און דער מיטין זאָל ער זיך גאָר ניט וויסענדיג מאַכען.<lb/>און דיך אַרעטירען מיט אַלע באַנדיטען גלייך.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0328_a">
+          <speaker>צענאַב.</speaker>
+          <p>זעהר גוט. דו קענסט דיין ראָללע אָבער ווען קומט ער אַהער<lb/>צו געהן?</p>
+        </sp>
+        <sp who="#hiln" xml:id="DiTsveyTnoim_SP0329_a">
+          <speaker>הילנא.</speaker>
+          <p>מיר שיינט, אַז ער איז שוין אויף דעם וועג <stage type="delivery">(signal)</stage> מיר<lb/>שיינט אַז איך הער זיי קומען. <stage type="exit">(אַב)</stage></p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0330_a">
+          <speaker>צענאב</speaker>
+          <p>. <stage type="delivery">(רופֿט אין הויז לינקס)</stage> מיינע פֿריינדע דער געבערנעהר קומט.<lb/>א<stage type="entrance">ָAuf</stage> <stage type="entrance costume">בן פּדות מיט כאָהר (אַלס תלמידים פֿון הויז לינקס) בר נזיר (מיט</stage><lb/>ראָלע פּאַפּיר מיט) <stage type="entrance">סאָלדאַטען </stage><stage type="entrance">(שטאטיסטען)</stage><stage type="entrance"> (פון גאַס לינקס)</stage><lb/><stage type="entrance">יזראעלית (פֿון הויז רעכטס שטעל איך אונטער אַז בוים)</stage> <lb/><stage type="delivery">בעגריעסונגס קאהר.</stage></p>
+        </sp>
+        <sp who="#br_nzir" xml:id="DiTsveyTnoim_SP0331_a">
+          <speaker>ּבר-נזיר</speaker>
+          <p>. איך דאַנקע אייך פֿיר אייער שעהנעם עמפּפֿאַנגען. יעצט הערט<lb/>דעם קעניגליכען בעפֿעהל: <stage type="delivery">(לעזט פֿון ראָללע פּאַפּיער)</stage><lb/>אים נאַמען דער קעניגין צענאַביאַ. אויס פּלמיראַ, וועלכע<lb/>הערשט אויך איבער עגיפּטען, פֿאַלעסטינאַ, גריעכ-לאַנד<lb/>בָּבֶל אונד איבער דעם גאַנצען רעמישען רייך, מאַכע איך<lb/>דעם גובערנעהר בר- נזיר פֿון טבריה היער פֿאָלגענ=<lb/>דעס בעקאַנט!<lb/>זאָ ווי דער אָבער ראַבינער פֿון ירושלים אונד אָבער לעה=<lb/>רער אין דער יֶשִיבָה און טביריה רבי יוחנן האָט זיין<lb/>פֿערשטאַנד פֿערלוירען אונד עס איז זאָגאַר מעגליך דאָס ער<lb/>איר גענד וואוּ טאָידט איזט, זאָ האַט די קעניגין אַ נערקענט<lb/>די נייע וואָהל און וועלכע די רבנים האָבען אויסגעוועהלט<lb/>אַלס אָבער ראַבינער אונד אָבער לעהרער דעם בעסטען בל<lb/>תלמיד אויס רבי יוחנס ישיביה דען באַבילאָנלעהרער</p>
+        </sp>
+        <pb n="33" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0033.jpg"/>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0332_a">
+          <speaker>בן פּדות</speaker>
+          <p>.<stage type="business"> (איבערגיבט איהם דאָס פּאפּיר)</stage> איך ה בן פּדות<lb/>איך גראַטולירע דיר צו דיין נייען אַמט. איך האָפֿע דו<lb/>ווירסט איין טרייער אונטער טאַן דיינער קעניגין זיין.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0333_a">
+          <speaker>פּדות</speaker>
+          <p>. איך וועל שטענדיג גאָטט בעטען פֿאַר איהר אַ שלום, איך וועל<lb/>אימער זאָגען אַז די קעניגין פֿון דער וועלט מוז אַזוי געפֿירכ=<lb/>טעט ווערען ווי דער קעניג פֿון יענער וועלט.</p>
+        </sp>
+        <sp who="#br_nzir" xml:id="DiTsveyTnoim_SP0334_a">
+          <speaker>בר-נזיר</speaker>
+          <p>איך דאַנקע - יעצט הערט איין צווייטען קעניגליכען בעפֿעהל:<lb/><stage type="delivery">(לעזט פֿון 2-טער ראָלע)</stage> עס איז יעדען בעקאַנט דאָס 11 טאַגע<lb/>פֿון הייטע ווירד די קעניגין צענאַביאַ געקרעהנט ווערען<lb/>אַלס רעמישע קייזערין, הייטע האָט די רעגירונג אין ערפֿאַה=<lb/>רונג געבראַכט דאָס די קרוין פֿעהלט פֿאָן דער שאַצקאַמער<lb/>און מען האָט די קרוין געזעהן ביי איינער רויבער באַנדע און<lb/>פֿאַלשמינצער וואָס מאַכען אונזיכער דיעזע געגענד. די באַנ=<lb/>דיטען ווערדען געפֿיהרט פֿון איינער יונגער באַנדיטין מיט דעם<lb/>נאַמען בת - ציביע, דאַהער האָט די קעניגין צענאַביאַ ער לאַסען<lb/>איין בעפֿעהל: ווער עס ווירד אָנצייגען די באַנדע מיט איהר ער<lb/>באַנדיטין געפֿאַנגען צו נעהמען דעם ווירד די קעניגין רייכען<lb/>איהר האַנד אונד איהם הייראַטען. אַם טאַגע דער קרעה=<lb/>נונג.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0335_a">
+          <speaker>פּדות.</speaker>
+          <p><stage type="business">(נעהמט איהם אין אַ זייט)</stage> גובערנעהר, אין דיעזער געלעגענ=<lb/>הייט וויל איך איין אַנדער סמאָל שפּרעכען. יעצט ביטטע איך<lb/>זי מיין גאַסט צו זיין.</p>
+        </sp>
+        <sp who="#br_nzir" xml:id="DiTsveyTnoim_SP0336_a">
+          <speaker>בר-נזיר.</speaker>
+          <p>איך נעהם אייער איינלאַדונג הערצליך אָן.<stage type="exit"> (אַב)</stage><lb/><stage type="entrance">כאָהר. </stage> <stage type="delivery">N</stage>  <stage type="exit business">(דאָס זעלבע פֿון פֿריהער) (אב)</stage><lb/>(<stage type="exit">אַלעס געהט אין הויז לינקס, פּדות וויל געהן דער לעצטער)</stage></p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0337_a">
+          <speaker>צענאב</speaker>
+          <p>. <stage type="business">(האַלט איהם צוריק)</stage> בן - פּדות ווילסט מיך דען פֿערראַטען.<lb/>האָסט פֿערגעסען דיין שוווּר, מיך עביג צו ליעבען.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0338_a">
+          <speaker>פּדות.</speaker>
+          <p>איך ליעבע דיך ווי מיך זעלבסט. אָבער מיך זעלבסט וועל איך אויך<lb/>פֿערראַטען ווען דערקעניג ווירד עס פֿערלאַנגען.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0339_a">
+          <speaker>צענאַב</speaker>
+          <p>. האָב איך ניט דיין לעבען גערעטעט? האָב איך אויף דיין בע=<lb/>טען אַלעס ערצעהלט פֿון בר-לוקיש אונד דו האָסט מיר<lb/>געשוואָהרעןער מיך ניט צו פֿערראַטען.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0340_a">
+          <speaker>פּדות</speaker>
+          <p>. איך וועל דיר געבען געלעגענהייט זאָלסט קענען אַנטלויפֿען<lb/>פֿון דאַנען. פֿאָרלויפֿיג געה צו מיינע געסט און שטעהר מיר<lb/>ניט מיין שמחה.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0341_a">
+          <speaker>צענאַב.</speaker>
+          <p>גוט איך האַלט דיין פֿערשפּרעכען.<stage type="exit business"> (אָב אין הויז לינקס)</stage></p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0342_a">
+          <speaker>פּדות</speaker>
+          <p>. חַ-חַ-חַ איך זאָל מיין פֿערשפרעכען האַלטען: דומעס ווייב, זי<lb/>ווייסט נישט אַז פֿערשפּרעכען און האַלטען זענען 2 פֿערשיע=<lb/>דענען זאַכען. נו, מיט דער באַנדע וועל איך שוין באַלד פֿער=<lb/>טיג ווערען. איין אַלט הויז דאַרף ניט קיין ערד ציטערניש<lb/>אַז עס זאָל איינפֿאַלען, אָבער מיט יזראַעלית איז ניט זאָ<lb/>לייכט! פֿיעלייכט קומט בר-לוקיש אַהיים, פֿיעלייכט קומט<lb/>דער אַלטע רבי יוחנן צום פֿערשטאַנד, דאַן בלייב איך צוריק<lb/>ביים אַלטען.<lb/> <stage type="business">יזראעלית, וועלכע איז ביז יעצט געשטאַנען אונטערן בוים איז ביי)</stage><lb/><stage type="business">די לעצטע ווערטער אַפֿערגעגאַנגען, ער זעהט זי)</stage> אָה, יזראַע=<lb/>לית שוין וויעדער אין טרויער קלייד מיר און מיינע געסט<lb/>די שמחה צו פֿערשטערען?</p>
+        </sp>
+        <pb n="34" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0034.jpg"/>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0343_a">
+          <speaker>יזראַעלית.</speaker>
+          <p>איך שטער דיר ניט זיין שמחה אָדער דו דאַרפֿסט מיר מיין<lb/>טרויער אויך ניט שטערען!</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0344_a">
+          <speaker>פּדות.</speaker>
+          <p>ווילסט דען עביג קלאָגען? די טוידטע קענען ניט אויפֿ=<lb/>שטעהן. געה יזראַעלית, זיי ניט קיין נאַרר, ווער עס<lb/>שטאַרבט, בעגראָבט מען. און ווער עס לעבט, בעגראָבט<lb/>יענעם. הער וואָס איך וועל דיר זאָגען!</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0345_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. איך האָב געהערט ביזט אויסער וועהלט אויף מיין ברודערס<lb/>שטוהל צו זיצען. - נו, געוויס מוז איך הערען וואָס דו<lb/>וועסט מיר זאָגען.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0346_a">
+          <speaker>פּדות</speaker>
+          <p>. איך קען אָבער די גדולה אין גאַנצען נישט בעזיצען ביזדו<lb/>שוועסטער פֿון מיין רבי זאָל מיין פֿרוי ניט ווערען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0347_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. קיינמאָהל אין מיין לעבען וועל איך מיין ליעבען שמעון פֿערגעסען.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0348_a">
+          <speaker>פּדות</speaker>
+          <p>. בעהיטע גאָט! ווער הייסט דיך דען אין דיין שמען פֿערגעסען?<lb/>וועסט מעגען אַלע יאָהר צייטען האַלטען: נאָך איהם לעכט אין בית<lb/>המדרש שיקען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0349_a">
+          <speaker>יזראַעלית.</speaker>
+          <p>עלענדער! דו וואַגסט פֿון מיין מאַנן צו שפּאָטען? און גאָטט<lb/>שיקט ניט איין בליטץ דיך צו פֿערברענען!?</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0350_a">
+          <speaker>פּדות.</speaker>
+          <p>זעהסט דאָך אַז גאָטט האָט קיין צייט ניט, אַדער ער וויל זיך ניט אַב=.<lb/>געבען מיט אַזעלבע קלייניגקייטען. פֿאָלק מיך יזראַעלית וואַרף<lb/>ניט אַוועק דעם כּבוד צו הייסען די פֿרוי פֿון בן-פּדות<lb/>דעם גרויסען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0351_a">
+          <speaker>יזראעלית</speaker>
+          <p>פֿון דעם גרויסען מערדער וואָס האָט מיין מאַנן ער מאָרדעט.<lb/>בעסער אויף עביג דאָס מויל געשלאָסען זיין איידער אַזאַ רוי=<lb/>בער ווי דו.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0352_a">
+          <speaker>פּדות.</speaker>
+          <p>יזראַעלית, דו וואַגסט צו פֿיעל! איין רויבער וואָר דיין מאַנן<lb/>פֿריהער.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0353_a">
+          <speaker>זראַעלית.</speaker>
+          <p>יאַ, אַבער ביז ער האָט ערקענט די תורה!</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0354_a">
+          <speaker>פּדות</speaker>
+          <p>. און נאָך דעם האָט ער זיין מְלָכָה צוריק גענומען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0355_a">
+          <speaker>יזראַעלית.</speaker>
+          <p>איך גלויב עס ניט! די פֿרוי וואַר פֿון דיר געקויפֿט מיין<lb/>ברודער זאָלכע ליעגען צו ערצעהלען, דאַמיט ער זאָל פֿון<lb/>זינען קומען <stage type="delivery">(וויינט)</stage> אַך, מיין אונגליקליכער ברודער. איך<lb/>בין דיך מקנא, גאָטט האָט דיר דעם פֿערשטאַנד אַוועק גענומען<lb/>זאָלסט ניט קענען פֿערשטעהן, ווי אונגליקליך האָסט מיך גע=<lb/>מאַכט.</p>
+        </sp>
+        <pb n="35" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0035.jpg"/>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0356_a">
+          <speaker>פּדות.</speaker>
+          <p>קורץ. איך בין קיין שעפֿער-יונגע מיט בלומענשפּראַכע דער<lb/>געליעבטער שעפֿערין זיינע ליעבעס אַנטרעגע צו מאַכען.<lb/>ווען דו וועסט ניט מיט גוטען איינוויליגען, וועל איך דיר <lb/>בעפֿעהלען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0357_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. און אַז איך וועל דיין בעפֿעהל אויסלאַכען און איהם ניט<lb/>בעפֿאָלגען?<lb/>זונה</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0358_a">
+          <speaker>פּדות.</speaker>
+          <p>וועל איך דיר ביי מיין בית פֿון אַלס זוינע פֿערקלאָגען און<lb/>מען וועט דיך האַלטען געפֿאַנגען דיין לעבענלאַנג.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0359_a">
+          <speaker>יזראַעלית.</speaker>
+          <p>חַ חַ ח. איך לאַך פֿון דיר דאַמאַלס וועלען די קערקער מויערן מיר<lb/>מיר פֿערשטעלען דיין טריפֿה פָּנים צו זעהן. און איך וועלגע=<lb/>נוג צייט האָבען אָן מיין שמעון צו דענקען געשווינד טהוע<lb/>מיר די טובה און שיק מיך אַוועק אינס עביגע געפֿענגע=<lb/>ניסס.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0360_a">
+          <speaker>פּדות.</speaker>
+          <p>אויס דעם געפֿענגעניס וועל איך דיך ביי די האָאָר אַונ=<lb/>טער דער חופּה שלעפּען און וועל דיך צווינגען מיין ווייב<lb/>צו ווערען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0361_a">
+          <speaker>יזראעלית</speaker>
+          <p>. <stage type="business">(גיט איהם אַ פּאַטש)</stage> דאָס האָסטו מיין האַנד דאַרויף אַז עס<lb/>וועט דיר ניט געלינגען.</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0362_a">
+          <speaker>פּדות.</speaker>
+          <p>געשלאָגען אינ'ס געזיכט פֿון איין עלענדעס ווייב, דאַפֿיר זאָלסט<lb/>10 פֿאַך 100 פֿאַך בעשטראָפֿט ווערען. ניט מיין ווייב זאָלסטו<lb/>הייסען. נור מיין קעבס ווייב. די דיענסט פֿון מיין קעניגליכער<lb/>פֿרוי זאָלסטו זיין. אונד אַלע דיענער און שקלאַווען וואָס ווע=<lb/>לען זיך געפֿינען אין מיין קעניגליכען פּאַלאַסט זאָלען פֿון דיר שפּאָ=<lb/>טען. און לאַכען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0363_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. און ווי הויך, נאָך דענקסטו ש צו שטייגען דורך פֿער ברעכען<lb/>און פֿערליימדעריי? דו פֿון גאָטט פֿעראַכטעטער. אָבשיי דער<lb/>מענשהייט. <stage type="business">(שפיּיט איהם אין פָּנים)</stage></p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0364_a">
+          <speaker>פּדות.</speaker>
+          <p>שפּייסט. פֿייער זאָל שפּריצען פֿון דיינע אויגען. מיר מאַכט<lb/>עס זעהר פֿיעל פֿערגעניגען צו זעהן אַ פֿרוי ווי זי בע=<lb/>קומט רויטע באַקען פֿאַר אויפֿרעגונג און אין אַזאַ צו=<lb/>שטאַנד פֿיהלט זיך דער מאַנן איבערגליקליך. די פֿרוי צו<lb/>בעזיעגען אין דעם זיסען געשמאַק. פֿון אַזאַ זיעג קען נור<lb/>דער דער זיעגער פֿיהלען. <stage type="business">(וויל זיע ערגרייפֿען)</stage> קום אין<lb/>מיינע אַרמע.<stage type="business"> (ראַנגעלן)</stage></p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0365_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. גאָטט געבע מיר די קראַפֿט פֿון שמשון הגיבור די שלאַנגע צו<lb/>ערווירגען. ציטערן און אין שטויב ליעגען זאָלסטו פֿאַר רבי יוחנ'ס<lb/>שוועסטער.<lb/>(<stage type="business">וואַרפֿט איהם צו באָדען. (שטעהט מיט אַ פֿוס אויף זיין קערפּער</stage><lb/><stage type="business">מיט די האַנד אין דער הויך, טריאָמפֿיערענד)</stage> דער אֶמֶת<lb/><stage type="business">זיעגט</stage><lb/><stage type="business">פּאָזיציאָן.</stage><lb/> Auft <stage type="entrance">צענאביא</stage></p>
+        </sp>
+        <pb n="36" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0036.jpg"/>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0366_a">
+          <speaker>צענאַב</speaker>
+          <p>. חַחַחַ, די קעניגין אויף איהר טראָהן קענן אַזוי שעהן ניט<lb/>אויסזעהן, בראַוואָ! ווי די דערצערנטע לעווין אויף דען<lb/>העלדען טיגער וועלכער האָט איהר קינד צערריסען <stage type="business">זאָזיעהט</stage><lb/>די פֿאַזיציאָן אויס. חַחַחַ?</p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0367_a">
+          <speaker>פּדות</speaker>
+          <p>. <stage type="business">(הויבט זיך אויף)</stage> שפּאָטעט! לאַכט! אויך די באַנדיטין מאַטראַ=<lb/>נע. די צייט ווירד קומען, מיט איהר צוזאַמען <stage type="exit business">(אַב אין הויז</stage><lb/><stage type="location">לינקס)</stage><lb/>(<stage type="business">שטוממע סצענע צווישען די 2 פֿרויען. יזראעלית בעטראַכטעט</stage><lb/><stage type="business">זי מיט פֿעראַכטונג, וויל אַבגעהן אין איהר הויז רעכטס</stage>)<lb/>צענאב. <stage type="business">(האַלט זי צוריק)</stage> יזראַעלית!</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0368_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. אונגליקליכע, וואָס פֿערלאַנגסטו פֿון מיר?</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0369_a">
+          <speaker>צענאב.</speaker>
+          <p>| איך וויל, זאָלסט מיר פֿערצייהען. וואַרום איך האָב דיין מאַנן פֿער=<lb/>ליימדעט, פֿאַר דיין ברודער. איך האָב עס צו גוטען<lb/>געמיינט דעם אַלטען צו טרייסטען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0370_a">
+          <speaker>יזראַעלית.</speaker>
+          <p>עס איז שוין פֿערפֿאַלען. מיין אונגליק איז גרויס, ווער<lb/>קען מיך טרעסטען?</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0371_a">
+          <speaker>צענאב</speaker>
+          <p>. איך! איך ווייס דיין מאַנן איז נישט קיין רויבער. קיין<lb/>שלעכטער מענש נור אויס פֿערצווייפֿלונג האָט ער זיך<lb/>מיר אָנגעבאָטען מיט מיר צווישען באַנדיטען, פֿאַלשמינצער<lb/>איינע קורצע צייט צו פֿערבלייבען. קוק מיך ניט אָן אַזוי<lb/>בעז, זיי אויך ניט אייפֿערזיכטיג עס האַט זיך געהאַנדעלט<lb/>וועגען אַ גרויסער זאַך, אונד זיינע בעלאָהנונג וואַר<lb/>בעשטימט אַלע ישיבות פֿון בבל ירושלים, דאַפֿיר צוריק<lb/>ערלויבען צו עפֿנען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0372_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. און וואָס וואַר די אַרבייט?</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0373_a">
+          <speaker>צענאב.</speaker>
+          <p>מיט מיר צוזאַמען אַכטונג צו געבען איבער איין אַרבייט פֿון<lb/>איין געגענשטאַנד וועלכעס איז בעשטימט די קעניגען צע=<lb/>נאַביאַ צו קרענען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0374_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. איך דאַנק דיר פֿיר די גוטע אויסקונפֿט איבער מיין מאנן<lb/>אונד יעצט הערע מיין ראַטה. בן פּדות וויל הייראַטען די<lb/>קעניגין - און דיך אין דיין באַנדע דאַפֿיר אויסליעפֿערן.<lb/>געה פֿון דאַנען אַזוי שנעל דו קענסט.......</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0375_a">
+          <speaker>צענאַב.</speaker>
+          <p>איך פֿירכטע די קעניגען ניט!</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0376_a">
+          <speaker>יזאַעלית.</speaker>
+          <p>ניט? ווער ביזטו דען?</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0377_a">
+          <speaker>צענאַב</speaker>
+          <p>. די קעניגין צענאַביאַ פֿון פּלמיראַ בין איך זעלבסט.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0378_a">
+          <speaker>יזראַעלית.</speaker>
+          <p>דו די קעניגין? און האָסט דען באַנדיט אַלס ראש ישיבה פֿון<lb/>טבריה אויף דעם אָרט מיינעס ברודערס אַנערקענט?!</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0379_a">
+          <speaker>צענאב.</speaker>
+          <p>קליינע מענשען פּאַסט ניט אַ קעניגין זאָל געהן פֿער ניכֿטען<lb/>ער מוז צוערשט גרויס זיין און דאַנן דען פֿאַל ערליידען.</p>
+        </sp>
+        <pb n="37" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0037.jpg"/>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0380_a">
+          <speaker>יזראַעלית.</speaker>
+          <p>איך הער שריטטע, יעמאַנד קאָמט.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0381_a">
+          <speaker>צענאַב.</speaker>
+          <p>זאָ געה אויף דיין ציממער, איך האָבע נאָך וויכטיגעס<lb/>צו טהון היער <stage type="business">(צייגט לינקס) </stage>אויף וויע דער ערזעהען<lb/><stage type="exit business">(אַב לינקס אין הויז)</stage></p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0382_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. זי איז די קעניגין, זי איז מעכטיג אָבער מיין שמעון קענן<lb/>זי מיר ניט צוריק געבען. <stage type="exit business">(אַב אין הויז רעכטס)</stage><lb/><stage type="entrance">Auftr שמעון.</stage> (<stage type="costume">אַלס עגיפּטער מיט גרויסען פֿאַלשען באָרד) </stage>נ<stage type="entrance">חמן</stage></p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0383_a">
+          <speaker>שמעון.</speaker>
+          <p>געה אַריין נחמן, דאָ איז איהר ציממער, וואָס איהר צו<lb/>זאָגען ווייסטו שוין.</p>
+        </sp>
+        <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0384_a">
+          <speaker>נחמן.</speaker>
+          <p>איך וועל איהר זאָגען אַז אַ פּרינץ פֿון מִצְרִים פּוטיפֿראַ<lb/>צענאה איז זיין נאַמען, קומט פֿון גושן און וויל האָב די זכויה צו<lb/>זעהן די שוועסטער פֿון דעם בעריהמט, רבי יוחנן בר=<lb/>נפח זי<stage type="exit business"> (אַב אין הויז)</stage></p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0385_a">
+          <speaker>שמעון</speaker>
+          <p>. זיי מיר געגריסט הייליגע היימאַטה, ווי באַלזאַם שמעקט דיין<lb/>הייליגע<lb/>לופֿט דעם פֿערטריעבענען ענטקעגען. האָט דיע ישיבה<lb/>און וועלכער איך האָב געלערנט די תורה הקדושה.<lb/>(<stage type="business">געהט, קושט די טיהר פֿון הויז לינקס)</stage> מה טובו אוהליך, יעקבב<lb/>משקנותך ישראל, ווי שען איז דיין געצעלט יעקב. - דער<lb/>רוחַ הקדושה לעבט וויעדער אין מיר. די צייט אין וועלכער<lb/>איך האָב דאָ מיט מיין שוואָגער די תורה געלערנט צו טוי=<lb/>זענד תלמידים, ווי גליקליך האָב איך מיך געפֿיהלט ווען די <lb/>רב'ס האָבען געפּאַסקענט הלכה כרבי שמעון בן לוקיש-<lb/>אָבער וואָס טהוע איך דאַן? דער זעלבער האָט מיך אַהער<lb/>געבראַכט האָט מיך פֿון דאָרט פֿערטריבען, אַוועק! יצר הרע<lb/>פֿון מיר, פֿיהר מיך יעצט ניט אַראָב פֿון גלייכען וועג, רבי דיין<lb/>תלמיד וויל דיך זעהן. יזראַעלית, דיין בר לקיש קומט צו<lb/>דיר. דאָך ניין ניט אונטער דעם נאָמען זאָלל זי מיך זעהן.<lb/>אָבער זעהן מוז איך זיע, זי בעטראַכטען פֿון ווייטען. <stage type="business">(שטעלט</stage><lb/><stage type="business">זיך אונטערן בוים</stage>)<lb/><stage type="entrance">איזראעלית.</stage> Auft</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0386_a">
+          <speaker>יזראעלית.</speaker>
+          <p>איך זעה ניעמאַנדען היער, האָט דער יונגער מאַנען מיך גענאַרט?<lb/>ניין! איך האָב געהערט רעדען איין מאַנן. שיעור האָב איך<lb/>געוואָלט אַרויס לויפֿען צו איהם און פֿאַלען אַרום זיין האַלז<lb/>און אויסרופֿען, דו לעבסט? אָבער גאָטט האָט מיך צוריק=<lb/>געהאַלטען די עבירה צו בעגעהן איין פֿרעמדען מאַנן אין<lb/>מיינע אַרמע צו האַלטען.</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0387_a">
+          <speaker>שמעון.</speaker>
+          <p><stage type="business">(טרעט פֿאָר)</stage> בין איך פֿיעלייכט ניט צו פּאַסענדען צייט<lb/>געקומען, אַזוי קען איך מיך אַב.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0388_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. מען האַט מיר געזאָגט דו האָסט מיין מאַנן געקענט?</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0389_a">
+          <speaker>שמעון.</speaker>
+          <p>אַלס קליינע קינדער....אָבער ניט פֿון אַלע קינדער ווערען גרויסע<lb/>מענשען, מאַנכע אַלטע שטאַרבען, קליינע קינדער.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0390_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. זייט איך האָב מיין מאַנן ער קענט איז ער אָבער געווען אַ גרויסער<lb/>מענש, זיינע אויגען, זיינע שטימע וואַר ביינאַהע דיינער גלייך.</p>
+        </sp>
+        <pb n="38" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0038.jpg"/>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0391_a">
+          <speaker>שמעון.</speaker>
+          <p>עס פֿרייט מיך צו האָבען דאָס איינליכקייט פֿון אַ גוטען<lb/>מענשען, און וואַרום האָט ער דיך פֿערלאָזען?</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0392_a">
+          <speaker>יזראעלית</speaker>
+          <p>. ער האָט זיך צוקריגט מיט מיין ברודער, און ער איז אַוועק,<lb/>איך האָב ניט געוואוסט וואָהין. אָבער מיין ליעבע איז מיט<lb/>איהם געווען, איין פֿריינד פֿון איהם האָט איהם ביי<lb/>מיר פֿערליימדעט אַז ער געהט אַרום מיט רויבער און מער=<lb/>דער אָדער מיין ליעבע צו איהם האָט דאַפֿיר ניט אָנגע=<lb/>הערט. ער האָט מיר אויך אַ גט פֿון איהם געבראַכט איך<lb/>האָב מיר דאַריבער גאָר ניט געקימערט. יעצט הייסט עס<lb/>אַז ער איז אַלס רויבער פֿון סאָלדאַטען ערמאָרדען וואָר=<lb/>דען, אָבער אין הערץ וואָהנט עביגע ליעבע צו איהם.<lb/>זיין פּנים שטעהט מיר איממער פֿאַר די אויגען - און ווען<lb/>די וועלט האָט אונז צוטיילט, זאָ ווירדען אונז יענע פֿער=<lb/>אייניגען. <stage type="delivery">(ערוויינט)</stage> מיר שיינט, דו וויינסט?</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0393_a">
+          <speaker>שמעון.</speaker>
+          <p>דיין שיקזאַל ערינערט מיך אין מיינעם, איך האָב איין גע=<lb/>ליעבטע געהאַט. צו פֿעליגער ווייזע, הייסט זי אויך יזרא=ַ<lb/>עלית. אויך איך בין פֿון איהר אַוועק מיט דער האָפֿנונג.<lb/>באַלד וויעדער צוריק קעהרען. אָבער ווי ביטטער ענטטיישט בין<lb/>איך געוועזען, ווען איך האָב פֿון איהר און פֿון איהר פֿאָר געזע=<lb/>צטען איין בריעף ערהאַלטען. איך זאָל מיך ניט וואַגען אַהיימצו-<lb/>קומען, און מיט אַלע קללות פֿון דער וועלט בין איך פֿערשאָלטען<lb/>געוואָרען. די פֿערצווייפֿלונג האָט מיך געטריבען צו<lb/>זעלבסט מאָרד, אָבער די ליעבע צו איהר האָט מיך צוריק=<lb/>געהאַלטען און איך האָב בעשלאָסען זי נאָך איינמאָהל צו<lb/>זעהן און ביי איהרע פֿיססע צו שטאָרבען. <stage type="business">(קניעט פֿאַר</stage><lb/><stage type="business">איהר)</stage> אָה, איזראַעלית, הימלישע, גוטע, ווי ער נאָר אין וואָרט<lb/>דער פֿערליימדונג האָט פֿערגיפֿטעט דיינע טרייע און גלויבען<lb/>צו דיינען מאַנן, אַזוי לאָז מיך שטאַרבען ביי איהרע פֿיס. <stage type="delivery">(וויינט)</stage></p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0394_a">
+          <speaker>יזראעלית</speaker>
+          <p>. מעכטיגעהר העלד! איך בעניידע דיינע איזראַעלית און איך<lb/>בין גאַנץ זיכער דאָס זי ווירד טהון, דאָס וואָס איך יעצט.<lb/><stage type="business">(הייבט איהם אויף)</stage> דיך אויפֿהעבען און אין איהרע אַרמע שליעסען.<lb/><stage type="business">(אומאַרמט איהם) </stage>אָה, שמעון, שמעון דו בלייבסט עביג מיין מאַנן. <stage type="business">(רייסט</stage><lb/><stage type="business">זיך שנעלל אַוועק)</stage> האָ! - גאָטט! וואָס האָב איך געטהון? איין פֿרעמ=<lb/>דען מאַנן אומאַרמט!</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0395_a">
+          <speaker>שמעון</speaker>
+          <p>. ניין, יזראַעלית, קיין פֿרעמדען מאַנן האָסט אומאַרמט. איך בין דיין<lb/>מאַנן. <stage type="costume">(דעמאַסקירט זיך)</stage> דיין שמעון!<lb/><stage type="business">צוזאַמען, אומאַרמונג</stage></p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0396_a">
+          <speaker>יזראעלית.</speaker>
+          <p>מיין שמעון, מיין מאַנן דו לעבסט?|</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0397_a">
+          <speaker>שמעון.</speaker>
+          <p>און בין אין די אַרמע מיינע פֿרוי<lb/>פויזע.<lb/>און וואוּ איז דיין ברודער? שווייגסט? איז ער טאָדט?</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0398_a">
+          <speaker>יזראעלית.</speaker>
+          <p>נאָך ערגער ווי טאָדט. ער האָט זיין פֿערשטאַנד פֿערלוירען .גע=<lb/>וויסענס ביסע, וואַרום ער האָט געפֿאָלגט דעם ראַטה פֿון בן=.</p>
+        </sp>
+        <pb n="39" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0039.jpg"/>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0399_a">
+          <speaker>פּדות.</speaker>
+          <p>דיך מחרים צו זיין. האָבען איהם דעם שכל אַוועק<lb/>גענומען.</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0400_a">
+          <speaker>שמעון.</speaker>
+          <p>בין פּדות? איז דאָס מעגליך? בן פּדות מיין פֿריינד ער<lb/>האָט מיך פֿערראַטען? גוט! דאָס אויף שפּעטער, דאָס<lb/>ערשטע קום דיין ברודער זוכען.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0401_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. ניין, שמעון. איך האָב מורא דאָס זאָל זיין קראַנקהייט נאָך מעהר שאָדען<lb/>ווען ער וועט דיך פּלעצליך ערבליקען, איך געה זעלבסט איהם אויפֿ=<lb/>זוכען. און לאַנגזאַם איהם דאָס בעקאַנט מאַכען. איך געה שוין <stage type="exit">(אַב)</stage></p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0402_a">
+          <speaker>שמעון.</speaker>
+          <p>געה יזראַלעת, און העלפֿען זאָל דער דער אל רחום וחנון. <stage type="exit business">(אַב נאָך איהר</stage><lb/><stage type="location">אין הויז לינקס רעכטס)</stage><lb/><stage type="entrance">Auf: Ansal | </stage><stage type="entrance"> בר-נזיר. בן פּדות</stage><lb/><stage type="entrance costume">כאָהר אַלס תלמידים חכמים, אַנדערע אַלס סאָלדאַטען</stage><lb/><stage type="entrance">צענאַביאַ. (אלע פֿון הויז לינקס)</stage><lb/><stage type="delivery">כאהר No.</stage></p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0403_a">
+          <speaker>פּדות.</speaker>
+          <p>הערר גובערנעהר, איך שווערע ביי גאָטט. ווען איך בין געוועזען צווי=<lb/>שען זיי אין מיטען האָב איך געזעהן' זי אַליין האָט צעשמאָלצען<lb/>די קרוין גלייך מיט די באַנדיטען.</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0404_a">
+          <speaker>צענאַב.</speaker>
+          <lg n="43">
+            <l>בן פּדות דערמאַנן זיך נאָר אָן זיין שוואָר:</l>
+            <l>דאָרט אויף יענעם אָרט</l>
+            <l>האָסט מיר דיין וואָרט</l>
+            <l>מיט איין הייליגען שוואור געגעבען</l>
+          </lg>
+          <lg n="44" prev="true">
+            <l>אַז זאָ לאַנג דו וועסט לעבען</l>
+            <l>וועסט מיך ניט אויסגעבען</l>
+            <l>אין יעצט פּלוצים גאָר</l>
+            <l>ברעכסטו דיין שוואָר.</l>
+            <stage type="business">(מען לעקט איהר אַן קעטטען)</stage>
+          </lg>
+        </sp>
+        <sp who="#chor" xml:id="DiTsveyTnoim_SP0405_a">
+          <speaker>כאָהר</speaker>
+          <lg>
+            <l>. דאָס איז ניט מעהר ווי רעכט...... א. ז.וו.</l>
+          </lg>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0406_a">
+          <speaker>פּדות</speaker>
+          <lg n="45">
+            <l>. אַך, זעהט נאָר דאָרט. דאָרט אויף מיין וואָרט.</l>
+            <l>זעהט נור גוט. נור גוט</l>
+            <l>עס קומט דער הויפּס באַנדיט</l>
+            <l>עס איז דער פֿיהרער פֿון דער באַנדע</l>
+            <l>איהם פֿרייצולאַסען איזט ווירקליך איינע שאַנדע.</l>
+            <stage type="entrance">שמעון. (פֿון הויז</stage>
+          </lg>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0407_a">
+          <speaker>שמעון</speaker>
+          <p>. וואָס זעה איך היער - קעניגין. וואָס געשעהט מיט דיר?</p>
+        </sp>
+        <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0408_a">
+          <speaker>צענאַב.</speaker>
+          <p>פֿירכטע ניכט, שרעק ניכטס. עס דאַרף זאָ זיין. לאָז זיין אַזוי<lb/>גוט, זאָג דו קענסט מיך ניט!</p>
+        </sp>
+        <sp who="#chor" xml:id="DiTsveyTnoim_SP0409_a">
+          <speaker>כאָהר</speaker>
+          <p>דאָס איז ניט מעהר ווי רעכט. <stage type="business">(מען לעגט שמעון אָן קעטטען)</stage></p>
+        </sp>
+        <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0410_a">
+          <speaker>פּדות</speaker>
+          <p>. איך קען אַלעס, איך וויל אַלעס אייך בעווייזען</p>
+        </sp>
+        <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0411_a">
+          <speaker>שמעון</speaker>
+          <lg n="46">
+            <l>. שאַנדע דער מענשהייט! אויס וואורף דער נאַטור!</l>
+            <l>דו האָסט דיין גלייכען צווישען בעסטיען נור!</l>
+            <l>לאָזט מיך איך וועל איהם מיט מיינע</l>
+            <l>צעהן  וועל איך איהם צעררייסען</l>
+            <stage type="entrance">אלע</stage>
+            <stage type="delivery">רוססער אַנסאַמבעל. נאָך מוזיק טעקסט</stage>
+            <stage type="setting">Vorhang</stage>
+          </lg>
+        </sp>
+        <pb n="40" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0040.jpg"/>
+        <trailer>Schluss der dritten Aktes</trailer>
+      </div>
+      <div type="act" n="4" xml:id="DiTsveyTnoim_Act4">
+        <head>ערIV אקט</head>
+        <stage type="setting">וואַלד מיט בית עולם הינטען אָבגעצוימט מיט שטאַכעטען. מצבות הינטען, פֿאַרנע</stage>
+        <stage type="setting">גראָס בראַנג)</stage>
+        <stage type="business">(מיט אַ לאַמטערנע אין האַמער, געהט צו יעדען קבר קלאפּט אָן</stage>
+        <stage type="entrance">יוחנן.</stage>
+        <stage type="delivery">און רופֿט: - היכא את בר -לוקיש. -ער קוקט אויס משוגע. אין שוואַרצען געקליי</stage>
+        <stage type="business">דעט)</stage>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0412_a">
+          <speaker>יוחנן</speaker>
+          <p>. רבי שמעןן בר לוקיש! שטעה אויף פֿון דיין קבר, דיין רבי רופֿט<lb/>דיך, ניין. ניין. ניט דיין רבי איך בין גאָטט. דיין גאָטט, איך<lb/>קען טעטען. איך קען לעבענדיג מאַכען. דורך מיר ביסטו<lb/>געשטאָרבען דורך מיר זאָלסטו צוריק לעבענדיג ווערען. <stage type="business">(קלאַפּט</stage></p>
+        </sp>
+        <sp xml:id="DiTsveyTnoim_SP0413_a">
+          <speaker>אַיֶכָּה</speaker>
+          <p>ו<stage type="delivery">ויעדער און רופֿט ביי 2 מצבות) </stage>היכא בר לוקיש. וואָס? (<stage type="delivery">פּויזע)</stage><lb/>שמעון איז גאָר ניט געקומען לקבר ישראל? האָב איך איהם<lb/>מיט מיינע קלָלות און חרמים אַזוי ווייט פֿערשאָלטען אַז די ערד האָט<lb/>אַרויסגעוואָר פֿען? אונד אין זיין קבר האָבען די מלאכים<lb/>בעגראָבען די קרוין מיך צו קרעהנען. פֿאַר דעם מלך מלכי<lb/>המלכים ה ק ב ה? ניין, ניין, איך דאַרף ניט קיין קרוין<lb/>וואָס מענשען האָבען זי געמאַכט פֿון גאָלד אין דיאַמאַנטען. איך<lb/>אַ פֿייעריגע קרוין, וואָס זי זאָל לייכטען אויף דער גאַנצער<lb/>וועלט.. <stage type="setting">(ליכט קומט אויף איהם)</stage> הֵיכָא אֶת בַר- לוקיש?<lb/><stage type="business">(ציהט זיך צוריק הינטער אַ קבר)</stage><lb/><stage type="entrance">פּלדש -חגלה (מיט עססען</stage>) <stage type="entrance">Auft</stage></p>
+        </sp>
+        <pb n="41" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0041.jpg"/>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0414_a">
+          <speaker>פּלדש.</speaker>
+          <p>וואוּ זאָל ערגיץ אונזער גאָטט זיין?</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0415_a">
+          <speaker>חגלה.</speaker>
+          <p>אין הימעל איז ער אַוואַדע נישטאָ, מן הסתם ליעגט ער ער=<lb/>גיץ אויף אַ קבר און שרייט אַז ער וויל מחיה מתים<lb/>זיין</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0416_a">
+          <speaker>פּלדש</speaker>
+          <p>. איך האָב מורא. אַז עס וועט אַוועק געהן נאָך אַ טאָג אָדער<lb/>2 וועט ער נעהמען דאָס עסען וואָס מיר ברענגען איהם<lb/>און צוטיילען צווישען די מתים וועט ער אויך אַ מֶת ווערען<lb/>און אַ חַבֶר מיטן מלאך המות.</p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0417_a">
+          <speaker>יוחנן.</speaker>
+          <p><stage type="entrance">(פֿון קבר קומענד)</stage> דער מלאך המות האָט נישט יעצט קיין צייט<lb/>איך האָב איהם אַוועק געשיקט צו בר- לוקיש. ער מוז איהם<lb/> אַב זוכען ווי ער האָט איהם הינגעטהון. און מוז איהם צוריק<lb/>אַהער ברענגען, אַהער צו זיין רבונו של עולָם!</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0418_a">
+          <speaker>פּלדש.</speaker>
+          <p>לאָז מיך נאָך מיט איהם רעדען. <stage type="business">(געהט צו)</stage> ר״ב״ש״ע״ מיר<lb/>האָבען געזינדיגט, מיר האָבען צו דיר געבראַכט אַ קרבון<lb/>חטאת נעהם און עסס פֿון אונזער קרבן און זאָל דיר <lb/>שמעקען מיט ריח ניחוח..</p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0419_a">
+          <speaker>יוחנן.</speaker>
+          <p>אַ קרבן חטאת מעג מען עסען נאָר ביז חצות הלילה<lb/>און די האַלבע נאַכט קומט שוין אָן. אַלע מתים הויבען זיך<lb/>שוין אויף פֿון זייערע קברים צו זאָגען שורה פֿאַר מיר.<lb/>נור בר- לוקיש קומט נאָך ניט.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0420_a">
+          <speaker>חגלה.</speaker>
+          <p>ווייסט פֿאַר וואָס בר- לוקיש קומט ניט? ער איז אויף<lb/>דיר ברויגעז. ער זאָגט אַ גאָטט וואָס עסט ניט און טרינקט<lb/>ניט און לעגט זיך ניט שלאָפֿען טויג ניט.</p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0421_a">
+          <speaker>יוחנן.</speaker>
+          <p>בר- לוקיש איז אויף מיר גאָר ניט ברויגעז. אַ סימָן אַז ער<lb/>איז אַוועק פֿון זיין קבר האָט ער מיר איבערגעלאָזט דו<lb/>קרוין וואָס האָט צוגענומען ביים אַלטען גאָטט, איך דער<lb/>נייער גאָטט זאָל זי טראָגען. <stage type="business">(געהט צום קבר)</stage> ש אָט ברענג<lb/>איך זי.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0422_a">
+          <speaker>פּלדש.</speaker>
+          <p>אַ נייער שגעון ער האָט, שוין אַ קרוין אויך.</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0423_a">
+          <speaker>חגלה</speaker>
+          <p>. ער איז ניט שלעכט משוגה.</p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0424_a">
+          <speaker>יוחנן</speaker>
+          <p>. <stage type="entrance business">(קומט צוריק מיט אַ קרוין)</stage> זעהט די קרוין. האָב איך געפֿונען<lb/>און בר- לוקיש'ס קבר ווען איך האָב איהם אויפֿגעגראָבען<lb/>איהם לעבענדיג צו מאַכען.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0425_a">
+          <speaker>פּלדש.</speaker>
+          <p>וואָס איז דאָס? חגלה וואָס טהוט די קרוין, וואָס מיר האָבען<lb/>געמאַכט?</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0426_a">
+          <speaker>חגלה</speaker>
+          <p>.<stage type="business"> (בעטראַכט זי)</stage> דאָס איז ניט די פֿאַלשע קרוין, די קרוין<lb/>וואָס מיר האָבען געמאַכט, איז שוין לאַנג אין פּלמירא,<lb/>דאָס איז די אמת קרוין, מיט אמתע בריליאַנטען.</p>
+        </sp>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0427_a">
+          <speaker>פּלדש.</speaker>
+          <p>און וואָס דערקענסטו, אַז עס איז ניט פֿ קיין פֿאַלשע?</p>
+        </sp>
+        <sp who="#khgle" xml:id="DiTsveyTnoim_SP0428_a">
+          <speaker>חגלה.</speaker>
+          <p>נאָך קיין צייט? אַזוי פֿיעליאָהרען בכבוד געלעבט צווישען<lb/>גנבים, אָבער הער נאָר פּלדש, מיר דאַכט זיך, מיר דאַכט<lb/>זיך אַז עס איז דער קעניגינ'ס קרוין וואָס מען האָט זי<lb/>ניט געקענט געפֿינען. יעצט האָט דער משוגענער געגראָ=<lb/>בען און האָט זי געפֿונען.</p>
+        </sp>
+        <pb n="42" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0042.jpg"/>
+        <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0429_a">
+          <speaker>פּלדש.</speaker>
+          <p>אויב אַזוי מעג ער דאָך זאָגען אַז ער איז אַ גאָטט?</p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0430_a">
+          <speaker>יוחנן</speaker>
+          <p>. <stage type="business">(כאַפּט די קרוין)</stage> יאַ, איך בין דיין גאָטט איך האָב בעשאָפֿען<lb/>די וועלט איך קען ממית לְמות ומחיה זיין איך דאַרף קיין קרוין<lb/>פֿון מענשען געמאַכט. <stage type="business">(וואַכפֿט וועג די קרוין)</stage><lb/><stage type="exit business">(כאפּען קרוין, סצענע. אַב)</stage><lb/><stage type="entrance">חגלה</stage><lb/><stage type="entrance">פּלדש</stage></p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0431_a">
+          <speaker>יוחנן.</speaker>
+          <p>קומט אַהער לעאָרפּאָרדען, לויפֿט אייך נור צו נויף איהר<lb/>בלוט דור סטיגע טיגער!.. שלאָגט מיר, בייסט מיך, איך בין<lb/>גאָטט, איך דאַרף עס ניט. איך דאַרף נור מיין בר-לוקיש,<lb/>און ער איז נישטאָ. וואוּ ביזטו בר- לוקיש. וואוּ ביזטו?<lb/>(<stage type="setting">עס שלאָגט 12, גרויסער שטורם, דונקלע ביהנע, עס ער שיינט דאַמען</stage><lb/><stage type="costume">אלס מתים פֿון הינטען מלאָכים</stage>)<lb/><stage type="entrance">יוחנן</stage> <lb/><stage type="business">מיט</stage><lb/><stage type="entrance">כאהר</stage><lb/><stage type="delivery">דאנן</stage><lb/><stage type="delivery">באַלעט</stage> <lb/>מכלכל חיים בחסד מחיה מתים ברחמים רבים, דו וואָס<lb/>פֿאלען. לעהן איך אונטער! די קראנקע  מיך. איך געזונג=<lb/> געפאנגענע מאך איך פֿריי, די וואס שלאפען אין דער<lb/> ערד בלייב איך טריי ונאמן אתה<lb/>(<stage type="exit business">ענגעל פֿערשווינדען נאָכין באַלעט, יוחנן בלייבט ליעגען אויף גרויס</stage><lb/><stage type="setting">באַנק</stage><lb/><stage type="entrance">Auftr</stage> <stage type="entrance">יזראעלית</stage></p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0432_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. ברודער, טייערער ברודער, בעזינע דיך דו לעבסט אין<lb/>אַ שרעקליכען חלום, הערע די וואַהרהייט פֿון דיין ליע=<lb/>בער שוועסטער. מיין שמעון לעבט. איך שווער עס דיר<lb/>ביי גאָטט!</p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0433_a">
+          <speaker>יוחנן.</speaker>
+          <p>ווער ביזטו? וואָס דו שווערסט ביי גאָטט? איך בין גאָטט<lb/>דער בעל רחמן, איך קניע פֿאַר מיר אַליין. <stage type="business">(קניעט)</stage> איך<lb/>קניע פֿאַר גאָטט!</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0434_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. <stage type="business">(קניעט ביי איהם) </stage>יוחנן, מיין טהייערער הייליגער ברודער, קום<lb/>אַהיים מיט דיין שוועסטער, מיין מאַנן - מיין בר=<lb/>לוקיש.......</p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0435_a">
+          <speaker>יוחנן.</speaker>
+          <p><stage type="delivery">(שרייט אויף)</stage> חאַ-חאַ-חאַ. ער איז געוואָרען אַ מלאך. ער שפרינגט<lb/>קדושה אין הימעל מיט אַלע מלאָכים אין איינעם.</p>
+        </sp>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0436_a">
+          <speaker>יזראַעלית.</speaker>
+          <p><stage type="delivery">(אַפּאַרט)</stage> גאָטט! זיי איהם מוחיל - ער ווייסט ניט וואָס ער רעדט.</p>
+        </sp>
+        <sp who="#rbi_iukhnn_br_nskhh" xml:id="DiTsveyTnoim_SP0437_a">
+          <speaker>יוחנן.</speaker>
+          <p><stage type="delivery">(פֿאַנטאַזירט)</stage> ש-ש-ש, די זאָננע געהט אויף און גאָטט געהט<lb/>אונטער, בר לוקיש קומט אָן די מלאָכים, די  מלאָכים פֿערלאָ=<lb/>זען מיך. עס ווירד פֿינסטער אויף דער וועלט, מען וואַרפֿט<lb/>מיך אַראָב פֿונ׳ם היממעל, עס קומען עודות מיך צו פֿערקלאָ=<lb/>גען. איך וועל אייך ניט לייקנען. איך בין זיין מערדער<lb/>געווען.....<lb/>היכא אֶת בר-לוקיש- היכא את......... <stage type="business">(שטאַרב)</stage><lb/><stage type="business">(זי פֿאַלט נעבען איהם)</stage></p>
+        </sp>
+        <pb n="43" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0043.jpg"/>
+        <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0438_a">
+          <speaker>יזראַעלית</speaker>
+          <p>. טוידט! מיין ברודער טוידט!<lb/><stage type="setting">Vorhang. fallt</stage></p>
+        </sp>
+        <div type="scene" n="1" xml:id="DiTsveyTnoim_Act4_Sc1">
+          <head>Verwandlung</head>
+          <stage type="setting">קעניגליכער פּאַלאַסט מיט אַ טהראָן)</stage>
+          <stage type="entrance">בן פּדות (אויפֿן טהראן)</stage>
+          <stage type="entrance">אויפטריט הילנא</stage>
+          <stage type="entrance">Auft.</stage>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0439_a">
+            <speaker>הילנא.</speaker>
+            <p>אויף בעפֿעהל דער קעניגין, בין איך דאָ צו עמפּפֿאַנגען די<lb/>געסט וועלכע קומען גראַטולירען אייך צו אייער פֿערלאָבונג<lb/> און דער קעניגין צור קרענונג .</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0440_a">
+            <speaker>פּדות</speaker>
+            <p>. און וואָס הערט זיך מיט דעם רויבער הויפּטמאַנן. בר לוקיש.<lb/>איז ער הינגעריכטעט וואָרדען?</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0441_a">
+            <speaker>הילנא.</speaker>
+            <p>ער- זיין ווייב יזראַעלית און דער לעבענדיג משוגענער יוחנן<lb/>צעהלען ניט מעהר צווישען די לעבענדיגע.</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0442_a">
+            <speaker>פדות.</speaker>
+            <p>דאָ וועל איך דעם היינטיגען טאָג דאַרפֿען פֿייערן.</p>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0443_a">
+            <speaker>הילנא</speaker>
+            <p>. איך וויל דיך נאָך עפּעס פֿרעגען, געדענקסטו ווען מיר זענען<lb/>אַ מאָל געווען גוטע ברידער, דו ביזט געווען אַ באַנדיט....<lb/>איך מיין צווישען באַנדיטען האָסטו געשוואָרען מיין הערין<lb/>צו ליעבען. יעצט אַז גאָטט האָט דיר געהאָלפֿען, געהסט<lb/>חתונה האָבען מיט אַ קעניגין. וואָס האָט אַ קרוין אויפֿן<lb/>קאָפ פֿאַר וואָס זאָל מיין העררין ליעגען אין קעטטען גע=<lb/>בונדען און זאָל אויך ניט טאַנצען אויף דיין חתונה?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0444_a">
+            <speaker>פדות</speaker>
+            <p>. דאָס איז ניט דיין זאַך! געה!<lb/> וואַרט, וועסט האָבען אַ שוואַרצען סוּף! <stage type="exit">(אב)</stage><lb/><stage type="entrance">Auft</stage> צ<stage type="entrance costume">ענאביא. (אין קעטטען)</stage></p>
+          </sp>
+          <pb n="44" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0044.jpg"/>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0445_a">
+            <speaker>פּדות.</speaker>
+            <p>אַלזאָ, בת-ציביע מאַך עס קורץ. איך קען דיך לאַנג ניט<lb/>אויסהערן.</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0446_a">
+            <speaker>צענאַב</speaker>
+            <p>. נאָך איינמאָל וויל איך דיך עררינערן אין דיין שוואור, איך וויל<lb/>דיך ניט דערמאַנען, אַז איך האָב דיר דיין לעבען גערעטעט.<lb/>נור אין דיינע זיסע ווערטער פֿון טרייער ליעבע וועלכע זענען<lb/>אַזוי גלאַט אַראָבגעגאַנגען פֿון דיין צונג. איך קען און זיי<lb/>ניט פֿערגעססען. דו האָסט מיר געשוואורען אונזערע הער=<lb/>צער אין עביגע קעטטען דער ליעבע צו האַלטען. נאָ, און<lb/>זאָ איז דיין שוואור?!</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0447_a">
+            <speaker>פּדות</speaker>
+            <p>. נו, האָב איך דען מיין שוואור ניט געהאַלטען? האָב איך דיר<lb/>ניט אַנגעטהון אַפּאָאָר טייערע קעטען?</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0448_a">
+            <speaker>צענאב</speaker>
+            <p>. דו לאַכסט פֿון מיר? האָב איך ביי דיר דאָס פֿערדיענט?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0449_a">
+            <speaker>פּדות</speaker>
+            <p>. יאַ, פֿערדיענט. ניט פֿערדיענט. איך וויל זיין דער מאַן פֿון אַ<lb/>פֿרוי, וואָס טראָגט אַ קרוין אויף איהר קאָפּ!</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0450_a">
+            <speaker>צענאב.</speaker>
+            <p>האָסט שוין די געקרוינטע קעניגין געזעהן? אפֿשר איז זי<lb/>גאָר אַ מאוסע?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0451_a">
+            <speaker>פּדות.</speaker>
+            <p>אַפֿיעלו אַ שוואַרצע מאָהר, אבי אַ קרוין זאָל זי האָבען.</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0452_a">
+            <speaker>צענאב.</speaker>
+            <p>אפֿשר איז זי גאָר איין אַלטע?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0453_a">
+            <speaker>פּדות.</speaker>
+            <p>אַפֿילי דעם רוח׳ס עלטער באָבע... אבי אַ קרוין זאָל זי האָבען.</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0454_a">
+            <speaker>צענאב</speaker>
+            <p>. אפֿשר איז די קרוין גאָר אַ פֿאַלשע?</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0455_a">
+            <speaker>פּדות.</speaker>
+            <p>אָבי די וועלט האַלט זי פֿאַר עכט!</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0456_a">
+            <speaker>צענאב</speaker>
+            <p>. גוט, בן פּדות. איך געה! נור וועהע דיר ווענן די געקרעהנטע<lb/>וועט דיר ניט געפֿעלען, און וועסט זיך ווענדען צו מיר איך<lb/>זאָל דיר העלפֿען, אַנשטאַט אַ קרוין אויף דיין קאָפּ וועל איך<lb/>מיינע פֿיסס אויף דיין האַלז זעצען און וועל דיך צוטרעטען<lb/>ווי אַ נידריגען וואָרם!!<stage type="exit"> (אַב)</stage></p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0457_a">
+            <speaker>פּדות.</speaker>
+            <p>חַחַחַ. שעהן איז צו זעהן ווי אַ באַרג הויבט זיך אָן צו ציטערן<lb/>און מען הערט דאַנקען גרייש און ברויזענדע קוילעס פֿון דעם.<lb/>באַרג אַרויס שרייען. ענדליך שפּאַלט זיך דער באַרג אין שטיקלעך<lb/>און ווער קומט ארויס פֿון דאָרט? אַ קליין בלינד חיה'לע. עס איז<lb/>דער מויל-וואורם, די באַנדיטין קעניגין וויל מיך אָבשרעקען. חַחַחַ<lb/>צו אַ קליינער חיה פֿיר בן-פּדות.<lb/><stage type="entrance">בר- נזיר.</stage> <stage type="entrance">Auftr</stage></p>
+          </sp>
+          <sp who="#br_nzir" xml:id="DiTsveyTnoim_SP0458_a">
+            <speaker>בר נזיר</speaker>
+            <p>קעניגליכע האָהייט. די געסט זינד ערשיענען אום דיר אונד דער<lb/>קעניגין צו בעגריסען. צו ערשט זאָלען דיר פֿאָרגעשטעלט<lb/>ווערען די פֿ 4 יאַהרעס צייטען! פֿריהלינג, זאָמער, הערבסט<lb/>און ווינטער אַלס סימבאָל דער הייליגער ליעבע, <stage type="delivery">(רופֿט אַריין)</stage><lb/>דאָס פֿעסט בעגינט.<lb/><stage type="delivery">N .כאהר</stage><lb/>   <stage type="entrance">פֿרילינג (אַדאַמע)</stage> <stage type="entrance">Auf</stage><lb/>(ווייסען באָרד. ווייסעהאָאָר, ווייסע סוס מיט פֿאהר)</p>
+            <lg n="47">
+              <l>איך בין דער פֿריהלינג יונג און שעהן.</l>
+              <l>די בלומען איך טהייל פֿערפֿעהמען</l>
+              <l>איך גיעס, ער קוויק. ער פֿריי סאַי גרויס, סאַי קליין.</l>
+              <l>איך ברענג אויף דער ערד דעם פֿאַראַדיעז.</l>
+              <l>אַלעס לעבט אויף מיט פֿרייד און מיט גליק</l>
+              <l>די בוימער ווערען גרין, די צווייגען מיט מאָן.</l>
+              <l>עס קומען פֿייגעלעך. די ליעבליכע מוזיק</l>
+              <l>און זיי שפּיעלען אונז זאָ זיסס, זאָ טריי.</l>
+              <stage type="entrance">(דער זאָממער (אדאַמע</stage>
+              <stage type="entrance">Auftr</stage>
+            </lg>
+            <lg n="48">
+              <l>איך בין דער  זאָממער, איך מאַך אַלעס ווואַקסען שנעל</l>
+              <l>איך ברענג דעם דאָנער, דעם בליטץ, רעגען אויף דער שטעל</l>
+              <l>איך וואַרם אָן די ערד, דאַן גוט זי איהרע פֿרוכט</l>
+              <l>א... א...א....... דאָס איז מיינע פּפּליכט.</l>
+              <stage type="entrance">דער הערבסט. (א דאַמע</stage>
+            </lg>
+            <lg n="49">
+              <l>איך בין דער הערבסט, ווען איך קום</l>
+              <l>דאַן ווערען אַלע מענשען פֿרום</l>
+              <l>מיט געווען, מיט שרעק פֿאַר דער שווערער זינד</l>
+              <l>ערוועקט אַזוי מיין שטורם- ווינד</l>
+              <l>איך קום מיט אַ שטרענגען בעפֿעהל.</l>
+            </lg>
+            <lg n="50" prev="true">
+              <l>די תבואות זאַמעלט מען שנעל.</l>
+              <l>פֿון דעם בוים די פֿרוכט מוז מען נעהמען באַלד.</l>
+              <l>ס'ווערט לעער דאָס פֿעלד און וואַלד.</l>
+              <stage type="entrance">דער ווינטער. (אַמאַנן, אַ באַסס)</stage>
+            </lg>
+            <lg n="51">
+              <l>איך בין דער ווינטער קאַלט אָבער מונטער</l>
+              <l>איך לויף געשווינד, מאַך געזונדטער</l>
+              <l>איך בין אַ גרויס מיט שנעע און אייז</l>
+              <l>דעק איך צו די וועלט</l>
+              <l>איך בין גרויס, הויך אַרויס</l>
+              <l>בלאָז ארד און קעלט.</l>
+              <l>מיר זענען 4 יאַהרעס צייטען און מיר ברענגען אַלס דאָס גוטס,</l>
+              <stage type="delivery">אלע #4</stage>
+              <l>מיר האַלטען אויף די ברואים וועלכע לעבען אונטער אונזער שוטץ</l>
+              <stage type="delivery">ביס</stage>
+            </lg>
+            <lg n="52">
+              <l>מיר זענען פֿערפֿפֿליכטעט אָנצוקומען אין דער צייט.</l>
+              <l>מיר פֿיהרען. רעגירען אויף דער וועלט גאַנץ און ברייט.</l>
+              <l>מיר זענען די 4 יאַהרעס צייטען..... א.ז. וו</l>
+              <stage type="business">(טאַנצט)</stage>
+            </lg>
+          </sp>
+          <pb n="45" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0045.jpg"/>
+          <sp who="#br_nzir" xml:id="DiTsveyTnoim_SP0459_a">
+            <speaker>בר נזיר.</speaker>
+            <p>יעצט קומט פֿאַר, זחר מיט נקבה, אַלס סומבאָל פֿון מאַנן און ווייב<lb/> <stage type="entrance">Auft</stage> <stage type="entrance costume">הילנא. -נחמן. (יעדער איז האַב מאַנן און האַלב פֿרוי)</stage><lb/><stage type="delivery">דועט No</stage></p>
+          </sp>
+          <pb facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0046.jpg"/>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0460_a">
+            <speaker>הילנא</speaker>
+            <lg n="53">
+              <l>. אַ שפּאַס האַסטו נחמן געמאַכט</l>
+              <l>פֿערשטעלט האָסטו זיך פֿאַר נחמה׳לע</l>
+              <l>אַלס מיידעל האָב איך דיך בעטראַכט</l>
+              <l>פֿערליעבט אַך! אין דיר ווי אַ מאַמעלע.</l>
+            </lg>
+          </sp>
+          <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0461_a">
+            <speaker>נחמן.</speaker>
+            <lg n="54">
+              <l>און דו הילנאַ האָסט דיר ערלויבט</l>
+              <l>אין הויזען צו געהן ווי אַ זכור'ל</l>
+              <l>קינסטליך אַז איך האָב געגלויבט</l>
+              <l>אַז דו ביזט עס הילל דער בחור'ל</l>
+              <stage type="delivery">(מוזיק</stage>
+            </lg>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0462_a">
+            <speaker>זיע</speaker>
+            <lg>
+              <l>. אָט איז הילל - און אויך הילנאַ.</l>
+            </lg>
+          </sp>
+          <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0463_a">
+            <speaker>ער.</speaker>
+            <lg>
+              <l>אָט נחמן - און אויך הילנאַ. נחמ'ה.</l>
+            </lg>
+          </sp>
+          <sp who="#hiln" xml:id="DiTsveyTnoim_SP0464_a">
+            <speaker>זיע.</speaker>
+            <lg>
+              <l>אָט איז הילל - און אויך הילנא.</l>
+            </lg>
+          </sp>
+          <sp who="#nkhmn" xml:id="DiTsveyTnoim_SP0465_a">
+            <speaker>ער.</speaker>
+            <lg>
+              <l>אָט איז נחמן - און אויך נחמן. (מוזיק)</l>
+            </lg>
+          </sp>
+          <sp who="#beyde" xml:id="DiTsveyTnoim_SP0466_a">
+            <speaker>ביידע.</speaker>
+            <lg n="55">
+              <l>איך בין אַ בחור'ל אַ מיידעל ווי אויך אַ זכור'ל</l>
+              <l>ווי אָדם אין חוה גאָר פֿון אַנפֿאַנג.</l>
+              <l>האָבען אויסגעזעהן</l>
+              <l>דאָס ערשטע פֿאַר וואָס גאָטט האָט ער וועהלט</l>
+              <l>האָט ער שפעטער צוטיילט</l>
+              <l>אויסגעשניטען פֿון אָדָם אַ חַוָה</l>
+              <l>און דאָס איז געווען שעהן</l>
+              <l>און בין אַ בחור'ל...... א. ז. וו.</l>
+              <stage type="exit">(טאנץ אַב)</stage>
+              <stage type="entrance">כֿאָהר.</stage>
+              <stage type="business">(מיט בלעטער צום מארש)</stage>
+            </lg>
+          </sp>
+          <sp who="#chor" xml:id="DiTsveyTnoim_SP0467_a">
+            <speaker>כאַהר.</speaker>
+            <lg n="56">
+              <l>פֿרעהליך, לאָמיר, זינגען, מיט די טאַצען קלינגען</l>
+              <l>און עמפּפֿאַנגען אונזער קעניגין מיט פֿרייד און</l>
+              <l>מי    מיט געזאַנגען</l>
+              <l>פֿרעהליך לאָמיר מיט די טאַצען קלינגען.</l>
+              <l>אונזער קעניגין זאָל לעבען לאַנג.</l>
+              <l>אַ לויב, אַ דאַנק צו גאָטט!</l>
+              <l>וואָס ער די וועלט בעש אַפֿען האָט</l>
+              <l>מיט נחת און מיט גליק</l>
+              <l>איז דאָ די קעניגין צוריק!</l>
+              <l>פֿרעהליך לאָמיר זינגען.... א. ז. וו.</l>
+              <stage type="business">(מאַרשירען ביז אַלעס גרופּירט)</stage>
+            </lg>
+          </sp>
+          <sp who="#br_nzir" xml:id="DiTsveyTnoim_SP0468_a">
+            <speaker>בר נזיר.</speaker>
+            <p>די קעניגען פאָרט!<lb/><stage type="entrance">פּדות</stage> <stage type="business">(געהט הערונטער)</stage></p>
+          </sp>
+          <sp who="#khgle" xml:id="DiTsveyTnoim_SP0469_a">
+            <speaker>חגלה.</speaker>
+            <p><stage type="costume">(אַלס קעניגין מיט אַ קרוין, פֿערשלייערט. געפֿיהרט פֿון</stage><lb/><stage type="entrance">פּלדש</stage>.<lb/>היער קעניגין איז דיין נייער ער וועהלטער קעניג, אַומאַרמט<lb/>אייך אין זייד גליקליך.<stage type="business costume"> (פּדות וויל אומאַרמען. זי ענטשלייערט</stage><lb/><stage type="costume">זיך)</stage></p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0470_a">
+            <speaker>פּדות.</speaker>
+            <p>וואָס איז דאָס גובערנעהר?!! בין איך היער געבראַכט<lb/>געוואָרען אום שפאָט מיט מיר צו טרייבען?! די עז ע אַלטע<lb/>וועלכע איז...</p>
+          </sp>
+          <sp who="#khgle" xml:id="DiTsveyTnoim_SP0471_a">
+            <speaker>חגלה.</speaker>
+            <p>101 יאָהר אַלט, איך בין שטענדיג געווען אַ באַנדיטין קעניגין<lb/>און דו דאַרפֿסט זיך מיט מיר ניט שעמען, מיר זענען אַ גלייך<lb/>פאָר ֿפאָלק.</p>
+          </sp>
+          <pb n="47" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0047.jpg"/>
+          <sp who="#fldsh" xml:id="DiTsveyTnoim_SP0472_a">
+            <speaker>פּלדש.</speaker>
+            <p>פּלדש, איהר ערשטער מיניסטער איז שטענדיג געווען בערייט<lb/>פֿיר די באַנדיטען זיין לעבען אַוועק צו לעגען. איך וועל אויך<lb/>דיר עביג טריי זיין</p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0473_a">
+            <speaker>פּדות.</speaker>
+            <p>גובערנעהר, פֿיר דיעזען שפּאָט זאָלסטו בעשטאָפֿט ווערען</p>
+          </sp>
+          <sp who="#br_nzir" xml:id="DiTsveyTnoim_SP0474_a">
+            <speaker>בר נזיר</speaker>
+            <p>וואַהרליך - דאָ קומט די קעניגין ברינגע דיינע<lb/>קלאַגע אַן. פֿאָהר!<lb/>  <stage type="entrance">Auftr</stage> <stage type="entrance costume">צענאביאַ. (אין פֿאָלער פּראַכט מיט אַ קרוין)</stage></p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0475_a">
+            <speaker>פּדות</speaker>
+            <p>. טייפֿעל אונד העהלע וואָס געהט מיט מיר פֿאָר/ דיעזע<lb/>באַנדיטין.....</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0476_a">
+            <speaker>צענאַב</speaker>
+            <p>. איז די קעניגען, צענאַביאַ, דו האָסט דיין שוואַור ניט גע=<lb/>האַלטען, דו האָסט פֿערלאַנגט צו זיין דער מאַנן פֿון אַ פֿרוי<lb/>וואָס טראָגט אַ קרוין אויף איהר קאָפּ, היער האָסטו זי!<lb/><stage type="business">(צייגט חגלה)</stage></p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0477_a">
+            <speaker>פּדות.</speaker>
+            <p><stage type="business">(קניעט פֿאַר צענאַביאַ)</stage> מיט וואָס האָב איך מיר געגען דיר<lb/>פֿערזינדיגט?</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0478_a">
+            <speaker>צענאַביא.</speaker>
+            <p>געגען מיר זעהר וועניג! היער קאָמען 2 הויפּט פּערזאָ=<lb/>נען. פֿערטיידיגע דיך ווען דו קענסט. <stage type="entrance">פּדות</stage> <stage type="business">(שטעהט</stage><lb/><stage type="entrance">אויף, זעהט קומען: שמעון יזראעלית</stage> <stage type="entrance">Auft</stage> </p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0479_a">
+            <speaker>פּדות</speaker>
+            <p>. פֿערראַטען!!! פֿון אַלע זייטען אומרינגעלט, איך קען<lb/>קיין אויסוועג געפֿינין.</p>
+          </sp>
+          <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0480_a">
+            <speaker>שמעון.</speaker>
+            <p>איין וועג שטעהט דיר אָפֿען און דער פֿיהרט אין גהנים<lb/>אַריין.</p>
+          </sp>
+          <sp who="#tsenbi" xml:id="DiTsveyTnoim_SP0481_a">
+            <speaker>צענאב.</speaker>
+            <p>לעגט איהם קעטטען אָן. <stage type="business">(געשיהט)</stage></p>
+          </sp>
+          <sp who="#izrelis" xml:id="DiTsveyTnoim_SP0482_a">
+            <speaker>יזראַעלית.</speaker>
+            <p>מיט דיין רחילות מיט דיין פֿאַלשער צונג האָסטו אויסגעלאָשען<lb/>דאָס ליכט פֿון ישראל, מיין ברודער דער נר תמיד לייכט<lb/>ניט מעהר!</p>
+          </sp>
+          <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0483_a">
+            <speaker>שמעון.</speaker>
+            <p>ניין, יזראַעלית! זיין גייסט, זיין תורה קענן קיינמאָל<lb/>ניט אויסגעלאָשען ווערען.<lb/><stage type="entrance">יוחנן.</stage> <stage type="costume">(וואַנדערט הינטען אין שלאסס אַלס גייסט)</stage></p>
+          </sp>
+          <sp who="#bn_fdus" xml:id="DiTsveyTnoim_SP0484_a">
+            <speaker>פּדות.</speaker>
+            <p><stage type="business">(זעהט עס)</stage> אָה! - די קברים שפּייען אויס איהרע טוידטע!<lb/>די מתים ערוואַכען פֿון דעם עוויגען שלאָף און מיט איין<lb/>גייסטערגוהייל רופֿען זיי מיך: מערדער! רוצח! גזלן!<lb/>אָה רבי יוחנן, דאָרט וואַנדערט זיין גייסט אַרום!<lb/>(<stage type="business">לויפֿט אַרויף אויף די טרעפּ און מיט ביהנע)</stage><lb/>רבי זייט מיר מוחל. איך האָב געזינדיגט, אָה, איך ער=.<lb/>שטיקע. <stage type="business">(נעהמט די קעטען, וואַרגט זיך מיט זיי און וואַלגערט זיך הערונ</stage>=<lb/><stage type="exit business">טער פֿון די טרעפּ, מען טראָגט איהם אַרויס)</stage><lb/><stage type="exit">(גייסט פֿערשוואלנדעט</stage>)<lb/>שמעו</p>
+          </sp>
+          <pb n="48" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0048.jpg"/>
+          <sp who="#rbi_shmeun_bn_lkish" xml:id="DiTsveyTnoim_SP0485_a">
+            <speaker>שמעון</speaker>
+            <p>. עס לעבע האָך די קעניגין צענאַביאַ.<lb/><stage>.II A</stage><lb/><stage type="setting">Vorhang</stage></p>
+          </sp>
+          <trailer>Ende</trailer>
+          <pb n="49" facs="ya-rg8-1-f4141 - די צוויי תנאים Di tsvey tnoim-0049.jpg"/>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>
