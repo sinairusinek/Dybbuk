@@ -494,8 +494,20 @@ def resolve_line(text: str, entries, cast_index, cast_bares=None, page_overrides
             else:
                 auto.append("drop textStyle (no strikethrough/underline)")
                 continue
-        elif tag in ("unclear", "Header"):
-            auto.append(f"drop {tag}")
+        elif tag == "unclear":
+            # A bare `unclear` is Transkribus residue and goes. One carrying
+            # `reason` is an RA's reading note and must NOT: 2026-10-04 the
+            # unconditional drop destroyed Noa's note on MS_TissaEssler p20
+            # (`מאגיארעמבער` — "the quote said a real Hungarian man"), the same
+            # mistake as the textStyle regression a month earlier. Keep any
+            # span that carries human text.
+            if a.get("reason"):
+                pass          # falls through to the keep path below
+            else:
+                auto.append("drop unclear")
+                continue
+        elif tag == "Header":
+            auto.append("drop Header")
             continue
         if tag == "head" and "unit-type" in a:
             auto.append("drop head{unit-type}")
