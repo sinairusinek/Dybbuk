@@ -48,6 +48,10 @@ DEDUP_REVIEW = ORG / "db_dedup_review.tsv"
 DEDUP_DECISIONS = ORG / "db_dedup_decisions.tsv"
 DEDUP_DECISIONS_REPO_PATH = "Zylbercweig/organizations/db_dedup_decisions.tsv"
 
+JOINTNAME_PUNCHLIST = ORG / "db_joint_name_punchlist.tsv"
+JOINTNAME_DECISIONS = ORG / "db_joint_name_decisions.tsv"
+JOINTNAME_DECISIONS_REPO_PATH = "Zylbercweig/organizations/db_joint_name_decisions.tsv"
+
 DBLALIGN_AUDIT = ORG / "cluster_double_alignment_audit.tsv"
 DBLALIGN_DECISIONS = ORG / "cluster_double_alignment_decisions.tsv"
 DBLALIGN_DECISIONS_REPO_PATH = "Zylbercweig/organizations/cluster_double_alignment_decisions.tsv"
@@ -204,6 +208,67 @@ def load_dedup_decisions(mtime: float) -> dict[tuple[str, str], dict]:
     return out
 
 
+@st.cache_data(show_spinner=False)
+def load_jointname_punchlist(mtime: float) -> list[dict]:
+    if not JOINTNAME_PUNCHLIST.exists():
+        return []
+    with open(JOINTNAME_PUNCHLIST, newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f, delimiter="\t"))
+    for r in rows:
+        try:
+            r["_mentions"] = json.loads(r.get("mentions_json", "") or "[]")
+        except Exception:  # noqa: BLE001
+            r["_mentions"] = []
+    return rows
+
+
+@st.cache_data(show_spinner=False)
+def load_jointname_decisions(mtime: float) -> dict[str, dict]:
+    """Keyed by db_id — the decision is about the row, not a cluster."""
+    out: dict[str, dict] = {}
+    if not JOINTNAME_DECISIONS.exists():
+        return out
+    with open(JOINTNAME_DECISIONS, newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            out[r.get("db_id", "")] = r
+    return out
+
+
+def save_jointname_decisions(records: list[dict]) -> None:
+    """Upsert joint-name decisions under a single file-lock + one GitHub push."""
+    if not records:
+        return
+    JOINTNAME_DECISIONS.parent.mkdir(parents=True, exist_ok=True)
+    lock = JOINTNAME_DECISIONS.with_suffix(".lock")
+    with open(lock, "w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        try:
+            existing: dict[str, dict] = {}
+            if JOINTNAME_DECISIONS.exists():
+                with open(JOINTNAME_DECISIONS, newline="", encoding="utf-8") as f:
+                    for row in csv.DictReader(f, delimiter="\t"):
+                        existing[row.get("db_id", "")] = row
+            for rec in records:
+                existing[rec["db_id"]] = rec
+            with atomic_write(JOINTNAME_DECISIONS) as f:
+                w = csv.DictWriter(f, fieldnames=JOINTNAME_DECISION_HEADERS, delimiter="\t")
+                w.writeheader()
+                for row in existing.values():
+                    w.writerow({k: row.get(k, "") for k in JOINTNAME_DECISION_HEADERS})
+        finally:
+            fcntl.flock(lf, fcntl.LOCK_UN)
+    try:
+        from zalmen.github_sync import push_file_to_github
+        ok = push_file_to_github(
+            JOINTNAME_DECISIONS_REPO_PATH, JOINTNAME_DECISIONS,
+            f"chore: db_joint_name decisions ({len(records)} rows)",
+        )
+    except Exception:  # noqa: BLE001
+        ok = False
+    if not ok:
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
+
+
 def save_dedup_decisions(records: list[dict]) -> None:
     """Upsert dedup decision rows under a single file-lock + one GitHub push."""
     if not records:
@@ -297,6 +362,14 @@ def save_dblalign_decisions(records: list[dict]) -> None:
 
 
 # ── Render helpers ────────────────────────────────────────────────────────────
+
+JOINTNAME_DECISION_HEADERS = [
+    "db_id", "decision", "reviewer_notes", "reviewer", "reviewed_at",
+]
+
+# Keyed by db_id alone: unlike the other sections the question is about the
+# ROW ("is this one company or several?"), not about one cluster's membership.
+_JOINTNAME_DECISION_OPTS = ["", "ONE_COMPANY", "SEVERAL", "NOT_A_TROUPE", "CHECK"]
 
 _DECISION_OPTS = ["", "KEEP_IN", "REMOVE", "CHECK"]
 _DEDUP_DECISION_OPTS = ["", "MERGE", "KEEP_SEPARATE", "CHECK"]
@@ -947,6 +1020,110 @@ def _render_dblalign_tab(reviewer: str) -> None:
 
 # ── Main render ───────────────────────────────────────────────────────────────
 
+def _render_jointname_tab(reviewer: str) -> None:
+    """One row per entry whose NAME lists several people. One decision each.
+
+    Ruthie chose to work these one by one rather than under a blanket rule, so
+    this view decides nothing: it puts the source sentence in front of the
+    reviewer, because that is what settles each case.
+    """
+    rows = load_jointname_punchlist(_mtime(JOINTNAME_PUNCHLIST))
+    decisions = load_jointname_decisions(_mtime(JOINTNAME_DECISIONS))
+
+    if not rows:
+        st.info(
+            "No joint-name punchlist yet. Run:\n\n"
+            "```\npython3 Zylbercweig/organizations/build_joint_name_punchlist.py --write\n```"
+        )
+        return
+
+    # Resolved = a real disposition saved. CHECK keeps the row visible, same
+    # convention as the other sections.
+    def _resolved(r: dict) -> bool:
+        return decisions.get(r["db_id"], {}).get("decision", "") in (
+            "ONE_COMPANY", "SEVERAL", "NOT_A_TROUPE",
+        )
+
+    n_done = sum(1 for r in rows if _resolved(r))
+    col_a, col_b = st.columns([3, 1])
+    with col_a:
+        st.progress(n_done / len(rows) if rows else 0.0,
+                    text=f"{n_done} of {len(rows)} decided")
+    with col_b:
+        show_done = st.checkbox("Show decided", value=False, key="jn_show_done")
+
+    visible = rows if show_done else [r for r in rows if not _resolved(r)]
+    if not visible:
+        st.success("Every row has a decision. Tick “Show decided” to revisit.")
+        return
+
+    pending: list[dict] = []
+
+    for r in visible:
+        db = r["db_id"]
+        title = r.get("name_yiddish") or r.get("name") or f"db{db}"
+        saved = decisions.get(db, {})
+        mark = "✓ " if _resolved(r) else ""
+
+        with st.expander(f"{mark}db{db} — {title}", expanded=not _resolved(r)):
+            meta = f"`{r.get('org_type','')}` · {r.get('n_mentions','0')} mention(s)"
+            if r.get("singular_head_noun_cue"):
+                meta += " · **singular head-noun in the source** → reads as ONE company"
+            st.markdown(meta)
+
+            for m in r.get("_mentions", []):
+                host = m.get("host_entry") or "(no entry name)"
+                where = " · ".join(x for x in (m.get("settlement"), m.get("date_start")) if x)
+                st.markdown(f"**{host}**" + (f" — {where}" if where else ""))
+                if m.get("org_as_written"):
+                    st.caption(f"written as: {m['org_as_written']}")
+                if m.get("sentence"):
+                    st.markdown(f"> {m['sentence']}")
+
+            cur = saved.get("decision", "")
+            choice = st.radio(
+                "This entry is…",
+                _JOINTNAME_DECISION_OPTS,
+                index=_JOINTNAME_DECISION_OPTS.index(cur) if cur in _JOINTNAME_DECISION_OPTS else 0,
+                format_func=lambda v: {
+                    "": "— undecided —",
+                    "ONE_COMPANY": "ONE company billed under several names — keep as is",
+                    "SEVERAL": "SEVERAL separate troupes — split it",
+                    "NOT_A_TROUPE": "Not a troupe at all",
+                    "CHECK": "CHECK — come back to this",
+                }.get(v, v),
+                key=f"jn_{db}_dec",
+            )
+            note = st.text_input(
+                "Note (optional)", value=saved.get("reviewer_notes", ""),
+                key=f"jn_{db}_note",
+                help="For SEVERAL, say how it divides if you can.",
+            )
+            if choice:
+                pending.append({
+                    "db_id": db,
+                    "decision": choice,
+                    "reviewer_notes": note.strip(),
+                    "reviewer": reviewer,
+                    "reviewed_at": _dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                })
+
+    changed = [
+        rec for rec in pending
+        if rec["decision"] != decisions.get(rec["db_id"], {}).get("decision", "")
+        or rec["reviewer_notes"] != decisions.get(rec["db_id"], {}).get("reviewer_notes", "")
+    ]
+    st.divider()
+    if st.button(f"💾 Save {len(changed)} decision(s)", disabled=not (changed and reviewer),
+                 key="jn_save", type="primary"):
+        save_jointname_decisions(changed)
+        load_jointname_decisions.clear()
+        st.success(f"Saved {len(changed)}.")
+        st.rerun()
+    if changed and not reviewer:
+        st.caption("Pick your name in the sidebar to save.")
+
+
 def render() -> None:
     st.header("🩺 DB Audit")
 
@@ -959,7 +1136,8 @@ def render() -> None:
     # whole double-alignment list. A radio renders only the branch you picked.
     section = st.radio(
         "Section",
-        ["False-equation merges", "Dedup candidates", "Cluster double-alignments"],
+        ["False-equation merges", "Dedup candidates", "Cluster double-alignments",
+         "Joint names"],
         key="dba_section",
         horizontal=True,
         label_visibility="collapsed",
@@ -983,6 +1161,17 @@ def render() -> None:
             "Decisions go to db_dedup_decisions.tsv keyed by (db_id_a, db_id_b)."
         )
         _render_dedup_tab(reviewer)
+
+    elif section == "Joint names":
+        st.caption(
+            "Entries whose NAME lists several people, where the name alone "
+            "cannot say whether it is one company billed under several names "
+            "or several separate troupes. The source sentence is shown because "
+            "that is what settles it — a singular head-noun (\"דער טרופּע\", "
+            "\"די טריאָ\") means ONE company. Decisions go to "
+            "db_joint_name_decisions.tsv keyed by db_id."
+        )
+        _render_jointname_tab(reviewer)
 
     else:
         st.caption(
