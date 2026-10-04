@@ -50,10 +50,34 @@ COL = 2372172
 NOTE = "act/Bild structure (Judith 2026-09-01)"
 
 # An act-END line: closes a division, never opens one. Must never be stamped.
-END_RE = re.compile(r"ענדע|ende|סוף|שלוסס", re.I)
+# German closers too: Di Tsvey Tnoim writes `End von Ien Act.`,
+# `Schluss des zweiten Aktes`, `Schluss der dritten Aktes`. Without these the
+# matcher picked the line that CLOSES the previous act as the next act's
+# opening and shifted every boundary (found 2026-10-04 in the dry run).
+END_RE = re.compile(r"ענדע|ende\b|end\s+von|schluss|סוף|שלוסס|שלוס", re.I)
 # The opening of a division.
-ACT_RE = re.compile(r"(ערשטער|צווייטער|דריטער|פיערטער|פֿערטער|פונפטער|"
-                    r"\d+\s*[טד]?ער|[IVX]+\s*)?\s*(אקט|אַקט|Act|Akt)", re.I)
+# Ordinals as the notebooks actually spell them — the scribes double letters
+# freely (`דריטטער`, `פינפֿטער`) and Tissa-Essler/Emigration use forms the
+# first draft of this list missed, which pushed the match past ACT_MAX_START
+# and lost Emigration p48.
+ACT_RE = re.compile(
+    r"(ערשטער|צווייטער|צוויטער|דריטער|דריטטער|דריטטטער|"
+    r"פיערטער|פֿיערטער|פירטער|פֿערטער|פערטער|"
+    r"פונפטער|פינפטער|פֿינפֿטער|פינפֿטער|"
+    r"\d+\s*[-]?\s*[טד]?ער|[IVX]+\s*)?\s*(אקט|אַקט|Act|Akt)", re.I)
+# A heading line is short AND leads with its heading. Two real cases pull in
+# opposite directions, so both tests are needed:
+#   * Di Tsvey Tnoim p5's cast entry
+#     `הילנא. איהר קאַמערמעדכען (אין ערשטען...` mentions `ערשטען`, matches
+#     ACT_RE, and must be rejected.
+#   * Emigration p48's genuine heading is 39 chars —
+#     `N 10 (דריטטער אקט (קאפפע הויז אין קס"פל` — an act heading carrying a
+#     Regie cue and a setting, and must be accepted.
+# So: allow a generous length, but require the act words to appear early in
+# the line rather than buried in a sentence. Acts only — a Bild marker can sit
+# mid-line after a cue (`N xx (פֿערוואנדלונג`).
+ACT_MAX_LEN = 48
+ACT_MAX_START = 12
 BILD_RE = re.compile(r"בילד|Bild|פערוואנדלונג|פֿערוואנדלונג|Verwandlung", re.I)
 EPI_RE = re.compile(r"עפילאג|epilog", re.I)
 
@@ -130,8 +154,12 @@ def find_line(root, kind):
         txt = line_text(el).strip()
         if not txt or END_RE.search(txt):
             continue
+        if kind == "act" and len(txt) > ACT_MAX_LEN:
+            continue
         m = rx.search(txt)
         if not m:
+            continue
+        if kind == "act" and m.start() > ACT_MAX_START:
             continue
         raw = line_text(el)
         start = raw.find(txt[m.start():m.end()])
