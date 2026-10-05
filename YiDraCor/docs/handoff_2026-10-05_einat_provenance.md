@@ -1,4 +1,4 @@
-# Where do these eight editions live, and what is Meshumed's imprint?
+# Where do these five manuscripts live, and what is Meshumed's imprint?
 
 **For Einat. 2026-10-05.**
 
@@ -13,7 +13,12 @@ should not need any other document.
 
 ---
 
-## Part 1 — Six manuscripts with no holding institution recorded
+## Part 1 — Five manuscripts with no holding institution recorded
+
+> **Update, same day.** Sinai pointed out that the first page in Transkribus
+> often *is* the archival cover sheet. That turned out to be exactly right, and
+> it answers one of the six outright — see "What page 1 told us" below. The
+> remaining five are still open, but the question is now much narrower.
 
 ### What we already have
 
@@ -37,46 +42,86 @@ All are in **Record Group 8**, and the folio numbers cluster tightly —
 f4140, f4141, f4142A, f4176, f4179 — which suggests the remaining six may sit
 in the same run.
 
-### The six with nothing recorded
+### What page 1 told us
 
-For these we have the Transkribus transcription but no shelfmark, no record
-group, and no holding institution in the catalogue:
+**Meshumed is now placed, and it needed no catalogue lookup at all.** Its
+page 1 is a printed YIVO cover sheet, which is why our transcription of that
+page was empty — there is no handwriting on it:
 
-| # | play | author | pp. | Transkribus |
-| :-- | :-- | :-- | :-- | :-- |
-| 1 | **Yaakov-Esav** (יעקב ועשו) | Hurwitz *(attributed)* | 60 | [doc 494907](https://app.transkribus.org/collection/2372172/doc/494907) |
-| 2 | **Yetsi'as Mitsrayim** (יציאת מצרים) | Hurwitz *(certain)* | 67 | [doc 715163](https://app.transkribus.org/collection/2372172/doc/715163) |
-| 3 | **Ben HaDor** (בן הדור) | Hurwitz *(attributed)* | 36 | [doc 826910](https://app.transkribus.org/collection/2372172/doc/826910) |
-| 4 | **Tissa-Essler** (טיססא עסלער) | Hurwitz *(certain, 1892)* | 40 | [doc 905289](https://app.transkribus.org/collection/2372172/doc/905289) |
-| 5 | **Emigration nach America** (עמיגראציאן נאך אמעריקע) | Lateiner *(certain, 1884)* | 117 | [doc 1013131](https://app.transkribus.org/collection/2372172/doc/1013131) |
-| 6 | **Meshumed** (דער משומד) | Lateiner *(certain)* | 44 | [doc 534187](https://app.transkribus.org/collection/2372172/doc/534187) |
+> YIVO ARCHIVES · **Record Group 8, Subgroup RG 8.1**
+> **Esther Rachel Kaminska Theater Museum Archive (RG 8)**
+> Subgroup RG 8.1: Performances of Yiddish Theater and Music: Plays,
+> Programs, Playbills, and Posters, 1894–1942
+> **Folder No. 4182**
 
-### Question 1
+Page 2, the notebook's own cover, carries the shelf label
+**`170730-170691/4182`** and accession **`170691`**, plus a handwritten
+Yiddish note dated **1931** mentioning Warsaw — presumably the acquisition.
 
-**For each of the six: which institution holds it, and under what shelfmark?**
+We have recorded Meshumed as **YIVO, RG 8.1, folder 4182**. That also tells us
+the RG 8 run extends past the f41xx folio numbers we had been assuming.
 
-If they are YIVO RG8 like the others, the folio number is what we need. If any
-came from somewhere else — a different YIVO record group, another archive, a
-private hand — that matters more, because we currently have no record of it at
-all.
+**Two more pages gave up real evidence:**
 
-### Question 2 — a narrower version, if the above is a long job
+- **Yetsi'as Mitsrayim is not YIVO at all.** Its page 1 carries a Russian
+  censor's file block: **`Рукописный отдел`** (Manuscript Department),
+  **`ЛГТБ No 6246`** — the **Leningrad State Theatre Library** — plus file
+  numbers `1285` and `663 3.`, a receipt stamp `-5 СЕН. 1910`, and the ban
+  itself: *«Къ представленiю признана неудобнымъ. С. Петербургъ, 29 Окт. 1910»*
+  ("deemed unsuitable for performance"). So this manuscript came through the
+  St Petersburg censorship apparatus, and its shelfmark looks like **ЛГТБ 6246**.
+- **Ben HaDor** names an owner on its title page (p.3):
+  **`Eigentum A. Liansky, New-Jork, 7. October 1904`** — "property of
+  A. Liansky". Its page 1 is a stamp our OCR could not read.
 
-Two of the six have a detail that may make them easier to place:
+### The five still open
 
-- **Yaakov-Esav** — the manuscript itself carries an archival catalogue label.
-  If that label identifies the repository, reading it off the first pages would
-  answer the question without any catalogue lookup.
-- **Yetsi'as Mitsrayim** — the text is in **German in Latin script**, not
-  Yiddish, its title page is in German and Russian (*"Von Profesor M.
-  Horowitz, Musik von Perlmutter und Wohl"*), and it carries **Russian
-  censorship stamps banning performance, St Petersburg, 29 October 1910**.
-  A censored German-language Hurwitz manuscript almost certainly reached its
-  repository by a different route than the Yiddish ones, so its provenance is
-  worth knowing on its own account — and the censor's stamp may itself name
-  the archive or collection it passed through.
+| # | play | author | pp. | page 1 | Transkribus |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| 1 | **Yaakov-Esav** (יעקב ועשו) | Hurwitz *(attributed)* | 60 | **blank — as Meshumed's YIVO sheet was** | [doc 494907](https://app.transkribus.org/collection/2372172/doc/494907) |
+| 2 | **Tissa-Essler** (טיססא עסלער) | Hurwitz *(certain, 1892)* | 40 | **blank — as Meshumed's YIVO sheet was** | [doc 905289](https://app.transkribus.org/collection/2372172/doc/905289) |
+| 3 | **Ben HaDor** (בן הדור) | Hurwitz *(attributed)* | 36 | an unread stamp; owner A. Liansky | [doc 826910](https://app.transkribus.org/collection/2372172/doc/826910) |
+| 4 | **Yetsi'as Mitsrayim** (יציאת מצרים) | Hurwitz *(certain)* | 67 | **ЛГТБ No 6246** (Leningrad) | [doc 715163](https://app.transkribus.org/collection/2372172/doc/715163) |
+| 5 | **Emigration nach America** (עמיגראציאן נאך אמעריקע) | Lateiner *(certain, 1884)* | 117 | title only, no stamp | [doc 1013131](https://app.transkribus.org/collection/2372172/doc/1013131) |
 
-**Is either of those quicker to answer than the full six?**
+### Question 1 — the two blank first pages
+
+**Yaakov-Esav** and **Tissa-Essler** have a *completely blank* transcription of
+page 1 — the same signature Meshumed had, and Meshumed's blank page turned out
+to be the printed YIVO cover sheet. We cannot read those pages ourselves
+(we have the image only for Meshumed).
+
+**Could you open those two in Transkribus and read off page 1?** If it is a
+YIVO cover sheet, we need only the **Record Group / Subgroup and Folder No.**
+exactly as Meshumed's gave them.
+
+### Question 2 — Ben HaDor's stamp and owner
+
+Ben HaDor's page 1 carries a stamp our OCR produced only as noise. Its title
+page (p.3) names an owner: **`Eigentum A. Liansky, New-Jork, 7. October 1904`**.
+
+**What does the page 1 stamp say — and does the Liansky ownership tell us how
+the manuscript reached its present repository?** A. Liansky is not yet anyone
+in our database; if he is a known New York theatre figure that is worth
+recording in his own right.
+
+### Question 3 — Yetsi'as Mitsrayim at the Leningrad Theatre Library
+
+This one is *not* YIVO. Its shelfmark appears to be **ЛГТБ No 6246** —
+Leningrad State Theatre Library, Manuscript Department — with file numbers
+`1285` and `663 3.`
+
+**Is ЛГТБ 6246 the shelfmark we should record, and is the manuscript still
+held there** (the library is now the St Petersburg State Theatre Library),
+**or is our copy a surrogate** — a photocopy or microfilm of a Russian
+original, held somewhere else? That distinction matters for how we cite it.
+
+### Question 4 — Emigration nach America
+
+Page 1 is the title only, with no stamp or label. It is the longest manuscript
+we have (117 pp) and the only Lateiner one among the five.
+
+**Where is it held?**
 
 ---
 
@@ -85,14 +130,15 @@ Two of the six have a detail that may make them easier to place:
 ### The situation
 
 **Meshumed** (דער משומד), Lateiner, is the only edition in the corpus where we
-have a **printed** copy recorded but no imprint whatsoever:
+have a **printed** copy recorded but no imprint whatsoever. Its *manuscript* is
+now placed at YIVO (above); this question is about the supposed printed copy:
 
 | field | value |
 | :-- | :-- |
 | publisher | *(empty)* |
 | publication place | *(empty)* |
 | year printed | *(empty)* |
-| holding library | *(empty)* |
+| holding library | YIVO, RG 8.1 folder 4182 — *answered above* |
 | expression id | 3879 |
 
 Authorship is not in doubt — the title page (p.3) reads
@@ -109,7 +155,7 @@ stands out:
 | Blimele | A. Faust | Podgórze | 1903 | Polona, II 63.206 |
 | Al Naharot Bavel | Amkraut & Freund | Przemyśl | 1909 | Polona, II 63.436 |
 
-### Question 3
+### Question 5
 
 **Is there a printed edition of Meshumed, and if so — publisher, place, year,
 and which library holds it?**
@@ -140,7 +186,7 @@ YIVO rg8-f4176, 1916), which is fully transcribed.
 The duplicate has only one page transcribed, by an uploader we cannot identify
 (`uninecessity`), and the catalogue notes say the decision is pending.
 
-### Question 4
+### Question 6
 
 **Can doc 820938 be retired as a duplicate of 838368?**
 
