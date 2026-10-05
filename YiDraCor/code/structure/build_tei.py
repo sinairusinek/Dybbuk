@@ -336,6 +336,22 @@ def find_edition(editions_json: dict, folder: str) -> dict:
     raise SystemExit(f"No editions.json record for folder {folder}")
 
 
+def _add_author(parent, rec: dict):
+    """Emit <author>, carrying @ref to the people_db entry when we know it.
+
+    editions.json resolves the playwright to a people_db db_id via
+    expression.author_id (Lateiner 683, Hurwitz 684); the private-URI form
+    keeps the link machine-resolvable without depending on the (still empty)
+    persons register.
+    """
+    el = etree.SubElement(parent, q("author"))
+    el.text = rec["author"]
+    author_id = (rec.get("expression") or {}).get("author_id")
+    if author_id:
+        el.set("ref", f"zylbercweig:person:{author_id}")
+    return el
+
+
 def build_header(rec: dict, cast: dict, play_id: str):
     header = etree.Element(q("teiHeader"))
     file_desc = etree.SubElement(header, q("fileDesc"))
@@ -348,7 +364,7 @@ def build_header(rec: dict, cast: dict, play_id: str):
         t_sub = etree.SubElement(title_stmt, q("title")); t_sub.set("type", "sub")
         t_sub.text = rec["title"]
     if rec.get("author"):
-        etree.SubElement(title_stmt, q("author")).text = rec["author"]
+        _add_author(title_stmt, rec)
 
     pub = etree.SubElement(file_desc, q("publicationStmt"))
     etree.SubElement(pub, q("publisher")).text = "YiDraCor"
@@ -359,7 +375,7 @@ def build_header(rec: dict, cast: dict, play_id: str):
     bibl = etree.SubElement(src, q("bibl"))
     etree.SubElement(bibl, q("title")).text = yid
     if rec.get("author"):
-        etree.SubElement(bibl, q("author")).text = rec["author"]
+        _add_author(bibl, rec)
     if rec.get("publisher"):
         etree.SubElement(bibl, q("publisher")).text = rec["publisher"]
     if rec.get("publication_place"):
