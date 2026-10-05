@@ -260,6 +260,97 @@ while submitting one means choosing a base witness — an editorial decision, no
 a technical one. That choice only binds the external submission, not our
 internal graph.
 
+## Answers to three questions raised before implementation (2026-10-05)
+
+### Which works lack a TEI, and do we have their editions?
+
+Matching TEIs to editions by **Transkribus docId** (filename matching is
+unreliable — it wrongly flags Blimele and Emigration): **24 DraCor TEIs cover
+25 of the 28 edition rows.** Three do not, each for a different reason, and
+**none is a missing-edition problem**:
+
+| folder | expr | why no TEI |
+|---|---|---|
+| `YIVO_ShimshonHagibor` | 3959 | **Deliberately excluded.** It is a part-book (מחברת תפקיד) carrying one role's lines and cues only, not a full playtext, so it cannot be encoded as a drama. Decision already recorded in the corpus sheet. 18 pp, fully transcribed. |
+| `MS_YetsiasMitsrayim` | 4043 | **Blocked, not missing.** 67 pp pulled and transcribed (66 GT + 1 FINAL); no `cast_dict.json`, so the builder cannot emit a castList. Also notable: **the text is GERMAN in Latin script**, not Yiddish, and it carries Russian censorship stamps — banned for performance, St Petersburg, 29 Oct 1910. |
+| `HurbanYerushalaim_820938_duplicate` | 3891 | **A duplicate**, not a work. Doc 820938 is a second scan of doc 838368 (the real `MS_KhurbnYerusholaim`), 56 pp with a single IN_PROGRESS transcript. A PI decision from 2026-06-24 on whether to keep both copies is still pending. |
+
+So: 26 real editions, 24 encoded, 1 excluded by editorial decision, 1 blocked on
+a `cast_dict.json`, plus 1 duplicate row that should not be counted as an
+edition at all. **Nothing is missing that we hold and have not encoded.**
+
+The earlier "24 TEIs for 27 works" phrasing was loose — it compared TEIs against
+*edition* rows (28, including the duplicate), not works.
+
+### Do we have two editions of one play?
+
+**No — not one case.** Grouping the 28 rows by `expression_id` gives exactly one
+collision, and it is a data bug rather than a second witness: **expression 3879
+appears twice, both `Lateiner_Meshumed`, with identical fields except `notes`.**
+A duplicate row, already flagged above for independent fixing.
+
+This matters for the question-5 recommendation: the edition/work distinction is
+**entirely latent today** — every work has at most one edition. That is precisely
+why the layers must be separated now, while nothing depends on conflating them.
+The first genuine second witness (a print text beside a manuscript) would
+otherwise break every consumer that assumed 1:1.
+
+### The songs table — and it needs a node too
+
+`songs_Lateiner and Hurwitz`, **235 rows across 56 plays.** The graph currently
+has **no song node**: songs survive only as a `counts.songs` integer on edition
+nodes (175 in total). That is the same collapse as the work layer, one level
+down.
+
+**The songs table is work-level data, not edition-level.** 223 of 235 rows
+resolve to exactly one work via the existing `translit_key` matcher (1 ambiguous,
+11 unmatched). And its play keys include works with **no surviving edition** —
+*Yafes toyer oder, Bilem haroshe* has **25 songs and no text at all**, the
+single largest song group in the table. Keyed on editions, those 25 songs are
+unrepresentable; keyed on works, they attach cleanly.
+
+Top song groups: Yafes toyer (25), Ben Hador (19), Ezre der eybiker yid (19),
+Khurbn Yerusholayim (16), Goles Rusland (11), Der kuzari (10).
+
+Fields: `Song title in sources`, `Romanized title`, `YIVO transliteration`,
+`כלל יידיש` (normalised Yiddish, populated for all 235), `Title`, `Play Key`,
+`Author` (173), `Source` (235 — 12 distinct publications), page numbers,
+`external source id`, `recordings acc. Shund on Shellac` (64), and
+`Ruthie - elaboration` (88).
+
+**Open decisions for the song node:**
+
+1. **Identity.** `tempID` is explicitly temporary and not unique (216 distinct
+   over 224 populated), so songs need **minted ids** — unlike works, which had
+   `Expression ID` waiting. Suggest `song:<n>` from a new stable sequence,
+   assigned once and never renumbered.
+2. **Attachment level.** `song --in_work--> work` is right for the 223 that
+   resolve. But a song also appears *in a printed edition* (the 175 counted on
+   edition nodes come from the editions' own song lists) and *in a sheet-music
+   item* (`Score-print-editions`, `Hurwitz music`, `VilneMusicArchive` in
+   DybbukMedia). That is the same coarse-to-fine situation as the cast facts in
+   §4: `in_work` when the attestation is a song list, `in_edition` when a
+   particular printing carries it.
+3. **Is a song a Work in its own right?** Several are attested independently of
+   their play — 57 rows come from *Shund on Shellac* (recordings), and 64 rows
+   carry recording counts. A song with its own recordings, its own sheet music
+   and its own composer is arguably a WEMI Work that happens to be *part of*
+   another work, not merely an attribute of it. If so the relation is
+   `song_work --part_of--> play_work`, and the song can carry its own
+   editions (sheet music) and performances (recordings).
+4. **Composer/lyricist.** The `Author` column names 21 distinct people
+   (Yozef Latayner 107, Hurwitz 15, שלמה שמולעוויטץ 6, לואיס קאפעלמאן 5,
+   Goldfaden 3) but conflates roles — for a song, "author" may mean lyricist
+   while the composer sits in `Hurwitz music.Composer` or the roles sheets.
+   **12 rows say "Not known"/"Unkown"** and need the same `unknown` treatment
+   agreed for Hurwitz `certainty`.
+
+**Recommendation:** mint the song node in the same pass as the work node — the
+two share the `translit_key` resolution path and the coarse-to-fine attachment
+pattern, and leaving songs as an integer count would repeat the exact mistake
+this proposal exists to fix. Decide §3 (song as Work vs attribute) before
+building, since it changes the shape.
+
 ## Knock-on effects
 
 - `DybbukMedia` should then anchor `play_key` to `work:*` rather than leaving
