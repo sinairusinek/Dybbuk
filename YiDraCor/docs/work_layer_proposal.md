@@ -72,7 +72,16 @@ Nothing needs inventing. `Lateiner Plays` / `Hurwitz Plays` supply:
 | `JPRESS` | **102 of 152 Lateiner plays flagged as having JPRESS coverage** |
 | `Silberzweig`, `Berkovitsh`, `Sieger` | cross-references to the reference literature |
 
-`editions.json.expression_id` joins **26 of 28 editions** to a catalogue work.
+`editions.json.expression_id` joins **all 28 editions** to a catalogue work.
+
+> An earlier draft of this document reported 26 of 28, with `MS_BenHaDor`
+> (4010) and `MS_Emigration` (3830) missing from the sheets. That was a bug in
+> my probe, not a gap in the catalogue: I normalised the float ids openpyxl
+> returns with `str(v).rstrip('.0')`, which strips *every* trailing `.` and `0`,
+> so `'4010.0'` became `'401'` and `'3830.0'` became `'383'`. **28 of the 277
+> work ids end in zero** and were all corrupted. Use
+> `str(int(float(v)))`. Ben Hador is `4010` in `Hurwitz Plays`;
+> `Di emigratsyon nokh Amerike` is `3830` in `Lateiner Plays`.
 
 ## Proposed shape
 
@@ -97,25 +106,89 @@ a troupe), which would make the cast edges attach to the *event* rather than
 the work. That is the fuller WEMI+event model and a larger change; the work node
 is the prerequisite either way, so it should land first.
 
-## Open decisions for Sinai
+## Decisions taken (Sinai, 2026-10-05)
 
-1. **Node id scheme.** `work:3787` (Expression ID) is stable and already the
-   join key. Readable ids were made canonical elsewhere
-   (see `project_yidracor_speaker_who_review`) — but play titles are not unique
-   enough across 277 works to key on.
-2. **The 2 editions that do not join**: `MS_BenHaDor` (expression_id 4010) and
-   `MS_Emigration` (3830) carry ids absent from both Plays sheets. Bad ids, or
-   works missing from the catalogue?
-3. **Scope.** Mint all 277 works, or only those with an edition or surviving
-   material? Minting all 277 makes the 252 text-less plays addressable, which is
-   what lets the website show a poster for a lost play.
-4. **`certainty: false ascription`** — should a falsely-ascribed play still get a
-   work node (with the attribution marked), or be excluded? It is evidence about
-   the reception history either way.
-5. **`Goles Rusland` / expression 3879** appears on two `editions.json` rows that
-   are otherwise identical (`Lateiner_Meshumed` twice, differing only in `notes`).
-   **This looks like a duplicate row rather than two editions** — worth fixing
-   independently of this proposal.
+1. **Mint all 277 works** — including those with no surviving edition, so the
+   252 text-less plays become addressable and the site can show a poster for a
+   lost play.
+2. **Mint falsely-ascribed works too, recording the attribution status as such.**
+   A false ascription is evidence about reception history; the node says the
+   attribution is disputed rather than omitting the play.
+3. **Node id: `work:<Expression ID>`.** Verified safe — the 277 ids are globally
+   unique, with **no id appearing in both sheets**.
+4. **The 28-of-28 join**: resolved, see the note above. No catalogue gap exists.
+
+## Questions that remain
+
+### 1. `certainty` has five values, not two — and Hurwitz has none
+
+`Lateiner Plays.certainty`: `certain` 100, `uncertain` 25,
+**`false ascription` 14**, **`error` 5**, `uncertain/false?` 1.
+`Hurwitz Plays.certainty`: **0 populated — the column is empty.**
+
+So "save false ascription as such" needs a target vocabulary. `error` is not the
+same claim as `false ascription`: the comments show `error` rows are mostly
+*not plays at all* or not independent works —
+
+| id | title | why flagged `error` |
+|---|---|---|
+| 3841 | Di laykhtziniger | "Play not by Lateiner, but by Friendsel" |
+| 3907 | Nekhemye kugl | "appears only in Berkovitsh. It is not an indipend[ent]…" |
+| 3908 | Nokhem gendzele | "It is not an ind[ependent]…" |
+| 3818 | Der nayer stern | "Was staged at the People's theatre in Februar 1907. Play by …" |
+
+3841 is a *misattribution* (the play exists, by someone else) — arguably the
+same class as `false ascription`. 3907/3908 are *spurious titles* (not separate
+works at all). Those are different facts and a reader will want them apart.
+
+**Open:** do we (a) carry the five raw values through verbatim, (b) normalise to
+a smaller vocabulary — say `certain` / `uncertain` / `misattributed` /
+`spurious` — or (c) carry the raw value plus a normalised one? And what do the
+125 Hurwitz works get, given the column is empty: `unknown`, or `certain` by
+default? Defaulting to `certain` would assert something nobody checked.
+
+### 2. The two sheets have different schemas
+
+Hurwitz carries fields Lateiner lacks — `Composer` (28), `Year of Composition`
+(110), `Draws on existing material` (24), `Success/Length of run` (12),
+`Sources/Availability of Text` (37), `Plot summary` (3) — while Lateiner carries
+`certainty`, `JPRESS` (102), `Silberzweig` (82), `Berkovitsh` (58), `Sieger` (24),
+which Hurwitz lacks entirely.
+
+**Open:** does the `work` node take the union of both schemas (most fields null
+for one playwright), or only the intersection plus a per-sheet extras blob? The
+union is simpler to query and honest about what is missing; it also makes the
+asymmetry visible, which may itself be a finding worth surfacing.
+
+### 3. Adaptation lineage points *outside* the corpus
+
+30 works record a source (`expression` col: 13 Lateiner + 17 Hurwitz; plus
+Hurwitz's 24 `Draws on existing material`). But the sources are overwhelmingly
+**external**: Dumas (Monte Cristo), Strindberg, Goldfaden, Max Nordau's *Dr.
+Kuhn*, Aaron Halle-Wolfsohn, a Linetsky play, "the German play *Olaf*".
+
+So this is not a work→work edge inside our 277. **Open:** mint external source
+works as nodes too (a fifth status beyond LINKED/PROPOSED/GAP, since they are
+outside the project's scope), record the lineage as a free-text attribute on the
+work, or model `adapted_from` pointing at a stub node? Note the values are prose
+("adaptation: Katzeboim play, 'Eremit oyf armentera'"), often hedged with `??`,
+so parsing them into entities is itself a research task, not a transform.
+
+### 4. Does the performance event become its own node?
+
+Deferred from the original proposal but worth re-asking now that works are
+being minted. A performance has a date, a venue, a troupe and a cast; today
+those facts collapse onto `performed_at` edge attributes. With a work layer,
+`person --actor--> work` is *better* than today but still lossy: it cannot say
+that Mogulesco played Mishke **in the 1889 Poole's Theatre production
+specifically**. The 117 `performed_at` edges plus 75 catalogue productions are
+enough material to justify the node — but it is a second, larger change.
+
+### 5. What do the character networks and DraCor export describe?
+
+Both key on editions today. A network is a property of the *text*, so it
+arguably belongs to the edition (which text was encoded), while a reader will
+expect to find it under the play. Needs a decision before the site links either.
 
 ## Knock-on effects
 
