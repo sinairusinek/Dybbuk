@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html{color-scheme:light dark}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>Lateiner &amp; Hurwitz Entity Tree</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --paper:#f2ece1; --paper-2:#eae2d4; --paper-3:#e0d6c4;
+    --ink:#1a1714; --ink-2:#4a423a; --ink-3:#766a5d;
+    --rule:#cfc3ad;
+    --oxblood:#7d2b2b; --brass:#9a7b3f; --slate:#3d5366;
+    --ok:#3d5366; --prop:#9a7b3f; --gap:#7d2b2b;
+    --shadow:rgba(60,45,25,.13);
+    --display:"Playfair Display",Georgia,serif;
+    --body:"Source Serif 4",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#17150f; --paper-2:#1f1c15; --paper-3:#2a251c;
+      --ink:#efe7d8; --ink-2:#c4b8a3; --ink-3:#938672;
+      --rule:#3a3328;
+      --oxblood:#d4756c; --brass:#d2a85e; --slate:#8fb0cc;
+      --ok:#8fb0cc; --prop:#d2a85e; --gap:#d4756c;
+      --shadow:rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#17150f; --paper-2:#1f1c15; --paper-3:#2a251c;
+    --ink:#efe7d8; --ink-2:#c4b8a3; --ink-3:#938672;
+    --rule:#3a3328;
+    --oxblood:#d4756c; --brass:#d2a85e; --slate:#8fb0cc;
+    --ok:#8fb0cc; --prop:#d2a85e; --gap:#d4756c;
+    --shadow:rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--body); font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--slate)}
+
+  /* ---------- masthead ---------- */
+  header{
+    border-bottom:2px solid var(--ink);
+    padding:30px 32px 20px;
+    background:var(--paper);
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.17em;
+    text-transform:uppercase; color:var(--ink-3); margin:0 0 10px;
+  }
+  h1{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(28px,4.4vw,46px); line-height:1.04;
+    margin:0 0 8px; letter-spacing:-.015em; text-wrap:balance;
+  }
+  h1 em{font-style:normal; color:var(--oxblood)}
+  .dek{
+    margin:0; max-width:64ch; color:var(--ink-2); font-size:16.5px;
+  }
+  .masthead-rule{
+    display:flex; gap:7px; align-items:center; margin-top:18px;
+  }
+  .masthead-rule span{height:3px; background:var(--ink); flex:1}
+  .masthead-rule span:nth-child(2){flex:0 0 46px; background:var(--oxblood)}
+  .masthead-rule span:nth-child(3){flex:0 0 14px}
+
+  /* ---------- tally strip ---------- */
+  .tally{
+    display:flex; flex-wrap:wrap; gap:0;
+    border-bottom:1px solid var(--rule); background:var(--paper-2);
+  }
+  .tally div{
+    padding:13px 22px; border-right:1px solid var(--rule);
+    display:flex; flex-direction:column; gap:1px; min-width:104px;
+  }
+  .tally b{
+    font-family:var(--mono); font-size:21px; font-weight:500;
+    font-variant-numeric:tabular-nums; line-height:1.1;
+  }
+  .tally small{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--ink-3);
+  }
+  .t-ok b{color:var(--ok)} .t-prop b{color:var(--prop)} .t-gap b{color:var(--gap)}
+
+  /* ---------- layout ---------- */
+  .wrap{
+    display:grid; grid-template-columns:minmax(0,1fr) 336px;
+    gap:0; align-items:start;
+  }
+  main{padding:22px 32px 80px; min-width:0}
+  aside{
+    position:sticky; top:0; max-height:100vh; overflow-y:auto;
+    border-left:1px solid var(--rule); background:var(--paper-2);
+    padding:22px 22px 60px;
+  }
+  @media (max-width:980px){
+    .wrap{grid-template-columns:minmax(0,1fr)}
+    aside{position:static; max-height:none; border-left:0; border-top:2px solid var(--ink)}
+  }
+
+  h2{
+    font-family:var(--display); font-weight:600; font-size:20px;
+    margin:0 0 3px; letter-spacing:-.01em;
+  }
+  .sec-note{
+    font-size:13.5px; color:var(--ink-3); margin:0 0 16px; max-width:60ch;
+  }
+
+  /* ---------- controls ---------- */
+  .controls{
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    padding:12px 0 18px; border-bottom:1px solid var(--rule); margin-bottom:18px;
+  }
+  button.filter, button.tool{
+    font-family:var(--mono); font-size:11px; letter-spacing:.07em;
+    text-transform:uppercase; padding:6px 11px;
+    background:var(--paper); color:var(--ink-2);
+    border:1px solid var(--rule); border-radius:2px; cursor:pointer;
+  }
+  button.filter[aria-pressed="true"]{
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+  }
+  button.filter:hover, button.tool:hover{border-color:var(--ink-3)}
+  button.filter:focus-visible, button.tool:focus-visible,
+  summary:focus-visible{outline:2px solid var(--oxblood); outline-offset:2px}
+  .spacer{flex:1}
+
+  /* ---------- tree ---------- */
+  details.author{margin:0 0 26px}
+  details.author>summary{
+    cursor:pointer; list-style:none; padding:10px 0 9px;
+    border-bottom:2px solid var(--ink); display:flex; align-items:baseline; gap:11px;
+  }
+  details.author>summary::-webkit-details-marker{display:none}
+  .author-name{
+    font-family:var(--display); font-size:25px; font-weight:700; letter-spacing:-.015em;
+  }
+  .caret{
+    font-family:var(--mono); font-size:11px; color:var(--ink-3);
+    width:11px; flex:0 0 11px;
+  }
+  details[open]>summary .caret{transform:rotate(90deg)}
+  .caret{display:inline-block; transition:transform .15s}
+  @media (prefers-reduced-motion:reduce){.caret{transition:none}}
+
+  .editions{padding:4px 0 0 0}
+
+  details.ed{border-bottom:1px solid var(--rule)}
+  details.ed>summary{
+    cursor:pointer; list-style:none; padding:11px 0 11px 14px;
+    display:grid; grid-template-columns:11px minmax(0,1fr) auto; gap:11px;
+    align-items:baseline; position:relative;
+  }
+  details.ed>summary::-webkit-details-marker{display:none}
+  details.ed>summary:hover{background:var(--paper-2)}
+  .ed-title{font-size:17px; font-weight:600; letter-spacing:-.005em}
+  .ed-yid{
+    font-size:16px; color:var(--ink-2); margin-left:9px;
+    direction:rtl; unicode-bidi:isolate;
+  }
+  .ed-meta{
+    font-family:var(--mono); font-size:10.5px; color:var(--ink-3);
+    letter-spacing:.04em; margin-top:3px;
+  }
+  .ed-flags{display:flex; gap:5px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+
+  .pill{
+    font-family:var(--mono); font-size:9.5px; font-weight:500;
+    letter-spacing:.09em; text-transform:uppercase;
+    padding:2.5px 7px; border-radius:2px; white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .pill.ok{background:color-mix(in srgb,var(--ok) 15%,transparent); color:var(--ok)}
+  .pill.prop{background:color-mix(in srgb,var(--prop) 20%,transparent); color:var(--prop)}
+  .pill.gap{background:color-mix(in srgb,var(--gap) 16%,transparent); color:var(--gap)}
+  .pill.quiet{background:var(--paper-3); color:var(--ink-3)}
+
+  .ed-body{padding:2px 0 20px 25px}
+  .bucket{margin:0 0 15px}
+  .bucket>h4{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--ink-3);
+    margin:0 0 6px; padding-bottom:4px; border-bottom:1px solid var(--rule);
+  }
+  ul.rows{list-style:none; margin:0; padding:0}
+  ul.rows li{
+    display:grid; grid-template-columns:minmax(0,1fr) auto;
+    gap:10px; align-items:baseline;
+    padding:5px 0 5px 11px; border-left:3px solid transparent;
+    font-size:14.5px;
+  }
+  ul.rows li+li{border-top:1px dotted var(--rule)}
+  li.s-LINKED{border-left-color:var(--ok)}
+  li.s-PROPOSED{border-left-color:var(--prop); background:color-mix(in srgb,var(--prop) 6%,transparent)}
+  li.s-GAP{border-left-color:var(--gap); background:color-mix(in srgb,var(--gap) 6%,transparent)}
+  .row-main{min-width:0}
+  .row-label{overflow-wrap:anywhere}
+  .rel{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--ink-3); margin-right:7px;
+  }
+  .row-sub{
+    font-size:12.5px; color:var(--ink-3); margin-top:2px; overflow-wrap:anywhere;
+  }
+  .row-sub .q{color:var(--gap); font-style:italic}
+  .row-sub code, .dbid{
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-2);
+    font-variant-numeric:tabular-nums;
+  }
+  .yrs{font-family:var(--mono); font-size:11px; color:var(--ink-3); white-space:nowrap}
+  .heb{direction:rtl; unicode-bidi:isolate; display:inline-block}
+
+  /* ---------- ledger rail ---------- */
+  .ledger-group{margin:0 0 18px}
+  .ledger-group h3{
+    font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink);
+    margin:0 0 7px; display:flex; justify-content:space-between; gap:8px;
+    padding-bottom:5px; border-bottom:1px solid var(--ink);
+  }
+  .ledger-group h3 span{color:var(--ink-3)}
+  ul.ledger{list-style:none; margin:0; padding:0}
+  ul.ledger li{
+    padding:6px 0 6px 10px; border-left:3px solid var(--gap);
+    font-size:13.5px; line-height:1.4;
+  }
+  ul.ledger li+li{border-top:1px dotted var(--rule)}
+  ul.ledger .why{display:block; font-size:12px; color:var(--ink-3); margin-top:1px}
+  ul.ledger .hint{display:block; font-family:var(--mono); font-size:11px; color:var(--brass); margin-top:2px; overflow-wrap:anywhere}
+
+  footer{
+    border-top:2px solid var(--ink); padding:20px 32px 40px;
+    font-size:13.5px; color:var(--ink-3); max-width:76ch;
+  }
+  footer code{font-family:var(--mono); font-size:12.5px; color:var(--ink-2)}
+  .empty{font-size:13.5px; color:var(--ink-3); font-style:italic; padding:8px 0}
+</style>
+</head>
+<body>
+
+
+<header>
+  <p class="eyebrow">YiDraCor · entity reconciliation · 5 October 2026</p>
+  <h1>Lateiner &amp; Hurwitz: <em>who, where, and what we still don't know</em></h1>
+  <p class="dek">Every person, venue, publisher and place named in the 27 built editions,
+    resolved against <code>people_db</code>, <code>core_db</code> and the toponym gazetteer.
+    Confirmed links are quiet; automatic proposals and open questions are marked for you to rule on.</p>
+  <div class="masthead-rule"><span></span><span></span><span></span></div>
+</header>
+
+<div class="tally" id="tally"></div>
+
+<div class="wrap">
+  <main>
+    <div class="controls">
+      <button class="filter" id="f-all" aria-pressed="true">All</button>
+      <button class="filter" id="f-prop" aria-pressed="false">Proposals only</button>
+      <button class="filter" id="f-gap" aria-pressed="false">Questions only</button>
+      <span class="spacer"></span>
+      <button class="tool" id="expand">Expand all</button>
+      <button class="tool" id="collapse">Collapse all</button>
+    </div>
+    <div id="tree"></div>
+  </main>
+
+  <aside>
+    <h2>Open questions</h2>
+    <p class="sec-note">52 items. Nothing here has been written to a database.</p>
+    <div id="ledger"></div>
+  </aside>
+</div>
+
+<footer>
+  <p><strong>How to read a row.</strong> A blue edge is a confirmed link carrying a database id.
+  An amber edge is an automatic proposal — order-insensitive token matching, which is what the
+  catalogue's <em>“Surname, Given”</em> against <code>people_db</code>'s <em>“Given Surname”</em>
+  requires — and it is a suggestion, not a decision. A red edge is an open question: no candidate,
+  several equally good ones, or a match too weak to trust.</p>
+  <p>Built by <code>build_entity_graph.py</code> from <code>data/editions.json</code>.
+  Counts under each edition title are rows in the source catalogue
+  (productions · credits · songs · performance events), not graph edges.</p>
+</footer>
+
+<script>
+window.KG={"summary":{"editions":27,"by_kind":{"edition":27,"person":35,"org":40,"place":13},"by_status":{"LINKED":63,"PROPOSED":25,"GAP":27},"edges":323,"gaps":52,"gaps_by_reason":{"no holding library":12,"no publication place":2,"no publisher":2,"no print year":2,"no performance events in the DB report":7,"no candidate":14,"ambiguous":4,"no candidate (near spellings offered)":3,"weak match (one token only)":5,"district, not a gazetteer settlement":1}},"gaps":[{"kind":"edition-field","label":"HurbanYerushalaim_820938_duplicate · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"HurbanYerushalaim_820938_duplicate · publication_place","reason":"no publication place","candidates":""},{"kind":"edition-field","label":"HurbanYerushalaim_820938_duplicate · publisher","reason":"no publisher","candidates":""},{"kind":"edition-field","label":"HurbanYerushalaim_820938_duplicate · year_printed","reason":"no print year","candidates":""},{"kind":"edition-field","label":"Lateiner_Meshumed · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"Lateiner_Meshumed · publication_place","reason":"no publication place","candidates":""},{"kind":"edition-field","label":"Lateiner_Meshumed · publisher","reason":"no publisher","candidates":""},{"kind":"edition-field","label":"Lateiner_Meshumed · year_printed","reason":"no print year","candidates":""},{"kind":"edition-field","label":"MS_BasKoyen · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"MS_BasKoyen · performance_events","reason":"no performance events in the DB report","candidates":""},{"kind":"edition-field","label":"MS_BenHaDor · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"MS_BenHaDor · performance_events","reason":"no performance events in the DB report","candidates":""},{"kind":"edition-field","label":"MS_DiTsveyTnoim · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"MS_DiTsveyTnoim · performance_events","reason":"no performance events in the DB report","candidates":""},{"kind":"edition-field","label":"MS_Emigration · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"MS_KhurbnYerusholaim · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"MS_TissaEssler · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"MS_TissaEssler · performance_events","reason":"no performance events in the DB report","candidates":""},{"kind":"edition-field","label":"MS_YaakovEsav · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"MS_YaakovEsav · performance_events","reason":"no performance events in the DB report","candidates":""},{"kind":"edition-field","label":"MS_YetsiasMitsrayim · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"MS_YetsiasMitsrayim · performance_events","reason":"no performance events in the DB report","candidates":""},{"kind":"edition-field","label":"MS_YoysefInEgipten · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"YIVO_ShimshonHagibor · library","reason":"no holding library","candidates":""},{"kind":"edition-field","label":"YIVO_ShimshonHagibor · performance_events","reason":"no performance events in the DB report","candidates":""},{"kind":"org","label":"\"Di yudishe bihne\"","reason":"no candidate","candidates":""},{"kind":"org","label":"Amkraut & Freund Buchhandlung","reason":"no candidate","candidates":""},{"kind":"org","label":"Amkroyt et Freund Buchhandlung","reason":"no candidate","candidates":""},{"kind":"org","label":"Folks Theatre","reason":"ambiguous","candidates":"164 Feynman's Folks Theatre; 365 Public Theatre (Folks Theatre)"},{"kind":"org","label":"Jignita Theatre","reason":"no candidate","candidates":""},{"kind":"org","label":"Pamol Verdi","reason":"no candidate","candidates":""},{"kind":"org","label":"Pool's Theatre","reason":"no candidate (near spellings offered)","candidates":"123 Poole's Theatre"},{"kind":"org","label":"The International Biblioteque","reason":"no candidate","candidates":""},{"kind":"org","label":"Tsentral Theatre","reason":"no candidate (near spellings offered)","candidates":"151 Tsentral Theater"},{"kind":"org","label":"Windsor Theater","reason":"no candidate (near spellings offered)","candidates":"134 Windsor Theatre"},{"kind":"person","label":")שמואל טאַבּאַטשניקאָוו( 208:2","reason":"weak match (one token only)","candidates":"539 שמואל"},{"kind":"person","label":"Joaohim Kurantman","reason":"no candidate","candidates":""},{"kind":"person","label":"אידא קאמינסקא","reason":"no candidate","candidates":""},{"kind":"person","label":"איימי סימאוויטש","reason":"no candidate","candidates":""},{"kind":"person","label":"יאָוועליר, קלמן 909:2","reason":"ambiguous","candidates":"1066 קלמן יאוועליר; 2061 קלמן יאָוועליר"},{"kind":"person","label":"ל. י. באראבאן","reason":"no candidate","candidates":""},{"kind":"person","label":"מאדאם ליפצין","reason":"no candidate","candidates":""},{"kind":"person","label":"מינקאָווסקי","reason":"no candidate","candidates":""},{"kind":"person","label":"קאנארד","reason":"no candidate","candidates":""},{"kind":"person","label":"קארפ","reason":"ambiguous","candidates":"2087 ראָזע קאַרפּ; 703 מאַקס קאַרפּ; 723 סאׇפיע קאַרפּ"},{"kind":"person","label":"ראָזענפעלד, מאָריס","reason":"weak match (one token only)","candidates":"2507 מאָריס"},{"kind":"place","label":"Cleveland Ohaio","reason":"weak match (one token only)","candidates":"Q37320 Cleveland"},{"kind":"place","label":"Iași (Rumenia)","reason":"weak match (one token only)","candidates":"Q46852 Iași"},{"kind":"place","label":"Lemberg","reason":"no candidate","candidates":""},{"kind":"place","label":"Lower East Side (New York, N.Y.)","reason":"district, not a gazetteer settlement","candidates":"New York City (Q60) — district, not a settlement"},{"kind":"place","label":"Podgórze","reason":"weak match (one token only)","candidates":"Q2553877 Podgorze (Krakow, Poland); Q2553877 Podgorze (Krakow, Poland)"},{"kind":"place","label":"Vilna","reason":"ambiguous","candidates":"Q279583 Vilna Governorate; Q707539 Vilna Ghetto"}],"authors":[{"label":"Joseph Lateiner","db_id":683,"matched":"Joseph Lateiner","editions":[{"label":"Al Naharot Bavel","folder":"AlNaharotBavel-Amkreut&Freund1909","expression_id":3915,"yiddish":"alnaharotbavel","year":1909,"tkb":820975,"counts":{"productions":1,"roles":2,"songs":1,"performance_events":1},"people":[{"label":"פרידזעל, לואיס 6412:3","status":"PROPOSED","db_id":"695","matched":"לואיס פרידזעל","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"פרידזעל, לואיס 6412:3","status":"PROPOSED","db_id":"695","matched":"לואיס פרידזעל","score":1.0,"reason":null,"candidates":null,"rel":"lyrics","n":1,"years":[],"characters":[]}],"venues":[{"label":"Grand Theatre","status":"LINKED","db_id":"115","matched":"Grand Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1903],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1903],"characters":[]}],"publishers":[{"label":"Amkraut & Freund Buchhandlung","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Bas Sheva","folder":"BasSheva","expression_id":3798,"yiddish":"בת שבע","year":1911,"tkb":828443,"counts":{"productions":1,"roles":1,"songs":2,"performance_events":1},"people":[{"label":"מינקאָווסקי","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1893],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1893],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1893],"characters":[]}],"publishers":[{"label":"Amkroyt un Fraynd","status":"LINKED","db_id":"63","matched":"אַמקרויט עט פריינד| Amkroyt un Fraynd","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Blimele (di Perle von Warsha)","folder":"Blimele-AhronFaust1903","expression_id":3801,"yiddish":"בלימאלע אדער","year":1903,"tkb":828455,"counts":{"productions":1,"roles":6,"songs":7,"performance_events":1},"people":[{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"PROPOSED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"ווילענסקי, מערי )מרים קאץ( 027:1","status":"PROPOSED","db_id":"3264","matched":"מערי ווילענסקי (מרים קאץ)","score":1.0,"reason":null,"candidates":null,"rel":"actress","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"actor","n":1,"years":[],"characters":["Zeligl der menagen"]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"איימי סימאוויטש","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"actress","n":1,"years":[],"characters":[]},{"label":"ראָזענפעלד, מאָריס","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"weak match (one token only)","candidates":[["2507","מאָריס"]],"rel":"actor","n":1,"years":[],"characters":[]}],"venues":[{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1894],"characters":[]},{"label":"Windsor Theater","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate (near spellings offered)","candidates":[["134","Windsor Theatre"]],"rel":"performed_at","n":2,"years":[1894],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1894],"characters":[]},{"label":"Podgórze","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"weak match (one token only)","candidates":[["Q2553877","Podgorze (Krakow, Poland)"],["Q2553877","Podgorze (Krakow, Poland)"]],"rel":"printed_in","n":1,"years":[],"characters":[]}],"publishers":[{"label":"A. Faust","status":"LINKED","db_id":"62","matched":"אהרן פויסט| A. Faust","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Das Yudishe Kind","folder":"דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete","expression_id":3867,"yiddish":null,"year":1911,"tkb":828424,"counts":{"productions":1,"roles":1,"songs":0,"performance_events":1},"people":[{"label":"רומשינסקי, יוסף 1832:3","status":"PROPOSED","db_id":"916","matched":"יוסף רומשינסקי (רומשיסקין)","score":0.667,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]}],"publishers":[{"label":"Farlag \"Kultur\" (Dzika 13)","status":"LINKED","db_id":"47","matched":"קולטור| Kultur","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Der Mann untern Tisch","folder":"DerManUnterTiff","expression_id":3817,"yiddish":"der man unter","year":1911,"tkb":817462,"counts":{"productions":1,"roles":0,"songs":0,"performance_events":1},"people":[],"venues":[],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]}],"publishers":[{"label":"\"Teater bibliyotek\"","status":"LINKED","db_id":"158","matched":"פ. קאנטאראוויטש|יודישע טהעאַטער⸗בּיבּליאָטעק|Teater bibliyotek","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Di Seder Nakht","folder":"Di_seyder_nakht_Emkroyt_1908","expression_id":3847,"yiddish":"סדר נאכט","year":1908,"tkb":828503,"counts":{"productions":1,"roles":1,"songs":1,"performance_events":1},"people":[{"label":"פרידזעל, לואיס 6412:3","status":"PROPOSED","db_id":"695","matched":"לואיס פרידזעל","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Grand Theatre","status":"LINKED","db_id":"115","matched":"Grand Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1903],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1903],"characters":[]}],"publishers":[{"label":"Amkroyt et Freund Buchhandlung","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Dos Yudishe Herts","folder":"DosYudisheHerts-1910","expression_id":3866,"yiddish":"dos yudishe herts","year":1910,"tkb":820841,"counts":{"productions":1,"roles":4,"songs":1,"performance_events":1},"people":[{"label":"בּרוידי, יוסף 042:1","status":"PROPOSED","db_id":"852","matched":"יוסף בּרוידי","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"actor","n":1,"years":[],"characters":["Lemekh"]},{"label":"קעסלער, דוד 9862:4","status":"PROPOSED","db_id":"721","matched":"דוד קעסלער","score":1.0,"reason":null,"candidates":null,"rel":"actor","n":1,"years":[],"characters":[]}],"venues":[{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1908],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1908],"characters":[]}],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1908],"characters":[]}],"publishers":[{"label":"\"Kunst\"","status":"LINKED","db_id":"61","matched":"קונסט|Kunst","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Dovid's Fidele","folder":"DovidsFidele-1904","expression_id":3869,"yiddish":"Dovid's Fidele","year":1904,"tkb":820845,"counts":{"productions":1,"roles":3,"songs":8,"performance_events":1},"people":[{"label":"Henry Russotto","status":"PROPOSED","db_id":"850","matched":"הענרי רוסאָטאַ (חיים נעסוויזשקי)","score":0.5,"reason":null,"candidates":null,"rel":"arranger","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"שלאָסבּערג, יצחק 0512:3","status":"PROPOSED","db_id":"925","matched":"יצחק שלאָסבּערג","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1897],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1897],"characters":[]},{"label":"Podgórze","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"weak match (one token only)","candidates":[["Q2553877","Podgorze (Krakow, Poland)"],["Q2553877","Podgorze (Krakow, Poland)"]],"rel":"printed_in","n":1,"years":[],"characters":[]}],"publishers":[{"label":"A. Faust","status":"LINKED","db_id":"62","matched":"אהרן פויסט| A. Faust","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Emigration nach America","folder":"MS_Emigration","expression_id":3830,"yiddish":"עמיגראציאן נאך אמעריקע","year":null,"tkb":1013131,"counts":{"productions":3,"roles":1,"songs":2,"performance_events":3},"people":[{"label":"Joaohim Kurantman","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Oriental Theatre","status":"LINKED","db_id":"119","matched":"Oriental Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":4,"years":[1886],"characters":[]},{"label":"Turner Hall","status":"LINKED","db_id":"149","matched":"Turner Hall","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1889],"characters":[]}],"places":[{"label":"Chicago","status":"LINKED","db_id":"Q1297","matched":"Chicago","score":null,"reason":null,"candidates":null,"rel":"premiered_in","n":1,"years":[1889],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":2,"years":[1886],"characters":[]}],"publishers":[]},{"label":"Ezra","folder":"Ezra-Emkroyt1908","expression_id":3875,"yiddish":"עזרא","year":1908,"tkb":828481,"counts":{"productions":2,"roles":2,"songs":19,"performance_events":2},"people":[{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"PROPOSED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"סענדלער, יעקב קאָפּל 4151:2","status":"PROPOSED","db_id":"880","matched":"יעקב סענדלער","score":0.667,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1893],"characters":[]},{"label":"Central Theatre","status":"LINKED","db_id":"125","matched":"Roumanian Opera House|Central Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1891],"characters":[]},{"label":"Roumanian Opera House","status":"LINKED","db_id":"125","matched":"Roumanian Opera House|Central Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1891],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1893],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":2,"years":[1891,1893],"characters":[]}],"publishers":[{"label":"Amkroyt un Fraynd","status":"LINKED","db_id":"63","matched":"אַמקרויט עט פריינד| Amkroyt un Fraynd","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Hinke Pinke","folder":"HinkePinke","expression_id":3877,"yiddish":"HinkePinke","year":1907,"tkb":820969,"counts":{"productions":4,"roles":1,"songs":0,"performance_events":4},"people":[{"label":"ל. י. באראבאן","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"choreographer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Metropolitan Theatre","status":"LINKED","db_id":"146","matched":"Metropolitan Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1926],"characters":[]},{"label":"People's Theatre NY","status":"LINKED","db_id":"120","matched":"People's Theatre NY","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":4,"years":[1901,1918],"characters":[]},{"label":"Perry Theatre","status":"LINKED","db_id":"122","matched":"Perry Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1908],"characters":[]}],"places":[{"label":"Cleveland Ohio","status":"LINKED","db_id":"Q37320","matched":"Cleveland","score":null,"reason":null,"candidates":null,"rel":"premiered_in","n":1,"years":[1908],"characters":[]},{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":2,"years":[1901,1918],"characters":[]}],"publishers":[{"label":"\"Teater bibliyotek\"","status":"LINKED","db_id":"158","matched":"פ. קאנטאראוויטש|יודישע טהעאַטער⸗בּיבּליאָטעק|Teater bibliyotek","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Isha Raa","folder":"IshahRaah","expression_id":3884,"yiddish":null,"year":1904,"tkb":820937,"counts":{"productions":1,"roles":1,"songs":8,"performance_events":1},"people":[{"label":"בּרוידי, יוסף 042:1","status":"PROPOSED","db_id":"852","matched":"יוסף בּרוידי","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1894],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1894],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1894],"characters":[]},{"label":"Podgórze","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"weak match (one token only)","candidates":[["Q2553877","Podgorze (Krakow, Poland)"],["Q2553877","Podgorze (Krakow, Poland)"]],"rel":"printed_in","n":1,"years":[],"characters":[]}],"publishers":[{"label":"Verlag von Benjamin Munk Buchhandlung","status":"LINKED","db_id":"64","matched":"בּנימין מונק|Benjamin Munk","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Khurbn Yerusholaim","folder":"MS_KhurbnYerusholaim","expression_id":3887,"yiddish":"חורבן ירושלים","year":null,"tkb":838368,"counts":{"productions":1,"roles":0,"songs":0,"performance_events":1},"people":[],"venues":[{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1889],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1889],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1889],"characters":[]}],"publishers":[]},{"label":"Khurbn Yerusholaim (DUPLICATE — blank, see 838368)","folder":"HurbanYerushalaim_820938_duplicate","expression_id":3891,"yiddish":"HurbanYerushalaim","year":null,"tkb":820938,"counts":{"productions":3,"roles":15,"songs":16,"performance_events":3},"people":[{"label":"Henry Russotto","status":"PROPOSED","db_id":"850","matched":"הענרי רוסאָטאַ (חיים נעסוויזשקי)","score":0.5,"reason":null,"candidates":null,"rel":"composer (txt fr composer)","n":1,"years":[],"characters":[]},{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"PROPOSED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"בּערנשטיין, בּערל )בּורשטין( 702:1","status":"PROPOSED","db_id":"859","matched":"בּערל בּערנשטיין (בּורשטין)","score":1.0,"reason":null,"candidates":null,"rel":"actor","n":1,"years":[],"characters":["Tsfanya"]},{"label":"בּרוידי, יוסף 042:1","status":"PROPOSED","db_id":"852","matched":"יוסף בּרוידי","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"PROPOSED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"ליאָוו, לעאָ )משה-לייבּ( 2201:2","status":"PROPOSED","db_id":"932","matched":"לעאָ ליאָוו (משה-לייבּ)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"פיינמאַן, זיגמונד 4452:4","status":"PROPOSED","db_id":"714","matched":"זיגמונד פיינמאַן","score":1.0,"reason":null,"candidates":null,"rel":"actor","n":1,"years":[],"characters":["Yermiyahu"]},{"label":"פרידזעל, לואיס 6412:3","status":"PROPOSED","db_id":"695","matched":"לואיס פרידזעל","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"קעסלער, דוד 9862:4","status":"PROPOSED","db_id":"721","matched":"דוד קעסלער","score":1.0,"reason":null,"candidates":null,"rel":"actor","n":1,"years":[],"characters":["Gdalyahu"]},{"label":"שלאָסבּערג, יצחק 0512:3","status":"PROPOSED","db_id":"925","matched":"יצחק שלאָסבּערג","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":")שמואל טאַבּאַטשניקאָוו( 208:2","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"weak match (one token only)","candidates":[["539","שמואל"]],"rel":"actor","n":1,"years":[],"characters":["Tsidkiyahu"]},{"label":"מינקאָווסקי","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"composer","n":2,"years":[],"characters":[]},{"label":"קאנארד","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"actor","n":1,"years":[],"characters":["Ishmael"]}],"venues":[{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":3,"years":[1890,1898],"characters":[]},{"label":"National Theatre","status":"LINKED","db_id":"118","matched":"National Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1913],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":3,"years":[1890,1898],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":3,"years":[1890,1898,1913],"characters":[]}],"publishers":[]},{"label":"Kidush Hashem","folder":"KidushHashem","expression_id":3892,"yiddish":"קדוש השם","year":1909,"tkb":820939,"counts":{"productions":2,"roles":3,"songs":0,"performance_events":2},"people":[{"label":"גימפּעל, אַדאָלף 974:1, 6104:5","status":"PROPOSED","db_id":"1766","matched":"אַדאָלף גימפעל","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"סענדלער, יעקב קאָפּל 4151:2","status":"PROPOSED","db_id":"880","matched":"יעקב סענדלער","score":0.667,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"פרידזעל, לואיס 6412:3","status":"PROPOSED","db_id":"695","matched":"לואיס פרידזעל","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Academy of Music","status":"LINKED","db_id":"155","matched":"Academy of Music","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1897],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1896],"characters":[]}],"places":[{"label":"Philadelphia","status":"LINKED","db_id":"Q1345","matched":"Philadelphia","score":null,"reason":null,"candidates":null,"rel":"premiered_in","n":1,"years":[1897],"characters":[]},{"label":"Lemberg","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1896],"characters":[]}],"publishers":[{"label":"Verlag von D. Roth Buchhandlung","status":"LINKED","db_id":"65","matched":"דוד ראָטה|D. Roth","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Meshumed","folder":"Lateiner_Meshumed","expression_id":3879,"yiddish":"דער משומד","year":null,"tkb":534187,"counts":{"productions":1,"roles":4,"songs":11,"performance_events":1},"people":[{"label":"טאָמאַשעוו]פ[סקי, בּאָריס )בּרוך-אהרן( 408:2","status":"PROPOSED","db_id":"693","matched":"בּאָריס טאָמאַשעוו[פ]סקי (בּרוך-אהרן)","score":1.0,"reason":null,"candidates":null,"rel":"actor","n":2,"years":[],"characters":[]},{"label":"קאַרפּ, סאָפיע","status":"PROPOSED","db_id":"723","matched":"סאׇפיע קאַרפּ","score":1.0,"reason":null,"candidates":null,"rel":"actress","n":2,"years":[],"characters":[]},{"label":"מאדאם ליפצין","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"actress","n":2,"years":[],"characters":[]},{"label":"קארפ","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"ambiguous","candidates":[["2087","ראָזע קאַרפּ"],["703","מאַקס קאַרפּ"],["723","סאׇפיע קאַרפּ"]],"rel":"actor","n":2,"years":[],"characters":[]}],"venues":[{"label":"Central Theatre","status":"LINKED","db_id":"125","matched":"Roumanian Opera House|Central Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":4,"years":[1891],"characters":[]},{"label":"Roumanian Opera House","status":"LINKED","db_id":"125","matched":"Roumanian Opera House|Central Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":4,"years":[1891],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":2,"years":[1891],"characters":[]}],"publishers":[]},{"label":"Mishke Mashke","folder":"MishkeMashke-Kultur1910","expression_id":3838,"yiddish":"מישקע מאשקע","year":1911,"tkb":828537,"counts":{"productions":1,"roles":2,"songs":3,"performance_events":1},"people":[{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"actor","n":2,"years":[],"characters":["mishke"]}],"venues":[{"label":"Poole's Theatre","status":"LINKED","db_id":"123","matched":"Poole's Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1889],"characters":[]}],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1889],"characters":[]}],"publishers":[{"label":"Farlag \"Kultur\" (Dzika 13)","status":"LINKED","db_id":"47","matched":"קולטור| Kultur","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Sore Sheyndel","folder":"SoreSheyndel","expression_id":3833,"yiddish":"SoreSheyndel","year":1907,"tkb":820964,"counts":{"productions":4,"roles":3,"songs":5,"performance_events":4},"people":[{"label":"בּרוידי, יוסף 042:1","status":"PROPOSED","db_id":"852","matched":"יוסף בּרוידי","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"שאַיעוויטש, ישראל 0754:5","status":"PROPOSED","db_id":"2907","matched":"ישראל שאַיעוויטש","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"אידא קאמינסקא","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"actress","n":1,"years":[],"characters":["Soreh Sheindel"]}],"venues":[{"label":"Central Theatre","status":"LINKED","db_id":"125","matched":"Roumanian Opera House|Central Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1891],"characters":[]},{"label":"Kaminski's Theatre","status":"LINKED","db_id":"147","matched":"Kaminski's Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1938],"characters":[]},{"label":"Roumanian Opera House","status":"LINKED","db_id":"125","matched":"Roumanian Opera House|Central Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1891],"characters":[]}],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"premiered_in","n":1,"years":[1938],"characters":[]},{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1891],"characters":[]},{"label":"Vilna","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"ambiguous","candidates":[["Q279583","Vilna Governorate"],["Q707539","Vilna Ghetto"]],"rel":"premiered_in","n":2,"years":[1909],"characters":[]}],"publishers":[{"label":"\"Di yudishe bihne\"","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]},{"label":"Yoysef in Egipten","folder":"MS_YoysefInEgipten","expression_id":3933,"yiddish":"יוסף אין עגיפטען","year":null,"tkb":826832,"counts":{"productions":2,"roles":5,"songs":2,"performance_events":2},"people":[{"label":"Henry Russotto","status":"PROPOSED","db_id":"850","matched":"הענרי רוסאָטאַ (חיים נעסוויזשקי)","score":0.5,"reason":null,"candidates":null,"rel":"arranger","n":1,"years":[],"characters":[]},{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"PROPOSED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"סאַנדלער, פּרץ 6441:2","status":"PROPOSED","db_id":"857","matched":"פּרץ סאַנדלער","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"סענדלער, יעקב קאָפּל 4151:2","status":"PROPOSED","db_id":"880","matched":"יעקב סענדלער","score":0.667,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Oriental Theatre","status":"LINKED","db_id":"119","matched":"Oriental Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":4,"years":[1884,1885],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":2,"years":[1884,1885],"characters":[]}],"publishers":[]},{"label":"Yudale der Blinder","folder":"Yudale_der_blinder,_Emkroyt1908","expression_id":3927,"yiddish":"יודאלע דער בלינדער","year":1908,"tkb":828539,"counts":{"productions":1,"roles":3,"songs":2,"performance_events":1},"people":[{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"PROPOSED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":2,"years":[],"characters":[]},{"label":"פרידזעל, לואיס 6412:3","status":"PROPOSED","db_id":"695","matched":"לואיס פרידזעל","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"People's Theatre NY","status":"LINKED","db_id":"120","matched":"People's Theatre NY","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1899],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","n":1,"years":[],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1899],"characters":[]}],"publishers":[{"label":"Amkroyt un Fraynd","status":"LINKED","db_id":"63","matched":"אַמקרויט עט פריינד| Amkroyt un Fraynd","score":null,"reason":null,"candidates":null,"rel":"published","n":1,"years":[],"characters":[]}]}]},{"label":"Moyshe Hurwitz","db_id":684,"matched":"Moyshe (Ish Halevi) Hurwitz","editions":[{"label":"Bas Koyen","folder":"MS_BasKoyen","expression_id":3963,"yiddish":"בת הכהן","year":null,"tkb":838374,"counts":{"productions":4,"roles":0,"songs":5,"performance_events":0},"people":[],"venues":[{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1896],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1896],"characters":[]},{"label":"Tsentral Theatre","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate (near spellings offered)","candidates":[["151","Tsentral Theater"]],"rel":"performed_at","n":1,"years":[1893],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":4,"years":[1892,1893,1896],"characters":[]}],"publishers":[]},{"label":"Ben HaDor","folder":"MS_BenHaDor","expression_id":4010,"yiddish":"בן הדור","year":null,"tkb":826910,"counts":{"productions":11,"roles":3,"songs":46,"performance_events":0},"people":[{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"PROPOSED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"פּערלמוטער, אַרנאָלד 8381:3","status":"PROPOSED","db_id":"2645","matched":"אַרנאָלד פּערלמוטער (אהרל'ע)","score":0.667,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]}],"venues":[{"label":"Glickman's Yiddish Players","status":"LINKED","db_id":"153","matched":"Glickman's Yiddish Players","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1905],"characters":[]},{"label":"Kalich Theatre","status":"LINKED","db_id":"160","matched":"Kalich Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1906],"characters":[]},{"label":"Olimpic Theatre","status":"LINKED","db_id":"171","matched":"Olimpic Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1908],"characters":[]},{"label":"Royal Theatre (Harry Bernstein)","status":"LINKED","db_id":"163","matched":"Royal Theatre (Harry Bernstein)","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1915],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":5,"years":[1901,1902,1903,1904],"characters":[]},{"label":"Thomashefsky's People Theatre","status":"PROPOSED","db_id":"156","matched":"Thomashefsky Theatre","score":0.667,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1910],"characters":[]},{"label":"Jignita Theatre","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"performed_at","n":1,"years":[1907],"characters":[]}],"places":[{"label":"Bucharest","status":"LINKED","db_id":"Q19660","matched":"Bucharest","score":null,"reason":null,"candidates":null,"rel":"premiered_in","n":1,"years":[1907],"characters":[]},{"label":"California","status":"LINKED","db_id":"Q99","matched":"California","score":null,"reason":null,"candidates":null,"rel":"premiered_in","n":1,"years":[1905],"characters":[]},{"label":"Cleveland Ohaio","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"weak match (one token only)","candidates":[["Q37320","Cleveland"]],"rel":"premiered_in","n":1,"years":[1915],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":8,"years":[1901,1902,1903,1904,1906,1908,1910],"characters":[]}],"publishers":[]},{"label":"Di Tsvey Tnoim","folder":"MS_DiTsveyTnoim","expression_id":4012,"yiddish":"די צווי תנאים","year":null,"tkb":838430,"counts":{"productions":2,"roles":5,"songs":13,"performance_events":0},"people":[{"label":"גימפּעל, אַדאָלף 974:1, 6104:5","status":"PROPOSED","db_id":"1766","matched":"אַדאָלף גימפעל","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"גימפּעל, אַדאָלף 974:1, 6104:5","status":"PROPOSED","db_id":"1766","matched":"אַדאָלף גימפעל","score":1.0,"reason":null,"candidates":null,"rel":"arranger","n":1,"years":[],"characters":[]},{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"PROPOSED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"פּערלמוטער, אַרנאָלד 8381:3","status":"PROPOSED","db_id":"2645","matched":"אַרנאָלד פּערלמוטער (אהרל'ע)","score":0.667,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"שמולעוויטש, שלמה 1475:6","status":"PROPOSED","db_id":"3611","matched":"שלמה שמולעוויטש","score":1.0,"reason":null,"candidates":null,"rel":"lyrics","n":1,"years":[],"characters":[]}],"venues":[{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1902],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":2,"years":[1902],"characters":[]}],"publishers":[]},{"label":"Shimshon Hagibor","folder":"YIVO_ShimshonHagibor","expression_id":3959,"yiddish":"שמשון הגיבור","year":null,"tkb":838365,"counts":{"productions":1,"roles":0,"songs":1,"performance_events":0},"people":[],"venues":[{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1890],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":1,"years":[1890],"characters":[]}],"publishers":[]},{"label":"Tissa-Essler","folder":"MS_TissaEssler","expression_id":3944,"yiddish":"טיססא עסלער","year":null,"tkb":905289,"counts":{"productions":9,"roles":6,"songs":5,"performance_events":0},"people":[{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"PROPOSED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":0.5,"reason":null,"candidates":null,"rel":"actor","n":1,"years":[],"characters":[]},{"label":"פיינמאַן, זיגמונד 4452:4","status":"PROPOSED","db_id":"714","matched":"זיגמונד פיינמאַן","score":1.0,"reason":null,"candidates":null,"rel":"actor","n":1,"years":[],"characters":[]},{"label":"יאָוועליר, קלמן 909:2","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"ambiguous","candidates":[["1066","קלמן יאוועליר"],["2061","קלמן יאָוועליר"]],"rel":"actor","n":1,"years":[],"characters":[]}],"venues":[{"label":"Kalich Theatre","status":"LINKED","db_id":"160","matched":"Kalich Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1905,1906],"characters":[]},{"label":"Roumanian Opera House","status":"LINKED","db_id":"125","matched":"Roumanian Opera House|Central Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1887],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1901],"characters":[]},{"label":"People's Theatre","status":"PROPOSED","db_id":"120","matched":"People's Theatre NY","score":0.667,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1907],"characters":[]},{"label":"Folks Theatre","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"ambiguous","candidates":[["164","Feynman's Folks Theatre"],["365","Public Theatre (Folks Theatre)"]],"rel":"performed_at","n":1,"years":[1897],"characters":[]},{"label":"Pamol Verdi","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"performed_at","n":1,"years":[1913],"characters":[]},{"label":"Pool's Theatre","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate (near spellings offered)","candidates":[["123","Poole's Theatre"]],"rel":"performed_at","n":2,"years":[1888],"characters":[]}],"places":[{"label":"Iași (Rumenia)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"weak match (one token only)","candidates":[["Q46852","Iași"]],"rel":"premiered_in","n":1,"years":[1913],"characters":[]},{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":8,"years":[1887,1888,1897,1901,1905,1906,1907],"characters":[]}],"publishers":[]},{"label":"Yaakov-Esav","folder":"MS_YaakovEsav","expression_id":4014,"yiddish":"יעקב ועשו","year":null,"tkb":494907,"counts":{"productions":3,"roles":0,"songs":4,"performance_events":0},"people":[],"venues":[{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":2,"years":[1902,1903],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":3,"years":[1902,1903],"characters":[]}],"publishers":[]},{"label":"Yetsi'as Mitsrayim","folder":"MS_YetsiasMitsrayim","expression_id":4043,"yiddish":"יציאת מצרים Jezias Mizraim copy","year":null,"tkb":715163,"counts":{"productions":11,"roles":5,"songs":13,"performance_events":0},"people":[{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"PROPOSED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":1.0,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"פּערלמוטער, אַרנאָלד 8381:3","status":"PROPOSED","db_id":"2645","matched":"אַרנאָלד פּערלמוטער (אהרל'ע)","score":0.667,"reason":null,"candidates":null,"rel":"composer","n":1,"years":[],"characters":[]},{"label":"פּראַגער, רעגינע 0581:3","status":"PROPOSED","db_id":"2695","matched":"רעגינע פּראַגער","score":1.0,"reason":null,"candidates":null,"rel":"actress","n":1,"years":[],"characters":[]},{"label":"יאָוועליר, קלמן 909:2","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"ambiguous","candidates":[["1066","קלמן יאוועליר"],["2061","קלמן יאָוועליר"]],"rel":"actor","n":1,"years":[],"characters":[]}],"venues":[{"label":"Kalich Theatre","status":"LINKED","db_id":"160","matched":"Kalich Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1907],"characters":[]},{"label":"New Star Theatre","status":"LINKED","db_id":"167","matched":"New Star Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1908],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","n":7,"years":[1903,1904,1909],"characters":[]},{"label":"Kessler's Thalia Theatre","status":"PROPOSED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":0.667,"reason":null,"candidates":null,"rel":"performed_at","n":1,"years":[1910],"characters":[]},{"label":"The International Biblioteque","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"no candidate","candidates":null,"rel":"performed_at","n":1,"years":[1903],"characters":[]}],"places":[{"label":"Lower East Side (New York, N.Y.)","status":"GAP","db_id":null,"matched":null,"score":null,"reason":"district, not a gazetteer settlement","candidates":null,"rel":"premiered_in","n":10,"years":[1903,1904,1907,1908,1909,1910],"characters":[]}],"publishers":[]}]}]};
+</script>
+<script>
+(function(){
+  var KG = window.KG, S = KG.summary;
+  var esc = function(s){
+    return String(s==null?'':s).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  };
+  var HEB = /[֐-׿]/;
+  var heb = function(s){
+    return HEB.test(String(s||'')) ? '<span class="heb">'+esc(s)+'</span>' : esc(s);
+  };
+
+  /* ---- tally ---- */
+  var st = S.by_status||{}, kinds = S.by_kind||{};
+  var tally = [
+    ['t-plain', S.editions, 'editions'],
+    ['t-plain', (kinds.person||0)+(kinds.org||0)+(kinds.place||0), 'entities'],
+    ['t-plain', S.edges, 'edges'],
+    ['t-ok',   st.LINKED||0,   'linked'],
+    ['t-prop', st.PROPOSED||0, 'proposed'],
+    ['t-gap',  st.GAP||0,      'questions']
+  ];
+  document.getElementById('tally').innerHTML = tally.map(function(t){
+    return '<div class="'+t[0]+'"><b>'+t[1]+'</b><small>'+t[2]+'</small></div>';
+  }).join('');
+
+  /* ---- a single entity row ---- */
+  function row(it){
+    var sub = '', yrs = '';
+    if(it.status==='LINKED'){
+      sub = '<code>'+esc(it.db_id)+'</code> '+heb(it.matched||'');
+    } else if(it.status==='PROPOSED'){
+      sub = 'proposed <code>'+esc(it.db_id)+'</code> '+heb(it.matched||'')
+          + ' <span class="dbid">· score '+esc(it.score)+'</span>';
+    } else {
+      sub = '<span class="q">'+esc(it.reason||'unresolved')+'</span>';
+      if(it.candidates && it.candidates.length){
+        sub += '<br>candidates: ' + it.candidates.map(function(c){
+          return '<code>'+esc(c[0])+'</code> '+heb(c[1]);
+        }).join(' · ');
+      }
+    }
+    if(it.years && it.years.length){
+      yrs = it.years.length>1
+        ? it.years[0]+'–'+it.years[it.years.length-1]
+        : String(it.years[0]);
+      if(it.n>1) yrs += ' ×'+it.n;
+    } else if(it.n>1){ yrs = '×'+it.n; }
+
+    var chars = (it.characters && it.characters.length)
+      ? ' <span class="dbid">as '+it.characters.map(esc).join(', ')+'</span>' : '';
+
+    return '<li class="s-'+it.status+'" data-status="'+it.status+'">'
+      + '<div class="row-main"><div class="row-label"><span class="rel">'+esc(it.rel)+'</span>'
+      + heb(it.label)+chars+'</div><div class="row-sub">'+sub+'</div></div>'
+      + '<div class="yrs">'+esc(yrs)+'</div></li>';
+  }
+
+  function bucket(title, items){
+    if(!items || !items.length) return '';
+    return '<div class="bucket"><h4>'+esc(title)+' · '+items.length+'</h4>'
+         + '<ul class="rows">'+items.map(row).join('')+'</ul></div>';
+  }
+
+  /* ---- edition ---- */
+  function edition(e){
+    var all = [].concat(e.people,e.venues,e.places,e.publishers);
+    var nProp = all.filter(function(x){return x.status==='PROPOSED';}).length;
+    var nGap  = all.filter(function(x){return x.status==='GAP';}).length;
+    var nOk   = all.filter(function(x){return x.status==='LINKED';}).length;
+
+    var flags = '';
+    if(nOk)   flags += '<span class="pill ok">'+nOk+' linked</span>';
+    if(nProp) flags += '<span class="pill prop">'+nProp+' proposed</span>';
+    if(nGap)  flags += '<span class="pill gap">'+nGap+' open</span>';
+    if(!all.length) flags += '<span class="pill quiet">no entities</span>';
+
+    var c = e.counts||{};
+    var meta = 'expr '+(e.expression_id||'—')
+      + ' · tkb '+(e.tkb||'—')
+      + (e.year?' · printed '+e.year:'')
+      + ' · ' + (c.productions||0)+'p '+(c.roles||0)+'c '+(c.songs||0)+'s '
+      + (c.performance_events||0)+'e';
+
+    return '<details class="ed" data-prop="'+nProp+'" data-gap="'+nGap+'">'
+      + '<summary><span class="caret">▸</span><span>'
+      + '<span class="ed-title">'+esc(e.label)+'</span>'
+      + (e.yiddish?'<span class="ed-yid">'+esc(e.yiddish)+'</span>':'')
+      + '<div class="ed-meta">'+esc(meta)+'</div></span>'
+      + '<span class="ed-flags">'+flags+'</span></summary>'
+      + '<div class="ed-body">'
+      + bucket('Credited people', e.people)
+      + bucket('Venues', e.venues)
+      + bucket('Places', e.places)
+      + bucket('Publisher', e.publishers)
+      + (all.length?'':'<p class="empty">No people, venues or places recorded for this edition.</p>')
+      + '</div></details>';
+  }
+
+  /* ---- tree ---- */
+  document.getElementById('tree').innerHTML = KG.authors.map(function(a){
+    var gaps = 0, props = 0;
+    a.editions.forEach(function(e){
+      [].concat(e.people,e.venues,e.places,e.publishers).forEach(function(x){
+        if(x.status==='GAP') gaps++;
+        if(x.status==='PROPOSED') props++;
+      });
+    });
+    return '<details class="author" open><summary>'
+      + '<span class="caret">▸</span>'
+      + '<span class="author-name">'+esc(a.label)+'</span>'
+      + '<span class="dbid">people_db '+esc(a.db_id)+'</span>'
+      + '<span class="spacer"></span>'
+      + '<span class="ed-flags"><span class="pill quiet">'+a.editions.length+' editions</span>'
+      + (props?'<span class="pill prop">'+props+' proposed</span>':'')
+      + (gaps?'<span class="pill gap">'+gaps+' open</span>':'')
+      + '</span></summary>'
+      + '<div class="editions">'+a.editions.map(edition).join('')+'</div></details>';
+  }).join('');
+
+  /* ---- ledger ---- */
+  var LABEL = {
+    'edition-field':'Missing edition detail',
+    person:'People', org:'Organisations', place:'Places'
+  };
+  var byKind = {};
+  KG.gaps.forEach(function(g){ (byKind[g.kind] = byKind[g.kind]||[]).push(g); });
+  var order = ['person','org','place','edition-field'];
+  document.getElementById('ledger').innerHTML = order.filter(function(k){
+    return byKind[k];
+  }).map(function(k){
+    var items = byKind[k];
+    return '<div class="ledger-group"><h3>'+esc(LABEL[k]||k)+' <span>'+items.length+'</span></h3>'
+      + '<ul class="ledger">' + items.map(function(g){
+          return '<li>'+heb(g.label)
+            + '<span class="why">'+esc(g.reason)+'</span>'
+            + (g.candidates?'<span class="hint">'+heb(g.candidates)+'</span>':'')
+            + '</li>';
+        }).join('') + '</ul></div>';
+  }).join('');
+
+  /* ---- filters ---- */
+  var mode = 'all';
+  function apply(){
+    document.querySelectorAll('ul.rows li').forEach(function(li){
+      var s = li.dataset.status;
+      li.hidden = !(mode==='all'
+        || (mode==='prop' && s==='PROPOSED')
+        || (mode==='gap'  && s==='GAP'));
+    });
+    document.querySelectorAll('details.ed').forEach(function(d){
+      var n = mode==='all' ? 1
+            : mode==='prop' ? +d.dataset.prop : +d.dataset.gap;
+      d.hidden = !n;
+      if(mode!=='all' && n) d.open = true;
+    });
+    document.querySelectorAll('.bucket').forEach(function(b){
+      b.hidden = !b.querySelectorAll('ul.rows li:not([hidden])').length;
+    });
+  }
+  [['f-all','all'],['f-prop','prop'],['f-gap','gap']].forEach(function(p){
+    document.getElementById(p[0]).addEventListener('click', function(){
+      mode = p[1];
+      document.querySelectorAll('button.filter').forEach(function(b){
+        b.setAttribute('aria-pressed', b.id===p[0] ? 'true':'false');
+      });
+      apply();
+    });
+  });
+  document.getElementById('expand').addEventListener('click', function(){
+    document.querySelectorAll('details').forEach(function(d){d.open=true;});
+  });
+  document.getElementById('collapse').addEventListener('click', function(){
+    document.querySelectorAll('details.ed').forEach(function(d){d.open=false;});
+  });
+})();
+</script>
+
+</body>
+</html>
