@@ -3,8 +3,8 @@
 **For Einat. 2026-10-05.**
 
 We have just finished linking every person, venue, publisher, library and place
-named across the 27 Lateiner and Hurwitz editions to our databases — 116
-entities, all resolved. What is left open is not identification but
+named across the 27 Lateiner and Hurwitz editions to our databases — all of
+them now resolve to a database id. What is left open is not identification but
 **provenance**: for eight editions we cannot say which institution holds the
 copy we transcribed, and for one we cannot say who printed it.
 
@@ -156,9 +156,11 @@ both should stay, with distinct shelfmarks.
 For completeness, the remaining gaps in the corpus are not things you can
 answer, and we are not asking about them:
 
-- **Seven Hurwitz editions have no performance events.** The PerformanceEvents
-  report is a Lateiner-only export — 129 of its 131 titles are Lateiner, none
-  is Hurwitz. That is a database export to re-run, not a catalogue question.
+- **The Hurwitz editions' performance events** were missing from our dataset
+  because the PerformanceEvents report covers Lateiner only (129 of its 131
+  titles). They are now derived from the catalogue's `Hurwitz hafakot` sheet
+  instead — 40 events across the seven plays, each keeping its newspaper
+  citation. Nothing needed from you.
 - **The manuscripts have no publisher or print year** because they are
   manuscripts. That is correct, not missing.
 
@@ -172,5 +174,6 @@ regenerates the holding-library links in the entity graph — each becomes a
 witness physically lives. The Meshumed imprint, if there is one, would link
 to a publisher org the way the other fourteen do.
 
-Current state for reference: **116 of 116 entities linked**, 16 open items, of
-which these eight are the ones that need a human with the catalogue.
+Current state for reference: every person, venue, publisher, library and place
+in the corpus is linked to a database id. These eight are the only open items
+that need a human with the catalogue.
