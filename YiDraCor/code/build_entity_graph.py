@@ -83,6 +83,21 @@ PERSON_DECISION = {
     # Sinai 2026-10-05.
     "המראזענטהאל": ("878", "מאַקס ראָזענטאַל / Max Rosenthal"),
     "ראזענפעלדמאריס": ("878", "מאַקס ראָזענטאַל / Max Rosenthal"),
+    # קאנארד = William Conrad, ALREADY in people_db — a link, not a mint.
+    # Leksikon heading "קאָנראַד, וויליאַם" (vol.4) plus a mention placing him with
+    # Kessler (721), Prager (2695) and Tobias (3079); an 1897 Thalia poster (LoC
+    # POS-TH-1897.T43) lists "Herr Konrad" with Prager, Kalich, Dina Feinman,
+    # Kessler and Berl Bernstein (859). Our credit is Khurbn Yerusholayim 1898.
+    "קאנארד": ("1464", "וויליאַם קאַנראָד / William Conrad"),
+    # --- minted 2026-10-05, evidence in people/new_mints_evidence.tsv.
+    # All five carry probably_not_zylbercweig=1: present in people_db but NOT a
+    # Leksikon entry. Minkowski appears in the Leksikon only as 2 bare-surname
+    # mentions; the other four are absent from it entirely.
+    "מינקאווסקי": ("3822", "גיאַקאָמאָ מינקאָווסקי / Giacomo Minkowski"),
+    "איימיסימאוויטש": ("3823", "איימי סימאָוויטש / Amy Simovitch"),
+    "ליבאראבאן": ("3824", "ל. י. באַראַבאַן / L. Y. Baraban"),
+    "joachimkurantman": ("3825", "יואכים קוראַנטמאַן / Joachim Kurantman"),
+    "אידאקאמינסקא": ("3826", "אידא קאַמינסקאַ / Ida Kamińska"),
     # --- 23 proposals confirmed wholesale by Sinai 2026-10-05.
     # All were order-reversed or alias-extended forms of the same name;
     # the matcher found them, a person approved them.
@@ -519,8 +534,17 @@ def main() -> int:
 
         # ---- venues + premiere places, from productions
         for p in e.get("productions") or []:
+            # A hafakot row typed `publication` is a print event, not a staging:
+            # its `Theatre` cell holds the publishing house (e.g. "The
+            # International Biblioteque"), so it must not become a venue edge.
+            is_publication = str(p.get("Type") or "").strip().lower() == "publication"
             for v in split_venues(p.get("Theatre")):
                 res = resolve(v, org_exact, org_tok, org_parts, decisions=ORG_DECISION)
+                if is_publication:
+                    nid = node("org", v, res, org_role="publisher")
+                    edges.append({"src": nid, "dst": eid, "rel": "published",
+                                  "year": p.get("Year"), "source": p.get("source")})
+                    continue
                 nid = node("org", v, res, org_role="venue")
                 edges.append({"src": eid, "dst": nid, "rel": "performed_at",
                               "year": p.get("Year"), "type": p.get("Type")})

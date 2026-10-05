@@ -310,8 +310,11 @@
       "id": "person:איימיסימאוויטש",
       "kind": "person",
       "label": "איימי סימאוויטש",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "3823",
+      "matched": "איימי סימאָוויטש / Amy Simovitch",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "role": "actress"
     },
     {
@@ -397,8 +400,11 @@
       "id": "person:מינקאווסקי",
       "kind": "person",
       "label": "מינקאָווסקי",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "3822",
+      "matched": "גיאַקאָמאָ מינקאָווסקי / Giacomo Minkowski",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "role": "composer"
     },
     {
@@ -516,8 +522,11 @@
       "id": "person:ליבאראבאן",
       "kind": "person",
       "label": "ל. י. באראבאן",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "3824",
+      "matched": "ל. י. באַראַבאַן / L. Y. Baraban",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "role": "choreographer"
     },
     {
@@ -570,8 +579,11 @@
       "id": "person:אידאקאמינסקא",
       "kind": "person",
       "label": "אידא קאמינסקא",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "3826",
+      "matched": "אידא קאַמינסקאַ / Ida Kamińska",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "role": "actress"
     },
     {
@@ -920,9 +932,11 @@
       "id": "org:theinternationalbiblioteque",
       "kind": "org",
       "label": "The International Biblioteque",
-      "status": "GAP",
-      "reason": "no candidate",
-      "org_role": "venue"
+      "status": "LINKED",
+      "db_id": "2257",
+      "matched": "The International Biblioteque (Internatsionale Bibliotek)",
+      "method": "exact",
+      "org_role": "publisher"
     },
     {
       "id": "org:kesslersthaliatheatre",
@@ -1271,8 +1285,11 @@
       "id": "person:joachimkurantman",
       "kind": "person",
       "label": "Joachim Kurantman",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "3825",
+      "matched": "יואכים קוראַנטמאַן / Joachim Kurantman",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "role": "composer"
     },
     {
@@ -1348,8 +1365,11 @@
       "id": "person:קאנארד",
       "kind": "person",
       "label": "קאנארד",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "1464",
+      "matched": "וויליאַם קאַנראָד / William Conrad",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "role": "actor"
     },
     {
@@ -2524,11 +2544,11 @@
       "type": "production"
     },
     {
-      "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "org:theinternationalbiblioteque",
-      "rel": "performed_at",
+      "src": "org:theinternationalbiblioteque",
+      "dst": "edition:MS_YetsiasMitsrayim",
+      "rel": "published",
       "year": 1903.0,
-      "type": "publication"
+      "source": "https://www.nli.org.il/he/newspapers/dywt/1903/04/15/01/article/36.1"
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
@@ -3390,48 +3410,6 @@
       "label": "YIVO_ShimshonHagibor · performance_events",
       "reason": "no performance events in the DB report",
       "candidates": ""
-    },
-    {
-      "kind": "org",
-      "label": "The International Biblioteque",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "person",
-      "label": "Joachim Kurantman",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "person",
-      "label": "אידא קאמינסקא",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "person",
-      "label": "איימי סימאוויטש",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "person",
-      "label": "ל. י. באראבאן",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "person",
-      "label": "מינקאָווסקי",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "person",
-      "label": "קאנארד",
-      "reason": "no candidate",
-      "candidates": ""
     }
   ],
   "summary": {
@@ -3443,18 +3421,16 @@
       "place": 12
     },
     "by_status": {
-      "LINKED": 109,
-      "GAP": 7
+      "LINKED": 116
     },
     "edges": 283,
-    "gaps": 26,
+    "gaps": 19,
     "gaps_by_reason": {
       "no publication place": 2,
       "no publisher": 2,
       "no print year": 2,
       "no holding library": 6,
-      "no performance events in the DB report": 7,
-      "no candidate": 7
+      "no performance events in the DB report": 7
     }
   }
 }
