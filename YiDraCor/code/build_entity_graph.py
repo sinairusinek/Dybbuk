@@ -575,7 +575,11 @@ def main() -> int:
         # ---- field-level completeness questions.
         # Imprint fields are meaningless for the manuscript track (no publisher,
         # no print year), so only ask about them for printed editions.
-        is_ms = str(e.get("folder") or "").startswith(("MS_", "YIVO_"))
+        # The folder prefix is not a reliable track test: Lateiner_Meshumed and
+        # HurbanYerushalaim_820938_duplicate are manuscripts without an `MS_`
+        # prefix. `transkribus_ready` carries the track explicitly.
+        is_ms = ("manuscript" in str(e.get("transkribus_ready") or "").lower()
+                 or str(e.get("folder") or "").startswith(("MS_", "YIVO_")))
         imprint_fields = () if is_ms else (
             ("year_printed", "no print year"),
             ("publisher", "no publisher"),

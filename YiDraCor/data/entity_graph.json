@@ -3299,24 +3299,6 @@
   "gaps": [
     {
       "kind": "edition-field",
-      "label": "HurbanYerushalaim_820938_duplicate · publication_place",
-      "reason": "no publication place",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "HurbanYerushalaim_820938_duplicate · publisher",
-      "reason": "no publisher",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "HurbanYerushalaim_820938_duplicate · year_printed",
-      "reason": "no print year",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
       "label": "Lateiner_Meshumed · library",
       "reason": "no holding library",
       "candidates": ""
@@ -3424,12 +3406,12 @@
       "LINKED": 116
     },
     "edges": 283,
-    "gaps": 19,
+    "gaps": 16,
     "gaps_by_reason": {
-      "no publication place": 2,
-      "no publisher": 2,
-      "no print year": 2,
       "no holding library": 6,
+      "no publication place": 1,
+      "no publisher": 1,
+      "no print year": 1,
       "no performance events in the DB report": 7
     }
   }
