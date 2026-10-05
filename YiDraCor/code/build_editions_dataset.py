@@ -161,6 +161,28 @@ def to_author_id(v):
     return AUTHOR_NAME_TO_DB_ID.get(key)
 
 
+# OCR/transcription fixes applied to catalogue cells on load. The workbook is
+# the source of record and is not rewritten here, so corrections confirmed by a
+# reviewer live in code: every rebuild reapplies them.
+# reviewer: Sinai 2026-10-05
+SOURCE_NAME_FIXES = {
+    "Joaohim Kurantman": "Joachim Kurantman",   # OCR: 'ch' read as 'oh'
+}
+
+_NAME_COLS = ("PersonKey", "English Name",
+              "PersonName as appears in Source if there is no key")
+
+
+def apply_name_fixes(rows: list[dict]) -> list[dict]:
+    """Apply SOURCE_NAME_FIXES to every person-name column, in place."""
+    for r in rows:
+        for c in _NAME_COLS:
+            v = r.get(c)
+            if isinstance(v, str) and v in SOURCE_NAME_FIXES:
+                r[c] = SOURCE_NAME_FIXES[v]
+    return rows
+
+
 def _rekey(row: dict, mapping: dict) -> dict:
     """Copy `row`, renaming the keys in `mapping` (old → new).
 
@@ -318,11 +340,11 @@ def main() -> int:
     _, roles_pro = load_sheet(wb, "ProfessionalRoles- Lateiner")
     _, roles_lat = load_sheet(wb, "playRolesLateiner")
     _, roles_hur = load_sheet(wb, "PlayRolesHurwitz")
-    roles = _dedupe_roles(
+    roles = _dedupe_roles(apply_name_fixes(
         roles_pro
         + [_rekey(r, {"play name": "Play"}) for r in roles_lat]
         + roles_hur
-    )
+    ))
 
     _, songs = load_sheet(wb, "songs_Lateiner and Hurwitz")
     _, music_h = load_sheet(wb, "Hurwitz music")
