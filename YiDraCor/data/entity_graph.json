@@ -14401,6 +14401,16 @@
       "work_id": "work:4043"
     },
     {
+      "id": "org:stpetersburgstatetheatrelibrary",
+      "kind": "org",
+      "label": "St Petersburg State Theatre Library",
+      "status": "LINKED",
+      "db_id": "2259",
+      "matched": "St Petersburg State Theatre Library",
+      "method": "exact",
+      "org_role": "library"
+    },
+    {
       "id": "edition:MS_YoysefInEgipten",
       "kind": "edition",
       "label": "Yoysef in Egipten",
@@ -14653,6 +14663,16 @@
       "date": "14/02/1915",
       "event_type": "Show",
       "work_id": "work:4010"
+    },
+    {
+      "id": "org:americanjewisharchivesjacobradermarcuscenter",
+      "kind": "org",
+      "label": "American Jewish Archives (Jacob Rader Marcus Center)",
+      "status": "LINKED",
+      "db_id": "2258",
+      "matched": "American Jewish Archives (Jacob Rader Marcus Center)",
+      "method": "exact",
+      "org_role": "library"
     },
     {
       "id": "edition:YIVO_ShimshonHagibor",
@@ -19113,6 +19133,12 @@
       "level": "event"
     },
     {
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:MS_YaakovEsav",
+      "rel": "holds",
+      "shelfmark": "RG 8.1, folder 4143"
+    },
+    {
       "src": "work:4043",
       "dst": "edition:MS_YetsiasMitsrayim",
       "rel": "realised_as"
@@ -19331,6 +19357,12 @@
       "date": "12/03/1910",
       "type": "Show",
       "level": "event"
+    },
+    {
+      "src": "org:stpetersburgstatetheatrelibrary",
+      "dst": "edition:MS_YetsiasMitsrayim",
+      "rel": "holds",
+      "shelfmark": "ЛГТБ № 6246 (Рукописный отдел)"
     },
     {
       "src": "work:3933",
@@ -19683,6 +19715,12 @@
       "date": "14/02/1915",
       "type": "Show",
       "level": "event"
+    },
+    {
+      "src": "org:americanjewisharchivesjacobradermarcuscenter",
+      "dst": "edition:MS_BenHaDor",
+      "rel": "holds",
+      "shelfmark": "MS-499, Box 3, Folder 4"
     },
     {
       "src": "work:3959",
@@ -20124,6 +20162,12 @@
       "level": "work"
     },
     {
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:MS_TissaEssler",
+      "rel": "holds",
+      "shelfmark": "RG 289, 333A-333C"
+    },
+    {
       "src": "work:3830",
       "dst": "edition:MS_Emigration",
       "rel": "realised_as"
@@ -20458,12 +20502,6 @@
     },
     {
       "kind": "edition-field",
-      "label": "MS_BenHaDor · library",
-      "reason": "no holding library",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
       "label": "MS_DiTsveyTnoim · expression_id",
       "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
       "candidates": "expression_id 4012 = 'Di tsvey tanoyim'; edition title = 'Di Tsvey Tnoim'"
@@ -20482,27 +20520,9 @@
     },
     {
       "kind": "edition-field",
-      "label": "MS_TissaEssler · library",
-      "reason": "no holding library",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
       "label": "MS_YaakovEsav · expression_id",
       "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
       "candidates": "expression_id 4014 = 'Yanḳev un Eysev'; edition title = 'Yaakov-Esav'"
-    },
-    {
-      "kind": "edition-field",
-      "label": "MS_YaakovEsav · library",
-      "reason": "no holding library",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "MS_YetsiasMitsrayim · library",
-      "reason": "no holding library",
-      "candidates": ""
     },
     {
       "kind": "edition-field",
@@ -20578,22 +20598,22 @@
       "person": 35,
       "song": 225,
       "edition": 27,
-      "org": 42,
+      "org": 44,
       "event": 64,
       "place": 12
     },
     "by_status": {
-      "LINKED": 674,
+      "LINKED": 676,
       "GAP": 8
     },
-    "edges": 864,
-    "gaps": 25,
+    "edges": 868,
+    "gaps": 21,
     "gaps_by_reason": {
       "work/edition titles differ — alternative title, or a wrong expression_id? needs review": 9,
       "no publication place": 1,
       "no publisher": 1,
       "no print year": 1,
-      "no holding library": 5,
+      "no holding library": 1,
       "song's play key 'Die Shlekhte tsayten' resolves to no single work": 1,
       "song's play key 'Yehuda haglili' resolves to no single work": 3,
       "song's play key 'Die Akeyda' resolves to no single work": 2,
