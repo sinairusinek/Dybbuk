@@ -46,6 +46,33 @@ OUT_GAPS = ROOT / "data" / "entity_gaps.tsv"
 # People we know the catalogue names by surname alone in the author column.
 AUTHOR_DB_ID = {683: "Joseph Lateiner", 684: "Moyshe (Ish Halevi) Hurwitz"}
 
+# ---------------------------------------------------------------------------
+# Confirmed human decisions. Everything here was reviewed and accepted by a
+# person; the reviewer and date are recorded so a later reader can tell these
+# apart from the matcher's own automatic PROPOSED candidates.
+#
+# reviewer: Sinai · 2026-10-05
+# Accepted the ten org spelling variants surfaced as near-spelling hints, and
+# identified 'מאדאם ליפצין' (Madame Lipzin) as Keni Lipzin.
+REVIEWED_BY = "Sinai 2026-10-05"
+
+ORG_DECISION = {
+    "windsortheater": ("134", "Windsor Theatre"),
+    "poolstheatre": ("123", "Poole's Theatre"),
+    "tsentraltheatre": ("151", "Tsentral Theater"),
+    "peoplestheatre": ("120", "People's Theatre NY"),
+    "folkstheatre": ("365", "Public Theatre (Folks Theatre)"),
+    "kesslersthaliatheatre": ("130", "Thalia Theatre|Bowery Theatre"),
+    "thomashefskyspeopletheatre": ("156", "Thomashefsky Theatre"),
+    "amkroytetfreundbuchhandlung": ("63", "אַמקרויט עט פריינד| Amkroyt un Fraynd"),
+    "amkrautfreundbuchhandlung": ("63", "אַמקרויט עט פריינד| Amkroyt un Fraynd"),
+    "diyudishebihne": ("1849", "די אידישע ביהנע"),
+}
+
+PERSON_DECISION = {
+    "מאדאםליפצין": ("762", "קעני ליפצין (סאַכאַר קריינע סאָניעס)"),
+}
+
 # Sub-city districts the gazetteer does not hold as settlements. Token matching
 # would bind these to the parent city (Lower East Side → New York City), which
 # silently loses the distinction, so they are raised as questions instead:
@@ -53,6 +80,23 @@ AUTHOR_DB_ID = {683: "Joseph Lateiner", 684: "Moyshe (Ish Halevi) Hurwitz"}
 # district tier or should resolve to the city is a modelling decision.
 DISTRICT_NOT_SETTLEMENT = {
     "lowereastsidenewyorkny": "New York City (Q60) — district, not a settlement",
+}
+
+# Latin-script historical names the gazetteer lacks. It DOES carry these
+# exonyms, but only in Yiddish (לעמבערג for Lviv, ווילנע/ווילנא for Vilnius)
+# — the romanised forms a title page or an English catalogue prints are
+# absent, and there are no German forms at all (no Pressburg, Breslau,
+# Danzig). Checked against the gazetteer 2026-10-05.
+# `Vilna` alone would otherwise match Vilna Governorate / Vilna Ghetto, i.e.
+# the region and the WWII ghetto rather than the city.
+PLACE_EXONYM = {
+    "lemberg": ("Q36036", "Lviv"),
+    "vilna": ("Q216", "Vilnius"),
+    "vilne": ("Q216", "Vilnius"),
+    "wilno": ("Q216", "Vilnius"),
+    # source typos, confirmed by Sinai 2026-10-05
+    "clevelandohaio": ("Q37320", "Cleveland"),
+    "clevelandohio": ("Q37320", "Cleveland"),
 }
 
 
@@ -155,6 +199,16 @@ def load_orgs() -> tuple[dict, dict, dict]:
     return exact, parts, dict(tokidx)
 
 
+def bare_place(s: str) -> str:
+    """A place name without its disambiguating qualifier.
+
+    534 of the gazetteer's 1018 labels carry one — "Iași (Romania)",
+    "Podgorze (Krakow, Poland)" — and the corpus writes its own
+    ("Iași (Rumenia)"), so neither side matches until both are stripped.
+    """
+    return re.sub(r"\([^)]*\)", " ", str(s or ""))
+
+
 def load_places() -> tuple[dict, dict]:
     """Return (exact index, token index) over the toponym gazetteer."""
     exact, tokidx = {}, defaultdict(list)
@@ -163,11 +217,20 @@ def load_places() -> tuple[dict, dict]:
             label = (r.get("label_en") or r.get("kima_rom") or "").strip()
             names = [r.get("label_en"), r.get("label_yi"),
                      r.get("kima_rom"), r.get("kima_heb")]
-            names += (r.get("variants") or "").split("|")
+            # the gazetteer delimits variants with ';', not '|' — splitting on
+            # the wrong character indexed all of them as one unusable string,
+            # which is why the Yiddish exonyms (ווילנע, לעמבערג) never matched
+            names += re.split(r"[;|]", r.get("variants") or "")
             for n in names:
                 if not (n or "").strip():
                     continue
                 exact.setdefault(sm(n), (r["qid"], label))
+                # also index the name without its qualifier, so a corpus
+                # string that carries none (or a different one) still lands
+                bare = sm(bare_place(n))
+                if bare:
+                    exact.setdefault(bare, (r["qid"], label))
+                    tokidx[toks(bare_place(n))].append((r["qid"], label))
                 tokidx[toks(n)].append((r["qid"], label))
     return exact, dict(tokidx)
 
@@ -226,9 +289,18 @@ def propose(raw: str, tokidx: dict) -> list[tuple]:
 
 
 def resolve(raw: str, exact: dict, tokidx: dict | None = None,
-            parts: dict | None = None) -> dict:
-    """Resolve one name string to LINKED / PROPOSED / GAP."""
+            parts: dict | None = None, decisions: dict | None = None) -> dict:
+    """Resolve one name string to LINKED / PROPOSED / GAP.
+
+    `decisions` holds reviewer-confirmed links, which win over every automatic
+    rule below and are stamped with the reviewer so they read as decisions
+    rather than as the matcher's own guesses.
+    """
     key = sm(raw)
+    if decisions and key in decisions:
+        db_id, label = decisions[key]
+        return {"status": "LINKED", "db_id": db_id, "matched": label,
+                "method": "reviewed", "reviewer": REVIEWED_BY}
     if key in DISTRICT_NOT_SETTLEMENT:
         return {"status": "GAP", "reason": "district, not a gazetteer settlement",
                 "note": DISTRICT_NOT_SETTLEMENT[key]}
@@ -236,6 +308,20 @@ def resolve(raw: str, exact: dict, tokidx: dict | None = None,
         db_id, label = exact[key]
         return {"status": "LINKED", "db_id": db_id, "matched": label,
                 "method": "exact"}
+
+    # a historical German/Yiddish name the gazetteer does not carry
+    if key in PLACE_EXONYM:
+        db_id, label = PLACE_EXONYM[key]
+        return {"status": "LINKED", "db_id": db_id, "matched": label,
+                "method": "exonym"}
+
+    # the incoming string carries a qualifier the db label does not, or vice
+    # versa ("Iași (Rumenia)" vs "Iași (Romania)")
+    bare = sm(bare_place(raw))
+    if bare and bare != key and bare in exact:
+        db_id, label = exact[bare]
+        return {"status": "LINKED", "db_id": db_id, "matched": label,
+                "method": "qualifier-stripped"}
 
     # a half of a composite `A|B` db row
     if parts and key in parts:
@@ -356,7 +442,7 @@ def main() -> int:
             raw = person_raw(r)
             if not raw:
                 continue
-            res = resolve(raw, ppl_exact, ppl_tok)
+            res = resolve(raw, ppl_exact, ppl_tok, decisions=PERSON_DECISION)
             # Role cells sometimes carry the character too ("actor: Lemekh");
             # keep the relation clean and move the character to its own field.
             role_raw = str(r.get("Role") or "credited").strip()
@@ -369,7 +455,7 @@ def main() -> int:
         # ---- venues + premiere places, from productions
         for p in e.get("productions") or []:
             for v in split_venues(p.get("Theatre")):
-                res = resolve(v, org_exact, org_tok, org_parts)
+                res = resolve(v, org_exact, org_tok, org_parts, decisions=ORG_DECISION)
                 nid = node("org", v, res, org_role="venue")
                 edges.append({"src": eid, "dst": nid, "rel": "performed_at",
                               "year": p.get("Year"), "type": p.get("Type")})
@@ -382,14 +468,14 @@ def main() -> int:
         # ---- venues from the performance-events report
         for ev in e.get("performance_events") or []:
             for v in split_venues(ev.get("venue")) + split_venues(ev.get("venue_alt")):
-                res = resolve(v, org_exact, org_tok, org_parts)
+                res = resolve(v, org_exact, org_tok, org_parts, decisions=ORG_DECISION)
                 nid = node("org", v, res, org_role="venue")
                 edges.append({"src": eid, "dst": nid, "rel": "performed_at",
                               "date": ev.get("date"), "type": ev.get("event_type")})
 
         # ---- imprint: publisher org + publication place
         if e.get("publisher"):
-            res = resolve(e["publisher"], org_exact, org_tok, org_parts)
+            res = resolve(e["publisher"], org_exact, org_tok, org_parts, decisions=ORG_DECISION)
             nid = node("org", e["publisher"], res, org_role="publisher")
             edges.append({"src": nid, "dst": eid, "rel": "published"})
         if e.get("publication_place"):
@@ -406,10 +492,22 @@ def main() -> int:
             ("publisher", "no publisher"),
             ("publication_place", "no publication place"),
         )
-        for field, q in imprint_fields + (("library", "no holding library"),):
+        for field, q in imprint_fields:
             if not e.get(field):
                 gaps.append({"kind": "edition-field", "label": f"{folder} · {field}",
                              "reason": q, "candidates": ""})
+
+        # The manuscripts' holding shelfmark is often recorded in free-text
+        # `notes` ("YIVO rg8-1-f4179") while the `library` column sits empty.
+        # Say so, and quote the folio, rather than reporting it simply absent.
+        if not e.get("library"):
+            folio = re.search(r"YIVO[\s,]*(?:RG\s*8|rg8)[\w\-.:]*",
+                              str(e.get("notes") or ""), re.I)
+            gaps.append({
+                "kind": "edition-field", "label": f"{folder} · library",
+                "reason": ("holding library recorded only in notes"
+                           if folio else "no holding library"),
+                "candidates": folio.group(0).strip() if folio else ""})
         if not (e.get("performance_events") or []):
             gaps.append({"kind": "edition-field",
                          "label": f"{folder} · performance_events",

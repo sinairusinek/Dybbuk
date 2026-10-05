@@ -201,8 +201,11 @@
       "id": "org:amkroytetfreundbuchhandlung",
       "kind": "org",
       "label": "Amkroyt et Freund Buchhandlung",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "63",
+      "matched": "אַמקרויט עט פריינד| Amkroyt un Fraynd",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "publisher"
     },
     {
@@ -338,14 +341,11 @@
       "id": "org:windsortheater",
       "kind": "org",
       "label": "Windsor Theater",
-      "status": "GAP",
-      "reason": "no candidate (near spellings offered)",
-      "candidates": [
-        [
-          "134",
-          "Windsor Theatre"
-        ]
-      ],
+      "status": "LINKED",
+      "db_id": "134",
+      "matched": "Windsor Theatre",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
@@ -372,18 +372,10 @@
       "id": "place:podgorze",
       "kind": "place",
       "label": "Podgórze",
-      "status": "GAP",
-      "reason": "weak match (one token only)",
-      "candidates": [
-        [
-          "Q2553877",
-          "Podgorze (Krakow, Poland)"
-        ],
-        [
-          "Q2553877",
-          "Podgorze (Krakow, Poland)"
-        ]
-      ]
+      "status": "LINKED",
+      "db_id": "Q2553877",
+      "matched": "Podgorze (Krakow, Poland)",
+      "method": "exact"
     },
     {
       "id": "edition:BasSheva",
@@ -497,8 +489,11 @@
       "id": "org:amkrautfreundbuchhandlung",
       "kind": "org",
       "label": "Amkraut & Freund Buchhandlung",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "63",
+      "matched": "אַמקרויט עט פריינד| Amkroyt un Fraynd",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "publisher"
     },
     {
@@ -605,25 +600,20 @@
       "id": "place:vilna",
       "kind": "place",
       "label": "Vilna",
-      "status": "GAP",
-      "reason": "ambiguous",
-      "candidates": [
-        [
-          "Q279583",
-          "Vilna Governorate"
-        ],
-        [
-          "Q707539",
-          "Vilna Ghetto"
-        ]
-      ]
+      "status": "LINKED",
+      "db_id": "Q216",
+      "matched": "Vilnius",
+      "method": "exonym"
     },
     {
       "id": "org:diyudishebihne",
       "kind": "org",
       "label": "\"Di yudishe bihne\"",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "1849",
+      "matched": "די אידישע ביהנע",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "publisher"
     },
     {
@@ -687,8 +677,10 @@
       "id": "place:lemberg",
       "kind": "place",
       "label": "Lemberg",
-      "status": "GAP",
-      "reason": "no candidate"
+      "status": "LINKED",
+      "db_id": "Q36036",
+      "matched": "Lviv",
+      "method": "exonym"
     },
     {
       "id": "edition:DovidsFidele-1904",
@@ -799,8 +791,11 @@
       "id": "person:מאדאםליפצין",
       "kind": "person",
       "label": "מאדאם ליפצין",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "762",
+      "matched": "קעני ליפצין (סאַכאַר קריינע סאָניעס)",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "role": "actress"
     },
     {
@@ -952,11 +947,11 @@
       "id": "org:kesslersthaliatheatre",
       "kind": "org",
       "label": "Kessler's Thalia Theatre",
-      "status": "PROPOSED",
+      "status": "LINKED",
       "db_id": "130",
       "matched": "Thalia Theatre|Bowery Theatre",
-      "method": "token-set",
-      "score": 0.667,
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
@@ -1028,14 +1023,10 @@
       "id": "place:clevelandohaio",
       "kind": "place",
       "label": "Cleveland Ohaio",
-      "status": "GAP",
-      "reason": "weak match (one token only)",
-      "candidates": [
-        [
-          "Q37320",
-          "Cleveland"
-        ]
-      ]
+      "status": "LINKED",
+      "db_id": "Q37320",
+      "matched": "Cleveland",
+      "method": "exonym"
     },
     {
       "id": "org:glickmansyiddishplayers",
@@ -1087,11 +1078,11 @@
       "id": "org:thomashefskyspeopletheatre",
       "kind": "org",
       "label": "Thomashefsky's People Theatre",
-      "status": "PROPOSED",
+      "status": "LINKED",
       "db_id": "156",
       "matched": "Thomashefsky Theatre",
-      "method": "token-set",
-      "score": 0.667,
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
@@ -1149,14 +1140,11 @@
       "id": "org:tsentraltheatre",
       "kind": "org",
       "label": "Tsentral Theatre",
-      "status": "GAP",
-      "reason": "no candidate (near spellings offered)",
-      "candidates": [
-        [
-          "151",
-          "Tsentral Theater"
-        ]
-      ],
+      "status": "LINKED",
+      "db_id": "151",
+      "matched": "Tsentral Theater",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
@@ -1219,43 +1207,33 @@
       "id": "org:peoplestheatre",
       "kind": "org",
       "label": "People's Theatre",
-      "status": "PROPOSED",
+      "status": "LINKED",
       "db_id": "120",
       "matched": "People's Theatre NY",
-      "method": "token-set",
-      "score": 0.667,
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
       "id": "org:folkstheatre",
       "kind": "org",
       "label": "Folks Theatre",
-      "status": "GAP",
-      "reason": "ambiguous",
-      "candidates": [
-        [
-          "164",
-          "Feynman's Folks Theatre"
-        ],
-        [
-          "365",
-          "Public Theatre (Folks Theatre)"
-        ]
-      ],
+      "status": "LINKED",
+      "db_id": "365",
+      "matched": "Public Theatre (Folks Theatre)",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
       "id": "org:poolstheatre",
       "kind": "org",
       "label": "Pool's Theatre",
-      "status": "GAP",
-      "reason": "no candidate (near spellings offered)",
-      "candidates": [
-        [
-          "123",
-          "Poole's Theatre"
-        ]
-      ],
+      "status": "LINKED",
+      "db_id": "123",
+      "matched": "Poole's Theatre",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
@@ -1270,14 +1248,10 @@
       "id": "place:iasirumenia",
       "kind": "place",
       "label": "Iași (Rumenia)",
-      "status": "GAP",
-      "reason": "weak match (one token only)",
-      "candidates": [
-        [
-          "Q46852",
-          "Iași"
-        ]
-      ]
+      "status": "LINKED",
+      "db_id": "Q46852",
+      "matched": "Iași",
+      "method": "qualifier-stripped"
     },
     {
       "id": "edition:MS_Emigration",
@@ -3552,8 +3526,8 @@
     {
       "kind": "edition-field",
       "label": "HurbanYerushalaim_820938_duplicate · library",
-      "reason": "no holding library",
-      "candidates": ""
+      "reason": "holding library recorded only in notes",
+      "candidates": "YIVO rg8-f4176"
     },
     {
       "kind": "edition-field",
@@ -3600,8 +3574,8 @@
     {
       "kind": "edition-field",
       "label": "MS_BasKoyen · library",
-      "reason": "no holding library",
-      "candidates": ""
+      "reason": "holding library recorded only in notes",
+      "candidates": "YIVO RG8-f4140."
     },
     {
       "kind": "edition-field",
@@ -3624,8 +3598,8 @@
     {
       "kind": "edition-field",
       "label": "MS_DiTsveyTnoim · library",
-      "reason": "no holding library",
-      "candidates": ""
+      "reason": "holding library recorded only in notes",
+      "candidates": "YIVO RG8-f4141."
     },
     {
       "kind": "edition-field",
@@ -3642,8 +3616,8 @@
     {
       "kind": "edition-field",
       "label": "MS_KhurbnYerusholaim · library",
-      "reason": "no holding library",
-      "candidates": ""
+      "reason": "holding library recorded only in notes",
+      "candidates": "YIVO rg8-1-f4176"
     },
     {
       "kind": "edition-field",
@@ -3684,44 +3658,20 @@
     {
       "kind": "edition-field",
       "label": "MS_YoysefInEgipten · library",
-      "reason": "no holding library",
-      "candidates": ""
+      "reason": "holding library recorded only in notes",
+      "candidates": "YIVO rg8-1-f4179"
     },
     {
       "kind": "edition-field",
       "label": "YIVO_ShimshonHagibor · library",
-      "reason": "no holding library",
-      "candidates": ""
+      "reason": "holding library recorded only in notes",
+      "candidates": "YIVO RG8-f4142A."
     },
     {
       "kind": "edition-field",
       "label": "YIVO_ShimshonHagibor · performance_events",
       "reason": "no performance events in the DB report",
       "candidates": ""
-    },
-    {
-      "kind": "org",
-      "label": "\"Di yudishe bihne\"",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "org",
-      "label": "Amkraut & Freund Buchhandlung",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "org",
-      "label": "Amkroyt et Freund Buchhandlung",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "org",
-      "label": "Folks Theatre",
-      "reason": "ambiguous",
-      "candidates": "164 Feynman's Folks Theatre; 365 Public Theatre (Folks Theatre)"
     },
     {
       "kind": "org",
@@ -3737,27 +3687,9 @@
     },
     {
       "kind": "org",
-      "label": "Pool's Theatre",
-      "reason": "no candidate (near spellings offered)",
-      "candidates": "123 Poole's Theatre"
-    },
-    {
-      "kind": "org",
       "label": "The International Biblioteque",
       "reason": "no candidate",
       "candidates": ""
-    },
-    {
-      "kind": "org",
-      "label": "Tsentral Theatre",
-      "reason": "no candidate (near spellings offered)",
-      "candidates": "151 Tsentral Theater"
-    },
-    {
-      "kind": "org",
-      "label": "Windsor Theater",
-      "reason": "no candidate (near spellings offered)",
-      "candidates": "134 Windsor Theatre"
     },
     {
       "kind": "person",
@@ -3797,12 +3729,6 @@
     },
     {
       "kind": "person",
-      "label": "מאדאם ליפצין",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "person",
       "label": "מינקאָווסקי",
       "reason": "no candidate",
       "candidates": ""
@@ -3827,39 +3753,9 @@
     },
     {
       "kind": "place",
-      "label": "Cleveland Ohaio",
-      "reason": "weak match (one token only)",
-      "candidates": "Q37320 Cleveland"
-    },
-    {
-      "kind": "place",
-      "label": "Iași (Rumenia)",
-      "reason": "weak match (one token only)",
-      "candidates": "Q46852 Iași"
-    },
-    {
-      "kind": "place",
-      "label": "Lemberg",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "place",
       "label": "Lower East Side (New York, N.Y.)",
       "reason": "district, not a gazetteer settlement",
       "candidates": "New York City (Q60) — district, not a settlement"
-    },
-    {
-      "kind": "place",
-      "label": "Podgórze",
-      "reason": "weak match (one token only)",
-      "candidates": "Q2553877 Podgorze (Krakow, Poland); Q2553877 Podgorze (Krakow, Poland)"
-    },
-    {
-      "kind": "place",
-      "label": "Vilna",
-      "reason": "ambiguous",
-      "candidates": "Q279583 Vilna Governorate; Q707539 Vilna Ghetto"
     }
   ],
   "summary": {
@@ -3871,22 +3767,22 @@
       "place": 13
     },
     "by_status": {
-      "LINKED": 63,
-      "PROPOSED": 25,
-      "GAP": 27
+      "LINKED": 79,
+      "PROPOSED": 22,
+      "GAP": 14
     },
     "edges": 323,
-    "gaps": 52,
+    "gaps": 39,
     "gaps_by_reason": {
-      "no holding library": 12,
+      "holding library recorded only in notes": 6,
       "no publication place": 2,
       "no publisher": 2,
       "no print year": 2,
+      "no holding library": 6,
       "no performance events in the DB report": 7,
-      "no candidate": 14,
-      "ambiguous": 4,
-      "no candidate (near spellings offered)": 3,
-      "weak match (one token only)": 5,
+      "no candidate": 9,
+      "weak match (one token only)": 2,
+      "ambiguous": 2,
       "district, not a gazetteer settlement": 1
     }
   }
