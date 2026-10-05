@@ -493,8 +493,28 @@ def main() -> int:
     edges: list[dict] = []
     gaps: list[dict] = []
 
+    # Authorship is a property of the WORK, so every work gets its `wrote`
+    # edge here — not inside the edition loop, which would reach only the 27
+    # works that happen to have a surviving edition and leave 250 authorless.
+    # The catalogue spells the author two ways: the db_id `683.0` for Lateiner
+    # and the bare string `Hurwitz`, which has db_id 684.
+    PLAYWRIGHT_DB_ID = {"Lateiner": 683, "Hurwitz": 684}
     for w_node in works.values():
         nodes[w_node["id"]] = dict(w_node)
+        aid = PLAYWRIGHT_DB_ID.get(w_node["playwright"])
+        if aid:
+            pid = f"person:dbid{aid}"
+            nodes.setdefault(pid, {
+                "id": pid, "kind": "person",
+                "label": AUTHOR_DB_ID.get(aid, w_node["playwright"]),
+                "status": "LINKED", "db_id": aid,
+                "matched": AUTHOR_DB_ID.get(aid, ""), "method": "author_id",
+                "role": "playwright"})
+            # `attribution` carries the catalogue's own verdict verbatim, so a
+            # `false ascription` work still names the playwright it was ascribed
+            # to — with the edge saying the ascription is disputed.
+            edges.append({"src": pid, "dst": w_node["id"], "rel": "wrote",
+                          "attribution": w_node["attribution"]})
     for s_node in songs:
         nodes[s_node["id"]] = dict(s_node)
         # A song is a Work in its own right that is part_of the play work, not
@@ -609,7 +629,11 @@ def main() -> int:
                 "status": "LINKED", "db_id": aid,
                 "matched": AUTHOR_DB_ID.get(aid, ""), "method": "author_id",
                 "role": "playwright"})
-            edges.append({"src": pid, "dst": wl, "rel": "wrote"})
+            # Only when this edition has no work: the work layer already
+            # emitted the authorship edge for every one of the 277 works, so
+            # repeating it here would double-count.
+            if not work_target:
+                edges.append({"src": pid, "dst": wl, "rel": "wrote"})
         else:
             gaps.append({"kind": "person", "label": e.get("author") or "(blank)",
                          "reason": "edition has no author_id", "candidates": ""})
