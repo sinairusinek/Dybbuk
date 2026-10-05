@@ -1,3 +1,17 @@
+> **IMPLEMENTED 2026-10-05**, commit `423f1a2d2`. `YiDraCor/code/work_layer.py`
+> mints the layers; `build_entity_graph.py` redirects the work-level edges.
+> The graph went from 116 nodes / 283 edges / 4 kinds to **682 nodes / 610 edges
+> / 7 kinds** (work 277, song 225, event 64 added). Invariants are pinned by
+> `YiDraCor/code/test_work_layer.py`.
+>
+> Knock-on in DybbukMedia: orphaned media rows fell **525 → 142**, anchoring
+> **49% → 84%**, entities covered **53 → 127** (73 works now carry material).
+>
+> Still open: §5 (which layer DraCor itself receives), the adaptation-lineage
+> research task (§3), the 9 work/edition title mismatches now in
+> `data/entity_gaps.tsv`, and the 44 play titles still unanchored in the media
+> manifest.
+
 # Adding a `work` node (WEMI Work) to the entity graph
 
 **Status:** proposal, not implemented. Raised by Sinai 2026-10-05.
