@@ -85,6 +85,15 @@ def year_of(v) -> str:
 # --------------------------------------------------------------------------
 # entity graph
 # --------------------------------------------------------------------------
+def work_of_edition(ents: dict) -> dict:
+    """edition node id -> the work it realises, from the `realised_as` spine."""
+    out = {}
+    for e in ents.get("edges", []):
+        if e.get("rel") == "realised_as":
+            out[e["dst"]] = e["src"]
+    return out
+
+
 def load_entities() -> dict:
     """Index entity_graph.json nodes by normalised label and by db_id.
 
@@ -105,7 +114,9 @@ def load_entities() -> dict:
                 by_norm.setdefault(form, [])
                 if n["id"] not in by_norm[form]:
                     by_norm[form].append(n["id"])
-    return {"by_norm": by_norm, "nodes": nodes}
+    out = {"by_norm": by_norm, "nodes": nodes, "edges": g.get("edges", [])}
+    out["_work_of"] = work_of_edition(out)
+    return out
 
 
 def propose(ents: dict, text, kinds=None) -> tuple[str, str]:
@@ -152,12 +163,41 @@ def read_manifest() -> dict:
                 if r.get("media_id")}
 
 
+def reconcile_link_status(rows: dict) -> int:
+    """Keep `link_status` consistent with whether a row actually has an anchor.
+
+    `entity_ids` and `link_status` are both human-owned, which means a re-run can
+    fill an empty `entity_ids` while leaving a stale `GAP` in place — exactly
+    what happened when the work layer gave 388 previously-unanchorable rows an
+    anchor. The pair is one fact, so it is reconciled rather than left to drift:
+    a row that gained an anchor becomes PROPOSED unless a human had already
+    promoted it, and a row that lost one becomes GAP.
+
+    A human's LINKED is never downgraded while the anchor stands.
+    """
+    fixed = 0
+    for row in rows.values():
+        has = bool(row.get("entity_ids"))
+        status = row.get("link_status") or ""
+        if has and status == "GAP":
+            row["link_status"] = "PROPOSED"
+            fixed += 1
+        elif not has and status != "GAP":
+            row["link_status"] = "GAP"
+            row["reviewer"] = ""
+            fixed += 1
+    return fixed
+
+
 def write_manifest(rows: dict) -> None:
     """Write every row under the canonical header, sorted by media_id.
 
     Enforcing COLUMNS at write time is deliberate: a save that silently drops
     schema columns has bitten this project before.
     """
+    fixed = reconcile_link_status(rows)
+    if fixed:
+        print(f"  reconciled link_status on {fixed} row(s)")
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     def sort_key(mid: str):
         m = re.match(r"(.*?)-(\d+)$", mid)
@@ -332,10 +372,18 @@ def translit_key(s) -> str:
 
 
 def load_title_index(ents: dict) -> dict:
-    """skeleton -> [node_id] over edition labels, titles and folder keys."""
+    """skeleton -> [node_id] over work and edition titles.
+
+    Works come first and win: a poster advertises a PLAY, not a particular
+    printing, so `work:*` is the right anchor for a play title. The edition is
+    reachable from the work through `realised_as`. Editions stay in the index
+    for the items that genuinely describe one — a title page, a page scan.
+    """
     idx: dict[str, list] = {}
-    for nid, n in ents["nodes"].items():
-        if n.get("kind") != "edition":
+    by_work = work_of_edition(ents)
+    for kind in ("work", "edition"):
+      for nid, n in ents["nodes"].items():
+        if n.get("kind") != kind:
             continue
         cands = [n.get("label"), n.get("yiddish_title"),
                  re.sub(r"[_-].*$", "", str(n.get("folder") or ""))]
@@ -343,9 +391,14 @@ def load_title_index(ents: dict) -> dict:
             key = translit_key(c)
             if len(key) < 4:
                 continue
+            # A play title always anchors to the WORK, never to a printing: an
+            # edition's own title spellings are therefore indexed under the work
+            # it realises. Otherwise the anchor would depend on which spelling a
+            # given source sheet happened to use, which is arbitrary.
+            target = by_work.get(nid, nid) if kind == "edition" else nid
             idx.setdefault(key, [])
-            if nid not in idx[key]:
-                idx[key].append(nid)
+            if target not in idx[key]:
+                idx[key].append(target)
     return idx
 
 
@@ -355,9 +408,12 @@ def propose_title(ents: dict, idx: dict, text) -> tuple[str, str]:
     Tries the exact label index first, then the transliteration skeleton. A
     skeleton hitting several editions is a GAP, not a coin toss.
     """
-    nid, status = propose(ents, text, kinds={"edition"})
+    nid, status = propose(ents, text, kinds={"work", "edition"})
     if nid:
-        return nid, status
+        # A play title anchors to the work even when it matched an edition's
+        # own label exactly: the edition is reachable via `realised_as`, and the
+        # anchor must not depend on which spelling a source sheet used.
+        return ents.get("_work_of", {}).get(nid, nid), status
     key = translit_key(text)
     if len(key) < 4:
         return "", "GAP"

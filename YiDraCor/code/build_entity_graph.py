@@ -33,6 +33,8 @@ from pathlib import Path
 
 csv.field_size_limit(10 ** 7)
 
+import work_layer
+
 ROOT = Path(__file__).resolve().parent.parent          # YiDraCor/
 REPO = ROOT.parent                                      # Dybbuk/
 EDITIONS = ROOT / "data" / "editions.json"
@@ -472,9 +474,40 @@ def main() -> int:
     print(f"indexes: people={len(ppl_exact)} orgs={len(org_exact)} "
           f"places={len(plc_exact)}")
 
+    # ---- the work layer -------------------------------------------------
+    # Works are minted from the catalogue, not from the editions: all 277
+    # catalogued plays get a node, including the 252 with no surviving text, so
+    # a poster or a song for a lost play has something to attach to. See
+    # docs/work_layer_proposal.md.
+    import openpyxl
+    cat = openpyxl.load_workbook(work_layer.CATALOGUE, read_only=True,
+                                 data_only=True)
+    works = work_layer.load_works(cat)
+    work_idx = work_layer.work_title_index(works)
+    songs, song_ids = work_layer.load_songs(cat, work_idx)
+    work_layer.save_song_ids(song_ids)
+    print(f"work layer: {len(works)} works, {len(songs)} songs "
+          f"({sum(1 for x in songs if x['work_id'])} linked to a work)")
+
     nodes: dict[str, dict] = {}
     edges: list[dict] = []
     gaps: list[dict] = []
+
+    for w_node in works.values():
+        nodes[w_node["id"]] = dict(w_node)
+    for s_node in songs:
+        nodes[s_node["id"]] = dict(s_node)
+        # A song is a Work in its own right that is part_of the play work, not
+        # an attribute of it: it carries its own sheet music, recordings and
+        # composer (Sinai 2026-10-05).
+        if s_node["work_id"]:
+            edges.append({"src": s_node["id"], "dst": s_node["work_id"],
+                          "rel": "part_of"})
+        else:
+            gaps.append({"kind": "song", "label": s_node["label"],
+                         "reason": f"song's play key {s_node['play_key']!r} "
+                                   f"resolves to no single work",
+                         "candidates": ""})
 
     def node(kind: str, raw: str, res: dict, **extra) -> str:
         nid = f"{kind}:{sm(raw) or 'blank'}"
@@ -503,6 +536,70 @@ def main() -> int:
                        ("productions", "roles", "songs", "performance_events")},
         }
 
+        # ---- the WEMI spine: this edition realises a catalogued work.
+        # expression_id joins all 28 edition rows to a catalogue work.
+        wid = work_layer.expression_id(e.get("expression_id"))
+        work_target = f"work:{wid}" if wid in works else None
+        if work_target:
+            edges.append({"src": work_target, "dst": eid, "rel": "realised_as"})
+            # Sanity-check the join rather than trusting it. The edition's own
+            # title comes off the physical title page, so it is an independent
+            # witness to the expression_id copied from the catalogue.
+            #
+            # A short title against a long catalogue one is NORMAL — the
+            # catalogue keeps the full `X oder Y` form while the title page
+            # carries only `X` (Ezra / "Ezre oder der ewiger Jude"). So compare
+            # against EVERY alternative in the work's title, and only complain
+            # when the edition's title matches none of them. That is what
+            # separates a real mix-up from an abbreviation.
+            w_label = works[wid]["label"]
+            ed_title = (e.get("title") or "").strip()
+            alts = [a for a in re.split(r"\boder\b|\bodr\b|,", w_label)
+                    if work_layer.translit_key(a)]
+            ed_key = work_layer.translit_key(ed_title)
+            if ed_title and ed_key and not any(
+                    work_layer.translit_key(a).startswith(ed_key)
+                    or ed_key.startswith(work_layer.translit_key(a))
+                    for a in alts):
+                gaps.append({
+                    "kind": "edition-field",
+                    "label": f"{folder} · expression_id",
+                    # Phrased as a review item, not a verdict: several of
+                    # these are genuine alternative performance titles rather
+                    # than errors. Zylbercweig records that Gabriel (3877) was
+                    # played in Europe as חינקע און פּינקע, and the catalogue
+                    # itself gives Mishke Mashke the play_key "Di grinhorns".
+                    # But MS_KhurbnYerusholaim pointing at 3887 "Khave oder di
+                    # shlang" IS wrong — and the duplicate row holds the correct
+                    # 3891. A human has to tell these apart.
+                    # Phrased as a review item, not a verdict: several of
+                    # these are genuine alternative performance titles rather
+                    # than errors. Zylbercweig records that Gabriel (3877) was
+                    # played in Europe as חינקע און פּינקע, and the catalogue
+                    # itself gives Mishke Mashke the play_key "Di grinhorns".
+                    # But MS_KhurbnYerusholaim pointing at 3887 "Khave oder di
+                    # shlang" IS wrong — and the duplicate row holds the correct
+                    # 3891. A human has to tell these apart. The reason stays
+                    # generic so it groups in the summary; the specifics go in
+                    # `candidates`.
+                    "reason": "work/edition titles differ — alternative title, "
+                              "or a wrong expression_id? needs review",
+                    "candidates": (f"expression_id {wid} = {w_label!r}; "
+                                   f"edition title = {ed_title!r}")})
+        else:
+            gaps.append({"kind": "edition-field",
+                         "label": f"{folder} · expression_id",
+                         "reason": f"expression_id {wid!r} is not a catalogued "
+                                   f"work, so the edition has no work",
+                         "candidates": ""})
+
+        # Work-level facts attach to the work when we have one, and fall back to
+        # the edition only when we do not. Authorship, cast, composers and
+        # performances are properties of the PLAY: hanging them on a printing
+        # made the graph claim Mishke Mashke was performed in 1889 by a book
+        # printed in 1911.
+        wl = work_target or eid
+
         # ---- playwright: already an id in the data, so LINKED by construction
         aid = expr.get("author_id")
         if aid:
@@ -512,7 +609,7 @@ def main() -> int:
                 "status": "LINKED", "db_id": aid,
                 "matched": AUTHOR_DB_ID.get(aid, ""), "method": "author_id",
                 "role": "playwright"})
-            edges.append({"src": pid, "dst": eid, "rel": "wrote"})
+            edges.append({"src": pid, "dst": wl, "rel": "wrote"})
         else:
             gaps.append({"kind": "person", "label": e.get("author") or "(blank)",
                          "reason": "edition has no author_id", "candidates": ""})
@@ -528,8 +625,13 @@ def main() -> int:
             role_raw = str(r.get("Role") or "credited").strip()
             rel, _, character = role_raw.partition(":")
             nid = node("person", raw, res, role=rel.strip().lower())
-            edges.append({"src": nid, "dst": eid, "rel": rel.strip().lower(),
+            # Coarse granularity: the Leksikon attests that this person played
+            # this role in this play, with no event named. That claim stands on
+            # its own evidence and is not a placeholder — see
+            # work_layer.coarse_to_fine.
+            edges.append({"src": nid, "dst": wl, "rel": rel.strip().lower(),
                           "character": character.strip() or None,
+                          "level": "work" if work_target else "edition",
                           "source": r.get("source"), "context": r.get("context")})
 
         # ---- venues + premiere places, from productions
@@ -546,21 +648,47 @@ def main() -> int:
                                   "year": p.get("Year"), "source": p.get("source")})
                     continue
                 nid = node("org", v, res, org_role="venue")
-                edges.append({"src": eid, "dst": nid, "rel": "performed_at",
+                edges.append({"src": wl, "dst": nid, "rel": "performed_at",
                               "year": p.get("Year"), "type": p.get("Type")})
             if p.get("PremierePlace"):
                 res = resolve(p["PremierePlace"], plc_exact, plc_tok)
                 nid = node("place", p["PremierePlace"], res)
-                edges.append({"src": eid, "dst": nid, "rel": "premiered_in",
+                edges.append({"src": wl, "dst": nid, "rel": "premiered_in",
                               "year": p.get("Year")})
 
-        # ---- venues from the performance-events report
+        # ---- performance EVENTS, as nodes of their own.
+        # These rows carry a date, so they identify a specific staging rather
+        # than the general fact that the play was performed somewhere. That is
+        # the fine granularity: a cast fact attached here can say who was on
+        # stage that night, which an edge to the work never can.
         for ev in e.get("performance_events") or []:
-            for v in split_venues(ev.get("venue")) + split_venues(ev.get("venue_alt")):
+            venues = (split_venues(ev.get("venue"))
+                      + split_venues(ev.get("venue_alt")))
+            date = ev.get("date")
+            ev_target = wl
+            if date and work_target:
+                # One node per (work, date, first venue): the report lists a
+                # venue and an alternative spelling of the same venue, not two
+                # venues, so the event must not be split on them.
+                ev_id = (f"event:{wid}-{re.sub(r'[^0-9]', '', str(date))}"
+                         f"-{sm(venues[0]) if venues else 'novenue'}")
+                if ev_id not in nodes:
+                    nodes[ev_id] = {
+                        "id": ev_id, "kind": "event", "label":
+                            f"{nodes[work_target]['label']} · {date}",
+                        "status": "LINKED", "method": "performance_events_report",
+                        "date": date, "event_type": ev.get("event_type"),
+                        "work_id": work_target,
+                    }
+                    edges.append({"src": ev_id, "dst": work_target,
+                                  "rel": "of_work"})
+                ev_target = ev_id
+            for v in venues:
                 res = resolve(v, org_exact, org_tok, org_parts, decisions=ORG_DECISION)
                 nid = node("org", v, res, org_role="venue")
-                edges.append({"src": eid, "dst": nid, "rel": "performed_at",
-                              "date": ev.get("date"), "type": ev.get("event_type")})
+                edges.append({"src": ev_target, "dst": nid, "rel": "performed_at",
+                              "date": date, "type": ev.get("event_type"),
+                              "level": "event" if ev_target != wl else "work"})
 
         # ---- imprint: publisher org + publication place
         if e.get("publisher"):
@@ -614,6 +742,22 @@ def main() -> int:
                          "label": f"{folder} · performance_events",
                          "reason": "no performance events in the DB report",
                          "candidates": ""})
+
+    # editions.csv lists Lateiner_Meshumed twice (a duplicate row, not two
+    # witnesses — both carry expression 3879 and differ only in `notes`), so the
+    # same spine edge is emitted twice. Dedupe identical edges rather than
+    # letting the duplicate inflate the counts.
+    seen_edge, uniq_edges = set(), []
+    for ed in edges:
+        sig = json.dumps(ed, sort_keys=True, ensure_ascii=False)
+        if sig in seen_edge:
+            continue
+        seen_edge.add(sig)
+        uniq_edges.append(ed)
+    if len(uniq_edges) != len(edges):
+        print(f"  deduped {len(edges) - len(uniq_edges)} duplicate edges "
+              f"(the repeated Lateiner_Meshumed row)")
+    edges = uniq_edges
 
     # editions.csv lists Lateiner_Meshumed twice, so dedupe the ledger.
     seen_gap, uniq_gaps = set(), []
