@@ -99,6 +99,55 @@ def build_performance_events(perf_path: Path, productions_by_eid_key: dict) -> d
     return out
 
 
+# The DB PerformanceEvents report covers Lateiner only: 129 of its 131 titles
+# are Lateiner works and none is Hurwitz (checked 2026-10-05, and its Info sheet
+# shows an EMPTY filter, so this is the whole table, not a filtered slice).
+# For a Lateiner play that appears in both, the report turns out to carry no
+# information the hafakot rows lack — same events, same dates, same venues; it
+# adds a stable DB id and a normalised date. So where the report has nothing we
+# derive the events from hafakot instead of leaving the edition bare, and stamp
+# each one `derived_from: "hafakot"` with no `id`, so a derived event can never
+# be mistaken for a DB record.
+_EVENT_TYPE_FROM_HAFAKOT = {
+    "premiere": "Premiere",
+    "premier": "Premiere",
+    "production": "Show",
+    "publication": "Publication",
+}
+
+
+def _events_from_productions(productions: list[dict]) -> list[dict]:
+    """Build performance events out of hafakot production rows."""
+    out = []
+    for p in productions:
+        typ = str(p.get("Type") or "").strip().lower()
+        if typ == "publication":        # a print event, not a performance
+            continue
+        raw_date = p.get("innacurate or exact date")
+        date = None
+        if isinstance(raw_date, (_dt.datetime, _dt.date)):
+            date = raw_date.strftime("%d/%m/%Y")
+        elif raw_date:
+            m = re.match(r"(\d{4})-(\d{2})-(\d{2})", str(raw_date))
+            date = f"{m.group(3)}/{m.group(2)}/{m.group(1)}" if m else str(raw_date)
+        out.append({
+            "id": None,
+            "event_type": _EVENT_TYPE_FROM_HAFAKOT.get(typ, p.get("Type")),
+            "date": date,
+            "year": _year_from_date(raw_date) or to_int(p.get("Year")),
+            "venue": p.get("Theatre") or None,
+            "actor_character": None,
+            "person_role": None,
+            "roman_title": p.get("Play KEY") or None,
+            "yiddish_title": p.get("\u05db\u05dc\u05dc \u05d9\u05d9\u05d3\u05d9\u05e9") or None,
+            "premiere_place": p.get("PremierePlace") or None,
+            "source_catalogue": p.get("source") or p.get("dating Source") or None,
+            "derived_from": "hafakot",
+        })
+    out.sort(key=lambda e: (e.get("year") or 0))
+    return out
+
+
 def _match_events_to_productions(events: list[dict], productions: list[dict]) -> list[dict]:
     """Augment each event with venue_alt/source from a matching hafakot row.
 
@@ -539,7 +588,7 @@ def main() -> int:
                     break
             rec["performance_events"] = _match_events_to_productions(
                 [dict(e) for e in evs], rec["productions"]
-            )
+            ) or _events_from_productions(rec["productions"])
         else:
             unmatched_no_eid.append(f"{ed.get('title')} (doc {doc_id})")
             rec["expression"] = None

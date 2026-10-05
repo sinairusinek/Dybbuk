@@ -68,15 +68,15 @@
 | Dovid's Fidele | 3869 | Dovids fidele | lebensbild mit gesang; operetta; melodrama; gezang-drama | 1 | 1 (1/0) | 8 | 3 |
 | Dos Yudishe Herts | 3866 | Dos yidishe harts | comic operetta; gezang-drama | 1 | 1 (1/0) | 1 | 4 |
 | Meshumed | 3879 | Goles Rusland | historical operetta | 1 | 1 (0/1) | 11 | 4 |
-| Yaakov-Esav | 4014 | Yanḳev un Eysev | biblical operetta | 3 | 0 (0/0) | 4 | 0 |
+| Yaakov-Esav | 4014 | Yanḳev un Eysev | biblical operetta | 3 | 3 (1/2) | 4 | 0 |
 | Meshumed | 3879 | Goles Rusland | historical operetta | 1 | 1 (0/1) | 11 | 4 |
-| Yetsi'as Mitsrayim | 4043 | Yetsies mitsrayim | historical operetta; operetta | 11 | 0 (0/0) | 13 | 5 |
+| Yetsi'as Mitsrayim | 4043 | Yetsies mitsrayim | historical operetta; operetta | 11 | 10 (0/10) | 13 | 5 |
 | Yoysef in Egipten | 3933 | Yoysef un zayne brider | historical operetta | 2 | 2 (1/1) | 2 | 5 |
-| Ben HaDor | 4010 | Ben Hador | historical operetta; operetta | 11 | 0 (0/0) | 46 | 3 |
-| Shimshon Hagibor | 3959 | Shimshun Hagiber | historical operetta | 1 | 0 (0/0) | 1 | 0 |
+| Ben HaDor | 4010 | Ben Hador | historical operetta; operetta | 11 | 11 (1/10) | 46 | 3 |
+| Shimshon Hagibor | 3959 | Shimshun Hagiber | historical operetta | 1 | 1 (1/0) | 1 | 0 |
 | Khurbn Yerusholaim | 3887 | Khave oder di shlang als hoyzfraynd | comedy;operetta; gezang-drama | 1 | 1 (1/0) | 0 | 0 |
-| Bas Koyen | 3963 | Bas Cohen oder, Malka Alexandra | historical operetta | 4 | 0 (0/0) | 5 | 0 |
-| Di Tsvey Tnoim | 4012 | Di tsvey tanoyim | historical operetta; operetta | 2 | 0 (0/0) | 13 | 5 |
-| Tissa-Essler | 3944 | Tisa Esler | Tsaytbild; drama | 9 | 0 (0/0) | 5 | 6 |
+| Bas Koyen | 3963 | Bas Cohen oder, Malka Alexandra | historical operetta | 4 | 4 (1/3) | 5 | 0 |
+| Di Tsvey Tnoim | 4012 | Di tsvey tanoyim | historical operetta; operetta | 2 | 2 (1/1) | 13 | 5 |
+| Tissa-Essler | 3944 | Tisa Esler | Tsaytbild; drama | 9 | 9 (1/8) | 5 | 6 |
 | Emigration nach America | 3830 | Di emigratsyon nokh Amerike | comic operetta; gezang-drama | 3 | 3 (1/2) | 2 | 1 |
 | Khurbn Yerusholaim (DUPLICATE — blank, see 838368) | 3891 | Khurbn Yerusholayim | historical operetta | 3 | 3 (1/2) | 16 | 15 |
