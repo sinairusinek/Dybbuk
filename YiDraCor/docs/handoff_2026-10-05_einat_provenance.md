@@ -68,10 +68,13 @@ Two of the six have a detail that may make them easier to place:
   If that label identifies the repository, reading it off the first pages would
   answer the question without any catalogue lookup.
 - **Yetsi'as Mitsrayim** — the text is in **German in Latin script**, not
-  Yiddish, and its title page is in German and Russian: *"Von Profesor M.
-  Horowitz, Musik von Perlmutter und Wohl"*. A German-language Hurwitz
-  manuscript may well have arrived by a different route than the Yiddish ones,
-  so its provenance is worth knowing on its own account.
+  Yiddish, its title page is in German and Russian (*"Von Profesor M.
+  Horowitz, Musik von Perlmutter und Wohl"*), and it carries **Russian
+  censorship stamps banning performance, St Petersburg, 29 October 1910**.
+  A censored German-language Hurwitz manuscript almost certainly reached its
+  repository by a different route than the Yiddish ones, so its provenance is
+  worth knowing on its own account — and the censor's stamp may itself name
+  the archive or collection it passed through.
 
 **Is either of those quicker to answer than the full six?**
 
