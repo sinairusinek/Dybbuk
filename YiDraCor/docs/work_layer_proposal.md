@@ -334,10 +334,20 @@ Fields: `Song title in sources`, `Romanized title`, `YIVO transliteration`,
 
 **Open decisions for the song node:**
 
-1. **Identity.** `tempID` is explicitly temporary and not unique (216 distinct
-   over 224 populated), so songs need **minted ids** — unlike works, which had
-   `Expression ID` waiting. Suggest `song:<n>` from a new stable sequence,
-   assigned once and never renumbered.
+1. **Identity — DECIDED: minted ids, keyed on (play, title).** `tempID` is
+   explicitly temporary and not unique (216 distinct over 224 populated), so
+   songs get minted `song:<n>` ids, persisted in `data/song_ids.tsv`, assigned
+   once and never renumbered.
+
+   **The play is the identity; the publication is not.** A song printed in
+   several songbooks is one song: תקיעה גדולה appears in both *Di yidishe
+   bihne* and *Shund on Shellac*, which are secondary sources and become
+   `attestations` on the single node — never nodes of their own, and never a
+   parent. Conversely **one title under different plays stays separate nodes**:
+   17 titles recur across plays, and they are mostly form-names — דועט (Duet)
+   in *Der kuzari*, *Ben Hador* and *Ishe roeh*; טערצעט in two more. Merging
+   those would invent a travelling song the sources do not attest. `part_of`
+   therefore only ever targets a work.
 2. **Attachment level.** `song --in_work--> work` is right for the 223 that
    resolve. But a song also appears *in a printed edition* (the 175 counted on
    edition nodes come from the editions' own song lists) and *in a sheet-music

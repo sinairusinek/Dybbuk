@@ -484,7 +484,7 @@ def main() -> int:
                                  data_only=True)
     works = work_layer.load_works(cat)
     work_idx = work_layer.work_title_index(works)
-    songs, song_ids = work_layer.load_songs(cat, work_idx)
+    songs, song_ids = work_layer.load_songs(cat, work_idx, works)
     work_layer.save_song_ids(song_ids)
     print(f"work layer: {len(works)} works, {len(songs)} songs "
           f"({sum(1 for x in songs if x['work_id'])} linked to a work)")

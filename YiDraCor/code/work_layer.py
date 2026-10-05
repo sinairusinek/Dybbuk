@@ -212,14 +212,45 @@ def work_title_index(works: dict) -> dict:
     return idx
 
 
-def resolve_work(idx: dict, text) -> tuple[str, str]:
-    """Resolve a play title to one work. Ambiguity is a GAP, never a coin toss."""
+def resolve_work(idx: dict, text, works: dict | None = None) -> tuple[str, str]:
+    """Resolve a play title to one work. Ambiguity is a GAP, never a coin toss.
+
+    The songs sheet writes play keys in short form while the catalogue keeps the
+    full `X oder Y` title — `Yafes Toyar` for "Yafes toyer oder, Bilem haroshe",
+    `Bas kohen` for "Bas Cohen oder, Malka Alexandra". So an exact skeleton miss
+    falls back to a prefix match, which must stay unambiguous to count.
+
+    When several hits all resolve to the SAME expression id they are one work
+    under two spellings (the catalogue has a `Di tsigaynerin` / `Di  Tsigaynerin`
+    pair differing only by a double space), so that is not ambiguity.
+    """
     key = translit_key(text)
     if len(key) < 4:
         return "", "GAP"
-    hits = idx.get(key) or []
-    if len(hits) == 1:
-        return hits[0], "PROPOSED"
+
+    def pick(hits: list) -> str:
+        if len(hits) == 1:
+            return hits[0]
+        if len(hits) > 1 and works:
+            # Duplicate work rows for one play: identical labels under two
+            # expression ids. Prefer the lowest id so the choice is stable, and
+            # only when the labels really agree.
+            labels = {translit_key(works[h]["label"]) for h in hits}
+            if len(labels) == 1:
+                return sorted(hits, key=lambda h: int(h) if h.isdigit() else 0)[0]
+        return ""
+
+    nid = pick(idx.get(key) or [])
+    if nid:
+        return nid, "PROPOSED"
+
+    # Prefix fallback, long enough that a short title cannot swallow a longer
+    # unrelated play.
+    if len(key) >= 6:
+        pref = [n for k, v in idx.items() if k.startswith(key) for n in v]
+        nid = pick(sorted(set(pref)))
+        if nid:
+            return nid, "PROPOSED"
     return "", "GAP"
 
 
@@ -262,7 +293,7 @@ def song_signature(play_key: str, title: str) -> str:
     return f"{translit_key(play_key)}|{sm(title)}"
 
 
-def load_songs(wb, work_idx: dict) -> tuple[list, dict]:
+def load_songs(wb, work_idx: dict, works: dict) -> tuple[list, dict]:
     """Songs as Work nodes that are `part_of` a play work.
 
     A song is a Work in its own right, not an attribute of the play: 57 rows
@@ -277,12 +308,19 @@ def load_songs(wb, work_idx: dict) -> tuple[list, dict]:
     ids = load_song_ids()
     next_n = max((int(v.split(":")[-1]) for v in ids.values()), default=0) + 1
 
-    # A song can be attested in several publications: תקיעה גדולה appears in
-    # both `Di yidishe bihne` (p.35, author unrecorded) and `Shund on Shellac`
-    # (p.40, credited Lateiner). Those rows are ONE song with two attestations,
-    # not two songs — so rows are grouped by signature and every row becomes an
-    # attestation on the single node. Five further pairs are exact duplicates
-    # (same source, page and author); they collapse the same way.
+    # Identity is (play, title) — the PLAY is what matters; the publication a
+    # song happens to be printed in is bibliography, never a parent.
+    #
+    # Two consequences, both deliberate:
+    #  * One song listed under the SAME play in several songbooks is ONE node.
+    #    תקיעה גדולה is printed in both `Di yidishe bihne` and `Shund on
+    #    Shellac`; those are secondary sources, so they become `attestations`
+    #    on the single node and never nodes of their own.
+    #  * One TITLE under DIFFERENT plays stays SEPARATE nodes. 17 titles do
+    #    this, and they are mostly form-names reused across plays — דועט
+    #    (Duet) appears in Der kuzari, Ben Hador and Ishe roeh, טערצעט in two
+    #    more. Merging them would invent a travelling song that the sources do
+    #    not attest.
     grouped: dict[str, list] = {}
     order: list[str] = []
     skipped: list[dict] = []
@@ -324,7 +362,7 @@ def load_songs(wb, work_idx: dict) -> tuple[list, dict]:
             ids[sig] = f"song:{next_n}"
             next_n += 1
 
-        wid, status = resolve_work(work_idx, play_key)
+        wid, status = resolve_work(work_idx, play_key, works)
         # Prefer a row that actually credits an author over one that does not:
         # of two attestations of תקיעה גדולה, only the Shund on Shellac row
         # names Lateiner.

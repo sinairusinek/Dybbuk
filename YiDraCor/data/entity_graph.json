@@ -6687,7 +6687,7 @@
       "title_in_source": "",
       "romanized_title": "Wie lang noch",
       "play_key": "Di Tsigaynerin",
-      "work_id": "",
+      "work_id": "work:3850",
       "author_raw": "",
       "author_certainty": "unknown",
       "source_publication": "Shund on Shellac",
@@ -6705,9 +6705,9 @@
         }
       ],
       "n_attestations": 1,
-      "status": "GAP",
-      "method": "",
-      "link_status_to_work": "GAP"
+      "status": "LINKED",
+      "method": "catalogue_song_sheet",
+      "link_status_to_work": "PROPOSED"
     },
     {
       "id": "song:15",
@@ -12189,7 +12189,7 @@
       "title_in_source": "די צוועלף שבטים",
       "romanized_title": "",
       "play_key": "Yafes Toyar",
-      "work_id": "",
+      "work_id": "work:3985",
       "author_raw": "Hurwitz",
       "author_certainty": "stated",
       "source_publication": "לידער אונד קופלעטן פון די נייעסטע טהעאטער שטיקע (פערלאג פון די היברו פאבלישינג קאמפאני NYPL)",
@@ -12207,9 +12207,9 @@
         }
       ],
       "n_attestations": 1,
-      "status": "GAP",
-      "method": "",
-      "link_status_to_work": "GAP"
+      "status": "LINKED",
+      "method": "catalogue_song_sheet",
+      "link_status_to_work": "PROPOSED"
     },
     {
       "id": "song:196",
@@ -12219,7 +12219,7 @@
       "title_in_source": "שלאף ליעד",
       "romanized_title": "",
       "play_key": "Yafes Toyar",
-      "work_id": "",
+      "work_id": "work:3985",
       "author_raw": "Hurwitz",
       "author_certainty": "stated",
       "source_publication": "לידער אונד קופלעטן פון די נייעסטע טהעאטער שטיקע (פערלאג פון די היברו פאבלישינג קאמפאני NYPL)",
@@ -12237,9 +12237,9 @@
         }
       ],
       "n_attestations": 1,
-      "status": "GAP",
-      "method": "",
-      "link_status_to_work": "GAP"
+      "status": "LINKED",
+      "method": "catalogue_song_sheet",
+      "link_status_to_work": "PROPOSED"
     },
     {
       "id": "song:197",
@@ -15201,6 +15201,11 @@
       "rel": "part_of"
     },
     {
+      "src": "song:14",
+      "dst": "work:3850",
+      "rel": "part_of"
+    },
+    {
       "src": "song:15",
       "dst": "work:4007",
       "rel": "part_of"
@@ -16098,6 +16103,16 @@
     {
       "src": "song:194",
       "dst": "work:3808",
+      "rel": "part_of"
+    },
+    {
+      "src": "song:195",
+      "dst": "work:3985",
+      "rel": "part_of"
+    },
+    {
+      "src": "song:196",
+      "dst": "work:3985",
       "rel": "part_of"
     },
     {
@@ -18988,12 +19003,6 @@
     },
     {
       "kind": "song",
-      "label": "Vi lang nokh",
-      "reason": "song's play key 'Di Tsigaynerin' resolves to no single work",
-      "candidates": ""
-    },
-    {
-      "kind": "song",
       "label": "aydiridi bomdiridi bomdiri sa sa!",
       "reason": "song's play key 'Yehuda haglili' resolves to no single work",
       "candidates": ""
@@ -19018,12 +19027,6 @@
     },
     {
       "kind": "song",
-      "label": "die tsvelf shvotim",
-      "reason": "song's play key 'Yafes Toyar' resolves to no single work",
-      "candidates": ""
-    },
-    {
-      "kind": "song",
       "label": "dos liebele",
       "reason": "song's play key 'Die Akeyda' resolves to no single work",
       "candidates": ""
@@ -19032,12 +19035,6 @@
       "kind": "song",
       "label": "krakh trakh",
       "reason": "song's play key 'Bas kohen' resolves to no single work",
-      "candidates": ""
-    },
-    {
-      "kind": "song",
-      "label": "shlof lied",
-      "reason": "song's play key 'Yafes Toyar' resolves to no single work",
       "candidates": ""
     },
     {
@@ -19059,11 +19056,11 @@
       "place": 12
     },
     "by_status": {
-      "LINKED": 671,
-      "GAP": 11
+      "LINKED": 674,
+      "GAP": 8
     },
-    "edges": 611,
-    "gaps": 28,
+    "edges": 614,
+    "gaps": 25,
     "gaps_by_reason": {
       "work/edition titles differ — alternative title, or a wrong expression_id? needs review": 9,
       "no publication place": 1,
@@ -19071,11 +19068,9 @@
       "no print year": 1,
       "no holding library": 5,
       "song's play key 'Die Shlekhte tsayten' resolves to no single work": 1,
-      "song's play key 'Di Tsigaynerin' resolves to no single work": 1,
       "song's play key 'Yehuda haglili' resolves to no single work": 3,
       "song's play key 'Die Akeyda' resolves to no single work": 2,
-      "song's play key 'Bas kohen' resolves to no single work": 2,
-      "song's play key 'Yafes Toyar' resolves to no single work": 2
+      "song's play key 'Bas kohen' resolves to no single work": 2
     }
   }
 }
