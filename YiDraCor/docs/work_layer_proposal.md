@@ -120,75 +120,145 @@ is the prerequisite either way, so it should land first.
 
 ## Questions that remain
 
-### 1. `certainty` has five values, not two — and Hurwitz has none
+### 1. `certainty` — DECIDED (Sinai, 2026-10-05)
 
-`Lateiner Plays.certainty`: `certain` 100, `uncertain` 25,
-**`false ascription` 14**, **`error` 5**, `uncertain/false?` 1.
-`Hurwitz Plays.certainty`: **0 populated — the column is empty.**
+**Carry the five raw values through verbatim** (`certain`, `uncertain`,
+`false ascription`, `error`, `uncertain/false?`). No normalisation: `error` and
+`false ascription` are different claims and collapsing them would destroy the
+distinction between a misattribution (3841 *Di laykhtziniger* — the play exists,
+by Friendsel) and a spurious title (3907 *Nekhemye kugl* — not an independent
+work at all).
 
-So "save false ascription as such" needs a target vocabulary. `error` is not the
-same claim as `false ascription`: the comments show `error` rows are mostly
-*not plays at all* or not independent works —
+**The 125 Hurwitz works get `unknown`**, not a defaulted `certain` — the column
+is empty for all of them, and nobody has checked. `unknown` says so.
 
-| id | title | why flagged `error` |
-|---|---|---|
-| 3841 | Di laykhtziniger | "Play not by Lateiner, but by Friendsel" |
-| 3907 | Nekhemye kugl | "appears only in Berkovitsh. It is not an indipend[ent]…" |
-| 3908 | Nokhem gendzele | "It is not an ind[ependent]…" |
-| 3818 | Der nayer stern | "Was staged at the People's theatre in Februar 1907. Play by …" |
+A consumer wanting coarser buckets can group the raw values; a consumer wanting
+the distinction still has it. The free-text `comments` column is where the
+reason lives and should travel with the work.
 
-3841 is a *misattribution* (the play exists, by someone else) — arguably the
-same class as `false ascription`. 3907/3908 are *spurious titles* (not separate
-works at all). Those are different facts and a reader will want them apart.
+### 2. The two sheets have different schemas — DECIDED: union
 
-**Open:** do we (a) carry the five raw values through verbatim, (b) normalise to
-a smaller vocabulary — say `certain` / `uncertain` / `misattributed` /
-`spurious` — or (c) carry the raw value plus a normalised one? And what do the
-125 Hurwitz works get, given the column is empty: `unknown`, or `certain` by
-default? Defaulting to `certain` would assert something nobody checked.
+**Take the union of both schemas.** The asymmetry is between the two *sheets*,
+not between the two playwrights — Hurwitz is of course a playwright, and the
+sheets were simply maintained by different hands at different times.
 
-### 2. The two sheets have different schemas
+**The 9 shared columns carry the whole work identity:**
+`Expression ID`, `English Name`, `Yiddish Name`, `author`, `TAGS`, `Genre`,
+`certainty`, `expression`, `comments`.
 
-Hurwitz carries fields Lateiner lacks — `Composer` (28), `Year of Composition`
-(110), `Draws on existing material` (24), `Success/Length of run` (12),
-`Sources/Availability of Text` (37), `Plot summary` (3) — while Lateiner carries
-`certainty`, `JPRESS` (102), `Silberzweig` (82), `Berkovitsh` (58), `Sieger` (24),
-which Hurwitz lacks entirely.
+Everything playwright-specific is secondary:
 
-**Open:** does the `work` node take the union of both schemas (most fields null
-for one playwright), or only the intersection plus a per-sheet extras blob? The
-union is simpler to query and honest about what is missing; it also makes the
-asymmetry visible, which may itself be a finding worth surfacing.
+| Lateiner-only | Hurwitz-only |
+|---|---|
+| `JPRESS` (102), `Silberzweig` (82), `Berkovitsh` (58), `Sieger` (24) — provenance flags | `Year of Composition` (110), `Translated Play title` (111), `Music available` (45), `Sources/Availability of Text` (37), `Composer` (28), `Draws on existing material` (24), `Success/Length of run` (12), `Plot summary` (3) |
+| `do we have a copy` (68) | `Details/Notes` (47), `Play title by Daniela`, `tempsource` |
 
-### 3. Adaptation lineage points *outside* the corpus
+**A null in a union field means "unrecorded in this sheet", never "none
+existed."** The clearest case: `Composer` is populated for 28 Hurwitz works and
+absent from `Lateiner Plays` entirely — yet Mogulesco demonstrably composed for
+Lateiner. The graph already knows this independently: its **44 `composer` edges
+come from the roles sheets (source: Silberzweig), which cover both playwrights**,
+not from `Hurwitz Plays.Composer`. So composer coverage does *not* actually
+depend on the asymmetric column — the union's nulls are narrower than they look,
+and the real composer data arrives by another route.
 
-30 works record a source (`expression` col: 13 Lateiner + 17 Hurwitz; plus
-Hurwitz's 24 `Draws on existing material`). But the sources are overwhelmingly
-**external**: Dumas (Monte Cristo), Strindberg, Goldfaden, Max Nordau's *Dr.
-Kuhn*, Aaron Halle-Wolfsohn, a Linetsky play, "the German play *Olaf*".
+The builder should therefore record provenance per field (which sheet a value
+came from) so a null is never misread as a negative claim. Checked and not
+found: neither the `hafakot` (productions) nor `songs_Lateiner and Hurwitz`
+sheets carry play-level composer data, so there is no third source to fill the
+Lateiner side from.
 
-So this is not a work→work edge inside our 277. **Open:** mint external source
-works as nodes too (a fifth status beyond LINKED/PROPOSED/GAP, since they are
-outside the project's scope), record the lineage as a free-text attribute on the
-work, or model `adapted_from` pointing at a stub node? Note the values are prose
-("adaptation: Katzeboim play, 'Eremit oyf armentera'"), often hedged with `??`,
-so parsing them into entities is itself a research task, not a transform.
+### 3. Adaptation lineage — DEFERRED (Sinai, 2026-10-05)
 
-### 4. Does the performance event become its own node?
+Left as a research task. Carry the `expression` /
+`Draws on existing material` text on the work as an attribute; do not attempt to
+parse it into entities or `adapted_from` edges yet.
 
-Deferred from the original proposal but worth re-asking now that works are
-being minted. A performance has a date, a venue, a troupe and a cast; today
-those facts collapse onto `performed_at` edge attributes. With a work layer,
-`person --actor--> work` is *better* than today but still lossy: it cannot say
-that Mogulesco played Mishke **in the 1889 Poole's Theatre production
-specifically**. The 117 `performed_at` edges plus 75 catalogue productions are
-enough material to justify the node — but it is a second, larger change.
+### 4. Performance event as its own node — DECIDED: yes (Sinai, 2026-10-05)
 
-### 5. What do the character networks and DraCor export describe?
+**With an explicit requirement: the model must support both granularities at
+once.** Sinai: "especially in Zylbercweig, many cases we will know that an actor
+played a role in a play without knowledge of the exact performance events, but
+when we have the refined data we keep it."
 
-Both key on editions today. A network is a property of the *text*, so it
-arguably belongs to the edition (which text was encoded), while a reader will
-expect to find it under the play. Needs a decision before the site links either.
+So a cast fact must be recordable at whichever level the evidence supports:
+
+```
+person --actor--> work                  # Zylbercweig says X played Y; no event known
+person --actor--> performance_event     # a dated playbill: X played Y, Thalia, 1897
+performance_event --of_work--> work     # the event always names its work
+```
+
+This is a **coarse-to-fine** model, not two competing ones. The work-level edge
+is not a placeholder to be deleted once an event turns up: the Leksikon's claim
+that an actor played a role is itself evidence, with its own source, and it
+survives alongside any later event-level attestation. A consumer asking "who
+played in this play" must union both levels; one asking "who was on stage that
+night" reads only the event level.
+
+Consequences to design for:
+- An event-level fact must not be double-counted as a separate work-level claim
+  when both exist for the same person+role+work.
+- The reverse inference is **invalid**: an event-level cast fact does imply the
+  work-level one, but a work-level fact must never be promoted to an invented
+  event.
+- Each level keeps its own `source` (Silberzweig vs a specific playbill), so the
+  provenance distinction stays visible.
+
+### 5. What layer do the character networks and the DraCor export describe?
+
+**Why this is a real question and not bookkeeping.** Today there are 24 DraCor
+TEIs for 27 works, so the mapping looks 1:1 and either answer "works". That is a
+coincidence of our current corpus, and it is the reason this is easy to get wrong
+now and expensive to unpick later. The moment a second edition of one play is
+encoded — a Warsaw and a New York printing of *Hinke Pinke*, say, or a printed
+text alongside the manuscript — the two layers diverge and every consumer that
+guessed wrong breaks.
+
+**The substantive issue: a character network is a measurement of a text, not of
+a play.** It is computed from who co-occurs in which scene, so it depends on
+choices that belong to *one* edition:
+
+- how many acts and scenes that printing has (our MS and print witnesses differ);
+- which characters that witness names, and under which speech-prefix labels —
+  the whole `speaker_overrides` apparatus exists because witnesses disagree;
+- cuts, censorship and added musical numbers.
+
+Two editions of one play therefore yield two *different, both-correct* networks.
+Attaching the network to the work would force a false choice about which witness
+represents the play.
+
+**But the reader's expectation runs the other way.** Someone browsing the site
+wants "the network for *Mishke Mashke*", not "the network for the 1911 Warsaw
+Kultur printing". And for the 252 text-less works there is no network at all, so
+a work-keyed network silently means "no data" for 90% of the plays.
+
+**Recommendation: the artefact is edition-level, the entry point is
+work-level.** Concretely:
+
+- the network **belongs to the edition** (`edition --has_network--> …`), because
+  that is what was measured;
+- the work page **lists the networks of its editions**, labelled by witness, and
+  shows one by default when there is only one;
+- the DraCor export likewise stays **edition-keyed** — it already carries
+  edition identity, not work identity: `Mishke-Mashke.xml` asserts
+  `<idno>II 65.675</idno>` (the Biblioteka Narodowa shelf mark) and a
+  `transkribus` idno pointing at doc 828537. Those identify **a specific
+  physical copy**, so the file is already describing an edition whatever we
+  call it.
+
+**What this needs from the builder:** the DraCor TEIs should also carry the work
+identifier (`<idno type="work">3787</idno>` beside the existing shelf mark), so
+a consumer can group editions of one play without re-deriving the mapping from
+filenames. That is a small addition to the TEI header and the honest way to
+express "this witness realises that work".
+
+**Still open for Sinai:** whether DraCor itself should receive one file per
+edition or one per work. DraCor's own model is play-centric, so submitting two
+witnesses of *Hinke Pinke* as two plays would misrepresent the corpus there,
+while submitting one means choosing a base witness — an editorial decision, not
+a technical one. That choice only binds the external submission, not our
+internal graph.
 
 ## Knock-on effects
 
