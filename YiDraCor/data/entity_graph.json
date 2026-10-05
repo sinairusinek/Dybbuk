@@ -71,8 +71,10 @@
       "id": "org:bibliotekanarodowapolona",
       "kind": "org",
       "label": "Biblioteka Narodowa (Polona)",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "2256",
+      "matched": "Biblioteka Narodowa (National Library of Poland)",
+      "method": "qualifier-stripped",
       "org_role": "library"
     },
     {
@@ -3405,12 +3407,6 @@
     },
     {
       "kind": "org",
-      "label": "Biblioteka Narodowa (Polona)",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "org",
       "label": "The International Biblioteque",
       "reason": "no candidate",
       "candidates": ""
@@ -3473,19 +3469,19 @@
       "place": 12
     },
     "by_status": {
-      "LINKED": 83,
+      "LINKED": 84,
       "PROPOSED": 23,
-      "GAP": 10
+      "GAP": 9
     },
     "edges": 283,
-    "gaps": 29,
+    "gaps": 28,
     "gaps_by_reason": {
       "no publication place": 2,
       "no publisher": 2,
       "no print year": 2,
       "no holding library": 6,
       "no performance events in the DB report": 7,
-      "no candidate": 8,
+      "no candidate": 7,
       "ambiguous": 1,
       "weak match (one token only)": 1
     }
