@@ -63,7 +63,28 @@
           "dating Source": "Silberzweig"
         }
       ],
-      "roles": [],
+      "roles": [
+        {
+          "PersonName as appears in Source if there is no key": "מאָגולעסקאָ",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "English Name": "Zigmund Mogulesco",
+          "Role": "actor",
+          "context": "National Theatre",
+          "source": "Zylberzweig, Lexion",
+          "dates": 1913.0,
+          "Play": "Di grinhorns"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "מאָגולעסקאָ",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "English Name": "Zigmund Mogulesco",
+          "Role": "actor: mishke",
+          "context": "National Theatre",
+          "source": "Zylberzweig, Lexion",
+          "dates": 1914.0,
+          "Play": "Di grinhorns"
+        }
+      ],
       "songs": [
         {
           "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
@@ -252,16 +273,71 @@
         "expression_note": null,
         "do_we_have_a_copy": "y"
       },
-      "productions": [],
+      "productions": [
+        {
+          "Play KEY": "Yidele oder der emes un sheyker",
+          "Type": "Premiere",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1899/09/22/01/article/14.2",
+          "Notes": "מוזיק פון פרידזעל",
+          "expression": "originalPlay",
+          "Year": 1899.0,
+          "innacurate or exact date": "1899-09-18",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "People's Theatre NY",
+          "dating Source": "Silberzweig"
+        }
+      ],
       "roles": [
         {
           "Play": "Yidele, oder der emes un der sheker",
           "PersonKey": "וואָהל, הערמאַן )צבי( 936:1",
           "Role": "composer",
           "source": "Silberzweig"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "H. Wohl",
+          "PersonKey": "וואָהל, הערמאַן )צבי( 936:1",
+          "English Name": "Herman Wohl",
+          "Role": "composer",
+          "source": "Hebrew Actor's union, YIVO (Box III: 5, folder 5)",
+          "Play": "Yidele oder der emes un sheyker"
+        },
+        {
+          "PersonKey": "פרידזעל, לואיס 6412:3",
+          "English Name": "Louis Friedsell",
+          "Role": "composer",
+          "source": "Zylberzweig, Lexion",
+          "Play": "Yidele oder der emes un sheyker"
         }
       ],
-      "songs": [],
+      "songs": [
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 21.0,
+          "Song title in sources": "Chadgadju",
+          "YIVO transliteration": "Khad godye",
+          "כלל יידיש": "חד־גדיא",
+          "Title": "Jüdale",
+          "Play Key": "Yidele oder der emes un sheyker",
+          "Author": "Yozef Latayner [if 'Jüdale der Blinde']",
+          "Page number PDF": 41.0,
+          "Source": "Shund on Shellac",
+          "recordings acc. Shund on Shellac": 1.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 22.0,
+          "Song title in sources": "Sedernacht",
+          "YIVO transliteration": "Seder nakht",
+          "כלל יידיש": "סדר-נאַכט",
+          "Title": "Jüdale",
+          "Play Key": "Yidele oder der emes un sheyker",
+          "Author": "Yozef Latayner [if 'Jüdale der Blinde']",
+          "Page number PDF": 41.0,
+          "Source": "Shund on Shellac",
+          "recordings acc. Shund on Shellac": 1.0
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": [
@@ -274,7 +350,9 @@
           "actor_character": null,
           "person_role": null,
           "roman_title": "Yidele oder der emes un sheyker",
-          "yiddish_title": "ייִדעלע, אָדער דער אמת און דער שקר"
+          "yiddish_title": "ייִדעלע, אָדער דער אמת און דער שקר",
+          "source_catalogue": "https://www.nli.org.il/he/newspapers/frw/1899/09/22/01/article/14.2",
+          "notes": "מוזיק פון פרידזעל"
         }
       ]
     },
@@ -342,10 +420,14 @@
       ],
       "roles": [
         {
-          "Play": "Di seyder nakht, oder der bilbl-dam",
           "PersonKey": "פרידזעל, לואיס 6412:3",
+          "English Name": "Louis Friedsell",
           "Role": "composer",
-          "source": "Silberzweig"
+          "context": " LC and Brown U, 66 pp",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 75",
+          "dates": 1908.0,
+          "comments": "publ Prezemysl 1908, Yid lib @ LC and Brown U, 66 pp",
+          "Play": "Di seyder nakht, oder der bilbl-dam"
         }
       ],
       "songs": [
@@ -455,11 +537,21 @@
       ],
       "roles": [
         {
-          "Play": "Ezre oder der ewiger Jude [eybiker yid]",
+          "PersonName as appears in Source if there is no key": "Max Abramowitz",
           "PersonKey": "אַבּראַמאָוויטש, מאַקס )מענדל( 6:1",
+          "English Name": "Max Avramowitz ",
+          "Role": "composer",
+          "source": "vilna archive",
+          "dates": "1902-1909",
+          "Play": "Ezre oder der ewiger Jude [eybiker yid]"
+        },
+        {
+          "PersonKey": "סענדלער, יעקב קאָפּל 4151:2",
+          "English Name": "Jacob Koppel Sandler",
           "Role": "composer",
           "context": "original music",
-          "source": "Silberzweig and Perlmutter"
+          "source": "Zylberzweig, Lexion",
+          "Play": "Ezre oder der ewiger Jude [eybiker yid]"
         }
       ],
       "songs": [
@@ -826,10 +918,61 @@
       ],
       "roles": [
         {
-          "Play": "Blimele di perl fun Varshe oder graf un yid [Jude]",
+          "PersonName as appears in Source if there is no key": "Max Abramowitz",
           "PersonKey": "אַבּראַמאָוויטש, מאַקס )מענדל( 6:1",
           "Role": "composer",
-          "source": "Silberzweig"
+          "source": "Vilna Archive",
+          "dates": 1906.0,
+          "Play": "Blimele di perl fun Varshe oder graf un yid [Jude]"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "מאגולעסקא",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "English Name": "Zigmund Mogulesco",
+          "Role": "actor: Zeligl der menagen",
+          "context": "Windsor Theatre",
+          "source": "Zylberzweig, Lexion",
+          "dates": 1894.0,
+          "Play": "Blimele di perl fun Varshe oder graf un yid [Jude]"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "מאגולעסקא",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "English Name": "Zigmund Mogulesco",
+          "Role": "composer",
+          "context": "Windsor Theatre",
+          "source": "https://www.nli.org.il/he/newspapers/darbzt/1894/10/12/01/article/10.3",
+          "dates": 1894.0,
+          "Play": "Blimele di perl fun Varshe oder graf un yid [Jude]"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "איימי סימאוויטש",
+          "English Name": "Amy Simovitch",
+          "Role": "actress",
+          "context": "Thalia Theatre",
+          "source": "https://www.nli.org.il/he/newspapers/dth/1896/04/17/01/article/12.1",
+          "dates": 1896.0,
+          "Play": "Blimele di perl fun Varshe oder graf un yid [Jude]"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "מאד. מ.ווילענסקי",
+          "PersonKey": "ווילענסקי, מערי )מרים קאץ( 027:1",
+          "English Name": "Madam Vilenski",
+          "Role": "actress",
+          "context": "Thalia Theatre",
+          "source": "https://www.nli.org.il/he/newspapers/dth/1896/05/08/01/article/10.1",
+          "dates": 1896.0,
+          "Play": "Blimele di perl fun Varshe oder graf un yid [Jude]"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "ה.מ ראזענטהאל",
+          "PersonKey": "ראָזענפעלד, מאָריס",
+          "English Name": "H. M Rosethal",
+          "Role": "actor",
+          "context": "Thalia Theatre",
+          "source": "https://www.nli.org.il/he/newspapers/dth/1896/05/08/01/article/10.1",
+          "dates": 1896.0,
+          "Play": "Blimele di perl fun Varshe oder graf un yid [Jude]"
         }
       ],
       "songs": [
@@ -1010,7 +1153,18 @@
           "dating Source": "Silberzweig"
         }
       ],
-      "roles": [],
+      "roles": [
+        {
+          "PersonName as appears in Source if there is no key": "מינקאָווסקי",
+          "English Name": "Giacomo Minkowski",
+          "Role": "composer",
+          "context": "Thalia Theatre",
+          "source": "https://www.nli.org.il/he/newspapers/darbzt/1893/03/31/01/article/11.1",
+          "dates": 1893.0,
+          "comments": "Also mentioned in Ronald Robboy, \"Reconstructing a Yiddish Theatre Score: Giacomo Minkowski and His Music to Alexander; or, the Crown Prince of Jerusalem,\" In: Joel Berkowitz and Barbara Henrey, Inventing the Modern Yiddish Stage (Wayne State UP, 2012)",
+          "Play": "Bas-Sheve"
+        }
+      ],
       "songs": [
         {
           "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
@@ -1101,8 +1255,25 @@
         "expression_note": null,
         "do_we_have_a_copy": "y"
       },
-      "productions": [],
-      "roles": [],
+      "productions": [
+        {
+          "Play KEY": "Dos yidishe kind",
+          "Notes": "איז באמת אָנגעשריבּן געוואָרן פון שמ“ר שייקעוויטש                     ",
+          "expression": "falseAscription",
+          "dating Source": "Zylberzweig"
+        }
+      ],
+      "roles": [
+        {
+          "PersonName as appears in Source if there is no key": "רומשינסקי",
+          "PersonKey": "רומשינסקי, יוסף 1832:3",
+          "English Name": "Joseph Rumshinsky",
+          "Role": "composer",
+          "context": "Thalia Theatre",
+          "source": "Pelmutter, Yidishe dramaturgn un teater kompozitors (Yiddish Dramatists and Theater Composers), 355",
+          "Play": "Dos yidishe kind"
+        }
+      ],
       "songs": [],
       "print_edition_catalogue": [],
       "document_items": [],
@@ -1116,7 +1287,9 @@
           "actor_character": null,
           "person_role": null,
           "roman_title": "Dos yidishe kind",
-          "yiddish_title": "דאס יודישע קינד"
+          "yiddish_title": "דאס יודישע קינד",
+          "source_catalogue": "Zylberzweig",
+          "notes": "איז באמת אָנגעשריבּן געוואָרן פון שמ“ר שייקעוויטש                     "
         }
       ]
     },
@@ -1163,9 +1336,135 @@
         "expression_note": null,
         "do_we_have_a_copy": "y"
       },
-      "productions": [],
-      "roles": [],
-      "songs": [],
+      "productions": [
+        {
+          "Play KEY": "Ishe roeh",
+          "Type": "Premiere",
+          "source": "https://www.nli.org.il/he/newspapers/dth/1896/11/15/01/article/12.1",
+          "Notes": "theatre est. from Silberzweig",
+          "expression": "originalPlay",
+          "Year": 1894.0,
+          "innacurate or exact date": "1894-04-21",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Thalia Theatre|Bowery Theatre",
+          "dating Source": "Silberzweig"
+        }
+      ],
+      "roles": [
+        {
+          "PersonName as appears in Source if there is no key": "Joseph Brody",
+          "PersonKey": "בּרוידי, יוסף 042:1",
+          "Role": "composer",
+          "source": "Vilna Archive",
+          "dates": "1896-1914",
+          "Play": "Ishe roeh"
+        }
+      ],
+      "songs": [
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 33.0,
+          "Song title in sources": "Duett",
+          "YIVO transliteration": "Duet",
+          "כלל יידיש": "דועט",
+          "Title": "Schlechte Frau / Die Schlechte Frau [aka 'Isha Ra']",
+          "Play Key": "Ishe roeh",
+          "Author": "Yozef Latayner",
+          "Page number PDF": 44.0,
+          "Source": "Shund on Shellac",
+          "recordings acc. Shund on Shellac": 2.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 34.0,
+          "Song title in sources": "Ejlie lumo asaftunie",
+          "YIVO transliteration": "Eli lama azavteni",
+          "כלל יידיש": "אלי למה עזבֿתּני",
+          "Title": "Schlechte Frau / Die Schlechte Frau [aka 'Isha Ra']",
+          "Play Key": "Ishe roeh",
+          "Author": "Yozef Latayner",
+          "Page number PDF": 44.0,
+          "Source": "Shund on Shellac",
+          "recordings acc. Shund on Shellac": 1.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 35.0,
+          "Song title in sources": "Eli, eli",
+          "YIVO transliteration": "Eli eli",
+          "כלל יידיש": "אלי אלי",
+          "Title": "Schlechte Frau / Die Schlechte Frau [aka 'Isha Ra']",
+          "Play Key": "Ishe roeh",
+          "Author": "Yozef Latayner",
+          "Page number PDF": 44.0,
+          "Source": "Shund on Shellac",
+          "recordings acc. Shund on Shellac": 1.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 36.0,
+          "Song title in sources": "Peretz Milke",
+          "YIVO transliteration": "Perez milke",
+          "כלל יידיש": "פּרץ מילקע",
+          "Title": "Schlechte Frau / Die Schlechte Frau [aka 'Isha Ra']",
+          "Play Key": "Ishe roeh",
+          "Author": "Yozef Latayner",
+          "Page number PDF": 44.0,
+          "Source": "Shund on Shellac",
+          "recordings acc. Shund on Shellac": 1.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 37.0,
+          "Song title in sources": "Ritschi, Rutschi",
+          "YIVO transliteration": "Ritschi, Rutschi",
+          "כלל יידיש": "ריטשי רוטשי",
+          "Title": "Schlechte Frau / Die Schlechte Frau [aka 'Isha Ra']",
+          "Play Key": "Ishe roeh",
+          "Author": "Yozef Latayner",
+          "Page number PDF": 44.0,
+          "Source": "Shund on Shellac",
+          "recordings acc. Shund on Shellac": 1.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 149.0,
+          "Song title in sources": "פרץ מיט דעם באַראַבאַן",
+          "YIVO transliteration": "Peretz mit dem baraban",
+          "כלל יידיש": "פרץ מיט דעם באַראַבאַן",
+          "Title": "אשה רעה",
+          "Play Key": "Ishe roeh",
+          "Author": "Yozef Latayner",
+          "Page number PDF": 43.0,
+          "Source": "די אידישע ביהנע : א זאמעלבוך פון ליעדער און דעקלאמאציאנען פיר גראמאפאנען.",
+          "external source id": "https://www.nli.org.il/he/books/NNL_ALEPH990021032870205171/NLI",
+          "Ruthie - elaboration": "including lyrics of the song"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "YIVO transliteration": "Eli eli lamo azvteni",
+          "כלל יידיש": "אלי אלי למה עזבתני",
+          "Title": "אלי אלי למה עזבתני",
+          "Play Key": "Ishe roeh",
+          "Author": "Yozef Latayner",
+          "Page number PDF": 117.0,
+          "page numbers": "די אידישע ביהנע : א זאמעלבוך פון ליעדער און דעקלאמאציאנען פיר גראמאפאנען.",
+          "Source": "https://www.nli.org.il/he/books/NNL_ALEPH990021032870205171/NLI",
+          "recordings acc. Shund on Shellac": "including lyrics of the song"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "YIVO transliteration": "Der hering",
+          "כלל יידיש": "דער הערינג",
+          "Title": "דער הערינג",
+          "Play Key": "Ishe roeh",
+          "Author": "Yozef Latayner",
+          "Page number PDF": 118.0,
+          "page numbers": "די אידישע ביהנע : א זאמעלבוך פון ליעדער און דעקלאמאציאנען פיר גראמאפאנען.",
+          "Source": "https://www.nli.org.il/he/books/NNL_ALEPH990021032870205171/NLI",
+          "recordings acc. Shund on Shellac": "including lyrics of the song"
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": [
@@ -1178,7 +1477,9 @@
           "actor_character": null,
           "person_role": null,
           "roman_title": "Ishe roeh",
-          "yiddish_title": "אישה רע"
+          "yiddish_title": "אישה רע",
+          "source_catalogue": "https://www.nli.org.il/he/newspapers/dth/1896/11/15/01/article/12.1",
+          "notes": "theatre est. from Silberzweig"
         }
       ]
     },
@@ -1247,10 +1548,26 @@
       ],
       "roles": [
         {
-          "Play": "Tsiyen, oder al nahares Bovl",
+          "PersonName as appears in Source if there is no key": "לואיס פרידזעל",
           "PersonKey": "פרידזעל, לואיס 6412:3",
+          "English Name": "Louis Friedsell",
           "Role": "composer",
-          "source": "Silberzweig"
+          "context": "LC Marwick Coll",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 75",
+          "dates": 1903.0,
+          "comments": "selections publ Theodore Lohr Co 1903",
+          "Play": "Tsiyen, oder al nahares Bovl"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "לואיס פרידזעל",
+          "PersonKey": "פרידזעל, לואיס 6412:3",
+          "English Name": "Louis Friedsell",
+          "Role": "Lyrics",
+          "context": "LC Marwick Coll",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 75",
+          "dates": 1903.0,
+          "comments": "selections publ Theodore Lohr Co 1903",
+          "Play": "Tsiyen, oder al nahares Bovl"
         }
       ],
       "songs": [
@@ -1377,7 +1694,15 @@
           "Theatre": "People's Theatre NY"
         }
       ],
-      "roles": [],
+      "roles": [
+        {
+          "PersonName as appears in Source if there is no key": "ל. י. באראבאן",
+          "English Name": "L.Y Baraban",
+          "Role": "choreographer",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1901/09/24/01/article/11.2",
+          "Play": "Gabriel oder di libe fun a yidisher froy"
+        }
+      ],
       "songs": [],
       "print_edition_catalogue": [],
       "document_items": [],
@@ -1519,7 +1844,37 @@
           "PremierePlace": "Vilna"
         }
       ],
-      "roles": [],
+      "roles": [
+        {
+          "PersonName as appears in Source if there is no key": "אידא קאמינסקא",
+          "English Name": "Ida Kamińska",
+          "Role": "actress: Soreh Sheindel",
+          "context": "Warsaw performance",
+          "source": "https://www.nli.org.il/he/newspapers/hyt/1938/11/18/01/article/88.2",
+          "dates": 1938.0,
+          "Play": "Di farblondzhete neshome"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "ישראל שאיעוויטש",
+          "PersonKey": "שאַיעוויטש, ישראל 0754:5",
+          "English Name": "Israel Shayevitch",
+          "Role": "composer",
+          "context": "Warsaw performance",
+          "source": "https://www.nli.org.il/he/newspapers/hyt/1938/11/18/01/article/88.2",
+          "dates": 1938.0,
+          "Play": "Di farblondzhete neshome"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "יוסף ברוידי",
+          "PersonKey": "בּרוידי, יוסף 042:1",
+          "English Name": "Brody, Joseph",
+          "Role": "composer",
+          "context": "Soreh Sheyndel, New York 1910 Odessa premier 1916",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 43",
+          "dates": "1910/1916",
+          "Play": "Di farblondzhete neshome"
+        }
+      ],
       "songs": [
         {
           "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
@@ -1719,10 +2074,31 @@
       ],
       "roles": [
         {
-          "Play": "Kidesh Hashem, oder der yidisher minister",
+          "PersonName as appears in Source if there is no key": "סענדלער",
           "PersonKey": "סענדלער, יעקב קאָפּל 4151:2",
+          "English Name": "Jacob Koppel Sandler.",
           "Role": "composer",
-          "source": "Silberzweig"
+          "context": "Windsor Theatre",
+          "source": "https://www.nli.org.il/he/newspapers/dth/1896/09/06/01/article/10.1",
+          "dates": 1896.0,
+          "Play": "Kidesh Hashem, oder der yidisher minister"
+        },
+        {
+          "PersonKey": "פרידזעל, לואיס 6412:3",
+          "English Name": "Louis Friedsell",
+          "Role": "composer",
+          "source": "Zylberzweig, Lexion",
+          "Play": "Kidesh Hashem, oder der yidisher minister"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "אדולך גימפעל",
+          "PersonKey": "גימפּעל, אַדאָלף 974:1, 6104:5",
+          "English Name": "Adolf Gimpel",
+          "Role": "composer",
+          "context": "Yivo Perlmutter Arch",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 81",
+          "dates": 1902.0,
+          "Play": "Kidesh Hashem, oder der yidisher minister"
         }
       ],
       "songs": [],
@@ -1818,7 +2194,34 @@
           "dating Source": "Silberzweig and Gorin"
         }
       ],
-      "roles": [],
+      "roles": [
+        {
+          "PersonKey": "שלאָסבּערג, יצחק 0512:3",
+          "English Name": "Yitskhok Shlosberg",
+          "Role": "composer",
+          "context": "New York",
+          "source": "Mark Slobin, Tenement Songs, 93",
+          "Play": "Dovids fidele"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "Sigmund Mogulesko",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "English Name": "Zigmund Mogulesco",
+          "Role": "composer",
+          "source": "Vilna Archive",
+          "dates": "1905-1916",
+          "Play": "Dovids fidele"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "Henry Russotto",
+          "English Name": "Henry Russotto",
+          "Role": "Arranger",
+          "context": "@ NYPL",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 117",
+          "comments": "excerpts publ Brooklyn: Heb Publ Co. publ New York: Heb Publ Co— Henry Russotto editor @ Brown U and Jewish Public Library, Montreal— also Dovid’s Fidele oder Tsoyberman Eater] ,",
+          "Play": "Dovids fidele"
+        }
+      ],
       "songs": [
         {
           "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
@@ -2008,10 +2411,34 @@
           "source": "Silberzweig"
         },
         {
-          "Play": "Dos yidishe harts",
+          "PersonName as appears in Source if there is no key": "יוזעף בוידי",
           "PersonKey": "בּרוידי, יוסף 042:1",
+          "English Name": "Brody, Joseph",
           "Role": "composer",
-          "source": "Silberzweig"
+          "context": "Thalia Theatre",
+          "source": "Zylberzweig, Lexion",
+          "dates": 1908.0,
+          "Play": "Dos yidishe harts"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "מאָגולעסקאָ",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "English Name": "Zigmund Mogulesco",
+          "Role": "actor: Lemekh",
+          "context": "Thalia Theatre",
+          "source": "Zylberzweig, Lexion",
+          "dates": 1908.0,
+          "Play": "Dos yidishe harts"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "דוד קעסלר",
+          "PersonKey": "קעסלער, דוד 9862:4",
+          "English Name": "David Kessler",
+          "Role": "actor",
+          "context": "Thalia Theatre",
+          "source": "Zylberzweig, Lexion",
+          "dates": 1908.0,
+          "Play": "Dos yidishe harts"
         }
       ],
       "songs": [
@@ -2111,10 +2538,12 @@
       ],
       "roles": [
         {
-          "Play": "Goles Rusland",
+          "PersonName as appears in Source if there is no key": "סאפיע קארפ",
           "PersonKey": "קאַרפּ, סאָפיע",
+          "English Name": "Sophie Karp",
           "Role": "actress",
-          "source": "Silberzweig"
+          "source": "Zylberzweig, Lexion",
+          "Play": "Goles Rusland"
         },
         {
           "Play": "Goles Rusland",
@@ -2127,6 +2556,14 @@
           "PersonName as appears in Source if there is no key": "קארפ",
           "Role": "actor",
           "source": "Silberzweig"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "טאמאשעווסקי",
+          "PersonKey": "טאָמאַשעוו]פ[סקי, בּאָריס )בּרוך-אהרן( 408:2",
+          "English Name": "Boris Thomashefsky",
+          "Role": "actor",
+          "source": "Zylberzweig, Lexion",
+          "Play": "Goles Rusland"
         }
       ],
       "songs": [
@@ -2342,11 +2779,110 @@
         "all_proofed": "y",
         "ready_for_encoding": "y"
       },
-      "expression_id": null,
-      "expression": null,
-      "productions": [],
+      "expression_id": 4014,
+      "expression": {
+        "expression_id": 4014,
+        "english_name": "Yanḳev un Eysev",
+        "yiddish_name": "יעקב ועשיו",
+        "tags": "biblical operetta",
+        "genre": "biblical operetta",
+        "certainty": null,
+        "comments": null,
+        "author_id": 684,
+        "expression_note": null,
+        "do_we_have_a_copy": null
+      },
+      "productions": [
+        {
+          "כלל יידיש": "יעקב ועשו",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dywt/1902/11/30/01/article/35",
+          "expression": "originalPlay",
+          "Year": 1902.0,
+          "innacurate or exact date": "1902-11-27T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yanḳev un Eysev"
+        },
+        {
+          "כלל יידיש": "יעקב און עשו",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dywt/1903/01/01/01/article/40",
+          "expression": "originalPlay",
+          "Year": 1903.0,
+          "innacurate or exact date": "1903-01-01T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yanḳev un Eysev"
+        },
+        {
+          "כלל יידיש": "יעקב און עשו",
+          "Type": "premier",
+          "source": "Zylbercweig and Gorin",
+          "expression": "originalPlay",
+          "Year": 1902.0,
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "dating Source": "Zylbercweig",
+          "Play KEY": "Yanḳev un Eysev"
+        }
+      ],
       "roles": [],
-      "songs": [],
+      "songs": [
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 153.0,
+          "action": "כלל יידיש? yivo?",
+          "Romanized title": "Rachels Trostlied",
+          "YIVO transliteration": "Rokhls trost lid",
+          "כלל יידיש": "רחל'ס טראָסט ליד",
+          "Play Key": "Yanḳev un Eysev",
+          "Page number PDF": 41.0,
+          "Source": "Shund on Shellac",
+          "external source id": 16.0,
+          "recordings acc. Shund on Shellac": 2.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 154.0,
+          "action": "כלל יידיש? yivo?",
+          "Romanized title": "Das Tojrale",
+          "YIVO transliteration": "Dos tokhterl ",
+          "כלל יידיש": "דאָס טאָכטערל",
+          "Play Key": "Yanḳev un Eysev",
+          "Page number PDF": 41.0,
+          "Source": "Shund on Shellac",
+          "external source id": 16.0,
+          "recordings acc. Shund on Shellac": 2.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 155.0,
+          "action": "כלל יידיש? yivo?",
+          "Romanized title": "Wejiten lechu",
+          "כלל יידיש": "ויתן לך",
+          "Play Key": "Yanḳev un Eysev",
+          "Page number PDF": 41.0,
+          "Source": "Shund on Shellac",
+          "external source id": 16.0,
+          "recordings acc. Shund on Shellac": 3.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
+          "tempID": 156.0,
+          "Song title in sources": "אז מען גיט ניט יעקב'ן, גיט מען עשו'ן ",
+          "YIVO transliteration": "Az men git nit yankev, git men eysev",
+          "כלל יידיש": "אז מען גיט ניט יעקב'ן, גיט מען עשו'ן",
+          "Title": "אז מען גיט ניט יעקב'ן, גיט מען עשו'ן",
+          "Play Key": "Yanḳev un Eysev",
+          "Author": "Anshel Schor",
+          "Page number PDF": 47.0,
+          "Source": "Yankev und Eysev notebook from the Perlmutter collection",
+          "external source id": 47.0,
+          "Ruthie - elaboration": "This song is attached to the plays prompting notebook"
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": []
@@ -2415,10 +2951,12 @@
       ],
       "roles": [
         {
-          "Play": "Goles Rusland",
+          "PersonName as appears in Source if there is no key": "סאפיע קארפ",
           "PersonKey": "קאַרפּ, סאָפיע",
+          "English Name": "Sophie Karp",
           "Role": "actress",
-          "source": "Silberzweig"
+          "source": "Zylberzweig, Lexion",
+          "Play": "Goles Rusland"
         },
         {
           "Play": "Goles Rusland",
@@ -2431,6 +2969,14 @@
           "PersonName as appears in Source if there is no key": "קארפ",
           "Role": "actor",
           "source": "Silberzweig"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "טאמאשעווסקי",
+          "PersonKey": "טאָמאַשעוו]פ[סקי, בּאָריס )בּרוך-אהרן( 408:2",
+          "English Name": "Boris Thomashefsky",
+          "Role": "actor",
+          "source": "Zylberzweig, Lexion",
+          "Play": "Goles Rusland"
         }
       ],
       "songs": [
@@ -2646,11 +3192,322 @@
         "all_proofed": "y",
         "ready_for_encoding": "y"
       },
-      "expression_id": null,
-      "expression": null,
-      "productions": [],
-      "roles": [],
-      "songs": [],
+      "expression_id": 4043,
+      "expression": {
+        "expression_id": 4043,
+        "english_name": "Yetsies mitsrayim",
+        "yiddish_name": "יציאת מצרים",
+        "tags": "historical operetta; operetta",
+        "genre": null,
+        "certainty": null,
+        "comments": null,
+        "author_id": 684,
+        "expression_note": null,
+        "do_we_have_a_copy": null
+      },
+      "productions": [
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/tjm/1909/03/16/01/article/58",
+          "expression": "originalPlay",
+          "Year": 1909.0,
+          "innacurate or exact date": "1909-03-19T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/ytb/1908/09/13/01/article/31.1",
+          "expression": "originalPlay",
+          "Year": 1908.0,
+          "innacurate or exact date": "1908-09-13T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "New Star Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/derarbeiter/1907/01/05/01/article/29",
+          "expression": "originalPlay",
+          "Year": 1907.0,
+          "innacurate or exact date": "1907-01-05T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Kalich Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "publication",
+          "source": "https://www.nli.org.il/he/newspapers/dywt/1903/04/15/01/article/36.1",
+          "expression": "originalPlay",
+          "Year": 1903.0,
+          "innacurate or exact date": "1903-04-15T00:00:00",
+          "Theatre": "The International Biblioteque",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1903/09/25/01/article/19.1",
+          "expression": "originalPlay",
+          "Year": 1903.0,
+          "innacurate or exact date": "1903-09-25T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dywt/1903/02/16/01/article/34.1",
+          "expression": "originalPlay",
+          "Year": 1903.0,
+          "innacurate or exact date": "1903-02-16T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1903/10/08/01/article/7.1",
+          "expression": "originalPlay",
+          "Year": 1903.0,
+          "innacurate or exact date": "1903-10-08T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1903/11/04/01/article/20.2",
+          "expression": "originalPlay",
+          "Year": 1903.0,
+          "innacurate or exact date": "1903-11-06T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1903/12/07/01/article/21.1",
+          "expression": "originalPlay",
+          "Year": 1903.0,
+          "innacurate or exact date": "1903-12-12T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dywt/1904/01/31/01/article/28.3",
+          "expression": "originalPlay",
+          "Year": 1904.0,
+          "innacurate or exact date": "1904-01-29T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        },
+        {
+          "כלל יידיש": "יציאת מצרים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dwt/1910/03/12/01/article/45.3",
+          "expression": "originalPlay",
+          "Year": 1910.0,
+          "innacurate or exact date": "1910-03-12T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Kessler's Thalia Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Yetsies mitsrayim"
+        }
+      ],
+      "roles": [
+        {
+          "Play": "Yetsies mitsrayim",
+          "PersonKey": "וואָהל, הערמאַן )צבי( 936:1",
+          "Role": "composer",
+          "context": "With A. Perlmutter",
+          "source": "https://www.loc.gov/item/ihas.200154899/",
+          "dates": 1903.0
+        },
+        {
+          "Play": "Yetsies mitsrayim",
+          "PersonKey": "פּערלמוטער, אַרנאָלד 8381:3",
+          "Role": "composer",
+          "context": "With H. Wohl",
+          "source": "https://www.loc.gov/item/ihas.200154899/",
+          "dates": 1903.0
+        },
+        {
+          "Play": "Yetsies mitsrayim",
+          "Role": "actor",
+          "context": "Star theatre",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1908/09/15/01/article/14.2",
+          "dates": 1908.0
+        },
+        {
+          "Play": "Yetsies mitsrayim",
+          "PersonKey": "יאָוועליר, קלמן 909:2",
+          "Role": "actor",
+          "context": "Star theatre",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1908/09/15/01/article/14.2",
+          "dates": 1908.0
+        },
+        {
+          "Play": "Yetsies mitsrayim",
+          "PersonKey": "פּראַגער, רעגינע 0581:3",
+          "Role": "actress",
+          "context": "Star theatre",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1908/09/15/01/article/14.2",
+          "dates": 1908.0
+        }
+      ],
+      "songs": [
+        {
+          "Type": "Handwritten Score",
+          "Year": "?",
+          "Composer/Arranger": "Solomon Perlmutter",
+          "Contents": "Yetsias mitsrayim (Exodus from Egypt); text only?",
+          "Availability/Source": "YIVO, Sholem Perlmutter Collection, Series I, Folder 262",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Recording",
+          "Year": "rec. late 1915",
+          "Instrumentation": "Voice (tenor) and piano",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Die Neviah [The Prophecy], from Horowitz's opera \"Yzias Mezrajum,\" sung by Josef Rosenblatt, with piano accompaniment;  Shofar shel mashiaḥ = Shoifer shel moshiach = [The trumpet of the Messiah] / A. Goldfaden ; [arranged by J.M. Rumshisky]. Die neviaḥ = Die nevial, [from Horowit'z opera Yzias Mizrajim = Exodus from Egypt] / [written by Horowitz]; composed and arranged by Perlmutter and Wohl.",
+          "Availability/Source": "https://www.nli.org.il/en/items/NNL_MUSIC_AL000230271/NLI; also NYPL: https://browse.nypl.org/iii/encore/record/C__Rb20796052__SHorowitz%2C%20M.%20%28Moses%29%2C__P0%2C5__Orightresult__X3?lang=eng&suite=def",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Commercial sheet music?",
+          "Year": "?",
+          "Instrumentation": "Piano and voice (transliterated Yiddish text)",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Die nevioh -- Chasene huben (plus a few other songs?)",
+          "Publisher and other details": "Hebrew Publishing Co?",
+          "Availability/Source": "https://www.nli.org.il/en/scores/NNL_MUSIC_AL002624361/NLI",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "?",
+          "Instrumentation": "Director's copy",
+          "Contents": "Yetsies Mitsrayim, undated: Title of the work by Reuben Weissman: Moyshe Rabeynu, oder Yetsies Mitsrayim un Kries-Yamsof. Historical opera; 19 nos. Text by Reuben Weissman [?] Includes D",
+          "Availability/Source": "YIVO Vilna collection, RG 7, Folder 204 (Mixed Materials)",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Commercial sheet music?",
+          "Year": 1900.0,
+          "Instrumentation": "?",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Parts 1-7",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "https://www.nli.org.il/en/scores/NNL_MUSIC_AL002131860/NLI",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1903.0,
+          "Instrumentation": "Piano (for violin, too); also text underlaid",
+          "Composer/Arranger": "Perlmutter and Wohl, composers and arrangers",
+          "Contents": "1. Die Nevioh (has text underlaid -- \"Voice\") -- 2. Chasene huben (has text underlaid -- \"Voice\"; partway through says \"Beide\"; then later \"Dance\" [w/o text]); next page has catalogue w/ all kinds of theater and liturgical music published by the Hebrew Publishing Company: \"Popular Hebrew Melodies for Piano and Violin\" -- Next volume in this set has Das Gulis Lied; after 4-bar intro says \"Voice\" but no text -- 4. Der Stecken [instrumental only] -- 5. Zures is kein dange nit -- Next volume in this set has 6. Eser makes Chor --  Next volume in this set has Yzias Mizrajim March, then Eser makes Chor; last page has catalogue list; NEED TO CHECK p. 14 in LOC LISTINGS (seems to be missing; prob just the back page/catalogue)",
+          "Cover info": "Lists all 7 pieces on the cover; \"Success of the Season, Prof. Horowitz's Opera Yzias Mizrajum\"",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200182015/",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Recording",
+          "Year": 1908.0,
+          "Instrumentation": "Voice and orchestra",
+          "Contents": "Yetsies mitsrayim, sung by Regina Prager",
+          "Availability/Source": "https://search.library.wisc.edu/digital/ATIVZMTJT7UZ7G8P",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1910.0,
+          "Instrumentation": "Piano (and voice)",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "1. Die Nevioh [sic]; says \"Voice\" w/ text underlaid; also full Yiddish text printed as well right next to it; last page \"List of Popular Music for Piano\": mostly Yiddish theatre music, but some Zionist songs, too; theatre pieces pop/shund stuff but also King Lear and a Tolstoy play; librettists not always mentioned (not Gordin, Hurwitz [Horowitz] sometimes; Goldfaden often; ",
+          "Cover info": "Cover has huge photo of Regina Prager; \"The Success of Mrs. R. Prager\"; Die Nevuoh",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200182124/; also http://fau.digital.flvc.org/islandora/object/fau%3A1782",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Recording (disc, 78)",
+          "Year": 1915.0,
+          "Instrumentation": "Voice and ?",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Die neviah, from Horowitz's opera Yzias Mizrajim = Exodus from Egypt, sung by Josef Rosenblatt, New York, Columbia",
+          "Availability/Source": "https://www.nypl.org/research/research-catalog/bib/b20796052",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": 1917.0,
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Title of the work by Reuben Weissman: Moyshe Rabeynu, oder Yetsies Mitsrayim un Kries-Yamsof. Opera; 5 acts; 19 nos. Text by Moishe Hurwitz [or: Reuben Weissman?]; music by Arnold Perlmutter and Herman Wohl. Includes D V-1 V-2 Va B F C T Tb P. Bound with: Di Neshome fun Yisroel (operetta; 3 acts; 12 nos.). Text by N. Rakow; music by Arnold Perlmutter and Herman Wohl",
+          "Complete (C)": "C?",
+          "Availability/Source": "YIVO Vilna collection, RG 7, Folder 126 (Mixed Materials)",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1921.0,
+          "Instrumentation": "Piano (and voice)",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Der Steken; Text in Yiddish printed next to piano part",
+          "Cover info": "Words by Prof. Horowitz and A. Schorr; Sung by Sam Kasten [Mr. Kesten]; 2 photos",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200185578/; also http://fau.digital.flvc.org/islandora/object/fau%3A80876; also NYPL: https://browse.nypl.org/iii/encore/record/C__Rb16544687__SHorowitz%2C%20M.%20%28Moses%29%2C__P0%2C3__Orightresult__X3?lang=eng&suite=def ",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1921.0,
+          "Instrumentation": "Piano (and voice)",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Dos golus lied; \"From Prof. Horowitz's Opera Yzias Mizrajim\"; Text in Yiddish printed next to piano part; inside says \"Music by Perlmutter and Wohl\" and \"Words by L. Gilrod\"",
+          "Cover info": "\"Arranged by Perlmutter and Wohl\" on cover",
+          "Publisher and other details": "Hebrew Publishing Co.",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200185543/",
+          "Play Key": "Yetsies mitsrayim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1921.0,
+          "Instrumentation": "Piano (and voice)",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Zores is kain daige nit, fun der opera Yetsies mitsrayim; Text in Yiddish printed next to piano part; Words by Prof. Horowitz; for more info and modern recording, see http://www.yiddishpennysongs.com/2018/04/tsores-iz-keyn-dayge-nit-from-professor.html",
+          "Cover info": "Photos",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200185579/; also check listing for NYPL for 1922 edition",
+          "Play Key": "Yetsies mitsrayim"
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": []
@@ -2730,11 +3587,13 @@
       ],
       "roles": [
         {
-          "Play": "Yoysef un zayne brider",
+          "PersonName as appears in Source if there is no key": "מאקס אווראמאוויטש",
           "PersonKey": "אַבּראַמאָוויטש, מאַקס )מענדל( 6:1",
+          "English Name": "Max Abramowitz ",
           "Role": "composer",
-          "context": "Original music",
-          "source": "Silberzweig and Perlmutter"
+          "context": "Max Abramowitz and Zigmund Mogulesco",
+          "source": "Pelmutter, Yidishe dramaturgn un teater kompozitors (Yiddish Dramatists and Theater Composers), 318",
+          "Play": "Yoysef un zayne brider"
         },
         {
           "Play": "Yoysef un zayne brider",
@@ -2742,6 +3601,31 @@
           "Role": "composer",
           "context": "European music",
           "source": "Silberzweig"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "סאנדלער",
+          "PersonKey": "סענדלער, יעקב קאָפּל 4151:2",
+          "Role": "composer",
+          "source": "The Esther Rachel Kaminska Theater Museum Collection",
+          "Play": "Yoysef un zayne brider"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "ז. מאגולעסקא",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "English Name": "Zigmund Mogulesco",
+          "Role": "composer",
+          "context": "Max Abramowitz and Zigmund Mogulesco",
+          "source": "Pelmutter, Yidishe dramaturgn un teater kompozitors (Yiddish Dramatists and Theater Composers), 318",
+          "Play": "Yoysef un zayne brider"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "Henry Russotto",
+          "English Name": "Henry Russotto",
+          "Role": "Arranger",
+          "context": "New York",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 162",
+          "comments": "selections publ Heb Publ Co 1903 @ LC Marwick Coll, publ Heb Publ Co 1917 @ FAU— microform copy @ NYPL, 4 acts",
+          "Play": "Yoysef un zayne brider"
         }
       ],
       "songs": [
@@ -2839,11 +3723,650 @@
         "all_proofed": "y",
         "ready_for_encoding": "y"
       },
-      "expression_id": null,
-      "expression": null,
-      "productions": [],
-      "roles": [],
-      "songs": [],
+      "expression_id": 4010,
+      "expression": {
+        "expression_id": 4010,
+        "english_name": "Ben Hador",
+        "yiddish_name": "בן הדור",
+        "tags": "historical operetta; operetta",
+        "genre": "historical operetta",
+        "certainty": null,
+        "comments": null,
+        "author_id": 684,
+        "expression_note": "adaptation of Hurwitz's earlier play Yekhezikyahu hamelekh (Hezekiah the King), from 1898",
+        "do_we_have_a_copy": null
+      },
+      "productions": [
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dywt/1903/03/08/01/article/33",
+          "expression": "originalPlay",
+          "Year": 1903.0,
+          "innacurate or exact date": "1903-03-08T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dywt/1904/01/31/01/article/28.3",
+          "expression": "originalPlay",
+          "Year": 1904.0,
+          "innacurate or exact date": "1904-01-31T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dwrstm/1915/02/12/01/article/32.1",
+          "expression": "originalPlay",
+          "Year": 1915.0,
+          "innacurate or exact date": "1915-02-14T00:00:00",
+          "PremierePlace": "Cleveland Ohaio",
+          "Theatre": "Royal Theatre (Harry Bernstein)",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/jweekly/1905/09/01/article/7.1   review of the performance: https://www.nli.org.il/he/newspapers/jweekly/1905/09/01/article/26 ",
+          "expression": "originalPlay",
+          "Year": 1905.0,
+          "innacurate or exact date": "1905-09-01T00:00:00",
+          "PremierePlace": "California",
+          "Theatre": "Glickman's Yiddish Players",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/tjewvc/1908/08/28/01/article/30.2",
+          "expression": "originalPlay",
+          "Year": 1908.0,
+          "innacurate or exact date": "1908-09-02T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Olimpic Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/egalit/1907/12/27/01/article/14.1",
+          "expression": "originalPlay",
+          "Year": 1907.0,
+          "innacurate or exact date": "1907-12-16T00:00:00",
+          "PremierePlace": "Bucharest",
+          "Theatre": "Jignita Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/darbzt/1901/12/22/01/article/9",
+          "expression": "originalPlay",
+          "Year": 1901.0,
+          "innacurate or exact date": "1901-12-22T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dywt/1902/11/19/01/article/26",
+          "expression": "originalPlay",
+          "Year": 1902.0,
+          "innacurate or exact date": "1902-11-23T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dybn/1910/01/21/01/article/40.2",
+          "expression": "originalPlay",
+          "Year": 1910.0,
+          "innacurate or exact date": "1910-01-27T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Thomashefsky's People Theatre",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dabz/1906/04/17/01/article/17.2",
+          "expression": "originalPlay",
+          "Year": 1906.0,
+          "innacurate or exact date": "1906-04-21T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Kalich Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Ben Hador"
+        },
+        {
+          "כלל יידיש": "בן הדור",
+          "Type": "premier",
+          "source": "Yisrael Berkovitsh, Hunderṭ yor Yidish ṭeaṭer in Rumenye, 1876-1976, 287--dates the premier 1904; Zylbercweig dates the premier 1901",
+          "expression": "originalPlay",
+          "Year": 1901.0,
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Zylbercweig",
+          "Play KEY": "Ben Hador"
+        }
+      ],
+      "roles": [
+        {
+          "Play": "Ben Hador",
+          "Role": "lyrics",
+          "context": "New York",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 144",
+          "dates": 1904.0
+        },
+        {
+          "Play": "Ben Hador",
+          "PersonKey": "וואָהל, הערמאַן )צבי( 936:1",
+          "Role": "composer",
+          "context": "With A. Perlmutter",
+          "source": "Zylbercweig and Perlmutter",
+          "dates": 1901.0
+        },
+        {
+          "Play": "Ben Hador",
+          "PersonKey": "פּערלמוטער, אַרנאָלד 8381:3",
+          "Role": "composer",
+          "context": "With H. Wohl",
+          "source": "Zylbercweig and Perlmutter",
+          "dates": 1901.0
+        }
+      ],
+      "songs": [
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 151.0,
+          "action": "כלל יידיש? yivo?",
+          "Romanized title": "Dus Sterndl",
+          "YIVO transliteration": "Dos sterndl",
+          "כלל יידיש": "דאָס שטערנדל",
+          "Title": "דאָס שטערנדל",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 40.0,
+          "Source": "Shund on Shellac",
+          "external source id": 16.0,
+          "recordings acc. Shund on Shellac": 4.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 152.0,
+          "action": "כלל יידיש? yivo?",
+          "Romanized title": "Gejschem",
+          "YIVO transliteration": "Geshem",
+          "כלל יידיש": "גשם",
+          "Title": "גשם",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 40.0,
+          "Source": "Shund on Shellac",
+          "external source id": 16.0,
+          "recordings acc. Shund on Shellac": 3.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 205.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Tfilas hageshem",
+          "כלל יידיש": "תפילת הגשם",
+          "Title": "תפלת הגשם",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 4.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 206.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Tertset",
+          "כלל יידיש": "טערצעט",
+          "Title": "טערצעט",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 4.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 207.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Fantasi lid",
+          "כלל יידיש": "פאַנטאַזי ליד",
+          "Title": "פאנטאזי ליעד",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 4.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 208.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Dos betler lid",
+          "כלל יידיש": "דאָס בעטלער ליד",
+          "Title": "דאס בעטלער ליעד",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 4.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 209.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Tif in der erd",
+          "כלל יידיש": "טיף אין דער ערד",
+          "Title": "טיעף אין דרערד",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 4.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 210.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Der hering",
+          "כלל יידיש": "דער הערינג",
+          "Title": "דער הערינג",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 5.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 211.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Loz zayn mit glik",
+          "כלל יידיש": "לאָז זײַן מיט גליק",
+          "Title": "לאז זיין מיט גליק",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 5.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 212.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "duet",
+          "כלל יידיש": "דועט",
+          "Title": "דועט",
+          "Play Key": "Ben Hador",
+          "Page number PDF": 5.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 213.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Hallo sentral",
+          "כלל יידיש": "האַללאָ סענטראַל",
+          "Title": "האללא סענטראל",
+          "Play Key": "Ben Hador",
+          "Author": "שלמה שמולעוויטץ",
+          "Page number PDF": 6.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 214.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Swit sikstin",
+          "כלל יידיש": "סוויט סיקסטין",
+          "Title": "סוויט סיקסטין",
+          "Play Key": "Ben Hador",
+          "Author": "שלמה שמולעוויטץ",
+          "Page number PDF": 6.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 215.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Tsvey zaytn",
+          "כלל יידיש": "צוויי זײַטן",
+          "Title": "צווייא זייטען",
+          "Play Key": "Ben Hador",
+          "Author": "סעם סמאלל",
+          "Page number PDF": 6.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 216.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Annai mor",
+          "כלל יידיש": "ענני מור",
+          "Title": "ענני מור",
+          "Play Key": "Ben Hador",
+          "Author": "שלמה שמולעוויטץ",
+          "Page number PDF": 7.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 217.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Nor ayn bay",
+          "כלל יידיש": "נאָר אײַן בײַ",
+          "Title": "נור איין באי",
+          "Play Key": "Ben Hador",
+          "Author": "לואיס גילראד",
+          "Page number PDF": 7.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 218.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Meymi",
+          "כלל יידיש": "מיימי",
+          "Title": "מיימי",
+          "Play Key": "Ben Hador",
+          "Author": "שלמה שמולעוויטץ",
+          "Page number PDF": 8.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 219.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Gud bay dali gery",
+          "כלל יידיש": "גוד בײַ דאלי גריי",
+          "Title": "גוד ביא דאלי גריי",
+          "Play Key": "Ben Hador",
+          "Author": "שלמה שמולעוויטץ",
+          "Page number PDF": 8.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 220.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Dey bay dey",
+          "כלל יידיש": "דיי בײַ דיי",
+          "Title": "דיי בײַ דיי",
+          "Play Key": "Ben Hador",
+          "Author": "שלמה שמולעוויטץ",
+          "Page number PDF": 9.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 221.0,
+          "action": "כלל יידיש? yivo?",
+          "YIVO transliteration": "Di troyerdike hokhtsayt  ",
+          "כלל יידיש": "די טרױערדיקע האָכצײַט",
+          "Title": "דיא טרויערדיגע האכצייט",
+          "Play Key": "Ben Hador",
+          "Author": "יצחק ריינגאלד",
+          "Page number PDF": 9.0,
+          "Source": "ליעדער מאגאזין No. II"
+        },
+        {
+          "Type": "Recording",
+          "Year": "?",
+          "Instrumentation": "Voice and ?",
+          "Contents": "Prints ben hador, sung by Lina Goldstein and Paul Breitman; listing: Printz Ben Hador",
+          "Availability/Source": "https://www.nli.org.il/he/items/NNL_MUSIC_AL003456489/NLI",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording",
+          "Year": "?",
+          "Instrumentation": "Voice and orchestra",
+          "Contents": "Ben Hador: Fantasy Song and duet from Ben Hador (#8), sung by Ms. S. (Zina??) Goldstein and M. Weinberg (Max?); Warsaw",
+          "Availability/Source": "https://www.nli.org.il/he/items/NNL_MUSIC_AL003454173/NLI",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording",
+          "Year": "Don't have this one",
+          "Instrumentation": "Voice and ?",
+          "Contents": "Fantasy Song, sung by Kalman Juvelier; On album: L-006(a) (Soyna Lizaron In Joy And Sorrow 13 Yiddish Songs -- סאניא ליזרון אין פֿרײד און אומעט... 13 ייִדישע לידער) Track ID: 42840",
+          "Availability/Source": "http://digital.library.upenn.edu/webbin/freedman/lookupwork?hr=&what=Ben%20Hador",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "?",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Historical operetta; 4 acts. Text by Moishe Hurwitz; music by Arnold Perlmutter and Herman Wohl. Includes D V-1 V-2 Va B F C T Tb P",
+          "Availability/Source": "YIVO Vilna Collection, RG 7, Folder 262 (Mixed Materials): https://digipres.cjh.org/delivery/DeliveryManagerServlet?dps_pid=IE11065128",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "?",
+          "Instrumentation": "1st Violin part",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Historical operetta. Text by Moishe Hurwitz; music by Arnold Perlmutter and Herman Wohl. Includes V-1; almost certainly from Europe",
+          "Availability/Source": "YIVO Vilna Collection, RG 7, Folder 333 (Mixed Materials): https://digipres.cjh.org/delivery/DeliveryManagerServlet?dps_pid=IE11074124 ",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": 1908.0,
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "trumpet, drums, trombone, 1st violin/direction, flute, clarinet, bass, 18 numbers; have this",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:24, Folder 1: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": "1902?",
+          "Instrumentation": "?",
+          "Contents": "Probably duplicate of other entry (LOC): 1. Fantasy / Fantasie Song (Fantazye lied), 2. Ben Hador March 3. Comic Trio",
+          "Publisher and other details": "Hebrew Publishing Co.",
+          "Availability/Source": "NYPL: https://browse.nypl.org/iii/encore/record/C__Rb16518118__S%28%28%22ben%20hador%22%29%20%7C%20%28%22ben%20hadur%22%29%29__Orightresult__U__X7?lang=eng&suite=def; also NLI: https://www.nli.org.il/he/scores/NNL_ALEPH003411171/NLI",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1902.0,
+          "Instrumentation": "Violin",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Ben Hador March (duplicate of what's in the bigger collection from 1902)",
+          "Publisher and other details": "Probably Hebrew Publishing Co.?; last page has the text to several songs from Ben Hador in Yiddish script",
+          "Availability/Source": "https://www.loc.gov/resource/musm1508.10026276.0?st=gallery",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1902.0,
+          "Instrumentation": "Violin",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Phantasie Lied (Fantasy Song) (just the same first page as in the bigger 1902 version -- missing the last pages)",
+          "Cover info": "Same cover as the 1910 version: \"The Roaring Success of the Season: Prof. M. Horowitz's Opera Ben Hador, Composed and Arranged by Perlmutter and Wohl\"; big wave on the cover",
+          "Publisher and other details": "Hebrew Publishing Co.",
+          "Availability/Source": "https://www.loc.gov/resource/musm1508.10026253.0?st=gallery; diff listing (Komisch Terzet) but just the second page of this listing: https://www.loc.gov/item/2016775558/",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1902.0,
+          "Instrumentation": "1st Violin part (March says just \"violin\")",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "1. Fantasy Song (Fantazye lied), 2. Ben Hador March 3. Comic Trio",
+          "Cover info": "\"The Roaring Success of the Season: Prof. M. Horowitz's Opera Ben Hador, Composed and Arranged by Perlmutter and Wohl\"; big wave on the cover",
+          "Price": "50 cents (20 in book listing)",
+          "Publisher and other details": "Hebrew Publishing Company (some details in the book listing, like price, and order of pieces, diff from the LOC holding); order of pieces on cover diff from order in the sheet music; full Yiddish text of these and some other songs (allegedly all of them) from the opera (not included in the sheet music here) printed on last page (no English)",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200182125; also 1902 : https://www.loc.gov/item/ihas.200182000/; also listed in https://www.yiddishbookcenter.org/collections/yiddish-books/spb-nybc203441?book-page=126&book-mode=1up; for details, see https://babel.hathitrust.org/cgi/pt?id=msu.31293011839010&view=1up&seq=62&skin=2021&q1=%22ben%20hador%22; should exist piano and voice, and violin w/ text",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording",
+          "Year": "1903-1910",
+          "Instrumentation": "Voice and piano",
+          "Contents": "Fantasi lied von Ben Hador, sung by Frank Seiden (baritone)",
+          "Availability/Source": "https://rsa.fau.edu/album/4889; https://adp.library.ucsb.edu/index.php/matrix/detail/2000138133/1642-Fantasi_lied_von_Ben_Hador; available at Yale (non-circulating)???: https://orbis.library.yale.edu/vwebv/search?searchCode=GKEY%5E*&recCount=50&searchType=1&searchArg=ocn244214807",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording",
+          "Year": 1904.0,
+          "Instrumentation": "Voice and piano",
+          "Contents": "Fantasy Song from Ben Hador, sung by Kalman Juvelier (Ben Hador: Phantasie lied); same as on CD \"Attractive Hebrews\"; Lambert recording",
+          "Availability/Source": "https://search.library.wisc.edu/digital/ARKEWIBHTMH6LW8P/A7OKYYZSZZLENI8O",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": 1905.0,
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "A. Hellman",
+          "Contents": "Ben Hador: By A. Hellman, 1st violin/direction with text, 19 numbers, bass, drums, trombone, cornet in B, viola, 2nd violin, clarinet in B, flute, 1 page per instrument, property of A. Hellman, New York, Fine dela opera, Grand Theater, A. Hellman; have this",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:86, Folder 10: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording (disc, 78)",
+          "Year": "1906 (1910?)",
+          "Instrumentation": "Voice and ?",
+          "Contents": "Ben Hador: Geshem (side 2); Singers Jacob Fuchs, Mattias Thur; Listing: Srulik kim a heim / Srulik kum aheym; have this",
+          "Availability/Source": "https://www.nli.org.il/he/items/NNL_MUSIC_AL003445307/NLI; can get online?: https://www.worldcat.org/title/srulik-kim-a-heim/oclc/827865497&referer=brief_results",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "1907-1908",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Historical operetta. Text by Moishe Hurwitz; music by Arnold Perlmutter and Herman Wohl. Includes D V-1 V-2 Va B F C T Tb P",
+          "Complete (C)": "C?",
+          "Availability/Source": "YIVO Vilna Collection, RG 7, Folder 229 (Mixed Materials): https://digipres.cjh.org/delivery/DeliveryManagerServlet?dps_pid=IE11064078",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "1908-1914",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Title on Director's copy (in Russian): Prints Ben Hador. Historical operetta; 4 acts. Text by Moishe Hurwitz; music by Arnold Perlmutter and Herman Wohl. Includes D V-1 V-2 Va B F C T Tb P",
+          "Complete (C)": "C?",
+          "Availability/Source": "YIVO Vilna Collection, RG 7, Folder 207 (Mixed Materials): https://digipres.cjh.org/delivery/DeliveryManagerServlet?dps_pid=IE11038776",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": 1908.0,
+          "Instrumentation": "Viola and clarinet",
+          "Composer/Arranger": "A. Hellman",
+          "Contents": "By A. Hellman, viola, clarinet, 19 numbers, property of A. Hellman, New York, copied New York, May 8, 1908, A. Hellman",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:86, Folder 11: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": 1908.0,
+          "Instrumentation": "2nd violin and cornet in B",
+          "Composer/Arranger": "A. Hellman",
+          "Contents": "Ben Hador: By A. Hellman, 2nd violin, cornet in B, 19 numbers, property of A. Hellman, New York, Fine de la opera, New York, May 12, 1908",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:88, Folder 5: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording",
+          "Year": 1908.0,
+          "Instrumentation": "Voice and orchestra",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Fantasy Song, sung by K. Juvelier",
+          "Availability/Source": "https://search.library.wisc.edu/digital/ASXGPIM7FRPY4V8W/AEA7C5AULX3KYI8O",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording",
+          "Year": "190?",
+          "Instrumentation": "Voice and piano",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Fantasy Song, sung by Adolf Meltzer, listed as Dos Shterndl, Adolf Meltzer, tenor, with piano accompaniment, Published byPathe B 3539, Recorded in Lemberg, 190? ",
+          "Availability/Source": "https://www.youtube.com/watch?v=E3AxktRK0jE",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": 1908.0,
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "A. Hellman",
+          "Contents": "Music by A. Hellman, property of A. Hellman, New York, April 1908, flute, trombone, bass, flute, drums",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:32, Folder 9: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1910.0,
+          "Instrumentation": "Piano",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "1. Fantasy Song (Fantazye lied), 2. Ben Hador March 3. Comic Trio",
+          "Cover info": "Cover says 1902 but sheet music says 1910: \"The Roaring Success of the Season: Prof. M. Horowitz's Opera Ben Hador, Composed and Arranged by Perlmutter and Wohl\"; big wave on the cover",
+          "Price": "75 cents (35 in book listing)",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200155038/; see also listing in https://www.yiddishbookcenter.org/collections/yiddish-books/spb-nybc203441?book-page=122&book-mode=1up; see also https://www.worldcat.org/title/fantasie-song-from-the-opera-ben-hador/oclc/2313009&referer=brief_results",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording (disc, 78)",
+          "Year": 1910.0,
+          "Instrumentation": "Voice and ?",
+          "Contents": "Ben Hador: Lapides mit di vayber (side 2 of Auf dem barg sina / Oyf dem barg sinay); singers Jacob Fuchs, Julius Guttmann, Salcia Guttmann, Liba Karlik",
+          "Availability/Source": "https://www.nli.org.il/he/items/NNL_MUSIC_AL003445360/NLI",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwrittens score",
+          "Year": "??1910",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Score, New York, Joseph Gropper (?), 104 Bowery; [??Cleveland]; Director's part and 1st (?) violin part",
+          "Availability/Source": "YIVO, Sholem Perlmutter Collection, Series I, Folder 69: score available",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": 1917.0,
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Title on copy: Prints Ben Hador. Historical operetta; 4 acts; 14 nos. Text by Moishe Hurwitz; music by Arnold Perlmutter and Herman Wohl. Includes D V-1 V-2 Va B F C T Tb P",
+          "Complete (C)": "C?",
+          "Availability/Source": "YIVO Vilna collection, RG 7, Folder 10 (available online): https://digipres.cjh.org/delivery/DeliveryManagerServlet?dps_pid=IE10819944",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": 1921.0,
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Historical operetta; 4 acts; 14 nos. Text by Moishe Hurwitz; music by Arnold Perlmutter and Herman Wohl. Includes V-1 V-2 Va Cello B F T (2 copies of V-1 and F)",
+          "Availability/Source": "YIVO Vilna Collection, RG 7, Folder 53 (Mixed Materials): https://digipres.cjh.org/delivery/DeliveryManagerServlet?dps_pid=IE11012634",
+          "Play Key": "Ben hador"
+        },
+        {
+          "Type": "Recording",
+          "Year": "Nov. 1918/1924",
+          "Instrumentation": "Voice and orchestra",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Fantasy lied, sung by Kalman Juvelier; Columbia E4229 / 84922",
+          "Availability/Source": "https://search.library.wisc.edu/digital/AGEAPVJVNGMLQQ9A/ANM3CSMKOVIQRS8V; https://classic.europeana.eu/portal/en/record/157/_REB01_000154759.html?utm_source=new-website&utm_medium=button; also NYPL: https://browse.nypl.org/iii/encore/record/C__Rb20925588__SHorowitz%2C%20M.%20%28Moses%29%2C__P0%2C4__Orightresult__X3?lang=eng&suite=def; info: https://adp.library.ucsb.edu/index.php/matrix/detail/2000110437/84922-Fantazye-lid_; is this the same one as listed in the Edison Amberola Monthly, vol. 5, p. 5, Kalman Juvelier, tenor, w/ orch. accomp: \"19130: Sentimental Song from Ben Hador\"; also 19131, Der Stamm Davids, Wolfsthal, Historica Song from opera \"Bostonni\"; see also https://www.worldcat.org/title/vau-zaynen-mayne-kinder-wie-zonen-meine-kinder-fantazie-lied-fun-ben-ha-dor-fantasy-lied-fon-ben-hador/oclc/63148644&referer=brief_results; alo https://www.worldcat.org/title/vu-zinen-mayne-kinder-fantazye-lid-fon-ben-ha-dor/oclc/234355127&referer=brief_results; also https://www.worldcat.org/title/vau-zaynen-mayne-kinder-wie-zennen-meine-kinder/oclc/945554654&referer=brief_results; also https://hollis.harvard.edu/primo-explore/fulldisplay?docid=01HVD_ALMA212034596220003941&context=L&vid=HVD2&lang=en_US&search_scope=default_scope&adaptor=Local%20Search%20Engine&tab=books&query=lsr02,contains,234355127; https://adp.library.ucsb.edu/index.php/matrix/detail/2000110437/84922-Fantazye-lid_; check also listing in http://digital.library.upenn.edu/webbin/freedman/lookupalbum?hr=&catlg=056k; also https://www.worldcat.org/title/wie-zeinen-meine-kinder/oclc/827864807&referer=brief_results",
+          "Play Key": "Ben hador"
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": []
@@ -2884,11 +4407,45 @@
         "all_proofed": "y",
         "ready_for_encoding": "y"
       },
-      "expression_id": null,
-      "expression": null,
-      "productions": [],
+      "expression_id": 3959,
+      "expression": {
+        "expression_id": 3959,
+        "english_name": "Shimshun Hagiber",
+        "yiddish_name": "שמשון הגיבור",
+        "tags": "historical operetta",
+        "genre": "historical operetta",
+        "certainty": null,
+        "comments": null,
+        "author_id": 684,
+        "expression_note": null,
+        "do_we_have_a_copy": null
+      },
+      "productions": [
+        {
+          "כלל יידיש": "שמשון הגיבור",
+          "Type": "premier",
+          "source": "Zylbercweig and Gorin; Seiger provides a date and venue",
+          "expression": "originalPlay",
+          "Year": 1890.0,
+          "innacurate or exact date": "09/26/1890",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Thalia Theatre",
+          "dating Source": "Zylbercweig and Seiger",
+          "Play KEY": "Shimshun Hagiber"
+        }
+      ],
       "roles": [],
-      "songs": [],
+      "songs": [
+        {
+          "Type": "Handwritten Score",
+          "Year": 1890.0,
+          "Instrumentation": "Instrumental parts",
+          "Composer/Arranger": "Schorr?",
+          "Contents": "Shimshon Hagibor (Samson the Strong); parts and text; Horowitz-Baruch Schorr et al. New York",
+          "Availability/Source": "YIVO, Sholem Perlmutter Collection, Series I, Folders 536-9",
+          "Play Key": "Shimshon Hagibor"
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": []
@@ -3010,11 +4567,116 @@
         "all_proofed": "y",
         "ready_for_encoding": "y"
       },
-      "expression_id": null,
-      "expression": null,
-      "productions": [],
+      "expression_id": 3963,
+      "expression": {
+        "expression_id": 3963,
+        "english_name": "Bas Cohen oder, Malka Alexandra",
+        "yiddish_name": "בת כהן",
+        "tags": "historical operetta",
+        "genre": "historical operetta",
+        "certainty": null,
+        "comments": null,
+        "author_id": 684,
+        "expression_note": null,
+        "do_we_have_a_copy": null
+      },
+      "productions": [
+        {
+          "כלל יידיש": "בת כהן",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dth/1896/12/25/01/article/16.4",
+          "Notes": "on Christmas day",
+          "expression": "originalPlay",
+          "Year": 1896.0,
+          "innacurate or exact date": "25/12/1896",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Thalia Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Bas Cohen oder, Malka Alexandra"
+        },
+        {
+          "כלל יידיש": "בת כהן",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dth/1896/01/10/01/article/11.1",
+          "expression": "originalPlay",
+          "Year": 1896.0,
+          "innacurate or exact date": "01/11/1896",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Bas Cohen oder, Malka Alexandra"
+        },
+        {
+          "כלל יידיש": "בת כהן",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/darbzt/1893/08/25/01/article/12.1",
+          "expression": "originalPlay",
+          "Year": 1893.0,
+          "innacurate or exact date": "08/26/1898",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Tsentral Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Bas Cohen oder, Malka Alexandra"
+        },
+        {
+          "כלל יידיש": "בת כהן, אָדער אַלעקסאנדרא המלכה",
+          "Type": "premier",
+          "source": "Zylbercweig and Gorin",
+          "expression": "originalPlay",
+          "Year": 1892.0,
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "dating Source": "Zylbercweig",
+          "Play KEY": "Bas Cohen oder, Malka Alexandra"
+        }
+      ],
       "roles": [],
-      "songs": [],
+      "songs": [
+        {
+          "Type": "Handwritten Score",
+          "Year": "?",
+          "Instrumentation": "1st violin/direction",
+          "Composer/Arranger": "Joseph Brody",
+          "Contents": "title page of 1st violin/direction",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:34, Folder 4: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Bas Cohen, oder, Malka Alexandra"
+        },
+        {
+          "Type": "Handwritten Score?",
+          "Year": 1903.0,
+          "Instrumentation": "Instrumental parts",
+          "Composer/Arranger": "J. Hoffman",
+          "Contents": "Instrumental parts and text; Cracow",
+          "Availability/Source": "YIVO, Sholem Perlmutter Collection, Series I, Folder 83",
+          "Play Key": "Bas Cohen, oder, Malka Alexandra"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "1912-1918",
+          "Instrumentation": "Multiple instrumental parts",
+          "Contents": "Operetta; 4 acts; 11 nos. Text by Moishe Hurwitz. Includes D V-1 V-1 (2 versions) V-2 Va B F C T Tb P (V-1 c.2 and P are from a different set)",
+          "Complete (C)": "C?",
+          "Availability/Source": "YIVO Vilna collection, RG 7, Folder 30 (Mixed Materials)",
+          "Play Key": "Bas Cohen, oder, Malka Alexandra"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "?",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Arranged by A. Hellman",
+          "Contents": "Bas Koyen/Bas Coin/The Priest’s Daughter: Music arranged by A. Hellman, property of A. Hellman, New York, 15 nos, flute, drums, viola, bass",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:4, Folder 3: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Bas Cohen, oder, Malka Alexandra"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "?",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Arranged by A. Hellman",
+          "Contents": "Bas Koyen/Bas Coen/The Priest’s Daughter: Music arranged by A. Hellman, property of A. Hellman, New York, 13 numbers, cornet, 2nd violin; also clarinet (Folder 2), trombone, 1st violin (Folder 6), 1st violin/direction, with text, cello (Folder 7)",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:9, Folders 1-2, 6-7: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Bas Cohen, oder, Malka Alexandra"
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": []
@@ -3055,11 +4717,228 @@
         "all_proofed": "y",
         "ready_for_encoding": "y"
       },
-      "expression_id": null,
-      "expression": null,
-      "productions": [],
-      "roles": [],
-      "songs": [],
+      "expression_id": 4012,
+      "expression": {
+        "expression_id": 4012,
+        "english_name": "Di tsvey tanoyim",
+        "yiddish_name": "צוויי תנאים",
+        "tags": "historical operetta; operetta",
+        "genre": "historical operetta",
+        "certainty": null,
+        "comments": null,
+        "author_id": 684,
+        "expression_note": null,
+        "do_we_have_a_copy": null
+      },
+      "productions": [
+        {
+          "כלל יידיש": "די צוויי תנאים",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/freiearb/1902/04/18/01/article/19.2",
+          "expression": "originalPlay",
+          "Year": 1902.0,
+          "innacurate or exact date": "1902-04-19T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Di tsvey tanoyim"
+        },
+        {
+          "כלל יידיש": "די צוויי תנאים",
+          "Type": "premier",
+          "source": "Zylbercweig and Gorin",
+          "expression": "originalPlay",
+          "Year": 1902.0,
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "dating Source": "Zylbercweig",
+          "Play KEY": "Di tsvey tanoyim"
+        }
+      ],
+      "roles": [
+        {
+          "Play": "Di tsvey tanoyim",
+          "PersonKey": "שמולעוויטש, שלמה 1475:6",
+          "Role": "lyrics",
+          "context": "NYC",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 145"
+        },
+        {
+          "Play": "Di tsvey tanoyim",
+          "PersonKey": "גימפּעל, אַדאָלף 974:1, 6104:5",
+          "Role": "composer",
+          "context": "1st performance in Pinsk 1911",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 81",
+          "dates": "Odessa 1910"
+        },
+        {
+          "Play": "Di tsvey tanoyim",
+          "PersonKey": "וואָהל, הערמאַן )צבי( 936:1",
+          "Role": "composer",
+          "context": "With A. Perlmutter",
+          "source": "Perlmutter p.344"
+        },
+        {
+          "Play": "Di tsvey tanoyim",
+          "PersonKey": "פּערלמוטער, אַרנאָלד 8381:3",
+          "Role": "composer",
+          "context": "With H. Wohl",
+          "source": "Perlmutter p.344"
+        },
+        {
+          "Play": "Di tsvey tanoyim",
+          "PersonKey": "גימפּעל, אַדאָלף 974:1, 6104:5",
+          "Role": "Arranger",
+          "context": "Lemberg",
+          "source": "Vilna Collection",
+          "dates": "1909-1910"
+        }
+      ],
+      "songs": [
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 149.0,
+          "action": "כלל יידיש? yivo?",
+          "Romanized title": "Ein Ueberkchumisch Quartett",
+          "כלל יידיש": "אבער חכם קווארטעט",
+          "Play Key": "Di tsvey tanoyim",
+          "Page number PDF": 39.0,
+          "Source": "Shund on Shellac",
+          "external source id": 16.0,
+          "recordings acc. Shund on Shellac": 3.0
+        },
+        {
+          "File": "DybbukCatalogue May2024 - songs_hurwitz.tsv",
+          "tempID": 150.0,
+          "action": "כלל יידיש? yivo?",
+          "Romanized title": "Mein matune",
+          "YIVO transliteration": "mayn matune",
+          "כלל יידיש": "מײַן מתנה",
+          "Title": "מײַן מתנה",
+          "Play Key": "Di tsvey tanoyim",
+          "Page number PDF": 39.0,
+          "Source": "Shund on Shellac",
+          "external source id": 16.0,
+          "recordings acc. Shund on Shellac": 1.0
+        },
+        {
+          "Type": "?",
+          "Instrumentation": "Instrumental parts",
+          "Composer/Arranger": "A. Perlmutter and H. Wohl",
+          "Contents": "Di tsvey tnoyim (The Two Betrothals); parts and text",
+          "Availability/Source": "YIVO, Sholem Perlmutter Collection, Series I, Folders 445-6",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": "?",
+          "Instrumentation": "Piano",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "1. The Torah, 2. Robber (Royber) Chorus, 3. Back Home, 4. This is [the?] Truth, 5. Be My Matana, 6. Gold Palms March",
+          "Price": "50 cents",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "Listing of the score (not the score itself): https://www.yiddishbookcenter.org/collections/yiddish-books/spb-nybc203441?book-page=126&book-mode=1up",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": "?",
+          "Instrumentation": "Violin",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "1. The Torah, 2. Robber (Royber) Chorus, 3. Back Home, 4. This is [the?] Truth, 5. Be My Matana, 6. Gold Palms March",
+          "Price": "20 cents",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "Listing of the score (not the score itself): https://www.yiddishbookcenter.org/collections/yiddish-books/spb-nybc203441?book-page=126&book-mode=1up",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Commercial sheet music?",
+          "Year": 1902.0,
+          "Instrumentation": "?",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "Parts 1-6",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "https://www.nli.org.il/en/scores/NNL_MUSIC_AL002131876/NLI",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Commercial sheet music?",
+          "Year": 1902.0,
+          "Instrumentation": "Piano",
+          "Composer/Arranger": "Perlmutter and Wohl",
+          "Contents": "1. Di torah -- 2. Rauber chor. -- 3. Zuruck aheim. -- 4. Yo dos is emes. -- 5. Bist mein matonele. -- 6. Goldpalmen march. Di tsvey tnoim = the two tannaim / composed & arranged by Perlmutter & Wohl",
+          "Cover info": "\"Success of the season, Prof. Horowitz's opera.\"",
+          "Publisher and other details": "Hebrew Publishing Company",
+          "Availability/Source": "https://browse.nypl.org/iii/encore/record/C__Rb20477157__SHorowitz%2C%20M.%20%28Moses%29%2C__P0%2C15__Orightresult__X3?lang=eng&suite=def; same as other 1902 listing at NLI?",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": "copyright 1907 but printed 1912",
+          "Instrumentation": "Piano, w/ \"Voice\" and transliterated text underlaid; also full Yiddish text between the two pages of the score",
+          "Composer/Arranger": "Perlmutter and Wohl; words by Solomon Small; no mention of Hurwitz",
+          "Contents": "Bist mein Matune / Bist mein matonele",
+          "Cover info": "Cover: Russotto's Music Album: Du Bist Mein Matonele",
+          "Price": "50 cents",
+          "Publisher and other details": "Hebrew Publishing Co.; last page has \"List of Popular Music for Piano,\" which includes a comparable list to the detailed one from 1903 -- mix of single Yiddish theatre songs, volumes of several of them, complete Yiddish theatre pieces (esp Goldfaden), religious/liturgical pieces, plus Zionist songs and Yiddish folk songs",
+          "Availability/Source": "http://fau.digital.flvc.org/islandora/object/fau%3A1771",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "1909-1910",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Arranged by Adolf Gimpel",
+          "Contents": "Operetta; 18 nos. Text by Moishe Hurwitz, music arranged by Adolf Gimpel. Includes D V-1 V-2 V-2 Va B F C T Tb P",
+          "Complete (C)": "C?",
+          "Availability/Source": "YIVO Vilna Collection, RG 7, Folder 219 (Mixed Materials)",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Handwritten Score",
+          "Year": "1910-1914",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "Arranged by Adolf Gimpel",
+          "Contents": "Operetta, 4 acts. Text by Moishe Hurwitz; music arranged by Adolf Gimpel. Includes D V-1 V-2 Va B F C T Tb",
+          "Complete (C)": "C?",
+          "Availability/Source": "YIVO Vilna Collection, RG 7, Folder 109 (Mixed Materials)",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1912.0,
+          "Instrumentation": "Piano, w/ \"Voice\" and transliterated text underlaid",
+          "Composer/Arranger": "Perlmutter and Wohl; words by Solomon Small",
+          "Contents": "Zurik aheim; full text of song in Yiddish right next to piano part, between the 2 pages of music",
+          "Cover info": "Russotto's Music Album; photo",
+          "Price": "50 cents",
+          "Publisher and other details": "Hebrew Publishing Co.; last page has \"List of Popular Music for Piano,\" which includes a comparable list to the detailed one from 1903 -- mix of single Yiddish theatre songs, volumes of several of them, complete Yiddish theatre pieces (esp Goldfaden), religious/liturgical pieces, plus Zionist songs and Yiddish folk songs",
+          "Availability/Source": "https://www.loc.gov/resource/ihas.200182184.0?st=gallery",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1912.0,
+          "Instrumentation": "Violin; voice part indicated but no text; also \"chorus\" but again no text",
+          "Composer/Arranger": "Perlmutter and Wohl; [Solomon Small]",
+          "Contents": "Bist mein Matune, Die Tora, Zurick Aheim",
+          "Cover info": "Russotto's Music Album; photo; on cover, says \"Die Torah, Zurik aheim, Bist mein matonele\"",
+          "Publisher and other details": "Hebrew Publishing Co.; last page advertises Gotts Schtroff, A Brivele der Kale, Thilemel, and Das Pintele Yud",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200182182/",
+          "Play Key": "Di tsvey tnoyim"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1912.0,
+          "Instrumentation": "Piano, w/ \"Voice\" and transliterated text underlaid",
+          "Composer/Arranger": "Perlmutter and Wohl; [Solomon Small]",
+          "Contents": "Die Tora; Yiddish text between the 2 sheet music pages",
+          "Cover info": "Torah di beste skhura (= The Torah is the best merchandise): Die Torah",
+          "Price": "50 cents",
+          "Publisher and other details": "Hebrew Publishing Co.; last page has \"Special List of Our Latest Popular Music for Piano\" = usual mix",
+          "Availability/Source": "https://www.loc.gov/item/ihas.200182181/; also http://fau.digital.flvc.org/islandora/object/fau%3A1746",
+          "Play Key": "Di tsvey tnoyim"
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": []
@@ -3100,11 +4979,226 @@
         "all_proofed": "y",
         "ready_for_encoding": "y"
       },
-      "expression_id": null,
-      "expression": null,
-      "productions": [],
-      "roles": [],
-      "songs": [],
+      "expression_id": 3944,
+      "expression": {
+        "expression_id": 3944,
+        "english_name": "Tisa Esler",
+        "yiddish_name": "טיסא עסלער אָדער די פֿאַרשווערונג",
+        "tags": "Tsaytbild; drama",
+        "genre": "Zeitbild (the first one); model for later Zeitbilder",
+        "certainty": null,
+        "comments": "Zylbercweig: \"The role of Dr. Edvish was played by the author\"; The play was written while Horowitz was in Romania, but was performed after his emigration to America at the Romanian Opera House. Acc. Z: B. Gorin wrote about this: \"This was the one and only play on the Yiddish stage that was accompanied by a serialized talk that was not scripted. [...] In \"Tisa Eslar\" Horowitz wanted to create a great sensation, a drama that would grab everyone’s attention. The libel of Tisa Eslar at that time was fresh in the minds of everyone. Every Jew was interested in this libel. This was a true-to-life issue. The success of this play showed him that with such material it was possible to interest the public. So that when a national catastrophe, or a national misfortune arose, he took advantage of it to stage a drama.\" Done in daytshmerish.",
+        "author_id": 684,
+        "expression_note": null,
+        "do_we_have_a_copy": null
+      },
+      "productions": [
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dwt/1907/10/30/01/article/28",
+          "expression": "originalPlay",
+          "Year": 1907.0,
+          "innacurate or exact date": "1907-11-02T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "People's Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Tisa Esler"
+        },
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/tjm/1906/01/29/01/article/32",
+          "expression": "originalPlay",
+          "Year": 1906.0,
+          "innacurate or exact date": "1906-03-02T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Kalich Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Tisa Esler"
+        },
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/freiearb/1901/02/22/01/article/8.3",
+          "expression": "originalPlay",
+          "Year": 1901.0,
+          "innacurate or exact date": "1901-02-24T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Windsor Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Tisa Esler"
+        },
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1905/10/29/01/article/24.2",
+          "expression": "originalPlay",
+          "Year": 1905.0,
+          "innacurate or exact date": "1905-10-28T00:00:00",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Kalich Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Tisa Esler"
+        },
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/dth/1897/02/04/01/article/12.1",
+          "expression": "originalPlay",
+          "Year": 1897.0,
+          "innacurate or exact date": "2/6/1897",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Folks Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Tisa Esler"
+        },
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/flkadv/1888/09/19/01/article/18.1",
+          "expression": "originalPlay",
+          "Year": 1888.0,
+          "innacurate or exact date": "09/24/1888",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Pool's Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Tisa Esler"
+        },
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "production",
+          "source": "https://www.nli.org.il/he/newspapers/jewishgazette/1888/10/12/01/article/22.2",
+          "expression": "originalPlay",
+          "Year": 1888.0,
+          "innacurate or exact date": "10/10/1888",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Pool's Theatre",
+          "dating Source": "Jpress",
+          "Play KEY": "Tisa Esler"
+        },
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "production",
+          "source": "Zylbercweig cites Yaakov Mestel",
+          "expression": "originalPlay",
+          "Year": 1913.0,
+          "PremierePlace": "Iași (Rumenia)",
+          "Theatre": "Pamol Verdi",
+          "dating Source": "Zylbercweig",
+          "Play KEY": "Tisa Esler"
+        },
+        {
+          "כלל יידיש": "טיסא עסלער",
+          "Type": "premier",
+          "source": "Yisrael Berkovitsh, Hunderṭ yor Yidish ṭeaṭer in Rumenye, 1876-1976, 285-- dates the performance 1884; Seiger and Zylbercweig date the performance to 1887",
+          "expression": "originalPlay",
+          "Year": 1887.0,
+          "innacurate or exact date": "02/07/1887",
+          "PremierePlace": "Lower East Side (New York, N.Y.)",
+          "Theatre": "Roumanian Opera House",
+          "dating Source": "Seiger and Zylbercweig",
+          "Play KEY": "Tisa Esler"
+        }
+      ],
+      "roles": [
+        {
+          "Play": "Tisa Esler",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "Role": "composer",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 135"
+        },
+        {
+          "Play": "Tisa Esler",
+          "Role": "composer",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers,38",
+          "dates": 1892.0
+        },
+        {
+          "Play": "Tisa Esler",
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "Role": "actor",
+          "context": "Kalish theatre NYC",
+          "source": "https://www.nli.org.il/he/newspapers/tjm/1906/01/29/01/article/32",
+          "dates": 1906.0
+        },
+        {
+          "Play": "Tisa Esler",
+          "PersonKey": "פיינמאַן, זיגמונד 4452:4",
+          "Role": "actor",
+          "context": "Kalish theatre NYC",
+          "source": "https://www.nli.org.il/he/newspapers/tjm/1906/01/29/01/article/32",
+          "dates": 1906.0
+        },
+        {
+          "Play": "Tisa Esler",
+          "PersonKey": "יאָוועליר, קלמן 909:2",
+          "Role": "actor",
+          "context": "Kalish theatre NYC",
+          "source": "https://www.nli.org.il/he/newspapers/tjm/1906/01/29/01/article/32",
+          "dates": 1906.0
+        },
+        {
+          "Play": "Tisa Esler",
+          "Role": "actress",
+          "context": "NYC",
+          "source": "https://www.nli.org.il/he/newspapers/refadv/1900/03/31/01/article/25",
+          "dates": 1900.0
+        }
+      ],
+      "songs": [
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1913.0,
+          "Instrumentation": "Piano",
+          "Composer/Arranger": "S. Mogulesco, arranged J. M. Rumshisky [sic]",
+          "Contents": "(Oi) Kinder Kinder",
+          "Cover info": "Mogulesco's Music Album",
+          "Price": "50 cents",
+          "Publisher and other details": "Hebrew Publishing Co.; last page has text in Yiddish script and transliterated into English; words and music by Mogulesco (no mention of Hurwitz anywhere)",
+          "Availability/Source": "https://www.loc.gov/resource/ihas.200155136.0?st=gallery; also NYPL: https://browse.nypl.org/iii/encore/record/C__Rb21816813__S%22kinder%20kinder%22__P0%2C2__Orightresult__U__X6?lang=eng&suite=def",
+          "Play Key": "Tisa Esler, oder di farshverung"
+        },
+        {
+          "Type": "Commercial sheet music",
+          "Year": 1915.0,
+          "Instrumentation": "Violin",
+          "Composer/Arranger": "S. Mogulesco, arranged J. M. Rumshisky [sic]",
+          "Contents": "(Oi) Kinder Kinder; Shalakh monos (Shalach Manot)",
+          "Cover info": "Mogulesco's Music Album; says piano, but it's violin",
+          "Price": "50 cents",
+          "Publisher and other details": "Hebrew Publishing Co.; last page has catalog; words and music by Mogulesco (no mention of Hurwitz anywhere)",
+          "Availability/Source": "https://www.loc.gov/resource/ihas.200182264.0?st=gallery; also NYPL: https://browse.nypl.org/iii/encore/record/C__Rb16533801__S%22kinder%20kinder%22__P0%2C1__Orightresult__U__X6?lang=eng&suite=def",
+          "Play Key": "Tisa Esler, oder di farshverung"
+        },
+        {
+          "Type": "Handwritten score",
+          "Year": "?",
+          "Instrumentation": "Multiple instrumental parts",
+          "Composer/Arranger": "S. Finkelstein?",
+          "Contents": "Individual parts (violin, trombone, etc.)",
+          "Complete (C)": "C?",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box II:6, Folders 1-9: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Tisa Esler, oder di farshverung"
+        },
+        {
+          "Type": "Handwritten score",
+          "Year": "1888-1903",
+          "Instrumentation": "1st violin and viola",
+          "Contents": "Violin principal, viola, 34 numbers: - Piling Theater, New York, A. Hellman, January 23, 1890, - Thalia Theater, New York, A. Hellman, March 26, 1890, August 13, 1890, May 30, 1891, January 12, 1891, November 5, 1898, March 11, 1899, December 1899, March 18, 1900, January 18, 1903 - Pools Theater, New York, A. Hellman, September 25, 1888, January 1, 1892 - Windsor Theater, A. Hellman, June 1, 1892, March 9, 1896 - Romanian Opera House, A. Hellman, March 4, 1893 - New York, A. Hellman, September 25, 1888, January 22, 1890, February 2, 1890 - Oriental Theatre, New York, A. Hellman, March 29, 1888",
+          "Availability/Source": "YIVO, Records of the Hebrew Actors' Union, Box: II:73, Folder: 13: http://www.yivoarchives.org/index.php?p=collections/findingaid&id=34388",
+          "Play Key": "Tisa Esler, oder di farshverung"
+        },
+        {
+          "Type": "Handwritten score",
+          "Year": 1892.0,
+          "Instrumentation": "Director's/1st violin part",
+          "Composer/Arranger": "S. Blank [?]",
+          "Contents": "Tisa Esler; score",
+          "Availability/Source": "YIVO, Sholem Perlmutter Collection, Series I, Folder 217; HAVE THIS!",
+          "Play Key": "Tisa Esler, oder di farshverung"
+        }
+      ],
       "print_edition_catalogue": [],
       "document_items": [],
       "performance_events": []
@@ -3193,7 +5287,15 @@
           "Theatre": "Turner Hall"
         }
       ],
-      "roles": [],
+      "roles": [
+        {
+          "PersonName as appears in Source if there is no key": "Joaohim Kurantman",
+          "English Name": "Joaohim Kurantman",
+          "Role": "composer",
+          "source": "Seiger (p.237)",
+          "Play": "Di emigratsyon nokh Amerike"
+        }
+      ],
       "songs": [
         {
           "File": "DybbukCatalogue May2024 - songs_Lateiner and Hurwitz.tsv",
@@ -3355,11 +5457,12 @@
           "source": "Silberzweig"
         },
         {
-          "Play": "Khurbn Yerusholayim",
           "PersonKey": "ליאָוו, לעאָ )משה-לייבּ( 2201:2",
+          "English Name": "Leo Low",
           "Role": "composer",
-          "context": "European music",
-          "source": "Silberzweig"
+          "context": "Leo Low and Shlusberg, European production (according to Zylberzweig Lexicon)",
+          "source": "Pelmutter, Yidishe dramaturgn un teater kompozitors (Yiddish Dramatists and Theater Composers), 372",
+          "Play": "Khurbn Yerusholayim"
         },
         {
           "Play": "Khurbn Yerusholayim",
@@ -3368,6 +5471,107 @@
           "Role": "composer",
           "context": "European music",
           "source": "Silberzweig"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "מינקאָווסקי",
+          "English Name": "Giacomo Minkowski",
+          "Role": "composer",
+          "source": "Zylberzweig, Lexion, 2:971, 3:2151; and Ronald Robboy, \"Reconstructing a Yiddish Theatre Score: Giacomo Minkowski and His Music to Alexander; or, the Crown Prince of Jerusalem,\" In: Joel Berkowitz and Barbara Henrey, Inventing the Modern Yiddish Stage (Wayne State UP, 2012)",
+          "dates": 1890.0,
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonKey": "פרידזעל, לואיס 6412:3",
+          "English Name": "Louis Friedsell and Mogulesco",
+          "Role": "composer",
+          "context": "Mogulesco and Friedsell",
+          "source": "Pelmutter, Yidishe dramaturgn un teater kompozitors (Yiddish Dramatists and Theater Composers), 372",
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonKey": "מאָגוּלעסקאָ, זיגמוּנט",
+          "English Name": "אַּבבּדול 1:1",
+          "Role": "composer",
+          "context": "Mogulesco and Friedsell",
+          "source": "Pelmutter, Yidishe dramaturgn un teater kompozitors (Yiddish Dramatists and Theater Composers), 372",
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonKey": "אַבּראַמאָוויטש, מאַקס )מענדל( 6:1",
+          "English Name": "Max Avramowitz",
+          "Role": "composer",
+          "context": "original music",
+          "source": "Zylberzweig, Lexion",
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonKey": "בּרוידי, יוסף 042:1",
+          "English Name": "Brody, Joseph",
+          "Role": "composer",
+          "context": "European music",
+          "source": "Zylberzweig, Lexion",
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "קעסלער",
+          "PersonKey": "קעסלער, דוד 9862:4",
+          "English Name": "David Kessler",
+          "Role": "actor: Gdalyahu",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1898/04/22/01/article/45",
+          "dates": 1898.0,
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "פיינמאן",
+          "PersonKey": "פיינמאַן, זיגמונד 4452:4",
+          "English Name": "Sigmund Feinman",
+          "Role": "actor: Yermiyahu",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1898/04/22/01/article/45",
+          "dates": 1898.0,
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "בערנשטיין",
+          "PersonKey": "בּערנשטיין, בּערל )בּורשטין( 702:1",
+          "English Name": "Berl Bernstein",
+          "Role": "actor: Tsfanya",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1898/04/22/01/article/45",
+          "dates": 1898.0,
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "טאבאטשניקאוו",
+          "PersonKey": ")שמואל טאַבּאַטשניקאָוו( 208:2",
+          "English Name": "Tabachnikov",
+          "Role": "actor: Tsidkiyahu",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1898/04/22/01/article/45",
+          "dates": 1898.0,
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "קאנארד",
+          "English Name": "Konrad",
+          "Role": "actor: Ishmael",
+          "source": "https://www.nli.org.il/he/newspapers/frw/1898/04/22/01/article/45",
+          "dates": 1898.0,
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonKey": "וואָהל, הערמאַן )צבי( 936:1",
+          "English Name": "Herman Wohl",
+          "Role": "composer",
+          "context": "European music",
+          "source": "Zylberzweig, Lexion",
+          "Play": "Khurbn Yerusholayim"
+        },
+        {
+          "PersonName as appears in Source if there is no key": "Henry Russotto",
+          "English Name": "Henry Russotto",
+          "Role": "composer (txt fr composer)",
+          "context": "New York",
+          "source": "Listed in Kenneth Jaffe, Solo Vocal Works on Jewish Themes: A Bibliography of Jewish Composers, 162",
+          "comments": "selections Publ Heb Publ Co 1900 @ WDNR, J Magnes, and LC Marwick Coll, selections publ Heb Publ @ LC Marwick Coll, publ Heb Publ Co 1909 @ FAU 24 pp and NYPL 34 pp",
+          "Play": "Khurbn Yerusholayim"
         }
       ],
       "songs": [
