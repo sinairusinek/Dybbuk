@@ -57,6 +57,10 @@ AUTHOR_DB_ID = {683: "Joseph Lateiner", 684: "Moyshe (Ish Halevi) Hurwitz"}
 REVIEWED_BY = "Sinai 2026-10-05"
 
 ORG_DECISION = {
+    # Bucharest garden theatres; my first pass mis-transliterated both names
+    # (corrected by Sinai 2026-10-05: "Jigniza", "Pomul Verde").
+    "jignitatheatre": ("113", "Gradina Lieblich Jigniza"),
+    "pamolverdi": ("137", "פּאמול ווערדי - Gradina Pomul verde"),
     "windsortheater": ("134", "Windsor Theatre"),
     "poolstheatre": ("123", "Poole's Theatre"),
     "tsentraltheatre": ("151", "Tsentral Theater"),
@@ -71,15 +75,19 @@ ORG_DECISION = {
 
 PERSON_DECISION = {
     "מאדאםליפצין": ("762", "קעני ליפצין (סאַכאַר קריינע סאָניעס)"),
+    # The Leksikon files him under his stage name with the birth name in
+    # brackets — "טאָביאַס, סעמועל [שמואל טאַבאַטשניקאָוו]" — so the catalogue's
+    # birth-name form reaches people_db only through this link.
+    "שמואלטאבאטשניקאוו": ("3079", "סעמועל טאָביאַס / Samuel Tobias"),
 }
 
-# Sub-city districts the gazetteer does not hold as settlements. Token matching
-# would bind these to the parent city (Lower East Side → New York City), which
-# silently loses the distinction, so they are raised as questions instead:
-# the premiere venues are all Manhattan, and whether the corpus wants a
-# district tier or should resolve to the city is a modelling decision.
-DISTRICT_NOT_SETTLEMENT = {
-    "lowereastsidenewyorkny": "New York City (Q60) — district, not a settlement",
+# Sub-city districts. Kima has an id for the Lower East Side (19633), but all
+# 25 editions that name it also carry a named venue whose core_db row holds a
+# street address (46-48 Bowery, 199 Bowery, …), so the district is redundant as
+# a locus and is dropped rather than modelled — Sinai's call, 2026-10-05.
+# A district is kept only where no venue is known for the event.
+DISTRICT_REDUNDANT_IF_VENUE_KNOWN = {
+    "lowereastsidenewyorkny": ("kima:19633", "Lower East Side (New York, N.Y.)"),
 }
 
 # Latin-script historical names the gazetteer lacks. It DOES carry these
@@ -112,6 +120,15 @@ def strip_points(s: str) -> str:
 def sm(s) -> str:
     """Squash to a comparable key: unpointed, alphanumerics only, lowercase."""
     return re.sub(r"[^\w]+", "", strip_points(s)).lower()
+
+
+def decision_key(s) -> str:
+    """`sm()` with the Zylbercweig `vol:col` locator removed.
+
+    Catalogue person strings trail a lexicon locator (" 208:2") that would
+    otherwise have to be written into every decision key verbatim.
+    """
+    return sm(re.sub(r"\d+:\d+", " ", strip_points(s)))
 
 
 # Imprint boilerplate around a publisher's actual name. The catalogue writes
@@ -150,19 +167,30 @@ def toks(s) -> frozenset:
 
 # ---------------------------------------------------------------- db loading
 
+# people_db has no `deprecated`/`merged_into` column the way core_db does, so a
+# merge is recorded in the survivor's `source` as "merged_from=<id>". Rows named
+# there are skipped on load: keeping them indexed makes every merged pair read
+# as an ambiguous match forever.
+_MERGED_FROM = re.compile(r"merged_from=(\d+)")
+
+
 def load_people() -> tuple[dict, dict]:
-    """Return (exact index, token index) over people_db."""
+    """Return (exact index, token index) over people_db, minus merged rows."""
     exact, tokidx = {}, defaultdict(list)
-    with PEOPLE_DB.open(encoding="utf-8") as f:
-        for r in csv.DictReader(f, delimiter="\t"):
-            names = [r.get("hebname"), r.get("english"), r.get("alternative_name")]
-            names += (r.get("name_variants") or "").split("|")
-            label = (r.get("hebname") or r.get("english") or "").strip()
-            for n in names:
-                if not (n or "").strip():
-                    continue
-                exact.setdefault(sm(n), (r["db_id"], label))
-                tokidx[toks(n)].append((r["db_id"], label))
+    raw_rows = list(csv.DictReader(PEOPLE_DB.open(encoding="utf-8"), delimiter="\t"))
+    merged = {m for r in raw_rows
+              for m in _MERGED_FROM.findall(r.get("source") or "")}
+    for r in raw_rows:
+        if r["db_id"] in merged:
+            continue
+        names = [r.get("hebname"), r.get("english"), r.get("alternative_name")]
+        names += (r.get("name_variants") or "").split("|")
+        label = (r.get("hebname") or r.get("english") or "").strip()
+        for n in names:
+            if not (n or "").strip():
+                continue
+            exact.setdefault(sm(n), (r["db_id"], label))
+            tokidx[toks(n)].append((r["db_id"], label))
     return exact, dict(tokidx)
 
 
@@ -297,13 +325,16 @@ def resolve(raw: str, exact: dict, tokidx: dict | None = None,
     rather than as the matcher's own guesses.
     """
     key = sm(raw)
-    if decisions and key in decisions:
-        db_id, label = decisions[key]
+    dkey = decision_key(raw)
+    if decisions and (key in decisions or dkey in decisions):
+        db_id, label = decisions.get(key) or decisions[dkey]
         return {"status": "LINKED", "db_id": db_id, "matched": label,
                 "method": "reviewed", "reviewer": REVIEWED_BY}
-    if key in DISTRICT_NOT_SETTLEMENT:
-        return {"status": "GAP", "reason": "district, not a gazetteer settlement",
-                "note": DISTRICT_NOT_SETTLEMENT[key]}
+    if key in DISTRICT_REDUNDANT_IF_VENUE_KNOWN:
+        db_id, label = DISTRICT_REDUNDANT_IF_VENUE_KNOWN[key]
+        return {"status": "LINKED", "db_id": db_id, "matched": label,
+                "method": "kima-district", "reviewer": REVIEWED_BY,
+                "redundant_if_venue_known": True}
     if key in exact:
         db_id, label = exact[key]
         return {"status": "LINKED", "db_id": db_id, "matched": label,
@@ -497,17 +528,25 @@ def main() -> int:
                 gaps.append({"kind": "edition-field", "label": f"{folder} · {field}",
                              "reason": q, "candidates": ""})
 
-        # The manuscripts' holding shelfmark is often recorded in free-text
-        # `notes` ("YIVO rg8-1-f4179") while the `library` column sits empty.
-        # Say so, and quote the folio, rather than reporting it simply absent.
-        if not e.get("library"):
-            folio = re.search(r"YIVO[\s,]*(?:RG\s*8|rg8)[\w\-.:]*",
-                              str(e.get("notes") or ""), re.I)
-            gaps.append({
-                "kind": "edition-field", "label": f"{folder} · library",
-                "reason": ("holding library recorded only in notes"
-                           if folio else "no holding library"),
-                "candidates": folio.group(0).strip() if folio else ""})
+        # ---- holding library, as a real org edge.
+        # The `library` column is populated for the printed editions; for the
+        # manuscripts the shelfmark sits in free-text `notes` ("YIVO rg8-1-f4179"),
+        # so recover YIVO from there and carry the folio on the edge.
+        folio = re.search(r"YIVO[\s,]*(?:RG\s*8|rg8)[\w\-.:]*",
+                          str(e.get("notes") or ""), re.I)
+        lib_name = (e.get("library") or "").strip()
+        if not lib_name and folio:
+            lib_name = "YIVO Institute for Jewish Research"
+        if lib_name:
+            res = resolve(lib_name, org_exact, org_tok, org_parts,
+                          decisions=ORG_DECISION)
+            nid = node("org", lib_name, res, org_role="library")
+            edges.append({"src": nid, "dst": eid, "rel": "holds",
+                          "shelfmark": (e.get("library_signature")
+                                        or (folio.group(0).strip() if folio else None))})
+        else:
+            gaps.append({"kind": "edition-field", "label": f"{folder} · library",
+                         "reason": "no holding library", "candidates": ""})
         if not (e.get("performance_events") or []):
             gaps.append({"kind": "edition-field",
                          "label": f"{folder} · performance_events",
@@ -528,6 +567,20 @@ def main() -> int:
                            fieldnames=["kind", "label", "reason", "candidates"])
         w.writeheader()
         w.writerows(uniq_gaps)
+
+    # Drop a district premiere edge when the same edition already names a venue:
+    # the venue's street address is the better locus (Sinai 2026-10-05). The
+    # district node itself is dropped too if nothing references it any more.
+    venued = {e["src"] for e in edges if e["rel"] == "performed_at"}
+    redundant = {n["id"] for n in nodes.values()
+                 if n.get("redundant_if_venue_known")}
+    before = len(edges)
+    edges = [e for e in edges
+             if not (e["dst"] in redundant and e["src"] in venued)]
+    still_used = {e["dst"] for e in edges} | {e["src"] for e in edges}
+    for nid in redundant - still_used:
+        nodes.pop(nid, None)
+    print(f"  dropped {before - len(edges)} redundant district edges")
 
     graph = {
         "nodes": list(nodes.values()),

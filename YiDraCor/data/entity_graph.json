@@ -49,14 +49,6 @@
       "org_role": "venue"
     },
     {
-      "id": "place:lowereastsidenewyorkny",
-      "kind": "place",
-      "label": "Lower East Side (New York, N.Y.)",
-      "status": "GAP",
-      "reason": "district, not a gazetteer settlement",
-      "note": "New York City (Q60) — district, not a settlement"
-    },
-    {
       "id": "org:farlagkulturdzika13",
       "kind": "org",
       "label": "Farlag \"Kultur\" (Dzika 13)",
@@ -74,6 +66,14 @@
       "db_id": "Q270",
       "matched": "Warsaw",
       "method": "exact"
+    },
+    {
+      "id": "org:bibliotekanarodowapolona",
+      "kind": "org",
+      "label": "Biblioteka Narodowa (Polona)",
+      "status": "GAP",
+      "reason": "no candidate",
+      "org_role": "library"
     },
     {
       "id": "edition:DerManUnterTiff",
@@ -890,18 +890,11 @@
       "id": "person:יאוועלירקלמן9092",
       "kind": "person",
       "label": "יאָוועליר, קלמן 909:2",
-      "status": "GAP",
-      "reason": "ambiguous",
-      "candidates": [
-        [
-          "1066",
-          "קלמן יאוועליר"
-        ],
-        [
-          "2061",
-          "קלמן יאָוועליר"
-        ]
-      ],
+      "status": "PROPOSED",
+      "db_id": "2061",
+      "matched": "קלמן יאָוועליר",
+      "method": "token-set",
+      "score": 1.0,
       "role": "actor"
     },
     {
@@ -993,6 +986,16 @@
       "org_role": "venue"
     },
     {
+      "id": "org:yivoinstituteforjewishresearch",
+      "kind": "org",
+      "label": "YIVO Institute for Jewish Research",
+      "status": "LINKED",
+      "db_id": "27",
+      "matched": "YIVO Institute for Jewish Research",
+      "method": "exact",
+      "org_role": "library"
+    },
+    {
       "id": "edition:MS_BenHaDor",
       "kind": "edition",
       "label": "Ben HaDor",
@@ -1061,8 +1064,11 @@
       "id": "org:jignitatheatre",
       "kind": "org",
       "label": "Jignita Theatre",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "113",
+      "matched": "Gradina Lieblich Jigniza",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
@@ -1240,8 +1246,11 @@
       "id": "org:pamolverdi",
       "kind": "org",
       "label": "Pamol Verdi",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "137",
+      "matched": "פּאמול ווערדי - Gradina Pomul verde",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "org_role": "venue"
     },
     {
@@ -1340,14 +1349,11 @@
       "id": "person:שמואלטאבאטשניקאוו2082",
       "kind": "person",
       "label": ")שמואל טאַבּאַטשניקאָוו( 208:2",
-      "status": "GAP",
-      "reason": "weak match (one token only)",
-      "candidates": [
-        [
-          "539",
-          "שמואל"
-        ]
-      ],
+      "status": "LINKED",
+      "db_id": "3079",
+      "matched": "סעמועל טאָביאַס / Samuel Tobias",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
       "role": "actor"
     },
     {
@@ -1400,12 +1406,6 @@
     },
     {
       "src": "edition:MishkeMashke-Kultur1910",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1889.0
-    },
-    {
-      "src": "edition:MishkeMashke-Kultur1910",
       "dst": "org:poolestheatre",
       "rel": "performed_at",
       "date": "04/03/1889",
@@ -1422,6 +1422,12 @@
       "rel": "printed_in"
     },
     {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:MishkeMashke-Kultur1910",
+      "rel": "holds",
+      "shelfmark": "II 65.675"
+    },
+    {
       "src": "person:dbid683",
       "dst": "edition:DerManUnterTiff",
       "rel": "wrote"
@@ -1435,6 +1441,12 @@
       "src": "edition:DerManUnterTiff",
       "dst": "place:warsaw",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:DerManUnterTiff",
+      "rel": "holds",
+      "shelfmark": "45.590"
     },
     {
       "src": "person:dbid683",
@@ -1474,12 +1486,6 @@
     },
     {
       "src": "edition:Yudale_der_blinder,_Emkroyt1908",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1899.0
-    },
-    {
-      "src": "edition:Yudale_der_blinder,_Emkroyt1908",
       "dst": "org:peoplestheatreny",
       "rel": "performed_at",
       "date": "18/09/1899",
@@ -1494,6 +1500,12 @@
       "src": "edition:Yudale_der_blinder,_Emkroyt1908",
       "dst": "place:przemysl",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:Yudale_der_blinder,_Emkroyt1908",
+      "rel": "holds",
+      "shelfmark": "63.347"
     },
     {
       "src": "person:dbid683",
@@ -1517,12 +1529,6 @@
     },
     {
       "src": "edition:Di_seyder_nakht_Emkroyt_1908",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
-    },
-    {
-      "src": "edition:Di_seyder_nakht_Emkroyt_1908",
       "dst": "org:grandtheatre",
       "rel": "performed_at",
       "date": "25/12/1903",
@@ -1537,6 +1543,12 @@
       "src": "edition:Di_seyder_nakht_Emkroyt_1908",
       "dst": "place:przemysl",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:Di_seyder_nakht_Emkroyt_1908",
+      "rel": "holds",
+      "shelfmark": "63.166"
     },
     {
       "src": "person:dbid683",
@@ -1575,12 +1587,6 @@
     },
     {
       "src": "edition:Ezra-Emkroyt1908",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1891.0
-    },
-    {
-      "src": "edition:Ezra-Emkroyt1908",
       "dst": "org:thaliatheatre",
       "rel": "performed_at",
       "year": 1893.0,
@@ -1592,12 +1598,6 @@
       "rel": "performed_at",
       "year": 1893.0,
       "type": "Production"
-    },
-    {
-      "src": "edition:Ezra-Emkroyt1908",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1893.0
     },
     {
       "src": "edition:Ezra-Emkroyt1908",
@@ -1636,6 +1636,12 @@
       "src": "edition:Ezra-Emkroyt1908",
       "dst": "place:przemysl",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:Ezra-Emkroyt1908",
+      "rel": "holds",
+      "shelfmark": "II 63.171"
     },
     {
       "src": "person:dbid683",
@@ -1699,12 +1705,6 @@
     },
     {
       "src": "edition:Blimele-AhronFaust1903",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1894.0
-    },
-    {
-      "src": "edition:Blimele-AhronFaust1903",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "date": "18/10/1894",
@@ -1726,6 +1726,12 @@
       "src": "edition:Blimele-AhronFaust1903",
       "dst": "place:podgorze",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:Blimele-AhronFaust1903",
+      "rel": "holds",
+      "shelfmark": "II 63.206"
     },
     {
       "src": "person:dbid683",
@@ -1756,12 +1762,6 @@
     },
     {
       "src": "edition:BasSheva",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1893.0
-    },
-    {
-      "src": "edition:BasSheva",
       "dst": "org:thaliatheatre",
       "rel": "performed_at",
       "date": "06/04/1893",
@@ -1785,6 +1785,12 @@
       "rel": "printed_in"
     },
     {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:BasSheva",
+      "rel": "holds",
+      "shelfmark": "66.584"
+    },
+    {
       "src": "person:dbid683",
       "dst": "edition:דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete",
       "rel": "wrote"
@@ -1806,6 +1812,12 @@
       "src": "edition:דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete",
       "dst": "place:warsaw",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete",
+      "rel": "holds",
+      "shelfmark": "II 63.395"
     },
     {
       "src": "person:dbid683",
@@ -1836,12 +1848,6 @@
     },
     {
       "src": "edition:IshahRaah",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1894.0
-    },
-    {
-      "src": "edition:IshahRaah",
       "dst": "org:thaliatheatre",
       "rel": "performed_at",
       "date": "21/04/1894",
@@ -1863,6 +1869,12 @@
       "src": "edition:IshahRaah",
       "dst": "place:podgorze",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:IshahRaah",
+      "rel": "holds",
+      "shelfmark": "63.344"
     },
     {
       "src": "person:dbid683",
@@ -1894,12 +1906,6 @@
     },
     {
       "src": "edition:AlNaharotBavel-Amkreut&Freund1909",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
-    },
-    {
-      "src": "edition:AlNaharotBavel-Amkreut&Freund1909",
       "dst": "org:grandtheatre",
       "rel": "performed_at",
       "date": "02/05/1903",
@@ -1914,6 +1920,12 @@
       "src": "edition:AlNaharotBavel-Amkreut&Freund1909",
       "dst": "place:przemysl",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:AlNaharotBavel-Amkreut&Freund1909",
+      "rel": "holds",
+      "shelfmark": "II 63.436"
     },
     {
       "src": "person:dbid683",
@@ -1934,12 +1946,6 @@
       "rel": "performed_at",
       "year": 1901.0,
       "type": "Premiere"
-    },
-    {
-      "src": "edition:HinkePinke",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1901.0
     },
     {
       "src": "edition:HinkePinke",
@@ -1967,12 +1973,6 @@
       "rel": "performed_at",
       "year": 1918.0,
       "type": "production"
-    },
-    {
-      "src": "edition:HinkePinke",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1918.0
     },
     {
       "src": "edition:HinkePinke",
@@ -2011,6 +2011,12 @@
       "src": "edition:HinkePinke",
       "dst": "place:warsaw",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:HinkePinke",
+      "rel": "holds",
+      "shelfmark": "II 1.401.629 A"
     },
     {
       "src": "person:dbid683",
@@ -2057,12 +2063,6 @@
     },
     {
       "src": "edition:SoreSheyndel",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1891.0
-    },
-    {
-      "src": "edition:SoreSheyndel",
       "dst": "org:kaminskistheatre",
       "rel": "performed_at",
       "year": 1938.0,
@@ -2102,6 +2102,12 @@
       "src": "edition:SoreSheyndel",
       "dst": "place:warsaw",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:SoreSheyndel",
+      "rel": "holds",
+      "shelfmark": "I 1.469.230 A"
     },
     {
       "src": "person:dbid683",
@@ -2154,12 +2160,6 @@
     },
     {
       "src": "edition:KidushHashem",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1896.0
-    },
-    {
-      "src": "edition:KidushHashem",
       "dst": "org:academyofmusic",
       "rel": "performed_at",
       "date": "28/01/1897",
@@ -2181,6 +2181,12 @@
       "src": "edition:KidushHashem",
       "dst": "place:lemberg",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:KidushHashem",
+      "rel": "holds",
+      "shelfmark": "63.390"
     },
     {
       "src": "person:dbid683",
@@ -2220,12 +2226,6 @@
     },
     {
       "src": "edition:DovidsFidele-1904",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1897.0
-    },
-    {
-      "src": "edition:DovidsFidele-1904",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "date": "04/12/1897",
@@ -2240,6 +2240,12 @@
       "src": "edition:DovidsFidele-1904",
       "dst": "place:podgorze",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:DovidsFidele-1904",
+      "rel": "holds",
+      "shelfmark": "II 63.397"
     },
     {
       "src": "person:dbid683",
@@ -2294,12 +2300,6 @@
     },
     {
       "src": "edition:DosYudisheHerts-1910",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1908.0
-    },
-    {
-      "src": "edition:DosYudisheHerts-1910",
       "dst": "org:thaliatheatre",
       "rel": "performed_at",
       "date": "10/10/1908",
@@ -2321,6 +2321,12 @@
       "src": "edition:DosYudisheHerts-1910",
       "dst": "place:warsaw",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:bibliotekanarodowapolona",
+      "dst": "edition:DosYudisheHerts-1910",
+      "rel": "holds",
+      "shelfmark": "44.631"
     },
     {
       "src": "person:dbid683",
@@ -2372,12 +2378,6 @@
       "rel": "performed_at",
       "year": 1891.0,
       "type": "Premiere?"
-    },
-    {
-      "src": "edition:Lateiner_Meshumed",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1891.0
     },
     {
       "src": "edition:Lateiner_Meshumed",
@@ -2407,28 +2407,10 @@
     },
     {
       "src": "edition:MS_YaakovEsav",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1902.0
-    },
-    {
-      "src": "edition:MS_YaakovEsav",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "year": 1903.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_YaakovEsav",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
-    },
-    {
-      "src": "edition:MS_YaakovEsav",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1902.0
     },
     {
       "src": "person:dbid683",
@@ -2480,12 +2462,6 @@
       "rel": "performed_at",
       "year": 1891.0,
       "type": "Premiere?"
-    },
-    {
-      "src": "edition:Lateiner_Meshumed",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1891.0
     },
     {
       "src": "edition:Lateiner_Meshumed",
@@ -2547,12 +2523,6 @@
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1909.0
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
       "dst": "org:newstartheatre",
       "rel": "performed_at",
       "year": 1908.0,
@@ -2560,22 +2530,10 @@
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1908.0
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
       "dst": "org:kalichtheatre",
       "rel": "performed_at",
       "year": 1907.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1907.0
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
@@ -2593,9 +2551,10 @@
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
+      "dst": "org:windsortheatre",
+      "rel": "performed_at",
+      "year": 1903.0,
+      "type": "production"
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
@@ -2606,12 +2565,6 @@
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "year": 1903.0,
@@ -2619,35 +2572,10 @@
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "year": 1903.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "org:windsortheatre",
-      "rel": "performed_at",
-      "year": 1903.0,
-      "type": "production"
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
@@ -2658,22 +2586,10 @@
     },
     {
       "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1904.0
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
       "dst": "org:kesslersthaliatheatre",
       "rel": "performed_at",
       "year": 1910.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_YetsiasMitsrayim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1910.0
     },
     {
       "src": "person:dbid683",
@@ -2729,22 +2645,10 @@
     },
     {
       "src": "edition:MS_YoysefInEgipten",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1884.0
-    },
-    {
-      "src": "edition:MS_YoysefInEgipten",
       "dst": "org:orientaltheatre",
       "rel": "performed_at",
       "year": 1885.0,
       "type": "Production"
-    },
-    {
-      "src": "edition:MS_YoysefInEgipten",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1885.0
     },
     {
       "src": "edition:MS_YoysefInEgipten",
@@ -2759,6 +2663,12 @@
       "rel": "performed_at",
       "date": "11/02/1885",
       "type": "Premiere"
+    },
+    {
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:MS_YoysefInEgipten",
+      "rel": "holds",
+      "shelfmark": "YIVO rg8-1-f4179"
     },
     {
       "src": "person:dbid684",
@@ -2790,22 +2700,10 @@
     },
     {
       "src": "edition:MS_BenHaDor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1903.0
-    },
-    {
-      "src": "edition:MS_BenHaDor",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "year": 1904.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_BenHaDor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1904.0
     },
     {
       "src": "edition:MS_BenHaDor",
@@ -2842,12 +2740,6 @@
     },
     {
       "src": "edition:MS_BenHaDor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1908.0
-    },
-    {
-      "src": "edition:MS_BenHaDor",
       "dst": "org:jignitatheatre",
       "rel": "performed_at",
       "year": 1907.0,
@@ -2868,22 +2760,10 @@
     },
     {
       "src": "edition:MS_BenHaDor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1901.0
-    },
-    {
-      "src": "edition:MS_BenHaDor",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "year": 1902.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_BenHaDor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1902.0
     },
     {
       "src": "edition:MS_BenHaDor",
@@ -2894,12 +2774,6 @@
     },
     {
       "src": "edition:MS_BenHaDor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1910.0
-    },
-    {
-      "src": "edition:MS_BenHaDor",
       "dst": "org:kalichtheatre",
       "rel": "performed_at",
       "year": 1906.0,
@@ -2907,22 +2781,10 @@
     },
     {
       "src": "edition:MS_BenHaDor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1906.0
-    },
-    {
-      "src": "edition:MS_BenHaDor",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "year": 1901.0,
       "type": "premier"
-    },
-    {
-      "src": "edition:MS_BenHaDor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1901.0
     },
     {
       "src": "person:dbid684",
@@ -2937,10 +2799,10 @@
       "type": "premier"
     },
     {
-      "src": "edition:YIVO_ShimshonHagibor",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1890.0
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:YIVO_ShimshonHagibor",
+      "rel": "holds",
+      "shelfmark": "YIVO RG8-f4142A."
     },
     {
       "src": "person:dbid683",
@@ -2963,12 +2825,6 @@
     },
     {
       "src": "edition:MS_KhurbnYerusholaim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1889.0
-    },
-    {
-      "src": "edition:MS_KhurbnYerusholaim",
       "dst": "org:thaliatheatre",
       "rel": "performed_at",
       "date": "09/10/1889",
@@ -2980,6 +2836,12 @@
       "rel": "performed_at",
       "date": "09/10/1889",
       "type": "Premiere"
+    },
+    {
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:MS_KhurbnYerusholaim",
+      "rel": "holds",
+      "shelfmark": "YIVO rg8-1-f4176"
     },
     {
       "src": "person:dbid684",
@@ -2995,22 +2857,10 @@
     },
     {
       "src": "edition:MS_BasKoyen",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1896.0
-    },
-    {
-      "src": "edition:MS_BasKoyen",
       "dst": "org:windsortheatre",
       "rel": "performed_at",
       "year": 1896.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_BasKoyen",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1896.0
     },
     {
       "src": "edition:MS_BasKoyen",
@@ -3020,16 +2870,10 @@
       "type": "production"
     },
     {
-      "src": "edition:MS_BasKoyen",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1893.0
-    },
-    {
-      "src": "edition:MS_BasKoyen",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1892.0
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:MS_BasKoyen",
+      "rel": "holds",
+      "shelfmark": "YIVO RG8-f4140."
     },
     {
       "src": "person:dbid684",
@@ -3084,16 +2928,10 @@
       "type": "production"
     },
     {
-      "src": "edition:MS_DiTsveyTnoim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1902.0
-    },
-    {
-      "src": "edition:MS_DiTsveyTnoim",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1902.0
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:MS_DiTsveyTnoim",
+      "rel": "holds",
+      "shelfmark": "YIVO RG8-f4141."
     },
     {
       "src": "person:dbid684",
@@ -3141,22 +2979,10 @@
     },
     {
       "src": "edition:MS_TissaEssler",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1907.0
-    },
-    {
-      "src": "edition:MS_TissaEssler",
       "dst": "org:kalichtheatre",
       "rel": "performed_at",
       "year": 1906.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_TissaEssler",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1906.0
     },
     {
       "src": "edition:MS_TissaEssler",
@@ -3167,22 +2993,10 @@
     },
     {
       "src": "edition:MS_TissaEssler",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1901.0
-    },
-    {
-      "src": "edition:MS_TissaEssler",
       "dst": "org:kalichtheatre",
       "rel": "performed_at",
       "year": 1905.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_TissaEssler",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1905.0
     },
     {
       "src": "edition:MS_TissaEssler",
@@ -3193,12 +3007,6 @@
     },
     {
       "src": "edition:MS_TissaEssler",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1897.0
-    },
-    {
-      "src": "edition:MS_TissaEssler",
       "dst": "org:poolstheatre",
       "rel": "performed_at",
       "year": 1888.0,
@@ -3206,22 +3014,10 @@
     },
     {
       "src": "edition:MS_TissaEssler",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1888.0
-    },
-    {
-      "src": "edition:MS_TissaEssler",
       "dst": "org:poolstheatre",
       "rel": "performed_at",
       "year": 1888.0,
       "type": "production"
-    },
-    {
-      "src": "edition:MS_TissaEssler",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1888.0
     },
     {
       "src": "edition:MS_TissaEssler",
@@ -3242,12 +3038,6 @@
       "rel": "performed_at",
       "year": 1887.0,
       "type": "premier"
-    },
-    {
-      "src": "edition:MS_TissaEssler",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1887.0
     },
     {
       "src": "person:dbid683",
@@ -3271,22 +3061,10 @@
     },
     {
       "src": "edition:MS_Emigration",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1886.0
-    },
-    {
-      "src": "edition:MS_Emigration",
       "dst": "org:orientaltheatre",
       "rel": "performed_at",
       "year": 1886.0,
       "type": "Production"
-    },
-    {
-      "src": "edition:MS_Emigration",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1886.0
     },
     {
       "src": "edition:MS_Emigration",
@@ -3463,12 +3241,6 @@
     },
     {
       "src": "edition:HurbanYerushalaim_820938_duplicate",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1890.0
-    },
-    {
-      "src": "edition:HurbanYerushalaim_820938_duplicate",
       "dst": "org:thaliatheatre",
       "rel": "performed_at",
       "year": 1898.0,
@@ -3483,22 +3255,10 @@
     },
     {
       "src": "edition:HurbanYerushalaim_820938_duplicate",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1898.0
-    },
-    {
-      "src": "edition:HurbanYerushalaim_820938_duplicate",
       "dst": "org:nationaltheatre",
       "rel": "performed_at",
       "year": 1913.0,
       "type": "Production"
-    },
-    {
-      "src": "edition:HurbanYerushalaim_820938_duplicate",
-      "dst": "place:lowereastsidenewyorkny",
-      "rel": "premiered_in",
-      "year": 1913.0
     },
     {
       "src": "edition:HurbanYerushalaim_820938_duplicate",
@@ -3520,15 +3280,15 @@
       "rel": "performed_at",
       "date": "20/02/1913",
       "type": "Show"
+    },
+    {
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:HurbanYerushalaim_820938_duplicate",
+      "rel": "holds",
+      "shelfmark": "YIVO rg8-f4176"
     }
   ],
   "gaps": [
-    {
-      "kind": "edition-field",
-      "label": "HurbanYerushalaim_820938_duplicate · library",
-      "reason": "holding library recorded only in notes",
-      "candidates": "YIVO rg8-f4176"
-    },
     {
       "kind": "edition-field",
       "label": "HurbanYerushalaim_820938_duplicate · publication_place",
@@ -3573,12 +3333,6 @@
     },
     {
       "kind": "edition-field",
-      "label": "MS_BasKoyen · library",
-      "reason": "holding library recorded only in notes",
-      "candidates": "YIVO RG8-f4140."
-    },
-    {
-      "kind": "edition-field",
       "label": "MS_BasKoyen · performance_events",
       "reason": "no performance events in the DB report",
       "candidates": ""
@@ -3597,12 +3351,6 @@
     },
     {
       "kind": "edition-field",
-      "label": "MS_DiTsveyTnoim · library",
-      "reason": "holding library recorded only in notes",
-      "candidates": "YIVO RG8-f4141."
-    },
-    {
-      "kind": "edition-field",
       "label": "MS_DiTsveyTnoim · performance_events",
       "reason": "no performance events in the DB report",
       "candidates": ""
@@ -3612,12 +3360,6 @@
       "label": "MS_Emigration · library",
       "reason": "no holding library",
       "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "MS_KhurbnYerusholaim · library",
-      "reason": "holding library recorded only in notes",
-      "candidates": "YIVO rg8-1-f4176"
     },
     {
       "kind": "edition-field",
@@ -3657,31 +3399,13 @@
     },
     {
       "kind": "edition-field",
-      "label": "MS_YoysefInEgipten · library",
-      "reason": "holding library recorded only in notes",
-      "candidates": "YIVO rg8-1-f4179"
-    },
-    {
-      "kind": "edition-field",
-      "label": "YIVO_ShimshonHagibor · library",
-      "reason": "holding library recorded only in notes",
-      "candidates": "YIVO RG8-f4142A."
-    },
-    {
-      "kind": "edition-field",
       "label": "YIVO_ShimshonHagibor · performance_events",
       "reason": "no performance events in the DB report",
       "candidates": ""
     },
     {
       "kind": "org",
-      "label": "Jignita Theatre",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "org",
-      "label": "Pamol Verdi",
+      "label": "Biblioteka Narodowa (Polona)",
       "reason": "no candidate",
       "candidates": ""
     },
@@ -3690,12 +3414,6 @@
       "label": "The International Biblioteque",
       "reason": "no candidate",
       "candidates": ""
-    },
-    {
-      "kind": "person",
-      "label": ")שמואל טאַבּאַטשניקאָוו( 208:2",
-      "reason": "weak match (one token only)",
-      "candidates": "539 שמואל"
     },
     {
       "kind": "person",
@@ -3714,12 +3432,6 @@
       "label": "איימי סימאוויטש",
       "reason": "no candidate",
       "candidates": ""
-    },
-    {
-      "kind": "person",
-      "label": "יאָוועליר, קלמן 909:2",
-      "reason": "ambiguous",
-      "candidates": "1066 קלמן יאוועליר; 2061 קלמן יאָוועליר"
     },
     {
       "kind": "person",
@@ -3750,12 +3462,6 @@
       "label": "ראָזענפעלד, מאָריס",
       "reason": "weak match (one token only)",
       "candidates": "2507 מאָריס"
-    },
-    {
-      "kind": "place",
-      "label": "Lower East Side (New York, N.Y.)",
-      "reason": "district, not a gazetteer settlement",
-      "candidates": "New York City (Q60) — district, not a settlement"
     }
   ],
   "summary": {
@@ -3763,27 +3469,25 @@
     "by_kind": {
       "edition": 27,
       "person": 35,
-      "org": 40,
-      "place": 13
+      "org": 42,
+      "place": 12
     },
     "by_status": {
-      "LINKED": 79,
-      "PROPOSED": 22,
-      "GAP": 14
+      "LINKED": 83,
+      "PROPOSED": 23,
+      "GAP": 10
     },
-    "edges": 323,
-    "gaps": 39,
+    "edges": 283,
+    "gaps": 29,
     "gaps_by_reason": {
-      "holding library recorded only in notes": 6,
       "no publication place": 2,
       "no publisher": 2,
       "no print year": 2,
       "no holding library": 6,
       "no performance events in the DB report": 7,
-      "no candidate": 9,
-      "weak match (one token only)": 2,
-      "ambiguous": 2,
-      "district, not a gazetteer settlement": 1
+      "no candidate": 8,
+      "ambiguous": 1,
+      "weak match (one token only)": 1
     }
   }
 }
