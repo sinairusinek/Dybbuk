@@ -111,26 +111,57 @@ People are bridged differently: the Album names people in Latin script while
 the entity graph holds mostly Yiddish `Surname, Given`, so names route through
 `Zylbercweig/people/people_db.tsv`, which carries both forms under one `db_id`.
 
-## Known modelling gap: printers are a dead end
+## Known modelling gap: the printer edge is missing (the orgs are not)
 
-The entity graph has `published` (org→edition) and `printed_in`
-(edition→**place**), but **no `printed_by` edge and no printer org nodes** — the
-42 org nodes carry only `library`, `venue`, `publisher` roles. Six editions name
-a printer distinct from their publisher in free text:
+`build_entity_graph.py:541-549` reads the imprint and emits two edges:
 
-| edition | printer | publisher |
+```
+publisher         -> org node (org_role="publisher"), rel="published"
+publication_place -> place node,                     rel="printed_in"
+```
+
+Note `printed_in` points at a **place**, not a printer. The `printer` field of
+`editions.json` is **read by nothing** — so:
+
+- **play -> edition -> publisher IS traversable**, for the 15 printed editions
+  that name a publisher. The other 12 (the MS track) have no imprint, correctly.
+- **play -> edition -> printer is NOT**, for any edition.
+
+**The six printers already exist in core_db and are already typed `Printer`:**
+
+| imprint on the edition | core_db | org_type |
 |---|---|---|
-| Mishke Mashke | F. Baumritter (Warsaw) | Farlag "Kultur" |
-| Der Mann untern Tisch | Druk ha-Tsfira (Panska 40) | "Teater bibliyotek" |
-| Isha Raa | Druck von S.L. Deitscher | Verlag von Benjamin Munk |
-| Hinke Pinke | N. Starowolski (Warsaw) | "Teater bibliyotek" |
-| Sore Sheyndel | B. Turš (Warsaw) | "Di yudishe bihne" |
-| Kidush Hashem | Druck von E. Salat | Verlag von D. Roth |
+| F. Baumritter | 157 `Baumritter` | `Printer` |
+| Druk ha-Tsfira (Panska 40) | 68 `הצפירה` (addr. פייַנסקא 40 = Panska 40) | *(empty)* |
+| Druck von S.L. Deitscher | 66 `ש. ל. דייטשער / Sh. L. Deytsher` | `Printer` |
+| N. Starowolski | 58 `N. Sṭarovolsḳi` | `Printer` |
+| B. Turš | 76 `B. Tursh` | `Printer` |
+| Druck von E. Salat | 70 `D. Salat / א. סאלאט` | `Printer` |
 
-So **play → edition → printer is not traversable today**. Minting these six as
-orgs with a `printer` role and adding a `printed_by` edge is a change to
-`YiDraCor/code/build_entity_graph.py`, not to this folder — worth doing before
-the site needs to show "printed by".
+So nothing needs minting. The fix is one block in `build_entity_graph.py`:
+resolve `e["printer"]` the way `publisher` already is and emit
+`rel="printed_by"`. The imprint strings carry a `Druck von` / `Druk` prefix and
+a trailing `(address)` that must be stripped before resolving, and romanisation
+differs (`Starowolski` vs `Sṭarovolsḳi`, `Turš` vs `Tursh`), so this needs the
+variant-probing the entity-graph resolver already does — an exact match finds
+none of them.
+
+**`org_type` already has the vocabulary for the publisher/printer overlap**:
+62 orgs are `Publisher`, 13 `Printer`, and **16 are already `Printer/Publisher`**.
+It is a single-valued field — no `|`-separated values anywhere in 2196 rows — so
+`Printer/Publisher` is the existing way to say an org did both, and the right
+value for any of these six that also published. Note that `org_role` in the
+entity graph is a *different* thing: it records the role the org played **in
+this edition's imprint**, which is per-edge, not an org-level type.
+
+Two data issues found while checking, both for the org-alignment track rather
+than here:
+
+- **db 68 `הצפירה` and db 270 `HaTsfira` look like a duplicate pair**, and 68
+  carries no `org_type` despite being a printer with a matching address.
+- **db 70 is internally inconsistent**: `D. Salat` against `א. סאלאט`
+  (= *A.* Salat), while this edition's imprint reads *E.* Salat. One of the
+  three initials is wrong.
 
 ## Next steps
 
@@ -144,4 +175,9 @@ the site needs to show "printed by".
    screen-by-screen work.
 4. **Fetch the Dorot images** over IIIF for the rows that have permalinks.
 5. **Crop the Album and Lexicon portraits** from the page scans already located.
-6. **Printer entities** — see the modelling gap above.
+6. **Add the `printed_by` edge** to `build_entity_graph.py` — the six printer
+   orgs already exist and are already typed; only the edge is missing. See the
+   modelling gap above.
+7. **For the org-alignment track**: the probable `הצפירה` 68 / `HaTsfira` 270
+   duplicate, db 68's empty `org_type`, and db 70's `D.`/`א.`/`E.` Salat
+   initial conflict.
