@@ -1,5 +1,12 @@
-# Binaries are NOT tracked: the manifest is the tracked artefact, and every row
-# carries a source_url / fetch_hint so the bits can be re-fetched. See
+# Binaries are NOT tracked by default: the manifest is the tracked artefact, and
+# every row carries a source_url / fetch_hint so the bits can be re-fetched. See
 # docs/SCHEMA.md.
 media/**
 !media/**/.gitkeep
+
+# Exception: the Zylbercweig Leksikon (1931-1969) page scans and portrait crops.
+# Public domain, small, and the mandala visualization embeds them, so they are
+# tracked here rather than re-fetched from Transkribus on every checkout.
+!media/lexicon/
+!media/lexicon/*.jpg
+!media/lexicon/*.png
