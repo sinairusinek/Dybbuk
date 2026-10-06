@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Meshumed1(htr_id=27821)::::v=2.6.7
@@ -6,19 +6,19 @@ prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias
 prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.6
 Transkribus</Creator>
         <Created>2020-11-07T18:15:49.323+02:00</Created>
-        <LastChange>2026-08-16T18:39:31.069+02:00</LastChange>
+        <LastChange>2026-10-04T08:44:54.591+02:00</LastChange>
     </Metadata>
     <Page imageFilename="Lateiner_Meshumed-0016.jpg" imageWidth="4098" imageHeight="2594">
         <TextRegion id="region_1606072350370_704" custom="readingOrder {index:0;}">
             <Coords points="2048,196 3982,196 3982,2295 2048,2295"/>
-            <TextLine id="line_1606072628903_855" custom="readingOrder {index:0;} head {offset:0;length:8;unit-type:act n\u003a 2;} heading {offset:0;length:8;}">
+            <TextLine id="line_1606072628903_855" custom="readingOrder {index:0;} heading {offset:4; length:4; type:act; n:2;}">
                 <Coords points="2268,358 2426,332 2849,351 2962,295 2961,210 2738,210 2621,269 2472,211 2427,233 2360,206 2314,251 2266,254"/>
                 <Baseline points="2280,326 2951,318"/>
                 <TextEquiv>
                     <Unicode>2ter Act</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1606072634391_860" custom="readingOrder {index:1;} stage {offset:6; length:72; type:setting;} textStyle {offset:0; length:4; underlined:true;} metamark {offset:0; length:3; function:musicCue; role:out;}">
+            <TextLine id="line_1606072634391_860" custom="readingOrder {index:1;} metamark {offset:0; length:3; function:musicCue; role:out;} textStyle {offset:0; length:4; underlined:true;} stage {offset:6; length:72; type:setting;}">
                 <Coords points="2075,462 3566,459 3811,394 3960,438 3988,305 3746,271 3471,375 3192,386 2074,327"/>
                 <Baseline points="2087,430 3976,418"/>
                 <TextEquiv>
@@ -46,7 +46,7 @@ Transkribus</Creator>
                     <Unicode>עבירה</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1606072655055_880" custom="readingOrder {index:5;} persName {offset:11; length:5;} textStyle {offset:34; length:4; strikethrough:true;} speaker {offset:0; length:4; xmlid:shrhke;}">
+            <TextLine id="line_1606072655055_880" custom="readingOrder {index:5;} speaker {offset:0; length:4; xmlid:shrhke;} persName {offset:11; length:5;} textStyle {offset:34; length:4; strikethrough:true;}">
                 <Coords points="2130,754 3594,733 3708,787 3953,729 3953,649 3705,678 3490,613 3202,676 2129,673"/>
                 <Baseline points="2142,722 3941,714"/>
                 <TextEquiv>
@@ -192,7 +192,7 @@ Transkribus</Creator>
                     <Unicode>וויא?</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1606072442881_733" custom="readingOrder {index:4;} textStyle {offset:7; length:4; strikethrough:true;} speaker {offset:0; length:5; xmlid:shrhke;}">
+            <TextLine id="line_1606072442881_733" custom="readingOrder {index:4;} speaker {offset:0; length:5; xmlid:shrhke;} textStyle {offset:7; length:4; strikethrough:true;}">
                 <Coords points="314,562 1994,565 1954,445 1111,492 312,434"/>
                 <Baseline points="326,552 1982,525"/>
                 <TextEquiv>

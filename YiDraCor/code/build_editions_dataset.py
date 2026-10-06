@@ -99,6 +99,55 @@ def build_performance_events(perf_path: Path, productions_by_eid_key: dict) -> d
     return out
 
 
+# The DB PerformanceEvents report covers Lateiner only: 129 of its 131 titles
+# are Lateiner works and none is Hurwitz (checked 2026-10-05, and its Info sheet
+# shows an EMPTY filter, so this is the whole table, not a filtered slice).
+# For a Lateiner play that appears in both, the report turns out to carry no
+# information the hafakot rows lack — same events, same dates, same venues; it
+# adds a stable DB id and a normalised date. So where the report has nothing we
+# derive the events from hafakot instead of leaving the edition bare, and stamp
+# each one `derived_from: "hafakot"` with no `id`, so a derived event can never
+# be mistaken for a DB record.
+_EVENT_TYPE_FROM_HAFAKOT = {
+    "premiere": "Premiere",
+    "premier": "Premiere",
+    "production": "Show",
+    "publication": "Publication",
+}
+
+
+def _events_from_productions(productions: list[dict]) -> list[dict]:
+    """Build performance events out of hafakot production rows."""
+    out = []
+    for p in productions:
+        typ = str(p.get("Type") or "").strip().lower()
+        if typ == "publication":        # a print event, not a performance
+            continue
+        raw_date = p.get("innacurate or exact date")
+        date = None
+        if isinstance(raw_date, (_dt.datetime, _dt.date)):
+            date = raw_date.strftime("%d/%m/%Y")
+        elif raw_date:
+            m = re.match(r"(\d{4})-(\d{2})-(\d{2})", str(raw_date))
+            date = f"{m.group(3)}/{m.group(2)}/{m.group(1)}" if m else str(raw_date)
+        out.append({
+            "id": None,
+            "event_type": _EVENT_TYPE_FROM_HAFAKOT.get(typ, p.get("Type")),
+            "date": date,
+            "year": _year_from_date(raw_date) or to_int(p.get("Year")),
+            "venue": p.get("Theatre") or None,
+            "actor_character": None,
+            "person_role": None,
+            "roman_title": p.get("Play KEY") or None,
+            "yiddish_title": p.get("\u05db\u05dc\u05dc \u05d9\u05d9\u05d3\u05d9\u05e9") or None,
+            "premiere_place": p.get("PremierePlace") or None,
+            "source_catalogue": p.get("source") or p.get("dating Source") or None,
+            "derived_from": "hafakot",
+        })
+    out.sort(key=lambda e: (e.get("year") or 0))
+    return out
+
+
 def _match_events_to_productions(events: list[dict], productions: list[dict]) -> list[dict]:
     """Augment each event with venue_alt/source from a matching hafakot row.
 
@@ -141,6 +190,87 @@ def to_int(v):
         return int(v)
     except (TypeError, ValueError):
         return None
+
+
+# The catalogue's playwright sheets disagree on how they name the author:
+# "Lateiner Plays" carries the people_db id (683), "Hurwitz Plays" the bare
+# surname. Map surnames onto their people_db db_id so `author_id` is always an id.
+AUTHOR_NAME_TO_DB_ID = {
+    "lateiner": 683,   # יאָזעף לאַטיינער / Joseph Lateiner
+    "hurwitz": 684,    # פּראָפעסאָר משה איש הלוי הורוויץ / Moyshe (Ish Halevi) Hurwitz
+}
+
+
+def to_author_id(v):
+    """Resolve a sheet `author` cell to a people_db db_id, or None."""
+    n = to_int(v)
+    if n is not None:
+        return n
+    key = str(v or "").strip().lower()
+    return AUTHOR_NAME_TO_DB_ID.get(key)
+
+
+# OCR/transcription fixes applied to catalogue cells on load. The workbook is
+# the source of record and is not rewritten here, so corrections confirmed by a
+# reviewer live in code: every rebuild reapplies them.
+# reviewer: Sinai 2026-10-05
+SOURCE_NAME_FIXES = {
+    "Joaohim Kurantman": "Joachim Kurantman",   # OCR: 'ch' read as 'oh'
+}
+
+_NAME_COLS = ("PersonKey", "English Name",
+              "PersonName as appears in Source if there is no key")
+
+
+def apply_name_fixes(rows: list[dict]) -> list[dict]:
+    """Apply SOURCE_NAME_FIXES to every person-name column, in place."""
+    for r in rows:
+        for c in _NAME_COLS:
+            v = r.get(c)
+            if isinstance(v, str) and v in SOURCE_NAME_FIXES:
+                r[c] = SOURCE_NAME_FIXES[v]
+    return rows
+
+
+def _rekey(row: dict, mapping: dict) -> dict:
+    """Copy `row`, renaming the keys in `mapping` (old → new).
+
+    The playwright sheets spell the same column four ways ("Play KEY",
+    "Play Key", "Play", "play name"); normalising on load keeps the
+    downstream indexes single-keyed.
+    """
+    out = dict(row)
+    for old, new in mapping.items():
+        if old in out:
+            out[new] = out.pop(old)
+    return out
+
+
+def _role_sig(r: dict) -> tuple:
+    """Identity of a credit: (play, person, role). Used to union the sheets."""
+    person = (r.get("PersonKey")
+              or r.get("PersonName as appears in Source if there is no key")
+              or "")
+    return (str(r.get("Play") or "").strip().lower(),
+            str(person).strip(),
+            str(r.get("Role") or "").strip().lower())
+
+
+def _dedupe_roles(rows: list[dict]) -> list[dict]:
+    """Union role rows across sheets, keeping the richest row per signature.
+
+    Rows carrying more populated fields win, so a duplicate that also has
+    `English Name`/`dates`/`comments` supersedes the barer copy.
+    """
+    best: dict[tuple, dict] = {}
+    for r in rows:
+        sig = _role_sig(r)
+        if not any(sig):
+            continue
+        filled = sum(1 for v in r.values() if v not in (None, ""))
+        if sig not in best or filled > best[sig][0]:
+            best[sig] = (filled, r)
+    return [r for _, r in best.values()]
 
 
 def load_sheet(wb, name):
@@ -247,31 +377,54 @@ def main() -> int:
     wb = openpyxl.load_workbook(XLSX, data_only=True)
     _, tps = load_sheet(wb, "TranskribusPlayStatus")
     _, lateiner = load_sheet(wb, "Lateiner Plays")
-    _, hafakot = load_sheet(wb, "Lateiner hafakot")
-    _, roles = load_sheet(wb, "ProfessionalRoles- Lateiner")
+    _, hurwitz = load_sheet(wb, "Hurwitz Plays")
+    # Productions: one sheet per playwright, same column names bar the play key.
+    _, hafakot_l = load_sheet(wb, "Lateiner hafakot")
+    _, hafakot_h = load_sheet(wb, "Hurwitz hafakot")
+    hafakot = hafakot_l + [_rekey(r, {"Play Key": "Play KEY"}) for r in hafakot_h]
+
+    # Roles: THREE sheets, and they are complementary rather than redundant —
+    # "ProfessionalRoles- Lateiner" (34 rows) and "playRolesLateiner" (168)
+    # share only 18 signatures, so the union is required or credits are lost.
+    _, roles_pro = load_sheet(wb, "ProfessionalRoles- Lateiner")
+    _, roles_lat = load_sheet(wb, "playRolesLateiner")
+    _, roles_hur = load_sheet(wb, "PlayRolesHurwitz")
+    roles = _dedupe_roles(apply_name_fixes(
+        roles_pro
+        + [_rekey(r, {"play name": "Play"}) for r in roles_lat]
+        + roles_hur
+    ))
+
     _, songs = load_sheet(wb, "songs_Lateiner and Hurwitz")
+    _, music_h = load_sheet(wb, "Hurwitz music")
     _, scores = load_sheet(wb, "Score-print-editions")
     _, docitems = load_sheet(wb, "documentsitems")
     print(f"  TranskribusPlayStatus={len(tps)} LateinerPlays={len(lateiner)} "
-          f"hafakot={len(hafakot)} roles={len(roles)} songs={len(songs)} "
+          f"HurwitzPlays={len(hurwitz)} "
+          f"hafakot={len(hafakot)} (L={len(hafakot_l)}+H={len(hafakot_h)}) "
+          f"roles={len(roles)} (pro={len(roles_pro)}+lat={len(roles_lat)}+hur={len(roles_hur)}) "
+          f"songs={len(songs)} music_h={len(music_h)} "
           f"scores={len(scores)} docitems={len(docitems)}")
 
     # docId → tps row
     tps_by_doc = {to_int(r.get("TranskribusDocId")): r
                   for r in tps if to_int(r.get("TranskribusDocId"))}
 
-    # name → expression_id (try both English and Yiddish names)
+    # name → expression_id (try both English and Yiddish names).
+    # Both playwright sheets share the core column names (Expression ID /
+    # English Name / Yiddish Name / TAGS / author / …), so they merge into one
+    # index. Lateiner is loaded first and wins any name collision.
     name_to_eid = {}
-    eid_to_lateiner = {}
-    for r in lateiner:
+    eid_to_play = {}
+    for r in lateiner + hurwitz:
         eid = to_int(r.get("Expression ID"))
         if eid is None:
             continue
-        eid_to_lateiner[eid] = r
+        eid_to_play[eid] = r
         for key in ("English Name", "Yiddish Name"):
             v = (r.get(key) or "").strip()
             if v:
-                name_to_eid[v.lower()] = eid
+                name_to_eid.setdefault(v.lower(), eid)
 
     # Manual overrides for Transkribus 'Play' values that don't string-match exactly
     play_to_eid_overrides = {
@@ -281,6 +434,20 @@ def main() -> int:
     doc_to_eid_overrides = {
         828424: 3867,  # Das Yudishe Kind → "Dos yidishe kind"
         820937: 3884,  # Isha Raa → "Ishe roeh" / אישה רע
+        # Hurwitz manuscripts — our titles don't string-match the catalogue's
+        494907: 4014,  # Yaakov-Esav → "Yanḳev un Eysev" / יעקב ועשיו
+        715163: 4043,  # Yetsi'as Mitsrayim → "Yetsies mitsrayim"
+        826910: 4010,  # Ben HaDor → "Ben Hador"
+        838365: 3959,  # Shimshon Hagibor → "Shimshun Hagiber"
+        838374: 3963,  # Bas Koyen → "Bas Cohen oder, Malka Alexandra"
+        838430: 4012,  # Di Tsvey Tnoim → "Di tsvey tanoyim" / צוויי תנאים
+        905289: 3944,  # Tissa-Essler → "Tisa Esler" (not 3945, "Der protses fun …")
+        # Both witnesses of Khurbn Yerusholaim. The MS was resolving to 3887
+        # "Khave oder di shlang als hoyzfraynd" — a different play — by a title
+        # string match, while 3891 sat on the row that had been mislabelled a
+        # duplicate. Pinned explicitly so neither drifts again.
+        838368: 3891,  # MS (YIVO rg8-1-f4176, 1916) → "Khurbn Yerusholayim"
+        820938: 3891,  # print (Biblioteka Narodowa 63.433, 1908) → same work
     }
 
     # Fan-out indexes keyed by expression_id OR play-name string
@@ -313,8 +480,14 @@ def main() -> int:
         print("  PerformanceEvents: no report file found")
 
     hafakot_eid, hafakot_name = index_by(hafakot, "expression", "Play KEY")
-    roles_eid, roles_name = index_by(roles, "PersonKey", "Play")
-    songs_eid, songs_name = index_by(songs, "Play Key")
+    # Index roles on the play column only — `PersonKey` is not an expression
+    # key, and indexing it put person names into the play-name lookup.
+    roles_eid, roles_name = index_by(roles, "Play")
+    # "Hurwitz music" keys its play on the `hellman` column.
+    songs_eid, songs_name = index_by(
+        songs + [_rekey(r, {"hellman": "Play Key"}) for r in music_h],
+        "Play Key",
+    )
     scores_eid, _ = index_by(scores, "work id")
     docitems_eid, _ = index_by(docitems, "work id")
 
@@ -356,7 +529,7 @@ def main() -> int:
         rec["expression_id"] = eid
 
         if eid:
-            lp = eid_to_lateiner.get(eid, {})
+            lp = eid_to_play.get(eid, {})
             rec["expression"] = {
                 "expression_id": eid,
                 "english_name": lp.get("English Name"),
@@ -365,23 +538,43 @@ def main() -> int:
                 "genre": lp.get("Genre"),
                 "certainty": lp.get("certainty"),
                 "comments": lp.get("comments"),
-                "author_id": to_int(lp.get("author")),
+                "author_id": to_author_id(lp.get("author")),
                 "expression_note": lp.get("expression"),
                 "do_we_have_a_copy": lp.get("do we have a copy"),
             }
-            rec["productions"] = [
-                {k: v for k, v in r.items() if v is not None}
-                for r in (hafakot_eid.get(eid, [])
-                          + hafakot_name.get(play_key.strip().lower(), []))
-            ]
-            rec["roles"] = [
-                {k: v for k, v in r.items() if v is not None}
-                for r in roles_name.get(play_key.strip().lower(), [])
-            ]
-            rec["songs"] = [
-                {k: v for k, v in r.items() if v is not None}
-                for r in songs_name.get(play_key.strip().lower(), [])
-            ]
+            # Join keys for the name-indexed fan-outs. `play_key` comes from
+            # the Transkribus sheet, which has no Hurwitz rows, so fall back to
+            # the resolved expression's own titles or those editions stay bare.
+            join_keys = []
+            for cand in (play_key,
+                         lp.get("English Name"),
+                         lp.get("Yiddish Name"),
+                         lp.get("Play title by Daniela")):
+                k = str(cand or "").strip().lower()
+                if k and k not in join_keys:
+                    join_keys.append(k)
+
+            def _fanout(idx_name, idx_eid=None):
+                """Rows for this edition from a name index (+ optional eid index).
+
+                Deduped by content, not identity: the same credit or song can
+                appear in two sheets (and under two capitalisations of the play
+                key), which would otherwise be emitted twice.
+                """
+                out, seen = [], set()
+                for r in ((idx_eid or {}).get(eid, [])
+                          + [r for k in join_keys for r in idx_name.get(k, [])]):
+                    clean = {k: v for k, v in r.items() if v is not None}
+                    sig = json.dumps(clean, sort_keys=True, default=str)
+                    if sig in seen:
+                        continue
+                    seen.add(sig)
+                    out.append(clean)
+                return out
+
+            rec["productions"] = _fanout(hafakot_name, hafakot_eid)
+            rec["roles"] = _fanout(roles_name)
+            rec["songs"] = _fanout(songs_name)
             rec["print_edition_catalogue"] = [
                 {k: v for k, v in r.items() if v is not None}
                 for r in scores_eid.get(eid, [])
@@ -391,15 +584,17 @@ def main() -> int:
                 for r in docitems_eid.get(eid, [])
             ]
 
-            # Performance events — DB report is canonical; merge venue_alt from hafakot
-            en = (lp.get("English Name") or "").strip().lower()
-            stem = en.split(",")[0].split(" oder ")[0].strip() if en else ""
-            evs = (events_by_roman.get(en)
-                   or events_by_roman.get(stem)
-                   or [])
+            # Performance events — DB report is canonical; merge venue_alt from hafakot.
+            # Try each join key, then its stem (titles are often "X, oder Y").
+            evs = []
+            for k in join_keys:
+                stem = k.split(",")[0].split(" oder ")[0].strip()
+                evs = events_by_roman.get(k) or events_by_roman.get(stem) or []
+                if evs:
+                    break
             rec["performance_events"] = _match_events_to_productions(
                 [dict(e) for e in evs], rec["productions"]
-            )
+            ) or _events_from_productions(rec["productions"])
         else:
             unmatched_no_eid.append(f"{ed.get('title')} (doc {doc_id})")
             rec["expression"] = None

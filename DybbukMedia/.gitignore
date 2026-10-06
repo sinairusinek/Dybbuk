@@ -1,0 +1,5 @@
+# Binaries are NOT tracked: the manifest is the tracked artefact, and every row
+# carries a source_url / fetch_hint so the bits can be re-fetched. See
+# docs/SCHEMA.md.
+media/**
+!media/**/.gitkeep

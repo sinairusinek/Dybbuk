@@ -336,6 +336,22 @@ def find_edition(editions_json: dict, folder: str) -> dict:
     raise SystemExit(f"No editions.json record for folder {folder}")
 
 
+def _add_author(parent, rec: dict):
+    """Emit <author>, carrying @ref to the people_db entry when we know it.
+
+    editions.json resolves the playwright to a people_db db_id via
+    expression.author_id (Lateiner 683, Hurwitz 684); the private-URI form
+    keeps the link machine-resolvable without depending on the (still empty)
+    persons register.
+    """
+    el = etree.SubElement(parent, q("author"))
+    el.text = rec["author"]
+    author_id = (rec.get("expression") or {}).get("author_id")
+    if author_id:
+        el.set("ref", f"zylbercweig:person:{author_id}")
+    return el
+
+
 def build_header(rec: dict, cast: dict, play_id: str):
     header = etree.Element(q("teiHeader"))
     file_desc = etree.SubElement(header, q("fileDesc"))
@@ -348,7 +364,7 @@ def build_header(rec: dict, cast: dict, play_id: str):
         t_sub = etree.SubElement(title_stmt, q("title")); t_sub.set("type", "sub")
         t_sub.text = rec["title"]
     if rec.get("author"):
-        etree.SubElement(title_stmt, q("author")).text = rec["author"]
+        _add_author(title_stmt, rec)
 
     pub = etree.SubElement(file_desc, q("publicationStmt"))
     etree.SubElement(pub, q("publisher")).text = "YiDraCor"
@@ -359,7 +375,7 @@ def build_header(rec: dict, cast: dict, play_id: str):
     bibl = etree.SubElement(src, q("bibl"))
     etree.SubElement(bibl, q("title")).text = yid
     if rec.get("author"):
-        etree.SubElement(bibl, q("author")).text = rec["author"]
+        _add_author(bibl, rec)
     if rec.get("publisher"):
         etree.SubElement(bibl, q("publisher")).text = rec["publisher"]
     if rec.get("publication_place"):
@@ -376,6 +392,15 @@ def build_header(rec: dict, cast: dict, play_id: str):
     if rec.get("transkribus_url"):
         idno = etree.SubElement(bibl, q("idno")); idno.set("type", "transkribus")
         idno.text = rec["transkribus_url"]
+    if rec.get("expression_id"):
+        # Which WORK this witness realises. DraCor receives one file per EDITION
+        # (Sinai 2026-10-06), so the file identifies a particular printing or
+        # manuscript — the shelf mark above does that. This idno is what lets a
+        # consumer group several witnesses of one play without re-deriving the
+        # mapping from filenames: Khurbn Yerusholayim (work 3891) already has
+        # two, the 1916 YIVO manuscript and the 1908 Biblioteka Narodowa print.
+        idno = etree.SubElement(bibl, q("idno")); idno.set("type", "work")
+        idno.text = str(rec["expression_id"])
 
     # encodingDesc / classDecl — the Regie cue taxonomy (§11). Declared for
     # every play so @ana always resolves; the categories cost nothing when a
@@ -454,6 +479,7 @@ def build_text(pages, cfg, role_ids):
     body = etree.SubElement(text_el, q("body"))
     back = None
 
+    untyped_headings: list[tuple[int, str]] = []
     state = {
         "act_div": None,
         "scene_div": None,      # Bild/scene div nested inside the current act
@@ -594,6 +620,18 @@ def build_text(pages, cfg, role_ids):
 
             # ---- headings (act / songGroup) ----
             heading = next((a for t, a in spans if t == "heading"), None)
+            if heading is not None and not heading.get("type"):
+                # An UNTYPED heading span is not a division. Before 2026-10-04
+                # these fell through to `open_act(span_int(n, default=1))` and
+                # every one became another "act 1" — Khurbn built 12 acts for a
+                # 5-act play and the file was invalid XML (duplicate
+                # {PlayId}_Act1). The manuscripts carry such spans on Regie
+                # cues and mis-tagged lines (`A. 6`, bare `I`/`II`,
+                # `אנפאנג אקט`); they are reported by
+                # apply_act_structure_2026_09_01 for an RA to resolve. Skip
+                # them: a real division is typed.
+                untyped_headings.append((page_nr, stripped[:40]))
+                heading = None
             if heading is not None:
                 if heading.get("type") == "epilog":
                     open_epilog(stripped)
@@ -888,7 +926,7 @@ def build_text(pages, cfg, role_ids):
                 parent.replace(lg, lab)
             else:
                 parent.remove(lg)
-    return text_el, state["bad_who"], state["dropped"]
+    return text_el, state["bad_who"], state["dropped"], untyped_headings
 
 
 # --------------------------------------------------------------------------- #
@@ -912,7 +950,7 @@ def main():
     pages = load_pages(play_dir)
     header, role_ids = build_header(rec, cast, cfg["play_id"])
     front = build_castlist(cast)
-    text_el, bad_who, dropped = build_text(pages, cfg, role_ids)
+    text_el, bad_who, dropped, untyped_headings = build_text(pages, cfg, role_ids)
     text_el.insert(0, front)  # <front> before <body>
 
     root = etree.Element(q("TEI"), nsmap=NSMAP)
@@ -969,6 +1007,11 @@ def main():
           f"persons={len(role_ids)}")
     if bad_who:
         print(f"  WARNING bad @who (not in cast_dict): {sorted(set(bad_who))}")
+    if untyped_headings:
+        print(f"  {len(untyped_headings)} untyped heading span(s) skipped "
+              f"(not divisions — for an RA to retype or drop):")
+        for pg, txt in untyped_headings[:10]:
+            print(f"    p{pg}: {txt!r}")
     else:
         print("  all @who reference declared roles")
     if dropped:

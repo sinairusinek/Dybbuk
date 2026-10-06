@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15">
     <Metadata>
         <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=meshumed2(htr_id=28459)::::v=2.6.7
@@ -8,20 +8,20 @@ prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias
 prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/mnt/transkribus/LA/DEA/URO/LA_ara_news_aru_mix_90_ema.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.6
 Transkribus</Creator>
         <Created>2020-11-07T18:15:49.641+02:00</Created>
-        <LastChange>2026-08-17T06:57:19.535+02:00</LastChange>
+        <LastChange>2026-10-04T08:44:55.865+02:00</LastChange>
         <TranskribusMetadata docId="534187" pageId="22571185" pageNr="25"/>
     </Metadata>
     <Page imageFilename="Lateiner_Meshumed-0025.jpg" imageWidth="4088" imageHeight="2584">
         <TextRegion id="region_1607702729490_1081" custom="readingOrder {index:0;}">
             <Coords points="2025,168 3935,168 3935,2258 2025,2258"/>
-            <TextLine id="line_1607702898787_1204" custom="readingOrder {index:0;} textStyle {offset:16; length:6; strikethrough:true;} head {offset:4; length:10; unit-type:act n\u003a 3;} heading {offset:4; length:10; type:act; n:3;} metamark {offset:0; length:3; function:musicCue; role:out;}">
+            <TextLine id="line_1607702898787_1204" custom="readingOrder {index:0;} metamark {offset:0; length:3; function:musicCue; role:out;} heading {offset:4; length:10; type:act; n:3;} textStyle {offset:16; length:6; strikethrough:true;}">
                 <Coords points="2843,337 2917,372 3093,330 3436,362 3574,333 3713,376 3831,331 3934,355 3937,204 3831,182 3677,202 3629,246 3462,250 2980,204 2844,244"/>
                 <Baseline points="2855,311 3924,329"/>
                 <TextEquiv>
                     <Unicode>IIR דריטער אקט (קערקיר)</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702913666_1210" custom="readingOrder {index:1;} stage {offset:14; length:13; type:delivery;} role {offset:0; length:4; xmlid:iekb_eyzenshteyn;} role {offset:5; length:5; xmlid:mekhil;} role {offset:11; length:3; xmlid:shrhke;}">
+            <TextLine id="line_1607702913666_1210" custom="readingOrder {index:1;} stage {offset:14;length:13;type:delivery;} role {offset:0;length:4;} role {offset:11;length:3;}">
                 <Coords points="2571,443 3085,466 3383,437 3449,397 3525,432 3580,403 3580,373 3249,330 3167,372 3113,342 3032,364 2987,339 2921,374 2572,344"/>
                 <Baseline points="2583,410 3569,419"/>
                 <TextEquiv>
@@ -84,7 +84,7 @@ Transkribus</Creator>
                     <Unicode>אין דיע נאסע ווענט.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607703000186_1258" custom="readingOrder {index:10;} speaker {offset:0;length:9;}">
+            <TextLine id="line_1607703000186_1258" custom="readingOrder {index:10;} speaker {offset:0; length:9; xmlid:froyen;}">
                 <Coords points="2426,1340 2600,1373 3617,1337 3723,1392 3933,1335 3933,1289 3789,1237 3369,1277 2427,1243"/>
                 <Baseline points="2438,1311 3922,1321"/>
                 <TextEquiv>
@@ -174,7 +174,7 @@ Transkribus</Creator>
                     <Unicode>170714</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702757241_1093" custom="readingOrder {index:1;} foreign {offset:45;length:6;lang:he;} speaker {offset:0;length:5;}">
+            <TextLine id="line_1607702757241_1093" custom="readingOrder {index:1;} foreign {offset:45; length:6; lang:he;} speaker {offset:0; length:5; xmlid:iusf;}">
                 <Coords points="194,355 886,349 1158,280 1671,375 1946,326 1945,227 1857,250 1697,165 1557,256 1334,205 1061,261 980,205 193,218"/>
                 <Baseline points="204,313 1934,304"/>
                 <TextEquiv>
@@ -188,7 +188,7 @@ Transkribus</Creator>
                     <Unicode>געווונשען</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702765350_1103" custom="readingOrder {index:3;} foreign {offset:0;length:3;lang:he;} textStyle {offset:13;length:8;strikethrough:true;}">
+            <TextLine id="line_1607702765350_1103" custom="readingOrder {index:3;} foreign {offset:0; length:3; lang:he;} textStyle {offset:13; length:8; strikethrough:true;}">
                 <Coords points="316,462 437,426 1175,455 1315,408 1466,447 1687,417 1633,340 1556,369 1415,314 1338,366 316,333"/>
                 <Baseline points="327,395 1675,402"/>
                 <TextEquiv>
@@ -216,42 +216,42 @@ Transkribus</Creator>
                     <Unicode>רבי בלייבען. אונד וואן איך ווערדע מיט איהם פֿערטיג וועהרין דאן</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702784861_1123" custom="readingOrder {index:7;} textStyle {offset:21;length:33;strikethrough:true;}">
+            <TextLine id="line_1607702784861_1123" custom="readingOrder {index:7;} textStyle {offset:21; length:33; strikethrough:true;}">
                 <Coords points="109,848 1577,838 1685,827 1685,743 108,748"/>
                 <Baseline points="119,815 1673,810"/>
                 <TextEquiv>
                     <Unicode>געהן וויר אין קירכע. דיע נעהטיגע פאפיערע האבע איך דיר </Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702787826_1128" custom="readingOrder {index:8;} textStyle {offset:0;length:7;strikethrough:true;}">
+            <TextLine id="line_1607702787826_1128" custom="readingOrder {index:8;} textStyle {offset:0; length:7; strikethrough:true;}">
                 <Coords points="1413,957 1440,956 1489,928 1593,939 1611,922 1699,922 1696,825 1591,851 1561,831 1545,838 1527,821 1458,854 1410,846"/>
                 <Baseline points="1424,911 1687,904"/>
                 <TextEquiv>
                     <Unicode>געגעבין.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702802419_1133" custom="readingOrder {index:9;} foreign {offset:11;length:21;lang:ru;} speaker {offset:0;length:8;}">
+            <TextLine id="line_1607702802419_1133" custom="readingOrder {index:9;} foreign {offset:11; length:21; lang:ru;} speaker {offset:0; length:8; xmlid:flitsey;}">
                 <Coords points="1024,1035 1089,1064 1410,1045 1437,1020 1561,1061 1689,1017 1904,1044 1973,1035 1973,958 1867,922 1678,959 1482,930 1362,973 1112,924 1024,963"/>
                 <Baseline points="1035,1007 1961,1005"/>
                 <TextEquiv>
                     <Unicode>פאליציי. | טאַק טאַשנא באַטושקאַ</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702806808_1138" custom="readingOrder {index:10;} foreign {offset:8;length:23;lang:he;} speaker {offset:0;length:6;}">
+            <TextLine id="line_1607702806808_1138" custom="readingOrder {index:10;} foreign {offset:8; length:23; lang:he;} speaker {offset:0; length:6; xmlid:iusf;}">
                 <Coords points="993,1149 1042,1122 1180,1152 1516,1121 1965,1142 1965,1034 1805,1065 1690,1017 1561,1060 1435,1022 1245,1071 993,1043"/>
                 <Baseline points="1005,1106 1953,1107"/>
                 <TextEquiv>
                     <Unicode>אסיפ. | בלאגאסלאוו טעבי גאספאדא</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702810787_1143" custom="readingOrder {index:11;} foreign {offset:11;length:11;lang:ru;} speaker {offset:0;length:7;}">
+            <TextLine id="line_1607702810787_1143" custom="readingOrder {index:11;} foreign {offset:11; length:11; lang:ru;} speaker {offset:0; length:7; xmlid:flitsey;}">
                 <Coords points="1275,1242 1363,1244 1385,1223 1494,1245 1572,1226 1967,1230 1965,1162 1786,1123 1525,1143 1494,1169 1419,1144 1273,1163"/>
                 <Baseline points="1285,1211 1955,1195"/>
                 <TextEquiv>
                     <Unicode>פאליציי. | פאידאם זשיד.</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702816057_1148" custom="readingOrder {index:12;} _replacement {offset:23;length:1;} foreign {offset:37;length:5;lang:ru;} speaker {offset:0;length:6;}">
+            <TextLine id="line_1607702816057_1148" custom="readingOrder {index:12;} _replacement {offset:23; length:1;} foreign {offset:37; length:5; lang:ru;} speaker {offset:0; length:6; xmlid:iusf;}">
                 <Coords points="156,1330 1981,1339 1981,1254 1904,1227 156,1251"/>
                 <Baseline points="167,1308 1970,1304"/>
                 <TextEquiv>
@@ -265,7 +265,7 @@ Transkribus</Creator>
                     <Unicode>אונזערע בריעדער</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1607702825164_1158" custom="readingOrder {index:14;} foreign {offset:11;length:13;lang:ru;} stage {offset:25;length:32;type:business;} speaker {offset:0;length:9;}">
+            <TextLine id="line_1607702825164_1158" custom="readingOrder {index:14;} foreign {offset:11; length:13; lang:ru;} stage {offset:25; length:32; type:business;} speaker {offset:0; length:9; xmlid:flitsey;}">
                 <Coords points="373,1560 1703,1547 1967,1503 1967,1444 372,1459"/>
                 <Baseline points="383,1509 1956,1499"/>
                 <TextEquiv>

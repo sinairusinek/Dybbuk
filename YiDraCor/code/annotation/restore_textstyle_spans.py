@@ -81,10 +81,21 @@ def lines_of(xml: str) -> dict[str, tuple[str, str]]:
 
 
 def wanted(custom: str) -> list[tuple[str, dict]]:
-    """The textStyle spans worth restoring from a baseline custom string."""
-    return [(t, a) for t, a in parse_custom(custom)
-            if t == "textStyle"
-            and (a.get("strikethrough") == "true" or a.get("underlined") == "true")]
+    """Spans worth restoring from a baseline custom string.
+
+    `textStyle` with strikethrough/underline — the scribe's marks. Plus any
+    `unclear` carrying `reason`: that is an RA's reading note, and the same
+    unconditional-drop bug took one out (MS_TissaEssler p20, Noa's note on
+    `מאגיארעמבער`). A bare `unclear` is Transkribus residue and stays dropped.
+    """
+    out = []
+    for t, a in parse_custom(custom):
+        if t == "textStyle" and (a.get("strikethrough") == "true"
+                                 or a.get("underlined") == "true"):
+            out.append((t, a))
+        elif t == "unclear" and a.get("reason"):
+            out.append((t, a))
+    return out
 
 
 def main() -> int:
@@ -164,8 +175,10 @@ def main() -> int:
                                                int(e[1].get("offset", -1))))
                 el.set("custom", serialize_custom(merged))
                 changed = True; n_add += len(new)
-                mark = ",".join("del" if x[1].get("strikethrough") == "true"
-                                else "ul" for x in new)
+                mark = ",".join(
+                    "reason" if x[0] == "unclear"
+                    else "del" if x[1].get("strikethrough") == "true"
+                    else "ul" for x in new)
                 report.append(f"    {lid}: +{len(new)} ({mark}) "
                               f"{ltxt[:38]!r}")
 

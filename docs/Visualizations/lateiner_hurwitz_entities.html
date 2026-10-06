@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html{color-scheme:light dark}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>Lateiner &amp; Hurwitz Entity Tree</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --paper:#f2ece1; --paper-2:#eae2d4; --paper-3:#e0d6c4;
+    --ink:#1a1714; --ink-2:#4a423a; --ink-3:#766a5d;
+    --rule:#cfc3ad;
+    --oxblood:#7d2b2b; --brass:#9a7b3f; --slate:#3d5366;
+    --ok:#3d5366; --prop:#9a7b3f; --gap:#7d2b2b;
+    --shadow:rgba(60,45,25,.13);
+    --display:"Playfair Display",Georgia,serif;
+    --body:"Source Serif 4",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#17150f; --paper-2:#1f1c15; --paper-3:#2a251c;
+      --ink:#efe7d8; --ink-2:#c4b8a3; --ink-3:#938672;
+      --rule:#3a3328;
+      --oxblood:#d4756c; --brass:#d2a85e; --slate:#8fb0cc;
+      --ok:#8fb0cc; --prop:#d2a85e; --gap:#d4756c;
+      --shadow:rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#17150f; --paper-2:#1f1c15; --paper-3:#2a251c;
+    --ink:#efe7d8; --ink-2:#c4b8a3; --ink-3:#938672;
+    --rule:#3a3328;
+    --oxblood:#d4756c; --brass:#d2a85e; --slate:#8fb0cc;
+    --ok:#8fb0cc; --prop:#d2a85e; --gap:#d4756c;
+    --shadow:rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--body); font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--slate)}
+
+  /* ---------- masthead ---------- */
+  header{
+    border-bottom:2px solid var(--ink);
+    padding:30px 32px 20px;
+    background:var(--paper);
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.17em;
+    text-transform:uppercase; color:var(--ink-3); margin:0 0 10px;
+  }
+  h1{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(28px,4.4vw,46px); line-height:1.04;
+    margin:0 0 8px; letter-spacing:-.015em; text-wrap:balance;
+  }
+  h1 em{font-style:normal; color:var(--oxblood)}
+  .dek{
+    margin:0; max-width:64ch; color:var(--ink-2); font-size:16.5px;
+  }
+  .masthead-rule{
+    display:flex; gap:7px; align-items:center; margin-top:18px;
+  }
+  .masthead-rule span{height:3px; background:var(--ink); flex:1}
+  .masthead-rule span:nth-child(2){flex:0 0 46px; background:var(--oxblood)}
+  .masthead-rule span:nth-child(3){flex:0 0 14px}
+
+  /* ---------- tally strip ---------- */
+  .tally{
+    display:flex; flex-wrap:wrap; gap:0;
+    border-bottom:1px solid var(--rule); background:var(--paper-2);
+  }
+  .tally div{
+    padding:13px 22px; border-right:1px solid var(--rule);
+    display:flex; flex-direction:column; gap:1px; min-width:104px;
+  }
+  .tally b{
+    font-family:var(--mono); font-size:21px; font-weight:500;
+    font-variant-numeric:tabular-nums; line-height:1.1;
+  }
+  .tally small{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--ink-3);
+  }
+  .t-ok b{color:var(--ok)} .t-prop b{color:var(--prop)} .t-gap b{color:var(--gap)}
+
+  /* ---------- layout ---------- */
+  .wrap{
+    display:grid; grid-template-columns:minmax(0,1fr) 336px;
+    gap:0; align-items:start;
+  }
+  main{padding:22px 32px 80px; min-width:0}
+  aside{
+    position:sticky; top:0; max-height:100vh; overflow-y:auto;
+    border-left:1px solid var(--rule); background:var(--paper-2);
+    padding:22px 22px 60px;
+  }
+  @media (max-width:980px){
+    .wrap{grid-template-columns:minmax(0,1fr)}
+    aside{position:static; max-height:none; border-left:0; border-top:2px solid var(--ink)}
+  }
+
+  h2{
+    font-family:var(--display); font-weight:600; font-size:20px;
+    margin:0 0 3px; letter-spacing:-.01em;
+  }
+  .sec-note{
+    font-size:13.5px; color:var(--ink-3); margin:0 0 16px; max-width:60ch;
+  }
+
+  /* ---------- controls ---------- */
+  .controls{
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    padding:12px 0 18px; border-bottom:1px solid var(--rule); margin-bottom:18px;
+  }
+  button.filter, button.tool{
+    font-family:var(--mono); font-size:11px; letter-spacing:.07em;
+    text-transform:uppercase; padding:6px 11px;
+    background:var(--paper); color:var(--ink-2);
+    border:1px solid var(--rule); border-radius:2px; cursor:pointer;
+  }
+  button.filter[aria-pressed="true"]{
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+  }
+  button.filter:hover, button.tool:hover{border-color:var(--ink-3)}
+  button.filter:focus-visible, button.tool:focus-visible,
+  summary:focus-visible{outline:2px solid var(--oxblood); outline-offset:2px}
+  .spacer{flex:1}
+
+  /* ---------- tree ---------- */
+  details.author{margin:0 0 26px}
+  details.author>summary{
+    cursor:pointer; list-style:none; padding:10px 0 9px;
+    border-bottom:2px solid var(--ink); display:flex; align-items:baseline; gap:11px;
+  }
+  details.author>summary::-webkit-details-marker{display:none}
+  .author-name{
+    font-family:var(--display); font-size:25px; font-weight:700; letter-spacing:-.015em;
+  }
+  .caret{
+    font-family:var(--mono); font-size:11px; color:var(--ink-3);
+    width:11px; flex:0 0 11px;
+  }
+  details[open]>summary .caret{transform:rotate(90deg)}
+  .caret{display:inline-block; transition:transform .15s}
+  @media (prefers-reduced-motion:reduce){.caret{transition:none}}
+
+  .editions{padding:4px 0 0 0}
+
+  details.ed{border-bottom:1px solid var(--rule)}
+  details.ed>summary{
+    cursor:pointer; list-style:none; padding:11px 0 11px 14px;
+    display:grid; grid-template-columns:11px minmax(0,1fr) auto; gap:11px;
+    align-items:baseline; position:relative;
+  }
+  details.ed>summary::-webkit-details-marker{display:none}
+  details.ed>summary:hover{background:var(--paper-2)}
+  .ed-title{font-size:17px; font-weight:600; letter-spacing:-.005em}
+  .ed-yid{
+    font-size:16px; color:var(--ink-2); margin-left:9px;
+    direction:rtl; unicode-bidi:isolate;
+  }
+  .ed-meta{
+    font-family:var(--mono); font-size:10.5px; color:var(--ink-3);
+    letter-spacing:.04em; margin-top:3px;
+  }
+  .ed-flags{display:flex; gap:5px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+
+  .pill{
+    font-family:var(--mono); font-size:9.5px; font-weight:500;
+    letter-spacing:.09em; text-transform:uppercase;
+    padding:2.5px 7px; border-radius:2px; white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .pill.ok{background:color-mix(in srgb,var(--ok) 15%,transparent); color:var(--ok)}
+  .pill.prop{background:color-mix(in srgb,var(--prop) 20%,transparent); color:var(--prop)}
+  .pill.gap{background:color-mix(in srgb,var(--gap) 16%,transparent); color:var(--gap)}
+  .pill.quiet{background:var(--paper-3); color:var(--ink-3)}
+
+  .ed-body{padding:2px 0 20px 25px}
+  .bucket{margin:0 0 15px}
+  .bucket>h4{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--ink-3);
+    margin:0 0 6px; padding-bottom:4px; border-bottom:1px solid var(--rule);
+  }
+  ul.rows{list-style:none; margin:0; padding:0}
+  ul.rows li{
+    display:grid; grid-template-columns:minmax(0,1fr) auto;
+    gap:10px; align-items:baseline;
+    padding:5px 0 5px 11px; border-left:3px solid transparent;
+    font-size:14.5px;
+  }
+  ul.rows li+li{border-top:1px dotted var(--rule)}
+  li.s-LINKED{border-left-color:var(--ok)}
+  li.s-LINKED.reviewed{border-left-color:var(--slate); border-left-style:double; border-left-width:5px}
+  .stamp{font-family:var(--mono); font-size:9.5px; letter-spacing:.07em; color:var(--slate)}
+  li.s-PROPOSED{border-left-color:var(--prop); background:color-mix(in srgb,var(--prop) 6%,transparent)}
+  li.s-GAP{border-left-color:var(--gap); background:color-mix(in srgb,var(--gap) 6%,transparent)}
+  .row-main{min-width:0}
+  .row-label{overflow-wrap:anywhere}
+  .rel{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--ink-3); margin-right:7px;
+  }
+  .row-sub{
+    font-size:12.5px; color:var(--ink-3); margin-top:2px; overflow-wrap:anywhere;
+  }
+  .row-sub .q{color:var(--gap); font-style:italic}
+  .row-sub code, .dbid{
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-2);
+    font-variant-numeric:tabular-nums;
+  }
+  .yrs{font-family:var(--mono); font-size:11px; color:var(--ink-3); white-space:nowrap}
+  .heb{direction:rtl; unicode-bidi:isolate; display:inline-block}
+
+  /* ---------- ledger rail ---------- */
+  .ledger-group{margin:0 0 18px}
+  .ledger-group h3{
+    font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink);
+    margin:0 0 7px; display:flex; justify-content:space-between; gap:8px;
+    padding-bottom:5px; border-bottom:1px solid var(--ink);
+  }
+  .ledger-group h3 span{color:var(--ink-3)}
+  ul.ledger{list-style:none; margin:0; padding:0}
+  ul.ledger li{
+    padding:6px 0 6px 10px; border-left:3px solid var(--gap);
+    font-size:13.5px; line-height:1.4;
+  }
+  ul.ledger li+li{border-top:1px dotted var(--rule)}
+  ul.ledger .why{display:block; font-size:12px; color:var(--ink-3); margin-top:1px}
+  ul.ledger .hint{display:block; font-family:var(--mono); font-size:11px; color:var(--brass); margin-top:2px; overflow-wrap:anywhere}
+
+  /* ---------- tabs ---------- */
+  nav.tabs{
+    display:flex; gap:0; padding:0 32px;
+    border-bottom:1px solid var(--rule); background:var(--paper-2);
+  }
+  nav.tabs button{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; padding:11px 15px 9px;
+    background:none; color:var(--ink-3);
+    border:0; border-bottom:2px solid transparent;
+    margin-bottom:-1px; cursor:pointer;
+  }
+  nav.tabs button:hover{color:var(--ink-2)}
+  nav.tabs button[aria-selected="true"]{
+    color:var(--ink); border-bottom-color:var(--oxblood);
+  }
+  nav.tabs button:focus-visible{outline:2px solid var(--oxblood); outline-offset:-2px}
+
+  /* ---------- schema ---------- */
+  .schema{padding:24px 32px 80px; max-width:1100px}
+  .schema h2{
+    font-family:var(--display); font-size:19px; font-weight:600;
+    margin:34px 0 4px; padding-bottom:5px; border-bottom:2px solid var(--ink);
+  }
+  .schema h2:first-of-type{margin-top:6px}
+  h3.schema-sub{
+    font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink-2);
+    margin:22px 0 7px; padding-bottom:4px; border-bottom:1px solid var(--rule);
+  }
+  .schema .sec-note{max-width:72ch; margin:0 0 14px}
+
+  .schema-kinds{display:grid; gap:10px; margin:14px 0 4px}
+  details.schema-kind{
+    border:1px solid var(--rule); border-left:3px solid var(--slate);
+    background:var(--paper-2); border-radius:2px;
+  }
+  details.schema-kind>summary{
+    cursor:pointer; list-style:none; padding:9px 12px;
+    display:flex; align-items:baseline; gap:10px;
+  }
+  details.schema-kind>summary::-webkit-details-marker{display:none}
+  .schema-kind-name{
+    font-family:var(--mono); font-size:13px; font-weight:500; color:var(--ink);
+  }
+  .schema-note{
+    font-size:13.5px; color:var(--ink-2); margin:0 12px 10px; max-width:70ch;
+  }
+
+  table.schema-tbl{
+    border-collapse:collapse; width:100%; font-size:13px;
+    margin:0 0 6px; display:table;
+  }
+  details.schema-kind table.schema-tbl{margin:0 0 10px}
+  table.schema-tbl th{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-3); text-align:left;
+    padding:5px 12px; border-bottom:1px solid var(--ink);
+    white-space:nowrap; font-weight:400;
+  }
+  table.schema-tbl td{
+    padding:5px 12px; border-bottom:1px dotted var(--rule);
+    vertical-align:top;
+  }
+  table.schema-tbl tr:last-child td{border-bottom:0}
+  table.schema-tbl code{
+    font-family:var(--mono); font-size:12px; color:var(--ink);
+    background:var(--paper-3); padding:1px 4px; border-radius:2px;
+    white-space:nowrap;
+  }
+  table.schema-tbl td.num{
+    font-family:var(--mono); font-size:12px; color:var(--ink-3);
+    text-align:right; white-space:nowrap;
+  }
+  table.schema-tbl td.meaning{color:var(--ink-2); max-width:46ch}
+  table.schema-tbl td.pair{font-family:var(--mono); font-size:12px; white-space:nowrap}
+  .arrow{color:var(--brass); padding:0 2px}
+  .ink3{color:var(--ink-3)}
+  table.schema-tbl.wide{
+    border:1px solid var(--rule); background:var(--paper-2); border-radius:2px;
+  }
+  /* A relation table is the one thing here that can outgrow a narrow screen. */
+  .schema-scroll{overflow-x:auto; margin:0 0 6px}
+
+  .schema-cols{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:18px; align-items:start;
+  }
+
+  footer{
+    border-top:2px solid var(--ink); padding:20px 32px 40px;
+    font-size:13.5px; color:var(--ink-3); max-width:76ch;
+  }
+  footer code{font-family:var(--mono); font-size:12.5px; color:var(--ink-2)}
+  .empty{font-size:13.5px; color:var(--ink-3); font-style:italic; padding:8px 0}
+</style>
+</head>
+<body>
+
+
+<header>
+  <p class="eyebrow">YiDraCor · entity reconciliation · 5 October 2026</p>
+  <h1>Lateiner &amp; Hurwitz: <em>who, where, and what we still don't know</em></h1>
+  <p class="dek">Every person, venue, publisher and place named in the 27 built editions,
+    resolved against <code>people_db</code>, <code>core_db</code> and the toponym gazetteer.
+    Every person, venue, publisher, library and place now carries a database id. What remains open is missing source data, not unidentified entities — and newly minted people are flagged where the Leksikon does not attest them.</p>
+  <div class="masthead-rule"><span></span><span></span><span></span></div>
+</header>
+
+<div class="tally" id="tally"></div>
+
+<nav class="tabs" role="tablist" aria-label="Views">
+  <button role="tab" id="tab-tree" aria-controls="pane-tree"
+          aria-selected="true">Entity tree</button>
+  <button role="tab" id="tab-schema" aria-controls="pane-schema"
+          aria-selected="false">Schema</button>
+</nav>
+
+<div class="wrap" id="pane-tree" role="tabpanel"
+     aria-labelledby="tab-tree">
+  <main>
+    <div class="controls">
+      <button class="filter" id="f-all" aria-pressed="true">All</button>
+      <button class="filter" id="f-prop" aria-pressed="false">Proposals only</button>
+      <button class="filter" id="f-gap" aria-pressed="false">Open questions</button>
+      <span class="spacer"></span>
+      <button class="tool" id="expand">Expand all</button>
+      <button class="tool" id="collapse">Collapse all</button>
+    </div>
+    <div id="tree"></div>
+  </main>
+
+  <aside>
+    <h2>Open questions</h2>
+    <p class="sec-note" id="ledger-note"></p>
+    <div id="ledger"></div>
+  </aside>
+</div>
+
+<!-- SCHEMA:BEGIN (generated by code/build_schema_tab.py) -->
+<section class="schema" id="pane-schema" role="tabpanel" aria-labelledby="tab-schema" hidden>
+<p class="sec-note">The shape of <code>data/entity_graph.json</code> as <code>build_entity_graph.py</code> currently builds it: <b>692</b> nodes across <b>7</b> kinds and <b>887</b> edges across <b>18</b> relations. Everything below is read off the graph itself, not kept by hand — regenerate with <code>build_schema_tab.py</code> after every graph build.</p>
+<h2>Node kinds</h2>
+<div class="schema-kinds">
+<details class="schema-kind" open><summary><span class="caret">▸</span><span class="schema-kind-name">person</span><span class="dbid">37 nodes · 9 fields</span></summary>
+<p class="schema-note">A real person — playwright, composer, actor, lyricist — resolved against people_db.</p>
+<table class="schema-tbl"><thead><tr><th>field</th><th>on</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td class="num">all</td><td class="meaning">node id — kind-prefixed, see conventions below</td></tr>
+<tr><td><code>kind</code></td><td class="num">all</td><td class="meaning">one of the seven kinds</td></tr>
+<tr><td><code>label</code></td><td class="num">all</td><td class="meaning">display name, as the source writes it</td></tr>
+<tr><td><code>status</code></td><td class="num">all</td><td class="meaning">LINKED or GAP (see vocabulary)</td></tr>
+<tr><td><code>db_id</code></td><td class="num">all</td><td class="meaning">the id in the canonical database — people_db / core_db, or a Wikidata qid for places</td></tr>
+<tr><td><code>matched</code></td><td class="num">all</td><td class="meaning">the database row&#x27;s own spelling, for eyeballing the match</td></tr>
+<tr><td><code>method</code></td><td class="num">all</td><td class="meaning">how the link was made (see vocabulary)</td></tr>
+<tr><td><code>role</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>reviewer</code></td><td class="num">35/37</td><td class="meaning">who confirmed the link by hand; absent means automatic</td></tr>
+</tbody></table></details>
+<details class="schema-kind" open><summary><span class="caret">▸</span><span class="schema-kind-name">work</span><span class="dbid">277 nodes · 18 fields</span></summary>
+<p class="schema-note">A play as the catalogue records it, keyed by its expression_id. The unit authorship attaches to; most works have no edition in this repo.</p>
+<table class="schema-tbl"><thead><tr><th>field</th><th>on</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td class="num">all</td><td class="meaning">node id — kind-prefixed, see conventions below</td></tr>
+<tr><td><code>kind</code></td><td class="num">all</td><td class="meaning">one of the seven kinds</td></tr>
+<tr><td><code>label</code></td><td class="num">all</td><td class="meaning">display name, as the source writes it</td></tr>
+<tr><td><code>yiddish_title</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>expression_id</code></td><td class="num">all</td><td class="meaning">the catalogue&#x27;s work key — the join between work and edition</td></tr>
+<tr><td><code>playwright</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>author_raw</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>tags</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>genre</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>attribution</code></td><td class="num">all</td><td class="meaning">how firmly the authorship is asserted</td></tr>
+<tr><td><code>attribution_note</code></td><td class="num">all</td><td class="meaning">the wording the catalogue uses for a qualified attribution</td></tr>
+<tr><td><code>adapted_from_raw</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>source_sheet</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>extras</code></td><td class="num">all</td><td class="meaning">catalogue columns carried through unparsed</td></tr>
+<tr><td><code>status</code></td><td class="num">all</td><td class="meaning">LINKED or GAP (see vocabulary)</td></tr>
+<tr><td><code>method</code></td><td class="num">all</td><td class="meaning">how the link was made (see vocabulary)</td></tr>
+<tr><td><code>merged_into</code></td><td class="num">2/277</td><td class="meaning">on a duplicate record: the id it was merged into. The surviving id is chosen on attribution evidence, not by taking the lower number.</td></tr>
+<tr><td><code>reviewer</code></td><td class="num">2/277</td><td class="meaning">who confirmed the link by hand; absent means automatic</td></tr>
+</tbody></table></details>
+<details class="schema-kind" open><summary><span class="caret">▸</span><span class="schema-kind-name">edition</span><span class="dbid">27 nodes · 10 fields</span></summary>
+<p class="schema-note">A printed or manuscript witness in this repo: one built TEI, with its Transkribus document and folder.</p>
+<table class="schema-tbl"><thead><tr><th>field</th><th>on</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td class="num">all</td><td class="meaning">node id — kind-prefixed, see conventions below</td></tr>
+<tr><td><code>kind</code></td><td class="num">all</td><td class="meaning">one of the seven kinds</td></tr>
+<tr><td><code>label</code></td><td class="num">all</td><td class="meaning">display name, as the source writes it</td></tr>
+<tr><td><code>status</code></td><td class="num">all</td><td class="meaning">LINKED or GAP (see vocabulary)</td></tr>
+<tr><td><code>expression_id</code></td><td class="num">all</td><td class="meaning">the catalogue&#x27;s work key — the join between work and edition</td></tr>
+<tr><td><code>yiddish_title</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>year_printed</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>transkribus_doc_id</code></td><td class="num">all</td><td class="meaning">Transkribus collection document id</td></tr>
+<tr><td><code>folder</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>counts</code></td><td class="num">all</td><td class="meaning">source-catalogue row counts (productions, roles, songs, events) — not graph edges</td></tr>
+</tbody></table></details>
+<details class="schema-kind" open><summary><span class="caret">▸</span><span class="schema-kind-name">song</span><span class="dbid">225 nodes · 19 fields</span></summary>
+<p class="schema-note">A song in the song sheet, keyed to its play by play_key and hung off that work with part_of.</p>
+<table class="schema-tbl"><thead><tr><th>field</th><th>on</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td class="num">all</td><td class="meaning">node id — kind-prefixed, see conventions below</td></tr>
+<tr><td><code>kind</code></td><td class="num">all</td><td class="meaning">one of the seven kinds</td></tr>
+<tr><td><code>label</code></td><td class="num">all</td><td class="meaning">display name, as the source writes it</td></tr>
+<tr><td><code>yiddish_title</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>title_in_source</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>romanized_title</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>play_key</code></td><td class="num">all</td><td class="meaning">the song sheet&#x27;s own play name, before resolution to a work_id</td></tr>
+<tr><td><code>work_id</code></td><td class="num">all</td><td class="meaning">the work this node hangs off</td></tr>
+<tr><td><code>author_raw</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>author_certainty</code></td><td class="num">all</td><td class="meaning">the song sheet&#x27;s own confidence in the song&#x27;s author</td></tr>
+<tr><td><code>source_publication</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>external_source_id</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>recordings</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>attestations</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>n_attestations</code></td><td class="num">all</td><td class="meaning">how many sources attest the song</td></tr>
+<tr><td><code>status</code></td><td class="num">all</td><td class="meaning">LINKED or GAP (see vocabulary)</td></tr>
+<tr><td><code>method</code></td><td class="num">all</td><td class="meaning">how the link was made (see vocabulary)</td></tr>
+<tr><td><code>reviewer</code></td><td class="num">all</td><td class="meaning">who confirmed the link by hand; absent means automatic</td></tr>
+<tr><td><code>link_status_to_work</code></td><td class="num">all</td><td class="meaning">whether the play_key resolved to exactly one work</td></tr>
+</tbody></table></details>
+<details class="schema-kind" open><summary><span class="caret">▸</span><span class="schema-kind-name">event</span><span class="dbid">64 nodes · 8 fields</span></summary>
+<p class="schema-note">One dated performance from the performance-events report.</p>
+<table class="schema-tbl"><thead><tr><th>field</th><th>on</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td class="num">all</td><td class="meaning">node id — kind-prefixed, see conventions below</td></tr>
+<tr><td><code>kind</code></td><td class="num">all</td><td class="meaning">one of the seven kinds</td></tr>
+<tr><td><code>label</code></td><td class="num">all</td><td class="meaning">display name, as the source writes it</td></tr>
+<tr><td><code>status</code></td><td class="num">all</td><td class="meaning">LINKED or GAP (see vocabulary)</td></tr>
+<tr><td><code>method</code></td><td class="num">all</td><td class="meaning">how the link was made (see vocabulary)</td></tr>
+<tr><td><code>date</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>event_type</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>work_id</code></td><td class="num">all</td><td class="meaning">the work this node hangs off</td></tr>
+</tbody></table></details>
+<details class="schema-kind" open><summary><span class="caret">▸</span><span class="schema-kind-name">org</span><span class="dbid">50 nodes · 9 fields</span></summary>
+<p class="schema-note">A company, troupe, publisher, theatre or holding library, resolved against core_db.</p>
+<table class="schema-tbl"><thead><tr><th>field</th><th>on</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td class="num">all</td><td class="meaning">node id — kind-prefixed, see conventions below</td></tr>
+<tr><td><code>kind</code></td><td class="num">all</td><td class="meaning">one of the seven kinds</td></tr>
+<tr><td><code>label</code></td><td class="num">all</td><td class="meaning">display name, as the source writes it</td></tr>
+<tr><td><code>status</code></td><td class="num">all</td><td class="meaning">LINKED or GAP (see vocabulary)</td></tr>
+<tr><td><code>db_id</code></td><td class="num">all</td><td class="meaning">the id in the canonical database — people_db / core_db, or a Wikidata qid for places</td></tr>
+<tr><td><code>matched</code></td><td class="num">all</td><td class="meaning">the database row&#x27;s own spelling, for eyeballing the match</td></tr>
+<tr><td><code>method</code></td><td class="num">all</td><td class="meaning">how the link was made (see vocabulary)</td></tr>
+<tr><td><code>org_role</code></td><td class="num">all</td><td class="meaning"></td></tr>
+<tr><td><code>reviewer</code></td><td class="num">14/50</td><td class="meaning">who confirmed the link by hand; absent means automatic</td></tr>
+</tbody></table></details>
+<details class="schema-kind" open><summary><span class="caret">▸</span><span class="schema-kind-name">place</span><span class="dbid">12 nodes · 7 fields</span></summary>
+<p class="schema-note">A settlement, resolved against the toponyms gazetteer (carries a Wikidata qid in db_id).</p>
+<table class="schema-tbl"><thead><tr><th>field</th><th>on</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td class="num">all</td><td class="meaning">node id — kind-prefixed, see conventions below</td></tr>
+<tr><td><code>kind</code></td><td class="num">all</td><td class="meaning">one of the seven kinds</td></tr>
+<tr><td><code>label</code></td><td class="num">all</td><td class="meaning">display name, as the source writes it</td></tr>
+<tr><td><code>status</code></td><td class="num">all</td><td class="meaning">LINKED or GAP (see vocabulary)</td></tr>
+<tr><td><code>db_id</code></td><td class="num">all</td><td class="meaning">the id in the canonical database — people_db / core_db, or a Wikidata qid for places</td></tr>
+<tr><td><code>matched</code></td><td class="num">all</td><td class="meaning">the database row&#x27;s own spelling, for eyeballing the match</td></tr>
+<tr><td><code>method</code></td><td class="num">all</td><td class="meaning">how the link was made (see vocabulary)</td></tr>
+</tbody></table></details>
+</div>
+<h2>Relations</h2>
+<p class="sec-note">Every edge is <code>{src, dst, rel}</code> plus the attributes listed here. Read a row as <em>src kind → dst kind</em>.</p>
+<div class="schema-scroll">
+<table class="schema-tbl wide"><thead><tr><th>relation</th><th>from → to</th><th>n</th><th>attributes</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>wrote</code></td><td class="pair">person <span class="arrow">→</span> work</td><td class="num">277</td><td><code>attribution</code></td><td class="meaning">authorship — attached to the work, not the edition, so works with no witness in this repo still carry their playwright</td></tr>
+<tr><td><code>part_of</code></td><td class="pair">song <span class="arrow">→</span> work</td><td class="num">225</td><td><span class="ink3">—</span></td><td class="meaning">the song belongs to this work</td></tr>
+<tr><td><code>performed_at</code></td><td class="pair">work <span class="arrow">→</span> org</td><td class="num">75</td><td><code>type</code> <code>year</code> <code>date</code> <code>level</code></td><td class="meaning">staged by or at this organisation</td></tr>
+<tr><td><code>performed_at</code></td><td class="pair">event <span class="arrow">→</span> org</td><td class="num">69</td><td><code>date</code> <code>type</code> <code>level</code></td><td class="meaning">staged by or at this organisation</td></tr>
+<tr><td><code>of_work</code></td><td class="pair">event <span class="arrow">→</span> work</td><td class="num">64</td><td><span class="ink3">—</span></td><td class="meaning">the performance event staged this work</td></tr>
+<tr><td><code>composer</code></td><td class="pair">person <span class="arrow">→</span> work</td><td class="num">43</td><td><code>character</code> <code>level</code> <code>source</code> <code>context</code></td><td class="meaning"></td></tr>
+<tr><td><code>realised_as</code></td><td class="pair">work <span class="arrow">→</span> edition</td><td class="num">27</td><td><span class="ink3">—</span></td><td class="meaning">the work this repo holds a witness of</td></tr>
+<tr><td><code>holds</code></td><td class="pair">org <span class="arrow">→</span> edition</td><td class="num">27</td><td><code>shelfmark</code></td><td class="meaning">this library holds the witness (shelfmark on the edition)</td></tr>
+<tr><td><code>actor</code></td><td class="pair">person <span class="arrow">→</span> work</td><td class="num">17</td><td><code>character</code> <code>level</code> <code>source</code> <code>context</code></td><td class="meaning"></td></tr>
+<tr><td><code>published</code></td><td class="pair">org <span class="arrow">→</span> edition</td><td class="num">16</td><td><code>year</code> <code>source</code></td><td class="meaning">this publisher issued the edition</td></tr>
+<tr><td><code>printed_in</code></td><td class="pair">edition <span class="arrow">→</span> place</td><td class="num">16</td><td><span class="ink3">—</span></td><td class="meaning">place of printing, from the imprint</td></tr>
+<tr><td><code>premiered_in</code></td><td class="pair">work <span class="arrow">→</span> place</td><td class="num">9</td><td><code>year</code></td><td class="meaning">first staged in this place</td></tr>
+<tr><td><code>printed_by</code></td><td class="pair">org <span class="arrow">→</span> edition</td><td class="num">7</td><td><span class="ink3">—</span></td><td class="meaning"></td></tr>
+<tr><td><code>actress</code></td><td class="pair">person <span class="arrow">→</span> work</td><td class="num">6</td><td><code>character</code> <code>level</code> <code>source</code> <code>context</code></td><td class="meaning"></td></tr>
+<tr><td><code>arranger</code></td><td class="pair">person <span class="arrow">→</span> work</td><td class="num">3</td><td><code>character</code> <code>level</code> <code>source</code> <code>context</code></td><td class="meaning"></td></tr>
+<tr><td><code>lyrics</code></td><td class="pair">person <span class="arrow">→</span> work</td><td class="num">2</td><td><code>character</code> <code>level</code> <code>source</code> <code>context</code></td><td class="meaning"></td></tr>
+<tr><td><code>owned</code></td><td class="pair">person <span class="arrow">→</span> edition</td><td class="num">2</td><td><code>inscription</code> <code>date</code></td><td class="meaning"></td></tr>
+<tr><td><code>choreographer</code></td><td class="pair">person <span class="arrow">→</span> work</td><td class="num">1</td><td><code>character</code> <code>level</code> <code>source</code> <code>context</code></td><td class="meaning"></td></tr>
+<tr><td><code>composer (txt fr composer)</code></td><td class="pair">person <span class="arrow">→</span> work</td><td class="num">1</td><td><code>character</code> <code>level</code> <code>source</code> <code>context</code></td><td class="meaning"></td></tr>
+</tbody></table></div>
+<h3 class="schema-sub">Edge attributes</h3>
+<table class="schema-tbl"><thead><tr><th>attribute</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>attribution</code></td><td class="meaning">how firmly the authorship is asserted</td></tr>
+<tr><td><code>character</code></td><td class="meaning">the role credited</td></tr>
+<tr><td><code>context</code></td><td class="meaning">the source wording the credit came from</td></tr>
+<tr><td><code>date</code></td><td class="meaning">full date, where the source gives one</td></tr>
+<tr><td><code>inscription</code></td><td class="meaning"></td></tr>
+<tr><td><code>level</code></td><td class="meaning">how direct the evidence is</td></tr>
+<tr><td><code>shelfmark</code></td><td class="meaning">the holding library&#x27;s call number</td></tr>
+<tr><td><code>source</code></td><td class="meaning">which report or sheet the edge came from</td></tr>
+<tr><td><code>type</code></td><td class="meaning">the performance-event type</td></tr>
+<tr><td><code>year</code></td><td class="meaning">year, where the source gives one</td></tr>
+</tbody></table>
+<h2>Vocabularies</h2>
+<div class="schema-cols">
+<div><h3 class="schema-sub">status</h3><table class="schema-tbl"><thead><tr><th>value</th><th>n</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>LINKED</code></td><td class="num">690</td><td class="meaning">an exact match on a normalised name or variant — carries a database id</td></tr>
+<tr><td><code>PROPOSED</code></td><td class="num">0</td><td class="meaning">a high-confidence automatic candidate, not a decision; needs a human to confirm. None are currently outstanding.</td></tr>
+<tr><td><code>GAP</code></td><td class="num">0</td><td class="meaning">no candidate, several equally good ones, or a match too weak to trust</td></tr>
+</tbody></table></div>
+<div><h3 class="schema-sub">method</h3><table class="schema-tbl"><thead><tr><th>value</th><th>n</th><th>meaning</th></tr></thead><tbody>
+<tr><td><code>catalogue_expression_id</code></td><td class="num">277</td><td class="meaning">minted from the catalogue&#x27;s work key</td></tr>
+<tr><td><code>catalogue_song_sheet</code></td><td class="num">217</td><td class="meaning">minted from a song-sheet row</td></tr>
+<tr><td><code>performance_events_report</code></td><td class="num">64</td><td class="meaning">minted from the performance-events report</td></tr>
+<tr><td><code>reviewed</code></td><td class="num">57</td><td class="meaning">a human confirmed it</td></tr>
+<tr><td><code>exact</code></td><td class="num">28</td><td class="meaning">normalised name matched a database row outright</td></tr>
+<tr><td><code>printer-romanised</code></td><td class="num">6</td><td class="meaning"></td></tr>
+<tr><td><code>composite-half</code></td><td class="num">6</td><td class="meaning">matched one half of a core_db `A|B` composite name</td></tr>
+<tr><td><code>imprint-core</code></td><td class="num">3</td><td class="meaning">matched after reducing the imprint to its core firm name</td></tr>
+<tr><td><code>exonym</code></td><td class="num">3</td><td class="meaning">matched through a known alternative place name</td></tr>
+<tr><td><code>author_id</code></td><td class="num">2</td><td class="meaning">taken from the catalogue&#x27;s own author id</td></tr>
+<tr><td><code>qualifier-stripped</code></td><td class="num">2</td><td class="meaning">matched after dropping a parenthetical qualifier</td></tr>
+</tbody></table></div>
+</div>
+<h2>Node id conventions</h2>
+<p class="sec-note">Ids are <code>kind:slug</code>. A slug is a database id where the entity has one, the catalogue key where the catalogue supplies one, and a normalised name where neither does — so an id is stable only as far as its source is.</p>
+<table class="schema-tbl"><thead><tr><th>kind</th><th>example id</th></tr></thead><tbody>
+<tr><td>person</td><td><code>person:dbid683</code></td></tr>
+<tr><td>work</td><td><code>work:3787</code></td></tr>
+<tr><td>edition</td><td><code>edition:MishkeMashke-Kultur1910</code></td></tr>
+<tr><td>song</td><td><code>song:1</code></td></tr>
+<tr><td>event</td><td><code>event:3838-04031889-poolestheatre</code></td></tr>
+<tr><td>org</td><td><code>org:poolestheatre</code></td></tr>
+<tr><td>place</td><td><code>place:warsaw</code></td></tr>
+</tbody></table>
+</section>
+<!-- SCHEMA:END -->
+
+<footer>
+  <p><strong>How to read a row.</strong> A blue edge is a confirmed link carrying a database id.
+  An amber edge is an automatic proposal — order-insensitive token matching, which is what the
+  catalogue's <em>“Surname, Given”</em> against <code>people_db</code>'s <em>“Given Surname”</em>
+  requires — and it is a suggestion, not a decision. A red edge is an open question: no candidate,
+  several equally good ones, or a match too weak to trust.</p>
+  <p>Built by <code>build_entity_graph.py</code> from <code>data/editions.json</code>.
+  Counts under each edition title are rows in the source catalogue
+  (productions · credits · songs · performance events), not graph edges.</p>
+</footer>
+
+<script>
+window.KG={"summary":{"editions":27,"by_kind":{"edition":27,"person":35,"org":50,"place":12},"by_status":{"LINKED":220},"edges":220,"gaps":0,"gaps_by_reason":{}},"gaps":[],"authors":[{"label":"Joseph Lateiner","db_id":683,"editions":[{"label":"Al Naharot Bavel","folder":"AlNaharotBavel-Amkreut&Freund1909","expression_id":3915,"yiddish":"alnaharotbavel","year":1909,"tkb":820975,"counts":{"productions":1,"roles":2,"songs":1,"performance_events":1},"people":[{"label":"פרידזעל, לואיס 6412:3","status":"LINKED","db_id":"695","matched":"לואיס פרידזעל","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"פרידזעל, לואיס 6412:3","status":"LINKED","db_id":"695","matched":"לואיס פרידזעל","score":null,"reason":null,"candidates":null,"rel":"lyrics","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Grand Theatre","status":"LINKED","db_id":"115","matched":"Grand Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1903.0],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"Amkraut & Freund Buchhandlung","status":"LINKED","db_id":"63","matched":"אַמקרויט עט פריינד| Amkroyt un Fraynd","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}]},{"label":"Bas Sheva","folder":"BasSheva","expression_id":3798,"yiddish":"בת שבע","year":1911,"tkb":828443,"counts":{"productions":1,"roles":1,"songs":2,"performance_events":1},"people":[{"label":"מינקאָווסקי","status":"LINKED","db_id":"3822","matched":"גיאַקאָמאָ מינקאָווסקי / Giacomo Minkowski","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1893.0],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1893.0],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"Amkroyt un Fraynd","status":"LINKED","db_id":"63","matched":"אַמקרויט עט פריינד| Amkroyt un Fraynd","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Blimele (di Perle von Warsha)","folder":"Blimele-AhronFaust1903","expression_id":3801,"yiddish":"בלימאלע אדער","year":1903,"tkb":828455,"counts":{"productions":1,"roles":6,"songs":7,"performance_events":1},"people":[{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"LINKED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"איימי סימאוויטש","status":"LINKED","db_id":"3823","matched":"איימי סימאָוויטש / Amy Simovitch","score":null,"reason":null,"candidates":null,"rel":"actress","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"ווילענסקי, מערי )מרים קאץ( 027:1","status":"LINKED","db_id":"3264","matched":"מערי ווילענסקי (מרים קאץ)","score":null,"reason":null,"candidates":null,"rel":"actress","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Zeligl der menagen"]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"ראָזענפעלד, מאָריס","status":"LINKED","db_id":"878","matched":"מאַקס ראָזענטאַל / Max Rosenthal","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Windsor Theater","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":1,"years":[1894.0],"characters":[]}],"places":[{"label":"Podgórze","status":"LINKED","db_id":"Q2553877","matched":"Podgorze (Krakow, Poland)","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"A. Faust","status":"LINKED","db_id":"62","matched":"אהרן פויסט| A. Faust","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Das Yudishe Kind","folder":"דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete","expression_id":3867,"yiddish":null,"year":1911,"tkb":828424,"counts":{"productions":1,"roles":1,"songs":0,"performance_events":1},"people":[{"label":"רומשינסקי, יוסף 1832:3","status":"LINKED","db_id":"916","matched":"יוסף רומשינסקי (רומשיסקין)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"Farlag \"Kultur\" (Dzika 13)","status":"LINKED","db_id":"47","matched":"קולטור| Kultur","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Der Mann untern Tisch","folder":"DerManUnterTiff","expression_id":3817,"yiddish":"der man unter","year":1911,"tkb":817462,"counts":{"productions":1,"roles":0,"songs":0,"performance_events":1},"people":[],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"\"Teater bibliyotek\"","status":"LINKED","db_id":"158","matched":"פ. קאנטאראוויטש|יודישע טהעאַטער⸗בּיבּליאָטעק|Teater bibliyotek","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Druk ha-Tsfira (Panska 40)","status":"LINKED","db_id":"270","matched":"HaTsfira","score":null,"reason":null,"candidates":null,"rel":"printed_by","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Di Seder Nakht","folder":"Di_seyder_nakht_Emkroyt_1908","expression_id":3847,"yiddish":"סדר נאכט","year":1908,"tkb":828503,"counts":{"productions":1,"roles":1,"songs":1,"performance_events":1},"people":[{"label":"פרידזעל, לואיס 6412:3","status":"LINKED","db_id":"695","matched":"לואיס פרידזעל","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Grand Theatre","status":"LINKED","db_id":"115","matched":"Grand Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1903.0],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"Amkroyt et Freund Buchhandlung","status":"LINKED","db_id":"63","matched":"אַמקרויט עט פריינד| Amkroyt un Fraynd","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}]},{"label":"Dos Yudishe Herts","folder":"DosYudisheHerts-1910","expression_id":3866,"yiddish":"dos yudishe herts","year":1910,"tkb":820841,"counts":{"productions":1,"roles":4,"songs":1,"performance_events":1},"people":[{"label":"בּרוידי, יוסף 042:1","status":"LINKED","db_id":"852","matched":"יוסף בּרוידי","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Lemekh"]},{"label":"קעסלער, דוד 9862:4","status":"LINKED","db_id":"721","matched":"דוד קעסלער","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1908.0],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1908.0],"characters":[]}],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"\"Kunst\"","status":"LINKED","db_id":"61","matched":"קונסט|Kunst","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Dovid's Fidele","folder":"DovidsFidele-1904","expression_id":3869,"yiddish":"Dovid's Fidele","year":1904,"tkb":820845,"counts":{"productions":1,"roles":3,"songs":8,"performance_events":1},"people":[{"label":"Henry Russotto","status":"LINKED","db_id":"850","matched":"הענרי רוסאָטאַ (חיים נעסוויזשקי)","score":null,"reason":null,"candidates":null,"rel":"arranger","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"שלאָסבּערג, יצחק 0512:3","status":"LINKED","db_id":"925","matched":"יצחק שלאָסבּערג","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1897.0],"characters":[]}],"places":[{"label":"Podgórze","status":"LINKED","db_id":"Q2553877","matched":"Podgorze (Krakow, Poland)","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"A. Faust","status":"LINKED","db_id":"62","matched":"אהרן פויסט| A. Faust","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Emigration nach America","folder":"MS_Emigration","expression_id":3830,"yiddish":"עמיגראציאן נאך אמעריקע","year":null,"tkb":1013131,"counts":{"productions":3,"roles":1,"songs":2,"performance_events":3},"people":[{"label":"Joachim Kurantman","status":"LINKED","db_id":"3825","matched":"יואכים קוראַנטמאַן / Joachim Kurantman","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"לואיס צוויבעל / Louis Zwiebel","status":"LINKED","db_id":"814","matched":"לואיס צוויבעל / Louis Zwiebel","score":null,"reason":null,"candidates":null,"rel":"owned","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Oriental Theatre","status":"LINKED","db_id":"119","matched":"Oriental Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":2,"years":[1886.0],"characters":[]},{"label":"Turner Hall","status":"LINKED","db_id":"149","matched":"Turner Hall","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1889.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[{"label":"Chicago","status":"LINKED","db_id":"Q1297","matched":"Chicago","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1889.0],"characters":[]}],"publishers":[]},{"label":"Ezra","folder":"Ezra-Emkroyt1908","expression_id":3875,"yiddish":"עזרא","year":1908,"tkb":828481,"counts":{"productions":2,"roles":2,"songs":19,"performance_events":2},"people":[{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"LINKED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"סענדלער, יעקב קאָפּל 4151:2","status":"LINKED","db_id":"880","matched":"יעקב סענדלער","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1893.0],"characters":[]},{"label":"Central Theatre","status":"LINKED","db_id":"33","matched":"The Roumanian Opera Company","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Bella 2026-09-30","n":1,"years":[1891.0],"characters":[]},{"label":"Roumanian Opera House","status":"LINKED","db_id":"33","matched":"The Roumanian Opera Company","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Bella 2026-09-30","n":1,"years":[1891.0],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1893.0],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"Amkroyt un Fraynd","status":"LINKED","db_id":"63","matched":"אַמקרויט עט פריינד| Amkroyt un Fraynd","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Hinke Pinke","folder":"HinkePinke","expression_id":3877,"yiddish":"HinkePinke","year":1907,"tkb":820969,"counts":{"productions":4,"roles":1,"songs":0,"performance_events":4},"people":[{"label":"ל. י. באראבאן","status":"LINKED","db_id":"3824","matched":"ל. י. באַראַבאַן / L. Y. Baraban","score":null,"reason":null,"candidates":null,"rel":"choreographer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Metropolitan Theatre","status":"LINKED","db_id":"146","matched":"Metropolitan Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1926.0],"characters":[]},{"label":"People's Theatre NY","status":"LINKED","db_id":"120","matched":"People's Theatre NY","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":2,"years":[1901.0,1918.0],"characters":[]},{"label":"Perry Theatre","status":"LINKED","db_id":"122","matched":"Perry Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1908.0],"characters":[]}],"places":[{"label":"Cleveland Ohio","status":"LINKED","db_id":"Q37320","matched":"Cleveland","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1908.0],"characters":[]},{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"\"Teater bibliyotek\"","status":"LINKED","db_id":"158","matched":"פ. קאנטאראוויטש|יודישע טהעאַטער⸗בּיבּליאָטעק|Teater bibliyotek","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"N. Starowolski (Warsaw)","status":"LINKED","db_id":"58","matched":"N. Sṭarovolsḳi","score":null,"reason":null,"candidates":null,"rel":"printed_by","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Isha Raa","folder":"IshahRaah","expression_id":3884,"yiddish":null,"year":1904,"tkb":820937,"counts":{"productions":1,"roles":1,"songs":8,"performance_events":1},"people":[{"label":"בּרוידי, יוסף 042:1","status":"LINKED","db_id":"852","matched":"יוסף בּרוידי","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1894.0],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1894.0],"characters":[]}],"places":[{"label":"Podgórze","status":"LINKED","db_id":"Q2553877","matched":"Podgorze (Krakow, Poland)","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"Druck von S.L. Deitscher","status":"LINKED","db_id":"66","matched":"Sh. L. Deytsher","score":null,"reason":null,"candidates":null,"rel":"printed_by","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Verlag von Benjamin Munk Buchhandlung","status":"LINKED","db_id":"64","matched":"בּנימין מונק|Benjamin Munk","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Khurbn Yerusholaim","folder":"MS_KhurbnYerusholaim","expression_id":3891,"yiddish":"חורבן ירושלים","year":null,"tkb":838368,"counts":{"productions":4,"roles":15,"songs":16,"performance_events":1},"people":[{"label":")שמואל טאַבּאַטשניקאָוו( 208:2","status":"LINKED","db_id":"3079","matched":"סעמועל טאָביאַס / Samuel Tobias","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Tsidkiyahu"]},{"label":"Henry Russotto","status":"LINKED","db_id":"850","matched":"הענרי רוסאָטאַ (חיים נעסוויזשקי)","score":null,"reason":null,"candidates":null,"rel":"composer (txt fr composer)","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"LINKED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"בּערנשטיין, בּערל )בּורשטין( 702:1","status":"LINKED","db_id":"859","matched":"בּערל בּערנשטיין (בּורשטין)","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Tsfanya"]},{"label":"בּרוידי, יוסף 042:1","status":"LINKED","db_id":"852","matched":"יוסף בּרוידי","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"LINKED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"ליאָוו, לעאָ )משה-לייבּ( 2201:2","status":"LINKED","db_id":"932","matched":"לעאָ ליאָוו (משה-לייבּ)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מינקאָווסקי","status":"LINKED","db_id":"3822","matched":"גיאַקאָמאָ מינקאָווסקי / Giacomo Minkowski","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":2,"years":[],"characters":[]},{"label":"פיינמאַן, זיגמונד 4452:4","status":"LINKED","db_id":"714","matched":"זיגמונד פיינמאַן","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Yermiyahu"]},{"label":"פרידזעל, לואיס 6412:3","status":"LINKED","db_id":"695","matched":"לואיס פרידזעל","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"קאנארד","status":"LINKED","db_id":"1464","matched":"וויליאַם קאַנראָד / William Conrad","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Ishmael"]},{"label":"קעסלער, דוד 9862:4","status":"LINKED","db_id":"721","matched":"דוד קעסלער","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Gdalyahu"]},{"label":"שלאָסבּערג, יצחק 0512:3","status":"LINKED","db_id":"925","matched":"יצחק שלאָסבּערג","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":3,"years":[1889.0,1890.0,1898.0],"characters":[]},{"label":"National Theatre","status":"LINKED","db_id":"118","matched":"National Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1913.0],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":3,"years":[1889.0,1890.0,1898.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[],"publishers":[]},{"label":"Khurbn Yerusholaim","folder":"KhurbnYerusholaim-BN1908","expression_id":3891,"yiddish":"HurbanYerushalaim","year":1908,"tkb":820938,"counts":{"productions":3,"roles":15,"songs":16,"performance_events":3},"people":[{"label":")שמואל טאַבּאַטשניקאָוו( 208:2","status":"LINKED","db_id":"3079","matched":"סעמועל טאָביאַס / Samuel Tobias","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Tsidkiyahu"]},{"label":"Henry Russotto","status":"LINKED","db_id":"850","matched":"הענרי רוסאָטאַ (חיים נעסוויזשקי)","score":null,"reason":null,"candidates":null,"rel":"composer (txt fr composer)","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"LINKED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"בּערנשטיין, בּערל )בּורשטין( 702:1","status":"LINKED","db_id":"859","matched":"בּערל בּערנשטיין (בּורשטין)","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Tsfanya"]},{"label":"בּרוידי, יוסף 042:1","status":"LINKED","db_id":"852","matched":"יוסף בּרוידי","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"LINKED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"ליאָוו, לעאָ )משה-לייבּ( 2201:2","status":"LINKED","db_id":"932","matched":"לעאָ ליאָוו (משה-לייבּ)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מינקאָווסקי","status":"LINKED","db_id":"3822","matched":"גיאַקאָמאָ מינקאָווסקי / Giacomo Minkowski","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":2,"years":[],"characters":[]},{"label":"פיינמאַן, זיגמונד 4452:4","status":"LINKED","db_id":"714","matched":"זיגמונד פיינמאַן","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Yermiyahu"]},{"label":"פרידזעל, לואיס 6412:3","status":"LINKED","db_id":"695","matched":"לואיס פרידזעל","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"קאנארד","status":"LINKED","db_id":"1464","matched":"וויליאַם קאַנראָד / William Conrad","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Ishmael"]},{"label":"קעסלער, דוד 9862:4","status":"LINKED","db_id":"721","matched":"דוד קעסלער","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Gdalyahu"]},{"label":"שלאָסבּערג, יצחק 0512:3","status":"LINKED","db_id":"925","matched":"יצחק שלאָסבּערג","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Bowery Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":3,"years":[1889.0,1890.0,1898.0],"characters":[]},{"label":"National Theatre","status":"LINKED","db_id":"118","matched":"National Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1913.0],"characters":[]},{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":3,"years":[1889.0,1890.0,1898.0],"characters":[]}],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"N. Starowolski (Warsaw)","status":"LINKED","db_id":"58","matched":"N. Sṭarovolsḳi","score":null,"reason":null,"candidates":null,"rel":"printed_by","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Kidush Hashem","folder":"KidushHashem","expression_id":3892,"yiddish":"קדוש השם","year":1909,"tkb":820939,"counts":{"productions":2,"roles":3,"songs":0,"performance_events":2},"people":[{"label":"גימפּעל, אַדאָלף 974:1, 6104:5","status":"LINKED","db_id":"1766","matched":"אַדאָלף גימפעל","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"סענדלער, יעקב קאָפּל 4151:2","status":"LINKED","db_id":"880","matched":"יעקב סענדלער","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"פרידזעל, לואיס 6412:3","status":"LINKED","db_id":"695","matched":"לואיס פרידזעל","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Academy of Music","status":"LINKED","db_id":"155","matched":"Academy of Music","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1897.0],"characters":[]},{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1896.0],"characters":[]}],"places":[{"label":"Lemberg","status":"LINKED","db_id":"Q36036","matched":"Lviv","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Philadelphia","status":"LINKED","db_id":"Q1345","matched":"Philadelphia","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1897.0],"characters":[]}],"publishers":[{"label":"Druck von E. Salat","status":"LINKED","db_id":"70","matched":"D. Salat","score":null,"reason":null,"candidates":null,"rel":"printed_by","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Verlag von D. Roth Buchhandlung","status":"LINKED","db_id":"65","matched":"דוד ראָטה|D. Roth","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Meshumed","folder":"Lateiner_Meshumed","expression_id":3879,"yiddish":"דער משומד","year":null,"tkb":534187,"counts":{"productions":1,"roles":4,"songs":11,"performance_events":1},"people":[{"label":"טאָמאַשעוו]פ[סקי, בּאָריס )בּרוך-אהרן( 408:2","status":"LINKED","db_id":"693","matched":"בּאָריס טאָמאַשעוו[פ]סקי (בּרוך-אהרן)","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאדאם ליפצין","status":"LINKED","db_id":"762","matched":"קעני ליפצין (סאַכאַר קריינע סאָניעס)","score":null,"reason":null,"candidates":null,"rel":"actress","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"קאַרפּ, סאָפיע","status":"LINKED","db_id":"723","matched":"סאׇפיע קאַרפּ","score":null,"reason":null,"candidates":null,"rel":"actress","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"קארפ","status":"LINKED","db_id":"703","matched":"מאַקס קאַרפּ / Max Karp","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Central Theatre","status":"LINKED","db_id":"33","matched":"The Roumanian Opera Company","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Bella 2026-09-30","n":2,"years":[1891.0],"characters":[]},{"label":"Roumanian Opera House","status":"LINKED","db_id":"33","matched":"The Roumanian Opera Company","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Bella 2026-09-30","n":2,"years":[1891.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[],"publishers":[]},{"label":"Mishke Mashke","folder":"MishkeMashke-Kultur1910","expression_id":3838,"yiddish":"מישקע מאשקע","year":1911,"tkb":828537,"counts":{"productions":1,"roles":2,"songs":3,"performance_events":1},"people":[{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":2,"years":[],"characters":["mishke"]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Poole's Theatre","status":"LINKED","db_id":"123","matched":"Poole's Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1889.0],"characters":[]}],"places":[{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"F. Baumritter (Warsaw)","status":"LINKED","db_id":"157","matched":"Baumritter","score":null,"reason":null,"candidates":null,"rel":"printed_by","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Farlag \"Kultur\" (Dzika 13)","status":"LINKED","db_id":"47","matched":"קולטור| Kultur","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Sore Sheyndel","folder":"SoreSheyndel","expression_id":3833,"yiddish":"SoreSheyndel","year":1907,"tkb":820964,"counts":{"productions":4,"roles":3,"songs":5,"performance_events":4},"people":[{"label":"אידא קאמינסקא","status":"LINKED","db_id":"3826","matched":"אידא קאַמינסקאַ / Ida Kamińska","score":null,"reason":null,"candidates":null,"rel":"actress","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":["Soreh Sheindel"]},{"label":"בּרוידי, יוסף 042:1","status":"LINKED","db_id":"852","matched":"יוסף בּרוידי","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"שאַיעוויטש, ישראל 0754:5","status":"LINKED","db_id":"2907","matched":"ישראל שאַיעוויטש","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Central Theatre","status":"LINKED","db_id":"33","matched":"The Roumanian Opera Company","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Bella 2026-09-30","n":1,"years":[1891.0],"characters":[]},{"label":"Kaminski's Theatre","status":"LINKED","db_id":"147","matched":"Kaminski's Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1938.0],"characters":[]},{"label":"Roumanian Opera House","status":"LINKED","db_id":"33","matched":"The Roumanian Opera Company","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Bella 2026-09-30","n":1,"years":[1891.0],"characters":[]}],"places":[{"label":"Vilna","status":"LINKED","db_id":"Q216","matched":"Vilnius","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1909.0],"characters":[]},{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1938.0],"characters":[]},{"label":"Warsaw","status":"LINKED","db_id":"Q270","matched":"Warsaw","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"\"Di yudishe bihne\"","status":"LINKED","db_id":"1849","matched":"די אידישע ביהנע","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"B. Turš (Warsaw)","status":"LINKED","db_id":"76","matched":"B. Tursh","score":null,"reason":null,"candidates":null,"rel":"printed_by","reviewer":null,"n":1,"years":[],"characters":[]}]},{"label":"Yoysef in Egipten","folder":"MS_YoysefInEgipten","expression_id":3933,"yiddish":"יוסף אין עגיפטען","year":null,"tkb":826832,"counts":{"productions":2,"roles":5,"songs":2,"performance_events":2},"people":[{"label":"Henry Russotto","status":"LINKED","db_id":"850","matched":"הענרי רוסאָטאַ (חיים נעסוויזשקי)","score":null,"reason":null,"candidates":null,"rel":"arranger","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"אַבּראַמאָוויטש, מאַקס )מענדל( 6:1","status":"LINKED","db_id":"694","matched":"מאַקס אַבּראַמאָוויטש (מענדל)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"סאַנדלער, פּרץ 6441:2","status":"LINKED","db_id":"857","matched":"פּרץ סאַנדלער","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"סענדלער, יעקב קאָפּל 4151:2","status":"LINKED","db_id":"880","matched":"יעקב סענדלער","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Oriental Theatre","status":"LINKED","db_id":"119","matched":"Oriental Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":2,"years":[1884.0,1885.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[],"publishers":[]},{"label":"Yudale der Blinder","folder":"Yudale_der_blinder,_Emkroyt1908","expression_id":3927,"yiddish":"יודאלע דער בלינדער","year":1908,"tkb":828539,"counts":{"productions":1,"roles":3,"songs":2,"performance_events":1},"people":[{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"LINKED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":2,"years":[],"characters":[]},{"label":"פרידזעל, לואיס 6412:3","status":"LINKED","db_id":"695","matched":"לואיס פרידזעל","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Biblioteka Narodowa (Polona)","status":"LINKED","db_id":"2331","matched":"Biblioteka Narodowa (National Library of Poland)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"People's Theatre NY","status":"LINKED","db_id":"120","matched":"People's Theatre NY","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1899.0],"characters":[]}],"places":[{"label":"Przemyśl","status":"LINKED","db_id":"Q208473","matched":"Przemyśl","score":null,"reason":null,"candidates":null,"rel":"printed_in","reviewer":null,"n":1,"years":[],"characters":[]}],"publishers":[{"label":"Amkroyt un Fraynd","status":"LINKED","db_id":"63","matched":"אַמקרויט עט פריינד| Amkroyt un Fraynd","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[],"characters":[]}]}]},{"label":"Moyshe (Ish Halevi) Hurwitz","db_id":684,"editions":[{"label":"Bas Koyen","folder":"MS_BasKoyen","expression_id":3963,"yiddish":"בת הכהן","year":null,"tkb":838374,"counts":{"productions":4,"roles":0,"songs":5,"performance_events":4},"people":[],"venues":[{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1896.0],"characters":[]},{"label":"Tsentral Theatre","status":"LINKED","db_id":"151","matched":"Tsentral Theater","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":1,"years":[1893.0],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1896.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[],"publishers":[]},{"label":"Ben HaDor","folder":"MS_BenHaDor","expression_id":4010,"yiddish":"בן הדור","year":null,"tkb":826910,"counts":{"productions":11,"roles":3,"songs":46,"performance_events":11},"people":[{"label":"אַדאָלף ליאַנסקי / Adolf Liansky","status":"LINKED","db_id":"3827","matched":"אַדאָלף ליאַנסקי / Adolf Liansky","score":null,"reason":null,"candidates":null,"rel":"owned","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"LINKED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"פּערלמוטער, אַרנאָלד 8381:3","status":"LINKED","db_id":"2645","matched":"אַרנאָלד פּערלמוטער (אהרל'ע)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"American Jewish Archives (Jacob Rader Marcus Center)","status":"LINKED","db_id":"2333","matched":"American Jewish Archives (Jacob Rader Marcus Center)","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Glickman's Yiddish Players","status":"LINKED","db_id":"153","matched":"Glickman's Yiddish Players","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1905.0],"characters":[]},{"label":"Jignita Theatre","status":"LINKED","db_id":"113","matched":"Gradina Lieblich Jigniza","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":1,"years":[1907.0],"characters":[]},{"label":"Kalich Theatre","status":"LINKED","db_id":"160","matched":"Kalich Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1906.0],"characters":[]},{"label":"Olimpic Theatre","status":"LINKED","db_id":"171","matched":"Olimpic Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1908.0],"characters":[]},{"label":"Royal Theatre (Harry Bernstein)","status":"LINKED","db_id":"163","matched":"Royal Theatre (Harry Bernstein)","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1915.0],"characters":[]},{"label":"Thomashefsky's People Theatre","status":"LINKED","db_id":"156","matched":"Thomashefsky Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":1,"years":[1910.0],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":6,"years":[1903.0,1904.0,1901.0,1902.0],"characters":[]}],"places":[{"label":"Bucharest","status":"LINKED","db_id":"Q19660","matched":"Bucharest","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1907.0],"characters":[]},{"label":"California","status":"LINKED","db_id":"Q99","matched":"California","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1905.0],"characters":[]},{"label":"Cleveland Ohaio","status":"LINKED","db_id":"Q37320","matched":"Cleveland","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1915.0],"characters":[]}],"publishers":[]},{"label":"Di Tsvey Tnoim","folder":"MS_DiTsveyTnoim","expression_id":4012,"yiddish":"די צווי תנאים","year":null,"tkb":838430,"counts":{"productions":2,"roles":5,"songs":13,"performance_events":2},"people":[{"label":"גימפּעל, אַדאָלף 974:1, 6104:5","status":"LINKED","db_id":"1766","matched":"אַדאָלף גימפעל","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"גימפּעל, אַדאָלף 974:1, 6104:5","status":"LINKED","db_id":"1766","matched":"אַדאָלף גימפעל","score":null,"reason":null,"candidates":null,"rel":"arranger","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"LINKED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"פּערלמוטער, אַרנאָלד 8381:3","status":"LINKED","db_id":"2645","matched":"אַרנאָלד פּערלמוטער (אהרל'ע)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"שמולעוויטש, שלמה 1475:6","status":"LINKED","db_id":"3611","matched":"שלמה שמולעוויטש","score":null,"reason":null,"candidates":null,"rel":"lyrics","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1902.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[],"publishers":[]},{"label":"Shimshon Hagibor","folder":"YIVO_ShimshonHagibor","expression_id":3959,"yiddish":"שמשון הגיבור","year":null,"tkb":838365,"counts":{"productions":1,"roles":0,"songs":1,"performance_events":1},"people":[],"venues":[{"label":"Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1890.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[],"publishers":[]},{"label":"Tissa-Essler","folder":"MS_TissaEssler","expression_id":3944,"yiddish":"טיססא עסלער","year":null,"tkb":905289,"counts":{"productions":9,"roles":6,"songs":5,"performance_events":9},"people":[{"label":"יאָוועליר, קלמן 909:2","status":"LINKED","db_id":"2061","matched":"קלמן יאָוועליר","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"מאָגוּלעסקאָ, זיגמוּנט","status":"LINKED","db_id":"685","matched":"זיגמוּנט מאׇגוּלעסקאׇ (זעליג מאָגילעווסקי)","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"פיינמאַן, זיגמונד 4452:4","status":"LINKED","db_id":"714","matched":"זיגמונד פיינמאַן","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Folks Theatre","status":"LINKED","db_id":"365","matched":"Public Theatre (Folks Theatre)","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":1,"years":[1897.0],"characters":[]},{"label":"Kalich Theatre","status":"LINKED","db_id":"160","matched":"Kalich Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":2,"years":[1906.0,1905.0],"characters":[]},{"label":"Pamol Verdi","status":"LINKED","db_id":"137","matched":"פּאמול ווערדי - Gradina Pomul verde","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":2,"years":[1913.0],"characters":[]},{"label":"People's Theatre","status":"LINKED","db_id":"120","matched":"People's Theatre NY","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":1,"years":[1907.0],"characters":[]},{"label":"Pool's Theatre","status":"LINKED","db_id":"123","matched":"Poole's Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":1,"years":[1888.0],"characters":[]},{"label":"Roumanian Opera House","status":"LINKED","db_id":"33","matched":"The Roumanian Opera Company","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Bella 2026-09-30","n":1,"years":[1887.0],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1901.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[{"label":"Iași (Rumenia)","status":"LINKED","db_id":"Q46852","matched":"Iași","score":null,"reason":null,"candidates":null,"rel":"premiered_in","reviewer":null,"n":1,"years":[1913.0],"characters":[]}],"publishers":[]},{"label":"Yaakov-Esav","folder":"MS_YaakovEsav","expression_id":4014,"yiddish":"יעקב ועשו","year":null,"tkb":494907,"counts":{"productions":3,"roles":0,"songs":4,"performance_events":3},"people":[],"venues":[{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":2,"years":[1902.0,1903.0],"characters":[]},{"label":"YIVO Institute for Jewish Research","status":"LINKED","db_id":"27","matched":"YIVO Institute for Jewish Research","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]}],"places":[],"publishers":[]},{"label":"Yetsi'as Mitsrayim","folder":"MS_YetsiasMitsrayim","expression_id":4043,"yiddish":"יציאת מצרים Jezias Mizraim copy","year":null,"tkb":715163,"counts":{"productions":11,"roles":5,"songs":13,"performance_events":10},"people":[{"label":"וואָהל, הערמאַן )צבי( 936:1","status":"LINKED","db_id":"906","matched":"הערמאַן וואָהל (צבי)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"יאָוועליר, קלמן 909:2","status":"LINKED","db_id":"2061","matched":"קלמן יאָוועליר","score":null,"reason":null,"candidates":null,"rel":"actor","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"פּערלמוטער, אַרנאָלד 8381:3","status":"LINKED","db_id":"2645","matched":"אַרנאָלד פּערלמוטער (אהרל'ע)","score":null,"reason":null,"candidates":null,"rel":"composer","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]},{"label":"פּראַגער, רעגינע 0581:3","status":"LINKED","db_id":"2695","matched":"רעגינע פּראַגער","score":null,"reason":null,"candidates":null,"rel":"actress","reviewer":"Sinai 2026-10-05","n":1,"years":[],"characters":[]}],"venues":[{"label":"Kalich Theatre","status":"LINKED","db_id":"160","matched":"Kalich Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1907.0],"characters":[]},{"label":"Kessler's Thalia Theatre","status":"LINKED","db_id":"130","matched":"Thalia Theatre|Bowery Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":"Sinai 2026-10-05","n":1,"years":[1910.0],"characters":[]},{"label":"New Star Theatre","status":"LINKED","db_id":"167","matched":"New Star Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":1,"years":[1908.0],"characters":[]},{"label":"St Petersburg State Theatre Library","status":"LINKED","db_id":"2334","matched":"St Petersburg State Theatre Library","score":null,"reason":null,"candidates":null,"rel":"holds","reviewer":null,"n":1,"years":[],"characters":[]},{"label":"Windsor Theatre","status":"LINKED","db_id":"134","matched":"Windsor Theatre","score":null,"reason":null,"candidates":null,"rel":"performed_at","reviewer":null,"n":3,"years":[1909.0,1903.0,1904.0],"characters":[]}],"places":[],"publishers":[{"label":"The International Biblioteque","status":"LINKED","db_id":"2332","matched":"The International Biblioteque (Internatsionale Bibliotek)","score":null,"reason":null,"candidates":null,"rel":"published","reviewer":null,"n":1,"years":[1903.0],"characters":[]}]}]}]};
+</script>
+<script>
+(function(){
+  var KG = window.KG, S = KG.summary;
+  var esc = function(s){
+    return String(s==null?'':s).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  };
+  var HEB = /[֐-׿]/;
+  var heb = function(s){
+    return HEB.test(String(s||'')) ? '<span class="heb">'+esc(s)+'</span>' : esc(s);
+  };
+
+  /* ---- tally ---- */
+  var st = S.by_status||{}, kinds = S.by_kind||{};
+  var tally = [
+    ['t-plain', S.editions, 'editions'],
+    ['t-plain', (kinds.person||0)+(kinds.org||0)+(kinds.place||0), 'entities'],
+    ['t-plain', S.edges, 'edges'],
+    ['t-ok',   st.LINKED||0,   'linked'],
+    ['t-prop', st.PROPOSED||0, 'proposed'],
+    ['t-gap',  st.GAP||0,      'questions']
+  ];
+  document.getElementById('tally').innerHTML = tally.map(function(t){
+    return '<div class="'+t[0]+'"><b>'+t[1]+'</b><small>'+t[2]+'</small></div>';
+  }).join('');
+
+  /* ---- a single entity row ---- */
+  function row(it){
+    var sub = '', yrs = '';
+    if(it.status==='LINKED'){
+      sub = '<code>'+esc(it.db_id)+'</code> '+heb(it.matched||'');
+      if(it.reviewer) sub += ' <span class="stamp">\u2713 '+esc(it.reviewer)+'</span>';
+    } else if(it.status==='PROPOSED'){
+      sub = 'proposed <code>'+esc(it.db_id)+'</code> '+heb(it.matched||'')
+          + ' <span class="dbid">· score '+esc(it.score)+'</span>';
+    } else {
+      sub = '<span class="q">'+esc(it.reason||'unresolved')+'</span>';
+      if(it.candidates && it.candidates.length){
+        sub += '<br>candidates: ' + it.candidates.map(function(c){
+          return '<code>'+esc(c[0])+'</code> '+heb(c[1]);
+        }).join(' · ');
+      }
+    }
+    if(it.years && it.years.length){
+      yrs = it.years.length>1
+        ? it.years[0]+'–'+it.years[it.years.length-1]
+        : String(it.years[0]);
+      if(it.n>1) yrs += ' ×'+it.n;
+    } else if(it.n>1){ yrs = '×'+it.n; }
+
+    var chars = (it.characters && it.characters.length)
+      ? ' <span class="dbid">as '+it.characters.map(esc).join(', ')+'</span>' : '';
+
+    return '<li class="s-'+it.status+(it.reviewer?' reviewed':'')+'" data-status="'+it.status+'">'
+      + '<div class="row-main"><div class="row-label"><span class="rel">'+esc(it.rel)+'</span>'
+      + heb(it.label)+chars+'</div><div class="row-sub">'+sub+'</div></div>'
+      + '<div class="yrs">'+esc(yrs)+'</div></li>';
+  }
+
+  function bucket(title, items){
+    if(!items || !items.length) return '';
+    return '<div class="bucket"><h4>'+esc(title)+' · '+items.length+'</h4>'
+         + '<ul class="rows">'+items.map(row).join('')+'</ul></div>';
+  }
+
+  /* ---- edition ---- */
+  function edition(e){
+    var all = [].concat(e.people,e.venues,e.places,e.publishers);
+    var nProp = all.filter(function(x){return x.status==='PROPOSED';}).length;
+    var nGap  = all.filter(function(x){return x.status==='GAP';}).length;
+    var nOk   = all.filter(function(x){return x.status==='LINKED';}).length;
+
+    var flags = '';
+    if(nOk)   flags += '<span class="pill ok">'+nOk+' linked</span>';
+    if(nProp) flags += '<span class="pill prop">'+nProp+' proposed</span>';
+    if(nGap)  flags += '<span class="pill gap">'+nGap+' open</span>';
+    if(!all.length) flags += '<span class="pill quiet">no entities</span>';
+
+    var c = e.counts||{};
+    var meta = 'expr '+(e.expression_id||'—')
+      + ' · tkb '+(e.tkb||'—')
+      + (e.year?' · printed '+e.year:'')
+      + ' · ' + (c.productions||0)+'p '+(c.roles||0)+'c '+(c.songs||0)+'s '
+      + (c.performance_events||0)+'e';
+
+    return '<details class="ed" data-prop="'+nProp+'" data-gap="'+nGap+'">'
+      + '<summary><span class="caret">▸</span><span>'
+      + '<span class="ed-title">'+esc(e.label)+'</span>'
+      + (e.yiddish?'<span class="ed-yid">'+esc(e.yiddish)+'</span>':'')
+      + '<div class="ed-meta">'+esc(meta)+'</div></span>'
+      + '<span class="ed-flags">'+flags+'</span></summary>'
+      + '<div class="ed-body">'
+      + bucket('Credited people', e.people)
+      + bucket('Venues', e.venues)
+      + bucket('Places', e.places)
+      + bucket('Publisher', e.publishers)
+      + (all.length?'':'<p class="empty">No people, venues or places recorded for this edition.</p>')
+      + '</div></details>';
+  }
+
+  /* ---- tree ---- */
+  document.getElementById('tree').innerHTML = KG.authors.map(function(a){
+    var gaps = 0, props = 0;
+    a.editions.forEach(function(e){
+      [].concat(e.people,e.venues,e.places,e.publishers).forEach(function(x){
+        if(x.status==='GAP') gaps++;
+        if(x.status==='PROPOSED') props++;
+      });
+    });
+    return '<details class="author" open><summary>'
+      + '<span class="caret">▸</span>'
+      + '<span class="author-name">'+esc(a.label)+'</span>'
+      + '<span class="dbid">people_db '+esc(a.db_id)+'</span>'
+      + '<span class="spacer"></span>'
+      + '<span class="ed-flags"><span class="pill quiet">'+a.editions.length+' editions</span>'
+      + (props?'<span class="pill prop">'+props+' proposed</span>':'')
+      + (gaps?'<span class="pill gap">'+gaps+' open</span>':'')
+      + '</span></summary>'
+      + '<div class="editions">'+a.editions.map(edition).join('')+'</div></details>';
+  }).join('');
+
+  /* ---- ledger ---- */
+  // Hide the proposals filter once nothing is left awaiting a decision.
+  if(!(S.by_status||{}).PROPOSED){
+    var pb = document.getElementById('f-prop');
+    if(pb) pb.hidden = true;
+  }
+  // With every entity resolved there are no GAP rows left to filter to.
+  if(!(S.by_status||{}).GAP){
+    var gb = document.getElementById('f-gap');
+    if(gb) gb.hidden = true;
+    var ab = document.getElementById('f-all');
+    if(ab) ab.hidden = true;
+  }
+
+  var note = document.getElementById('ledger-note');
+  if(note){
+    note.textContent = KG.gaps.length
+      + ' items. Nothing here has been written to a database.';
+  }
+
+  var LABEL = {
+    'edition-field':'Missing edition detail',
+    person:'People', org:'Organisations', place:'Places'
+  };
+  var byKind = {};
+  KG.gaps.forEach(function(g){ (byKind[g.kind] = byKind[g.kind]||[]).push(g); });
+  var order = ['person','org','place','edition-field'];
+  document.getElementById('ledger').innerHTML = order.filter(function(k){
+    return byKind[k];
+  }).map(function(k){
+    var items = byKind[k];
+    return '<div class="ledger-group"><h3>'+esc(LABEL[k]||k)+' <span>'+items.length+'</span></h3>'
+      + '<ul class="ledger">' + items.map(function(g){
+          return '<li>'+heb(g.label)
+            + '<span class="why">'+esc(g.reason)+'</span>'
+            + (g.candidates?'<span class="hint">'+heb(g.candidates)+'</span>':'')
+            + '</li>';
+        }).join('') + '</ul></div>';
+  }).join('');
+
+  /* ---- filters ---- */
+  var mode = 'all';
+  function apply(){
+    document.querySelectorAll('ul.rows li').forEach(function(li){
+      var s = li.dataset.status;
+      li.hidden = !(mode==='all'
+        || (mode==='prop' && s==='PROPOSED')
+        || (mode==='gap'  && s==='GAP'));
+    });
+    document.querySelectorAll('details.ed').forEach(function(d){
+      var n = mode==='all' ? 1
+            : mode==='prop' ? +d.dataset.prop : +d.dataset.gap;
+      d.hidden = !n;
+      if(mode!=='all' && n) d.open = true;
+    });
+    document.querySelectorAll('.bucket').forEach(function(b){
+      b.hidden = !b.querySelectorAll('ul.rows li:not([hidden])').length;
+    });
+  }
+  [['f-all','all'],['f-prop','prop'],['f-gap','gap']].forEach(function(p){
+    document.getElementById(p[0]).addEventListener('click', function(){
+      mode = p[1];
+      document.querySelectorAll('button.filter').forEach(function(b){
+        b.setAttribute('aria-pressed', b.id===p[0] ? 'true':'false');
+      });
+      apply();
+    });
+  });
+  document.getElementById('expand').addEventListener('click', function(){
+    document.querySelectorAll('details').forEach(function(d){d.open=true;});
+  });
+  document.getElementById('collapse').addEventListener('click', function(){
+    document.querySelectorAll('details.ed').forEach(function(d){d.open=false;});
+  });
+
+  /* ---- tabs ---- */
+  var TABS = [['tab-tree','pane-tree'], ['tab-schema','pane-schema']];
+  function show(id){
+    TABS.forEach(function(t){
+      var on = t[0] === id;
+      var btn = document.getElementById(t[0]);
+      btn.setAttribute('aria-selected', on?'true':'false');
+      btn.tabIndex = on ? 0 : -1;
+      document.getElementById(t[1]).hidden = !on;
+    });
+    // The tally and the controls describe the tree; they mean nothing on schema.
+    var tl = document.getElementById('tally');
+    if(tl) tl.hidden = id !== 'tab-tree';
+    if(location.hash.slice(1) !== id) history.replaceState(null, '', '#'+id);
+  }
+  TABS.forEach(function(t, i){
+    var b = document.getElementById(t[0]);
+    b.addEventListener('click', function(){ show(t[0]); });
+    // A tablist is arrow-navigable; only the selected tab takes tab focus.
+    b.addEventListener('keydown', function(ev){
+      var d = ev.key==='ArrowRight' ? 1 : ev.key==='ArrowLeft' ? -1 : 0;
+      if(!d) return;
+      ev.preventDefault();
+      var next = TABS[(i + d + TABS.length) % TABS.length][0];
+      show(next);
+      document.getElementById(next).focus();
+    });
+  });
+  // Deep-linkable: #tab-schema opens the page straight on the schema.
+  show(TABS.some(function(t){return t[0]===location.hash.slice(1);})
+       ? location.hash.slice(1) : 'tab-tree');
+})();
+</script>
+
+</body>
+</html>

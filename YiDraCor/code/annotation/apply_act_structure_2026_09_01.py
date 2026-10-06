@@ -50,10 +50,34 @@ COL = 2372172
 NOTE = "act/Bild structure (Judith 2026-09-01)"
 
 # An act-END line: closes a division, never opens one. Must never be stamped.
-END_RE = re.compile(r"ענדע|ende|סוף|שלוסס", re.I)
+# German closers too: Di Tsvey Tnoim writes `End von Ien Act.`,
+# `Schluss des zweiten Aktes`, `Schluss der dritten Aktes`. Without these the
+# matcher picked the line that CLOSES the previous act as the next act's
+# opening and shifted every boundary (found 2026-10-04 in the dry run).
+END_RE = re.compile(r"ענדע|ende\b|end\s+von|schluss|סוף|שלוסס|שלוס", re.I)
 # The opening of a division.
-ACT_RE = re.compile(r"(ערשטער|צווייטער|דריטער|פיערטער|פֿערטער|פונפטער|"
-                    r"\d+\s*[טד]?ער|[IVX]+\s*)?\s*(אקט|אַקט|Act|Akt)", re.I)
+# Ordinals as the notebooks actually spell them — the scribes double letters
+# freely (`דריטטער`, `פינפֿטער`) and Tissa-Essler/Emigration use forms the
+# first draft of this list missed, which pushed the match past ACT_MAX_START
+# and lost Emigration p48.
+ACT_RE = re.compile(
+    r"(ערשטער|צווייטער|צוויטער|דריטער|דריטטער|דריטטטער|"
+    r"פיערטער|פֿיערטער|פירטער|פֿערטער|פערטער|"
+    r"פונפטער|פינפטער|פֿינפֿטער|פינפֿטער|"
+    r"\d+\s*[-]?\s*[טד]?ער|[IVX]+\s*)?\s*(אקט|אַקט|Act|Akt)", re.I)
+# A heading line is short AND leads with its heading. Two real cases pull in
+# opposite directions, so both tests are needed:
+#   * Di Tsvey Tnoim p5's cast entry
+#     `הילנא. איהר קאַמערמעדכען (אין ערשטען...` mentions `ערשטען`, matches
+#     ACT_RE, and must be rejected.
+#   * Emigration p48's genuine heading is 39 chars —
+#     `N 10 (דריטטער אקט (קאפפע הויז אין קס"פל` — an act heading carrying a
+#     Regie cue and a setting, and must be accepted.
+# So: allow a generous length, but require the act words to appear early in
+# the line rather than buried in a sentence. Acts only — a Bild marker can sit
+# mid-line after a cue (`N xx (פֿערוואנדלונג`).
+ACT_MAX_LEN = 48
+ACT_MAX_START = 12
 BILD_RE = re.compile(r"בילד|Bild|פערוואנדלונג|פֿערוואנדלונג|Verwandlung", re.I)
 EPI_RE = re.compile(r"עפילאג|epilog", re.I)
 
@@ -82,7 +106,13 @@ STRUCTURE = [
     ("MS_TissaEssler", 9,  "act", 2), ("MS_TissaEssler", 11, "scene", 2),
     ("MS_TissaEssler", 14, "act", 3),
     ("MS_TissaEssler", 20, "act", 4), ("MS_TissaEssler", 24, "scene", 2),
-    ("MS_TissaEssler", 34, "act", 5), ("MS_TissaEssler", 34, "scene", 1),
+    # p.34's line reads `5טער אקט ערשטעס בילד` — it IS both act 5 and its
+    # first Bild, but one span carries one type, and the act is the outer
+    # division. Stamping both made the scene overwrite the act, act 5 never
+    # opened, and its content folded into act 4 (duplicate
+    # TissaEssler_Act4_Sc2, invalid XML). So: act only here. Act 5's Bild 1 is
+    # implicit in the act opening; Bild 2 at p.35 is tagged.
+    ("MS_TissaEssler", 34, "act", 5),
     ("MS_TissaEssler", 35, "scene", 2),
     # ---- Ben HaDor (Q4): 4 acts, act 4 genuinely pp.35-36 ---------------
     ("MS_BenHaDor", 4,  "act", 1), ("MS_BenHaDor", 18, "act", 2),
@@ -130,8 +160,12 @@ def find_line(root, kind):
         txt = line_text(el).strip()
         if not txt or END_RE.search(txt):
             continue
+        if kind == "act" and len(txt) > ACT_MAX_LEN:
+            continue
         m = rx.search(txt)
         if not m:
+            continue
+        if kind == "act" and m.start() > ACT_MAX_START:
             continue
         raw = line_text(el)
         start = raw.find(txt[m.start():m.end()])
