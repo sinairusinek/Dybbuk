@@ -76,6 +76,29 @@ WORK_MERGE = {
 }
 WORK_MERGE_REVIEWER = "Sinai 2026-10-06"
 
+# Song play keys the matcher cannot resolve, decided by a human. All eight
+# affected songs are consecutive rows (tempID 136-143) of one Hurwitz songbook,
+# `לידער אונד קופלעטן פון די נייעסטע טהעאטער שטיקע` (Hebrew Publishing Company,
+# NYPL), which abbreviates every play key — the same short-vs-full `X oder Y`
+# shape as the confirmed edition title variants.
+#
+# reviewer: Sinai 2026-10-06
+SONG_PLAY_KEY_DECISION = {
+    # Sole Hurwitz candidate, and the same pairing already confirmed for
+    # edition MS_BasKoyen.
+    "bas kohen": "3963",            # Bas Cohen oder, Malka Alexandra
+    # 3966 di akeyde, not 4005 Bas Yiftokh — that is בת יפתח, a different play
+    # that merely carries `akeyde` in its subtitle.
+    "die akeyda": "3966",           # Di akeyde oder, Printz fun Beys lekhem
+    # The nine other Yehuda/Yehudis works are Lateiner's or plainly different
+    # titles (Yehuda un yisroel, Yehudis un Holofernes, Milhomes hayehudim).
+    "yehuda haglili": "3965",       # Yehudah ha-Galili, oder, der firsṭ fun Yerusholayim
+    # The only work matching `shlekhte`; four other Hurwitz plays carry `tsayt`
+    # but none matches both words.
+    "die shlekhte tsayten": "3973",  # Di karbones fun shlekhte tsaytn
+}
+SONG_DECISION_REVIEWER = "Sinai 2026-10-06"
+
 
 # ---------------------------------------------------------------------------
 # normalisation
@@ -394,6 +417,10 @@ def load_songs(wb, work_idx: dict, works: dict) -> tuple[list, dict]:
             next_n += 1
 
         wid, status = resolve_work(work_idx, play_key, works)
+        if not wid:
+            decided = SONG_PLAY_KEY_DECISION.get(play_key.strip().lower())
+            if decided:
+                wid, status = decided, "reviewed"
         # Prefer a row that actually credits an author over one that does not:
         # of two attestations of תקיעה גדולה, only the Shund on Shellac row
         # names Lateiner.
@@ -436,7 +463,9 @@ def load_songs(wb, work_idx: dict, works: dict) -> tuple[list, dict]:
             "attestations": attestations,
             "n_attestations": len(attestations),
             "status": "LINKED" if wid else "GAP",
-            "method": "catalogue_song_sheet" if wid else "",
+            "method": ("reviewed" if status == "reviewed"
+                       else "catalogue_song_sheet" if wid else ""),
+            "reviewer": SONG_DECISION_REVIEWER if status == "reviewed" else "",
             "link_status_to_work": status,
         })
     if skipped:
