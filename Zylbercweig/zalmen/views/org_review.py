@@ -505,6 +505,7 @@ def _status(row: dict[str, str]) -> str:
 		"NEW": "🟣 new",
 		"DISCUSS": "💬 discuss",
 		"GENERIC": "🔶 generic",
+		"NOT_AN_ORG": "⬛ not an org",
 		"UNCLUSTER": "🟥 uncluster",
 		"SPLIT": "🔴 split",
 		"DEFER": "🟡 deferred",
@@ -901,7 +902,7 @@ def _render_similar_clusters(
 				st.caption("No cluster matches for this query.")
 
 
-_DRAFT_DECISIONS = ("ALIGN", "NEW", "GENERIC", "SPLIT", "DEFER", "DESCRIPTIVE", "DISCUSS")
+_DRAFT_DECISIONS = ("ALIGN", "NEW", "GENERIC", "NOT_AN_ORG", "SPLIT", "DEFER", "DESCRIPTIVE", "DISCUSS")
 
 
 def _render_batch_confirm(
@@ -990,7 +991,8 @@ def _render_batch_confirm(
 			)
 			row_cols[2].caption(r.get("org_type", ""))
 			badge = {"ALIGN": "🟢", "NEW": "🟣", "GENERIC": "🔶", "SPLIT": "🔴",
-			         "DEFER": "🟡", "DESCRIPTIVE": "🔵", "DISCUSS": "💬"}.get(decision, "·")
+			         "DEFER": "🟡", "DESCRIPTIVE": "🔵", "NOT_AN_ORG": "⬛",
+			         "DISCUSS": "💬"}.get(decision, "·")
 			row_cols[3].markdown(f"{badge} **{decision}**")
 			if db_id:
 				_c_badge = f" · 🕸{_corro.get('shared_hosts','')}" if _corro else ""
@@ -1361,7 +1363,7 @@ def render() -> None:
 	c5.metric("Generic", by_decision.get("GENERIC", 0))
 	c6.metric("Split", by_decision.get("SPLIT", 0))
 	c7.metric("Defer", by_decision.get("DEFER", 0))
-	c8.metric("Descriptive", by_decision.get("DESCRIPTIVE", 0))
+	c8.metric("Not an org", by_decision.get("NOT_AN_ORG", 0))
 
 	with open(ALIGN_FILE, "rb") as _f:
 		st.download_button(
@@ -1378,7 +1380,7 @@ def render() -> None:
 	with f1:
 		status_filter = st.segmented_control(
 			"Show",
-			options=["Undecided", "All", "ALIGN", "NEW", "GENERIC", "SPLIT", "DEFER", "DESCRIPTIVE"],
+			options=["Undecided", "All", "ALIGN", "NEW", "GENERIC", "NOT_AN_ORG", "SPLIT", "DEFER"],
 			default="Undecided",
 		)
 	with f2:
@@ -1505,8 +1507,11 @@ def render() -> None:
 				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "SPLIT"
 			if qa2.button("🟡 Defer", key=f"entity-defer-{selected['cluster_id']}", use_container_width=True):
 				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "DEFER"
-			if qa3.button("🔵 Descriptive", key=f"entity-descriptive-{selected['cluster_id']}", use_container_width=True):
-				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "DESCRIPTIVE"
+			# DESCRIPTIVE was folded into GENERIC on 2026-10-04 (same judgement,
+			# two names). The button now offers the distinct category instead:
+			# the cluster is not an organization name at all.
+			if qa3.button("⬛ Not an org", key=f"entity-notanorg-{selected['cluster_id']}", use_container_width=True):
+				st.session_state[f"entity_quick_{selected['cluster_id']}"] = "NOT_AN_ORG"
 			# 🔶 Generic: names a KIND of institution, not an individuated one
 			# (team rule 2026-10-04). Not mintable; distinct from DEFER, which
 			# means "might be real, cannot resolve yet".
@@ -1798,7 +1803,7 @@ def render() -> None:
 		# ── Handle entity-level quick actions (Split/Defer/Descriptive from header) ──
 		quick_key = f"entity_quick_{selected['cluster_id']}"
 		quick_action = st.session_state.pop(quick_key, None)
-		if quick_action in ("SPLIT", "DEFER", "DESCRIPTIVE", "GENERIC"):
+		if quick_action in ("SPLIT", "DEFER", "GENERIC", "NOT_AN_ORG"):
 			_ensure_audit_cols(a_headers, a_rows, "reviewer", "reviewed_at")
 			a_rows[row_idx]["decision"] = quick_action
 			a_rows[row_idx]["aligned_db_id"] = ""
