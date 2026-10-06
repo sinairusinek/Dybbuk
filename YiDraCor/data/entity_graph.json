@@ -20806,6 +20806,12 @@
       "level": "event"
     },
     {
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:MS_Emigration",
+      "rel": "holds",
+      "shelfmark": "Perlmutter 628"
+    },
+    {
       "src": "person:לואיסצוויבעלlouiszwiebel",
       "dst": "edition:MS_Emigration",
       "rel": "owned",
@@ -20868,14 +20874,7 @@
       "shelfmark": "63.433"
     }
   ],
-  "gaps": [
-    {
-      "kind": "edition-field",
-      "label": "MS_Emigration · library",
-      "reason": "no holding library",
-      "candidates": ""
-    }
-  ],
+  "gaps": [],
   "summary": {
     "editions": 27,
     "by_kind": {
@@ -20891,10 +20890,8 @@
       "LINKED": 690,
       "MERGED": 2
     },
-    "edges": 886,
-    "gaps": 1,
-    "gaps_by_reason": {
-      "no holding library": 1
-    }
+    "edges": 887,
+    "gaps": 0,
+    "gaps_by_reason": {}
   }
 }
