@@ -34,7 +34,7 @@
 | Di Tsvey Tnoim | Moyshe Hurwitz | — |  |  |  |  |  | 838430 | 4012 | manuscript_track | `MS_DiTsveyTnoim` |
 | Tissa-Essler | Moyshe Hurwitz | 1892 |  |  |  |  |  | 905289 | 3944 | manuscript_track | `MS_TissaEssler` |
 | Emigration nach America | Joseph Lateiner | 1884 |  |  |  |  |  | 1013131 | 3830 | manuscript_track | `MS_Emigration` |
-| Khurbn Yerusholaim | Joseph Lateiner | 1908 |  |  |  |  |  | 820938 | 3891 | print_track | `KhurbnYerusholaim-BN1908` |
+| Khurbn Yerusholaim | Joseph Lateiner | 1908 | Warsaw |  |  | N. Starowolski (Warsaw) | Warsaw | 820938 | 3891 | print_track | `KhurbnYerusholaim-BN1908` |
 
 ## Vocalization conventions (RA)
 

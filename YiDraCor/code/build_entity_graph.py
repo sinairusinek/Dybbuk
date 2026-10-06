@@ -773,6 +773,12 @@ def main() -> int:
             ("publication_place", "no publication place"),
         )
         for field, q in imprint_fields:
+            # A title page that names only a printer has no publisher to find.
+            # Khurbn Yerusholaim (BN 63.433) reads "Тип. Н. Старовольскаго,
+            # Варшава Гуся 18. 1908" — a printing house and nothing else — so
+            # the empty `publisher` is a finding, not an unanswered question.
+            if field == "publisher" and not e.get("publisher") and e.get("printer"):
+                continue
             if not e.get(field):
                 gaps.append({"kind": "edition-field", "label": f"{folder} · {field}",
                              "reason": q, "candidates": ""})

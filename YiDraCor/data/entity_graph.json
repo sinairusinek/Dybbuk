@@ -20726,6 +20726,11 @@
       "level": "event"
     },
     {
+      "src": "edition:KhurbnYerusholaim-BN1908",
+      "dst": "place:warsaw",
+      "rel": "printed_in"
+    },
+    {
       "src": "org:bibliotekanarodowapolona",
       "dst": "edition:KhurbnYerusholaim-BN1908",
       "rel": "holds",
@@ -20733,18 +20738,6 @@
     }
   ],
   "gaps": [
-    {
-      "kind": "edition-field",
-      "label": "KhurbnYerusholaim-BN1908 · publication_place",
-      "reason": "no publication place",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "KhurbnYerusholaim-BN1908 · publisher",
-      "reason": "no publisher",
-      "candidates": ""
-    },
     {
       "kind": "edition-field",
       "label": "MS_Emigration · library",
@@ -20767,11 +20760,9 @@
       "LINKED": 682,
       "MERGED": 2
     },
-    "edges": 876,
-    "gaps": 3,
+    "edges": 877,
+    "gaps": 1,
     "gaps_by_reason": {
-      "no publication place": 1,
-      "no publisher": 1,
       "no holding library": 1
     }
   }
