@@ -203,6 +203,87 @@ _IMPRINT_NOISE = re.compile(
     re.I | re.X)
 
 
+# Latin-script romanisation of the same Polish/Yiddish name varies between the
+# title pages and core_db: Starowolski/Sṭarovolsḳi, Turš/Tursh, Deitscher/
+# Deytsher. Folding the systematic alternations lets a printer resolve without
+# loosening the resolver for every other kind of org.
+_ROMAN_FOLD = [
+    (r"[ṭṣḳḥṿ]", lambda m: {"ṭ": "t", "ṣ": "s", "ḳ": "k", "ḥ": "h",
+                            "ṿ": "v"}[m.group(0)]),
+    (r"[šśş]", "sh"), (r"[žź]", "zh"), (r"[čć]", "ch"),
+    (r"w", "v"),                      # Starowolski / Sṭarovolsḳi
+    (r"ei|ey|ai|ay", "ay"),           # Deitscher / Deytsher
+    (r"sch", "sh"),
+    (r"ck|k", "k"),
+    (r"ou|u", "u"),
+    # Trailing sibilants collapse LAST, so Turš -> turs and Tursh -> turs meet.
+    (r"sh$|s$", "s"),
+]
+
+# Printing-house boilerplate that precedes the actual name. `imprint_core`
+# already drops `druck von`; the Yiddish `druk` and the Hebrew article in
+# `Druk ha-Tsfira` need their own pass.
+_PRINTER_PREFIX = re.compile(
+    r"^(?:druk|drukeray|tip|typ)?\s*(?:ha[\s-]?)?(?=\w)", re.I)
+
+
+# "F. Baumritter" vs core_db's bare "Baumritter"; "S.L. Deitscher" vs
+# "Sh. L. Deytsher". Initials must be removed while the dots are still present —
+# stripping leading letters after normalisation eats real ones (baumriter ->
+# umriter) and would make E. Salat and D. Salat collide, which they must not:
+# core_db 70 reads "D. Salat" against Yiddish "א. סאלאט" (A.) while the Kidush
+# Hashem title page says E. Salat. That conflict is a finding, not noise.
+_INITIALS = re.compile(r"\b[A-Za-zŠšṬṣḲḳ]{1,2}\.\s*", re.U)
+
+
+def drop_initials(s: str) -> str:
+    """Remove `F.` / `S.L.` style initials, keeping the surname."""
+    out = _INITIALS.sub(" ", str(s or ""))
+    return out if out.strip() else str(s or "")
+
+
+def roman_fold(s: str, bare: bool = False) -> str:
+    """Comparison skeleton for a romanised personal/firm name.
+
+    `bare=True` also drops leading initials, so a title page's "F. Baumritter"
+    can meet core_db's "Baumritter" without letting two different initials meet
+    each other.
+    """
+    raw = imprint_core(str(s or "")).strip()
+    if bare:
+        raw = drop_initials(raw)
+    out = sm(_PRINTER_PREFIX.sub("", raw.strip()))
+    if not out or any("֐" <= c <= "׿" for c in out):
+        return out
+    for pat, rep in _ROMAN_FOLD:
+        out = re.sub(pat, rep, out)
+    return re.sub(r"(.)\1+", r"\1", out)
+
+
+def printer_candidates(raw: str, org_exact: dict) -> list:
+    """Resolve a printer imprint to core_db rows, tolerating romanisation.
+
+    The exact resolver returns GAP for every one of our seven printers because
+    the title pages and core_db romanise the same name differently. An initial
+    is also optional: "F. Baumritter" vs core_db's bare "Baumritter".
+    """
+    want, want_bare = roman_fold(raw), roman_fold(raw, bare=True)
+    if len(want) < 4:
+        return []
+    hits = {}
+    # org_exact maps a normalised key to a (db_id, label) pair — not a dict.
+    for db_id, label in org_exact.values():
+        for half in str(label or "").split("|"):
+            got, got_bare = roman_fold(half), roman_fold(half, bare=True)
+            if len(got) < 4:
+                continue
+            if (want == got
+                    or (len(want_bare) >= 4 and want_bare in (got, got_bare))
+                    or (len(got_bare) >= 4 and got_bare == want)):
+                hits[str(db_id)] = half.strip()
+    return sorted(hits.items())
+
+
 def imprint_core(s: str) -> str:
     """A publisher string reduced to its distinguishing name.
 
@@ -770,6 +851,28 @@ def main() -> int:
             res = resolve(e["publication_place"], plc_exact, plc_tok)
             nid = node("place", e["publication_place"], res)
             edges.append({"src": eid, "dst": nid, "rel": "printed_in"})
+        # ---- the printer, as a real org edge.
+        # `printed_in` points at a PLACE, so until now the printer named on a
+        # title page was a dead-end string and play -> edition -> printer was
+        # not traversable. It matters most where a book has no publisher at all:
+        # Khurbn Yerusholaim (BN 63.433) names only "Тип. Н. Старовольскаго",
+        # so the printer is its sole imprint actor.
+        if e.get("printer"):
+            cands = printer_candidates(e["printer"], org_exact)
+            if len(cands) == 1:
+                db_id, matched = cands[0]
+                nid = node("org", e["printer"],
+                           {"status": "LINKED", "db_id": db_id,
+                            "matched": matched, "method": "printer-romanised"},
+                           org_role="printer")
+                edges.append({"src": nid, "dst": eid, "rel": "printed_by"})
+            else:
+                gaps.append({
+                    "kind": "org", "label": e["printer"],
+                    "reason": ("printer resolves to no single core_db org"
+                               if not cands else
+                               "printer matches several core_db orgs"),
+                    "candidates": "; ".join(f"{i} {l}" for i, l in cands)})
 
         # ---- field-level completeness questions.
         # Imprint fields are meaningless for the manuscript track (no publisher,

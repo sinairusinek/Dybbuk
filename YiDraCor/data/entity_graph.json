@@ -13428,6 +13428,16 @@
       "method": "exact"
     },
     {
+      "id": "org:fbaumritterwarsaw",
+      "kind": "org",
+      "label": "F. Baumritter (Warsaw)",
+      "status": "LINKED",
+      "db_id": "157",
+      "matched": "Baumritter",
+      "method": "printer-romanised",
+      "org_role": "printer"
+    },
+    {
       "id": "org:bibliotekanarodowapolona",
       "kind": "org",
       "label": "Biblioteka Narodowa (Polona)",
@@ -13473,6 +13483,16 @@
       "matched": "פ. קאנטאראוויטש|יודישע טהעאַטער⸗בּיבּליאָטעק|Teater bibliyotek",
       "method": "composite-half",
       "org_role": "publisher"
+    },
+    {
+      "id": "org:drukhatsfirapanska40",
+      "kind": "org",
+      "label": "Druk ha-Tsfira (Panska 40)",
+      "status": "LINKED",
+      "db_id": "270",
+      "matched": "HaTsfira",
+      "method": "printer-romanised",
+      "org_role": "printer"
     },
     {
       "id": "edition:Yudale_der_blinder,_Emkroyt1908",
@@ -13914,6 +13934,16 @@
       "org_role": "publisher"
     },
     {
+      "id": "org:druckvonsldeitscher",
+      "kind": "org",
+      "label": "Druck von S.L. Deitscher",
+      "status": "LINKED",
+      "db_id": "66",
+      "matched": "Sh. L. Deytsher",
+      "method": "printer-romanised",
+      "org_role": "printer"
+    },
+    {
       "id": "edition:AlNaharotBavel-Amkreut&Freund1909",
       "kind": "edition",
       "label": "Al Naharot Bavel",
@@ -14049,6 +14079,16 @@
       "work_id": "work:3877"
     },
     {
+      "id": "org:nstarowolskiwarsaw",
+      "kind": "org",
+      "label": "N. Starowolski (Warsaw)",
+      "status": "LINKED",
+      "db_id": "58",
+      "matched": "N. Sṭarovolsḳi",
+      "method": "printer-romanised",
+      "org_role": "printer"
+    },
+    {
       "id": "edition:SoreSheyndel",
       "kind": "edition",
       "label": "Sore Sheyndel",
@@ -14148,6 +14188,16 @@
       "org_role": "publisher"
     },
     {
+      "id": "org:bturswarsaw",
+      "kind": "org",
+      "label": "B. Turš (Warsaw)",
+      "status": "LINKED",
+      "db_id": "76",
+      "matched": "B. Tursh",
+      "method": "printer-romanised",
+      "org_role": "printer"
+    },
+    {
       "id": "edition:KidushHashem",
       "kind": "edition",
       "label": "Kidush Hashem",
@@ -14232,6 +14282,16 @@
       "db_id": "Q36036",
       "matched": "Lviv",
       "method": "exonym"
+    },
+    {
+      "id": "org:druckvonesalat",
+      "kind": "org",
+      "label": "Druck von E. Salat",
+      "status": "LINKED",
+      "db_id": "70",
+      "matched": "D. Salat",
+      "method": "printer-romanised",
+      "org_role": "printer"
     },
     {
       "id": "edition:DovidsFidele-1904",
@@ -18247,6 +18307,11 @@
       "rel": "printed_in"
     },
     {
+      "src": "org:fbaumritterwarsaw",
+      "dst": "edition:MishkeMashke-Kultur1910",
+      "rel": "printed_by"
+    },
+    {
       "src": "org:bibliotekanarodowapolona",
       "dst": "edition:MishkeMashke-Kultur1910",
       "rel": "holds",
@@ -18271,6 +18336,11 @@
       "src": "edition:DerManUnterTiff",
       "dst": "place:warsaw",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:drukhatsfirapanska40",
+      "dst": "edition:DerManUnterTiff",
+      "rel": "printed_by"
     },
     {
       "src": "org:bibliotekanarodowapolona",
@@ -18763,6 +18833,11 @@
       "rel": "printed_in"
     },
     {
+      "src": "org:druckvonsldeitscher",
+      "dst": "edition:IshahRaah",
+      "rel": "printed_by"
+    },
+    {
       "src": "org:bibliotekanarodowapolona",
       "dst": "edition:IshahRaah",
       "rel": "holds",
@@ -18938,6 +19013,11 @@
       "rel": "printed_in"
     },
     {
+      "src": "org:nstarowolskiwarsaw",
+      "dst": "edition:HinkePinke",
+      "rel": "printed_by"
+    },
+    {
       "src": "org:bibliotekanarodowapolona",
       "dst": "edition:HinkePinke",
       "rel": "holds",
@@ -19042,6 +19122,11 @@
       "rel": "printed_in"
     },
     {
+      "src": "org:bturswarsaw",
+      "dst": "edition:SoreSheyndel",
+      "rel": "printed_by"
+    },
+    {
       "src": "org:bibliotekanarodowapolona",
       "dst": "edition:SoreSheyndel",
       "rel": "holds",
@@ -19134,6 +19219,11 @@
       "src": "edition:KidushHashem",
       "dst": "place:lemberg",
       "rel": "printed_in"
+    },
+    {
+      "src": "org:druckvonesalat",
+      "dst": "edition:KidushHashem",
+      "rel": "printed_by"
     },
     {
       "src": "org:bibliotekanarodowapolona",
@@ -20767,6 +20857,11 @@
       "rel": "printed_in"
     },
     {
+      "src": "org:nstarowolskiwarsaw",
+      "dst": "edition:KhurbnYerusholaim-BN1908",
+      "rel": "printed_by"
+    },
+    {
       "src": "org:bibliotekanarodowapolona",
       "dst": "edition:KhurbnYerusholaim-BN1908",
       "rel": "holds",
@@ -20788,15 +20883,15 @@
       "person": 37,
       "song": 225,
       "edition": 27,
-      "org": 44,
+      "org": 50,
       "event": 64,
       "place": 12
     },
     "by_status": {
-      "LINKED": 684,
+      "LINKED": 690,
       "MERGED": 2
     },
-    "edges": 879,
+    "edges": 886,
     "gaps": 1,
     "gaps_by_reason": {
       "no holding library": 1
