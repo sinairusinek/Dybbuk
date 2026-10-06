@@ -802,10 +802,12 @@ def main() -> int:
                          "reason": "no performance events in the DB report",
                          "candidates": ""})
 
-    # editions.csv lists Lateiner_Meshumed twice (a duplicate row, not two
-    # witnesses — both carry expression 3879 and differ only in `notes`), so the
-    # same spine edge is emitted twice. Dedupe identical edges rather than
-    # letting the duplicate inflate the counts.
+    # Two witnesses of one work carry the same work-level facts, so redirecting
+    # them onto the shared work emits each edge twice: Khurbn Yerusholayim
+    # (3891) has both the 1916 YIVO manuscript and the 1908 Biblioteka Narodowa
+    # print, and the catalogue gives each the same 15 roles and 16 songs. That
+    # is correct — the fact belongs to the play, not to either printing — so
+    # identical edges are collapsed rather than double-counted.
     seen_edge, uniq_edges = set(), []
     for ed in edges:
         sig = json.dumps(ed, sort_keys=True, ensure_ascii=False)
@@ -814,8 +816,8 @@ def main() -> int:
         seen_edge.add(sig)
         uniq_edges.append(ed)
     if len(uniq_edges) != len(edges):
-        print(f"  deduped {len(edges) - len(uniq_edges)} duplicate edges "
-              f"(the repeated Lateiner_Meshumed row)")
+        print(f"  collapsed {len(edges) - len(uniq_edges)} duplicate edges "
+              f"(work-level facts shared by several witnesses)")
     edges = uniq_edges
 
     # editions.csv lists Lateiner_Meshumed twice, so dedupe the ledger.

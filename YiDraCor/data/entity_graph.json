@@ -14331,6 +14331,53 @@
       "org_role": "publisher"
     },
     {
+      "id": "edition:MS_YaakovEsav",
+      "kind": "edition",
+      "label": "Yaakov-Esav",
+      "status": "LINKED",
+      "expression_id": 4014,
+      "yiddish_title": "יעקב ועשו",
+      "year_printed": null,
+      "transkribus_doc_id": 494907,
+      "folder": "MS_YaakovEsav",
+      "counts": {
+        "productions": 3,
+        "roles": 0,
+        "songs": 4,
+        "performance_events": 3
+      }
+    },
+    {
+      "id": "event:4014-27111902-windsortheatre",
+      "kind": "event",
+      "label": "Yanḳev un Eysev · 27/11/1902",
+      "status": "LINKED",
+      "method": "performance_events_report",
+      "date": "27/11/1902",
+      "event_type": "Show",
+      "work_id": "work:4014"
+    },
+    {
+      "id": "event:4014-01011903-windsortheatre",
+      "kind": "event",
+      "label": "Yanḳev un Eysev · 01/01/1903",
+      "status": "LINKED",
+      "method": "performance_events_report",
+      "date": "01/01/1903",
+      "event_type": "Show",
+      "work_id": "work:4014"
+    },
+    {
+      "id": "org:yivoinstituteforjewishresearch",
+      "kind": "org",
+      "label": "YIVO Institute for Jewish Research",
+      "status": "LINKED",
+      "db_id": "27",
+      "matched": "YIVO Institute for Jewish Research",
+      "method": "exact",
+      "org_role": "library"
+    },
+    {
       "id": "edition:Lateiner_Meshumed",
       "kind": "edition",
       "label": "Meshumed",
@@ -14390,53 +14437,6 @@
       "method": "reviewed",
       "reviewer": "Sinai 2026-10-05",
       "role": "actor"
-    },
-    {
-      "id": "org:yivoinstituteforjewishresearch",
-      "kind": "org",
-      "label": "YIVO Institute for Jewish Research",
-      "status": "LINKED",
-      "db_id": "27",
-      "matched": "YIVO Institute for Jewish Research",
-      "method": "exact",
-      "org_role": "library"
-    },
-    {
-      "id": "edition:MS_YaakovEsav",
-      "kind": "edition",
-      "label": "Yaakov-Esav",
-      "status": "LINKED",
-      "expression_id": 4014,
-      "yiddish_title": "יעקב ועשו",
-      "year_printed": null,
-      "transkribus_doc_id": 494907,
-      "folder": "MS_YaakovEsav",
-      "counts": {
-        "productions": 3,
-        "roles": 0,
-        "songs": 4,
-        "performance_events": 3
-      }
-    },
-    {
-      "id": "event:4014-27111902-windsortheatre",
-      "kind": "event",
-      "label": "Yanḳev un Eysev · 27/11/1902",
-      "status": "LINKED",
-      "method": "performance_events_report",
-      "date": "27/11/1902",
-      "event_type": "Show",
-      "work_id": "work:4014"
-    },
-    {
-      "id": "event:4014-01011903-windsortheatre",
-      "kind": "event",
-      "label": "Yanḳev un Eysev · 01/01/1903",
-      "status": "LINKED",
-      "method": "performance_events_report",
-      "date": "01/01/1903",
-      "event_type": "Show",
-      "work_id": "work:4014"
     },
     {
       "id": "edition:MS_YetsiasMitsrayim",
@@ -19280,6 +19280,57 @@
       "shelfmark": "44.631"
     },
     {
+      "src": "work:4014",
+      "dst": "edition:MS_YaakovEsav",
+      "rel": "realised_as"
+    },
+    {
+      "src": "work:4014",
+      "dst": "org:windsortheatre",
+      "rel": "performed_at",
+      "year": 1902.0,
+      "type": "production"
+    },
+    {
+      "src": "work:4014",
+      "dst": "org:windsortheatre",
+      "rel": "performed_at",
+      "year": 1903.0,
+      "type": "production"
+    },
+    {
+      "src": "event:4014-27111902-windsortheatre",
+      "dst": "work:4014",
+      "rel": "of_work"
+    },
+    {
+      "src": "event:4014-27111902-windsortheatre",
+      "dst": "org:windsortheatre",
+      "rel": "performed_at",
+      "date": "27/11/1902",
+      "type": "Show",
+      "level": "event"
+    },
+    {
+      "src": "event:4014-01011903-windsortheatre",
+      "dst": "work:4014",
+      "rel": "of_work"
+    },
+    {
+      "src": "event:4014-01011903-windsortheatre",
+      "dst": "org:windsortheatre",
+      "rel": "performed_at",
+      "date": "01/01/1903",
+      "type": "Show",
+      "level": "event"
+    },
+    {
+      "src": "org:yivoinstituteforjewishresearch",
+      "dst": "edition:MS_YaakovEsav",
+      "rel": "holds",
+      "shelfmark": "RG 8.1, folder 4143"
+    },
+    {
       "src": "work:3879",
       "dst": "edition:Lateiner_Meshumed",
       "rel": "realised_as"
@@ -19355,57 +19406,6 @@
       "dst": "edition:Lateiner_Meshumed",
       "rel": "holds",
       "shelfmark": "RG 8.1, folder 4182"
-    },
-    {
-      "src": "work:4014",
-      "dst": "edition:MS_YaakovEsav",
-      "rel": "realised_as"
-    },
-    {
-      "src": "work:4014",
-      "dst": "org:windsortheatre",
-      "rel": "performed_at",
-      "year": 1902.0,
-      "type": "production"
-    },
-    {
-      "src": "work:4014",
-      "dst": "org:windsortheatre",
-      "rel": "performed_at",
-      "year": 1903.0,
-      "type": "production"
-    },
-    {
-      "src": "event:4014-27111902-windsortheatre",
-      "dst": "work:4014",
-      "rel": "of_work"
-    },
-    {
-      "src": "event:4014-27111902-windsortheatre",
-      "dst": "org:windsortheatre",
-      "rel": "performed_at",
-      "date": "27/11/1902",
-      "type": "Show",
-      "level": "event"
-    },
-    {
-      "src": "event:4014-01011903-windsortheatre",
-      "dst": "work:4014",
-      "rel": "of_work"
-    },
-    {
-      "src": "event:4014-01011903-windsortheatre",
-      "dst": "org:windsortheatre",
-      "rel": "performed_at",
-      "date": "01/01/1903",
-      "type": "Show",
-      "level": "event"
-    },
-    {
-      "src": "org:yivoinstituteforjewishresearch",
-      "dst": "edition:MS_YaakovEsav",
-      "rel": "holds",
-      "shelfmark": "RG 8.1, folder 4143"
     },
     {
       "src": "work:4043",
@@ -20747,24 +20747,6 @@
     },
     {
       "kind": "edition-field",
-      "label": "Lateiner_Meshumed · publication_place",
-      "reason": "no publication place",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "Lateiner_Meshumed · publisher",
-      "reason": "no publisher",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "Lateiner_Meshumed · year_printed",
-      "reason": "no print year",
-      "candidates": ""
-    },
-    {
-      "kind": "edition-field",
       "label": "MS_Emigration · library",
       "reason": "no holding library",
       "candidates": ""
@@ -20786,11 +20768,10 @@
       "MERGED": 2
     },
     "edges": 876,
-    "gaps": 6,
+    "gaps": 3,
     "gaps_by_reason": {
-      "no publication place": 2,
-      "no publisher": 2,
-      "no print year": 1,
+      "no publication place": 1,
+      "no publisher": 1,
       "no holding library": 1
     }
   }
