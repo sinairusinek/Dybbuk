@@ -402,12 +402,34 @@ def load_title_index(ents: dict) -> dict:
     return idx
 
 
+def work_by_expression_id(ents: dict, text) -> str:
+    """A play key that is a bare catalogue expression id resolves directly.
+
+    38 manifest rows carry `3905.0` rather than a title, because the source
+    sheet holds the id in the play-key column. Title matching can never reach
+    those, but the id names the work outright.
+    """
+    raw = str(text or "").strip()
+    m = re.fullmatch(r"(\d{3,5})(?:\.0+)?", raw)
+    if not m:
+        return ""
+    nid = f"work:{m.group(1)}"
+    node = ents["nodes"].get(nid)
+    if not node:
+        return ""
+    # A retired id still resolves, but to the work that superseded it.
+    return node.get("merged_into") or nid
+
+
 def propose_title(ents: dict, idx: dict, text) -> tuple[str, str]:
     """Anchor a play/edition title, tolerating romanisation differences.
 
     Tries the exact label index first, then the transliteration skeleton. A
     skeleton hitting several editions is a GAP, not a coin toss.
     """
+    nid = work_by_expression_id(ents, text)
+    if nid:
+        return nid, "PROPOSED"
     nid, status = propose(ents, text, kinds={"work", "edition"})
     if nid:
         # A play title anchors to the work even when it matched an edition's
