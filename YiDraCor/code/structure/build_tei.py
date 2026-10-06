@@ -392,6 +392,15 @@ def build_header(rec: dict, cast: dict, play_id: str):
     if rec.get("transkribus_url"):
         idno = etree.SubElement(bibl, q("idno")); idno.set("type", "transkribus")
         idno.text = rec["transkribus_url"]
+    if rec.get("expression_id"):
+        # Which WORK this witness realises. DraCor receives one file per EDITION
+        # (Sinai 2026-10-06), so the file identifies a particular printing or
+        # manuscript — the shelf mark above does that. This idno is what lets a
+        # consumer group several witnesses of one play without re-deriving the
+        # mapping from filenames: Khurbn Yerusholayim (work 3891) already has
+        # two, the 1916 YIVO manuscript and the 1908 Biblioteka Narodowa print.
+        idno = etree.SubElement(bibl, q("idno")); idno.set("type", "work")
+        idno.text = str(rec["expression_id"])
 
     # encodingDesc / classDecl — the Regie cue taxonomy (§11). Declared for
     # every play so @ana always resolves; the categories cost nothing when a

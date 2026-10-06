@@ -442,6 +442,12 @@ def main() -> int:
         838374: 3963,  # Bas Koyen → "Bas Cohen oder, Malka Alexandra"
         838430: 4012,  # Di Tsvey Tnoim → "Di tsvey tanoyim" / צוויי תנאים
         905289: 3944,  # Tissa-Essler → "Tisa Esler" (not 3945, "Der protses fun …")
+        # Both witnesses of Khurbn Yerusholaim. The MS was resolving to 3887
+        # "Khave oder di shlang als hoyzfraynd" — a different play — by a title
+        # string match, while 3891 sat on the row that had been mislabelled a
+        # duplicate. Pinned explicitly so neither drifts again.
+        838368: 3891,  # MS (YIVO rg8-1-f4176, 1916) → "Khurbn Yerusholayim"
+        820938: 3891,  # print (Biblioteka Narodowa 63.433, 1908) → same work
     }
 
     # Fan-out indexes keyed by expression_id OR play-name string

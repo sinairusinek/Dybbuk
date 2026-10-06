@@ -57,6 +57,25 @@ CERTAINTY_VALUES = {"certain", "uncertain", "false ascription", "error",
                     "uncertain/false?"}
 CERTAINTY_UNKNOWN = "unknown"
 
+# Confirmed human merges. Each pair is ONE play that the workbook lists on both
+# playwrights' sheets — not two catalogue rows for one play, so merging settles
+# an authorship question and the evidence decides it, not the lower id.
+#
+# reviewer: Sinai 2026-10-06
+WORK_MERGE = {
+    # Di tsigaynerin. The Lateiner row is explicitly `false ascription`:
+    # "This title was found only in Berkovitsh's book. This play is by
+    # M. Horowitz", citing an 1888 notice
+    # (nli.org.il/he/newspapers/flkadv/1888/12/07/01/article/24.4).
+    "3850": "3952",
+    # Virdzhinus. The Hurwitz row carries the evidence — a November 1897 Thalia
+    # advertisement with Kessler in the title role — while the Lateiner row says
+    # only "This title is found only in the daily press". The Hurwitz sheet's own
+    # "Is this Hurwitz?" note means this one stays reviewable.
+    "3920": "3993",
+}
+WORK_MERGE_REVIEWER = "Sinai 2026-10-06"
+
 
 # ---------------------------------------------------------------------------
 # normalisation
@@ -86,7 +105,10 @@ def clean(v) -> str:
     s = str(v).strip()
     if s.lower() in {"nan", "none", "??", "?", "-"}:
         return ""
-    return re.sub(r"[\t\r\n]+", " ", s)
+    # Collapse internal runs of whitespace too: the catalogue has
+    # "Di  Tsigaynerin" with a double space, which would otherwise read as a
+    # different title from "Di tsigaynerin".
+    return re.sub(r"\s+", " ", re.sub(r"[\t\r\n]+", " ", s))
 
 
 _POINTS = re.compile(r"[֑-ׇ]")
@@ -188,6 +210,13 @@ def load_works(wb) -> dict:
                 "status": "LINKED",
                 "method": "catalogue_expression_id",
             }
+            if wid in WORK_MERGE:
+                # Keep the node as a tombstone so a reference to the retired id
+                # still resolves, and so the superseded attribution stays
+                # visible as evidence about the dispute rather than vanishing.
+                node["merged_into"] = f"work:{WORK_MERGE[wid]}"
+                node["status"] = "MERGED"
+                node["reviewer"] = WORK_MERGE_REVIEWER
             if wid in works:
                 # Verified: no Expression ID appears in both sheets. If that
                 # ever changes, fail loudly rather than silently overwriting.
@@ -202,6 +231,8 @@ def work_title_index(works: dict) -> dict:
     """skeleton -> [expression_id], over English and Yiddish titles."""
     idx: dict[str, list] = {}
     for wid, w in works.items():
+        if w.get("merged_into"):
+            continue          # a retired id must never win a title match
         for cand in (w["label"], w["yiddish_title"]):
             key = translit_key(cand)
             if len(key) < 4:
