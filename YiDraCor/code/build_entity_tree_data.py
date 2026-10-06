@@ -1,28 +1,35 @@
 """Regenerate the entity-tree data (window.KG) in the Lateiner & Hurwitz viz.
 
-The tree tab of docs/Visualizations/lateiner_hurwitz_entities.html renders an
-author -> edition -> bucket projection of the entity graph, which it carries as an
-embedded `window.KG` blob. That blob was hand-pasted once and then went stale: the
-page showed 116 nodes / 283 edges long after the graph had grown past 690 / 880.
+The tree tab of docs/Visualizations/lateiner_hurwitz_entities.html carries its
+data as an embedded `window.KG` blob. This script rebuilds it from
+data/entity_graph.json, so the tree tab and the schema tab report the same graph.
+It is the companion of build_schema_tab.py — run both after every
+build_entity_graph.py run.
 
-This script rebuilds it from data/entity_graph.json, so the tree tab and the
-schema tab report the same graph. It is the companion of build_schema_tab.py —
-run both after every build_entity_graph.py run.
+THE HIERARCHY IS author -> work -> {editions, events, songs, credits, places}.
 
-The projection, and why it is a projection:
+That follows the graph's own spine, `person --wrote--> work --realised_as-->
+edition`. The work is the unit of authorship; an edition is one printed or
+manuscript *witness* of a work, and a work may have none, one, or several.
 
-  the graph is entity-centric      the page is edition-centric
-  -------------------------        --------------------------------------
-  person --wrote--> work           an author owns the editions of the works
-  work --realised_as--> edition      it wrote
-  person --composer--> work         a credit on the work shows on that work's
-  org --published--> edition         editions
-  edition --printed_in--> place
+An earlier version of this page collapsed the work out and hung editions
+directly off the author. That was wrong twice over:
 
-So a credit reaches an edition through its work. Only works with an edition in
-this repo appear; the other ~250 catalogued works have no witness here and so no
-row to hang off. Entities are deduplicated per edition and per bucket: one person
-credited twice on the same edition is one row carrying n=2.
+  * It hid 251 of the 277 catalogued works, because a work with no witness in
+    this repo had nothing to hang off. Lateiner showed 19 of 152 works, Hurwitz
+    7 of 125 — and 34 of the hidden ones carry real evidence (songs, events).
+  * It misattributed work-level facts to a printing. A premiere, a performance
+    event, a song and a composer credit belong to the *play*, not to one
+    edition of it; only the imprint facts belong to the edition.
+
+The split is clean in the data, and this is the rule the projection follows:
+
+  work-level    wrote, composer, actor, actress, lyrics, arranger,
+                choreographer, performed_at, premiered_in, of_work, part_of
+  edition-level published, printed_by, printed_in, holds, owned
+
+Entities are deduplicated per work and per bucket: one person credited twice on
+the same work is one row carrying n=2.
 
     python3.11 build_entity_tree_data.py        # from YiDraCor/code/
 """
@@ -41,108 +48,154 @@ PAGE = REPO / "docs" / "Visualizations" / "lateiner_hurwitz_entities.html"
 # The two playwrights the page is about, in the order it lists them.
 PLAYWRIGHTS = ["683", "684"]
 
-# Which bucket each relation lands in. The page renders four; anything reaching
-# an edition has to be placed in one of them, or it would silently vanish.
-BUCKET = {
-    # people credited on the work, or holding the witness itself
+# Credits and venues that belong to the WORK.
+WORK_BUCKET = {
     "composer": "people", "composer (txt fr composer)": "people",
     "actor": "people", "actress": "people", "lyrics": "people",
-    "arranger": "people", "choreographer": "people", "owned": "people",
-    # organisations: who staged it, who holds it, who made the book
-    "performed_at": "venues", "holds": "venues",
+    "arranger": "people", "choreographer": "people",
+    "performed_at": "venues",
+    "premiered_in": "places",
+}
+
+# Imprint facts that belong to a single EDITION.
+EDITION_BUCKET = {
     "published": "publishers", "printed_by": "publishers",
-    # places
-    "printed_in": "places", "premiered_in": "places",
+    "holds": "venues",
+    "owned": "people",
+    "printed_in": "places",
 }
 
 
-def edge_index(edges: list[dict]) -> dict[str, list[dict]]:
-    by_rel: dict[str, list[dict]] = defaultdict(list)
-    for e in edges:
-        by_rel[e["rel"]].append(e)
-    return by_rel
+def _row(node: dict, rel: str) -> dict:
+    return {
+        "label": node.get("label"),
+        "status": node.get("status") or "LINKED",
+        "db_id": node.get("db_id"),
+        "matched": node.get("matched"),
+        "score": node.get("score"),
+        "reason": node.get("reason"),
+        "candidates": node.get("candidates"),
+        "rel": rel,
+        "reviewer": node.get("reviewer"),
+        "n": 0,
+        "years": [],
+        "characters": [],
+    }
+
+
+def _accumulate(store: dict, nodes: dict, owner: str, rel: str,
+                node_id: str, attrs: dict, bucket_map: dict) -> bool:
+    """Place one edge in its bucket. Returns False if the relation is unmapped."""
+    bucket = bucket_map.get(rel)
+    if bucket is None:
+        return False
+    if node_id not in nodes:
+        return True                     # mapped, but the endpoint is missing
+    row = store[owner][bucket].get((node_id, rel))
+    if row is None:
+        row = _row(nodes[node_id], rel)
+        store[owner][bucket][(node_id, rel)] = row
+    row["n"] += 1
+    yr = attrs.get("year")
+    if yr and yr not in row["years"]:
+        row["years"].append(yr)
+    ch = attrs.get("character")
+    if ch and ch not in row["characters"]:
+        row["characters"].append(ch)
+    return True
 
 
 def build_kg(graph: dict) -> dict:
     nodes = {n["id"]: n for n in graph["nodes"]}
     edges = graph["edges"]
-    by_rel = edge_index(edges)
 
-    # --- the spine: author -> work -> edition -------------------------------
+    authored: dict[str, list[str]] = defaultdict(list)
     work_editions: dict[str, list[str]] = defaultdict(list)
-    edition_works: dict[str, list[str]] = defaultdict(list)
-    for e in by_rel["realised_as"]:
-        work_editions[e["src"]].append(e["dst"])
-        edition_works[e["dst"]].append(e["src"])
+    work_events: dict[str, list[str]] = defaultdict(list)
+    work_songs: dict[str, list[str]] = defaultdict(list)
+    for e in edges:
+        rel = e["rel"]
+        if rel == "wrote":
+            authored[e["src"]].append(e["dst"])
+        elif rel == "realised_as":
+            work_editions[e["src"]].append(e["dst"])
+        elif rel == "of_work":
+            work_events[e["dst"]].append(e["src"])
+        elif rel == "part_of":
+            work_songs[e["dst"]].append(e["src"])
 
-    authored: dict[str, list[str]] = defaultdict(list)   # person id -> work ids
-    for e in by_rel["wrote"]:
-        authored[e["src"]].append(e["dst"])
+    # buckets keyed by the thing they describe: a work id, or an edition id
+    w_rows: dict[str, dict[str, dict]] = defaultdict(lambda: defaultdict(dict))
+    e_rows: dict[str, dict[str, dict]] = defaultdict(lambda: defaultdict(dict))
 
-    # --- every edge that reaches an edition, as a bucket row ----------------
-    # rows[edition][bucket][dedup key] = accumulating row
-    rows: dict[str, dict[str, dict]] = defaultdict(lambda: defaultdict(dict))
-
-    def place(edition_id: str, rel: str, node_id: str, attrs: dict) -> None:
-        bucket = BUCKET.get(rel)
-        if bucket is None or node_id not in nodes:
-            return                      # a relation we do not surface on this page
-        n = nodes[node_id]
-        key = (node_id, rel)
-        row = rows[edition_id][bucket].get(key)
-        if row is None:
-            row = {
-                "label": n.get("label"),
-                "status": n.get("status") or "LINKED",
-                "db_id": n.get("db_id"),
-                "matched": n.get("matched"),
-                "score": n.get("score"),
-                "reason": n.get("reason"),
-                "candidates": n.get("candidates"),
-                "rel": rel,
-                "reviewer": n.get("reviewer"),
-                "n": 0,
-                "years": [],
-                "characters": [],
-            }
-            rows[edition_id][bucket][key] = row
-        row["n"] += 1
-        yr = attrs.get("year")
-        if yr and yr not in row["years"]:
-            row["years"].append(yr)
-        ch = attrs.get("character")
-        if ch and ch not in row["characters"]:
-            row["characters"].append(ch)
-
-    def attrs_of(e: dict) -> dict:
-        return {k: v for k, v in e.items() if k not in ("src", "dst", "rel")}
+    # The spine itself, and the containment edges rendered as nested nodes.
+    STRUCTURAL = {"wrote", "realised_as", "of_work", "part_of"}
+    unmapped: Counter = Counter()
 
     for e in edges:
         rel, src, dst = e["rel"], e["src"], e["dst"]
-        if rel == "realised_as" or rel == "wrote":
-            continue                    # the spine itself, not a bucket row
-        src_kind = nodes.get(src, {}).get("kind")
-        dst_kind = nodes.get(dst, {}).get("kind")
+        if rel in STRUCTURAL:
+            continue
+        attrs = {k: v for k, v in e.items() if k not in ("src", "dst", "rel")}
+        sk = nodes.get(src, {}).get("kind")
+        dk = nodes.get(dst, {}).get("kind")
 
-        # edges touching an edition directly
-        if dst_kind == "edition":
-            place(dst, rel, src, attrs_of(e))
-        elif src_kind == "edition":
-            place(src, rel, dst, attrs_of(e))
-        # edges on a work reach every edition of that work
-        elif dst_kind == "work" and src_kind == "person":
-            for ed in work_editions.get(dst, ()):
-                place(ed, rel, src, attrs_of(e))
-        elif src_kind == "work" and dst_kind in ("org", "place"):
-            for ed in work_editions.get(src, ()):
-                place(ed, rel, dst, attrs_of(e))
+        placed = False
+        if dk == "edition":
+            placed = _accumulate(e_rows, nodes, dst, rel, src, attrs, EDITION_BUCKET)
+        elif sk == "edition":
+            placed = _accumulate(e_rows, nodes, src, rel, dst, attrs, EDITION_BUCKET)
+        elif dk == "work":
+            placed = _accumulate(w_rows, nodes, dst, rel, src, attrs, WORK_BUCKET)
+        elif sk == "work":
+            placed = _accumulate(w_rows, nodes, src, rel, dst, attrs, WORK_BUCKET)
+        elif sk == "event" and dk == "org":
+            # an event's venue is evidence about the work it staged
+            for w in (nodes.get(src, {}).get("work_id"),):
+                if w in nodes:
+                    placed = _accumulate(w_rows, nodes, w, rel, dst, attrs,
+                                         WORK_BUCKET)
+        if not placed:
+            unmapped[(rel, sk, dk)] += 1
 
-    # --- assemble the authors -----------------------------------------------
+    if unmapped:
+        raise SystemExit(
+            "unmapped relations reaching the tree — add them to a bucket:\n  "
+            + "\n  ".join(f"{r}: {s} -> {d} ({n})"
+                          for (r, s, d), n in unmapped.most_common()))
+
     def sort_key(r: dict) -> tuple:
-        # open questions first, then proposals, then by name: the reader is
-        # looking for what still needs a decision.
-        rank = {"GAP": 0, "PROPOSED": 1}.get(r["status"], 2)
-        return (rank, str(r.get("label") or ""))
+        # open questions first: the reader is looking for what needs a decision
+        return ({"GAP": 0, "PROPOSED": 1}.get(r["status"], 2),
+                str(r.get("label") or ""))
+
+    def buckets_of(store: dict, key: str) -> dict:
+        b = store.get(key, {})
+        return {name: sorted(b.get(name, {}).values(), key=sort_key)
+                for name in ("people", "venues", "places", "publishers")}
+
+    def edition_of(ed_id: str) -> dict:
+        ed = nodes[ed_id]
+        return {
+            "label": ed.get("label"),
+            "folder": ed.get("folder"),
+            "year": ed.get("year_printed"),
+            "tkb": ed.get("transkribus_doc_id"),
+            "counts": ed.get("counts") or {},
+            **buckets_of(e_rows, ed_id),
+        }
+
+    def event_of(ev_id: str) -> dict:
+        ev = nodes[ev_id]
+        return {"label": ev.get("label"), "date": ev.get("date"),
+                "event_type": ev.get("event_type")}
+
+    def song_of(s_id: str) -> dict:
+        s = nodes[s_id]
+        return {"label": s.get("label"),
+                "romanized": s.get("romanized_title"),
+                "n_attestations": s.get("n_attestations"),
+                "source": s.get("source_publication")}
 
     by_db = {str(n.get("db_id")): n for n in graph["nodes"]
              if n.get("kind") == "person" and n.get("db_id")}
@@ -152,60 +205,67 @@ def build_kg(graph: dict) -> dict:
         person = by_db.get(db_id)
         if person is None:
             continue
-        seen: set[str] = set()
-        eds = []
-        for work in authored.get(person["id"], ()):
-            for ed_id in work_editions.get(work, ()):
-                if ed_id in seen:
-                    continue
-                seen.add(ed_id)
-                ed = nodes[ed_id]
-                b = rows.get(ed_id, {})
-                eds.append({
-                    "label": ed.get("label"),
-                    "folder": ed.get("folder"),
-                    "expression_id": ed.get("expression_id"),
-                    "yiddish": ed.get("yiddish_title"),
-                    "year": ed.get("year_printed"),
-                    "tkb": ed.get("transkribus_doc_id"),
-                    "counts": ed.get("counts") or {},
-                    "people": sorted(b.get("people", {}).values(), key=sort_key),
-                    "venues": sorted(b.get("venues", {}).values(), key=sort_key),
-                    "places": sorted(b.get("places", {}).values(), key=sort_key),
-                    "publishers": sorted(b.get("publishers", {}).values(), key=sort_key),
-                })
-        eds.sort(key=lambda x: str(x["label"] or ""))
+        works = []
+        for w_id in dict.fromkeys(authored.get(person["id"], ())):
+            w = nodes[w_id]
+            evs = sorted(work_events.get(w_id, ()),
+                         key=lambda i: str(nodes[i].get("date") or ""))
+            sgs = sorted(work_songs.get(w_id, ()),
+                         key=lambda i: str(nodes[i].get("label") or ""))
+            eds = sorted(work_editions.get(w_id, ()),
+                         key=lambda i: str(nodes[i].get("label") or ""))
+            works.append({
+                "label": w.get("label"),
+                "yiddish": w.get("yiddish_title"),
+                "expression_id": w.get("expression_id"),
+                "genre": w.get("genre") or w.get("tags"),
+                "attribution": w.get("attribution"),
+                "attribution_note": w.get("attribution_note"),
+                "editions": [edition_of(i) for i in eds],
+                "events": [event_of(i) for i in evs],
+                "songs": [song_of(i) for i in sgs],
+                **buckets_of(w_rows, w_id),
+            })
+        # Works with a witness first, then by title: the ones a reader can open.
+        works.sort(key=lambda x: (not x["editions"], str(x["label"] or "")))
         authors.append({
             "label": person.get("label"),
             "db_id": int(db_id) if str(db_id).isdigit() else db_id,
-            "editions": eds,
+            "works": works,
         })
 
-    # --- summary: count what the page actually shows ------------------------
-    shown = [r for a in authors for e in a["editions"]
-             for b in ("people", "venues", "places", "publishers") for r in e[b]]
-    by_status = Counter(r["status"] for r in shown)
-
-    # Entities are counted once per kind across the page, not once per row.
+    # --- summary -------------------------------------------------------------
+    all_rows = [r for a in authors for w in a["works"]
+                for src in (w, *w["editions"])
+                for b in ("people", "venues", "places", "publishers")
+                for r in src[b]]
     kinds = {"person": set(), "org": set(), "place": set()}
     for a in authors:
-        for e in a["editions"]:
-            for b, k in (("people", "person"), ("venues", "org"),
-                         ("publishers", "org"), ("places", "place")):
-                for r in e[b]:
-                    kinds[k].add((r["db_id"], r["label"]))
+        for w in a["works"]:
+            for src in (w, *w["editions"]):
+                for b, k in (("people", "person"), ("venues", "org"),
+                             ("publishers", "org"), ("places", "place")):
+                    for r in src[b]:
+                        kinds[k].add((r["db_id"], r["label"]))
 
-    n_editions = sum(len(a["editions"]) for a in authors)
+    n_works = sum(len(a["works"]) for a in authors)
+    n_eds = sum(len(w["editions"]) for a in authors for w in a["works"])
+    n_evs = sum(len(w["events"]) for a in authors for w in a["works"])
+    n_sgs = sum(len(w["songs"]) for a in authors for w in a["works"])
+
     summary = {
-        "editions": n_editions,
+        "works": n_works,
+        "editions": n_eds,
+        "events": n_evs,
+        "songs": n_sgs,
         "by_kind": {
-            "edition": n_editions,
+            "work": n_works, "edition": n_eds,
             "person": len(kinds["person"]),
             "org": len(kinds["org"]),
             "place": len(kinds["place"]),
         },
-        "by_status": dict(by_status),
-        "edges": len(shown),
+        "by_status": dict(Counter(r["status"] for r in all_rows)),
+        "edges": len(all_rows),
         "gaps": len(graph.get("gaps", [])),
         "gaps_by_reason": dict(
             Counter(g.get("reason", "") for g in graph.get("gaps", []))),
@@ -233,13 +293,12 @@ def main() -> int:
         encoding="utf-8")
 
     s = kg["summary"]
-    print(f"entity tree data rebuilt: {s['editions']} editions, "
-          f"{s['edges']} rows, "
-          f"{s['by_kind']['person']}p/{s['by_kind']['org']}o/"
-          f"{s['by_kind']['place']}pl, "
+    print(f"entity tree data rebuilt: {s['works']} works, {s['editions']} editions, "
+          f"{s['events']} events, {s['songs']} songs, {s['edges']} rows, "
           f"{len(kg['gaps'])} gaps -> {PAGE}")
     for a in kg["authors"]:
-        print(f"  {a['label']}: {len(a['editions'])} editions")
+        wit = sum(1 for w in a["works"] if w["editions"])
+        print(f"  {a['label']}: {len(a['works'])} works ({wit} with an edition)")
     return 0
 
 
