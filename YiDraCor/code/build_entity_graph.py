@@ -574,6 +574,41 @@ def main() -> int:
             # separates a real mix-up from an abbreviation.
             w_label = works[wid]["label"]
             ed_title = (e.get("title") or "").strip()
+            # Confirmed alternative titles: the edition's title page and the
+            # catalogue name the same play differently, and a human has checked
+            # which. Reviewed so they stop resurfacing in the ledger.
+            #
+            # reviewer: Sinai 2026-10-06
+            CONFIRMED_ALT_TITLE = {
+                # Zylbercweig: performed as „גבריאל דער מאַלער“ and in Europe
+                # as חינקע און פּינקע.
+                "3877": "HinkePinke",
+                # Zylbercweig: often performed in Europe as „מישקע און מאָשקע“
+                # and „די אייראפעער אין אַמעריקע“.
+                "3838": "MishkeMashke-Kultur1910",
+                # Zylbercweig: staged in Europe as 'Soreh Shayndel fun
+                # Yehupets'; Berkovitsh also lists 'soreh shayndel'.
+                "3833": "SoreSheyndel",
+                # Sinai 2026-10-06: "Meshumed IS an alternative title for Goles
+                # Rusland."
+                "3879": "Lateiner_Meshumed",
+                # 3933's own `comments` column reads "Yosef in egipten", and it
+                # is the catalogue's ONLY Joseph play — the other Egypt titles
+                # are Hurwitz's K'sav toyreh (3983) and Yetsies mitsrayim
+                # (4043). The MS title page credits Lateiner
+                # ("פערפאסט פון לאטיינער"), matching 3933's author 683.
+                "3933": "MS_YoysefInEgipten",
+                # The same title in a different romanisation or short form —
+                # Sinai 2026-10-06: "the next four are ok". Kept listed rather
+                # than widened into the fold rules, because each rests on a
+                # human reading of the title page, not on a transform.
+                "3963": "MS_BasKoyen",        # Bas Koyen / Bas Cohen oder, Malka Alexandra
+                "4012": "MS_DiTsveyTnoim",    # tnoim / tanoyim
+                "4014": "MS_YaakovEsav",      # Yaakov-Esav / Yanḳev un Eysev
+                "3830": "MS_Emigration",      # German "nach America" / Yiddish "nokh Amerike"
+            }
+            if CONFIRMED_ALT_TITLE.get(wid) == folder:
+                ed_title = ""        # confirmed; not a question any more
             alts = [a for a in re.split(r"\boder\b|\bodr\b|,", w_label)
                     if work_layer.translit_key(a)]
             ed_key = work_layer.translit_key(ed_title)

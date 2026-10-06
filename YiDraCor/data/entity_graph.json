@@ -20470,12 +20470,6 @@
   "gaps": [
     {
       "kind": "edition-field",
-      "label": "HinkePinke · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 3877 = 'Gabriel oder di libe fun a yidisher froy'; edition title = 'Hinke Pinke'"
-    },
-    {
-      "kind": "edition-field",
       "label": "KhurbnYerusholaim-BN1908 · publication_place",
       "reason": "no publication place",
       "candidates": ""
@@ -20485,12 +20479,6 @@
       "label": "KhurbnYerusholaim-BN1908 · publisher",
       "reason": "no publisher",
       "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "Lateiner_Meshumed · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 3879 = 'Goles Rusland'; edition title = 'Meshumed'"
     },
     {
       "kind": "edition-field",
@@ -20512,51 +20500,9 @@
     },
     {
       "kind": "edition-field",
-      "label": "MS_BasKoyen · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 3963 = 'Bas Cohen oder, Malka Alexandra'; edition title = 'Bas Koyen'"
-    },
-    {
-      "kind": "edition-field",
-      "label": "MS_DiTsveyTnoim · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 4012 = 'Di tsvey tanoyim'; edition title = 'Di Tsvey Tnoim'"
-    },
-    {
-      "kind": "edition-field",
-      "label": "MS_Emigration · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 3830 = 'Di emigratsyon nokh Amerike'; edition title = 'Emigration nach America'"
-    },
-    {
-      "kind": "edition-field",
       "label": "MS_Emigration · library",
       "reason": "no holding library",
       "candidates": ""
-    },
-    {
-      "kind": "edition-field",
-      "label": "MS_YaakovEsav · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 4014 = 'Yanḳev un Eysev'; edition title = 'Yaakov-Esav'"
-    },
-    {
-      "kind": "edition-field",
-      "label": "MS_YoysefInEgipten · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 3933 = 'Yoysef un zayne brider'; edition title = 'Yoysef in Egipten'"
-    },
-    {
-      "kind": "edition-field",
-      "label": "MishkeMashke-Kultur1910 · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 3838 = 'Di grinhorns'; edition title = 'Mishke Mashke'"
-    },
-    {
-      "kind": "edition-field",
-      "label": "SoreSheyndel · expression_id",
-      "reason": "work/edition titles differ — alternative title, or a wrong expression_id? needs review",
-      "candidates": "expression_id 3833 = 'Di farblondzhete neshome'; edition title = 'Sore Sheyndel'"
     },
     {
       "kind": "song",
@@ -20624,9 +20570,8 @@
       "GAP": 8
     },
     "edges": 868,
-    "gaps": 23,
+    "gaps": 14,
     "gaps_by_reason": {
-      "work/edition titles differ — alternative title, or a wrong expression_id? needs review": 9,
       "no publication place": 2,
       "no publisher": 2,
       "no print year": 1,
