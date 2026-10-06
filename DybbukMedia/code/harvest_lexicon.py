@@ -21,17 +21,33 @@ from common import (REPO, clean, db_id_for_person, graph_person_by_db_id,
                     load_entities, load_person_bridge, merge, propose,
                     read_manifest, sm, strip_parens, write_manifest)
 
+def _slug(entity: str, collection: str, signature: str) -> str:
+    """Short, stable, collision-resistant id for one entry page."""
+    import hashlib
+    key = f"{entity}|{collection}|{signature}"
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()[:10]
+
+
 LEXICON = REPO / "Zylbercweig" / "The Lexicon"
 TEI = "{http://www.tei-c.org/ns/1.0}"
 
 
 def page_images(root) -> dict:
-    """facsimile xml:id -> graphic url."""
+    """facsimile xml:id -> graphic url.
+
+    The graphic may sit directly under <facsimile> or one level down inside
+    <surface>; these volumes use the latter, so search descendants.
+    """
     out = {}
+    XMLID = "{http://www.w3.org/XML/1998/namespace}id"
     for facs in root.iter(f"{TEI}facsimile"):
-        fid = facs.get("{http://www.w3.org/XML/1998/namespace}id")
+        fid = facs.get(XMLID)
+        if not fid:
+            continue
         gr = facs.find(f"{TEI}graphic")
-        if fid and gr is not None and gr.get("url"):
+        if gr is None or not gr.get("url"):
+            gr = next((g for g in facs.iter(f"{TEI}graphic") if g.get("url")), None)
+        if gr is not None and gr.get("url"):
             out[fid] = gr.get("url")
     return out
 
@@ -124,8 +140,12 @@ def main() -> None:
                 "notes": f"entry heading {name!r}; portrait is a crop of this page",
             })
 
-    for i, row in enumerate(sorted(rows, key=lambda r: r["entity_ids"]), start=1):
-        row["media_id"] = f"lexicon-{i:04d}"
+    # A stable id per (person, volume, page): positional numbering made
+    # `lexicon-00NN` mean a different person whenever the person set changed,
+    # and merge() then kept the old human-owned fields on the new occupant.
+    for row in rows:
+        row["media_id"] = "lexicon-" + _slug(row["entity_ids"], row["collection"],
+                                             row["signature"])
 
     manifest = read_manifest()
     added, updated, protected = merge(manifest, rows)
