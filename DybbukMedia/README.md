@@ -111,57 +111,45 @@ People are bridged differently: the Album names people in Latin script while
 the entity graph holds mostly Yiddish `Surname, Given`, so names route through
 `Zylbercweig/people/people_db.tsv`, which carries both forms under one `db_id`.
 
-## Known modelling gap: the printer edge is missing (the orgs are not)
+## Imprint: publisher and printer are both traversable
 
-`build_entity_graph.py:541-549` reads the imprint and emits two edges:
+`build_entity_graph.py` reads the imprint and emits:
 
 ```
-publisher         -> org node (org_role="publisher"), rel="published"
-publication_place -> place node,                     rel="printed_in"
+org     --published-->  edition      # the publisher
+org     --printed_by--> edition      # the printer
+edition --printed_in--> place        # where it was printed
+work    --realised_as-> edition      # the WEMI spine
 ```
 
-Note `printed_in` points at a **place**, not a printer. The `printer` field of
-`editions.json` is **read by nothing** — so:
+So **play → edition → publisher** and **play → edition → printer** both resolve.
+`printed_by` was added 2026-10-06; before that the printer named on a title page
+was a dead-end string. All 7 printers in the corpus link to core_db orgs that
+already existed and were already typed `Printer`:
 
-- **play -> edition -> publisher IS traversable**, for the 15 printed editions
-  that name a publisher. The other 12 (the MS track) have no imprint, correctly.
-- **play -> edition -> printer is NOT**, for any edition.
+| edition | printer | core_db | publisher |
+|---|---|---|---|
+| Mishke Mashke | F. Baumritter | 157 | Farlag "Kultur" |
+| Der Mann untern Tisch | Druk ha-Tsfira | 270 | "Teater bibliyotek" |
+| Isha Raa | S.L. Deitscher | 66 | Verlag von Benjamin Munk |
+| Hinke Pinke (1907) | N. Starowolski | 58 | "Teater bibliyotek" |
+| Sore Sheyndel | B. Turš | 76 | "Di yudishe bihne" |
+| Kidush Hashem | E. Salat | 70 | Verlag von D. Roth |
+| **Khurbn Yerusholaim (1908)** | **N. Starowolski** | **58** | **none on the title page** |
 
-**The six printers already exist in core_db and are already typed `Printer`:**
+The last row is why the edge earns its place: that title page reads
+"Тип. Н. Старовольскаго, Варшава Гуся 18. 1908" and names no publisher, so the
+printer is its only imprint actor. The same Warsaw printer appears in
+consecutive years, once working for a named publisher and once alone.
 
-| imprint on the edition | core_db | org_type |
-|---|---|---|
-| F. Baumritter | 157 `Baumritter` | `Printer` |
-| Druk ha-Tsfira (Panska 40) | 68 `הצפירה` (addr. פייַנסקא 40 = Panska 40) | *(empty)* |
-| Druck von S.L. Deitscher | 66 `ש. ל. דייטשער / Sh. L. Deytsher` | `Printer` |
-| N. Starowolski | 58 `N. Sṭarovolsḳi` | `Printer` |
-| B. Turš | 76 `B. Tursh` | `Printer` |
-| Druck von E. Salat | 70 `D. Salat / א. סאלאט` | `Printer` |
+Matching needed `roman_fold()`: the exact resolver returned GAP for every
+printer because title pages and core_db romanise the same name differently
+(Starowolski/Sṭarovolsḳi, Turš/Tursh, Deitscher/Deytsher).
 
-So nothing needs minting. The fix is one block in `build_entity_graph.py`:
-resolve `e["printer"]` the way `publisher` already is and emit
-`rel="printed_by"`. The imprint strings carry a `Druck von` / `Druk` prefix and
-a trailing `(address)` that must be stripped before resolving, and romanisation
-differs (`Starowolski` vs `Sṭarovolsḳi`, `Turš` vs `Tursh`), so this needs the
-variant-probing the entity-graph resolver already does — an exact match finds
-none of them.
-
-**`org_type` already has the vocabulary for the publisher/printer overlap**:
-62 orgs are `Publisher`, 13 `Printer`, and **16 are already `Printer/Publisher`**.
-It is a single-valued field — no `|`-separated values anywhere in 2196 rows — so
-`Printer/Publisher` is the existing way to say an org did both, and the right
-value for any of these six that also published. Note that `org_role` in the
-entity graph is a *different* thing: it records the role the org played **in
-this edition's imprint**, which is per-edge, not an org-level type.
-
-Two data issues found while checking, both for the org-alignment track rather
-than here:
-
-- **db 68 `הצפירה` and db 270 `HaTsfira` look like a duplicate pair**, and 68
-  carries no `org_type` despite being a printer with a matching address.
-- **db 70 is internally inconsistent**: `D. Salat` against `א. סאלאט`
-  (= *A.* Salat), while this edition's imprint reads *E.* Salat. One of the
-  three initials is wrong.
+**Still open for the org-alignment track**: core_db 70 reads `D. Salat` against
+Yiddish `א. סאלאט` (A.) while the Kidush Hashem title page says *E.* Salat — one
+of three initials is wrong. `הצפירה` 68 and `HaTsfira` 270 still look like a
+duplicate pair, and 68 carries no `org_type`.
 
 ## Next steps
 
