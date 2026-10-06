@@ -1,9 +1,9 @@
 # The Lateiner–Hurwitz Mandala — specification
 
-**Status:** draft v0, built 2026-10-06. Live as a private artifact at
+**Status:** draft v1, built 2026-10-06. **On the Pages site** at
+`docs/Visualizations/lateiner_hurwitz_mandala.html`, linked from `gate.html`.
+Also live as a private artifact at
 <https://claude.ai/code/artifact/cba3da8e-6481-4f9f-8e1a-c3ba22fb6733>.
-**Destination:** `docs/Visualizations/` on the GitHub Pages site (main:/docs), linked
-from `gate.html`.
 
 **This file is where Sinai writes the spec.** Sections marked _"Sinai:"_ are yours to
 fill — everything under **What is built today** is a description of the current state,
@@ -24,9 +24,9 @@ Nothing is hand-maintained. Counts as built: 277 works, 27 editions, 64 events,
 | ring | radius | content |
 |---|---|---|
 | centre | — | two portrait medallions, Lateiner (right half) and Hurwitz (left) |
-| inner band | 352 | the **217 plays known only as a catalogue title**, drawn as radial ticks |
-| outer wheel | 462 | the **60 plays with a surviving edition, staging or song**, drawn as discs |
-| traces | 566 | gold diamonds = editions, open rings = performance events |
+| inner band | 368 | the **217 plays known only as a catalogue title**, coloured circles, each on a line to its author |
+| outer wheel | 486 | the **60 plays with a surviving edition, staging or song**, discs sized by how much survives |
+| traces | 596 | one **footprint** per surviving trace, on a line back to *its play* — gold for editions, grey for stagings |
 
 The two-lane split is the main design decision and the one most worth your judgement.
 A single flat ring gave the well-documented plays a 5.7 px slot for a 30 px dot and
@@ -47,11 +47,37 @@ four-fifths of the repertoire survives as a name only.
 
 ### Interaction
 
-Click a play → the wheel dims to ~5 %, the play lifts to a hub, an inner ring shows its
-credits (author in gold, persons as circles, companies and venues as squares) and an
-outer ring its stagings and editions; a dossier panel opens with the full lists.
+Clicking routes on what survives of the play (spec §3 A/B):
+
+- **A play with no traces** → a side panel: its date of composition stated as precisely
+  as the record allows (a year, a range, before/after, or "Date of composition
+  unknown"), and the reference works that attest it.
+- **A play with traces** → no panel. The play centres itself and its collaborators ring
+  it, with its stagings and editions on a second ring. The playwright is deliberately
+  *not* drawn here — he is already the central medallion the play is spoked to.
+
+Icons in that view: notebook = manuscript, book = print edition, parting curtains =
+performance event, male/female bust = actor/actress, musical notes = composer, lyre =
+lyricist, baton = arranger, dancing figure = choreographer, theatre front = venue,
+press = publisher/printer, colonnade = holding library, hand = former owner.
+
 Escape or a click on the canvas returns. Legend swatches isolate one genre. Drag to
 pan, scroll to zoom.
+
+### Dates and attestations
+
+`Year of Composition (C)/Publication (PB)/Performance (PF)` is parsed into a structured
+reading: bare years, ranges (`1877-78`), uncertainty (`1877?`), before/after, explicit
+C/PB/PF tags, and a parenthetical kept separately as provenance ("acc. Gorin"). 110 of
+277 works carry a date; none fail to parse. Note the openpyxl float artifact — `1890.0`
+must be cut at the decimal, never `rstrip('.0')`, which would yield 189.
+
+Attestations come from the presence columns JPRESS (102), Zylbercweig's *Leksikon* (82),
+Berkovitsh (58) and Sieger (24).
+
+**A quirk of the data worth knowing:** no title-only play has *both* a date and an
+attestation — the two facts come from different source sheets and never co-occur. 90 of
+the 217 have a date, 98 have attestations, and the two sets do not overlap.
 
 ### Portraits
 
@@ -85,6 +111,9 @@ _Sinai: answer inline, delete what you don't care about._
 ---
 
 ## 3. Sinai's specification
+A. two-lane split: the inner circle with the play titles should show colored circles rather than tics, and each circle should have a line connecting to the author. the second tier/circle should be of the 'traces' of plays, with a footprint icon, connect with a line not to the author but to the title of the play in the inner circle. 
+The panel that opens when clicking on a circle in the inner circle that has no traces will include the title, date of composition if known or "date of composition unknown" if not, enable also range or after and before dates if they are the only ones known. write the attestations for these plays - where were they recorded? 
+B. For plays that do have traces, instead of opening a side panel, center on them, and highlight all the linked persons. Notice not to include an additional playwright node for Lateiner/Hurwitz which is already there as the central author node - this is duplication. In this view use notebook icon for manuscripts, book icons for print editions, opening-theatre-curtain-like icon for performance events, male/female portrait icons for actors, and find an appropriate icon for other roles related to the editions or events. 
 
 _Write freely here — prose is fine, I'll turn it into work items._
 
@@ -104,13 +133,16 @@ _Write freely here — prose is fine, I'll turn it into work items._
 
 ## 4. Known gaps and technical debt
 
-- **The generator is not yet in the repo.** The page is currently assembled in a
-  session scratchpad from `head.html` + `body.html` + an inlined `mandala.json` +
-  `app.js`. Moving to Pages requires a committed script under `YiDraCor/code/`
-  that writes into `docs/Visualizations/`. Note the two traps recorded in memory:
-  all visualizations live in **one** directory so relative cross-links work, and
-  generators have previously written to the wrong `docs/` path — an empty
-  `git status` after a run means the path is wrong.
+- **The generator is still not in the repo.** `docs/Visualizations/lateiner_hurwitz_mandala.html`
+  is committed and served, but it was assembled by hand in a session scratchpad from
+  `head.html` + `body.html` + an inlined `mandala.json` + `app.js`. **Nobody but this
+  session can currently rebuild it.** The fix is a committed script under
+  `YiDraCor/code/` that reads `data/entity_graph.json` and writes the page into
+  `docs/Visualizations/` — the same shape as `build_character_networks.py`. Until then,
+  edits to the mandala cannot be reproduced. Note the two traps recorded in memory: all
+  visualizations live in **one** directory so relative cross-links work, and generators
+  have previously written to the wrong `docs/` path — an empty `git status` after a run
+  means the path is wrong.
 - **No date axis.** Most works carry no year, so chronology is not currently encodable.
 - **Genre normalisation is lossy.** Ten families from free text; the mapping is in the
   build script and should arguably live in a reviewable file.
@@ -127,3 +159,4 @@ _Write freely here — prose is fine, I'll turn it into work items._
 | date | change |
 |---|---|
 | 2026-10-06 | First build. Two-lane layout, genre colour, hub view, dossier. Portraits added from Transkribus. |
+| 2026-10-06 | Spec §3 A/B applied: inner ring as coloured circles with author lines; footprint traces linked to their play; split interaction (panel for title-only, centred graph for traced); icon vocabulary; dates and attestations parsed. Published to the Pages site. |
