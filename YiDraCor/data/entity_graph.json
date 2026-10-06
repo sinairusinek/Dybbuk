@@ -14904,6 +14904,17 @@
       "org_role": "library"
     },
     {
+      "id": "person:אדאלףליאנסקיadolfliansky",
+      "kind": "person",
+      "label": "אַדאָלף ליאַנסקי / Adolf Liansky",
+      "status": "LINKED",
+      "db_id": "3827",
+      "matched": "אַדאָלף ליאַנסקי / Adolf Liansky",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
+      "role": "former owner"
+    },
+    {
       "id": "edition:YIVO_ShimshonHagibor",
       "kind": "edition",
       "label": "Shimshon Hagibor",
@@ -15344,6 +15355,17 @@
       "date": "19/04/1889",
       "event_type": "Show",
       "work_id": "work:3830"
+    },
+    {
+      "id": "person:לואיסצוויבעלlouiszwiebel",
+      "kind": "person",
+      "label": "לואיס צוויבעל / Louis Zwiebel",
+      "status": "LINKED",
+      "db_id": "814",
+      "matched": "לואיס צוויבעל / Louis Zwiebel",
+      "method": "reviewed",
+      "reviewer": "Sinai 2026-10-05",
+      "role": "former owner"
     },
     {
       "id": "edition:KhurbnYerusholaim-BN1908",
@@ -19992,6 +20014,13 @@
       "shelfmark": "MS-499, Box 3, Folder 4"
     },
     {
+      "src": "person:אדאלףליאנסקיadolfliansky",
+      "dst": "edition:MS_BenHaDor",
+      "rel": "owned",
+      "inscription": "Eigentum A. Liansky, New-Jork, 7. October 1904",
+      "date": "1904-10-07"
+    },
+    {
       "src": "work:3959",
       "dst": "edition:YIVO_ShimshonHagibor",
       "rel": "realised_as"
@@ -20687,6 +20716,13 @@
       "level": "event"
     },
     {
+      "src": "person:לואיסצוויבעלlouiszwiebel",
+      "dst": "edition:MS_Emigration",
+      "rel": "owned",
+      "inscription": "LOUIS ZWIEBEL · NEW YORK (owner's stamp, Oct 189?)",
+      "date": "189?-10"
+    },
+    {
       "src": "work:3891",
       "dst": "edition:KhurbnYerusholaim-BN1908",
       "rel": "realised_as"
@@ -20749,7 +20785,7 @@
     "editions": 27,
     "by_kind": {
       "work": 277,
-      "person": 35,
+      "person": 37,
       "song": 225,
       "edition": 27,
       "org": 44,
@@ -20757,10 +20793,10 @@
       "place": 12
     },
     "by_status": {
-      "LINKED": 682,
+      "LINKED": 684,
       "MERGED": 2
     },
-    "edges": 877,
+    "edges": 879,
     "gaps": 1,
     "gaps_by_reason": {
       "no holding library": 1

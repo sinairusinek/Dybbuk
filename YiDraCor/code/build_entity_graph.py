@@ -75,6 +75,18 @@ ORG_DECISION = {
     "diyudishebihne": ("1849", "די אידישע ביהנע"),
 }
 
+# Former owners inscribed or stamped on a manuscript itself — provenance for the
+# physical witness, distinct from the institution that holds it now. Only two
+# are attested so far, both read off page images 2026-10-06, so this is a
+# documented table rather than a parsed field.
+#   folder -> (people_db id, label, the inscription verbatim, its date)
+MS_FORMER_OWNER = {
+    "MS_BenHaDor": ("3827", "אַדאָלף ליאַנסקי / Adolf Liansky",
+                    "Eigentum A. Liansky, New-Jork, 7. October 1904", "1904-10-07"),
+    "MS_Emigration": ("814", "לואיס צוויבעל / Louis Zwiebel",
+                      "LOUIS ZWIEBEL · NEW YORK (owner's stamp, Oct 189?)", "189?-10"),
+}
+
 PERSON_DECISION = {
     "מאדאםליפצין": ("762", "קעני ליפצין (סאַכאַר קריינע סאָניעס)"),
     # Bare surname on the Goles Rusland cast list, credited `actor` alongside a
@@ -802,6 +814,16 @@ def main() -> int:
         else:
             gaps.append({"kind": "edition-field", "label": f"{folder} · library",
                          "reason": "no holding library", "candidates": ""})
+        # ---- former owner of the physical manuscript (provenance, not custody)
+        if folder in MS_FORMER_OWNER:
+            db_id, label, inscription, when = MS_FORMER_OWNER[folder]
+            nid = node("person", label,
+                       {"status": "LINKED", "db_id": db_id, "matched": label,
+                        "method": "reviewed", "reviewer": REVIEWED_BY},
+                       role="former owner")
+            edges.append({"src": nid, "dst": eid, "rel": "owned",
+                          "inscription": inscription, "date": when})
+
         if not (e.get("performance_events") or []):
             gaps.append({"kind": "edition-field",
                          "label": f"{folder} · performance_events",
