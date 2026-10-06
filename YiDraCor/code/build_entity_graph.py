@@ -73,6 +73,16 @@ ORG_DECISION = {
     "amkroytetfreundbuchhandlung": ("63", "אַמקרויט עט פריינד| Amkroyt un Fraynd"),
     "amkrautfreundbuchhandlung": ("63", "אַמקרויט עט פריינד| Amkroyt un Fraynd"),
     "diyudishebihne": ("1849", "די אידישע ביהנע"),
+    # Both halves of the retired composite core_db row db125 "Roumanian Opera
+    # House|Central Theatre", which used to absorb these two names by
+    # composite-half matching. Bella reviewed its cluster ORG-C02149_Q01 on
+    # 2026-09-30 and ALIGNed it to db33, the individuated company; the app then
+    # unlinked and deleted the composite husk. So the names resolve to db33 --
+    # not to a resurrected composite. Note this is NOT db151 "Tsentral
+    # Theater" (key `tsentraltheatre`), a different house.
+    "centraltheatre": ("33", "The Roumanian Opera Company", "Bella 2026-09-30"),
+    "roumanianoperahouse": ("33", "The Roumanian Opera Company",
+                            "Bella 2026-09-30"),
 }
 
 # Former owners inscribed or stamped on a manuscript itself — provenance for the
@@ -471,9 +481,14 @@ def resolve(raw: str, exact: dict, tokidx: dict | None = None,
     key = sm(raw)
     dkey = decision_key(raw)
     if decisions and (key in decisions or dkey in decisions):
-        db_id, label = decisions.get(key) or decisions[dkey]
+        entry = decisions.get(key) or decisions[dkey]
+        # Entries are (db_id, label), or (db_id, label, reviewer) when the
+        # decision was not mine: a link someone else reviewed must carry THEIR
+        # stamp, not this file's default.
+        db_id, label = entry[0], entry[1]
+        who = entry[2] if len(entry) > 2 else REVIEWED_BY
         return {"status": "LINKED", "db_id": db_id, "matched": label,
-                "method": "reviewed", "reviewer": REVIEWED_BY}
+                "method": "reviewed", "reviewer": who}
     if key in DISTRICT_REDUNDANT_IF_VENUE_KNOWN:
         db_id, label = DISTRICT_REDUNDANT_IF_VENUE_KNOWN[key]
         return {"status": "LINKED", "db_id": db_id, "matched": label,

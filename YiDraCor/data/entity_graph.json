@@ -13663,16 +13663,22 @@
       "id": "org:roumanianoperahouse",
       "kind": "org",
       "label": "Roumanian Opera House",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "33",
+      "matched": "The Roumanian Opera Company",
+      "method": "reviewed",
+      "reviewer": "Bella 2026-09-30",
       "org_role": "venue"
     },
     {
       "id": "org:centraltheatre",
       "kind": "org",
       "label": "Central Theatre",
-      "status": "GAP",
-      "reason": "no candidate",
+      "status": "LINKED",
+      "db_id": "33",
+      "matched": "The Roumanian Opera Company",
+      "method": "reviewed",
+      "reviewer": "Bella 2026-09-30",
       "org_role": "venue"
     },
     {
@@ -20870,20 +20876,7 @@
       "shelfmark": "63.433"
     }
   ],
-  "gaps": [
-    {
-      "kind": "org",
-      "label": "Central Theatre",
-      "reason": "no candidate",
-      "candidates": ""
-    },
-    {
-      "kind": "org",
-      "label": "Roumanian Opera House",
-      "reason": "no candidate",
-      "candidates": ""
-    }
-  ],
+  "gaps": [],
   "summary": {
     "editions": 27,
     "by_kind": {
@@ -20896,14 +20889,11 @@
       "place": 12
     },
     "by_status": {
-      "LINKED": 688,
-      "MERGED": 2,
-      "GAP": 2
+      "LINKED": 690,
+      "MERGED": 2
     },
     "edges": 887,
-    "gaps": 2,
-    "gaps_by_reason": {
-      "no candidate": 2
-    }
+    "gaps": 0,
+    "gaps_by_reason": {}
   }
 }
