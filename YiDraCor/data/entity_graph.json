@@ -13442,7 +13442,7 @@
       "kind": "org",
       "label": "Biblioteka Narodowa (Polona)",
       "status": "LINKED",
-      "db_id": "2256",
+      "db_id": "2331",
       "matched": "Biblioteka Narodowa (National Library of Poland)",
       "method": "qualifier-stripped",
       "org_role": "library"
@@ -13663,20 +13663,16 @@
       "id": "org:roumanianoperahouse",
       "kind": "org",
       "label": "Roumanian Opera House",
-      "status": "LINKED",
-      "db_id": "125",
-      "matched": "Roumanian Opera House|Central Theatre",
-      "method": "composite-half",
+      "status": "GAP",
+      "reason": "no candidate",
       "org_role": "venue"
     },
     {
       "id": "org:centraltheatre",
       "kind": "org",
       "label": "Central Theatre",
-      "status": "LINKED",
-      "db_id": "125",
-      "matched": "Roumanian Opera House|Central Theatre",
-      "method": "composite-half",
+      "status": "GAP",
+      "reason": "no candidate",
       "org_role": "venue"
     },
     {
@@ -14573,7 +14569,7 @@
       "kind": "org",
       "label": "The International Biblioteque",
       "status": "LINKED",
-      "db_id": "2257",
+      "db_id": "2332",
       "matched": "The International Biblioteque (Internatsionale Bibliotek)",
       "method": "exact",
       "org_role": "publisher"
@@ -14694,7 +14690,7 @@
       "kind": "org",
       "label": "St Petersburg State Theatre Library",
       "status": "LINKED",
-      "db_id": "2259",
+      "db_id": "2334",
       "matched": "St Petersburg State Theatre Library",
       "method": "exact",
       "org_role": "library"
@@ -14958,7 +14954,7 @@
       "kind": "org",
       "label": "American Jewish Archives (Jacob Rader Marcus Center)",
       "status": "LINKED",
-      "db_id": "2258",
+      "db_id": "2333",
       "matched": "American Jewish Archives (Jacob Rader Marcus Center)",
       "method": "exact",
       "org_role": "library"
@@ -20874,7 +20870,20 @@
       "shelfmark": "63.433"
     }
   ],
-  "gaps": [],
+  "gaps": [
+    {
+      "kind": "org",
+      "label": "Central Theatre",
+      "reason": "no candidate",
+      "candidates": ""
+    },
+    {
+      "kind": "org",
+      "label": "Roumanian Opera House",
+      "reason": "no candidate",
+      "candidates": ""
+    }
+  ],
   "summary": {
     "editions": 27,
     "by_kind": {
@@ -20887,11 +20896,14 @@
       "place": 12
     },
     "by_status": {
-      "LINKED": 690,
-      "MERGED": 2
+      "LINKED": 688,
+      "MERGED": 2,
+      "GAP": 2
     },
     "edges": 887,
-    "gaps": 0,
-    "gaps_by_reason": {}
+    "gaps": 2,
+    "gaps_by_reason": {
+      "no candidate": 2
+    }
   }
 }
