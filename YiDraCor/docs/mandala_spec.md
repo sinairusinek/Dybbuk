@@ -24,13 +24,22 @@ Nothing is hand-maintained. Counts as built: 277 works, 27 editions, 64 events,
 | ring | radius | content |
 |---|---|---|
 | centre | — | two portrait medallions, Lateiner (right half) and Hurwitz (left) |
-| the band | 286 / 303 / 320 | **all 277 plays, one continuous band** on three sub-lanes, each on a line to its author. Documented and title-only plays sit side by side as one repertoire; a play's lane is its position in the arc, never its evidence |
-| traces | 430 / 460 | one icon per surviving trace, on a line back to *its play* — **parting curtain** = performance event, **book** = printed edition, **notebook** = manuscript |
+| the band | 272 / 291 / 310 / 329 | **all 277 plays, one continuous band** on four sub-lanes, each on a line to its author. It is read from the inside out: the **217 title-only plays on the two inner lanes**, the **60 documented plays on the two outer lanes**, so the traces that spring from them already point away from the centre |
+| traces | — | no ring of their own. Each play's traces **spring outward from the play itself**, continuing the author → play line: rows of up to three, stepping out. **Parting curtain** = performance event, **book** = printed edition, **notebook** = manuscript |
 
-Lane assignment is a greedy packing rather than `i % 3`: a well-documented play needs
-more arc than a 4 px title dot, so each play takes whichever lane has room at its
-angle. Traces are laid out in one pass over all plays in angular order, so that
-neighbouring plays' traces cannot pile into the same arc.
+Lane assignment within each half of the band is a greedy packing rather than a
+round-robin: a well-documented play needs more arc than a 4 px title dot.
+
+The traces deliberately do **not** share a radius — a play with eleven stagings reaches
+further out than one with a single edition, and that asymmetry is the point. They are
+laid out as a short spray rather than a single-file chain, because one chain of eleven
+reached 380 px beyond its play and more than doubled the drawing's extent, shrinking
+the whole wheel to fit.
+
+One ordering subtlety: the genre sort puts every documented play at the head of its
+genre run, which made their sprays collide into a single tangle. Documented plays are
+therefore spread evenly through their own genre run — the colour arcs are unchanged,
+but no two sprays start side by side.
 
 The two-lane split is the main design decision and the one most worth your judgement.
 A single flat ring gave the well-documented plays a 5.7 px slot for a 30 px dot and
@@ -168,5 +177,6 @@ _Write freely here — prose is fine, I'll turn it into work items._
 | date | change |
 |---|---|
 | 2026-10-06 | First build. Two-lane layout, genre colour, hub view, dossier. Portraits added from Transkribus. |
+| 2026-10-07 | Documented plays moved to the band's outer lanes; the traces' shared ring removed so each play's traces spring radially from it, keeping the asymmetry; documented plays interleaved through their genre run so the sprays do not collide. |
 | 2026-10-07 | Tiers pulled in toward the author; the two play bands merged into one continuous three-lane band; footprints replaced by curtain / book / notebook icons with a legend key; focus fan moved outward and every node made clickable into the side panel. |
 | 2026-10-06 | Spec §3 A/B applied: inner ring as coloured circles with author lines; footprint traces linked to their play; split interaction (panel for title-only, centred graph for traced); icon vocabulary; dates and attestations parsed. Published to the Pages site. |

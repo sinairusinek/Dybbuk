@@ -186,7 +186,7 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
 <nav id="legend">
   <div class="eyebrow">Genre, as catalogued</div>
   <ul id="fams"></ul>
-  <div class="eyebrow" style="margin-top:14px">Traces, on the outer ring</div>
+  <div class="eyebrow" style="margin-top:14px">Traces, springing from their play</div>
   <ul id="tracekey"></ul>
   <p class="hint">Click a play to open it. Drag to pan, scroll to zoom.</p>
 </nav>
@@ -194,7 +194,7 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
 <aside id="scalekey">
   <div class="eyebrow">Size = surviving traces</div>
   <div class="row" id="scaledots"></div>
-  <p>All 277 plays share one band. The <b style="font-weight:600;font-style:normal">60</b> with a surviving edition, staging or song are the larger discs; the other <b style="font-weight:600;font-style:normal">217</b> are known only as a title.</p>
+  <p>All 277 plays share one band. The <b style="font-weight:600;font-style:normal">60</b> with a surviving edition, staging or song sit on its outer lanes, their traces springing outward; the other <b style="font-weight:600;font-style:normal">217</b>, known only as a title, fill the inner lanes.</p>
 </aside>
 
 <div id="tip" role="status"></div>
@@ -239,12 +239,34 @@ for (const k in byPw) {
     FAM_ORDER.indexOf(a.fam) - FAM_ORDER.indexOf(b.fam) ||
     weight(b) - weight(a) ||
     a.title.localeCompare(b.title));
+  // Within each genre run the sort puts every documented play first, which
+  // made their outward sprays collide into one tangle. Spread the documented
+  // ones evenly through their own genre instead: the colour arcs are
+  // unchanged, but no two sprays start side by side.
+  const out = [];
+  let i = 0;
+  while (i < byPw[k].length) {
+    let j = i;
+    while (j < byPw[k].length && byPw[k][j].fam === byPw[k][i].fam) j++;
+    const run = byPw[k].slice(i, j);
+    const rich = run.filter(isRich), plain = run.filter(w => !isRich(w));
+    if (rich.length && plain.length) {
+      const every = run.length / rich.length;
+      let ri = 0, pi = 0;
+      for (let n = 0; n < run.length; n++) {
+        if (ri < rich.length && n >= Math.floor(ri * every)) out.push(rich[ri++]);
+        else if (pi < plain.length) out.push(plain[pi++]);
+        else out.push(rich[ri++]);
+      }
+    } else out.push(...run);
+    i = j;
+  }
+  byPw[k] = out;
 }
 
 const GAP = 0.085 * Math.PI;           // wedge of blank between the two authors
-const R_BAND  = 286;                    // every play, one band
-const R_LANE  = 17;                     // gap between its sub-lanes
-const R_OUTER = 430;                    // the traces themselves
+const R_BAND  = 272;                    // every play, one band
+const R_LANE  = 19;                     // gap between its sub-lanes
 const pos = new Map();                  // work id -> {a, x, y, r, rich}
 
 // All 277 plays occupy ONE band. They will not fit a single arc without
@@ -253,27 +275,25 @@ const pos = new Map();                  // work id -> {a, x, y, r, rich}
 // plays sit side by side as one repertoire.
 function arcFor(list, start, end) {
   const span = end - start;
-  const LANES = 3;
-  // Lane assignment is a greedy packing, not i % LANES: a big documented play
-  // needs more arc than a 4px title dot, so each play goes to whichever lane
-  // has room at its angle. Everything stays in one band either way.
-  const lastAngle = new Array(LANES).fill(-Infinity);
+  // The band is read from the inside out: the plays known only as a title sit
+  // on the two inner lanes, and the documented plays on the outer two, so the
+  // traces that spring from them already point away from the centre.
+  const INNER = [0, 1], OUTER = [2, 3];
+  const lastAngle = new Array(4).fill(-Infinity);
   list.forEach((w, i) => {
     const a = start + span * ((i + 0.5) / list.length);
     const r = radiusOf(w);
-    let lane = 0, best = -Infinity;
-    for (let L = 0; L < LANES; L++) {
-      const R = R_BAND + L * R_LANE;
-      const needed = (r + 2.2) / R;            // half-width of this play, in radians
+    const lanes = isRich(w) ? OUTER : INNER;
+    // take the first lane with room at this angle; else the emptiest of them
+    let lane = lanes[0];
+    for (const L of lanes) {
+      const needed = (r + 2.4) / (R_BAND + L * R_LANE);
       if (a - lastAngle[L] >= needed) { lane = L; break; }
-      if (lastAngle[L] > best) { best = lastAngle[L]; lane = L; }
-      if (L === LANES - 1) {                   // none free: take the emptiest
-        lane = lastAngle.indexOf(Math.min(...lastAngle));
-      }
+      if (lastAngle[L] < lastAngle[lane]) lane = L;
     }
     const R = R_BAND + lane * R_LANE;
-    lastAngle[lane] = a + (r + 2.2) / R;
-    pos.set(w.id, {a, x: Math.cos(a)*R, y: Math.sin(a)*R, r, rich: isRich(w)});
+    lastAngle[lane] = a + (r + 2.4) / R;
+    pos.set(w.id, {a, x: Math.cos(a)*R, y: Math.sin(a)*R, r, rich: isRich(w), lane, R});
   });
 }
 
@@ -411,10 +431,8 @@ function drawIcon(key, x, y, size, color, opts){
 }
 
 /* guide rings + the halo behind the centre */
-[0,1,2].forEach(i => gGuide.appendChild(mk('circle',{cx:0,cy:0,r:R_BAND+i*R_LANE,
+[0,1,2,3].forEach(i => gGuide.appendChild(mk('circle',{cx:0,cy:0,r:R_BAND+i*R_LANE,
   fill:'none',stroke:'var(--rule-2)','stroke-width':1})));
-gGuide.appendChild(mk('circle',{cx:0,cy:0,r:R_OUTER,fill:'none',stroke:'var(--rule-2)','stroke-width':1,
-  'stroke-dasharray':'1 5'}));
 gGuide.appendChild(mk('circle',{cx:0,cy:0,r:180,fill:'url(#glow)'}));
 
 /* ---------------- tooltip ---------------- */
@@ -456,35 +474,50 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp
    One footprint per surviving trace, on a line back to ITS PLAY (never to the
    author): the trace is evidence of that play, not of the playwright.      */
 const outerNodes = [];
-// Traces are laid out in ONE pass over all plays in angular order, so that
-// neighbouring plays' traces cannot pile into the same arc: each trace takes
-// the next free slot going round, and the spoke back to its play stays short.
+// Each play's traces spring from the play itself, continuing outward along the
+// line that already runs author -> play. They are NOT collected onto a shared
+// ring: a play with ten stagings reaches further out than one with a single
+// edition, and that asymmetry is the point — it shows at a glance which plays
+// left the deepest mark.
 {
-  const traced = works
-    .filter(w => w.editions.length || w.events.length)
-    .map(w => ({w, p: pos.get(w.id)}))
-    .sort((a, b) => a.p.a - b.p.a);
-  const total = traced.reduce((n, t) => n + t.w.editions.length + t.w.events.length, 0);
-  let slot = 0;
-  traced.forEach(({w, p}) => {
+  // A long single-file chain would reach three times the band's radius and
+  // shrink the whole wheel to fit, so a play's traces are laid out as a short
+  // outward spray: rows of up to three, stepping out, centred on the play's
+  // own radius. The spray still grows with the count — the asymmetry is kept,
+  // just not as one runaway spike.
+  const PER_ROW = 3, STEP = 36, FIRST = 38, SIDE = 26;
+  works.forEach(w => {
     const items = [
       ...w.editions.map(e => ({kind:'edition', sub:e.kind, w, d:e})),
       ...w.events.map(e => ({kind:'event', sub:'event', w, d:e})),
     ];
-    // centre this play's run of slots on the play's own angle, but never let
-    // the run overlap its neighbour's: the slot index carries the ordering.
+    if (!items.length) return;
+    const p = pos.get(w.id);
+    const ux = Math.cos(p.a), uy = Math.sin(p.a);     // outward
+    const px = -uy, py = ux;                          // perpendicular
+    const rows = Math.ceil(items.length / PER_ROW);
     items.forEach((it, i) => {
-      const frac = (slot + i + 0.5) / total;
-      const a = -Math.PI/2 + frac * Math.PI*2;
-      const rr = R_OUTER + ((slot + i) % 2 ? 30 : 0);
-      it.a = a; it.x = Math.cos(a)*rr; it.y = Math.sin(a)*rr;
+      const row = Math.floor(i / PER_ROW);
+      const inRow = Math.min(PER_ROW, items.length - row * PER_ROW);
+      const col = i % PER_ROW;
+      const dist = FIRST + row * STEP;
+      // centre each row on the play's radius, and narrow the spray as it goes
+      // out so the rows do not splay into the neighbouring plays
+      const spread = SIDE * (1 - row * 0.12);
+      const off = inRow === 1 ? 0 : (col - (inRow - 1) / 2) * spread;
+      const x = p.x + ux*dist + px*off;
+      const y = p.y + uy*dist + py*off;
+      it.a = p.a; it.x = x; it.y = y; it.row = row;
       outerNodes.push(it);
-      const sp = mk('line',{x1:p.x,y1:p.y,x2:it.x,y2:it.y,
-        stroke:'var(--spoke)','stroke-width':0.55});
+      // stalk: first row springs from the play, later rows from the row before
+      const fromDist = row === 0 ? p.r + 3 : FIRST + (row - 1) * STEP;
+      const fromOff  = row === 0 ? 0 : off * 0.55;
+      const sp = mk('line',{
+        x1: p.x + ux*fromDist + px*fromOff, y1: p.y + uy*fromDist + py*fromOff,
+        x2: x, y2: y, stroke:'var(--spoke)','stroke-width':0.6});
       sp.dataset.work = w.id; sp.dataset.trace = '1';
       gSpoke.appendChild(sp);
     });
-    slot += items.length;
   });
 }
 
@@ -719,8 +752,9 @@ let vw = 0, vh = 0;
 // The drawing's true half-extent, measured from the data rather than guessed,
 // so the whole wheel is framed on any viewport.
 const EXTENT = (() => {
-  let m = R_OUTER + 24;
+  let m = 0;
   pos.forEach(p => { m = Math.max(m, Math.hypot(p.x, p.y) + p.r); });
+  outerNodes.forEach(n => { m = Math.max(m, Math.hypot(n.x, n.y) + 14); });
   return m + 18;                       // room for the author labels
 })();
 function resize(){
