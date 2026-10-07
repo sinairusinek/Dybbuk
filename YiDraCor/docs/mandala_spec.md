@@ -24,9 +24,13 @@ Nothing is hand-maintained. Counts as built: 277 works, 27 editions, 64 events,
 | ring | radius | content |
 |---|---|---|
 | centre | — | two portrait medallions, Lateiner (right half) and Hurwitz (left) |
-| inner band | 368 | the **217 plays known only as a catalogue title**, coloured circles, each on a line to its author |
-| outer wheel | 486 | the **60 plays with a surviving edition, staging or song**, discs sized by how much survives |
-| traces | 596 | one **footprint** per surviving trace, on a line back to *its play* — gold for editions, grey for stagings |
+| the band | 286 / 303 / 320 | **all 277 plays, one continuous band** on three sub-lanes, each on a line to its author. Documented and title-only plays sit side by side as one repertoire; a play's lane is its position in the arc, never its evidence |
+| traces | 430 / 460 | one icon per surviving trace, on a line back to *its play* — **parting curtain** = performance event, **book** = printed edition, **notebook** = manuscript |
+
+Lane assignment is a greedy packing rather than `i % 3`: a well-documented play needs
+more arc than a 4 px title dot, so each play takes whichever lane has room at its
+angle. Traces are laid out in one pass over all plays in angular order, so that
+neighbouring plays' traces cannot pile into the same arc.
 
 The two-lane split is the main design decision and the one most worth your judgement.
 A single flat ring gave the well-documented plays a 5.7 px slot for a 30 px dot and
@@ -52,9 +56,14 @@ Clicking routes on what survives of the play (spec §3 A/B):
 - **A play with no traces** → a side panel: its date of composition stated as precisely
   as the record allows (a year, a range, before/after, or "Date of composition
   unknown"), and the reference works that attest it.
-- **A play with traces** → no panel. The play centres itself and its collaborators ring
-  it, with its stagings and editions on a second ring. The playwright is deliberately
-  *not* drawn here — he is already the central medallion the play is spoked to.
+- **A play with traces** → the play's collaborators and traces fan **outward**, away
+  from the centre, continuing the direction the play already points, so the reading
+  stays radial instead of doubling back over the band. The playwright is deliberately
+  *not* drawn — he is already the central medallion the play is spoked to.
+  **Every node in that fan is clickable**, and a click fills the side panel with that
+  node's own record (a person's roles, an edition's printer and holding library, an
+  event's date and venue) **without disturbing the drawing** — the viewer keeps their
+  place. Only a click on bare canvas, or Escape, returns to the wheel.
 
 Icons in that view: notebook = manuscript, book = print edition, parting curtains =
 performance event, male/female bust = actor/actress, musical notes = composer, lyre =
@@ -159,4 +168,5 @@ _Write freely here — prose is fine, I'll turn it into work items._
 | date | change |
 |---|---|
 | 2026-10-06 | First build. Two-lane layout, genre colour, hub view, dossier. Portraits added from Transkribus. |
+| 2026-10-07 | Tiers pulled in toward the author; the two play bands merged into one continuous three-lane band; footprints replaced by curtain / book / notebook icons with a legend key; focus fan moved outward and every node made clickable into the side panel. |
 | 2026-10-06 | Spec §3 A/B applied: inner ring as coloured circles with author lines; footprint traces linked to their play; split interaction (panel for title-only, centred graph for traced); icon vocabulary; dates and attestations parsed. Published to the Pages site. |
