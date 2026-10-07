@@ -25,7 +25,16 @@ Nothing is hand-maintained. Counts as built: 277 works, 27 editions, 64 events,
 |---|---|---|
 | centre | — | two portrait medallions, Lateiner (right half) and Hurwitz (left) |
 | the band | 272 / 291 / 310 / 329 | **all 277 plays, one continuous band** on four sub-lanes, each on a line to its author. It is read from the inside out: the **217 title-only plays on the two inner lanes**, the **60 documented plays on the two outer lanes**, so the traces that spring from them already point away from the centre |
-| traces | — | no ring of their own. Each play's traces **spring outward from the play itself**, continuing the author → play line: rows of up to three, stepping out. **Parting curtain** = performance event, **book** = printed edition, **notebook** = manuscript |
+| traces | — | no ring of their own. Each play's traces **spring outward from the play itself**, continuing the author → play line: rows of up to three, stepping out. **Theatre front** = a house, with its **curtained stages** hanging off it; **book** = printed edition, **notebook** = manuscript |
+
+A staging hangs off its **theatre**, not off the play: a house that gave a play four
+nights is one venue node with four stagings under it. 61 of the 64 events name a venue,
+across 25 houses — the Windsor alone accounts for 19 — so the intermediate node earns
+its place. The 3 events with no recorded venue attach directly to the play.
+
+The staging glyph is a scalloped valance over swept drapes, closed by a stage-floor
+line. The scalloping is what stops it reading as a pair of columns at 19 px; several
+plainer curtains were tried and all failed that test.
 
 Lane assignment within each half of the band is a greedy packing rather than a
 round-robin: a well-documented play needs more arc than a 4 px title dot.
@@ -177,6 +186,7 @@ _Write freely here — prose is fine, I'll turn it into work items._
 | date | change |
 |---|---|
 | 2026-10-06 | First build. Two-lane layout, genre colour, hub view, dossier. Portraits added from Transkribus. |
+| 2026-10-07 | Stagings regrouped under their theatre; the staging icon redrawn as a scalloped valance after the plain curtain read as two columns. |
 | 2026-10-07 | Documented plays moved to the band's outer lanes; the traces' shared ring removed so each play's traces spring radially from it, keeping the asymmetry; documented plays interleaved through their genre run so the sprays do not collide. |
 | 2026-10-07 | Tiers pulled in toward the author; the two play bands merged into one continuous three-lane band; footprints replaced by curtain / book / notebook icons with a legend key; focus fan moved outward and every node made clickable into the side panel. |
 | 2026-10-06 | Spec §3 A/B applied: inner ring as coloured circles with author lines; footprint traces linked to their play; split interaction (panel for title-only, centred graph for traced); icon vocabulary; dates and attestations parsed. Published to the Pages site. |

@@ -352,8 +352,9 @@ function mk(name, attrs) {
    fetched: the CSP admits no external images, and these need to recolour
    per theme.                                                              */
 const ICON = {
-  // a staging: theatre curtains parting
-  event: 'M2.5 3.5h19M5 6c0 5-1 9-2.2 13.5h6C8 15 7.6 10 7.6 6M19 6c0 5 1 9 2.2 13.5h-6C16 15 16.4 10 16.4 6',
+  // a staging: a scalloped valance over swept drapes, closed by the stage
+  // floor — the scalloping is what stops it reading as two columns
+  event: 'M2.5 4.5h19M2.5 4.5v4.2c2.1 0 2.1-2.4 4.2-2.4s2.1 2.4 4.2 2.4 2.1-2.4 4.2-2.4 2.1 2.4 4.2 2.4V4.5M6.4 8.6c.6 4.6-.6 8.4-2.6 11.4M17.6 8.6c-.6 4.6.6 8.4 2.6 11.4M4 20h16',
   // a printed edition: a closed book, spine left
   print: 'M5.5 3.5h13v17h-13zM9 3.5v17M11.5 8h4.5M11.5 11.5h4.5M11.5 15h3',
   // a manuscript: a ruled notebook with a bound edge
@@ -457,16 +458,30 @@ function workTip(e, w){
   tip.classList.add('on'); placeTip(e);
 }
 function outerTip(e, it){
-  const d = it.d;
-  tip.innerHTML = it.kind === 'edition'
-    ? `<div class="m">Printed edition</div><div class="t">${esc(d.year || '—')}</div>` +
-      `<div class="bars">${esc([d.place, d.printer || d.holder].filter(Boolean).join(' · ')) || '—'}</div>` +
-      `<div class="y" style="direction:ltr;margin-top:4px">${esc(it.w.title)}</div>`
-    : `<div class="m">${esc(d.type || 'Performance')}</div><div class="t">${esc(d.date || '—')}</div>` +
-      `<div class="bars">${esc(d.venue || 'venue unrecorded')}</div>` +
+  if (it.kind === 'venue') {
+    const n = it.events.length;
+    tip.innerHTML =
+      `<div class="m">Theatre</div><div class="t">${esc(it.venue)}</div>` +
+      `<div class="bars">${n} ${n === 1 ? 'staging' : 'stagings'} of this play</div>` +
       `<div class="y" style="direction:ltr;margin-top:4px">${esc(it.w.title)}</div>`;
+  } else if (it.kind === 'edition') {
+    const d = it.d;
+    tip.innerHTML =
+      `<div class="m">${d.kind === 'manuscript' ? 'Manuscript' : 'Printed edition'}</div>` +
+      `<div class="t">${esc(d.year || '—')}</div>` +
+      `<div class="bars">${esc([d.place, d.printer || d.holder].filter(Boolean).join(' · ')) || '—'}</div>` +
+      `<div class="y" style="direction:ltr;margin-top:4px">${esc(it.w.title)}</div>`;
+  } else {
+    const d = it.d;
+    tip.innerHTML =
+      `<div class="m">${esc(d.type || 'Performance')}</div>` +
+      `<div class="t">${esc(d.date || '—')}</div>` +
+      `<div class="bars">${esc(it.via || d.venue || 'venue unrecorded')}</div>` +
+      `<div class="y" style="direction:ltr;margin-top:4px">${esc(it.w.title)}</div>`;
+  }
   tip.classList.add('on'); placeTip(e);
 }
+
 function hideTip(){ tip.classList.remove('on'); }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
@@ -474,42 +489,49 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp
    One footprint per surviving trace, on a line back to ITS PLAY (never to the
    author): the trace is evidence of that play, not of the playwright.      */
 const outerNodes = [];
-// Each play's traces spring from the play itself, continuing outward along the
-// line that already runs author -> play. They are NOT collected onto a shared
-// ring: a play with ten stagings reaches further out than one with a single
-// edition, and that asymmetry is the point — it shows at a glance which plays
-// left the deepest mark.
+// Each play's traces spring outward from the play itself, continuing the
+// author -> play line. Editions hang straight off the play; a staging hangs
+// off its THEATRE, which is itself the node on the stalk, so a house that
+// gave a play four nights shows as one venue with four shows under it.
 {
-  // A long single-file chain would reach three times the band's radius and
-  // shrink the whole wheel to fit, so a play's traces are laid out as a short
-  // outward spray: rows of up to three, stepping out, centred on the play's
-  // own radius. The spray still grows with the count — the asymmetry is kept,
-  // just not as one runaway spike.
-  const PER_ROW = 3, STEP = 36, FIRST = 38, SIDE = 26;
+  const STEP = 36, FIRST = 38, SIDE = 26, PER_ROW = 3;
   works.forEach(w => {
-    const items = [
-      ...w.editions.map(e => ({kind:'edition', sub:e.kind, w, d:e})),
-      ...w.events.map(e => ({kind:'event', sub:'event', w, d:e})),
-    ];
-    if (!items.length) return;
     const p = pos.get(w.id);
     const ux = Math.cos(p.a), uy = Math.sin(p.a);     // outward
     const px = -uy, py = ux;                          // perpendicular
-    const rows = Math.ceil(items.length / PER_ROW);
-    items.forEach((it, i) => {
+
+    // group this play's events by the house that gave them
+    const byVenue = new Map();
+    const venueless = [];
+    w.events.forEach(e => {
+      const v = (e.venue || '').trim();
+      if (!v) { venueless.push(e); return; }
+      if (!byVenue.has(v)) byVenue.set(v, []);
+      byVenue.get(v).push(e);
+    });
+
+    // what sits on the stalk, in order: editions, then one node per theatre,
+    // then any staging whose house went unrecorded
+    const stalk = [
+      ...w.editions.map(e => ({kind:'edition', sub:e.kind, w, d:e})),
+      ...[...byVenue.entries()].map(([venue, evs]) =>
+        ({kind:'venue', w, venue, events: evs})),
+      ...venueless.map(e => ({kind:'event', sub:'event', w, d:e, orphan:true})),
+    ];
+    if (!stalk.length) return;
+
+    stalk.forEach((it, i) => {
       const row = Math.floor(i / PER_ROW);
-      const inRow = Math.min(PER_ROW, items.length - row * PER_ROW);
+      const inRow = Math.min(PER_ROW, stalk.length - row * PER_ROW);
       const col = i % PER_ROW;
       const dist = FIRST + row * STEP;
-      // centre each row on the play's radius, and narrow the spray as it goes
-      // out so the rows do not splay into the neighbouring plays
       const spread = SIDE * (1 - row * 0.12);
       const off = inRow === 1 ? 0 : (col - (inRow - 1) / 2) * spread;
       const x = p.x + ux*dist + px*off;
       const y = p.y + uy*dist + py*off;
-      it.a = p.a; it.x = x; it.y = y; it.row = row;
+      it.a = p.a; it.x = x; it.y = y;
       outerNodes.push(it);
-      // stalk: first row springs from the play, later rows from the row before
+
       const fromDist = row === 0 ? p.r + 3 : FIRST + (row - 1) * STEP;
       const fromOff  = row === 0 ? 0 : off * 0.55;
       const sp = mk('line',{
@@ -517,21 +539,42 @@ const outerNodes = [];
         x2: x, y2: y, stroke:'var(--spoke)','stroke-width':0.6});
       sp.dataset.work = w.id; sp.dataset.trace = '1';
       gSpoke.appendChild(sp);
+
+      // the shows this house gave, hung off the venue node itself
+      if (it.kind === 'venue') {
+        const n = it.events.length;
+        const SHOW_R = 17;
+        it.events.forEach((e, j) => {
+          const fan = n === 1 ? 0 : (j - (n-1)/2) * 0.62;
+          const aa = p.a + fan;
+          const sx = x + Math.cos(aa)*SHOW_R, sy = y + Math.sin(aa)*SHOW_R;
+          const node = {kind:'event', sub:'event', w, d:e, x:sx, y:sy, a:p.a,
+                        via: it.venue};
+          outerNodes.push(node);
+          const l2 = mk('line',{x1:x,y1:y,x2:sx,y2:sy,
+            stroke:'var(--spoke)','stroke-width':0.5});
+          l2.dataset.work = w.id; l2.dataset.trace = '1';
+          gSpoke.appendChild(l2);
+        });
+      }
     });
   });
 }
-
 outerNodes.forEach(it => {
-  // Each trace is drawn as what it actually is: a parting curtain for a
-  // staging, a book for a printed edition, a notebook for a manuscript.
-  const key = it.kind === 'event' ? 'event'
+  // Each trace is drawn as what it is: a theatre front for a house, a parting
+  // curtain for one of its shows, a book for a printed edition, a notebook for
+  // a manuscript.
+  const key = it.kind === 'venue' ? 'venue'
+            : it.kind === 'event' ? 'event'
             : it.sub === 'manuscript' ? 'manuscript' : 'print';
-  const col = it.kind === 'event' ? 'var(--ink-2)' : 'var(--gold)';
-  const g = drawIcon(key, it.x, it.y, 19, col, {weight: 1.5});
-  g.setAttribute('opacity', .92);
+  const col = it.kind === 'edition' ? 'var(--gold)' : 'var(--ink-2)';
+  const size = it.kind === 'venue' ? 20 : it.kind === 'event' ? 15 : 19;
+  const g = drawIcon(key, it.x, it.y, size, col, {weight: 1.5});
+  g.setAttribute('opacity', it.kind === 'event' ? .82 : .92);
   g.dataset.work = it.w.id;
   g.style.cursor = 'pointer';
-  const hit = mk('circle',{cx:it.x,cy:it.y,r:12,fill:'transparent'});
+  const hit = mk('circle',{cx:it.x,cy:it.y,r: it.kind === 'event' ? 9 : 12,
+    fill:'transparent'});
   hit.dataset.work = it.w.id; hit.style.cursor='pointer';
   [g, hit].forEach(el => {
     el.addEventListener('pointerenter', ev => outerTip(ev, it));
