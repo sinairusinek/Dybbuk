@@ -416,6 +416,7 @@ const ICON = {
 function iconFor(role, kind){
   const r = String(role || '').toLowerCase();
   if (kind === 'event') return 'event';
+  if (kind === 'song') return 'song';
   if (kind === 'edition') return 'print';
   if (r.startsWith('composer')) return 'composer';
   if (r === 'actress') return 'actress';
@@ -680,7 +681,8 @@ function paintFamFilter(){
   const tk = document.getElementById('tracekey');
   [['event','Performance event','var(--ink-2)'],
    ['print','Printed edition','var(--gold)'],
-   ['manuscript','Manuscript','var(--gold)']].forEach(([k,label,col]) => {
+   ['manuscript','Manuscript','var(--gold)'],
+   ['song','Song in a songbook','var(--gold)']].forEach(([k,label,col]) => {
     const li = document.createElement('li');
     li.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2);padding:2px';
     const sv = document.createElementNS(SVG,'svg');
@@ -918,10 +920,46 @@ function drawFocus(w){
     ...w.events.map(e => ({kind:'event', sub:'event', d:e,
                            name:e.date || 'Performance', role:'event'})),
   ];
+  // Songs get their own tier beyond the editions and stagings. They are the
+  // most numerous trace and the only one for 34 of the 54 plays that have any
+  // — those hubs drew a bare circle before this, while the panel beside them
+  // announced the songs. A song is a Work, so it sits on the trace tiers, not
+  // among the people.
+  const songs = (w.songs || []).map(s => ({
+    kind:'song', role:'song', d:s,
+    name: s.rom || s.yid || 'Song',
+  }));
+  // Which songbook most of this play's songs come from. That one is dropped
+  // from the subtitles: naming it on 24 of 26 nodes says nothing about any of
+  // them, while the 2 from elsewhere are exactly what the tier should show.
+  const srcOf = it => (it.d.att && it.d.att[0] && it.d.att[0].src) || '';
+  const srcTally = {};
+  songs.forEach(it => { const k = srcOf(it); srcTally[k] = (srcTally[k]||0)+1; });
+  const mainSource = Object.entries(srcTally)
+    .sort((a,b) => b[1]-a[1]).map(e => e[0])[0] || '';
 
   // How far out each tier sits, measured from the play, along its own radius.
   const OUT1 = inner.length > 12 ? 168 : inner.length > 7 ? 140 : 116;
   const OUT2 = OUT1 + (outer.length > 6 ? 128 : 104);
+  // Songs sit one tier beyond whatever the play actually has: past the
+  // editions and stagings when there are any, past the credits when there are
+  // only credits, and at the first tier when songs are all that survives —
+  // never stranded out past empty rings.
+  const lastUsed = outer.length ? OUT2 : inner.length ? OUT1 : 0;
+  // `ring` caps its wedge at 1.5π, so past ~16 items the spacing is set by the
+  // radius alone. Yafes toyer has 26 songs and nothing else: at OUT1 they would
+  // sit 23px apart with a 16px glyph and a label between them, so the tier is
+  // pushed out in step with the count.
+  //
+  // But reach drives the zoom, and `frameFocus` floors at k=0.3 — so a third
+  // tier placed as generously as the first two shrinks Ben Hador's whole fan
+  // to unreadable type. When the play already has credits AND traces, the song
+  // tier sits as close behind them as its own count allows.
+  const crowd = songs.length > 16 ? 112 : songs.length > 8 ? 42 : 0;
+  const step = lastUsed
+    ? (inner.length && outer.length ? 86 : songs.length > 8 ? 150 : 122)
+    : 0;
+  const OUT3 = (lastUsed ? lastUsed + step : OUT1) + crowd;
   const dirA = p.a;                               // the play's angle from centre
 
   ring(inner, OUT1, (it, x, y) => {
@@ -946,6 +984,28 @@ function drawFocus(w){
     return g;
   });
 
+  // The songs. Drawn smaller than an edition or a staging: a play may have 26
+  // of them, and they are the lightest-weight trace — a title in a songbook,
+  // where an edition is a surviving book. Gold like the editions, because both
+  // are printed things, but hollow.
+  ring(songs, OUT3, (it, x, y) => {
+    const g = mk('g');
+    g.appendChild(drawIcon('song', x, y, 16, 'var(--gold)',
+                           {plate:true, weight:1.35}));
+    // The count of gramophone recordings, where Aylward's discography has one.
+    if (it.d.rec) {
+      g.appendChild(mk('circle',{cx:x+9.5, cy:y-9.5, r:6.4,
+        fill:'var(--ground)', stroke:'var(--gold)','stroke-width':.9}));
+      const t = mk('text',{x:x+9.5, y:y-9.5, 'text-anchor':'middle',
+        'dominant-baseline':'central', fill:'var(--gold)',
+        'font-size':7.6, 'font-family':'IBM Plex Mono, monospace'});
+      t.textContent = it.d.rec;
+      g.appendChild(t);
+    }
+    g.appendChild(label(x, y, it.name, songSub(it.d, mainSource)));
+    return g;
+  });
+
   // the play itself, lifted and named
   const hub = mk('g');
   hub.appendChild(mk('circle',{cx:p.x,cy:p.y,r:36,fill:'var(--ground)',
@@ -956,7 +1016,8 @@ function drawFocus(w){
   hub.addEventListener('click', e => { e.stopPropagation(); showDetail(detailForPlay(w)); });
   gFocus.appendChild(hub);
 
-  frameFocus(p, OUT2);
+  // Frame to the outermost tier actually drawn, or the songs fall off-screen.
+  frameFocus(p, Math.max(OUT2, songs.length ? OUT3 : 0));
 
   /** Lay items on an arc centred on the play's outward direction. */
   function ring(items, R, draw){
@@ -1151,6 +1212,18 @@ function detailFor(it, w){
             byline: [e.place, e.printer].filter(Boolean).join(', '),
             accent: 'var(--gold)', html: S.join('')};
   }
+  if (it.kind === 'song') {
+    const s = it.d;
+    const S = [sec('Song', `<ul class="songs"><li>${songRow(s)}</li></ul>`)];
+    S.push(sec('Of the play',
+      `<p class="tagline">${esc(w.title)}${w.yiddish ? ' · ' + esc(w.yiddish) : ''}</p>` +
+      `<p class="k" style="font-size:11.5px;color:var(--ink-3)">` +
+      `${esc(s.reviewed ? 'Attachment reviewed and confirmed'
+                        : 'Attachment proposed by the catalogue matcher')}</p>`));
+    return {kicker: 'Song', title: s.rom || s.yid || 'Song',
+            yiddish: s.rom ? s.yid : '', byline: s.by || '',
+            accent: 'var(--gold)', html: S.join('')};
+  }
   // a performance event
   const e = it.d;
   const S = [];
@@ -1271,6 +1344,25 @@ function songsBlock(songs){
   const li = songs.map(s => `<li>${songRow(s)}</li>`).join('');
   return (notes.length ? `<p class="songnote">${notes.join(' ')}</p>` : '') +
          `<ul class="songs">${li}</ul>`;
+}
+
+/**
+ * A song node's one-line subtitle on the wheel.
+ *
+ * Only what distinguishes this song from its neighbours. A lyricist other than
+ * the playwright is the finding worth seeing, so it always shows. The songbook
+ * shows only when it is NOT the one most of the play's songs come from —
+ * otherwise 24 of 26 nodes repeat "DI YIDISHE BIHNE" and the tier reads as
+ * noise, while the odd source out is what deserves the line.
+ */
+function songSub(s, mainSource){
+  // The sub-label truncates at 30 characters, which ate the full wording and
+  // left "MOYSHE HURWITZ — NOT THIS PLA…". The surname plus a short tag fits,
+  // and the node's own card spells it out.
+  if (s.other) return `${s.by.split(' ').pop()}, not the author`;
+  if (s.by) return s.by;
+  const src = (s.att && s.att[0] && s.att[0].src) || '';
+  return src === mainSource ? '' : src;
 }
 
 /** One song's evidence — shared by the play panel and a song node's own card. */
