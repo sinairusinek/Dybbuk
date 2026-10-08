@@ -190,16 +190,67 @@ must say so on the face of them, the way the song panel now does.
 `work_id`), 144 `performed_at` edges over 29 venue orgs, 12 places, 9 `premiered_in`.
 Stagings already hang off their theatre.
 
-#### Questions this raises, for Sinai
+#### Decided by Sinai, 2026-10-08
 
-- **View 1:** should a composer sit on a **ring of its own between the portraits and
-  the play band**, or in the centre beside the portraits? "Close to the authors"
-  admits both, and the choice decides whether composer→play lines cross the band.
-- **Do the views filter one band or re-lay the wheel?** Filtering keeps the mental
-  map — a play stays where it was, non-matching plays dim. Re-laying reads better per
-  view but the viewer loses their place between toggles.
-- **View 2 pulls a second dataset into the page.** 427 rows inline is fine; all 1 093
-  with thumbnails is not.
+1. **Composers sit in the centre, beside the portraits** — not on a ring of their own.
+   Consequence to design around: composer→play lines will cross the band, and 18
+   composers must share the centre with two portrait medallions.
+2. **The views filter one band in place; they do not re-lay the wheel.** Every play
+   keeps its position in all four views. A view dims what it does not concern, lights
+   what it does, and draws its own layer over the top. This keeps the viewer's place
+   across toggles and keeps the 217 title-only plays visible as context in every view
+   — the "most of this repertoire is lost" reading survives the toggle. The cost,
+   accepted: a view's 24–58 lit plays are scattered around the ring rather than
+   gathered into a shape.
+3. **Where the 1 093 media rows come from** — audited below before any build.
+
+#### Where the 1 093 come from (audited 2026-10-08)
+
+`DybbukMedia/data/media_manifest.tsv`, six harvests, declared in
+`DybbukMedia/data/sources.tsv`:
+
+| source | rows | what it is | item types |
+|---|---|---|---|
+| `dorot` | **786** | NYPL Dorot *plus* other archival holdings — **despite the name it is not one collection**. Holding institutions: YIVO 319, NYPL 111, LOC 34, Polona 17, Kaminska Theatre Museum 14, YBC 9, Boston PL 9 … | sheet_music 352, manuscript 268, program 127, poster 25, photograph 14 |
+| `album` | 114 | Zylbercweig, *Album fun yidishn teater* (1937); own KG in SQLite | photograph 83, page_scan 31 |
+| `transkribus` | 112 | Transkribus collection 18874 — notices, posters, **the Perlmutter card catalogue** | card_catalog 74, manuscript 26, poster 12 |
+| `edition` | 28 | the 28 editions in `YiDraCor/data/editions.json` | print_edition 19, manuscript 9 |
+| `jpress` | 28 | JPRESS historical Jewish press notices | press_notice 28 |
+| `lexicon` | 25 | Zylbercweig, *Leksikon fun yidishn teater* | page_scan 23, portrait 2 |
+
+**The Perlmutter material** is 74 `card_catalog` rows from `transkribus` (the card
+catalogue *affishn un programen*, 72 rows) plus scattered `dorot` rows citing the
+Sholem Perlmutter Collection at YIVO by series and folder — 273 rows mention
+Perlmutter in total.
+
+**Two facts that constrain what views 1–2 can show:**
+
+- **Almost nothing is an image on disk.** `local_path` is populated on **2 of 1 093
+  rows** — the two portraits already in the mandala. Only 385 rows carry even a
+  `source_url` (236 of the 786 `dorot` rows do). So these views can show **citations
+  and counts, not thumbnails**, unless a harvest step comes first.
+- **The anchoring is better than the first pass suggested, if the right matcher is
+  used.** Exact `play_key`→label matching reaches 427 rows / 76 works. But
+  **DybbukMedia already has a matcher — `translit_key()` in
+  `DybbukMedia/code/common.py`, with tests in `test_matching.py` — and it reaches 707
+  rows on 100 works with only 14 ambiguous**, once the index also covers the
+  catalogue's three alternative-title fields (`Play title by Daniela`, `Translated
+  Play title`, `שם אצל ברקוביץ`). **Use it; do not write a third matcher.**
+
+By type, those 707: sheet_music 283, manuscript 270, **card_catalog 40**, program 30,
+poster 28, press_notice 23, print_edition 19, photograph 14.
+
+**202 rows / 76 play keys still miss**, and they are real corpus plays whose spelling
+defeats the fold — *Blihmele*, *Shlekhte-Froy*, *Yakov un Esau*, *Soroh Sheyndel*,
+*Yosef in Egypten*, *Di Seder Nacht*. These want a human pass, not a looser matcher;
+`link_status` across the manifest is PROPOSED 910 / GAP 127 / LINKED 56, so **every
+view built on this must show provenance on its face**, the way the song panel does.
+
+#### Still open
+
+- View 1: 18 composers plus two portrait medallions have to share the centre. Does
+  a composer with 1 play get the same presence as Mogulesko with 6?
+- Does the toggle persist a selected play across views, or reset to the wheel?
 
 ### 3.1 Must change
 
