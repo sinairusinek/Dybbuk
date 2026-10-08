@@ -143,9 +143,34 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
 #dossier .cred .r{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;
   text-transform:uppercase;color:var(--ink-3);min-width:74px;flex:none;padding-top:2px}
 #dossier .cred .n{direction:rtl;unicode-bidi:plaintext}
-#dossier .songs{columns:2;column-gap:16px;display:block}
-#dossier .songs li{font-size:12.5px;color:var(--ink-2);direction:rtl;unicode-bidi:plaintext;
-  break-inside:avoid;margin-bottom:4px;line-height:1.35}
+/* Songs carry two titles in two scripts plus a citation, so each is a block,
+   not a list item in a column-flow. The old two-column list forced `rtl` on
+   every row, which mangled the 223 romanized titles. */
+#dossier .songs{display:flex;flex-direction:column;gap:13px}
+#dossier .songs li{font-size:12.5px;line-height:1.4;break-inside:avoid}
+#dossier .songs .t{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+#dossier .songs .rom{color:var(--ink);font-size:13.5px}
+#dossier .songs .yi{color:var(--ink-2);direction:rtl;unicode-bidi:plaintext;font-size:13px}
+#dossier .songs .by{color:var(--ink-2);font-style:italic;font-size:12px;margin-top:2px}
+#dossier .songs .by.other{color:var(--gold)}
+#dossier .songs .cite{color:var(--ink-3);font-size:11.5px;margin-top:3px;
+  display:flex;flex-direction:column;gap:2px}
+#dossier .songs .cite a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+#dossier .songs .cite a:hover{color:var(--gold)}
+#dossier .songs .cite .nm{direction:rtl;unicode-bidi:plaintext}
+/* Gramophone recordings — the one measure of a song's circulation we hold. */
+#dossier .songs .rec{display:inline-flex;align-items:baseline;gap:4px;flex:none;
+  font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;color:var(--gold);
+  border:1px solid var(--gold);border-radius:9px;padding:3px 6px;opacity:.85}
+/* `title_in_source` is the spelling the songbook printed — Yiddish on most
+   rows, German orthography on the Shund on Shellac ones. The English label is
+   LTR and the title may be RTL, so the title gets its own `plaintext` context;
+   without it the quotes and the trailing ! land on the wrong side. */
+#dossier .songs .alt{color:var(--ink-3);font-size:11.5px;font-style:italic}
+#dossier .songs .alt q{unicode-bidi:isolate;quotes:'“' '”'}
+#dossier .songs .note{color:var(--ink-3);font-size:11px;margin-top:2px}
+#dossier .songnote{font-size:11.5px;color:var(--ink-3);font-style:italic;
+  margin:0 0 11px;line-height:1.45}
 #dossier .empty{font-size:13px;font-style:italic;color:var(--ink-3)}
 #dossier .dateline{font:400 19px/1.3 'Playfair Display',Georgia,serif;margin:0;color:var(--ink)}
 #dossier .dateline .k{font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-left:7px}
@@ -372,6 +397,9 @@ const ICON = {
   lyrics: 'M6 20V6.5A2.5 2.5 0 0 1 8.5 4H18v13H8.5A2.5 2.5 0 0 0 6 19.5M9.5 8h5M9.5 11.5h5',
   arranger: 'M4 12h3l2.5-6 3 12 2.5-6h5',
   choreographer: 'M12 6.6a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6zM12 7.4v5.2M12 12.6 8.4 20M12 12.6 15.6 20M7.6 9.2 12 10.6l4.4-1.4',
+  // a song: a beamed pair of quavers. Distinct from `composer` (which is a
+  // single note and marks a PERSON) because this marks a WORK.
+  song: 'M9 17.6V5.2l9.5-1.7v12.4M9 17.6a2.2 2.2 0 1 1-4.4 0 2.2 2.2 0 0 1 4.4 0zM18.5 15.9a2.2 2.2 0 1 1-4.4 0 2.2 2.2 0 0 1 4.4 0z',
   // a venue / a theatre company
   venue: 'M3.5 20V9.6L12 4l8.5 5.6V20M3.5 20h17M9 20v-6h6v6M12 9.4v1.6',
   // a publisher / a printer: a press
@@ -1195,7 +1223,7 @@ function playSections(w, author){
       `<span class="n">${esc(n)}</span></li>`).join('') + '</ul>'));
 
   if (w.songs.length) S.push(sec('Songs', w.songs.length,
-    '<ul class="songs">' + w.songs.map(s2 => `<li>${esc(s2.title)}</li>`).join('') + '</ul>'));
+    songsBlock(w.songs)));
 
   if (!w.editions.length && !w.events.length && !w.songs.length)
     S.push(sec('Surviving traces',
@@ -1203,6 +1231,85 @@ function playSections(w, author){
        title in the catalogue under ${esc(author.short)}'s name.</p>`));
 
   return S;
+}
+
+/**
+ * The songs of one play.
+ *
+ * Each song is a Work in its own right in the graph, and the catalogue holds
+ * more about it than a title: both of its titles (the Yiddish is populated for
+ * all 225, the romanization for 223), the lyricist where the songbook credits
+ * one, the songbook and page it is printed on, and — for 52 of them — how many
+ * gramophone recordings Aylward's `Shund on Shellac` discography counts. All
+ * of that is cited evidence, so all of it is shown.
+ */
+function songsBlock(songs){
+  const recs = songs.reduce((a, s) => a + (s.rec || 0), 0);
+  const other = songs.filter(s => s.other).length;
+  // 217 of 225 song→play attachments are matcher output, not a human reading.
+  // Saying so once per panel is honest without flagging every row.
+  const prop = songs.filter(s => !s.reviewed).length;
+
+  const notes = [];
+  if (recs) notes.push(`${recs} gramophone recording${recs > 1 ? 's' : ''} ` +
+    `of ${songs.filter(s => s.rec).length} of these songs are catalogued ` +
+    `(Aylward, <i>Shund on Shellac</i>, Lemberg 1904–13).`);
+  if (other) notes.push(`${other} ${other > 1 ? 'are' : 'is'} credited to a ` +
+    `lyricist other than this play's author.`);
+  const unk = songs.filter(s => !s.by).length;
+  if (unk) notes.push(unk === songs.length
+    ? 'No songbook credits a lyricist for any of them.'
+    : `${unk} carr${unk > 1 ? 'y' : 'ies'} no stated lyricist.`);
+  if (prop === songs.length) notes.push(
+    `Attachment to this play is proposed by the catalogue matcher, not yet reviewed.`);
+  else if (!prop) notes.push(songs.length > 1
+    ? 'Attachment of these songs to this play has been reviewed and confirmed.'
+    : 'Attachment of this song to this play has been reviewed and confirmed.');
+  else notes.push(`${songs.length - prop} of ${songs.length} attachments are ` +
+    `reviewed; the rest are proposed by the catalogue matcher.`);
+
+  const li = songs.map(s => `<li>${songRow(s)}</li>`).join('');
+  return (notes.length ? `<p class="songnote">${notes.join(' ')}</p>` : '') +
+         `<ul class="songs">${li}</ul>`;
+}
+
+/** One song's evidence — shared by the play panel and a song node's own card. */
+function songRow(s){
+  const P = [];
+  P.push('<div class="t">');
+  if (s.rom) P.push(`<span class="rom">${esc(s.rom)}</span>`);
+  if (s.yid) P.push(`<span class="yi">${esc(s.yid)}</span>`);
+  // A count of recordings, not of anything else — labelled, not a bare digit.
+  if (s.rec) P.push(`<span class="rec" title="${s.rec} gramophone recording` +
+    `${s.rec > 1 ? 's' : ''} catalogued">♪ ${s.rec}</span>`);
+  P.push('</div>');
+
+  // The spelling the songbook actually printed, where it differs from the
+  // romanization — "Oj is dus a Mame" beside "Oy iz dos a mame".
+  if (s.src_title) P.push(`<div class="alt">printed as <q>${esc(s.src_title)}</q></div>`);
+
+  // Only a stated credit is printed. "Lyricist not stated" is the norm for
+  // 73 of 225 songs and on some plays for every row, where repeating it line
+  // after line buries the rows that DO carry a credit; the count goes in the
+  // section note instead.
+  if (s.by) P.push(`<div class="by${s.other ? ' other' : ''}">` +
+    `${esc(s.by)}${s.other ? ' — not this play’s author' : ''}</div>`);
+
+  if (s.att && s.att.length) {
+    // 8 songs are printed in two songbooks; each witness is its own line, so
+    // two citations never read as one.
+    P.push('<div class="cite">' + s.att.map(a => {
+      const bits = [a.src, a.pg].filter(Boolean).join(', ');
+      const label = `<span class="nm">${esc(bits)}</span>`;
+      const body = a.url
+        ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${label}</a>`
+        : label;
+      return `<span class="w"${a.full ? ` title="${esc(a.full)}"` : ''}>` +
+             `${body}</span>`;
+    }).join('') + '</div>');
+  }
+  if (s.note) P.push(`<div class="note">${esc(s.note)}</div>`);
+  return P.join('');
 }
 
 const ATTEST_LABEL = {
