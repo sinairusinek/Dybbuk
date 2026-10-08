@@ -144,6 +144,63 @@ B. For plays that do have traces, instead of opening a side panel, center on the
 
 _Write freely here — prose is fine, I'll turn it into work items._
 
+C. (2026-10-08) To accommodate visualizations we need alternative, **toggled views**:
+
+0. **Only the plays band**, in one row, none enlarged. If possible showing the
+   Yiddish titles, alternating (unless they can fit together outside the circle).
+1. **See the music** — will show composers, scores, song info and recordings, with
+   all info related to them. The composers should be located close to the authors in
+   the circle and each linked to all the plays they composed for.
+2. **Archival traces** — will show printed and ms editions and the cards from the
+   Perlmutter archive.
+3. **Performances** — theatres and events with all information related to them.
+
+#### Data audit for C (done 2026-10-08, not yet built)
+
+**View 0 is geometrically settled.** All 277 works have a Yiddish title (median 18
+characters, max 92). With radial labels the limit is angular pitch against
+line-height (~12.5 px), *not* title length — length only decides how much radius a
+label eats. Pitch at one ring of 277: R=420 → 9.5 px, R=520 → 11.8 px,
+**R=620 → 14.1 px, R=760 → 17.2 px**. So one row of Yiddish titles fits at
+**R ≥ 620**; alternating is only needed below that.
+
+**View 1 has material in the graph.** 18 composers / arrangers / lyricists over 46
+play-links (Mogulesko 6, Wohl 5, Friedsel 5, Abramovitsh 4, Brody 4, Sendler 3,
+Russotto 3, Perlmutter 3 …), the 225 songs, and 84 gramophone recordings across 52 of
+them. Relevant edges: `composer` 43, `arranger` 3, `lyrics` 2, `choreographer` 1.
+**Scores are not in the graph** — they are in DybbukMedia (352 `sheet_music` rows), so
+this view needs the media join below.
+
+**View 2 needs DybbukMedia; the graph alone is thin.** The graph holds only 27
+editions and 27 `holds` edges. The richness is in `DybbukMedia/data/media_manifest.tsv`
+(1 093 rows), which the mandala does **not** read at all today: 352 sheet_music,
+303 manuscript, 127 program, 97 photograph, **74 card_catalog — the Perlmutter
+cards** — 37 poster, 28 press_notice. The Perlmutter card catalogue (*affishn un
+programen*) is 72 of those rows; 273 rows are Perlmutter-tagged overall.
+
+**The join is the real work: 427 of the 1 093 rows are anchorable to a mandala work
+today.** Only **28** reach a work through `expression_id`; **421** reach one through
+`play_key` matching a work's label (904 rows carry a play_key, 201 distinct, but only
+70 of those keys match). By type: sheet_music 175, manuscript 137, **card_catalog 36**,
+poster 23, press_notice 22, print_edition 19, photograph 14. And `link_status` is
+PROPOSED 910 / GAP 127 / LINKED 56 — most anchors are machine-proposed, so these views
+must say so on the face of them, the way the song panel now does.
+
+**View 3 is ready from the graph as it stands.** 64 events (`date`, `event_type`,
+`work_id`), 144 `performed_at` edges over 29 venue orgs, 12 places, 9 `premiered_in`.
+Stagings already hang off their theatre.
+
+#### Questions this raises, for Sinai
+
+- **View 1:** should a composer sit on a **ring of its own between the portraits and
+  the play band**, or in the centre beside the portraits? "Close to the authors"
+  admits both, and the choice decides whether composer→play lines cross the band.
+- **Do the views filter one band or re-lay the wheel?** Filtering keeps the mental
+  map — a play stays where it was, non-matching plays dim. Re-laying reads better per
+  view but the viewer loses their place between toggles.
+- **View 2 pulls a second dataset into the page.** 427 rows inline is fine; all 1 093
+  with thumbnails is not.
+
 ### 3.1 Must change
 
 -
@@ -189,4 +246,6 @@ _Write freely here — prose is fine, I'll turn it into work items._
 | 2026-10-07 | Stagings regrouped under their theatre; the staging icon redrawn as a scalloped valance after the plain curtain read as two columns. |
 | 2026-10-07 | Documented plays moved to the band's outer lanes; the traces' shared ring removed so each play's traces spring radially from it, keeping the asymmetry; documented plays interleaved through their genre run so the sprays do not collide. |
 | 2026-10-07 | Tiers pulled in toward the author; the two play bands merged into one continuous three-lane band; footprints replaced by curtain / book / notebook icons with a legend key; focus fan moved outward and every node made clickable into the side panel. |
+| 2026-10-07 | Songs given their full record in the side panel: both titles, lyricist, songbook + page, gramophone-recording count, NLI links. Three defects fixed in `work_layer.py` — a 14-row column shift in the songs sheet, 92 lost reading notes, and the list's forced RTL. |
+| 2026-10-08 | Songs drawn in the wheel as a third tier of the hub fan. 34 of the 54 plays with songs have no other trace and had been opening onto an empty fan — 111 songs were stranded. |
 | 2026-10-06 | Spec §3 A/B applied: inner ring as coloured circles with author lines; footprint traces linked to their play; split interaction (panel for title-only, centred graph for traced); icon vocabulary; dates and attestations parsed. Published to the Pages site. |
