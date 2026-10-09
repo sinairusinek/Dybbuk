@@ -179,6 +179,50 @@ def best_match(names: list[str], place: str,
     return best
 
 
+def review_tier(hit: dict) -> str:
+    """Sub-rank the REVIEW band so a reviewer meets likely matches first.
+
+    295 of 530 rows land in REVIEW, and 268 of those share one shape: the
+    phonetic channel vouched for the pair while the skeleton did not. That
+    group runs from obviously-right (לאנדסבערגער צייטונג / Landsberger
+    Lager-Cajtung) to obviously-wrong (a long publisher name sharing one
+    incidental token with a short title), so the band needs ordering inside
+    it, not just a score.
+
+    What separates them is how much of each title the agreement covers. A
+    skeleton score of 0.18 means one token matched out of many -- the rest of
+    the name is unaccounted for, which is the signature of a coincidental
+    token hit rather than the same periodical.
+    """
+    score = hit["raw"]
+    phon = hit["phonetic"]
+    a_tokens = len(skeleton(hit["matched_on"]).split())
+    b_tokens = len(skeleton(hit["cand"].get(hit["galron_field"], "")).split())
+    ratio = min(a_tokens, b_tokens) / max(a_tokens, b_tokens, 1)
+
+    # Exact skeleton, phonetics merely hesitant: a reviewer confirms these fast.
+    if score >= T_STRONG:
+        return "A-exact-skeleton"
+    # Both channels substantially agree and the titles are comparably sized.
+    if phon >= 1.0 and score >= 0.60 and ratio >= 0.5:
+        return "B-both-agree"
+    # Phonetics vouches and the skeleton is at least partly there.
+    if phon >= 1.0 and score >= 0.40:
+        return "C-phonetic-plus"
+    # Partial agreement on BOTH channels. Ranked above phonetic-only because
+    # two channels half-agreeing beats one channel agreeing on one token --
+    # and because DM undercounts across scripts, where it compares a Yiddish
+    # IPA transcription against a raw Latin string (טריבונא אקאדעמיצקא /
+    # Trybuna Akademicka is a true match scoring only 0.50).
+    if phon >= 0.5 and score >= 0.55:
+        return "D-partial-both"
+    # Phonetics alone, with the titles differing in length -- one token of a
+    # long publisher name hitting a short title lives here. Mostly noise.
+    if phon >= 1.0:
+        return "E-phonetic-only"
+    return "F-weak-signal"
+
+
 def band(hit: dict) -> str:
     """STRONG / REVIEW / WEAK. Never "accepted" -- a human decides every row.
 
@@ -217,7 +261,7 @@ def band(hit: dict) -> str:
 
 
 COLUMNS = [
-    "stage", "band", "score", "phonetic", "signal", "place_agree",
+    "stage", "band", "tier", "score", "phonetic", "signal", "place_agree",
     "same_script", "qualifier_clash",
     "db_id", "cluster_id", "org_type", "db_name", "db_name_yiddish",
     "db_address", "matched_on", "galron_row_id", "galron_title",
@@ -232,6 +276,7 @@ def emit(stage: str, hit: dict, *, db_id="", cluster_id="", org_type="",
     cand = hit["cand"]
     return {
         "stage": stage, "band": band(hit),
+        "tier": review_tier(hit) if band(hit) == "REVIEW" else "",
         "score": f"{hit['score']:.3f}",
         "phonetic": f"{hit['phonetic']:.2f}", "signal": hit["how"],
         "place_agree": hit["place_agree"],
@@ -324,7 +369,10 @@ def main() -> None:
             print(f"  press-like clusters: {press_like}, matched: {cl_hits}",
                   file=sys.stderr)
 
-    out_rows.sort(key=lambda r: (r["stage"], -float(r["score"])))
+    band_order = {"STRONG": 0, "REVIEW": 1, "WEAK": 2}
+    out_rows.sort(key=lambda r: (
+        band_order.get(r["band"], 9), r["tier"],
+        -float(r["phonetic"]), -float(r["score"]), r["stage"]))
     with OUT.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=COLUMNS, delimiter="\t",
                                 lineterminator="\n", extrasaction="ignore")
@@ -336,6 +384,12 @@ def main() -> None:
     summary = ", ".join(f"{v} {k}" for k, v in sorted(counts.items()))
     print(f"wrote {OUT.name}: {len(out_rows)} rows ({summary})",
           file=sys.stderr)
+    tiers: dict[str, int] = {}
+    for row in out_rows:
+        if row["tier"]:
+            tiers[row["tier"]] = tiers.get(row["tier"], 0) + 1
+    for tier, count in sorted(tiers.items()):
+        print(f"    REVIEW {tier}: {count}", file=sys.stderr)
 
 
 if __name__ == "__main__":

@@ -162,9 +162,42 @@ Three guards keep known-bad pairs out of `STRONG`:
 Place is a **confirmation signal, never a filter** (except the qualifier clash
 above): only 11 of 183 press rows have any address, and papers moved.
 
+## REVIEW sub-tiers (`tier` column)
+
+295 rows is too many to meet in arbitrary order, and 268 of them share one
+shape: phonetics vouched for the pair while the skeleton did not. That group
+runs from obviously-right to obviously-wrong, so the band is sub-ranked by how
+much of each title the agreement actually covers. A skeleton score of 0.18
+means one token matched out of many — the rest of the name unaccounted for,
+which is the signature of a coincidental token hit, not the same periodical.
+
+The file is sorted STRONG → REVIEW (by tier) → WEAK, so it can be worked
+top-down and abandoned at any point.
+
+| Tier | Rows | What it is | Expect |
+|---|---|---|---|
+| `A-exact-skeleton` | 12 | spelling identical, phonetics hesitant | mostly true; fast to confirm |
+| `B-both-agree` | 42 | both channels agree, titles comparable in size | mostly true |
+| `C-phonetic-plus` | 142 | phonetics agrees, skeleton partly there | genuinely mixed — the bulk of the work |
+| `D-partial-both` | 9 | both channels *half* agree | mostly true |
+| `E-phonetic-only` | 84 | phonetics alone, titles very unequal in length | mostly noise; a long publisher name hitting a short title |
+| `F-weak-signal` | 6 | neither channel convincing | mostly noise, but see below |
+
+`D-partial-both` ranks above `E-phonetic-only` on purpose: two channels
+half-agreeing beats one channel agreeing on a single token. DM also undercounts
+across scripts — it compares a Yiddish IPA transcription against a raw Latin
+string — so `טריבונאַ אַקאַדעמיצקאַ` / `Trybuna Akademicka`, a true match,
+scores only 0.50 phonetically and would otherwise sink.
+
+**The tiers rank, they do not decide.** `F-weak-signal` still contains at least
+three true pairs that phonetics scored 0.00 (`איסט און וועסט`/`Ost und West`,
+`טאָגמאָרגען זשורנאַל`/`דער טאָג מאָרגען זשורנאל`,
+`לעמבערנער טאָגבלאַט`/`לעמבערגער טאגבלאט` — the last an OCR'd `נ` for `ג`).
+Don't discard a tier wholesale.
+
 ## Reviewing
 
-Fill `decision` / `reviewer` / `note`. Suggested vocabulary: `CONFIRM`,
+Work top-down. Fill `decision` / `reviewer` / `note`. Suggested vocabulary: `CONFIRM`,
 `REJECT`, `WRONG_PAPER` (homonym), `SAME_FAMILY` (related but distinct run).
 `row_id`/`galron_row_id` are positional — re-running the parser renumbers them,
 so complete a review round against one generated file.
