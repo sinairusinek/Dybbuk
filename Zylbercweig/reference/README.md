@@ -232,3 +232,60 @@ Work top-down. Fill `decision` / `reviewer` / `note`. Suggested vocabulary: `CON
 `REJECT`, `WRONG_PAPER` (homonym), `SAME_FAMILY` (related but distinct run).
 `row_id`/`galron_row_id` are positional — re-running the parser renumbers them,
 so complete a review round against one generated file.
+
+---
+
+# Friedberg, *Toldot ha-dfus ha-ivri be-Polanyah*
+
+Ch. B. Friedberg, **תולדות הדפוס העברי בפולניה** (*History of Hebrew Printing
+in Poland*), 2nd ed., Tel Aviv 1950. 202 pp.
+
+**Not kept in the repo** — it is an 8.4 MB scan and public domain. Sinai's copy
+came from HebrewBooks as `Hebrewbooks_org_36967.pdf`
+(<https://hebrewbooks.org/36967>); the Internet Archive also carries it. The
+PDF ships a usable OCR text layer, so `pdftotext` is enough — no re-OCR needed.
+
+## Why it matters for the org pipeline
+
+It is a **firm-by-firm, family-by-family** register of the Warsaw Hebrew
+printing houses, which is exactly the evidence `core_db` lacks when a cluster
+names a printer by a fuller firm name than the DB row does. Two of the
+publisher audit's three "needs a human" printer flags were settled from it in
+one pass (2026-10-10):
+
+- **Baumritter** (db 157). p.115: Efraim b. Binyamin Baumritter founded his
+  press in תרכ"ד/1864 with Yitshak Rotheblat; in תרנ"א/1891 he **took in his
+  son-in-law Naftali Ganshar**, and in תרנ"ה/1895 they separated. So the
+  cluster `בוימריטטער וחתנו גאנשאר` is the same press during its 1891–95
+  partnership, not a second firm.
+- **Lebenzohn** (db 24). pp.111–112: a four-generation dynasty — Avigdor
+  (press founded תקע"ח/1818) → his son **Yoel** (from תרי"ב/1852, when Avigdor
+  left for Eretz Yisrael) → Yoel's son **Yosef** (to ~תר"ס/1900). Yoel's sons
+  Gershon and Pesach opened a further press in תרט"ז/1856. So db 24's *Yoel*
+  and the cluster's *Yosef* are father and son, successive proprietors of one
+  house.
+- **Goldfarb** (db 50) is **absent** — 0 hits on every spelling. Expected:
+  Friedberg covers *Hebrew* printing, so a Yiddish-only publisher never
+  appears. A negative result here is not evidence of anything.
+
+It also yields relations the Leksikon states only obliquely: **הצפירה** was
+launched by Chaim Zelig Slonimski in תרכ"ב/1862 *at the Lebenzohn press*
+(p.112), linking db 68 to db 24's family as newspaper-to-printer.
+
+## Searching the text
+
+Two gotchas, both of which make a naive `grep` return nothing:
+
+1. The OCR preserves the book's **letter-spaced emphasis** — a firm's name is
+   set as `ב ו י מ ר י ט ט ע ר`, so the string `בוימריטטער` does not occur.
+   Strip all spaces into a flattened copy and search that, then map back.
+2. The text carries **bidi control characters** and uses `׳`/`״` (geresh,
+   gershayim) where a typed query uses `'`/`"`.
+
+        pdftotext book.pdf out.txt        # layout mode not needed
+        # strip U+200E/200F/202A-202E/2066-2069/061C, strip points,
+        # normalise ׳״ -> '" , then search a space-collapsed copy
+
+The index (pp. 176–182) is the fastest entry point: it lists each printer by
+surname with given names beneath, so it answers "are these two the same
+family?" directly. Printed page numbers run ~5 behind the PDF page numbers.
