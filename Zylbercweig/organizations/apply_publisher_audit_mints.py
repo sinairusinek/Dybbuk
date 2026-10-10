@@ -155,7 +155,13 @@ def main(apply: bool, reviewer: str, only: set[str] | None = None) -> None:
         if d.get("kind") == "mint" and d.get("action") == "add_to_mint":
             extras.setdefault((d.get("value") or "").strip(), []).append(d)
 
-    next_id = origin_high_water() + 1
+    # The floor is the HIGHER of origin's mark and the local file's. Origin
+    # guards against colliding with ids the app has minted; the local maximum
+    # guards against colliding with ids THIS session minted but has not pushed
+    # yet. Taking origin alone re-issued 2661, which Bletnitski already held.
+    local_max = max((int(r["db_id"]) for r in db_rows if r["db_id"].isdigit()),
+                    default=0)
+    next_id = max(origin_high_water(), local_max) + 1
     minted, skipped, entries = [], [], []
 
     for pid, d in starters.items():

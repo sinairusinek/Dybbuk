@@ -48,7 +48,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 50	שלמה גאָלדפאַרבּ	ש. גאָלדפֿאַרב		Publisher		ORG-C03940 | ORG-C06558 | ORG-C00874 | ORG-C02674 | ORG-C04117					
 52	היברו פּאַבלישינג קאָמפאני	היברו פּאָבלישינג קאָמפּאַני		Publisher		ORG-C01098 | ORG-C04737 | ORG-C05215					
 53	Yuropian Hibru poblishing ḳompani		יוראָפּיאַן היברו פּאָבלישינג ḳאָמפּאַני	Publisher							
-54	Di inṭernatsyonale biblioṭheḳ		די יןṭernatsyonale ביבליאָṭheḳ	Publisher							
+54	Di inṭernatsyonale biblioṭheḳ		די יןṭernatsyonale ביבליאָṭheḳ	Publisher				true	2332		
 55	Elizeum		עליזיים	Publisher		ORG-C05292					
 56	L. Ḥarik		ל. Ḥאַריק	Publisher							
 57	Progres	פּראָגרעס		Publisher	Nalewki 32, Warsaw	ORG-C01415 | ORG-C00937 | ORG-C02255 | ORG-C05576					
@@ -58,7 +58,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 62	אהרן פויסט| A. Faust			Publisher	Krakowska 13, Krakow						
 63	אַמקרויט עט פריינד| Amkroyt un Fraynd			Publisher		ORG-C04218 | ORG-C06894					
 64	בּנימין מונק|Benjamin Munk			Publisher	Kasimirgasse 16, Lemberg	ORG-C06527					
-65	דוד ראָטה|D. Roth			Publisher							
+65	דוד ראָטה|D. Roth			Publisher				true	1021		
 66	ש. ל. דייטשער| Sh. L. Deytsher			Printer	באזיא ציאלא 10, פודגורזה						
 67	לעווין אפשטיין	לעווין- עפּשטיין			Gęsia  גענשע/ גֶנשה 5, Warsaw	ORG-C01840 | ORG-C03915				לעווין אפשטיין	
 68	הצפירה	הצפירה			פייַנסקא 40, וורשה	ORG-C00210 | ORG-C02207 | ORG-C00446					
@@ -987,7 +987,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1018	משה ריכטערס וואַנדער-טרופּע	משה ריכטערס וואַנדער-טרופּע		traveling company		ORG-C02608 | ORG-C05403					
 1019	טרופּע קאָמפּאַנעעץ-ראָפּעל	טרופּע קאָמפּאַנעעץ-ראָפּעל		traveling company		ORG-C05968					
 1020	טרופּע מעערסאָן-עפּשטיין	טרופּע מעערסאָן-עפּשטיין		traveling company		ORG-C05867					
-1021		פֿערלאַג פֿון דוד ראָטה		Publisher		ORG-C06753 | ORG-C06976					
+1021		פֿערלאַג פֿון דוד ראָטה		Publisher		ORG-C06753 | ORG-C06976				דוד ראָטה|D. Roth	
 1022		אַרטיקער קולטוס-געמיינדע		Religious Institutions/Organizations		ORG-C03502 | ORG-C05732					
 1023		לעמבערגער טעמפּל (רעפֿאָרם-שול)		Religious Institutions/Organizations		ORG-C06422 | ORG-C02711 | ORG-C06612					
 1024		כאַרקאָווער יידישן טעאַטער פֿון אַרבעטער יוגנט		Theatre		ORG-C03448 | ORG-C03729					
@@ -2267,7 +2267,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2329	נפתלי גאָלדפאַדענס טרופּע	נפתלי גאָלדפאַדענס טרופּע		traveling company		ORG-C00041					
 2330	וויינשטיינס טרופּע	וויינשטיינס טרופּע		traveling company		ORG-C04992					
 2331	Biblioteka Narodowa (National Library of Poland)			Heritage Institution	al. Niepodległości 213, Warsaw, Poland					Polona|National Library of Poland|Biblioteka Narodowa	
-2332	The International Biblioteque (Internatsionale Bibliotek)	אינטערנאַציאָנאַלע ביבליאָטעק		Publisher		ORG-C06121				The International Biblioteque|Internatsionale Bibliotek|International Library	
+2332	The International Biblioteque (Internatsionale Bibliotek)	אינטערנאַציאָנאַלע ביבליאָטעק		Publisher		ORG-C06121				The International Biblioteque|Internatsionale Bibliotek|International Library|Di inṭernatsyonale biblioṭheḳ	
 2333	American Jewish Archives (Jacob Rader Marcus Center)			Heritage Institution	3101 Clifton Ave, Cincinnati, Ohio 45220, USA					American Jewish Archives|AJA|Jacob Rader Marcus Center of the American Jewish Archives	
 2334	St Petersburg State Theatre Library			Heritage Institution	Ostrovsky Square 6, St Petersburg, Russia					Leningrad State Theatre Library|ЛГТБ|Ленинградская государственная театральная библиотека|Санкт-Петербургская государственная театральная библиотека	
 2335	טשערנאָוויצער יידישן שפּיטאָל	טשערנאָוויצער יידישן שפּיטאָל		health institutions		ORG-C00321					
@@ -2597,3 +2597,11 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2659	"„הצפֿירה""-גרופּע פֿון דער פּיאָנערן פרויען אָרגאַניזאַציע"	"„הצפֿירה""-גרופּע פֿון דער פּיאָנערן פרויען אָרגאַניזאַציע"		jewish political bodies		ORG-C07489					
 2660	חיים גרינבערג-צענטער	חיים גרינבערג-צענטער		jewish political bodies		ORG-C07499					
 2661	Gebrider Bletnitski (Bletnitski Brothers)	בוכהאַנדלונג געברידער בלעטניצקי		Publisher	אָדעססאַ	ORG-C05028 | ORG-C05691				געברידער בלעטניצקי|בוכהאַנדלונג געברידער בלעטניצקי|האחים בלעטניצקי|ha-Ahim Bletnitski|Gebrider Bletnitski	
+2662		פאַרלאַג ת. יאָקובסאָן און מ. גאָלדבערג		Publisher		ORG-C04085 | ORG-C04914					
+2663		פאַרלאַג ב. שימין		Publisher		ORG-C00725 | ORG-C06681					
+2664		פאַרלאַג ש. שרעבערק		Publisher		ORG-C03710					
+2665		פֿאַרלאַג יאָטשקאָווסקי		Publisher		ORG-C01054 | ORG-C03951					
+2666		י. אַלאַפּין		Publisher		ORG-C04536 | ORG-C05289 | ORG-C06552					
+2667		ל. מאָרגענשטערן		Publisher		ORG-C05293 | ORG-C05983 | ORG-C06062					
+2668		אברהם הירש קאַצענעלבאָגן		Publisher		ORG-C02212					
+2669		פערלאַג מ. גאָלדפֿאַרב		Publisher		ORG-C04431					
