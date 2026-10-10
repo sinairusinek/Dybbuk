@@ -289,3 +289,67 @@ Two gotchas, both of which make a naive `grep` return nothing:
 The index (pp. 176–182) is the fastest entry point: it lists each printer by
 surname with given names beneath, so it answers "are these two the same
 family?" directly. Printed page numbers run ~5 behind the PDF page numbers.
+
+---
+
+# Yiddish Book Center — Digital Yiddish Library
+
+`ybc_publisher_lookup.py` — publisher lookups against the YBC's digitized
+holdings, **13,661 volumes**.
+
+## Why this one works when the others don't
+
+Every catalogue this project actually wants refuses scripted access:
+`yiddishbookcenter.org` itself returns **403**, and so do NLI, WorldCat and the
+OSU lexicon host. But the Digital Yiddish Library is **hosted on the Internet
+Archive** as collection `nationalyiddishbookcenter`, and IA's
+`advancedsearch.php` is open and unauthenticated. Query that instead of the
+YBC front end:
+
+    https://archive.org/advancedsearch.php?q=collection:"nationalyiddishbookcenter"+AND+publisher:(goldfarb)&output=json
+
+## What it settles, and what it can't
+
+It gives, for a surname, **every imprint with its city and year**. That is
+exactly the evidence needed to tell a spelling variant from a second firm:
+
+| Pattern in the results | Reading |
+|---|---|
+| one initial, one city, continuous years | one firm |
+| two initials, same city, overlapping years | two firms, often one family |
+| one name, two cities, clean break | the firm moved |
+
+It is **not** an authority file. `publisher` is a transcribed imprint line, so
+one firm shows up as `Sh. Goldfarb`, `S. Goldfarb` and `Shelomoh Goldfarb`, and
+one city as `Ṿarshe` / `Ṿarsha` / `Ṿarshoy` / `Warszawa`. The script clusters
+both; don't read a raw facet count.
+
+It is also **not complete** — one library's holdings, weighted to literary
+Yiddish and to what reached America. Alapin, Lidski, Jatshkovski, Morgenstern
+and Katsenelbogn all return **0**, and every one of them is a real Warsaw
+house. *An absence here is not evidence.*
+
+## Two traps
+
+1. **Search romanized, not Hebrew.** Hebrew-script publisher strings are on
+   only a fraction of records; `publisher:"קולטור"` finds 3 items where
+   `publisher:kultur` finds 20. Pass several spellings — `bzhoza OR bzshoza`
+   finds 135, `bzhoza` alone finds few.
+2. **The romanization arrives DECOMPOSED.** `Ṿ` is `V` + U+0307, so a pattern
+   written with a precomposed `Ṿ` silently never matches and one city
+   fragments into a row per transcription. Strip combining marks before
+   comparing — `strip_marks()` in the script does this.
+
+## What it has settled so far (2026-10-10)
+
+- **Goldfarb** (db 50), which Friedberg could not answer because his scope is
+  Hebrew printing: **Sh. = S. = Shelomoh**, one Warsaw firm, 57 items
+  1900–1933. **M. Goldfarb is separate**, 10 items 1924–33, running
+  concurrently — a different firm, probably a relative. No `L.` Goldfarb
+  exists, so the cluster's `ל. גאָלדפאַרב` is likely an OCR slip for `מ.`
+- **Bletnitski**: imprinted `ha-Aḥim Bleṭnitsḳi` ("the Bletnitski Brothers")
+  in **Vilna** 1897 and 1909 — where both clusters say **Odessa**. Settle the
+  city before minting.
+- **Kultur**: no pre-1918 "Kultur" imprint in the collection at all; every hit
+  is Kultur-Lige (from 1922) or a later namesake. Consistent with treating the
+  Minsk and Warsaw imprints as unrelated, but not itself evidence.
