@@ -23,9 +23,9 @@ a reference, not a source of organizations. Nothing of Galron's gets minted.
 
 | | |
 |---|---|
-| Decisions recorded | **160** — 23 CONFIRM, 127 REJECT, 7 RESEARCH_FURTHER, 3 NOT_A_NEWSPAPER |
+| Decisions recorded | **160** — 24 CONFIRM, 127 REJECT, 6 RESEARCH_FURTHER, 3 NOT_A_NEWSPAPER |
 | Applied to core_db | **5 address cells** (`8e4f29721`). Nothing else. |
-| Open on the form | **81 tier rows + 28 unlinked titles** (was 80; the parallel session added one — see the hazard at the end) |
+| Open on the form | **57 tier rows + 28 unlinked titles** (down from 81: the two matcher defects below are now fixed, which cleared 24) |
 | Never reviewed | 98 STRONG band, 164 WEAK band |
 
 Decided and closed: A1, A2 (73 rejected on place conflict), B, D, F (6 of 7),
@@ -39,14 +39,19 @@ C1a (7 of 8 groups, on location).
 
 | Section | Open | Note |
 |---|---|---|
-| Tier C | 37 of 75 | C1a's קולטור group is the one location could not settle; C1b's 17 unlisted rows are in the TSV, not the doc |
-| Tier E | 43 of 43 | untouched; expect mostly REJECT (one row is db63, newly minted next door) |
+| Tier A | 8 | new rows surfaced by the widened blocking; not the decided A1/A2 |
+| Tier C | 29 | C1a's קולטור group is the one location could not settle; C1b's unlisted rows are in the TSV, not the doc |
+| Tier E | 19 | was 43 — the language gate cleared 24. Expect mostly REJECT still |
 | Tier F | 1 | `ORG-C01891` *Yidishe Folksbibliotek* vs *Yidishes Folksblatt* |
 | Unlinked (Zylbercweig) | 28 of 29 | each pre-judged in `unlinked_judgements.tsv`: 22 are real titles, 2 generic, 2 books, 3 unclear |
 
-7 rows are parked at `RESEARCH_FURTHER`, not open. **One of them is already
-answered:** `ORG-C07330` — Landsberg's *Lager-Cajtung* renamed itself *Jidisze
-Cajtung* in 1946, so it is the same paper and confirmable as it stands.
+6 rows are parked at `RESEARCH_FURTHER`, not open. `ORG-C07330` was closed as
+CONFIRM this session — the research had answered it (Landsberg's
+*Lager-Cajtung* renamed itself *Jidisze Cajtung* in 1946).
+
+The form itself still shows the pre-fix tables. Regenerating Tier C and E
+against the current run is the first thing worth doing next session; the row
+*sets* shrank, so some rows on the form no longer exist.
 
 ### 1. Finalise cluster merging and alignment
 
@@ -87,19 +92,28 @@ whether `org_type` should mark them at all.
 
 ---
 
-## Two known defects in the matcher
+## Two matcher defects — both FIXED this session
 
-**`language` is never consulted.** It is a column in the union list and the
-matcher ignores it. This produced the `ORG-C01415` error: Zylbercweig's
-פּראָגרעס (a Warsaw *publisher*) matched Galron's איל פרוגריסו (a New York
-**Ladino** paper) because both skeletons reduce to `frgrs`. A Yiddish-corpus
-org matching a Ladino, German or Hungarian title should be penalised
-automatically. **Fixing this first would likely clear noise from Tier E.**
+**`language` is now consulted** (`press_match_key.language_compatible`).
+Galron records each title's language and the matcher ignored it, which let
+Zylbercweig's פּראָגרעס — a Warsaw *publisher* — match New York's **Ladino**
+איל פרוגריסו, both skeletons reducing to `frgrs`. Now a title with no
+Yiddish/Hebrew component demotes one band.
 
-**Publishers match newspapers.** 4 Tier E rows pair a Zylbercweig publisher
-with a paper — Kletskin's publishing house → *Vilner Togblat*, two Warsaw
-publishing committees → *Di Abend Tsaytung*. The org_type is known on the
-Zylbercweig side and could gate this.
+Deliberately narrow, after a first attempt over-reached. A mixed entry
+("רוסית/יידיש", "Russian / Hebrew / English") counts as compatible, and the
+penalty applies **only when the titles do not already agree outright** —
+because a Yiddish paper is routinely catalogued under an English or Russian
+name. The first pass demoted 13 correct pairs including `db249`
+פֿאַרווערטס → *Forward* and both *Russkii Evrei* rows Sinai had confirmed.
+
+**Publisher→newspaper matches are now gated** (`FIRM_TYPE_RE` + the
+`zyl_is_firm` column). A Zylbercweig org typed Publisher or Printer matching a
+newspaper title is a type mismatch and demotes one band. Not a veto: a firm and
+the paper it printed often shared a name.
+
+Effect: Tier E 43 → 19, total open 81 → 57, STRONG 98 → 95. Two new columns in
+the review TSV, `language_ok` and `zyl_is_firm`, say which rule fired.
 
 ## Traps that cost time here
 

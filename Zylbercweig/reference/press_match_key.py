@@ -326,3 +326,33 @@ def place_agree(a_place: str, b_place: str) -> bool:
                        if len(x) >= 3 and len(y) >= 3):
                     return True
     return False
+
+
+# --- language compatibility (cascade stage 5: domain equivalence) -----------
+# Galron records each title's language and the matcher ignored it, which let a
+# Warsaw Yiddish PUBLISHER (פּראָגרעס) match New York's LADINO איל פרוגריסו --
+# both skeletons reduce to "frgrs". Zylbercweig's corpus is Yiddish and Hebrew,
+# so a candidate in neither is weaker evidence by definition.
+#
+# Deliberately permissive: a mixed entry ("רוסית/יידיש", "Russian / Hebrew /
+# English") counts as compatible, because the paper did carry Yiddish or
+# Hebrew. Only a title with NO Yiddish/Hebrew component is penalised, and the
+# penalty is a demotion, never a veto -- a Yiddish theatre person really did
+# write for the Hungarian and Polish Jewish press.
+
+_CORPUS_LANGS = (
+    "יידיש", "עברית", "ייִדיש",            # as the Hebrew-script sheet writes them
+    "yiddish", "hebrew",                    # as the Latin sheet writes them
+)
+
+
+def language_compatible(language: str) -> bool:
+    """Does this Galron language field include Yiddish or Hebrew at all?
+
+    An empty field is treated as compatible: absence of data is not evidence
+    against a pair.
+    """
+    if not language or not language.strip():
+        return True
+    low = language.strip().lower()
+    return any(tag in low for tag in _CORPUS_LANGS)

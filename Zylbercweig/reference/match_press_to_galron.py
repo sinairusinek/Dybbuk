@@ -29,8 +29,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from press_match_key import (HEBREW_RE, PHONETIC_AVAILABLE,  # noqa: E402
-                             phonetic_agreement, place_agree, similarity,
-                             skeleton)
+                             language_compatible, phonetic_agreement,
+                             place_agree, similarity, skeleton)
 
 HERE = Path(__file__).resolve().parent
 ORGS = HERE.parent / "organizations"
@@ -57,6 +57,13 @@ MIN_SKELETON_CONSONANTS = 4
 
 PRESS_TYPE_RE = re.compile(
     r"newspaper|journal|periodical|publish|printer|press", re.I)
+
+# Within that set, these are firms rather than periodicals. A publisher
+# matching a newspaper title is a type mismatch: 4 Tier E rows paired Kletskin's
+# publishing house with Vilner Togblat and two Warsaw publishing committees with
+# Di Abend Tsaytung. Reported and demoted, not vetoed -- a firm and the paper it
+# printed often shared a name.
+FIRM_TYPE_RE = re.compile(r"publish|printer", re.I)
 
 # Cluster names that look like periodicals without being typed as such.
 PRESS_HINT_RE = re.compile(
@@ -226,6 +233,7 @@ def best_match(names: list[str], place: str,
                     shared = shared | (qual_a & qual_b)
                 span = span_verdict(year_span(dates),
                                     year_span(cand["years_covered"]))
+                lang_ok = language_compatible(cand["language"])
                 # A place agreement is worth a nudge, never a veto.
                 adjusted = min(1.0, score + 0.03) if shared else score
                 same_script = bool(HEBREW_RE.search(name)) == bool(
@@ -240,7 +248,7 @@ def best_match(names: list[str], place: str,
                         "same_script": same_script, "phonetic": phon,
                         "qualifier_clash": qualifier_clash,
                         "place_conflict": place_conflict, "span": span,
-                        "db_dates": dates,
+                        "db_dates": dates, "lang_ok": lang_ok,
                     }
     return best
 
@@ -315,6 +323,18 @@ def band(hit: dict) -> str:
     # York, countless times over these decades) is a real pattern, not an error.
     if hit["place_conflict"]:
         return "REVIEW" if hit["raw"] >= T_STRONG else "WEAK"
+    # Galron's title is in a language the Zylbercweig corpus does not write
+    # (Ladino, German, Hungarian...). Weaker evidence -- BUT only when the
+    # titles do not already agree outright. A Yiddish paper is routinely
+    # catalogued under an English or Russian name (פֿאַרווערטס / Forward,
+    # רוסקי יעוורעי / Russkii Evrei, איזראעליט / Izraelita), and demoting those
+    # on the language field alone was wrong: the first pass dropped 13 pairs
+    # including two Sinai had already confirmed.
+    if not hit["lang_ok"] and hit["raw"] < T_STRONG:
+        return "WEAK"
+    # The Zylbercweig side is a firm, not a periodical.
+    if hit.get("firm"):
+        return "REVIEW" if hit["raw"] >= T_STRONG else "WEAK"
 
     # Short keys collide too readily to assert anything, however they scored.
     if len(key) < MIN_SKELETON_CONSONANTS:
@@ -335,7 +355,7 @@ def band(hit: dict) -> str:
 COLUMNS = [
     "stage", "band", "tier", "score", "phonetic", "signal", "place_agree",
     "same_script", "qualifier_clash", "place_conflict", "span_check",
-    "db_dates",
+    "db_dates", "language_ok", "zyl_is_firm",
     "db_id", "cluster_id", "org_type", "db_name", "db_name_yiddish",
     "db_address", "matched_on", "galron_row_id", "galron_title",
     "galron_field", "galron_place", "galron_years", "galron_language",
@@ -357,6 +377,8 @@ def emit(stage: str, hit: dict, *, db_id="", cluster_id="", org_type="",
         "qualifier_clash": "Y" if hit["qualifier_clash"] else "",
         "place_conflict": "Y" if hit["place_conflict"] else "",
         "span_check": hit["span"], "db_dates": hit["db_dates"],
+        "language_ok": "" if hit["lang_ok"] else "N",
+        "zyl_is_firm": "Y" if hit.get("firm") else "",
         "db_id": db_id, "cluster_id": cluster_id, "org_type": org_type,
         "db_name": name, "db_name_yiddish": name_yiddish, "db_address": address,
         "matched_on": hit["matched_on"],
@@ -396,6 +418,7 @@ def main() -> None:
         # 171 of 182 press rows.
         hit = best_match(names, row.get("address", ""), index)
         if hit:
+            hit["firm"] = bool(FIRM_TYPE_RE.search(row.get("org_type") or ""))
             db_hits += 1
             out_rows.append(emit(
                 "db", hit, db_id=row.get("db_id", ""),
@@ -451,6 +474,7 @@ def main() -> None:
                                  if row.get(c, "").strip())
                 hit = best_match(names, row.get(place_col, ""), index, dates)
                 if hit:
+                    hit["firm"] = bool(FIRM_TYPE_RE.search(org_type))
                     cl_hits += 1
                     out_rows.append(emit(
                         "cluster", hit, cluster_id=cid, org_type=org_type,
