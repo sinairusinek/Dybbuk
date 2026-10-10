@@ -1,0 +1,156 @@
+decision_id	kind	db_id	cluster_id	action	value	confidence	rationale
+P001	out_of_project	0		set_out_of_project	true	high	Modern Israeli trade publisher (Am Oved); outside the Zylbercweig corpus. No cluster can match it.
+P002	out_of_project	1		set_out_of_project	true	high	Modern Israeli trade publisher (Keter); outside the corpus.
+P003	out_of_project	2		set_out_of_project	true	high	Modern Israeli trade publisher (Hakibbutz Hameuchad); outside the corpus.
+P004	out_of_project	5		set_out_of_project	true	high	Modern Israeli trade publisher (Babel); outside the corpus.
+P005	out_of_project	6		set_out_of_project	true	high	Modern Israeli trade publisher (N. Tversky); outside the corpus.
+P006	out_of_project	7		set_out_of_project	true	high	Modern Israeli trade publisher (Sifriyat Maariv); outside the corpus.
+P007	out_of_project	8		set_out_of_project	true	high	Modern Israeli trade publisher (Bimat Kedem); outside the corpus.
+P008	out_of_project	11		set_out_of_project	true	high	Modern Israeli trade publisher (Sifrei Siman Kria); outside the corpus.
+P009	out_of_project	12		set_out_of_project	true	high	Modern Israeli trade publisher (Yediot Sifrei Hemed); outside the corpus.
+P010	out_of_project	15		set_out_of_project	true	high	Modern Israeli trade publisher (Modan); outside the corpus.
+P011	out_of_project	16		set_out_of_project	true	high	Modern Israeli trade publisher (Sifrei Aliyat Hagag); outside the corpus.
+P012	out_of_project	17		set_out_of_project	true	high	Modern Israeli trade publisher (Yediot Aharonot); outside the corpus.
+P013	out_of_project	18		set_out_of_project	true	high	Modern Israeli trade publisher (Sifrei Hemed); outside the corpus.
+P014	out_of_project	19		set_out_of_project	true	high	Modern Israeli trade publisher (Sifriyat Poalim); outside the corpus.
+P015	out_of_project	20		set_out_of_project	true	high	Modern Israeli trade publisher (Sifriya LaAm); outside the corpus.
+P016	out_of_project	21		set_out_of_project	true	high	Modern Israeli trade publisher (Hargol); outside the corpus.
+P017	out_of_project	22		set_out_of_project	true	high	Modern Israeli trade publisher (Schocken); outside the corpus.
+P018	out_of_project	23		set_out_of_project	true	high	Modern Israeli trade publisher (HaSifria HaHadasha); outside the corpus.
+P019	restore_type	47		set_org_type	Publisher	high	org_type is empty in core_db but org_type_canonical_mapping.tsv records Publisher. Lost type keeps the row out of every publisher queue.
+P020	restore_type	48		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (N. Rozenblum).
+P021	restore_type	49		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (E. Gitlin).
+P022	restore_type	50		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Sh. Goldfarb).
+P023	restore_type	52		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Hebrew Publishing Company).
+P024	restore_type	53		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Yuropian Hibru poblishing kompani).
+P025	restore_type	54		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Di internatsyonale bibliothek).
+P026	restore_type	55		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Elizeum).
+P027	restore_type	56		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (L. Charik).
+P028	restore_type	57		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Progres).
+P029	restore_type	61		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Kunst).
+P030	restore_type	62		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (A. Faust).
+P031	restore_type	63		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Amkroyt un Fraynd).
+P032	restore_type	64		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (Benjamin Munk).
+P033	restore_type	65		set_org_type	Publisher	high	Empty org_type; canonical mapping records Publisher (D. Roth).
+P034	align	1516	ORG-C03842	add_cluster_link		high	דיא וואַרהייט פּאָבּלישינג קאָמפּאַני = וואָרהייט פובלישינג קאָמפּאָני. Skeleton exact; both mentions New York 1916.
+P035	align	2332	ORG-C06121	add_cluster_link		high	דיאַ אינטערנאַציאָנאַלע ביבליאָטעק = אינטערנאַציאָנאַלע ביבליאָטעק, differing only by the article. Gordin entry, New York.
+P036	align	1936	ORG-C06984	add_cluster_link		high	פֿאַרלאַג מייזעל, New York 1911. db 1936 already carries 8 Meizel variants including פֿ'ג מייזעל and מ. מייזעל.
+P037	align	1936	ORG-C00366	add_cluster_link		high	פ׳ג פֿון מאַקס מייזעל, New York. db 1936 already holds ORG-C03997 מאַקס מייזעל and ORG-C06396 מאַקס נ. מייזעל.
+P038	align	1869	ORG-C02513	add_cluster_link		high	ח. בזשאַזא, Warsaw. Skeleton exact against db 1869 פֿאַרלאָג ח. בזשאזא.
+P039	align	1869	ORG-C05150	add_cluster_link		high	בזשאַזאָ / בזשאָזאַ, Warsaw 1928. Spelling variant of the same Warsaw house.
+P040	align	952	ORG-C00524_Q02	add_cluster_link		high	פֿאַרלאַג ב. קלעצקין, imprint "ווילנע-וואַרשע 1931" — the firm's own double imprint, not a second house. Its _Q01 sibling is already linked to db 952.
+P041	align	952	ORG-C02924	add_cluster_link		medium	Bare surname קלעצקין, the Vilna firm. No place in the cluster, so place cannot confirm; the surname is distinctive enough in this corpus.
+P042	align	1086	ORG-C04511	add_cluster_link		high	ראָזענקראַנץ-שרייפטזעצער = db 1086 דרוקעריי פֿון שריפֿטזעצער און ראָזענקראַנץ, same two partners in reverse order. db 1086 already holds the Fin/Rozenkrants/Shriftzetser variant.
+P042b	align	1517	ORG-C03534	add_cluster_link		high	יוסף פ. קאַץ מוזיק-פֿאַרלאַג = db 1517 יוסף פּ. קאַץ פּאָבלישינג קאָמפּאָני, New York.
+P043	align	63	ORG-C04218	add_cluster_link		high	פערלאַג פון אַמקרויט עט פֿריינד = db 63 אַמקרויט עט פריינד / Amkroyt un Fraynd. Przemysl/Podgorze. Requires P031 (type restore) to surface.
+P044	align	63	ORG-C06894	add_cluster_link		high	פֿאַרלאַג אַמקרויט עט פֿריינד, Przemysl. Same firm as P043.
+P045	align	54	ORG-C06121	note_only		high	Alternative target for ORG-C06121: db 54 Di internatsyonale bibliothek is the same publisher as db 2332. Resolve the duplicate (P060) before linking; P035 links to 2332 as the fuller row.
+P046	align	55	ORG-C05292	add_cluster_link		high	פערלאַג עליזעאום, Warsaw = db 55 Elizeum. Requires P026.
+P047	align	57	ORG-C00937	add_cluster_link		high	פֿאַרלאַג „פּראָגרעס“, Warsaw = db 57 Progres (already holds ORG-C01415). Requires P028.
+P048	align	57	ORG-C02255	add_cluster_link		medium	פּ׳פ „פּראָגרעס“, Warsaw — abbreviation of the same Warsaw Progres.
+P049	align	57	ORG-C05576	add_cluster_link		medium	פֿין „פּראָגרעס“ — no place; "פֿין" is likely an OCR slip for פֿ'ג. Same Progres.
+P050	align	61	ORG-C00612	add_cluster_link		medium	פֿאַרלאַג „קונסט", London = db 61 קונסט|Kunst. Place is not in the db row, so this rests on the name alone. Requires P029.
+P051	align	61	ORG-C05936	add_cluster_link		medium	פיג קונסט (= פֿ'ג קונסט), no place. Same Kunst. Requires P029.
+P052	align	64	ORG-C06527	add_cluster_link		high	פֿאַרלאָג מונק, Warsaw = db 64 בּנימין מונק / Benjamin Munk. Requires P032.
+P053	align	68	ORG-C00446	add_cluster_link		high	דרוק „הצפירה‟, Warsaw = db 68 הצפירה (already holds ORG-C00210, ORG-C02207).
+P054	align	74	ORG-C05567	add_cluster_link		high	„יבנה", Warsaw תרס"ח = db 74 פערלאגס-בוכהאנדלונג ״יבנה״.
+P055	align	74	ORG-C06557	add_cluster_link		high	פאַרלאַג „יבנה“, Warsaw 1910 = db 74 Yabne.
+P056	align	1021	ORG-C06061	reject		high	Not a match for any Baumritter row. See P057.
+P057	flag	157	ORG-C06061	needs_research		medium	בוימריטטער וחתנו גאנשאר ("Baumritter and his son-in-law Ganshar"), Warsaw, Bielanska 16, vs db 157 Printer "Baumritter" with no other field. Probably the same printing house under its fuller firm name, but db 157 carries nothing to confirm against.
+P058	flag	24	ORG-C06526	needs_research	 	medium	db 24 is Printer יואל לעבענזאהן; the cluster reads דפוס של ר" יוסף לעבענזאָהן (Warsaw) — YOEL vs YOSEF. Same Warsaw printing dynasty, different given name. Do not auto-link.
+P059	flag	50	ORG-C04431	needs_research		low	פערלאַג מ. גאָלדפֿאַרב / פערלאג ל. גאָלדפאַרב (Warsaw, n=5) vs db 50 שלמה גאָלדפאַרבּ / ש. גאָלדפֿאַרב. Three different initials (M / L / Sh) across the evidence; needs a human.
+P060	duplicate	54	 	merge_candidate	2332	high	db 54 "Di internatsyonale bibliothek" and db 2332 "The International Biblioteque (Internatsionale Bibliotek)" are the same New York publisher. 54's empty org_type is why no dedup pass caught the pair.
+P061	duplicate	65		merge_candidate	1021	high	db 65 דוד ראָטה|D. Roth duplicates db 1021 פֿערלאַג פֿון דוד ראָטה, which already holds both Roth clusters (ORG-C06753, ORG-C06976) from Lemberg.
+P062	reject	1140	ORG-C02295_Q02	reject		high	Skeleton scores 1.000 but WRONG: this פֿאַרלאַג קולטור is Warsaw 1912, while db 1140 holds _Q01 = Minsk. The _Q split is a deliberate place separation; a different house.
+P063	reject	1871	ORG-C01318_Q02	reject		high	Skeleton scores 1.000 but WRONG: this אַרבעטער היים is Riga, while db 1871 holds _Q01 = Warsaw (Karmelicka 23). Different body.
+P064	reject	74	ORG-C07368	reject		high	הוצאָת „יבנה" is TEL AVIV (Aharon Zeitlin's Hebrew dramatic poem), not the Warsaw Yabne of db 74. Hebrew-language Israeli house of the same name.
+P065	retype	310	ORG-C06032	keep_separate	Publisher	high	רומענישן פֿאַרלאָגס-קאָמיטעט — the ROMANIAN committee that financed a Lexicon volume. A distinct body, not a name variant of db 310; do not collapse.
+P066	retype	310	ORG-C04471	keep_separate	Publisher	high	פּוילישן פֿארלאַגס-קאָמיטעט פֿון ערשטן באַנד — the POLISH committee for volume 1. Distinct body.
+P067	retype	310	ORG-C05971	keep_separate	Publisher	high	אַרגענטינער פֿאַרלאָנס-קאָמיטעט — the ARGENTINE committee. Distinct body (with ORG-C05611).
+P068	align	310	ORG-C02389	add_cluster_link		medium	פֿאַרלאַג-קאָמיטעט פֿון "לעקסיקאָן פון יידישן טעאַטער" with no national qualifier — generic, belongs with db 310, which already holds ORG-C00702 (n=38) including its קאָמיטעט forms.
+P069	align	310	ORG-C02437	add_cluster_link		medium	קאָמיטעט אַרויסצוגעבן דעם „לעקסיקאן פון יידישן טעאַטער“ — generic committee phrasing, same as P068.
+P070	retype		ORG-C00388	set_cluster_type	Media (Radio/ Film/TV)	high	Columbia Records — a record label, not a publisher.
+P071	retype		ORG-C02733	set_cluster_type	Media (Radio/ Film/TV)	high	Gramophone — record label.
+P072	retype		ORG-C00386	set_cluster_type	Media (Radio/ Film/TV)	high	Stinson Record Company — record label.
+P073	retype		ORG-C00387	set_cluster_type	Media (Radio/ Film/TV)	high	International Records — record label.
+P074	retype		ORG-C01017	set_cluster_type	Media (Radio/ Film/TV)	high	Tikva Records — record label.
+P075	retype		ORG-C04466	set_cluster_type	Media (Radio/ Film/TV)	high	Brunswick Record Company — record label.
+P076	retype		ORG-C04813	set_cluster_type	Media (Radio/ Film/TV)	high	Columbia — record label (bare form of ORG-C00388).
+P077	retype		ORG-C04814	set_cluster_type	Media (Radio/ Film/TV)	high	Victor Company — record label.
+P078	retype		ORG-C06923	set_cluster_type	Media (Radio/ Film/TV)	high	RCA-Victor Company — record label.
+P079	retype		ORG-C07370	set_cluster_type	Media (Radio/ Film/TV)	high	Victor — record label (bare form).
+P080	retype		ORG-C07371	set_cluster_type	Media (Radio/ Film/TV)	high	Pathé — record label.
+P081	retype		ORG-C07308	set_cluster_type	Musical Organization	high	Metro Music — music publisher/label. Per the Glotshteyn entry this is the successor name of Yosef P. Katz (db 1517); see P082.
+P082	retype		ORG-C07346	set_cluster_type	Musical Organization	high	מעטראָ מוזיק קאָמפּאָני — the entry for Glotshteyn says Yosef P. Katz music-farlag "later Metro Music Company", so this is db 1517's successor name. Needs a succession decision, not a plain merge.
+P083	retype		ORG-C04785	set_cluster_type	Musical Organization	high	Universal Edition, Berlin — sheet-music publisher.
+P084	retype		ORG-C01345	set_cluster_type	Media (Radio/ Film/TV)	high	Paramount — film studio.
+P085	retype		ORG-C01344	set_cluster_type	Media (Radio/ Film/TV)	high	Fox — film studio.
+P086	retype		ORG-C03041	set_cluster_type	Media (Radio/ Film/TV)	high	Sascha Film — film company.
+P087	retype		ORG-C04314	set_cluster_type	Media (Radio/ Film/TV)	high	Sovkino — Soviet film company.
+P088	retype		ORG-C03929	set_cluster_type	Media (Radio/ Film/TV)	high	UFA, Berlin — film studio.
+P089	retype		ORG-C04103	set_cluster_type	Media (Radio/ Film/TV)	high	Selznick Moving Picture Company — film company.
+P090	retype		ORG-C02914	set_cluster_type	Media (Radio/ Film/TV)	high	Firm "Mintus" — film firm; see ORG-C04099, which names it קינאָמאַטאָגראַפישער.
+P091	retype		ORG-C04099	set_cluster_type	Media (Radio/ Film/TV)	high	קינאָמאַטאָגראַפישער פירמע „מינטוּס" — explicitly a cinematographic firm. Same firm as ORG-C02914.
+P092	retype		ORG-C00746	set_cluster_type	Media (Radio/ Film/TV)	high	Green Film Society — film company.
+P093	retype		ORG-C01502	set_cluster_type	Media (Radio/ Film/TV)	high	The Collective Film Producers — film company.
+P094	retype		ORG-C00949	set_cluster_type	Media (Radio/ Film/TV)	high	Di Shamer-Ros Motion Picture Company — film company.
+P095	retype		ORG-C02657	set_cluster_type	Media (Radio/ Film/TV)	high	Farbert-Film, Warsaw — film company.
+P096	not_an_org		ORG-C03053	not_an_organization		high	לידער פֿון די געטאָס — a book title, not a publisher.
+P097	not_an_org		ORG-C02234	not_an_organization		high	רומשינסקי-בוך — a book title.
+P098	not_an_org		ORG-C03775	not_an_organization		high	קדושים באַנד — a volume title.
+P099	not_an_org		ORG-C03444	not_an_organization		high	דאָס ביכעל — "the booklet"; a publication, not a body.
+P100	not_an_org		ORG-C07161	not_an_organization		high	גרויסן יידישן ווערטערבוך — the Great Dictionary of the Yiddish Language, a work.
+P101	not_an_org		ORG-C07415	not_an_organization		high	יידישע ענציקלאָפּעדיע — a work title.
+P102	not_an_org		ORG-C02098	not_an_organization		high	Collier's National Encyclopedia — a work title.
+P103	not_an_org		ORG-C05312	not_an_organization		high	לוח אַחיעבר — an almanac (publication), not its publisher.
+P104	not_an_org		ORG-C05988	not_an_organization		high	מיניקעס יוביליי-נומער — a jubilee issue, i.e. a publication.
+P105	not_an_org		ORG-C05666	not_an_organization		high	פנקס פֿאָר דער געשיכטע פֿון ווילנע... — a book title.
+P106	not_an_org		ORG-C00469	not_an_organization		high	איזראַעליטישען פֿאָלקס-קאָלענדער — a calendar/almanac title.
+P107	not_an_org		ORG-C07014	not_an_organization		high	טהעאַטער אונד ביהנע רעגולאַמענט — a regulation document.
+P108	not_an_org		ORG-C03338	not_an_organization		high	גרשם באַדערס און משה פראָסטיגס קאַלענדאַרן — their calendars, a publication series.
+P109	not_an_org		ORG-C05288	not_an_organization		high	עפּעלבערגס קאַלענדארן — Apelberg's calendars, a publication series.
+P110	not_an_org		ORG-C05606	not_an_organization		high	ג. באָדערס יידישער פאָלקס-קאָלענדאָר — a calendar title.
+P111	not_an_org		ORG-C06736	not_an_organization		high	ר. מאזינס פרעהליכעס טאָשענבוך — "R. Mazin's merry pocketbook", a publication of db 1761's London firm, not a separate publisher. Attach as evidence to 1761 rather than linking as an org.
+P112	not_an_org		ORG-C04509	not_an_organization		high	פרץס פאַרשיידענע אויסגאבן — "Peretz's various editions", a descriptive phrase.
+P113	not_an_org		ORG-C05903	not_an_organization		high	לעמבערגער אויסגאָבע — "the Lemberg edition", a descriptive phrase.
+P114	not_an_org		ORG-C02423	not_an_organization		medium	שפּאַניש-יידישער ענציקלאָפּעדיע — a work title; may have a publishing body behind it, but the cluster names the work.
+P115	not_an_org		ORG-C03552	not_an_organization		medium	אַלאַוקראינישער סאָוויעטישער ענציקלאָפּעדיע (אַרע) — a work; its editorial body would be a separate org.
+P116	not_an_org		ORG-C05951	not_an_organization		medium	אַמעריקאַנער ענצוקלאָפּעדיע — a work title.
+P117	retype		ORG-C01456	set_cluster_type	Labour (Factory/Workshop)	high	שמאַטע-פֿאַבריק אין לאָנדאָן — a rag factory in London. Not a publisher by any reading.
+P118	retype		ORG-C00389	set_cluster_type	Heritage Institution	medium	Braille Institute — an institute producing Braille editions, not a trade publisher.
+P119	retype		ORG-C02413	set_cluster_type	Library	high	קאָנגרעס-לייברער = the Library of Congress, which already exists as db 29 (type Library). Align there rather than keeping a Publisher cluster.
+P120	retype		ORG-C02058	set_cluster_type	Non-Jewish Political Bodies	high	מעקסיקאַנער בילדונגס-מיניסטעריום — the Mexican ministry of education, a state body.
+P121	retype		ORG-C02737	not_an_organization		medium	עלעקטריקט, Vilna — reads as a stray token, not an organization name.
+P122	retype		ORG-C06287	set_cluster_type	Education	high	ביוראָ און דזשואיש עדיוקיישאָן = Bureau of Jewish Education, an education body.
+P123	retype		ORG-C03667	set_cluster_type	Trade Union / Professional Association	high	וואַרשעווער יידישן דרוקער-פאַריין — the Warsaw Jewish printers' UNION. Already typed as such in the cluster; must not be read as a printing house.
+P124	retype		ORG-C04147	set_cluster_type	Trade Union / Professional Association	high	צענטראַלן דרוקער-פֿאַראיין — the central printers' union. Same.
+P125	retype		ORG-C01357	set_cluster_type	Theatre-Related Society/ Union	medium	אסתר הירשביין-שומיאַטשער בוך-קאָמיטעט — an ad-hoc book committee. Flagged for a vocabulary decision: these are not publishers, and the DB has no "book committee" type.
+P126	retype		ORG-C06911	set_cluster_type	Theatre-Related Society/ Union	medium	צילי אַדלער פאַונדעישאָן און בוך-קאָמיטעט — ad-hoc book committee/foundation. Same vocabulary question.
+P127	not_an_org		ORG-C07464	not_an_organization		medium	"the committee that issued the two volumes צילי אַדלער דערציילט" — a descriptive phrase for the body in ORG-C06911, not a name.
+P128	retype		ORG-C02302	set_cluster_type	Theatre-Related Society/ Union	medium	קאָמיטעט אויף אַרויסצוגעבן אַלע אַליעזר שטיינבאַרגס שריפטן — ad-hoc committee to publish Steinbarg's writings.
+P129	not_an_org		ORG-C01986	not_an_organization		high	הוצאת יורשי המחבר — "published by the author's heirs", an imprint formula, not an organization.
+P130	retype		ORG-C07400	set_cluster_type	Welfare/Aid Organization	medium	לאָניאַ בימקאָ ליטעראַטור פאַנד — a literature fund. Fund, not publisher.
+P131	retype		ORG-C02075	set_cluster_type	Welfare/Aid Organization	medium	דוד איגנאַטאָוו ליטעראַטור פֿאַנד — a literature fund.
+P132	retype		ORG-C05895	set_cluster_type	Welfare/Aid Organization	medium	בראָדסקי-קאָמיטעט, Buenos Aires — a committee/fund.
+P133	retype		ORG-C02443	set_cluster_type	Welfare/Aid Organization	medium	משה האַר פֿאָנדעישאָן, Detroit — a foundation.
+P134	retype		ORG-C07294	set_cluster_type	Welfare/Aid Organization	medium	שלום עליכם פֿאָלקספאָנד — a people's fund.
+P135	retype		ORG-C06163	set_cluster_type	Welfare/Aid Organization	low	ליטעראַטור-פֿאַנד with no qualifier — a fund, but generic enough that it may be a duplicate of ORG-C03627 or ORG-C02075.
+P136	retype		ORG-C05896	set_cluster_type	Welfare/Aid Organization	low	פֿאָלקס-פאַנד with no qualifier — generic; may duplicate ORG-C07294.
+P137	retype		ORG-C03627	set_cluster_type	Trade Union / Professional Association	medium	ליטעראַטורפאַנד ביים וואַרשעווער פאַריין פון יידישע ליטעראַטן און זשורנאַליסטן — the literature fund OF the Warsaw writers' and journalists' union, i.e. an arm of that union.
+P138	mint		ORG-C04085	mint_new_org	פאַרלאַג ת. יאָקובסאָן און מ. גאָלדבערג	high	Warsaw publisher-and-bookshop T. Jakobson & M. Goldberg, 1926/1927. No core_db row exists. Mint one and link ORG-C04085 + ORG-C04914 (two spellings of one firm).
+P139	mint		ORG-C04914	add_to_mint	P138	high	פאַרלאָג און בוכהאַנדלונג ת. יאָקובסאָן, מ. גאָלדבערג, Warsaw 1927 — same firm as P138.
+P140	mint		ORG-C00725	mint_new_org	פאַרלאַג ב. שימין	high	B. Shimin, Warsaw publisher. No core_db row. Link ORG-C00725 + ORG-C06681.
+P141	mint		ORG-C06681	add_to_mint	P140	high	ב. שימין, Warsaw — same firm as P140.
+P142	mint		ORG-C03710	mint_new_org	פאַרלאַג ש. שרעבערק	high	Sh. Shreberk, the well-known Vilna publisher. No core_db row.
+P143	mint		ORG-C01054	mint_new_org	פֿאַרלאַג יאָטשקאָווסקי	high	Jatshkovski, Warsaw publisher. No core_db row. Link ORG-C01054 + ORG-C03951.
+P144	mint		ORG-C03951	add_to_mint	P143	high	יאַטשקאָווסקיס ביבליאָטעק, Warsaw — the same Jatshkovski firm's series.
+P145	mint		ORG-C04536	mint_new_org	י. אַלאַפּין	high	Y. Alapin, Warsaw printer/publisher. No core_db row. Link ORG-C04536 + ORG-C05289 + ORG-C06552.
+P146	mint		ORG-C05289	add_to_mint	P145	high	בדפוס י. אַלאַפּין — "printed at Y. Alapin's", same firm.
+P147	mint		ORG-C06552	add_to_mint	P145	high	בית מסחר הספרים של המדפיס אַלאַפּין — the printer Alapin's book shop, same firm.
+P148	mint		ORG-C05028	mint_new_org	בוכהאַנדלונג געברידער בלעטניצקי	high	Bletnitski Brothers' bookshop, Odessa. No core_db row. Link ORG-C05028 + ORG-C05691.
+P149	mint		ORG-C05691	add_to_mint	P148	high	געברידער בלעטניצקי, Odessa — same firm.
+P150	mint		ORG-C05293	mint_new_org	ל. מאָרגענשטערן	high	L. Morgenstern, Warsaw publisher/bookseller. No core_db row. Link ORG-C05293 + ORG-C05983 + ORG-C06062.
+P151	mint		ORG-C05983	add_to_mint	P150	high	יהודה ליב מאַרגענשטערן בוכהאַנדלונג, Warsaw — the same Morgenstern, full given name.
+P152	mint		ORG-C06062	add_to_mint	P150	high	ליב מאָרגענשטערן בוכהאַנדלונג, Warsaw — same firm.
+P153	mint		ORG-C02212	mint_new_org	אברהם הירש קאַצענעלבאָגן	medium	Avrom Hirsh Katsenelbogn, Vilna. ORG-C06924 פערלאַג פֿון י. קאַצענעלבאָגען is NEW YORK and a different initial — keep separate pending research.
+P154	flag		ORG-C06924	needs_research		medium	פערלאַג פֿון י. קאַצענעלבאָגען, New York — same surname as P153 but different initial and continent. Do not merge without evidence.
