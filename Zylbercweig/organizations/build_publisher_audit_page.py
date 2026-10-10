@@ -69,10 +69,14 @@ SECTIONS = [
      "Two rows for one publisher. Both pairs were invisible to earlier dedup "
      "passes because one side of each had lost its org_type."),
     ("reject", "Scores high, is wrong", "rejected",
-     "Each of these scores 1.000 on a consonant-skeleton match and must still "
-     "be refused. The _Q suffixes in a cluster id mark a deliberate split by "
-     "place: the same publisher name in two cities is two houses, so an exact "
-     "name score across _Q siblings carries no evidence at all."),
+     "Each of these scores 1.000 on a consonant-skeleton match and is still "
+     "refused. The _Q suffix in a cluster id marks a deliberate split by place, "
+     "so an exact name score across _Q siblings carries no evidence at all — "
+     "but a shared name across two cities can also mean a firm that moved, "
+     "which a name score cannot tell apart from two firms. These were checked "
+     "against the historical literature rather than decided on the pattern: "
+     "Yavneh and Arbeter Heim came back settled, Kultur came back unresolved "
+     "and is kept apart on the weaker ground that nothing links the two."),
     ("mint", "No core_db row exists", "review",
      "Well-attested publishers with no row at all. Absence was checked against "
      "live core_db over all four name fields with Hebrew points stripped, not "
