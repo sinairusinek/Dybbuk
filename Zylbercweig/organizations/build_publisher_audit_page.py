@@ -90,6 +90,12 @@ SECTIONS = [
      "Book titles, almanacs, calendars and imprint formulas sitting in the org "
      "table. 'Published by the author's heirs' is a formula; 'Peretz's various "
      "editions' is a description. Neither is a body that can be linked to."),
+    ("split", "One cluster, two firms", "applied",
+     "A cluster whose mentions are not all the same publisher. The cluster key "
+     "outvoted the mentions' own readings: the canonical form was M. Goldfarb, "
+     "so two mentions that say Sh. in their own source sentence were pulled in "
+     "with it. Marked SPLIT in the ledger with the per-mention assignment in "
+     "the note."),
     ("flag", "Needs a human", "research",
      "Close enough to be suspicious, not close enough to assert. Every one of "
      "these turns on a single disagreeing field — a given name, an initial, a "

@@ -81,6 +81,7 @@ VALID_ACTIONS = {
     "mint": {"mint_new_org", "add_to_mint"},
     "flag": {"needs_research"},
     "duplicate": {"merge_candidate"},
+    "split": {"split_cluster"},
     "out_of_project": {"set_out_of_project"},
     "restore_type": {"set_org_type"},
 }
