@@ -347,9 +347,45 @@ house. *An absence here is not evidence.*
   1900–1933. **M. Goldfarb is separate**, 10 items 1924–33, running
   concurrently — a different firm, probably a relative. No `L.` Goldfarb
   exists, so the cluster's `ל. גאָלדפאַרב` is likely an OCR slip for `מ.`
-- **Bletnitski**: imprinted `ha-Aḥim Bleṭnitsḳi` ("the Bletnitski Brothers")
-  in **Vilna** 1897 and 1909 — where both clusters say **Odessa**. Settle the
-  city before minting.
+- **Bletnitski**: a cautionary case. The catalogue says `Ṿilna : ha-Aḥim
+  Bleṭnitsḳi`, the corpus says **Odessa**, and the catalogue is **wrong** — see
+  *Read the title page, not the publisher field* below.
 - **Kultur**: no pre-1918 "Kultur" imprint in the collection at all; every hit
   is Kultur-Lige (from 1922) or a later namesake. Consistent with treating the
   Minsk and Warsaw imprints as unrelated, but not itself evidence.
+
+## Read the title page, not the publisher field
+
+The single most important lesson from this resource so far, learned by getting
+it wrong first.
+
+A Hebrew/Yiddish title page routinely carries the **publisher on one line and
+the place of printing on another**. IA's `publisher` field collapses them into
+one string, in the order they appear — which for these books puts the *printing
+city* first and reads as though it were the firm's seat:
+
+| Item | What the page says | What `publisher` says |
+|---|---|---|
+| nybc204446 (1897) | `בהוצאת האחים בלאמניצקי באדעססא` … then `ווילנא` | `Ṿilna : ha-Aḥim Bleṭnitsḳi` |
+| nybc202364 (1909) | `בהוצאת האחים בלעטניצקי. באדעססא` … then `ווילנא. תרסט` | `Ṿilna : ha-Aḥim Bleṭnitsḳi` |
+| nybc214795 (1895) | `הזכות נמכר לצמיתות להאחים בלעטניצקי מויס באדעססא` … then `ווילנא` | `Ṿilna : Bleṭnitsḳi` |
+
+`באדעססא` names the **firm's** city; `ווילנא` names where it was **printed**.
+The metadata states the reverse. On the strength of that field alone this
+project briefly recorded the Bletnitski Brothers as a Vilna house that moved to
+Odessa — when they were an Odessa bookshop all along, commissioning printing in
+whatever city was cheapest or had the censor. The third item makes the
+relationship explicit: *the rights were sold in perpetuity to the Bletnitski
+Brothers **of Odessa***, on a book printed in Vilna.
+
+So whenever a catalogue city contradicts the corpus, **read the page**:
+
+    curl -L https://archive.org/download/<identifier>/<identifier>_djvu.txt
+
+then grep the first ~200 lines for `הוצאת`, `דפוס`, and the city names. The OCR
+of a title page is short and legible even when the body text is poor. A
+publisher field is a cataloguer's reading of that page; the page is the source.
+
+This also means a **city disagreement between catalogue and corpus is not
+evidence of two firms** — check which line each one is quoting before splitting
+anything.
