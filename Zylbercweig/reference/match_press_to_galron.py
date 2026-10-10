@@ -156,17 +156,34 @@ def galron_index(rows: list[dict]) -> dict[str, list[dict]]:
                 for token in key.split():
                     if len(token) >= 3:
                         keys.add(token)
+                    # Index the same affixes `candidates` probes, so a
+                    # compounded title is reachable from its bare form.
+                    if len(token) >= 6:
+                        keys.add(token[:4])
+                        keys.add(token[-4:])
         for key in keys:
             index.setdefault(key, []).append(row)
     return index
 
 
 def candidates(name: str, index: dict[str, list[dict]]) -> list[dict]:
+    """Blocking: Galron rows sharing a skeleton key or a key token with `name`.
+
+    Also probes each token's 4-consonant prefix and suffix, because a title is
+    routinely compounded on one side only -- מאָרגענפּאָסט against Shanghaier
+    *Morgenpost*, צייטשריפט against *Zeitschrift* -- and whole-token blocking
+    never brings those two together.
+    """
     key = skeleton(name)
     if not key:
         return []
+    probes = [key] + [t for t in key.split() if len(t) >= 3]
+    for token in key.split():
+        if len(token) >= 6:
+            probes.append(token[:4])
+            probes.append(token[-4:])
     seen, out = set(), []
-    for probe in [key] + [t for t in key.split() if len(t) >= 3]:
+    for probe in probes:
         for row in index.get(probe, ()):
             if row["row_id"] not in seen:
                 seen.add(row["row_id"])

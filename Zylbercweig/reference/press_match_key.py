@@ -257,14 +257,30 @@ def phonetic_codes(title: str) -> list[set[str]]:
 
 
 def phonetic_agreement(a_title: str, b_title: str) -> float:
-    """Share of the shorter title's content tokens that agree phonetically."""
+    """Share of the shorter title's content tokens that agree phonetically.
+
+    Guarded against the one-token trap: a single short token agreeing by DM
+    says very little, and scoring that 1.00 made טעאַטער און קינאָ / האומה
+    (nothing in common) look like a perfect phonetic match. When the shorter
+    side has exactly one content token, the agreement has to carry some
+    substance -- at least four consonants in its skeleton -- or it is not
+    reported as full agreement.
+    """
     ca, cb = phonetic_codes(a_title), phonetic_codes(b_title)
     if not ca or not cb:
         return 0.0
     shorter, longer = (ca, cb) if len(ca) <= len(cb) else (cb, ca)
     hits = sum(1 for codes in shorter
                if any(codes & other for other in longer))
-    return hits / len(shorter)
+    score = hits / len(shorter)
+
+    # One token against one token, on a short word: too thin to call.
+    if score >= 1.0 and len(shorter) == 1:
+        a_key = skeleton(a_title).replace(" ", "")
+        b_key = skeleton(b_title).replace(" ", "")
+        if min(len(a_key), len(b_key)) < 4:
+            return 0.5
+    return score
 
 
 def place_agree(a_place: str, b_place: str) -> bool:
