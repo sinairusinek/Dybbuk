@@ -180,6 +180,13 @@ Krakow `595000`/`595700` — while three digits still separate Vilna (786), Riga
 pairs do**. A real conflict costs one band; it is not a veto, because papers
 moved (Warsaw to New York, repeatedly, over these decades).
 
+**Years are digitisation coverage. Never date a paper from them** — not in the
+matcher, not in prose, not in a research note. They cannot show when a paper
+began, ended, or whether it existed before a given year. (Slipped once anyway:
+Galron lists *Folks-shtime* as 1945–1991, which is the Academica holding, and
+that got written up as "the run starts 1945". See
+`folksshtime_research.md`.)
+
 **Years are reported, never used to demote.** Neither side bounds the paper's
 run: Galron's years are digitisation coverage, and a cluster's date is usually
 the year of one mention. A first pass that demoted on a >10-year gap moved 125
