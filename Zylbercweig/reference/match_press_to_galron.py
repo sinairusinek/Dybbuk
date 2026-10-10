@@ -29,7 +29,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from press_match_key import (HEBREW_RE, PHONETIC_AVAILABLE,  # noqa: E402
-                             phonetic_agreement, similarity, skeleton)
+                             phonetic_agreement, place_agree, similarity,
+                             skeleton)
 
 HERE = Path(__file__).resolve().parent
 ORGS = HERE.parent / "organizations"
@@ -107,6 +108,42 @@ def place_tokens(text: str) -> set[str]:
     return {skeleton(t) for t in re.split(r"[,/;]| - ", head) if skeleton(t)}
 
 
+# A Zylbercweig settlement in Yiddish/Hebrew against Galron's place, which is
+# Hebrew on one sheet and Latin on the other. Compared as skeletons, so
+# ניו יאָרק / ניו־יורק / New York all reduce alike.
+YEAR_RE = re.compile(r"(1[6-9]\d\d|20[0-2]\d)")
+
+
+def year_span(text: str) -> tuple[int, int] | None:
+    """Earliest and latest year mentioned in a date or coverage string."""
+    years = [int(y) for y in YEAR_RE.findall(text or "")]
+    return (min(years), max(years)) if years else None
+
+
+def span_verdict(db_span, galron_span) -> str:
+    """Compare the Zylbercweig dates with Galron's digitised years.
+
+    Reported, never used to demote -- because NEITHER side bounds the paper's
+    run. Galron's years are digitisation coverage (Birobidzhaner Shtern, running
+    since 1930, is listed 2010-2022 because that is what was scanned), and a
+    cluster's date is usually the year of one mention, not an extent. A first
+    pass that demoted on a >10-year gap moved 125 rows to WEAK and was wrong on
+    the ones that were checked: Birobidzhaner Shtern, Meksikaner Lebn, Vilner
+    Togblat and Der Nayer Veg are all the same paper on both sides.
+
+    So this is a hint for the reviewer's eye, in the reviewer's own column, and
+    the band ignores it.
+    """
+    if not db_span or not galron_span:
+        return ""
+    a1, a2 = db_span
+    b1, b2 = galron_span
+    if a1 <= b2 and b1 <= a2:
+        return "overlap"
+    gap = b1 - a2 if b1 > a2 else a1 - b2
+    return "near" if gap <= 10 else f"apart{gap}"
+
+
 def galron_index(rows: list[dict]) -> dict[str, list[dict]]:
     """Bucket Galron rows by skeleton, and by each token, for blocking."""
     index: dict[str, list[dict]] = {}
@@ -138,7 +175,7 @@ def candidates(name: str, index: dict[str, list[dict]]) -> list[dict]:
 
 
 def best_match(names: list[str], place: str,
-               index: dict[str, list[dict]]) -> dict | None:
+               index: dict[str, list[dict]], dates: str = "") -> dict | None:
     best = None
     for name in [n for n in names if n and n.strip()]:
         for cand in candidates(name, index):
@@ -158,10 +195,20 @@ def best_match(names: list[str], place: str,
                 # Both sides named a place and they disagree -> different paper.
                 qualifier_clash = bool(qual_a and qual_b and not (qual_a & qual_b))
 
-                shared = place_tokens(place) & place_tokens(
-                    cand["place_of_publication"])
+                # Does the entry's own place contradict Galron's? Compared
+                # with place_agree, which bridges Yiddish/Hebrew/Latin spellings
+                # of the same settlement -- a plain skeleton comparison called
+                # וואַרשע and ווארשה different cities and flagged 257 rows.
+                gal_place = cand["place_of_publication"]
+                place_match = place_agree(place, gal_place)
+                place_conflict = bool(
+                    place.strip() and gal_place.strip() and not place_match)
+
+                shared = {"place"} if place_match else set()
                 if qual_a and qual_b and (qual_a & qual_b):
                     shared = shared | (qual_a & qual_b)
+                span = span_verdict(year_span(dates),
+                                    year_span(cand["years_covered"]))
                 # A place agreement is worth a nudge, never a veto.
                 adjusted = min(1.0, score + 0.03) if shared else score
                 same_script = bool(HEBREW_RE.search(name)) == bool(
@@ -175,6 +222,8 @@ def best_match(names: list[str], place: str,
                         "cand": cand, "place_agree": "Y" if shared else "",
                         "same_script": same_script, "phonetic": phon,
                         "qualifier_clash": qualifier_clash,
+                        "place_conflict": place_conflict, "span": span,
+                        "db_dates": dates,
                     }
     return best
 
@@ -243,6 +292,12 @@ def band(hit: dict) -> str:
     # papers (Di Yidishe Velt ran in both Philadelphia and St. Petersburg).
     if hit["qualifier_clash"]:
         return "WEAK"
+    # The entry's own settlement and Galron's place of publication disagree.
+    # A paper's place is far more stable than its date range, so this does
+    # demote -- but only one band, since a paper that moved (Warsaw to New
+    # York, countless times over these decades) is a real pattern, not an error.
+    if hit["place_conflict"]:
+        return "REVIEW" if hit["raw"] >= T_STRONG else "WEAK"
 
     # Short keys collide too readily to assert anything, however they scored.
     if len(key) < MIN_SKELETON_CONSONANTS:
@@ -262,7 +317,8 @@ def band(hit: dict) -> str:
 
 COLUMNS = [
     "stage", "band", "tier", "score", "phonetic", "signal", "place_agree",
-    "same_script", "qualifier_clash",
+    "same_script", "qualifier_clash", "place_conflict", "span_check",
+    "db_dates",
     "db_id", "cluster_id", "org_type", "db_name", "db_name_yiddish",
     "db_address", "matched_on", "galron_row_id", "galron_title",
     "galron_field", "galron_place", "galron_years", "galron_language",
@@ -282,6 +338,8 @@ def emit(stage: str, hit: dict, *, db_id="", cluster_id="", org_type="",
         "place_agree": hit["place_agree"],
         "same_script": "Y" if hit["same_script"] else "",
         "qualifier_clash": "Y" if hit["qualifier_clash"] else "",
+        "place_conflict": "Y" if hit["place_conflict"] else "",
+        "span_check": hit["span"], "db_dates": hit["db_dates"],
         "db_id": db_id, "cluster_id": cluster_id, "org_type": org_type,
         "db_name": name, "db_name_yiddish": name_yiddish, "db_address": address,
         "matched_on": hit["matched_on"],
@@ -316,6 +374,9 @@ def main() -> None:
         names = [row.get("name_yiddish", ""), row.get("name", ""),
                  row.get("name_yiddish_translit", "")]
         names += [v for v in (row.get("name_variants") or "").split("|") if v]
+        # core_db carries no date field, so the span check can only run on the
+        # cluster stage. Its address is the single place signal, and empty on
+        # 171 of 182 press rows.
         hit = best_match(names, row.get("address", ""), index)
         if hit:
             db_hits += 1
@@ -339,6 +400,16 @@ def main() -> None:
         id_col = "cluster_id" if "cluster_id" in cluster_rows[0] else None
         type_col = "_ - organizations - _ - org_type"
         place_col = "_ - organizations - _ - locations - _ - settlement"
+        # Dates live in several columns, none of them reliably filled: the
+        # relation's start/end (52% / 10% on matched clusters), the founding
+        # date, and the location's own from/to. Pool whatever is there.
+        date_cols = [
+            "_ - organizations - _ - relations - _ - date_start - date",
+            "_ - organizations - _ - relations - _ - date_end - date",
+            "_ - organizations - _ - founding_date - date",
+            "_ - organizations - _ - locations - _ - datefrom - date",
+            "_ - organizations - _ - locations - _ - dateto - date",
+        ]
         print(f"clusters: {len(cluster_rows)} rows "
               f"(names={name_cols}, id={id_col})", file=sys.stderr)
         if name_cols and id_col:
@@ -359,7 +430,9 @@ def main() -> None:
                     continue
                 seen_clusters.add(cid)
                 press_like += 1
-                hit = best_match(names, row.get(place_col, ""), index)
+                dates = " ".join(row.get(c, "") for c in date_cols
+                                 if row.get(c, "").strip())
+                hit = best_match(names, row.get(place_col, ""), index, dates)
                 if hit:
                     cl_hits += 1
                     out_rows.append(emit(

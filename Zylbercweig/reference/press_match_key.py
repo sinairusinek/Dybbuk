@@ -265,3 +265,48 @@ def phonetic_agreement(a_title: str, b_title: str) -> float:
     hits = sum(1 for codes in shorter
                if any(codes & other for other in longer))
     return hits / len(shorter)
+
+
+def place_agree(a_place: str, b_place: str) -> bool:
+    """Do two place strings name the same settlement, across orthographies?
+
+    Zylbercweig writes settlements in Yiddish, Galron's Hebrew sheet in Hebrew,
+    and its Latin sheet in Latin. The consonant skeleton does NOT bridge the
+    first two: וואַרשע/ווארשה, קראָקע/קרקוב, טשערנאָוויץ/צ׳רנוביץ, קאָוונע/קובנה
+    all mismatch on it -- 9 of 9 probe pairs failed -- because Yiddish marks a
+    final schwa with ע where Hebrew uses ה, spells /v/ as וו where Hebrew uses ב,
+    and hyphenates differently. Treating those as place disagreements flagged
+    257 rows, most of them the same city twice.
+
+    So agreement is tested phonetically (which crosses scripts by design) and
+    token-wise, with the country parenthetical dropped. Returns True when ANY
+    token of one side agrees with any token of the other: a paper's place is
+    recorded at different granularities ("Warsaw" vs "Warsaw (Poland)").
+    """
+    import re as _re
+    a_head = _re.split(r"[(<]", a_place or "")[0]
+    b_head = _re.split(r"[(<]", b_place or "")[0]
+    if not a_head.strip() or not b_head.strip():
+        return False
+    a_toks = [t for t in _re.split(r"[\s,;/·־–—-]+", a_head) if len(t) > 1]
+    b_toks = [t for t in _re.split(r"[\s,;/·־–—-]+", b_head) if len(t) > 1]
+    for ta in a_toks:
+        for tb in b_toks:
+            if skeleton(ta) and skeleton(ta) == skeleton(tb):
+                return True
+            ca, cb = _dm_codes(ta), _dm_codes(tb)
+            if ca and cb:
+                if ca & cb:
+                    return True
+                # DM codes are fixed-width and zero-padded, and the digit that
+                # differs across orthographies is the one for the word's final
+                # sound: Warsaw is 7945xx in Yiddish (וואַרשע, final ע) against
+                # 7940xx in Hebrew (ווארשה, final ה), Krakow 595000 / 595700.
+                # Three digits is the first three consonants -- enough to name
+                # a settlement (Vilna 786, Riga 795, Lodz 583 all stay
+                # distinct) without demanding agreement on the one sound these
+                # two orthographies are guaranteed to spell differently.
+                if any(x[:3] == y[:3] for x in ca for y in cb
+                       if len(x) >= 3 and len(y) >= 3):
+                    return True
+    return False

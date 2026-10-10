@@ -159,8 +159,39 @@ Three guards keep known-bad pairs out of `STRONG`:
   reason this stage exists), of which 456 matched.
 - 220 distinct Galron rows cited; 34 point at subscription-gated depositories.
 
-Place is a **confirmation signal, never a filter** (except the qualifier clash
-above): only 11 of 183 press rows have any address, and papers moved.
+## Place and date cross-check
+
+Each candidate is also tested against what the Zylbercweig entry itself says
+about where and when — `place_agree` / `place_conflict` / `span_check` /
+`db_dates`. The two behave differently on purpose.
+
+**Place demotes.** Compared with `press_match_key.place_agree`, which bridges
+orthographies: the consonant skeleton does NOT, failing all 9 probe pairs
+(`וואַרשע`/`ווארשה`, `קראָקע`/`קרקוב`, `טשערנאָוויץ`/`צ׳רנוביץ`,
+`קאָוונע`/`קובנה`…) because Yiddish marks a final schwa with `ע` where Hebrew
+uses `ה`, and spells /v/ as `וו` where Hebrew uses `ב`. A first pass on raw
+skeletons flagged **257 place conflicts, most of them the same city twice.**
+
+The fix compares Daitch-Mokotoff codes on a **3-digit prefix**. DM is
+zero-padded and the digit that differs across orthographies is the one for the
+word's final sound — Warsaw is `7945xx` in Yiddish against `7940xx` in Hebrew,
+Krakow `595000`/`595700` — while three digits still separate Vilna (786), Riga
+(795) and Lodz (583). Now **12/12 same-city pairs agree and 0/11 different-city
+pairs do**. A real conflict costs one band; it is not a veto, because papers
+moved (Warsaw to New York, repeatedly, over these decades).
+
+**Years are reported, never used to demote.** Neither side bounds the paper's
+run: Galron's years are digitisation coverage, and a cluster's date is usually
+the year of one mention. A first pass that demoted on a >10-year gap moved 125
+rows to WEAK and was wrong on every one checked — *Birobidzhaner Shtern*
+(running since 1930, listed 2010–2022 because that is what was scanned),
+*Meksikaner Lebn*, *Vilner Togblat*, *Der Nayer Veg* are all the same paper on
+both sides. So `span_check` reports `overlap` / `near` / `apartN` for the
+reviewer's eye and the band ignores it.
+
+Coverage of the check: 46% of matched clusters carry a settlement, 52% a date.
+core_db has **no date field at all** and an address on only 11 of 183 press
+rows, so the cross-check is mostly a cluster-stage signal.
 
 ## REVIEW sub-tiers (`tier` column)
 
