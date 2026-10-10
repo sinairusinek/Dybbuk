@@ -183,3 +183,30 @@ Two consequences:
 
 The newly matched rows are left in the review TSV, undecided, so the next
 session sees them rather than inheriting a silently filtered file.
+
+---
+
+## Not pushed — and why
+
+All work in this directory is **committed** (through `178cc1954`), but nothing
+was pushed. Two reasons, both about other people's work rather than this:
+
+1. **The branch carries 32 commits ahead of origin, only 20 of them this
+   session's.** The rest are the parallel publishers session and some YiDraCor
+   work. Pushing sends everything, which is not this session's call to make.
+
+2. **The parallel session is live.** At the moment of writing, `core_db.tsv` and
+   `activity_log.tsv` had been modified 43 seconds earlier, and five files in
+   `organizations/` hold its uncommitted work. `git rebase onto origin/main`
+   refuses while those are dirty, and stashing them to force it through is
+   exactly how committed work has been clobbered in this repo before.
+
+Local main is also **1,621 commits behind** origin — the app's auto-saves. That
+is normal here and not a problem to solve, but it means a rebase is needed
+before any push.
+
+**To push when the parallel session is done:** confirm `git status` is clean,
+`git fetch origin main`, `git rebase origin/main`, then push. The content
+conflict risk is low — checked at the time: origin and this branch differ on
+core_db only in that this branch adds db2661 and fills five `address` cells
+that are empty upstream, with no competing values.
