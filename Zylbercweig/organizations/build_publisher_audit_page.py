@@ -14,7 +14,7 @@ Design follows docs/Visualizations/gate.html, which is the house system for this
 directory: Fraunces display, Spectral body, Frank Ruhl Libre for Yiddish,
 IBM Plex Mono for ids, on warm paper.
 
-Usage: python3 build_publisher_audit_page.py
+Usage: python3 build_publisher_audit_page.py [--artifact]
 """
 from __future__ import annotations
 
@@ -32,6 +32,9 @@ CORE_DB = HERE / "core_db.tsv"
 CLUSTERS = HERE / "organizations_clustered.tsv"
 DECISIONS = HERE / "publisher_audit_decisions.tsv"
 OUT = REPO / "docs" / "Visualizations" / "publisher_audit.html"
+# Body-only build for publishing the same page as a Claude Artifact, which
+# wraps the content in its own doctype/head/body.
+OUT_ARTIFACT = REPO / "docs" / "Visualizations" / "artifact" / "publisher_audit.body.html"
 
 PRESS_TYPE_RE = re.compile(r"publish|printer|print", re.I)
 HEBREW_RE = re.compile(r"[֐-׿יִ-ﭏ]")
@@ -123,7 +126,7 @@ def yi(s: str) -> str:
     return f'<span class="{cls}">{esc(s)}</span>'
 
 
-def main() -> None:
+def main(artifact: bool = False) -> None:
     db_rows = read_tsv(CORE_DB)
     db = {r["db_id"]: r for r in db_rows}
     decisions = read_tsv(DECISIONS)
@@ -189,6 +192,9 @@ def main() -> None:
                        .get("out_of_project") or "").strip().lower() == "true")
     applied_note = (f" · includes {restored} whose type this audit restored"
                     if restored else "")
+    gate_link = "" if artifact else ' · <a href="gate.html">All visualizations</a>'
+    open_body = "" if artifact else "</head><body>"
+    closing = "" if artifact else "</body></html>"
     state_line = (
         f"The two applied sections are written: {flagged} rows flagged out of "
         f"project and {restored} lost types restored, logged to "
@@ -200,11 +206,20 @@ def main() -> None:
     parts: list[str] = []
     A = parts.append
 
-    A(f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+    # The Artifact host supplies the doctype/html/head/body skeleton and serves
+    # the page on its own origin, so the standalone shell and the site-relative
+    # gate link are both dropped from that build.
+    if artifact:
+        A("""<title>Publisher audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>""")
+    else:
+        A("""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Publisher audit</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<style>
+<style>""")
+    A(f"""
 :root{{
   --paper:#faf7f0; --ink:#272219; --soft:#5c554a; --line:#e2dcce; --card:#f2eddf;
   --teal:#0e6f8a; --brick:#a1462e; --amber:#b07d2b; --green:#2f8f7f;
@@ -315,7 +330,7 @@ a{{color:var(--teal)}}
   .rec{{grid-template-columns:minmax(0,1fr)}}
   .rec .why{{grid-row:auto}}
 }}
-</style></head><body>
+</style>{open_body}
 <div class="wrap">
 <header>
 <p class="eyebrow">Dybbuk · Zylbercweig organizations</p>
@@ -431,17 +446,27 @@ Built by <code>build_publisher_audit_page.py</code> from
 <code>apply_publisher_audit.py --reviewer &lt;name&gt;</code>, which backs up
 core_db, stamps every change into <code>activity_log.tsv</code> and is
 idempotent. Everything else belongs in the app, where the decision gets a
-reviewer. · <a href="gate.html">All visualizations</a>
+reviewer.{gate_link}
 </footer>
-</div></body></html>
+</div>{closing}
 """)
 
-    OUT.write_text("".join(parts), encoding="utf-8")
-    print(f"wrote {OUT.relative_to(REPO)}  "
-          f"({OUT.stat().st_size/1024:.0f} KB, {len(decisions)} decisions)")
+    out = OUT_ARTIFACT if artifact else OUT
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text("".join(parts), encoding="utf-8")
+    try:
+        shown = out.relative_to(REPO)
+    except ValueError:
+        shown = out
+    print(f"wrote {shown}  "
+          f"({out.stat().st_size/1024:.0f} KB, {len(decisions)} decisions)")
     print(f"  live publisher rows {len(live_pub)} ({len(unlinked_pub)} unlinked); "
           f"publisher-like clusters {len(pub_clusters)} ({len(unlinked_clusters)} unlinked)")
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--artifact", action="store_true",
+                    help="emit the body-only build for a Claude Artifact")
+    main(ap.parse_args().artifact)
