@@ -1,6 +1,20 @@
-# Push note — hand this to another session
+# Push note
 
-**Task:** rebase this branch onto `origin/main` and push. Nothing else.
+## DONE — pushed as a branch, 2026-10-11
+
+Everything is on GitHub: **`galron-press-handoff`** at `bcb821940`, 38 commits,
+verified matching the local HEAD.
+
+<https://github.com/sinairusinek/Dybbuk/pull/new/galron-press-handoff>
+
+`main` was left alone — still 38 ahead / ~2,400 behind, unrebased. The merge
+into `main` is deliberately left to a PR, where the conflicts below can be
+reviewed properly instead of resolved blind in a terminal. The rest of this
+note is the conflict map for whoever does that merge.
+
+---
+
+**Original task:** rebase this branch onto `origin/main` and push.
 
 **State:** `main` at `22430e8f7`, **37 commits ahead, ~2,400 behind**. Tree
 clean except untracked files and `venues_unlinked.csv` (a regenerated output,
