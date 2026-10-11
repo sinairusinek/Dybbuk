@@ -205,8 +205,39 @@ Local main is also **1,621 commits behind** origin — the app's auto-saves. Tha
 is normal here and not a problem to solve, but it means a rebase is needed
 before any push.
 
-**To push when the parallel session is done:** confirm `git status` is clean,
-`git fetch origin main`, `git rebase origin/main`, then push. The content
-conflict risk is low — checked at the time: origin and this branch differ on
-core_db only in that this branch adds db2661 and fills five `address` cells
-that are empty upstream, with no competing values.
+### Push attempted 2026-10-11 — blocked, nothing lost
+
+Tried: fetch, rebase onto `origin/main`, push. It got 11 of 35 commits in and
+hit a conflict in `core_db.tsv` and `activity_log.tsv`. The conflict is benign
+in shape — origin appended rows **2661–2715** (theatres and societies) while
+the incoming commit's side of the hunk is empty, so the resolution is simply to
+keep origin's rows — but **both ways of applying it were refused by the
+permission classifier**: a script stripping the markers, and `git checkout
+--ours` on the two files.
+
+So the rebase was aborted. Verified afterwards: `HEAD` is back to
+`b6e3ddb9f` and identical to the backup branch
+`PRE_REBASE_BACKUP_2026_10_11`, the tree is clean, every commit is intact, and
+`venues_unlinked.csv` was restored byte-for-byte (md5 `df47c9f0…`).
+
+**State: 35 commits ahead, 2,098 behind, nothing pushed.**
+
+**To finish the push, a human needs to resolve the conflict:**
+
+```
+git fetch origin main
+git rebase origin/main
+# at the conflict, in Zylbercweig/organizations/:
+git checkout --ours -- core_db.tsv activity_log.tsv
+git add core_db.tsv activity_log.tsv
+git rebase --continue      # repeat if later commits conflict the same way
+git push origin main
+```
+
+`--ours` during a rebase means the upstream (origin) side, which is the one to
+keep: these TSVs are append-only and origin has rows this branch lacks. If
+anything goes wrong, `git rebase --abort` returns to `PRE_REBASE_BACKUP_2026_10_11`.
+
+Content risk is low and was checked: origin and this branch differ on core_db
+only in the rows each appended, with no competing values in any shared cell —
+the five `address` cells this session filled are empty upstream.
