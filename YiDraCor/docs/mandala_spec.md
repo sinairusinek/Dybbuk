@@ -246,11 +246,40 @@ defeats the fold — *Blihmele*, *Shlekhte-Froy*, *Yakov un Esau*, *Soroh Sheynd
 `link_status` across the manifest is PROPOSED 910 / GAP 127 / LINKED 56, so **every
 view built on this must show provenance on its face**, the way the song panel does.
 
+#### Decided by Sinai, 2026-10-11
+
+4. **A composer medallion is about 2/3 the size of Lateiner's and Hurwitz's.** The
+   playwrights stay the largest thing at the centre; composers read as a second order
+   of the same kind of node, not as equals and not as specks.
+5. **Only composers with MORE THAN ONE play go inside.** A composer credited on a
+   single play is placed outside, by that play. This is what makes the centre
+   tractable: **11 composers inside, 7 outside** —
+
+   | inside (>1 play) | plays | | outside (1 play) |
+   |---|---|---|---|
+   | Mogulesko, Zigmunt | 6 | | Rumshinsky, Yoysef |
+   | Wohl, Herman (Tsvi) | 5 | | L. Y. Baraban (choreographer) |
+   | Friedsel, Louis | 5 | | Shayevitsh, Yisroel |
+   | Abramovitsh, Maks (Mendl) | 4 | | Sandler, Perets |
+   | Brody, Yoysef | 4 | | Lyov, Leo (Moyshe-Leyb) |
+   | Sendler, Yakov Kopl | 3 | | Shmulevitsh, Sholem (lyrics) |
+   | Russotto, Henry | 3 | | Joachim Kurantman |
+   | Perlmutter, Arnold | 3 | | |
+   | Minkowski | 2 | | |
+   | Gimpel, Adolf | 2 | | |
+   | Shlosberg, Yitskhok | 2 | | |
+
+6. **The toggle keeps the selected play open across views.** Switching view while a
+   play is open re-draws that play in the new view rather than returning to the wheel
+   — so one play can be watched changing aspect. This is the main thing filter-in-place
+   buys, and it only works because a play never moves (decision 2).
+
 #### Still open
 
-- View 1: 18 composers plus two portrait medallions have to share the centre. Does
-  a composer with 1 play get the same presence as Mogulesko with 6?
-- Does the toggle persist a selected play across views, or reset to the wheel?
+- Whether the four view layers can share one `drawFocus`, or each needs its own fan
+  builder. The song tier already strains the single fan; four views may be the
+  occasion to split it.
+- Whether the bare band (view 0) is a view or the *resting state* the others filter.
 
 ### 3.1 Must change
 
