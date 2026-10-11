@@ -53,35 +53,33 @@ for (const k in byPw) {
 }
 
 const GAP = 0.085 * Math.PI;           // wedge of blank between the two authors
-const R_BAND  = 272;                    // every play, one band
-const R_LANE  = 19;                     // gap between its sub-lanes
+// Every play sits on ONE ring, so the band itself is the bare view: 275 plays
+// in a single row, each able to carry its Yiddish title.
+//
+// The radius is set by the labels, not by the dots. Over the usable arc (2π
+// less the two author gaps) R=660 gives a 13.8px pitch against a ~12.5px
+// line-height — the first radius where 275 titles fit without alternating.
+//
+// This is why dots are UNIFORM at rest. An evidence-sized dot reaches 20px
+// across and would collide at any practical radius; a uniform 9px dot leaves
+// the pitch to the label. Views 1–3 still size by evidence, and can: each
+// lights only 24–58 plays, so their pitch is 69–168px.
+//
+// What it costs: the old four-lane band put the 215 title-only plays inside
+// and the 60 documented ones outside, which carried the drawing's argument
+// that most of this repertoire survives as a name. One ring gives that up, so
+// the distinction moves into the dot itself — documented plays are filled,
+// title-only ones hollow.
+const R_BAND  = 660;
+const DOT_REST = 4.5;                   // uniform radius at rest
 const pos = new Map();                  // work id -> {a, x, y, r, rich}
 
-// All 277 plays occupy ONE band. They will not fit a single arc without
-// shrinking to specks, so the band carries three sub-lanes; a play's lane is
-// its position in the arc, not its evidence, so documented and title-only
-// plays sit side by side as one repertoire.
 function arcFor(list, start, end) {
   const span = end - start;
-  // The band is read from the inside out: the plays known only as a title sit
-  // on the two inner lanes, and the documented plays on the outer two, so the
-  // traces that spring from them already point away from the centre.
-  const INNER = [0, 1], OUTER = [2, 3];
-  const lastAngle = new Array(4).fill(-Infinity);
   list.forEach((w, i) => {
     const a = start + span * ((i + 0.5) / list.length);
-    const r = radiusOf(w);
-    const lanes = isRich(w) ? OUTER : INNER;
-    // take the first lane with room at this angle; else the emptiest of them
-    let lane = lanes[0];
-    for (const L of lanes) {
-      const needed = (r + 2.4) / (R_BAND + L * R_LANE);
-      if (a - lastAngle[L] >= needed) { lane = L; break; }
-      if (lastAngle[L] < lastAngle[lane]) lane = L;
-    }
-    const R = R_BAND + lane * R_LANE;
-    lastAngle[lane] = a + (r + 2.4) / R;
-    pos.set(w.id, {a, x: Math.cos(a)*R, y: Math.sin(a)*R, r, rich: isRich(w), lane, R});
+    pos.set(w.id, {a, x: Math.cos(a)*R_BAND, y: Math.sin(a)*R_BAND,
+                   r: DOT_REST, rich: isRich(w), lane: 0, R: R_BAND});
   });
 }
 
@@ -89,9 +87,14 @@ function arcFor(list, start, end) {
 arcFor(byPw.Lateiner, -Math.PI/2 + GAP/2,  Math.PI/2 - GAP/2);
 arcFor(byPw.Hurwitz,   Math.PI/2 + GAP/2, 3*Math.PI/2 - GAP/2);
 
+// The portraits were sized for a 272px band. On the 660px ring they read as
+// specks, and the centre now has to hold 11 composer medallions besides, so
+// both grow with the ring. Declared here, with AUTHOR_POS: the play spokes
+// start at the portrait's edge and are drawn long before the hubs.
+const PORTRAIT_R = 104;
 const AUTHOR_POS = {
-  Lateiner: {x: 96, y: -10},
-  Hurwitz:  {x: -96, y: -10}
+  Lateiner: {x: 161, y: -10},
+  Hurwitz:  {x: -161, y: -10}
 };
 
 // which play is open, if any — consulted by paintFamFilter and the pan handler
@@ -122,10 +125,11 @@ const root   = mk('g');                       // pan/zoom container
 const gGuide = mk('g', {class:'guides'});
 const gSpoke = mk('g', {class:'spokes'});
 const gOuter = mk('g', {class:'outer'});
+const gTitle = mk('g', {class:'titles'});   // the ring's Yiddish titles
 const gWork  = mk('g', {class:'works'});
 const gHub   = mk('g', {class:'hubs'});
 const gFocus = mk('g', {class:'focus'});
-[gGuide,gSpoke,gOuter,gWork,gHub,gFocus].forEach(g => root.appendChild(g));
+[gGuide,gSpoke,gOuter,gTitle,gWork,gHub,gFocus].forEach(g => root.appendChild(g));
 stage.appendChild(root);
 
 function mk(name, attrs) {
@@ -223,9 +227,9 @@ function drawIcon(key, x, y, size, color, opts){
   return g;
 }
 
-/* guide rings + the halo behind the centre */
-[0,1,2,3].forEach(i => gGuide.appendChild(mk('circle',{cx:0,cy:0,r:R_BAND+i*R_LANE,
-  fill:'none',stroke:'var(--rule-2)','stroke-width':1})));
+/* the band's own ring + the halo behind the centre */
+gGuide.appendChild(mk('circle',{cx:0,cy:0,r:R_BAND,
+  fill:'none',stroke:'var(--rule-2)','stroke-width':1}));
 gGuide.appendChild(mk('circle',{cx:0,cy:0,r:180,fill:'url(#glow)'}));
 
 /* ---------------- tooltip ---------------- */
@@ -381,8 +385,16 @@ outerNodes.forEach(it => {
 const workEls = new Map();
 works.forEach(w => {
   const p = pos.get(w.id);
-  const c = mk('circle',{cx:p.x,cy:p.y,r:p.r,fill:famColor(w.fam),
-    'fill-opacity': baseOp(w), stroke:'var(--ground)','stroke-width':.8});
+  // Radius no longer says what survives — every dot is the same size on the
+  // one ring — so the fill says it instead: a documented play is solid, a
+  // play known only as a title is hollow, outlined in its genre colour.
+  const rich = isRich(w);
+  const c = mk('circle',{cx:p.x, cy:p.y, r:p.r,
+    fill: rich ? famColor(w.fam) : 'var(--ground)',
+    'fill-opacity': rich ? baseOp(w) : 1,
+    stroke: famColor(w.fam),
+    'stroke-opacity': rich ? 0 : baseOp(w) + .18,
+    'stroke-width': rich ? .8 : 1.5});
   c.style.cursor='pointer'; c.setAttribute('tabindex','0');
   c.setAttribute('role','button');
   c.setAttribute('aria-label', `${w.title} — ${FAM_LABEL[w.fam]}`);
@@ -396,10 +408,33 @@ works.forEach(w => {
   workEls.set(w.id, c);
   gWork.appendChild(c);
 
+  // The Yiddish title, set radially just outside its dot. Radial is what makes
+  // one row of 275 possible: the constraint is then the angular pitch against
+  // a line-height, not the length of any title — a long title eats radius,
+  // which the drawing has, rather than arc, which it does not.
+  const deg = p.a * 180 / Math.PI;
+  const flip = Math.cos(p.a) < 0;          // keep the left half right-way-up
+  // The text is RTL, so `start` is its RIGHT edge: anchoring the left half at
+  // `start` ran every title back INWARD across the ring. Each half anchors on
+  // the edge that faces away from the centre.
+  const t = mk('text', {
+    x: flip ? -(R_BAND + 13) : R_BAND + 13, y: 0,
+    'text-anchor': flip ? 'start' : 'end',
+    'dominant-baseline': 'central',
+    transform: `rotate(${flip ? deg + 180 : deg})`,
+    fill: 'var(--ink-2)', 'font-size': 10.5,
+    'font-family': 'Spectral, Georgia, serif',
+  });
+  t.style.direction = 'rtl'; t.style.unicodeBidi = 'plaintext';
+  t.textContent = trunc(w.yiddish || w.title, 34);
+  t.dataset.work = w.id; t.dataset.title = '1';
+  t.style.pointerEvents = 'none';
+  gTitle.appendChild(t);
+
   // EVERY play connects to its author — the inner ring included
   const a = AUTHOR_POS[w.pw] || AUTHOR_POS.Lateiner;
   const dx = p.x - a.x, dy = p.y - a.y, len = Math.hypot(dx, dy) || 1;
-  const sx = a.x + dx/len * 64, sy = a.y + dy/len * 64;
+  const sx = a.x + dx/len * (PORTRAIT_R + 6), sy = a.y + dy/len * (PORTRAIT_R + 6);
   const sp = mk('line',{x1:sx,y1:sy,x2:p.x,y2:p.y,
     stroke:'var(--spoke)','stroke-width': isRich(w) ? .5 : .34});
   sp.dataset.work = w.id; sp.dataset.author = '1';
@@ -463,21 +498,20 @@ function paintFamFilter(){
   });
 }
 
-/* scale key */
+/* scale key — filled vs hollow, since every dot is the same size at rest */
 const sk = document.getElementById('scaledots');
-[1,6,18].forEach(wt => {
-  const r = 3.4 + Math.sqrt(wt)*2.0;
+[['', 'documented'], ['hollow', 'title only']].forEach(([cls, label]) => {
   const d = document.createElement('div');
-  d.className='dot'; d.style.width = d.style.height = (r*2)+'px';
-  sk.appendChild(d);
+  d.className = 'dot' + (cls ? ' ' + cls : '');
+  d.style.width = d.style.height = '9px';
+  const t = document.createElement('span');
+  t.textContent = label;
+  sk.appendChild(d); sk.appendChild(t);
 });
 
 function trunc(s, n){ s = String(s||''); return s.length > n ? s.slice(0,n-1) + '\u2026' : s; }
 
-function trunc(s, n){ s = String(s||''); return s.length > n ? s.slice(0,n-1) + '\u2026' : s; }
-
 /* ---------------- the two hubs ---------------- */
-const PORTRAIT_R = 62;
 const hubEls = {};
 
 // A clip path per portrait, so a scan drops straight into the medallion.
@@ -587,18 +621,36 @@ function applyView(){
 let vw = 0, vh = 0;
 // The drawing's true half-extent, measured from the data rather than guessed,
 // so the whole wheel is framed on any viewport.
-const EXTENT = (() => {
+/** Width of the widest title actually drawn, in SVG units. */
+function longestTitle(){
+  let m = 0;
+  gTitle.querySelectorAll('text').forEach(t => {
+    try { m = Math.max(m, t.getBBox().width); } catch (e) { /* not laid out */ }
+  });
+  return m || 200;                     // pre-layout fallback
+}
+
+let EXTENT = 0;
+/** The drawing's reach, measured rather than estimated. Re-run after fonts
+ *  load: a title's width is unknown until it is laid out, and at rest the
+ *  titles are the widest thing on the page. */
+function measureExtent(){
   let m = 0;
   pos.forEach(p => { m = Math.max(m, Math.hypot(p.x, p.y) + p.r); });
   outerNodes.forEach(n => { m = Math.max(m, Math.hypot(n.x, n.y) + 14); });
-  return m + 18;                       // room for the author labels
-})();
+  m = Math.max(m, R_BAND + 13 + longestTitle());
+  EXTENT = m + 18;                     // room for the author labels
+  return EXTENT;
+}
+measureExtent();
+
 function resize(){
   const r = stage.getBoundingClientRect();
   vw = r.width || innerWidth; vh = r.height || innerHeight;
   stage.setAttribute('viewBox', `0 0 ${vw} ${vh}`);
   if (!userZoomed) {
     const pad = vw > 760 ? 14 : 8;
+    measureExtent();
     view.k = Math.max(0.16, Math.min(1.35,
       Math.min(vw - pad*2, vh - pad*2 - 26) / (EXTENT * 2)));
     view.x = 0; view.y = 18;           // nudge clear of the masthead
@@ -900,9 +952,6 @@ function unfocus(){
   dossier.classList.remove('on');
   resetBtn.classList.remove('on');
   userZoomed = false; view.x = 0; view.y = 0; resize();
-requestAnimationFrame(resize);
-addEventListener('load', () => { if (!userZoomed) resize(); });
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!userZoomed) resize(); });
 }
 resetBtn.addEventListener('click', unfocus);
 document.getElementById('close').addEventListener('click', unfocus);

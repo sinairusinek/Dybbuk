@@ -97,6 +97,8 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
 #scalekey .row{display:flex;align-items:flex-end;justify-content:flex-end;gap:7px;
   margin-top:7px;height:20px}
 #scalekey .dot{border-radius:50%;background:var(--ink-3)}
+#scalekey .dot.hollow{background:var(--ground);border:1.5px solid var(--ink-3)}
+#scalekey .row span{font-size:11px;color:var(--ink-3);margin-right:3px}
 #scalekey p{margin:6px 0 0;font-size:11.5px;color:var(--ink-3);font-style:italic;max-width:170px}
 
 /* ---- tooltip ---- */
@@ -217,9 +219,14 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
 </nav>
 
 <aside id="scalekey">
-  <div class="eyebrow">Size = surviving traces</div>
+  <div class="eyebrow">What survives</div>
   <div class="row" id="scaledots"></div>
-  <p>All <!--@WORKS@--> plays share one band. The <b style="font-weight:600;font-style:normal"><!--@RICH@--></b> with a surviving edition, staging or song sit on its outer lanes, their traces springing outward; the other <b style="font-weight:600;font-style:normal"><!--@THIN@--></b>, known only as a title, fill the inner lanes.</p>
+  <p>All <!--@WORKS@--> plays share one ring, each with its title. The
+  <b style="font-weight:600;font-style:normal"><!--@RICH@--></b> with a surviving
+  edition, staging or song are <b style="font-weight:600;font-style:normal">filled</b>,
+  their traces springing outward; the other
+  <b style="font-weight:600;font-style:normal"><!--@THIN@--></b>, known only as a
+  title, are hollow.</p>
 </aside>
 
 <div id="tip" role="status"></div>
