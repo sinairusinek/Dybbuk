@@ -702,12 +702,17 @@ Sinai accepted §4.3. Applied, with the ledger entries that record each:
 | **`P164`** | db 157 Baumritter had an empty `address` while its own aligned mention states one → `רחוב ביעליינסקע 16, Warsaw`. | `core_db.tsv` |
 | — | db 24 Lebenzohn `name_variants` → attested **surface forms only** (`לעבענזאהן`, `לעבענזאָהן`, `Lebenzohn`, `Lebensohn`), per §4.3(2): variants carry what a *matcher* needs, **not** the proprietor sequence. | `core_db.tsv` |
 
-**Deliberately not done:** the Romm merge (`P165`) and the typology casing sweep
-(`P166`) — both below.
+**Deliberately not done:** the typology casing sweep (`P166`) — below. The Romm
+merge (`P165`) was deferred to Sinai and has since been **approved and applied**
+as `P168`; see below.
 
 ### Still open, and why
 
-- **`P165` — Romm needs your decision, not a cleanup.** Full evidence is now in
+- **`P165` — RESOLVED 2026-10-11.** Sinai chose to merge; applied as **`P168`**
+  (db 953 → **db 495**, typed `Printer/Publisher`, all three clusters on the
+  survivor). This was the **first application of Rule 1** and it held: the rule
+  decided the survivor (earliest id), and the evidence — not the rule — decided
+  that the three name-forms are one house. Full evidence and what was applied is in
   **[`ROMM_DECISION_MEMO.md`](ROMM_DECISION_MEMO.md)** (every attestation, how the
   split happened, and what the dates really mean). db 495 and db 953 are one
   Vilna house (§5.7) and the proposed merge is survivor **db 495**, db 953

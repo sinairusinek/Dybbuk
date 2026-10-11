@@ -294,7 +294,7 @@ db_id_a	db_id_b	name_a	name_b	name_yi_a	name_yi_b	org_type_a	org_type_b	matched_
 479	586	אָרטיקער פילהאַרמאָניע	קעשעניעווער פילהאַרמאָניע	אָדעסער פילהאַרמאָניע			Theatre	<surname>פילהארמאניע ~ <surname>פילהארמאניע	1.000	surname_trigram	N	ORG-C00017	ORG-C01614	REVIEW	479	586		
 485	1000	קאָמפּאַנעעצס טרופּע	שוואַרץ'ס יידישער טרופּע	קאָמפּאַניעעצס יידישער טרופּע	שוואַרץ'ס יידישער טרופּע	Traveling Company	traveling company	<surname>יידישער ~ <surname>יידישער	1.000	surname_trigram	Y	ORG-C00047	ORG-C06553	REVIEW	485	1000		
 485	1425	קאָמפּאַנעעצס טרופּע	די גאסטראלירנדיקער יידישער טרופע (מאגולעסקא, פיינמאן און קעסלער)	קאָמפּאַניעעצס יידישער טרופּע	די גאסטראלירנדיקער יידישער טרופע (מאגולעסקא, פיינמאן און קעסלער)	Traveling Company	traveling company	<surname>יידישער ~ <surname>יידישער	1.000	surname_trigram	Y	ORG-C00047	ORG-C05762	REVIEW	485	1425		
-495	953	דרוקעריי פון ראָם		דרוקעריי פון ראָם	ראָם-פֿאַרלאַג		Publisher	<surname>ראם ~ <surname>ראם	1.000	surname_trigram	N	ORG-C00074	ORG-C00940 | ORG-C04980	REVIEW	953	495		
+495	953	דרוקעריי פון ראָם		דרוקעריי פון ראָם	ראָם-פֿאַרלאַג		Publisher	<surname>ראם ~ <surname>ראם	1.000	surname_trigram	N	ORG-C00074	ORG-C00940 | ORG-C04980	REVIEW	953	495		MERGED 2026-10-11 (P168): db 953 -> db 495, survivor keeps earliest id per dynasty Rule 1. NOTE suggested_keep said 953; overridden. One Vilna house.
 497	727	באַלאַגעניידען		באַלאַגעניידען	באַלאַגעניידען		Theatre	באַלאַגעניידען ~ באַלאַגעניידען	1.000	trigram_full	N	ORG-C00051_Q01 | ORG-C00051_Q02 | ORG-C01023	ORG-C00051_Q02 | ORG-C02772_Q02	REVIEW	497	727		
 497	728	באַלאַגעניידען		באַלאַגעניידען	באַלאַגעניידען		Theatre	באַלאַגעניידען ~ באַלאַגעניידען	1.000	trigram_full	N	ORG-C00051_Q01 | ORG-C00051_Q02 | ORG-C01023	ORG-C00051_Q02 | ORG-C01787	REVIEW	497	728		
 497	729	באַלאַגעניידען		באַלאַגעניידען	באַלאַגעניידען		Theatre	באַלאַגעניידען ~ באַלאַגעניידען	1.000	trigram_full	N	ORG-C00051_Q01 | ORG-C00051_Q02 | ORG-C01023	ORG-C00051_Q02	REVIEW	497	729		
@@ -3745,7 +3745,7 @@ db_id_a	db_id_b	name_a	name_b	name_yi_a	name_yi_b	org_type_a	org_type_b	matched_
 206	1095	Camp Kinderland		קעמפּ קינדערלאַנד	יידישן קינדער-טעאַטער (קיעוו)		Theatre	<surname>קינדערלאנד ~ <surname>קינדער	0.600	surname_phonetic	N		ORG-C01333_Q02 | ORG-C03604	REVIEW	1095	206		
 206	625	Camp Kinderland	קינדער-טרופּע	קעמפּ קינדערלאַנד			Traveling Company	<surname>קינדערלאנד ~ <surname>קינדער	0.600	surname_phonetic	N		ORG-C01628	REVIEW	625	206		
 208	495	Chicago's Drama Society	דרוקעריי פון ראָם		דרוקעריי פון ראָם			<surname>דראמע ~ <surname>ראם	0.600	surname_phonetic	Y	ORG-C07959	ORG-C00074	REVIEW	208	495		
-208	953	Chicago's Drama Society			ראָם-פֿאַרלאַג		Publisher	<surname>דראמע ~ <surname>ראם	0.600	surname_phonetic	N	ORG-C07959	ORG-C00940 | ORG-C04980	REVIEW	953	208		
+208	953	Chicago's Drama Society			ראָם-פֿאַרלאַג		Publisher	<surname>דראמע ~ <surname>ראם	0.600	surname_phonetic	N	ORG-C07959	ORG-C00940 | ORG-C04980	REVIEW	953	208		FALSE POSITIVE 2026-10-11: matched on <surname>דראמע ~ <surname>ראם - the Yiddish for 'drama' shares letters with Romm. Chicago's Drama Society is unrelated. db 953 now deprecated into 495 anyway.
 210	631	Cidal Circ	צירק-טעאַטער				Theatre	<surname>קירק ~ <surname>צירק	0.600	surname_phonetic	N		ORG-C02939	REVIEW	631	210		
 210	643	Cidal Circ	ציניזעליס צירק				circus	<surname>קירק ~ <surname>צירק	0.600	surname_phonetic	N		ORG-C02463	REVIEW	643	210		
 210	645	Cidal Circ	דוראָווס צירק				circus	<surname>קירק ~ <surname>צירק	0.600	surname_phonetic	N		ORG-C05415	REVIEW	645	210		

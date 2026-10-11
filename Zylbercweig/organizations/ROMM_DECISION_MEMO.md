@@ -1,9 +1,11 @@
 # Romm — every attestation in our data, for a merge/split decision
 
-**For:** Sinai. **Prepared:** 2026-10-11. **Decision needed:** does the Romm
-press become one row (db 495) or stay two (db 495 + db 953)?
-**Companion to:** `PUBLISHING_DYNASTY_MODEL_PROPOSAL.md` §7 (`P165`).
-**Nothing has been changed.**
+**For:** Sinai. **Prepared:** 2026-10-11.
+**DECIDED 2026-10-11: Option A — MERGED.** Sinai approved; applied as `P168`.
+db 953 is deprecated into **db 495**, which now holds all three clusters and is
+typed `Printer/Publisher`. What was applied, and the downstream files touched,
+is in §8 at the end.
+**Companion to:** `PUBLISHING_DYNASTY_MODEL_PROPOSAL.md` §7 (`P165`, `P167`, `P168`).
 
 ---
 
@@ -166,9 +168,9 @@ historical name of it** — the brothers' phase — not a different business.
 
 ---
 
-## 6. The decision
+## 6. The decision (taken — Option A)
 
-### Option A — MERGE into db 495 *(recommended)*
+### Option A — MERGE into db 495 ✅ **CHOSEN AND APPLIED**
 
 Survivor **db 495** (earliest id, per Rule 1); db 953 `deprecated=true`,
 `merged_into=495`; its two clusters folded into db 495's
@@ -192,7 +194,7 @@ vs the *drukeray* function — though under the adopted model that distinction
 belongs in dated relations we are not yet building, and the mention layer retains
 it regardless.
 
-### Option B — keep two rows
+### Option B — keep two rows *(not chosen)*
 
 **For:** a *farlag* and a *drukeray* are, in principle, distinct concerns, and
 Rule 2 splits businesses that overlap in time.
@@ -221,3 +223,35 @@ novelist's publisher, a playtext's imprint. None is an entry *about* the Romm
 firm. The corpus is Zylbercweig's theatre lexicon, so the press appears only
 where it touches a theatre person's life. Whatever is decided rests on three
 passing mentions plus the external record, not on rich in-corpus evidence.
+
+
+---
+
+## 8. Applied 2026-10-11 (`P168`)
+
+| file | change |
+|---|---|
+| `core_db.tsv` | **db 495** — `org_type` → `Printer/Publisher`; `linked_cluster_ids` → `ORG-C00071 \| ORG-C00940 \| ORG-C04980`; `name_variants` → `ראָם-פֿאַרלאַג\|דרוקעריי פֿון די ברידער ראָם\|דפוס ראם\|ראם\|Romm\|Rom`. **db 953** — `deprecated=true`, `merged_into=495`, clusters emptied, `name` set to `ראָם-פֿאַרלאַג` (the standing merge convention). |
+| `org_alignment_review.tsv` | ORG-C00940 and ORG-C04980 → `decision=ALIGN`, `aligned_db_id=495`, **reviewer stamped** (the original machine rows had none). |
+| `graph/person_org_edges.tsv` | **not committed.** A rebuild does resolve all three Romm edges to db 495 (verified), but the committed graph was built against a much older `core_db` — it even has ORG-C00071 → db *496* — so regenerating it wrote `db_id` into ~5,700 unrelated previously-empty cells. Left for a dedicated rebuild. |
+| `db_dedup_review.tsv` | the 495↔953 pair (flagged `REVIEW` at score **1.000** and never actioned) marked **MERGED**; the 208↔953 pair marked a **false positive** — it matched on `<surname>דראמע ~ <surname>ראם`, the "drama"/"Romm" letter overlap. |
+| `db_audit_decisions.tsv` | 3 `KEEP_IN` rows on db 495 explaining that its weak **0.032** pair score is real but expected — three dissimilar name-strings for one house — **not** a false equation. |
+| `publisher_audit_decisions.tsv` | `P168`. |
+
+**Deliberately not committed — two stale generated files.** Both rebuild correctly
+for Romm but carry large unrelated diffs, because each was last built against an
+older `core_db`:
+
+- `db_audit_punchlist.tsv` — a rebuild correctly moves the flag from db 953 to
+  db 495, but produced a **246-line** diff unrelated to Romm.
+- `graph/person_org_edges.tsv` (+ `org_overlap_candidates`, `org_overlap_shortlist`,
+  `alignment_corroboration`) — a rebuild correctly points all three Romm edges at
+  db 495, but filled **~5,700** unrelated `db_id` cells.
+
+Both are owed a rebuild; it should be its own commit, reviewed on its own terms.
+The `db_audit_decisions` rows above carry the Romm explanation regardless.
+
+**Still unrepresentable:** the external ids (Wikidata **Q7193734**, NLI J9U
+**987007477320405171**, GND **1131194608**) — `core_db` has no column for them.
+And the *drukeray*-vs-*farlag* function split is now visible only in the mention
+layer, which is the expected cost of the adopted model.
