@@ -284,10 +284,26 @@ view built on this must show provenance on its face**, the way the song panel do
    view layers to build**, over a resting band that is already most of what view 0
    asks for.
 
+9. **The resting band expands to ONE ring at R≈660.** The four-lane band at
+   R=272–329 cannot carry labels (6–7 px pitch against a ~12.5 px line-height), so
+   "view 0 is the resting state" means the band itself becomes view 0. At R=660 over
+   the usable arc (2π less the two author gaps) the pitch is **13.8 px** — labels fit.
+
+   **Dots are uniform at rest**, which is what "none enlarged" asks for and is also
+   what makes it possible: a 20 px evidence-sized dot collides at *any* practical
+   radius, but a uniform ~9 px dot leaves the pitch to the label. Views 1–3 still size
+   by evidence, and they can: each lights only 24–58 plays, so their pitch is 69–168 px.
+
+   **What this costs, and it is not nothing:** the inner/outer split — 217 title-only
+   plays inside, 60 documented outside — was the drawing's main argument, that most of
+   this repertoire survives as a name. One ring gives that up. It has to be carried by
+   dot treatment (fill vs. hollow) instead of by radius.
+
 #### Still open
 
 - Whether the three view layers can share one `drawFocus`, or each needs its own fan
   builder. The song tier already strains the single fan.
+- How the "most of it is lost" reading survives the move to one ring.
 
 ### 3.1 Must change
 
