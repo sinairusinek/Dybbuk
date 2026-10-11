@@ -274,12 +274,20 @@ view built on this must show provenance on its face**, the way the song panel do
    — so one play can be watched changing aspect. This is the main thing filter-in-place
    buys, and it only works because a play never moves (decision 2).
 
+#### Decided by Sinai, 2026-10-11 (second round)
+
+7. **The 7 single-play composers go on the trace tier beside their play** — where the
+   editions, stagings and songs of that play already sit — not on a ring of their own.
+   They are near the one play they touch, and the fan machinery already places them.
+8. **View 0 is the RESTING STATE, not a fourth view.** The bare band is what the
+   mandala shows with no view selected, and views 1–3 filter it. So there are **three
+   view layers to build**, over a resting band that is already most of what view 0
+   asks for.
+
 #### Still open
 
-- Whether the four view layers can share one `drawFocus`, or each needs its own fan
-  builder. The song tier already strains the single fan; four views may be the
-  occasion to split it.
-- Whether the bare band (view 0) is a view or the *resting state* the others filter.
+- Whether the three view layers can share one `drawFocus`, or each needs its own fan
+  builder. The song tier already strains the single fan.
 
 ### 3.1 Must change
 
