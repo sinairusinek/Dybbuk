@@ -23,7 +23,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 21	חרגול			Publisher							true
 22	שוקן			Publisher							true
 23	הספריה החדשה			Publisher							true
-24	יואל לעבענזאהן			Printer							
+24	יואל לעבענזאהן			Printer						יואל לעבענזאהן|לעבענזאהן|לעבענזאָהן|Lebenzohn|Lebensohn	
 25	יוסף פישער	יוסף פישער				ORG-C06060					
 26	New York Public Library		ניו יאָרק פּובליק ביבליאָטעק	Library		ORG-C00216 | ORG-C01703 | ORG-C07162					
 27	YIVO Institute for Jewish Research	"ייוו""אָ"	ייוואָ אינסטיטוט פֿאָר ייִדיש רעסירטש	Heritage Institution		ORG-C00368 | ORG-C00067_Q01 | ORG-C06632 | ORG-C01519				ייוואָ|יידישן וויסנשאַפֿטלעכן אינסטיטוט|YIVO	
@@ -142,7 +142,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 154	Columbia Theatre		קאָלומביאַ טעאַטער	Theatre		ORG-C00986_Q03					
 155	Academy of Music		אַקאַדעמי פֿון מוסיק	Theatre							
 156	Thomashefsky Theatre		טאָמאַשעפֿסקי טעאַטער			ORG-C01181 | ORG-C03061					
-157	Baumritter		באַומריטטער	Printer		ORG-C06061					
+157	Baumritter		באַומריטטער	Printer	רחוב ביעליינסקע 16, Warsaw	ORG-C06061					
 158	פ. קאנטאראוויטש|יודישע טהעאַטער⸗בּיבּליאָטעק|Teater bibliyotek										
 160	Kalich Theatre		קאַליטש טעאַטער		Bowery 45-47, NYC						
 161	Muranover Yiddish Teater	מוראַנאָווער טעאַטער		Theatre	Bonifraterska street 14, Muranow, Warsaw	ORG-C00116 | ORG-C00168 | ORG-C02236					
@@ -469,7 +469,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 492	יידל גאָלדפאַדנס טרופּע	יידל גאָלדפאַדנס טרופּע		Traveling Company		ORG-C00046 | ORG-C06068					
 493	סאַן פּאָולאַ יידישער געזעלשאַפט			Jewish political bodies		ORG-C00051					
 494	ווינער דייטשן פאָלקס-טעאַטער			Theatre							
-495	דרוקעריי פון ראָם	דרוקעריי פון ראָם				ORG-C00071					
+495	דרוקעריי פון ראָם	דרוקעריי פון ראָם		Printer		ORG-C00071					
 496	אַקטיאָרן-פאַריין (בוענאָס איירעס)	אַקטיאָרן-פאַריין				ORG-C03181_Q01 | ORG-C02702_Q02 | ORG-C00068					
 497	באַלאַגעניידען	באַלאַגעניידען				ORG-C00051_Q01 | ORG-C01023					
 498	הכל הבל										
@@ -2596,12 +2596,12 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2658	בן-גוריון-צווייג פֿון יידיש-נאַציאָנאַלן אַרבעטער-פֿאַרבאַנד	בן-גוריון-צווייג פֿון יידיש-נאַציאָנאַלן אַרבעטער-פֿאַרבאַנד		jewish political bodies		ORG-C07481					
 2659	"„הצפֿירה""-גרופּע פֿון דער פּיאָנערן פרויען אָרגאַניזאַציע"	"„הצפֿירה""-גרופּע פֿון דער פּיאָנערן פרויען אָרגאַניזאַציע"		jewish political bodies		ORG-C07489					
 2660	חיים גרינבערג-צענטער	חיים גרינבערג-צענטער		jewish political bodies		ORG-C07499					
-2661	Gebrider Bletnitski (Bletnitski Brothers)	בוכהאַנדלונג געברידער בלעטניצקי		Publisher	אָדעססאַ	ORG-C05028 | ORG-C05691				געברידער בלעטניצקי|בוכהאַנדלונג געברידער בלעטניצקי|האחים בלעטניצקי|ha-Ahim Bletnitski|Gebrider Bletnitski	
-2662		פאַרלאַג ת. יאָקובסאָן און מ. גאָלדבערג		Publisher		ORG-C04085 | ORG-C04914					
-2663		פאַרלאַג ב. שימין		Publisher		ORG-C00725 | ORG-C06681					
-2664		פאַרלאַג ש. שרעבערק		Publisher		ORG-C03710					
-2665		פֿאַרלאַג יאָטשקאָווסקי		Publisher		ORG-C01054 | ORG-C03951					
-2666		י. אַלאַפּין		Publisher		ORG-C04536 | ORG-C05289 | ORG-C06552					
-2667		ל. מאָרגענשטערן		Publisher		ORG-C05293 | ORG-C05983 | ORG-C06062					
-2668		אברהם הירש קאַצענעלבאָגן		Publisher		ORG-C02212					
-2669		פערלאַג מ. גאָלדפֿאַרב		Publisher		ORG-C04431					
+2718	Gebrider Bletnitski (Bletnitski Brothers)	בוכהאַנדלונג געברידער בלעטניצקי		Publisher	אָדעססאַ	ORG-C05028 | ORG-C05691				געברידער בלעטניצקי|בוכהאַנדלונג געברידער בלעטניצקי|האחים בלעטניצקי|ha-Ahim Bletnitski|Gebrider Bletnitski	
+2719		פאַרלאַג ת. יאָקובסאָן און מ. גאָלדבערג		Publisher		ORG-C04085 | ORG-C04914					
+2720		פאַרלאַג ב. שימין		Publisher		ORG-C00725 | ORG-C06681					
+2721		פאַרלאַג ש. שרעבערק		Publisher		ORG-C03710					
+2722		פֿאַרלאַג יאָטשקאָווסקי		Publisher		ORG-C01054 | ORG-C03951					
+2723		י. אַלאַפּין		Publisher		ORG-C04536 | ORG-C05289 | ORG-C06552					
+2724		ל. מאָרגענשטערן		Publisher		ORG-C05293 | ORG-C05983 | ORG-C06062					
+2725		אברהם הירש קאַצענעלבאָגן		Publisher		ORG-C02212					
+2726		פערלאַג מ. גאָלדפֿאַרב		Publisher		ORG-C04431					

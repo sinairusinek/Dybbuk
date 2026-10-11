@@ -679,14 +679,53 @@ Nothing irreversible. Under current conventions:
   לעבענזאָהן` is deliberately left unaligned, because aligning it would decide
   this question by accident.
 - **Baumritter** (db 157) took the partnership cluster under Rule 3 (`P057`).
-- **Goldfarb** was split under Rule 2 (`P059`), minting db 2669 for M.
-- **Bletnitski** was minted as one Odessa row under Rule 4 (db 2661, `P148`).
+- **Goldfarb** was split under Rule 2 (`P059`), minting a row for M. —
+  now **db 2726** after the `P162` renumber (§7).
+- **Bletnitski** was minted as one Odessa row under Rule 4 (`P148`) —
+  now **db 2718** after the `P162` renumber (§7).
 
 Reversing any of these is a cluster-link edit, not a data loss.
 
+**Superseded in part:** see §7 for what was applied on 2026-10-11, including the
+id renumber that moved every row this audit minted.
+
 ---
 
-## 7. Sources for §5
+## 7. Applied 2026-10-11 (recommendation accepted)
+
+Sinai accepted §4.3. Applied, with the ledger entries that record each:
+
+| | what | where |
+|---|---|---|
+| **`P162`** | **ID collision fixed.** All 9 publishers this audit minted (2661–2669) collided with **9 real theatres already on `origin/main`**. Local main was 2106 commits behind, so the audit minted from a stale high-water mark of 2660; origin's true max is **2717**. Renumbered **2661–2669 → 2718–2726** in `core_db.tsv` (9 rows) and `org_alignment_review.tsv` (16 `aligned_db_id` rows). Verified: 0 remaining collisions, 0 other rows altered. Nothing was lost — the publishers were local-only, the theatres origin-only. | `core_db.tsv`, `org_alignment_review.tsv` |
+| **`P163`** | db 495 `דרוקעריי פון ראָם` had an **empty `org_type`** → set to `Printer` (its mention reads *drukeray*). True either way the Romm question goes. | `core_db.tsv` |
+| **`P164`** | db 157 Baumritter had an empty `address` while its own aligned mention states one → `רחוב ביעליינסקע 16, Warsaw`. | `core_db.tsv` |
+| — | db 24 Lebenzohn `name_variants` → attested **surface forms only** (`לעבענזאהן`, `לעבענזאָהן`, `Lebenzohn`, `Lebensohn`), per §4.3(2): variants carry what a *matcher* needs, **not** the proprietor sequence. | `core_db.tsv` |
+
+**Deliberately not done:** the Romm merge (`P165`) and the typology casing sweep
+(`P166`) — both below.
+
+### Still open, and why
+
+- **`P165` — Romm needs your decision, not a cleanup.** db 495 and db 953 are one
+  Vilna house (§5.7) and the proposed merge is survivor **db 495**, db 953
+  deprecated with `merged_into=495`. But a *farlag* and a *drukeray* may be two
+  functions of one house (→ Rule 1 merges) or two businesses (→ Rule 2 splits),
+  and the dates — 1887 for the *Farlag*, 1839–1862 for the brothers' press — do
+  not settle it. Merging unasked would be precisely the accidental decision §6
+  was right to avoid, so **nothing was changed**.
+- **`P166` — off-typology `org_type` casing is a pre-existing, repo-wide defect:**
+  **1,380 rows** across 34 non-canonical spellings (`traveling company` 573,
+  `education` 218, `jewish political bodies` 147, …, `publisher` 3, `printer` 2).
+  Mostly lowercasing, some Title-Case. Far outside this audit's scope, and a blind
+  case-fold risks colliding with the app's unknown-value dropdown fallback.
+  `Non-Yiddish Theatre` is a **legitimate** type, not a casing error. Needs its own pass.
+- **The schema question** (§4.3, last paragraph) — whether `core_db` gains a time
+  dimension — remains for the PI, jointly with `TROUPE_TYPOLOGY_PROPOSAL.md`.
+
+---
+
+## 8. Sources for §5
 
 ### Cataloguing standards
 - MARC 21 Authority: [110](https://www.loc.gov/marc/authority/ad110.html) · [410](https://www.loc.gov/marc/authority/ad410.html) · [510](https://www.loc.gov/marc/authority/ad510.html) · [`$w` control subfield](https://www.loc.gov/marc/authority/adtracing.html)
