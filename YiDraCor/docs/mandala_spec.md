@@ -297,16 +297,14 @@ view built on this must show provenance on its face**, the way the song panel do
 
 ## 4. Known gaps and technical debt
 
-- **The generator is still not in the repo.** `docs/Visualizations/lateiner_hurwitz_mandala.html`
-  is committed and served, but it was assembled by hand in a session scratchpad from
-  `head.html` + `body.html` + an inlined `mandala.json` + `app.js`. **Nobody but this
-  session can currently rebuild it.** The fix is a committed script under
-  `YiDraCor/code/` that reads `data/entity_graph.json` and writes the page into
-  `docs/Visualizations/` — the same shape as `build_character_networks.py`. Until then,
-  edits to the mandala cannot be reproduced. Note the two traps recorded in memory: all
-  visualizations live in **one** directory so relative cross-links work, and generators
-  have previously written to the wrong `docs/` path — an empty `git status` after a run
-  means the path is wrong.
+- ~~**The generator is still not in the repo.**~~ **FIXED 2026-10-11** (`2715f530e`).
+  The page is three committed pieces: `code/mandala/head.html`, the payload built by
+  **`code/build_mandala.py`** from `data/entity_graph.json`, and `code/mandala/tail.html`.
+  Head and tail are hand-written and stay hand-written — they are the design; only the
+  payload is generated. `python3 code/build_mandala.py` rewrites the page;
+  `--check` verifies it is current and writes nothing. Run it after every
+  `build_entity_graph.py`. The masthead counts are filled from the payload, so they
+  cannot drift from the wheel again.
 - **No date axis.** Most works carry no year, so chronology is not currently encodable.
 - **Genre normalisation is lossy.** Ten families from free text; the mapping is in the
   build script and should arguably live in a reviewable file.
