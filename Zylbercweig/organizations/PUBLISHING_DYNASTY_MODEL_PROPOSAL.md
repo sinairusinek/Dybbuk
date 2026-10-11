@@ -707,7 +707,9 @@ Sinai accepted §4.3. Applied, with the ledger entries that record each:
 
 ### Still open, and why
 
-- **`P165` — Romm needs your decision, not a cleanup.** db 495 and db 953 are one
+- **`P165` — Romm needs your decision, not a cleanup.** Full evidence is now in
+  **[`ROMM_DECISION_MEMO.md`](ROMM_DECISION_MEMO.md)** (every attestation, how the
+  split happened, and what the dates really mean). db 495 and db 953 are one
   Vilna house (§5.7) and the proposed merge is survivor **db 495**, db 953
   deprecated with `merged_into=495`. But a *farlag* and a *drukeray* may be two
   functions of one house (→ Rule 1 merges) or two businesses (→ Rule 2 splits),
