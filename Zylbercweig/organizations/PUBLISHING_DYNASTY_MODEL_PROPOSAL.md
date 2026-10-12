@@ -736,7 +736,7 @@ as `P168`; see below.
 
 | | what | where |
 |---|---|---|
-| **`P173`** | **ID collision, third round.** The deployed app mints on every Save, so it had taken **2809–2820** for theatres and amateur groups while this work sat unmerged — overtaking the `P162` renumber (§7) exactly as `P162` had overtaken the original mints. Renumbered **2809–2820 → 2850–2861**, clear of origin's maximum of **2845**. Remapped the `db_id` column only, in `core_db.tsv` (12 rows), `eponym_candidates.tsv` (14 rows) and YiDraCor's `edition_org_links.tsv` (3 rows, `P171`/`P172`). A textual replace would have corrupted `eponym_candidates.tsv`, where `2809` is also a **person** hub id (`HUB-D2809`) and 1809–1820 are person db ids. | `core_db.tsv`, `eponym_candidates.tsv`, `edition_org_links.tsv` |
+| **`P173`** | **ID collision, third round.** The deployed app mints on every Save, so it had taken **2809–2820** for theatres and amateur groups while this work sat unmerged — overtaking the `P162` renumber (§7) exactly as `P162` had overtaken the original mints. Renumbered **2809–2820 → 2850–2861**. The first attempt placed them at 2846–2857, clear of origin's then-maximum of 2845 — and the app minted 2846–2849 during the merge itself, so a **fourth** move was needed before anything could land. Remapped the `db_id` column only, in `core_db.tsv` (12 rows), `eponym_candidates.tsv` (14 rows) and YiDraCor's `edition_org_links.tsv` (3 rows, `P171`/`P172`). A textual replace would have corrupted `eponym_candidates.tsv`, where `2809` is also a **person** hub id (`HUB-D2809`) and 1809–1820 are person db ids. | `core_db.tsv`, `eponym_candidates.tsv`, `edition_org_links.tsv` |
 | **`P174`** | **`P162`'s destination was wrong for nine rows.** In `org_alignment_review.tsv`, 2809–2817 was carrying *two* sets of rows: Sinai's 19 Publisher `ALIGN` cells and **Noa's 9 `NEW` rows**, which the `P162` sweep had dragged along by mistake. Origin had already minted Noa's nine societies at **2718–2726** and both sides' `core_db` already agreed on them — only this column was stale. So the `ALIGN` cells follow `P173` to 2850–2861 while Noa's `NEW` rows were **restored to 2718–2726**. | `org_alignment_review.tsv` |
 | **`P175`** | **Merged `origin/main`** as a union, not either side — these files are append-only and each side had filled cells the other left empty, so `--ours`/`--theirs` would have discarded one party's decisions. `core_db` 2794 rows = origin's 2782 + the 12 publishers. One true conflict, `ORG-C00594` (בראַנקס אַרט טעאַטער): both sides' `core_db` put that cluster at db **2805**, so origin's `aligned_db_id` stood and the branch's 2807 — collateral from an earlier sweep — was dropped. `activity_log` took both sides' appends with 502 shared upstream rows deduplicated. | all three |
 
@@ -757,11 +757,13 @@ as `P168`; see below.
 | `P171` | Farlag "Di Yudishe Bihne" | **2860** |
 | `P172` | Farlag "Kultur" (Warsaw) | **2861** |
 
-**The standing lesson.** Three renumberings in three days is not bad luck: any
+**The standing lesson.** Four renumberings in three days is not bad luck: any
 id minted locally against a stale `core_db` is a guess, because the deployed app
-is minting at the same time and pushes on every Save. Mint from
-`origin/main`'s high-water mark fetched at the moment of minting, and merge the
-same day — or mint no id at all and let the app assign it. The `activity_log`
+is minting at the same time and pushes on every Save. The app took four ids in
+the forty minutes this merge was being prepared, which is why the gap has to be
+re-checked immediately before the merge lands, not when the renumber is written.
+Mint from `origin/main`'s high-water mark fetched at that moment and merge the
+same minute — or, better, mint no id at all and let the app assign it. The `activity_log`
 mint rows still record the **original** ids (2661–2669, 2805–2807); the log is
 append-only history and was deliberately left as written.
 
