@@ -23,7 +23,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 21	חרגול			Publisher							
 22	שוקן			Publisher							
 23	הספריה החדשה			Publisher							
-24	יואל לעבענזאהן			Printer							
+24	יואל לעבענזאהן			Printer		ORG-C06526				יואל לעבענזאהן|לעבענזאהן|לעבענזאָהן|Lebenzohn|Lebensohn	
 25	יוסף פישער	יוסף פישער				ORG-C06060					
 26	New York Public Library		ניו יאָרק פּובליק ביבליאָטעק	Library		ORG-C00216 | ORG-C01703 | ORG-C07162					
 27	YIVO Institute for Jewish Research	"ייוו""אָ"	ייוואָ אינסטיטוט פֿאָר ייִדיש רעסירטש	Heritage Institution		ORG-C00368 | ORG-C00067_Q01 | ORG-C06632 | ORG-C01519				ייוואָ|יידישן וויסנשאַפֿטלעכן אינסטיטוט|YIVO	
@@ -48,7 +48,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 50	שלמה גאָלדפאַרבּ	ש. גאָלדפֿאַרב				ORG-C03940 | ORG-C06558 | ORG-C00874 | ORG-C02674 | ORG-C04117					
 52	היברו פּאַבלישינג קאָמפאני	היברו פּאָבלישינג קאָמפּאַני				ORG-C01098 | ORG-C04737 | ORG-C05215					
 53	Yuropian Hibru poblishing ḳompani		יוראָפּיאַן היברו פּאָבלישינג ḳאָמפּאַני								
-54	Di inṭernatsyonale biblioṭheḳ		די יןṭernatsyonale ביבליאָṭheḳ								
+54	Di inṭernatsyonale biblioṭheḳ		די יןṭernatsyonale ביבליאָṭheḳ	Publisher				true	2332		
 55	Elizeum		עליזיים								
 56	L. Ḥarik		ל. Ḥאַריק								
 57	Progres	פּראָגרעס			Nalewki 32, Warsaw	ORG-C01415					
@@ -58,7 +58,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 62	אהרן פויסט| A. Faust				Krakowska 13, Krakow						
 63	אַמקרויט עט פריינד| Amkroyt un Fraynd										
 64	בּנימין מונק|Benjamin Munk				Kasimirgasse 16, Lemberg						
-65	דוד ראָטה|D. Roth										
+65	דוד ראָטה|D. Roth			Publisher				true	1021		
 66	ש. ל. דייטשער| Sh. L. Deytsher			Printer	באזיא ציאלא 10, פודגורזה						
 67	לעווין אפשטיין	לעווין- עפּשטיין			Gęsia  גענשע/ גֶנשה 5, Warsaw	ORG-C01840 | ORG-C03915				לעווין אפשטיין	
 68	הצפירה	הצפירה			פייַנסקא 40, וורשה	ORG-C00210 | ORG-C02207					
@@ -69,7 +69,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 73	מ. צדרבוים			Printer							
 74	פערלאגס-בוכהאנדלונג ״יבנה״			Publisher							
 75	Pimelt and Y.Shvabe		פּימעלט און י.Shvabe	Printer	Sierakowska 4, Warsaw						
-76	B. Tursh		ב. טורש	Printer	Franciszkańska 22, Warsaw						
+76	B. Tursh		ב. טורש	Printer	Franciszkańska 22, Warsaw	ORG-C03942					
 77	A. Hellmann		אַ. העללמאַנן	Printer/Publisher							
 78	Katzenelenbogen & Rabinowitz		קאַצענעלענבאָגען & ראַבינאָויץ		66 canal st., Manhattan, NY						
 79	Meyer Levin		מייער לעווין	Printer/Publisher							
@@ -142,7 +142,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 154	Columbia Theatre		קאָלומביאַ טעאַטער	Theatre		ORG-C00986_Q03					
 155	Academy of Music		אַקאַדעמי פֿון מוסיק	Theatre							
 156	Thomashefsky Theatre		טאָמאַשעפֿסקי טעאַטער			ORG-C01181 | ORG-C03061					
-157	Baumritter		באַומריטטער	Printer							
+157	Baumritter		באַומריטטער	Printer	רחוב ביעליינסקע 16, Warsaw	ORG-C06061					
 158	פ. קאנטאראוויטש|יודישע טהעאַטער⸗בּיבּליאָטעק|Teater bibliyotek										
 160	Kalich Theatre		קאַליטש טעאַטער		Bowery 45-47, NYC						
 161	Muranover Yiddish Teater	מוראַנאָווער טעאַטער		Theatre	Bonifraterska street 14, Muranow, Warsaw	ORG-C00116 | ORG-C00168 | ORG-C02236					
@@ -469,7 +469,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 492	יידל גאָלדפאַדנס טרופּע	יידל גאָלדפאַדנס טרופּע		Traveling Company		ORG-C00046 | ORG-C06068					
 493	סאַן פּאָולאַ יידישער געזעלשאַפט			Jewish political bodies		ORG-C00051					
 494	ווינער דייטשן פאָלקס-טעאַטער			Theatre							
-495	דרוקעריי פון ראָם	דרוקעריי פון ראָם				ORG-C00071					
+495	דרוקעריי פון ראָם	דרוקעריי פון ראָם		Printer/Publisher		ORG-C00071 | ORG-C00940 | ORG-C04980				ראָם-פֿאַרלאַג|דרוקעריי פֿון די ברידער ראָם|דפוס ראם|ראם|Romm|Rom	
 496	אַקטיאָרן-פאַריין (בוענאָס איירעס)	אַקטיאָרן-פאַריין				ORG-C03181_Q01 | ORG-C02702_Q02 | ORG-C00068					
 497	באַלאַגעניידען	באַלאַגעניידען				ORG-C00051_Q01 | ORG-C01023					
 498	הכל הבל										
@@ -919,7 +919,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 950		קליין-קונסט טעאַטער 'רעמיקאַט'		Theatre		ORG-C02794 | ORG-C03377					
 951		אונזער טעאַטער		Theatre		ORG-C00722_Q05 | ORG-C03376					
 952		ווילנער פֿאַרלאָג פֿון ב. קלעצקין		Publisher		ORG-C04398 | ORG-C00354 | ORG-C00524_Q01 | ORG-C01984 | ORG-C03941_Q01 | ORG-C03998 | ORG-C04897 | ORG-C04942 | ORG-C05587 | ORG-C05991					
-953		ראָם-פֿאַרלאַג		Publisher		ORG-C00940 | ORG-C04980					
+953	ראָם-פֿאַרלאַג	ראָם-פֿאַרלאַג		Publisher				true	495		
 954		נייע יידישע פֿאָלקס שול		Publisher		ORG-C01963 | ORG-C05246					
 955		פֿאָלקסבינע (בערלין)		Theatre		ORG-C00190_Q05 | ORG-C03883					
 956	אַבראַמאָווס טרופּע	אַבראַמאָווס טרופּע		traveling company		ORG-C07167					
@@ -987,7 +987,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1018	משה ריכטערס וואַנדער-טרופּע	משה ריכטערס וואַנדער-טרופּע		traveling company		ORG-C02608 | ORG-C05403					
 1019	טרופּע קאָמפּאַנעעץ-ראָפּעל	טרופּע קאָמפּאַנעעץ-ראָפּעל		traveling company		ORG-C05968					
 1020	טרופּע מעערסאָן-עפּשטיין	טרופּע מעערסאָן-עפּשטיין		traveling company		ORG-C05867					
-1021		פֿערלאַג פֿון דוד ראָטה		Publisher		ORG-C06753 | ORG-C06976					
+1021		פֿערלאַג פֿון דוד ראָטה		Publisher		ORG-C06753 | ORG-C06976				דוד ראָטה|D. Roth	
 1022		אַרטיקער קולטוס-געמיינדע		Religious Institutions/Organizations		ORG-C03502 | ORG-C05732					
 1023		לעמבערגער טעמפּל (רעפֿאָרם-שול)		Religious Institutions/Organizations		ORG-C06422 | ORG-C02711 | ORG-C06612					
 1024		כאַרקאָווער יידישן טעאַטער פֿון אַרבעטער יוגנט		Theatre		ORG-C03448 | ORG-C03729					
@@ -2267,7 +2267,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2329	נפתלי גאָלדפאַדענס טרופּע	נפתלי גאָלדפאַדענס טרופּע		traveling company		ORG-C00041					
 2330	וויינשטיינס טרופּע	וויינשטיינס טרופּע		traveling company		ORG-C04992					
 2331	Biblioteka Narodowa (National Library of Poland)			Heritage Institution	al. Niepodległości 213, Warsaw, Poland					Polona|National Library of Poland|Biblioteka Narodowa	
-2332	The International Biblioteque (Internatsionale Bibliotek)	אינטערנאַציאָנאַלע ביבליאָטעק		Publisher						The International Biblioteque|Internatsionale Bibliotek|International Library	
+2332	The International Biblioteque (Internatsionale Bibliotek)	אינטערנאַציאָנאַלע ביבליאָטעק		Publisher		ORG-C06121				The International Biblioteque|Internatsionale Bibliotek|International Library|Di inṭernatsyonale biblioṭheḳ	
 2333	American Jewish Archives (Jacob Rader Marcus Center)			Heritage Institution	3101 Clifton Ave, Cincinnati, Ohio 45220, USA					American Jewish Archives|AJA|Jacob Rader Marcus Center of the American Jewish Archives	
 2334	St Petersburg State Theatre Library			Heritage Institution	Ostrovsky Square 6, St Petersburg, Russia					Leningrad State Theatre Library|ЛГТБ|Ленинградская государственная театральная библиотека|Санкт-Петербургская государственная театральная библиотека	
 2335	טשערנאָוויצער יידישן שפּיטאָל	טשערנאָוויצער יידישן שפּיטאָל		health institutions		ORG-C00321					
@@ -2781,6 +2781,18 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2843	יידישן מלוכה-טעאַטער	יידישן מלוכה-טעאַטער		theatre		ORG-C02849_Q20					
 2844	איסט-טעאַטער	איסט-טעאַטער		theatre		ORG-C02090					
 2845	יידישן מלוכה-טעאַטער	יידישן מלוכה-טעאַטער		theatre		ORG-C02849_Q13					
+2853	Gebrider Bletnitski (Bletnitski Brothers)	בוכהאַנדלונג געברידער בלעטניצקי		Publisher	אָדעססאַ	ORG-C05028 | ORG-C05691				געברידער בלעטניצקי|בוכהאַנדלונג געברידער בלעטניצקי|האחים בלעטניצקי|ha-Ahim Bletnitski|Gebrider Bletnitski	
+2854		פאַרלאַג ת. יאָקובסאָן און מ. גאָלדבערג		Publisher		ORG-C04085 | ORG-C04914					
+2855		פאַרלאַג ב. שימין		Publisher		ORG-C00725 | ORG-C06681					
+2856		פאַרלאַג ש. שרעבערק		Publisher		ORG-C03710					
+2857		פֿאַרלאַג יאָטשקאָווסקי		Publisher		ORG-C01054 | ORG-C03951					
+2858		י. אַלאַפּין		Publisher		ORG-C04536 | ORG-C05289 | ORG-C06552					
+2859		ל. מאָרגענשטערן		Publisher		ORG-C05293 | ORG-C05983 | ORG-C06062					
+2860		אברהם הירש קאַצענעלבאָגן		Publisher		ORG-C02212					
+2861		פערלאַג מ. גאָלדפֿאַרב		Publisher		ORG-C04431					
+2862	L. Goldfarb	פערלאַג ל. גאָלדפאַרב		Publisher	וואַרשע	ORG-C04431				פערלאַג ל. גאָלדפאַרב|פֿאַרלאג ל. גאָלדפאַרב|ל. גאָלדפאַרב|L. Goldfarb	
+2863	"Farlag ""Di Yudishe Bihne"""	"פערלאג די ""יידישע בינע"""		Publisher	וואַרשע	ORG-C04335 | ORG-C04542				"פערלאג די ""יידישע בינע""|פערלאָג יודישע ביהנע|Ferlag di ""Yudishe bihne""|Farlag di Yudishe bihne"	
+2864	"Farlag ""Kultur"" (Warsaw)"	פֿאַרלאַג קולטור (וואַרשע)		Publisher	Dzika 13, וואַרשע	ORG-C02295_Q02				"פֿאַרלאַג קולטור|פערלאָג „קולטור“|Farlag ""Kultur"""	
 2846	Państwowy Teatr Żydowski im. Estery Racheli Kamińskiej (State Jewish Theatre named after Ester Rachel Kamińska)	יידישן מלוכה-טעאַטער		theatre		ORG-C02849_Q19					
 2847	לאסאל טעאַטער	לאסאל טעאַטער		theatre		ORG-C00653					
 2848	12 סטריט טעאַטער	12 סטריט טעאַטער		theatre		ORG-C00654					

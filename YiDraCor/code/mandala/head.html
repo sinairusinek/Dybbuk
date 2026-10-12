@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>The Lateiner–Hurwitz Mandala</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Spectral:ital,wght@0,300;0,400;0,600;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F3EDE2; --ground-2:#EAE2D4; --veil:rgba(243,237,226,.92);
+  --ink:#231F2B; --ink-2:#56505F; --ink-3:#8A8392;
+  --rule:rgba(35,31,43,.14); --rule-2:rgba(35,31,43,.07);
+  --gold:#9A7B16; --gold-lit:#C9A227;
+  --f-operetta:#B3496A; --f-historical:#45588F; --f-biblical:#2F7A68;
+  --f-melodrama:#9C4A2C; --f-tsaytbild:#8E6C25; --f-gezang:#75479099;
+  --f-gezang:#754790; --f-comedy:#566471; --f-drama:#6B4F7A;
+  --f-other:#7A7486; --f-untyped:#A9A2B0;
+  --spoke:rgba(35,31,43,.1); --halo:rgba(201,162,39,.16);
+  --shadow:0 1px 2px rgba(35,31,43,.06),0 8px 26px rgba(35,31,43,.09);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0E0D14;
+  --ground-2:#17151F;
+  --veil:rgba(14,13,20,.92);
+  --ink:#EFEAE0;
+  --ink-2:#B0A8B8;
+  --ink-3:#7C7588;
+  --rule:rgba(239,234,224,.16);
+  --rule-2:rgba(239,234,224,.08);
+  --gold:#C9A227;
+  --gold-lit:#E6C24F;
+  --f-operetta:#D4738D;
+  --f-historical:#8198CE;
+  --f-biblical:#58B49E;
+  --f-melodrama:#CE7E5C;
+  --f-tsaytbild:#C6A24E;
+  --f-gezang:#A882C4;
+  --f-comedy:#8E9DAB;
+  --f-drama:#A585B4;
+  --f-other:#9C94A8;
+  --f-untyped:#615B6D;
+  --spoke:rgba(239,234,224,.11);
+  --halo:rgba(230,194,79,.2);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+}}
+:root[data-theme="dark"]{
+  --ground:#0E0D14; --ground-2:#17151F; --veil:rgba(14,13,20,.92);
+  --ink:#EFEAE0; --ink-2:#B0A8B8; --ink-3:#7C7588;
+  --rule:rgba(239,234,224,.16); --rule-2:rgba(239,234,224,.08);
+  --gold:#C9A227; --gold-lit:#E6C24F;
+  --f-operetta:#D4738D; --f-historical:#8198CE; --f-biblical:#58B49E;
+  --f-melodrama:#CE7E5C; --f-tsaytbild:#C6A24E; --f-gezang:#A882C4;
+  --f-comedy:#8E9DAB; --f-drama:#A585B4; --f-other:#9C94A8; --f-untyped:#615B6D;
+  --spoke:rgba(239,234,224,.11); --halo:rgba(230,194,79,.2);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font:400 15px/1.55 Spectral,Georgia,serif;-webkit-font-smoothing:antialiased;
+  overflow:hidden}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+#stage{position:fixed;inset:0;display:block;touch-action:none;cursor:grab}
+#stage.dragging{cursor:grabbing}
+
+/* ---- masthead ---- */
+header{position:fixed;top:0;left:0;right:0;padding:18px 22px 14px;
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  pointer-events:none;z-index:5;
+  background:linear-gradient(var(--ground),color-mix(in srgb,var(--ground) 70%,transparent) 55%,transparent)}
+header h1{margin:0;font:500 19px/1.2 "Playfair Display",Georgia,serif;letter-spacing:.01em}
+header .sub{color:var(--ink-2);font-size:13px;font-style:italic}
+header .counts{margin-left:auto;display:flex;gap:16px}
+header .counts div{text-align:right}
+header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color:var(--ink)}
+
+/* ---- legend rail ---- */
+#legend{position:fixed;left:22px;bottom:20px;z-index:5;max-width:210px}
+#legend .eyebrow{margin-bottom:8px}
+#legend ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
+#legend li{display:flex;align-items:center;gap:8px;padding:2px 6px 2px 2px;
+  border-radius:3px;cursor:pointer;font-size:12.5px;color:var(--ink-2);
+  transition:color .15s,background .15s}
+#legend li:hover,#legend li:focus-visible{color:var(--ink);background:var(--rule-2);outline:none}
+#legend li[aria-pressed="true"]{color:var(--ink)}
+#legend li[aria-pressed="true"] .sw{box-shadow:0 0 0 2px var(--ground),0 0 0 3.5px currentColor}
+#legend .sw{width:9px;height:9px;border-radius:50%;flex:none;background:currentColor}
+#legend li .n{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  color:var(--ink-3);font-variant-numeric:tabular-nums}
+#legend .hint{margin-top:10px;font-size:11.5px;font-style:italic;color:var(--ink-3);line-height:1.4}
+
+/* ---- scale key ---- */
+#scalekey{position:fixed;right:22px;bottom:20px;z-index:5;text-align:right}
+#scalekey .row{display:flex;align-items:flex-end;justify-content:flex-end;gap:7px;
+  margin-top:7px;height:20px}
+#scalekey .dot{border-radius:50%;background:var(--ink-3)}
+#scalekey .dot.hollow{background:var(--ground);border:1.5px solid var(--ink-3)}
+#scalekey .row span{font-size:11px;color:var(--ink-3);margin-right:3px}
+#scalekey p{margin:6px 0 0;font-size:11.5px;color:var(--ink-3);font-style:italic;max-width:170px}
+
+/* ---- tooltip ---- */
+#tip{position:fixed;z-index:9;pointer-events:none;opacity:0;transform:translateY(3px);
+  transition:opacity .11s,transform .11s;max-width:260px;
+  background:var(--veil);backdrop-filter:blur(7px);
+  border:1px solid var(--rule);border-radius:4px;padding:9px 11px;box-shadow:var(--shadow)}
+#tip.on{opacity:1;transform:none}
+#tip .t{font:600 14px/1.3 Spectral,Georgia,serif;margin-bottom:1px}
+#tip .y{font-size:13.5px;color:var(--ink-2);direction:rtl;unicode-bidi:plaintext;margin-bottom:5px}
+#tip .m{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);
+  letter-spacing:.03em;text-transform:uppercase}
+#tip .bars{display:flex;gap:10px;margin-top:6px;font-family:"IBM Plex Mono",monospace;
+  font-size:11px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+/* ---- dossier ---- */
+#dossier{position:fixed;top:0;right:0;bottom:0;width:min(394px,88vw);z-index:7;
+  background:var(--ground);border-left:1px solid var(--rule);
+  transform:translateX(101%);transition:transform .34s cubic-bezier(.3,.8,.3,1);
+  display:flex;flex-direction:column;box-shadow:var(--shadow)}
+#dossier.on{transform:none}
+#dossier .head{padding:20px 22px 15px;border-bottom:1px solid var(--rule);position:relative}
+#dossier .fam{display:inline-flex;align-items:center;gap:6px;margin-bottom:9px}
+#dossier .fam .sw{width:8px;height:8px;border-radius:50%;background:currentColor}
+#dossier h2{margin:0;font:500 24px/1.18 "Playfair Display",Georgia,serif;text-wrap:balance}
+#dossier .yid{margin:5px 0 0;font-size:18px;color:var(--ink-2);direction:rtl;unicode-bidi:plaintext}
+#dossier .byline{margin:10px 0 0;font-size:13px;font-style:italic;color:var(--ink-2)}
+#dossier .x{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--rule);background:transparent;color:var(--ink-2);cursor:pointer;
+  font:400 16px/1 Spectral,serif;display:grid;place-items:center;transition:.15s}
+#dossier .x:hover{background:var(--ground-2);color:var(--ink)}
+#dossier .body{overflow-y:auto;padding:4px 22px 26px;flex:1}
+#dossier section{padding:16px 0;border-bottom:1px solid var(--rule-2)}
+#dossier section:last-child{border:0}
+#dossier section>.eyebrow{display:flex;gap:7px;align-items:baseline;margin-bottom:9px}
+#dossier section>.eyebrow i{font-style:normal;color:var(--ink)}
+#dossier ol,#dossier ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+#dossier .ev{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:baseline}
+#dossier .ev .d{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--gold);
+  font-variant-numeric:tabular-nums}
+#dossier .ev .v{font-size:13.5px;line-height:1.4}
+#dossier .ev .k{font-size:11px;color:var(--ink-3);font-style:italic}
+#dossier .cred{display:flex;gap:9px;align-items:baseline;font-size:13.5px}
+#dossier .cred .r{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);min-width:74px;flex:none;padding-top:2px}
+#dossier .cred .n{direction:rtl;unicode-bidi:plaintext}
+/* Songs carry two titles in two scripts plus a citation, so each is a block,
+   not a list item in a column-flow. The old two-column list forced `rtl` on
+   every row, which mangled the 223 romanized titles. */
+#dossier .songs{display:flex;flex-direction:column;gap:13px}
+#dossier .songs li{font-size:12.5px;line-height:1.4;break-inside:avoid}
+#dossier .songs .t{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+#dossier .songs .rom{color:var(--ink);font-size:13.5px}
+#dossier .songs .yi{color:var(--ink-2);direction:rtl;unicode-bidi:plaintext;font-size:13px}
+#dossier .songs .by{color:var(--ink-2);font-style:italic;font-size:12px;margin-top:2px}
+#dossier .songs .by.other{color:var(--gold)}
+#dossier .songs .cite{color:var(--ink-3);font-size:11.5px;margin-top:3px;
+  display:flex;flex-direction:column;gap:2px}
+#dossier .songs .cite a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+#dossier .songs .cite a:hover{color:var(--gold)}
+#dossier .songs .cite .nm{direction:rtl;unicode-bidi:plaintext}
+/* Gramophone recordings — the one measure of a song's circulation we hold. */
+#dossier .songs .rec{display:inline-flex;align-items:baseline;gap:4px;flex:none;
+  font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;color:var(--gold);
+  border:1px solid var(--gold);border-radius:9px;padding:3px 6px;opacity:.85}
+/* `title_in_source` is the spelling the songbook printed — Yiddish on most
+   rows, German orthography on the Shund on Shellac ones. The English label is
+   LTR and the title may be RTL, so the title gets its own `plaintext` context;
+   without it the quotes and the trailing ! land on the wrong side. */
+#dossier .songs .alt{color:var(--ink-3);font-size:11.5px;font-style:italic}
+#dossier .songs .alt q{unicode-bidi:isolate;quotes:'“' '”'}
+#dossier .songs .note{color:var(--ink-3);font-size:11px;margin-top:2px}
+#dossier .songnote{font-size:11.5px;color:var(--ink-3);font-style:italic;
+  margin:0 0 11px;line-height:1.45}
+#dossier .empty{font-size:13px;font-style:italic;color:var(--ink-3)}
+#dossier .dateline{font:400 19px/1.3 'Playfair Display',Georgia,serif;margin:0;color:var(--ink)}
+#dossier .dateline .k{font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-left:7px}
+#dossier .tagline{font-size:12.5px;color:var(--ink-2);font-style:italic}
+
+#reset{position:fixed;top:17px;right:22px;z-index:6;
+  font:400 12px/1 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;
+  padding:7px 12px;border:1px solid var(--rule);border-radius:3px;
+  background:var(--veil);color:var(--ink-2);cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .2s,color .15s}
+#reset.on{opacity:1;pointer-events:auto}
+#reset:hover{color:var(--ink)}
+
+@media (max-width:760px){
+  header .counts{display:none}
+  #legend{max-width:150px;bottom:14px;left:14px}
+  #scalekey{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<svg id="stage" aria-label="Radial graph of the Lateiner and Hurwitz repertoire"></svg>
+
+<header>
+  <h1>Lateiner &amp; Hurwitz</h1>
+  <span class="sub"><!--@WORKS@--> plays of the Yiddish popular stage, and what survives of them</span>
+  <div class="counts mono">
+    <div><b id="c-works"><!--@WORKS@--></b><span class="eyebrow">plays</span></div>
+    <div><b>27</b><span class="eyebrow">editions</span></div>
+    <div><b>64</b><span class="eyebrow">events</span></div>
+    <div><b>225</b><span class="eyebrow">songs</span></div>
+  </div>
+</header>
+
+<button id="reset">← back to the full wheel</button>
+
+<nav id="legend">
+  <div class="eyebrow">Genre, as catalogued</div>
+  <ul id="fams"></ul>
+  <div class="eyebrow" style="margin-top:14px">Traces, springing from their play</div>
+  <ul id="tracekey"></ul>
+  <p class="hint">Click a play to open it. Drag to pan, scroll to zoom.</p>
+</nav>
+
+<aside id="scalekey">
+  <div class="eyebrow">What survives</div>
+  <div class="row" id="scaledots"></div>
+  <p>All <!--@WORKS@--> plays share one ring, each with its title. The
+  <b style="font-weight:600;font-style:normal"><!--@RICH@--></b> with a surviving
+  edition, staging or song are <b style="font-weight:600;font-style:normal">filled</b>,
+  their traces springing outward; the other
+  <b style="font-weight:600;font-style:normal"><!--@THIN@--></b>, known only as a
+  title, are hollow.</p>
+</aside>
+
+<div id="tip" role="status"></div>
+
+<aside id="dossier" aria-live="polite">
+  <div class="head">
+    <button class="x" id="close" aria-label="Close">×</button>
+    <span class="fam eyebrow" id="d-fam"><span class="sw"></span><span id="d-famname"></span></span>
+    <h2 id="d-title"></h2>
+    <p class="yid" id="d-yid"></p>
+    <p class="byline" id="d-byline"></p>
+  </div>
+  <div class="body" id="d-body"></div>
+</aside>
+
+<script>window.__MANDALA__=

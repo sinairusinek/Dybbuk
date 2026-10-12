@@ -51,6 +51,7 @@ VIEWS = {
     "YiDraCor · Annotation flags": ("yidracor_flags", "yd"),
     "Plays KG · Explorer":         ("plays_kg", "kg"),
     "KG link review":              ("kg_link_review", "klr"),
+    "Eponym links":                ("eponym_links", "ep"),
 }
 
 def _remember_view() -> None:
@@ -79,6 +80,7 @@ VIEW_STATUS = {
     "YiDraCor · Annotation flags": "✅ Ready",
     "Plays KG · Explorer":         "📊",
     "KG link review":              "🔗",
+    "Eponym links":                "👤",
 }
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -253,6 +255,9 @@ elif view_module == "kg_link_review":
     render()
 elif view_module == "plays_kg":
     from views.plays_kg import render
+    render()
+elif view_module == "eponym_links":
+    from views.eponym_links import render
     render()
 else:
     st.info(f"**{selected}** is not yet implemented.")

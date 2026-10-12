@@ -1,0 +1,1260 @@
+</script>
+<script>
+const DATA = window.__MANDALA__;
+const SVG = "http://www.w3.org/2000/svg";
+const stage = document.getElementById('stage');
+
+const FAM_LABEL = {
+  operetta:'Operetta', historical:'Historical', biblical:'Biblical',
+  melodrama:'Melodrama', tsaytbild:'Tsaytbild / Lebnsbild', gezang:'Gezang-drama',
+  comedy:'Comedy', drama:'Drama', other:'Other', untyped:'Not catalogued'
+};
+const FAM_ORDER = ['biblical','historical','operetta','gezang','tsaytbild','melodrama','drama','comedy','other','untyped'];
+const famColor = f => `var(--f-${f})`;
+
+// weight: an edition or a staging is a far rarer trace than a song title
+const weight = w => w.editions.length*3 + w.events.length*2 + Math.min(w.songs.length,14)*0.55;
+const isRich  = w => weight(w) > 0;   // something of it survives beyond the title
+const radiusOf = w => isRich(w) ? 3.8 + Math.sqrt(weight(w)) * 2.0 : 4.4;
+function baseOp(w){ return w.attr === 'false ascription' ? .3 : (isRich(w) ? .92 : .66); }
+
+/* ---------------- layout ---------------- */
+const works = DATA.works.slice();
+const byPw = {Lateiner:[], Hurwitz:[]};
+works.forEach(w => (byPw[w.pw] || byPw.Lateiner).push(w));
+for (const k in byPw) {
+  byPw[k].sort((a,b) =>
+    FAM_ORDER.indexOf(a.fam) - FAM_ORDER.indexOf(b.fam) ||
+    weight(b) - weight(a) ||
+    a.title.localeCompare(b.title));
+  // Within each genre run the sort puts every documented play first, which
+  // made their outward sprays collide into one tangle. Spread the documented
+  // ones evenly through their own genre instead: the colour arcs are
+  // unchanged, but no two sprays start side by side.
+  const out = [];
+  let i = 0;
+  while (i < byPw[k].length) {
+    let j = i;
+    while (j < byPw[k].length && byPw[k][j].fam === byPw[k][i].fam) j++;
+    const run = byPw[k].slice(i, j);
+    const rich = run.filter(isRich), plain = run.filter(w => !isRich(w));
+    if (rich.length && plain.length) {
+      const every = run.length / rich.length;
+      let ri = 0, pi = 0;
+      for (let n = 0; n < run.length; n++) {
+        if (ri < rich.length && n >= Math.floor(ri * every)) out.push(rich[ri++]);
+        else if (pi < plain.length) out.push(plain[pi++]);
+        else out.push(rich[ri++]);
+      }
+    } else out.push(...run);
+    i = j;
+  }
+  byPw[k] = out;
+}
+
+const GAP = 0.085 * Math.PI;           // wedge of blank between the two authors
+// Every play sits on ONE ring, so the band itself is the bare view: 275 plays
+// in a single row, each able to carry its Yiddish title.
+//
+// The radius is set by the labels, not by the dots. Over the usable arc (2π
+// less the two author gaps) R=660 gives a 13.8px pitch against a ~12.5px
+// line-height — the first radius where 275 titles fit without alternating.
+//
+// This is why dots are UNIFORM at rest. An evidence-sized dot reaches 20px
+// across and would collide at any practical radius; a uniform 9px dot leaves
+// the pitch to the label. Views 1–3 still size by evidence, and can: each
+// lights only 24–58 plays, so their pitch is 69–168px.
+//
+// What it costs: the old four-lane band put the 215 title-only plays inside
+// and the 60 documented ones outside, which carried the drawing's argument
+// that most of this repertoire survives as a name. One ring gives that up, so
+// the distinction moves into the dot itself — documented plays are filled,
+// title-only ones hollow.
+const R_BAND  = 660;
+const DOT_REST = 4.5;                   // uniform radius at rest
+const pos = new Map();                  // work id -> {a, x, y, r, rich}
+
+function arcFor(list, start, end) {
+  const span = end - start;
+  list.forEach((w, i) => {
+    const a = start + span * ((i + 0.5) / list.length);
+    pos.set(w.id, {a, x: Math.cos(a)*R_BAND, y: Math.sin(a)*R_BAND,
+                   r: DOT_REST, rich: isRich(w), lane: 0, R: R_BAND});
+  });
+}
+
+// Lateiner sweeps the right half, Hurwitz the left; hubs sit on the seam
+arcFor(byPw.Lateiner, -Math.PI/2 + GAP/2,  Math.PI/2 - GAP/2);
+arcFor(byPw.Hurwitz,   Math.PI/2 + GAP/2, 3*Math.PI/2 - GAP/2);
+
+// The portraits were sized for a 272px band. On the 660px ring they read as
+// specks, and the centre now has to hold 11 composer medallions besides, so
+// both grow with the ring. Declared here, with AUTHOR_POS: the play spokes
+// start at the portrait's edge and are drawn long before the hubs.
+const PORTRAIT_R = 104;
+const AUTHOR_POS = {
+  Lateiner: {x: 161, y: -10},
+  Hurwitz:  {x: -161, y: -10}
+};
+
+// which play is open, if any — consulted by paintFamFilter and the pan handler
+let focused = null;
+
+/* ---------------- svg scaffolding ---------------- */
+const defs = document.createElementNS(SVG,'defs');
+defs.innerHTML = `
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="var(--halo)"/>
+    <stop offset="100%" stop-color="var(--halo)" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="sepia" x="0%" y="0%" width="100%" height="100%">
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.09 0.97"/>
+      <feFuncG type="table" tableValues="0.08 0.93"/>
+      <feFuncB type="table" tableValues="0.11 0.84"/>
+    </feComponentTransfer>
+  </filter>
+  <radialGradient id="vignette" cx="50%" cy="46%" r="54%">
+    <stop offset="62%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0.34"/>
+  </radialGradient>`;
+stage.appendChild(defs);
+
+const root   = mk('g');                       // pan/zoom container
+const gGuide = mk('g', {class:'guides'});
+const gSpoke = mk('g', {class:'spokes'});
+const gOuter = mk('g', {class:'outer'});
+const gTitle = mk('g', {class:'titles'});   // the ring's Yiddish titles
+const gWork  = mk('g', {class:'works'});
+const gHub   = mk('g', {class:'hubs'});
+const gFocus = mk('g', {class:'focus'});
+[gGuide,gSpoke,gOuter,gTitle,gWork,gHub,gFocus].forEach(g => root.appendChild(g));
+stage.appendChild(root);
+
+function mk(name, attrs) {
+  const el = document.createElementNS(SVG, name);
+  for (const k in attrs||{}) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+/* ---------------- icon set ----------------
+   Line-drawn glyphs on a 24x24 box, centred on (12,12), stroked in
+   currentColor so each inherits its node's palette entry. Drawn rather than
+   fetched: the CSP admits no external images, and these need to recolour
+   per theme.                                                              */
+const ICON = {
+  // a staging: a scalloped valance over swept drapes, closed by the stage
+  // floor — the scalloping is what stops it reading as two columns
+  event: 'M2.5 4.5h19M2.5 4.5v4.2c2.1 0 2.1-2.4 4.2-2.4s2.1 2.4 4.2 2.4 2.1-2.4 4.2-2.4 2.1 2.4 4.2 2.4V4.5M6.4 8.6c.6 4.6-.6 8.4-2.6 11.4M17.6 8.6c-.6 4.6.6 8.4 2.6 11.4M4 20h16',
+  // a printed edition: a closed book, spine left
+  print: 'M5.5 3.5h13v17h-13zM9 3.5v17M11.5 8h4.5M11.5 11.5h4.5M11.5 15h3',
+  // a manuscript: a ruled notebook with a bound edge
+  manuscript: 'M8.5 3.5h10v17h-10zM11.5 8h4M11.5 11.5h4M11.5 15h2.5M6 5.2h3M6 9h3M6 12.8h3M6 16.6h3',
+  // a trace left behind: a footprint
+  // a trace left behind: a footprint — filled sole plus separate toes, which
+  // is what makes it read as a foot at small sizes rather than a blob
+  footprint: 'M12.2 22c-3.1 0-4.9-2-4.9-4.9 0-2.4 1-3.7 1-5.6 0-1.3-.6-2.3-.9-3.6h9.6c-.3 1.3-.9 2.3-.9 3.6 0 1.9 1 3.2 1 5.6 0 2.9-1.8 4.9-4.9 4.9z',
+  footprintToes: 'M7.4 5.2a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12.2 4.4a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4zM17 5.2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+  // an actor / an actress: shoulders and head, the latter with longer hair
+  actor: 'M12 11.2a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8zM5.2 20c0-3.5 3-5.8 6.8-5.8s6.8 2.3 6.8 5.8',
+  actress: 'M12 11.2a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8zM5.2 20c0-3.5 3-5.8 6.8-5.8s6.8 2.3 6.8 5.8M8.1 8.6C7.4 10.4 7 12.4 7 14.6M15.9 8.6c.7 1.8 1.1 3.8 1.1 6',
+  // composer / lyricist / arranger / choreographer
+  composer: 'M9 18.2V5.4l9-1.6v12.4M9 18.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0zM18 16.2a2.1 2.1 0 1 1-4.2 0 2.1 2.1 0 0 1 4.2 0zM9 9.6l9-1.6',
+  lyrics: 'M6 20V6.5A2.5 2.5 0 0 1 8.5 4H18v13H8.5A2.5 2.5 0 0 0 6 19.5M9.5 8h5M9.5 11.5h5',
+  arranger: 'M4 12h3l2.5-6 3 12 2.5-6h5',
+  choreographer: 'M12 6.6a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6zM12 7.4v5.2M12 12.6 8.4 20M12 12.6 15.6 20M7.6 9.2 12 10.6l4.4-1.4',
+  // a song: a beamed pair of quavers. Distinct from `composer` (which is a
+  // single note and marks a PERSON) because this marks a WORK.
+  song: 'M9 17.6V5.2l9.5-1.7v12.4M9 17.6a2.2 2.2 0 1 1-4.4 0 2.2 2.2 0 0 1 4.4 0zM18.5 15.9a2.2 2.2 0 1 1-4.4 0 2.2 2.2 0 0 1 4.4 0z',
+  // a venue / a theatre company
+  venue: 'M3.5 20V9.6L12 4l8.5 5.6V20M3.5 20h17M9 20v-6h6v6M12 9.4v1.6',
+  // a publisher / a printer: a press
+  publisher: 'M7 8V4.5h10V8M5 8h14a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 19 16h-2v3.5H7V16H5a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 5 8zM7 16h10M9.5 19h5',
+  // a holding library / archive
+  holder: 'M4 9.5 12 4.5l8 5M5.5 9.5V19M18.5 9.5V19M9 11.5V17M15 11.5V17M3.5 20.5h17',
+  // a former owner: a hand holding
+  owner: 'M8 11V5.8a1.6 1.6 0 0 1 3.2 0V11M11.2 11V4.6a1.6 1.6 0 0 1 3.2 0V11M14.4 11V6.4a1.6 1.6 0 0 1 3.2 0v7.4c0 3.6-2.4 6.2-5.8 6.2-3 0-4.6-1.5-6.2-4.2l-1.4-2.4a1.6 1.6 0 0 1 2.7-1.7L8 13.4',
+  person: 'M12 11.2a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8zM5.2 20c0-3.5 3-5.8 6.8-5.8s6.8 2.3 6.8 5.8',
+  org: 'M4.5 20V6.5h8V20M12.5 20v-9h7v9M3 20h18M7 9.5h2M7 13h2M15 14h2M15 17h2',
+};
+
+// role -> icon key. Roles come from the graph's edge labels.
+function iconFor(role, kind){
+  const r = String(role || '').toLowerCase();
+  if (kind === 'event') return 'event';
+  if (kind === 'song') return 'song';
+  if (kind === 'edition') return 'print';
+  if (r.startsWith('composer')) return 'composer';
+  if (r === 'actress') return 'actress';
+  if (r === 'actor') return 'actor';
+  if (r === 'lyrics') return 'lyrics';
+  if (r === 'arranger') return 'arranger';
+  if (r === 'choreographer') return 'choreographer';
+  if (r === 'owned' || r.includes('owner')) return 'owner';
+  if (r === 'venue' || r === 'performed_at') return 'venue';
+  if (r === 'published' || r === 'printed_by' || r.includes('print')) return 'publisher';
+  if (r === 'holds' || r.includes('hold')) return 'holder';
+  return kind === 'org' ? 'org' : 'person';
+}
+
+const ROLE_LABEL = {
+  composer:'Composer', actor:'Actor', actress:'Actress', lyrics:'Lyricist',
+  arranger:'Arranger', choreographer:'Choreographer', owned:'Former owner',
+  venue:'Venue', performed_at:'Venue', published:'Publisher',
+  printed_by:'Printer', holds:'Held by',
+};
+
+/** Draw one icon, centred at (x,y), scaled to `size` px across. */
+function drawIcon(key, x, y, size, color, opts){
+  const o = opts || {};
+  const g = mk('g', {transform:
+    `translate(${x} ${y}) scale(${size/24}) translate(-12 -12)`});
+  if (o.plate) {
+    g.appendChild(mk('circle',{cx:12,cy:12,r:13.5,fill:'var(--ground)',
+      stroke:color,'stroke-width':o.plateStroke || 1,'stroke-opacity':.5}));
+  }
+  if (o.fill) {
+    // a solid glyph reads at small sizes where a stroked outline turns to mush
+    g.appendChild(mk('path',{d:ICON[key], fill:color, stroke:'none'}));
+    if (ICON[key + 'Toes'])
+      g.appendChild(mk('path',{d:ICON[key + 'Toes'], fill:color, stroke:'none'}));
+    return g;
+  }
+  g.appendChild(mk('path',{d:ICON[key] || ICON.person, fill:'none', stroke:color,
+    'stroke-width':o.weight || 1.6, 'stroke-linecap':'round',
+    'stroke-linejoin':'round'}));
+  return g;
+}
+
+/* the band's own ring + the halo behind the centre */
+gGuide.appendChild(mk('circle',{cx:0,cy:0,r:R_BAND,
+  fill:'none',stroke:'var(--rule-2)','stroke-width':1}));
+gGuide.appendChild(mk('circle',{cx:0,cy:0,r:180,fill:'url(#glow)'}));
+
+/* ---------------- tooltip ---------------- */
+const tip = document.getElementById('tip');
+function placeTip(e){
+  const r = tip.getBoundingClientRect();
+  let x = e.clientX + 14, y = e.clientY - r.height/2;
+  if (x + r.width > innerWidth - 10) x = e.clientX - r.width - 14;
+  y = Math.max(8, Math.min(innerHeight - r.height - 8, y));
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+function workTip(e, w){
+  const n = [];
+  if (w.editions.length) n.push(`${w.editions.length} edition${w.editions.length>1?'s':''}`);
+  if (w.events.length)   n.push(`${w.events.length} staging${w.events.length>1?'s':''}`);
+  if (w.songs.length)    n.push(`${w.songs.length} song${w.songs.length>1?'s':''}`);
+  tip.innerHTML =
+    `<div class="t">${esc(w.title)}</div>` +
+    (w.yiddish ? `<div class="y">${esc(w.yiddish)}</div>` : '') +
+    `<div class="m">${esc(w.tags || FAM_LABEL[w.fam])}</div>` +
+    `<div class="bars">${n.length ? n.map(esc).join(' · ') : 'title only'}</div>`;
+  tip.classList.add('on'); placeTip(e);
+}
+function outerTip(e, it){
+  if (it.kind === 'venue') {
+    const n = it.events.length;
+    tip.innerHTML =
+      `<div class="m">Theatre</div><div class="t">${esc(it.venue)}</div>` +
+      `<div class="bars">${n} ${n === 1 ? 'staging' : 'stagings'} of this play</div>` +
+      `<div class="y" style="direction:ltr;margin-top:4px">${esc(it.w.title)}</div>`;
+  } else if (it.kind === 'edition') {
+    const d = it.d;
+    tip.innerHTML =
+      `<div class="m">${d.kind === 'manuscript' ? 'Manuscript' : 'Printed edition'}</div>` +
+      `<div class="t">${esc(d.year || '—')}</div>` +
+      `<div class="bars">${esc([d.place, d.printer || d.holder].filter(Boolean).join(' · ')) || '—'}</div>` +
+      `<div class="y" style="direction:ltr;margin-top:4px">${esc(it.w.title)}</div>`;
+  } else {
+    const d = it.d;
+    tip.innerHTML =
+      `<div class="m">${esc(d.type || 'Performance')}</div>` +
+      `<div class="t">${esc(d.date || '—')}</div>` +
+      `<div class="bars">${esc(it.via || d.venue || 'venue unrecorded')}</div>` +
+      `<div class="y" style="direction:ltr;margin-top:4px">${esc(it.w.title)}</div>`;
+  }
+  tip.classList.add('on'); placeTip(e);
+}
+
+function hideTip(){ tip.classList.remove('on'); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ---------------- outer tier: the traces ----------------
+   One footprint per surviving trace, on a line back to ITS PLAY (never to the
+   author): the trace is evidence of that play, not of the playwright.      */
+const outerNodes = [];
+// Each play's traces spring outward from the play itself, continuing the
+// author -> play line. Editions hang straight off the play; a staging hangs
+// off its THEATRE, which is itself the node on the stalk, so a house that
+// gave a play four nights shows as one venue with four shows under it.
+{
+  const STEP = 36, FIRST = 38, SIDE = 26, PER_ROW = 3;
+  works.forEach(w => {
+    const p = pos.get(w.id);
+    const ux = Math.cos(p.a), uy = Math.sin(p.a);     // outward
+    const px = -uy, py = ux;                          // perpendicular
+
+    // group this play's events by the house that gave them
+    const byVenue = new Map();
+    const venueless = [];
+    w.events.forEach(e => {
+      const v = (e.venue || '').trim();
+      if (!v) { venueless.push(e); return; }
+      if (!byVenue.has(v)) byVenue.set(v, []);
+      byVenue.get(v).push(e);
+    });
+
+    // what sits on the stalk, in order: editions, then one node per theatre,
+    // then any staging whose house went unrecorded
+    const stalk = [
+      ...w.editions.map(e => ({kind:'edition', sub:e.kind, w, d:e})),
+      ...[...byVenue.entries()].map(([venue, evs]) =>
+        ({kind:'venue', w, venue, events: evs})),
+      ...venueless.map(e => ({kind:'event', sub:'event', w, d:e, orphan:true})),
+    ];
+    if (!stalk.length) return;
+
+    stalk.forEach((it, i) => {
+      const row = Math.floor(i / PER_ROW);
+      const inRow = Math.min(PER_ROW, stalk.length - row * PER_ROW);
+      const col = i % PER_ROW;
+      const dist = FIRST + row * STEP;
+      const spread = SIDE * (1 - row * 0.12);
+      const off = inRow === 1 ? 0 : (col - (inRow - 1) / 2) * spread;
+      const x = p.x + ux*dist + px*off;
+      const y = p.y + uy*dist + py*off;
+      it.a = p.a; it.x = x; it.y = y;
+      outerNodes.push(it);
+
+      const fromDist = row === 0 ? p.r + 3 : FIRST + (row - 1) * STEP;
+      const fromOff  = row === 0 ? 0 : off * 0.55;
+      const sp = mk('line',{
+        x1: p.x + ux*fromDist + px*fromOff, y1: p.y + uy*fromDist + py*fromOff,
+        x2: x, y2: y, stroke:'var(--spoke)','stroke-width':0.6});
+      sp.dataset.work = w.id; sp.dataset.trace = '1';
+      gSpoke.appendChild(sp);
+
+      // the shows this house gave, hung off the venue node itself
+      if (it.kind === 'venue') {
+        const n = it.events.length;
+        const SHOW_R = 17;
+        it.events.forEach((e, j) => {
+          const fan = n === 1 ? 0 : (j - (n-1)/2) * 0.62;
+          const aa = p.a + fan;
+          const sx = x + Math.cos(aa)*SHOW_R, sy = y + Math.sin(aa)*SHOW_R;
+          const node = {kind:'event', sub:'event', w, d:e, x:sx, y:sy, a:p.a,
+                        via: it.venue};
+          outerNodes.push(node);
+          const l2 = mk('line',{x1:x,y1:y,x2:sx,y2:sy,
+            stroke:'var(--spoke)','stroke-width':0.5});
+          l2.dataset.work = w.id; l2.dataset.trace = '1';
+          gSpoke.appendChild(l2);
+        });
+      }
+    });
+  });
+}
+outerNodes.forEach(it => {
+  // Each trace is drawn as what it is: a theatre front for a house, a parting
+  // curtain for one of its shows, a book for a printed edition, a notebook for
+  // a manuscript.
+  const key = it.kind === 'venue' ? 'venue'
+            : it.kind === 'event' ? 'event'
+            : it.sub === 'manuscript' ? 'manuscript' : 'print';
+  const col = it.kind === 'edition' ? 'var(--gold)' : 'var(--ink-2)';
+  const size = it.kind === 'venue' ? 20 : it.kind === 'event' ? 15 : 19;
+  const g = drawIcon(key, it.x, it.y, size, col, {weight: 1.5});
+  g.setAttribute('opacity', it.kind === 'event' ? .82 : .92);
+  g.dataset.work = it.w.id;
+  g.style.cursor = 'pointer';
+  const hit = mk('circle',{cx:it.x,cy:it.y,r: it.kind === 'event' ? 9 : 12,
+    fill:'transparent'});
+  hit.dataset.work = it.w.id; hit.style.cursor='pointer';
+  [g, hit].forEach(el => {
+    el.addEventListener('pointerenter', ev => outerTip(ev, it));
+    el.addEventListener('pointerleave', hideTip);
+    el.addEventListener('click', e => { e.stopPropagation(); openPlay(it.w.id); });
+  });
+  it.el = g;
+  gOuter.appendChild(g); gOuter.appendChild(hit);
+});
+
+/* ---------------- play tier ---------------- */
+const workEls = new Map();
+works.forEach(w => {
+  const p = pos.get(w.id);
+  // Radius no longer says what survives — every dot is the same size on the
+  // one ring — so the fill says it instead: a documented play is solid, a
+  // play known only as a title is hollow, outlined in its genre colour.
+  const rich = isRich(w);
+  const c = mk('circle',{cx:p.x, cy:p.y, r:p.r,
+    fill: rich ? famColor(w.fam) : 'var(--ground)',
+    'fill-opacity': rich ? baseOp(w) : 1,
+    stroke: famColor(w.fam),
+    'stroke-opacity': rich ? 0 : baseOp(w) + .18,
+    'stroke-width': rich ? .8 : 1.5});
+  c.style.cursor='pointer'; c.setAttribute('tabindex','0');
+  c.setAttribute('role','button');
+  c.setAttribute('aria-label', `${w.title} — ${FAM_LABEL[w.fam]}`);
+  c.dataset.work = w.id; c.dataset.rich = isRich(w) ? '1' : '';
+  c.addEventListener('pointerenter', ev => workTip(ev, w));
+  c.addEventListener('pointerleave', hideTip);
+  c.addEventListener('click', e => { e.stopPropagation(); openPlay(w.id); });
+  c.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPlay(w.id); }
+  });
+  workEls.set(w.id, c);
+  gWork.appendChild(c);
+
+  // The Yiddish title, set radially just outside its dot. Radial is what makes
+  // one row of 275 possible: the constraint is then the angular pitch against
+  // a line-height, not the length of any title — a long title eats radius,
+  // which the drawing has, rather than arc, which it does not.
+  const deg = p.a * 180 / Math.PI;
+  const flip = Math.cos(p.a) < 0;          // keep the left half right-way-up
+  // The text is RTL, so `start` is its RIGHT edge: anchoring the left half at
+  // `start` ran every title back INWARD across the ring. Each half anchors on
+  // the edge that faces away from the centre.
+  const t = mk('text', {
+    x: flip ? -(R_BAND + 13) : R_BAND + 13, y: 0,
+    'text-anchor': flip ? 'start' : 'end',
+    'dominant-baseline': 'central',
+    transform: `rotate(${flip ? deg + 180 : deg})`,
+    fill: 'var(--ink-2)', 'font-size': 10.5,
+    'font-family': 'Spectral, Georgia, serif',
+  });
+  t.style.direction = 'rtl'; t.style.unicodeBidi = 'plaintext';
+  t.textContent = trunc(w.yiddish || w.title, 34);
+  t.dataset.work = w.id; t.dataset.title = '1';
+  t.style.pointerEvents = 'none';
+  gTitle.appendChild(t);
+
+  // EVERY play connects to its author — the inner ring included
+  const a = AUTHOR_POS[w.pw] || AUTHOR_POS.Lateiner;
+  const dx = p.x - a.x, dy = p.y - a.y, len = Math.hypot(dx, dy) || 1;
+  const sx = a.x + dx/len * (PORTRAIT_R + 6), sy = a.y + dy/len * (PORTRAIT_R + 6);
+  const sp = mk('line',{x1:sx,y1:sy,x2:p.x,y2:p.y,
+    stroke:'var(--spoke)','stroke-width': isRich(w) ? .5 : .34});
+  sp.dataset.work = w.id; sp.dataset.author = '1';
+  gSpoke.insertBefore(sp, gSpoke.firstChild);
+});
+/* ---------------- legend ---------------- */
+const famCounts = {};
+works.forEach(w => famCounts[w.fam] = (famCounts[w.fam]||0) + 1);
+const famList = document.getElementById('fams');
+let dimmedFam = null;
+FAM_ORDER.filter(f => famCounts[f]).forEach(f => {
+  const li = document.createElement('li');
+  li.style.color = famColor(f);
+  li.setAttribute('role','button'); li.setAttribute('tabindex','0');
+  li.setAttribute('aria-pressed','false');
+  li.innerHTML = `<span class="sw"></span><span style="color:var(--ink-2)">${FAM_LABEL[f]}</span>` +
+                 `<span class="n">${famCounts[f]}</span>`;
+  const toggle = () => {
+    dimmedFam = (dimmedFam === f) ? null : f;
+    [...famList.children].forEach((el,i) =>
+      el.setAttribute('aria-pressed', String(FAM_ORDER.filter(x=>famCounts[x])[i] === dimmedFam)));
+    paintFamFilter();
+  };
+  li.addEventListener('click', toggle);
+  li.addEventListener('keydown', e => {
+    if (e.key==='Enter'||e.key===' ') { e.preventDefault(); toggle(); }
+  });
+  famList.appendChild(li);
+});
+// every play is a circle now, so opacity is always fill-opacity
+function setWorkOp(w, op){
+  workEls.get(w.id).setAttribute('fill-opacity', op);
+}
+
+function paintFamFilter(){
+  if (focused) return;
+  works.forEach(w => setWorkOp(w, !dimmedFam ? baseOp(w) : (w.fam===dimmedFam ? .95 : .07)));
+}
+
+/* trace key — the three icons on the outer ring */
+{
+  const tk = document.getElementById('tracekey');
+  [['event','Performance event','var(--ink-2)'],
+   ['print','Printed edition','var(--gold)'],
+   ['manuscript','Manuscript','var(--gold)'],
+   ['song','Song in a songbook','var(--gold)']].forEach(([k,label,col]) => {
+    const li = document.createElement('li');
+    li.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2);padding:2px';
+    const sv = document.createElementNS(SVG,'svg');
+    sv.setAttribute('width',17); sv.setAttribute('height',17);
+    sv.setAttribute('viewBox','0 0 24 24'); sv.style.flex='none';
+    const pth = document.createElementNS(SVG,'path');
+    pth.setAttribute('d', ICON[k]); pth.setAttribute('fill','none');
+    pth.setAttribute('stroke',col); pth.setAttribute('stroke-width','1.5');
+    pth.setAttribute('stroke-linecap','round'); pth.setAttribute('stroke-linejoin','round');
+    sv.appendChild(pth);
+    li.appendChild(sv);
+    const t = document.createElement('span'); t.textContent = label;
+    li.appendChild(t);
+    tk.appendChild(li);
+  });
+}
+
+/* scale key — filled vs hollow, since every dot is the same size at rest */
+const sk = document.getElementById('scaledots');
+[['', 'documented'], ['hollow', 'title only']].forEach(([cls, label]) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (cls ? ' ' + cls : '');
+  d.style.width = d.style.height = '9px';
+  const t = document.createElement('span');
+  t.textContent = label;
+  sk.appendChild(d); sk.appendChild(t);
+});
+
+function trunc(s, n){ s = String(s||''); return s.length > n ? s.slice(0,n-1) + '\u2026' : s; }
+
+/* ---------------- the two hubs ---------------- */
+const hubEls = {};
+
+// A clip path per portrait, so a scan drops straight into the medallion.
+DATA.authors.forEach(au => {
+  const p = AUTHOR_POS[au.short];
+  const cp = mk('clipPath', {id: 'clip-' + au.short});
+  cp.appendChild(mk('circle', {cx: p.x, cy: p.y, r: PORTRAIT_R}));
+  defs.appendChild(cp);
+});
+
+DATA.authors.forEach(au => {
+  const p = AUTHOR_POS[au.short];
+  const g = mk('g');
+  g.style.cursor = 'default';
+
+  // the medallion ground
+  g.appendChild(mk('circle',{cx:p.x,cy:p.y,r:PORTRAIT_R,fill:'var(--ground-2)'}));
+
+  if (au.portrait_src) {
+    const img = mk('image',{x:p.x-PORTRAIT_R, y:p.y-PORTRAIT_R,
+      width:PORTRAIT_R*2, height:PORTRAIT_R*2,
+      preserveAspectRatio:'xMidYMid slice',
+      'clip-path':`url(#clip-${au.short})`, filter:'url(#sepia)'});
+    img.setAttributeNS('http://www.w3.org/1999/xlink','href', au.portrait_src);
+    img.setAttribute('href', au.portrait_src);
+    g.appendChild(img);
+    // a soft vignette settles the halftone into the medallion
+    g.appendChild(mk('circle',{cx:p.x,cy:p.y,r:PORTRAIT_R,
+      fill:'url(#vignette)','clip-path':`url(#clip-${au.short})`,
+      'pointer-events':'none'}));
+  } else {
+    // No scan yet. Say so plainly rather than draw a face that does not exist:
+    // the monogram, and underneath it where the portrait is to be found.
+    const mono = mk('text',{x:p.x,y:p.y-4,'text-anchor':'middle',
+      fill:'var(--gold)','font-size':42,'font-weight':500,
+      'font-family':'Playfair Display, Georgia, serif','fill-opacity':.55});
+    mono.textContent = au.short[0];
+    g.appendChild(mono);
+    const l1 = mk('text',{x:p.x,y:p.y+22,'text-anchor':'middle',
+      fill:'var(--ink-3)','font-size':8.5,'font-family':'IBM Plex Mono, monospace',
+      'letter-spacing':'.11em'});
+    l1.textContent = 'PORTRAIT';
+    g.appendChild(l1);
+    const l2 = mk('text',{x:p.x,y:p.y+35,'text-anchor':'middle',
+      fill:'var(--ink-3)','font-size':8.5,'font-family':'IBM Plex Mono, monospace',
+      'letter-spacing':'.03em'});
+    l2.textContent = `${au.portrait.vol} ${au.portrait.page}`;
+    g.appendChild(l2);
+    // a dashed rim marks the frame as awaiting its scan
+    g.appendChild(mk('circle',{cx:p.x,cy:p.y,r:PORTRAIT_R-7,fill:'none',
+      stroke:'var(--gold)','stroke-width':1.1,'stroke-opacity':.5,
+      'stroke-dasharray':'3 5'}));
+  }
+
+  // the frame itself
+  g.appendChild(mk('circle',{cx:p.x,cy:p.y,r:PORTRAIT_R,fill:'none',
+    stroke:'var(--gold)','stroke-width':au.portrait_src ? 1.8 : 1.1,
+    'stroke-opacity':au.portrait_src ? 1 : .55}));
+
+  // name and dates, set below the medallion
+  const name = mk('text',{x:p.x,y:p.y+PORTRAIT_R+28,'text-anchor':'middle',
+    fill:'var(--ink)','font-size':20,
+    'font-family':'Playfair Display, Georgia, serif','font-style':'italic'});
+  name.textContent = au.short;
+  g.appendChild(name);
+
+  const life = mk('text',{x:p.x,y:p.y+PORTRAIT_R+45,'text-anchor':'middle',
+    fill:'var(--ink-2)','font-size':11,'font-family':'IBM Plex Mono, monospace',
+    'letter-spacing':'.07em'});
+  life.textContent = au.life;
+  g.appendChild(life);
+
+  const n = mk('text',{x:p.x,y:p.y+PORTRAIT_R+62,'text-anchor':'middle',
+    fill:'var(--gold)','font-size':11.5,'font-family':'IBM Plex Mono, monospace',
+    'letter-spacing':'.05em'});
+  n.textContent = `${au.n} plays`;
+  g.appendChild(n);
+
+  g.addEventListener('pointerenter', ev => authorTip(ev, au));
+  g.addEventListener('pointerleave', hideTip);
+
+  hubEls[au.short] = g;
+  gHub.appendChild(g);
+});
+
+function authorTip(e, au){
+  tip.innerHTML =
+    `<div class="t">${esc(au.name)}</div>` +
+    `<div class="m">${esc(au.life)}</div>` +
+    `<div class="bars" style="display:block;line-height:1.5">` +
+      `b. ${esc(au.born)}, ${esc(au.birthplace)}<br>` +
+      `${esc(au.n)} plays in the catalogue` +
+    `</div>` +
+    `<div class="m" style="margin-top:6px;text-transform:none;letter-spacing:0;font-style:italic">` +
+      (au.portrait_src ? `Portrait: ${esc(au.portrait.vol)}, ${esc(au.portrait.page)}`
+                       : `Portrait not yet scanned &mdash; ${esc(au.portrait.vol)}, ${esc(au.portrait.page)}`) +
+    `</div>`;
+  tip.classList.add('on'); placeTip(e);
+}
+
+/* ---------------- pan & zoom ---------------- */
+let view = {x:0, y:0, k:1};
+function applyView(){
+  root.setAttribute('transform',
+    `translate(${vw/2 + view.x} ${vh/2 + view.y}) scale(${view.k})`);
+}
+let vw = 0, vh = 0;
+// The drawing's true half-extent, measured from the data rather than guessed,
+// so the whole wheel is framed on any viewport.
+/** Width of the widest title actually drawn, in SVG units. */
+function longestTitle(){
+  let m = 0;
+  gTitle.querySelectorAll('text').forEach(t => {
+    try { m = Math.max(m, t.getBBox().width); } catch (e) { /* not laid out */ }
+  });
+  return m || 200;                     // pre-layout fallback
+}
+
+let EXTENT = 0;
+/** The drawing's reach, measured rather than estimated. Re-run after fonts
+ *  load: a title's width is unknown until it is laid out, and at rest the
+ *  titles are the widest thing on the page. */
+function measureExtent(){
+  let m = 0;
+  pos.forEach(p => { m = Math.max(m, Math.hypot(p.x, p.y) + p.r); });
+  outerNodes.forEach(n => { m = Math.max(m, Math.hypot(n.x, n.y) + 14); });
+  m = Math.max(m, R_BAND + 13 + longestTitle());
+  EXTENT = m + 18;                     // room for the author labels
+  return EXTENT;
+}
+measureExtent();
+
+function resize(){
+  const r = stage.getBoundingClientRect();
+  vw = r.width || innerWidth; vh = r.height || innerHeight;
+  stage.setAttribute('viewBox', `0 0 ${vw} ${vh}`);
+  if (!userZoomed) {
+    const pad = vw > 760 ? 14 : 8;
+    measureExtent();
+    view.k = Math.max(0.16, Math.min(1.35,
+      Math.min(vw - pad*2, vh - pad*2 - 26) / (EXTENT * 2)));
+    view.x = 0; view.y = 18;           // nudge clear of the masthead
+  }
+  applyView();
+}
+let userZoomed = false;
+addEventListener('resize', resize);
+
+let drag = null;
+stage.addEventListener('pointerdown', e => {
+  if (e.target.dataset.work) return;
+  drag = {x:e.clientX, y:e.clientY, vx:view.x, vy:view.y};
+  stage.classList.add('dragging'); stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener('pointermove', e => {
+  if (!drag) return;
+  view.x = drag.vx + (e.clientX - drag.x);
+  view.y = drag.vy + (e.clientY - drag.y);
+  applyView();
+});
+const endDrag = () => { drag = null; stage.classList.remove('dragging'); };
+stage.addEventListener('pointerup', endDrag);
+stage.addEventListener('pointercancel', endDrag);
+stage.addEventListener('wheel', e => {
+  e.preventDefault(); userZoomed = true;
+  const f = Math.exp(-e.deltaY * 0.0014);
+  const k2 = Math.max(0.28, Math.min(4.2, view.k * f));
+  // zoom about the cursor
+  const cx = e.clientX - vw/2, cy = e.clientY - vh/2;
+  view.x = cx - (cx - view.x) * (k2/view.k);
+  view.y = cy - (cy - view.y) * (k2/view.k);
+  view.k = k2; applyView();
+}, {passive:false});
+/* ---------------- focus mode ---------------- */
+const dossier = document.getElementById('dossier');
+const resetBtn = document.getElementById('reset');
+
+function openPlay(id){
+  const w = works.find(x => x.id === id);
+  if (!w) return;
+  focused = id; hideTip();
+  stage.classList.add('focused');
+  const traced = isRich(w);
+
+  // dim the wheel
+  works.forEach(x => setWorkOp(x, x.id===id ? .95 : .055));
+  gSpoke.querySelectorAll('line').forEach(l =>
+    l.setAttribute('stroke-opacity', l.dataset.work === id ? .9 : .07));
+  gOuter.querySelectorAll('*').forEach(e =>
+    e.setAttribute('opacity', e.dataset.work === id ? 1 : .07));
+  gGuide.setAttribute('opacity', .35);
+  Object.entries(hubEls).forEach(([k,g]) => g.setAttribute('opacity', k===w.pw ? 1 : .14));
+
+  if (traced) {
+    drawFocus(w);                 // §B: the play becomes the centre of its own fan
+    showDetail(detailForPlay(w)); // and its own record opens in the panel
+  } else {
+    drawTitleOnly(w);             // §A: what little is known, stated plainly
+    fillDossier(w);
+    dossier.classList.add('on');
+  }
+  resetBtn.classList.add('on');
+}
+
+function drawFocus(w){
+  gFocus.textContent = '';
+  const p = pos.get(w.id);
+
+  // The play's own people and traces are placed OUTSIDE the wheel, continuing
+  // the direction the play already points: the play sits on the band, its
+  // collaborators and its traces fan outward from there, so the reading stays
+  // radial instead of doubling back over the band.
+  const inner = [
+    ...w.people.map(x => ({name:x.name, role:x.role, kind:'person', data:x})),
+    ...w.orgs.map(x => ({name:x.name, role:x.role, kind:'org', data:x})),
+  ];
+  const outer = [
+    ...w.editions.map(e => ({kind:'edition', sub:e.kind, d:e,
+                             name:String(e.year || (e.kind==='manuscript'?'Manuscript':'Edition')),
+                             role:e.kind==='manuscript'?'manuscript':'print'})),
+    ...w.events.map(e => ({kind:'event', sub:'event', d:e,
+                           name:e.date || 'Performance', role:'event'})),
+  ];
+  // Songs get their own tier beyond the editions and stagings. They are the
+  // most numerous trace and the only one for 34 of the 54 plays that have any
+  // — those hubs drew a bare circle before this, while the panel beside them
+  // announced the songs. A song is a Work, so it sits on the trace tiers, not
+  // among the people.
+  const songs = (w.songs || []).map(s => ({
+    kind:'song', role:'song', d:s,
+    name: s.rom || s.yid || 'Song',
+  }));
+  // Which songbook most of this play's songs come from. That one is dropped
+  // from the subtitles: naming it on 24 of 26 nodes says nothing about any of
+  // them, while the 2 from elsewhere are exactly what the tier should show.
+  const srcOf = it => (it.d.att && it.d.att[0] && it.d.att[0].src) || '';
+  const srcTally = {};
+  songs.forEach(it => { const k = srcOf(it); srcTally[k] = (srcTally[k]||0)+1; });
+  const mainSource = Object.entries(srcTally)
+    .sort((a,b) => b[1]-a[1]).map(e => e[0])[0] || '';
+
+  // How far out each tier sits, measured from the play, along its own radius.
+  const OUT1 = inner.length > 12 ? 168 : inner.length > 7 ? 140 : 116;
+  const OUT2 = OUT1 + (outer.length > 6 ? 128 : 104);
+  // Songs sit one tier beyond whatever the play actually has: past the
+  // editions and stagings when there are any, past the credits when there are
+  // only credits, and at the first tier when songs are all that survives —
+  // never stranded out past empty rings.
+  const lastUsed = outer.length ? OUT2 : inner.length ? OUT1 : 0;
+  // `ring` caps its wedge at 1.5π, so past ~16 items the spacing is set by the
+  // radius alone. Yafes toyer has 26 songs and nothing else: at OUT1 they would
+  // sit 23px apart with a 16px glyph and a label between them, so the tier is
+  // pushed out in step with the count.
+  //
+  // But reach drives the zoom, and `frameFocus` floors at k=0.3 — so a third
+  // tier placed as generously as the first two shrinks Ben Hador's whole fan
+  // to unreadable type. When the play already has credits AND traces, the song
+  // tier sits as close behind them as its own count allows.
+  const crowd = songs.length > 16 ? 112 : songs.length > 8 ? 42 : 0;
+  const step = lastUsed
+    ? (inner.length && outer.length ? 86 : songs.length > 8 ? 150 : 122)
+    : 0;
+  const OUT3 = (lastUsed ? lastUsed + step : OUT1) + crowd;
+  const dirA = p.a;                               // the play's angle from centre
+
+  ring(inner, OUT1, (it, x, y) => {
+    const key = iconFor(it.role, it.kind);
+    const col = it.kind === 'org' ? 'var(--ink-2)' : 'var(--ink)';
+    const g = mk('g');
+    g.appendChild(drawIcon(key, x, y, 19, col, {plate:true, weight:1.45}));
+    g.appendChild(label(x, y, it.name, ROLE_LABEL[it.role] || it.role));
+    return g;
+  });
+
+  ring(outer, OUT2, (it, x, y) => {
+    const g = mk('g');
+    const key = it.kind === 'event' ? 'event'
+              : it.sub === 'manuscript' ? 'manuscript' : 'print';
+    const col = it.kind === 'event' ? 'var(--ink-2)' : 'var(--gold)';
+    g.appendChild(drawIcon(key, x, y, 20, col, {plate:true, weight:1.45}));
+    const sub = it.kind === 'edition'
+      ? [it.d.place, it.d.printer || it.d.holder].filter(Boolean).join(', ')
+      : [it.d.venue, it.d.type].filter(Boolean).join(' · ');
+    g.appendChild(label(x, y, it.name, sub));
+    return g;
+  });
+
+  // The songs. Drawn smaller than an edition or a staging: a play may have 26
+  // of them, and they are the lightest-weight trace — a title in a songbook,
+  // where an edition is a surviving book. Gold like the editions, because both
+  // are printed things, but hollow.
+  ring(songs, OUT3, (it, x, y) => {
+    const g = mk('g');
+    g.appendChild(drawIcon('song', x, y, 16, 'var(--gold)',
+                           {plate:true, weight:1.35}));
+    // The count of gramophone recordings, where Aylward's discography has one.
+    if (it.d.rec) {
+      g.appendChild(mk('circle',{cx:x+9.5, cy:y-9.5, r:6.4,
+        fill:'var(--ground)', stroke:'var(--gold)','stroke-width':.9}));
+      const t = mk('text',{x:x+9.5, y:y-9.5, 'text-anchor':'middle',
+        'dominant-baseline':'central', fill:'var(--gold)',
+        'font-size':7.6, 'font-family':'IBM Plex Mono, monospace'});
+      t.textContent = it.d.rec;
+      g.appendChild(t);
+    }
+    g.appendChild(label(x, y, it.name, songSub(it.d, mainSource)));
+    return g;
+  });
+
+  // the play itself, lifted and named
+  const hub = mk('g');
+  hub.appendChild(mk('circle',{cx:p.x,cy:p.y,r:36,fill:'var(--ground)',
+    stroke:famColor(w.fam),'stroke-width':1.8}));
+  hub.appendChild(mk('circle',{cx:p.x,cy:p.y,r:28,fill:famColor(w.fam),'fill-opacity':.18}));
+  wrapInto(hub, w.title, p.x, p.y, 13, 3);
+  hub.style.cursor = 'pointer';
+  hub.addEventListener('click', e => { e.stopPropagation(); showDetail(detailForPlay(w)); });
+  gFocus.appendChild(hub);
+
+  // Frame to the outermost tier actually drawn, or the songs fall off-screen.
+  frameFocus(p, Math.max(OUT2, songs.length ? OUT3 : 0));
+
+  /** Lay items on an arc centred on the play's outward direction. */
+  function ring(items, R, draw){
+    if (!items.length) return;
+    const n = items.length;
+    // a wedge opening outward; wider when there is more to place
+    const span = n === 1 ? 0 : Math.min(Math.PI * 1.5, 0.30 * n);
+    items.forEach((it, i) => {
+      const a = n === 1 ? dirA : dirA - span/2 + span * (i/(n-1));
+      const RR = R + (n > 5 && i % 2 ? 44 : 0);
+      const x = p.x + Math.cos(a)*RR, y = p.y + Math.sin(a)*RR;
+      gFocus.appendChild(mk('line',{x1:p.x,y1:p.y,x2:x,y2:y,
+        stroke:'var(--rule)','stroke-width':.8}));
+      const g = draw(it, x, y);
+      // every node is clickable and opens the panel; it must NOT fall through
+      // to the canvas handler, which would throw the viewer back to the wheel
+      g.style.cursor = 'pointer';
+      g.setAttribute('tabindex','0');
+      g.setAttribute('role','button');
+      g.setAttribute('aria-label', `${it.name} — ${ROLE_LABEL[it.role] || it.role}`);
+      const open = e => { e.stopPropagation(); showDetail(detailFor(it, w)); };
+      g.addEventListener('click', open);
+      g.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(e); }
+      });
+      // a transparent disc so the thin glyph is easy to hit
+      const hit = mk('circle',{cx:x,cy:y,r:15,fill:'transparent'});
+      hit.style.cursor = 'pointer';
+      hit.addEventListener('click', open);
+      gFocus.appendChild(g); gFocus.appendChild(hit);
+    });
+  }
+
+  function label(x, y, main, sub){
+    const out = (x - p.x) >= 0;
+    const g = mk('g');
+    const tx = x + (out ? 19 : -19);
+    const t = mk('text',{x:tx,y:y+(sub?-1:3.5),'text-anchor':out?'start':'end',
+      fill:'var(--ink)','font-size':11.5,'font-family':'Spectral, Georgia, serif'});
+    t.textContent = trunc(main, 26);
+    t.style.direction = 'rtl'; t.style.unicodeBidi = 'plaintext';
+    g.appendChild(t);
+    if (sub) {
+      const s2 = mk('text',{x:tx,y:y+10,'text-anchor':out?'start':'end',
+        fill:'var(--ink-3)','font-size':9,'font-family':'IBM Plex Mono, monospace',
+        'letter-spacing':'.04em'});
+      s2.textContent = trunc(sub, 30).toUpperCase();
+      g.appendChild(s2);
+    }
+    return g;
+  }
+}
+
+/** Wrap a title into a hub disc. */
+function wrapInto(g, title, x, y, perLine, maxLines){
+  const words = String(title).split(/\s+/);
+  const lines = []; let cur = '';
+  words.forEach(word => {
+    if ((cur + ' ' + word).trim().length > perLine) { if (cur) lines.push(cur); cur = word; }
+    else cur = (cur + ' ' + word).trim();
+  });
+  if (cur) lines.push(cur);
+  const shown = lines.slice(0, maxLines);
+  shown.forEach((ln, i) => {
+    const t = mk('text',{x, y: y + 3.5 + (i - (shown.length-1)/2) * 11,
+      'text-anchor':'middle', fill:'var(--ink)', 'font-size':9.5,
+      'font-family':'Spectral, Georgia, serif'});
+    t.textContent = trunc(ln, 15);
+    g.appendChild(t);
+  });
+}
+
+/** Fit the opened play and its fan into the free half of the canvas. */
+function frameFocus(p, reach){
+  const panelW = (innerWidth > 760 && dossier.classList.contains('on'))
+    ? Math.min(394, innerWidth*0.88) : 0;
+  const availW = vw - panelW - 48, availH = vh - 48;
+  userZoomed = true;
+  view.k = Math.min(1.0, Math.max(0.3, Math.min(availW, availH) / ((reach + 120) * 2)));
+  // the fan points outward from the centre, so bias the framing that way
+  const cx = (vw - panelW) / 2;
+  const bx = p.x + Math.cos(p.a) * reach * 0.45;
+  const by = p.y + Math.sin(p.a) * reach * 0.45;
+  view.x = (cx - vw/2) - bx*view.k;
+  view.y = -by*view.k;
+  applyView();
+}
+/* §A — a play known only as a catalogue title. There is no graph to draw, so
+   say what IS known: the dates, however vague, and where it was recorded. */
+function drawTitleOnly(w){
+  gFocus.textContent = '';
+  const p = pos.get(w.id);
+  const hub = mk('g');
+  hub.appendChild(mk('circle',{cx:p.x,cy:p.y,r:26,fill:'var(--ground)',
+    stroke:famColor(w.fam),'stroke-width':1.6}));
+  hub.appendChild(mk('circle',{cx:p.x,cy:p.y,r:19,fill:famColor(w.fam),
+    'fill-opacity':.22}));
+  gFocus.appendChild(hub);
+  const panelW = Math.min(394, innerWidth*0.88);
+  const cx = (innerWidth - (innerWidth>760 ? panelW : 0)) / 2;
+  userZoomed = true;
+  view.k = Math.min(1.15, Math.max(0.55, Math.min(vw - panelW, vh) / 760));
+  view.x = (cx - vw/2) - p.x*view.k;
+  view.y = -p.y*view.k;
+  applyView();
+}
+
+function unfocus(){
+  focused = null; gFocus.textContent = '';
+  stage.classList.remove('focused');
+  gSpoke.querySelectorAll('line').forEach(l => l.setAttribute('stroke-opacity', 1));
+  gOuter.querySelectorAll('*').forEach(e => e.setAttribute('opacity', 1));
+  gGuide.setAttribute('opacity', 1);
+  Object.values(hubEls).forEach(g => g.setAttribute('opacity', 1));
+  paintFamFilter();
+  works.forEach(w => setWorkOp(w, dimmedFam ? (w.fam===dimmedFam?.95:.07) : baseOp(w)));
+  dossier.classList.remove('on');
+  resetBtn.classList.remove('on');
+  userZoomed = false; view.x = 0; view.y = 0; resize();
+}
+resetBtn.addEventListener('click', unfocus);
+document.getElementById('close').addEventListener('click', unfocus);
+stage.addEventListener('click', e => {
+  // only a click on bare canvas returns to the wheel: a click on any node —
+  // a play, or anything in an opened play's fan — must keep the view put
+  if (focused && !e.target.dataset.work && !e.target.closest('.focus')) unfocus();
+});
+addEventListener('keydown', e => { if (e.key === 'Escape' && focused) unfocus(); });
+
+/* ---------------- dossier ---------------- */
+/* ---------------- the detail panel ----------------
+   Clicking any node in an opened play fills the side panel with that node's
+   own record. It never changes the drawing, so the viewer keeps their place. */
+function showDetail(d){
+  document.getElementById('d-fam').style.color = d.accent || 'var(--ink-3)';
+  document.getElementById('d-famname').textContent = d.kicker;
+  document.getElementById('d-title').textContent = d.title;
+  document.getElementById('d-yid').textContent = d.yiddish || '';
+  document.getElementById('d-byline').textContent = d.byline || '';
+  document.getElementById('d-body').innerHTML = d.html;
+  document.getElementById('d-body').scrollTop = 0;
+  dossier.classList.add('on');
+}
+
+function rows(pairs){
+  const got = pairs.filter(([, v]) => v !== undefined && v !== null && String(v).trim() !== '');
+  if (!got.length) return '';
+  return '<ul>' + got.map(([k, v]) =>
+    `<li class="cred"><span class="r">${esc(k)}</span><span class="n">${esc(v)}</span></li>`
+  ).join('') + '</ul>';
+}
+
+/** The record for one person or company credited on a play. */
+function detailFor(it, w){
+  if (it.kind === 'person' || it.kind === 'org') {
+    const isOrg = it.kind === 'org';
+    const S = [];
+    S.push(sec(isOrg ? 'Company or venue' : 'Person',
+      rows([[ROLE_LABEL[it.role] || it.role, it.name]])));
+    // everything else this play says about them
+    const also = (isOrg ? w.orgs : w.people)
+      .filter(x => x.name === it.name && x.role !== it.role)
+      .map(x => ROLE_LABEL[x.role] || x.role);
+    if (also.length) S.push(sec('Also credited as',
+      `<p class="tagline">${esc(also.join(', '))}</p>`));
+    S.push(sec('On this play',
+      `<p class="tagline">${esc(w.title)}${w.yiddish ? ' · ' + esc(w.yiddish) : ''}</p>` +
+      `<p class="k" style="font-size:11.5px;color:var(--ink-3)">${esc(FAM_LABEL[w.fam])}</p>`));
+    return {kicker: isOrg ? 'Company' : (ROLE_LABEL[it.role] || it.role),
+            title: it.name, byline: '', accent: 'var(--ink-2)',
+            html: S.join('')};
+  }
+  if (it.kind === 'edition') {
+    const e = it.d;
+    const S = [];
+    S.push(sec('Edition', rows([
+      ['Kind', e.kind === 'manuscript' ? 'Manuscript' : 'Printed edition'],
+      ['Year', e.year || 'not recorded'],
+      ['Place', e.place],
+      ['Printer', e.printer],
+      ['Held at', e.holder],
+      ['Songs', e.songs || undefined],
+      ['Folder', e.folder],
+    ])));
+    S.push(sec('Of the play',
+      `<p class="tagline">${esc(w.title)}${w.yiddish ? ' · ' + esc(w.yiddish) : ''}</p>`));
+    return {kicker: e.kind === 'manuscript' ? 'Manuscript' : 'Printed edition',
+            title: String(e.year || e.folder || 'Edition'),
+            byline: [e.place, e.printer].filter(Boolean).join(', '),
+            accent: 'var(--gold)', html: S.join('')};
+  }
+  if (it.kind === 'song') {
+    const s = it.d;
+    const S = [sec('Song', `<ul class="songs"><li>${songRow(s)}</li></ul>`)];
+    S.push(sec('Of the play',
+      `<p class="tagline">${esc(w.title)}${w.yiddish ? ' · ' + esc(w.yiddish) : ''}</p>` +
+      `<p class="k" style="font-size:11.5px;color:var(--ink-3)">` +
+      `${esc(s.reviewed ? 'Attachment reviewed and confirmed'
+                        : 'Attachment proposed by the catalogue matcher')}</p>`));
+    return {kicker: 'Song', title: s.rom || s.yid || 'Song',
+            yiddish: s.rom ? s.yid : '', byline: s.by || '',
+            accent: 'var(--gold)', html: S.join('')};
+  }
+  // a performance event
+  const e = it.d;
+  const S = [];
+  S.push(sec('Performance', rows([
+    ['Date', e.date || 'not recorded'],
+    ['Type', e.type],
+    ['Venue', e.venue || 'not recorded'],
+  ])));
+  S.push(sec('Of the play',
+    `<p class="tagline">${esc(w.title)}${w.yiddish ? ' · ' + esc(w.yiddish) : ''}</p>`));
+  return {kicker: e.type || 'Performance', title: e.date || 'Performance',
+          byline: e.venue || '', accent: 'var(--ink-2)', html: S.join('')};
+}
+
+/** The play's own record — what the hub opens. */
+function detailForPlay(w){
+  const author = DATA.authors.find(a => a.short === w.pw) || DATA.authors[0];
+  return {kicker: FAM_LABEL[w.fam], title: w.title, yiddish: w.yiddish,
+          byline: `${author.name}${w.attr && w.attr !== 'certain' ? ` — attribution: ${w.attr}` : ''}`,
+          accent: famColor(w.fam), html: playSections(w, author).join('')};
+}
+
+
+function fillDossier(w){
+  const author = DATA.authors.find(a => a.short === w.pw) || DATA.authors[0];
+  showDetail(detailForPlay(w));
+}
+
+/** The sections describing one play; shared by the panel and the hub click. */
+function playSections(w, author){
+  const S = [];
+
+  // Date of composition, stated as precisely as the source allows and no more.
+  S.push(sec('Date', dateLine(w)));
+
+  if (w.tags) S.push(sec('Catalogued as', `<p class="tagline">${esc(w.tags)}</p>`));
+
+  // Where this play is recorded — the only evidence there is for most of them.
+  if (w.attest.length) {
+    S.push(sec('Attested in', w.attest.length,
+      '<ul>' + w.attest.map(a => `<li class="cred"><span class="r">${esc(ATTEST_LABEL[a] ? 'source' : 'source')}</span>` +
+        `<span>${esc(ATTEST_LABEL[a] || a)}</span></li>`).join('') + '</ul>'));
+  } else {
+    S.push(sec('Attested in',
+      `<p class="empty">No reference work is recorded against this title in the catalogue.</p>`));
+  }
+
+  if (w.notes && w.notes.sources)
+    S.push(sec('Sources / availability', `<p class="tagline">${esc(w.notes.sources)}</p>`));
+  if (w.notes && w.notes.copy)
+    S.push(sec('Copy held', `<p class="tagline">${esc(w.notes.copy)}</p>`));
+  if (w.notes && w.notes.draws_on)
+    S.push(sec('Draws on', `<p class="tagline">${esc(w.notes.draws_on)}</p>`));
+  if (w.notes && w.notes.note)
+    S.push(sec('Notes', `<p class="tagline">${esc(w.notes.note)}</p>`));
+
+  if (w.events.length) S.push(sec('Performance events', w.events.length,
+    '<ol>' + w.events.map(e => `<li class="ev"><span class="d">${esc(e.date||'—')}</span>` +
+      `<span><span class="v">${esc(e.venue || 'venue unrecorded')}</span>` +
+      (e.type ? `<br><span class="k">${esc(e.type)}</span>` : '') + `</span></li>`).join('') + '</ol>'));
+
+  if (w.editions.length) S.push(sec('Editions', w.editions.length,
+    '<ol>' + w.editions.map(e => `<li class="ev"><span class="d">${esc(e.year||'—')}</span>` +
+      `<span><span class="v">${esc([e.place, e.printer].filter(Boolean).join(', ') || e.folder || '—')}</span>` +
+      (e.holder ? `<br><span class="k">held at ${esc(e.holder)}</span>` : '') + `</span></li>`).join('') + '</ol>'));
+
+  const creds = [...w.people.map(p => [p.role, p.name]), ...w.orgs.map(o => [o.role, o.name])];
+  if (creds.length) S.push(sec('Credits', creds.length,
+    '<ul>' + creds.map(([r,n]) => `<li class="cred"><span class="r">${esc(ROLE_LABEL[r] || r)}</span>` +
+      `<span class="n">${esc(n)}</span></li>`).join('') + '</ul>'));
+
+  if (w.songs.length) S.push(sec('Songs', w.songs.length,
+    songsBlock(w.songs)));
+
+  if (!w.editions.length && !w.events.length && !w.songs.length)
+    S.push(sec('Surviving traces',
+      `<p class="empty">No edition, staging or song is recorded. This play survives as a
+       title in the catalogue under ${esc(author.short)}'s name.</p>`));
+
+  return S;
+}
+
+/**
+ * The songs of one play.
+ *
+ * Each song is a Work in its own right in the graph, and the catalogue holds
+ * more about it than a title: both of its titles (the Yiddish is populated for
+ * all 225, the romanization for 223), the lyricist where the songbook credits
+ * one, the songbook and page it is printed on, and — for 52 of them — how many
+ * gramophone recordings Aylward's `Shund on Shellac` discography counts. All
+ * of that is cited evidence, so all of it is shown.
+ */
+function songsBlock(songs){
+  const recs = songs.reduce((a, s) => a + (s.rec || 0), 0);
+  const other = songs.filter(s => s.other).length;
+  // 217 of 225 song→play attachments are matcher output, not a human reading.
+  // Saying so once per panel is honest without flagging every row.
+  const prop = songs.filter(s => !s.reviewed).length;
+
+  const notes = [];
+  if (recs) notes.push(`${recs} gramophone recording${recs > 1 ? 's' : ''} ` +
+    `of ${songs.filter(s => s.rec).length} of these songs are catalogued ` +
+    `(Aylward, <i>Shund on Shellac</i>, Lemberg 1904–13).`);
+  if (other) notes.push(`${other} ${other > 1 ? 'are' : 'is'} credited to a ` +
+    `lyricist other than this play's author.`);
+  const unk = songs.filter(s => !s.by).length;
+  if (unk) notes.push(unk === songs.length
+    ? 'No songbook credits a lyricist for any of them.'
+    : `${unk} carr${unk > 1 ? 'y' : 'ies'} no stated lyricist.`);
+  if (prop === songs.length) notes.push(
+    `Attachment to this play is proposed by the catalogue matcher, not yet reviewed.`);
+  else if (!prop) notes.push(songs.length > 1
+    ? 'Attachment of these songs to this play has been reviewed and confirmed.'
+    : 'Attachment of this song to this play has been reviewed and confirmed.');
+  else notes.push(`${songs.length - prop} of ${songs.length} attachments are ` +
+    `reviewed; the rest are proposed by the catalogue matcher.`);
+
+  const li = songs.map(s => `<li>${songRow(s)}</li>`).join('');
+  return (notes.length ? `<p class="songnote">${notes.join(' ')}</p>` : '') +
+         `<ul class="songs">${li}</ul>`;
+}
+
+/**
+ * A song node's one-line subtitle on the wheel.
+ *
+ * Only what distinguishes this song from its neighbours. A lyricist other than
+ * the playwright is the finding worth seeing, so it always shows. The songbook
+ * shows only when it is NOT the one most of the play's songs come from —
+ * otherwise 24 of 26 nodes repeat "DI YIDISHE BIHNE" and the tier reads as
+ * noise, while the odd source out is what deserves the line.
+ */
+function songSub(s, mainSource){
+  // The sub-label truncates at 30 characters, which ate the full wording and
+  // left "MOYSHE HURWITZ — NOT THIS PLA…". The surname plus a short tag fits,
+  // and the node's own card spells it out.
+  if (s.other) return `${s.by.split(' ').pop()}, not the author`;
+  if (s.by) return s.by;
+  const src = (s.att && s.att[0] && s.att[0].src) || '';
+  return src === mainSource ? '' : src;
+}
+
+/** One song's evidence — shared by the play panel and a song node's own card. */
+function songRow(s){
+  const P = [];
+  P.push('<div class="t">');
+  if (s.rom) P.push(`<span class="rom">${esc(s.rom)}</span>`);
+  if (s.yid) P.push(`<span class="yi">${esc(s.yid)}</span>`);
+  // A count of recordings, not of anything else — labelled, not a bare digit.
+  if (s.rec) P.push(`<span class="rec" title="${s.rec} gramophone recording` +
+    `${s.rec > 1 ? 's' : ''} catalogued">♪ ${s.rec}</span>`);
+  P.push('</div>');
+
+  // The spelling the songbook actually printed, where it differs from the
+  // romanization — "Oj is dus a Mame" beside "Oy iz dos a mame".
+  if (s.src_title) P.push(`<div class="alt">printed as <q>${esc(s.src_title)}</q></div>`);
+
+  // Only a stated credit is printed. "Lyricist not stated" is the norm for
+  // 73 of 225 songs and on some plays for every row, where repeating it line
+  // after line buries the rows that DO carry a credit; the count goes in the
+  // section note instead.
+  if (s.by) P.push(`<div class="by${s.other ? ' other' : ''}">` +
+    `${esc(s.by)}${s.other ? ' — not this play’s author' : ''}</div>`);
+
+  if (s.att && s.att.length) {
+    // 8 songs are printed in two songbooks; each witness is its own line, so
+    // two citations never read as one.
+    P.push('<div class="cite">' + s.att.map(a => {
+      const bits = [a.src, a.pg].filter(Boolean).join(', ');
+      const label = `<span class="nm">${esc(bits)}</span>`;
+      const body = a.url
+        ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${label}</a>`
+        : label;
+      return `<span class="w"${a.full ? ` title="${esc(a.full)}"` : ''}>` +
+             `${body}</span>`;
+    }).join('') + '</div>');
+  }
+  if (s.note) P.push(`<div class="note">${esc(s.note)}</div>`);
+  return P.join('');
+}
+
+const ATTEST_LABEL = {
+  JPRESS: 'JPRESS (historical Jewish press)',
+  Silberzweig: 'Zylbercweig, Leksikon fun yidishn teater',
+  Berkovitsh: 'Berkovitsh, Yidishe dramaturgn un teater-kompozitors',
+  Sieger: 'Sieger',
+};
+
+/** Render a date as precisely as the record allows — and say so when it does not. */
+function dateLine(w){
+  const d = w.date;
+  if (!d || !d.kind || d.kind === 'unparsed')
+    return `<p class="empty">Date of composition unknown.</p>` +
+           (d && d.raw ? `<p class="k" style="font-size:11.5px;color:var(--ink-3)">catalogue reads: ${esc(d.raw)}</p>` : '');
+  const KIND = {composition:'composed', publication:'published',
+                performance:'performed', year:'', range:'', before:'', after:''};
+  let main;
+  if (d.kind === 'range')       main = `${d.from}–${d.to}`;
+  else if (d.kind === 'before') main = `before ${d.to}`;
+  else if (d.kind === 'after')  main = `after ${d.from}`;
+  else                          main = String(d.from);
+  const qual = [];
+  if (!d.certain) qual.push('uncertain');
+  if (KIND[d.kind]) qual.push(KIND[d.kind]);
+  return `<p class="dateline">${esc(main)}` +
+    (qual.length ? ` <span class="k">${esc(qual.join(' · '))}</span>` : '') + `</p>` +
+    (d.note ? `<p class="k" style="font-size:11.5px;color:var(--ink-3)">${esc(d.note)}</p>` : '');
+}
+
+function sec(label, n, html){
+  if (html === undefined) { html = n; n = ''; }
+  return `<section><div class="eyebrow">${esc(label)}` +
+         (n !== '' ? `<i>${esc(n)}</i>` : '') + `</div>${html}</section>`;
+}
+
+resize();
+requestAnimationFrame(resize);
+addEventListener('load', () => { if (!userZoomed) resize(); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!userZoomed) resize(); });
+</script>
+
+</body>
+</html>

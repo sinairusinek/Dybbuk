@@ -347,6 +347,72 @@ def song_signature(play_key: str, title: str) -> str:
     return f"{translit_key(play_key)}|{sm(title)}"
 
 
+# Two songbooks are recorded twice over in the sheet, under two different
+# `Source` spellings, because 14 rows are shifted one column left: the book
+# TITLE sits in `page numbers` and the NLI permalink in `Source`, pushing the
+# page into `Page number PDF` and the reading note into the recordings column.
+# The NLI record id is the stable identity, so each book is keyed by it and the
+# page column is not read as a page when it holds a title.
+NLI_SONGBOOKS = {
+    "990021032870205171": "די אידישע ביהנע : א זאמעלבוך פון ליעדער "
+                          "און דעקלאמאציאנען פיר גראמאפאנען.",
+    "990017500140205171": "פערשיעדענע דעקלאמאציאנען אונד טהעאטער-ליעדער",
+}
+
+
+def _looks_like_page(v: str) -> bool:
+    return bool(v) and all(c.isdigit() or c in ".,- " for c in v)
+
+
+def song_source(cells) -> tuple[str, str, str]:
+    """-> (source_publication, source_url, page_printed) for one song row.
+
+    Handles the column shift described above without editing the sheet.
+    """
+    raw_src = clean(cells.get("Source"))
+    page_printed = clean(cells.get("page numbers"))
+    url = ""
+    for nli_id, title in NLI_SONGBOOKS.items():
+        if nli_id in raw_src:
+            # Shifted row: Source holds the URL, `page numbers` the title.
+            url, raw_src = raw_src, title
+            page_printed = ""
+            break
+        if nli_id in clean(cells.get("external source id")):
+            # Correctly-filled row: `Source` already names the book — in
+            # longhand on 4 rows and as the shorthand `יידיש ביהנע` on 79. Take
+            # the URL and leave the sheet's own wording alone; collapsing the
+            # shorthand into the long title would overwrite 79 human-entered
+            # values on an inference, and the url is the join key either way.
+            url = clean(cells.get("external source id"))
+            break
+    else:
+        if page_printed and not _looks_like_page(page_printed):
+            # A title in the page column we have no id for: keep it as the
+            # source rather than printing it as a page.
+            raw_src, page_printed = raw_src or page_printed, ""
+    return raw_src, url, page_printed
+
+
+# `recordings acc. Shund on Shellac` is a count, but on the 10 NLI rows the
+# sheet carries Ruthie's annotation ("including lyrics of the song") in that
+# column instead of in `Ruthie - elaboration`. Parsing it as a number would
+# either crash or silently coerce a note into a tally, so the two are split on
+# read and the note is routed to the field it belongs in.
+def split_recordings(raw: str, note: str) -> tuple[str, str]:
+    """-> (recordings, elaboration). A non-numeric count IS an elaboration."""
+    raw = (raw or "").strip()
+    note = (note or "").strip()
+    if not raw:
+        return "", note
+    try:
+        float(raw)
+    except ValueError:
+        # Keep both if the proper column was also used; neither is dropped.
+        return "", "; ".join(x for x in (note, raw) if x)
+    return raw, note
+
+
 def load_songs(wb, work_idx: dict, works: dict) -> tuple[list, dict]:
     """Songs as Work nodes that are `part_of` a play work.
 
@@ -430,15 +496,27 @@ def load_songs(wb, work_idx: dict, works: dict) -> tuple[list, dict]:
             if a and a.lower() not in {"not known", "unkown", "unknown"}:
                 author = a
                 break
-        attestations = [{
-            "source_publication": clean(c.get("Source")),
-            "page_pdf": clean(c.get("Page number PDF")),
-            "page_printed": clean(c.get("page numbers")),
-            "external_source_id": clean(c.get("external source id")),
-            "recordings": clean(c.get("recordings acc. Shund on Shellac")),
-            "author_raw": clean(c.get("Author")),
-            "temp_id": clean(c.get("tempID")),
-        } for c in rows_for_song]
+        node_source, node_source_url, _ = song_source(cells)
+        node_recordings, node_elaboration = split_recordings(
+            clean(cells.get("recordings acc. Shund on Shellac")),
+            clean(cells.get("Ruthie - elaboration")))
+        attestations = []
+        for c in rows_for_song:
+            src, src_url, page_printed = song_source(c)
+            rec, elab = split_recordings(
+                clean(c.get("recordings acc. Shund on Shellac")),
+                clean(c.get("Ruthie - elaboration")))
+            attestations.append({
+                "source_publication": src,
+                "source_url": src_url,
+                "page_pdf": clean(c.get("Page number PDF")),
+                "page_printed": page_printed,
+                "external_source_id": clean(c.get("external source id")),
+                "recordings": rec,
+                "elaboration": elab,
+                "author_raw": clean(c.get("Author")),
+                "temp_id": clean(c.get("tempID")),
+            })
         nodes.append({
             "id": ids[sig],
             "kind": "song",
@@ -457,9 +535,13 @@ def load_songs(wb, work_idx: dict, works: dict) -> tuple[list, dict]:
                                  if author.lower() in {"not known", "unkown",
                                                        "unknown"} or not author
                                  else "stated"),
-            "source_publication": clean(cells.get("Source")),
+            "source_publication": node_source,
+            "source_url": node_source_url,
             "external_source_id": clean(cells.get("external source id")),
-            "recordings": clean(cells.get("recordings acc. Shund on Shellac")),
+            "recordings": node_recordings,
+            # Ruthie's reading notes on the song row — e.g. that a source
+            # prints the lyrics, not only the title.
+            "elaboration": node_elaboration,
             "attestations": attestations,
             "n_attestations": len(attestations),
             "status": "LINKED" if wid else "GAP",
