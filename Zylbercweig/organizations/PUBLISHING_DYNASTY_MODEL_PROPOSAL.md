@@ -103,7 +103,7 @@ The test is **chronological overlap, not surname**.
 
 Sh./S./Shelomoh Goldfarb runs 1900–1933; M. Goldfarb runs 1924–1933. They
 overlap for a decade, so they were two businesses, however closely related.
-Two rows: db 50 and the newly minted db 2854 (`P156`; 2669 before the §8 renumber).
+Two rows: db 50 and the newly minted db 2858 (`P156`; 2669 before the §8 renumber).
 
 ### Rule 3 — A partnership *phase* is not a new organization
 
@@ -119,7 +119,7 @@ not.
 ### Rule 4 — A firm that MOVED is one row; simultaneous branches use `parent_db_id`
 
 The Bletnitski Brothers were an Odessa bookshop that had books printed in
-Vilna — one row (db 2846; 2661 before the §8 renumber), seat in `address`, earlier seat in the notes. Had
+Vilna — one row (db 2850; 2661 before the §8 renumber), seat in `address`, earlier seat in the notes. Had
 they run shops in both cities *at once*, that would be the Forverts shape and
 `parent_db_id` would apply.
 
@@ -622,7 +622,7 @@ wrong about location — the succession is in `publisher_audit_decisions.tsv`
 Also: Rule 1 says each proprietor's name goes in `name_variants`, citing the
 Kaminski merge as precedent — but **db 147 has an empty `name_variants`**. Only
 Rule 1's *conclusion* is precedented; its *mechanism* is new. Of the dynasty rows,
-only db 2846 (Bletnitski) models variants well; db 2854 was minted bare, with no
+only db 2850 (Bletnitski) models variants well; db 2858 was minted bare, with no
 variants and no address, and db 24 is a three-field row.
 
 ### 5.8 One finding that argues against building anything yet
@@ -680,9 +680,9 @@ Nothing irreversible. Under current conventions:
   this question by accident.
 - **Baumritter** (db 157) took the partnership cluster under Rule 3 (`P057`).
 - **Goldfarb** was split under Rule 2 (`P059`), minting a row for M. —
-  now **db 2854** after the `P173` renumber (§8).
+  now **db 2858** after the `P173` renumber (§8).
 - **Bletnitski** was minted as one Odessa row under Rule 4 (`P148`) —
-  now **db 2846** after the `P173` renumber (§8).
+  now **db 2850** after the `P173` renumber (§8).
 
 Reversing any of these is a cluster-link edit, not a data loss.
 
@@ -736,26 +736,26 @@ as `P168`; see below.
 
 | | what | where |
 |---|---|---|
-| **`P173`** | **ID collision, third round.** The deployed app mints on every Save, so it had taken **2809–2820** for theatres and amateur groups while this work sat unmerged — overtaking the `P162` renumber (§7) exactly as `P162` had overtaken the original mints. Renumbered **2809–2820 → 2846–2857**, clear of origin's maximum of **2845**. Remapped the `db_id` column only, in `core_db.tsv` (12 rows), `eponym_candidates.tsv` (14 rows) and YiDraCor's `edition_org_links.tsv` (3 rows, `P171`/`P172`). A textual replace would have corrupted `eponym_candidates.tsv`, where `2809` is also a **person** hub id (`HUB-D2809`) and 1809–1820 are person db ids. | `core_db.tsv`, `eponym_candidates.tsv`, `edition_org_links.tsv` |
-| **`P174`** | **`P162`'s destination was wrong for nine rows.** In `org_alignment_review.tsv`, 2809–2817 was carrying *two* sets of rows: Sinai's 19 Publisher `ALIGN` cells and **Noa's 9 `NEW` rows**, which the `P162` sweep had dragged along by mistake. Origin had already minted Noa's nine societies at **2718–2726** and both sides' `core_db` already agreed on them — only this column was stale. So the `ALIGN` cells follow `P173` to 2846–2857 while Noa's `NEW` rows were **restored to 2718–2726**. | `org_alignment_review.tsv` |
+| **`P173`** | **ID collision, third round.** The deployed app mints on every Save, so it had taken **2809–2820** for theatres and amateur groups while this work sat unmerged — overtaking the `P162` renumber (§7) exactly as `P162` had overtaken the original mints. Renumbered **2809–2820 → 2850–2861**, clear of origin's maximum of **2845**. Remapped the `db_id` column only, in `core_db.tsv` (12 rows), `eponym_candidates.tsv` (14 rows) and YiDraCor's `edition_org_links.tsv` (3 rows, `P171`/`P172`). A textual replace would have corrupted `eponym_candidates.tsv`, where `2809` is also a **person** hub id (`HUB-D2809`) and 1809–1820 are person db ids. | `core_db.tsv`, `eponym_candidates.tsv`, `edition_org_links.tsv` |
+| **`P174`** | **`P162`'s destination was wrong for nine rows.** In `org_alignment_review.tsv`, 2809–2817 was carrying *two* sets of rows: Sinai's 19 Publisher `ALIGN` cells and **Noa's 9 `NEW` rows**, which the `P162` sweep had dragged along by mistake. Origin had already minted Noa's nine societies at **2718–2726** and both sides' `core_db` already agreed on them — only this column was stale. So the `ALIGN` cells follow `P173` to 2850–2861 while Noa's `NEW` rows were **restored to 2718–2726**. | `org_alignment_review.tsv` |
 | **`P175`** | **Merged `origin/main`** as a union, not either side — these files are append-only and each side had filled cells the other left empty, so `--ours`/`--theirs` would have discarded one party's decisions. `core_db` 2794 rows = origin's 2782 + the 12 publishers. One true conflict, `ORG-C00594` (בראַנקס אַרט טעאַטער): both sides' `core_db` put that cluster at db **2805**, so origin's `aligned_db_id` stood and the branch's 2807 — collateral from an earlier sweep — was dropped. `activity_log` took both sides' appends with 502 shared upstream rows deduplicated. | all three |
 
 **The ids this audit minted, final:**
 
 | P | entity | db |
 |---|---|---|
-| `P148` | Gebrider Bletnitski (Odessa) | **2846** |
-| `P138` | פאַרלאַג ת. יאָקובסאָן און מ. גאָלדבערג | **2847** |
-| `P140` | פאַרלאַג ב. שימין | **2848** |
-| `P142` | פאַרלאַג ש. שרעבערק | **2849** |
-| `P143` | פֿאַרלאַג יאָטשקאָווסקי | **2850** |
-| `P145` | י. אַלאַפּין | **2851** |
-| `P150` | ל. מאָרגענשטערן | **2852** |
-| `P153` | אברהם הירש קאַצענעלבאָגן | **2853** |
-| `P156` | פערלאַג מ. גאָלדפֿאַרב | **2854** |
-| `P169` | L. Goldfarb | **2855** |
-| `P171` | Farlag "Di Yudishe Bihne" | **2856** |
-| `P172` | Farlag "Kultur" (Warsaw) | **2857** |
+| `P148` | Gebrider Bletnitski (Odessa) | **2850** |
+| `P138` | פאַרלאַג ת. יאָקובסאָן און מ. גאָלדבערג | **2851** |
+| `P140` | פאַרלאַג ב. שימין | **2852** |
+| `P142` | פאַרלאַג ש. שרעבערק | **2853** |
+| `P143` | פֿאַרלאַג יאָטשקאָווסקי | **2854** |
+| `P145` | י. אַלאַפּין | **2855** |
+| `P150` | ל. מאָרגענשטערן | **2856** |
+| `P153` | אברהם הירש קאַצענעלבאָגן | **2857** |
+| `P156` | פערלאַג מ. גאָלדפֿאַרב | **2858** |
+| `P169` | L. Goldfarb | **2859** |
+| `P171` | Farlag "Di Yudishe Bihne" | **2860** |
+| `P172` | Farlag "Kultur" (Warsaw) | **2861** |
 
 **The standing lesson.** Three renumberings in three days is not bad luck: any
 id minted locally against a stale `core_db` is a guess, because the deployed app
@@ -814,7 +814,7 @@ append-only history and was deliberately left as written.
 - Queried via [query.wikidata.org](https://query.wikidata.org) (SPARQL) and the [MediaWiki API](https://www.wikidata.org/w/api.php). *Could not retrieve:* the original P1365/P1366 property proposal; `Help:Modeling/Organizations` does not exist.
 
 ### In-repo evidence for §5.7–5.9
-- `core_db.tsv` (schema, db 24 / 495 / 953 / 147 / 2846 / 2854, `parent_db_id` rows)
+- `core_db.tsv` (schema, db 24 / 495 / 953 / 147 / 2850 / 2858, `parent_db_id` rows)
 - `organizations_clustered.tsv` (mention dates; ORG-C00071 / C00940 / C04980 Romm; the succession-vocabulary counts)
 - `publisher_audit_decisions.tsv` (`P057`, `P058`, `P059`, `P148`, `P160`)
 - `TROUPE_TYPOLOGY_PROPOSAL.md` §2 and open questions 3, 5

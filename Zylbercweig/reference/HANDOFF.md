@@ -221,7 +221,7 @@ are append-only and **each side filled cells the other left empty**, so the
 resolution is per cell, against the merge base: where one side still holds the
 base value, the other side's edit wins.
 
-**The ids moved a third time: 2809–2820 → 2846–2857.** The deployed app mints
+**The ids moved a third time: 2809–2820 → 2850–2861.** The deployed app mints
 on every Save, so it had taken 2809–2820 for theatres and amateur groups while
 this work sat unmerged — overtaking the `P162` renumber just as `P162` had
 overtaken the original 2661–2669 mints. See §8 of
