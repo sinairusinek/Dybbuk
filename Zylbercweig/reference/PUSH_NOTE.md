@@ -11,7 +11,7 @@ side, exactly as the "Recommended approach" section below concludes.
 
 A third id collision also had to be cleared first: the app had taken
 **2809–2820** while this sat unmerged, so the publishers moved to
-**2850–2861**. See §8 of `organizations/PUBLISHING_DYNASTY_MODEL_PROPOSAL.md`
+**2853–2864**. See §8 of `organizations/PUBLISHING_DYNASTY_MODEL_PROPOSAL.md`
 (`P173`–`P175`) and the "MERGED into main" section of `HANDOFF.md`.
 
 ---
