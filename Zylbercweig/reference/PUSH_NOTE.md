@@ -1,6 +1,22 @@
 # Push note
 
-## DONE — pushed as a branch, 2026-10-11
+## CLOSED — merged into main, 2026-10-12
+
+The branch was merged to `origin/main` through a PR. The conflict map below is
+**historical**, and its central recommendation turned out to be wrong in one
+respect worth flagging: resolving `core_db.tsv` and `activity_log.tsv` with
+`git checkout --ours` would have discarded the publishers session's additions.
+The merge was done per cell against the merge base instead — union, not either
+side, exactly as the "Recommended approach" section below concludes.
+
+A third id collision also had to be cleared first: the app had taken
+**2809–2820** while this sat unmerged, so the publishers moved to
+**2846–2857**. See §8 of `organizations/PUBLISHING_DYNASTY_MODEL_PROPOSAL.md`
+(`P173`–`P175`) and the "MERGED into main" section of `HANDOFF.md`.
+
+---
+
+## Superseded — pushed as a branch, 2026-10-11
 
 Everything is on GitHub: **`galron-press-handoff`** at `bcb821940`, 38 commits,
 verified matching the local HEAD.

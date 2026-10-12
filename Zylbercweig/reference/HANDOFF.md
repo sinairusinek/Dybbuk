@@ -186,10 +186,12 @@ session sees them rather than inheriting a silently filtered file.
 
 ---
 
-## Not pushed — and why
+## Publishing history — why it took three attempts
 
-All work in this directory is **committed** (through `178cc1954`), but nothing
-was pushed. Two reasons, both about other people's work rather than this:
+*Resolved; see "MERGED into main" below. Kept because the reasons recur.*
+
+Through `178cc1954` everything was committed but unpushed, for two reasons,
+both about other people's work rather than this:
 
 1. **The branch carries 32 commits ahead of origin, only 20 of them this
    session's.** The rest are the parallel publishers session and some YiDraCor
@@ -201,43 +203,45 @@ was pushed. Two reasons, both about other people's work rather than this:
    refuses while those are dirty, and stashing them to force it through is
    exactly how committed work has been clobbered in this repo before.
 
-Local main is also **1,621 commits behind** origin — the app's auto-saves. That
-is normal here and not a problem to solve, but it means a rebase is needed
-before any push.
+Local main was also **1,621 commits behind** origin — the app's auto-saves.
+That is normal here. It is also why the id collisions kept recurring: a local
+`core_db` that far behind gives a stale high-water mark to mint from.
 
-### Push attempted 2026-10-11 — blocked, nothing lost
+### MERGED into main — 2026-10-12
 
-Tried: fetch, rebase onto `origin/main`, push. It got 11 of 35 commits in and
-hit a conflict in `core_db.tsv` and `activity_log.tsv`. The conflict is benign
-in shape — origin appended rows **2661–2715** (theatres and societies) while
-the incoming commit's side of the hunk is empty, so the resolution is simply to
-keep origin's rows — but **both ways of applying it were refused by the
-permission classifier**: a script stripping the markers, and `git checkout
---ours` on the two files.
+Done. The branch `galron-press-handoff` was merged to `origin/main` through a
+PR, after a third id renumbering. Nothing is pending.
 
-So the rebase was aborted. Verified afterwards: `HEAD` is back to
-`b6e3ddb9f` and identical to the backup branch
-`PRE_REBASE_BACKUP_2026_10_11`, the tree is clean, every commit is intact, and
-`venues_unlinked.csv` was restored byte-for-byte (md5 `df47c9f0…`).
+**The merge was a union, not either side.** The earlier advice in this file —
+`git checkout --ours` on `core_db.tsv` and `activity_log.tsv` — was **wrong**
+and is kept here only as a warning: `--ours` takes origin's whole row and would
+have silently discarded the publishers session's additions, which filled 15
+empty `org_type` cells and added `linked_cluster_ids` on five rows. These TSVs
+are append-only and **each side filled cells the other left empty**, so the
+resolution is per cell, against the merge base: where one side still holds the
+base value, the other side's edit wins.
 
-**State: 35 commits ahead, 2,098 behind, nothing pushed.**
+**The ids moved a third time: 2809–2820 → 2846–2857.** The deployed app mints
+on every Save, so it had taken 2809–2820 for theatres and amateur groups while
+this work sat unmerged — overtaking the `P162` renumber just as `P162` had
+overtaken the original 2661–2669 mints. See §8 of
+`organizations/PUBLISHING_DYNASTY_MODEL_PROPOSAL.md` for the full chain and the
+final id table (`P173`–`P175`).
 
-**To finish the push, a human needs to resolve the conflict:**
+Two traps worth carrying forward:
 
-```
-git fetch origin main
-git rebase origin/main
-# at the conflict, in Zylbercweig/organizations/:
-git checkout --ours -- core_db.tsv activity_log.tsv
-git add core_db.tsv activity_log.tsv
-git rebase --continue      # repeat if later commits conflict the same way
-git push origin main
-```
+- **Renumber by column, never by text.** In `eponym_candidates.tsv`, `2809` is
+  also a *person* hub id (`HUB-D2809`) and 1809–1820 are person db ids. A
+  search-and-replace would have corrupted them.
+- **A renumbering sweep can catch rows that are not yours.** `P162` dragged
+  nine of Noa's `NEW` rows along with the publishers; origin had already minted
+  those societies at 2718–2726, and both sides' `core_db` already agreed, so
+  only `org_alignment_review.tsv`'s column was stale. Restored under `P174`.
 
-`--ours` during a rebase means the upstream (origin) side, which is the one to
-keep: these TSVs are append-only and origin has rows this branch lacks. If
-anything goes wrong, `git rebase --abort` returns to `PRE_REBASE_BACKUP_2026_10_11`.
+**The standing lesson:** any id minted locally against a stale `core_db` is a
+guess, because the app is minting at the same time. Mint from `origin/main`'s
+high-water mark fetched at that moment and merge the same day — or mint no id
+and let the app assign it.
 
-Content risk is low and was checked: origin and this branch differ on core_db
-only in the rows each appended, with no competing values in any shared cell —
-the five `address` cells this session filled are empty upstream.
+The `activity_log` mint rows still record the **original** ids (2661–2669,
+2805–2807). The log is append-only history and was left as written.
