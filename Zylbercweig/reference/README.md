@@ -416,3 +416,32 @@ It groups by tier, carries Galron's place/years/language/depository and a scan
 link per row, shows the matcher's own signals as chips, and marks the contested
 papers — where several Zylbercweig orgs claim one Galron paper, which makes that
 claimant set a within-corpus merge candidate too.
+
+### Deciding on the form, and getting the decisions back
+
+The form is interactive: Confirm / Reject / Research / Not a paper per row, an
+optional note, per-tier bulk buttons (which never overwrite a decision already
+made by hand), a progress counter and a "next undecided" jump. Each click saves
+one document to the artifact's `db` collection `decisions`, keyed
+`<entity>__<galron_row_id>`, so decisions survive reloads and are visible live
+to anyone else with the page open. If the page cannot save — a read-only view —
+it says so at the top rather than silently losing work.
+
+Round-trip into the corpus:
+
+```
+# 1. export what the form saved
+read_db  url=<artifact url>  db_op=list  collection=decisions  out_dir=/tmp/press_decisions
+
+# 2. write them into the review TSV and the ledger
+python3 Zylbercweig/reference/apply_form_decisions.py --from /tmp/press_decisions          # dry run
+python3 Zylbercweig/reference/apply_form_decisions.py --from /tmp/press_decisions --execute
+
+# 3. regenerate the form so the decided rows drop off it
+python3 Zylbercweig/reference/build_press_review_form.py
+```
+
+`apply_form_decisions.py` never overwrites a decision already in the TSV: a
+different value is reported as a clash and left for a human. The `reviewer`
+stored by the form is the viewer's opaque artifact id, so pass `--reviewer` to
+record the name that belongs in the corpus (default `Sinai`).
