@@ -148,6 +148,10 @@ def render(rows: list[dict]) -> str:
     margin:0 0 16px; font-size:13.5px; }}
   .chip {{ font-size:11.5px; padding:2px 8px; border-radius:20px; background:var(--sunk);
     color:var(--muted); }}
+  .hint {{ border-left:3px solid var(--teal); background:var(--sunk); border-radius:0 7px 7px 0;
+    padding:8px 12px; margin:9px 0 0; font-size:13px; }}
+  .hint b {{ color:var(--teal); font-weight:600; }}
+  .hint .l {{ font-family:ui-monospace,Menlo,monospace; font-size:11.5px; color:var(--muted); }}
   [hidden] {{ display:none !important; }}
 </style>
 <div class="wrap">
@@ -193,6 +197,22 @@ shows someone was a <em>member</em> of it.</p>
                              + (f'<br><span class="who">{e(who)}</span>' if who else "")
                              + "</p>")
                 P.append("</div>")
+            for nm in r.get("name_matches", []):
+                P.append('<div class="hint"><b>Same name as an existing row</b> once '
+                         'the word פֿאַרלאַג is set aside — '
+                         f'db {e(nm["db_id"])} {dir_span(nm["db_name"])} '
+                         f'<span class="l">[{e(nm["db_type"] or "no type")}]</span>. '
+                         'Align to it, or mint if this is the firm\'s publishing arm '
+                         'rather than the same body.</div>')
+            for sib in r.get("name_siblings", []):
+                who = ", ".join(f'{x["name"]} [{x["city"] or "—"}]' for x in sib["others"])
+                P.append('<div class="hint"><b>Another undecided cluster shares this name</b>'
+                         + (" <b>in the same city</b>" if sib["same_city"] else "")
+                         + f' — {e(who)}. '
+                         + ("Likely one firm: decide them together."
+                            if sib["same_city"] else
+                            "Check the cities and dates before treating them as one.")
+                         + "</div>")
             P.append(f'<div class="acts" data-cid="{e(cid)}">')
             for v, lab, title in VERBS:
                 P.append(f'<button type="button" data-v="{v}" title="{e(title)}" '
