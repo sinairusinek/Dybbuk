@@ -162,17 +162,27 @@ def main(apply: bool, reviewer: str, only: set[str] | None = None) -> None:
     local_max = max((int(r["db_id"]) for r in db_rows if r["db_id"].isdigit()),
                     default=0)
     next_id = max(origin_high_water(), local_max) + 1
-    minted, skipped, entries = [], [], []
+    minted, skipped, entries, notes = [], [], [], []
 
     for pid, d in starters.items():
         name = (d.get("value") or "").strip()
         if not name:
             skipped.append(f"{pid}: no name in `value`; nothing to mint")
             continue
+        # The name guard stops a second row for a firm already in core_db. It
+        # cannot tell a duplicate from a DELIBERATE place-split sibling: the
+        # pipeline splits one name across cities as _Q01/_Q02, and those are
+        # different firms that share a name (Kultur Minsk/Warsaw, Yavneh
+        # Warsaw/Tel Aviv). Such a decision says so in `confidence` as
+        # `high|distinct` and is minted anyway, with the clash reported.
+        force = "distinct" in (d.get("confidence") or "").lower()
         hit = existing.get(norm(name)) or existing_lat.get(name.lower())
-        if hit is not None:
+        if hit is not None and not force:
             skipped.append(f"{pid}: {name!r} already exists as db {hit['db_id']}")
             continue
+        if hit is not None and force:
+            notes.append(f"{pid}: {name!r} also names db {hit['db_id']} — minted "
+                         f"separately as a deliberate place split")
 
         cids = [c for c in [(d.get("cluster_id") or "").strip()] if c]
         for e in extras.get(pid, []):
@@ -224,6 +234,10 @@ def main(apply: bool, reviewer: str, only: set[str] | None = None) -> None:
           f"{len(skipped)} skipped   (ids from origin high-water mark)\n")
     for m in minted:
         print("  " + m)
+    if notes:
+        print()
+        for n in notes:
+            print("  note " + n)
     if skipped:
         print()
         for s in skipped:

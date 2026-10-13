@@ -82,7 +82,12 @@ VALID_ACTIONS = {
     "flag": {"needs_research", "needs_decision"},
     "duplicate": {"merge_candidate"},
     "merge": {"merge_db_rows"},
-    "fix": {"set_org_type", "set_address", "renumber_ids"},
+    # `fix` also covers rows that RECORD work already done (an id renumber, a
+    # merge of origin) rather than instructing this script to do anything. They
+    # are ledger entries, and the apply branches below ignore them; they are
+    # listed here so the coherence check does not read them as drafting errors.
+    "fix": {"set_org_type", "set_address", "renumber_ids", "set_name",
+            "restore_ids", "merge_origin"},
     "split": {"split_cluster"},
     "out_of_project": {"set_out_of_project"},
     "restore_type": {"set_org_type"},
