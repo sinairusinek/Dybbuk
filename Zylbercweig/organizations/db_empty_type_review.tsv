@@ -1,105 +1,241 @@
 db_id	name	name_yiddish	address	linked_cluster_ids	aligned_cluster_canonicals	suggested_type	suggested_confidence	matched_signals	pi_decision	pi_type	reviewer	reviewed_at
-9	דפוס השומר הצעיר					Publisher	high	Publisher(strong)				
-25	יוסף פישער	יוסף פישער			יוסף פישער							
+25	יוסף פישער	יוסף פישער		ORG-C06060	יוסף פישער							
 30	United Jewish Actors Company											
-38	The Order of David's Harp					Fraternal order	high	Fraternal order(strong)				
-39	Union Theatre Actors Company					Theatre	medium	Theatre(strong)|Theatre-related Society/ Union(medium)				
-41	יאַסער טרופּע	יאַסער טרופּע			יאַסער טרופּע	Traveling Company	high	Traveling Company(strong)				
-42	גאָלדפאדעןס טרופּע -Avraham Goldfaden Troupe	טרופּע ציפקוס			טרופּע ציפקוס | אַברהם גאָלדפאַדעןס טרופּע | גאָלדפֿאַדענס טרופּע | גאָלדפֿאַדן-טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-43	גראַדנערס קאָמפּאַניע	גראָדנערס טרופּע			גראָדנערס טרופּע | גראָדנערס קאָמפּאָניע	Traveling Company	high	Traveling Company(strong)|Traveling Company(medium)				
-44	איזראעליטישע-דראַמאַטישע-געזעלשאַפט	איזראעליטישע-דראַמאַטישע-געזעלשאַפט			איזראעליטישע-דראַמאַטישע-געזעלשאַפט	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-67	לעווין אפשטיין	לעווין- עפּשטיין	Gęsia  גענשע/ גֶנשה 5, Warsaw		לעווין- עפּשטיין							
-68	הצפירה	הצפירה	פייַנסקא 40, וורשה		הצפירה | האצפירה							
+38	The Order of David's Harp					Fraternal order	high	Fraternal order(strong)	APPROVE	Fraternal order	claude (keyword rule, high-confidence only)	2026-10-13
+39	Union Theatre Actors Company				יוניאָן-אַקטיאָרן	Theatre	medium	Theatre(strong)|Theatre-related Society/ Union(medium)				
+41	יאַסער טרופּע	יאַסער טרופּע		ORG-C04217	יאַסער טרופּע	Traveling Company	high	Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+42	גאָלדפאדעןס טרופּע -Avraham Goldfaden Troupe	טרופּע ציפקוס		ORG-C00047 | ORG-C04658 | ORG-C05308 | ORG-C06093	טרופּע ציפקוס | גאָלדפֿאָדן פֿאַריין אין סטאָניסלאַוואָוו | גאָלדפֿאַדען | גאָלדפאַדעןס אויפֿפֿירונג | אַברהם גאָלדפאַדעןס טרופּע | גאָלדפֿאַדענס טרופּע | יידישן טעאַטער א'א פֿון אַברהם גאָלדפאַדען | גאָלדפֿאַדענען אין טרופּע | ערשטע טרופּע פֿאַר דער פּראָווינץ | גאָלדפֿאָדעןם דראָמאָטישן קרייז | גאָלדפֿאַדן-טרופּע	Theatre	low	Theatre(strong)|Traveling Company(strong)|Traveling Company(strong)|Theatre-related Society/ Union(medium)|Theatre(strong)				
+43	גראַדנערס קאָמפּאַניע	גראָדנערס טרופּע		ORG-C02148 | ORG-C02940 | ORG-C03598 | ORG-C04572 | ORG-C06094 | ORG-C06242 | ORG-C06948	טרופּע א'ד פון ישראל גראָדנער | גראָדנערס טרופּע | גראָדנער רוסישער טרופּע | גראָדנער | טרופּעס פֿון גראָדנער | גראָדנערס קאָמפּאָניע | ניי-געגרינדעטער אָפּגעשפּאָלטענער טרופּע אונטער דער אָנפֿירונג פֿון ערשטן יידישן אַקטיאָר, ישראל גראָדנער	Traveling Company	high	Traveling Company(strong)|Traveling Company(medium)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+44	איזראעליטישע-דראַמאַטישע-געזעלשאַפט	איזראעליטישע-דראַמאַטישע-געזעלשאַפט		ORG-C06460	איזראעליטישע-דראַמאַטישע-געזעלשאַפט	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+47	קולטור| Kultur	קולטור קלוב	דזיקא 13, וורשה	ORG-C01831	קולטור קלוב	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+48	נ. ראָזנבּלוּם											
+49	ע. גיטלין	א. גיטלין	נאלעווקי, איוואנאווסקי באזאר, וורשה	ORG-C03231 | ORG-C05151 | ORG-C00550 | ORG-C04805	פאַרלאָג א. גיטלין | א. גיטלין | פֿאַרלאָג פֿון א. גיטלין | פ'ג א. גיטלין	Publisher	high	Publisher(strong)|Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+50	שלמה גאָלדפאַרבּ	ש. גאָלדפֿאַרב		ORG-C03940 | ORG-C06558 | ORG-C00874 | ORG-C02674 | ORG-C04117	פֿאַרלאַג ש. גאָלדפֿאַרב | פֿאַרלאַג פֿון גאָלדפֿאַרב | ש. גאָלדפֿאַרב | פאַרלאַג פֿון ש. גאָלדפֿאַרב | פאַרלאַג גאָלדפאַרב	Publisher	high	Publisher(strong)|Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+52	היברו פּאַבלישינג קאָמפאני	היברו פּאָבלישינג קאָמפּאַני		ORG-C01098 | ORG-C04737 | ORG-C05215	היברו פּאָבלישינג קאָמפּאַני | היברו פּאַבלישינג קאָמפ | היברו פאַבלישינג קאָ	Traveling Company	medium	Traveling Company(medium)				
+53	Yuropian Hibru poblishing ḳompani					Traveling Company	high	Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+55	Elizeum				פערלאַג עליזעאום	Publisher	high	Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+56	L. Ḥarik											
+57	Progres	פּראָגרעס	Nalewki 32, Warsaw	ORG-C01415	פֿאַרלאַג „פּראָגרעס“ | פּראָגרעס | פּ׳פ „פּראָגרעס“ | פֿין „פּראָגרעס“	Publisher	high	Publisher(strong)|Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+61	קונסט|Kunst				"פֿאַרלאַג „קונסט"" | פיג קונסט"	Publisher	high	Publisher(strong)|Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+62	אהרן פויסט| A. Faust		Krakowska 13, Krakow									
+63	אַמקרויט עט פריינד| Amkroyt un Fraynd				פערלאַג פון אַמקרויט עט פֿריינד | פֿאַרלאַג אַמקרויט עט פֿריינד	Publisher	high	Publisher(strong)|Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+64	בּנימין מונק|Benjamin Munk		Kasimirgasse 16, Lemberg		פֿאַרלאָג מונק	Publisher	high	Publisher(strong)|Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+67	לעווין אפשטיין	לעווין- עפּשטיין	Gęsia  גענשע/ גֶנשה 5, Warsaw	ORG-C01840 | ORG-C03915	קעני ליפּצין | לעווין- עפּשטיין							
+68	הצפירה	הצפירה	פייַנסקא 40, וורשה	ORG-C00210 | ORG-C02207	הצפירה | דרוק „הצפירה‟ | האצפירה	Publisher	high	Publisher(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule; Publisher->Journals corrected by hand)	2026-10-13
 71	Yosef Fischer		62 Grodzka, Krakow									
-81	Arbeiter Zeitung	אַרבייטער צייטונג			אַרבייטער צייטונג	Journals/ Newspapers	high	Journals/ Newspapers(strong)|Journals/ Newspapers(strong)				
-182	Adolf Gertner Troupe	גערטנערס טרופּע			גערטנערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
+78	Katzenelenbogen & Rabinowitz		66 canal st., Manhattan, NY									
+80	Theodore Lohr		286 Grand St., Manhattan, NY									
+81	Arbeiter Zeitung	אַרבייטער צייטונג		ORG-C01137 | ORG-C04768	שליפערשטיינען | אַרבייטער צייטונג	Journals/ Newspapers	high	Journals/ Newspapers(strong)|Journals/ Newspapers(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule, high-confidence only)	2026-10-13
+83	A.B.C. Grand Record (Austria)											
+86	אליקום צונזער'ס | Elyoḳum Tsunzers											
+91	י. ליפשיטץ [ליפשיץ]| Lipshitz Press					Publisher	high	Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+99	Albert Teres											
+101	Hebrew Publishing Company					Publisher	high	Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+102	J. Katzenelenbogen		Ludlow 35, Manhattan, NY;66 canal st., Manhattan, NY									
+108	Folḳsbildung											
+109	Adler Theatre		255 Grand Street, at Chrystie Street, Manhattan, NY		אַדלערס טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+110	Artef Theatre		247 West 48 St., Manhattan, NY	ORG-C05792 | ORG-C00920	אַרטעף | אַרטעף“-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+115	Grand Theatre		255 Grand Street, at Chrystie Street, Manhattan, NY	ORG-C00684 | ORG-C06624 | ORG-C01096 | ORG-C04116	גרענד-טעאַטער | ניו יאָרקער גרענד-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+116	Irwing Place (Deutsches) Theatre		Irwing Place and 15th St., Manhattan, NY	ORG-C06255 | ORG-C00353 | ORG-C01866 | ORG-C03531 | ORG-C06595	דייטשן טעאַטער | אוירווינג פלייס טעאַטער | דייטשעס טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+118	National Theatre		104-106 Bowery, Manhattan, NY	ORG-C00340_Q01 | ORG-C03895 | ORG-C01955_Q02 | ORG-C02482 | ORG-C04555 | ORG-C05019	נעשאָנאַל-טעאַטער | נעשאָנאַלוואָרעוויל טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+119	Oriental Theatre		113 1/2 Bowery, Manhattan, NY	ORG-C01757_Q02	אָריענטאַל טעאַטער | אָרוענטאָל-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+120	People's Theatre NY		199 Bowery, Manhattan, NY	ORG-C00633_Q01 | ORG-C01692_Q01 | ORG-C01042 | ORG-C01165_Q01 | ORG-C06201 | ORG-C05395 | ORG-C06448	פּיפּלס-טעאַטער (ניוּ-יאָרק) | פּיפּלס-טעאַטער (אָמעריקע) | אַדלערס פּיפּלס-טעאַטער | פּיפּלס	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+124	Ringtheater	רינג-טעאַטער	Schottenring 7, Vienna	ORG-C01256	רינג-טעאַטער | דייטשן רינג-טעאָטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+128	Second Avenue Theatre	סעקאָנד עוועניו טעאַטער	189 Second Avenue, Manhattan, NY	ORG-C00634 | ORG-C00682 | ORG-C02486	קעסלערס סעקאָנד עוועניו טעאַטער | סעקאָנד עוועניו טעאַטער | ניו יאָרקער סעקאָנד עוועניו טעאַטער | סעקאָנד געוועניו-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+130	Thalia Theatre|Bowery Theatre		46-48 Bowery, Manhattan, NY	ORG-C00236 | ORG-C00515_Q01 | ORG-C01689	"ניו-יאָרקער יידישן „טאָליאַ""-טעאַטער | טאַליאַ-טעאַטער (ניוּ-יאָרק) | קעסלערס טאַליאַ טעאַטער"	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+134	Windsor Theatre		37 and 39 Bowery, Manhattan, NY	ORG-C00089	ווינדזאָר-טעאַטער | ווינדזאָר | ניו יאָרקער ווינדזאָר-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+137	פּאמול ווערדי - Gradina Pomul verde	פּאָמול ווערדע	קאלעא וואקארעשט 1, בוקרשט	ORG-C01864	פּאָמול ווערדע							
+147	Kaminski's Theatre		Ulica Obozna 1-3, Warsaw	ORG-C00029 | ORG-C00672 | ORG-C01738 | ORG-C02638 | ORG-C03242 | ORG-C04789 | ORG-C05351 | ORG-C00506	קאַמינסקי | וואַרשעווער קאַמינסקי-טעאַטער | קאַמינסקי-טעאַטער | קאַמינסקי-טרופּע | וואַנדער-טרופּע פֿון אַברהם יצחק קאמינסקי | יידישע טרופּע פֿון קאַמינסקי | קאַמינסקיס פאַרשטעלונגען | טרופּע פון אַברהם קאַמינסקי	Theatre	low	Theatre(strong)|Theatre(strong)|Traveling Company(strong)|Theatre(strong)				
+151	Tsentral Theater	צענטראַל-טעאַטער	Leshno st. 1, Warsaw	ORG-C00631_Q01 | ORG-C00557 | ORG-C00610	וואַרשעווער צענטראָל-טעאַטער | טעאַטער צענטראַל | צענטראַל-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+156	Thomashefsky Theatre			ORG-C01181 | ORG-C03061	טאָמאַשעווסקיס טעאַטער | טאָמאַשעווסקיס נעשאַנאַל-טעאַטער | אייראָפּעישן טורניי פֿון באָריס טאָמאַשעווסקי	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+158	פ. קאנטאראוויטש|יודישע טהעאַטער⸗בּיבּליאָטעק|Teater bibliyotek					Library	high	Library(strong)	APPROVE	Library	claude (keyword rule, high-confidence only)	2026-10-13
+160	Kalich Theatre		Bowery 45-47, NYC		קאַליש-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+173	Teater Ermitage	טעאַטער ערמיטאַזש	Bonifraterska street 14, Muranow, Warsaw	ORG-C05081	טעאַטער ערמיטאַזש	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+176	Lyric Theatre	ליריק-טעאַטער	Seigel Street 16-18-20, Brooklyn, NY	ORG-C00338_Q03 | ORG-C00338_Q01 | ORG-C01053_Q02	ליריק-טעאַטער | ליריק-טעאַטער | ברוקלינער ליריק-טעאַטער | ליריק טעאַַטער | בראַנזווילער ליריק-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+178	3rd Street Theatre					Theatre	high	Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+182	Adolf Gertner Troupe	גערטנערס טרופּע		ORG-C05882 | ORG-C06465 | ORG-C06840	גערטנער | גערטנערס טרופּע | טרופּע פון אַדאָלף גערטנער	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
 185	Am Olam											
-189	Arbeter Ring (Workmen's Circle)											
-195	Belloy Troupe	בעללויס טרופּע			בעללויס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-197	Berger Troupe	בערגערס טרופּע			בערגערס טרופּע | בערגער-טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-198	Ber Hart troupe	בער האַרטס טרופּע			בער האַרטס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-201	British Theatre Guild					Theatre	high	Theatre(strong)				
-203	Bronstein Troupe	בראַנשטייןס טרופּע			בראַנשטייןס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-206	Camp Kinderland	קעמפּ קינדערלאַנד			קעמפּ קינדערלאַנד							
+189	Arbeter Ring (Workmen's Circle)				אַרבעטער-רינג (לאָס אַנדזשעלעס) | אַרבייטער רינג	Jewish political bodies	high	Jewish political bodies(strong)	APPROVE	Jewish political bodies	claude (keyword rule, high-confidence only)	2026-10-13
+195	Belloy Troupe	בעללויס טרופּע		ORG-C06804	בעללויס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+197	Berger Troupe	בערגער-טרופּע		ORG-C05244 | ORG-C06647	בערגערס טרופּע | בערגער-טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+198	Ber Hart troupe	בער האַרטס טרופּע		ORG-C00868 | ORG-C02609 | ORG-C02612 | ORG-C02665 | ORG-C03054 | ORG-C03127 | ORG-C05404	בער האַרטס פּראָווינץ-טרופּע | האַרטס טרופּע | בער האַרט | בער האַרטס טרופּע | טרופּע אונטער דער אָנפֿירונג פֿון בער האַרט | בערנאַרד האַרטס טרופּע | ב. האָרט	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+201	British Theatre Guild					Theatre	high	Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+203	Bronstein Troupe	בראַנשטייןס טרופּע		ORG-C00492 | ORG-C05092	בראַנשטייןס טרופּע | טרופּע פון בראַנשטיין	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+206	Camp Kinderland	קעמפּ קינדערלאַנד		ORG-C02384 | ORG-C05890	קעמפּ קינדערלאַנד | נעלי קעסמאַן							
 208	Chicago's Drama Society			ORG-C07959		Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-215	Der Moment⁩ - ⁨דער מאמענט⁩⁩											
-217	Der veg	דער וועג			דער וועג							
-219	Der Yud⁩ - ⁨דער יוד⁩⁩	דער יוּד			דער יוּד							
-220	Deutsche presse verwaltung											
-222	di Idishe federatsye far muziḳ un drama											
-223	Di idishe tsayṭung⁩ - ⁨די אידישע											
+210	Cidal Circ											
+215	Der Moment⁩ - ⁨דער מאמענט⁩⁩			ORG-C00909	מאָמענט							
+217	Der veg	דער וועג		ORG-C00908	דער וועג							
+219	Der Yud⁩ - ⁨דער יוד⁩⁩	דער יוּד		ORG-C00172	דער יוּד							
+220	Deutsche presse verwaltung					Journals/ Newspapers	high	Journals/ Newspapers(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule, high-confidence only)	2026-10-13
+222	di Idishe federatsye far muziḳ un drama				אידישע פערעראַציע פֿאַר מוזיק און דראַמאָ							
+223	Di idishe tsayṭung⁩ - ⁨די אידישע					Journals/ Newspapers	high	Journals/ Newspapers(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule, high-confidence only)	2026-10-13
 224	Di Tsayt --די צײט											
-225	Di tsukunft- די צוקונפט											
-226	Dos artistishe vinkele	דאָס אַרטיסטישע ווינקעלע			דאָס אַרטיסטישע ווינקעלע							
+225	Di tsukunft- די צוקונפט			ORG-C00174_Q01	"צוקונפט | דראַמסעקציע ביי ""צוקונפט"""							
+226	Dos artistishe vinkele	דאָס אַרטיסטישע ווינקעלע		ORG-C03928	דאָס אַרטיסטישע ווינקעלע							
 227	Dos Yiddishe Vort --דאס יודישע ווארט											
-232	Dramatic union					Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-234	Edelhofer Troupe	עדעלהאָפערס טרופּע			עדעלהאָפערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-250	Fraye Yidishe Folks-Bine											
-254	Genfer Troupe	גענפערס טרופּע			גענפערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-261	Goldene pave	די גאָלדענע פּאַווע			די גאָלדענע פּאַווע | גילדענע פּאָווע							
-264	Guzik Troupe	גוזיקס טרופּע			גוזיקס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-265	Ha-Asif											
-267	ha-Dor⁩ - ⁨הדור	הדור			הדור							
-268	ha-Karmel⁩ - ⁨הכרמל	הכרמל			הכרמל							
-269	Hart Troupe	האַרטס טרופּע			האַרטס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
+232	Dramatic union				וואָדעוויל-יוניע | פאַראיין לבנון	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+234	Edelhofer Troupe	עדעלהאָפערס טרופּע		ORG-C05843 | ORG-C06239	עדעלהאָפערס טרופּע | עדעלהאַפער	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+235	Eldorado Theatre	עלדאָראַדאָ-טעאַטער		ORG-C00024 | ORG-C02258 | ORG-C00144_Q01 | ORG-C00166 | ORG-C04132 | ORG-C07144	"טעאַטער עלדאָראַדאָ | עלדאָראַדאָ | וואַרשעווער ""עלדאָראַדאָ""-טעאַטער | ""עלדאָראַדאָ""-טעאַטער | ספּיוואַקאָווסקיס עלדאָראַדאָ-טעאַטער | יידישן ""עלדאָראַדאָ-טעאַטער"""	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+239	Ester Rukhl Kaminska Troupe			ORG-C00505 | ORG-C02808 | ORG-C04184 | ORG-C04437 | ORG-C05016 | ORG-C07137	טעאַטער-קאָלעקטיוו מיט אסתר רחל קאמינסקאַ | טרופּע פֿון אסתר רחל קאמינסקי | וואַרשעווער טרופּע (אסתר-רחל קאמינסקאַ) | „פֿאַראייניקטע טרופּע״ מיט א. ר. קאַמינסקאַ | קאַמינסקיס פאַראייניקטע טרופּע | פאַראייניקטער (קאַמינסקי) טרופּע	Theatre	low	Theatre(strong)|Traveling Company(strong)|Traveling Company(strong)|Theatre(strong)				
+248	Folks un Jungt Theatre					Theatre	high	Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+250	Fraye Yidishe Folks-Bine			ORG-C00481_Q05 | ORG-C02580	"פרייע יידישע פֿאָלקס-בינע | פרייע פֿאָלקסבינע | פֿאַריין „פרייע יידישע פֿאָלקס-בינע"""	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+257	Gimpel Theatre	גימפּעלס טרופּע		ORG-C02767 | ORG-C00607 | ORG-C02712 | ORG-C03049 | ORG-C06975 | ORG-C02172 | ORG-C01779_Q01 | ORG-C02664 | ORG-C03104 | ORG-C00862 | ORG-C02625 | ORG-C03884 | ORG-C02611 | ORG-C02653 | ORG-C00850 | ORG-C01275_Q02 | ORG-C04932 | ORG-C06446 | ORG-C06883 | ORG-C01795 | ORG-C03671 | ORG-C00578_Q01 | ORG-C00615 | ORG-C02359 | ORG-C03497 | ORG-C05282 | ORG-C06290 | ORG-C06779	גימפּעל | לעמבערגער טעאַטער-טרופּע | גימפּעלס טעאַטער | גימפּעלס טרופּע | סטאָבילן יידישן טעאַטער | גימפּעל-טרופּע | גימפּעלן אַרויסגעטראָטענער טרופּע | יעקב בער גימפּעלס טרופּע | עמיל גימפּעלס טרופּע	Theatre	low	Theatre(strong)|Theatre(strong)|Traveling Company(strong)|Theatre(strong)				
+261	Goldene pave	גאָלדענע פּאַווע		ORG-C01001 | ORG-C06365	די גאָלדענע פּאַווע | גילדענע פּאָווע							
+263	Groyse Teater	גרויסע טעאַטער		ORG-C00597 | ORG-C01011 | ORG-C01104 | ORG-C01921 | ORG-C02756 | ORG-C05549 | ORG-C06414	גרויסעס טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+265	Ha-Asif			ORG-C01813	האַסיף							
+267	ha-Dor⁩ - ⁨הדור	הדור		ORG-C01893	הדור							
+268	ha-Karmel⁩ - ⁨הכרמל	הכרמל		ORG-C04704	הכרמל							
 270	HaTsfira											
-271	ha-Tsofeh ⁩ - ⁨הצפה	הצפה			הצפה							
-272	Haynṭ⁩ - ⁨היינט⁩⁩	היינט			היינט							
+271	ha-Tsofeh ⁩ - ⁨הצפה	הצפה		ORG-C03230 | ORG-C04694	הצופה | הצפה							
+272	Haynṭ⁩ - ⁨היינט⁩⁩	היינט		ORG-C00336	היינט							
 274	Hazman											
-275	Hazomir (The Nightingale)											
-276	Hebrew Actors' Union (HAU)			ORG-C00203		Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-277	Hebrew Actors Protective Union					Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-284	Illustrirte Vokh											
-286	Israelita				Izraelita							
-287	Itzik Mendl Bergman Troupe	איציק מענדל בערמאָןס טרופּע			איציק מענדל בערמאָןס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-296	Kamer-teater	קאַמער-טעאַטער			קאַמער-טעאַטער	Theatre	high	Theatre(strong)				
-301	Kinder Zhurnal (Children's Journal)					Journals/ Newspapers	high	Journals/ Newspapers(strong)				
-302	Kompaneyets Troupe	קאָמפּאַניעיעצ'ס טרופּע			קאָמפּאַניעיעצ'ס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)|Traveling Company(medium)				
-306	Kunst-Ring	קונסט-רינג			קונסט-רינג | קונסטדינג							
-313	Leon Golubok Troupe	לעאָן גאָלובאָקס טרופּע			לעאָן גאָלובאָקס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-315	Liberesco Troupe					Traveling Company	high	Traveling Company(strong)				
-319	Lira (as drama society)					Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-322	Literarishe Trupe (Literary Troupe)	ליטעראַרישע טרופּע		ORG-C01922	ליטעראַרישע טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-323	Literarisze Bleter⁩ - ⁨ליטערארישע בלעטער	ליטעראַרישע בלעטער			ליטעראַרישע בלעטער							
-325	Littman Troupe	ליטמאַנס טרופּע			ליטמאַנס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-330	Meerson Troupe	מעערסאָנס טרופּע			מעערסאָנס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-337	Mogulesco Troupe	מאָגולעסקאָס טרופּע			מאָגולעסקאָס טרופּע | טרופּעס פֿון מאָגולעסקאָ	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-345	Naftali Goldfaden Troupe	נפתלי גאָלדפֿאַדעןם טרופּע			נפתלי גאָלדפֿאַדעןם טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-347	Neue Lodzer Zeitung	נויע לאָדזשער צייטונג			נויע לאָדזשער צייטונג | Neue Lodzer Zeitung	Journals/ Newspapers	high	Journals/ Newspapers(strong)|Journals/ Newspapers(strong)				
-351	Nowa Gazeta											
-352	Nowy Dziennik											
+275	Hazomir (The Nightingale)					Musical organization	high	Musical organization(strong)	APPROVE	Musical organization	claude (keyword rule, high-confidence only)	2026-10-13
+276	Hebrew Actors' Union (HAU)					Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+277	Hebrew Actors Protective Union				טהע היברן עקטארס פראטעקטיוו יוניאן אף אמעריקא	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+278	Hengens Theatre	הענגעןס טעאַטער		ORG-C03874	הענגעןס טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+279	Hirshbein Troupe			ORG-C00203 | ORG-C00245 | ORG-C02337 | ORG-C03611 | ORG-C06478	הירשביין-טרופּע | פרץ הירשביינס טרופּע | טרופּע פֿונעם באַרימטן דראַמאַטורג פרץ הירשביין | פּרץ הירשביין-טרופּע | די דראַמאַטישע טרופּע אונטער דער לייטונג פֿון פרץ הירשביין	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+284	Illustrirte Vokh			ORG-C02005	סטריט סין | אילוסטרירטע וואָך	Journals/ Newspapers	high	Journals/ Newspapers(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule, high-confidence only)	2026-10-13
+286	Israelita			ORG-C01602 | ORG-C05004	איצקאָוויטש | Izraelita							
+287	Itzik Mendl Bergman Troupe	איציק מענדל בערמאָןס טרופּע		ORG-C04073 | ORG-C05844	איציק מענדל בערמאָןס טרופּע | בערגמאַנס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+296	Kamer-teater	קאַמער-טעאַטער		ORG-C05274	קאַמער-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+301	Kinder Zhurnal (Children's Journal)			ORG-C00274	קינדער זשורנאַל	Journals/ Newspapers	high	Journals/ Newspapers(strong)|Journals/ Newspapers(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule, high-confidence only)	2026-10-13
+302	Kompaneyets Troupe	קאָמפּאַניעיעצ'ס טרופּע		ORG-C00601 | ORG-C01045 | ORG-C01117 | ORG-C01285 | ORG-C01506 | ORG-C01595 | ORG-C02162 | ORG-C03815 | ORG-C04097 | ORG-C04859 | ORG-C04990 | ORG-C05568 | ORG-C05690 | ORG-C05702	קאָמפּאַניעיעצ'ס טרופּע | קאָמפּאַניעעצס יידישער טרופּע | טרופּע פֿון א. ג. קאָמפּאַניעיעץ | קאָמפּאַנעיעץס טרופּע | וואַנדער-טרופּעס פֿון א. קאָמפּאַנעעץ | טרופּע פון א. קאָמפּאַנעעץ | יידישער דראָמאַטישער טרופּע פֿון אַבאַ קאָמפּאַנעעץ | קאָמפּאָנעעץ-טעאַטער | קאָמפּאַנעעץ | פּראָפעסיאנעלער יידישער טרופּע פֿון קאָניעווסקי | טרופּע פֿון קאָמפּנניעעץ | קאָמפּאַנעיעץס טעאַטער | קאָמפּאָנעיעץס פֿאָרשטעלונגען | קאָמפּאַנעיעץ... טרופּע	Theatre	low	Theatre(strong)|Traveling Company(strong)|Traveling Company(strong)|Traveling Company(medium)|Theatre(strong)				
+306	Kunst-Ring	קונסט-רינג		ORG-C00179 | ORG-C06375	קונסט-רינג | קונסט-רינני | קונסטדינג							
+313	Leon Golubok Troupe	לעאָן גאָלובאָקס טרופּע		ORG-C06026 | ORG-C07169	לעאָן גאָלובאָקס טרופּע | טרופּע פון וועטעראַן גאָלובאָק	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+315	Liberesco Troupe					Traveling Company	high	Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+319	Lira (as drama society)			ORG-C01367	לידאַ | ליראַ	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+321	Lit. Dram. Gesellschaft					Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+322	Literarishe Trupe (Literary Troupe)	ליטעראַרישע טרופּע		ORG-C01922 | ORG-C01484 | ORG-C01598 | ORG-C02176	"קאַמינסקיס ליטעראַדישע טרופע | ליטעראַרישע טרופּע | קאַמינסקאַס [„די ליטעראַרישע טרופּע""] | ליטעראַריש-דראַמאַטישער פֿאַראיין"	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+323	Literarisze Bleter⁩ - ⁨ליטערארישע בלעטער	ליטעראַרישע בלעטער		ORG-C01640	ליטעראַרישע בלעטער	Journals/ Newspapers	high	Journals/ Newspapers(strong)|Journals/ Newspapers(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule, high-confidence only)	2026-10-13
+325	Littman Troupe	ליטמאַנס טרופּע		ORG-C00618 | ORG-C00974 | ORG-C01717	פּעפּי ליטמאַנ'ס וואַנדערנדיקער וואַריעטע-טרופּע | ליטמאַנס טרופּע | פּעפּי ליטמאַן	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+328	Max Gabel Theatre			ORG-C04296	מאַקס געבילס טעאַַטער | געבילס קאָמעדיע טעאַטער | געבילן | קאָמעדיע-טעאַטער | געבילם סטאָר טעאַטער | געבילם פֿאָלקס-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+330	Meerson Troupe	מעערסאָנס טרופּע		ORG-C01143 | ORG-C05053 | ORG-C05750 | ORG-C05797 | ORG-C05922 | ORG-C06523 | ORG-C06775	מייערסאָן | יידישער טרופּע א'א פֿון מייערסאָן | מעערסאָנען | טרופּע מעערסאָן | מעערסאָנס טרופּע | מעערסאָן | מעערסאָנס קיעווער טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+337	Mogulesco Troupe	מאָגולעסקאָס טרופּע		ORG-C01848 | ORG-C04364 | ORG-C05530 | ORG-C06095	מאָגולעסקאָס טרופּע | די יידישע טרופּע פֿון מאָגולעסקאָ | מאָגולעסקאָ | טרופּעס פֿון מאָגולעסקאָ	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+338	Mordechai Segalesco Troupe			ORG-C00669 | ORG-C00670 | ORG-C01934 | ORG-C03119 | ORG-C05532 | ORG-C06189 | ORG-C06845 | ORG-C06847	מרדכי סעגאלעסקאָ'ס טרופּע | סעגאַלעסקאָס טרופּע | סעגאַלעסקאָן | חיים מאיר סעגאָלעסקאָס טרופּע | מרדכי סעגאָלעסקא | ביי סעגאָלעסקאָ | ח. מ. סעגאָלעסקאָס טרופּע | מ. סעגאָלעסקאָ	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+345	Naftali Goldfaden Troupe	נפתלי גאָלדפֿאַדענס טרופּע		ORG-C05025 | ORG-C05193 | ORG-C05924 | ORG-C06468	נפתלי גאָלדפֿאַדעןם טרופּע | טוביאַ [נפתלי] גאָלדפֿאַדעןס טרופּע | נתלי נאָלדפאָדען | נפחלים טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+346	National Opera Warsaw					Theatre	high	Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+347	Neue Lodzer Zeitung	נויע לאָדזשער צייטונג		ORG-C02599 | ORG-C05379 | ORG-C06814	נויע לאָדזשער צייטונג | Neue Lodzer Zeitung	Journals/ Newspapers	high	Journals/ Newspapers(strong)|Journals/ Newspapers(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule, high-confidence only)	2026-10-13
+351	Nowa Gazeta			ORG-C01816	נאָוואַ גאָזעטאָ							
+352	Nowy Dziennik			ORG-C05360	נאָווי דזשענניק							
+356	Pavilion Theatre			ORG-C01547 | ORG-C00694 | ORG-C03855	גערטנער'ס פּאַוויליאָן-טעאַטער | פאָוויליאָן | שיקאַגער פּאוויליאָן-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
 360	Petrograd Theatre Society					Theatre	medium	Theatre(strong)|Theatre-related Society/ Union(medium)				
-362	"Poale Zion (""Workers of Zion"")"											
-363	Progresiv dramatik klub (Progressive Drama Club)					Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-369	Remeslengi Club	רעמעסלעני קלוב			רעמעסלעני קלוב | דעמעסלענני קלוב	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)|Theatre-related Society/ Union(medium)				
-373	Sabsey Troupe	סאָביים טרופּע			סאָביים טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-376	Sam Adler Troupe	סעם אַדלערס טרופּע			סעם אַדלערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-395	Stramer Troupe	שטראַמער-טרופּע			שטראַמער-טרופּע | שטראַמערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-398	Teater un kunst	טעאַטער און קונסט			טעאַטער און קונסט	Theatre	high	Theatre(strong)				
+362	"Poale Zion (""Workers of Zion"")"			ORG-C00054	פישזאָן	Jewish political bodies	high	Jewish political bodies(strong)	APPROVE	Jewish political bodies	claude (keyword rule, high-confidence only)	2026-10-13
+363	Progresiv dramatik klub (Progressive Drama Club)			ORG-C00155_Q01 | ORG-C03982	פּראָגרעסיוו דראַמאַטיק קלוב | פּראָגרעסיוו דראַמאַטיק קלאָב | פּראָגרעסיוו דראַמאַטיק קלוב | פּראָגרעסיוו דראַמאַטיק קלאָב | פּראָגרעסיווע יידישע פֿאָלקס-בּינע	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)|Theatre-related Society/ Union(medium)				
+365	Public Theatre (Folks Theatre)			ORG-C00635_Q01	פּאָבליק-טעאַטער (ניו יאָרק)	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+369	Remeslengi Club	רעמעסלענגי קלוב		ORG-C05191 | ORG-C06639	רעמעסלעני קלוב | דעמעסלענני קלוב	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)|Theatre-related Society/ Union(medium)				
+373	Sabsey Troupe	סאָביים טרופּע		ORG-C01140 | ORG-C01505 | ORG-C05027 | ORG-C05677 | ORG-C05680 | ORG-C05945 | ORG-C06395 | ORG-C06469	סאָבסיי | וואַנדער-טרופּעס פֿון סאבסיי | פֿאַריין פֿון סאָוועטישע שרייבער | אייגענע וואַנדער-טרופּע | בוי סאָבסיי | סאָביים טרופּע | טרופּע סאַבסיי | סאָבסייס יידישער טרופּע | שמרים טרופּע	Traveling Company	medium	Traveling Company(strong)|Traveling Company(strong)|Theatre-related Society/ Union(medium)				
+376	Sam Adler Troupe	סעם אַדלערס טרופּע		ORG-C00137 | ORG-C01483 | ORG-C02042 | ORG-C05366 | ORG-C07136 | ORG-C07150	סעם אַדלער | סעם אַדלערס טרופּע | אַדלערס טרופּע | פירמע סעם אַדלער פון אַמעריקע | טרופּע ביי סעם אַדלער | אַדלערס וואַנדער-טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+395	Shtramer Troupe	שטראַמער-טרופּע		ORG-C00890 | ORG-C02954	שטראַמער-טרופּע | שטראַמערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+397	teater gesselshaft											
+398	Teater un kunst	טעאַטער און קונסט		ORG-C01309	טעאַטער און קונסט	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
 399	Teatr i Iskusstvo											
-403	The Hebrew Actors' Union (HAU)					Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-405	The Jewish National Workers' Alliance (Farband-Labor Zionist Order)											
-421	Treitler Troupe	טרייטלערס טרופּע			טרייטלערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-425	Unzer Leben⁩ - ⁨אונזער לעבען	אונדער לעבען			אונדער לעבען | אונזער לעבן							
-426	Unzer teater	אונזער טעאַטער		ORG-C00837	אונזער טעאַטער	Theatre	high	Theatre(strong)				
-430	Varshaver tageblat											
-437	Voskhod											
-442	Yiddish artists union					Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-446	Yiddish Dramatic Society - דער יידיש דראמגעזעלשאפט	יידיש. דראַמגעזעלשאַפֿט			יידיש. דראַמגעזעלשאַפֿט	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
-447	Yiddish Theatre Society					Theatre	medium	Theatre(strong)|Theatre-related Society/ Union(medium)				
-454	Yung-yidish											
-455	Zandberg Troupe	זאַנדבערגס טרופּע			זאַנדבערגס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
-459	Ziegler Troupe	זייגלערס טרופּע			זייגלערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)				
+405	The Jewish National Workers' Alliance (Farband-Labor Zionist Order)			ORG-C06957 | ORG-C00784 | ORG-C07265 | ORG-C00383 | ORG-C00718_Q01	פאַרבאַנד | יידיש נאַציאָנאַלן אַרבעטער-פֿאַרבאַנד | יידישער נאַציאָנאַלער אַרבעטער-פֿאַרבאַנד | יידיש נאַציאָנאַלער אַרבעטערפֿאַרבאַנד | יידיש נאַצ. אַרב פֿאַרבאַנד	Jewish political bodies	high	Jewish political bodies(strong)	APPROVE	Jewish political bodies	claude (keyword rule, high-confidence only)	2026-10-13
+409	The Peoples Theatre Detroit			ORG-C00509 | ORG-C00666 | ORG-C01167_Q01 | ORG-C01446	ליטמאַנ'ס יידיש טעאַטער | ליטמאַנס פּיפּלס טעאַטער | ליטמאַן | ליטמאַנס אָרטיקן יידישן טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+421	Treitler Troupe	טרייטלערס טרופּע		ORG-C00083 | ORG-C03496	טרייטלער | טרייטלערס טרופּע	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+425	Unzer Leben⁩ - ⁨אונזער לעבען	אונדער לעבען		ORG-C00559 | ORG-C01303 | ORG-C02702_Q04	אונדער לעבען | אונזער לעבן | יודענראַט (לעמבערג)							
+426	Unzer teater	אונזער טעאַטער		ORG-C00837 | ORG-C02446	אונזער טעאַטער | אונזער טעאַטער | אונזער טעאַטער | פֿעדעראָלן אָרט טעאַטער-קורס	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+430	Varshaver tageblat					Journals/ Newspapers	high	Journals/ Newspapers(strong)	APPROVE	Journals/ Newspapers	claude (keyword rule, high-confidence only)	2026-10-13
+437	Voskhod			ORG-C01734 | ORG-C03274	וואָסכאָד | מאַסקע							
+442	Yiddish artists union			ORG-C00108 | ORG-C00384	יידישן אַרטיסטן-פֿאַריין אין פּוילן | יידישער אַקטיאָרן-יוניע | יידישער אַרטיסטן-פֿאַריין אין פּוילן | יידישער אַקטיאָרן יוניאָן | יידישער וואָדעווייל-יוניאָן לאָקאָל 5 | ערשטן יידישן אַרטיסטן-פאַריין אין רוסלאַנד	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)|Theatre-related Society/ Union(medium)				
+446	Yiddish Dramatic Society - דער יידיש דראמגעזעלשאפט	יידיש. דראַמגעזעלשאַפֿט		ORG-C02041 | ORG-C03946	יידישער טעאַטער-געזעלשאַפט (בערלין) | יידישער טעאַטער-געזעלשאַפט (לעמבערג) | יידישער טעאַטער-געזעלשאַפט (ניו-יאָרק) | יידישער טעאַטער-געזעלשאַפט (לאָס אַנדזשעלעס) | יידיש. דראַמגעזעלשאַפֿט | יידישער טעאַטער-געזעלשאַפֿט אין ניו-יאָרק | ניו יאָרקער יידישע טעאַטער-געזעלשאַפט	Theatre	medium	Theatre(strong)|Theatre-related Society/ Union(medium)|Theatre-related Society/ Union(medium)|Theatre(strong)				
+454	Yung-yidish			ORG-C03145	יונגע | יונג יידיש							
+455	Zandberg Troupe	זאַנדבערגס טרופּע		ORG-C00117 | ORG-C01171 | ORG-C03019 | ORG-C05798	טרופּע פון יצחק זאַנדבערג | זאַנדבערג | זאַנדבערגס טרופּע | טרופּע זאַנדבערג	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+459	Ziegler Troupe	זייגלערס טרופּע		ORG-C00632 | ORG-C00732 | ORG-C01797 | ORG-C02610 | ORG-C04151 | ORG-C06137	משה זיגלער'ס טרופּע | זיגלער | זייגלער-טרופּע | זייגלערס טרופּע | ביי זיגלער	Traveling Company	high	Traveling Company(strong)|Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
 460	Zuntog-blat											
-461	דער יודישער העראלד - The Jewish herald	יידישער העראָלד			יידישער העראָלד | דער טעגלישער העראָלד							
-462	⁨⁨Der Fraynd⁩ - ⁨דער פֿרײַנד⁩⁩											
-463	⁨⁨Di ṿahrhayṭ⁩ - ⁨דיא ווארהייט											
-464	Judisches Theater			ORG-C04844	Judisches Theater	Theatre	high	Theatre(strong)				
-496	אַקטיאָרן-פאַריין (בוענאָס איירעס)	אַקטיאָרן-פאַריין		ORG-C00071	אַקטיאָרן-פאַריין	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+461	דער יודישער העראלד - The Jewish herald	יידישער העראָלד		ORG-C04798 | ORG-C04894	יידישן פּען-קלוב | יידישער העראָלד | דער טעגלישער העראָלד	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+462	⁨⁨Der Fraynd⁩ - ⁨דער פֿרײַנד⁩⁩			ORG-C00335_Q03	דער פֿריינד							
+463	⁨⁨Di ṿahrhayṭ⁩ - ⁨דיא ווארהייט			ORG-C02899	דוד סאַבסיי							
+465	בלאָך פּאָבלישינג קאָמפּאַני	בלאָך פּאָבלישינג קאָמפּאַני		ORG-C07944 | ORG-C07242	בלאָך פּאָבלישינג קאָמפּאַני	Traveling Company	medium	Traveling Company(medium)				
+466	יידישער שפּיגל			ORG-C00002 | ORG-C00003								
+472	אָדעסער יידישן מלוכה-טעאַטער	אָדעסער יידישן טעאַטער		ORG-C00012 | ORG-C02340	אָדעסער יידישן מלוכה-טעאַטער | אָדעסער יידישן טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+473	קיעווער יידישן מלוכה-טעאַטער א'נ פון שלום-עליכם			ORG-C00013		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+475	גאָרטן-טעאַטער „אַלהאַמבראַ“	טעאַטער אַלהאַמבראַ		ORG-C00025 | ORG-C01072	טעאַטער אַלהאַמבראַ	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+476	בוף			ORG-C00007 | ORG-C00008								
+478	כאַרקאָווער יידישן מלוכה-טעאַטער	כאַרקאָווער יידישן מלוכה-טעאַטער		ORG-C00018_S01 | ORG-C00018	כאַרקאָווער יידישן מלוכה-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+479	אָרטיקער פילהאַרמאָניע	אָדעסער פילהאַרמאָניע		ORG-C00017 | ORG-C00488 | ORG-C02628	אָדעסער פילהאַרמאָניע | לאָדזשער פילהאַרמאַניע	Musical organization	high	Musical organization(strong)	APPROVE	Musical organization	claude (keyword rule, high-confidence only)	2026-10-13
+480	יידיש אַרבעטער-טעאַטער (באָקו)			ORG-C00016		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+481	וואַרשעווער יודישען קאָלענדאַר			ORG-C00022								
+482	יודישער האַנדעלס קאַלענדאָר	יודישער האָנדלס-קאמער		ORG-C00023 | ORG-C02590	יודישער האָנדלס-קאמער							
+483	טרופּע פֿון ווייספעלד	ווייספעלדן		ORG-C00028 | ORG-C00576 | ORG-C05132 | ORG-C06439	טרופּע פֿון ווייספעלד | ווייספעלדן | ווייספעלדס טרופּע | פּראָפעסיאנעלער יידישער טרופּע פֿון ווייספעלד	Traveling Company	high	Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+484	אינסטיטוט א'נ פֿון אָסטראָווסקי	אינסטיטוט א'נ פֿון אָסטראָווסקי		ORG-C00036 | ORG-C00035	אינסטיטוט א'נ פֿון אָסטראָווסקי	Education	high	Education(strong)	APPROVE	Education	claude (keyword rule, high-confidence only)	2026-10-13
+488	אַראַראַט	אַרראַט		ORG-C00055 | ORG-C01422 | ORG-C03313 | ORG-C03334 | ORG-C00052 | ORG-C00053 | ORG-C05094	אַררט | אַרראַט							
+489	בורג-טעאַטער	בורג-טעאַטער		ORG-C00049 | ORG-C00050 | ORG-C01945	בורג-טעאַטער | ווינער בורג-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+491	טעאַטער „קאָמעדיאָ“	טעאַטער „קאָמעדיאָ“		ORG-C00038 | ORG-C00037 | ORG-C05158	טעאַטער „קאָמעדיאָ“ | טעאַטער „אַקאַדעמי“ | טעאַטער „קאָמעטא“	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+496	אַקטיאָרן-פאַריין (בוענאָס איירעס)	אַקטיאָרן-פאַריין		ORG-C03181_Q01 | ORG-C02702_Q02 | ORG-C00068	אַקטיאָרן-פאַריין | יידישן אַקטיאָרן-פֿאַראיין | אַקטיאָרן-יוניאָן לאָקאָל 5 | אַקטיאָרן-יוניע | יודענראַט (ווילנע) | אַקטיאָרן-יוניע, לאָקאָל 5	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+497	באַלאַגעניידען	באַלאַגעניידען		ORG-C00051_Q01 | ORG-C01023	"באַלאַגעניידען | גליינקונסט טעאַטער ""באַלאַגאַניידען"""	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+498	הכל הבל											
+500	ריגער יידישן מלוכה-טעאַטער	ריגער יידישן טעאַטער		ORG-C05024 | ORG-C03317	ריגער יידישן טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+501	מינסקער יידישן מלוכה-טעאַטער	מינסקער יידישן מלוכה-טעאַטער		ORG-C02284 | ORG-C02170 | ORG-C06358	מינסקער יידישן מלוכה-טעאַטער | יידישער מלוכה-טרופּע	Theatre	low	Theatre(strong)|Traveling Company(strong)|Theatre(strong)				
+502	בוקאַרעשטער יידישן מלוכה-טעאַטער	בוקאַרעשטער יידישן מלוכה-טעאַטער		ORG-C00285 | ORG-C06074	בוקאַרעשטער יידישן מלוכה-טעאַטער | בוקאַרעסטער יידישן טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+504	העבראיקאַ			ORG-C00060 | ORG-C00058								
+506	ביראָ ביאָזשאַנער יידישן מלוכה-טעאַטער	ביראָ ביאָזשאַנער יידישן מלוכה-טעאַטער		ORG-C00308	ביראָ ביאָזשאַנער יידישן מלוכה-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+507	נאָוואָשטשי			ORG-C00215 | ORG-C00212								
+509	ווערדי-טעאַטער	טשעלסי-טעאַטער		ORG-C00237 | ORG-C00401	טשעלסי-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+510	מאָלדעוואָנישער יידישער מלוכה-טעאַטער	מאָלדאָוואַנישן יידישן מלוכה-טעאַטער		ORG-C00235		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+512	"""ייד. דראָמ. ליט. געזעל."""			ORG-C05585								
+513	"""49טע סטריט""-טעאַטער"			ORG-C06913		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+514	'אָפּאָלאַ'-טעאַטער			ORG-C02648		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+515	קיעווער יידישן מלוכה-טעאַטער			ORG-C00019	קיעווער יידישן מלוכה-טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+519	ווילנער יידישן מלוכה-טעאַטער		סטראַשון-גאַס 15	ORG-C02722		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
 522	גאָלדענע פונקען			ORG-C00915								
-564	דער יודישער פּאָק			ORG-C00941								
+526	אָדאָן-טעאַטער			ORG-C01411	אָדעאָן-טעאַטער (ניו יאָרק)	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+527	אוראַניאַ-טעאַטער			ORG-C01239		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+531	טרופּע פֿון קאַדיש-כאַש			ORG-C02055 | ORG-C01822 | ORG-C02839 | ORG-C02886 | ORG-C03192 | ORG-C03581 | ORG-C03783 | ORG-C06785	טרופּע קאַדיש-כאַש | אָפּערעטן-טרופּע פֿון קדיש-כאַש | טרופּע פון כאַש-קאַדיש-נחמה | טעאַטער-טרופּע קדיש-כאש | קדיש-כאַש | ווילנער אָפּערעטן טרופּע פֿון קדיש-כאש | גאַסטראָלן פֿון מאלי פיקאָן | טרופּע פֿון קדיש-חאָש	Theatre	low	Theatre(strong)|Traveling Company(strong)|Theatre(strong)|Theatre(strong)				
+534	וואַרשעווער יידישן מלוכה-טעאַטער			ORG-C01810		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+549	פֿראָממער פּאָבלישינג קאָמפּאַני			ORG-C04624		Traveling Company	medium	Traveling Company(medium)				
+552	גאָרדן-טעאַטער			ORG-C01069		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+555	קעמי-טעאַטער			ORG-C02475		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+560	יונג טעאַטער			ORG-C00928		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+561	בערלינער אוניווערזיטעט			ORG-C01532 | ORG-C05812 | ORG-C03694_Q02	בערלינער אוניווערזיטעט | אוניווערזיטעט | אוניווערזיטעט פון בערלין	Education	high	Education(strong)	APPROVE	Education	claude (keyword rule, high-confidence only)	2026-10-13
+564	דער יודישער פּאָק			ORG-C00941 | ORG-C05333	דער אידישער פּאָק							
+565	לאָנדאָנער יידישן פֿאָלקס-טעאַטער			ORG-C01362		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+567	רומענישן יידישן מלוכהטעאַטער			ORG-C00240		Theatre	high	Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+569	טשערנאָוויצער יידישן מלוכה טעאַטער			ORG-C03200	טשערנאָוויצער יידישן מלוכה טעאַטער | טשערנאָוויצער יידישן טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+571	ווילנער יידישן אָפּערע-טעאַטער			ORG-C03384 | ORG-C05555	ווילנער יידישן אָפּערעטן טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
 572	דער יודישער טעלעגראף			ORG-C06043								
-580	"טעאַטער „מיידים"""			ORG-C03441		Theatre	high	Theatre(strong)				
-584	וויניצער זשיטאָמירער יידישן מלוכה-טעאַטער			ORG-C03693		Theatre	high	Theatre(strong)				
-602	השומר הצעיר			ORG-C00831								
+577	מוסטער טעאַטער			ORG-C02760		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+580	"טעאַטער „מיידים"""			ORG-C03441 | ORG-C03097_Q01 | ORG-C01820 | ORG-C03036 | ORG-C03111 | ORG-C03340 | ORG-C03586	מאַריאָנעטן-טעאַטער 'מיידים'	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+581	טעאַטער קאָמיקאַ			ORG-C04656		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+584	וויניצער זשיטאָמירער יידישן מלוכה-טעאַטער			ORG-C03693		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+593	ווייסרוסישן יידישן מלוכה-טעאַטער			ORG-C00490 | ORG-C00567	ווייסרוסישן יידישן מלוכה-טעאַטער | יידישן מלוּכהטעאַטער פֿוּן ווייסרוסלאַנד	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+597	טשערנאָוויצער יידישער מלוכה-טעאַטער			ORG-C03608		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+599	יידישער מלוכה-טעאַטער אויפֿן נאָמען פֿון אסתר-רחל קאמינסקאַ			ORG-C02264		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+600	פאַרק-טעאַטער			ORG-C06432 | ORG-C01199	"„פאַרק""-טעאַטער"	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+602	השומר הצעיר			ORG-C00831 | ORG-C00831_Q02 | ORG-C00831_Q03	הבימה העברית | השומר הצעיר | השומר הצעיר	Jewish political bodies	high	Jewish political bodies(strong)	APPROVE	Jewish political bodies	claude (keyword rule, high-confidence only)	2026-10-13
 603	דער טעגלייכער העראָלד			ORG-C04447								
+604	לאָדזשער סקאַלאַ-טעאַטער			ORG-C00579		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+607	שיקאַגער יידישע דראַמאַטישע געזעלשאַפט			ORG-C01827 | ORG-C01468 | ORG-C05701 | ORG-C05857 | ORG-C07256 | ORG-C03947	שיקאַגער יידישער דראַמאַטיישער געזעלשאַפט | ליט. דראמ. געזעלשאַפט | יידיש ליטעראָריש-דראָמאָטישער געזעלשאַפט | שיקאָגער יידישער ליט. דראָמ. געזעלשאָפֿט קאָלעקטיוו | שיקאַגער דראַמאַטישער געזעלשאַפט	Theatre-related Society/ Union	medium	Theatre-related Society/ Union(medium)				
+615	ניו יאָרקער יידישן פֿאָלקס-טעאַטער			ORG-C05348		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+624	ווילנער יידישן געטאָ-טעאַטער			ORG-C02916 | ORG-C02964	ווילנער געטאָ | טעאַטער-קאָלעקטיוו	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+628	געטאָ-טעאַטער			ORG-C02738		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+635	דער יודישער שפּינעל			ORG-C05836								
+639	זומער-טעאַטער		יאָגעלאַנסקאַ 11	ORG-C03498		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+640	לאָנדאָן-טעאַטער			ORG-C04797		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+656	לאָנדאָנער יידישן טעאַטער			ORG-C04528		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+662	פּאַריזער יידישן טעאַטער	פּאַריזער יידישן טעאַטער		ORG-C05247		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+663	וואַרשעווער יידישן דראַמאַטישן טעאַטער	וואַרשעווער יידישן דראַמאַטישן טעאַטער		ORG-C02750		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+671	לאָנדאָנער יידישן פּאַוויליאָן-טעאַטער	לאָנדאָנער יידישן פּאַוויליאָן-טעאַטער		ORG-C03967	לאָנדאָנער יידישער טעאַטער	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+672	מאָסקווער יידישער טעאַטער	מאָסקווער יידישער טעאַטער		ORG-C07293 | ORG-C02344	מאָסקווער יידישן דראַמאַטישן אַנסאַמבל	Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+673	ניו יאָרקער יידישן קונסט-טעאַטער	ניו יאָרקער יידישן קונסט-טעאַטער		ORG-C04319		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+682	רומענישן יידישן טעאַטער	רומענישן יידישן טעאַטער		ORG-C03341		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+684	גריק-טעאַטער	גריק-טעאַטער		ORG-C01329		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+693	Forverts (Chicago)	פֿאַרווערטס	Chicago	ORG-C00257_Q04 | ORG-C05187	פֿאַרווערטס | שיקאַגער „פאָרווערטס“							
+713	יידיש קונסט טעאַטער	יידיש קונסט טעאַטער		ORG-C00195_Q02		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+742		נאַציאָנאַלן מוזיי		ORG-C00560 | ORG-C02427								
+747	טעאַטער עקסעלסיאָר	טעאַטער עקסעלסיאָר		ORG-C00131_Q02		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+752	אונזער בוך	אונזער בוך		ORG-C03938_Q01 | ORG-C03938_Q02	אונזער בוך							
+753	טריאָ פּרעס	טריאָ פּרעס		ORG-C01204		Publisher	high	Publisher(strong)	APPROVE	Publisher	claude (keyword rule, high-confidence only)	2026-10-13
+754	א. באַזילינסקי	א. באַזילינסקי		ORG-C05607								
+755	די שמידע	די שמידע		ORG-C04628								
+997	בונד	בונד		ORG-C00154_Q01	בונדישער באַוועגונג	Jewish political bodies	high	Jewish political bodies(strong)	APPROVE	Jewish political bodies	claude (keyword rule, high-confidence only)	2026-10-13
+1089		שטאָט-טעאַטער		ORG-C00422_Q06 | ORG-C05802		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+1194		שטאָט-טעאַטער		ORG-C00422_Q04 | ORG-C05048		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+1252		קיעווער קאָמערץ-אינסטיטוט		ORG-C02281 | ORG-C05407	קיעווער האָנדלסאינסטיטוט	Education	high	Education(strong)|Education(strong)	APPROVE	Education	claude (keyword rule, high-confidence only)	2026-10-13
+1288		גרויסן דראַמאַטישן טעאַטער		ORG-C04783		Theatre	high	Theatre(strong)|Theatre(strong)	APPROVE	Theatre	claude (keyword rule, high-confidence only)	2026-10-13
+1786	Unzer Vinkl (Kyiv)	אונזער ווינקל (קיעוו)	Kyiv	ORG-C00752_Q02 | ORG-C00504	"טרופּע „אונזער ווינקל"" | אונזער ווינקל (קיעוו)"	Traveling Company	high	Traveling Company(strong)	APPROVE	Traveling Company	claude (keyword rule, high-confidence only)	2026-10-13
+1939	יאַראָטשינסקיס תלמוד תורה	יאַראָטשינסקיס תלמוד תורה		ORG-C01314		Education	high	Education(strong)	APPROVE	Education	claude (keyword rule, high-confidence only)	2026-10-13
+1968	קרינסקיס האַנדלער-שול	קרינסקיס האַנדלער-שול		ORG-C03932		Education	high	Education(strong)|Education(strong)	APPROVE	Education	claude (keyword rule, high-confidence only)	2026-10-13
+1969	קרינסקיס האַנדלסשול	קרינסקיס האַנדלסשול		ORG-C03922		Education	high	Education(strong)	APPROVE	Education	claude (keyword rule, high-confidence only)	2026-10-13
+2267	רויטן קרייץ	רויטן קרייץ		ORG-C02140								
+2269	אַמעריקאַנער רויטן קרייז	אַמעריקאַנער רויטן קרייז		ORG-C04465		Welfare/Aid Organization	high	Welfare/Aid Organization(strong)	APPROVE	Welfare/Aid Organization	claude (keyword rule, high-confidence only)	2026-10-13

@@ -235,6 +235,104 @@ def split_name_variants(name: str) -> list[str]:
     return out
 
 
+def has_hebrew(text: str) -> bool:
+    """True if the string contains any Hebrew-script letter (incl. U+FB1D-FB4F
+    presentation forms, which core_db.tsv uses for pointed Yiddish)."""
+    return any(
+        "\u0590" <= c <= "\u05ff" or "\ufb1d" <= c <= "\ufb4f" for c in text
+    )
+
+
+def has_latin(text: str) -> bool:
+    """True if the string contains any Latin letter."""
+    return any(
+        ("a" <= c.lower() <= "z") and c.isalpha()
+        for c in unicodedata.normalize("NFKD", text)
+    )
+
+
+_PUNCT_RE = re.compile(
+    r"[\s\-\u2010-\u2015_.,;:!?/\\()\[\]{}'\"\u201c\u201d\u201e\u201f"
+    r"\u2018\u2019\u00ab\u00bb\u0084\u2032\u2033\u05f3\u05f4|]+"
+)
+
+
+def hebrew_skeleton(text: str) -> str:
+    """Consonant skeleton of a Hebrew-script name: points, punctuation, quote
+    marks and spacing removed, final forms folded to their medial twins.
+
+    This is the signal the IPA bridge was standing in for. 383 of the human
+    ALIGN decisions were credited to `ipa_phonetic`, but most of those pairs
+    are same-script near-variants whose only difference is typographic or
+    orthographic — „פאַרק"-טעאַטער / פאַרק-טעאַטער,
+    וועניסטעאַטער / ווענוס-טעאַטער, קעשעניעווער / קעשענעווער — and the fuzzy
+    trigram signal misses them because the punctuation and points dominate a
+    short string. Comparing skeletons catches them natively, so the lossy IPA
+    path is no longer load-bearing for same-script pairs.
+    """
+    s = unicodedata.normalize("NFKD", text)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = _PUNCT_RE.sub("", s)
+    s = s.translate(str.maketrans("ךםןףץ", "כמנפצ"))
+    # Fold the Yiddish spelling alternations that carry no distinction:
+    # doubled vav/yod (א/ו/י digraphs), שׂ/ס, כּ/ק, בֿ/ו, ת/ט. These are the
+    # differences behind pairs like נאָוואָסטי / נאָוואָשטשי and
+    # וועניסטעאַטער / ווענוס-טעאַטער.
+    for a, b in (("וו", "ו"), ("יי", "י"), ("אא", "א"), ("שט", "סט"),
+                 ("שׂ", "ס"), ("כ", "ק"), ("ת", "ט"), ("ע", "א")):
+        s = s.replace(a, b)
+    return s
+
+
+def script_parts(text: str) -> tuple[str, str]:
+    """Split a name into (hebrew_part, latin_part).
+
+    ~44 live core_db rows pack both scripts into one cell, usually as
+    "קונסט|Kunst" or "ha-Dor\u2069 - \u2068הדור". Treating such a value as
+    simply "containing Latin" would let any Hebrew cluster reach it through the
+    IPA bridge — which is how db 267 (ha-Dor - הדור) survived the first cut
+    against the cluster הומיר. Comparing per script instead keeps the Hebrew
+    half on the native signals and the Latin half on IPA, which is what each
+    is good for.
+    """
+    heb: list[str] = []
+    lat: list[str] = []
+    for c in text:
+        if "\u0590" <= c <= "\u05ff" or "\ufb1d" <= c <= "\ufb4f":
+            heb.append(c)
+        elif ("a" <= c.lower() <= "z") and c.isalpha():
+            lat.append(c)
+        else:
+            heb.append(c)
+            lat.append(c)
+    return "".join(heb).strip(), "".join(lat).strip()
+
+
+def ipa_eligible_pairs(a: str, b: str) -> list[tuple[str, str]]:
+    """The (a_part, b_part) pairs that genuinely cross scripts.
+
+    The IPA bridge exists only for Hebrew-script <-> Latin-script comparison.
+    Two Hebrew-script names must go through the exact/fuzzy/token-set signals,
+    which work natively on that script; routing them through the lossy IPA
+    approximation instead only manufactures coincidences — the ה...מ/צ...ר
+    skeleton shared by הומיר and הצפירה scored 0.429, over the lowered 0.40
+    IPA floor, and so rode into the candidate list of a Theatre cluster.
+    """
+    ah, al = script_parts(a)
+    bh, bl = script_parts(b)
+    pairs: list[tuple[str, str]] = []
+    if has_hebrew(ah) and bl and has_latin(bl):
+        pairs.append((ah, bl))
+    if has_hebrew(bh) and al and has_latin(al):
+        pairs.append((al, bh))
+    return pairs
+
+
+def crosses_scripts(a: str, b: str) -> bool:
+    """True when some part of the pair crosses Hebrew <-> Latin."""
+    return bool(ipa_eligible_pairs(a, b))
+
+
 def latin_only(text: str) -> str:
     # DM soundex is most useful on Latin-script forms.
     if not text:
@@ -531,13 +629,16 @@ def main() -> None:
             if fuzzy_best > best_score:
                 best_score, best_method = fuzzy_best, "fuzzy"
 
-            # IPA phonetic (cross-script; Yiddish/Hebrew <-> Latin/English)
+            # IPA phonetic (cross-script; Yiddish/Hebrew <-> Latin/English).
+            # Only eligible for pairs that actually cross scripts — see
+            # crosses_scripts(). Same-script pairs are left to the signals above.
             ipa_best = 0.0
             for ca in caliases:
                 for v in d["variants"]:  # type: ignore[index]
-                    sim = cross_script_similarity(ca, str(v))
-                    if sim > ipa_best:
-                        ipa_best = sim
+                    for pa, pb in ipa_eligible_pairs(ca, str(v)):
+                        sim = cross_script_similarity(pa, pb)
+                        if sim > ipa_best:
+                            ipa_best = sim
             if ipa_best > best_score:
                 best_score, best_method = ipa_best, "ipa_phonetic"
 
@@ -560,10 +661,48 @@ def main() -> None:
             if ts_best > best_score:
                 best_score, best_method = ts_best, "token_set"
 
+            # Hebrew consonant skeleton (same-script near-variants). Only for
+            # pairs that do NOT cross scripts — cross-script pairs are the IPA
+            # bridge's job. See hebrew_skeleton().
+            sk_best = 0.0
+            for ca in caliases:
+                if not has_hebrew(ca):
+                    continue
+                ska = hebrew_skeleton(ca)
+                if len(ska) < 4:
+                    continue  # too short to be evidence on its own
+                for v in d["variants"]:  # type: ignore[index]
+                    vs = str(v)
+                    if not has_hebrew(vs):
+                        continue
+                    skb = hebrew_skeleton(vs)
+                    if len(skb) < 4:
+                        continue
+                    if ska == skb:
+                        sim = 1.0
+                    elif ska in skb or skb in ska:
+                        sim = min(len(ska), len(skb)) / max(len(ska), len(skb))
+                    else:
+                        sim = name_similarity(ska, skb)
+                    if sim > sk_best:
+                        sk_best = sim
+            if sk_best > best_score:
+                best_score, best_method = sk_best, "skeleton"
+
             # Keep only plausible candidates. Cross-script IPA matches use a
             # lower floor because the IPA approximation is lossy — without this,
             # Latin-only DB rows are invisible to Yiddish clusters.
-            min_score = 0.40 if best_method == "ipa_phonetic" else 0.60
+            # Floors per signal. The skeleton signal is same-script and far
+            # more precise than the IPA bridge (it cannot fire across scripts
+            # at all), so it carries a lower floor to catch orthographic drift
+            # like קעשעניעווער / קעשענעווער at 0.53 without readmitting the
+            # cross-script noise the 0.40 IPA floor used to let through.
+            if best_method == "ipa_phonetic":
+                min_score = 0.40
+            elif best_method == "skeleton":
+                min_score = 0.50
+            else:
+                min_score = 0.60
             if best_score >= min_score:
                 prev = scored.get(db_id)
                 if prev is None or best_score > prev[0]:

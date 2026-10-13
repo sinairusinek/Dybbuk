@@ -66,8 +66,12 @@ def main() -> None:
     if not updates:
         return
 
+    # core_db.tsv is CRLF; csv's default lineterminator would silently rewrite
+    # every line and turn a 145-cell edit into a whole-file diff.
     with open(CORE_DB_TSV, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=db_fields, delimiter="\t")
+        w = csv.DictWriter(
+            f, fieldnames=db_fields, delimiter="\t", lineterminator="\r\n"
+        )
         w.writeheader()
         w.writerows(db_rows)
     print(f"Wrote {CORE_DB_TSV}")

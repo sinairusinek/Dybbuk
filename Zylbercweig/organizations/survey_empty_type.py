@@ -11,6 +11,7 @@ from __future__ import annotations
 import csv
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 csv.field_size_limit(sys.maxsize)
@@ -58,6 +59,38 @@ RULES: list[tuple[str, str, str]] = [
 
     # Religious institutions
     (r"\bבית\s*המדרש\b|\bביה\"כ\b|\bsynagogue\b|\bshul\b", "Religious institutions/organizations", "strong"),
+
+    # ── Added 2026-10-13 ────────────────────────────────────────────────
+    # Theatre, unspaced compound: "מלוכהטעאַטער" written without the hyphen
+    # escapes the \b-delimited rule above.
+    (r"מלוכה-?טעאטער|טעאטער", "Theatre", "strong"),
+    (r"opera\b|אָפּערע\b|אפערעטן", "Theatre", "strong"),
+
+    # Journals/Newspapers — title-shape evidence the keyword list missed.
+    # The Hebrew/Yiddish press titles in this DB are overwhelmingly either
+    # definite-article forms (דער/די/דאָס + noun) or ha- prefixed Hebrew ones.
+    (r"\btageblat\b|\btsayṭung\b|\btsaytung\b|\bvokh\b|\bbleter\b|\bpresse\b",
+     "Journals/ Newspapers", "strong"),
+    (r"טאגעבלאט|וואכנבלאט|בלעטער|פרעסע", "Journals/ Newspapers", "strong"),
+
+    # Musical organization
+    (r"פילהארמאניע|\bphilharmoni\w*\b|האזאמיר|hazomir", "Musical organization", "strong"),
+
+    # Education — institute / commercial school / talmud torah / seminary
+    (r"אינסטיטוט|\binstitut\w*\b", "Education", "strong"),
+    (r"תלמוד\s*תורה|חדר\b|ישיבה", "Education", "strong"),
+    (r"האנדלסשול|האנדלער-שול|קאמערץ-אינסטיטוט", "Education", "strong"),
+
+    # Publisher — a bare personal name whose aligned clusters all carry
+    # פֿאַרלאַג / דרוק / פּרעס is a publishing house, not a person.
+    (r"\bפארלאג\b|\bפערלאג\b|\bדרוק\b|\bפרעס\b|\bpress\b", "Publisher", "strong"),
+
+    # Welfare / aid
+    (r"רויטן\s*קריי[צז]|\bred cross\b", "Welfare/Aid Organization", "strong"),
+
+    # Jewish political bodies
+    (r"\bבונד\b|\bpoale zion\b|השומר\s*הצעיר|\bfarband\b|\barbeter ring\b|ארבעטער-רינג",
+     "Jewish political bodies", "strong"),
 ]
 
 
@@ -65,7 +98,26 @@ def _has(s: str, pat: str) -> bool:
     return bool(re.search(pat, s, flags=re.IGNORECASE))
 
 
-def classify(name: str, name_yid: str, addr: str) -> tuple[str, str, str]:
+def sm(s: str) -> str:
+    """Normalise for matching.
+
+    core_db.tsv stores Yiddish in the precomposed Hebrew *presentation* forms
+    (U+FB2E ALEF WITH PATAH, U+FB2F ALEF WITH QAMATS, U+FB4B VAV WITH HOLAM,
+    the FB1D-FB4F block generally), while the RULES above are written with the
+    decomposed base-letter + point sequences. The two are NFC/NFD-equal but
+    byte-different, so before this normalisation *every* rule containing a
+    pointed letter silently never fired — which is why 108 obviously-typeable
+    rows (בורג-טעאַטער, קעמי-טעאַטער, ...) came back with no suggestion at all.
+
+    NFKD maps the presentation forms onto base + combining point; stripping the
+    combining marks then makes pointed and unpointed spellings compare equal, so
+    a rule written either way matches either storage form.
+    """
+    s = unicodedata.normalize("NFKD", s)
+    return "".join(c for c in s if not unicodedata.combining(c)).lower()
+
+
+def classify(name: str, name_yid: str, addr: str, context: str = "") -> tuple[str, str, str]:
     """Return (suggested_type, confidence, hit_signals).
 
     confidence:
@@ -74,12 +126,16 @@ def classify(name: str, name_yid: str, addr: str) -> tuple[str, str, str]:
       low    — multiple rules fire on different types
       ""     — no rule fires
     """
-    haystack = " ".join(filter(None, [name or "", name_yid or "", addr or ""])).lower()
+    # `context` = the canonical names of the clusters already aligned to this
+    # db row. It carries the generic head the db `name` field often drops
+    # ("פֿאַרלאַג א. גיטלין" aligned to a row named just "ע. גיטלין"), so it is
+    # the only signal that types the bare-personal-name publishers.
+    haystack = sm(" ".join(filter(None, [name or "", name_yid or "", addr or "", context or ""])))
     hits: list[tuple[str, str]] = []  # (type, strength)
     signals: list[str] = []
     seen_types: set[str] = set()
     for pat, t, strength in RULES:
-        if re.search(pat, haystack):
+        if re.search(sm(pat), haystack):
             hits.append((t, strength))
             signals.append(f"{t}({strength})")
             seen_types.add(t)
@@ -118,10 +174,18 @@ def main() -> None:
     for r in db_rows:
         if r.get("org_type", "").strip():
             continue
+        # Deprecated (merged away) and out-of-project rows are already hidden
+        # from candidate dropdowns by prepare_alignment.py, so typing them buys
+        # nothing — keep them out of the review queue.
+        if (r.get("deprecated", "") or "").strip().lower() == "true":
+            continue
+        if (r.get("out_of_project", "") or "").strip().lower() == "true":
+            continue
         name = r.get("name", "").strip()
         nyid = r.get("name_yiddish", "").strip()
         addr = r.get("address", "").strip()
-        suggested, conf, signals = classify(name, nyid, addr)
+        context = " | ".join(aligned_by_did.get(r["db_id"].strip(), []))
+        suggested, conf, signals = classify(name, nyid, addr, context)
         counts[conf or "(no_match)"] = counts.get(conf or "(no_match)", 0) + 1
 
         out_rows.append({
@@ -130,7 +194,7 @@ def main() -> None:
             "name_yiddish": nyid,
             "address": addr,
             "linked_cluster_ids": r.get("linked_cluster_ids", ""),
-            "aligned_cluster_canonicals": " | ".join(aligned_by_did.get(r["db_id"].strip(), [])),
+            "aligned_cluster_canonicals": context,
             "suggested_type": suggested,
             "suggested_confidence": conf,
             "matched_signals": signals,
