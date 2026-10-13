@@ -91,6 +91,7 @@ VALID_ACTIONS = {
     "split": {"split_cluster"},
     "out_of_project": {"set_out_of_project"},
     "restore_type": {"set_org_type"},
+    "retype_db": {"set_org_type"},
 }
 
 

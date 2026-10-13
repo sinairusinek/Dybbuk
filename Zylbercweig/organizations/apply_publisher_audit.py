@@ -64,7 +64,11 @@ LOG_VIEW = "db_audit"
 SOURCE = DECISIONS.name
 
 # Only these two kinds are applied here; the rest stay in the review surface.
-APPLIED_KINDS = ("out_of_project", "restore_type")
+# `restore_type` fills a BLANK org_type from the canonical mapping and refuses
+# a non-empty one. `retype_db` is the deliberate counterpart: a human looked at
+# a row whose org_type is already set, judged it wrong, and said so. It
+# overwrites, and the rationale must say who decided and why.
+APPLIED_KINDS = ("out_of_project", "restore_type", "retype_db")
 
 
 def _load(p: Path) -> tuple[list[str], list[dict]]:
@@ -170,7 +174,7 @@ def main(apply: bool, reviewer: str) -> None:
         name = row.get("name") or row.get("name_yiddish") or ""
         entries.append(log_entry(
             reviewer,
-            "org_type_change" if kind == "restore_type" else "db_decision",
+            "org_type_change" if kind in ("restore_type", "retype_db") else "db_decision",
             db_id,
             f"{col}={value}",
             f"{d.get('decision_id','')}: {d.get('rationale','')}",
