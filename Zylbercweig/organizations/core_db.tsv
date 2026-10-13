@@ -392,7 +392,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 413	The St.Petersburg State Conservatory		די סט.Petersburg סטאַטע קאָנסערוואַטאָרי	Education							
 414	The Vilna Troupe		די ווילנאַ טרופּע	Company on Tour							
 415	The Vilna Troupe (Azro/Alomis branch)		די ווילנאַ טרופּע (אַזראָ/אַלאָמיס בראַנטש)	Company on Tour		ORG-C04294 | ORG-C06502					
-416	The Yiddish Art Theatre (as stable theatre)		די ייִדיש קונסט טעאַטער (אַס סטאַבלע טעאַטער)			ORG-C00195_Q03 | ORG-C00681					
+416	The Yiddish Art Theatre (as stable theatre)		די ייִדיש קונסט טעאַטער (אַס סטאַבלע טעאַטער)					true	443		
 417	The Yiddish Art Theatre (as company on tour)		די ייִדיש קונסט טעאַטער (אַס קאָמפּאַניע אָן טאור)	Company on Tour		ORG-C02978 | ORG-C04175 | ORG-C05368					
 418	The Yiddish Dramatic Amateur Circle		די ייִדיש דראַמאַטיש אַמאַטייר קירקלע	Amateur							
 419	The Yiddish Theatre Society		די ייִדיש טעאַטער געזעלשאַפֿט	Theatre							
@@ -418,7 +418,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 440	Wolgeschaffen Troupe		וואָלגעשאַפֿפֿען טרופּע	Traveling Company		ORG-C05444 | ORG-C05914					
 441	Wonderland Theatre		וואָנדערלאַנד טעאַטער	Theatre		ORG-C06324					
 442	Yiddish artists union		ייִדיש אַרטיסץ יוניאָן			ORG-C00108 | ORG-C00384					
-443	Yiddish Art Theatre		ייִדיש קונסט טעאַטער	Theatre		ORG-C00160_Q01 | ORG-C00180_Q01 | ORG-C00195_Q01 | ORG-C00812_Q01					
+443	Yiddish Art Theatre		ייִדיש קונסט טעאַטער	Theatre		ORG-C00160_Q01 | ORG-C00180_Q01 | ORG-C00195_Q01 | ORG-C00812_Q01 | ORG-C00195_Q03 | ORG-C00681				The Yiddish Art Theatre (as stable theatre)	
 444	Yiddish Dramatic Circle		ייִדיש דראַמאַטיש קירקלע	Amateur							
 445	Yiddish dramatic school		ייִדיש דראַמאַטיש שול	Education							
 446	Yiddish Dramatic Society - דער יידיש דראמגעזעלשאפט	יידיש. דראַמגעזעלשאַפֿט				ORG-C02041 | ORG-C03946					
@@ -643,7 +643,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 671	לאָנדאָנער יידישן פּאַוויליאָן-טעאַטער	לאָנדאָנער יידישן פּאַוויליאָן-טעאַטער				ORG-C03967					
 672	מאָסקווער יידישער טעאַטער	מאָסקווער יידישער טעאַטער				ORG-C07293 | ORG-C02344					
 673	ניו יאָרקער יידישן קונסט-טעאַטער	ניו יאָרקער יידישן קונסט-טעאַטער				ORG-C04319					
-674	קאָוונער יידישער דראָמאַטישער געזעלשאַפֿט	קאָוונער יידישער דראָמאַטישער געזעלשאַפֿט		theatre		ORG-C01994					
+674	קאָוונער יידישער דראָמאַטישער געזעלשאַפֿט	קאָוונער יידישער דראָמאַטישער געזעלשאַפֿט		theatre		ORG-C01994 | ORG-C06683				קאָוונער יידישער דראַמאַטישער געזעלשאַפט	
 675	קראָקעווער יידישער טעאַטער	קראָקעווער יידישער טעאַטער		theatre		ORG-C04665 | ORG-C01387_Q09 | ORG-C02945					
 676	אַרט טעאַטער	אַרט טעאַטער		theatre		ORG-C00363					
 677	אָדעסער אוניווערזיטעט	אָדעסער אוניווערזיטעט		education		ORG-C03867					
@@ -1912,8 +1912,8 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1973	סלאָבאָדקער ישיבה	סלאָבאָדקער ישיבה		education		ORG-C02417					
 1974	גרויסער יידישער שול אין מעקסיקע	גרויסער יידישער שול אין מעקסיקע		education		ORG-C03734					
 1975	שלום-עליכם-שול (כאָרבין)	שלום-עליכם-שול (כאָרבין)		education		ORG-C00793_Q01					
-1976	דוד הערמאַנס סטודיע	דוד הערמאַנס סטודיע		education		ORG-C03521					
-1977	דוד הערמאַנס טעאַטער-סטודיע	דוד הערמאַנס טעאַטער-סטודיע		education		ORG-C03172					
+1976	דוד הערמאַנס סטודיע	דוד הערמאַנס סטודיע		education		ORG-C03521 | ORG-C03172				דוד הערמאַנס טעאַטער-סטודיע	
+1977	דוד הערמאַנס טעאַטער-סטודיע	דוד הערמאַנס טעאַטער-סטודיע		education				true	1976		
 1978	יידישער ראָדיקאָלער שולע, אַרבעטער רינג, בראנטש נומ' 3	יידישער ראָדיקאָלער שולע, אַרבעטער רינג, בראנטש נומ' 3		education		ORG-C00611					
 1979	'אַרבעטער פֿריינטקלוב'	'אַרבעטער פֿריינטקלוב'		theatre		ORG-C03202					
 1980	'מיידים'	'מיידים'		theatre		ORG-C03111					
@@ -2695,7 +2695,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2757	יידישן אָרטיסטן-צוזאַמענפֿאָר	יידישן אָרטיסטן-צוזאַמענפֿאָר		theatre-related society/ union		ORG-C06638					
 2758	פֿאַריין	פֿאַריין		theatre-related society/ union		ORG-C06648					
 2759	קאָמיטעט צו פאַראייניקן ביידע יוניעם	קאָמיטעט צו פאַראייניקן ביידע יוניעם		theatre-related society/ union		ORG-C06650					
-2760	קאָוונער יידישער דראַמאַטישער געזעלשאַפט	קאָוונער יידישער דראַמאַטישער געזעלשאַפט		theatre-related society/ union		ORG-C06683					
+2760	קאָוונער יידישער דראַמאַטישער געזעלשאַפט	קאָוונער יידישער דראַמאַטישער געזעלשאַפט		theatre-related society/ union				true	674		
 2761	יידישער דראַמאַטישער געזעלשאַפט אין ליבאַווע	יידישער דראַמאַטישער געזעלשאַפט אין ליבאַווע		theatre-related society/ union		ORG-C06684					
 2762	פֿריינט פֿון יידישן טעאַטער אין ווילנע	פֿריינט פֿון יידישן טעאַטער אין ווילנע		theatre-related society/ union		ORG-C06688					
 2763	פּעטערבורגער יידישער ליטעראָרישער געזעלשאַפט	פּעטערבורגער יידישער ליטעראָרישער געזעלשאַפט		theatre-related society/ union		ORG-C06792					
@@ -2731,9 +2731,9 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2793	14-טן סטריט-טעאַטער	14-טן סטריט-טעאַטער		theatre		ORG-C04741					
 2794	אָרקאָדיאָ-טעאַטער	אָרקאָדיאָ-טעאַטער		theatre		ORG-C00243					
 2795	„ליכ האָבער“	„ליכ האָבער“		amateur		ORG-C02499					
-2796	באָלטימאָרער פֿאָלי-טעאַטער	באָלטימאָרער פֿאָלי-טעאַטער		theatre		ORG-C00292					
+2796	באָלטימאָרער פֿאָלי-טעאַטער	באָלטימאָרער פֿאָלי-טעאַטער		theatre		ORG-C00292 | ORG-C05772				פֿאַליי-טעאַטער	
 2797	לאַנדויס טעאַטער	לאַנדויס טעאַטער		theatre		ORG-C00769					
-2798	פֿאַליי-טעאַטער	פֿאַליי-טעאַטער		theatre		ORG-C05772					
+2798	פֿאַליי-טעאַטער	פֿאַליי-טעאַטער		theatre				true	2796		
 2799	סענט דעני טעאַטער	סענט דעני טעאַטער		theatre		ORG-C00883					
 2800	לאָדזשער 'אָפּאָלאַ'-טעאַטער	לאָדזשער 'אָפּאָלאַ'-טעאַטער		theatre		ORG-C02729					
 2801	בן-עמי'ס קונסט-טעאַטער	בן-עמים קונסט-טעאַטער		theatre		ORG-C06102					
