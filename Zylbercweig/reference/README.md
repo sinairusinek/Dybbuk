@@ -396,3 +396,23 @@ publisher field is a cataloguer's reading of that page; the page is the source.
 This also means a **city disagreement between catalogue and corpus is not
 evidence of two firms** — check which line each one is quoting before splitting
 anything.
+
+## The review form
+
+`build_press_review_form.py` regenerates `press_review_form.html` from
+`galron_press_match_review.tsv`, showing only the rows still undecided.
+
+Round 1's form was hand-built, so when both matcher defects were fixed it kept
+showing the pre-fix Tier C and E tables — rows that no longer existed. Run the
+generator after any matcher change or decision pass, rather than editing a form
+by hand:
+
+```
+python3 Zylbercweig/reference/build_press_review_form.py
+python3 Zylbercweig/reference/build_press_review_form.py --include-weak   # + the 192 WEAK rows
+```
+
+It groups by tier, carries Galron's place/years/language/depository and a scan
+link per row, shows the matcher's own signals as chips, and marks the contested
+papers — where several Zylbercweig orgs claim one Galron paper, which makes that
+claimant set a within-corpus merge candidate too.
