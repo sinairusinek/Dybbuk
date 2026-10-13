@@ -176,6 +176,25 @@ def main(apply: bool, reviewer: str, only: set[str] | None = None) -> None:
         # Warsaw/Tel Aviv). Such a decision says so in `confidence` as
         # `high|distinct` and is minted anyway, with the clash reported.
         force = "distinct" in (d.get("confidence") or "").lower()
+
+        # Idempotency must hold for forced rows too. `force` waives the NAME
+        # collision (a deliberate place split legitimately repeats a name), but
+        # a decision whose own clusters are already linked to a row has been
+        # applied already and must never mint a second time.
+        own = [c for c in [(d.get("cluster_id") or "").strip()] if c]
+        for x in extras.get(pid, []):
+            c = (x.get("cluster_id") or "").strip()
+            if c and c not in own:
+                own.append(c)
+        if own:
+            already = [r for r in db_rows
+                       if set(own) <= {t.strip() for t in
+                                       (r.get("linked_cluster_ids") or "").split("|")}]
+            if already:
+                skipped.append(f"{pid}: already applied as db {already[0]['db_id']} "
+                               f"(its cluster(s) {' + '.join(own)} are linked there)")
+                continue
+
         hit = existing.get(norm(name)) or existing_lat.get(name.lower())
         if hit is not None and not force:
             skipped.append(f"{pid}: {name!r} already exists as db {hit['db_id']}")
