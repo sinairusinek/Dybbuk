@@ -54,7 +54,14 @@ DECISIONS = ORGS / "eponym_decisions.tsv"
 GOLD_OUT = ORGS / "eponym_llm_gold_eval.tsv"
 OPEN_OUT = ORGS / "eponym_llm_verdicts.tsv"
 
-GEMINI_MODEL = "gemini-3-pro-preview"
+# Verified against client.models.list() on 2026-10-14. Five sibling scripts
+# still name the retired gemini-3-pro-preview, which the API now 404s:
+# llm_calibrate_gemini.py, llm_verify_shallow.py, llm_calibrate_gemini_retry.py,
+# llm_redo_union_defaults.py and YiDraCor/code/vocalization/phonotactic_check.py.
+# A 404 raised inside a retry loop looks exactly like slowness -- a run here
+# sat 24 minutes at 6 seconds of CPU before anyone saw the error. Hence
+# _preflight() below: one cheap call, raised not swallowed, before the loop.
+GEMINI_MODEL = "gemini-3.1-pro-preview"
 OPUS_MODEL = "claude-opus-5"
 
 # Common nouns the namelist sweep mistakes for surnames -- same list the
@@ -260,6 +267,36 @@ def hub_label(hub_id: str) -> tuple[str, str]:
             (h.get("db_ids") or "").split(",")[0].strip())
 
 
+def _preflight(client, judge: str) -> None:
+    """One trivial call before the loop, with the error raised not swallowed.
+
+    The retry loop in judge_cases() treats every exception as transient, which
+    is right for a rate limit and badly wrong for a retired model id or a bad
+    key: the run simply crawls, produces nothing, and reports no reason.
+    """
+    try:
+        if judge == "gemini":
+            from google.genai import types
+            r = client.models.generate_content(
+                model=GEMINI_MODEL, contents="Reply with the single word: ok",
+                config=types.GenerateContentConfig(max_output_tokens=20,
+                                                   temperature=0.0))
+            reply = (r.text or "").strip()
+        else:
+            r = client.messages.create(
+                model=OPUS_MODEL, max_tokens=20,
+                messages=[{"role": "user",
+                           "content": "Reply with the single word: ok"}])
+            reply = r.content[0].text.strip()
+    except Exception as e:  # noqa: BLE001
+        model = GEMINI_MODEL if judge == "gemini" else OPUS_MODEL
+        sys.exit(f"preflight failed for {model}: {type(e).__name__}: "
+                 f"{str(e)[:300]}\n"
+                 f"(nothing was judged; fix the model id or the key first)")
+    print(f"  preflight ok: {GEMINI_MODEL if judge == 'gemini' else OPUS_MODEL} "
+          f"-> {reply[:20]!r}")
+
+
 def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
                 sleep: float) -> list[dict]:
     client = None
@@ -274,6 +311,7 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
                 sys.exit("ANTHROPIC_API_KEY not set")
             import anthropic
             client = anthropic.Anthropic()
+        _preflight(client, judge)
 
     sel = cases[:limit] if limit else cases
     out: list[dict] = []
