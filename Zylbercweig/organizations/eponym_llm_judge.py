@@ -328,6 +328,27 @@ def _preflight(client, judge: str) -> None:
           f"-> {reply[:20]!r}")
 
 
+def _ask_with_retries(client, judge: str, rendered: str, i: int,
+                      db_id: str) -> tuple[dict, str, str]:
+    """One case, up to 3 attempts. Returns (parsed, raw, last_error)."""
+    t0 = time.time()
+    err = ""
+    for attempt in range(3):
+        try:
+            data, raw = (ask_gemini(client, rendered) if judge == "gemini"
+                         else ask_opus(client, rendered))
+            return data, raw, ""
+        except Exception as e:  # noqa: BLE001
+            err = f"{type(e).__name__}: {str(e)[:160]}"
+            # Say so. A silent retry loop made a dead model id and a hung
+            # socket both look like ordinary slowness.
+            print(f"    case {i} db{db_id} attempt {attempt + 1}/3 "
+                  f"failed after {time.time() - t0:.0f}s: {err}", flush=True)
+            if attempt < 2:
+                time.sleep(2 * (attempt + 1))
+    return {}, "", err
+
+
 def _append_row(path: pathlib.Path, row: dict, fields: list[str]) -> None:
     """Append one verdict immediately.
 
@@ -347,7 +368,7 @@ def _append_row(path: pathlib.Path, row: dict, fields: list[str]) -> None:
 
 def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
                 sleep: float, out_path: pathlib.Path | None = None,
-                fields: list[str] | None = None) -> list[dict]:
+                fields: list[str] | None = None, workers: int = 1) -> list[dict]:
     client = None
     if not dry_run:
         if judge == "gemini":
@@ -367,11 +388,10 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
     now = _dt.datetime.now().isoformat(timespec="seconds")
     t_start = time.time()
 
-    for i, c in enumerate(sel, 1):
-        case = dossier.build_case(c["db_id"], c["span"], c["hub_ids"])
-        rendered = dossier.render_case(case)
-
-        if dry_run:
+    if dry_run:
+        for i, c in enumerate(sel, 1):
+            rendered = dossier.render_case(
+                dossier.build_case(c["db_id"], c["span"], c["hub_ids"]))
             if i == 1:
                 print("=" * 72)
                 print(f"SAMPLE PROMPT  (case 1 of {len(sel)})")
@@ -382,24 +402,13 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
                     print(f"… [{len(rendered) - 3000:,} more chars]")
                 print("=" * 72)
             out.append({**c, "rendered_chars": len(rendered)})
-            continue
+        return out
 
-        data, raw, err = {}, "", ""
-        t0 = time.time()
-        for attempt in range(3):
-            try:
-                data, raw = (ask_gemini(client, rendered) if judge == "gemini"
-                             else ask_opus(client, rendered))
-                err = ""
-                break
-            except Exception as e:  # noqa: BLE001
-                err = f"{type(e).__name__}: {str(e)[:160]}"
-                # Say so. A silent retry loop made a dead model id and a hung
-                # socket both look like ordinary slowness.
-                print(f"    case {i} db{c['db_id']} attempt {attempt + 1}/3 "
-                      f"failed after {time.time() - t0:.0f}s: {err}")
-                if attempt < 2:
-                    time.sleep(2 * (attempt + 1))
+    def judge_one(i_c: tuple[int, dict]) -> dict:
+        i, c = i_c
+        case = dossier.build_case(c["db_id"], c["span"], c["hub_ids"])
+        rendered = dossier.render_case(case)
+        data, raw, err = _ask_with_retries(client, judge, rendered, i, c["db_id"])
 
         choice = str(data.get("choice") or "").strip()
         quote = str(data.get("quote") or "").strip()
@@ -456,14 +465,40 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
         }
         if "n_distractors" in c:          # hardeval carries this through
             row["n_distractors"] = c["n_distractors"]
-        out.append(row)
-        if out_path is not None:
-            _append_row(out_path, row, fields or FIELDS)
+        return row
 
-        if i % 10 == 0 or i == len(sel):
-            print(f"  judged {i}/{len(sel)}  ({time.time() - t_start:.0f}s elapsed)")
-        if sleep:
-            time.sleep(sleep)
+    done = 0
+    if workers > 1:
+        # Each verdict is independent, and the wall-clock cost is almost all
+        # waiting on the API (a serial run shows ~0s CPU over an hour). The
+        # 704-case open run is ~2 hours serially and about 15 minutes at 8.
+        # Writes stay on this thread, under a lock, so the append-per-verdict
+        # durability guarantee is unchanged.
+        import concurrent.futures as _cf
+        import threading
+        lock = threading.Lock()
+        with _cf.ThreadPoolExecutor(max_workers=workers) as pool:
+            for row in pool.map(judge_one, enumerate(sel, 1)):
+                with lock:
+                    out.append(row)
+                    if out_path is not None:
+                        _append_row(out_path, row, fields or FIELDS)
+                    done += 1
+                    if done % 10 == 0 or done == len(sel):
+                        print(f"  judged {done}/{len(sel)}  "
+                              f"({time.time() - t_start:.0f}s elapsed)", flush=True)
+    else:
+        for i_c in enumerate(sel, 1):
+            row = judge_one(i_c)
+            out.append(row)
+            if out_path is not None:
+                _append_row(out_path, row, fields or FIELDS)
+            done += 1
+            if done % 10 == 0 or done == len(sel):
+                print(f"  judged {done}/{len(sel)}  "
+                      f"({time.time() - t_start:.0f}s elapsed)", flush=True)
+            if sleep:
+                time.sleep(sleep)
     return out
 
 
@@ -532,6 +567,9 @@ def main() -> None:
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--sleep", type=float, default=0.0)
+    ap.add_argument("--workers", type=int, default=1,
+                    help="concurrent requests (default 1). The 704-case open "
+                         "run is ~2h serially, ~15min at 8.")
     ap.add_argument("--resume", action="store_true",
                     help="(default) skip (db_id, span) already in the output")
     ap.add_argument("--fresh", action="store_true",
@@ -553,7 +591,8 @@ def main() -> None:
         if not args.dry_run and out.exists():
             out.unlink()
         rows = judge_cases(cases, "opus", 0, args.dry_run, args.sleep,
-                           out_path=None if args.dry_run else out)
+                           out_path=None if args.dry_run else out,
+                           workers=args.workers)
     else:
         cases = gold_cases() if args.gold else open_cases()
         out = GOLD_OUT if args.gold else OPEN_OUT
@@ -570,7 +609,8 @@ def main() -> None:
             print(f"resuming: {before - len(cases)} already in {out.name}, "
                   f"{len(cases)} to go")
         rows = judge_cases(cases, args.judge, args.limit, args.dry_run,
-                           args.sleep, out_path=None if args.dry_run else out)
+                           args.sleep, out_path=None if args.dry_run else out,
+                           workers=args.workers)
 
     print(f"\ncases this run: {len(cases)}")
     if args.dry_run:

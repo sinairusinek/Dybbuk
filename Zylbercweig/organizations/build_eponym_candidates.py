@@ -169,12 +169,94 @@ def classify(text: str, name_en: str) -> tuple[str, list[str]]:
 
 
 # Words that appear inside these patterns but are not surnames.
-STOP = {key(w) for w in ("טרופּע", "פֿון", "און", "די", "דער", "דאָס", "אין",
-                         "קאָמפּאַניע", "טעאַטער", "אַנסאַמבל", "פאַמיליע",
-                         "ברידער", "שוועסטער", "און", "א", "אַ",
-                         "קונסט", "דראַמע", "אָפּערע", "מוזיק", "ייִדיש",
-                         "יידיש", "סצענע", "בינע", "קלוב", "פֿאַראיין",
-                         "פאראיינ", "געזעלשאַפט", "שול", "זון", "זין")}
+#
+# Hand-listing these does not scale -- Sinai spotted `מיט` ("with") and
+# `אייגענע` ("own") surviving into the queue, and a survey then found ~100
+# more: function words, institution vocabulary, place names and adjectives.
+# So the list below covers what a frequency rule cannot, and
+# generic_vocabulary() derives the rest from the corpus itself.
+STOP = {key(w) for w in (
+    # structure words of the patterns themselves
+    "טרופּע", "פֿון", "און", "די", "דער", "דאָס", "אין", "א", "אַ",
+    "קאָמפּאַניע", "טעאַטער", "אַנסאַמבל", "פאַמיליע", "ברידער", "שוועסטער",
+    # prepositions, pronouns, auxiliaries -- never a name
+    "מיט", "פאַר", "אונטער", "אויף", "אויפן", "פונם", "פֿונעם", "ביי", "צו",
+    "וועלכע", "וועלכער", "האָט", "האבן", "זיין", "זיינע", "איר", "זיך",
+    "אייגענע", "אייגענער", "אייגן", "נאָמען", "אויפן נאָמען", "נאָך",
+    "ערשטער", "ערשטע", "צווייטער", "נייע", "נייער", "אַלטע", "יונגע",
+    "גרויסע", "קליינע", "זעלבסט", "הילף", "מיטל", "בלינדער",
+    # art/company vocabulary
+    "קונסט", "דראַמע", "דראַמאַטישע", "דראַמאַטישער", "דראַמאַטישן",
+    "אָפּערע", "אָפּערעטע", "אָפּערעטן", "מוזיק", "סצענע", "בינע",
+    "קאָמעדיע", "קוואַרטעט", "כאָר", "קאַפּעליע", "ארקעסטער", "גרופּע",
+    "קאָלעקטיוו", "סטודיע", "אַקטיאָר", "אַרטיסטן", "קינסטלער", "שוישפּילער",
+    "דיכטער", "שרייבער", "מאָלער", "מוזיקער", "כאָריסטן", "קאָמפּאָזיטאָרן",
+    "דירעקציע", "דירעקטאָר", "מענעדזשמענט", "קאַסירער", "גאַסט",
+    "וואַנדערטרופּע", "טורניי", "פּראָווינץ", "פּריוואַטער", "ליבהאָבער",
+    # institutions
+    "ייִדיש", "יידיש", "קלוב", "פֿאַראיין", "פאראיינ", "געזעלשאַפט", "שול",
+    "שולע", "ישיבה", "תלמוד", "תורה", "אוניווערזיטעט", "גימנאַזיע",
+    "אינסטיטוט", "אַקאַדעמי", "קאָלעדזש", "סקול", "הויכשול", "דראַמשול",
+    "האַנדלסשול", "פּראָגימנאַזיע", "לערנאַנשטאַלט", "סעמינאַר",
+    "פֿאַרבאַנד", "פאַרבאַנד", "פאַראייניקונג", "יוניאָן", "יוניע", "רינג",
+    "אַגודה", "אָפּטייל", "אָפּטיילונג", "סעקשאָן", "בראַנטש", "לאָקאַל",
+    "קרייז", "קאָמיטעט", "אַרכיוו", "ביבליאָטעק", "מוזיי", "פאַרלאַג",
+    "דרוקעריי", "פּאַבלישערס", "בוך", "ליטעראַטור", "ליטעראַטן",
+    "זשורנאַליסטן", "וויסנשאַפט", "געשיכטע", "יוריספּרודענץ", "עקאָנאָמיע",
+    "פּאָליטישער", "פּעדאַגאָגישן", "סטודענטן", "יונגוועלט", "בירגער",
+    "אַרבעטער", "ארבעטער", "קינא", "פילם", "קעמפּ", "הויף", "הויז", "זאַל",
+    "קאָאָפּעראַטיוו", "קאָאָפּעראַטיווע", "קאָאָפּעראַטיווער", "פאַקט",
+    "אַלמנה", "יתומים", "יתומות", "זון", "זין", "געברידער", "מחבר", "מוכר",
+    "פאַרקויף", "נעמער", "פּובליסיטי", "קרעפטן", "לייט", "פריינט", "מוסטער",
+    # nationality / region adjectives
+    "רוסישער", "פּוילישער", "רומענישער", "ענגלישן", "ווייסרוסלענדישע",
+    "אַרגענטינער", "לאַדזשער", "בוקאַרעשטער", "טיפליסער", "זאַקסישן",
+    "מלוכהשן", "סאָוויעט", "וועלטלעכער", "ראַדיקאַלער", "אַקאַדעמישן",
+    "טעכנישער", "אַרטיסטישער", "וואָקאַלער", "באַוועגלעכן", "יודנטום",
+)}
+
+# A span occurring in a great many organisation names is vocabulary, not a
+# surname: `יו`/`ניו`/`יארק` (New York), `פאר`, `יידישן`. Derived from the
+# corpus so it stays true as core_db grows, rather than hand-maintained.
+# The threshold is deliberately high: `בן` (17) and `שלום` (17) are real name
+# elements and must survive, while `יו` (314) and `פאר` (283) must not.
+GENERIC_ORG_NAME_THRESHOLD = 20
+
+
+def generic_vocabulary(orgs: list[dict]) -> set[str]:
+    """Span skeletons that occur in >= THRESHOLD distinct live org names."""
+    counts: dict[str, int] = {}
+    for r in orgs:
+        blob = key(f"{r.get('name_yiddish') or ''} {r.get('name') or ''}")
+        for tok in set(HEB.findall(blob)):
+            if len(tok) > 1:
+                counts[tok] = counts.get(tok, 0) + 1
+    return {t for t, n in counts.items() if n >= GENERIC_ORG_NAME_THRESHOLD}
+
+
+def settlement_names() -> set[str]:
+    """Place-name skeletons, from the settlements the RAs already confirmed.
+
+    `ניו יארק`, `שיקאגא`, `פאריז` and `קאנאדע` were surviving into the queue as
+    candidate eponyms: each is below the generic-frequency threshold, so only a
+    gazetteer removes them. Using the review file's own
+    `confirmed_settlement_yiddish` keeps this true to decisions already made
+    rather than to a city list invented here. Adjectival forms (אָדעסער,
+    ווילנער) are added, since an org is named for a place that way.
+    """
+    path = BASE / "organizations" / "org_addresses_review.tsv"
+    out: set[str] = set()
+    if not path.exists():
+        return out
+    with path.open(encoding="utf-8") as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            for field in ("confirmed_settlement_yiddish", "extracted_settlements"):
+                for part in re.split(r"[|,;]", r.get(field) or ""):
+                    for tok in HEB.findall(key(part)):
+                        if len(tok) > 2:
+                            out.add(tok)
+                            out.add(tok + key("ער"))   # אָדעס -> אָדעסער
+    return out
 
 
 def _neighbours(y: str, span: str) -> list[str]:
@@ -196,6 +278,7 @@ def _neighbours(y: str, span: str) -> list[str]:
 def main() -> None:
     orgs = load_live_orgs()
     by_surname, by_full = load_surname_index()
+    generic = generic_vocabulary(orgs) | settlement_names()
     out: list[dict] = []
     stats: dict[str, int] = {}
 
@@ -209,7 +292,11 @@ def main() -> None:
         if not spans:
             continue
 
-        spans = [s for s in spans if key(s) not in STOP and len(key(s)) > 1]
+        # A 2-letter span is usually noise, but not always: `אַש` is Sholem
+        # Asch. Keep a short span only when it is a known surname.
+        spans = [s for s in spans
+                 if key(s) not in STOP and key(s) not in generic
+                 and (len(key(s)) > 2 or key(s) in by_surname)]
         multi = len(spans) > 1
 
         for sp in spans:
