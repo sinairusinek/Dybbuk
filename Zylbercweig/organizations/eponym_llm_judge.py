@@ -203,10 +203,17 @@ def gold_cases() -> list[dict]:
             if not rejected.get(k):
                 continue
             gold = "NONE"
+        # Candidates that exist NOW but were not on the list when the decision
+        # was made: everything the decision ledger never names for this span.
+        # The ledger records one row per candidate shown, so a hub absent from
+        # it was invisible at decision time.
+        shown = {d["hub_id"] for d in decisions
+                 if (d["db_id"], d["span"]) == k and d.get("hub_id")}
         cases.append({
             "db_id": k[0], "span": k[1],
             "hub_ids": list(dict.fromkeys(hub_ids)),
             "gold": gold,
+            "hidden_hubs": tuple(h for h in hub_ids if h not in shown),
             "tier": group[0].get("tier", ""),
             "pattern": group[0].get("pattern", ""),
         })
@@ -413,7 +420,21 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
         correct = ""
         if gold:
             if gold == "NONE":
-                correct = "yes" if choice in ("NONE", "ABSTAIN") else "no"
+                if choice in ("NONE", "ABSTAIN"):
+                    correct = "yes"
+                elif choice in (c.get("hidden_hubs") or ()):
+                    # Sinai answered NONE because the only candidate he was
+                    # shown was the wrong namesake -- the comma bug hid 22% of
+                    # hubs. If the judge names one of those hidden people, it
+                    # has not contradicted his judgement; it found someone he
+                    # could not have chosen. Scoring these as errors put the
+                    # reported precision at 0.918 when every one of the eight
+                    # was a recovery (Joseph Kessler, Aharon Rosenblum, Dina
+                    # Kenig, Y. Y. Lerner, ...). Not scored; counted and
+                    # reported separately as a find.
+                    correct = "newly_visible"
+                else:
+                    correct = "no"
             elif choice == gold:
                 correct = "yes"
             elif choice == "ABSTAIN":
@@ -450,7 +471,12 @@ def score(rows: list[dict]) -> None:
     scored = [r for r in rows if r.get("gold")]
     if not scored:
         return
-    dec = [r for r in scored if r["choice"] != "ABSTAIN"]
+    # "newly_visible" = named a person the comma bug hid from the reviewer. Not
+    # a contradiction of his judgement, so excluded from the precision
+    # denominator and reported separately.
+    newly = [r for r in scored if r["correct"] == "newly_visible"]
+    dec = [r for r in scored
+           if r["choice"] != "ABSTAIN" and r["correct"] != "newly_visible"]
     right = sum(1 for r in dec if r["correct"] == "yes")
     abst = sum(1 for r in scored if r["choice"] == "ABSTAIN")
     gf = sum(1 for r in rows if r["grounding"] == "failed")
@@ -465,13 +491,19 @@ def score(rows: list[dict]) -> None:
     print(f"  abstained               : {abst} ({abst * 100 // len(scored)}%)")
     print(f"  coverage (answered/all) : {len(dec) / len(scored):.3f}")
     print(f"  grounding failures      : {gf} ({gf * 100 // max(len(rows), 1)}%)")
+    if newly:
+        print(f"  FOUND a person the reviewer was never shown: {len(newly)}"
+              "   (not errors -- recoverable links)")
+        for r in newly:
+            print(f"      db{r['db_id']:>5s} {r['span']:14s} -> "
+                  f"{r['proposal_heading'][:34]}")
     print()
     print("  by tier:")
     by = collections.defaultdict(lambda: [0, 0, 0])
     for r in scored:
         b = by[r["tier"] or "?"]
         b[0] += 1
-        if r["choice"] != "ABSTAIN":
+        if r["choice"] != "ABSTAIN" and r["correct"] != "newly_visible":
             b[1] += 1
             if r["correct"] == "yes":
                 b[2] += 1

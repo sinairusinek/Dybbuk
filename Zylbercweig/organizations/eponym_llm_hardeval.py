@@ -44,12 +44,20 @@ MAX_CANDIDATES = 8   # keep a case readable; the real low tier tops out near 15
 
 
 def surname_index() -> dict[str, list[str]]:
+    """surname skeleton -> hub_ids.
+
+    Uses the generator's split_heading(), NOT a comma split: 660 of 2,897
+    headings write `surname given` with no comma, and splitting on the comma
+    indexes those under their full name. An earlier version of this file did
+    exactly that, so its distractor pools were missing a fifth of the corpus
+    -- including the namesakes that make a case hard.
+    """
+    from build_eponym_candidates import split_heading
     idx: dict[str, list[str]] = collections.defaultdict(list)
     for hid, h in dossier._hubs().items():
-        sur = re.split(r"[,\[]", h.get("canonical_heading") or "")[0]
-        k = key(sur)
-        if k:
-            idx[k].append(hid)
+        sur, _ = split_heading(h.get("canonical_heading") or "")
+        if sur:
+            idx[sur].append(hid)
     return idx
 
 
