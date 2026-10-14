@@ -202,9 +202,15 @@ def main() -> None:
     ws = wb.active
     ws.title = "troupes"
 
+    # "Ruthie's comments" sits beside person_name because that is how she works:
+    # when the dropdown holds nobody who fits she writes the name in prose
+    # instead, in Yiddish or in Latin ("Leo Largman", "חיים סאנדלער Chaim
+    # Sandler"). The first version of this sheet had no such column, so 19 of
+    # her 22 identifications had nowhere to go but a column no script read.
+    # ingest_ra_comments.py harvests it; the dropdown stays on person_name.
     HEAD = ["db_id", "troupe (Yiddish)", "troupe (Latin)", "eponym #",
             "name in troupe", "LLM proposal", "LLM conf", "LLM evidence",
-            "person_name", "suggested persons",
+            "person_name", "Ruthie's comments", "suggested persons",
             "n_suggestions", "org_type", "mentioned by", "roles / dates",
             "mention context (lexicon)", "notes"]
     ws.append(HEAD)
@@ -303,11 +309,61 @@ def main() -> None:
             db_id, org_name, (org.get("name") or "").strip(),
             f"{idx} of {n_for_org}", span,
             llm_label, v.get("confidence", ""), llm_ev,
-            "", sugg_txt, len(sugg),
+            "", "", sugg_txt, len(sugg),
             (org.get("org_type") or "").strip(), who, rd, ctx,
             head.get("notes") or "",
         ])
         rows_written += 1
+
+    # ── links sheet: the eponym links already settled ──────────────────────
+    # What the queue has produced so far, so the work is visible and checkable
+    # rather than disappearing into a TSV: every CONFIRM, who decided it, and
+    # the evidence. She asked for the links already given; this is also the
+    # place an error gets spotted (db1047 זאָלאָטאַרעווסקי was caught exactly
+    # by reading a settled row against its org name).
+    #
+    # One row per (org, person) -- the decision ledger records a row per SPAN,
+    # so a troupe naming one person across several tokens appears once here,
+    # with the spans joined, matching the single edge it produces.
+    ls = wb.create_sheet("links")
+    LINK_HEAD = ["db_id", "troupe (Yiddish)", "person", "person_db_id",
+                 "hub_id", "spans", "org_type", "decided by", "decided",
+                 "tier", "pattern", "notes"]
+    ls.append(LINK_HEAD)
+
+    by_pair: dict[tuple, list[dict]] = collections.defaultdict(list)
+    for d in decisions:
+        if (d.get("decision") or "").upper() == "CONFIRM":
+            by_pair[(d["db_id"], d.get("hub_id") or "")].append(d)
+
+    link_rows = 0
+    for (db_id, hub_id), group in sorted(
+            by_pair.items(), key=lambda kv: (int(kv[0][0]), kv[0][1])):
+        org = orgs.get(db_id, {})
+        first = group[0]
+        spans = " | ".join(dict.fromkeys(
+            (g.get("span") or "").strip() for g in group if g.get("span")))
+        # Prefer the reviewer who actually settled it; several spans of one
+        # person can carry different reviewers (Sinai in-app, Ruthie on the
+        # workbook), so name them all rather than crediting only the first.
+        who = " | ".join(dict.fromkeys(
+            (g.get("reviewer") or "").strip() for g in group if g.get("reviewer")))
+        when = sorted((g.get("reviewed_at") or "").strip()
+                      for g in group if g.get("reviewed_at"))
+        note = next((g.get("notes") or "").strip()
+                    for g in group if (g.get("notes") or "").strip()) \
+            if any((g.get("notes") or "").strip() for g in group) else ""
+        ls.append([
+            db_id,
+            (org.get("name_yiddish") or "").strip() or (org.get("name") or "").strip(),
+            (first.get("person_heading") or "").strip(),
+            (first.get("person_db_ids") or "").split(",")[0].strip(),
+            hub_id, spans,
+            (org.get("org_type") or "").strip(),
+            who, when[-1] if when else "",
+            first.get("tier") or "", first.get("pattern") or "", note,
+        ])
+        link_rows += 1
 
     # ── persons sheet: every Zylbercweig person WITH an id ──────────────────
     ps = wb.create_sheet("persons")
@@ -361,36 +417,64 @@ def main() -> None:
     bold = Font(bold=True)
     fill = PatternFill("solid", fgColor="DDEBF7")
     answer_fill = PatternFill("solid", fgColor="FFF2CC")
-    for sheet in (ws, ps):
+    for sheet in (ws, ls, ps):
         for c in sheet[1]:
             c.font = bold
             c.fill = fill
         sheet.freeze_panes = "A2"
 
-    # Columns: A db_id, B troupe-yid, C troupe-latin, D eponym#, E span,
-    # F LLM proposal, G LLM conf, H LLM evidence, I person_name (hers),
-    # J suggested, K n_sugg, L org_type, M mentioned-by, N roles, O context,
-    # P notes.
-    widths = {"A": 8, "B": 30, "C": 26, "D": 9, "E": 16, "F": 34, "G": 9,
-              "H": 56, "I": 34, "J": 46, "K": 7, "L": 18, "M": 30, "N": 28,
-              "O": 70, "P": 22}
-    for col, w in widths.items():
-        ws.column_dimensions[col].width = w
+    link_widths = {"db_id": 8, "troupe (Yiddish)": 34, "person": 38,
+                   "person_db_id": 11, "hub_id": 14, "spans": 24,
+                   "org_type": 18, "decided by": 16, "decided": 18,
+                   "tier": 8, "pattern": 11, "notes": 46}
+    for name, w in link_widths.items():
+        ls.column_dimensions[get_column_letter(LINK_HEAD.index(name) + 1)].width = w
+    for row in ls.iter_rows(min_row=2):
+        for c in row:
+            c.alignment = Alignment(vertical="top",
+                                    wrap_text=c.column_letter in ("B", "C", "L"))
+        for n in (LINK_HEAD.index("troupe (Yiddish)"),
+                  LINK_HEAD.index("person"), LINK_HEAD.index("spans")):
+            row[n].alignment = Alignment(vertical="top", wrap_text=True,
+                                         readingOrder=2)
+
+    # Keyed by HEADING, not by letter, so inserting a column cannot silently
+    # hand one column's width to its neighbour.
+    widths = {
+        "db_id": 8, "troupe (Yiddish)": 30, "troupe (Latin)": 26,
+        "eponym #": 9, "name in troupe": 16, "LLM proposal": 34,
+        "LLM conf": 9, "LLM evidence": 56, "person_name": 34,
+        "Ruthie's comments": 30, "suggested persons": 46, "n_suggestions": 7,
+        "org_type": 18, "mentioned by": 30, "roles / dates": 28,
+        "mention context (lexicon)": 70, "notes": 22,
+    }
+    for name, w in widths.items():
+        ws.column_dimensions[get_column_letter(HEAD.index(name) + 1)].width = w
     for col, w in {"A": 38, "B": 30, "C": 12, "D": 16, "E": 10, "F": 10, "G": 9}.items():
         ps.column_dimensions[col].width = w
 
     proposal_fill = PatternFill("solid", fgColor="E2EFDA")
+    # Positions are derived from HEAD, not hard-coded: inserting "Ruthie's
+    # comments" shifted every column after person_name, and the literal
+    # indices (row[8], "I2:I...") would have silently pointed one column left.
+    ix = {name: n for n, name in enumerate(HEAD)}
+    WRAP = {"troupe (Yiddish)", "LLM proposal", "LLM evidence",
+            "Ruthie's comments", "suggested persons", "mentioned by",
+            "roles / dates", "mention context (lexicon)"}
+    wrap_letters = {get_column_letter(ix[h] + 1) for h in WRAP if h in ix}
     for row in ws.iter_rows(min_row=2):
         for c in row:
-            c.alignment = Alignment(
-                vertical="top",
-                wrap_text=c.column_letter in ("B", "F", "H", "J", "M", "N", "O"))
-        row[8].fill = answer_fill          # I: person_name, the column she fills
-        row[5].fill = proposal_fill        # F: the machine's proposal
+            c.alignment = Alignment(vertical="top",
+                                    wrap_text=c.column_letter in wrap_letters)
+        row[ix["person_name"]].fill = answer_fill        # the column she fills
+        row[ix["Ruthie's comments"]].fill = answer_fill  # and the one beside it
+        row[ix["LLM proposal"]].fill = proposal_fill
 
     # RTL on the Yiddish columns so Excel renders them properly.
     for row in ws.iter_rows(min_row=2):
-        for i in (1, 4, 5, 7, 14):         # troupe yid, span, proposal, quote, context
+        for i in (ix["troupe (Yiddish)"], ix["name in troupe"],
+                  ix["LLM proposal"], ix["LLM evidence"],
+                  ix["mention context (lexicon)"]):
             row[i].alignment = Alignment(vertical="top", wrap_text=True,
                                          readingOrder=2)
 
@@ -401,12 +485,16 @@ def main() -> None:
     dv = DataValidation(type="list",
                         formula1=f"=persons!$A$2:$A${last}",
                         allow_blank=True, showDropDown=True)
-    dv.error = "Pick a person from the list, or leave blank / type NONE."
+    dv.error = ("Pick a person from the list, or leave blank / type NONE. "
+                "If the right person is not on the list, write the name in "
+                "the comments column instead.")
     dv.errorTitle = "Not in the person list"
-    dv.prompt = "Choose the person this troupe is named after."
+    dv.prompt = ("Choose the person this troupe is named after. Nobody fits? "
+                 "Name them in \"Ruthie's comments\".")
     dv.promptTitle = "Eponym"
     ws.add_data_validation(dv)
-    dv.add(f"I2:I{rows_written + 1}")      # column I since the LLM columns went in
+    answer_col = get_column_letter(ix["person_name"] + 1)
+    dv.add(f"{answer_col}2:{answer_col}{rows_written + 1}")
 
     out = pathlib.Path(args.out)
     wb.save(out)
@@ -428,9 +516,12 @@ def main() -> None:
               f"from {len(verdicts)} verdicts")
     else:
         print("  LLM proposals    : none (eponym_llm_verdicts.tsv absent)")
+    print(f"sheet 'links':   {link_rows} settled links "
+          f"({len({k[0] for k in by_pair})} troupes)")
     print(f"sheet 'persons': {len(person_labels)} people with ids "
           f"({dropped_orgs} org-like headings excluded)")
-    print(f"dropdown on I2:I{rows_written + 1} -> persons!$A$2:$A${last}")
+    print(f"dropdown on {answer_col}2:{answer_col}{rows_written + 1} "
+          f"-> persons!$A$2:$A${last}")
     print(f"\nwrote {out}")
 
 
