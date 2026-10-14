@@ -476,9 +476,20 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
         # durability guarantee is unchanged.
         import concurrent.futures as _cf
         import threading
+        # Warm the dossier caches on ONE thread first. They are
+        # read-once-then-read-only, so a race could not corrupt them, but eight
+        # threads each parsing the 34 MB cluster file simultaneously would
+        # waste both time and memory.
+        dossier.build_case(sel[0]["db_id"], sel[0]["span"], sel[0]["hub_ids"])
         lock = threading.Lock()
         with _cf.ThreadPoolExecutor(max_workers=workers) as pool:
-            for row in pool.map(judge_one, enumerate(sel, 1)):
+            # submit() all up front, NOT pool.map over a generator: map pulls
+            # from the iterable lazily and yields in order, so it kept only a
+            # couple of requests in flight (2 threads, 0 open sockets, 35s in)
+            # instead of saturating the pool.
+            futs = [pool.submit(judge_one, ic) for ic in enumerate(sel, 1)]
+            for fut in _cf.as_completed(futs):
+                row = fut.result()
                 with lock:
                     out.append(row)
                     if out_path is not None:
