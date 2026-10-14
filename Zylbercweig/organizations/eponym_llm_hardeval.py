@@ -80,6 +80,8 @@ def main() -> None:
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--sleep", type=float, default=0.0)
+    ap.add_argument("--fresh", action="store_true",
+                    help="delete the output file and judge every case again")
     args = ap.parse_args()
 
     cases = build_hard_cases(args.min_distractors)
@@ -91,27 +93,30 @@ def main() -> None:
     for d in sorted(n):
         print(f"   {d} distractor(s): {n[d]} cases")
 
+    fields = judge.FIELDS + ["n_distractors"]
+    if args.fresh and OUT.exists() and not args.dry_run:
+        OUT.unlink()
+        print(f"--fresh: removed {OUT.name}")
+    if OUT.exists() and not args.fresh and not args.dry_run:
+        done = {(r["db_id"], r["span"]) for r in read_tsv(OUT)}
+        before = len(cases)
+        cases = [c for c in cases if (c["db_id"], c["span"]) not in done]
+        print(f"resuming: {before - len(cases)} already judged, {len(cases)} to go")
+
+    # Verdicts append as they are produced (out_path), so a kill costs at most
+    # the case in flight.
     rows = judge.judge_cases(cases, args.judge, args.limit, args.dry_run,
-                             args.sleep)
+                             args.sleep,
+                             out_path=None if args.dry_run else OUT,
+                             fields=fields)
     if args.dry_run:
         tot = sum(r.get("rendered_chars", 0) for r in rows)
         print(f"\n≈{tot // 3:,} input tokens (dossiers) + system prompt per call")
         print("DRY RUN -- no API calls, nothing written.")
         return
 
-    # Carry the distractor count through for the per-difficulty breakdown.
-    nd = {(c["db_id"], c["span"]): c["n_distractors"] for c in cases}
-    for r in rows:
-        r["n_distractors"] = nd.get((r["db_id"], r["span"]), "")
-
-    fields = judge.FIELDS + ["n_distractors"]
-    with OUT.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=fields, delimiter="\t",
-                           lineterminator="\n", extrasaction="ignore")
-        w.writeheader()
-        for r in rows:
-            w.writerow({**{k: "" for k in fields}, **r})
-    print(f"\nwrote {OUT.relative_to(BASE)}  ({len(rows)} rows)")
+    rows = read_tsv(OUT)
+    print(f"\n{OUT.relative_to(BASE)}: {len(rows)} rows total")
 
     answered = [r for r in rows if r["choice"] != "ABSTAIN"]
     right = sum(1 for r in answered if r["correct"] == "yes")

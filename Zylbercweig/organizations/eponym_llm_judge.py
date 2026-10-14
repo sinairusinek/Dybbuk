@@ -64,6 +64,10 @@ OPEN_OUT = ORGS / "eponym_llm_verdicts.tsv"
 GEMINI_MODEL = "gemini-3.1-pro-preview"
 OPUS_MODEL = "claude-opus-5"
 
+# Per-request deadline. Typical case: 7-50s depending on dossier size; a
+# hung request is unbounded, hence this.
+REQUEST_TIMEOUT_MS = 180_000
+
 # Common nouns the namelist sweep mistakes for surnames -- same list the
 # workbook builder uses, kept in sync by importing nothing: see
 # build_eponym_ra_workbook.NOT_A_NAME. Imported lazily in _open_cases().
@@ -232,8 +236,16 @@ def ask_gemini(client, rendered: str) -> tuple[dict, str]:
         contents=rendered + "\n\nReply with strict JSON only.",
         config=types.GenerateContentConfig(
             system_instruction=SYSTEM_PROMPT,
+            # ~260-360 of these are reasoning tokens before ~47 of JSON, so
+            # 800 is headroom, not a tight budget. Measured 2026-10-14.
             max_output_tokens=800,
             temperature=0.0,
+            # A request WILL occasionally hang with the socket open. Without a
+            # timeout the run sleeps on it forever: one did for 34 minutes on
+            # a single case, and because results were only written at the end,
+            # killing it destroyed 90 completed verdicts. Never run this
+            # without a client-side deadline.
+            http_options=types.HttpOptions(timeout=REQUEST_TIMEOUT_MS),
         ),
     )
     text = (resp.text or "").strip()
@@ -297,8 +309,26 @@ def _preflight(client, judge: str) -> None:
           f"-> {reply[:20]!r}")
 
 
+def _append_row(path: pathlib.Path, row: dict, fields: list[str]) -> None:
+    """Append one verdict immediately.
+
+    Results used to be written only after the whole loop. A hung request 90
+    cases into a 145-case run therefore cost all 90 when it was killed, and
+    --resume had nothing to resume from. Each verdict is now durable the
+    moment it exists.
+    """
+    new = not path.exists()
+    with path.open("a", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields, delimiter="\t",
+                           lineterminator="\n", extrasaction="ignore")
+        if new:
+            w.writeheader()
+        w.writerow({**{k: "" for k in fields}, **row})
+
+
 def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
-                sleep: float) -> list[dict]:
+                sleep: float, out_path: pathlib.Path | None = None,
+                fields: list[str] | None = None) -> list[dict]:
     client = None
     if not dry_run:
         if judge == "gemini":
@@ -316,6 +346,7 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
     sel = cases[:limit] if limit else cases
     out: list[dict] = []
     now = _dt.datetime.now().isoformat(timespec="seconds")
+    t_start = time.time()
 
     for i, c in enumerate(sel, 1):
         case = dossier.build_case(c["db_id"], c["span"], c["hub_ids"])
@@ -335,14 +366,21 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
             continue
 
         data, raw, err = {}, "", ""
+        t0 = time.time()
         for attempt in range(3):
             try:
                 data, raw = (ask_gemini(client, rendered) if judge == "gemini"
                              else ask_opus(client, rendered))
+                err = ""
                 break
             except Exception as e:  # noqa: BLE001
-                err = str(e)[:200]
-                time.sleep(2 * (attempt + 1))
+                err = f"{type(e).__name__}: {str(e)[:160]}"
+                # Say so. A silent retry loop made a dead model id and a hung
+                # socket both look like ordinary slowness.
+                print(f"    case {i} db{c['db_id']} attempt {attempt + 1}/3 "
+                      f"failed after {time.time() - t0:.0f}s: {err}")
+                if attempt < 2:
+                    time.sleep(2 * (attempt + 1))
 
         choice = str(data.get("choice") or "").strip()
         quote = str(data.get("quote") or "").strip()
@@ -371,7 +409,7 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
             else:
                 correct = "no"
 
-        out.append({
+        row = {
             "db_id": c["db_id"], "span": c["span"], "tier": c["tier"],
             "pattern": c["pattern"], "n_candidates": len(c["hub_ids"]),
             "judge": GEMINI_MODEL if judge == "gemini" else OPUS_MODEL,
@@ -382,10 +420,15 @@ def judge_cases(cases: list[dict], judge: str, limit: int, dry_run: bool,
             "proposal_heading": heading, "proposal_person_db_id": pdb,
             "gold": gold, "correct": correct, "judged_at": now,
             "raw_error": err,
-        })
+        }
+        if "n_distractors" in c:          # hardeval carries this through
+            row["n_distractors"] = c["n_distractors"]
+        out.append(row)
+        if out_path is not None:
+            _append_row(out_path, row, fields or FIELDS)
 
         if i % 10 == 0 or i == len(sel):
-            print(f"  judged {i}/{len(sel)}")
+            print(f"  judged {i}/{len(sel)}  ({time.time() - t_start:.0f}s elapsed)")
         if sleep:
             time.sleep(sleep)
     return out
@@ -446,7 +489,9 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--sleep", type=float, default=0.0)
     ap.add_argument("--resume", action="store_true",
-                    help="skip (db_id, span) already in the output file")
+                    help="(default) skip (db_id, span) already in the output")
+    ap.add_argument("--fresh", action="store_true",
+                    help="delete the output file and judge every case again")
     args = ap.parse_args()
 
     if args.audit:
@@ -460,19 +505,30 @@ def main() -> None:
                               and c.get("hub_id")],
                   "gold": r["gold"], "tier": r["tier"], "pattern": r["pattern"]}
                  for r in wrong[:args.audit]]
-        rows = judge_cases(cases, "opus", 0, args.dry_run, args.sleep)
         out = ORGS / "eponym_llm_audit.tsv"
+        if not args.dry_run and out.exists():
+            out.unlink()
+        rows = judge_cases(cases, "opus", 0, args.dry_run, args.sleep,
+                           out_path=None if args.dry_run else out)
     else:
         cases = gold_cases() if args.gold else open_cases()
         out = GOLD_OUT if args.gold else OPEN_OUT
-        if args.resume and out.exists():
+        # Verdicts are appended as they are produced, so a kill costs at most
+        # the case in flight. --resume then picks up from the file; --fresh
+        # starts over.
+        if args.fresh and out.exists() and not args.dry_run:
+            out.unlink()
+            print(f"--fresh: removed {out.name}")
+        if out.exists() and not args.fresh:
             done = {(r["db_id"], r["span"]) for r in read_tsv(out)}
             before = len(cases)
             cases = [c for c in cases if (c["db_id"], c["span"]) not in done]
-            print(f"resume: {before - len(cases)} already judged, {len(cases)} to go")
-        rows = judge_cases(cases, args.judge, args.limit, args.dry_run, args.sleep)
+            print(f"resuming: {before - len(cases)} already in {out.name}, "
+                  f"{len(cases)} to go")
+        rows = judge_cases(cases, args.judge, args.limit, args.dry_run,
+                           args.sleep, out_path=None if args.dry_run else out)
 
-    print(f"\ncases: {len(cases)}")
+    print(f"\ncases this run: {len(cases)}")
     if args.dry_run:
         tot = sum(r.get("rendered_chars", 0) for r in rows)
         print(f"dossier size: total {tot:,} chars, "
@@ -482,15 +538,8 @@ def main() -> None:
         print("\nDRY RUN -- no API calls, nothing written.")
         return
 
-    existing = read_tsv(out) if (args.resume and out.exists()) else []
-    allrows = existing + rows
-    with out.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS, delimiter="\t",
-                           lineterminator="\n", extrasaction="ignore")
-        w.writeheader()
-        for r in allrows:
-            w.writerow({**{k: "" for k in FIELDS}, **r})
-    print(f"wrote {out.relative_to(BASE)}  ({len(allrows)} rows)")
+    allrows = read_tsv(out)        # everything on disk, this run and earlier
+    print(f"{out.relative_to(BASE)}: {len(allrows)} rows total")
     score(allrows)
 
 

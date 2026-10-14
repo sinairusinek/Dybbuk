@@ -82,27 +82,66 @@ def load_live_orgs() -> list[dict]:
     ]
 
 
+def split_heading(ch: str) -> tuple[str, list[str]]:
+    """'surname, given [alias]' -> (surname, [given tokens]).
+
+    A comma is NOT reliable. 660 of 2,897 hubs (22%) write the heading as
+    'surname given' with no comma -- and because the old code took everything
+    before the comma as the surname, those 660 indexed under their FULL name
+    and were invisible to every surname lookup. Joseph Kessler
+    (`קעסלער יאָזעף`, person db 761) was therefore never offered as a
+    candidate for `יאָזעף קעסלערס טרופע`, leaving only David Kessler
+    (`קעסלער, דוד`) on the list -- which the judge correctly refused, making a
+    real person look absent from the corpus.
+
+    So: comma when there is one, else first whitespace token as the surname.
+    Bracketed aliases contribute given-name tokens, never the surname.
+    """
+    ch = (ch or "").strip()
+    if not ch:
+        return "", []
+    alias = " ".join(re.findall(r"\[([^\]]*)\]", ch))
+    main = re.sub(r"\[[^\]]*\]", " ", ch)
+    if "," in main:
+        sur, _, rest = main.partition(",")
+    else:
+        toks = main.split()
+        sur, rest = (toks[0], " ".join(toks[1:])) if toks else ("", "")
+    givens = [t for t in HEB.findall(key(f"{rest} {alias}")) if len(t) > 1]
+    return key(sur), givens
+
+
 def load_surname_index() -> tuple[dict, dict]:
-    """surname key -> [hub]; and (surname, given-initial) -> [hub]."""
+    """surname key -> [hub]; and (surname, given) -> [hub]."""
     hubs = list(csv.DictReader(PERSON_HUB.open(encoding="utf-8"), delimiter="\t"))
     by_surname: dict[str, list] = {}
     by_full: dict[tuple, list] = {}
     for h in hubs:
-        ch = h.get("canonical_heading") or ""
-        parts = re.split(r"[,\[]", ch)
-        sur = key(parts[0])
+        sur, givens = split_heading(h.get("canonical_heading") or "")
         if not sur:
             continue
         by_surname.setdefault(sur, []).append(h)
-        given = key(parts[1]) if len(parts) > 1 else ""
-        if given:
-            for g in HEB.findall(given):
-                # A single letter is an initial (עפּשטיין, מ. ב.). Initials must
-                # not corroborate: ה. ב. עפשטיין and מ. ב. עפּשטיין are
-                # different people and matched as "high" until this guard.
-                if len(key(g)) < 2:
-                    continue
-                by_full.setdefault((sur, key(g)), []).append(h)
+        # A single letter is an initial (עפּשטיין, מ. ב.) and must not
+        # corroborate: ה. ב. עפשטיין and מ. ב. עפּשטיין are different people
+        # and matched as "high" until this guard. split_heading already drops
+        # length-1 tokens.
+        for g in givens:
+            by_full.setdefault((sur, g), []).append(h)
+        # Name surfaces carry attested spellings the heading may not use
+        # ('יאָזעף קעסלער', 'דזשאָזעף קעסלער', 'קעסלערן'). Index the LAST
+        # token of each surface as a surname variant -- Yiddish name surfaces
+        # are given-then-surname, so the last token is the surname. Indexing
+        # every token would make given names like יאָזעף into surname keys and
+        # flood the low tier with false candidates.
+        for surface in (h.get("top_surfaces") or "").split("|"):
+            toks = HEB.findall(key(surface))
+            if not toks:
+                continue
+            t = toks[-1]
+            if len(t) > 2 and t != sur:
+                by_surname.setdefault(t, [])
+                if h not in by_surname[t]:
+                    by_surname[t].append(h)
     return by_surname, by_full
 
 
