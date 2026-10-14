@@ -33,6 +33,7 @@ csv.field_size_limit(10 ** 9)
 BASE = pathlib.Path(__file__).resolve().parents[1]
 CANDIDATES = BASE / "organizations" / "eponym_candidates.tsv"
 DECISIONS = BASE / "organizations" / "eponym_decisions.tsv"
+VERDICTS = BASE / "organizations" / "eponym_llm_verdicts.tsv"
 EDGES = BASE / "organizations" / "graph" / "person_org_edges.tsv"
 PERSON_HUB = BASE / "people" / "person_hub.tsv"
 CORE_DB = BASE / "organizations" / "core_db.tsv"
@@ -148,6 +149,9 @@ def main() -> None:
 
     cands = read_tsv(CANDIDATES)
     decisions = read_tsv(DECISIONS)
+    # Machine proposals, if the judge has run. Absent file = empty columns,
+    # so the workbook still builds without ever calling a model.
+    verdicts = {(v["db_id"], v["span"]): v for v in read_tsv(VERDICTS)}
     hubs = read_tsv(PERSON_HUB)
     orgs = {r["db_id"]: r for r in read_tsv(CORE_DB) if (r.get("db_id") or "").strip()}
     edges = read_tsv(EDGES)
@@ -186,10 +190,24 @@ def main() -> None:
     ws.title = "troupes"
 
     HEAD = ["db_id", "troupe (Yiddish)", "troupe (Latin)", "eponym #",
-            "name in troupe", "person_name", "suggested persons",
+            "name in troupe", "LLM proposal", "LLM conf", "LLM evidence",
+            "person_name", "suggested persons",
             "n_suggestions", "org_type", "mentioned by", "roles / dates",
             "mention context (lexicon)", "notes"]
     ws.append(HEAD)
+
+    # Highest-confidence machine proposals first: the same pre-filled-first
+    # ordering that let the high tier be cleared in one pass, while the bare
+    # low tier stalled at 5 rows an hour.
+    _conf_rank = {"high": 0, "medium": 1, "low": 2}
+
+    def _sort_key(item):
+        (db_id, span), _group = item
+        v = verdicts.get((db_id, span)) or {}
+        has = 1 if (v.get("proposal_hub_id") or "") else 2
+        return (has, _conf_rank.get(v.get("confidence", ""), 3), int(db_id), span)
+
+    open_spans.sort(key=_sort_key)
 
     rows_written = 0
     for (db_id, span), group in open_spans:
@@ -226,9 +244,27 @@ def main() -> None:
             used += len(piece)
         ctx = "\n\n".join(ctx_parts)
 
+        # The judge's proposal, if one exists for this span. Offered as the
+        # dropdown's own label so she can copy it into person_name verbatim --
+        # and with its quote, so the proposal can be checked rather than
+        # trusted. A proposal is never written into person_name itself: the
+        # answer stays hers.
+        v = verdicts.get((db_id, span)) or {}
+        llm_label = ""
+        if v.get("proposal_hub_id"):
+            pdb = (v.get("proposal_person_db_id") or "").strip()
+            llm_label = f"{v.get('proposal_heading','').strip()} [{pdb}]" if pdb else ""
+        elif (v.get("choice") or "") in ("NONE", "ABSTAIN"):
+            llm_label = v["choice"]
+        llm_ev = v.get("quote") or ""
+        if v.get("free_text_name"):
+            llm_ev = f"names “{v['free_text_name']}” (not among the candidates) — {llm_ev}"
+
         ws.append([
             db_id, org_name, (org.get("name") or "").strip(),
-            f"{idx} of {n_for_org}", span, "", sugg_txt, len(sugg),
+            f"{idx} of {n_for_org}", span,
+            llm_label, v.get("confidence", ""), llm_ev,
+            "", sugg_txt, len(sugg),
             (org.get("org_type") or "").strip(), who, rd, ctx,
             head.get("notes") or "",
         ])
@@ -279,21 +315,30 @@ def main() -> None:
             c.fill = fill
         sheet.freeze_panes = "A2"
 
-    widths = {"A": 8, "B": 30, "C": 26, "D": 9, "E": 16, "F": 34, "G": 46,
-              "H": 7, "I": 18, "J": 30, "K": 28, "L": 70, "M": 22}
+    # Columns: A db_id, B troupe-yid, C troupe-latin, D eponym#, E span,
+    # F LLM proposal, G LLM conf, H LLM evidence, I person_name (hers),
+    # J suggested, K n_sugg, L org_type, M mentioned-by, N roles, O context,
+    # P notes.
+    widths = {"A": 8, "B": 30, "C": 26, "D": 9, "E": 16, "F": 34, "G": 9,
+              "H": 56, "I": 34, "J": 46, "K": 7, "L": 18, "M": 30, "N": 28,
+              "O": 70, "P": 22}
     for col, w in widths.items():
         ws.column_dimensions[col].width = w
     for col, w in {"A": 38, "B": 30, "C": 12, "D": 16, "E": 10, "F": 10, "G": 9}.items():
         ps.column_dimensions[col].width = w
 
+    proposal_fill = PatternFill("solid", fgColor="E2EFDA")
     for row in ws.iter_rows(min_row=2):
         for c in row:
-            c.alignment = Alignment(vertical="top", wrap_text=c.column_letter in ("B", "G", "J", "K", "L"))
-        row[5].fill = answer_fill          # person_name, the column she fills
+            c.alignment = Alignment(
+                vertical="top",
+                wrap_text=c.column_letter in ("B", "F", "H", "J", "M", "N", "O"))
+        row[8].fill = answer_fill          # I: person_name, the column she fills
+        row[5].fill = proposal_fill        # F: the machine's proposal
 
     # RTL on the Yiddish columns so Excel renders them properly.
     for row in ws.iter_rows(min_row=2):
-        for i in (1, 4, 11):               # troupe yiddish, span, context
+        for i in (1, 4, 5, 7, 14):         # troupe yid, span, proposal, quote, context
             row[i].alignment = Alignment(vertical="top", wrap_text=True,
                                          readingOrder=2)
 
@@ -309,7 +354,7 @@ def main() -> None:
     dv.prompt = "Choose the person this troupe is named after."
     dv.promptTitle = "Eponym"
     ws.add_data_validation(dv)
-    dv.add(f"F2:F{rows_written + 1}")
+    dv.add(f"I2:I{rows_written + 1}")      # column I since the LLM columns went in
 
     out = pathlib.Path(args.out)
     wb.save(out)
@@ -319,11 +364,21 @@ def main() -> None:
           f"({len(multi)} troupes; {sum(1 for v in multi.values() if v > 1)} multi-eponym)")
     print(f"  with suggestions : {sum(1 for _k, g in open_spans if any(x.get('hub_id') for x in g))}")
     print(f"  no suggestion    : {sum(1 for _k, g in open_spans if not any(x.get('hub_id') for x in g))}")
-    print(f"  with lexicon ctx : (see column L)")
+    print(f"  with lexicon ctx : (see column O)")
     print(f"  dropped common-noun spans: {dropped_nouns}")
+    if verdicts:
+        named = sum(1 for (d, s), _g in open_spans
+                    if (verdicts.get((d, s)) or {}).get("proposal_hub_id"))
+        hi = sum(1 for (d, s), _g in open_spans
+                 if (verdicts.get((d, s)) or {}).get("proposal_hub_id")
+                 and (verdicts.get((d, s)) or {}).get("confidence") == "high")
+        print(f"  LLM proposals    : {named} ({hi} high confidence), "
+              f"from {len(verdicts)} verdicts")
+    else:
+        print("  LLM proposals    : none (eponym_llm_verdicts.tsv absent)")
     print(f"sheet 'persons': {len(person_labels)} people with ids "
           f"({dropped_orgs} org-like headings excluded)")
-    print(f"dropdown on F2:F{rows_written + 1} -> persons!$A$2:$A${last}")
+    print(f"dropdown on I2:I{rows_written + 1} -> persons!$A$2:$A${last}")
     print(f"\nwrote {out}")
 
 
