@@ -11,6 +11,14 @@ when), which is what makes a downstream verdict checkable.
   person_hub.entry_person_ids ->  people/entry_texts.tsv        (biographies)
   graph/person_org_edges.tsv                                    (who/role/date)
 
+What a human reviewer does and this reproduces: read the sentences attesting
+the troupe, then read each candidate's own entry for a back-reference to it.
+What it CANNOT reproduce: reading the troupe's own entry -- only 4 entries in
+the whole corpus are headed by a company name (Hirschbein-Troupe, Vilner
+Troupe, two Literarishe Troupe), so for a company like `י. קעסלערס טרופּע`
+there is nothing to read. The org side is therefore always assembled from
+other people's biographies.
+
 Pure: no model calls, no writes. `eponym_llm_judge.py` consumes it, and the
 org-alignment work can import the same two builders.
 
@@ -57,6 +65,15 @@ FINAL_MAP = str.maketrans("ןםךףץ", "נמכפצ")
 MAX_SENTENCES = 12
 ENTRY_HEAD_CHARS = 1200
 ENTRY_HIT_SENTENCES = 6
+
+# Words that mark a sentence as being about a company rather than a person.
+# Point-stripped and final-folded, to be compared against key(sentence).
+COMPANY_WORDS = tuple(
+    k for k in (
+        "טרופע", "טרופעס", "קאמפאניע", "אנסאמבל", "געזעלשאפט",
+        "דירעקציע", "דירעקטאר", "טעאטער", "בינע", "אפערעטע",
+    )
+)
 
 # host_file in the edge file -> volume number, for person_id reconstruction.
 VOL_OF_FILE = {
@@ -228,6 +245,27 @@ def _split_sentences(text: str) -> list[str]:
     return [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", text or "") if s.strip()]
 
 
+def _given_tokens(heading: str) -> list[str]:
+    """Given-name skeletons from a hub heading.
+
+    A comma is NOT reliable: 660 of 2,897 headings write `surname given` with
+    no comma (`קעסלער יאָזעף`), which is what hid Joseph Kessler from the
+    candidate generator entirely. Same rule as
+    build_eponym_candidates.split_heading().
+    """
+    ch = (heading or "").strip()
+    if not ch:
+        return []
+    alias = " ".join(re.findall(r"\[([^\]]*)\]", ch))
+    main = re.sub(r"\[[^\]]*\]", " ", ch)
+    if "," in main:
+        _, _, rest = main.partition(",")
+    else:
+        toks = main.split()
+        rest = " ".join(toks[1:]) if toks else ""
+    return [t for t in HEB.findall(key(f"{rest} {alias}")) if len(t) > 1]
+
+
 def build_person_dossier(hub_id: str, org: dict | None = None) -> dict:
     """Hub identity + an entry excerpt steered at the organisation.
 
@@ -242,23 +280,38 @@ def build_person_dossier(hub_id: str, org: dict | None = None) -> dict:
     texts = _entry_texts()
     parts = [texts[p] for p in entry_ids(h) if p in texts]
 
-    needles = []
+    # What counts as a sentence about THIS organisation. Matching the bare
+    # span is useless when the span is a surname: for db803 `י. קעסלערס
+    # טרופּע` the span is `קעסלער`, so every sentence naming David Kessler
+    # qualified and his 2,880-sentence entry filled the dossier with his
+    # childhood cheder instead of anything about the troupe. So: the org name
+    # on its own, or the span only when a company word sits beside it.
+    org_needles, span_key = [], ""
     if org:
-        for cand in (org.get("name_yiddish"), org.get("span"), org.get("display")):
-            if cand and HEB.search(cand or ""):
-                needles.append(key(cand))
-    needles = [n for n in needles if n]
+        for cand in (org.get("name_yiddish"), org.get("display")):
+            k = key(cand or "")
+            if k and HEB.search(cand or "") and len(k) > 4:
+                org_needles.append(k)
+        span_key = key(org.get("span") or "")
 
-    excerpts, hit_sentences = [], []
+    def about_org(ks: str) -> bool:
+        if any(n in ks for n in org_needles):
+            return True
+        return bool(span_key and span_key in ks
+                    and any(w in ks for w in COMPANY_WORDS))
+
+    excerpts, hit_sentences, n_company = [], [], 0
     for g in parts:
         body = re.sub(r"\s+", " ", g.get("entry_text") or "").strip()
         vol = g.get("volume", "?")
         excerpts.append(f"[vol {vol}] {body[:ENTRY_HEAD_CHARS]}"
                         + (" …" if len(body) > ENTRY_HEAD_CHARS else ""))
-        if needles:
-            for s in _split_sentences(body):
-                ks = key(s)
-                if any(n in ks for n in needles):
+        sents = _split_sentences(body)
+        n_company += sum(1 for s in sents
+                         if any(w in key(s) for w in COMPANY_WORDS))
+        if org_needles or span_key:
+            for s in sents:
+                if about_org(key(s)):
                     hit_sentences.append(f"[vol {vol}] {s}")
 
     # The weak signal, kept as a feature and labelled as weak: measured on the
@@ -271,6 +324,24 @@ def build_person_dossier(hub_id: str, org: dict | None = None) -> dict:
         mine = {re.sub(r"_\d+$", "", p) for p in entry_ids(h)}
         self_mentions = bool(hosts & mine)
 
+    # Initial check. `י. קעסלערס טרופּע` points at YOsef, not Dovid -- real
+    # evidence that was being thrown away because initials are excluded from
+    # MATCHING (ה. ב. עפשטיין vs מ. ב. עפּשטיין wrongly scored "high" until
+    # they were). An initial may therefore only EXCLUDE a candidate whose
+    # given name starts with a different letter, never confirm one.
+    initial_conflict = ""
+    if org:
+        m = re.search(r"([֐-׿])\s*[.'’]", (org.get("display") or ""))
+        if m:
+            org_initial = key(m.group(1))
+            givens = _given_tokens(h.get("canonical_heading") or "")
+            if org_initial and givens and not any(
+                    g.startswith(org_initial) for g in givens):
+                initial_conflict = (
+                    f"organisation name carries the initial "
+                    f"{m.group(1)}. but this person's given name "
+                    f"({', '.join(givens)}) does not start with it")
+
     return {
         "hub_id": hub_id,
         "found": True,
@@ -279,6 +350,13 @@ def build_person_dossier(hub_id: str, org: dict | None = None) -> dict:
         "born": (h.get("birth_date") or "").strip(),
         "died": (h.get("death_date") or "").strip(),
         "name_surfaces": (h.get("top_surfaces") or "").strip(),
+        # Comparative weight: a 2,880-sentence entry mentioning companies 35
+        # times reads very differently from a 123-sentence one mentioning them
+        # twice, and the excerpt alone cannot show that.
+        "entry_sentences": sum(len(_split_sentences(
+            g.get("entry_text") or "")) for g in parts),
+        "entry_company_sentences": n_company,
+        "initial_conflict": initial_conflict,
         "n_entries": (h.get("n_entries") or "").strip(),
         "has_entry": bool(parts),
         "entry_excerpts": excerpts,
@@ -344,8 +422,15 @@ def render_case(case: dict) -> str:
             L.append(f"  lived: {life}")
         if c["name_surfaces"]:
             L.append(f"  name as written elsewhere: {c['name_surfaces']}")
+        if c.get("initial_conflict"):
+            L.append(f"  ** MISMATCH: {c['initial_conflict']}")
         L.append(f"  own entry names this organisation: "
                  f"{'yes' if c['own_entry_attests_org'] else 'no'}")
+        # Comparative weight, so the model can see that one entry is vast and
+        # another slight rather than inferring it from a truncated excerpt.
+        if c.get("entry_sentences"):
+            L.append(f"  entry size: {c['entry_sentences']} sentences, of which "
+                     f"{c.get('entry_company_sentences', 0)} mention a company")
         for s in c["entry_sentences_naming_org"]:
             L.append(f"  ! {s}")
         for e in c["entry_excerpts"]:

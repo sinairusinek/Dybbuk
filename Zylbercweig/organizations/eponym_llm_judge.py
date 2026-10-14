@@ -100,6 +100,18 @@ Rules that matter here:
 - Dates are decisive evidence. A person born in 1906 cannot be the eponym of a
   troupe attested in 1907. Check the candidate's life dates against the
   organisation's attested dates before choosing.
+- A line marked "** MISMATCH" means the organisation's name carries an initial
+  that disagrees with that candidate's given name (`י. קעסלערס טרופּע` is
+  Yosef, not Dovid). Treat it as strong evidence AGAINST that candidate. The
+  absence of a mismatch proves nothing.
+- "entry size" lets you compare candidates: a person with a vast entry that
+  discusses companies many times is a different kind of figure from one with a
+  slight entry. This is context, not proof -- a famous actor is not the eponym
+  of every troupe bearing his surname, and a manager with a short entry may
+  well be.
+- Lines marked "!" are sentences from that candidate's OWN biography that name
+  this organisation. Their presence is good evidence; their absence is weak
+  evidence, because most entries simply never name the company.
 - If the dossier does not let you choose, ABSTAIN. An abstention is a correct
   and useful answer. Do not guess between candidates who are equally
   plausible, and do not pick the only candidate merely because it is the only
