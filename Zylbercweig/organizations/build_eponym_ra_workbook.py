@@ -34,6 +34,7 @@ BASE = pathlib.Path(__file__).resolve().parents[1]
 CANDIDATES = BASE / "organizations" / "eponym_candidates.tsv"
 DECISIONS = BASE / "organizations" / "eponym_decisions.tsv"
 VERDICTS = BASE / "organizations" / "eponym_llm_verdicts.tsv"
+RA_COMMENTS = BASE / "organizations" / "ra_comment_identifications.tsv"
 EDGES = BASE / "organizations" / "graph" / "person_org_edges.tsv"
 PERSON_HUB = BASE / "people" / "person_hub.tsv"
 CORE_DB = BASE / "organizations" / "core_db.tsv"
@@ -152,12 +153,24 @@ def main() -> None:
     # Machine proposals, if the judge has run. Absent file = empty columns,
     # so the workbook still builds without ever calling a model.
     verdicts = {(v["db_id"], v["span"]): v for v in read_tsv(VERDICTS)}
+    # Her own earlier free-text identifications, harvested by
+    # ingest_ra_comments.py. Carried back so a span she has already named is
+    # not asked from scratch: the name she wrote goes in the comment column,
+    # and where it resolved to a single hub it is offered as the proposal.
+    ra_comments = {(c["db_id"], c["span"]): c for c in read_tsv(RA_COMMENTS)}
     hubs = read_tsv(PERSON_HUB)
     orgs = {r["db_id"]: r for r in read_tsv(CORE_DB) if (r.get("db_id") or "").strip()}
     edges = read_tsv(EDGES)
 
     confirmed_spans = {(d["db_id"], d["span"]) for d in decisions
                        if (d.get("decision") or "").upper() == "CONFIRM"}
+    # A REJECT naming a hub rules out THAT person and the span stays open for
+    # another. A REJECT with no hub says the span is not a name at all
+    # (מיט = "with", ערשטער = "first") -- there is no other answer to give, so
+    # re-asking it wastes a reviewer's pass.
+    confirmed_spans |= {(d["db_id"], d["span"]) for d in decisions
+                        if (d.get("decision") or "").upper() == "REJECT"
+                        and not (d.get("hub_id") or "").strip()}
     decided_pairs = {f"{d['db_id']}|{d['hub_id']}" for d in decisions}
 
     # Group candidates by (org, span) -- one eponym per group.
@@ -267,6 +280,24 @@ def main() -> None:
         llm_ev = v.get("quote") or ""
         if v.get("free_text_name"):
             llm_ev = f"names “{v['free_text_name']}” (not among the candidates) — {llm_ev}"
+
+        # Her own earlier answer wins the proposal slot: she named this person
+        # from the lexicon, and a machine proposal is not better evidence than
+        # that. Where her name resolved to one hub it becomes the pick; where
+        # it did not, it still shows, so she sees what she wrote last time
+        # instead of starting the span over.
+        rc = ra_comments.get((db_id, span))
+        if rc:
+            if rc.get("outcome") == "resolved" and rc.get("person_heading"):
+                pdb = (rc.get("person_db_id") or "").strip()
+                tag = pdb or (rc.get("hub_id") or "").strip()
+                llm_label = f"{rc['person_heading'].strip()} [{tag}]"
+                llm_ev = f"your earlier note “{rc['comment']}” resolves here"
+            else:
+                llm_ev = (f"your earlier note: “{rc['comment']}”"
+                          + (f" — {rc['n_mentions']} mentions in the corpus, no entry"
+                             if (rc.get("n_mentions") or "").isdigit()
+                             and int(rc["n_mentions"]) > 0 else " — no hub found"))
 
         ws.append([
             db_id, org_name, (org.get("name") or "").strip(),

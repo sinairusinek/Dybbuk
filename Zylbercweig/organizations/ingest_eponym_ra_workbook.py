@@ -106,9 +106,20 @@ def main() -> None:
     now = _dt.datetime.now().isoformat(timespec="seconds")
     new, unmatched, blank = [], [], 0
 
+    # She also rejects a span from the comments column, writing "not relevant"
+    # there rather than in person_name (11 spans on the Drive workbook). Read
+    # that as the same answer: it is a rejection either way, and ignoring it
+    # left those spans in the queue to be asked again.
+    cmt_col = next((h for h in head
+                    if h and "comment" in str(h).lower()), None)
+
     for r in range(2, ws.max_row + 1):
         answer = (ws.cell(r, col["person_name"] + 1).value or "")
         answer = str(answer).strip()
+        if not answer and cmt_col:
+            note = str(ws.cell(r, col[cmt_col] + 1).value or "").strip()
+            if note.lower() in NONE_TOKENS:
+                answer = note
         if not answer:
             blank += 1
             continue
