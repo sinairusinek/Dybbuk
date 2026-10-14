@@ -252,8 +252,16 @@ def main() -> None:
         v = verdicts.get((db_id, span)) or {}
         llm_label = ""
         if v.get("proposal_hub_id"):
+            # 301 of 2,897 hubs are facsimile-derived (HUB-P-*) with db_ids
+            # empty: a real lexicon entry that never got a people_db row. The
+            # old `if pdb else ""` dropped the proposal for every one of them,
+            # silently -- the summary line counts proposal_hub_id, so the loss
+            # was invisible. Fall back to the hub_id, which ingest resolves via
+            # by_label, so the proposal survives and stays selectable.
             pdb = (v.get("proposal_person_db_id") or "").strip()
-            llm_label = f"{v.get('proposal_heading','').strip()} [{pdb}]" if pdb else ""
+            phead = (v.get("proposal_heading") or "").strip()
+            tag = pdb or (v.get("proposal_hub_id") or "").strip()
+            llm_label = f"{phead} [{tag}]" if phead else ""
         elif (v.get("choice") or "") in ("NONE", "ABSTAIN"):
             llm_label = v["choice"]
         llm_ev = v.get("quote") or ""
@@ -277,9 +285,22 @@ def main() -> None:
     seen: set[str] = set()
     person_labels: list[str] = []
     dropped_orgs = 0
+    # A db-less hub is normally not offered. But if the judge PROPOSED one, the
+    # proposal has to be selectable or she is shown a name the dropdown refuses.
+    # Only the proposed ones are admitted: the db-less class is mixed, holding
+    # categories (אָדעסער פֿאָלקסזינגער) and play titles alongside real people,
+    # so admitting all 301 would pollute the list she picks from.
+    proposed_hub_ids = {
+        (v.get("proposal_hub_id") or "").strip()
+        for v in verdicts.values()
+        if (v.get("proposal_hub_id") or "").strip()
+        and not (v.get("proposal_person_db_id") or "").strip()
+    }
     for h in sorted(hubs, key=lambda x: x.get("canonical_heading") or ""):
         heading = (h.get("canonical_heading") or "").strip()
         dbid = (h.get("db_ids") or "").split(",")[0].strip()
+        if not dbid and (h.get("hub_id") or "").strip() in proposed_hub_ids:
+            dbid = (h.get("hub_id") or "").strip()
         if not heading or not dbid:
             continue              # "those that have ID's"
         # person_hub.tsv's non_person flag is 0 for EVERY row, so it cannot be

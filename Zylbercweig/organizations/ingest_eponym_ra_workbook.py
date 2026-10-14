@@ -71,6 +71,14 @@ def main() -> None:
         if db:
             by_dbid.setdefault(db, h)
             by_label[f"{hd} [{db}]"] = h
+        else:
+            # Facsimile-derived hub (HUB-P-*) with no people_db row. The builder
+            # labels a proposed one `heading [hub_id]`, which matches neither the
+            # bracketed db form nor the trailing-[digits] regex below, so index
+            # that spelling explicitly.
+            hub_id = (h.get("hub_id") or "").strip()
+            if hub_id:
+                by_label[f"{hd} [{hub_id}]"] = h
         by_label.setdefault(hd, h)
 
     cands = read_tsv(CANDIDATES)
