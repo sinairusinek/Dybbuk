@@ -111,16 +111,54 @@ def split_heading(ch: str) -> tuple[str, list[str]]:
     return key(sur), givens
 
 
+# A bracket INSIDE a token is an editorial note on the spelling, not an alias:
+# `טאָמאַשעוו[פ]סקי` means the surname is attested both with and without that
+# letter. The blanket `\[...\]` -> " " in split_heading turned it into TWO
+# tokens (טאמאשעוו + סקי), so no surname lookup could ever match it -- and
+# Boris Tomashevsky, who has 122 mentions and his own entry (HUB-D693), was
+# reported `absent` for db1365. Same shape as the comma bug: a heading-format
+# quirk hiding a well-attested person. Only 4 headings carry one, but one of
+# them is his.
+#
+# A bracket at a token boundary (`גרינבערג פעני [טאָמאַשעווסקי]`) is a real
+# alias and must keep its space, so the lookaround is deliberately strict.
+_INTOKEN_BRACKET = re.compile(r"(?<=\S)\[([^\]]*)\](?=\S)")
+
+
+def heading_variants(ch: str) -> list[str]:
+    """Readings of a heading whose token carries a bracketed letter.
+
+    Both readings are indexed because the bracket asserts both spellings are
+    attested: keeping the letter and dropping it. Returns the heading unchanged
+    when there is no in-token bracket, so every other heading is untouched.
+    """
+    ch = (ch or "").strip()
+    if not _INTOKEN_BRACKET.search(ch):
+        return [ch]
+    return [_INTOKEN_BRACKET.sub(r"\1", ch), _INTOKEN_BRACKET.sub("", ch)]
+
+
 def load_surname_index() -> tuple[dict, dict]:
     """surname key -> [hub]; and (surname, given) -> [hub]."""
     hubs = list(csv.DictReader(PERSON_HUB.open(encoding="utf-8"), delimiter="\t"))
     by_surname: dict[str, list] = {}
     by_full: dict[tuple, list] = {}
     for h in hubs:
-        sur, givens = split_heading(h.get("canonical_heading") or "")
+        heading = h.get("canonical_heading") or ""
+        # Usually one reading; two only for the 4 in-token-bracket headings.
+        readings = heading_variants(heading)
+        sur, givens = split_heading(readings[0])
         if not sur:
             continue
         by_surname.setdefault(sur, []).append(h)
+        for alt in readings[1:]:
+            alt_sur, alt_givens = split_heading(alt)
+            if alt_sur and alt_sur != sur:
+                if h not in by_surname.setdefault(alt_sur, []):
+                    by_surname[alt_sur].append(h)
+                for g in alt_givens:
+                    if h not in by_full.setdefault((alt_sur, g), []):
+                        by_full[(alt_sur, g)].append(h)
         # A single letter is an initial (עפּשטיין, מ. ב.) and must not
         # corroborate: ה. ב. עפשטיין and מ. ב. עפּשטיין are different people
         # and matched as "high" until this guard. split_heading already drops
