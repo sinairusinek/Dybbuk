@@ -2,9 +2,12 @@
 
 State as of 2026-10-10. Read this plus `README.md` before touching anything.
 
-**Review doc (the form):** <https://claude.ai/code/artifact/e99c9e25-2546-4589-afd7-8a91388c71f7>
-It carries only undecided material; decided tiers were removed, with counts
-kept in its intro.
+**Review doc (the form):** <https://claude.ai/code/artifact/8d2ed99d-4d38-4f82-8e4f-41eab4073e77>
+Carries only undecided rows (57). **Generated**, not hand-built — run
+`python3 build_press_review_form.py` after any matcher change or decision pass
+and republish. The old hand-built form
+(`e99c9e25-2546-4589-afd7-8a91388c71f7`) is superseded: it showed pre-fix Tier
+C and E tables whose rows no longer exist.
 
 ---
 
@@ -23,19 +26,24 @@ a reference, not a source of organizations. Nothing of Galron's gets minted.
 
 | | |
 |---|---|
-| Decisions recorded | **160** — 24 CONFIRM, 127 REJECT, 6 RESEARCH_FURTHER, 3 NOT_A_NEWSPAPER |
+| Decisions recorded | **255** — 108 CONFIRM, 128 REJECT, 12 RESEARCH_FURTHER, 2 NOT_A_NEWSPAPER |
 | Applied to core_db | **5 address cells** (`8e4f29721`). Nothing else. |
-| Open on the form | **57 tier rows + 28 unlinked titles** (down from 81: the two matcher defects below are now fixed, which cleared 24) |
-| Never reviewed | 98 STRONG band, 164 WEAK band |
+| Open on the form | **57 tier rows + 28 unlinked titles** |
+| Never reviewed | **192 WEAK** band only — the STRONG band is now decided |
 
 Decided and closed: A1, A2 (73 rejected on place conflict), B, D, F (6 of 7),
-C1a (7 of 8 groups, on location).
+C1a (7 of 8 groups, on location), and the **whole STRONG band** (95 rows,
+2026-10-13: 87 CONFIRM, 6 RESEARCH_FURTHER, 2 REJECT).
+
+Round 1's decisions lived in the ledger only, so the review file's `decision`
+column read 0% decided; `backfill_review_decisions.py` has since written 155 of
+them back. The review TSV is now the live worklist.
 
 ---
 
 ## Open work, in Sinai's order
 
-### 0. Finish the form (80 + 28 decisions)
+### 0. Finish the form (57 + 28 decisions)
 
 | Section | Open | Note |
 |---|---|---|

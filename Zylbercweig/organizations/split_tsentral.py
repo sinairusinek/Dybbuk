@@ -92,19 +92,33 @@ def main() -> int:
     cfields, crows, cnl = read(CLUSTERED)
     afields, arows, anl = read(ALIGN)
 
-    if any((r.get("cluster_id") or "").strip() == PUB for r in crows):
-        print(f"{PUB} already exists — nothing to do.")
+    # The two files can fall out of step: the Zalmen app rewrites
+    # org_alignment_review.tsv wholesale and has reverted this split there while
+    # organizations_clustered.tsv (which it never writes) stayed split. So the
+    # two halves are checked INDEPENDENTLY and each is repaired on its own.
+    src_done = any((r.get("cluster_id") or "").strip() == PUB for r in crows)
+    aln_done = any((r.get("cluster_id") or "").strip() == PUB for r in arows)
+    if src_done and aln_done:
+        print(f"{PUB} already in both files — nothing to do.")
         return 0
+    if src_done:
+        print(f"source already split; repairing {ALIGN.name} only.")
 
-    mine = [r for r in crows if (r.get("cluster_id") or "").strip() == PARENT]
+    if src_done:
+        pub = [r for r in crows if (r.get("cluster_id") or "").strip() == PUB]
+        thea = [r for r in crows if (r.get("cluster_id") or "").strip() == THEA]
+        mine = pub + thea
+    else:
+        mine = [r for r in crows if (r.get("cluster_id") or "").strip() == PARENT]
     if not mine:
         print(f"ERROR: no source rows for {PARENT}", file=sys.stderr)
         return 2
 
-    pub, thea = [], []
-    for r in mine:
-        s = unpointed(r.get(SENT) or "")
-        (pub if any(m in s for m in PUBLISHER_MARKS) else thea).append(r)
+    if not src_done:
+        pub, thea = [], []
+        for r in mine:
+            s = unpointed(r.get(SENT) or "")
+            (pub if any(m in s for m in PUBLISHER_MARKS) else thea).append(r)
 
     print(f"{PARENT}: {len(mine)} source rows -> "
           f"{len(pub)} publisher + {len(thea)} theatre")
@@ -120,12 +134,13 @@ def main() -> int:
     for r in thea:
         print(f"   THEA «{(r.get(SENT) or '')[:84]}»")
 
-    for r in pub:
-        r["cluster_id"] = PUB
-        r["cluster_size"] = str(len(pub))
-    for r in thea:
-        r["cluster_id"] = THEA
-        r["cluster_size"] = str(len(thea))
+    if not src_done:
+        for r in pub:
+            r["cluster_id"] = PUB
+            r["cluster_size"] = str(len(pub))
+        for r in thea:
+            r["cluster_id"] = THEA
+            r["cluster_size"] = str(len(thea))
 
     # one review row per half, built from the parent's
     parent_row = next((r for r in arows
@@ -163,9 +178,10 @@ def main() -> int:
         print("\nDRY RUN — nothing written. Re-run with --apply.")
         return 0
 
-    shutil.copy2(CLUSTERED, CLUSTERED.with_suffix(f".tsv.pre_tsentral_split_{ts}"))
     shutil.copy2(ALIGN, ALIGN.with_suffix(f".tsv.pre_tsentral_split_{ts}"))
-    write(CLUSTERED, cfields, crows, cnl)
+    if not src_done:
+        shutil.copy2(CLUSTERED, CLUSTERED.with_suffix(f".tsv.pre_tsentral_split_{ts}"))
+        write(CLUSTERED, cfields, crows, cnl)
     write(ALIGN, afields, arows, anl)
     print(f"\nWROTE both files (backups .pre_tsentral_split_{ts})")
     return 0
