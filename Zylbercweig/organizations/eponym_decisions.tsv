@@ -82,7 +82,7 @@ db_id	hub_id	span	decision	tier	pattern	org_name_yiddish	person_heading	person_d
 774	HUB-D1383	ברייטמאן	CONFIRM	medium	possessive	ברייטמאַןס טרופּע	ברייטמאַן, פאַול	1383	Sinai	2026-10-13T12:12:27	
 775	HUB-D768	ספיוואקאווסקי	CONFIRM	medium	trupe_fun	טרופּע פֿון פישזאָן און ספּיוואַקאָווסקי	ספּיוואַקאָווסקי, יעקב	768	Sinai	2026-10-13T12:12:27	
 792	HUB-D922	קאליך	CONFIRM	medium	possessive	קאָליךס טרופּע	קאָליך, יעקב	922	Sinai	2026-10-13T12:12:27	
-803	HUB-D721	קעסלער	CONFIRM	medium	possessive	י. קעסלערס טרופּע	קעסלער, דוד	721	Sinai	2026-10-13T12:12:27	
+803	HUB-D721	קעסלער	REJECT	medium	possessive	י. קעסלערס טרופּע	קעסלער, דוד	721	Sinai	2026-10-14T10:46:25	corrected 2026-10-14: org is י. קעסלערס טרופּע = Joseph; David was the only candidate the comma bug left visible
 808	HUB-D1292	בעזמאנ	CONFIRM	medium	possessive	בעזמאַנס טרופּע	בעזמאַן, איסר	1292	Sinai	2026-10-13T12:12:27	
 815	HUB-D3645	קאריק	CONFIRM	medium	possessive	קאָריקס טרופּע	קאָריק, איליאַ	3645	Sinai	2026-10-13T12:12:27	
 818	HUB-D3564	שטאקפעדער	CONFIRM	medium	trupe_fun	טרופּע פֿון שטאָקפֿעדער	שטאָקפעדער, אַברהם [משה]	3564	Sinai	2026-10-13T12:12:27	
@@ -147,3 +147,4 @@ db_id	hub_id	span	decision	tier	pattern	org_name_yiddish	person_heading	person_d
 337	HUB-D759	מאגולעסקא	REJECT	low	possessive	מאָגולעסקאָס טרופּע	מאָגולעסקאָ, אַמאַליע [פינקעלשטיין]	759	Sinai	2026-10-13T12:43:35	מאגולעסקא resolved to another hub
 523	HUB-D3092	טרילינג	CONFIRM	low	trupe_fun		טרילינג, איליאַ (סימאָן)	3092	Sinai	2026-10-13T12:44:22	
 523	HUB-D3093	טרילינג	REJECT	low	trupe_fun		טרילינג, מאַניע (מרים)	3093	Sinai	2026-10-13T12:44:22	טרילינג resolved to another hub
+803	HUB-D761	קעסלער	CONFIRM	high	possessive	י. קעסלערס טרופּע	קעסלער יאָזעף	761	Sinai	2026-10-14T10:46:25	corrected 2026-10-14: initial י. = יאָזעף, not דוד
