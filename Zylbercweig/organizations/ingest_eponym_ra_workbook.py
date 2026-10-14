@@ -34,7 +34,11 @@ FIELDS = ["db_id", "hub_id", "span", "decision", "tier", "pattern",
           "org_name_yiddish", "person_heading", "person_db_ids",
           "reviewer", "reviewed_at", "notes"]
 
-NONE_TOKENS = {"none", "NONE", "-", "—", "n/a", "na", "no", "nobody", "אין"}
+NONE_TOKENS = {"none", "NONE", "-", "—", "n/a", "na", "no", "nobody", "אין",
+               # Ruthie's own vocabulary on the Drive workbook: "garbage" for a
+               # span that is not a name at all (מיט = "with"), and "not
+               # relevant" in the comments column for the same thing.
+               "garbage", "not relevant", "irrelevant"}
 
 
 def read_tsv(p: pathlib.Path) -> list[dict]:
@@ -88,6 +92,16 @@ def main() -> None:
 
     existing = read_tsv(DECISIONS)
     have = {f"{d['db_id']}|{d['hub_id']}" for d in existing}
+    # Decisions are keyed (db_id, hub_id) because that is what an edge is, but
+    # the WORKBOOK is keyed (db_id, span) -- and one org routinely names one
+    # person across several spans: db1335 אַסתר-רחל קאַמינסקי fills four
+    # (אברהם, אסתר, יצחק, רחל). Deduping on the pair alone recorded only the
+    # first and left the other spans undecided, so the next build re-asked 31
+    # questions Ruthie had already answered. Dedup on the triple instead; the
+    # extra rows are harmless because apply_eponym_decisions collapses them to
+    # one edge per (org, person).
+    have_triples = {(d["db_id"], d["hub_id"], d.get("span") or "")
+                    for d in existing}
 
     now = _dt.datetime.now().isoformat(timespec="seconds")
     new, unmatched, blank = [], [], 0
@@ -109,6 +123,12 @@ def main() -> None:
             # No person: record against the first candidate hub if there is
             # one, else a bare marker row so the span is not re-asked.
             hub_id = group[0]["hub_id"] if group and group[0].get("hub_id") else ""
+            # Same triple guard as the CONFIRM path: re-running the ingest on a
+            # workbook whose REJECTs are already recorded must not append them
+            # twice (db1426 לאבעל got two identical REJECT rows this way).
+            if (db_id, hub_id, span) in have_triples:
+                continue
+            have_triples.add((db_id, hub_id, span))
             new.append({
                 "db_id": db_id, "hub_id": hub_id, "span": span,
                 "decision": "REJECT", "tier": tier, "pattern": pattern,
@@ -127,8 +147,14 @@ def main() -> None:
             unmatched.append((r, db_id, span, answer))
             continue
 
-        key = f"{db_id}|{hub['hub_id']}"
-        if key in have:
+        # Decisions are keyed (db_id, hub_id) because that is what an edge is,
+        # but the WORKBOOK is keyed (db_id, span) -- and one org routinely
+        # names one person across several spans: db1335 אַסתר-רחל קאַמינסקי
+        # fills four (אברהם, אסתר, יצחק, רחל). Skipping on the pair alone
+        # recorded only the first and left the other spans with no decision, so
+        # the next build re-asked 31 questions Ruthie had already answered.
+        # Skip only when this exact SPAN is already decided (see have_triples).
+        if (db_id, hub["hub_id"], span) in have_triples:
             continue
         new.append({
             "db_id": db_id, "hub_id": hub["hub_id"], "span": span,
@@ -139,7 +165,7 @@ def main() -> None:
             "reviewer": args.reviewer, "reviewed_at": now,
             "notes": "RA workbook",
         })
-        have.add(key)
+        have_triples.add((db_id, hub["hub_id"], span))
 
     print(f"workbook rows:      {ws.max_row - 1}")
     print(f"  blank (unanswered): {blank}")
