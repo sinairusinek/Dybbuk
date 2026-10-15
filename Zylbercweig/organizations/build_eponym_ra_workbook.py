@@ -35,6 +35,15 @@ CANDIDATES = BASE / "organizations" / "eponym_candidates.tsv"
 DECISIONS = BASE / "organizations" / "eponym_decisions.tsv"
 VERDICTS = BASE / "organizations" / "eponym_llm_verdicts.tsv"
 RA_COMMENTS = BASE / "organizations" / "ra_comment_identifications.tsv"
+RECALL = BASE / "organizations" / "eponym_recall_candidates.tsv"
+
+# db1482 יעקב און לאה ראַטבאום recovered to `יעקב און וויעראַ ווייס` -- a
+# different couple, matched on the shared given name יעקב plus a token of the
+# hub's own two-person heading. The surname-adjacent trap, and the target hub
+# has no db_id. Excluded by id rather than by a rule, because the rest of the
+# recall pass is sound: 43 of its 54 rows agree with a decision already made
+# and none contradicts one.
+RECALL_EXCLUDE = {("1482", "ראטבאום")}
 EDGES = BASE / "organizations" / "graph" / "person_org_edges.tsv"
 PERSON_HUB = BASE / "people" / "person_hub.tsv"
 CORE_DB = BASE / "organizations" / "core_db.tsv"
@@ -158,6 +167,14 @@ def main() -> None:
     # not asked from scratch: the name she wrote goes in the comment column,
     # and where it resolved to a single hub it is offered as the proposal.
     ra_comments = {(c["db_id"], c["span"]): c for c in read_tsv(RA_COMMENTS)}
+    # Names the judge recovered from its own free-text output, where the span's
+    # own candidate list could not reach the person -- four of them were offered
+    # NO candidate at all. Same evidence standard as any other proposal: a quote
+    # she can check. `n_candidates_offered` rides along so she can see that
+    # nothing was offered, rather than wondering why the dropdown disagrees.
+    recall = {(r["db_id"], r["span"]): r for r in read_tsv(RECALL)
+              if r.get("outcome") == "recovered"
+              and (r["db_id"], r["span"]) not in RECALL_EXCLUDE}
     hubs = read_tsv(PERSON_HUB)
     orgs = {r["db_id"]: r for r in read_tsv(CORE_DB) if (r.get("db_id") or "").strip()}
     edges = read_tsv(EDGES)
@@ -286,6 +303,18 @@ def main() -> None:
         llm_ev = v.get("quote") or ""
         if v.get("free_text_name"):
             llm_ev = f"names “{v['free_text_name']}” (not among the candidates) — {llm_ev}"
+
+        # A recovered name fills the slot the span's own candidates could not:
+        # the judge abstained there precisely BECAUSE the right person was not on
+        # the list, so an ABSTAIN is not a verdict to preserve.
+        rk = recall.get((db_id, span))
+        if rk and rk.get("person_heading"):
+            tag = (rk.get("person_db_id") or "").strip() or (rk.get("hub_id") or "").strip()
+            llm_label = f"{rk['person_heading'].strip()} [{tag}]"
+            offered = (rk.get("n_candidates_offered") or "").strip()
+            llm_ev = (f"recovered from the judge's own reading “{rk['name_read_by_judge']}”"
+                      f" — {'NO candidate was offered for this name' if offered in ('', '0') else f'not among the {offered} offered'}"
+                      f" — {rk.get('judge_quote') or ''}")
 
         # Her own earlier answer wins the proposal slot: she named this person
         # from the lexicon, and a machine proposal is not better evidence than
