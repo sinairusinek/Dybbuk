@@ -43,6 +43,7 @@ VIEWS = {
     "Settlement audit":        ("settlement_audit", "audit"),
     "DB Audit":                ("db_audit",      "dba"),
     "Troupe-tag review":       ("troupe_tags_review", "ttr"),
+    "Eponym · review queues":  ("eponym_queues", "epq"),
     "Activity":                ("activity",      "activity"),
     "B1 · Person Dedup":       ("person_dedup",   "b1"),
     "B2 · Person → DB":        ("person_alignment", "b2"),
@@ -71,6 +72,7 @@ VIEW_STATUS = {
     "Settlement audit":        "🌆",
     "DB Audit":                "🩺",
     "Troupe-tag review":       "🏷",
+    "Eponym · review queues":  "👁 Read-only",
     "Activity":                "📋",
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → DB":        "✅ Ready",
@@ -253,6 +255,9 @@ elif view_module == "kg_link_review":
     render()
 elif view_module == "plays_kg":
     from views.plays_kg import render
+    render()
+elif view_module == "eponym_queues":
+    from views.eponym_queues import render
     render()
 else:
     st.info(f"**{selected}** is not yet implemented.")
