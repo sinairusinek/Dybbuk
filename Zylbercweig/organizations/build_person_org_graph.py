@@ -228,7 +228,12 @@ def main() -> None:
 
     cols = BASE_COLS + extra_cols
     with edge_path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f, delimiter="\t")
+        # LF, not csv.writer's default CRLF: apply_eponym_decisions.py pins
+        # lineterminator="\n" for the same file, so without this the terminators
+        # flip with whichever producer ran last and a rebuild shows every line as
+        # changed, burying the real diff. .gitattributes pins this too, for
+        # clones that never run the generator.
+        w = csv.writer(f, delimiter="\t", lineterminator="\n")
         w.writerow(cols)
         for (host, cid), e in sorted(edges.items()):
             w.writerow(["mention", host[0], host[1], host_label[host], cid,

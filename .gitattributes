@@ -1,0 +1,7 @@
+# person_org_edges.tsv has two producers that disagree on line terminators:
+# build_person_org_graph.py writes CRLF (csv.writer default under newline=""),
+# apply_eponym_decisions.py pins lineterminator="\n". Whichever ran last set the
+# whole file, so a rebuild showed every line as changed and buried the real diff.
+# Pin LF so the diff reflects the actual change. The generator's other three
+# outputs stay CRLF -- they have a single producer and no such flapping.
+Zylbercweig/organizations/graph/person_org_edges.tsv text eol=lf
