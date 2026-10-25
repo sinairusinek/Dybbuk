@@ -366,15 +366,44 @@ lenses; the composers hold the centre.
 - **The ring's titles clear while a play is open** — on the 660 band the fan
   crosses them, and a dimmed title still occupies its space.
 
+#### DybbukMedia JOINED 2026-10-25
+
+The three lenses now draw the catalogue: **752 items on 97 plays**, read from
+the manifest's own recorded anchors (`entity_ids`), not re-matched here.
+
+- **Sinai's calls:** draw PROPOSED anchors, marked as such on their face (no
+  anchor in the manifest had been reviewed by a person — the 56 LINKED rows
+  were stamped by a script); and the item-type → lens mapping below.
+- **Music** 561 (printed scores + the Hurwitz collection's handwritten
+  scores) · **Archival** 95 (play-text manuscripts + Perlmutter cards) ·
+  **Performances** 96 (programmes, posters, photographs). Lit plays per lens:
+  music 58 → 100, archival 26 → 55, performances 24 → 30.
+- Left out on purpose: the 27 `jpress` rows (search *tasks* — no notice has
+  been found) and the 27 `edition` rows (the graph's own editions, drawn
+  already).
+- In a lens, a play's fan gains one node per kind of item with its count,
+  each with a **dashed rim** = proposed, not reviewed; clicking lists the
+  items as citations with their holding institution and link. The play's own
+  panel counts them, with the provenance sentence the song panel uses.
+- **The resting ring is unchanged** — still graph-only, 60 filled / 215
+  hollow. 49 hollow plays have catalogue items; how the rest state should
+  show them was deferred by Sinai (2026-10-25) to the design revisit.
+- The join first needed **67 wrong anchors fixed in DybbukMedia** (`ee89ee29f`):
+  24 edition/jpress rows one play off after a list renumbering, 40 score
+  rows anchored by an offset numeric id, 3 Album rows on Asch's *Kidush
+  Hashem*.
+
 #### Still open
 
 - Whether the three view layers can share one `drawFocus`, or each needs its own
-  fan builder. The song tier already strains the single fan, and none of the
-  three views yet changes what the FAN draws — only which plays are lit.
-- **DybbukMedia is still not joined.** Views 1–2 show only what the graph
-  holds: no scores (352 `sheet_music` rows) and no Perlmutter cards (74
-  `card_catalog` rows). The repo's own `translit_key()` reaches 707 of 1093
-  rows on 100 works; that join is the next real piece of work.
+  fan builder. Each lens now adds its own catalogue tier to the shared fan,
+  but none yet dims the fan nodes it does not concern.
+- How the rest state shows the 49 hollow plays that have catalogue items
+  (deferred, above).
+- Four score rows (`score-0021`–`0024`, "Eliezer's Kinder Lied … from the
+  opera *Akeidas Yitzchok*") are anchored to *Yehudah ha-Galili* because the
+  catalogue sheet's play column says so; the titles point at an *Akeyde*.
+  A catalogue question, not a matcher one.
 - How the "most of it is lost" reading survives the move to one ring.
 
 ---
@@ -410,4 +439,5 @@ lenses; the composers hold the centre.
 | 2026-10-07 | Tiers pulled in toward the author; the two play bands merged into one continuous three-lane band; footprints replaced by curtain / book / notebook icons with a legend key; focus fan moved outward and every node made clickable into the side panel. |
 | 2026-10-07 | Songs given their full record in the side panel: both titles, lyricist, songbook + page, gramophone-recording count, NLI links. Three defects fixed in `work_layer.py` — a 14-row column shift in the songs sheet, 92 lost reading notes, and the list's forced RTL. |
 | 2026-10-08 | Songs drawn in the wheel as a third tier of the hub fan. 34 of the 54 plays with songs have no other trace and had been opening onto an empty fan — 111 songs were stranded. |
+| 2026-10-25 | DybbukMedia joined to the three lenses: 752 proposed catalogue items on 97 plays, one dashed node per kind in the fan, citations in the panel. Fan labels now anchor by their own script (Latin labels left of a play, and Yiddish ones right of it, had run back over their icons). |
 | 2026-10-06 | Spec §3 A/B applied: inner ring as coloured circles with author lines; footprint traces linked to their play; split interaction (panel for title-only, centred graph for traced); icon vocabulary; dates and attestations parsed. Published to the Pages site. |

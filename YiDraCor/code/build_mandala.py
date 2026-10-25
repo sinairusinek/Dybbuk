@@ -285,6 +285,88 @@ def song_payload(n: dict, work: dict | None) -> dict:
     return s
 
 
+# --- catalogue items (DybbukMedia) -------------------------------------
+
+# The physical material — scores, Perlmutter cards, programs, posters — is not
+# in the graph. It is catalogued in DybbukMedia, one row per item, each row
+# anchored to graph node ids by that catalogue's own matcher. This reads those
+# recorded anchors; it does not match anything itself.
+MANIFEST = ROOT.parent / "DybbukMedia" / "data" / "media_manifest.tsv"
+
+# Which lens shows which kind of item (Sinai, 2026-10-25). A handwritten score
+# is catalogued as a manuscript; its notes say so.
+SCORE_NOTE = re.compile(r"score|partitur|תווים", re.I)
+
+
+def media_view(row: dict) -> str:
+    t = row["item_type"]
+    if t == "sheet_music" or (t == "manuscript" and SCORE_NOTE.search(row["notes"])):
+        return "music"
+    if t in ("manuscript", "card_catalog", "print_edition"):
+        return "archive"
+    if t in ("program", "poster", "press_notice", "photograph"):
+        return "stage"
+    return ""
+
+
+def media_by_work(graph: dict) -> dict:
+    """work id -> {view: [item, ...]}, from the manifest's recorded anchors.
+
+    Two sources are left out on purpose. `jpress` rows are search TASKS — "no
+    notice located yet; this row is the worklist item" — and drawing them would
+    claim 27 press notices nobody has found. `edition` rows are the graph's own
+    27 editions, which the wheel already draws as books and notebooks.
+    """
+    import csv
+    nodes = {n["id"]: n for n in graph["nodes"]}
+    work_of = {e["dst"]: e["src"] for e in graph["edges"]
+               if e["rel"] == "realised_as"}
+
+    def to_work(nid: str) -> str:
+        if nid.startswith("edition:"):
+            nid = work_of.get(nid, "")
+        elif nid.startswith("song:"):
+            nid = nodes.get(nid, {}).get("work_id", "")
+        n = nodes.get(nid)
+        if not n or n.get("kind") != "work":
+            return ""
+        return n.get("merged_into") or nid
+
+    out = defaultdict(lambda: defaultdict(list))
+    with MANIFEST.open(encoding="utf-8", newline="") as fh:
+        for r in csv.DictReader(fh, delimiter="\t"):
+            if r["source"] in ("jpress", "edition"):
+                continue
+            view = media_view(r)
+            wids = {to_work(x) for x in r["entity_ids"].split("|") if x} - {""}
+            if not view or not wids:
+                continue
+            it = {"id": r["media_id"], "type": r["item_type"],
+                  "title": trunc_text(r["title"], 160),
+                  "status": r["link_status"]}
+            if r["title_yiddish"] and r["title_yiddish"] not in r["title"]:
+                it["yid"] = trunc_text(r["title_yiddish"], 90)
+            for k, col in (("date", "date"), ("place", "place"),
+                           ("holder", "holding_institution"),
+                           ("coll", "collection"), ("sig", "signature"),
+                           ("url", "source_url")):
+                if r[col]:
+                    it[k] = trunc_text(r[col], 120) if k != "url" else r[col]
+            if not it.get("date") and r["date_note"]:
+                it["date"] = trunc_text(r["date_note"], 60)
+            for wid in wids:
+                out[wid][view].append(it)
+    for views in out.values():
+        for items in views.values():
+            items.sort(key=lambda i: (i.get("date") or "9999", i["title"]))
+    return out
+
+
+def trunc_text(s: str, n: int) -> str:
+    s = (s or "").strip()
+    return s if len(s) <= n else s[: n - 1].rstrip() + "…"
+
+
 # --- the payload -------------------------------------------------------
 
 def build(graph: dict) -> dict:
@@ -399,6 +481,7 @@ def build(graph: dict) -> dict:
                      for r in bucket[wid]):
             bucket[wid].append(row)
 
+    media = media_by_work(graph)
     authors = build_authors(graph, works)
     short_of = {a["id"]: a["short"] for a in authors}
 
@@ -429,6 +512,7 @@ def build(graph: dict) -> dict:
                                (s.get("label") or "").lower()))],
             "people": people_by_work.get(wid, []),
             "orgs": orgs_by_work.get(wid, []),
+            "media": {v: items for v, items in media.get(wid, {}).items()},
         })
 
     totals = {}
@@ -525,7 +609,8 @@ def main() -> int:
     print(f"  works {len(d['works'])}, songs "
           f"{sum(len(w['songs']) for w in d['works'])}, "
           f"events {sum(len(w['events']) for w in d['works'])}, "
-          f"editions {sum(len(w['editions']) for w in d['works'])}")
+          f"editions {sum(len(w['editions']) for w in d['works'])}, "
+          f"catalogue items {sum(len(i) for w in d['works'] for i in w['media'].values())}")
     return 0
 
 

@@ -186,7 +186,59 @@ const ICON = {
   owner: 'M8 11V5.8a1.6 1.6 0 0 1 3.2 0V11M11.2 11V4.6a1.6 1.6 0 0 1 3.2 0V11M14.4 11V6.4a1.6 1.6 0 0 1 3.2 0v7.4c0 3.6-2.4 6.2-5.8 6.2-3 0-4.6-1.5-6.2-4.2l-1.4-2.4a1.6 1.6 0 0 1 2.7-1.7L8 13.4',
   person: 'M12 11.2a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8zM5.2 20c0-3.5 3-5.8 6.8-5.8s6.8 2.3 6.8 5.8',
   org: 'M4.5 20V6.5h8V20M12.5 20v-9h7v9M3 20h18M7 9.5h2M7 13h2M15 14h2M15 17h2',
+  // catalogue items (DybbukMedia). A printed score: a page with a staff and
+  // one note on it — the staff is what separates it from a book at 18px.
+  score: 'M5.5 3.5h13v17h-13zM8 8h8M8 10.5h8M8 13h8M13.2 13V7.2M13.2 13a1.5 1.5 0 1 1-1.5-1.3',
+  // a handwritten score: the notebook, with a note where the text lines were
+  scoreMs: 'M8.5 3.5h10v17h-10zM6 5.2h3M6 9h3M6 12.8h3M6 16.6h3M15.6 14.5V7.5M15.6 14.5a1.5 1.5 0 1 1-1.5-1.3',
+  // a catalogue card: landscape, punched for the drawer rod
+  card: 'M3.5 6.5h17v11h-17zM6.5 10h7M6.5 13h11M12 15.6v.1',
+  // a poster or programme: a sheet with a heavy title band
+  poster: 'M6 3h12v18H6zM8 6h8v3.5H8zM8 12.5h8M8 15h8M8 17.5h5',
+  // a photograph: a frame with a horizon and a sun
+  photo: 'M3.5 6h17v12.5h-17zM3.5 15.5l4.5-4.5 4 4 2.5-2.5 6 5M15.8 9.6a1.3 1.3 0 1 0 0-.1',
 };
+
+/* What each lens shows from the DybbukMedia catalogue. Declared with the icons
+   because the fan, the panel and the views all read it. Every one of these
+   anchors is machine-proposed (none reviewed as of 2026-10-25), so the
+   status travels with each item and is printed wherever items are counted. */
+const MEDIA_KIND = {
+  sheet_music:  {icon:'score',  one:'printed score',     many:'printed scores'},
+  score_ms:     {icon:'scoreMs',one:'handwritten score', many:'handwritten scores'},
+  manuscript:   {icon:'manuscript', one:'manuscript',    many:'manuscripts'},
+  card_catalog: {icon:'card',   one:'Perlmutter card',   many:'Perlmutter cards'},
+  print_edition:{icon:'print',  one:'printed edition',   many:'printed editions'},
+  program:      {icon:'poster', one:'programme',         many:'programmes'},
+  poster:       {icon:'poster', one:'poster',            many:'posters'},
+  press_notice: {icon:'poster', one:'press notice',      many:'press notices'},
+  photograph:   {icon:'photo',  one:'photograph',        many:'photographs'},
+};
+/** A play's catalogue items under one lens, grouped by kind. */
+function mediaGroups(w, v){
+  const items = (w.media && w.media[v]) || [];
+  const by = new Map();
+  items.forEach(it => {
+    // in the music lens a catalogued manuscript is a handwritten score
+    const k = v === 'music' && it.type === 'manuscript' ? 'score_ms' : it.type;
+    if (!by.has(k)) by.set(k, []);
+    by.get(k).push(it);
+  });
+  return [...by.entries()].map(([k, list]) => ({k, kind: MEDIA_KIND[k] ||
+    {icon:'poster', one:k, many:k}, items: list}));
+}
+const mediaCount = (w, v) => ((w.media && w.media[v]) || []).length;
+const kindName = (g, n) => n === 1 ? g.kind.one : g.kind.many;
+/** The provenance line, said once wherever catalogue items are counted. */
+function mediaProvenance(items){
+  const prop = items.filter(i => i.status !== 'LINKED').length;
+  return prop === items.length
+    ? `Attached to this play by the DybbukMedia catalogue matcher` +
+      (items.length === 1 ? '; not yet reviewed by a person.'
+                          : '; none of these attachments has yet been reviewed by a person.')
+    : `${items.length - prop} of ${items.length} attachments are reviewed; ` +
+      `the rest are proposed by the catalogue matcher.`;
+}
 
 // role -> icon key. Roles come from the graph's edge labels.
 function iconFor(role, kind){
@@ -220,8 +272,13 @@ function drawIcon(key, x, y, size, color, opts){
   const g = mk('g', {transform:
     `translate(${x} ${y}) scale(${size/24}) translate(-12 -12)`});
   if (o.plate) {
-    g.appendChild(mk('circle',{cx:12,cy:12,r:13.5,fill:'var(--ground)',
-      stroke:color,'stroke-width':o.plateStroke || 1,'stroke-opacity':.5}));
+    const plate = mk('circle',{cx:12,cy:12,r:13.5,fill:'var(--ground)',
+      stroke:color,'stroke-width':o.plateStroke || 1,'stroke-opacity':.5});
+    if (o.plateDash) {
+      plate.setAttribute('stroke-dasharray', o.plateDash);
+      plate.setAttribute('stroke-opacity', .85);
+    }
+    g.appendChild(plate);
   }
   if (o.fill) {
     // a solid glyph reads at small sizes where a stroked outline turns to mush
@@ -517,6 +574,19 @@ function paintFamFilter(){
     li.appendChild(t);
     tk.appendChild(li);
   });
+  // The lenses' catalogue items share one key line: the dashed rim is the point.
+  const li = document.createElement('li');
+  li.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2);padding:2px';
+  const sv = document.createElementNS(SVG,'svg');
+  sv.setAttribute('width',19); sv.setAttribute('height',19);
+  sv.setAttribute('viewBox','-2 -2 28 28'); sv.style.flex='none';
+  sv.appendChild(drawIcon('score', 12, 12, 24, 'var(--gold)',
+                          {plate:true, plateDash:'2.4 2.2', weight:1.4}));
+  li.appendChild(sv);
+  const t = document.createElement('span');
+  t.textContent = 'Catalogue item, in a view (dashed: proposed, not reviewed)';
+  li.appendChild(t);
+  tk.appendChild(li);
 }
 
 /* scale key — filled vs hollow, since every dot is the same size at rest */
@@ -942,7 +1012,10 @@ function openPlay(id){
   if (!w) return;
   focused = id; hideTip();
   stage.classList.add('focused');
-  const traced = isRich(w);
+  // Under a lens, a play whose only traces are catalogue items still opens
+  // onto a fan: those items are what the lens is for. At rest the ring states
+  // only what the graph holds, so such a play opens its title-only panel there.
+  const traced = isRich(w) || (VIEWS[view0] && mediaCount(w, view0) > 0);
 
   // dim the wheel
   works.forEach(x => setWorkOp(x, x.id===id ? .95 : .055));
@@ -1085,6 +1158,31 @@ function drawFocus(w){
     return g;
   });
 
+  // The lens's own layer: what the DybbukMedia catalogue holds for this play,
+  // one node per kind of item with its count. One node per ITEM would not do —
+  // Ben Hador alone has 32 printed scores. Each rim is dashed, the page's
+  // mark for "not yet established": every one of these anchors is proposed.
+  const media = VIEWS[view0] ? mediaGroups(w, view0).map(g => ({
+    kind:'media', role:'catalogue item', d:g, name:`${g.items.length} ${kindName(g, g.items.length)}`,
+  })) : [];
+  const lastTier = songs.length ? OUT3 : lastUsed;
+  const OUTM = lastTier ? lastTier + (songs.length > 8 ? 118 : 96) : OUT1;
+  ring(media, OUTM, (it, x, y) => {
+    const g = mk('g');
+    g.appendChild(drawIcon(it.d.kind.icon, x, y, 19, 'var(--gold)',
+                           {plate:true, plateDash:'2.4 2.2', weight:1.4}));
+    g.appendChild(mk('circle',{cx:x+10.5, cy:y-10.5, r:7.4,
+      fill:'var(--ground)', stroke:'var(--gold)','stroke-width':.9}));
+    const t = mk('text',{x:x+10.5, y:y-10.5, 'text-anchor':'middle',
+      'dominant-baseline':'central', fill:'var(--gold)',
+      'font-size': it.d.items.length > 99 ? 6.4 : 7.6,
+      'font-family':'IBM Plex Mono, monospace'});
+    t.textContent = it.d.items.length;
+    g.appendChild(t);
+    g.appendChild(label(x, y, it.name, 'proposed · not reviewed'));
+    return g;
+  });
+
   // the play itself, lifted and named
   const hub = mk('g');
   hub.appendChild(mk('circle',{cx:p.x,cy:p.y,r:36,fill:'var(--ground)',
@@ -1096,7 +1194,7 @@ function drawFocus(w){
   gFocus.appendChild(hub);
 
   // Frame to the outermost tier actually drawn, or the songs fall off-screen.
-  frameFocus(p, Math.max(OUT2, songs.length ? OUT3 : 0));
+  frameFocus(p, Math.max(OUT2, songs.length ? OUT3 : 0, media.length ? OUTM : 0));
 
   /** Lay items on an arc centred on the play's outward direction. */
   function ring(items, R, draw){
@@ -1134,10 +1232,17 @@ function drawFocus(w){
     const out = (x - p.x) >= 0;
     const g = mk('g');
     const tx = x + (out ? 19 : -19);
-    const t = mk('text',{x:tx,y:y+(sub?-1:3.5),'text-anchor':out?'start':'end',
+    // SVG resolves text-anchor against the `direction` property, not against
+    // the script the text turns out to be in. Fixed at rtl, a Latin label on
+    // the left of a fan and a Yiddish one on the right both ran back over
+    // their own icon. So the direction follows the label's script, and the
+    // anchor is whichever edge faces away from the icon in that direction.
+    const rtl = /[\u0590-\u05FF]/.test(main);
+    const t = mk('text',{x:tx,y:y+(sub?-1:3.5),
+      'text-anchor': out === !rtl ? 'start' : 'end',
       fill:'var(--ink)','font-size':11.5,'font-family':'Spectral, Georgia, serif'});
     t.textContent = trunc(main, 26);
-    t.style.direction = 'rtl'; t.style.unicodeBidi = 'plaintext';
+    t.style.direction = rtl ? 'rtl' : 'ltr'; t.style.unicodeBidi = 'plaintext';
     g.appendChild(t);
     if (sub) {
       const s2 = mk('text',{x:tx,y:y+10,'text-anchor':out?'start':'end',
@@ -1247,18 +1352,24 @@ const VIEWS = {
     label: 'The music',
     // A play is in this view if it has songs or anyone credited musically.
     has: w => w.songs.length > 0 ||
-              w.people.some(p => MUSIC_ROLES.has(p.role)),
-    note: 'Songs, their lyricists and the composers who wrote for these plays.',
+              w.people.some(p => MUSIC_ROLES.has(p.role)) ||
+              mediaCount(w, 'music') > 0,
+    note: 'Songs, their lyricists and the composers who wrote for these plays; ' +
+          'printed and handwritten scores from the DybbukMedia catalogue, ' +
+          'attached by its matcher and not yet reviewed.',
   },
   archive: {
     label: 'Archival traces',
-    has: w => w.editions.length > 0,
-    note: 'Printed editions and manuscripts, and the libraries holding them.',
+    has: w => w.editions.length > 0 || mediaCount(w, 'archive') > 0,
+    note: 'Printed editions and manuscripts, and the libraries holding them; ' +
+          'the Perlmutter cards and other catalogued manuscripts, ' +
+          'attached by the DybbukMedia matcher and not yet reviewed.',
   },
   stage: {
     label: 'Performances',
-    has: w => w.events.length > 0,
-    note: 'Stagings, and the theatres that gave them.',
+    has: w => w.events.length > 0 || mediaCount(w, 'stage') > 0,
+    note: 'Stagings, and the theatres that gave them; programmes, posters and ' +
+          'photographs from the DybbukMedia catalogue, not yet reviewed.',
   },
 };
 
@@ -1330,6 +1441,17 @@ function rows(pairs){
 
 /** The record for one person or company credited on a play. */
 function detailFor(it, w){
+  if (it.kind === 'media') {
+    const g = it.d, n = g.items.length;
+    const S = [sec(n === 1 ? g.kind.one : g.kind.many, n,
+      `<p class="songnote">${esc(mediaProvenance(g.items))}</p>` +
+      `<ul class="songs">${g.items.map(i => `<li>${mediaRow(i)}</li>`).join('')}</ul>`)];
+    S.push(sec('Of the play',
+      `<p class="tagline">${esc(w.title)}${w.yiddish ? ' · ' + esc(w.yiddish) : ''}</p>`));
+    return {kicker: 'DybbukMedia catalogue', title: `${n} ${kindName(g, n)}`,
+            byline: 'proposed attachment · not reviewed',
+            accent: 'var(--gold)', html: S.join('')};
+  }
   if (it.kind === 'person' || it.kind === 'org') {
     const isOrg = it.kind === 'org';
     const S = [];
@@ -1453,7 +1575,20 @@ function playSections(w, author){
   if (w.songs.length) S.push(sec('Songs', w.songs.length,
     songsBlock(w.songs)));
 
-  if (!w.editions.length && !w.events.length && !w.songs.length)
+  // The open lens's catalogue items, counted by kind; the fan's nodes list
+  // them one by one. Only under a lens: at rest the panel states what the
+  // graph holds, like the ring.
+  const inLens = VIEWS[view0] ? mediaGroups(w, view0) : [];
+  if (inLens.length) {
+    const all = inLens.flatMap(g => g.items);
+    S.push(sec('In the DybbukMedia catalogue', all.length,
+      `<p class="songnote">${esc(mediaProvenance(all))} ` +
+      `Open a node in the drawing for the items themselves.</p>` +
+      '<ul>' + inLens.map(g => `<li class="cred"><span class="r">${g.items.length}</span>` +
+        `<span class="n">${esc(kindName(g, g.items.length))}</span></li>`).join('') + '</ul>'));
+  }
+
+  if (!w.editions.length && !w.events.length && !w.songs.length && !inLens.length)
     S.push(sec('Surviving traces',
       `<p class="empty">No edition, staging or song is recorded. This play survives as a
        title in the catalogue under ${esc(author.short)}'s name.</p>`));
@@ -1518,6 +1653,28 @@ function songSub(s, mainSource){
   if (s.by) return s.by;
   const src = (s.att && s.att[0] && s.att[0].src) || '';
   return src === mainSource ? '' : src;
+}
+
+/** One catalogue item as a citation: what it is, where it is held, a link. */
+function mediaRow(i){
+  const P = ['<div class="t">'];
+  P.push(`<span class="rom">${esc(i.title)}</span>`);
+  if (i.yid) P.push(`<span class="yi">${esc(i.yid)}</span>`);
+  P.push('</div>');
+  const meta = [i.date, i.place].filter(Boolean).join(' · ');
+  if (meta) P.push(`<div class="alt">${esc(meta)}</div>`);
+  // The collection usually restates its holder ("YIVO" / "YIVO, Records of
+  // the Hebrew Actors' Union"); name the holder once.
+  const holder = i.holder && i.coll && i.coll.startsWith(i.holder) ? '' : i.holder;
+  const where = [holder, i.coll, i.sig].filter(Boolean).join(', ');
+  if (where || i.url) {
+    const label = `<span class="nm">${esc(where || 'catalogue record')}</span>`;
+    P.push('<div class="cite"><span class="w">' + (i.url
+      ? `<a href="${esc(i.url)}" target="_blank" rel="noopener">${label}</a>`
+      : label) + '</span></div>');
+  }
+  P.push(`<div class="note">${esc(i.status === 'LINKED' ? 'Reviewed' : 'Proposed')} · ${esc(i.id)}</div>`);
+  return P.join('');
 }
 
 /** One song's evidence — shared by the play panel and a song node's own card. */
