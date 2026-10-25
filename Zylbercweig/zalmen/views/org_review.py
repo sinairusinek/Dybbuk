@@ -382,11 +382,30 @@ def _ensure_core_db_schema(headers, rows):
 
 
 def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
+	"""Save this session's edits onto the LATEST core_db, not over it.
+
+	The local file is the base the caller loaded; GitHub may be newer (the
+	Cloud checkout lags pushes, scripts edit offline). Only the base→rows
+	delta is replayed onto the GitHub copy — see core_db_merge. If the fetch
+	fails we fall back to writing `rows` as before."""
+	from zalmen.github_sync import fetch_file_from_github
+	from core_db_merge import merge_core_db, parse_tsv
 	headers, rows = _ensure_core_db_schema(headers, rows)
 	lock_path = CORE_DB_FILE.with_suffix(".lock")
 	with open(lock_path, "w") as lock_fh:
 		fcntl.flock(lock_fh, fcntl.LOCK_EX)
 		try:
+			remote = fetch_file_from_github("Zylbercweig/organizations/core_db.tsv")
+			if remote is not None and CORE_DB_FILE.exists():
+				try:
+					_, base = parse_tsv(CORE_DB_FILE.read_bytes())
+					r_headers, r_rows = parse_tsv(remote)
+					if r_headers and "db_id" in r_headers:
+						headers, rows, conflicts = merge_core_db(base, rows, r_headers, r_rows, headers)
+						if conflicts:
+							st.toast(f"⚠️ db_id already used by another session: {', '.join(conflicts)} — tell Sinai.", icon="⚠️")
+				except Exception:  # noqa: BLE001 — never block a save on the merge
+					pass
 			with atomic_write(CORE_DB_FILE) as f:
 				w = csv.DictWriter(f, fieldnames=headers, delimiter="\t")
 				w.writeheader()
