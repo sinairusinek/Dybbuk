@@ -244,6 +244,7 @@ per-mention rather than per-entity model and a substantially larger change"
 mentions** (§5.7), so the raw material exists and the question is only whether
 `core_db` should receive it. That is one schema decision serving both proposals,
 and it should be taken once, with the PI, on both agendas together.
+**§10 states that question in the form a decision can be taken on.**
 
 ---
 
@@ -820,3 +821,117 @@ append-only history and was deliberately left as written.
 - `organizations_clustered.tsv` (mention dates; ORG-C00071 / C00940 / C04980 Romm; the succession-vocabulary counts)
 - `publisher_audit_decisions.tsv` (`P057`, `P058`, `P059`, `P148`, `P160`)
 - `TROUPE_TYPOLOGY_PROPOSAL.md` §2 and open questions 3, 5
+
+---
+
+## 10. For the PI: should `core_db` carry time?
+
+One question, serving this proposal and `TROUPE_TYPOLOGY_PROPOSAL.md` together.
+Both are blocked on it and neither should answer it alone. Nothing here needs a
+decision today; it is written so one *can* be taken.
+
+### 10.1 What is actually blocked
+
+- **Dynasties (§4).** Rules 1–4 are adopted and Romm is merged, but the
+  succession itself — who held the press when — lives only as prose in
+  `publisher_audit_decisions.tsv`. You cannot ask *who ran this press in 1880?*,
+  and an edition's imprint cannot be attached to the proprietor who issued it,
+  which `YiDraCor/data/editions.csv` will eventually want.
+- **Troupe facets** (that doc's open question 5). A troupe goes amateur →
+  professional, resident → itinerant. Facets as proposed record the
+  *predominant* character, so a company that changed is recorded as whichever
+  it was longest.
+- Both reduce to the same sentence: **`core_db` models entities with no time
+  dimension, while the mention layer has dates.**
+
+### 10.2 What the data would support (measured 2026-10-25)
+
+Of 16,454 org mentions, **7,323 (44%) carry at least one date** —
+`relations.date_start` / `date_end`, `locations.datefrom` / `dateto`, or
+`founding_date`.
+
+| domain | mentions | dated |
+|---|---|---|
+| printer / publisher | 590 | 365 (61%) |
+| theatre | 6,938 | 3,577 (51%) |
+| troupe / travelling company | 3,358 | 1,437 (42%) |
+
+Projected onto the **3,361 live `core_db` rows**:
+
+| | rows |
+|---|---|
+| would gain ≥1 year from their mentions | **1,686 (50%)** |
+| would gain ≥2 distinct years (a real range) | 725 |
+| would gain ≥5 distinct years (a span, not a point) | 183 |
+
+So a date dimension is **half-populated on arrival** — enough to be useful, not
+enough to be trusted as complete. Any consumer must treat "no date" as *unknown*,
+never as *not then*.
+
+### 10.3 The three options
+
+**A. Do nothing.** Keep dates in the mention layer; keep succession as sourced
+prose in the decision ledgers.
+*For:* no schema change, no migration, nothing to backfill, and the ledger
+already holds more than any single column could — dated prose *with its source*.
+*Against:* the two blocked questions stay blocked, and every future audit that
+wants "when" re-derives it by hand.
+
+**B. Two columns on `core_db`** — `date_from` / `date_to` on the entity.
+*For:* cheapest thing that answers "when was this firm active?"; populates for
+1,686 rows immediately; conventional (MARC `046 $q`/`$r`, Wikidata `P571`/`P576`,
+both surveyed in §5).
+*Against:* it answers the *entity's* span, **not** §4's actual question. One
+range per row still cannot say who held the press in 1880, so Rule 1's loss is
+unfixed. It also invites the error the survey warns about (§5.1): a per-record
+date ends up dating *the name* rather than the business.
+
+**C. A dated relation table** — one row per (entity, role-holder, from, to),
+which is what every modern model does (§5.6): W3C ORG `org:Post` +
+`org:memberDuring`, RiC-O `OwnershipRelation` + `relationHasDate`, Wikidata's
+dated `P127`.
+*For:* the only option that answers both blocked questions, and it generalises —
+proprietors, troupe facets, and the city-branch case `parent_db_id` now carries.
+*Against:* a new file and a new writer in a repo that already has
+multi-producer hazards; needs a UI to be maintainable; and §5.8's warning stands —
+the typed-succession vocabulary it would serve is about **six** printing mentions
+today.
+
+### 10.4 Recommendation
+
+**B is the tempting answer and the wrong one.** It costs a migration and leaves
+both motivating questions unanswered, while adding a column whose meaning
+(entity span vs. name span vs. proprietorship) the survey shows is routinely
+confused.
+
+**Take A now, with C as the stated destination.** Concretely:
+
+1. Keep succession and facet history in the decision ledgers, which already
+   record them with sources.
+2. Decide **C's shape** now even if it is not built — one dated-relation table,
+   not per-domain columns — so the next audit that needs it extends one design
+   instead of inventing a second.
+3. Build C when a consumer actually demands it. The likeliest trigger is the
+   Lateiner/Hurwitz edition work, which records publisher and printer per
+   edition and will eventually want the proprietor, not just the house.
+4. Do **not** extend `parent_db_id` to proprietors in the meantime (§4.3, item 3).
+   Keep it meaning "simultaneous branch"; C subsumes it later.
+
+RiC-O's property-chain design (§5.6) is the standing argument that this order
+costs nothing: an undated assertion can be upgraded to a dated one later without
+rework.
+
+### 10.5 If the PI prefers B anyway
+
+Then please also decide, because the survey says these get confused and the
+answer changes what the columns mean:
+
+1. Do `date_from`/`date_to` describe **the firm's existence**, or **the span the
+   sources attest**? Half the rows have no date at all, so "unknown" must be
+   representable and distinct from "not then".
+2. What happens to the **dynasty** case — is a four-generation press one row with
+   1818–1900, accepting that the proprietors remain unqueryable?
+3. Who **writes** them? If the app does, add the merge-aware write path
+   (`save_core_db` now merges rather than overwrites, `c8d84f006`); if a script
+   does, it needs the multi-producer guard that `person_org_edges.tsv` just
+   learned the hard way.
