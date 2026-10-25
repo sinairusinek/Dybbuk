@@ -164,6 +164,12 @@ def main() -> None:
     # one edge per (org, person).
     have_triples = {(d["db_id"], d["hub_id"], d.get("span") or "")
                     for d in existing}
+    confirmed_by_span: dict[tuple, set] = {}
+    for d in existing:
+        if (d.get("decision") or "").upper() == "CONFIRM" and d.get("hub_id"):
+            confirmed_by_span.setdefault(
+                (d["db_id"], d.get("span") or ""), set()).add(d["hub_id"])
+    contradicts: list[tuple] = []
 
     now = _dt.datetime.now().isoformat(timespec="seconds")
     new, unmatched, blank = [], [], 0
@@ -256,6 +262,15 @@ def main() -> None:
         # Skip only when this exact SPAN is already decided (see have_triples).
         if (db_id, hub["hub_id"], span) in have_triples:
             continue
+        # A span already CONFIRMed to a DIFFERENT person is a contradiction,
+        # not a new answer. Appending it is how db1047's 10-14 correction
+        # (Zaslavsky -> Zolotarevsky) was undone on 10-25: re-ingesting an
+        # older workbook still holding the wrong pick passed the triple test
+        # and put the wrong edge back beside the right one. Report, never write.
+        prior_hubs = confirmed_by_span.get((db_id, span), set()) - {hub["hub_id"]}
+        if prior_hubs:
+            contradicts.append((r, db_id, span, hub["hub_id"], sorted(prior_hubs)))
+            continue
         new.append({
             "db_id": db_id, "hub_id": hub["hub_id"], "span": span,
             "decision": "CONFIRM", "tier": tier, "pattern": pattern,
@@ -323,6 +338,10 @@ def main() -> None:
         bw.writerows(blocked_rows)
     print(f"     -> {BLOCKED.name}: {len(blocked_rows)} rows "
           f"({len(carried)} carried from earlier runs)")
+    print(f"  contradicts a CONFIRM: {len(contradicts)}"
+          f"{'  <-- NOT written; settle by hand' if contradicts else ''}")
+    for r, db, sp, h, prior in contradicts[:15]:
+        print(f"     row {r}: db{db} {sp} -> {h}, already CONFIRMed to {', '.join(prior)}")
     print(f"  unmatched answers:  {len(unmatched)}")
     for r, db, sp, a in unmatched[:15]:
         print(f"     row {r}: db{db} {sp} -> {a!r}")
