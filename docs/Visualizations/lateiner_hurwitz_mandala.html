@@ -970,6 +970,10 @@ const COMPOSER_R = Math.round(PORTRAIT_R * 2 / 3);
 const R_COMPOSER = 300;                // their ring, clear of both portraits
 const composerPlays = new Map();       // person id -> Set(work id)
 const composerEls = new Map();
+// Where each composer ended up after relaxation. The focused-fan needs it to
+// gather that composer's plays around the medallion, and only the layout code
+// knows it, so it is published here rather than recomputed.
+const composerSeat = new Map();
 
 {
   const by = new Map();
@@ -1043,15 +1047,50 @@ const composerEls = new Map();
       const tx = Math.cos(S.a), ty = Math.sin(S.a);
       S.x += (tx * S.r - S.x) * 0.012;
       S.y += (ty * S.r - S.y) * 0.012;
+
+      // Clear the two PORTRAIT medallions explicitly. A distance-from-origin
+      // clamp is not enough: the portraits are not at the origin, they sit at
+      // AUTHOR_POS (+-161, -10) with r=104, so a composer could satisfy
+      // "far enough from the centre" and still land straight on Lateiner's
+      // face -- which is what was happening. Push out of each portrait's own
+      // disc, along the line from that portrait's centre.
+      Object.values(AUTHOR_POS).forEach(P => {
+        const dx = S.x - P.x, dy = S.y - P.y;
+        const d = Math.hypot(dx, dy);
+        const need = PORTRAIT_R + COMPOSER_R + 16;   // 16px of air between discs
+        if (d < need) {
+          if (d < 1e-6) { S.x = P.x + need; return; }   // dead centre: pick a side
+          const t = need / d;
+          S.x = P.x + dx * t;
+          S.y = P.y + dy * t;
+        }
+      });
+
       const r = Math.hypot(S.x, S.y);
-      const lo = PORTRAIT_R + COMPOSER_R + 34, hi = R_BAND - 70;
-      if (r < lo || r > hi) {
-        const t = Math.min(hi, Math.max(lo, r)) / (r || 1);
-        S.x *= t; S.y *= t;
-      }
+      const hi = R_BAND - 70;
+      if (r > hi) { const t = hi / (r || 1); S.x *= t; S.y *= t; }
     });
     if (!moved) break;
   }
+
+  // Final pass: the portrait push runs inside the loop, so the LAST separation
+  // nudge can leave a composer a few px inside a portrait again (measured
+  // 185.7 against the 189 required). Enforce the clearance once more after the
+  // loop, when nothing will move afterwards.
+  seats.forEach(S => {
+    Object.values(AUTHOR_POS).forEach(P => {
+      const dx = S.x - P.x, dy = S.y - P.y;
+      const d = Math.hypot(dx, dy);
+      const need = PORTRAIT_R + COMPOSER_R + 16;
+      if (d < need) {
+        if (d < 1e-6) { S.x = P.x + need; return; }
+        const t = need / d;
+        S.x = P.x + dx * t; S.y = P.y + dy * t;
+      }
+    });
+  });
+
+  seats.forEach(S => composerSeat.set(S.e.id, {x: S.x, y: S.y}));
 
   seats.forEach(({e, x, y}) => {
 
@@ -1116,6 +1155,9 @@ let focusedComposer = null;
 
 function focusComposer(c){
   if (focusedComposer === c.id) { clearComposerFocus(); return; }
+  // Always start from the ring: clicking composer B while A's fan is out must
+  // gather B's plays from their real positions, not from wherever A left them.
+  restoreRing();
   focusedComposer = c.id;
   const mine = composerPlays.get(c.id) || new Set();
 
@@ -1133,6 +1175,51 @@ function focusComposer(c){
     const c = workEls.get(w.id);
     if (c) c.setAttribute('r', mine.has(w.id) ? DOT_REST * 2.1 : DOT_REST);
   });
+
+  // GATHER the composer's plays into a compact fan around it, so the subgraph
+  // reads as a shape rather than six long spokes across an empty wheel. The
+  // ring is still the RESTING layout -- every play springs back on clear --
+  // but a focused composer gets a real local network, which is what "I don't
+  // see the network structure" was asking for.
+  const seat = composerSeat.get(c.id);
+  if (seat) {
+    const ids = [...mine];
+    // Radius grows with the fan so titles do not collide: six plays at 128px
+    // put their labels on top of one another. ~34px of arc per play is what a
+    // 10.5px label needs beside its dot.
+    const RF = Math.max(150, Math.min(250, 34 * ids.length / 0.9));
+    // Spread the fan into the open side: away from the wheel's centre, so it
+    // does not land back on the portraits or on the composer's own label.
+    const base = Math.atan2(seat.y, seat.x);
+    ids.forEach((wid, i) => {
+      const el = workEls.get(wid);
+      if (!el) return;
+      // A wider arc than before: 0.34 rad per play rather than 0.26, capped
+      // just under a half-turn so the fan never wraps back over the medallion.
+      const spread = Math.min(Math.PI * 0.95, 0.6 + ids.length * 0.34);
+      const a = base + (ids.length === 1 ? 0
+                        : -spread / 2 + (i / (ids.length - 1)) * spread);
+      const fx = seat.x + Math.cos(a) * RF, fy = seat.y + Math.sin(a) * RF;
+      el.setAttribute('cx', fx); el.setAttribute('cy', fy);
+      // its edge follows the dot
+      // Filter in JS rather than with an attribute selector: these ids carry
+      // Hebrew and punctuation, and CSS.escape is not available everywhere.
+      [...gComposerLines.querySelectorAll('line')]
+        .filter(l => l.dataset.composer === c.id && l.dataset.work === wid)
+        .forEach(l => { l.setAttribute('x2', fx); l.setAttribute('y2', fy); });
+      // and so does its title: re-placed beside the moved dot, upright, since
+      // the radial rotate() that works on the ring is meaningless off it.
+      const t = [...gTitle.querySelectorAll('text')]
+                  .find(x => x.dataset.work === wid);
+      if (t) {
+        const left = Math.cos(a) < 0;
+        t.setAttribute('transform', '');
+        t.setAttribute('x', fx + (left ? -11 : 11));
+        t.setAttribute('y', fy + 3.5);
+        t.setAttribute('text-anchor', left ? 'end' : 'start');
+      }
+    });
+  }
 
   // Their titles stay up -- naming the lit plays is most of the answer to
   // "which plays did this composer write for". The rest go out so two layers
@@ -1160,14 +1247,43 @@ function focusComposer(c){
   resetBtn.classList.add('on');
 }
 
+/** Put every play, edge and title back on the ring.
+ *
+ *  The ring is the resting layout, so a gathered fan is temporary by
+ *  definition. This restores from `pos`, the authority the ring was drawn
+ *  from, rather than remembering a previous state -- so it is correct however
+ *  many composers were focused in between, and a missed clear path shows up as
+ *  a dot in the wrong place rather than silently drifting.
+ */
+function restoreRing(){
+  works.forEach(w => {
+    const el = workEls.get(w.id), p = pos.get(w.id);
+    if (!el || !p) return;
+    el.setAttribute('cx', p.x); el.setAttribute('cy', p.y);
+    el.setAttribute('r', DOT_REST);
+  });
+  [...gComposerLines.querySelectorAll('line')].forEach(l => {
+    const p = pos.get(l.dataset.work);
+    if (p) { l.setAttribute('x2', p.x); l.setAttribute('y2', p.y); }
+  });
+  gTitle.querySelectorAll('text').forEach(t => {
+    const p = pos.get(t.dataset.work);
+    t.setAttribute('font-weight', '400');
+    if (!p) return;
+    // back to the radial placement the ring uses
+    const deg = p.a * 180 / Math.PI;
+    const flip = Math.cos(p.a) < 0;
+    t.setAttribute('x', flip ? -(R_BAND + 13) : R_BAND + 13);
+    t.setAttribute('y', 0);
+    t.setAttribute('text-anchor', flip ? 'start' : 'end');
+    t.setAttribute('transform', `rotate(${flip ? deg + 180 : deg})`);
+  });
+}
+
 function clearComposerFocus(){
   if (!focusedComposer) return;
   focusedComposer = null;
-  works.forEach(w => {
-    const c = workEls.get(w.id);
-    if (c) c.setAttribute('r', DOT_REST);
-  });
-  gTitle.querySelectorAll('text').forEach(t => t.setAttribute('font-weight', '400'));
+  restoreRing();
   gComposerLines.querySelectorAll('line').forEach(l => {
     l.setAttribute('stroke-opacity', .5);
     l.setAttribute('stroke-width', 1.3);
@@ -1606,8 +1722,7 @@ function unfocus(){
   if (focusedComposer) { focusedComposer = null; composerEls.forEach(g => g.setAttribute('opacity', 1));
     gComposerLines.querySelectorAll('line').forEach(l => {
       l.setAttribute('stroke-opacity', .5); l.setAttribute('stroke-width', 1.3); });
-    works.forEach(w => { const c = workEls.get(w.id); if (c) c.setAttribute('r', DOT_REST); });
-    gTitle.querySelectorAll('text').forEach(t => t.setAttribute('font-weight', '400')); }
+    restoreRing(); }
   stage.classList.remove('focused');
   gSpoke.querySelectorAll('line').forEach(l => l.setAttribute('stroke-opacity', 1));
   gOuter.querySelectorAll('*').forEach(e => e.setAttribute('opacity', 1));
