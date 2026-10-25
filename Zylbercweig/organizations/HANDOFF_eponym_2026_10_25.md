@@ -10,24 +10,39 @@ open.
 
 ---
 
-## THE RISK, first
+## RESOLVED 2026-10-25, later the same day: the branch is merged
 
-Everything below lives on branch **`recover-session`**, which is **UNMERGED and
-~2,400 commits behind `origin/main`**. The gap is almost entirely Zalmen app
-auto-saves. Do not let the eponym work sit only here. Merging is Sinai's call —
-he said so explicitly on 10-14 and that has not been revisited.
+**This section's original warning is obsolete — do not go looking for
+`recover-session`, it no longer exists.** Kept here, corrected, because the rest
+of the file was written while it was still true.
 
-**But the drift is measured, not unknown** (incoming session, 10-25; I verified
-the row counts independently). `core_db.tsv` is **2,936 rows locally vs 3,419 on
-origin/main**: 483 orgs exist only on main (ids 3000–3482) and **zero exist only
-locally** — purely additive, the tables have not diverged. Of those 483, only 2
-carry the possessive `ס-טרופּע` pattern, none carry `טרופּע פֿון`, and 31 contain
-`טרופּ` at all; the types skew welfare/aid (164) and religious (91).
+A consolidation session merged `recover-session` into `main` as `05a2ab20c` and
+deleted it. The checkout is on `main` at `origin/main`, nothing ahead or behind.
+The branch tip is preserved as tag **`archive/2026-10-25/recover-session`**
+(`a07aea804`, pushed to origin; 31 such tags in total, one per retired branch and
+stash). Restore with
+`git branch recover-session archive/2026-10-25/recover-session`.
 
-So candidate generation IS running against a stale org table, but the missing
-eponym yield is small and countable. **A rebuild is not urgent, and the 404
-decisions are not suspect** — the drift touches almost nothing the generator
-keys on. Do not read "2,400 behind" as doubt about the ledger.
+Verified independently after the merge, not taken on trust:
+
+- All ten key commits are ancestors of `main` (`9a4927395`, `3a76e27ab`,
+  `35409eaa2`, `c11918d50`, `a27f4bd35`, `ed64cbb6c`, `d1f22725b`, and the three
+  handoff commits).
+- **No ledger rows were lost, and the data grew**: 414 decisions (375 CONFIRM /
+  39 REJECT; Sinai 156, Ruthie 258), **302 eponym edges** over 232 orgs, 0
+  duplicate pairs, 0 duplicate decision rows.
+- `people_db` 3,027 rows with the 24 live mints intact and 3829/3841 still
+  merged away; the README consistency check PASSES.
+- Both 10-15 surface detaches held: `אידא קאַמינסקאַ` has NOT returned to
+  Regina's `HUB-D3612`, and `חיהלע פֿרידמאַן` has NOT returned to the Ash hub.
+  A careless merge would have restored both.
+- `HUB-D383` still reads `שלום-עליכם` with its 239 mention links.
+- Line endings survived: `people_db` and `people_extracted` CRLF,
+  `eponym_decisions` LF.
+
+The `core_db` staleness this section used to warn about is gone with the merge —
+the checkout now has main's org table. Re-measure before assuming anything about
+candidate yield.
 
 ---
 
@@ -257,13 +272,14 @@ were raised with Sinai on 10-15 and are **still unresolved**:
 
 Regenerate it after any ingest; it is derived, not a ledger.
 
-## The unmerged branch, concretely
+## ~~The unmerged branch~~ — MERGED, see the top of this file
 
-**34 commits on `recover-session` are not on `origin/main`** (count as of
-10-25; it grew by one while this handoff was being written — another session is
-still committing to this checkout, so re-count before acting).
+Superseded: `recover-session` was merged into `main` as `05a2ab20c` and deleted
+on 2026-10-25, tip archived as tag `archive/2026-10-25/recover-session`. The
+verification is at the top. What follows is kept only because the merge-hygiene
+rule still applies to these files in any future reconciliation.
 
-What would be lost if the branch were discarded, beyond the eponym track:
+What was at stake, and is now on `main`:
 `ed64cbb6c` (478 Hebrew-stylistics rows split out of people_db), `d1f22725b`
 (Sholem Aleichem 3492 merged into 383), `a27f4bd35` (his reversed heading fixed
 + 239 mentions linked), `3a76e27ab` (26 people minted), `9a4927395` (Ida
@@ -276,8 +292,9 @@ Sinai's standing rule these are append-only ledgers and must be merged
 **field-level, never with `git merge --ours/--theirs`** — each side fills cells
 the other left empty, and line endings differ per file (see the traps).
 
-Merging is Sinai's explicit call, unrevisited since 10-14. Nobody has merged,
-pushed or rebased.
+That rule still stands for any future reconciliation of these files, and the
+10-25 merge respected it — verified above: no rows lost, both surface detaches
+held, no duplicate decision rows.
 
 ## Review doc
 
