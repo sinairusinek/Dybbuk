@@ -38,7 +38,19 @@ NONE_TOKENS = {"none", "NONE", "-", "—", "n/a", "na", "no", "nobody", "אין"
                # Ruthie's own vocabulary on the Drive workbook: "garbage" for a
                # span that is not a name at all (מיט = "with"), and "not
                # relevant" in the comments column for the same thing.
-               "garbage", "not relevant", "irrelevant"}
+               "garbage", "not relevant", "irrelevant",
+               # Added 2026-10-25 from the 10-21 workbook revision. Without
+               # these, "Troupe (not person)" read as a PERSON NAME and the
+               # span was silently confirmed against a candidate hub -- the
+               # exact opposite of her answer (db1614 פאקט, db1624, db1630).
+               "troupe (not person)", "troupe(not person)", "not a person",
+               "not person"}
+
+# Out-of-scope rather than not-a-person: the span IS someone's name, but the
+# person is outside this corpus. Recorded as REJECT so the span stops being
+# asked, with the reason preserved -- never folded into "no person", which
+# would assert something false about the name (db1031 גארסקי "Non Jewish").
+OUT_OF_SCOPE_TOKENS = {"non jewish", "non-jewish", "not jewish"}
 
 
 def read_tsv(p: pathlib.Path) -> list[dict]:
@@ -118,7 +130,7 @@ def main() -> None:
         answer = str(answer).strip()
         if not answer and cmt_col:
             note = str(ws.cell(r, col[cmt_col] + 1).value or "").strip()
-            if note.lower() in NONE_TOKENS:
+            if note.lower() in NONE_TOKENS or note.lower() in OUT_OF_SCOPE_TOKENS:
                 answer = note
         if not answer:
             blank += 1
@@ -130,7 +142,8 @@ def main() -> None:
         pattern = group[0]["pattern"] if group else ""
         org_y = str(ws.cell(r, col["troupe (Yiddish)"] + 1).value or "")
 
-        if answer in NONE_TOKENS or answer.lower() in NONE_TOKENS:
+        out_of_scope = answer.lower() in OUT_OF_SCOPE_TOKENS
+        if out_of_scope or answer in NONE_TOKENS or answer.lower() in NONE_TOKENS:
             # No person: record against the first candidate hub if there is
             # one, else a bare marker row so the span is not re-asked.
             hub_id = group[0]["hub_id"] if group and group[0].get("hub_id") else ""
@@ -145,7 +158,9 @@ def main() -> None:
                 "decision": "REJECT", "tier": tier, "pattern": pattern,
                 "org_name_yiddish": org_y, "person_heading": "",
                 "person_db_ids": "", "reviewer": args.reviewer,
-                "reviewed_at": now, "notes": "RA workbook: no person",
+                "reviewed_at": now,
+                "notes": (f"RA workbook: out of scope ({answer})"
+                          if out_of_scope else "RA workbook: no person"),
             })
             continue
 
