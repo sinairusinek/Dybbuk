@@ -1565,7 +1565,7 @@ def render() -> None:
 			)
 		# org_type selectbox — inline editing
 		_type_row_idx = next((i for i, r in enumerate(a_rows) if r.get("cluster_id") == selected["cluster_id"]), None)
-		_cur_type = selected.get("org_type", "").strip().lower()
+		_cur_type = _canonical_org_type(selected.get("org_type", ""))
 		_type_options = list(_ORG_TYPE_OPTIONS)
 		if _cur_type and _cur_type not in _type_options:
 			_type_options.insert(0, _cur_type)
@@ -1772,7 +1772,7 @@ def render() -> None:
 				# org_type selectbox for the chosen DB entity
 				_db_row_idx = next((i for i, r in enumerate(db_rows) if r.get("db_id") == chosen_db_id), None)
 				if _db_row_idx is not None:
-					_db_cur_type = db_rows[_db_row_idx].get("org_type", "").strip().lower()
+					_db_cur_type = _canonical_org_type(db_rows[_db_row_idx].get("org_type", ""))
 					_db_type_options = list(_ORG_TYPE_OPTIONS)
 					if _db_cur_type and _db_cur_type not in _db_type_options:
 						_db_type_options.insert(0, _db_cur_type)
