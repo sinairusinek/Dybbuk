@@ -128,20 +128,6 @@ KG_LINK_REVIEW_HEADERS = [
 ]
 
 
-# Eponym links (organizations/eponym_decisions.tsv): CONFIRM/REJECT per
-# (org, person) pair, consumed by apply_eponym_decisions.py to write
-# edge_source=eponym edges. Keyed on (db_id, hub_id), NOT db_id — one org named
-# after a trio yields three independent decisions.
-ORGS = pathlib.Path(__file__).resolve().parents[1] / "organizations"
-EPONYM_DECISIONS = ORGS / "eponym_decisions.tsv"
-EPONYM_DECISIONS_REPO_PATH = "Zylbercweig/organizations/eponym_decisions.tsv"
-EPONYM_DECISION_HEADERS = [
-    "db_id", "hub_id", "span", "decision", "tier", "pattern",
-    "org_name_yiddish", "person_heading", "person_db_ids",
-    "reviewer", "reviewed_at", "notes",
-]
-
-
 def _key_db_id(row: dict) -> str:
     return row.get("db_id", "")
 
@@ -150,22 +136,16 @@ def _key_slot_surface(row: dict) -> str:
     return f"{row.get('slot', '')}|{row.get('surface', '')}"
 
 
-def _key_db_hub(row: dict) -> str:
-    return f"{row.get('db_id', '')}|{row.get('hub_id', '')}"
-
-
 # The store's files, with the headers a write must be normalised to
 # (see feedback: save_* must enforce canonical headers at write time).
 _FILES: list[tuple[str, pathlib.Path, list[str]]] = [
     (TROUPE_TAGS_REPO_PATH, TROUPE_TAGS, TROUPE_TAG_HEADERS),
     (TAG_REVIEW_REPO_PATH, TAG_REVIEW, TAG_REVIEW_HEADERS),
     (KG_LINK_REVIEW_REPO_PATH, KG_LINK_REVIEW, KG_LINK_REVIEW_HEADERS),
-    (EPONYM_DECISIONS_REPO_PATH, EPONYM_DECISIONS, EPONYM_DECISION_HEADERS),
 ]
 _HEADERS_BY_REPO_PATH = {rp: headers for rp, _lp, headers in _FILES}
 # Row identity per file (default db_id).
-_KEY_BY_REPO_PATH = {KG_LINK_REVIEW_REPO_PATH: _key_slot_surface,
-                     EPONYM_DECISIONS_REPO_PATH: _key_db_hub}
+_KEY_BY_REPO_PATH = {KG_LINK_REVIEW_REPO_PATH: _key_slot_surface}
 _KEY_BY_LOCAL_PATH = {lp: _KEY_BY_REPO_PATH.get(rp, _key_db_id) for rp, lp, _h in _FILES}
 
 # Per-process boot state: repo_path → whether the data-branch copy has been
@@ -371,27 +351,6 @@ def save_kg_link_review(records: list[dict], push: bool = True) -> bool:
         return True
     return push_batch([KG_LINK_REVIEW_REPO_PATH],
                       f"chore: KG link review ({len(records)} rows)")
-
-
-@st.cache_data(show_spinner=False)
-def load_eponym_decisions(mtime: float) -> dict[str, dict]:
-    """'db_id|hub_id' → row. Callers pass `_mtime(EPONYM_DECISIONS)` after
-    `ensure_fresh()`."""
-    return _read_rows(EPONYM_DECISIONS)
-
-
-def save_eponym_decisions(records: list[dict], push: bool = True) -> bool:
-    """Upsert N eponym decisions (keyed db_id|hub_id); same contract as
-    `save_troupe_tags`."""
-    if not records:
-        return True
-    _upsert(EPONYM_DECISIONS_REPO_PATH, EPONYM_DECISIONS,
-            EPONYM_DECISION_HEADERS, records)
-    load_eponym_decisions.clear()
-    if not push:
-        return True
-    return push_batch([EPONYM_DECISIONS_REPO_PATH],
-                      f"chore: eponym links ({len(records)} rows)")
 
 
 def push_batch(repo_paths: list[str], commit_message: str) -> bool:

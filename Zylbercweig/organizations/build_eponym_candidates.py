@@ -82,27 +82,104 @@ def load_live_orgs() -> list[dict]:
     ]
 
 
+def split_heading(ch: str) -> tuple[str, list[str]]:
+    """'surname, given [alias]' -> (surname, [given tokens]).
+
+    A comma is NOT reliable. 660 of 2,897 hubs (22%) write the heading as
+    'surname given' with no comma -- and because the old code took everything
+    before the comma as the surname, those 660 indexed under their FULL name
+    and were invisible to every surname lookup. Joseph Kessler
+    (`קעסלער יאָזעף`, person db 761) was therefore never offered as a
+    candidate for `יאָזעף קעסלערס טרופע`, leaving only David Kessler
+    (`קעסלער, דוד`) on the list -- which the judge correctly refused, making a
+    real person look absent from the corpus.
+
+    So: comma when there is one, else first whitespace token as the surname.
+    Bracketed aliases contribute given-name tokens, never the surname.
+    """
+    ch = (ch or "").strip()
+    if not ch:
+        return "", []
+    alias = " ".join(re.findall(r"\[([^\]]*)\]", ch))
+    main = re.sub(r"\[[^\]]*\]", " ", ch)
+    if "," in main:
+        sur, _, rest = main.partition(",")
+    else:
+        toks = main.split()
+        sur, rest = (toks[0], " ".join(toks[1:])) if toks else ("", "")
+    givens = [t for t in HEB.findall(key(f"{rest} {alias}")) if len(t) > 1]
+    return key(sur), givens
+
+
+# A bracket INSIDE a token is an editorial note on the spelling, not an alias:
+# `טאָמאַשעוו[פ]סקי` means the surname is attested both with and without that
+# letter. The blanket `\[...\]` -> " " in split_heading turned it into TWO
+# tokens (טאמאשעוו + סקי), so no surname lookup could ever match it -- and
+# Boris Tomashevsky, who has 122 mentions and his own entry (HUB-D693), was
+# reported `absent` for db1365. Same shape as the comma bug: a heading-format
+# quirk hiding a well-attested person. Only 4 headings carry one, but one of
+# them is his.
+#
+# A bracket at a token boundary (`גרינבערג פעני [טאָמאַשעווסקי]`) is a real
+# alias and must keep its space, so the lookaround is deliberately strict.
+_INTOKEN_BRACKET = re.compile(r"(?<=\S)\[([^\]]*)\](?=\S)")
+
+
+def heading_variants(ch: str) -> list[str]:
+    """Readings of a heading whose token carries a bracketed letter.
+
+    Both readings are indexed because the bracket asserts both spellings are
+    attested: keeping the letter and dropping it. Returns the heading unchanged
+    when there is no in-token bracket, so every other heading is untouched.
+    """
+    ch = (ch or "").strip()
+    if not _INTOKEN_BRACKET.search(ch):
+        return [ch]
+    return [_INTOKEN_BRACKET.sub(r"\1", ch), _INTOKEN_BRACKET.sub("", ch)]
+
+
 def load_surname_index() -> tuple[dict, dict]:
-    """surname key -> [hub]; and (surname, given-initial) -> [hub]."""
+    """surname key -> [hub]; and (surname, given) -> [hub]."""
     hubs = list(csv.DictReader(PERSON_HUB.open(encoding="utf-8"), delimiter="\t"))
     by_surname: dict[str, list] = {}
     by_full: dict[tuple, list] = {}
     for h in hubs:
-        ch = h.get("canonical_heading") or ""
-        parts = re.split(r"[,\[]", ch)
-        sur = key(parts[0])
+        heading = h.get("canonical_heading") or ""
+        # Usually one reading; two only for the 4 in-token-bracket headings.
+        readings = heading_variants(heading)
+        sur, givens = split_heading(readings[0])
         if not sur:
             continue
         by_surname.setdefault(sur, []).append(h)
-        given = key(parts[1]) if len(parts) > 1 else ""
-        if given:
-            for g in HEB.findall(given):
-                # A single letter is an initial (עפּשטיין, מ. ב.). Initials must
-                # not corroborate: ה. ב. עפשטיין and מ. ב. עפּשטיין are
-                # different people and matched as "high" until this guard.
-                if len(key(g)) < 2:
-                    continue
-                by_full.setdefault((sur, key(g)), []).append(h)
+        for alt in readings[1:]:
+            alt_sur, alt_givens = split_heading(alt)
+            if alt_sur and alt_sur != sur:
+                if h not in by_surname.setdefault(alt_sur, []):
+                    by_surname[alt_sur].append(h)
+                for g in alt_givens:
+                    if h not in by_full.setdefault((alt_sur, g), []):
+                        by_full[(alt_sur, g)].append(h)
+        # A single letter is an initial (עפּשטיין, מ. ב.) and must not
+        # corroborate: ה. ב. עפשטיין and מ. ב. עפּשטיין are different people
+        # and matched as "high" until this guard. split_heading already drops
+        # length-1 tokens.
+        for g in givens:
+            by_full.setdefault((sur, g), []).append(h)
+        # Name surfaces carry attested spellings the heading may not use
+        # ('יאָזעף קעסלער', 'דזשאָזעף קעסלער', 'קעסלערן'). Index the LAST
+        # token of each surface as a surname variant -- Yiddish name surfaces
+        # are given-then-surname, so the last token is the surname. Indexing
+        # every token would make given names like יאָזעף into surname keys and
+        # flood the low tier with false candidates.
+        for surface in (h.get("top_surfaces") or "").split("|"):
+            toks = HEB.findall(key(surface))
+            if not toks:
+                continue
+            t = toks[-1]
+            if len(t) > 2 and t != sur:
+                by_surname.setdefault(t, [])
+                if h not in by_surname[t]:
+                    by_surname[t].append(h)
     return by_surname, by_full
 
 
@@ -130,12 +207,94 @@ def classify(text: str, name_en: str) -> tuple[str, list[str]]:
 
 
 # Words that appear inside these patterns but are not surnames.
-STOP = {key(w) for w in ("טרופּע", "פֿון", "און", "די", "דער", "דאָס", "אין",
-                         "קאָמפּאַניע", "טעאַטער", "אַנסאַמבל", "פאַמיליע",
-                         "ברידער", "שוועסטער", "און", "א", "אַ",
-                         "קונסט", "דראַמע", "אָפּערע", "מוזיק", "ייִדיש",
-                         "יידיש", "סצענע", "בינע", "קלוב", "פֿאַראיין",
-                         "פאראיינ", "געזעלשאַפט", "שול", "זון", "זין")}
+#
+# Hand-listing these does not scale -- Sinai spotted `מיט` ("with") and
+# `אייגענע` ("own") surviving into the queue, and a survey then found ~100
+# more: function words, institution vocabulary, place names and adjectives.
+# So the list below covers what a frequency rule cannot, and
+# generic_vocabulary() derives the rest from the corpus itself.
+STOP = {key(w) for w in (
+    # structure words of the patterns themselves
+    "טרופּע", "פֿון", "און", "די", "דער", "דאָס", "אין", "א", "אַ",
+    "קאָמפּאַניע", "טעאַטער", "אַנסאַמבל", "פאַמיליע", "ברידער", "שוועסטער",
+    # prepositions, pronouns, auxiliaries -- never a name
+    "מיט", "פאַר", "אונטער", "אויף", "אויפן", "פונם", "פֿונעם", "ביי", "צו",
+    "וועלכע", "וועלכער", "האָט", "האבן", "זיין", "זיינע", "איר", "זיך",
+    "אייגענע", "אייגענער", "אייגן", "נאָמען", "אויפן נאָמען", "נאָך",
+    "ערשטער", "ערשטע", "צווייטער", "נייע", "נייער", "אַלטע", "יונגע",
+    "גרויסע", "קליינע", "זעלבסט", "הילף", "מיטל", "בלינדער",
+    # art/company vocabulary
+    "קונסט", "דראַמע", "דראַמאַטישע", "דראַמאַטישער", "דראַמאַטישן",
+    "אָפּערע", "אָפּערעטע", "אָפּערעטן", "מוזיק", "סצענע", "בינע",
+    "קאָמעדיע", "קוואַרטעט", "כאָר", "קאַפּעליע", "ארקעסטער", "גרופּע",
+    "קאָלעקטיוו", "סטודיע", "אַקטיאָר", "אַרטיסטן", "קינסטלער", "שוישפּילער",
+    "דיכטער", "שרייבער", "מאָלער", "מוזיקער", "כאָריסטן", "קאָמפּאָזיטאָרן",
+    "דירעקציע", "דירעקטאָר", "מענעדזשמענט", "קאַסירער", "גאַסט",
+    "וואַנדערטרופּע", "טורניי", "פּראָווינץ", "פּריוואַטער", "ליבהאָבער",
+    # institutions
+    "ייִדיש", "יידיש", "קלוב", "פֿאַראיין", "פאראיינ", "געזעלשאַפט", "שול",
+    "שולע", "ישיבה", "תלמוד", "תורה", "אוניווערזיטעט", "גימנאַזיע",
+    "אינסטיטוט", "אַקאַדעמי", "קאָלעדזש", "סקול", "הויכשול", "דראַמשול",
+    "האַנדלסשול", "פּראָגימנאַזיע", "לערנאַנשטאַלט", "סעמינאַר",
+    "פֿאַרבאַנד", "פאַרבאַנד", "פאַראייניקונג", "יוניאָן", "יוניע", "רינג",
+    "אַגודה", "אָפּטייל", "אָפּטיילונג", "סעקשאָן", "בראַנטש", "לאָקאַל",
+    "קרייז", "קאָמיטעט", "אַרכיוו", "ביבליאָטעק", "מוזיי", "פאַרלאַג",
+    "דרוקעריי", "פּאַבלישערס", "בוך", "ליטעראַטור", "ליטעראַטן",
+    "זשורנאַליסטן", "וויסנשאַפט", "געשיכטע", "יוריספּרודענץ", "עקאָנאָמיע",
+    "פּאָליטישער", "פּעדאַגאָגישן", "סטודענטן", "יונגוועלט", "בירגער",
+    "אַרבעטער", "ארבעטער", "קינא", "פילם", "קעמפּ", "הויף", "הויז", "זאַל",
+    "קאָאָפּעראַטיוו", "קאָאָפּעראַטיווע", "קאָאָפּעראַטיווער", "פאַקט",
+    "אַלמנה", "יתומים", "יתומות", "זון", "זין", "געברידער", "מחבר", "מוכר",
+    "פאַרקויף", "נעמער", "פּובליסיטי", "קרעפטן", "לייט", "פריינט", "מוסטער",
+    # nationality / region adjectives
+    "רוסישער", "פּוילישער", "רומענישער", "ענגלישן", "ווייסרוסלענדישע",
+    "אַרגענטינער", "לאַדזשער", "בוקאַרעשטער", "טיפליסער", "זאַקסישן",
+    "מלוכהשן", "סאָוויעט", "וועלטלעכער", "ראַדיקאַלער", "אַקאַדעמישן",
+    "טעכנישער", "אַרטיסטישער", "וואָקאַלער", "באַוועגלעכן", "יודנטום",
+)}
+
+# A span occurring in a great many organisation names is vocabulary, not a
+# surname: `יו`/`ניו`/`יארק` (New York), `פאר`, `יידישן`. Derived from the
+# corpus so it stays true as core_db grows, rather than hand-maintained.
+# The threshold is deliberately high: `בן` (17) and `שלום` (17) are real name
+# elements and must survive, while `יו` (314) and `פאר` (283) must not.
+GENERIC_ORG_NAME_THRESHOLD = 20
+
+
+def generic_vocabulary(orgs: list[dict]) -> set[str]:
+    """Span skeletons that occur in >= THRESHOLD distinct live org names."""
+    counts: dict[str, int] = {}
+    for r in orgs:
+        blob = key(f"{r.get('name_yiddish') or ''} {r.get('name') or ''}")
+        for tok in set(HEB.findall(blob)):
+            if len(tok) > 1:
+                counts[tok] = counts.get(tok, 0) + 1
+    return {t for t, n in counts.items() if n >= GENERIC_ORG_NAME_THRESHOLD}
+
+
+def settlement_names() -> set[str]:
+    """Place-name skeletons, from the settlements the RAs already confirmed.
+
+    `ניו יארק`, `שיקאגא`, `פאריז` and `קאנאדע` were surviving into the queue as
+    candidate eponyms: each is below the generic-frequency threshold, so only a
+    gazetteer removes them. Using the review file's own
+    `confirmed_settlement_yiddish` keeps this true to decisions already made
+    rather than to a city list invented here. Adjectival forms (אָדעסער,
+    ווילנער) are added, since an org is named for a place that way.
+    """
+    path = BASE / "organizations" / "org_addresses_review.tsv"
+    out: set[str] = set()
+    if not path.exists():
+        return out
+    with path.open(encoding="utf-8") as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            for field in ("confirmed_settlement_yiddish", "extracted_settlements"):
+                for part in re.split(r"[|,;]", r.get(field) or ""):
+                    for tok in HEB.findall(key(part)):
+                        if len(tok) > 2:
+                            out.add(tok)
+                            out.add(tok + key("ער"))   # אָדעס -> אָדעסער
+    return out
 
 
 def _neighbours(y: str, span: str) -> list[str]:
@@ -157,6 +316,7 @@ def _neighbours(y: str, span: str) -> list[str]:
 def main() -> None:
     orgs = load_live_orgs()
     by_surname, by_full = load_surname_index()
+    generic = generic_vocabulary(orgs) | settlement_names()
     out: list[dict] = []
     stats: dict[str, int] = {}
 
@@ -170,7 +330,11 @@ def main() -> None:
         if not spans:
             continue
 
-        spans = [s for s in spans if key(s) not in STOP and len(key(s)) > 1]
+        # A 2-letter span is usually noise, but not always: `אַש` is Sholem
+        # Asch. Keep a short span only when it is a known surname.
+        spans = [s for s in spans
+                 if key(s) not in STOP and key(s) not in generic
+                 and (len(key(s)) > 2 or key(s) in by_surname)]
         multi = len(spans) > 1
 
         for sp in spans:

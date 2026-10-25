@@ -186,8 +186,25 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
 #reset.on{opacity:1;pointer-events:auto}
 #reset:hover{color:var(--ink)}
 
+/* view switcher */
+#views{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:6;
+  display:flex;gap:2px;background:var(--ground-2);border:1px solid var(--rule);
+  border-radius:4px;padding:2px}
+#views button{appearance:none;background:none;border:0;cursor:pointer;
+  font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;
+  color:var(--ink-3);padding:7px 12px;border-radius:3px;white-space:nowrap}
+#views button:hover{color:var(--ink)}
+#views button.on{background:var(--ground);color:var(--ink);
+  box-shadow:0 1px 2px rgba(0,0,0,.06)}
+#viewnote{color:var(--ink-2);font-style:italic;margin-bottom:6px}
+@media (max-width:980px){
+  #views{top:auto;bottom:14px;font-size:11px}
+  #views button{padding:6px 9px;font-size:11px}
+}
+
 @media (max-width:760px){
   header .counts{display:none}
+  #views{display:none}
   #legend{max-width:150px;bottom:14px;left:14px}
   #scalekey{display:none}
 }
@@ -202,19 +219,27 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
   <span class="sub"><!--@WORKS@--> plays of the Yiddish popular stage, and what survives of them</span>
   <div class="counts mono">
     <div><b id="c-works"><!--@WORKS@--></b><span class="eyebrow">plays</span></div>
-    <div><b>27</b><span class="eyebrow">editions</span></div>
-    <div><b>64</b><span class="eyebrow">events</span></div>
-    <div><b>225</b><span class="eyebrow">songs</span></div>
+    <div><b><!--@EDITIONS@--></b><span class="eyebrow">editions</span></div>
+    <div><b><!--@EVENTS@--></b><span class="eyebrow">events</span></div>
+    <div><b><!--@SONGS@--></b><span class="eyebrow">songs</span></div>
   </div>
 </header>
 
 <button id="reset">← back to the full wheel</button>
+
+<nav id="views" aria-label="Views">
+  <button data-view="" class="on">The repertoire</button>
+  <button data-view="music">The music</button>
+  <button data-view="archive">Archival traces</button>
+  <button data-view="stage">Performances</button>
+</nav>
 
 <nav id="legend">
   <div class="eyebrow">Genre, as catalogued</div>
   <ul id="fams"></ul>
   <div class="eyebrow" style="margin-top:14px">Traces, springing from their play</div>
   <ul id="tracekey"></ul>
+  <p class="hint" id="viewnote" style="display:none"></p>
   <p class="hint">Click a play to open it. Drag to pan, scroll to zoom.</p>
 </nav>
 

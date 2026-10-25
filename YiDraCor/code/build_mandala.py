@@ -489,8 +489,15 @@ def render() -> str:
     works = payload["works"]
     rich = sum(1 for w in works
                if w["editions"] or w["events"] or w["songs"])
-    for token, value in (("WORKS", len(works)), ("RICH", rich),
-                         ("THIN", len(works) - rich)):
+    counts = {
+        "WORKS": len(works),
+        "RICH": rich,
+        "THIN": len(works) - rich,
+        "EDITIONS": sum(len(w["editions"]) for w in works),
+        "EVENTS": sum(len(w["events"]) for w in works),
+        "SONGS": sum(len(w["songs"]) for w in works),
+    }
+    for token, value in counts.items():
         head = head.replace(f"<!--@{token}@-->", str(value))
     return head + json.dumps(payload, ensure_ascii=False,
                              separators=(",", ":")) + tail

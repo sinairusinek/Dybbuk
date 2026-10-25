@@ -299,23 +299,34 @@ view built on this must show provenance on its face**, the way the song panel do
    this repertoire survives as a name. One ring gives that up. It has to be carried by
    dot treatment (fill vs. hollow) instead of by radius.
 
+#### BUILT 2026-10-25 (`b790d3e85`, `6980a086d`)
+
+All of §C is in. The resting ring is view 0; `#views` switches the three
+lenses; the composers hold the centre.
+
+- **58** plays carry music, **26** an edition, **24** a staging. A view keeps
+  its plays at full strength and fades the rest, so the shape of the whole
+  repertoire stays legible underneath.
+- **The toggle keeps the selected play open** — switching view re-opens the
+  same play under the new lens. Verified over 1100 play-opens (every play in
+  every view), no errors.
+- **11 composer medallions** at 2/3 the portrait radius on a ring at R=300,
+  each lined to every play it wrote for; opening a play dims the composers who
+  had no hand in it. The 7 single-play composers are on their play's trace
+  tier.
+- **The ring's titles clear while a play is open** — on the 660 band the fan
+  crosses them, and a dimmed title still occupies its space.
+
 #### Still open
 
-- Whether the three view layers can share one `drawFocus`, or each needs its own fan
-  builder. The song tier already strains the single fan.
+- Whether the three view layers can share one `drawFocus`, or each needs its own
+  fan builder. The song tier already strains the single fan, and none of the
+  three views yet changes what the FAN draws — only which plays are lit.
+- **DybbukMedia is still not joined.** Views 1–2 show only what the graph
+  holds: no scores (352 `sheet_music` rows) and no Perlmutter cards (74
+  `card_catalog` rows). The repo's own `translit_key()` reaches 707 of 1093
+  rows on 100 works; that join is the next real piece of work.
 - How the "most of it is lost" reading survives the move to one ring.
-
-### 3.1 Must change
-
--
-
-### 3.2 Would like
-
--
-
-### 3.3 Explicitly not wanted
-
--
 
 ---
 

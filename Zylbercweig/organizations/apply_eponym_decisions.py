@@ -62,8 +62,18 @@ def main() -> None:
 
     out_header = header + [c for c in NEW_COLS if c not in header]
 
+    # One org can name one person across several spans -- db1335 אַסתר-רחל
+    # קאַמינסקי is confirmed on four (אברהם, אסתר, יצחק, רחל), and the ledger
+    # records each span so the workbook stops re-asking them. An edge, though,
+    # asserts only "this org is named after this person", so the spans collapse
+    # to a single edge per (org, person).
     new_edges = []
+    seen_pairs: set[tuple] = set()
     for d in confirmed:
+        pair = (d["db_id"], d.get("hub_id") or "")
+        if pair in seen_pairs:
+            continue
+        seen_pairs.add(pair)
         new_edges.append({
             "edge_source": "eponym",
             "host_file": "", "host_xmlid": "", "host_heading": "",
