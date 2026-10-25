@@ -52,12 +52,15 @@ def fold(s: str) -> str:
     s = "".join(c for c in nfd if unicodedata.category(c) != "Mn")
     for a, b in (("ם", "מ"), ("ן", "נ"), ("ך", "כ"), ("ף", "פ"), ("ץ", "צ")):
         s = s.replace(a, b)
-    # Keep token boundaries: collapsing punctuation to nothing concatenates a
+    # Keep token boundaries. Collapsing punctuation to NOTHING concatenates a
     # heading's surname and given name (`וואָלערשטיין, סאול` ->
     # `וואלערשטיינסאול`), and a possessive span then matches by accident on the
-    # given name's first letter -- `וואלערשטייןס` "found" inside it. Both rows
-    # the original queue flagged were lost that way. Fold to SPACES and compare
-    # token-wise.
+    # given name's first letter -- `וואלערשטייןס` "found" inside it. That was a
+    # bug in THIS function's first draft (2026-10-25), not in the `key()` used
+    # by build_eponym_candidates.py / eponym_dossier.py: `key()` RETAINS
+    # punctuation and never had this flaw. Do not go looking for it there.
+    # The original 153-row queue was built with `key()` and flagged db1334 and
+    # db961 correctly; this fold would have dropped them, plus db885 `טאל`.
     return re.sub(r"[^\w]+", " ", s).lower().strip()
 
 
