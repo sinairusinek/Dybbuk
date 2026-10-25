@@ -10,7 +10,7 @@ Each entry is keyed by source_value (Yiddish spelling):
 
 Targets (apply only `map_to:` / `wikidata:` placements; the rest are recorded):
   PERSON corpus → places_unified_corrected.csv (canonical; survives a spine rebuild).
-                  Per-mention keyed by entry_id; flat by source_value. Rewrites qid +
+                  Per-mention keyed by (entry_id, source_value); flat by source_value. Rewrites qid +
                   qid_source + correction_applied; labels are re-enriched on rebuild.
   ORG corpus    → kima/review_applied_org_qids.tsv  (org place QIDs are resolved
                   downstream, not stored here — handoff for the org pipeline).
@@ -111,13 +111,15 @@ def main() -> None:
 
     # Resolve every decision into person/org/split/other targets.
     #   person_by_value[source_value] = qid          (flat placement)
-    #   person_by_entry[entry_id]     = qid          (per-mention placement)
+    #   person_by_entry[(entry_id, source_value)] = qid  (per-mention placement;
+    #     keyed by BOTH — an entry holds several place rows, and keying by
+    #     entry_id alone wrote a town's QID onto that entry's country row)
     #   org_rows = [(source_value, record_id, qid)]  (handoff to org pipeline)
     #   split_rows = [(source_value, record_id)]
     person_by_value: dict[str, str] = {}
-    person_by_entry: dict[str, str] = {}
+    person_by_entry: dict[tuple[str, str], str] = {}
     person_unlink_value: set[str] = set()
-    person_unlink_entry: set[str] = set()
+    person_unlink_entry: set[tuple[str, str]] = set()
     org_rows: list[tuple[str, str, str, str]] = []   # (source_value, record_id, qid, action)
     split_rows: list[tuple[str, str]] = []
     log_rows: list[tuple] = []
@@ -132,7 +134,7 @@ def main() -> None:
             elif rid == "*":
                 person_unlink_value.add(sv); org_rows.append((sv, "*", "", "unlink"))
             else:
-                person_unlink_entry.add(rid)
+                person_unlink_entry.add((rid, sv))
             stats["unlink"] += 1
             log_rows.append((sv, rid, act, "", reviewer, scope))
             return
@@ -141,7 +143,7 @@ def main() -> None:
         elif rid == "*":
             person_by_value[sv] = qid; org_rows.append((sv, "*", qid, "link")); stats["flat"] += 1
         else:
-            person_by_entry[rid] = qid; stats["person"] += 1
+            person_by_entry[(rid, sv)] = qid; stats["person"] += 1
         log_rows.append((sv, rid, act, qid, reviewer, scope))
 
     for sv, dec in decisions.items():
@@ -168,14 +170,14 @@ def main() -> None:
     changed = cleared = 0
     for r in rows:
         eid, sval = r["entry_id"].strip(), r["source_value"].strip()
-        if eid in person_unlink_entry or sval in person_unlink_value:
+        if (eid, sval) in person_unlink_entry or sval in person_unlink_value:
             if r.get("qid", "").strip():           # clear a wrong/region link
                 r["qid"] = ""; r["qid_source"] = _QID_SOURCE
                 if "correction_applied" in r:
                     r["correction_applied"] = "True"
                 cleared += 1
             continue
-        new_qid = person_by_entry.get(eid) or person_by_value.get(sval)
+        new_qid = person_by_entry.get((eid, sval)) or person_by_value.get(sval)
         if new_qid and r.get("qid", "").strip() != new_qid:
             r["qid"] = new_qid; r["qid_source"] = _QID_SOURCE
             if "correction_applied" in r:
