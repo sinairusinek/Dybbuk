@@ -1119,16 +1119,33 @@ function focusComposer(c){
   focusedComposer = c.id;
   const mine = composerPlays.get(c.id) || new Set();
 
-  // the plays they wrote for stand; every other play recedes but stays there,
-  // so the reader still sees how small this composer's corner of the
-  // repertoire is -- that proportion is the point.
-  works.forEach(w => setWorkOp(w, mine.has(w.id) ? .95 : .05));
-  gTitle.querySelectorAll('text').forEach(t =>
-    t.setAttribute('opacity', mine.has(t.dataset.work) ? 1 : 0));
+  // The plays they wrote for stand; every other play recedes but STAYS VISIBLE,
+  // so the reader sees how small this composer's corner of the repertoire is --
+  // that proportion is the point. .05 made the ring disappear entirely, which
+  // read as "everything vanished" rather than "these are the lit ones", so the
+  // floor is .18: present as context, plainly subordinate.
+  works.forEach(w => setWorkOp(w, mine.has(w.id) ? 1 : .18));
+
+  // ENLARGE the lit plays. Opacity alone was not legible: a 4.5px dot at the
+  // end of a long line is not a node the eye finds, which is why the highlight
+  // did not read as highlighting even though every opacity was correct.
+  works.forEach(w => {
+    const c = workEls.get(w.id);
+    if (c) c.setAttribute('r', mine.has(w.id) ? DOT_REST * 2.1 : DOT_REST);
+  });
+
+  // Their titles stay up -- naming the lit plays is most of the answer to
+  // "which plays did this composer write for". The rest go out so two layers
+  // of small type do not overlap.
+  gTitle.querySelectorAll('text').forEach(t => {
+    const on = mine.has(t.dataset.work);
+    t.setAttribute('opacity', on ? 1 : 0);
+    t.setAttribute('font-weight', on ? '600' : '400');
+  });
   gSpoke.querySelectorAll('line').forEach(l =>
-    l.setAttribute('stroke-opacity', mine.has(l.dataset.work) ? .5 : .05));
+    l.setAttribute('stroke-opacity', mine.has(l.dataset.work) ? .55 : .07));
   gOuter.querySelectorAll('*').forEach(el =>
-    el.setAttribute('opacity', mine.has(el.dataset.work) ? .9 : .05));
+    el.setAttribute('opacity', mine.has(el.dataset.work) ? .9 : .07));
 
   // THEIR edges are the subject: full strength, everyone else's out of the way.
   gComposerLines.querySelectorAll('line').forEach(l => {
@@ -1146,6 +1163,11 @@ function focusComposer(c){
 function clearComposerFocus(){
   if (!focusedComposer) return;
   focusedComposer = null;
+  works.forEach(w => {
+    const c = workEls.get(w.id);
+    if (c) c.setAttribute('r', DOT_REST);
+  });
+  gTitle.querySelectorAll('text').forEach(t => t.setAttribute('font-weight', '400'));
   gComposerLines.querySelectorAll('line').forEach(l => {
     l.setAttribute('stroke-opacity', .5);
     l.setAttribute('stroke-width', 1.3);
@@ -1583,7 +1605,9 @@ function unfocus(){
   // A composer focus is the same kind of state and clears by the same gestures.
   if (focusedComposer) { focusedComposer = null; composerEls.forEach(g => g.setAttribute('opacity', 1));
     gComposerLines.querySelectorAll('line').forEach(l => {
-      l.setAttribute('stroke-opacity', .5); l.setAttribute('stroke-width', 1.3); }); }
+      l.setAttribute('stroke-opacity', .5); l.setAttribute('stroke-width', 1.3); });
+    works.forEach(w => { const c = workEls.get(w.id); if (c) c.setAttribute('r', DOT_REST); });
+    gTitle.querySelectorAll('text').forEach(t => t.setAttribute('font-weight', '400')); }
   stage.classList.remove('focused');
   gSpoke.querySelectorAll('line').forEach(l => l.setAttribute('stroke-opacity', 1));
   gOuter.querySelectorAll('*').forEach(e => e.setAttribute('opacity', 1));
