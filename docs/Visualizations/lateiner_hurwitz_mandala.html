@@ -948,6 +948,12 @@ function openPlay(id){
     e.setAttribute('opacity', e.dataset.work === id ? 1 : .07));
   gGuide.setAttribute('opacity', .35);
   Object.entries(hubEls).forEach(([k,g]) => g.setAttribute('opacity', k===w.pw ? 1 : .14));
+  // The 274 other titles go out entirely rather than dimming. At rest they are
+  // the whole point of the ring, but an opened play's fan now reaches across
+  // them, and a dimmed title still occupies its space — two layers of small
+  // type over each other read as neither. The opened play keeps its own.
+  gTitle.querySelectorAll('text').forEach(t =>
+    t.setAttribute('opacity', t.dataset.work === id ? 1 : 0));
 
   if (traced) {
     drawFocus(w);                 // §B: the play becomes the centre of its own fan
@@ -1191,6 +1197,7 @@ function unfocus(){
   gOuter.querySelectorAll('*').forEach(e => e.setAttribute('opacity', 1));
   gGuide.setAttribute('opacity', 1);
   Object.values(hubEls).forEach(g => g.setAttribute('opacity', 1));
+  gTitle.querySelectorAll('text').forEach(t => t.setAttribute('opacity', 1));
   paintFamFilter();
   works.forEach(w => setWorkOp(w, dimmedFam ? (w.fam===dimmedFam?.95:.07) : baseOp(w)));
   dossier.classList.remove('on');
