@@ -29,7 +29,7 @@ import csv
 import math
 import sys
 import unicodedata
-from collections import defaultdict
+from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
 
@@ -38,6 +38,13 @@ KG_DIR = BASE.parent / "plays" / "kg"
 CLUSTERED = BASE / "organizations_clustered.tsv"
 CORE_DB = BASE / "core_db.tsv"
 REVIEW = BASE / "org_alignment_review.tsv"
+
+# The 12 columns this generator owns. Other producers (apply_eponym_decisions.py)
+# append their own edge_source rows and may ADD columns beyond these; see the
+# "write edges" block, which carries both through.
+BASE_COLS = ["edge_source", "host_file", "host_xmlid", "host_heading",
+             "cluster_id", "canonical_yiddish", "db_id", "n_mentions",
+             "rel_categories", "roles", "dates", "settlements"]
 DISTINCT = BASE / "confirmed_distinct_pairs.tsv"
 PAIRS_REVIEW = BASE / "cluster_pairs_review.tsv"
 OUTDIR = BASE / "graph"
@@ -191,12 +198,38 @@ def main() -> None:
                     e["dates"].add(r["date_start"])
 
     # --- write edges --------------------------------------------------------
+    # This file has MORE THAN ONE PRODUCER. We write edge_source=mention and
+    # edge_source=plays_kg; apply_eponym_decisions.py appends
+    # edge_source=eponym and ADDS two columns (person_hub_id, person_db_id).
+    # A naive rewrite in "w" mode silently truncated all 302 eponym rows on
+    # 2026-10-25 (commit 7eedea2fa, restored in 733d505d6) and reported
+    # success. So: read the existing file first, carry through every
+    # edge_source we do not produce ourselves along with any extra columns,
+    # and refuse to write if that would drop a whole edge_source.
     edge_path = OUTDIR / "person_org_edges.tsv"
+    OURS = {"mention", "plays_kg"}
+    foreign: list[dict] = []
+    extra_cols: list[str] = []
+    if edge_path.exists():
+        with edge_path.open(newline="", encoding="utf-8") as f:
+            prev = list(csv.DictReader(f, delimiter="\t"))
+        foreign = [r for r in prev if (r.get("edge_source") or "") not in OURS]
+        for r in prev:
+            for k in r:
+                if k not in BASE_COLS and k not in extra_cols and k is not None:
+                    extra_cols.append(k)
+        before = Counter((r.get("edge_source") or "") for r in prev)
+        if foreign:
+            print(f"  carrying through {len(foreign)} rows from other producers: "
+                  + ", ".join(f"{k}={v}" for k, v in sorted(before.items())
+                              if k not in OURS))
+    else:
+        before = Counter()
+
+    cols = BASE_COLS + extra_cols
     with edge_path.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, delimiter="\t")
-        w.writerow(["edge_source", "host_file", "host_xmlid", "host_heading",
-                    "cluster_id", "canonical_yiddish", "db_id", "n_mentions",
-                    "rel_categories", "roles", "dates", "settlements"])
+        w.writerow(cols)
         for (host, cid), e in sorted(edges.items()):
             w.writerow(["mention", host[0], host[1], host_label[host], cid,
                         cluster_name.get(cid, ""), cluster_to_db.get(cid, ""),
@@ -204,7 +237,8 @@ def main() -> None:
                         " | ".join(sorted(e["rel_categories"])),
                         " | ".join(sorted(e["roles"])),
                         " | ".join(sorted(e["dates"])),
-                        " | ".join(sorted(e["settlements"]))])
+                        " | ".join(sorted(e["settlements"]))]
+                       + [""] * len(extra_cols))
         for (person, org_node), e in sorted(kg_edges.items()):
             kind, _, ident = org_node.partition(":")
             cid = ident if kind == "org_cluster" else ""
@@ -216,7 +250,24 @@ def main() -> None:
                         " | ".join(sorted(e["rel_categories"])),
                         " | ".join(sorted(e["roles"])),
                         " | ".join(sorted(e["dates"])),
-                        " | ".join(sorted(e["settlements"]))])
+                        " | ".join(sorted(e["settlements"]))]
+                       + [""] * len(extra_cols))
+        for r in foreign:
+            w.writerow([r.get(c, "") or "" for c in cols])
+
+    # Guard: never let a rebuild silently drop an entire edge_source.
+    with edge_path.open(newline="", encoding="utf-8") as f:
+        after = Counter((r.get("edge_source") or "")
+                        for r in csv.DictReader(f, delimiter="\t"))
+    lost = sorted(k for k, n in before.items() if n and not after.get(k))
+    if lost:
+        sys.exit("FATAL: rebuild dropped every row of edge_source "
+                 + ", ".join(lost)
+                 + " — refusing to leave a truncated file. "
+                   "Another producer owns those rows; re-run its script "
+                   "(e.g. apply_eponym_decisions.py) or fix the pass-through.")
+    print("  edges by source: "
+          + ", ".join(f"{k}={v}" for k, v in sorted(after.items())))
 
     # --- Layer 2: overlap candidates ----------------------------------------
     host_clusters: dict[tuple, set[str]] = defaultdict(set)
