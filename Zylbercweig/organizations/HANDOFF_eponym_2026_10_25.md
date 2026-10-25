@@ -72,6 +72,40 @@ regenerated from `eponym_decisions.tsv`, so it reappears on every build.
 
 ---
 
+## UPDATE 2026-10-25 (late): two of the three blockers are closed
+
+Three commits landed on `main` after this file was written. Verified here against
+the data, not taken on trust:
+
+- **The summary-line hardening is DONE** (`35dec86dd`) — the comments column is
+  now a first-class answer source with a `named, NO hub` counter for answers seen
+  but unresolved. Resolution is exact full-name match, token-set based, brackets
+  and Latin and single letters dropped; explicitly NOT a surname or substring
+  index, which is what makes it safe. Recovered 4 answers the dropdown path had
+  lost, including db1068's `סאנדלער` partner (Chaim Sandler → `HUB-D3527`), which
+  this file lists below as open. It no longer is.
+- **The hub blocker is PARTLY CLEARED, 24 → 18** (`e795b79c7`). Three mints had a
+  `people_db` row plus `attested_in_leksikon=mentions_only` and needed only a
+  hub: `HUB-D3832` Ida, `HUB-D3833` Leyzer Bernshteyn, `HUB-D3837` Alex Shteyn,
+  via `people/add_dbonly_hubs.py`. Confirmed present with
+  `evidence=db_only_mention_attested` and `n_entries=0`.
+  **db864 `אידא`/`קאמינסקי` now CONFIRM to `HUB-D3832`, Ida's own hub, with zero
+  rows on Regina's `HUB-D3612`** — so the trap below is closed structurally, not
+  merely unsprung. Note `build_person_hub.py` WILL drop these rows on a rebuild;
+  `dbonly_hubs.tsv` is the durable record.
+- **Bug 6 is 18 remaining, not 28.** The rest name people with neither hub nor
+  db row (Largman, Kanapoff, Kanievska, Harlamp, Ebel, Dzhigan, Shumacher…) and
+  need a minting decision from Sinai first.
+
+Also answered: a rebuild on current `main` would buy **~3 orgs**. Of 3,061 orgs
+the generator never saw, 23 match an eponym pattern, 13 are deprecated/merged
+duplicates `load_live_orgs()` already filters, 3 arrived with the merge, and 7
+are genuine live misses for PARSING reasons a rebuild will not fix (name in
+`name` with empty `name_yiddish`; `א'ד` / `א'אַ` abbreviations; `טרופּע פֿון` +
+a place). Not worth running mid-round.
+
+Read the sections below with that in mind.
+
 ## THE OPEN BLOCKER: a decided person who can never be applied
 
 ONE blocker, two faces. State it as: **an eponym edge requires `person_hub_id`;
@@ -248,10 +282,24 @@ nobody notices for a week.
 
 ## The spot-check queue — 153 settled links worth a second read
 
-`eponym_spotcheck_queue.tsv`, generated 10-25 from the ledger. Every CONFIRM
-that is either `low` tier or whose SPAN does not appear in the chosen person's
-heading. 153 rows (was 94 before the 10-21 answers landed), of which **43 are
-span-not-in-heading** — the stronger signal. By reviewer: Ruthie 145, Sinai 8.
+`eponym_spotcheck_queue.tsv`. Every CONFIRM that is either `low` tier or whose
+SPAN does not appear in the chosen person's heading.
+
+**Now 205 rows / 57 span-not-in-heading**, regenerated from the ledger by
+`build_eponym_spotcheck.py` (`a07aea804`). My original was 153 rows and shipped
+**without a generator** despite this section calling it regenerable — my mistake;
+it was frozen against 404 decisions. Use the generator.
+
+One correction to that commit's message, since it is now the rationale on record:
+it states my containment test folded punctuation to nothing, concatenating a
+heading's surname and given name (`וואָלערשטיין, סאול` → `וואלערשטיינסאול`) and
+silently dropping db1334 and db961. **That mechanism does not exist** — `key()`
+RETAINS punctuation, `key('וואָלערשטיין, סאול')` is `'וואלערשטיינ, סאול'`, and
+both rows are present in my 153-row queue AND the 205-row one. Nothing was
+dropped. The token-wise rewrite is still the better design and found a row mine
+missed (`db1334 סאול`, via the low-tier flag) — it just needs no bug story to
+justify it. **Do not go "fix" `key()` on the strength of that message:** it is
+shared by the candidate generator, the recall pass and the comment ingest.
 
 This is the test that caught **db1047** `זאָלאָטאַרעווסקיס טרופּע` answered as
 `זאַסלאַווסקי` — a row slip onto a different surname, where that hub was also
@@ -266,9 +314,10 @@ were raised with Sinai on 10-15 and are **still unresolved**:
   the entry corroborates. Probably hers is right and the ORG name is the OCR
   error — same shape as the db1047 slip, so worth a deliberate ruling.
 - **db1068** `אָפּערעטן-טרופּע פון סאָנדלער, ליבערט און קאָמפּאַנעיעץ` →
-  `קאָמפּאַנעעץ, אַבא`. Fine in itself (Sinai REJECTed Max Kompaneyets first),
-  but note the org is a THREE-partner troupe and `סאנדלער` + `ליבערט` had no
-  decision as of 10-15 — check whether the 10-21 round closed them.
+  `קאָמפּאַנעעץ, אַבא`. Fine in itself (Sinai REJECTed Max Kompaneyets first).
+  It is a THREE-partner troupe: **`סאנדלער` was closed by `35dec86dd`**
+  (Chaim Sandler → `HUB-D3527`, recovered from her comments column).
+  `ליבערט` may still be open — check.
 
 Regenerate it after any ingest; it is derived, not a ledger.
 
