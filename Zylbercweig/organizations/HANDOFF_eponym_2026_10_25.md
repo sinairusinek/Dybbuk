@@ -231,8 +231,68 @@ nobody notices for a week.
   comments" as column J shifted four hard-coded positions (`row[8]`, the
   `I2:I...` dropdown range, a letter-keyed width map, wrap/RTL index lists).
 
+## The spot-check queue — 153 settled links worth a second read
+
+`eponym_spotcheck_queue.tsv`, generated 10-25 from the ledger. Every CONFIRM
+that is either `low` tier or whose SPAN does not appear in the chosen person's
+heading. 153 rows (was 94 before the 10-21 answers landed), of which **43 are
+span-not-in-heading** — the stronger signal. By reviewer: Ruthie 145, Sinai 8.
+
+This is the test that caught **db1047** `זאָלאָטאַרעווסקיס טרופּע` answered as
+`זאַסלאַווסקי` — a row slip onto a different surname, where that hub was also
+Sinai's own CONFIRM for a different org. Read the org name against the person.
+
+Most flags are benign: a possessive `ס` on the org name, or an OCR variant the
+reviewer corrected by eye (`מעערסאן` → `מייערסאָן`, `זייגלער` → `זיגלער`). Two
+were raised with Sinai on 10-15 and are **still unresolved**:
+
+- **db287** `איציק מענדל בערמאָןס טרופּע` → `בערגמאַן, איציק-מענדל`. Berman vs
+  Bergman: surname differs by a letter, but the given name matches exactly and
+  the entry corroborates. Probably hers is right and the ORG name is the OCR
+  error — same shape as the db1047 slip, so worth a deliberate ruling.
+- **db1068** `אָפּערעטן-טרופּע פון סאָנדלער, ליבערט און קאָמפּאַנעיעץ` →
+  `קאָמפּאַנעעץ, אַבא`. Fine in itself (Sinai REJECTed Max Kompaneyets first),
+  but note the org is a THREE-partner troupe and `סאנדלער` + `ליבערט` had no
+  decision as of 10-15 — check whether the 10-21 round closed them.
+
+Regenerate it after any ingest; it is derived, not a ledger.
+
+## The unmerged branch, concretely
+
+**34 commits on `recover-session` are not on `origin/main`** (count as of
+10-25; it grew by one while this handoff was being written — another session is
+still committing to this checkout, so re-count before acting).
+
+What would be lost if the branch were discarded, beyond the eponym track:
+`ed64cbb6c` (478 Hebrew-stylistics rows split out of people_db), `d1f22725b`
+(Sholem Aleichem 3492 merged into 383), `a27f4bd35` (his reversed heading fixed
++ 239 mentions linked), `3a76e27ab` (26 people minted), `9a4927395` (Ida
+separated from Regina), and the whole judge pilot from `4bc15b2fd` onward.
+
+The data files are the part that matters: `people_db.tsv`,
+`new_mints_evidence.tsv`, `person_hub.tsv`, `person_hub_members.tsv`,
+`eponym_decisions.tsv`, `person_org_edges.tsv`, `names_not_minted.tsv`. Per
+Sinai's standing rule these are append-only ledgers and must be merged
+**field-level, never with `git merge --ours/--theirs`** — each side fills cells
+the other left empty, and line endings differ per file (see the traps).
+
+Merging is Sinai's explicit call, unrevisited since 10-14. Nobody has merged,
+pushed or rebased.
+
 ## Review doc
 
 <https://claude.ai/code/artifact/f590847d-1d22-4638-86c5-5595338a5040> — the
-10-15 review doc for Sinai. Its "four open decisions" section is now partly
-stale: item 1 is done. Items 2–4 stand.
+10-15 review doc for Sinai, written so he could review before passing the
+workbook to Ruthie.
+
+Partly stale now: its "four open decisions" item 1 is done, and its spot-check
+table is superseded by `eponym_spotcheck_queue.tsv` (94 rows there, 153 now).
+What it still holds that is NOT in this file: the reconciliation of Ruthie's
+original 136 answers (25 agreeing with existing CONFIRMs, 25 off-candidate, 0
+conflicts), her 22 comment identifications in their three kinds, and the db1047
+correction written out with its evidence. Worth opening once rather than
+treating as superseded wholesale.
+
+Also stale in it: one truncated org name — it shows db1068 as
+`אָפּערעטן-טרופּע פון סאָנדלער, ליב`, which is `ליבערט` cut at 34 characters,
+not a given name. Do not read a person out of that.
