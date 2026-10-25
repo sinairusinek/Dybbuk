@@ -24,6 +24,7 @@ Nothing is hand-maintained. Counts as built: 277 works, 27 editions, 64 events,
 | ring | radius | content |
 |---|---|---|
 | centre | — | two portrait medallions, Lateiner (right half) and Hurwitz (left) |
+| composers | ~190–260, **by connection** | *music view only.* 18 musical contributors, each seated at the circular mean of the plays it wrote for and relaxed clear of its neighbours — **not a ring**, despite the radius range, which is only where they happen to land. See the 2026-10-25 amendment |
 | the band | 272 / 291 / 310 / 329 | **all 277 plays, one continuous band** on four sub-lanes, each on a line to its author. It is read from the inside out: the **217 title-only plays on the two inner lanes**, the **60 documented plays on the two outer lanes**, so the traces that spring from them already point away from the centre |
 | traces | — | no ring of their own. Each play's traces **spring outward from the play itself**, continuing the author → play line: rows of up to three, stepping out. **Theatre front** = a house, with its **curtained stages** hanging off it; **book** = printed edition, **notebook** = manuscript |
 
@@ -82,6 +83,13 @@ Clicking routes on what survives of the play (spec §3 A/B):
   node's own record (a person's roles, an edition's printer and holding library, an
   event's date and venue) **without disturbing the drawing** — the viewer keeps their
   place. Only a click on bare canvas, or Escape, returns to the wheel.
+
+- **A composer** (music view) → its whole fan lights: the plays it wrote for, their
+  titles, spokes and traces stand; its edges go to full strength; every other
+  composer and edge recedes. The side card opens alongside, listing the plays with
+  their genres. Added 2026-10-25 — before that a composer click opened the card
+  only, which left no way to see *which* plays a composer wrote for. Clears on a
+  second click, Escape, reset, or bare canvas.
 
 Icons in that view: notebook = manuscript, book = print edition, parting curtains =
 performance event, male/female bust = actor/actress, musical notes = composer, lyre =
@@ -190,11 +198,13 @@ must say so on the face of them, the way the song panel now does.
 `work_id`), 144 `performed_at` edges over 29 venue orgs, 12 places, 9 `premiered_in`.
 Stagings already hang off their theatre.
 
-#### Decided by Sinai, 2026-10-08
+#### Decided by Sinai, 2026-10-08 — items 1 and 2 AMENDED 2026-10-25, see below
 
-1. **Composers sit in the centre, beside the portraits** — not on a ring of their own.
-   Consequence to design around: composer→play lines will cross the band, and 18
-   composers must share the centre with two portrait medallions.
+1. ~~**Composers sit in the centre, beside the portraits** — not on a ring of their
+   own.~~ **Superseded 2026-10-25.** They are placed by connection; see the
+   amendment. The concern this decision was answering — that composer→play lines
+   cross the band — turned out to be the lesser problem: a ring of their own made
+   *every* line a chord, and position carried no information at all.
 2. **The views filter one band in place; they do not re-lay the wheel.** Every play
    keeps its position in all four views. A view dims what it does not concern, lights
    what it does, and draws its own layer over the top. This keeps the viewer's place
@@ -202,7 +212,46 @@ Stagings already hang off their theatre.
    — the "most of this repertoire is lost" reading survives the toggle. The cost,
    accepted: a view's 24–58 lit plays are scattered around the ring rather than
    gathered into a shape.
+   **Still true of the PLAYS, as of 2026-10-25** — they never move. What a view may
+   now re-lay is its *own added layer* (the composers), not the band.
 3. **Where the 1 093 media rows come from** — audited below before any build.
+
+#### Amended by Sinai, 2026-10-25 — the music view
+
+Prompted by a screenshot of the music view that showed faint hairlines on cream and
+no legible network. Sinai: *"I don't see the links/edges and the network structure
+that I would like seen. The composers for example — I would expect clicking them to
+highlight both the linked nodes and edges that are relevant to them. And be located
+according to their connections, not in a regular circle."*
+
+Built in `887f190f0`. Four things changed, all in the composer layer of
+`mandala/tail.html`:
+
+1. **Composers are placed by connection, not on a ring.** Each seats at the
+   *circular mean* of the plays it wrote for — unit vectors summed, never radians
+   averaged, which wraps wrongly at ±π — pulled inward in proportion to its degree,
+   then relaxed apart with a spring back toward its own angle.
+   **The plays themselves do not move**, so decision 2 above still holds for the
+   band: this re-lays only the layer the view adds.
+   *Scope: the music view only.* Archival traces and Performances still place their
+   added layer as before.
+2. **All 18 musical contributors draw.** A `plays.size > 1` filter had been dropping
+   the 7 with a single credit, and 7 of the 45 links with them. A reader cannot tell
+   a dropped node from an absent one, so the filter was a silent falsehood about the
+   data. Edges drawn: 38 → 46.
+3. **Edges are visible.** `stroke-opacity .16` at `.6px` on this ground is below what
+   the eye resolves; they are the subject of this view, so `.5` at `1.3px`,
+   round-capped.
+4. **Clicking a composer lights its fan.** `focusComposer()` lights that composer's
+   plays, titles, spokes and traces, takes its edges to `.95` at `2px`, and drops the
+   other composers to `.18` and their edges to `.04`. It clears on a second click,
+   Escape, the reset button, or bare canvas — sharing the clear path with a play
+   focus. Before this, a click opened the side card only.
+
+**A property of the data to design around, not a layout fault:** only **20 of the
+275 plays carry music**, and they sit in one arc of the ring. All 18 composers
+therefore cluster in that direction. The crowding a viewer sees is the shape of the
+repertoire; the relaxation spreads them for legibility without pretending otherwise.
 
 #### Where the 1 093 come from (audited 2026-10-08)
 
