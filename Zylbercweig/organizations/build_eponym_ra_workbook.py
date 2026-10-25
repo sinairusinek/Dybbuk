@@ -11,6 +11,12 @@ Sheet 1 "troupes"  one row PER EPONYM, so a trio gets three rows. The reviewer
                    context, read-only in practice.
 Sheet 2 "persons"  every Zylbercweig person that HAS an id, as `heading [id]`
                    strings -- the list to point Excel's Data Validation at.
+Sheets "spot-check", "blocked", "other type"
+                   the three queues of the Zalmen "Eponym · review queues"
+                   view, which is read-only and sends reviewers here. The
+                   first two take answers (yellow cells), kept across rebuilds
+                   via eponym_queue_answers.tsv; "other type" is reference --
+                   org_type is set in Organization Cards.
 
 Writing the answers back: `ingest_eponym_ra_workbook.py` maps the chosen
 `person_name` back to its hub_id and appends CONFIRM rows to
@@ -44,6 +50,16 @@ RECALL = BASE / "organizations" / "eponym_recall_candidates.tsv"
 # recall pass is sound: 43 of its 54 rows agree with a decision already made
 # and none contradicts one.
 RECALL_EXCLUDE = {("1482", "ראטבאום")}
+# The three queues the Zalmen "Eponym · review queues" view shows. That view is
+# read-only and points here, so each queue needs a sheet she can answer on.
+SPOTCHECK = BASE / "organizations" / "eponym_spotcheck_queue.tsv"
+BLOCKED = BASE / "organizations" / "eponym_blocked_answers.tsv"
+# Her answers on those sheets, harvested by ingest_eponym_ra_workbook.py and
+# written back into the answer cells on every build -- otherwise a rebuild
+# blanks them, which is how the comments column went unread for ten days.
+QUEUE_ANSWERS = BASE / "organizations" / "eponym_queue_answers.tsv"
+OTHER_TYPE = "OTHER - elaborate!"
+SPOT_VERDICTS = ["OK", "WRONG MATCH", "WRONG ORG NAME"]
 EDGES = BASE / "organizations" / "graph" / "person_org_edges.tsv"
 PERSON_HUB = BASE / "people" / "person_hub.tsv"
 CORE_DB = BASE / "organizations" / "core_db.tsv"
@@ -442,11 +458,88 @@ def main() -> None:
                    h.get("birth_date") or "", h.get("death_date") or "",
                    h.get("n_entries") or ""])
 
+    # ── queue sheets: what the Zalmen eponym view shows, answerable here ─────
+    prior = {(a["sheet"], a["db_id"], a["span"]): a
+             for a in read_tsv(QUEUE_ANSWERS)}
+
+    # spot-check: CONFIRMed links worth a second look. The stronger flag
+    # (span-not-in-heading) first. A mismatch means ONE OF THE TWO NAMES is
+    # wrong: db287's org name was the error, db1047's match was.
+    sc = wb.create_sheet("spot-check")
+    SC_HEAD = ["db_id", "troupe (Yiddish)", "span", "linked person", "hub_id",
+               "flag", "tier", "pattern", "decided by", "verdict", "comments"]
+    sc.append(SC_HEAD)
+    spot = sorted(read_tsv(SPOTCHECK),
+                  key=lambda r: ("span-not-in-heading" not in r.get("flag", ""),
+                                 int(r["db_id"])))
+    for r in spot:
+        a = prior.get(("spot-check", r["db_id"], r["span"]), {})
+        sc.append([r["db_id"], r.get("org_name", ""), r["span"],
+                   r.get("person_heading", ""), r.get("hub_id", ""),
+                   r.get("flag", ""), r.get("tier", ""), r.get("pattern", ""),
+                   r.get("reviewer", ""), a.get("answer", ""),
+                   a.get("comment", "")])
+
+    # blocked: answers naming a person with no hub. The mint is Sinai's call;
+    # the comments column is for anything that identifies the person (dates,
+    # roles, another spelling), never for a name-similarity guess.
+    bk = wb.create_sheet("blocked")
+    BK_HEAD = ["db_id", "troupe (Yiddish)", "span", "your answer",
+               "people_db row", "needs", "comments"]
+    bk.append(BK_HEAD)
+    blocked = read_tsv(BLOCKED)
+    for r in blocked:
+        a = prior.get(("blocked", r["org_db_id"], r["span"]), {})
+        bk.append([r["org_db_id"], r.get("org_name_yiddish", ""), r["span"],
+                   r.get("reviewer_answer", ""), r.get("has_people_db_row", ""),
+                   r.get("needs", ""), a.get("comment", "")])
+
+    # OTHER type: reference only. org_type is written in Zalmen's Organization
+    # Cards; a second writing surface here would be the two-surface problem.
+    ot = wb.create_sheet("other type")
+    OT_HEAD = ["db_id", "name (Yiddish)", "name", "notes",
+               "→ retype in Zalmen › Organization Cards"]
+    ot.append(OT_HEAD)
+    other = [o for o in orgs.values()
+             if (o.get("org_type") or "").strip() == OTHER_TYPE
+             and not (o.get("deprecated") or "").strip()
+             and not (o.get("merged_into") or "").strip()]
+    for o in sorted(other, key=lambda o: int(o["db_id"])):
+        ot.append([o["db_id"], (o.get("name_yiddish") or "").strip(),
+                   (o.get("name") or "").strip(),
+                   (o.get("notes") or "").strip()[:300], ""])
+
     # ── formatting ──────────────────────────────────────────────────────────
     bold = Font(bold=True)
     fill = PatternFill("solid", fgColor="DDEBF7")
     answer_fill = PatternFill("solid", fgColor="FFF2CC")
-    for sheet in (ws, ls, ps):
+    for sheet, head, widths_, answers in (
+            (sc, SC_HEAD, [8, 34, 16, 36, 13, 26, 8, 11, 12, 18, 40],
+             ("verdict", "comments")),
+            (bk, BK_HEAD, [8, 30, 16, 30, 13, 22, 46], ("comments",)),
+            (ot, OT_HEAD, [8, 34, 34, 60, 36], ())):
+        for n, w in enumerate(widths_):
+            sheet.column_dimensions[get_column_letter(n + 1)].width = w
+        for row in sheet.iter_rows(min_row=2):
+            for c in row:
+                c.alignment = Alignment(vertical="top", wrap_text=True)
+            for name in ("troupe (Yiddish)", "span", "linked person",
+                         "your answer", "name (Yiddish)"):
+                if name in head:
+                    row[head.index(name)].alignment = Alignment(
+                        vertical="top", wrap_text=True, readingOrder=2)
+            for name in answers:
+                row[head.index(name)].fill = answer_fill
+    vcol = get_column_letter(SC_HEAD.index("verdict") + 1)
+    sdv = DataValidation(type="list", formula1='"' + ",".join(SPOT_VERDICTS) + '"',
+                         allow_blank=True)
+    sdv.prompt = ("OK = link stands. WRONG MATCH = wrong person. "
+                  "WRONG ORG NAME = the org's name is misspelled, link stands.")
+    sdv.promptTitle = "Spot-check"
+    sc.add_data_validation(sdv)
+    sdv.add(f"{vcol}2:{vcol}{len(spot) + 1}")
+
+    for sheet in (ws, ls, ps, sc, bk, ot):
         for c in sheet[1]:
             c.font = bold
             c.fill = fill
@@ -549,6 +642,12 @@ def main() -> None:
           f"({len({k[0] for k in by_pair})} troupes)")
     print(f"sheet 'persons': {len(person_labels)} people with ids "
           f"({dropped_orgs} org-like headings excluded)")
+    print(f"sheet 'spot-check': {len(spot)} links "
+          f"({sum(1 for r in spot if 'span-not-in-heading' in r.get('flag', ''))}"
+          f" span-not-in-heading), "
+          f"{sum(1 for k in prior if k[0] == 'spot-check')} prior answers")
+    print(f"sheet 'blocked':    {len(blocked)} answers with no hub")
+    print(f"sheet 'other type': {len(other)} orgs at {OTHER_TYPE!r}")
     print(f"dropdown on {answer_col}2:{answer_col}{rows_written + 1} "
           f"-> persons!$A$2:$A${last}")
     print(f"\nwrote {out}")

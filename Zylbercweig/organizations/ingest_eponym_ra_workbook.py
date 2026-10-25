@@ -31,6 +31,9 @@ DECISIONS = BASE / "organizations" / "eponym_decisions.tsv"
 CANDIDATES = BASE / "organizations" / "eponym_candidates.tsv"
 PERSON_HUB = BASE / "people" / "person_hub.tsv"
 BLOCKED = BASE / "organizations" / "eponym_blocked_answers.tsv"
+QUEUE_ANSWERS = BASE / "organizations" / "eponym_queue_answers.tsv"
+QUEUE_FIELDS = ["sheet", "db_id", "span", "hub_id", "answer", "comment",
+                "reviewer", "reviewed_at"]
 
 FIELDS = ["db_id", "hub_id", "span", "decision", "tier", "pattern",
           "org_name_yiddish", "person_heading", "person_db_ids",
@@ -280,43 +283,95 @@ def main() -> None:
         print("     and must NOT be resolved by name similarity:")
         for row, db_id, span, answer in unresolved_named:
             print(f"     row {row}: db{db_id} span={span} -> {answer!r}")
-        # Written on EVERY run, dry or not: a list that exists only in console
-        # output is a list nobody can review. Derived -- rebuilt each run, never
-        # hand-edited, and it empties itself as the people get hubs or mints.
-        BLOCKED.parent.mkdir(parents=True, exist_ok=True)
-        with BLOCKED.open("w", encoding="utf-8", newline="") as bf:
-            bw = csv.DictWriter(
-                bf, fieldnames=["workbook_row", "org_db_id", "org_name_yiddish",
-                                "span", "reviewer_answer", "has_people_db_row",
-                                "needs"],
-                delimiter="\t", lineterminator="\n")
-            bw.writeheader()
-            for row, db_id, span, answer in unresolved_named:
-                pdb = db_by_name.get(_name_key(answer), "")
-                bw.writerow({
-                    "workbook_row": row, "org_db_id": db_id,
-                    # Read BOTH name columns: 4 of these rows (db545, 559,
-                    # 563, 596) have an empty 'troupe (Yiddish)' and carry the
-                    # Yiddish name in 'troupe (Latin)' instead -- the same
-                    # split that hides db641 לערמאַנס טרופּע from any matcher
-                    # reading one field.
-                    "org_name_yiddish": str(
-                        ws.cell(row, col["troupe (Yiddish)"] + 1).value
-                        or ws.cell(row, col["troupe (Latin)"] + 1).value or ""),
-                    "span": span, "reviewer_answer": answer,
-                    "has_people_db_row": pdb,
-                    # A person WITH a db row needs only add_dbonly_hubs.py; one
-                    # without needs a minting decision from Sinai first.
-                    "needs": "hub (add_dbonly_hubs.py)" if pdb else "mint, then hub",
-                })
-        print(f"     -> written to {BLOCKED.name} for review")
+    # Written on EVERY run, dry or not: a list that exists only in console
+    # output is a list nobody can review. A UNION with the rows already there,
+    # less any span since decided: a rebuilt workbook no longer carries her
+    # old answers in `person_name`, so a run over it sees none of them, and a
+    # rewrite from this run alone would silently drop all 18.
+    blocked_rows = []
+    for row, db_id, span, answer in unresolved_named:
+        pdb = db_by_name.get(_name_key(answer), "")
+        blocked_rows.append({
+            "workbook_row": row, "org_db_id": db_id,
+            # Read BOTH name columns: 4 of these rows (db545, 559,
+            # 563, 596) have an empty 'troupe (Yiddish)' and carry the
+            # Yiddish name in 'troupe (Latin)' instead -- the same
+            # split that hides db641 לערמאַנס טרופּע from any matcher
+            # reading one field.
+            "org_name_yiddish": str(
+                ws.cell(row, col["troupe (Yiddish)"] + 1).value
+                or ws.cell(row, col["troupe (Latin)"] + 1).value or ""),
+            "span": span, "reviewer_answer": answer,
+            "has_people_db_row": pdb,
+            # A person WITH a db row needs only add_dbonly_hubs.py; one
+            # without needs a minting decision from Sinai first.
+            "needs": "hub (add_dbonly_hubs.py)" if pdb else "mint, then hub",
+        })
+    decided = {(d["db_id"], d.get("span") or "") for d in existing + new}
+    seen = {(b["org_db_id"], b["span"]) for b in blocked_rows}
+    carried = [b for b in read_tsv(BLOCKED)
+               if (b["org_db_id"], b["span"]) not in seen | decided]
+    blocked_rows += carried
+    BLOCKED.parent.mkdir(parents=True, exist_ok=True)
+    with BLOCKED.open("w", encoding="utf-8", newline="") as bf:
+        bw = csv.DictWriter(
+            bf, fieldnames=["workbook_row", "org_db_id", "org_name_yiddish",
+                            "span", "reviewer_answer", "has_people_db_row",
+                            "needs"],
+            delimiter="\t", lineterminator="\n")
+        bw.writeheader()
+        bw.writerows(blocked_rows)
+    print(f"     -> {BLOCKED.name}: {len(blocked_rows)} rows "
+          f"({len(carried)} carried from earlier runs)")
     print(f"  unmatched answers:  {len(unmatched)}")
     for r, db, sp, a in unmatched[:15]:
         print(f"     row {r}: db{db} {sp} -> {a!r}")
 
+    # The "spot-check" and "blocked" sheets (added 2026-10-25) carry answers
+    # that are not decisions: a verdict on a settled link, or a note toward a
+    # mint. Harvested into their own ledger, keyed (sheet, db_id, span); the
+    # builder writes them back into the cells, so a rebuild keeps them. Older
+    # workbooks without these sheets contribute nothing.
+    q_prior = {(a["sheet"], a["db_id"], a["span"]): a
+               for a in read_tsv(QUEUE_ANSWERS)}
+    q_new = []
+    for sheet, answer_col in (("spot-check", "verdict"), ("blocked", None)):
+        if sheet not in wb.sheetnames:
+            continue
+        qs = wb[sheet]
+        qh = [c.value for c in qs[1]]
+        for vals in qs.iter_rows(min_row=2, values_only=True):
+            rec = dict(zip(qh, vals))
+            ans = str(rec.get(answer_col) or "").strip() if answer_col else ""
+            com = str(rec.get("comments") or "").strip()
+            key = (sheet, str(rec.get("db_id") or "").strip(),
+                   str(rec.get("span") or "").strip())
+            old = q_prior.get(key, {})
+            if (ans or com) and (ans, com) != (old.get("answer", ""),
+                                                old.get("comment", "")):
+                q_new.append({"sheet": key[0], "db_id": key[1], "span": key[2],
+                              "hub_id": str(rec.get("hub_id") or ""),
+                              "answer": ans, "comment": com,
+                              "reviewer": args.reviewer, "reviewed_at": now})
+    print(f"  queue-sheet answers: {len(q_new)} new or changed "
+          f"(spot-check {sum(1 for a in q_new if a['sheet'] == 'spot-check')}, "
+          f"blocked {sum(1 for a in q_new if a['sheet'] == 'blocked')})")
+    for a in q_new[:15]:
+        print(f"     {a['sheet']}: db{a['db_id']} {a['span']} -> "
+              f"{a['answer']!r} {a['comment']!r}")
+
     if not args.execute:
         print("\nDRY RUN -- nothing written. Re-run with --execute --reviewer NAME.")
         return
+    if q_new:
+        for a in q_new:
+            q_prior[(a["sheet"], a["db_id"], a["span"])] = a
+        with QUEUE_ANSWERS.open("w", encoding="utf-8", newline="") as qf:
+            qw = csv.DictWriter(qf, fieldnames=QUEUE_FIELDS, delimiter="\t",
+                                lineterminator="\n")
+            qw.writeheader()
+            qw.writerows(q_prior.values())
+        print(f"\nwrote {QUEUE_ANSWERS.relative_to(BASE)}  ({len(q_prior)} rows)")
     if not new:
         print("\nnothing to add.")
         return
