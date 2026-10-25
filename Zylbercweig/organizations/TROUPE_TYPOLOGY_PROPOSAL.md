@@ -143,7 +143,16 @@ If ratified, the canonical count moves 31 → 28, and `CLASSIFICATION_POLICY.md`
 
 4. **Are any facets multi-valued?** A company's repertoire may genuinely be `drama` + `operetta` across its life; its register may shift. If so, those columns need a delimiter convention (the TEI side already uses space-separated multi-token `@type` — precedent exists).
 
-5. **Is the facet set time-invariant?** A troupe can go amateur → professional, or resident → itinerant. Facets as proposed record the *predominant* character. If period-specific values matter, that is a per-mention rather than per-entity model and a substantially larger change.
+5. **Is the facet set time-invariant?** → **This is now stated for decision in
+   `PUBLISHING_DYNASTY_MODEL_PROPOSAL.md` §10**, which asks the same question
+   (should `core_db` carry time?) with the data measured for both domains:
+   42% of troupe/company mentions already carry a date, and half of all live
+   `core_db` rows would gain at least one year. Decide it there, once, rather
+   than separately here — its recommendation is to keep period-specific facts in
+   the decision ledgers for now and settle the shape of a dated relation table
+   as the destination, which would serve troupe facets and publishing
+   proprietors with one design.
+   The original wording: A troupe can go amateur → professional, or resident → itinerant. Facets as proposed record the *predominant* character. If period-specific values matter, that is a per-mention rather than per-entity model and a substantially larger change.
 
 ---
 
