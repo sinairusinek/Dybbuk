@@ -1,13 +1,18 @@
 # Organization-Type Classification Policy
 
-This document is the canonical specification for mapping the free-text `org_type` values produced by LLM extraction into a fixed canonical typology. It is the source of truth for `map_canonical_types_v2.py` (keyword rules) and `llm_review_sample.py` (LLM prompt). Update both when this doc changes.
+This document is the canonical specification for mapping the free-text `org_type` values produced by LLM extraction into a fixed canonical typology. It is the source of truth for the rule cascade — now `map_canonical_types_v3.py` — and for `llm_review_sample.py` (LLM prompt). Update both when this doc changes.
 
-## Canonical types (31)
+> **Consumers to check when the list changes.** The live cascade is `map_canonical_types_v3.py`; `map_canonical_types_v2.py` is superseded and referenced only by docs. The app's dropdowns are `_ORG_TYPE_OPTIONS` in **both** `zalmen/views/org_review.py` and `zalmen/views/org_addresses.py`, and `org_review.py` also holds `_ORG_TYPE_CANON` / `_canonical_org_type()`, the casefold→canonical-spelling map that keeps a stored value from being re-lowercased on save. As of 2026-10-25 `map_canonical_types_v2.py` and `llm_review_sample.py` do **not** know `Non-Yiddish Theatre`; v2 is dead, but the LLM prompt is a real gap.
+
+## Canonical types (32)
 
 The list below is exhaustive. Any classification not on this list is invalid.
 
+Types are matched **exactly**, including case and internal spacing. A value that differs only in case is a defect, not a variant: on 2026-10-25 some 2,096 rows carried lowercase spellings (`traveling company` ×575, `education` ×221, …) because the app's type selectboxes lowercased the stored value before matching it against this list, then wrote the lowercased form back. Repaired in `5d8fa3f4d` and `4f88074d8`.
+
 ### Theatre & performance
-1. **Theatre** — an established theatre institution with a venue (or named theatre house).
+1. **Theatre** — an established theatre institution with a venue (or named theatre house). Implicitly a *Yiddish* theatre; see 1a.
+1a. **Non-Yiddish Theatre** — added 2026-06-14 as a sibling of **Theatre**, not a subtype. Latvian / Russian / Ukrainian / Polish / Belarusian / Romanian national and state theatres that Yiddish actors passed *through*. They belong in the DB because they carry biographical mentions, but must never be aligned to a Yiddish state theatre. Motivation: the melukha audit found ~44 such entries. **Scope: theatres only** — publishers, conservatories, schools and philharmonics with the same problem keep their existing non-Theatre types. Auto-applied by Rule 4's ethnonym pass (a `Theatre` cluster whose name carries a national-language token — רוסישער / לעטיש / אוקראיניש / פוילישער / ווייסרוסיש / ראומעניש — plus `מלוכה-טעאַטער`). That check must run **before** the GOSET short-form align, or a non-Yiddish state theatre gets mis-aligned to the Moscow/Kiev Yiddish State Theatre; Maly Teatr was caught doing exactly that in an early pass.
 2. **Traveling Company** — a company whose core operational identity is touring (no permanent home stage). Yiddish theatre troupes named "X's troupe" / "Vilner Trupe" / "Lodzer Trupe" etc. fall here.
 3. **Company on Tour** — a company that has a home venue and is *currently* on tour. Touring is incidental, not constitutive. Use only when the text makes this explicit.
 4. **Amateur** — amateur theatre groups, drama circles, theatre clubs, union drama circles.
@@ -31,7 +36,7 @@ The list below is exhaustive. Any classification not on this list is invalid.
 16. **Musical organization** — orchestras, choirs (secular), choral societies, music ensembles, music associations (`מוזיק-פאַראיין`, `געזאַנגס-פאַריין`), `Hazomir`/`הזמיר`, philharmonics, bands. **Excludes** synagogue choirs (→ Religious).
 
 ### Theatre-industry membership bodies
-17. **Theatre-related Society/Union** *(renamed from Society/Union)* — bodies organized around the theatre/arts industry: actors unions, artists unions, writers unions, theatre associations, theatre societies, dramatic societies, theatre committees, theatrical alliances. **Trigger word "Society" or "Union" alone does NOT qualify** — must have theatre/arts/writers/musicians cue.
+17. **Theatre-related Society/ Union** *(renamed from Society/Union)* — bodies organized around the theatre/arts industry: actors unions, artists unions, writers unions, theatre associations, theatre societies, dramatic societies, theatre committees, theatrical alliances. **Trigger word "Society" or "Union" alone does NOT qualify** — must have theatre/arts/writers/musicians cue.
 
 ### Sports and recreation *(new — added 2026-05-12 by PI decision)*
 30. **Sports/Recreation** — Jewish (and general) sports clubs, athletic associations, gymnastics and physical-culture clubs, sports federations. Examples: **Maccabi** (`מכבי`) and all Maccabi branches (Kovner Maccabi, etc.), other Jewish sports organizations. Maccabi was previously routed to Education with a PI-dilemma flag because it has a triple identity (sports + Zionist + youth-education); PI chose to acknowledge the sports identity as primary with its own canonical type.
@@ -45,7 +50,7 @@ The list below is exhaustive. Any classification not on this list is invalid.
     - **Excludes** theatre/arts unions (those go to **Theatre-related Society/ Union**).
     - **Excludes** workers' fraternal-political organizations like Arbeter Ring, Arbeter-Farband, Bund (those are **Jewish political bodies** with PI dilemma flag).
     - **Excludes** factories themselves (those are **Labour (factory/workshop)**).
-    - The line between this and Theatre-related Society/Union is the *trade* identity: a printers' union and a stage-actors' union are both unions, but the printers' union is a Trade Union / Professional Association, while the stage-actors' union is Theatre-related Society/Union.
+    - The line between this and Theatre-related Society/ Union is the *trade* identity: a printers' union and a stage-actors' union are both unions, but the printers' union is a Trade Union / Professional Association, while the stage-actors' union is Theatre-related Society/ Union.
 
 ### Religion
 18. **Religious institutions/organizations** — synagogues, yeshivot, hasidic courts, religious choirs, churches, mosques, religious courts, kehiloth (when functioning as religious-communal body).
@@ -85,10 +90,10 @@ The list below is exhaustive. Any classification not on this list is invalid.
 ## Disambiguation rules (the hard cases)
 
 ### Tag `union` / `Union` / `יוניע` / `פאַריין`
-- Theatre / arts / writers / musicians cue in name or sentence → **Theatre-related Society/Union**
-- Factory / sweatshop / workers / printers / tailors / bakers context → **Labour (factory/workshop)** *only if it is a place; if it is a movement → political*. But trade unions like "Vilner Drukers-Farein" — these are occupational unions, not factories. Route to **Theatre-related Society/Union** only if theatre context; otherwise flag (the canonical doesn't have a "general trade union" bucket — PI decision).
+- Theatre / arts / writers / musicians cue in name or sentence → **Theatre-related Society/ Union**
+- Factory / sweatshop / workers / printers / tailors / bakers context → **Labour (factory/workshop)** *only if it is a place; if it is a movement → political*. But trade unions like "Vilner Drukers-Farein" — these are occupational unions, not factories. Route to **Theatre-related Society/ Union** only if theatre context; otherwise flag (the canonical doesn't have a "general trade union" bucket — PI decision).
 - Jewish labour-political fraternal: Arbeter Ring, Arbeter-Farband, Bund — **Jewish political bodies + flag for PI**.
-- Otherwise unresolved → default **Theatre-related Society/Union** with context_weak flag (Zalmen is a theatre lexicon — theatre-relatedness is the prior).
+- Otherwise unresolved → default **Theatre-related Society/ Union** with context_weak flag (Zalmen is a theatre lexicon — theatre-relatedness is the prior).
 
 ### Tag `company`
 - Theatre / drama / troupe / players / ensemble cue → **Traveling Company**.
@@ -105,13 +110,13 @@ Use the relation column (mention-level only):
 At cluster/DB level, the same physical entity can carry both labels across different mentions. **Until the PI decides the schema policy (one-type-per-entity vs. relation-typed labels), default to majority-relation at the cluster level and flag conflicts.**
 
 ### Tag `society` / `געזעלשאַפט` / `club` / `association` / `community`
-- Theatre / writers cue → **Theatre-related Society/Union**.
+- Theatre / writers cue → **Theatre-related Society/ Union**.
 - Religious cue → **Religious institutions/organizations**.
 - Zionist / political-Jewish cue → **Jewish political bodies**.
 - Political (non-Jewish) cue → **Non-Jewish political bodies**.
 - Music cue → **Musical organization**.
 - Welfare / aid / philanthropic cue (aid, relief, hilf, philanthropic, charity, welfare, mutual aid, immigrant) → **Welfare/Aid organization**.
-- Default unresolved → **Theatre-related Society/Union** (Zalmen prior) with context_weak flag.
+- Default unresolved → **Theatre-related Society/ Union** (Zalmen prior) with context_weak flag.
 
 ### Tag `organization` / `org` / `אָרגאַניזאַציע`
 - Apply the same rule cascade as `society`, but default unresolved → **OTHER - elaborate!** with flag (organization is too generic to assume theatre-relatedness without any cue).
@@ -159,9 +164,9 @@ Every flagged row in the output mapping TSVs must include a `review_reason` valu
 - `pi_dilemma:ostrovski_institute_theatre_or_general` — core_db row 484: Ostrowski Institute, unclear if theatre-focused.
 - `pi_dilemma:vilna_printers_union_trade_or_theatre` — core_db row 508: not theatre but doesn't fit Labour either.
 - `pi_dilemma:sao_paulo_yiddish_society_scope` — core_db row 493: society scope unclear.
-- `context_weak:union_default_society` — union with no theatre/labour cue, defaulted to Theatre-related Society/Union.
+- `context_weak:union_default_society` — union with no theatre/labour cue, defaulted to Theatre-related Society/ Union.
 - `context_weak:company_no_cue` — company with no theatre/film/business cue, defaulted to Business.
-- `context_weak:society_default_theatre` — society/club/etc. with no cue, defaulted to Theatre-related Society/Union.
+- `context_weak:society_default_theatre` — society/club/etc. with no cue, defaulted to Theatre-related Society/ Union.
 - `context_weak:institute_default_education` — institute with no theatre/research cue, defaulted to Education.
 - `context_weak:academy_default_education` — academy with no theatre/music cue.
 - `context_weak:youth_default_education` — youth_organization with no political cue.
