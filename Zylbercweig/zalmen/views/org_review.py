@@ -98,6 +98,16 @@ _ORG_TYPE_OPTIONS = [
 	"",
 ]
 
+# casefold -> the dropdown's spelling. Minting used to write `.lower()`, which
+# split every type in core_db in two (575 'traveling company' vs 125
+# 'Traveling Company') and broke any exact-match filter or (place, type) bucket.
+_ORG_TYPE_CANON = {o.casefold(): o for o in _ORG_TYPE_OPTIONS if o}
+
+
+def _canonical_org_type(org_type: str) -> str:
+	t = (org_type or "").strip()
+	return _ORG_TYPE_CANON.get(t.casefold(), t)
+
 
 def _open_url(view: str, entity: str = "") -> str:
 	"""Build a deep-link URL for opening a specific view+entity in a new tab."""
@@ -1072,7 +1082,7 @@ def _apply_batch_accepts(
 				"db_id": str(next_id),
 				"name": _cy,
 				"name_yiddish": _cy if _has_yiddish(_cy) else "",
-				"org_type": r.get("org_type", "").strip().lower(),
+				"org_type": _canonical_org_type(r.get("org_type", "")),
 				"address": (r.get("extracted_addresses", "").split("|", 1)[0] or "").strip(),
 				"linked_cluster_ids": cid,
 			})
@@ -1871,7 +1881,7 @@ def render() -> None:
 					"db_id": str(next_id),
 					"name": new_entity_name or _cluster_yid,
 					"name_yiddish": _yid_for_db,
-						"org_type": new_type or selected.get("org_type", "").strip().lower(),
+						"org_type": _canonical_org_type(new_type or selected.get("org_type", "")),
 					"address": review_address or selected.get("extracted_addresses", "").split("|", 1)[0].strip(),
 					"linked_cluster_ids": selected.get("cluster_id", "").strip(),
 				}
@@ -1882,7 +1892,7 @@ def render() -> None:
 			append_address_row(
 				db_id=str(next_id),
 				name=new_entity_name or selected.get("canonical_yiddish", "").strip(),
-				org_type=(new_type or selected.get("org_type", "").strip().lower()),
+				org_type=_canonical_org_type(new_type or selected.get("org_type", "")),
 				cluster_id=selected.get("cluster_id", "").strip(),
 				settlement=review_settlement,
 				address=review_address,

@@ -121,6 +121,7 @@ _ORG_TYPE_OPTIONS = [
 	"OTHER - elaborate!",
 	"",
 ]
+_ORG_TYPE_CANON = {o.casefold(): o for o in _ORG_TYPE_OPTIONS if o}
 
 def _empty_loc() -> dict:
     return {f: "" for f in _LOC_FIELDS}
@@ -1096,12 +1097,19 @@ def _render_detail(headers, rows, row, samples):
             + (f" · sub-entry of `{row['parent_db_id']}`" if row.get("parent_db_id") else "")
         )
     with type_col:
-        cur_type = (row.get("org_type") or "").strip().lower()
-        type_idx = _ORG_TYPE_OPTIONS.index(cur_type) if cur_type in _ORG_TYPE_OPTIONS else len(_ORG_TYPE_OPTIONS) - 1
+        # Lowercasing here never matched the capitalised options, so the box
+        # fell back to "(unset)" and the != below SAVED that blank: opening a
+        # card erased its type (85 rows, 2026-04-28..10-25). Match by casefold,
+        # keep an unknown type as its own option, save only on a real change.
+        raw_type = (row.get("org_type") or "").strip()
+        cur_type = _ORG_TYPE_CANON.get(raw_type.casefold(), raw_type)
+        type_opts = list(_ORG_TYPE_OPTIONS)
+        if cur_type not in type_opts:
+            type_opts.insert(0, cur_type)
         new_type = st.selectbox(
             "Type",
-            _ORG_TYPE_OPTIONS,
-            index=type_idx,
+            type_opts,
+            index=type_opts.index(cur_type),
             format_func=lambda t: t or "(unset)",
             key=f"card-type-{cid}",
         )
