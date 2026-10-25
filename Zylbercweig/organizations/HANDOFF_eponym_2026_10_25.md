@@ -290,16 +290,23 @@ SPAN does not appear in the chosen person's heading.
 **without a generator** despite this section calling it regenerable — my mistake;
 it was frozen against 404 decisions. Use the generator.
 
-One correction to that commit's message, since it is now the rationale on record:
-it states my containment test folded punctuation to nothing, concatenating a
-heading's surname and given name (`וואָלערשטיין, סאול` → `וואלערשטיינסאול`) and
-silently dropping db1334 and db961. **That mechanism does not exist** — `key()`
-RETAINS punctuation, `key('וואָלערשטיין, סאול')` is `'וואלערשטיינ, סאול'`, and
-both rows are present in my 153-row queue AND the 205-row one. Nothing was
-dropped. The token-wise rewrite is still the better design and found a row mine
-missed (`db1334 סאול`, via the low-tier flag) — it just needs no bug story to
-justify it. **Do not go "fix" `key()` on the strength of that message:** it is
-shared by the candidate generator, the recall pass and the comment ingest.
+`a07aea804`'s message originally located a concatenation bug in the shared
+`build_eponym_candidates.key()` and said it had cost my 153-row queue two rows.
+Both parts were wrong and are **corrected on main as `8dd640a92`** — recorded
+here because the wrong version was briefly the rationale on record, and because
+`key()` is shared by the candidate generator, the recall pass and the comment
+ingest, so chasing a bug there would waste a hunt or break three consumers.
+
+What is true: `key()` RETAINS punctuation (`key('וואָלערשטיין, סאול')` →
+`'וואלערשטיינ, סאול'`), so the old containment test flagged db1334 and db961
+correctly and both rows are in BOTH queue versions. The concatenation bug was
+real but lived in `build_eponym_spotcheck.py`'s own `fold()` (line 42; it does
+not import `key()`), in a first draft caught before any write — so the committed
+queue was always correct. That draft would have found 53 span-not-in-heading rows
+instead of 56, losing db1334, db961 and db885.
+
+The token-wise test is justified on its own merits: comparing a span against
+heading TOKENS is simply right for this test, and the queue needed a generator.
 
 This is the test that caught **db1047** `זאָלאָטאַרעווסקיס טרופּע` answered as
 `זאַסלאַווסקי` — a row slip onto a different surname, where that hub was also
