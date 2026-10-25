@@ -32,6 +32,12 @@ CANDIDATES = BASE / "organizations" / "eponym_candidates.tsv"
 PERSON_HUB = BASE / "people" / "person_hub.tsv"
 BLOCKED = BASE / "organizations" / "eponym_blocked_answers.tsv"
 QUEUE_ANSWERS = BASE / "organizations" / "eponym_queue_answers.tsv"
+# troupes-sheet column -> blocked-file column
+BLOCKED_CONTEXT = {"mentioned_by": "mentioned by", "roles_dates": "roles / dates",
+                   "lexicon_context": "mention context (lexicon)"}
+BLOCKED_FIELDS = ["workbook_row", "org_db_id", "org_name_yiddish", "span",
+                  "reviewer_answer", "has_people_db_row", "needs",
+                  *BLOCKED_CONTEXT]
 QUEUE_FIELDS = ["sheet", "db_id", "span", "hub_id", "answer", "comment",
                 "reviewer", "reviewed_at"]
 
@@ -321,6 +327,10 @@ def main() -> None:
             # A person WITH a db row needs only add_dbonly_hubs.py; one
             # without needs a minting decision from Sinai first.
             "needs": "hub (add_dbonly_hubs.py)" if pdb else "mint, then hub",
+            # Carried so the Zalmen mint view can show the evidence beside
+            # the decision -- the workbook is not readable from the app.
+            **{out: str(ws.cell(row, col[src] + 1).value or "")
+               for out, src in BLOCKED_CONTEXT.items() if src in col},
         })
     decided = {(d["db_id"], d.get("span") or "") for d in existing + new}
     seen = {(b["org_db_id"], b["span"]) for b in blocked_rows}
@@ -330,10 +340,8 @@ def main() -> None:
     BLOCKED.parent.mkdir(parents=True, exist_ok=True)
     with BLOCKED.open("w", encoding="utf-8", newline="") as bf:
         bw = csv.DictWriter(
-            bf, fieldnames=["workbook_row", "org_db_id", "org_name_yiddish",
-                            "span", "reviewer_answer", "has_people_db_row",
-                            "needs"],
-            delimiter="\t", lineterminator="\n")
+            bf, fieldnames=BLOCKED_FIELDS, delimiter="\t",
+            lineterminator="\n", extrasaction="ignore")
         bw.writeheader()
         bw.writerows(blocked_rows)
     print(f"     -> {BLOCKED.name}: {len(blocked_rows)} rows "

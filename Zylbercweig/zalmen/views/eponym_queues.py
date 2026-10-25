@@ -154,9 +154,9 @@ def _blocked() -> None:
         "An eponym edge carries `person_hub_id`, and `person_hub.tsv` is built "
         "only from lexicon **entries** — so a person the Leksikon merely "
         "*mentions* has no hub. These need a people_db row (a mint) and then "
-        "`add_dbonly_hubs.py`. They must **not** be matched by name "
-        "similarity: *אידא קאמינסקי* would land on Regina Kaminska, Ida's "
-        "sister, who died in 1913.",
+        "a hub. They must **not** be matched by name similarity alone: "
+        "*אידא קאמינסקי* would land on Regina Kaminska, Ida's sister, who "
+        "died in 1913. **Resolve them in Eponym · mint people.**",
         icon="🚧",
     )
 
