@@ -186,8 +186,25 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
 #reset.on{opacity:1;pointer-events:auto}
 #reset:hover{color:var(--ink)}
 
+/* view switcher */
+#views{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:6;
+  display:flex;gap:2px;background:var(--ground-2);border:1px solid var(--rule);
+  border-radius:4px;padding:2px}
+#views button{appearance:none;background:none;border:0;cursor:pointer;
+  font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;
+  color:var(--ink-3);padding:7px 12px;border-radius:3px;white-space:nowrap}
+#views button:hover{color:var(--ink)}
+#views button.on{background:var(--ground);color:var(--ink);
+  box-shadow:0 1px 2px rgba(0,0,0,.06)}
+#viewnote{color:var(--ink-2);font-style:italic;margin-bottom:6px}
+@media (max-width:980px){
+  #views{top:auto;bottom:14px;font-size:11px}
+  #views button{padding:6px 9px;font-size:11px}
+}
+
 @media (max-width:760px){
   header .counts{display:none}
+  #views{display:none}
   #legend{max-width:150px;bottom:14px;left:14px}
   #scalekey{display:none}
 }
@@ -210,11 +227,19 @@ header .counts b{display:block;font:500 15px/1.2 "IBM Plex Mono",monospace;color
 
 <button id="reset">← back to the full wheel</button>
 
+<nav id="views" aria-label="Views">
+  <button data-view="" class="on">The repertoire</button>
+  <button data-view="music">The music</button>
+  <button data-view="archive">Archival traces</button>
+  <button data-view="stage">Performances</button>
+</nav>
+
 <nav id="legend">
   <div class="eyebrow">Genre, as catalogued</div>
   <ul id="fams"></ul>
   <div class="eyebrow" style="margin-top:14px">Traces, springing from their play</div>
   <ul id="tracekey"></ul>
+  <p class="hint" id="viewnote" style="display:none"></p>
   <p class="hint">Click a play to open it. Drag to pan, scroll to zoom.</p>
 </nav>
 
@@ -369,11 +394,20 @@ const root   = mk('g');                       // pan/zoom container
 const gGuide = mk('g', {class:'guides'});
 const gSpoke = mk('g', {class:'spokes'});
 const gOuter = mk('g', {class:'outer'});
+// Which edge roles count as musical. Declared here rather than with the view
+// definitions that read it: the composer medallions are built 300 lines
+// earlier, and a `const` used before its declaration is a dead-zone crash.
+const MUSIC_ROLES = new Set(['composer', 'lyrics', 'arranger', 'choreographer',
+                             'composer (txt fr composer)']);
+
+const gComposerLines = mk('g', {class:'composer-lines'});
+const gComposers = mk('g', {class:'composers'});
 const gTitle = mk('g', {class:'titles'});   // the ring's Yiddish titles
 const gWork  = mk('g', {class:'works'});
 const gHub   = mk('g', {class:'hubs'});
 const gFocus = mk('g', {class:'focus'});
-[gGuide,gSpoke,gOuter,gTitle,gWork,gHub,gFocus].forEach(g => root.appendChild(g));
+[gGuide,gSpoke,gComposerLines,gOuter,gTitle,gWork,gComposers,gHub,gFocus]
+  .forEach(g => root.appendChild(g));
 stage.appendChild(root);
 
 function mk(name, attrs) {
@@ -709,8 +743,20 @@ FAM_ORDER.filter(f => famCounts[f]).forEach(f => {
   famList.appendChild(li);
 });
 // every play is a circle now, so opacity is always fill-opacity
+/** Fade a play's dot. A hollow dot carries its colour in the STROKE, so
+ *  setting fill-opacity alone left all 215 title-only plays at full strength
+ *  behind an opened play's fan. Both channels move together. */
 function setWorkOp(w, op){
-  workEls.get(w.id).setAttribute('fill-opacity', op);
+  const c = workEls.get(w.id);
+  if (!c) return;
+  if (isRich(w)) {
+    c.setAttribute('fill-opacity', op);
+  } else {
+    // A hollow dot's fill is the page's own ground — it is what punches the
+    // spokes out from behind the ring — so it stays put and the outline does
+    // the fading, at the same ratio to its rest value that a filled dot moves.
+    c.setAttribute('stroke-opacity', (op / baseOp(w)) * (baseOp(w) + .18));
+  }
 }
 
 function paintFamFilter(){
@@ -841,6 +887,111 @@ DATA.authors.forEach(au => {
   gHub.appendChild(g);
 });
 
+/* ---------------- the composers ----------------
+   Sinai's spec §C: the composers who wrote for these plays sit at the centre
+   beside the playwrights, at about 2/3 their size — a second order of the same
+   kind of node, not equals and not specks.
+
+   Only a composer with MORE THAN ONE play goes here. That is what makes the
+   centre tractable: 11 inside, 7 outside. A composer credited on a single play
+   is drawn on that play's own trace tier instead, where it is already next to
+   the only thing it connects to. */
+const COMPOSER_R = Math.round(PORTRAIT_R * 2 / 3);
+const R_COMPOSER = 300;                // their ring, clear of both portraits
+const composerPlays = new Map();       // person id -> Set(work id)
+const composerEls = new Map();
+
+{
+  const by = new Map();
+  works.forEach(w => w.people.forEach(p => {
+    if (!MUSIC_ROLES.has(p.role)) return;
+    if (!by.has(p.id)) by.set(p.id, {id: p.id, name: p.name, roles: new Set(),
+                                     plays: new Set()});
+    const e = by.get(p.id);
+    e.roles.add(p.role); e.plays.add(w.id);
+  }));
+  by.forEach(e => composerPlays.set(e.id, e.plays));
+
+  const inside = [...by.values()].filter(e => e.plays.size > 1)
+                                 .sort((a, b) => b.plays.size - a.plays.size);
+
+  // Spread them over the full circle rather than the two author half-arcs:
+  // a composer is not anyone's property, and several wrote for both men.
+  inside.forEach((e, i) => {
+    const a = -Math.PI / 2 + (i / inside.length) * Math.PI * 2;
+    const x = Math.cos(a) * R_COMPOSER, y = Math.sin(a) * R_COMPOSER;
+
+    // a line to every play they wrote for
+    e.plays.forEach(wid => {
+      const pp = pos.get(wid);
+      if (!pp) return;
+      const l = mk('line', {x1: x, y1: y, x2: pp.x, y2: pp.y,
+        stroke: 'var(--gold)', 'stroke-opacity': .16, 'stroke-width': .6});
+      l.dataset.work = wid; l.dataset.composer = e.id;
+      gComposerLines.appendChild(l);
+    });
+
+    const g = mk('g');
+    g.dataset.composer = e.id;
+    g.appendChild(mk('circle', {cx: x, cy: y, r: COMPOSER_R,
+      fill: 'var(--ground-2)', stroke: 'var(--gold)', 'stroke-width': 1.2}));
+    g.appendChild(drawIcon('song', x, y - 7, 26, 'var(--gold)', {weight: 1.3}));
+
+    const nm = mk('text', {x: x, y: y + 17, 'text-anchor': 'middle',
+      fill: 'var(--ink)', 'font-size': 10.5,
+      'font-family': 'Spectral, Georgia, serif'});
+    nm.style.direction = 'rtl'; nm.style.unicodeBidi = 'plaintext';
+    nm.textContent = trunc(e.name.split(/[,(]/)[0].trim(), 16);
+    g.appendChild(nm);
+
+    const ct = mk('text', {x: x, y: y + 31, 'text-anchor': 'middle',
+      fill: 'var(--ink-3)', 'font-size': 8.5,
+      'font-family': 'IBM Plex Mono, monospace', 'letter-spacing': '.06em'});
+    ct.textContent = `${e.plays.size} PLAYS`;
+    g.appendChild(ct);
+
+    g.style.cursor = 'pointer';
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', `${e.name} — composer, ${e.plays.size} plays`);
+    g.addEventListener('pointerenter', ev => composerTip(ev, e));
+    g.addEventListener('pointerleave', hideTip);
+    const open = ev => { ev.stopPropagation(); showComposer(e); };
+    g.addEventListener('click', open);
+    g.addEventListener('keydown', ev => {
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); open(ev); }
+    });
+    composerEls.set(e.id, g);
+    gComposers.appendChild(g);
+  });
+}
+
+function composerTip(e, c){
+  tip.innerHTML =
+    `<div class="t">${esc(c.name)}</div>` +
+    `<div class="m">${[...c.roles].map(r => ROLE_LABEL[r] || r).join(' · ')}</div>` +
+    `<div class="bars" style="display:block;line-height:1.5">` +
+      `${c.plays.size} plays in this repertoire</div>`;
+  tip.classList.add('on'); placeTip(e);
+}
+
+/** A composer's own card: which plays, and in what capacity. */
+function showComposer(c){
+  const rows = [...c.plays].map(id => works.find(w => w.id === id))
+                           .filter(Boolean)
+                           .sort((a, b) => a.title.localeCompare(b.title));
+  const S = [];
+  S.push(sec('Credited as',
+    `<p class="tagline">${esc([...c.roles].map(r => ROLE_LABEL[r] || r)
+                                          .join(', '))}</p>`));
+  S.push(sec('Wrote for', rows.length,
+    '<ul>' + rows.map(w =>
+      `<li class="cred"><span class="r">${esc(FAM_LABEL[w.fam])}</span>` +
+      `<span class="n">${esc(w.title)}</span></li>`).join('') + '</ul>'));
+  showDetail({kicker: 'Composer', title: c.name, byline: '',
+              accent: 'var(--gold)', html: S.join('')});
+}
+
 function authorTip(e, au){
   tip.innerHTML =
     `<div class="t">${esc(au.name)}</div>` +
@@ -954,6 +1105,16 @@ function openPlay(id){
   // type over each other read as neither. The opened play keeps its own.
   gTitle.querySelectorAll('text').forEach(t =>
     t.setAttribute('opacity', t.dataset.work === id ? 1 : 0));
+  // In the music view the composer medallions stay, dimmed, except any who
+  // wrote for THIS play — their line to it is the point of the view.
+  if (view0 === 'music') {
+    gComposers.querySelectorAll('g[data-composer]').forEach(g => {
+      const on = (composerPlays.get(g.dataset.composer) || new Set()).has(id);
+      g.setAttribute('opacity', on ? 1 : .16);
+    });
+    gComposerLines.querySelectorAll('line').forEach(l =>
+      l.setAttribute('stroke-opacity', l.dataset.work === id ? .85 : .05));
+  }
 
   if (traced) {
     drawFocus(w);                 // §B: the play becomes the centre of its own fan
@@ -1197,9 +1358,9 @@ function unfocus(){
   gOuter.querySelectorAll('*').forEach(e => e.setAttribute('opacity', 1));
   gGuide.setAttribute('opacity', 1);
   Object.values(hubEls).forEach(g => g.setAttribute('opacity', 1));
-  gTitle.querySelectorAll('text').forEach(t => t.setAttribute('opacity', 1));
-  paintFamFilter();
-  works.forEach(w => setWorkOp(w, dimmedFam ? (w.fam===dimmedFam?.95:.07) : baseOp(w)));
+  // back to whatever view is selected, not unconditionally to the bare ring
+  paintView();
+  if (dimmedFam) paintFamFilter();
   dossier.classList.remove('on');
   resetBtn.classList.remove('on');
   userZoomed = false; view.x = 0; view.y = 0; resize();
@@ -1212,6 +1373,77 @@ stage.addEventListener('click', e => {
   if (focused && !e.target.dataset.work && !e.target.closest('.focus')) unfocus();
 });
 addEventListener('keydown', e => { if (e.key === 'Escape' && focused) unfocus(); });
+
+/* ---------------- views ----------------
+   Three lenses over ONE band. The plays never move between views — that is
+   what lets a view change while a play is open, re-drawing the same play
+   under the new lens instead of throwing the viewer back to the wheel.
+
+   The resting state (view '') is the bare ring: every play, its title, no
+   lens. Each other view keeps the plays it speaks for at full strength and
+   fades the rest, so the shape of what survives stays visible underneath. */
+const VIEWS = {
+  music: {
+    label: 'The music',
+    // A play is in this view if it has songs or anyone credited musically.
+    has: w => w.songs.length > 0 ||
+              w.people.some(p => MUSIC_ROLES.has(p.role)),
+    note: 'Songs, their lyricists and the composers who wrote for these plays.',
+  },
+  archive: {
+    label: 'Archival traces',
+    has: w => w.editions.length > 0,
+    note: 'Printed editions and manuscripts, and the libraries holding them.',
+  },
+  stage: {
+    label: 'Performances',
+    has: w => w.events.length > 0,
+    note: 'Stagings, and the theatres that gave them.',
+  },
+};
+
+let view0 = '';                        // '' = the bare ring
+
+function worksIn(v){
+  const V = VIEWS[v];
+  return V ? works.filter(V.has) : works;
+}
+
+/** Apply a view to the resting wheel: in-view plays stand, the rest recede. */
+function paintView(){
+  const V = VIEWS[view0];
+  works.forEach(w => setWorkOp(w, !V ? baseOp(w) : (V.has(w) ? .95 : .06)));
+  // A title belongs to its play: out of view, it goes with it.
+  gTitle.querySelectorAll('text').forEach(t => {
+    const w = works.find(x => x.id === t.dataset.work);
+    t.setAttribute('opacity', !V ? 1 : (w && V.has(w) ? 1 : 0));
+  });
+  gComposers.setAttribute('opacity', view0 === 'music' ? 1 : 0);
+  gComposers.style.pointerEvents = view0 === 'music' ? '' : 'none';
+  document.querySelectorAll('#views button').forEach(b =>
+    b.classList.toggle('on', (b.dataset.view || '') === view0));
+  const vn = document.getElementById('viewnote');
+  if (vn) { vn.textContent = V ? V.note : ''; vn.style.display = V ? '' : 'none'; }
+}
+
+function setView(v){
+  if (v === view0) return;
+  view0 = v;
+  if (focused) {
+    // Sinai's requirement: the toggle keeps the selected play open. Re-open it
+    // so its fan is rebuilt under the new lens; openPlay repaints everything.
+    const id = focused;
+    unfocus();
+    paintView();
+    openPlay(id);
+  } else {
+    paintView();
+  }
+}
+
+document.querySelectorAll('#views button').forEach(b => {
+  b.addEventListener('click', () => setView(b.dataset.view || ''));
+});
 
 /* ---------------- dossier ---------------- */
 /* ---------------- the detail panel ----------------
@@ -1501,6 +1733,7 @@ function sec(label, n, html){
          (n !== '' ? `<i>${esc(n)}</i>` : '') + `</div>${html}</section>`;
 }
 
+paintView();
 resize();
 requestAnimationFrame(resize);
 addEventListener('load', () => { if (!userZoomed) resize(); });
