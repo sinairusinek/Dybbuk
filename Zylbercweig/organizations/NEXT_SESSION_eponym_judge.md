@@ -10,6 +10,11 @@ https://claude.ai/code/artifact/2994fe4f-a925-46ac-95d6-f8a6b93adfe8
 
 ## Where things stand (2026-10-14)
 
+> **Superseded 2026-10-25:** `recover-session` was merged into `main` as
+> `05a2ab20c` and deleted (tip kept as tag `archive/2026-10-25/recover-session`).
+> Work on `main`. The branch notes below are history; the current state is in
+> `HANDOFF_eponym_2026_10_25.md`.
+
 **Branch `recover-session`, 16 commits ahead of origin/main, UNMERGED.** A
 concurrent session orphaned four commits earlier in the day; they were
 cherry-picked back and both sessions' work coexists. `main` does not contain
@@ -119,10 +124,9 @@ Memories: `project_eponym_dossier_judge_pilot`,
 
 ## Prompt
 
-> Continuing the eponym-link work in the Zylbercweig data, on branch
-> `recover-session` (16 commits ahead of origin/main, deliberately unmerged —
-> a concurrent session orphaned commits earlier and they were cherry-picked
-> back; merging the two lines is my call, don't do it unasked).
+> Continuing the eponym-link work in the Zylbercweig data, on `main` (the
+> `recover-session` branch was merged into main on 2026-10-25 and no longer
+> exists).
 >
 > Read `Zylbercweig/organizations/NEXT_SESSION_eponym_judge.md` first for the
 > state and the data traps — but verify its numbers yourself rather than
