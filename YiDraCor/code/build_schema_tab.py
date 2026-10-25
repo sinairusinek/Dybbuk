@@ -74,6 +74,9 @@ FIELD_NOTE = {
     "n_attestations": "how many sources attest the song",
     "author_certainty": "the song sheet's own confidence in the song's author",
     "extras": "catalogue columns carried through unparsed",
+    "source_url": "link to the attesting source (e.g. an NLI catalogue record)",
+    "elaboration": "what the cited source actually carries — e.g. \"including "
+                   "lyrics of the song\"",
 }
 
 EDGE_NOTE = {
