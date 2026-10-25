@@ -5,3 +5,8 @@
 # Pin LF so the diff reflects the actual change. The generator's other three
 # outputs stay CRLF -- they have a single producer and no such flapping.
 Zylbercweig/organizations/graph/person_org_edges.tsv text eol=lf
+
+# media_manifest.tsv: write_manifest() pins LF and sorts by media_id, but the
+# committed copy had last been written CRLF and in another order, so a no-op
+# harvester run showed all 1094 lines as changed. Pin LF so the diff is the change.
+DybbukMedia/data/media_manifest.tsv text eol=lf
