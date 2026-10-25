@@ -17,10 +17,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from common import (REPO, clean, load_entities, merge, read_manifest,
-                    write_manifest)
+from common import (REPO, clean, drop_positional_orphans, load_entities,
+                    merge, read_manifest, write_manifest)
 
 EDITIONS = REPO / "YiDraCor" / "data" / "editions.json"
+STAMP = "derived from editions.json folder key"
 
 # Yiddish dailies that carried theatre notices in the relevant decades, and are
 # digitised in JPRESS. Searching all of them per play is the realistic unit of
@@ -67,14 +68,17 @@ def main() -> None:
             "entity_ids": by_folder.get(folder, ""),
             "play_key": clean(ed.get("catalogue_play_key")),
             "link_status": "LINKED" if by_folder.get(folder) else "GAP",
-            "reviewer": ("derived from editions.json folder key"
-                         if by_folder.get(folder) else ""),
+            "reviewer": STAMP if by_folder.get(folder) else "",
             "status": "PENDING",
             "notes": "no notice located yet; this row is the worklist item",
         })
 
     manifest = read_manifest()
     added, updated, protected = merge(manifest, rows)
+    gone = drop_positional_orphans(manifest, "jpress", len(rows), STAMP)
+    if gone:
+        print(f"  dropped {len(gone)} row(s) past the end of editions.json: "
+              f"{', '.join(gone)}")
     write_manifest(manifest)
     print(f"jpress: {len(rows)} search tasks -> +{added} added, "
           f"{updated} updated, {protected} human fields kept")

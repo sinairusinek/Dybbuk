@@ -10,6 +10,7 @@ records `crop_of` back to its plate.
 """
 from __future__ import annotations
 
+import re
 import sqlite3
 import sys
 from collections import defaultdict
@@ -58,9 +59,19 @@ def anchors_by_plate(con, ents, bridge, by_db) -> dict:
             if nid:
                 found[page][nid] = f"person depicted: {clean(cand)}"
 
+    # A plate headed "PLAYS BY ASCH, BIMKO AND GORDIN" names other men's plays,
+    # so a title on it is a homonym, not ours: p. 94's "Kidush Hashem" is
+    # Asch's, and had been anchored to Lateiner's Kidesh Hashem.
+    others = {page for page, head in con.execute(
+                  "select page_number, headline_en from plate")
+              if re.search(r"\bPLAYS?\s+BY\b", head or "", re.I)
+              and not re.search(r"LATEINER|HURWITZ|HOROWITZ", head, re.I)}
+
     q = """select a.page_number, pl.title, pl.title_yiddish
              from appearance a join play pl using(play_id)"""
     for page, title, title_yi in con.execute(q):
+        if page in others:
+            continue
         for cand in (title, title_yi):
             if not clean(cand):
                 continue

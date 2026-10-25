@@ -138,10 +138,16 @@ def harvest_documents(wb, ents, idx) -> list[dict]:
 
 
 def harvest_scores(wb, ents, idx) -> list[dict]:
-    """Printed sheet music. Title pages carry portraits and theatre imprints."""
+    """Printed sheet music. Title pages carry portraits and theatre imprints.
+
+    Column indices follow the sheet's header row (re-read 2026-10-25). Two
+    traps: the play is named in "work id" (col 13) as a TITLE, and the
+    numeric "Id" beside it (col 14) is not the catalogue expression id — on
+    all 41 rows it named a work 14-15 ids away, so it must never anchor.
+    """
     out = []
     for i, r in enumerate(rows_of(wb, "Score-print-editions", 1), start=1):
-        title, play_key = clean(cell(r, 8)), clean(cell(r, 14))
+        title, play_key = clean(cell(r, 8)), clean(cell(r, 13))
         if not (title or play_key):
             continue
         ids, status = anchor(ents, idx, play_key, title)
@@ -151,20 +157,21 @@ def harvest_scores(wb, ents, idx) -> list[dict]:
             "item_type": "sheet_music",
             "title": title,
             "title_yiddish": clean(cell(r, 9)),
-            "date": year_of(cell(r, 19)) or year_of(cell(r, 20)),
-            "place": clean(cell(r, 21)),
-            "holding_institution": clean(cell(r, 29)),
-            "collection": clean(cell(r, 30)),
-            "signature": clean(cell(r, 31)),
-            "source_url": clean(cell(r, 35)),
+            "date": year_of(cell(r, 20)) or year_of(cell(r, 21)),
+            "place": clean(cell(r, 22)),
+            "holding_institution": clean(cell(r, 30)),
+            "collection": clean(cell(r, 31)),
+            "signature": clean(cell(r, 32)),
+            "source_url": clean(cell(r, 36)),
             "fetch_hint": "",
             "rights": clean(cell(r, 7)),
             "entity_ids": ids,
             "play_key": play_key,
-            "expression_id": clean(cell(r, 13)),
+            "expression_id": "",
             "link_status": status,
             "status": "PENDING",
-            "notes": "; ".join(x for x in (clean(cell(r, 23)), clean(cell(r, 27))) if x),
+            "notes": "; ".join(x for x in (
+                clean(cell(r, 28)), clean(cell(r, 23)), clean(cell(r, 29))) if x),
         })
     return out
 

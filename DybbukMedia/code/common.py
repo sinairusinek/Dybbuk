@@ -227,7 +227,14 @@ def merge(existing: dict, new_rows: list[dict]) -> tuple[int, int, int]:
         for col, val in row.items():
             if col not in COLUMNS or col == "media_id" or not val:
                 continue
-            if col in HUMAN_OWNED and cur.get(col):
+                # A value stamped by a derivation is that derivation's to refresh,
+            # not a human decision. harvest_editions keys rows on list position,
+            # so when editions.json dropped a duplicate the protected anchors of
+            # 24 rows stayed one play off while their titles moved on.
+            derived = (col in ("entity_ids", "link_status")
+                       and row.get("reviewer")
+                       and cur.get("reviewer") == row["reviewer"])
+            if col in HUMAN_OWNED and cur.get(col) and not derived:
                 if cur[col] != val:
                     protected += 1
                 continue
@@ -236,6 +243,29 @@ def merge(existing: dict, new_rows: list[dict]) -> tuple[int, int, int]:
                 touched = True
         updated += touched
     return added, updated, protected
+
+
+def drop_positional_orphans(existing: dict, prefix: str, n: int,
+                            stamp: str) -> list[str]:
+    """Remove `{prefix}-NNNN` rows past the end of a source list of length `n`.
+
+    Rows keyed on list position outlive the entry they described when the list
+    shrinks: edition-0028 sat on as a duplicate of edition-0027 once
+    editions.json lost a row. Only a row nobody has touched goes — its sole
+    reviewer text is the generator's own `stamp` and it holds no fetched file,
+    crop or status change. Anything else is left and reported by the caller.
+    """
+    gone = []
+    for mid in list(existing):
+        m = re.fullmatch(rf"{re.escape(prefix)}-(\d+)", mid)
+        if not m or int(m.group(1)) <= n:
+            continue
+        row = existing[mid]
+        if (row.get("reviewer") in ("", stamp) and not row.get("local_path")
+                and not row.get("crop_of") and row.get("status") == "PENDING"):
+            del existing[mid]
+            gone.append(mid)
+    return gone
 
 
 # --------------------------------------------------------------------------
@@ -371,6 +401,10 @@ def translit_key(s) -> str:
     return out
 
 
+WORK_ALT_TITLES = ("Play title by Daniela", "Translated Play title",
+                   "שם אצל ברקוביץ")
+
+
 def load_title_index(ents: dict) -> dict:
     """skeleton -> [node_id] over work and edition titles.
 
@@ -387,6 +421,11 @@ def load_title_index(ents: dict) -> dict:
             continue
         cands = [n.get("label"), n.get("yiddish_title"),
                  re.sub(r"[_-].*$", "", str(n.get("folder") or ""))]
+        # The catalogue's alternative titles are spellings the sources really
+        # use (Don Yosef Abarbanel / Don Yozef Abravanel); indexing them
+        # anchors 60 more rows, every one checked by eye on 2026-10-25.
+        extras = n.get("extras") or {}
+        cands += [extras.get(f) for f in WORK_ALT_TITLES]
         for c in cands:
             key = translit_key(c)
             if len(key) < 4:

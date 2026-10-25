@@ -17,10 +17,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from common import (ENTITY_GRAPH, REPO, clean, load_entities, merge,
-                    read_manifest, write_manifest)
+from common import (ENTITY_GRAPH, REPO, clean, drop_positional_orphans,
+                    load_entities, merge, read_manifest, write_manifest)
 
 EDITIONS = REPO / "YiDraCor" / "data" / "editions.json"
+STAMP = "derived from editions.json folder key"
 TEI_DIRS = ("tei", "tei/ms", "tei/dracor")
 
 
@@ -34,8 +35,8 @@ def tei_for(folder: str) -> str:
     return ""
 
 
-def main() -> None:
-    ents = load_entities()
+def edition_rows(ents: dict) -> list[dict]:
+    """One manifest row per entry of editions.json, keyed on list position."""
     by_folder = {n.get("folder"): nid for nid, n in ents["nodes"].items()
                  if n.get("kind") == "edition" and n.get("folder")}
 
@@ -70,16 +71,24 @@ def main() -> None:
             "play_key": clean(ed.get("catalogue_play_key")),
             "expression_id": clean(ed.get("expression_id")),
             "link_status": "LINKED" if nid else "GAP",
-            "reviewer": "derived from editions.json folder key" if nid else "",
+            "reviewer": STAMP if nid else "",
             "status": "PENDING",
             "notes": "; ".join(x for x in (
                 f"TEI: {tei_for(folder)}" if tei_for(folder) else "",
                 clean(ed.get("publisher")),
                 clean(ed.get("notes"))[:200]) if x),
         })
+    return rows
 
+
+def main() -> None:
+    rows = edition_rows(load_entities())
     manifest = read_manifest()
     added, updated, protected = merge(manifest, rows)
+    gone = drop_positional_orphans(manifest, "edition", len(rows), STAMP)
+    if gone:
+        print(f"  dropped {len(gone)} row(s) past the end of editions.json: "
+              f"{', '.join(gone)}")
     write_manifest(manifest)
     linked = sum(1 for r in rows if r["link_status"] == "LINKED")
     print(f"editions: {len(rows)} rows ({linked} LINKED) -> "
