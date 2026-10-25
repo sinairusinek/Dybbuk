@@ -66,6 +66,79 @@ def _credentials(branch: str | None) -> tuple[str, str, str]:
     return token, repo, branch or deployed
 
 
+# ── stale-code guard ─────────────────────────────────────────────────────────
+# Cloud does NOT reliably pick up pushes. On 2026-10-25 an instance ran code
+# from before two fixes for over an hour; its first save wrote its whole
+# pre-repair core_db and reverted 2338 org_type cells (7b17eb45d). A process
+# running old code cannot be trusted to merge, canonicalise or validate, so it
+# must not write at all. Compared by git blob SHA: the app's .py files in this
+# checkout against the deployed branch's tree, one API call, cached briefly.
+_APP_DIR = pathlib.Path(__file__).resolve().parent
+_APP_REPO_DIR = "Zylbercweig/zalmen"
+_CODE_CHECK_TTL = 60.0
+_code_check: dict[str, float | list[str]] = {"at": 0.0, "stale": []}
+
+
+def _blob_sha(path: pathlib.Path) -> str:
+    import hashlib
+    data = path.read_bytes()
+    return hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
+
+
+def stale_code_files() -> list[str]:
+    """App .py files whose content differs from the deployed branch.
+
+    Empty when current -- and also when the check itself cannot run (no
+    secrets, network error, odd response): a guard that fails closed on a
+    GitHub hiccup would block every save, and the push would fail anyway.
+    """
+    import time
+    now = time.monotonic()
+    if now - float(_code_check["at"]) < _CODE_CHECK_TTL:
+        return list(_code_check["stale"])  # type: ignore[arg-type]
+    token, repo, branch = _credentials(None)
+    if not token or not repo:
+        return []
+    try:
+        resp = _SESSION.get(
+            f"https://api.github.com/repos/{repo}/git/trees/{branch}:{_APP_REPO_DIR}",
+            headers={"Authorization": f"token {token}",
+                     "Accept": "application/vnd.github.v3+json"},
+            params={"recursive": "1"}, timeout=10,
+        )
+        tree = resp.json().get("tree") if resp.ok else None
+        if not isinstance(tree, list):
+            return []
+        stale = []
+        for e in tree:
+            p = e.get("path") or ""
+            if e.get("type") != "blob" or not p.endswith(".py"):
+                continue
+            local = _APP_DIR / p
+            if not local.exists() or _blob_sha(local) != e.get("sha"):
+                stale.append(p)
+    except Exception:  # noqa: BLE001
+        return []
+    _code_check.update(at=now, stale=stale)
+    return stale
+
+
+def _refuse_if_stale() -> bool:
+    """True (and tells the reviewer) when this process runs outdated code."""
+    stale = stale_code_files()
+    if not stale:
+        return False
+    try:
+        st.error(
+            "⛔ This app is running an OUTDATED version, so your change was NOT "
+            "saved to GitHub. Please stop and tell Sinai — the app needs a "
+            f"reboot. (out of date: {', '.join(stale[:5])})"
+        )
+    except Exception:  # noqa: BLE001 — outside a Streamlit run
+        pass
+    return True
+
+
 def fetch_file_from_github(repo_path: str, branch: str | None = None) -> bytes | None:
     """Fetch a file's current content from GitHub, or None on any failure.
 
@@ -107,10 +180,13 @@ def push_file_to_github(repo_path: str, local_path: pathlib.Path, commit_message
                         data branch does not (but see the module docstring for
                         the fetch-at-boot precondition).
 
-    Returns True on success, False if credentials are missing or the API call fails.
+    Returns True on success, False if credentials are missing or the API call
+    fails, or if this process is running outdated code (see stale_code_files).
     """
     token, repo, branch = _credentials(branch)
     if not token or not repo:
+        return False
+    if _refuse_if_stale():
         return False
 
     cache_key = (branch, repo_path)
@@ -196,6 +272,8 @@ def push_files_to_github(
     token, repo, branch = _credentials(branch)
     if not token or not repo:
         return False
+    if _refuse_if_stale():
+        return False  # no per-file fallback either: stale code must not write
 
     api = f"https://api.github.com/repos/{repo}"
     headers = {
