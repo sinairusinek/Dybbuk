@@ -2000,11 +2000,15 @@ function dateLine(w){
            (d && d.raw ? `<p class="k" style="font-size:11.5px;color:var(--ink-3)">catalogue reads: ${esc(d.raw)}</p>` : '');
   const KIND = {composition:'composed', publication:'published',
                 performance:'performed', year:'', range:'', before:'', after:''};
+  // parse_date() writes `year` for before / after / about and `from`/`to` for
+  // a plain year or a range. Reading only `from` printed "undefined" on the 16
+  // plays dated like "1877?".
+  const y = d.year != null ? d.year : d.from;
   let main;
   if (d.kind === 'range')       main = `${d.from}–${d.to}`;
-  else if (d.kind === 'before') main = `before ${d.to}`;
-  else if (d.kind === 'after')  main = `after ${d.from}`;
-  else                          main = String(d.from);
+  else if (d.kind === 'before') main = `before ${d.year != null ? d.year : d.to}`;
+  else if (d.kind === 'after')  main = `after ${y}`;
+  else                          main = String(y);
   const qual = [];
   if (!d.certain) qual.push('uncertain');
   if (KIND[d.kind]) qual.push(KIND[d.kind]);
