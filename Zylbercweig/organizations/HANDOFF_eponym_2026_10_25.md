@@ -316,10 +316,18 @@ Most flags are benign: a possessive `ס` on the org name, or an OCR variant the
 reviewer corrected by eye (`מעערסאן` → `מייערסאָן`, `זייגלער` → `זיגלער`). Two
 were raised with Sinai on 10-15 and are **still unresolved**:
 
-- **db287** `איציק מענדל בערמאָןס טרופּע` → `בערגמאַן, איציק-מענדל`. Berman vs
-  Bergman: surname differs by a letter, but the given name matches exactly and
-  the entry corroborates. Probably hers is right and the ORG name is the OCR
-  error — same shape as the db1047 slip, so worth a deliberate ruling.
+- ~~**db287**~~ **CLOSED 2026-10-25 — Sinai confirmed Bergman; Ruthie's answer
+  UPHELD.** The org reads `בערמאָן`, the person is `בערגמאַן`, and the ORG NAME
+  is the error. It held because the given name `איציק-מענדל` matches exactly,
+  the Leksikon's three Bermans (1277, 1278, 1279) include no איציק-מענדל, and
+  `core_db`'s own English column already read "Itzik Mendl Bergman Troupe".
+  Stamped in the decision's `notes`, not left in a chat log.
+
+  **Reusable for the remaining 56 span-not-in-heading rows:** a surname mismatch
+  does not mean the match is wrong — it means ONE OF THE TWO NAMES is wrong, and
+  the evidence decides which. On db287 the org was wrong; on db1047 the answer
+  was. Same flag, opposite outcomes: it must go to a reviewer and must never
+  become an auto-correction.
 - **db1068** `אָפּערעטן-טרופּע פון סאָנדלער, ליבערט און קאָמפּאַנעיעץ` →
   `קאָמפּאַנעעץ, אַבא`. Fine in itself (Sinai REJECTed Max Kompaneyets first).
   It is a THREE-partner troupe: **`סאנדלער` was closed by `35dec86dd`**
