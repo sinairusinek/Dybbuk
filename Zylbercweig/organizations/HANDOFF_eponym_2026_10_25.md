@@ -12,15 +12,22 @@ open.
 
 ## THE RISK, first
 
-Everything below lives on branch **`recover-session`** at `9a4927395`, which is
-**UNMERGED and 2,400 commits behind `origin/main`**. The gap is almost entirely
-Zalmen app auto-saves (`chore: save core DB`, `chore: log org_review/alignment`),
-but `core_db.tsv` and `org_alignment_review.tsv` HAVE moved on main, and the
-eponym pipeline reads `core_db.tsv`.
+Everything below lives on branch **`recover-session`**, which is **UNMERGED and
+~2,400 commits behind `origin/main`**. The gap is almost entirely Zalmen app
+auto-saves. Do not let the eponym work sit only here. Merging is Sinai's call —
+he said so explicitly on 10-14 and that has not been revisited.
 
-Two other sessions (`dybbuk-c7`, `dybbuk-4d`) independently flagged this. Do not
-let the eponym work sit only here. Merging is Sinai's call — he said so
-explicitly on 10-14 and that has not been revisited.
+**But the drift is measured, not unknown** (incoming session, 10-25; I verified
+the row counts independently). `core_db.tsv` is **2,936 rows locally vs 3,419 on
+origin/main**: 483 orgs exist only on main (ids 3000–3482) and **zero exist only
+locally** — purely additive, the tables have not diverged. Of those 483, only 2
+carry the possessive `ס-טרופּע` pattern, none carry `טרופּע פֿון`, and 31 contain
+`טרופּ` at all; the types skew welfare/aid (164) and religious (91).
+
+So candidate generation IS running against a stale org table, but the missing
+eponym yield is small and countable. **A rebuild is not urgent, and the 404
+decisions are not suspect** — the drift touches almost nothing the generator
+keys on. Do not read "2,400 behind" as doubt about the ledger.
 
 ---
 
@@ -179,6 +186,16 @@ The pattern: **five of six were discarding a reviewer's answers, and the summary
 lines kept reporting success.** Count what was WRITTEN, never what was intended.
 Every one of them was found by reconciling the data against the reviewer's own
 sheet, never by reading a log.
+
+### Harden this BEFORE the hub question
+
+The incoming session's recommendation, and it is the right order of work: the
+summary line is the thing that lies. **Make `0 unmatched` actually mean nobody
+was dropped** — add a third counter for *answers seen but not resolved*, so a
+cell holding content that no branch consumed is reported rather than counted as
+blank. Every one of the six bugs would have surfaced on its first run against
+such a counter. Without it the next reviewer round loses answers the same way and
+nobody notices for a week.
 
 ---
 
