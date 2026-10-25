@@ -1,31 +1,65 @@
 #!/usr/bin/env python3.11
-"""Build docs/istanbul_timeline.html and docs/istanbul_map.html from
-istanbul_itineraries.json (embeds the data; no server needed)."""
-import json, re
+"""Build docs/<slug>_timeline.html and docs/<slug>_map.html for a place dossier
+from <slug>_itineraries.json (embeds the data; no server needed).
+
+    python3.11 build_place_pages.py                  # Istanbul (the pilot)
+    python3.11 build_place_pages.py --place danzig
+
+Was build_istanbul_pages.py; a place is now a PLACES entry. Inside the page
+templates "ist" still names the focus place, whatever it is."""
+import argparse, json, re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DOCS = HERE.parent.parent.parent / "docs" / "Visualizations"
-DATA = json.load(open(HERE / "istanbul_itineraries.json", encoding="utf-8"))
-
-IST_RE = re.compile(r"(קאנסטאנטינאפ|סטאמבול|סטאמבל|איסטאמבול|סטומבול)")
 POINTS = re.compile(r"[֑-ׇ]")
+
+PLACES = {
+    "istanbul": {
+        "name": "Istanbul", "qid": "Q406", "coords": "41.010,28.960",
+        "label": "Istanbul / קאָנסטאַנטינאָפּאָל",
+        # unpointed stems; the JS panel highlight uses the same list
+        "stems": ["קאנסטאנטינאפ", "סטאמבול", "סטאמבל", "איסטאמבול", "סטומבול"],
+        "n_entries": 79, "eyebrow": "Dybbuk · Istanbul itinerary pilot",
+        "view": "[44,24],4", "years": (1845, 1945), "pxy": 10.4,
+        # map waves: first year in the place < c1, < c2, else
+        "waves": (1890, 1914, "first in Istanbul before 1890", "1890–1913", "1914+"),
+        # the Leksikon repeats these people across volumes; keep the richer extraction
+        "dup_groups": [
+            {"P-1-facs_35_tr_1740520972", "P-5-facs_556_tr_1739222579"},      # Katia Adler
+            {"P-1-facs_64_tr_1740520942", "P-5-facs_126_tr_1733832830"},      # Ch.-D. Ariel
+            {"P-1-facs_64_tr_1740520959", "P-5-facs_560_tr_1739220843"},      # Rokhl Ariel
+            {"P-2-facs_194_tr_1744279147", "P-5-facs_430_r"},                 # Leresko
+            {"P-2-facs_292_tr_1744280734", "P-5-facs_568_tr_1739221639"},     # Mendelevitsh
+            {"P-1-facs_335_r_6", "P-5-facs_250_tr_1739221688"},               # Hershele
+            {"P-1-facs_50_tr_1740521040", "P-5-facs_568_r_2"},                # Sonia Amatin
+        ],
+    },
+    "danzig": {
+        "name": "Danzig", "qid": "Q1792", "coords": "54.348,18.654",
+        "label": "Danzig / דאַנציג",
+        "stems": ["דאנצי", "גדאנסק", "דאנסק"],
+        "n_entries": 28, "eyebrow": "Dybbuk · Danzig dossier",
+        "view": "[52,20],5", "years": (1850, 1965), "pxy": 8.2,
+        "waves": (1914, 1933, "first in Danzig before 1914", "1914–1932 (Free City)",
+                  "1933+"),
+        "dup_groups": [],
+    },
+}
+
+ap = argparse.ArgumentParser()
+ap.add_argument("--place", default="istanbul", choices=sorted(PLACES))
+SLUG = ap.parse_args().place
+P = PLACES[SLUG]
+DATA = json.load(open(HERE / f"{SLUG}_itineraries.json", encoding="utf-8"))
+IST_RE = re.compile("(" + "|".join(P["stems"]) + ")")
 
 
 def is_ist(st):
-    return st.get("qid") == "Q406" or bool(IST_RE.search(POINTS.sub("", st.get("place", ""))))
+    return st.get("qid") == P["qid"] or bool(IST_RE.search(POINTS.sub("", st.get("place", ""))))
 
 
-# the Leksikon repeats these people across volumes; keep the richer extraction
-DUP_GROUPS = [
-    {"P-1-facs_35_tr_1740520972", "P-5-facs_556_tr_1739222579"},      # Katia Adler
-    {"P-1-facs_64_tr_1740520942", "P-5-facs_126_tr_1733832830"},      # Ch.-D. Ariel
-    {"P-1-facs_64_tr_1740520959", "P-5-facs_560_tr_1739220843"},      # Rokhl Ariel
-    {"P-2-facs_194_tr_1744279147", "P-5-facs_430_r"},                 # Leresko
-    {"P-2-facs_292_tr_1744280734", "P-5-facs_568_tr_1739221639"},     # Mendelevitsh
-    {"P-1-facs_335_r_6", "P-5-facs_250_tr_1739221688"},               # Hershele
-    {"P-1-facs_50_tr_1740521040", "P-5-facs_568_r_2"},                # Sonia Amatin
-]
+DUP_GROUPS = P["dup_groups"]
 
 # ---- prepare compact viz payload ----
 itins = []
@@ -90,7 +124,7 @@ FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
          'family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500'
          '&display=swap">')
 
-# shared entry-reader side panel (fetches docs/istanbul_entries.json lazily)
+# shared entry-reader side panel (fetches docs/<slug>_entries.json lazily)
 ENTRY_PANEL = """
 <style>
 #epanel{display:none;position:fixed;top:0;right:0;bottom:0;width:min(580px,94vw);
@@ -122,7 +156,7 @@ white-space:pre-wrap;flex:1}
 let ENTRIES=null;
 const nik='[\\\\u0591-\\\\u05C7]*';
 const mk=b=>b.split('').join(nik);
-const IST=new RegExp('('+['קאנסטאנטינאפ','סטאמבול','סטאמבל','איסטאמבול','סטומבול']
+const IST=new RegExp('('+__STEMS_JS__
   .map(mk).join('|')+')(?:'+nik+'[א-ת])*','g');
 window.openEntry=async function(pid){
   const p=document.getElementById('epanel');
@@ -131,9 +165,9 @@ window.openEntry=async function(pid){
   document.getElementById('ep-meta').textContent=pid;
   document.getElementById('ep-text').textContent='';
   if(!ENTRIES){
-    try{ENTRIES=await (await fetch('istanbul_entries.json')).json();}
+    try{ENTRIES=await (await fetch('__SLUG___entries.json')).json();}
     catch(e){document.getElementById('ep-text').textContent=
-      'Entry texts could not be loaded (istanbul_entries.json).';return;}
+      'Entry texts could not be loaded (__SLUG___entries.json).';return;}
   }
   let e=ENTRIES[pid];
   if(!e && pid.includes('…')){
@@ -156,7 +190,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 # ---------------- TIMELINE ----------------
 timeline = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Istanbul Timeline · Yiddish Theater</title>""" + FONTS + """
+<title>__NAME__ Timeline · Yiddish Theater</title>""" + FONTS + """
 <style>""" + COMMON_CSS + """
 #wrap{max-width:75rem;margin:0 auto;padding:0 1.6rem 3rem;overflow-x:auto}
 svg text{font-family:"Spectral",serif}
@@ -172,19 +206,19 @@ box-shadow:0 2px 10px rgba(0,0,0,.12);z-index:10}
 #tip .yi{direction:rtl;display:block;text-align:right;font-size:.95rem}
 </style></head><body>
 <header>
-<p class="eyebrow">Dybbuk · Istanbul itinerary pilot</p>
-<h1>Istanbul Timeline</h1>
-<p class="lede">Every extracted station and event for the 79 Leksikon entries that mention
-Istanbul. Teal bands = time in Istanbul; grey bands = elsewhere; faded = date inferred
+<p class="eyebrow">__EYEBROW__</p>
+<h1>__NAME__ Timeline</h1>
+<p class="lede">Every extracted station and event for the __N__ Leksikon entries that mention
+__NAME__. Teal bands = time in __NAME__; grey bands = elsewhere; faded = date inferred
 from narrative order. Dots are events.</p>
-<p class="nav"><a href="istanbul_dossier.html">← dossier</a>
-<a href="istanbul_map.html">map →</a>
+<p class="nav"><a href="__SLUG___dossier.html">← dossier</a>
+<a href="__SLUG___map.html">map →</a>
 <a href="rumshinsky_dossier.html">Rumshinsky dossier →</a></p>
 </header>
 <div class="controls">
-  <label><input type="checkbox" id="istOnly"> Istanbul stations &amp; events only</label>
+  <label><input type="checkbox" id="istOnly"> __NAME__ stations &amp; events only</label>
   <label><input type="checkbox" id="thirdP" checked> include third-person testimony lanes</label>
-  <label><input type="checkbox" id="mentOnly"> include mention-only careers (no Istanbul station)</label>
+  <label><input type="checkbox" id="mentOnly"> include mention-only careers (no __NAME__ station)</label>
   <span class="legend">
     <span><span class="sw" style="background:var(--teal)"></span> performance/season</span>
     <span><span class="sw" style="background:var(--brick)"></span> life event</span>
@@ -196,7 +230,7 @@ from narrative order. Dots are events.</p>
 <div id="tip"></div>
 <script>
 const DATA = __PAYLOAD__;
-const Y0=1845,Y1=1945,PXY=10.4,LANE=17,LEFT=215,W=LEFT+(Y1-Y0)*PXY+30;
+const Y0=__Y0__,Y1=__Y1__,PXY=__PXY__,LANE=17,LEFT=215,W=LEFT+(Y1-Y0)*PXY+30;
 const evColor = t => ["performance","premiere","season","debut"].includes(t) ? "var(--teal)"
   : ["marriage","death","burial","born"].includes(t) ? "var(--brick)"
   : ["founding","business"].includes(t) ? "var(--amber)" : "#8a8577";
@@ -254,7 +288,7 @@ render();
 # ---------------- MAP ----------------
 mapp = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Istanbul Routes · Yiddish Theater</title>""" + FONTS + """
+<title>__NAME__ Routes · Yiddish Theater</title>""" + FONTS + """
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>""" + COMMON_CSS + """
 #map{height:calc(100vh - 175px);min-height:430px}
@@ -270,17 +304,17 @@ margin-left:-.5rem;padding:.1rem .25rem .1rem .4rem;border-radius:0 3px 3px 0;fo
 .ist-tip{color:var(--teal)}
 </style></head><body>
 <header style="padding-bottom:.3rem">
-<p class="eyebrow">Dybbuk · Istanbul itinerary pilot</p>
-<h1>Istanbul Routes</h1>
-<p class="nav"><a href="istanbul_dossier.html">← dossier</a>
-<a href="istanbul_timeline.html">timeline →</a>
+<p class="eyebrow">__EYEBROW__</p>
+<h1>__NAME__ Routes</h1>
+<p class="nav"><a href="__SLUG___dossier.html">← dossier</a>
+<a href="__SLUG___timeline.html">timeline →</a>
 <a href="rumshinsky_dossier.html">Rumshinsky dossier →</a>
-&nbsp;·&nbsp; routes of the 79 Istanbul-linked careers; click a line for its stations</p>
+&nbsp;·&nbsp; routes of the __N__ __NAME__-linked careers; click a line for its stations</p>
 </header>
 <div class="controls">
-  <label><input type="checkbox" id="w1" checked><span class="sw" style="background:#b07d2b"></span> first in Istanbul before 1890</label>
-  <label><input type="checkbox" id="w2" checked><span class="sw" style="background:#0e6f8a"></span> 1890–1913</label>
-  <label><input type="checkbox" id="w3" checked><span class="sw" style="background:#a1462e"></span> 1914+</label>
+  <label><input type="checkbox" id="w1" checked><span class="sw" style="background:#b07d2b"></span> __W1__</label>
+  <label><input type="checkbox" id="w2" checked><span class="sw" style="background:#0e6f8a"></span> __W2__</label>
+  <label><input type="checkbox" id="w3" checked><span class="sw" style="background:#a1462e"></span> __W3__</label>
   <label><input type="checkbox" id="w0" checked><span class="sw" style="background:#8a8577"></span> undated</label>
   <label><input type="checkbox" id="regions"> include region/country centroids in routes</label>
   <span id="count" style="color:var(--soft)"></span>
@@ -289,15 +323,15 @@ margin-left:-.5rem;padding:.1rem .25rem .1rem .4rem;border-radius:0 3px 3px 0;fo
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const DATA = __PAYLOAD__;
-const map=L.map('map').setView([44,24],4);
+const map=L.map('map').setView(__VIEW__);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
  {attribution:'© OpenStreetMap contributors',maxZoom:12}).addTo(map);
-const IST=[41.010,28.960];
+const IST=[__COORDS__];
 const istMarker=L.circleMarker(IST,{radius:9,color:'#0e6f8a',weight:3,
   fillColor:'#0e6f8a',fillOpacity:.55}).addTo(map);
-istMarker.bindTooltip('Istanbul / קאָנסטאַנטינאָפּאָל',
+istMarker.bindTooltip('__LABEL__',
   {permanent:true,direction:'right',offset:[10,0],className:'tip-ist'});
-// emphasize Istanbul whenever the reader hovers a station or route
+// emphasize __NAME__ whenever the reader hovers a station or route
 const IST_R=9,IST_RMAX=13,IST_MS=620;
 const reduceMotion=matchMedia('(prefers-reduced-motion:reduce)');
 let istTimer=null,istRaf=null;
@@ -322,7 +356,7 @@ function flashIst(){
     if(istRaf){cancelAnimationFrame(istRaf);istRaf=null;}
     istMarker.setRadius(IST_R).setStyle({weight:3,fillOpacity:.55});},1400);
 }
-const wave=d=>!d.istYear?'w0':d.istYear<1890?'w1':d.istYear<1914?'w2':'w3';
+const wave=d=>!d.istYear?'w0':d.istYear<__C1__?'w1':d.istYear<__C2__?'w2':'w3';
 const wcol={w1:'#b07d2b',w2:'#0e6f8a',w3:'#a1462e',w0:'#8a8577'};
 let layers=[];
 function render(){
@@ -346,7 +380,7 @@ function render(){
       const m=L.circleMarker([s.lat,s.lon],{radius:s.ist?5:(s.verb==='pass_through'?2:3),
         color:wcol[w],weight:1,fillColor:wcol[w],
         fillOpacity:s.verb==='pass_through'?0.15:0.7});
-      m.bindTooltip(`${s.ist?'<b class="ist-tip">★ Istanbul</b> — ':''}`
+      m.bindTooltip(`${s.ist?'<b class="ist-tip">★ __NAME__</b> — ':''}`
         +`${s.ist?'':(s.en||s.place)+' — '}${d.name.split(',')[0]} <i>${s.verb}</i> ${s.t0||''}`,
         {className:s.ist?'tip-ist':''});
       if(s.ist)m.bringToFront();
@@ -360,12 +394,26 @@ function render(){
 render();
 </script></body></html>"""
 
-timeline = timeline.replace("__PAYLOAD__", payload).replace(
-    "</body></html>", ENTRY_PANEL + "\n</body></html>")
-mapp = mapp.replace("__PAYLOAD__", payload).replace(
-    "</body></html>", ENTRY_PANEL + "\n</body></html>")
-(DOCS / "istanbul_timeline.html").write_text(timeline, encoding="utf-8")
-(DOCS / "istanbul_map.html").write_text(mapp, encoding="utf-8")
-print("wrote", DOCS / "istanbul_timeline.html", "and istanbul_map.html")
+c1, c2, w1, w2, w3 = P["waves"]
+TOKENS = {
+    "__STEMS_JS__": "[" + ",".join(f"'{x}'" for x in P["stems"]) + "]",
+    "__SLUG__": SLUG, "__NAME__": P["name"], "__EYEBROW__": P["eyebrow"],
+    "__N__": str(P["n_entries"]), "__LABEL__": P["label"], "__COORDS__": P["coords"],
+    "__VIEW__": P["view"], "__Y0__": str(P["years"][0]), "__Y1__": str(P["years"][1]),
+    "__PXY__": str(P["pxy"]),
+    "__C1__": str(c1), "__C2__": str(c2), "__W1__": w1, "__W2__": w2, "__W3__": w3,
+}
+
+
+def fill(page):
+    page = page.replace("</body></html>", ENTRY_PANEL + "\n</body></html>")
+    for k, v in TOKENS.items():
+        page = page.replace(k, v)
+    return page.replace("__PAYLOAD__", payload)
+
+
+(DOCS / f"{SLUG}_timeline.html").write_text(fill(timeline), encoding="utf-8")
+(DOCS / f"{SLUG}_map.html").write_text(fill(mapp), encoding="utf-8")
+print("wrote", DOCS / f"{SLUG}_timeline.html", f"and {SLUG}_map.html")
 print("itineraries in payload:", len(itins),
       " with coords:", sum(1 for i in itins if any(s["lat"] for s in i["stations"])))

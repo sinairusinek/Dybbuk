@@ -92,6 +92,9 @@ li{margin-bottom:.35rem}
 <p class="eyebrow">Dybbuk · Plays KG × Zylbercweig Leksikon · 2026-10-25</p>
 <h1>Danzig Dossier</h1>
 <p class="lede">Everything the knowledge graph and the Leksikon fun yidishn teater currently hold about Danzig / Gdańsk — <span class="yi" dir="rtl">דאַנציג · גדאַנסק</span> — collected in one place, on the pattern of the Istanbul dossier.</p>
+<p style="font-size:.9rem"><b>Companion pages (itineraries):</b>
+<a href="danzig_timeline.html">timeline</a> ·
+<a href="danzig_map.html">route map</a></p>
 <p style="font-size:.9rem"><b>Companion dossiers:</b>
 <a href="istanbul_dossier.html">Istanbul</a> (the first place dossier) ·
 <a href="rumshinsky_dossier.html">Joseph Rumshinsky</a> (person-shaped).</p>
@@ -106,13 +109,23 @@ li{margin-bottom:.35rem}
 </div>
 
 <section>
+<h2>Data problems found</h2>
+<p>Three org-layer problems, each detailed in §4. They are recorded here for review; this dossier changes no data.</p>
+<ol>
+<li><span class="flag">The 1921 Moving Theatre is merged into the 1938 Balagan-yidn.</span> Its two clusters (<span class="mono">ORG-C02772_Q02</span>, <span class="mono">ORG-C01787</span>) were coined as <span class="mono">db 727</span> / <span class="mono">728</span> under the name <span class="yi">באַלאַגעניידען</span> and merged into <span class="mono">db 497</span>. The correct row, <span class="mono">db 725</span>, exists. Sarna's 1921 engagement therefore points at a 1938 theatre.</li>
+<li><span class="flag">A touring troupe is recorded as resident.</span> Jonas Turkow's troupe (<span class="mono">org:764</span>) is <span class="mono">located_in</span> Danzig on the strength of one 1939 sentence. Every edge on the troupe, back to 1927, inherits the location.</li>
+<li><span class="flag">One theatre may be split across four nodes.</span> <span class="mono">ORG-C01387_Q24</span>, <span class="mono">org:726</span>, the Gdańsk collective and <span class="mono">org:733</span> Kultur-bund-teater all describe the resident Yiddish stage of 1933–38. This is a merge candidate, not a conclusion.</li>
+</ol>
+</section>
+
+<section>
 <h2>1 · The place node</h2>
 <p>Danzig is a single, fully resolved node in the plays KG, with both the Wikidata and the Kima links in place.</p>
 <div class="tablewrap"><table>
 <tr><th>node</th><th>Yiddish label</th><th>English</th><th>Wikidata</th><th>Kima</th><th>coords</th><th>status</th></tr>
 <tr><td><span class="mono">place:Q1792</span></td><td class="rtlcell">דאנציג</td><td>Gdańsk</td><td>Q1792</td><td>920 — Gdańsk (Poland) / <span class="yi">גדנסק (פולין)</span></td><td class="num">54.348, 18.654</td><td><span class="chip">matched</span></td></tr>
 </table></div>
-<p>The settlement gazetteer (<span class="mono">toponyms_gazetteer.csv</span>) counts 11 attestations for Q1792: <b>1 person, 10 org</b>, and lists a single variant, <span class="yi">דאַנציג</span>. Kimatch holds one attested spelling (<span class="yi">דאַנציג</span>, grade <span class="mono">A_autolink</span>, context <i>birth</i>). That one "birth" attestation is wrong (see §2).</p>
+<p>The settlement gazetteer (<span class="mono">toponyms_gazetteer.csv</span>) counted 11 attestations for Q1792 (<b>1 person, 10 org</b>) and listed a single variant, <span class="yi">דאַנציג</span>. After the variant registration in §7 it counts 12. Kimatch holds one attested spelling (<span class="yi">דאַנציג</span>, grade <span class="mono">A_autolink</span>, context <i>birth</i>). That one "birth" attestation is wrong (see §2).</p>
 <p>A second, unmatched place node <span class="mono">place:UPL-0153</span> <span class="yi">אויפֿן וועג קיין דאַנציג</span> ("on the way to Danzig") holds one death edge (§2).</p>
 </section>
 
@@ -228,7 +241,13 @@ li{margin-bottom:.35rem}
 <tr><td class="rtlcell">גדאַנסק · גדאַנסקער</td><td class="num">3</td><td>Polish form: Brauner (×2), Dogim, who glosses it <span class="yi">(דאַנציגער)</span></td></tr>
 <tr><td class="rtlcell">דאַנסק</td><td class="num">1</td><td>Deykhes, glossed <span class="yi">(דאַנציג)</span></td></tr>
 </table></div>
-<p><b>Gazetteer gap:</b> only <span class="yi">דאַנציג</span> is registered as a variant of Q1792. <span class="yi">דאַנציק</span>, <span class="yi">גדאַנסק</span> and <span class="yi">דאַנסק</span> are missing, so a settlement field holding one of them will not resolve.</p>
+<p><b>Variants registered (2026-10-25).</b> Until this dossier only <span class="yi">דאַנציג</span> was a variant of Q1792. <span class="yi">דאַנציק</span>, <span class="yi">גדאַנסק</span> and <span class="yi">דאַנסק</span> (pointed and unpointed) now map to Q1792 / Kima 920 in three places:</p>
+<ul>
+<li>the toponym overlay <span class="mono">unlinked_confirmed.tsv</span>, read by the gazetteer, the plays KG and the itinerary resolver;</li>
+<li><span class="mono">settlement_curated.tsv</span>, read by the org-side SettlementResolver, which also gains Latin <i>Danzig</i> and <i>Gdansk</i>;</li>
+<li>the Kima donation file <span class="mono">kima_variants_export.tsv</span>.</li>
+</ul>
+<p>The gazetteer rebuild linked the one settlement field that held <span class="yi">גדאַנסק</span>, Dogim's theatre collective (<span class="mono">ORG-C01808</span> → <span class="mono">db 726</span>). Q1792 now has 12 attestations.</p>
 <p><b>Excluded as false friends — 12 entries</b> where <span class="yi">דאַנציגער</span> / <span class="yi">גדאַנסקי</span> is a name, not the city:</p>
 <ul class="cols">
 <li>the impresario <b>Yankele Dantsiger</b>: his own entry (41 hits) and Kipnis, Arnold, Cymbalist, Shtokfeder, Lewejborowska</li>
@@ -239,7 +258,8 @@ li{margin-bottom:.35rem}
 <li><b><span class="yi">דאַנציגער געסל</span></b>, a street in Vilna (Dr. Vygodsky entry)</li>
 </ul>
 <p>Also searched and found absent: Zoppot/Sopot, Oliva and Langfuhr. (A naïve Oliva pattern matches <span class="yi">האָליוואוד</span> and <span class="yi">סאָליוואַן</span>.)</p>
-<p class="note"><b>Coverage, in one line:</b> 28 entries tell a coherent 1883–1945 Danzig history. The KG holds 2 production events, 8 org anchors, and a bio layer whose single fact is an error. The richest material (the 1921 flop, Rubin's citizenship trap, the 1938 Nazi attacks on the theatre) consists of itineraries and episodes, which no layer extracts yet. An itinerary pass like the Istanbul pilot (~28 entries) would close most of the gap.</p>
+<p class="note"><b>Coverage, in one line:</b> 28 entries tell a coherent 1883–1945 Danzig history. The KG holds 2 production events, 8 org anchors, and a bio layer whose single fact is an error. The richest material (the 1921 flop, Rubin's citizenship trap, the 1938 Nazi attacks on the theatre) consists of itineraries and episodes, which no KG layer extracts.</p>
+<p class="note"><b>Itinerary pass (2026-10-25).</b> One Gemini pass over the 28 entries, on the Istanbul-pilot model (<span class="mono">gemini-3-flash-preview</span>), produced <b>35 itineraries, 380 stations and 240 events</b>, including third-person testimony such as Turkow's. <b>29 stations in 26 entries</b> fall in Danzig. The two entries without one are Max Davis (fish trade) and Katzenelson (book imprint), which the prompt told the model not to count as stays. The KG, by comparison, has 0 true bio facts and 2 events. 75% of stations (286 of 380) resolve to a settlement. Twelve of those matched only word by word, e.g. <span class="yi">דער פֿרייִשטאָט דאַנציג</span> or the adjectival <span class="yi">דאַנציגער</span>. These stations are drafts for review, not KG edges. See the <a href="danzig_timeline.html">timeline</a> and <a href="danzig_map.html">route map</a>; the review sheet is <span class="mono">plays/itinerary/danzig_stations_resolved.tsv</span>.</p>
 <p style="font-size:.85rem;color:var(--ink-soft)">Sources: <span class="mono">plays/kg/nodes.tsv · edges.tsv · events.tsv</span> (KG build of 2026-08-26), <span class="mono">people/entry_texts.tsv</span>, <span class="mono">organizations/organizations_clustered.tsv</span>, <span class="mono">core_db.tsv</span> and <span class="mono">org_alignment_review.tsv</span> (origin/main, 2026-10-25), <span class="mono">zibn-shtern/…/kimatch_matched_full.tsv · toponyms_gazetteer.csv</span>.</p>
 </section>
 </main>

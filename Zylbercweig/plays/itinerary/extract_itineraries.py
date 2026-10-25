@@ -132,7 +132,9 @@ def main():
         with out_path.open(encoding="utf-8") as f:
             for line in f:
                 try:
-                    done.add(json.loads(line)["person_id"])
+                    r = json.loads(line)
+                    if "error" not in r:  # failed rows are retried
+                        done.add(r["person_id"])
                 except Exception:
                     pass
     work = [i for i in ids if i not in done or args.redo]
@@ -142,7 +144,9 @@ def main():
     if not work:
         return
 
-    client = genai.Client()
+    # without a timeout one dropped connection hangs the run forever (Danzig, 2026-10-25);
+    # a timed-out entry is written as an error row, so a plain re-run retries it
+    client = genai.Client(http_options=types.HttpOptions(timeout=180_000))
     mode = "a" if out_path.exists() and not args.redo else "w"
     n_st = n_ev = errors = 0
     with out_path.open(mode, encoding="utf-8") as out:

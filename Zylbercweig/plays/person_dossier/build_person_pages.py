@@ -7,7 +7,7 @@ map, and dragging the year axis scrubs a period so the map redraws to just that
 window. That coupling is the point — a route map alone collapses forty years
 into one tangle of lines.
 
-Adapted from itinerary/build_istanbul_pages.py: the inline-SVG timeline engine,
+Adapted from itinerary/build_place_pages.py (then build_istanbul_pages.py): the inline-SVG timeline engine,
 COMMON_CSS palette and ENTRY_PANEL are carried over; the Istanbul-specific parts
 (IST_RE, the wave colouring, DUP_GROUPS, istMarker) are dropped. The timeline is
 re-laned by PLACE rather than by person, since a person dossier has one career,

@@ -3,12 +3,18 @@
   1. resolve station places against the unified toponyms gazetteer (+ KG place nodes)
   2. interpolate date ranges for undated stations from narrative order
   3. emit stations_resolved.tsv (review) and istanbul_itineraries.json (viz feed)
+
+Defaults are the Istanbul pilot; --drafts/--out-tsv/--out-json retarget it
+(e.g. the Danzig dossier).
 """
-import csv, json, re, unicodedata
+import argparse, csv, json, re, unicodedata
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 GAZ = HERE.parent.parent / "zibn-shtern" / "data" / "working" / "toponyms_gazetteer.csv"
+# confirmed spelling -> QID overlay (incl. registered in-text variants that no
+# settlement field attests, so the gazetteer's variants column never lists them)
+CONFIRMED = GAZ.parent / "kima" / "unlinked_confirmed.tsv"
 KG_NODES = HERE.parent / "kg" / "nodes.tsv"
 DRAFTS = HERE / "itinerary_drafts.jsonl"
 OUT_TSV = HERE / "stations_resolved.tsv"
@@ -80,6 +86,12 @@ def load_gazetteer():
             en = norm(row.get("label_en", "")).lower()
             if en and en not in lut:
                 lut[en] = rec
+    with open(CONFIRMED, encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            v = norm(row.get("yiddish", ""))
+            if v and v not in lut and row.get("qid", "").startswith("Q") and row.get("lat"):
+                lut[v] = (row["qid"], row.get("label_en") or row.get("kima_rom", ""),
+                          float(row["lat"]), float(row["lon"]))
     with open(KG_NODES, encoding="utf-8") as f:
         for row in csv.DictReader(f, delimiter="\t"):
             if row["node_type"] != "place":
@@ -126,6 +138,13 @@ def resolve(place, lut):
         if part in REGIONS:
             en, lat, lon = REGIONS[part]
             return ("region_first_of_list", part, en, lat, lon)
+    # last resort, word by word: the extractor keeps phrases like "דער פריישטאט דאנציג"
+    # or the adjectival "דאנציגער (יידישער טעאטער)"; strip -ער/-ערס as the gazetteer does
+    for word in re.split(r"[\s,;()]+", p):
+        for c in (word, re.sub(r"ערס?$", "", word)):
+            if len(c) > 2 and c in lut:
+                q, en, lat, lon = lut[c]
+                return ("settlement_partial", q, en, lat, lon)
     return ("unresolved", "", "", None, None)
 
 
@@ -155,13 +174,19 @@ def interpolate(stations):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--drafts", default=str(DRAFTS))
+    ap.add_argument("--out-tsv", default=str(OUT_TSV))
+    ap.add_argument("--out-json", default=str(OUT_JSON))
+    args = ap.parse_args()
+
     lut = load_gazetteer()
     print(f"gazetteer lookup: {len(lut):,} variant keys")
 
     itineraries, rows = [], []
     counts = {"stations": 0, "events": 0}
     res_counts = {}
-    with open(DRAFTS, encoding="utf-8") as f:
+    with open(args.drafts, encoding="utf-8") as f:
         for line in f:
             r = json.loads(line)
             if "error" in r or not r.get("stations"):
@@ -205,11 +230,11 @@ def main():
                 })
 
     fields = list(rows[0].keys())
-    with open(OUT_TSV, "w", newline="", encoding="utf-8") as f:
+    with open(args.out_tsv, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields, delimiter="\t")
         w.writeheader()
         w.writerows(rows)
-    with open(OUT_JSON, "w", encoding="utf-8") as f:
+    with open(args.out_json, "w", encoding="utf-8") as f:
         json.dump(itineraries, f, ensure_ascii=False)
     print(f"itineraries: {len(itineraries)}  stations: {counts['stations']}  "
           f"events: {counts['events']}")
