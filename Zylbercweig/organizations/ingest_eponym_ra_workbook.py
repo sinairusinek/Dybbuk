@@ -22,6 +22,7 @@ import datetime as _dt
 import pathlib
 import re
 import shutil
+import unicodedata
 
 csv.field_size_limit(10 ** 9)
 
@@ -53,6 +54,30 @@ NONE_TOKENS = {"none", "NONE", "-", "—", "n/a", "na", "no", "nobody", "אין"
 OUT_OF_SCOPE_TOKENS = {"non jewish", "non-jewish", "not jewish"}
 
 
+def _name_key(s: str) -> frozenset:
+    """Order-insensitive token key for a person name.
+
+    Headings read "surname, given"; reviewers write "given surname". Comparing
+    the SET of folded tokens makes those equal without inviting a substring
+    match. Bracketed alternates are dropped (they are editorial), Latin is
+    dropped when Hebrew is present (she writes both), single letters are
+    dropped (initials must never corroborate -- `ה. ב. עפשטיין` matched
+    `עפּשטיין, מ. ב.` until they were skipped).
+    """
+    if not s:
+        return frozenset()
+    s = re.sub(r"\[[^\]]*\]", " ", s)              # editorial brackets
+    s = re.sub(r"\([^)]*\)", " ", s)                # parenthetical alternates
+    nfd = unicodedata.normalize("NFD", s)
+    s = "".join(c for c in nfd if unicodedata.category(c) != "Mn")
+    if re.search(r"[\u0590-\u05FF]", s):            # Hebrew present -> drop Latin
+        s = re.sub(r"[A-Za-z]+", " ", s)
+    for a, b in (("ם", "מ"), ("ן", "נ"), ("ך", "כ"), ("ף", "פ"), ("ץ", "צ")):
+        s = s.replace(a, b)
+    toks = [t for t in re.split(r"[^\w]+", s.lower()) if len(t) > 1]
+    return frozenset(toks)
+
+
 def read_tsv(p: pathlib.Path) -> list[dict]:
     if not p.exists():
         return []
@@ -81,6 +106,14 @@ def main() -> None:
     hubs = read_tsv(PERSON_HUB)
     # heading+id -> hub, and db_id -> hub, for mapping the answer back.
     by_label, by_dbid = {}, {}
+    # EXACT full-heading index, for a comments-column answer written as a plain
+    # name rather than picked from the dropdown ("חיים סאנדלער Chaim Sandler").
+    # Keyed on the FULL heading with points, finals and punctuation folded and
+    # the token ORDER normalised, because headings are "surname given" while she
+    # writes "given surname". Deliberately NOT a surname or substring index: a
+    # partial match on קאמינסקי would hit Regina (HUB-D3612, d.1913) for an
+    # answer naming Ida, which is the misattribution 9a4927395 removed.
+    by_heading_exact: dict[frozenset, list] = {}
     for h in hubs:
         hd = (h.get("canonical_heading") or "").strip()
         db = (h.get("db_ids") or "").split(",")[0].strip()
@@ -95,6 +128,9 @@ def main() -> None:
             hub_id = (h.get("hub_id") or "").strip()
             if hub_id:
                 by_label[f"{hd} [{hub_id}]"] = h
+        key = _name_key(hd)
+        if key:
+            by_heading_exact.setdefault(key, []).append(h)
         by_label.setdefault(hd, h)
 
     cands = read_tsv(CANDIDATES)
@@ -117,6 +153,7 @@ def main() -> None:
 
     now = _dt.datetime.now().isoformat(timespec="seconds")
     new, unmatched, blank = [], [], 0
+    unresolved_named: list[tuple] = []   # named a person we cannot map to a hub
 
     # She also rejects a span from the comments column, writing "not relevant"
     # there rather than in person_name (11 spans on the Drive workbook). Read
@@ -128,10 +165,17 @@ def main() -> None:
     for r in range(2, ws.max_row + 1):
         answer = (ws.cell(r, col["person_name"] + 1).value or "")
         answer = str(answer).strip()
+        from_comment = False
         if not answer and cmt_col:
+            # The comments column is a FIRST-CLASS answer source, not only a
+            # place for reject words. Until 2026-10-25 it was consulted only
+            # when it matched a reject token, so every free-text
+            # IDENTIFICATION there was dropped -- 28 of Ruthie's answers on the
+            # 10-21 workbook, and the run still reported "0 unmatched".
             note = str(ws.cell(r, col[cmt_col] + 1).value or "").strip()
-            if note.lower() in NONE_TOKENS or note.lower() in OUT_OF_SCOPE_TOKENS:
+            if note:
                 answer = note
+                from_comment = True
         if not answer:
             blank += 1
             continue
@@ -169,6 +213,22 @@ def main() -> None:
             m = re.search(r"\[(\d+)\]\s*$", answer)   # trailing [id]
             if m:
                 hub = by_dbid.get(m.group(1))
+        if not hub and from_comment:
+            # Exact full-name match only, and only when it is unambiguous.
+            hits = by_heading_exact.get(_name_key(answer)) or []
+            if len(hits) == 1:
+                hub = hits[0]
+        if not hub and from_comment:
+            # A free-text identification we could not map to a hub. This is NOT
+            # the same as an unparseable dropdown value: she named a real person
+            # the generator never offered. Resolving it by name similarity is
+            # UNSAFE -- db864 "אידא קאמינסקי" has no hub (Ida Kaminska is
+            # people_db 3832, no lexicon entry), and the candidates for that
+            # span are Esther-Rokhl, REGINA (HUB-D3612, d.1913) and
+            # Avrom-Yitskhok. A surname match would re-create the exact
+            # misattribution 9a4927395 removed. Report, never guess.
+            unresolved_named.append((r, db_id, span, answer))
+            continue
         if not hub:
             unmatched.append((r, db_id, span, answer))
             continue
@@ -198,6 +258,17 @@ def main() -> None:
     print(f"  new decisions:      {len(new)} "
           f"(CONFIRM {sum(1 for d in new if d['decision'] == 'CONFIRM')}, "
           f"REJECT {sum(1 for d in new if d['decision'] == 'REJECT')})")
+    # An answer that was SEEN but not turned into a decision must be counted
+    # here. Five of the six bugs on this track were a reviewer's answer being
+    # discarded while the summary line said success; this is the counter that
+    # would have surfaced every one of them on its first run.
+    print(f"  named, NO hub:      {len(unresolved_named)}"
+          f"{'  <-- answers dropped; see below' if unresolved_named else ''}")
+    if unresolved_named:
+        print("     these name a person with no hub -- they need a hub or a mint,")
+        print("     and must NOT be resolved by name similarity:")
+        for row, db_id, span, answer in unresolved_named:
+            print(f"     row {row}: db{db_id} span={span} -> {answer!r}")
     print(f"  unmatched answers:  {len(unmatched)}")
     for r, db, sp, a in unmatched[:15]:
         print(f"     row {r}: db{db} {sp} -> {a!r}")
