@@ -30,6 +30,7 @@ BASE = pathlib.Path(__file__).resolve().parents[1]
 DECISIONS = BASE / "organizations" / "eponym_decisions.tsv"
 CANDIDATES = BASE / "organizations" / "eponym_candidates.tsv"
 PERSON_HUB = BASE / "people" / "person_hub.tsv"
+BLOCKED = BASE / "organizations" / "eponym_blocked_answers.tsv"
 
 FIELDS = ["db_id", "hub_id", "span", "decision", "tier", "pattern",
           "org_name_yiddish", "person_heading", "person_db_ids",
@@ -102,6 +103,16 @@ def main() -> None:
     ws = wb["troupes"]
     head = [c.value for c in ws[1]]
     col = {name: i for i, name in enumerate(head)}
+
+    # people_db by folded name, so a blocked answer can say whether the person
+    # merely lacks a HUB (fixable now) or lacks a db row too (needs minting).
+    db_by_name: dict[frozenset, str] = {}
+    for r in read_tsv(BASE / "people" / "people_db.tsv"):
+        for field in ("hebname", "english", "name_variants"):
+            for v in (r.get(field) or "").split("|"):
+                k = _name_key(v)
+                if k:
+                    db_by_name.setdefault(k, r["db_id"].strip())
 
     hubs = read_tsv(PERSON_HUB)
     # heading+id -> hub, and db_id -> hub, for mapping the answer back.
@@ -269,6 +280,36 @@ def main() -> None:
         print("     and must NOT be resolved by name similarity:")
         for row, db_id, span, answer in unresolved_named:
             print(f"     row {row}: db{db_id} span={span} -> {answer!r}")
+        # Written on EVERY run, dry or not: a list that exists only in console
+        # output is a list nobody can review. Derived -- rebuilt each run, never
+        # hand-edited, and it empties itself as the people get hubs or mints.
+        BLOCKED.parent.mkdir(parents=True, exist_ok=True)
+        with BLOCKED.open("w", encoding="utf-8", newline="") as bf:
+            bw = csv.DictWriter(
+                bf, fieldnames=["workbook_row", "org_db_id", "org_name_yiddish",
+                                "span", "reviewer_answer", "has_people_db_row",
+                                "needs"],
+                delimiter="\t", lineterminator="\n")
+            bw.writeheader()
+            for row, db_id, span, answer in unresolved_named:
+                pdb = db_by_name.get(_name_key(answer), "")
+                bw.writerow({
+                    "workbook_row": row, "org_db_id": db_id,
+                    # Read BOTH name columns: 4 of these rows (db545, 559,
+                    # 563, 596) have an empty 'troupe (Yiddish)' and carry the
+                    # Yiddish name in 'troupe (Latin)' instead -- the same
+                    # split that hides db641 לערמאַנס טרופּע from any matcher
+                    # reading one field.
+                    "org_name_yiddish": str(
+                        ws.cell(row, col["troupe (Yiddish)"] + 1).value
+                        or ws.cell(row, col["troupe (Latin)"] + 1).value or ""),
+                    "span": span, "reviewer_answer": answer,
+                    "has_people_db_row": pdb,
+                    # A person WITH a db row needs only add_dbonly_hubs.py; one
+                    # without needs a minting decision from Sinai first.
+                    "needs": "hub (add_dbonly_hubs.py)" if pdb else "mint, then hub",
+                })
+        print(f"     -> written to {BLOCKED.name} for review")
     print(f"  unmatched answers:  {len(unmatched)}")
     for r, db, sp, a in unmatched[:15]:
         print(f"     row {r}: db{db} {sp} -> {a!r}")
