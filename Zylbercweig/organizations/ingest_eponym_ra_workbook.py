@@ -176,6 +176,13 @@ def main() -> None:
             confirmed_by_span.setdefault(
                 (d["db_id"], d.get("span") or ""), set()).add(d["hub_id"])
     contradicts: list[tuple] = []
+    # The decision already recorded per triple. An answer that REPEATS it is
+    # counted (already_recorded); one that REVERSES it is a contradiction --
+    # db1426 לאבעל: a CONFIRM of the very hub Ruthie had REJECTed for that span
+    # was skipped by the triple test and appeared nowhere in the summary.
+    prior_decision = {(d["db_id"], d["hub_id"], d.get("span") or ""):
+                      (d.get("decision") or "").upper() for d in existing}
+    already_recorded = 0
 
     now = _dt.datetime.now().isoformat(timespec="seconds")
     new, unmatched, blank = [], [], 0
@@ -221,6 +228,12 @@ def main() -> None:
             # workbook whose REJECTs are already recorded must not append them
             # twice (db1426 לאבעל got two identical REJECT rows this way).
             if (db_id, hub_id, span) in have_triples:
+                was = prior_decision.get((db_id, hub_id, span), "REJECT")
+                if was == "REJECT":
+                    already_recorded += 1
+                else:
+                    contradicts.append((r, db_id, span, hub_id or "(none)",
+                                        f"already {was} for this span"))
                 continue
             have_triples.add((db_id, hub_id, span))
             new.append({
@@ -267,6 +280,12 @@ def main() -> None:
         # the next build re-asked 31 questions Ruthie had already answered.
         # Skip only when this exact SPAN is already decided (see have_triples).
         if (db_id, hub["hub_id"], span) in have_triples:
+            was = prior_decision.get((db_id, hub["hub_id"], span), "CONFIRM")
+            if was == "CONFIRM":
+                already_recorded += 1
+            else:
+                contradicts.append((r, db_id, span, hub["hub_id"],
+                                    f"already {was} for this span"))
             continue
         # A span already CONFIRMed to a DIFFERENT person is a contradiction,
         # not a new answer. Appending it is how db1047's 10-14 correction
@@ -275,7 +294,8 @@ def main() -> None:
         # and put the wrong edge back beside the right one. Report, never write.
         prior_hubs = confirmed_by_span.get((db_id, span), set()) - {hub["hub_id"]}
         if prior_hubs:
-            contradicts.append((r, db_id, span, hub["hub_id"], sorted(prior_hubs)))
+            contradicts.append((r, db_id, span, hub["hub_id"],
+                                "already CONFIRMed to " + ", ".join(sorted(prior_hubs))))
             continue
         new.append({
             "db_id": db_id, "hub_id": hub["hub_id"], "span": span,
@@ -346,10 +366,11 @@ def main() -> None:
         bw.writerows(blocked_rows)
     print(f"     -> {BLOCKED.name}: {len(blocked_rows)} rows "
           f"({len(carried)} carried from earlier runs)")
-    print(f"  contradicts a CONFIRM: {len(contradicts)}"
+    print(f"  contradicts a decision: {len(contradicts)}"
           f"{'  <-- NOT written; settle by hand' if contradicts else ''}")
-    for r, db, sp, h, prior in contradicts[:15]:
-        print(f"     row {r}: db{db} {sp} -> {h}, already CONFIRMed to {', '.join(prior)}")
+    for r, db, sp, h, why in contradicts[:15]:
+        print(f"     row {r}: db{db} {sp} -> {h}, {why}")
+    print(f"  already recorded:   {already_recorded} (same answer as an existing decision)")
     print(f"  unmatched answers:  {len(unmatched)}")
     for r, db, sp, a in unmatched[:15]:
         print(f"     row {r}: db{db} {sp} -> {a!r}")
