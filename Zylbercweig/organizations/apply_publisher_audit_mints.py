@@ -209,12 +209,20 @@ def main(apply: bool, reviewer: str, only: set[str] | None = None) -> None:
             if c and c not in cids:
                 cids.append(c)
 
+        # A printing house is minted as Printer, not Publisher: the decision
+        # records that by retyping its cluster first (kind=retype), and the
+        # new row takes the first cluster's type. Untyped clusters stay
+        # Publisher, which is what every earlier mint got.
+        org_type = next(((rv[c].get("org_type") or "").strip() for c in cids
+                         if c in rv and (rv[c].get("org_type") or "").strip()),
+                        "") or "Publisher"
+
         db_id = str(next_id)
         next_id += 1
         row = {f: "" for f in db_fields}
         row["db_id"] = db_id
         row["name_yiddish"] = name
-        row["org_type"] = "Publisher"
+        row["org_type"] = org_type
         row["linked_cluster_ids"] = " | ".join(cids)
         if apply:
             db_rows.append(row)
@@ -243,7 +251,7 @@ def main(apply: bool, reviewer: str, only: set[str] | None = None) -> None:
         entries.append(log_entry(
             reviewer, "mint", db_id, "NEW",
             f"{pid}: {d.get('rationale','')}", name_yiddish=name,
-            clusters=cids, org_type="Publisher"))
+            clusters=cids, org_type=org_type))
         for c in cids:
             entries.append(log_entry(
                 reviewer, "alignment", c, "ALIGN",
