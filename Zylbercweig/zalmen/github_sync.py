@@ -44,6 +44,7 @@ from __future__ import annotations
 
 import base64
 import pathlib
+import sys
 
 import requests
 import streamlit as st
@@ -64,6 +65,83 @@ def _credentials(branch: str | None) -> tuple[str, str, str]:
     except Exception:  # noqa: BLE001
         return "", "", ""
     return token, repo, branch or deployed
+
+
+# ── token health ─────────────────────────────────────────────────────────────
+# On 2026-07-04 the token expired and saves failed for days behind a per-save
+# toast only: the boot check tested that the secret was non-empty, which an
+# expired token still is. token_health() asks GitHub instead, cached so it costs
+# one API call per process per TTL; a push that comes back 401/403 clears the
+# cache so the banner shows on the very next rerun.
+_HEALTH_TTL = 600.0
+_EXPIRY_WARN_DAYS = 7
+_health: dict = {"at": None, "result": None}
+_last_failure: dict = {"status": None, "where": ""}
+
+
+def _note_failure(status: int | None, where: str) -> None:
+    """Remember why a push failed (and log it): the toast alone said nothing."""
+    _last_failure.update(status=status, where=where)
+    print(f"[github_sync] push failed: HTTP {status} at {where}", file=sys.stderr)
+    if status in (401, 403):
+        _health["at"] = None
+
+
+def last_push_failure() -> str:
+    """'HTTP 401 at <path>' for the most recent failed push, '' if none."""
+    if _last_failure["status"] is None and not _last_failure["where"]:
+        return ""
+    return f"HTTP {_last_failure['status']} at {_last_failure['where']}"
+
+
+def token_health() -> tuple[str, str]:
+    """('ok' | 'warn' | 'error', message) for the save credentials.
+
+    'error' = saves cannot work: secrets missing, token rejected (401 — expired
+    or revoked), repo invisible to it (404), or no push permission. 'warn' =
+    the token works but expires within _EXPIRY_WARN_DAYS. A network error or
+    odd response counts as 'ok': the banner must not cry wolf on a GitHub
+    hiccup, and the push itself will then report the real status.
+    """
+    import datetime as _dt
+    import time
+    now = time.monotonic()
+    if _health["at"] is not None and now - _health["at"] < _HEALTH_TTL:
+        return _health["result"]
+    token, repo, _ = _credentials(None)
+    if not token or not repo:
+        result = ("error", "github_token / github_repo missing from secrets")
+    else:
+        try:
+            resp = _SESSION.get(
+                f"https://api.github.com/repos/{repo}",
+                headers={"Authorization": f"token {token}",
+                         "Accept": "application/vnd.github.v3+json"},
+                timeout=10,
+            )
+        except Exception:  # noqa: BLE001
+            return ("ok", "")  # not cached: retry on the next rerun
+        if resp.status_code == 401:
+            result = ("error", "GitHub rejected the token (HTTP 401: expired or revoked)")
+        elif resp.status_code == 404:
+            result = ("error", f"the token cannot see {repo} (HTTP 404)")
+        elif not resp.ok:
+            return ("ok", "")
+        elif not (resp.json().get("permissions") or {}).get("push", True):
+            result = ("error", f"the token has no push permission on {repo}")
+        else:
+            result = ("ok", "")
+            expiry = resp.headers.get("github-authentication-token-expiration", "")
+            try:
+                # e.g. "2026-11-30 13:54:24 UTC"
+                exp = _dt.datetime.strptime(expiry[:19], "%Y-%m-%d %H:%M:%S")
+                days = (exp - _dt.datetime.utcnow()).days
+                if days < _EXPIRY_WARN_DAYS:
+                    result = ("warn", f"the GitHub token expires {expiry} ({days} days)")
+            except ValueError:
+                pass
+    _health.update(at=now, result=result)
+    return result
 
 
 # ── stale-code guard ─────────────────────────────────────────────────────────
@@ -234,10 +312,12 @@ def push_file_to_github(repo_path: str, local_path: pathlib.Path, commit_message
 
         # On any other failure, drop the cached SHA so the next save re-fetches.
         _SHA_CACHE.pop(cache_key, None)
+        _note_failure(put_resp.status_code, repo_path)
         return False
 
-    except Exception:
+    except Exception as exc:  # noqa: BLE001
         _SHA_CACHE.pop(cache_key, None)
+        _note_failure(None, f"{repo_path} ({type(exc).__name__})")
         return False
 
 

@@ -100,16 +100,22 @@ st.set_page_config(
 )
 
 # ── GitHub sync health check ───────────────────────────────────────────────────
+# Asks GitHub whether the token still works (cached): a non-empty but expired
+# token used to pass this check while every save failed (2026-07-04).
 try:
-    _gh_ok = bool(st.secrets.get("github_token")) and bool(st.secrets.get("github_repo"))
-except Exception:
-    _gh_ok = False
-if not _gh_ok:
+    import github_sync
+    _gh_state, _gh_detail = github_sync.token_health()
+except Exception as _exc:  # noqa: BLE001
+    _gh_state, _gh_detail = "error", f"health check crashed ({type(_exc).__name__})"
+if _gh_state == "error":
     st.error(
         "⛔ This app is not connected to its save system. Any decisions you make "
-        "will be lost if the app restarts. Please contact Sinai before starting work.",
+        "will be lost if the app restarts. Please contact Sinai before starting work."
+        f"\n\n(Reason: {_gh_detail})",
         icon="🔴",
     )
+elif _gh_state == "warn" and st.session_state.get("reviewer") == "Sinai":
+    st.warning(f"Saves still work, but {_gh_detail}. Regenerate it and update the Streamlit secrets.")
 
 # ── Login gate ────────────────────────────────────────────────────────────────
 # Auto-login via ?user=Name in URL (bookmark-able per-reviewer)

@@ -113,3 +113,70 @@ def test_a_single_file_still_uses_the_contents_api(monkeypatch, files):
 def test_no_files_is_a_no_op(monkeypatch):
     monkeypatch.setattr(github_sync, "_SESSION", _FakeSession())
     assert github_sync.push_files_to_github([], "msg") is True
+
+
+# ── token health ─────────────────────────────────────────────────────────────
+
+class _HealthResp(_Resp):
+    def __init__(self, status=200, payload=None, expiry=""):
+        super().__init__(200 <= status < 300, payload, status)
+        self.headers = {"github-authentication-token-expiration": expiry} if expiry else {}
+
+
+@pytest.fixture(autouse=True)
+def _fresh_health():
+    github_sync._health.update(at=None, result=None)
+    yield
+    github_sync._health.update(at=None, result=None)
+
+
+def _health_with(monkeypatch, resp):
+    class _S:
+        calls = 0
+
+        def get(self, url, **kw):
+            _S.calls += 1
+            if isinstance(resp, Exception):
+                raise resp
+            return resp
+    monkeypatch.setattr(github_sync, "_SESSION", _S())
+    return _S
+
+
+def test_expired_token_is_an_error_not_just_present(monkeypatch):
+    _health_with(monkeypatch, _HealthResp(401))
+    state, detail = github_sync.token_health()
+    assert state == "error" and "401" in detail
+
+
+def test_no_push_permission_is_an_error(monkeypatch):
+    _health_with(monkeypatch, _HealthResp(200, {"permissions": {"push": False}}))
+    assert github_sync.token_health()[0] == "error"
+
+
+def test_near_expiry_warns_far_expiry_ok(monkeypatch):
+    import datetime as dt
+    soon = (dt.datetime.utcnow() + dt.timedelta(days=3)).strftime("%Y-%m-%d %H:%M:%S UTC")
+    later = (dt.datetime.utcnow() + dt.timedelta(days=60)).strftime("%Y-%m-%d %H:%M:%S UTC")
+    _health_with(monkeypatch, _HealthResp(200, {"permissions": {"push": True}}, soon))
+    assert github_sync.token_health()[0] == "warn"
+    github_sync._health.update(at=None)
+    _health_with(monkeypatch, _HealthResp(200, {"permissions": {"push": True}}, later))
+    assert github_sync.token_health() == ("ok", "")
+
+
+def test_network_error_does_not_cry_wolf_and_is_not_cached(monkeypatch):
+    s = _health_with(monkeypatch, OSError("down"))
+    assert github_sync.token_health() == ("ok", "")
+    github_sync.token_health()
+    assert s.calls == 2
+
+
+def test_result_is_cached_until_a_push_gets_401(monkeypatch, files):
+    s = _health_with(monkeypatch, _HealthResp(200, {"permissions": {"push": True}}))
+    github_sync.token_health(); github_sync.token_health()
+    assert s.calls == 1
+    github_sync._note_failure(401, "repo/a.tsv")
+    github_sync.token_health()
+    assert s.calls == 2
+    assert github_sync.last_push_failure() == "HTTP 401 at repo/a.tsv"
