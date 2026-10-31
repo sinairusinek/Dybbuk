@@ -46,7 +46,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 48	נ. ראָזנבּלוּם			Publisher							
 49	ע. גיטלין	א. גיטלין		Publisher	נאלעווקי, איוואנאווסקי באזאר, וורשה	ORG-C03231 | ORG-C05151 | ORG-C00550 | ORG-C04805					
 50	שלמה גאָלדפאַרבּ	ש. גאָלדפֿאַרב		Publisher		ORG-C03940 | ORG-C06558 | ORG-C00874 | ORG-C02674 | ORG-C04117					
-52	היברו פּאַבלישינג קאָמפאני	היברו פּאָבלישינג קאָמפּאַני		Publisher		ORG-C01098 | ORG-C04737 | ORG-C05215 | ORG-C06825					
+52	היברו פּאַבלישינג קאָמפאני	היברו פּאָבלישינג קאָמפּאַני		Publisher		ORG-C01098 | ORG-C04737 | ORG-C05215 | ORG-C06825				Hebrew Publishing Company	
 53	Yuropian Hibru poblishing ḳompani		יוראָפּיאַן היברו פּאָבלישינג ḳאָמפּאַני	Publisher							
 54	Di inṭernatsyonale biblioṭheḳ		די יןṭernatsyonale ביבליאָṭheḳ	Publisher				true	2332		
 55	Elizeum		עליזיים	Publisher		ORG-C05292					
@@ -94,7 +94,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 98	Jüdischen Künstlerspiele		דזשüdischen קünstlerspiele	Printer/Publisher							
 99	Albert Teres		אַלבערט טערעס	Printer/Publisher							
 100	Empire Music		עמפּירע מוסיק	Printer/Publisher							
-101	Hebrew Publishing Company		העברעיש פּובלישינג קאָמפּאַניע	Publisher							
+101	Hebrew Publishing Company		העברעיש פּובלישינג קאָמפּאַניע	Publisher				true	52		
 102	J. Katzenelenbogen		דזש. קאַצענעלענבאָגען	Publisher	Ludlow 35, Manhattan, NY;66 canal st., Manhattan, NY						
 103	Kruger Printing		קרוגער פּרינטינג	Printer							
 108	Folḳsbildung		פֿאָלḳsbildung	Printer/Publisher							
@@ -714,7 +714,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 743		"„דראַמקרייז מ. ווינטשעווסקי"""		Theatre		ORG-C00575					
 744		טעאַטער עקסעלסיאָר		Theatre		ORG-C00131_Q01 | ORG-C02464 | ORG-C07081		true	747		
 745		מינסקער מעלוכעשער יידישער טעאַטער		Theatre		ORG-C01160 | ORG-C07318 | ORG-C01387_Q38 | ORG-C04693_Q01 | ORG-C00596_Q03					
-746	אָלימפּיאַ טעאַטער	אָלימפּיאַ טעאַטער		Theatre							
+746	אָלימפּיאַ טעאַטער	אָלימפּיאַ טעאַטער		Theatre				true	1825		
 747	טעאַטער עקסעלסיאָר	טעאַטער עקסעלסיאָר		Theatre		ORG-C00131_Q02					
 748	צענטראַל-טעאַטער	צענטראַל-טעאַטער		Theatre		ORG-C00631_Q02		true	151		
 749		זשיגניצע		Theatre		ORG-C00663 | ORG-C00325 | ORG-C00668 | ORG-C03004 | ORG-C03539 | ORG-C04337 | ORG-C05325					
@@ -1761,7 +1761,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1822		קראָקעווער יידישן דראַמאַטישן טעאַטער		Theatre		ORG-C01021 | ORG-C00564 | ORG-C00596_Q04 | ORG-C05778					
 1823		פּוילישע דראַמאַטישע שול		Education		ORG-C01559 | ORG-C04206					
 1824		קראָקעווער 'יידישער טעאַטער-געזעלשאַפֿט'		Theatre-related Society/ Union		ORG-C02946 | ORG-C05073					
-1825		אָלימפּיאַ טעאַטער (בוענאָס-אַיירעס)		Theatre		ORG-C00085_Q01 | ORG-C01695_Q01 | ORG-C05038					
+1825		אָלימפּיאַ טעאַטער (בוענאָס-אַיירעס)		Theatre		ORG-C00085_Q01 | ORG-C01695_Q01 | ORG-C05038 | ORG-C01695_Q02 | ORG-C04487				אָלימפּיאַ טעאַטער	
 1826		טעאַטער מיטרע		Theatre		ORG-C00194 | ORG-C00351					
 1827		טעאַטער אַמבו		Theatre		ORG-C00084 | ORG-C02316_Q01					
 1828		טעאַטער אַמבאַ		Theatre		ORG-C00774 | ORG-C01499					
@@ -2392,7 +2392,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2454	יידישער פֿאָלקס-פּאַרטיי	יידישער פֿאָלקס-פּאַרטיי		Jewish political bodies		ORG-C03569					
 2455	בונד	בונד		Jewish political bodies		ORG-C00154_Q03					
 2456	חסך פון די יידישע אַקטיאָרן	חסך פון די יידישע אַקטיאָרן		Theatre-related Society/ Union		ORG-C01867					
-2457	"„פאָרווערטס""-אַסאָסייישאָן"	"„פאָרווערטס""-אַסאָסייישאָן"		Jewish political bodies		ORG-C00622_Q02 | ORG-C07088					
+2457	"„פאָרווערטס""-אַסאָסייישאָן"	"„פאָרווערטס""-אַסאָסייישאָן"		Jewish political bodies		ORG-C00622_Q02 | ORG-C07088 | ORG-C06651				"„פאַרווערטס""-אַסאָסיאיישאָן"	
 2458	לינקער פּועלי ציון פאַרטיי	לינקער פּועלי ציון פאַרטיי		Jewish political bodies		ORG-C01317					
 2459	באָסטאָן היבריו עקטאָרס יוניאָן	באָסטאָן היבריו עקטאָרס יוניאָן		Theatre-related Society/ Union		ORG-C01871					
 2460	יוגנטלעכער סאַציאַל-דעמאָקראַטישער אַרבעטער-פּאַרטיי	יוגנטלעכער סאַציאַל-דעמאָקראַטישער אַרבעטער-פּאַרטיי		Non-Jewish political bodies		ORG-C02124					
@@ -2573,7 +2573,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2635	"פּאַריזער ס""ס-אָרגאָניזאַציע"	"פּאַריזער ס""ס-אָרגאָניזאַציע"		Jewish political bodies		ORG-C06318					
 2636	טשעכאָסלאָוואָקישער רעגירונג	טשעכאָסלאָוואָקישער רעגירונג		Non-Jewish political bodies		ORG-C06404					
 2637	ערשטן ציוניסטישן אָקאָדעמישן פֿאַריין	ערשטן ציוניסטישן אָקאָדעמישן פֿאַריין		Jewish political bodies		ORG-C06572					
-2638	"„פאַרווערטס""-אַסאָסיאיישאָן"	"„פאַרווערטס""-אַסאָסיאיישאָן"		Jewish political bodies		ORG-C06651					
+2638	"„פאַרווערטס""-אַסאָסיאיישאָן"	"„פאַרווערטס""-אַסאָסיאיישאָן"		Jewish political bodies				true	2457		
 2639	קוהןמאַכט	קוהןמאַכט		Non-Jewish political bodies		ORG-C06665					
 2640	ניו יאָרקער שטאָט-ראָט	ניו יאָרקער שטאָט-ראָט		Non-Jewish political bodies		ORG-C06730					
 2641	ציוניסטישער אָרגאַניזאַציע אין סינסינעטי	ציוניסטישער אָרגאַניזאַציע אין סינסינעטי		Jewish political bodies		ORG-C06742					

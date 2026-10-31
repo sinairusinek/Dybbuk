@@ -169,6 +169,10 @@ shows someone was a <em>member</em> of it.</p>
 <div class="ro" id="readonly" hidden>Saving is unavailable in this view — decisions
   will not persist. Open the artifact signed in with edit access.</div>
 """]
+    if not rows:
+        P.append('<p class="hint"><b>Nothing left to decide.</b> Every publisher '
+                 'cluster has a ruling in <span class="l">publisher_audit_decisions.tsv'
+                 '</span>; the last 107 were decided 2026-10-26 (P264–P380).</p>')
 
     for rec in order:
         group = by_rec.get(rec, [])
