@@ -14,7 +14,7 @@ Usage:
     python3.11 build_kg_viz.py --types play,person,production_event
 """
 from __future__ import annotations
-import argparse, csv, html, json, math
+import argparse, csv, json, math
 from collections import defaultdict
 from pathlib import Path
 from pyvis.network import Network
@@ -115,31 +115,20 @@ def main():
         label = yid or eng or nid
         # Truncate for canvas
         disp = label if len(label) <= 32 else label[:29] + "…"
-        # Rich tooltip (HTML)
-        tip_parts = [f"<b>{html.escape(label)}</b>",
-                     f"type: {ntype}", f"id: {nid}",
-                     f"degree: {deg[nid]}"]
-        if yid and eng: tip_parts.append(f"en: {html.escape(eng)}")
-        if n.get("ext_ref_type"): tip_parts.append(f"ref: {n['ext_ref_type']}:{n.get('ext_ref_id','')}")
-        if n.get("notes"): tip_parts.append(html.escape(n["notes"])[:200])
+        # vis.js shows a string title as plain text, so an HTML tooltip
+        # rendered its tags literally; the hover carries the name alone.
         size = max(8, min(40, 6 + deg[nid] ** 0.6 * 2))
         net.add_node(nid, label=disp,
                      color=TYPE_COLOR.get(ntype, "#999"),
                      shape=TYPE_SHAPE.get(ntype, "dot"),
-                     size=size, title="<br>".join(tip_parts),
+                     size=size, title=label,
                      group=ntype)
 
     for e in edges:
         et = e.get("edge_type","")
-        tip = f"<b>{html.escape(et)}</b>"
-        if e.get("role_detail"): tip += f"<br>{html.escape(e['role_detail'])}"
-        if e.get("character"):   tip += f"<br>character: {html.escape(e['character'])}"
-        if e.get("date_start"):  tip += f"<br>{e['date_start']}–{e.get('date_end','')}"
-        if e.get("evidence_sentence"):
-            tip += f"<br><i>{html.escape(e['evidence_sentence'])[:180]}</i>"
         ecol = "#7a5c2e" if (e.get("source_layer") or "plays") == "bio" else "#555"
         net.add_edge(e["source_id"], e["target_id"],
-                     title=tip, label=et, arrows="to",
+                     title=et, label=et, arrows="to",
                      color={"color":ecol,"opacity":0.5}, width=0.8,
                      font={"color":"#888","size":8})
 
