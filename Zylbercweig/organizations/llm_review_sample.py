@@ -53,6 +53,7 @@ Use EXACTLY these strings as canonical types:
 
 PERFORMANCE
 - Theatre — established theatre institution with a venue.
+- Non-Yiddish Theatre — a Latvian / Russian / Ukrainian / Polish / Belarusian / Romanian national or state theatre a Yiddish actor passed through (רוסישער / לעטיש / אוקראיניש / פוילישער / ווייסרוסיש / ראומעניש ... מלוכה-טעאַטער). Never a Yiddish state theatre. Theatres only.
 - Traveling Company — touring is the core operational identity; no permanent home stage. Yiddish "X's troupe" / Vilner Trupe / Lodzer Trupe etc.
 - Company on Tour — has home venue, currently on tour (temporary state). Use only when text makes this explicit.
 - Amateur — amateur theatre groups, drama circles, theatre clubs.
@@ -98,8 +99,8 @@ WELFARE & MUTUAL AID
     * UJA / Federation → Welfare/Aid (fundraising for welfare), NOT Jewish political.
 
 COMMERCE / LABOUR / HEALTH
-- Business — commercial enterprises: banks, insurance, hotels, restaurants, cafés, saloons, shops, stores, firms, law firms, breweries (when OWNERSHIP relation), motor companies, telegraph companies, financial corporations, booking offices, galleries (when commercial).
-- Labour (factory/workshop) — PLACES of physical labour: factories, sweatshops, workshops, breweries (when EMPLOYMENT relation), tailor shops, bakeries. EXCLUDES labour movements, workers' parties, fraternal-political organizations (those are political).
+- Business — COMMERCE AND SERVICES: banks, insurance, hotels, restaurants, cafés, saloons, shops, stores, trading companies, law firms, motor companies, telegraph companies, financial corporations, booking offices, galleries (when commercial).
+- Labour (factory/workshop) — PLACES OF PRODUCTION: factories, mills, sweatshops, workshops, breweries, bakeries, tailor shops, farms. A manufacturing firm is Labour even when called a "firm". EXCLUDES labour movements, workers' parties, fraternal-political organizations (those are political).
 - Health institutions — hospitals, clinics, sanatoria, infirmaries. Red Cross / רויטן קרייץ here.
 
 MILITARY
@@ -112,7 +113,7 @@ SENTINELS
 KEY DISAMBIGUATION RULES:
 1. `אַרבעטער` (worker) is NOT automatically Labour. Workmen's Circle / Arbeter-Ring is Jewish political (with flag). Arbeter-Farband is Jewish political (with flag). אַרבעטער-קאָמיסאַריאַט is Non-Jewish political (Soviet government). Only literal factories/workshops are Labour.
 2. Music-specific names (Hazomir, music association, choral society) → Musical organization, NOT Society/Union, even if "פאַראיין" is in the name.
-3. Brewery/factory/workshop: depends on the person's relation. Ownership → Business; Employment → Labour. If relation is unclear, default Business and flag.
+3. Type the ORGANIZATION, never the person's relation to it. A brewery, mill or workshop is Labour whether the person owned it or worked there; a shop or bank is Business either way. The relation is recorded separately.
 4. "X Company" without theatre/film cue: usually Business (insurance company, motor company, hotel firm). Only theatre/film context routes to Traveling Company or Media.
 5. Synagogue choir → Religious (per canon), not Musical.
 6. Educational summer camps (Boiberik, Kinderland) → Education, NOT Not-an-organization.

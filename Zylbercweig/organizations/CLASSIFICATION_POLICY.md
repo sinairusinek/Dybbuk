@@ -2,7 +2,7 @@
 
 This document is the canonical specification for mapping the free-text `org_type` values produced by LLM extraction into a fixed canonical typology. It is the source of truth for the rule cascade — now `map_canonical_types_v3.py` — and for `llm_review_sample.py` (LLM prompt). Update both when this doc changes.
 
-> **Consumers to check when the list changes.** The live cascade is `map_canonical_types_v3.py`; `map_canonical_types_v2.py` is superseded and referenced only by docs. The app's dropdowns are `_ORG_TYPE_OPTIONS` in **both** `zalmen/views/org_review.py` and `zalmen/views/org_addresses.py`, and `org_review.py` also holds `_ORG_TYPE_CANON` / `_canonical_org_type()`, the casefold→canonical-spelling map that keeps a stored value from being re-lowercased on save. As of 2026-10-25 `map_canonical_types_v2.py` and `llm_review_sample.py` do **not** know `Non-Yiddish Theatre`; v2 is dead, but the LLM prompt is a real gap.
+> **Consumers to check when the list changes.** The live cascade is `map_canonical_types_v3.py`; `map_canonical_types_v2.py` is superseded and referenced only by docs. The app's dropdowns are `_ORG_TYPE_OPTIONS` in **both** `zalmen/views/org_review.py` and `zalmen/views/org_addresses.py`, and `org_review.py` also holds `_ORG_TYPE_CANON` / `_canonical_org_type()`, the casefold→canonical-spelling map that keeps a stored value from being re-lowercased on save. `map_canonical_types_v2.py` does **not** know `Non-Yiddish Theatre`; v2 is dead. `llm_review_sample.py`'s prompt learned it on 2026-11-01.
 
 ## Canonical types (32)
 
@@ -74,8 +74,10 @@ Types are matched **exactly**, including case and internal spacing. A value that
     - **UJA / Federation** = welfare fundraising → here, not Jewish political.
 
 ### Business & labour & health
-22. **Business** — commercial enterprises with a profit motive: banks, insurance companies, hotels, restaurants, cafés, saloons, taverns, shops, stores, firms, law firms, brewery (when ownership-relation), trading companies, manufacturing companies, motor companies, telegraph companies, financial corporations, booking offices, galleries (when commercial art-dealer), pharmacies.
-23. **Labour (factory/workshop)** *(renamed from Labour)* — **places of physical labour**. Factories, sweatshops, workshops, breweries (when employment-relation), tailor shops, bakeries, workplaces. **Excludes** labour movements and workers' fraternal/political organizations (those go to Jewish political bodies or Non-Jewish political bodies).
+22. **Business** — **commerce and services** with a profit motive: banks, insurance companies, hotels, restaurants, cafés, saloons, taverns, shops, stores, trading companies, law firms, telegraph and telephone companies, railways, financial corporations, booking offices, galleries (when commercial art-dealer), pharmacies.
+23. **Labour (factory/workshop)** *(renamed from Labour)* — **places of production**: factories, mills, sweatshops, workshops, breweries, bakeries, tailor shops, farms and orchards, printing works when not typed Printer. A manufacturing *firm* is typed here by what it makes, even when the text calls it a פֿירמע. **Excludes** labour movements and workers' fraternal/political organizations (those go to Jewish political bodies or Non-Jewish political bodies).
+
+> **The type describes the organization, never a person's relation to it** *(PI 2026-11-01)*. Until then a brewery was Business "when ownership-relation" and Labour "when employment-relation", which would split one brewery into two rows as soon as it was mentioned both ways. Whether someone owned, managed or worked at a place is carried by the **relation** on the mention (`Leadership_Ownership`, `Employment_Performance`, …) and so by the edge in the person–org graph and the KG — the org type does not repeat it. Production site → Labour; commerce and services → Business.
 24. **Health institutions** — hospitals, clinics, sanatoria, medical institutions, infirmaries. Red Cross / רויטן קרייץ falls here.
 
 ### Military

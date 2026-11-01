@@ -244,7 +244,7 @@ AMBIGUOUS: set[str] = {
 	"קאָמיטעט", "קאָמיסאַריאָט", "commission", "congress", "conference",
 	"embassy", "court", "administration", "division", "communal office",
 	"Gmina", "Political bodies",
-	# Brewery class (business vs labour by relation)
+	# Production sites — always Labour (the relation is on the edge, not the type)
 	"brewery", "bakery", "tailor shop", "farm",
 }
 
@@ -566,16 +566,12 @@ def resolve_ambiguous(
 			return CANON_BUSINESS, True, ""
 		return CANON_BUSINESS, False, "context_weak:company_no_cue"
 
-	# ---- Brewery / factory-ambiguous (business vs labour by relation) ----
+	# ---- Production sites: Labour, whoever is speaking of them ----
+	# Typing by the person's relation (owner -> Business, worker -> Labour)
+	# split one brewery into two rows; PI 2026-11-01. The relation stays on
+	# the mention and the graph edge.
 	if tag in {"brewery", "bakery", "tailor shop", "farm"}:
-		rel = relation.lower()
-		if "leadership_ownership" in rel or "ownership" in rel:
-			return CANON_BUSINESS, True, ""
-		if "employment_performance" in rel or "employment" in rel:
-			return CANON_LABOUR, True, ""
-		if "production_distribution" in rel:
-			return CANON_BUSINESS, True, ""
-		return CANON_BUSINESS, False, "pi_dilemma:brewery_relation_conflict"
+		return CANON_LABOUR, True, ""
 
 	# ---- Political ----
 	if tag in {"party", "פארטיי", "פּאַרטיי-אָרגאַניזאַציע", "political_party",
