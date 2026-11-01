@@ -29,6 +29,8 @@ Kinds, applied in this order:
               (feedback_core_db_mint_from_origin_high_water). A name that
               already exists among live periodical rows is refused unless the
               decision says `distinct` in its confidence.
+  remove_db   an empty core_db row (no clusters on either side) is deleted,
+              with its address card.
   retype_db   a core_db row that is not a periodical gets its real org_type.
   generic     cluster decision GENERIC (no proper title; nothing minted).
   not_an_org  cluster decision NOT_AN_ORG (a book, a column, a phrase).
@@ -425,6 +427,33 @@ def main(apply: bool, reviewer: str) -> int:
             if d["cluster_id"].strip():
                 link(d["cluster_id"].strip(), db, d, f"minted db {db} {name}")
 
+    # ---------------- 4a0. empty rows removed ----------------
+    # Only a row with no clusters on either side goes; its address card too.
+    for d in decisions:
+        if d["kind"] != "remove_db":
+            continue
+        db = d["db_id"].strip()
+        row = by_id.get(db)
+        if row is None:
+            continue  # already removed
+        if pipe_list(row["linked_cluster_ids"]) or any(
+                (r.get("aligned_db_id") or "").strip() == db for r in al):
+            say("refused", f"{d['decision_id']}: db {db} still has clusters; not removed")
+            continue
+        core.remove(row)
+        del by_id[db]
+        touched["core"] = True
+        try:
+            ad
+        except UnboundLocalError:
+            ad_f, ad = _load(ADDR)
+        if any(r["db_id"].strip() == db for r in ad):
+            ad = [r for r in ad if r["db_id"].strip() != db]
+            touched["addr"] = True
+        say("remove", f"{d['decision_id']}  db {db} removed (empty)")
+        log.append(entry(reviewer, "org_addresses", "db_remove", db, "REMOVE",
+                         f"{d['decision_id']}: {d['rationale']}"))
+
     # ---------------- 4a. rows that are not periodicals ----------------
     for d in decisions:
         if d["kind"] != "retype_db":
@@ -511,7 +540,7 @@ def main(apply: bool, reviewer: str) -> int:
         cm[db] = new
         n_cm += 1
 
-    for k in ("merge", "parent", "override", "unlink", "mint", "generic", "not_an_org", "retype", "conflict", "refused"):
+    for k in ("merge", "parent", "override", "remove", "unlink", "mint", "generic", "not_an_org", "retype", "conflict", "refused"):
         if report.get(k):
             print(f"\n== {k} ({len(report[k])})")
             for m in report[k][:400]:
