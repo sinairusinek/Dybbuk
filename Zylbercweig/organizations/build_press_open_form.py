@@ -11,10 +11,16 @@ Output: press_open_form.html — published as an artifact with the `db` and
         ArtifactData (list, collection=decisions) and apply them through
         press_audit_decisions.tsv + apply_press_audit.py.
 
-Usage: python3 build_press_open_form.py
+Round 2 (Wikidata ids, possible duplicates, the camp, an empty row):
+    python3 build_press_open_form.py --items press_open_items_r2.json \
+        --out press_open_form_r2.html --title "Press audit, round 2"
+Links are URLs (labelled "Galron scan") or [label, url] pairs.
+
+Usage: python3 build_press_open_form.py [--items F --out F --title T]
 """
 from __future__ import annotations
 
+import argparse
 import html
 import json
 from pathlib import Path
@@ -33,9 +39,15 @@ SECTIONS = [
      "A reviewer had decided these clusters already, so the audit left them alone."),
     ("low", "Low-confidence new rows",
      "Created today from thin evidence, often one mention. Keep unless the mention says otherwise."),
+    ("dup", "Possible duplicate rows",
+     "Rows the Wikidata pass tied to the same item, where the papers may be one and the same."),
+    ("qid", "Unsure Wikidata ids",
+     "A Wikidata periodical with a matching title, but city or years are missing or disagree. "
+     "Accept writes the id into press_comments.tsv."),
+    ("other", "Other open rows", "Left over from the audit."),
 ]
 
-PAGE = r"""<title>Press audit decisions</title>
+PAGE = r"""<title>__TITLE__</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Serif+Hebrew:wght@500;600&display=swap">
@@ -101,7 +113,7 @@ button:focus-visible, .note:focus-visible, a:focus-visible { outline: 2px solid 
 @media (prefers-reduced-motion: no-preference) { .item { transition: border-color .15s; } }
 </style>
 <div class="wrap">
-<h1>Press audit decisions</h1>
+<h1>__TITLE__</h1>
 <p class="lede">What the periodical audit of 1 November left for you. Each choice saves as you click; nothing
 changes in core_db until Claude applies your answers. The suggested option is marked — the
 "accept suggestions" button in a section fills only the items you have not touched.</p>
@@ -192,7 +204,7 @@ def esc(s: str) -> str:
     return html.escape(s or "", quote=True)
 
 
-def render(items: list[dict]) -> str:
+def render(items: list[dict], page_title: str = "Press audit decisions") -> str:
     nav, body = [], []
     for key, title, note in SECTIONS:
         its = [i for i in items if i["section"] == key]
@@ -209,8 +221,9 @@ def render(items: list[dict]) -> str:
                        f'Accept suggestions for untouched items</button></div>')
         for i in its:
             ctx = "".join(f"<li>{esc(c)}</li>" for c in i.get("context") or [] if c)
-            links = "".join(f'<a href="{esc(u)}" rel="noreferrer" target="_blank">Galron scan</a>'
-                            for u in i.get("links") or [] if u)
+            links = "".join(f'<a href="{esc(u)}" rel="noreferrer" target="_blank">{esc(lab)}</a>'
+                            for lab, u in (x if isinstance(x, list) else ("Galron scan", x)
+                                           for x in i.get("links") or [] if x))
             ids = " · ".join(filter(None, [f"db {i['db']}" if i.get("db") else "",
                                            ", ".join(i.get("clusters") or [])]))
             opts = "".join(
@@ -228,10 +241,16 @@ def render(items: list[dict]) -> str:
                   f'placeholder="note (optional)" aria-label="note"></div></article>')
         out.append("</section>")
         body.append("".join(out))
-    return PAGE.replace("__NAV__", "".join(nav)).replace("__BODY__", "\n".join(body))
+    return (PAGE.replace("__TITLE__", esc(page_title)).replace("__NAV__", "".join(nav))
+            .replace("__BODY__", "\n".join(body)))
 
 
 if __name__ == "__main__":
-    items = json.loads(ITEMS.read_text(encoding="utf-8"))
-    OUT.write_text(render(items), encoding="utf-8")
-    print(f"wrote {OUT.name}: {len(items)} items")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--items", default=str(ITEMS))
+    ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--title", default="Press audit decisions")
+    a = ap.parse_args()
+    items = json.loads(Path(a.items).read_text(encoding="utf-8"))
+    Path(a.out).write_text(render(items, a.title), encoding="utf-8")
+    print(f"wrote {Path(a.out).name}: {len(items)} items")
