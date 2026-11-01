@@ -30,6 +30,7 @@ import csv
 import pathlib
 import re
 import sys
+import unicodedata
 
 HERE = pathlib.Path(__file__).resolve().parent
 ZYL = HERE.parent.parent
@@ -260,10 +261,43 @@ def main() -> None:
     # 2. works ---------------------------------------------------------------
     uf = UF()
 
+    # Hand identifications of names the matcher cannot place (surname-only
+    # Yiddish authors, non-Yiddish playwrights, translators): author_identifications.tsv,
+    # keyed by the exact extracted string. Read by a person, not inferred here.
+    # NFKD both sides: the extraction keeps precomposed פֿ (U+FB4E) where a
+    # typed table row has פ + rafe, and an exact-string key silently misses.
+    def ckey(x):
+        return unicodedata.normalize("NFKD", (x or "").strip())
+    curated = {ckey(c["author_string"]): c
+               for c in pc.read_tsv(HERE / "author_identifications.tsv")}
+
     def author_key(r, name):
+        c = curated.get(ckey(name))
+        if c and (c["hub_id"] or c["wikidata"]):
+            r["author_qid"], r["author_label"] = c["wikidata"], c["person_label"]
+            r["author_role"] = c["role"]
+            key = c["hub_id"] or "wd:" + c["wikidata"]
+            return key, c["hub_id"], "curated"
+        if c:
+            r["author_label"], r["author_role"] = c["person_label"], c["role"]
         subj = by_entry.get(r["person_id"] or pid_of.get(r["xml_id"], ""), "")
         hub, basis = resolve_person(name, subj, by_surface)
         return (hub or "txt:" + pc.norm_yiddish(name or "?")), hub, basis
+
+    def original_author(r):
+        n = (r["original_author"] or "").strip()
+        if not n:
+            return
+        if n.upper() == "SUBJECT":
+            hub = by_entry.get(r["person_id"], "")
+            r["original_author_hub"] = hub
+            return
+        c = curated.get(ckey(n))
+        if c:
+            r["original_author_hub"], r["original_author_qid"] = c["hub_id"], c["wikidata"]
+            return
+        hub, _ = resolve_person(n, "", by_surface)
+        r["original_author_hub"] = hub
 
     for r in eds:
         # whose work is it: the subject when they wrote it, or the translator/
@@ -281,6 +315,7 @@ def main() -> None:
                 and r["author"].strip().upper() != "SUBJECT":
             # the model put the ORIGINAL author in `author`: keep it visible
             r["original_author"] = r["original_author"] or r["author"]
+        original_author(r)
         nodes = [(ak, k) for t in [r["title"]] + r["alt_titles"].split(" | ")
                  for k in tnorm_all(t)]
         r["_node"] = nodes[0] if nodes else (ak, "∅" + r["edition_id"])
@@ -351,7 +386,8 @@ def main() -> None:
             "other_keys": " | ".join(alts),
             "work_kind": kinds.most_common(1)[0][0],
             "author_hub": rs[0]["author_hub"],
-            "author_heading": rs[0]["author_hub_heading"] or rs[0]["author"],
+            "author_heading": rs[0]["author_hub_heading"] or rs[0].get("author_label") or rs[0]["author"],
+            "author_qid": rs[0].get("author_qid", ""),
             "original_title": next((r["original_title"] for r in rs if r["original_title"]), ""),
             "original_author": next((r["original_author"] for r in rs if r["original_author"]), ""),
             "n_editions": len(rs),
@@ -379,12 +415,18 @@ def main() -> None:
     efields = ["edition_id", "work_id", "plays_db_id", "xml_id", "person_id",
                "volume", "heading", "title", "genre_phrase", "alt_titles",
                "work_kind", "author", "subject_role", "author_hub",
-               "author_hub_heading", "author_match", "original_title",
-               "original_author", "pub_kind", "container", "container_db_id",
+               "author_hub_heading", "author_qid", "author_label",
+               "author_role", "author_match", "original_title",
+               "original_author", "original_author_hub", "original_author_qid",
+               "pub_kind", "container", "container_db_id",
                "container_match", "container_galron_id", "publisher",
                "publisher_db_id", "publisher_match", "place", "year",
                "date_detail", "edition_note", "dup_count", "confidence",
                "evidence"]
+    for r in eds:
+        for k in ("author_qid", "author_label", "author_role",
+                  "original_author_hub", "original_author_qid"):
+            r.setdefault(k, "")
     pc.write_tsv(HERE / f"editions_resolved_{a.tag}.tsv", eds, efields)
     pc.write_tsv(HERE / f"works_{a.tag}.tsv", works, list(works[0].keys()))
 
@@ -399,6 +441,8 @@ def main() -> None:
     print(f"play works linked to plays_db (L/H): {sum(bool(w['plays_db_id']) for w in pw)} "
           f"-> distinct play_ids {len({p for w in pw for p in w['plays_db_id'].split('|') if p})}")
     print(f"play editions: {len(pe)}")
+    print("  author identified (hub or Wikidata):",
+          pct(sum(bool(r['author_hub'] or r['author_qid']) for r in pe), len(pe)))
     print("  author hub:", pct(sum(bool(r['author_hub']) for r in pe), len(pe)),
           collections.Counter(r["author_match"] for r in pe).most_common())
     hp = [r for r in pe if r["publisher"]]

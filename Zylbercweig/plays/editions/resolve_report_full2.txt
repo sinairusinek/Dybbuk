@@ -1,8 +1,9 @@
 records 5059 -> editions 4882 (177 duplicates merged)
-works 3551; play works 1997; multi-edition play works 525; seen in >1 entry 51; same_work groups used 786
+works 3525; play works 1972; multi-edition play works 534; seen in >1 entry 67; same_work groups used 786
 play works linked to plays_db (L/H): 27 -> distinct play_ids 25
 play editions: 3178
-  author hub: 3038 (96%) [('subject', 2970), ('', 140), ('surface_unique', 68)]
+  author identified (hub or Wikidata): 3122 (98%)
+  author hub: 3088 (97%) [('subject', 2970), ('curated', 84), ('surface_unique', 68), ('', 56)]
   publisher resolved: 583 (45%) [('no_match', 544), ('exact', 504), ('place_conflict', 87), ('ambiguous', 70), ('exact+prominence', 44), ('exact_othertype', 29), ('', 12), ('exact+place', 6)]
   periodical container resolved: 481 (55%) [('exact', 379), ('no_match', 329), ('exact+place', 69), ('place_conflict', 34), ('exact+prominence', 25), ('ambiguous', 22), ('exact_othertype', 8), ('', 5)]
   periodical with Galron row: 67
