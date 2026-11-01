@@ -11,8 +11,14 @@ Model (Linked Stage Graph / APIS pattern):
   - plain typed binary edges ("mini-events") for facts with no anchor
   - materialized binary shortcut edges (performed_in, directed, ...) are
     ALSO emitted for event-derived participation, marked derived_from_event
-  - nothing is dropped: unmatched surfaces mint unlinked nodes (person:UP-,
-    org:UO-, venue:UV-, place:UPL-, play:NEW-)
+  - unmatched people/orgs/venues/places mint unlinked nodes (person:UP-,
+    org:UO-, venue:UV-, place:UPL-) — but NOT plays: this is the
+    Lateiner/Hurwitz graph, and a play that is not in plays_db is another
+    author's (Ansky's Dybbuk, Hirshbein's Grine felder …). play_attribution.py
+    also checks every fact linked to an L/H play against its own evidence
+    sentence (surface-level adjudication sent Ansky's Dybbuk to Lateiner's
+    PL-0133). Facts on other authors' plays go to kg/excluded_play_facts.tsv,
+    kept for the future general Zylbercweig graph.
 
 Adjudication: decisions in kg_link_review.tsv (decision=ALIGN + decided_link)
 override the automatic candidate/unmatched resolutions at build time.
@@ -42,6 +48,10 @@ LAYERS_REVIEW_TSV = pc.HERE / "kg_link_review_layers.tsv"
 NODES_TSV = pc.KG_DIR / "nodes.tsv"
 EDGES_TSV = pc.KG_DIR / "edges.tsv"
 EVENTS_TSV = pc.KG_DIR / "events.tsv"
+EXCLUDED_TSV = pc.KG_DIR / "excluded_play_facts.tsv"
+EXCLUDED_FIELDS = ["fact_id", "fact_type", "play_title_surface", "play_link",
+                   "reason", "person_surface", "person_role", "character",
+                   "date_start", "evidence_quote"]
 
 NODE_FIELDS = ["node_id", "node_type", "label_yiddish", "label_english",
                "ext_ref_type", "ext_ref_id", "secondary_ids", "match_status", "notes",
@@ -50,7 +60,8 @@ EDGE_FIELDS = ["edge_id", "source_id", "target_id", "edge_type", "role_detail",
                "character", "date_start", "date_end", "date_precision",
                "event_id", "production_key", "provenance_person_id",
                "provenance_fact_ids", "evidence_sentence", "extraction_model",
-               "confidence", "match_status", "review_status", "source_layer"]
+               "confidence", "match_status", "review_status", "source_layer",
+               "character_ref"]
 EVENT_FIELDS = ["event_id", "event_type", "play_id", "venue_id", "org_id",
                 "place_id", "date_start", "date_end", "date_precision",
                 "production_key", "provenance_person_id", "provenance_fact_ids",
@@ -512,10 +523,28 @@ def main() -> None:
             n_ed_links += 1
 
     # ---- facts -> events + edges ----
+    from play_attribution import Attribution
+    att = Attribution()
+    excluded: list[dict] = []
+    n_rescued = 0
     ev_by_key: dict[str, dict] = {}
     n_binary = n_event_facts = 0
     for r in rows:
         play_link, play_st = resolve_with_adjudication(r, "play", review)
+        if play_link.startswith("play:PL-") and "|" not in play_link \
+                and play_st in ("matched", "candidate"):
+            verdict, why = att.decide(r, play_link[5:])
+            if verdict == "OTHER":
+                excluded.append(dict(r, play_link=play_link, reason=why))
+                continue
+        elif play_st != "not_entity" and r.get("play_title_surface", "").strip():
+            pid = att.rescue(r)
+            if not pid:
+                excluded.append(dict(r, play_link=play_link,
+                                     reason=f"not_lh_play:{play_st or 'unlinked'}"))
+                continue
+            play_link, play_st = f"play:{pid}", "matched"
+            n_rescued += 1
         person_link, person_st = resolve_with_adjudication(r, "person", review)
         org_link, org_st = resolve_with_adjudication(r, "org", review)
         venue_link, venue_st = resolve_with_adjudication(r, "venue", review)
@@ -587,11 +616,13 @@ def main() -> None:
                 g.add_edge(source_id=person_node, target_id=ev["event_id"],
                            edge_type="cast_in", role_detail=role,
                            character=r.get("character", ""),
+                           character_ref=att.character_ref(r),
                            event_id=ev["event_id"], production_key=key, **common)
                 g.add_edge(source_id=person_node, target_id=play_node,
                            edge_type=ROLE_EDGE.get(role, "involved_in"),
                            role_detail="derived_from_event",
                            character=r.get("character", ""),
+                           character_ref=att.character_ref(r),
                            event_id=ev["event_id"], production_key=key, **common)
         else:
             n_binary += 1
@@ -600,6 +631,7 @@ def main() -> None:
                     g.add_edge(source_id=person_node, target_id=play_node,
                                edge_type="mention", role_detail=role,
                                character=r.get("character", ""),
+                               character_ref=att.character_ref(r),
                                event_id="", production_key="", **common)
                 continue
             if person_node and play_node:
@@ -610,6 +642,7 @@ def main() -> None:
                 g.add_edge(source_id=person_node, target_id=play_node,
                            edge_type=etype, role_detail=role,
                            character=r.get("character", ""),
+                           character_ref=att.character_ref(r),
                            event_id="", production_key="", **common)
             elif play_node and (venue_node or place_node or org_node):
                 g.add_edge(source_id=play_node,
@@ -664,6 +697,9 @@ def main() -> None:
     print(f"edges: {len(g.edges)}  by type: {dict(Counter(e['edge_type'] for e in g.edges))}")
     print(f"events: {len(g.events)}  (facts->events: {n_event_facts}, binary: {n_binary}, "
           f"edition links: {n_ed_links})")
+    print(f"play attribution: {len(excluded)} facts excluded as not L/H plays "
+          f"{dict(Counter(e['reason'].split(':')[0] for e in excluded))}, "
+          f"{n_rescued} rescued onto L/H plays")
 
     if not args.execute:
         print("\ndry-run — pass --execute to write kg/")
@@ -674,6 +710,7 @@ def main() -> None:
     pc.write_tsv(NODES_TSV, nodes, NODE_FIELDS)
     pc.write_tsv(EDGES_TSV, g.edges, EDGE_FIELDS)
     pc.write_tsv(EVENTS_TSV, g.events, EVENT_FIELDS)
+    pc.write_tsv(EXCLUDED_TSV, excluded, EXCLUDED_FIELDS)
     kg_bio.write_entry_index(bio_index)
     # layers review sheet: keep prior decisions, refresh counts/examples
     prior = {(r["slot"], r["surface"]): r for r in pc.read_tsv(LAYERS_REVIEW_TSV)}

@@ -44,7 +44,9 @@ DEFAULT_AUTHOR_DB_IDS = ["683", "684"]
 # (norm_yiddish output: no diacritics, finals folded, digraphs folded).
 AUTHOR_SURNAME_PATTERNS = {
     "683": re.compile(r"לאטיינער|לאטענער"),
-    "684": re.compile(r"הורוויץ|הורוויטש|הורביץ|האראוויץ|הורװיץ"),
+    # final letters are folded (ץ→צ) by norm_yiddish, so the ץ spellings
+    # here never matched until 2026-11-01 — only הורוויטש did
+    "684": re.compile(r"הורוויצ|הורוויטש|הורביצ|האראוויצ"),
 }
 
 _DIGRAPHS = {"װ": "וו", "ױ": "וי", "ײ": "יי"}
