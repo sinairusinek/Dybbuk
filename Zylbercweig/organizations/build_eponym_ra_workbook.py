@@ -32,6 +32,7 @@ import collections
 import csv
 import pathlib
 import re
+import unicodedata
 import xml.etree.ElementTree as ET
 
 csv.field_size_limit(10 ** 9)
@@ -58,6 +59,9 @@ BLOCKED = BASE / "organizations" / "eponym_blocked_answers.tsv"
 # written back into the answer cells on every build -- otherwise a rebuild
 # blanks them, which is how the comments column went unread for ten days.
 QUEUE_ANSWERS = BASE / "organizations" / "eponym_queue_answers.tsv"
+# The open troupe questions as TSV, for the Zalmen "Eponym · troupe questions"
+# view: the app cannot read the workbook, and the workbook stays the RA copy.
+QUESTIONS = BASE / "organizations" / "eponym_open_questions.tsv"
 OTHER_TYPE = "OTHER - elaborate!"
 SPOT_VERDICTS = ["OK", "WRONG MATCH", "WRONG ORG NAME"]
 EDGES = BASE / "organizations" / "graph" / "person_org_edges.tsv"
@@ -146,17 +150,52 @@ def entry_text(json_file: str, xml_id: str) -> str:
     return entry_index(xml_name).get(xml_id, "")
 
 
-def around(text: str, needle: str, width: int = SNIPPET_CHARS) -> str:
-    """A window of `text` centred on `needle`; the head of it if not found."""
+_FINALS = str.maketrans("םןךףץ", "מנכפצ")
+
+
+def _folded(text: str) -> tuple[str, list[int]]:
+    """`text` with points dropped, finals folded, hyphens/dashes as spaces --
+    and, per folded character, its index in `text`, to map a hit back."""
+    out, idx = [], []
+    for i, ch in enumerate(text):
+        for c in unicodedata.normalize("NFKD", ch):
+            if unicodedata.category(c) == "Mn":
+                continue
+            c = c.translate(_FINALS)
+            out.append(" " if c in "-־–—" else c)
+            idx.append(i)
+    return "".join(out), idx
+
+
+def around(text: str, needles: list[str], width: int = SNIPPET_CHARS) -> str:
+    """A window of `text` centred on the first needle found, or "".
+
+    Matching ignores pointing, final letters and hyphenation, and the needles
+    go from most to least specific: how THIS mention spelled the troupe, the
+    org's own name, then the eponym's name. It used to be one exact find() on
+    the org name, falling back to the entry's first 600 characters -- so 19%
+    of excerpts were a biography's opening that never named the troupe
+    (db851: Lampe's entry names it at character ~800). An entry where nothing
+    is found now yields nothing, never a misleading opening.
+    """
     if not text:
         return ""
-    i = text.find(needle) if needle else -1
-    if i < 0:
-        return text[:width] + (" …" if len(text) > width else "")
-    half = width // 2
-    s = max(0, i - half)
-    e = min(len(text), i + len(needle) + half)
-    return ("… " if s else "") + text[s:e] + (" …" if e < len(text) else "")
+    ftext, idx = _folded(text)
+    for needle in needles:
+        fn = _folded(needle or "")[0].strip()
+        # the eponym's own name may be declined (-ס, -ן): drop one letter
+        keys = [fn] if " " in fn else [fn, fn[:-1]] if len(fn) > 4 else [fn]
+        for key in keys:
+            if len(key) < 3:
+                continue
+            i = ftext.find(key)
+            if i < 0:
+                continue
+            a, b = idx[i], idx[min(i + len(key), len(idx)) - 1] + 1
+            half = width // 2
+            s, e = max(0, a - half), min(len(text), b + half)
+            return ("… " if s else "") + text[s:e] + (" …" if e < len(text) else "")
+    return ""
 
 
 def main() -> None:
@@ -262,6 +301,7 @@ def main() -> None:
     open_spans.sort(key=_sort_key)
 
     rows_written = 0
+    questions: list[dict] = []   # the same rows, for the Zalmen view (no xlsx there)
     for (db_id, span), group in open_spans:
         head = group[0]
         org = orgs.get(db_id, {})
@@ -283,17 +323,24 @@ def main() -> None:
             for m in ments if m.get("rel_categories") or m.get("roles")))[:300]
 
         org_name = (org.get("name_yiddish") or "").strip()
-        ctx_parts, used = [], 0
-        for m in ments[:6]:
+        ctx_parts, used, not_found = [], 0, 0
+        for m in ments[:8]:
             txt = entry_text(m.get("host_file", ""), m.get("host_xmlid", ""))
             if not txt:
                 continue
-            snip = around(txt, org_name or span)
+            snip = around(txt, [m.get("canonical_yiddish", ""), org_name, span])
+            if not snip:
+                not_found += 1
+                continue
             piece = f"[{m.get('host_heading','?')}] {snip}"
             if used + len(piece) > CONTEXT_CHARS:
                 break
             ctx_parts.append(piece)
             used += len(piece)
+        if not_found and not ctx_parts:
+            ctx_parts.append(f"(The troupe's name was not found in the text of the "
+                             f"{not_found} entr{'y' if not_found == 1 else 'ies'} that "
+                             f"mention it -- check the facsimile.)")
         ctx = "\n\n".join(ctx_parts)
 
         # The judge's proposal, if one exists for this span. Offered as the
@@ -302,7 +349,7 @@ def main() -> None:
         # trusted. A proposal is never written into person_name itself: the
         # answer stays hers.
         v = verdicts.get((db_id, span)) or {}
-        llm_label = ""
+        llm_label, llm_hub = "", ""
         if v.get("proposal_hub_id"):
             # 301 of 2,897 hubs are facsimile-derived (HUB-P-*) with db_ids
             # empty: a real lexicon entry that never got a people_db row. The
@@ -314,6 +361,7 @@ def main() -> None:
             phead = (v.get("proposal_heading") or "").strip()
             tag = pdb or (v.get("proposal_hub_id") or "").strip()
             llm_label = f"{phead} [{tag}]" if phead else ""
+            llm_hub = (v.get("proposal_hub_id") or "").strip() if phead else ""
         elif (v.get("choice") or "") in ("NONE", "ABSTAIN"):
             llm_label = v["choice"]
         llm_ev = v.get("quote") or ""
@@ -327,6 +375,7 @@ def main() -> None:
         if rk and rk.get("person_heading"):
             tag = (rk.get("person_db_id") or "").strip() or (rk.get("hub_id") or "").strip()
             llm_label = f"{rk['person_heading'].strip()} [{tag}]"
+            llm_hub = (rk.get("hub_id") or "").strip()
             offered = (rk.get("n_candidates_offered") or "").strip()
             llm_ev = (f"recovered from the judge's own reading “{rk['name_read_by_judge']}”"
                       f" — {'NO candidate was offered for this name' if offered in ('', '0') else f'not among the {offered} offered'}"
@@ -343,6 +392,7 @@ def main() -> None:
                 pdb = (rc.get("person_db_id") or "").strip()
                 tag = pdb or (rc.get("hub_id") or "").strip()
                 llm_label = f"{rc['person_heading'].strip()} [{tag}]"
+                llm_hub = (rc.get("hub_id") or "").strip()
                 llm_ev = f"your earlier note “{rc['comment']}” resolves here"
             else:
                 llm_ev = (f"your earlier note: “{rc['comment']}”"
@@ -359,6 +409,22 @@ def main() -> None:
             head.get("notes") or "",
         ])
         rows_written += 1
+        questions.append({
+            "db_id": db_id, "troupe_yiddish": org_name,
+            "troupe_latin": (org.get("name") or "").strip(),
+            "eponym": f"{idx} of {n_for_org}", "span": span,
+            "proposal_hub": llm_hub,
+            "proposal": llm_label if llm_hub else "",
+            "proposal_conf": v.get("confidence", "") if llm_hub else "",
+            "judge": "" if llm_hub else llm_label,
+            "evidence": llm_ev,
+            "cand_hubs": "|".join(g["hub_id"] for g in sugg[:12]),
+            "cand_labels": "|".join(sugg_txt.split(" | ")) if sugg_txt else "",
+            "tier": head.get("tier") or "", "pattern": head.get("pattern") or "",
+            "org_type": (org.get("org_type") or "").strip(),
+            "mentioned_by": who, "roles_dates": rd, "context": ctx,
+            "notes": head.get("notes") or "",
+        })
 
     # ── links sheet: the eponym links already settled ──────────────────────
     # What the queue has produced so far, so the work is visible and checkable
@@ -620,6 +686,12 @@ def main() -> None:
 
     out = pathlib.Path(args.out)
     wb.save(out)
+    if questions:
+        with QUESTIONS.open("w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(questions[0]), delimiter="\t",
+                               lineterminator="\n")
+            w.writeheader()
+            w.writerows(questions)
 
     multi = collections.Counter(d for (d, _s), _g in open_spans)
     print(f"sheet 'troupes': {rows_written} rows "
@@ -642,6 +714,7 @@ def main() -> None:
           f"({len({k[0] for k in by_pair})} troupes)")
     print(f"sheet 'persons': {len(person_labels)} people with ids "
           f"({dropped_orgs} org-like headings excluded)")
+    print(f"open questions TSV: {len(questions)} rows -> {QUESTIONS.name}")
     print(f"sheet 'spot-check': {len(spot)} links "
           f"({sum(1 for r in spot if 'span-not-in-heading' in r.get('flag', ''))}"
           f" span-not-in-heading), "

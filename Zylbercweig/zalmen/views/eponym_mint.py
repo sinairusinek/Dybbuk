@@ -198,7 +198,8 @@ def _save(group: list[dict], existing: list[str], mint: dict | None,
 def _card(answer: str, group: list[dict], people: list[dict], hubs: list[dict],
           reviewer: str) -> None:
     k = "epm_" + re.sub(r"\W+", "_", f"{group[0]['org_db_id']}_{group[0]['span']}")
-    st.markdown(f"### {answer or '(blank answer)'}")
+    who = group[0].get("answered_by") or "Reviewer"
+    st.markdown(f"### {who}'s answer: {answer or '(blank)'}")
     for b in group:
         st.markdown(f"**db{b['org_db_id']}** {_rtl(b.get('org_name_yiddish', ''))} "
                     f"&nbsp; span {_rtl(b['span'])}", unsafe_allow_html=True)

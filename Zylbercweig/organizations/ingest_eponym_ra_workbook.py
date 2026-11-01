@@ -37,7 +37,7 @@ BLOCKED_CONTEXT = {"mentioned_by": "mentioned by", "roles_dates": "roles / dates
                    "lexicon_context": "mention context (lexicon)"}
 BLOCKED_FIELDS = ["workbook_row", "org_db_id", "org_name_yiddish", "span",
                   "reviewer_answer", "has_people_db_row", "needs",
-                  *BLOCKED_CONTEXT]
+                  *BLOCKED_CONTEXT, "answered_by"]
 QUEUE_FIELDS = ["sheet", "db_id", "span", "hub_id", "answer", "comment",
                 "reviewer", "reviewed_at"]
 
@@ -347,6 +347,7 @@ def main() -> None:
             # A person WITH a db row needs only add_dbonly_hubs.py; one
             # without needs a minting decision from Sinai first.
             "needs": "hub (add_dbonly_hubs.py)" if pdb else "mint, then hub",
+            "answered_by": args.reviewer,
             # Carried so the Zalmen mint view can show the evidence beside
             # the decision -- the workbook is not readable from the app.
             **{out: str(ws.cell(row, col[src] + 1).value or "")

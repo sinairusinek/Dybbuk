@@ -45,6 +45,7 @@ VIEWS = {
     "Troupe-tag review":       ("troupe_tags_review", "ttr"),
     "Eponym · review queues":  ("eponym_queues", "epq"),
     "Eponym · mint people":    ("eponym_mint", "epm"),
+    "Eponym · troupe questions": ("eponym_troupes", "ept"),
     "Activity":                ("activity",      "activity"),
     "B1 · Person Dedup":       ("person_dedup",   "b1"),
     "B2 · Person → DB":        ("person_alignment", "b2"),
@@ -75,6 +76,7 @@ VIEW_STATUS = {
     "Troupe-tag review":       "🏷",
     "Eponym · review queues":  "👁 Read-only",
     "Eponym · mint people":    "🪪",
+    "Eponym · troupe questions": "✅ Ready",
     "Activity":                "📋",
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → DB":        "✅ Ready",
@@ -269,6 +271,9 @@ elif view_module == "eponym_queues":
     render()
 elif view_module == "eponym_mint":
     from views.eponym_mint import render
+    render()
+elif view_module == "eponym_troupes":
+    from views.eponym_troupes import render
     render()
 else:
     st.info(f"**{selected}** is not yet implemented.")
