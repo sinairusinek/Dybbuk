@@ -274,17 +274,31 @@ def flatten(cache: dict, meta: dict, out: pathlib.Path) -> int:
 
 
 def main() -> None:
+    global PART_CHARS
     ap = argparse.ArgumentParser()
     ap.add_argument("--in", dest="inp", required=True)
     ap.add_argument("--tag", required=True)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--dry-run", action="store_true")
+    # Re-cut ONE entry into smaller parts (its cached parts are dropped first):
+    # a long bibliography can produce a reply that outlives the server deadline
+    # (Hirshbein, 27k chars, 504 on every retry).
+    ap.add_argument("--recut", default="")
+    ap.add_argument("--part-chars", type=int, default=PART_CHARS)
     a = ap.parse_args()
 
+    PART_CHARS = a.part_chars
     rows = read_tsv(HERE / a.inp)
-    meta = {r["xml_id"]: r for r in rows}
+    meta = {r["xml_id"]: r for r in rows}      # all rows: flatten covers the whole cache
+    if a.recut:
+        rows = [r for r in rows if r["xml_id"] == a.recut]
     cache_path = HERE / f"raw_{a.tag}.jsonl"
+    if a.recut and cache_path.exists():
+        lines = cache_path.read_text(encoding="utf-8").splitlines(True)
+        cache_path.write_text("".join(
+            ln for ln in lines if json.loads(ln)["xml_id"] != a.recut),
+            encoding="utf-8")
     cache = load_cache(cache_path)
     work = []
     for r in rows:

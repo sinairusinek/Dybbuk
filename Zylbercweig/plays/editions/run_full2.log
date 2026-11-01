@@ -1,0 +1,79 @@
+1042 entries, 1136 parts to do, 2,478,201 chars, 0 cached  model=gemini-3.8-flash
+preflight ok: gemini-3.8-flash -> ''
+  25/1136  ok=25 err=0
+  50/1136  ok=50 err=0
+  75/1136  ok=75 err=0
+  100/1136  ok=100 err=0
+  retry 1 facs_298_tr_1741260461/0: ReadTimeout: The read operation timed out
+  retry 1 facs_312_TextRegion_1708860417410_829/0: ReadTimeout: The read operation timed out
+  retry 1 facs_323_tr_1741260490/0: ReadTimeout: The read operation timed out
+  retry 1 facs_323_tr_1741260490/1: ReadTimeout: The read operation timed out
+  retry 1 facs_323_tr_1741260490/2: ReadTimeout: The read operation timed out
+  retry 1 facs_332_tr_1741260410/0: ReadTimeout: The read operation timed out
+  retry 1 facs_335_tr_1741260385/0: ReadTimeout: The read operation timed out
+  retry 1 facs_337_r_1/0: ReadTimeout: The read operation timed out
+  retry 1 facs_337_tr_1741260519/0: ReadTimeout: The read operation timed out
+  retry 1 facs_338_tr_1741260416/0: ReadTimeout: The read operation timed out
+  retry 1 facs_342_tr_1741260502/0: ReadTimeout: The read operation timed out
+  retry 1 facs_343_tr_1741260417/0: ReadTimeout: The read operation timed out
+  125/1136  ok=125 err=0
+  150/1136  ok=150 err=0
+  175/1136  ok=175 err=0
+  retry 2 facs_323_tr_1741260490/1: ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}
+  200/1136  ok=200 err=0
+  225/1136  ok=225 err=0
+  250/1136  ok=250 err=0
+  275/1136  ok=275 err=0
+  retry 3 facs_323_tr_1741260490/1: ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}
+  300/1136  ok=300 err=0
+  325/1136  ok=325 err=0
+  350/1136  ok=350 err=0
+  375/1136  ok=375 err=0
+  400/1136  ok=400 err=0
+  retry 4 facs_323_tr_1741260490/1: ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}
+  425/1136  ok=424 err=1
+  450/1136  ok=449 err=1
+  475/1136  ok=474 err=1
+  500/1136  ok=499 err=1
+  525/1136  ok=524 err=1
+  550/1136  ok=549 err=1
+  575/1136  ok=574 err=1
+  retry 1 facs_160_tr_1755156219/15: ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}
+  600/1136  ok=599 err=1
+  625/1136  ok=624 err=1
+  retry 2 facs_160_tr_1755156219/15: ReadTimeout: The read operation timed out
+  retry 1 facs_92_r/3: ReadTimeout: The read operation timed out
+  retry 1 facs_103_tr_1753681918/0: ReadTimeout: The read operation timed out
+  retry 1 facs_252_tr_1754998536/0: ReadTimeout: The read operation timed out
+  retry 1 facs_264_tr_1754998383/0: ReadTimeout: The read operation timed out
+  retry 1 facs_279_tr_1754998499/0: ReadTimeout: The read operation timed out
+  retry 1 facs_279_tr_1754998499/1: ReadTimeout: The read operation timed out
+  retry 1 facs_279_tr_1754998499/2: ReadTimeout: The read operation timed out
+  retry 1 facs_28_r/0: ReadTimeout: The read operation timed out
+  retry 1 facs_320_r_8/0: ReadTimeout: The read operation timed out
+  retry 1 facs_325_tr_1754998561/0: ReadTimeout: The read operation timed out
+  retry 1 facs_328_tr_1754998393/0: ReadTimeout: The read operation timed out
+  650/1136  ok=649 err=1
+  retry 3 facs_160_tr_1755156219/15: ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}
+  675/1136  ok=674 err=1
+  700/1136  ok=699 err=1
+  retry 1 facs_453_tr_1755030106/5: ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}
+  725/1136  ok=724 err=1
+  retry 1 facs_565_tr_1755029876/1: ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}
+  750/1136  ok=749 err=1
+  775/1136  ok=774 err=1
+  800/1136  ok=799 err=1
+  825/1136  ok=824 err=1
+  850/1136  ok=849 err=1
+  875/1136  ok=874 err=1
+  900/1136  ok=899 err=1
+  925/1136  ok=924 err=1
+  950/1136  ok=949 err=1
+  975/1136  ok=974 err=1
+  1000/1136  ok=999 err=1
+  1025/1136  ok=1024 err=1
+  1050/1136  ok=1049 err=1
+  1075/1136  ok=1074 err=1
+  1100/1136  ok=1099 err=1
+  1125/1136  ok=1124 err=1
+done ok=1135 err=1; 4930 records -> editions_full2.tsv
