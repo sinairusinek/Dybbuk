@@ -173,37 +173,96 @@ PUBLISHER_TYPES = {"Publisher", "Printer", "Printer/Publisher"}
 PRESS_TYPES = {"Journals/ Newspapers", "Non-Jewish Journals/ Newspapers"}
 
 
+# Words that name the KIND of firm or its owner's relation to it, not the firm:
+# "די ברידער ראָם" = "דרוקעריי פֿון די ברידער ראָם" = "ראָם"; "פֿאַרלאַג אונד
+# אייגענטהום דעם דוד ראָטה, בוכהאַנדלונג". Single letters are initials ("ב. א.
+# קלעצקין" vs "ב. קלעצקין"). Used only by the norm tier, never the exact one.
+NOISE2 = {"פון", "די", "דער", "דעם", "דאס", "ברידער", "דרוקעריי", "דפוס",
+          "בוכהאנדלונג", "בוכהענדלער", "אויסגאבע", "אונד", "און", "עט",
+          "אייגענטהום", "ו", "מעלוכע", "מעלוכעפארלאג", "ביבליאטהעק", "ליט",
+          "vom", "und", "et", "and", "of", "the", "brothers", "pub", "co"}
+OLD_SPELL = [(re.compile(r"\b(?:אידיש|יודיש)"), "יידיש")]
+
+
+def norm2(s: str) -> list[str]:
+    out = []
+    for k in okeys(s):
+        for rx, rep in OLD_SPELL:
+            k = rx.sub(rep, k)
+        toks = [t for t in re.split(r"[\s-]+", k) if len(t) > 1 and t not in NOISE2]
+        k = " ".join(toks)
+        if len(k) >= 3 and k not in out:
+            out.append(k)
+    return out
+
+
+# Tokens too common in org names to identify one ("the Warsaw Yiddish theatre
+# society"): a token-tier proposal needs at least one token that is NOT these.
+GENERIC_TOK = {"יידיש", "יידישע", "יידישער", "יידישן", "פאלקס", "ליטעראטור",
+               "ליטעראטורישער", "וועלט", "נייע", "נייער", "צייט", "צייטונג",
+               "בלאט", "וואך", "זשורנאל", "ביכער", "קינדער", "אמעריקאנער",
+               "ניו", "יארק", "ווארשע", "ווילנע", "פארווערטס"}
+
+
+def initials(s: str) -> set[str]:
+    """Single-letter tokens of a name: the owner's initials ("ב. א. קלעצקין")."""
+    return {t for k in okeys(s) for t in re.split(r"[\s-]+", k) if len(t) == 1}
+
+
 def load_orgs():
     rows = pc.read_tsv(ZYL / "organizations" / "core_db.tsv")
-    live = {}
+    live, merged = {}, {}
     for r in rows:
-        if r["out_of_project"] or r["deprecated"] in ("true", "1"):
+        if r["out_of_project"]:
+            continue
+        if r["deprecated"] in ("true", "1"):
+            if r["merged_into"]:
+                merged[r["db_id"]] = r
             continue
         live[r["db_id"]] = r
-    idx = collections.defaultdict(set)
+    idx = collections.defaultdict(set)      # exact okeys
+    nidx = collections.defaultdict(set)     # norm2 keys
+    sidx = collections.defaultdict(set)     # cross-script skeleton of norm2
+    tidx = collections.defaultdict(set)     # norm2 tokens
+    def target(r):
+        # a merged-away row's names still find the row it was merged into
+        d, hops = r["db_id"], 0
+        while d not in live and d in merged and hops < 5:
+            d, hops = merged[d]["merged_into"], hops + 1
+        return d if d in live else ""
+    for r in list(live.values()) + list(merged.values()):
+        d = target(r)
+        if not d:
+            continue
+        names = [r["name"], r["name_yiddish"]] + r["name_variants"].split("|")
+        for f in names:
+            for k in okeys(f):
+                idx[k].add(d)
+            for k in norm2(f):
+                nidx[k].add(d)
+                sidx[skeleton(k)].add(d)
+                for t in k.split():
+                    tidx[t].add(d)
+        # machine transliteration of a Latin name: blocking only, so it feeds
+        # the proposal tier (skeleton) and never a link
+        for k in norm2(r["name_yiddish_translit"]):
+            sidx[skeleton(k)].add(d)
     for d, r in live.items():
         places = [r["address"]]
         for f in [r["name"], r["name_yiddish"]] + r["name_variants"].split("|"):
             places += re.findall(r"\(([^()]+)\)", f or "")
-            for k in okeys(f):
-                idx[k].add(d)
         r["_places"] = [x for x in places if x]
         r["_weight"] = len([c for c in r["linked_cluster_ids"].split("|") if c])
+    sidx.pop("", None)
     galron = {}
     for g in pc.read_tsv(ZYL / "reference" / "galron_press_match_review.tsv"):
         if g["decision"] == "CONFIRM" and g["db_id"]:
             galron.setdefault(g["db_id"], g["galron_row_id"])
-    return live, idx, galron
+    return live, {"exact": idx, "norm": nidx, "skel": sidx, "tok": tidx}, galron
 
 
-def resolve_org(name, place, want, live, idx):
-    """-> (db_id, basis). `want` = preferred org_type set."""
-    keys = okeys(name)
-    if not keys:
-        return "", ""
-    cands = set().union(*(idx.get(k, set()) for k in keys))
-    if not cands:
-        return "", "no_match"
+def _pick(cands, place, want, live, basis):
+    """Exact-or-norm candidates -> (db_id, basis); see resolve_org."""
     typed = {d for d in cands if live[d]["org_type"] in want} or cands
     pf = place_full(place)
     if len(typed) == 1:
@@ -213,19 +272,75 @@ def resolve_org(name, place, want, live, idx):
         if pf and live[d]["_places"] and not any(
                 place_agree(pf, x) for x in live[d]["_places"]):
             return "", f"place_conflict:{d}"
-        return d, "exact" + ("" if live[d]["org_type"] in want else "_othertype")
+        return d, basis + ("" if live[d]["org_type"] in want else "_othertype")
     if pf:
         here = {d for d in typed if any(place_agree(pf, x) for x in live[d]["_places"])}
         if len(here) == 1:
-            return next(iter(here)), "exact+place"
+            return next(iter(here)), basis + "+place"
         if here:
             typed = here
+        else:
+            # no candidate is in this place: only an unplaced row may still be
+            # it -- prominence must not carry a Vilna periodical to Philadelphia
+            typed = {d for d in typed if not live[d]["_places"]}
+            if not typed:
+                return "", "place_conflict:" + ",".join(sorted(cands, key=int)[:6])
+            if len(typed) == 1:
+                d = next(iter(typed))
+                return d, basis + "+unplaced"
+            return "", "ambiguous:" + ",".join(sorted(typed, key=int)[:6])
     # same name, several city editions (פֿאַרווערטס NY/Chicago/Philadelphia):
     # without a place, take the clearly most-attested one -- marked, reviewable
     ranked = sorted(typed, key=lambda d: -live[d]["_weight"])
     if live[ranked[0]]["_weight"] > live[ranked[1]]["_weight"]:
-        return ranked[0], "exact+prominence"
+        return ranked[0], basis + "+prominence"
     return "", "ambiguous:" + ",".join(sorted(typed)[:6])
+
+
+def resolve_org(name, place, want, live, ix):
+    """-> (db_id, basis). `want` = preferred org_type set.
+
+    exact: the okeys match a core_db name/variant.  norm: they match once
+    firm-kind words, initials and old spellings are dropped -- still a link.
+    Below that only PROPOSALS (`proposed_skel:` / `proposed_tok:` + ids),
+    never a link: a cross-script skeleton, or a rare token shared ("ב.
+    קלעצקין" -> "ווילנער פֿאַרלאָג פֿון ב. קלעצקין"). They feed the review sheet."""
+    keys = okeys(name)
+    if not keys:
+        return "", ""
+    cands = set().union(*(ix["exact"].get(k, set()) for k in keys))
+    if cands:
+        return _pick(cands, place, want, live, "exact")
+    n2 = norm2(name)
+    cands = set().union(set(), *(ix["norm"].get(k, set()) for k in n2))
+    if cands:
+        d, b = _pick(cands, place, want, live, "norm")
+        # the norm tier drops initials; if both sides spell them and they
+        # differ ("ב. גיטלין" vs "ע. גיטלין"), it is a proposal, not a link
+        if d:
+            mine = initials(name)
+            theirs = set().union(*(initials(f) for f in
+                                   [live[d]["name"], live[d]["name_yiddish"]]
+                                   + live[d]["name_variants"].split("|")))
+            if mine and theirs and not (mine & theirs):
+                return "", f"proposed_norm:{d}"
+        return d, b
+    # proposals only ever point at a press or a publishing house: a shared
+    # token otherwise proposes "Johns Hopkins University" for "John W. Luce"
+    pubpress = PUBLISHER_TYPES | PRESS_TYPES
+    cands = {d for k in n2 for d in ix["skel"].get(skeleton(k), ())
+             if live[d]["org_type"] in pubpress}
+    if cands:
+        return "", "proposed_skel:" + ",".join(sorted(cands, key=int)[:6])
+    for k in n2:
+        rare = [t for t in k.split() if len(t) >= 3 and t not in GENERIC_TOK
+                and 0 < len(ix["tok"].get(t, ())) <= 3]
+        if rare:
+            cands = {d for d in set.intersection(*(ix["tok"][t] for t in rare))
+                     if live[d]["org_type"] in pubpress}
+            if cands:
+                return "", "proposed_tok:" + ",".join(sorted(cands, key=int)[:6])
+    return "", "no_match"
 
 
 # ── main ────────────────────────────────────────────────────────────────────
