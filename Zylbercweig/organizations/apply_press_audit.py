@@ -77,6 +77,7 @@ EDGES = HERE / "graph" / "person_org_edges.tsv"
 ACTIVITY_LOG = HERE / "activity_log.tsv"
 DECISIONS = HERE / "press_audit_decisions.tsv"
 COMMENTS = HERE / "press_comments.tsv"
+QIDS = HERE / "press_wikidata_qids.tsv"
 
 PRESS_TYPE = "Journals/ Newspapers"
 COMMENT_COLUMNS = ["db_id", "name_yiddish", "name_latin", "settlement",
@@ -381,8 +382,11 @@ def main(apply: bool, reviewer: str) -> int:
         cids = [d["cluster_id"].strip() for d in ds if d["cluster_id"].strip()]
         name = head["name_yiddish"].strip()
         # already applied: a live row created by this ledger for this group
-        prior = [r for r in core if live(r) and f"press-audit {gid}" in (r.get("name_variants") or "")]
-        if not prior and cids:
+        # (a tagged row merged away since counts too: its keeper holds the group)
+        prior = [r for r in core if f"press-audit {gid}" in (r.get("name_variants") or "")]
+        prior = [by_id[resolve(r["db_id"])] for r in prior]
+        # an override mint takes its cluster off a wrong row, so that row is not "prior"
+        if not prior and cids and "override" not in head["confidence"].lower():
             prior = [r for r in core if live(r)
                      and set(cids) <= set(pipe_list(r["linked_cluster_ids"]))]
         if prior:
@@ -476,6 +480,12 @@ def main(apply: bool, reviewer: str) -> int:
     n_cm = 0
     # the first comment decision for a row wins, unless a later one says
     # `override` (a rewrite after a merge or split): the last override wins
+    # wikidata ids: press_wikidata_qids.tsv rows with verdict ACCEPT (lookup
+    # by wikidata_press_qids.py, or a human) fill an empty wikidata_qid
+    qids: dict[str, str] = {}
+    if QIDS.exists():
+        qids = {r["db_id"]: r["qid"] for r in _load(QIDS)[1]
+                if r.get("verdict", "").strip() == "ACCEPT" and r.get("qid", "").strip()}
     chosen: dict[str, dict] = {}
     for d in decisions:
         if d["kind"] != "comment":
@@ -491,6 +501,8 @@ def main(apply: bool, reviewer: str) -> int:
         new = {c: "" for c in COMMENT_COLUMNS}
         new.update({k: v for k, v in payload.items() if k in new})
         new.update(db_id=db, name_yiddish=by_id[db]["name_yiddish"], decision_id=d["decision_id"])
+        if not new["wikidata_qid"] and db in qids:
+            new["wikidata_qid"] = qids[db]
         old = cm.get(db)
         if old and all(old.get(c, "") == new[c] for c in COMMENT_COLUMNS if c != "updated"):
             continue

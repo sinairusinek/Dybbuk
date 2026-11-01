@@ -198,10 +198,10 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 213	Dagmar Theatre		דאַגמאַר טעאַטער	Theatre							
 214	David Shvartbard Troupe		דאַוויד שוואַרטבאַרד טרופּע	Traveling Company		ORG-C05350					
 215	Der Moment⁩ - ⁨דער מאמענט⁩⁩			Journals/ Newspapers		ORG-C00909					
-216	Der Tog⁩ - ⁨דער טאג	טאָג		Journals/ Newspapers		ORG-C00539_P01					
+216	Der Tog⁩ - ⁨דער טאג	טאָג		Journals/ Newspapers		ORG-C00539_P01 | ORG-C02306 | ORG-C05709				דער טאָג (ניו־יאָרק)	
 217	Der veg	דער וועג		Journals/ Newspapers		ORG-C00908_P01					
 218	Der yidish-rumenysher gezangs-farayn		דער יידיש-רומענישער געזאַנגס-פֿאַריין	Musical organization		ORG-C06836					
-219	Der Yud⁩ - ⁨דער יוד⁩⁩	דער יוּד		Journals/ Newspapers		ORG-C00172					
+219	Der Yud⁩ - ⁨דער יוד⁩⁩	דער יוּד		Journals/ Newspapers		ORG-C00172 | ORG-C04810				דער ייד	
 220	Deutsche presse verwaltung		דייטשע פּרעססע ווערוואַלטונג	Journals/ Newspapers							
 221	Di Fraye Yidishe Folks-Bine		די פֿרייע יידישע פֿאָלקס-בינע	Theatre		ORG-C00481_Q02 | ORG-C00481_Q04					
 222	di Idishe federatsye far muziḳ un drama		די ידישע פֿעדעראַציע פֿאַר מוזיק̣ ון דראַמע	Theatre-related Society/ Union							
@@ -325,7 +325,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 344	Mount Morris Theatre		מאונט מאָרריס טעאַטער	Theatre		ORG-C01097_Q03					
 345	Naftali Goldfaden Troupe	נפתלי גאָלדפֿאַדענס טרופּע		Traveling Company		ORG-C05025 | ORG-C05193 | ORG-C05924 | ORG-C06468					
 346	National Opera Warsaw		נאַציאָנאַל אָפּערע וואַרסאַוו	Theatre							
-347	Neue Lodzer Zeitung	נויע לאָדזשער צייטונג		Journals/ Newspapers		ORG-C02599 | ORG-C05379 | ORG-C06814 | ORG-C03858					
+347	Neue Lodzer Zeitung	נויע לאָדזשער צייטונג		Journals/ Newspapers		ORG-C02599 | ORG-C05379 | ORG-C06814					
 348	New York's Public Theatre		ניו יאָרקס פּובליק טעאַטער	Theatre							
 349	Nordisk Film		נאָרדיסק פֿילם	Media (Radio/ Film/TV)							
 350	Nord Star Theatre		נאָרד סטאַר טעאַטער	Theatre							
@@ -435,7 +435,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 458	Zhitomirski Troupe		זשיטאָמירסקי טרופּע	Traveling Company		ORG-C00497 | ORG-C00738 | ORG-C02644 | ORG-C04754 | ORG-C04862 | ORG-C05068 | ORG-C05359					
 459	Ziegler Troupe	זייגלערס טרופּע		Traveling Company		ORG-C00632 | ORG-C00732 | ORG-C01797 | ORG-C02610 | ORG-C04151 | ORG-C06137				זינלערס טרופּע	
 460	Zuntog-blat		זונטאָג-בלאַט	Journals/ Newspapers							
-461	דער יודישער העראלד - The Jewish herald	יידישער העראָלד		Journals/ Newspapers		ORG-C04798 | ORG-C04894 | ORG-C04447				דער טעגלייכער העראָלד	
+461	דער יודישער העראלד - The Jewish herald	יידישער העראָלד		Journals/ Newspapers		ORG-C04798 | ORG-C04894 | ORG-C04447 | ORG-C03887				דער טעגלייכער העראָלד	
 462	⁨⁨Der Fraynd⁩ - ⁨דער פֿרײַנד⁩⁩			Journals/ Newspapers				true	1291		
 463	⁨⁨Di ṿahrhayṭ⁩ - ⁨דיא ווארהייט			Journals/ Newspapers		ORG-C03990 | ORG-C02114					
 464	Judisches Theater		דזשודישעס טעאַטער	Journals/ Newspapers		ORG-C04453					
@@ -3837,7 +3837,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 3899	Bessarabskie vedomosti	בעסאַראַבסקיאַ וויעדאָמאָסטי		Non-Jewish Journals/ Newspapers		ORG-C07026				press-audit G336	
 3900	Der bezem	דער בעזים		Journals/ Newspapers		ORG-C01736				press-audit G380	
 3901	Tsuzamen	צוזאַמען		Journals/ Newspapers	New York	ORG-C01918				press-audit G339	
-3902	Der yid	דער ייד		Journals/ Newspapers		ORG-C04810				press-audit G510	
+3902	Der yid	דער ייד		Journals/ Newspapers				true	219	press-audit G510	
 3903	Davar	דבר		Journals/ Newspapers		ORG-C04393				press-audit G126	
 3904	Den	דען		Non-Jewish Journals/ Newspapers		ORG-C05928				press-audit G143	
 3905	Dorem-Amerike	דרום-אַמעריקע		Journals/ Newspapers		ORG-C05610				press-audit G561	
@@ -3883,7 +3883,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 3945	Kenader yugnt	קענעדער יוגענד		Journals/ Newspapers		ORG-C07205				press-audit G261	
 3946	Ha-mitspe	המצפּה		Journals/ Newspapers	Kraków	ORG-C00428				press-audit G543	
 3947	Kritik	קריטיק		Journals/ Newspapers	Vienna	ORG-C03449				press-audit G617	
-3948	Dos vort	דאָס וואָרט		Journals/ Newspapers	Kaunas	ORG-C02156				press-audit G291	
+3948	Dos vort	דאָס וואָרט		Journals/ Newspapers	Kaunas	ORG-C02156 | ORG-C01659_P01				press-audit G291 | דאָס וואָרט (פּועלי-ציון)	
 3949	El Dia	על דיאַ		Non-Jewish Journals/ Newspapers		ORG-C02060				press-audit G322	
 3950	Lubliner togblat	לובלינער טאָגבלאַט		Journals/ Newspapers	Lublin	ORG-C02796				press-audit G331	
 3951	Der albatros	דער אַלבאַטראָס		Journals/ Newspapers		ORG-C03326				press-audit G521	
@@ -3929,7 +3929,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 3991	Vilner vokhnblat	ווילנער וואָכענבלאַט		Journals/ Newspapers	Vilnius	ORG-C06231				press-audit G568	
 3992	Ovnt-blat	אָוונט-בלאַט		Journals/ Newspapers		ORG-C02157				press-audit G564	
 3993	Evreiskii mir	יעוורעיסקי מיר		Journals/ Newspapers		ORG-C03577				press-audit G127	
-3994	Dos vort	דאָס וואָרט (פּועלי-ציון)		Journals/ Newspapers		ORG-C01659				press-audit G554	
+3994	Dos vort	דאָס וואָרט (פּועלי-ציון)		Journals/ Newspapers				true	3948	press-audit G554	
 3995	Di vokh	די וואָך		Journals/ Newspapers	Vilnius	ORG-C03708_Q02				press-audit G620	
 3996	Dorem-afrike	דרום-אַפֿריקע		Journals/ Newspapers	Johannesburg	ORG-C05948				press-audit G502	
 3997	Kheshbn	חשבון		Journals/ Newspapers	Los Angeles	ORG-C01436				press-audit G572	
@@ -3998,7 +3998,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 4060	Der Munkatsher Humorist	דער מונקאַטשער הומאָריסט		Journals/ Newspapers	Mukachevo	ORG-C05663				press-audit G046	
 4061	American Mercury	אַמעריקען מערקיורי		Non-Jewish Journals/ Newspapers		ORG-C02099				press-audit G602	
 4062	Naye Folkstsaytung	נייע פֿאָלקסצייטונג		Journals/ Newspapers		ORG-C00835				press-audit G373	
-4063	Der Tog	דער טאָג (ניו־יאָרק)		Journals/ Newspapers	New York	ORG-C02306				press-audit G473	
+4063	Der Tog	דער טאָג (ניו־יאָרק)		Journals/ Newspapers	New York			true	216	press-audit G473	
 4064	Di Naye Teg	די נייע טעג		Journals/ Newspapers	Warsaw	ORG-C00916				press-audit G412	
 4065	Undzer Tsayt	אונדזער צײַט (ריגע)		Journals/ Newspapers	Riga	ORG-C01990_Q01				press-audit G349	
 4066	New York Journal	די ניו־יאָרק דזשורנאַל		Non-Jewish Journals/ Newspapers	New York	ORG-C05952				press-audit G586	
@@ -4226,3 +4226,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 4288	Shaykago	שייקאַגאָ		Journals/ Newspapers		ORG-C04867				press-audit G592	
 4289	Zapiski grazhdanina	Записки Гражданина		Non-Jewish Journals/ Newspapers	Bucharest	ORG-C04533				press-audit G582	
 4290	Russkoe bogatstvo	Русское Богатство		Non-Jewish Journals/ Newspapers		ORG-C04152				press-audit G313	
+4291	New-yorker yudishe ilustrirte tsaytung	ניו-יאָרקער יודישע אילוסטרירטע צייטונג		Journals/ Newspapers	New York	ORG-C03858				press-audit FIX-C03858	
+4292	Dos vort (typesetters)	דאָס וואָרט (זעצער)		Journals/ Newspapers		ORG-C01659_P02				press-audit FIX-C01659-2	
+4293	Der sotsial-demokrat (Kraków)	סאָציאַל-דעמאָקראַט (קראָקע)		Journals/ Newspapers	Kraków	ORG-C03443_P01				press-audit FIX-C03443-1	
+4294	Der sotsial-demokrat (New York)	דער סאָציאַל-דעמאָקראַט (ניו-יאָרק)		Journals/ Newspapers	New York	ORG-C03443_P02				press-audit FIX-C03443-2	
