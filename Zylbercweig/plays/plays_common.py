@@ -135,6 +135,26 @@ def split_children(review: dict[str, dict]) -> dict[str, dict[str, str]]:
     return dict(out)
 
 
+_PLACE_SPLIT = re.compile(r"_[QP]\d+$")
+
+
+def cluster_label(cid: str, canon: str, review: dict[str, dict]) -> str:
+    """Label for an org_cluster node. Place-split siblings (<id>_Q01, _Q02 ...,
+    or _P01 ...) share one bare name — ten nodes all reading יידישן טעאַטער —
+    so the settlement goes in brackets unless the name already carries it."""
+    if not _PLACE_SPLIT.search(cid) or canon.rstrip().endswith(")"):
+        return canon
+    places = [s.strip() for s in (review.get(cid, {}).get("extracted_settlements") or "").split("|")
+              if s.strip()]
+    places = list(dict.fromkeys(places))
+    # spellings of one town (לינץ / לינץ (עסטרייך)): keep the shortest
+    places = [p for p in places if not any(q != p and norm_yiddish(q) in norm_yiddish(p)
+                                           for q in places)]
+    if not places or any(norm_yiddish(p) in norm_yiddish(canon) for p in places):
+        return canon
+    return f"{canon} ({', '.join(places[:2])}{', …' if len(places) > 2 else ''})"
+
+
 def load_plays_db() -> list[dict]:
     return read_tsv(PLAYS_DB_TSV)
 

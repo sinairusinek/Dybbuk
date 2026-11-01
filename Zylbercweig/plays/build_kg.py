@@ -231,18 +231,22 @@ _ORG_REVIEW: dict[str, dict] | None = None
 _SPLIT_PARENTS: set[str] = set()
 
 
+def _org_review() -> dict[str, dict]:
+    global _ORG_REVIEW, _SPLIT_PARENTS
+    if _ORG_REVIEW is None:
+        _ORG_REVIEW = pc.load_org_review()
+        _SPLIT_PARENTS = set(pc.split_children(_ORG_REVIEW))
+    return _ORG_REVIEW
+
+
 def non_entity_cluster(link: str) -> bool:
     """True for org_cluster:<id> links the org review has since ruled GENERIC
     or NOT_AN_ORG, or split by place — a link adjudicated before that ruling
     must not mint a node (a split parent names several bodies, not one)."""
-    global _ORG_REVIEW, _SPLIT_PARENTS
     if not link.startswith("org_cluster:"):
         return False
-    if _ORG_REVIEW is None:
-        _ORG_REVIEW = pc.load_org_review()
-        _SPLIT_PARENTS = set(pc.split_children(_ORG_REVIEW))
     cid = link.split(":", 1)[1]
-    dec = (_ORG_REVIEW.get(cid, {}).get("decision") or "").strip()
+    dec = (_org_review().get(cid, {}).get("decision") or "").strip()
     return dec in pc.NON_ENTITY_DECISIONS or cid in _SPLIT_PARENTS
 
 
@@ -333,7 +337,8 @@ def ensure_endpoint(g: Graph, link: str, status: str, slot: str, surface: str,
         elif ns == "org_cluster":
             c = clusters.get(ref, {})
             g.add_node(link, node_type="org",
-                       label_yiddish=c.get("canonical_yiddish") or surface,
+                       label_yiddish=pc.cluster_label(ref, c.get("canonical_yiddish") or surface,
+                                                      _org_review()),
                        ext_ref_type="org_cluster", ext_ref_id=ref, match_status=status)
         elif ns == "place":
             pl = places.get(ref, {})

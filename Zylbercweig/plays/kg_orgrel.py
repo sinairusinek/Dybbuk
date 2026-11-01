@@ -199,7 +199,7 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
             notes = (f"review:{dec}" + (f" aligned_db_id:{adb}" if adb else "")) if dec else ""
             if dec:
                 stats[f"cluster_review:{dec}"] += 1
-            g.add_node(nid, node_type="org", label_yiddish=canon,
+            g.add_node(nid, node_type="org", label_yiddish=pc.cluster_label(cid, canon, review),
                        ext_ref_type="org_cluster", ext_ref_id=cid,
                        match_status=status, notes=notes, source_layer="orgrel",
                        attrs=json.dumps({"org_type": org_type_hint},
@@ -242,10 +242,6 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
                         stats["rel_split_routed"] += 1
                         cid = child
                     canon = _n(row.get(C_CANON)) or _n(o.get("title"))
-                    if cid != row[C_CID]:
-                        # the child shares the parent's bare name; the place is
-                        # what tells two of them apart on the canvas
-                        canon = f"{canon} ({_n(row.get(C_SETTLEMENT))})"
                     # GENERIC / NOT_AN_ORG: a kind of thing, not an entity — no
                     # node, no edge (the mention stays in organizations_clustered)
                     if not c2d.get(cid) and decisions.get(cid, ("",))[0] in pc.NON_ENTITY_DECISIONS:
