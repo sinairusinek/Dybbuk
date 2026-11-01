@@ -1,5 +1,9 @@
 # Zylbercweig Lexicon datasets: a guide for outside users
 
+> Funded by the project “Historical Digital Analysis of Zalmen Zylbercweig’s Lexicon
+> of Yiddish Theatre”. ISF grant number 284/24, headed by Ruthie Abeliovich, Tel Aviv
+> University.
+
 This page explains the datasets we extracted from the *Lexicon of the Yiddish
 Theatre*. It is written for researchers who have never seen this project and do not
 read Yiddish. It covers what the data is, where each file is, what the columns mean,
@@ -337,7 +341,7 @@ changing; this snapshot won't.
 
   ```bash
   git clone --depth 1 --filter=blob:none --sparse \
-      --branch datasets-2026-10-30 https://github.com/sinairusinek/Dybbuk.git
+      --branch datasets-2026-11-01 https://github.com/sinairusinek/Dybbuk.git
   cd Dybbuk
   git sparse-checkout set --no-cone \
       /Zylbercweig/datasets \
@@ -364,13 +368,19 @@ backups and the review app. You don't need them, and they change without notice.
 
 ---
 
-## 8. Using and citing
+## 8. Credit, citation and use
 
-The entry texts and sentences come from the printed Lexicon. Before you
+**Credit.** Funded by the project “Historical Digital Analysis of Zalmen Zylbercweig’s Lexicon
+of Yiddish Theatre”. ISF grant number 284/24, headed by Ruthie Abeliovich, Tel Aviv
+University.
+
+**Citation.** Please credit the project as above, cite the *Leksikon fun yidishn
+teater* (Zalmen Zylbercweig) as the source, and cite this repository at the
+snapshot tag `datasets-2026-11-01`.
+
+**Use.** The entry texts and sentences come from the printed Lexicon. Before you
 redistribute the full texts (G, or the `host_entry_text` / `_ - entry` columns),
 ask the project. Using the extracted mentions, IDs and links for research is what
-this release is for. Please cite the *Leksikon fun yidishn teater* (Zalmen
-Zylbercweig) as the source, and this repository at the snapshot tag
-`datasets-2026-10-30`.
+this release is for.
 
 Questions: Sinai Rusinek.
