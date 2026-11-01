@@ -61,7 +61,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 65	דוד ראָטה|D. Roth			Publisher				true	1021		
 66	ש. ל. דייטשער| Sh. L. Deytsher			Printer	באזיא ציאלא 10, פודגורזה						
 67	לעווין אפשטיין	לעווין- עפּשטיין		Printer	Gęsia  גענשע/ גֶנשה 5, Warsaw	ORG-C01840 | ORG-C03915				לעווין אפשטיין	
-68	הצפירה	הצפירה		Journals/ Newspapers	פייַנסקא 40, וורשה	ORG-C00210 | ORG-C02207 | ORG-C00446					
+68	הצפירה	הצפירה		Journals/ Newspapers	פייַנסקא 40, וורשה	ORG-C00210 | ORG-C02207 | ORG-C00446				HaTsfira	
 69	ווארשעווער אידישער טעאטר -א.ג. קאמפאניעעץ			Printer/Publisher							
 70	D. Salat| א. סאלאט			Printer							
 71	Yosef Fischer		יאָסעפֿ פֿישער	Printer	62 Grodzka, Krakow						
@@ -250,7 +250,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 267	ha-Dor⁩ - ⁨הדור	הדור		Journals/ Newspapers		ORG-C01893					
 268	ha-Karmel⁩ - ⁨הכרמל	הכרמל		Journals/ Newspapers		ORG-C04704					
 269	Hart Troupe	האַרטס טרופּע		Traveling Company				true	198		
-270	HaTsfira		האַצפֿיראַ	Journals/ Newspapers							
+270	HaTsfira		האַצפֿיראַ	Journals/ Newspapers				true	68		
 271	ha-Tsofeh ⁩ - ⁨הצפה	הצפה		Journals/ Newspapers		ORG-C03230 | ORG-C04694					
 272	Haynṭ⁩ - ⁨היינט⁩⁩	היינט		Journals/ Newspapers		ORG-C00336					
 273	Hazamir		האַזאַמיר	Musical organization							
@@ -1801,7 +1801,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1862		איטשעס ישיבה		Education		ORG-C04909 | ORG-C07155					
 1863		יידיש-פּוילישע גימנאַזיע		Education		ORG-C01478 | ORG-C03614					
 1864		פֿאָלקס שטימע		Journals/ Newspapers		ORG-C00132 | ORG-C02387_Q02					
-1865		פאָלקסצייטונג		Journals/ Newspapers		ORG-C00544_Q01 | ORG-C03666					
+1865		פאָלקסצייטונג		Journals/ Newspapers		ORG-C00544_Q01_P01 | ORG-C03666 | ORG-C00835				נייע פֿאָלקסצייטונג	
 1866		עקספרעס		Journals/ Newspapers		ORG-C01310 | ORG-C03187 | ORG-C03417 | ORG-C07366				אונזער עקספרעס	
 1867		אונזער עקספרעס		Journals/ Newspapers				true	1866		
 1868		דער פֿריינד		Journals/ Newspapers		ORG-C00335_Q02 | ORG-C00408					
@@ -3971,7 +3971,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 4033	Groys un Kleyn	גרויס און קליין		Journals/ Newspapers		ORG-C03825				press-audit G575	
 4034	Gerekhtigkeyt	גערעכטיגקייט		Journals/ Newspapers	New York	ORG-C04493				press-audit G528	
 4035	Gezunt Almanakh	געזונט אַלמאַנאַך		Journals/ Newspapers		ORG-C01094				press-audit G255	
-4036	Ha-Ivri	העברי (בראָדי)		Journals/ Newspapers	Brody	ORG-C05662_Q02				press-audit G063	
+4036	Ha-Ivri	העברי (בראָדי)		Journals/ Newspapers	Brody	ORG-C05662_Q02 | ORG-C04824				press-audit G063 | עברי אנכי	
 4037	Ha-Ivri	העברי (לעמבערג)		Journals/ Newspapers	Lemberg	ORG-C05662_Q01				press-audit G161	
 4038	Ha-Yoets	היועץ		Journals/ Newspapers	Bucharest	ORG-C00467				press-audit G417	
 4039	Had ha-Zman	הד הזמן		Journals/ Newspapers	Vilna	ORG-C04188				press-audit G595	
@@ -3997,7 +3997,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 4059	Meksikaner Lebn	מעקסיקאַנער לעבן		Journals/ Newspapers	Mexico City	ORG-C01198				press-audit G253	
 4060	Der Munkatsher Humorist	דער מונקאַטשער הומאָריסט		Journals/ Newspapers	Mukachevo	ORG-C05663				press-audit G046	
 4061	American Mercury	אַמעריקען מערקיורי		Non-Jewish Journals/ Newspapers		ORG-C02099				press-audit G602	
-4062	Naye Folkstsaytung	נייע פֿאָלקסצייטונג		Journals/ Newspapers		ORG-C00835				press-audit G373	
+4062	Naye Folkstsaytung	נייע פֿאָלקסצייטונג		Journals/ Newspapers				true	1865	press-audit G373	
 4063	Der Tog	דער טאָג (ניו־יאָרק)		Journals/ Newspapers	New York			true	216	press-audit G473	
 4064	Di Naye Teg	די נייע טעג		Journals/ Newspapers	Warsaw	ORG-C00916				press-audit G412	
 4065	Undzer Tsayt	אונדזער צײַט (ריגע)		Journals/ Newspapers	Riga	ORG-C01990_Q01				press-audit G349	
@@ -4039,7 +4039,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 4101	1925	1925		Journals/ Newspapers		ORG-C05995				press-audit G399	
 4102	Bukareshter Folksblat	בוקארעשטער פאלקסבלאט		Journals/ Newspapers	Bucharest	ORG-C00075				press-audit G332	
 4103	Der Blofer	דער בלאפער		Journals/ Newspapers	London	ORG-C04889				press-audit G036	
-4104	Ivri anokhi	עברי אנכי		Journals/ Newspapers	Brody	ORG-C04824				press-audit G060	
+4104	Ivri anokhi	עברי אנכי		Journals/ Newspapers	Brody			true	4036	press-audit G060	
 4105	Boston Evening Transcript	באסטאן איוונינג טראנסקריפט		Non-Jewish Journals/ Newspapers	Boston	ORG-C02106				press-audit G389	
 4106	Tshernovitser bleter	טשערנאוויצער בלעטער		Journals/ Newspapers	Chernivtsi	ORG-C00289				press-audit G433	
 4107	Tsayt-geyst	צייט-גייסט		Journals/ Newspapers	Berlin	ORG-C00716				press-audit G352	
@@ -4230,3 +4230,6 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 4292	Dos vort (typesetters)	דאָס וואָרט (זעצער)		Journals/ Newspapers		ORG-C01659_P02				press-audit FIX-C01659-2	
 4293	Der sotsial-demokrat (Kraków)	סאָציאַל-דעמאָקראַט (קראָקע)		Journals/ Newspapers	Kraków	ORG-C03443_P01				press-audit FIX-C03443-1	
 4294	Der sotsial-demokrat (New York)	דער סאָציאַל-דעמאָקראַט (ניו-יאָרק)		Journals/ Newspapers	New York	ORG-C03443_P02				press-audit FIX-C03443-2	
+4295	Di folkstsaytung (New York, 1899)	די פֿאָלקסצייטונג (ניו-יאָרק 1899)		Journals/ Newspapers	New York	ORG-C00544_Q01_P02				press-audit FIX-C00544-2	
+4296	Folkstsaytung (Levi's)	פאָלקסצייטונג (לעווי)		Journals/ Newspapers		ORG-C00544_Q01_P03				press-audit FIX-C00544-3	
+4297	Camp Kinder-Velt	קעמפּ קינדער-וועלט		Education		ORG-C00547_P02				press-audit FIX-C00547-2	

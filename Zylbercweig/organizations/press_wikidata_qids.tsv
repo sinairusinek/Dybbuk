@@ -1,61 +1,61 @@
 db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	wd_years	signals	status	verdict	reviewer	note	others
-68	Ha-tsfira	Warsaw	1879–1913	Q2906544	Ha-Tsefirah	Hebrew language newspaper	Warsaw	1862–1931	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-215	Der Moment	Warsaw	1911–1925	Q16131084	Der Moment	Jewish daily published in Yiddish in Warsaw between 1910 and 1939	Warsaw	1910–1939	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-216	Der tog	New York	1914–1947	Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-219	Der Yid	Kraków	1899–1917	Q16131075	Der Yud	jiddische Zeitschrift in Krakau von 1899 bis 1902		1899–1902	place=unknown era=clash hits=2	UNSURE				Q3569515
+68	Ha-tsfira	Warsaw	1879–1913	Q2906544	Ha-Tsefirah	Hebrew language newspaper	Warsaw	1862–1931	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+215	Der Moment	Warsaw	1911–1925	Q16131084	Der Moment	Jewish daily published in Yiddish in Warsaw between 1910 and 1939	Warsaw	1910–1939	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+216	Der tog	New York	1914–1947	Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+219	Der Yid	Kraków	1899–1917	Q16131075	Der Yud	jiddische Zeitschrift in Krakau von 1899 bis 1902		1899–1902	place=unknown era=clash hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata/he.wikipedia: Zionist weekly Der Yud, 1899-1902	Q3569515
 220	Deutsche Presse Verwaltung									NONE				
 223	Di idishe tsaytung									NONE				
-224	Di Tsayt			Q5270059	Di Tsayt	yiddish-language weekly newspaper in St. Petersburg, Russia (1913-1914)		1913–?	place=unknown era=unknown hits=2	UNSURE				Q16991756
+224	Di Tsayt			Q5270059	Di Tsayt	yiddish-language weekly newspaper in St. Petersburg, Russia (1913-1914)		1913–?	place=unknown era=unknown hits=2	UNSURE	ACCEPT	Sinai (round-2 form, dup-tsayt) 2026-11-01	224 is the Petersburg Bund weekly Di tsayt (1913-14)	Q16991756
 225	Di tsukunft	New York	1887–1931							NONE				
 227	Dos yudishe vort									NONE				
-265	Ha-asif			Q25489473	Ha-Asif	Hebrew-language yearly journal	Warsaw	1884–1894	place=unknown era=unknown hits=1	UNSURE				
-267	Ha-dor	Warsaw	1901–1902	Q30527723	Ha-Dor	שבועון עברי ספרותי (1901, 1904)		?–?	place=unknown era=unknown hits=2	UNSURE				Q123467742
-268	Ha-karmel	Vilnius	1862–1864	Q12406639	Ha-Karmel	hebrew periodical	Vilnius	1860–1880	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+265	Ha-asif			Q25489473	Ha-Asif	Hebrew-language yearly journal	Warsaw	1884–1894	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
+267	Ha-dor	Warsaw	1901–1902	Q30527723	Ha-Dor	שבועון עברי ספרותי (1901, 1904)		?–?	place=unknown era=unknown hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q123467742
+268	Ha-karmel	Vilnius	1862–1864	Q12406639	Ha-Karmel	hebrew periodical	Vilnius	1860–1880	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 270	הצפירה			Q2906544	Ha-Tsefirah	Hebrew language newspaper	Warsaw	1862–1931	place=unknown era=unknown hits=1	UNSURE				
 271	Ha-tsofe		1903–1905							NONE				
-272	Haynt	Warsaw	1912–1926	Q2919549	Haynt	Yiddish daily newspaper		1908–1939	place=unknown era=agree hits=1	UNSURE				
-274	Ha-Zman	Vilna		Q6961721	Ha-Zman	עיתון		?–?	place=unknown era=unknown hits=1	UNSURE				
+272	Haynt	Warsaw	1912–1926	Q2919549	Haynt	Yiddish daily newspaper		1908–1939	place=unknown era=agree hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
+274	Ha-Zman	Vilna		Q6961721	Ha-Zman	עיתון		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 284	Ilustrirte vokh	Warsaw	1924–1926							NONE				
 301	Kinder zhurnal	New York	1924–1941							NONE				
-323	Literarishe Bleter	Warsaw	1924–1932	Q6715754	Literarishe Bleter	Yiddish weekly published in Warsaw		?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-347	New-yorker yudishe ilustrirte tsaytung	New York	1887	Q120378544	Neue Lodzer Zeitung	journal de langue allemande à Łódź	Łódź	1902–1939	place=clash era=clash hits=1	UNSURE				
+323	Literarishe Bleter	Warsaw	1924–1932	Q6715754	Literarishe Bleter	Yiddish weekly published in Warsaw		?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+347	New-yorker yudishe ilustrirte tsaytung	New York	1887	Q120378544	Neue Lodzer Zeitung	journal de langue allemande à Łódź	Łódź	1902–1939	place=clash era=clash hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 351	Nowa Gazeta									NONE				
-352	Nowy Dziennik	Kraków		Q7067036	Nowy Dziennik – Polish Daily News	daily newspaper in Garfield, New Jersey	Garfield; New Jersey; New York City	1971–?	place=clash era=unknown hits=1	UNSURE				
-399	Teatr i iskusstvo			Q4453468	Teatr i iskusstvo	russische Theaterzeitschrift (1897–1918)		?–?	place=unknown era=unknown hits=1	UNSURE				
+352	Nowy Dziennik	Kraków		Q7067036	Nowy Dziennik – Polish Daily News	daily newspaper in Garfield, New Jersey	Garfield; New Jersey; New York City	1971–?	place=clash era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (New Jersey, 1971)	
+399	Teatr i iskusstvo			Q4453468	Teatr i iskusstvo	russische Theaterzeitschrift (1897–1918)		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 430	Varshever Tageblat	Warsaw								NONE				
-449	Yidishes Togblat	New York	1915–1922	Q97229756	Yidishes Ṭageblaṭṭ	newspaper	New York City	?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+449	Yidishes Togblat	New York	1915–1922	Q97229756	Yidishes Ṭageblaṭṭ	newspaper	New York City	?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 460	Zuntog-blat									NONE				
 461	Der yidisher herald	New York	1902							NONE				
-463	Di Varhayt	New York	1889–1918	Q5270078	Di varhayt	periodiek	Saint Petersburg	1918–?	place=clash era=clash hits=1	UNSURE				
+463	Di Varhayt	New York	1889–1918	Q5270078	Di varhayt	periodiek	Saint Petersburg	1918–?	place=clash era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (a Petersburg paper)	
 614	Der idisher zhurnal	Toronto	1915							NONE				
 632	Der Fraye Foygl		1919							NONE				
-637	Di tsayt	London	1913	Q5270059	Di Tsayt	yiddish-language weekly newspaper in St. Petersburg, Russia (1913-1914)		1913–?	place=unknown era=agree hits=3	UNSURE				Q16991756 | Q157142
+637	Di tsayt	London	1913	Q5270059	Di Tsayt	yiddish-language weekly newspaper in St. Petersburg, Russia (1913-1914)		1913–?	place=unknown era=agree hits=3	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Wikidata's is the Petersburg weekly; ours is London)	Q16991756 | Q157142
 642	Kunstfraynd		1916							NONE				
-660	Der morgen zhurnal	New York	1901–1950	Q6189884	Jewish Morning Journal	defunct Yiddish newspaper	New York City	1901–1971	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+660	Der morgen zhurnal	New York	1901–1950	Q6189884	Jewish Morning Journal	defunct Yiddish newspaper	New York City	1901–1971	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 679	Teater un Kino		1922							NONE				
 681	Ha-Kerem	Vilna								NONE				
-692	Forverts	New York	1890–1951	Q154301	The Forward	Jewish newspaper founded in 1897		1897–?	place=unknown era=clash hits=1	UNSURE				
-693	Forverts (Chicago)	Chicago	1919	Q154301	The Forward	Jewish newspaper founded in 1897		1897–?	place=unknown era=agree hits=1	UNSURE				
-694	Forverts (Philadelphia)	Philadelphia	1927	Q154301	The Forward	Jewish newspaper founded in 1897		1897–?	place=unknown era=agree hits=1	UNSURE				
-695	Forverts (Detroit)	Detroit	1916–1923	Q154301	The Forward	Jewish newspaper founded in 1897		1897–?	place=unknown era=agree hits=1	UNSURE				
+692	Forverts	New York	1890–1951	Q154301	The Forward	Jewish newspaper founded in 1897		1897–?	place=unknown era=clash hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	the Forverts itself; editions 693-695 do not take the id	
+693	Forverts (Chicago)	Chicago	1919	Q154301	The Forward	Jewish newspaper founded in 1897		1897–?	place=unknown era=agree hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	keep the id on 692 only; this is a regional edition	
+694	Forverts (Philadelphia)	Philadelphia	1927	Q154301	The Forward	Jewish newspaper founded in 1897		1897–?	place=unknown era=agree hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	keep the id on 692 only; this is a regional edition	
+695	Forverts (Detroit)	Detroit	1916–1923	Q154301	The Forward	Jewish newspaper founded in 1897		1897–?	place=unknown era=agree hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	keep the id on 692 only; this is a regional edition	
 705	Pinski Listok	Pinsk								NONE				
 710	Rovner vokhnblat	Rivne								NONE				
 721	Der kemfer	Dnipro	1917							NONE				
 730	Danziger Lebn	Danzig								NONE				
 731	Dantsiger tagblat	Gdańsk								NONE				
 934	Lemberger tagblat	Lviv	1904–1915							NONE				
-935	Der idisher arbeter	Lviv	1892–1921	Q3023537	Der yidisher arbeyter	newspaper in France	Paris	1911–1914	place=clash era=clash hits=1	UNSURE				
+935	Der idisher arbeter	Lviv	1892–1921	Q3023537	Der yidisher arbeyter	newspaper in France	Paris	1911–1914	place=clash era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Paris 1911)	
 1087	Shtern	Minsk	1925–1926							NONE				
-1144	Tsaytshrift	Minsk	1928–1931	Q114627600	Tsaytshrift			2011–?	place=unknown era=clash hits=1	UNSURE				
+1144	Tsaytshrift	Minsk	1928–1931	Q114627600	Tsaytshrift			2011–?	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 1145	Oktober	Minsk								NONE				
-1219	Naye Tsayt	Kyiv	1918	Q21050114	Naye tsayt	newspaper	Kyiv	1917–?	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-1220	Dos fraye vort	Kyiv	1927	Q1763439	Dos Fraye Vort			1898–?	place=unknown era=agree hits=1	UNSURE				
+1219	Naye Tsayt	Kyiv	1918	Q21050114	Naye tsayt	newspaper	Kyiv	1917–?	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+1220	Dos fraye vort	Kyiv	1927	Q1763439	Dos Fraye Vort			1898–?	place=unknown era=agree hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (an 1898 paper; ours is Kyiv 1927)	
 1221	Kiever teater bukh	Kyiv	1927							NONE				
-1222	Komunistishe fon	Kyiv	1921	Q6428663	Komunistishe fon	yiddish newspaper in Ukraine (1919–1924)	Kyiv	1919–?	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+1222	Komunistishe fon	Kyiv	1921	Q6428663	Komunistishe fon	yiddish newspaper in Ukraine (1919–1924)	Kyiv	1919–?	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 1223	Eygns	Kyiv	1918							NONE				
 1224	Idisher almanakh	Kyiv	1909							NONE				
 1225	Kievskie Vesti	Kyiv	1900							NONE				
-1292	Ha-Yom	Saint Petersburg		Q5636355	Ha-Yom	Hebrew-language newspaper published from 1886 to mid-1888 from Saint Petersburg, Russia	Saint Petersburg	1886–1888	place=agree era=unknown hits=2	UNSURE				Q18191635
+1292	Ha-Yom	Saint Petersburg		Q5636355	Ha-Yom	Hebrew-language newspaper published from 1886 to mid-1888 from Saint Petersburg, Russia	Saint Petersburg	1886–1888	place=agree era=unknown hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q18191635
 1293	Dos lebn	Saint Petersburg	1905–1906							NONE				
 1294	Di yidishe velt	Saint Petersburg								NONE				
 1295	Rus	Saint Petersburg								NONE				
@@ -66,13 +66,13 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 1521	Der Idisher Beker		1921							NONE				
 1522	Rohatshiner tsaytung	Rohatyn								NONE				
 1523	Lodzer Togblat	Łódź	1908–1920							NONE				
-1527	Fraye arbeter shtime	New York	1893–1932	Q831259	Fraye Arbeter Shtime	anarchist newspaper		1890–1977	place=unknown era=agree hits=1	UNSURE				
+1527	Fraye arbeter shtime	New York	1893–1932	Q831259	Fraye Arbeter Shtime	anarchist newspaper		1890–1977	place=unknown era=agree hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 1546	Gut Morgen	Odesa	1912							NONE				
 1548	Odesser folksblat	Odesa	1906							NONE				
-1549	Komunistishe shtime	Odesa	1917	Q16740166	Komunistishe shtime	newspaper		?–?	place=unknown era=unknown hits=1	UNSURE				
-1550	Pravda	Odessa		Q1853557	Pravda	Slovak newspaper		1920–?	place=unknown era=unknown hits=4	UNSURE				Q4375813 | Q183644 | Q904463
-1551	Der Yid	Odesa	1912	Q3569515	Der Yid	newspaper in New York City, New York	New York City	1953–?	place=clash era=clash hits=1	UNSURE				
-1660	Bessarabskaya zhizn	Kishinev		Q12721674	Bessarabskaya zhizn	newspaper		?–?	place=unknown era=unknown hits=1	UNSURE				
+1549	Komunistishe shtime	Odesa	1917	Q16740166	Komunistishe shtime	newspaper		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikipedia: the Odesa Komunistishe shtime (1919-21) is the only paper of the name; our 1917 is approximate	
+1550	Pravda	Odessa		Q1853557	Pravda	Slovak newspaper		1920–?	place=unknown era=unknown hits=4	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Slovak)	Q4375813 | Q183644 | Q904463
+1551	Der Yid	Odesa	1912	Q3569515	Der Yid	newspaper in New York City, New York	New York City	1953–?	place=clash era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
+1660	Bessarabskaya zhizn	Kishinev		Q12721674	Bessarabskaya zhizn	newspaper		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 1768	Der Idisher Kuryer	Chicago	1887–1924							NONE				
 1778	Oyfkum	New York	1927–1929							NONE				
 1789	Unzer vinkl	Grodno								NONE				
@@ -84,18 +84,18 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 1844	Frayhayt	New York	1923–1942							NONE				
 1845	Abend Blat	New York	1894–1903							NONE				
 1846	Di feder	New York	1924–1937							NONE				
-1847	Yidishe kultur	New York	1944–1955	Q6566664	Yidishe Kultur	זשורנאל	New York City	?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+1847	Yidishe kultur	New York	1944–1955	Q6566664	Yidishe Kultur	זשורנאל	New York City	?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 1851	Dos Idishe Vokhnblat	New York								NONE				
-1852	Der Amerikaner	New York	1921–1938	Q131706744	Der Amerikaner	early 20th century Jewish periodical published in New York		1904–?	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-1864	Folks-Shtime	Warsaw		Q838352	Folks-Sztyme	periodical literature		1946–1991	place=unknown era=unknown hits=1	UNSURE				
-1865	Folks-tsaytung	Warsaw	1899	Q5464615	Folkstsaytung	1921-1943 yiddish-language daily newspaper in Warsaw, Poland		1921–?	place=agree era=clash hits=2	UNSURE				Q96378078
+1852	Der Amerikaner	New York	1921–1938	Q131706744	Der Amerikaner	early 20th century Jewish periodical published in New York		1904–?	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+1864	Folks-Shtime	Warsaw		Q838352	Folks-Sztyme	periodical literature		1946–1991	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	post-war Warsaw Folks-Sztyme (1946-91); its mentions come from lexicon vols 6-7	
+1865	Folks-tsaytung	Warsaw	1899	Q5464615	Folkstsaytung	1921-1943 yiddish-language daily newspaper in Warsaw, Poland		1921–?	place=agree era=clash hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	the Warsaw Bund daily (Naye Folkstsaytung from 1927); the 1899 and Levi mentions were split off	Q96378078
 1866	Undzer Ekspres	Warsaw	1926–1939							NONE				
-1892	Ha-shahar	Vienna	1874–1885	Q1588150	HaShakhar	Hebrew-language monthly magazine	Vienna	1868–1884	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-1893	Morgenpost	Vienna		Q1947738	Morgenpost	tabloid magazine from Saxony, Germany		?–?	place=unknown era=unknown hits=2	UNSURE				Q120730098
-1897	Kaliforniyer idishe shtime	Los Angeles	1910–1928	Q16130518	די אידישע שטימע	newspaper		1918–1940	place=unknown era=clash hits=1	UNSURE				
-1911	Folksblat	Iași	1895	Q17003133	Folksblat	newspaper		1931–?	place=unknown era=clash hits=1	UNSURE				
+1892	Ha-shahar	Vienna	1874–1885	Q1588150	HaShakhar	Hebrew-language monthly magazine	Vienna	1868–1884	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+1893	Morgenpost	Vienna		Q1947738	Morgenpost	tabloid magazine from Saxony, Germany		?–?	place=unknown era=unknown hits=2	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (a Saxon tabloid)	Q120730098
+1897	Kaliforniyer idishe shtime	Los Angeles	1910–1928	Q16130518	די אידישע שטימע	newspaper		1918–1940	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata item too bare to verify, so no	
+1911	Folksblat	Iași	1895	Q17003133	Folksblat	newspaper		1931–?	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 1931	Der hamer	New York	1928–1934							NONE				
-1932	Der groyser kundes	New York	1920	Q5261153	Der Groyser Kundes	satirical weekly		1909–?	place=unknown era=agree hits=1	UNSURE				
+1932	Der groyser kundes	New York	1920	Q5261153	Der Groyser Kundes	satirical weekly		1909–?	place=unknown era=agree hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 1935	Der Folks-Advokat	New York	1888–1891							NONE				
 1937	Nyu-Yorker Vokhnblat	New York	1934							NONE				
 2237	Tealit	New York	1923–1924							NONE				
@@ -103,14 +103,14 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 2889	Di Post	London	1926–1927							NONE				
 2890	Yisroelik	Lviv	1875							NONE				
 3302	Der Kundes	New York	1908–1924							NONE				
-3303	Kol mevaser	Odesa	1869–1886	Q6426937	Kol Mevasser	19th century Yiddish periodical		1862–?	place=unknown era=agree hits=2	UNSURE				Q6426936
+3303	Kol mevaser	Odesa	1869–1886	Q6426937	Kol Mevasser	19th century Yiddish periodical		1862–?	place=unknown era=agree hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q6426936
 3304	Idishe arbeter velt	Chicago	1904–1939							NONE				
 3305	Teater-velt	Warsaw	1908–1909							NONE				
-3306	Ha-Magid		1857–1900	Q6976108	Hamagid	weekly newspaper in Hebrew		1856–1903	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+3306	Ha-Magid		1857–1900	Q6976108	Hamagid	weekly newspaper in Hebrew		1856–1903	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 3677	Der kibetser		1908							NONE				
-3863	Dos Yudishe Vort (Kraków)	Kraków		Q46999832	Zsidó Szó	Hungarian-Jewish Newspaper	Košice	?–?	place=clash era=unknown hits=1	UNSURE				
-3864	Dos Yudishe Vort (Agudah daily)			Q46999832	Zsidó Szó	Hungarian-Jewish Newspaper	Košice	?–?	place=unknown era=unknown hits=1	UNSURE				
-3865	Dos Yidishe Vort (Belgium)	Belgium	1925	Q1315625	Słowo Żydowskie	periodical literature	Warsaw	1992–?	place=clash era=clash hits=1	UNSURE				
+3863	Dos Yudishe Vort (Kraków)	Kraków		Q46999832	Zsidó Szó	Hungarian-Jewish Newspaper	Košice	?–?	place=clash era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Hungarian)	
+3864	Dos Yudishe Vort (Agudah daily)			Q46999832	Zsidó Szó	Hungarian-Jewish Newspaper	Košice	?–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Hungarian)	
+3865	Dos Yidishe Vort (Belgium)	Belgium	1925	Q1315625	Słowo Żydowskie	periodical literature	Warsaw	1992–?	place=clash era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 3866	Yidishe Vokhnshrift (Vienna)	Vienna	1905							NONE				
 3867	Di Yidishe Vokhnshrift (Pinski)	New York	1912							NONE				
 3868	Der Kval (Vienna)	Vienna	1918							NONE				
@@ -121,36 +121,36 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 3873	Yontev-bleter (Malamut's)									NONE				
 3874	Der Veg (Detroit)	Detroit								NONE				
 3875	Der Veg (Mexico City)	Mexico City								NONE				
-3876	Der Veker (1887 miscellany)		1887	Q96376248	Der Veker	yiddish Newspaper		?–?	place=unknown era=unknown hits=1	UNSURE				
-3877	Der Veker (1896, socialist)		1896	Q96376248	Der Veker	yiddish Newspaper		?–?	place=unknown era=unknown hits=1	UNSURE				
-3878	Der Veker (Brisk)	Brest		Q96376248	Der Veker	yiddish Newspaper		?–?	place=unknown era=unknown hits=1	UNSURE				
+3876	Der Veker (1887 miscellany)		1887	Q96376248	Der Veker	yiddish Newspaper		?–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata item too bare to verify, so no	
+3877	Der Veker (1896, socialist)		1896	Q96376248	Der Veker	yiddish Newspaper		?–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata item too bare to verify, so no	
+3878	Der Veker (Brisk)	Brest		Q96376248	Der Veker	yiddish Newspaper		?–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata item too bare to verify, so no	
 3879	Di Yidishe Bine (1897 miscellany)	New York	1897							NONE				
 3880	Arbeter-Tsaytung (Czernowitz)	Czernowitz								NONE				
-3881	Unzer Lebn (Odessa)	Odessa	1914	Q9366864	Our Life	monthly magazine	Odesa; Warsaw	?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-3882	Di Tsayt (New York)	New York	1919–1922	Q5270059	Di Tsayt	yiddish-language weekly newspaper in St. Petersburg, Russia (1913-1914)		1913–?	place=unknown era=agree hits=3	UNSURE				Q16991756 | Q157142
-3883	Di Tsayt (1871, Romania)		1871	Q16991756	Di Tsayt	newspaper in New York City, New York	New York City	?–?	place=unknown era=unknown hits=3	UNSURE				Q5270059 | Q157142
+3881	Unzer Lebn (Odessa)	Odessa	1914	Q9366864	Our Life	monthly magazine	Odesa; Warsaw	?–?	place=agree era=unknown hits=1	STRONG	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata item is the Warsaw Unzer lebn of 1907-12; ours is an Odessa paper of 1914	
+3882	Di Tsayt (New York)	New York	1919–1922	Q5270059	Di Tsayt	yiddish-language weekly newspaper in St. Petersburg, Russia (1913-1914)		1913–?	place=unknown era=agree hits=3	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	Q16991756 | Q157142
+3883	Di Tsayt (1871, Romania)		1871	Q16991756	Di Tsayt	newspaper in New York City, New York	New York City	?–?	place=unknown era=unknown hits=3	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	Q5270059 | Q157142
 3884	Di Yudishe Folkstsaytung (Sighet)	Sighet								NONE				
 3885	Der Yidisher Zhurnal (London)	London	1911							NONE				
 3886	Kinder-Velt (New York)	New York	1930–1931							NONE				
-3887	Der Emes (Moscow)	Moscow	1922–1926	Q1967268	Der Emes	newspaper	Moscow	1918–1939	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+3887	Der Emes (Moscow)	Moscow	1922–1926	Q1967268	Der Emes	newspaper	Moscow	1918–1939	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 3888	Di Naye Velt (Warsaw)	Warsaw	1909							NONE				
 3889	Di Naye Velt (1897 monthly)		1897							NONE				
-3890	Der Tog (Warsaw, 1905)	Warsaw	1905	Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=clash era=clash hits=1	UNSURE				
-3891	Der Tog (Vilna)	Vilna	1920–1939	Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=clash era=agree hits=1	UNSURE				
-3892	Der Tog (Kraków)	Kraków		Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=clash era=unknown hits=1	UNSURE				
-3893	Der Tog (Petersburg)	Saint Petersburg		Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=clash era=unknown hits=1	UNSURE				
+3890	Der Tog (Warsaw, 1905)	Warsaw	1905	Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=clash era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
+3891	Der Tog (Vilna)	Vilna	1920–1939	Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=clash era=agree hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
+3892	Der Tog (Kraków)	Kraków		Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=clash era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
+3893	Der Tog (Petersburg)	Saint Petersburg		Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=clash era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 3894	Baden		1936							NONE				
 3895	Dos bukoviner izraelitishe folks-blat	Chernivtsi	1876							NONE				
 3896	Baltimorer fraye prese	Baltimore								NONE				
 3897	Abend nayes	London	1914							NONE				
-3898	Birobidzhaner shtern		1938	Q905507	Birobidzhaner Shtern	periodical published in Yiddish and in Russian in Birobidzhan of the Jewish Autonomous Region	Birobidzhan	1930–?	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+3898	Birobidzhaner shtern		1938	Q905507	Birobidzhaner Shtern	periodical published in Yiddish and in Russian in Birobidzhan of the Jewish Autonomous Region	Birobidzhan	1930–?	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 3899	Bessarabskie vedomosti		1881							NONE				
 3900	Der bezem									NONE				
 3901	Tsuzamen	New York								NONE				
 3902	Der yid			Q3569515	Der Yid	newspaper in New York City, New York	New York City	1953–?	place=unknown era=unknown hits=1	UNSURE				
-3903	Davar			Q2917796	Davar	Israeli newspaper	Tel Aviv	1925–1996	place=unknown era=unknown hits=1	UNSURE				
+3903	Davar			Q2917796	Davar	Israeli newspaper	Tel Aviv	1925–1996	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 3904	Den		1870							NONE				
-3905	Dorem-Amerike			Q5297704	Dorem Amerike	Magazine		1925–?	place=unknown era=unknown hits=1	UNSURE				
+3905	Dorem-Amerike			Q5297704	Dorem Amerike	Magazine		1925–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 3906	Di yidishe berze		1921							NONE				
 3907	Di yidishe biznes velt	Chicago	1920							NONE				
 3908	Idishe tsaytung	Vilnius	1908							NONE				
@@ -179,22 +179,22 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 3931	Fraytik									NONE				
 3932	Pasifik	Los Angeles	1927							NONE				
 3933	Yugnt shtraln		1915							NONE				
-3934	Grodner moment	Grodno		Q109224249	Grodner Moment	Yiddish-language newspaper (1924-39)	Hrodna	?–1939	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+3934	Grodner moment	Grodno		Q109224249	Grodner Moment	Yiddish-language newspaper (1924-39)	Hrodna	?–1939	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 3935	Der griner vegvayzer		1928							NONE				
 3936	Di gewerkshaftn		1918							NONE				
-3937	Ha-perakhim		1905	Q137385798	HaPrakhim (lit. the flowers)	weekly magazine for children in Hebrew published in Lugansk, Ukraine, from 1907 to 1914 by Israel Binyamin Levner		1907–1914	place=unknown era=clash hits=1	UNSURE				
-3938	Ha-mevaser	Iași		Q5070524	HaMevaser	Haredi newspaper		2009–?	place=unknown era=unknown hits=4	UNSURE				Q5644530 | Q134611623 | Q124969082
-3939	Ha-meorer			Q6763107	המעורר	"ירחון עברי בעריכת י""ח ברנר"		?–?	place=unknown era=unknown hits=2	UNSURE				Q5261240
+3937	Ha-perakhim		1905	Q137385798	HaPrakhim (lit. the flowers)	weekly magazine for children in Hebrew published in Lugansk, Ukraine, from 1907 to 1914 by Israel Binyamin Levner		1907–1914	place=unknown era=clash hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
+3938	Ha-mevaser	Iași		Q5070524	HaMevaser	Haredi newspaper		2009–?	place=unknown era=unknown hits=4	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (a 2009 Haredi paper)	Q5644530 | Q134611623 | Q124969082
+3939	Ha-meorer			Q6763107	המעורר	"ירחון עברי בעריכת י""ח ברנר"		?–?	place=unknown era=unknown hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q5261240
 3940	Ha-nesher									NONE				
 3941	Kol le-am									NONE				
 3942	Di kleyne folkstsaytung	Warsaw	1928							NONE				
 3943	Kultur un arbet		1920							NONE				
 3944	Di kanader idishe velt									NONE				
 3945	Kenader yugnt		1919							NONE				
-3946	Ha-mitspe	Kraków	1917	Q12406753	ha-Mitspeh	Hebrew periodical	Kraków	1904–1921	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-3947	Kritik	Vienna	1918	Q12322987	Kritik	discontinued cultural magazine in Denmark		1967–?	place=unknown era=clash hits=1	UNSURE				
+3946	Ha-mitspe	Kraków	1917	Q12406753	ha-Mitspeh	Hebrew periodical	Kraków	1904–1921	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+3947	Kritik	Vienna	1918	Q12322987	Kritik	discontinued cultural magazine in Denmark		1967–?	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Danish)	
 3948	Dos vort	Kaunas	1934							NONE				
-3949	El Dia			Q2149635	El Día	Spanish newspaper of Santa Cruz de Tenerife	Santa Cruz de Tenerife	1910–?	place=unknown era=unknown hits=1	UNSURE				
+3949	El Dia			Q2149635	El Día	Spanish newspaper of Santa Cruz de Tenerife	Santa Cruz de Tenerife	1910–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Tenerife; ours is Mexico)	
 3950	Lubliner togblat	Lublin	1916							NONE				
 3951	Der albatros									NONE				
 3952	Lodzher folksblat	Łódź	1915–1925							NONE				
@@ -203,7 +203,7 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 3955	Di likht	Warsaw	1927							NONE				
 3956	Dos likht	Buenos Aires	1914							NONE				
 3957	Emek shoshanim	Vienna	1873							NONE				
-3958	Múlt és Jövő			Q1213354	Múlt és Jövő	Hungarian-Jewish literary, artistic, social, and critical journal	Budapest	1911–1944	place=unknown era=unknown hits=1	UNSURE				
+3958	Múlt és Jövő			Q1213354	Múlt és Jövő	Hungarian-Jewish literary, artistic, social, and critical journal	Budapest	1911–1944	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 3959	Menore zhurnal	New York								NONE				
 3960	Amerikan prima		1923							NONE				
 3961	Nay yidish		1922							NONE				
@@ -214,17 +214,17 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 3966	Di natsyonale shtime									NONE				
 3967	Yung-galitsier almanakh		1910							NONE				
 3968	Yungvarg	New York	1945							NONE				
-3969	Der nayer veg	Vilnius	1905	Q104865322	Der nayer veg	yiddish language weekly newspaper		?–?	place=unknown era=unknown hits=1	UNSURE				
+3969	Der nayer veg	Vilnius	1905	Q104865322	Der nayer veg	yiddish language weekly newspaper		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 3970	Nuansn		1921							NONE				
 3971	Inzl		1925–1926							NONE				
 3972	Unzer gezund	New York	1913–1915							NONE				
 3973	Der arbeter gayst		1910							NONE				
 3974	Eyropeishe literatur	Warsaw	1910							NONE				
 3975	Roman-tsaytung	Warsaw	1907–1908							NONE				
-3976	Rumänischer Lloyd			Q120439513	Rumänischer Lloyd	zweisprachige Zeitung in Bukarest (1884-1916)	Bucharest	1884–1918	place=unknown era=unknown hits=1	UNSURE				
+3976	Rumänischer Lloyd			Q120439513	Rumänischer Lloyd	zweisprachige Zeitung in Bukarest (1884-1916)	Bucharest	1884–1918	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 3977	Dos idishe folk		1914							NONE				
 3978	Shikage	Chicago	1922–1935							NONE				
-3979	Solntse Rossii			Q16699386	Solntse Rossii			?–?	place=unknown era=unknown hits=1	UNSURE				
+3979	Solntse Rossii			Q16699386	Solntse Rossii			?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 3980	Shriftn		1912							NONE				
 3981	The South African Jewish Chronicle	Johannesburg	1910							NONE				
 3982	Der shtadt-anzeiger	New York	1893							NONE				
@@ -238,9 +238,9 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 3990	Vegvayzer	Bucharest	1951							NONE				
 3991	Vilner vokhnblat	Vilnius								NONE				
 3992	Ovnt-blat		1938							NONE				
-3993	Evreiskii mir		1908	Q49572348	Evreysky Mir	Russian Jewish magazine		1909–1910	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+3993	Evreiskii mir		1908	Q49572348	Evreysky Mir	Russian Jewish magazine		1909–1910	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 3994	Dos vort									NONE				
-3995	Di vokh	Vilnius	1918	Q25636144	Die Woch	newspaper in Tel Aviv		1959–?	place=unknown era=clash hits=1	UNSURE				
+3995	Di vokh	Vilnius	1918	Q25636144	Die Woch	newspaper in Tel Aviv		1959–?	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 3996	Dorem-afrike	Johannesburg	1922							NONE				
 3997	Kheshbn	Los Angeles								NONE				
 3998	Funkn	Łódź	1904							NONE				
@@ -264,38 +264,38 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4016	Idishn Farmer		1908							NONE				
 4017	Der Idisher Gazlen									NONE				
 4018	Idisher Ekspres	London	1905–1916							NONE				
-4019	Adevarul			Q426356	Adevărul	Romanian newspaper	House of the Free Press	1871–?	place=unknown era=unknown hits=1	UNSURE				
-4020	Folks-Shtime	Vilna	1907	Q838352	Folks-Sztyme	periodical literature		1946–1991	place=unknown era=clash hits=1	UNSURE				
-4021	Folksblat	New York	1910	Q17003133	Folksblat	newspaper		1931–?	place=unknown era=clash hits=1	UNSURE				
+4019	Adevarul			Q426356	Adevărul	Romanian newspaper	House of the Free Press	1871–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
+4020	Folks-Shtime	Vilna	1907	Q838352	Folks-Sztyme	periodical literature		1946–1991	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
+4021	Folksblat	New York	1910	Q17003133	Folksblat	newspaper		1931–?	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 4022	Dos Folksblat	Lemberg	1918							NONE				
-4023	Polesskaya Pravda	Gomel		Q17047290	Gomelskaya Pravda	a newspaper from Gomel, Belarus	Gomel	1917–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4023	Polesskaya Pravda	Gomel		Q17047290	Gomelskaya Pravda	a newspaper from Gomel, Belarus	Gomel	1917–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4024	Penimer un Penimlekh									NONE				
 4025	Fraye Yugend	Warsaw								NONE				
 4026	Pridunayskiy Krai	Izmail								NONE				
 4027	Di Afrikaner Idishe Gazetn									NONE				
 4028	Farn Folk	Mexico City								NONE				
 4029	Farshrayt									NONE				
-4030	Fraternitatea	Bucharest	1885	Q30527757	Fraternitatea	כתב עת		?–?	place=unknown era=unknown hits=1	UNSURE				
-4031	Di Goldene Keyt			Q7193156	Di Goldene Keyt	Yiddish periodical published in Israel	Tel Aviv	1949–1986	place=unknown era=unknown hits=1	UNSURE				
+4030	Fraternitatea	Bucharest	1885	Q30527757	Fraternitatea	כתב עת		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
+4031	Di Goldene Keyt			Q7193156	Di Goldene Keyt	Yiddish periodical published in Israel	Tel Aviv	1949–1986	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 4032	Der Gragger									NONE				
 4033	Groys un Kleyn									NONE				
 4034	Gerekhtigkeyt	New York	1908–1921							NONE				
 4035	Gezunt Almanakh									NONE				
-4036	Ha-Ivri	Brody		Q6880995	Ha-‘Ivri	שבועון יהודי	Lviv	1865–1890	place=clash era=unknown hits=1	UNSURE				
-4037	Ha-Ivri	Lemberg	1895	Q6880995	Ha-‘Ivri	שבועון יהודי	Lviv	1865–1890	place=agree era=clash hits=1	UNSURE				
+4036	Ha-Ivri	Brody		Q6880995	Ha-‘Ivri	שבועון יהודי	Lviv	1865–1890	place=clash era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	he.wikipedia: Ivri anokhi = Ha-Ivri, Lemberg then Brody 1865-90	
+4037	Ha-Ivri	Lemberg	1895	Q6880995	Ha-‘Ivri	שבועון יהודי	Lviv	1865–1890	place=agree era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Rikhter's 1895 weekly)	
 4038	Ha-Yoets	Bucharest	1867–1886							NONE				
 4039	Had ha-Zman	Vilna								NONE				
 4040	Heftn far Literatur un Kunst	Łódź								NONE				
 4041	Ha-Tekufa	Warsaw	1920							NONE				
-4042	Ha-Havatselet		1886	Q1068564	Habazeleth	Jewish newspaper	Hatzer HaHavatzelet	1863–1911	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4042	Ha-Havatselet		1886	Q1068564	Habazeleth	Jewish newspaper	Hatzer HaHavatzelet	1863–1911	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4043	Der Hoyz-Fraynd		1884–1894							NONE				
 4044	Kal. Yontev Bleter	Los Angeles	1955							NONE				
 4045	Kultur-Vegvayzer	Bucharest								NONE				
-4046	Der Kampf			Q5261170	Der Kampf	krant uit Luxemburg		1920–?	place=unknown era=unknown hits=2	UNSURE				Q26741455
+4046	Der Kampf			Q5261170	Der Kampf	krant uit Luxemburg		1920–?	place=unknown era=unknown hits=2	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Luxembourg)	Q26741455
 4047	Kinder-Land	New York	1923							NONE				
 4048	Krakover Tog	Kraków								NONE				
-4049	Oxford Journal			Q7115387	Oxford Journal	newspaper		1973–?	place=unknown era=unknown hits=2	UNSURE				Q15764092
-4050	Kievskaya Mysl	Kyiv		Q4220163	Kievskaya Mysl	newspaper	Kyiv	1906–1918	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4049	Oxford Journal			Q7115387	Oxford Journal	newspaper		1973–?	place=unknown era=unknown hits=2	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata item too bare to verify, so no	Q15764092
+4050	Kievskaya Mysl	Kyiv		Q4220163	Kievskaya Mysl	newspaper	Kyiv	1906–1918	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4051	Kovner Folksblat	Kaunas	1920							NONE				
 4052	Eli Hadas									NONE				
 4053	Lublinskiye Gubernskiye Vedomosti	Lublin								NONE				
@@ -306,14 +306,14 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4058	Luakh Akhiever	New York	1918–1921							NONE				
 4059	Meksikaner Lebn	Mexico City	1957							NONE				
 4060	Der Munkatsher Humorist	Mukachevo	1925							NONE				
-4061	American Mercury		1930	Q7713514	The American Mercury	American magazine	New York City	1924–1981	place=unknown era=agree hits=2	UNSURE				Q96371956
+4061	American Mercury		1930	Q7713514	The American Mercury	American magazine	New York City	1924–1981	place=unknown era=agree hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q96371956
 4062	Naye Folkstsaytung			Q6666521	Lodzer Naje Folkscajtung	Polish Yiddish newspaper		?–?	place=unknown era=unknown hits=1	UNSURE				
-4063	Der Tog	New York	1920	Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=agree era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4063	Der Tog	New York	1920	Q16991696	Der Tog	Yiddish-language daily newspaper	Lower East Side	1914–1971	place=agree era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4064	Di Naye Teg	Warsaw	1914							NONE				
 4065	Undzer Tsayt	Riga	1918–1924							NONE				
-4066	New York Journal	New York		Q2984695	New York Journal-American	newspaper published in New York from 1937 to 1966	New York City	1895–1966	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4066	New York Journal	New York		Q2984695	New York Journal-American	newspaper published in New York from 1937 to 1966	New York City	1895–1966	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4067	Natur un Lebn		1898							NONE				
-4068	Novyi Mir		1911	Q2469587	Novy Mir	literary journal	Moscow	1925–?	place=unknown era=clash hits=1	UNSURE				
+4068	Novyi Mir		1911	Q2469587	Novy Mir	literary journal	Moscow	1925–?	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (the Moscow literary journal)	
 4069	Undzer Tsayt	Kaunas								NONE				
 4070	Undzer Vort	Winnipeg								NONE				
 4071	Arbeter Kultur un Kunst	Warsaw	1922							NONE				
@@ -339,20 +339,20 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4091	V mire iskusstva									NONE				
 4092	Der Ovnt-Kuryer	Vilna	1924							NONE				
 4093	Varshever Almanakh	Warsaw	1923							NONE				
-4094	Wisconsin Jewish Chronicle			Q100287499	The Wisconsin Jewish Chronicle	newspaper published in Milwaukee, Wisconsin	Milwaukee	1921–?	place=unknown era=unknown hits=1	UNSURE				
+4094	Wisconsin Jewish Chronicle			Q100287499	The Wisconsin Jewish Chronicle	newspaper published in Milwaukee, Wisconsin	Milwaukee	1921–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 4095	Di Khalyastre									NONE				
 4096	Khazonim-Zhurnal		1951							NONE				
 4097	Zamlungen	New York	1958							NONE				
 4098	Zunland		1925							NONE				
-4099	Novorossiyskiy Telegraf	Odesa		Q4325161	Новороссийский Телеграф	newspaper	Odesa	1869–1903	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4099	Novorossiyskiy Telegraf	Odesa		Q4325161	Новороссийский Телеграф	newspaper	Odesa	1869–1903	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4101	1925		1925							NONE				
 4102	Bukareshter Folksblat	Bucharest	1895							NONE				
 4103	Der Blofer	London								NONE				
 4104	Ivri anokhi	Brody		Q6880995	Ha-‘Ivri	שבועון יהודי	Lviv	1865–1890	place=clash era=unknown hits=1	UNSURE				
-4105	Boston Evening Transcript	Boston		Q4947900	Boston Evening Transcript	daily newspaper in Boston, Massachusetts	Boston	1830–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4105	Boston Evening Transcript	Boston		Q4947900	Boston Evening Transcript	daily newspaper in Boston, Massachusetts	Boston	1830–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4106	Tshernovitser bleter	Chernivtsi								NONE				
 4107	Tsayt-geyst	Berlin	1897							NONE				
-4108	Der Id	Winnipeg		Q3569515	Der Yid	newspaper in New York City, New York	New York City	1953–?	place=clash era=unknown hits=1	UNSURE				
+4108	Der Id	Winnipeg		Q3569515	Der Yid	newspaper in New York City, New York	New York City	1953–?	place=clash era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 4109	Di idishe teater velt	Chicago	1894							NONE				
 4110	Deytsher sotsyalistisher folkstsaytung	New York	1900							NONE				
 4111	Di dramatishe velt		1904							NONE				
@@ -364,10 +364,10 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4117	Der idisher kunst-fraynd	Chicago	1916							NONE				
 4118	Der yidisher veker		1887							NONE				
 4119	Epelbergs yontev-bleter									NONE				
-4120	Folks-tsaytung	Vilnius		Q5464615	Folkstsaytung	1921-1943 yiddish-language daily newspaper in Warsaw, Poland		1921–?	place=unknown era=unknown hits=1	UNSURE				
+4120	Folks-tsaytung	Vilnius		Q5464615	Folkstsaytung	1921-1943 yiddish-language daily newspaper in Warsaw, Poland		1921–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 4121	Folks-fraynd		1912							NONE				
 4122	Folkstsetung	Los Angeles	1937							NONE				
-4123	Der poylisher yidl	London	1884	Q56275137	Der Poylisher Yidl	newspaper	London	?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4123	Der poylisher yidl	London	1884	Q56275137	Der Poylisher Yidl	newspaper	London	?–?	place=agree era=unknown hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4124	Der pinkes		1900							NONE				
 4125	Pinkes	Vilnius	1913							NONE				
 4126	Der firer		1915							NONE				
@@ -380,36 +380,36 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4133	Yugnt		1907							NONE				
 4134	Grine bleter	Łódź								NONE				
 4135	Geto yedies	Vilnius	1942							NONE				
-4136	Ha-boker or		1876	Q112972277	Ha-Boker Or	Hebrew periodical (1876–1886)	Lviv	1876–1886	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4136	Ha-boker or		1876	Q112972277	Ha-Boker Or	Hebrew periodical (1876–1886)	Lviv	1876–1886	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4137	Ha-doar	New York	1928							NONE				
 4138	Di hofnung									NONE				
 4139	Ha-kol									NONE				
-4140	Ha-uma			Q7017076	האומה			?–?	place=unknown era=unknown hits=1	UNSURE				
+4140	Ha-uma			Q7017076	האומה			?–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata item too bare to verify, so no	
 4141	Hayntike nayes	Warsaw	1924							NONE				
-4142	Ha-shiloah		1903–1904	Q6989952	Ha-Shiloaḥ	literary, scientific and socio-political monthly in Hebrew (1896-1926)	Berlin; Kraków; Odesa	1896–1926	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4142	Ha-shiloah		1903–1904	Q6989952	Ha-Shiloaḥ	literary, scientific and socio-political monthly in Hebrew (1896-1926)	Berlin; Kraków; Odesa	1896–1926	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
 4143	Ha-kokhavim		1865							NONE				
 4144	Dos kalisher lebn	Kalisz	1928							NONE				
 4145	Kanade		1925							NONE				
 4146	Kinder adler		1912							NONE				
 4147	Der kanader adler	Montreal	1905–1939							NONE				
 4148	Krakover tog	Kraków								NONE				
-4149	El nacional	Buenos Aires		Q5351675	El Nacional	Dominican newspaper		1966–?	place=unknown era=unknown hits=7	UNSURE				Q1324400 | Q38060149 | Q46041605 | Q83556087 | Q135435693 | Q5351673
+4149	El nacional	Buenos Aires		Q5351675	El Nacional	Dominican newspaper		1966–?	place=unknown era=unknown hits=7	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (Dominican)	Q1324400 | Q38060149 | Q46041605 | Q83556087 | Q135435693 | Q5351673
 4150	Letste nayes	Vilnius	1915							NONE				
 4151	Lodzer nakhrikhtn	Łódź	1906–1907							NONE				
 4152	Almanakh yidish									NONE				
-4153	Letopis			Q4260247	Letopis	Russian monthly journal (1915-1917)		1915–1917	place=unknown era=unknown hits=2	UNSURE				Q1669819
+4153	Letopis			Q4260247	Letopis	Russian monthly journal (1915-1917)		1915–1917	place=unknown era=unknown hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q1669819
 4154	Literatur		1910							NONE				
 4155	Moledet									NONE				
 4156	Minikes bleter		1920							NONE				
 4157	American Weekly Jewish News		1917							NONE				
 4158	Moskovskaya gazeta		1911							NONE				
-4159	Dos naye lebn	New York	1908–1914	Q131752249	Dos Naje Lebn	Jewish newspaper from Poland	Warsaw; Łódź	1945–1950	place=clash era=clash hits=1	UNSURE				
+4159	Dos naye lebn	New York	1908–1914	Q131752249	Dos Naje Lebn	Jewish newspaper from Poland	Warsaw; Łódź	1945–1950	place=clash era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 4160	Dos naye land	New York	1911–1912							NONE				
 4161	Naye vegn	Kharkiv	1930							NONE				
 4162	Di natsyonal tsaytung		1907							NONE				
 4163	In der hofenung	Warsaw	1927							NONE				
 4164	Der yunger kemfer	New York								NONE				
-4165	Eynikayt	Moscow		Q743024	Eynikayt	periodical literature		1942–1948	place=unknown era=unknown hits=1	UNSURE				
+4165	Eynikayt	Moscow		Q743024	Eynikayt	periodical literature		1942–1948	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 4166	Nays	Kaunas	1920							NONE				
 4167	Interesanten blat	Lviv	1914							NONE				
 4169	Unzer tsaytung	Brooklyn	1924							NONE				
@@ -432,7 +432,7 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4186	Avantul									NONE				
 4187	Varshever yudishe tsaytung	Warsaw	1867							NONE				
 4188	Varshever moment	Warsaw	1914							NONE				
-4189	Di vokh	New York		Q25636144	Die Woch	newspaper in Tel Aviv		1959–?	place=unknown era=unknown hits=1	UNSURE				
+4189	Di vokh	New York		Q25636144	Die Woch	newspaper in Tel Aviv		1959–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 4190	Zshida geplats		1920							NONE				
 4191	Di zun		1892							NONE				
 4192	Yung yidish									NONE				
@@ -444,12 +444,12 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4199	Birobidzhaner Farpast	Birobidzhan								NONE				
 4200	Birzhevye Vedomosti									NONE				
 4201	Bikher-velt	Warsaw								NONE				
-4202	Otsar ha-sifrut	Kraków	1887	Q127832879	Otzar HaSifrut	Hebrew Periodical for literature		?–?	place=unknown era=unknown hits=1	UNSURE				
+4202	Otsar ha-sifrut	Kraków	1887	Q127832879	Otzar HaSifrut	Hebrew Periodical for literature		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 4203	Tshernovitser Morgnblat	Chernivtsi	1927							NONE				
 4204	Tsaytnayst									NONE				
 4205	Di Teater Velt	New York	1908							NONE				
 4206	Degel Mahaneh Yehudah	Bucharest	1911							NONE				
-4207	Educational Theatre Journal		1962	Q53952488	Educational Theatre Journal	journal		?–?	place=unknown era=unknown hits=1	UNSURE				
+4207	Educational Theatre Journal		1962	Q53952488	Educational Theatre Journal	journal		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 4208	Dos Yidishe Folk	Warsaw	1919							NONE				
 4209	Di Idishe Muzikalishe Velt un Teater-zhurnal	New York	1923							NONE				
 4210	Di Yidishe Tribune	Warsaw								NONE				
@@ -461,26 +461,26 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4216	Folksgezunt	Vilna								NONE				
 4217	Familyenfraynd	Warsaw	1887–1888							NONE				
 4218	Der Pioner		1925							NONE				
-4219	Freie Tribüne	Vienna		Q30301905	Freie Tribüne	newspaper in Austria		?–?	place=unknown era=unknown hits=1	UNSURE				
+4219	Freie Tribüne	Vienna		Q30301905	Freie Tribüne	newspaper in Austria		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 4220	Program un Kritik	Warsaw	1912							NONE				
 4221	Frimorgn	Riga	1926–1929							NONE				
-4222	Forois			Q16938702	Forois	newspaper		?–?	place=unknown era=unknown hits=1	UNSURE				
+4222	Forois			Q16938702	Forois	newspaper		?–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	Wikidata item too bare to verify, so no	
 4223	Fraytog									NONE				
 4224	Pariser Bleter	Paris								NONE				
 4225	Der Gedank	Łódź	1922							NONE				
 4226	Di Glaykhayt									NONE				
-4227	Gréninke beymelekh	Vilna	1915	Q131850500	Grininke Beymelekh	yiddish children's magazine (1914–1939)		?–?	place=unknown era=unknown hits=1	UNSURE				
+4227	Gréninke beymelekh	Vilna	1915	Q131850500	Grininke Beymelekh	yiddish children's magazine (1914–1939)		?–?	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 4228	Gershom Baders Kalendar									NONE				
 4229	Hoyz-fraynd									NONE				
-4230	Ha-Meliz		1866–1902	Q5636352	Ha-Melitz	Hebrew newspaper	Odesa; Saint Petersburg	1860–1904	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-4231	Ha-Me'asef	Berlin	1785	Q827781	Me'assefim	magazine	Berlin; Dessau; Königsberg; Wrocław	1783–1797	place=agree era=agree hits=2	UNSURE				Q43295763
+4230	Ha-Meliz		1866–1902	Q5636352	Ha-Melitz	Hebrew newspaper	Odesa; Saint Petersburg	1860–1904	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+4231	Ha-Me'asef	Berlin	1785	Q827781	Me'assefim	magazine	Berlin; Dessau; Königsberg; Wrocław	1783–1797	place=agree era=agree hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q43295763
 4232	Yorbukh Progres		1904							NONE				
 4233	Ha-Shemesh	Kolomyia	1888							NONE				
 4234	Ikuf-shtime	Bucharest								NONE				
 4235	Kalifornyer yontev bleter	Los Angeles	1955							NONE				
 4236	Kultur	Chicago								NONE				
 4237	Der Kanader Yid									NONE				
-4238	Kiryat Sefer	Jerusalem		Q1743472	Kiryat Sefer	Wissenschaftliche Fachzeitschrift		?–?	place=unknown era=unknown hits=2	UNSURE				Q6950459
+4238	Kiryat Sefer	Jerusalem		Q1743472	Kiryat Sefer	Wissenschaftliche Fachzeitschrift		?–?	place=unknown era=unknown hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q6950459
 4239	Leybl Toybishes Vokhnblat									NONE				
 4240	Lebn un visnshaft	Vilna	1910–1912							NONE				
 4241	Der letster khurbn	Munich								NONE				
@@ -490,9 +490,9 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4245	Yontev-bletlekh									NONE				
 4246	Millers Vokhnshrift		1917							NONE				
 4247	Minikes Yontev-bleter		1897							NONE				
-4248	Der Emes	Boston	1894	Q1967268	Der Emes	newspaper	Moscow	1918–1939	place=clash era=clash hits=1	UNSURE				
+4248	Der Emes	Boston	1894	Q1967268	Der Emes	newspaper	Moscow	1918–1939	place=clash era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 4249	Masn		1934							NONE				
-4250	Naye Tsayt	Vienna	1907–1924	Q21050114	Naye tsayt	newspaper	Kyiv	1917–?	place=clash era=clash hits=1	UNSURE				
+4250	Naye Tsayt	Vienna	1907–1924	Q21050114	Naye tsayt	newspaper	Kyiv	1917–?	place=clash era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 4251	Nyu-Yorker idishe folks-tsaytung	New York								NONE				
 4252	Di Naye Varhayt		1925							NONE				
 4253	National Gazetn	London	1900							NONE				
@@ -510,26 +510,26 @@ db_id	name_latin	settlement	years_attested	qid	wd_label	wd_description	wd_place	
 4265	Sholem-Aleykhem	Odesa								NONE				
 4266	Shnayder Farband		1890							NONE				
 4267	East Broadway		1916							NONE				
-4268	East and West	New York		Q15749358	East and West	academic journal		1950–?	place=unknown era=unknown hits=1	UNSURE				
-4269	Ost und West	Berlin		Q1667655	Ost und West	zionist journal (1901-1923)	Berlin	1901–1923	place=agree era=unknown hits=2	UNSURE				Q120731533
-4270	Ostjüdische Zeitung		1927	Q107578444	Ostjüdische Zeitung	newspaper	Chernivtsi	1919–1937	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
-4271	Satirikon		1906	Q4409008	Satirikon	Russian satirical magazine (1908-1914)	Saint Petersburg	1908–1914	place=unknown era=clash hits=1	UNSURE				
-4272	Sovetish Heymland	Moscow	1961	Q3739488	Sovetish Heymland	Soviet Yiddish-language newspaper		1961–1991	place=unknown era=agree hits=1	UNSURE				
-4273	The Call	New York		Q7413963	San Francisco Call	American newspaper in San Francisco: 1856-1965	San Francisco	1856–?	place=clash era=unknown hits=1	UNSURE				
+4268	East and West	New York		Q15749358	East and West	academic journal		1950–?	place=unknown era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (a 1950 journal)	
+4269	Ost und West	Berlin		Q1667655	Ost und West	zionist journal (1901-1923)	Berlin	1901–1923	place=agree era=unknown hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q120731533
+4270	Ostjüdische Zeitung		1927	Q107578444	Ostjüdische Zeitung	newspaper	Chernivtsi	1919–1937	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	
+4271	Satirikon		1906	Q4409008	Satirikon	Russian satirical magazine (1908-1914)	Saint Petersburg	1908–1914	place=unknown era=clash hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
+4272	Sovetish Heymland	Moscow	1961	Q3739488	Sovetish Heymland	Soviet Yiddish-language newspaper		1961–1991	place=unknown era=agree hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
+4273	The Call	New York		Q7413963	San Francisco Call	American newspaper in San Francisco: 1856-1965	San Francisco	1856–?	place=clash era=unknown hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper (San Francisco)	
 4274	Der Teater Zinger	New York	1905							NONE				
 4275	Der Tempel									NONE				
 4276	Teater Front	Kharkiv	1932							NONE				
 4277	Teater-zikhroynes									NONE				
 4278	Vilner Togblat	Vilna	1905							NONE				
-4279	Evening World	New York		Q7732652	The Evening World	late edition of the The World (1887-1931)	New York City	1887–?	place=agree era=unknown hits=2	UNSURE				Q100294332
-4280	Wiener Morgenzeitung	Vienna		Q124418935	Wiener Morgenzeitung	von 1919 bis 1927 erschienene Tageszeitung aus Wien		1919–1927	place=unknown era=unknown hits=1	UNSURE				
+4279	Evening World	New York		Q7732652	The Evening World	late edition of the The World (1887-1931)	New York City	1887–?	place=agree era=unknown hits=2	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	Q100294332
+4280	Wiener Morgenzeitung	Vienna		Q124418935	Wiener Morgenzeitung	von 1919 bis 1927 erschienene Tageszeitung aus Wien		1919–1927	place=unknown era=unknown hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	same paper: title, place and years agree in the Wikidata item and its Wikipedia article	
 4281	Vardi-Yaelit-Studio-Blatlakh		1928							NONE				
-4282	Di Vokh	Riga	1927	Q25636144	Die Woch	newspaper in Tel Aviv		1959–?	place=unknown era=clash hits=1	UNSURE				
+4282	Di Vokh	Riga	1927	Q25636144	Die Woch	newspaper in Tel Aviv		1959–?	place=unknown era=clash hits=1	UNSURE	REJECT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	different paper	
 4283	Avezhaneder Shtime									NONE				
 4284	Zegln		1924							NONE				
-4285	Zhizn		1900	Q8070878	Zhizn	periodical	Moscow	1897–?	place=unknown era=agree hits=1	UNSURE			spot-check 11-01: Wikidata item is a Moscow Zhizn; ours is likely the St Petersburg journal (1897-1901)	
+4285	Zhizn		1900	Q8070878	Zhizn	periodical	Moscow	1897–?	place=unknown era=agree hits=1	UNSURE	ACCEPT	Claude 2026-11-01 (Wikidata item + Wikipedia read)	"Wikipedia: Zhizn appeared in St Petersburg 1897-1901 (Wikidata place ""Moscow"" is wrong)"	
 4286	Izraelit	Vienna								NONE				
 4287	Izraelitisher Folkskalendar		1894							NONE				
 4288	Shaykago									NONE				
 4289	Zapiski grazhdanina	Bucharest	1878							NONE				
-4290	Russkoe bogatstvo		1897	Q918215	Russkoye Bogatstvo	magazine	Saint Petersburg	1876–1918	place=unknown era=agree hits=1	STRONG	ACCEPT	auto + spot-check Claude 2026-11-01	title+periodical+place/era, single hit	
+4290	Russkoe bogatstvo		1897	Q918215	Russkoye Bogatstvo	magazine	Saint Petersburg	1876–1918	place=unknown era=agree hits=1	STRONG	ACCEPT	auto; Claude checked the Wikidata item + Wikipedia 2026-11-01	title+periodical+place/era, single hit	

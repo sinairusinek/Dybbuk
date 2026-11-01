@@ -22,7 +22,8 @@ Kinds, applied in this order:
               cluster, and the cluster added to the row's linked_cluster_ids.
               A cluster already ALIGNed to a DIFFERENT row is reported, never
               moved (no single authority — feedback_core_db_link_authority).
-  mint        one new core_db row per `group_id`; every row of the group with
+  mint        one new core_db row per `group_id` (org_type from `value`, default
+              Journals/ Newspapers); every row of the group with
               a cluster_id is aligned to it. Ids come from the HIGHER of
               origin's and the local high-water mark, read at apply time
               (feedback_core_db_mint_from_origin_high_water). A name that
@@ -409,7 +410,7 @@ def main(apply: bool, reviewer: str) -> int:
         next_id += 1
         row = {f: "" for f in core_f}
         row.update(db_id=db, name=head["name_latin"].strip(), name_yiddish=name,
-                   org_type=PRESS_TYPE, address=head["settlement"].strip(),
+                   org_type=head["value"].strip() or PRESS_TYPE, address=head["settlement"].strip(),
                    name_variants=f"press-audit {gid}")
         core.append(row)
         by_id[db] = row
@@ -419,7 +420,7 @@ def main(apply: bool, reviewer: str) -> int:
         say("mint", f"{head['decision_id']}  db {db}  {name} / {row['name']} ({row['address']})  <- {', '.join(cids) or '(no cluster)'}")
         log.append(entry(reviewer, "org_review", "mint", db, "NEW",
                          f"{head['decision_id']}: {head['rationale']}",
-                         name_yiddish=name, clusters=cids, org_type=PRESS_TYPE))
+                         name_yiddish=name, clusters=cids, org_type=row["org_type"]))
         for d in ds:
             if d["cluster_id"].strip():
                 link(d["cluster_id"].strip(), db, d, f"minted db {db} {name}")

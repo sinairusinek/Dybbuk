@@ -9,6 +9,11 @@
          another row, none otherwise
   other  the Kinder-Velt camp split and the publisher row left empty
 
+Only items still open are written: a qid row with a verdict, a duplicate
+group already merged, or a leftover row already settled drops out. After
+Claude read every Wikidata item and its Wikipedia article (2026-11-01) and
+decided what it could, only db 3573 was left for Sinai.
+
 Writes press_open_items_r2.json for build_press_open_form.py (--items).
 Answers come back as artifact db docs {choice, note}, keyed by item id.
 """
@@ -83,6 +88,8 @@ DUPS = [
      "224 is an authority row with no mentions and no city. Wikidata's Di tsayt is the Petersburg weekly; 637 is London, 3882 New York."),
 ]
 for iid, ds, q, opts, rec, why in DUPS:
+    if iid == "dup-tsayt" or sum(live(d) for d in ds[:2]) < 2:
+        continue  # merged, or (224) left as is by Claude: no item, no mentions
     items.append(dict(id=iid, section="dup", title=" / ".join(core[d]["name_yiddish"] or core[d]["name"] for d in ds),
                       sub=why, context=[row_line(d) for d in ds] + sum((ctx(d, 1) for d in ds), []),
                       links=[wd(q)], options=opts, rec=rec, db=", ".join(ds)))
@@ -218,7 +225,9 @@ for r in sorted(qids, key=lambda r: int(r["db_id"])):
         rec=rec, db=d))
 
 # ---------------- other ----------------
-items.append(dict(
+align = {r["cluster_id"]: r for r in load("org_alignment_review.tsv")}
+if not (align.get("ORG-C00547_P02") or {}).get("decision"):
+  items.append(dict(
     id="other-kindervelt-camp", section="other", title="קינדער-וועלט — the camp (ORG-C00547_P02)",
     sub="Split from the Kinder-Velt periodical this morning and typed Education; it has no row yet. "
         "Camp Kinderland (db 206) is a different camp.",
@@ -226,7 +235,8 @@ items.append(dict(
     options=[("mint", "Give it its own row: Camp Kinder-Velt (Education)"),
              ("generic", "Generic: no row"), ("link", "Same as an existing row (name it in the note)")],
     rec="mint", clusters=["ORG-C00547_P02"]))
-items.append(dict(
+if live("3573") and not pipes(core["3573"]["linked_cluster_ids"]):
+  items.append(dict(
     id="other-3573", section="other", title="פֿאַרלאַג „אַרבעטער וועלט\" (שיקאַגאָ) — db 3573, now empty",
     sub="Its only cluster (ORG-C02146, Boris Kader's book, 1939) went to the paper Idishe arbeter velt (3304) "
         "on your conflict choice. The row has no clusters left.",
