@@ -40,6 +40,8 @@ import pathlib
 
 import streamlit as st
 
+import github_sync
+
 from views.org_review import CLUSTER_FILE, load_samples
 import troupe_store
 from troupe_store import (
@@ -162,7 +164,7 @@ def _commit_batch(items: list[tuple[str, list[str], str, str]], reviewer: str) -
         repo_paths.insert(0, troupe_store.TROUPE_TAGS_REPO_PATH)
     if not troupe_store.push_batch(
             repo_paths, f"chore: troupe tags ({len(items)} reviewed)"):
-        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).",
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets)." + github_sync.failure_note(),
                  icon="⚠️")
     try:
         from zalmen.activity_log import log_action
@@ -503,7 +505,7 @@ def _render_correct(reviewer: str) -> None:
             [troupe_store.TROUPE_TAGS_REPO_PATH, troupe_store.TAG_REVIEW_REPO_PATH],
             f"chore: troupe tag corrections ({len(recs)} rows)",
         ):
-            st.toast("⚠️ Saved locally but not pushed to GitHub.", icon="⚠️")
+            st.toast("⚠️ Saved locally but not pushed to GitHub." + github_sync.failure_note(), icon="⚠️")
         try:
             from zalmen.activity_log import log_action
             for r in recs:

@@ -54,6 +54,13 @@ import streamlit as st
 _SESSION = requests.Session()
 _SHA_CACHE: dict[tuple[str, str], str] = {}
 
+# app.py and troupe_store import this as `github_sync`, the views as
+# `zalmen.github_sync`: two names, so Python loaded two copies with separate
+# caches, and a view's failed push could never re-arm app.py's token check.
+# Register whichever loads first under both names so there is one module.
+sys.modules.setdefault("github_sync", sys.modules[__name__])
+sys.modules.setdefault("zalmen.github_sync", sys.modules[__name__])
+
 
 def _credentials(branch: str | None) -> tuple[str, str, str]:
     """(token, repo, branch) from secrets; empty strings when unconfigured.
@@ -87,11 +94,22 @@ def _note_failure(status: int | None, where: str) -> None:
         _health["at"] = None
 
 
+def _clear_failure() -> None:
+    _last_failure.update(status=None, where="")
+
+
 def last_push_failure() -> str:
-    """'HTTP 401 at <path>' for the most recent failed push, '' if none."""
+    """'HTTP 401 at <path>' for the most recent failed push, '' if none
+    (or if a push has succeeded since)."""
     if _last_failure["status"] is None and not _last_failure["where"]:
         return ""
     return f"HTTP {_last_failure['status']} at {_last_failure['where']}"
+
+
+def failure_note() -> str:
+    """' [HTTP 401 at <path>]' to append to a save-failed toast, '' if unknown."""
+    reason = last_push_failure()
+    return f" [{reason}]" if reason else ""
 
 
 def token_health() -> tuple[str, str]:
@@ -206,6 +224,7 @@ def _refuse_if_stale() -> bool:
     stale = stale_code_files()
     if not stale:
         return False
+    _note_failure(None, "outdated app code")
     try:
         st.error(
             "⛔ This app is running an OUTDATED version, so your change was NOT "
@@ -308,6 +327,7 @@ def push_file_to_github(repo_path: str, local_path: pathlib.Path, commit_message
                 _SHA_CACHE[cache_key] = new_sha
             else:
                 _SHA_CACHE.pop(cache_key, None)
+            _clear_failure()
             return True
 
         # On any other failure, drop the cached SHA so the next save re-fetches.
@@ -428,6 +448,7 @@ def push_files_to_github(
         # cache no longer describes them.
         for repo_path, _ in files:
             _SHA_CACHE.pop((branch, repo_path), None)
+        _clear_failure()
         return True
 
     except Exception:  # noqa: BLE001

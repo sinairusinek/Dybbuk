@@ -29,6 +29,8 @@ import pathlib
 
 import streamlit as st
 
+import github_sync
+
 from views.org_review import (
     CLUSTER_FILE,
     _open_url,
@@ -165,7 +167,7 @@ def save_decisions(records: list[dict]) -> None:
     except Exception:  # noqa: BLE001
         ok = False
     if not ok:
-        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets)." + github_sync.failure_note(), icon="⚠️")
     load_decisions.clear()
 
 
@@ -266,7 +268,7 @@ def save_jointname_decisions(records: list[dict]) -> None:
     except Exception:  # noqa: BLE001
         ok = False
     if not ok:
-        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets)." + github_sync.failure_note(), icon="⚠️")
 
 
 def save_dedup_decisions(records: list[dict]) -> None:
@@ -301,7 +303,7 @@ def save_dedup_decisions(records: list[dict]) -> None:
     except Exception:  # noqa: BLE001
         ok = False
     if not ok:
-        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets)." + github_sync.failure_note(), icon="⚠️")
     load_dedup_decisions.clear()
 
 
@@ -357,7 +359,7 @@ def save_dblalign_decisions(records: list[dict]) -> None:
     except Exception:  # noqa: BLE001
         ok = False
     if not ok:
-        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets)." + github_sync.failure_note(), icon="⚠️")
     load_dblalign_decisions.clear()
 
 

@@ -20,6 +20,8 @@ import pathlib
 import sys
 
 import streamlit as st
+
+import github_sync
 from atomic_io import atomic_write
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
@@ -117,7 +119,7 @@ def save_decision(rec: dict) -> None:
     except Exception:  # noqa: BLE001
         ok = False
     if not ok:
-        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets).", icon="⚠️")
+        st.toast("⚠️ Saved locally but not pushed to GitHub (check secrets)." + github_sync.failure_note(), icon="⚠️")
     load_decisions.clear()
     try:
         from zalmen.activity_log import log_action

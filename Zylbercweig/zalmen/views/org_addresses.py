@@ -31,6 +31,8 @@ from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 import streamlit as st
 
+import github_sync
+
 from zalmen.activity_log import log_action
 from atomic_io import atomic_write
 import mention_removals
@@ -250,7 +252,7 @@ def save_orgs(headers, rows):
     from zalmen.github_sync import push_file_to_github
     ok = push_file_to_github("Zylbercweig/organizations/org_addresses_review.tsv", ADDR_FILE, "chore: save address decisions")
     if not ok:
-        st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
+        st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing." + github_sync.failure_note(), icon="⚠️")
 
 
 def save_alignment(headers, rows):
@@ -267,7 +269,7 @@ def save_alignment(headers, rows):
     from zalmen.github_sync import push_file_to_github
     ok = push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
     if not ok:
-        st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
+        st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing." + github_sync.failure_note(), icon="⚠️")
 
 
 def get_mtime(path=ADDR_FILE): return path.stat().st_mtime if path.exists() else 0.0

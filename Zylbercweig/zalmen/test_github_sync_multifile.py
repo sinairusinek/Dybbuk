@@ -180,3 +180,28 @@ def test_result_is_cached_until_a_push_gets_401(monkeypatch, files):
     github_sync.token_health()
     assert s.calls == 2
     assert github_sync.last_push_failure() == "HTTP 401 at repo/a.tsv"
+
+
+def test_both_import_names_are_one_module():
+    import importlib
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+    assert importlib.import_module("zalmen.github_sync") is github_sync
+
+
+def test_failure_note_names_the_status_and_clears_on_success(monkeypatch, tmp_path):
+    f = tmp_path / "a.tsv"
+    f.write_text("a\n", encoding="utf-8")
+
+    class _Put(_FakeSession):
+        status = 401
+
+        def put(self, url, **kw):
+            return _Resp(self.status < 300, {"content": {"sha": "S"}}, self.status)
+    fake = _Put()
+    monkeypatch.setattr(github_sync, "_SESSION", fake)
+    monkeypatch.setattr(github_sync, "stale_code_files", lambda: [])
+    assert github_sync.push_file_to_github("repo/a.tsv", f, "m") is False
+    assert github_sync.failure_note() == " [HTTP 401 at repo/a.tsv]"
+    fake.status = 201
+    assert github_sync.push_file_to_github("repo/a.tsv", f, "m") is True
+    assert github_sync.failure_note() == ""

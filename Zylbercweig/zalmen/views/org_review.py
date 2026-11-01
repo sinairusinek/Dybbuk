@@ -21,6 +21,8 @@ import xml.etree.ElementTree as ET
 
 import streamlit as st
 
+import github_sync
+
 csv.field_size_limit(sys.maxsize)
 
 BASE = pathlib.Path(__file__).parents[2]
@@ -315,7 +317,7 @@ def save_alignment(headers: list[str], rows: list[dict[str, str]]) -> None:
 	from zalmen.github_sync import push_file_to_github
 	ok = push_file_to_github("Zylbercweig/organizations/org_alignment_review.tsv", ALIGN_FILE, "chore: save alignment decisions")
 	if not ok:
-		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
+		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing." + github_sync.failure_note(), icon="⚠️")
 
 
 def save_pairs(headers: list[str], rows: list[dict[str, str]]) -> None:
@@ -332,7 +334,7 @@ def save_pairs(headers: list[str], rows: list[dict[str, str]]) -> None:
 	from zalmen.github_sync import push_file_to_github
 	ok = push_file_to_github("Zylbercweig/organizations/cluster_pairs_review.tsv", PAIRS_FILE, "chore: save cluster pair decisions")
 	if not ok:
-		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
+		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing." + github_sync.failure_note(), icon="⚠️")
 
 
 CORE_DB_CANONICAL_HEADERS = [
@@ -440,7 +442,7 @@ def save_core_db(headers: list[str], rows: list[dict[str, str]]) -> None:
 	from zalmen.github_sync import push_file_to_github
 	ok = push_file_to_github("Zylbercweig/organizations/core_db.tsv", CORE_DB_FILE, "chore: save core DB")
 	if not ok:
-		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing.", icon="⚠️")
+		st.toast("⚠️ Your decision was recorded but could not be saved permanently. Please contact Sinai before continuing." + github_sync.failure_note(), icon="⚠️")
 
 
 def append_address_row(db_id: str, name: str, org_type: str, cluster_id: str,
