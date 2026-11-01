@@ -306,6 +306,13 @@ def place_agree(a_place: str, b_place: str) -> bool:
         return False
     a_toks = [t for t in _re.split(r"[\s,;/·־–—-]+", a_head) if len(t) > 1]
     b_toks = [t for t in _re.split(r"[\s,;/·־–—-]+", b_head) if len(t) > 1]
+    # a Yiddish place adjective names the place: וואַרשעווער -> וואַרשעוו,
+    # whose code extends וואַרשע's (Latin "Warsaw" only matched it through
+    # the loose 3-digit rule, which also let Vilna match Philadelphia)
+    adj = lambda ts: ts + [t[:-2] for t in ts
+                           if HEBREW_RE.search(t) and t.endswith("ער")
+                           and len(_re.sub("[\u0591-\u05c7]", "", t)) >= 7]
+    a_toks, b_toks = adj(a_toks), adj(b_toks)
     for ta in a_toks:
         for tb in b_toks:
             if skeleton(ta) and skeleton(ta) == skeleton(tb):
@@ -322,9 +329,18 @@ def place_agree(a_place: str, b_place: str) -> bool:
                 # a settlement (Vilna 786, Riga 795, Lodz 583 all stay
                 # distinct) without demanding agreement on the one sound these
                 # two orthographies are guaranteed to spell differently.
-                if any(x[:3] == y[:3] for x in ca for y in cb
-                       if len(x) >= 3 and len(y) >= 3):
-                    return True
+                # ...but only between codes of about the same length once the
+                # zero padding is cut, or where one extends the other (the
+                # adjective וואַרשעווער 794579 on וואַרשע 7945): an alternate
+                # code of ווילנע (7486) shares 748 with פֿילאָדעלפֿיע (748387),
+                # and Vilna was "agreeing" with Philadelphia.
+                for x in ca:
+                    for y in cb:
+                        sx, sy = x.rstrip("0"), y.rstrip("0")
+                        if len(x) >= 3 and len(y) >= 3 and x[:3] == y[:3] and (
+                                abs(len(sx) - len(sy)) <= 1
+                                or sx.startswith(sy) or sy.startswith(sx)):
+                            return True
     return False
 
 

@@ -90,7 +90,10 @@ def okeys(s: str) -> list[str]:
     publisher noise words ("פֿאַרלאַג", "Publishing Co") cut."""
     s = re.sub(r"\([^()]*\)", " ", s or "")
     heb = PUB_NOISE.sub(" ", pc.norm_yiddish(s))
-    lat = PUB_NOISE.sub(" ", " ".join(re.findall(r"[A-Za-z]+", s)).lower())
+    # fold accents first: "Georg Müller Verlag" was keyed "georg ller"
+    folded = "".join(c for c in unicodedata.normalize("NFKD", s)
+                     if not unicodedata.combining(c) or "\u0590" <= c <= "\u05ff")
+    lat = PUB_NOISE.sub(" ", " ".join(re.findall(r"[A-Za-z]+", folded)).lower())
     out = []
     for k in (heb, lat):
         k = ARTICLE.sub("", " ".join(k.split()))
@@ -176,11 +179,13 @@ PRESS_TYPES = {"Journals/ Newspapers", "Non-Jewish Journals/ Newspapers"}
 # Words that name the KIND of firm or its owner's relation to it, not the firm:
 # "די ברידער ראָם" = "דרוקעריי פֿון די ברידער ראָם" = "ראָם"; "פֿאַרלאַג אונד
 # אייגענטהום דעם דוד ראָטה, בוכהאַנדלונג". Single letters are initials ("ב. א.
-# קלעצקין" vs "ב. קלעצקין"). Used only by the norm tier, never the exact one.
-NOISE2 = {"פון", "די", "דער", "דעם", "דאס", "ברידער", "דרוקעריי", "דפוס",
-          "בוכהאנדלונג", "בוכהענדלער", "אויסגאבע", "אונד", "און", "עט",
-          "אייגענטהום", "ו", "מעלוכע", "מעלוכעפארלאג", "ביבליאטהעק", "ליט",
-          "vom", "und", "et", "and", "of", "the", "brothers", "pub", "co"}
+# קלעצקין" vs "ב. קלעצקין"), "וו." = W. norm_yiddish un-finals ן, hence "פונ".
+# Used only by the norm tier, never the exact one.
+NOISE2 = {"פון", "פונ", "די", "דער", "דעם", "דאס", "ברידער", "דרוקעריי", "דפוס",
+          "בוכהאנדלונג", "בוכהענדלער", "אויסגאבע", "אונד", "און", "אונ", "עט",
+          "אייגענטהום", "ו", "וו", "מעלוכע", "מעלוכעפארלאג", "ביבליאטהעק", "ליט",
+          "קאמפ", "קאמפאני", "vom", "und", "et", "and", "of", "the", "brothers",
+          "pub", "co"}
 OLD_SPELL = [(re.compile(r"\b(?:אידיש|יודיש)"), "יידיש")]
 
 
@@ -206,7 +211,8 @@ GENERIC_TOK = {"יידיש", "יידישע", "יידישער", "יידישן", "
 
 def initials(s: str) -> set[str]:
     """Single-letter tokens of a name: the owner's initials ("ב. א. קלעצקין")."""
-    return {t for k in okeys(s) for t in re.split(r"[\s-]+", k) if len(t) == 1}
+    return {t for k in okeys(s) for t in re.split(r"[\s-]+", k)
+            if len(t) == 1 or t == "וו"}
 
 
 def load_orgs():
