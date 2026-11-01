@@ -11,6 +11,9 @@ graph: plays by other authors belong to the future general Zylbercweig graph.
 This module decides, for one fact row, whether its play is an L/H play:
 
   1. play_fact_attribution.tsv — curated per-fact verdicts (wins outright)
+  1b. plays_db attribution_status=ascription_rejected — the catalogue curators
+       rejected the L/H ascription, so the play is someone else's (Gordin's
+       „די וואַרהייט", Sharkansky's „דגל מחנה יהודה")   -> OTHER
   2. an author named next to the title in the evidence sentence:
        L/H author ("לאַטיינערס „דבוק"")            -> LH
        another author known to have written a work with this title
@@ -157,6 +160,8 @@ class Attribution:
         ov = self.overrides.get(r.get("fact_id", ""))
         if ov:
             return ov["verdict"], f"override:{ov.get('note', '')}"
+        if self.plays[pid].get("attribution_status") == "ascription_rejected":
+            return "OTHER", "ascription_rejected"
         quote, surface = r.get("evidence_quote", ""), r.get("play_title_surface", "")
         for win in self._title_windows(quote, surface):
             cue = self._author_cue(win, pid)
@@ -204,6 +209,8 @@ class Attribution:
                     continue
                 best, best_r = "", 0.0
                 for p in plays:
+                    if p.get("attribution_status") == "ascription_rejected":
+                        continue
                     for ps in _split(p["title_segments_norm"]):
                         sc = max(fuzz.ratio(s, ps) for s in segs if s) if any(segs) else 0
                         if sc > best_r:
