@@ -1,0 +1,3778 @@
+[
+ {
+  "id": "policy-forverts",
+  "section": "policy",
+  "title": "Forverts regional editions",
+  "sub": "db 692 is the New York Forverts (db 249 \"Forward\" was merged into it). Chicago (693), Philadelphia (694) and Detroit (695) are its regional editions, currently stand-alone rows.",
+  "context": [
+   "693 Forverts (Chicago) — 2 clusters",
+   "694 Forverts (Philadelphia) — 1 cluster",
+   "695 Forverts (Detroit) — 1 cluster"
+  ],
+  "options": [
+   [
+    "children",
+    "Keep the editions, set parent_db_id = 692"
+   ],
+   [
+    "standalone",
+    "Keep them stand-alone"
+   ],
+   [
+    "merge",
+    "Merge them into 692"
+   ]
+  ],
+  "rec": "children"
+ },
+ {
+  "id": "policy-nonjewish",
+  "section": "policy",
+  "title": "How to mark the non-Jewish papers",
+  "sub": "Kievlyanin, Odesski Vestnik, Odesskiya Novosti, Bessarabskaya Zhizn, Pinski Listok, Odessa Pravda, the Russian Bialystok paper of 1903, and Russian titles minted today (Russkoye Bogatstvo, Kievskaya Mysl, Moskovskaya Gazeta…). The type list already has \"Non-Yiddish Theatre\" and \"Non-Jewish political bodies\".",
+  "context": [
+   "A new type must first be added to the app's type lists (org_review.py, org_addresses.py); a type the app does not list is what blanked 242 types on 10-25."
+  ],
+  "options": [
+   [
+    "newtype",
+    "New org_type \"Non-Jewish Journals/ Newspapers\" (I add it to the app first)"
+   ],
+   [
+    "flag",
+    "Keep the type; add a jewish_press = N column in press_comments.tsv"
+   ],
+   [
+    "leave",
+    "Leave as is (the comment says it)"
+   ]
+  ],
+  "rec": "newtype"
+ },
+ {
+  "id": "policy-qids",
+  "section": "policy",
+  "title": "Fill Wikidata ids for all periodicals",
+  "sub": "wikidata_qid is now its own column in press_comments.tsv (3 filled). A lookup pass would search Wikidata for every periodical and keep only matches agreeing on title, city and era.",
+  "context": [],
+  "options": [
+   [
+    "yes",
+    "Yes, run the lookup (unsure matches come back to you)"
+   ],
+   [
+    "no",
+    "No, only add ids by hand"
+   ]
+  ],
+  "rec": "yes"
+ },
+ {
+  "id": "match-ORG-C00213__galron-0701",
+  "section": "match",
+  "title": "ניי-וואָרט  ↔  דאָס ניַיע וואָרט",
+  "sub": "Galron: ווארשה (פולין) · יידיש · coverage 1935–1937",
+  "context": [
+   "WEAK pre-judge 11-01: monthly Nay-vort vs weekly Dos naye vort Warsaw"
+  ],
+  "links": [
+   "https://academica.edu.pl/search?query=Naje+Wort+Warszawa&sortField=date&sortOrder=asc&resultsLimit=50"
+  ],
+  "options": [
+   [
+    "CONFIRM",
+    "Same paper"
+   ],
+   [
+    "REJECT",
+    "Different papers"
+   ]
+  ],
+  "rec": ""
+ },
+ {
+  "id": "match-ORG-C01659__galron-0341",
+  "section": "match",
+  "title": "דאָס וואָרט  ↔  דאָס וואָרט",
+  "sub": "Galron: וילנה (ליטא) · יידיש · coverage 1924–1939",
+  "context": [
+   "WEAK pre-judge 11-01: Poale Zion daily Dos vort: Vilna?"
+  ],
+  "links": [
+   "http://www.epaveldas.lt/object/recordDescription/LNB/C10000439338"
+  ],
+  "options": [
+   [
+    "CONFIRM",
+    "Same paper"
+   ],
+   [
+    "REJECT",
+    "Different papers"
+   ]
+  ],
+  "rec": ""
+ },
+ {
+  "id": "match-ORG-C04810__galron-0434",
+  "section": "match",
+  "title": "דער ייד  ↔  דער יוד",
+  "sub": "Galron: קרקוב (פולין) · יידיש · coverage 1906",
+  "context": [
+   "WEAK pre-judge 11-01: correspondences in Der yid (Melamed): the Zionist Der Yud?"
+  ],
+  "links": [
+   "http://anno.onb.ac.at/info/zyd_info.htm"
+  ],
+  "options": [
+   [
+    "CONFIRM",
+    "Same paper"
+   ],
+   [
+    "REJECT",
+    "Different papers"
+   ]
+  ],
+  "rec": ""
+ },
+ {
+  "id": "doubt-ORG-C00065_Q01__galron-1708",
+  "section": "doubt",
+  "title": "אידישע צײַטונג (Buenos Aires)  ↔  Jidisze Cajtung",
+  "sub": "Galron: Landsberg (Germany) · coverage 1947–1948. The judge: Argentine paper db row 1830; Galron Landsberg entry is a different paper and is not linked.",
+  "context": [
+   "געדרוקט געוואָרן אין „אידישע צייטונג“, ב. א., 8 סעפּט. 1926",
+   "אירע איינדרוקן פֿון די לאַגערן ווערן איבערגעדרוקט אין דער בוענאָס-איירעסער צייטונג „די אידישע צייטונג\"",
+   "געדרוקט... אין „די יודישע צייטונג\""
+  ],
+  "links": [
+   "https://news.google.com/newspapers?nid=dZbaGXT4iR0C"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "doubt-db1830__galron-1708",
+  "section": "doubt",
+  "title": "אידישע צײַטונג (Buenos Aires)  ↔  Jidisze Cajtung",
+  "sub": "Galron: Landsberg (Germany) · coverage 1947–1948. The judge: Argentine paper db row 1830; Galron Landsberg entry is a different paper and is not linked.",
+  "context": [
+   "געדרוקט געוואָרן אין „אידישע צייטונג“, ב. א., 8 סעפּט. 1926",
+   "אירע איינדרוקן פֿון די לאַגערן ווערן איבערגעדרוקט אין דער בוענאָס-איירעסער צייטונג „די אידישע צייטונג\"",
+   "געדרוקט... אין „די יודישע צייטונג\""
+  ],
+  "links": [
+   "https://news.google.com/newspapers?nid=dZbaGXT4iR0C"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "doubt-ORG-C00842__galron-0486",
+  "section": "doubt",
+  "title": "יידישעס פֿאָלקסבלאַט (no city)  ↔  יידישעס פאָלקסבּלאַטט",
+  "sub": "Galron: בודפשט (הונגריה) · coverage 1891–1893. The judge: Lexicon names Tsederboym as editor; Galron Budapest entry looks like a different paper and is not linked.",
+  "context": [
+   "אין עלטער פֿון 16 יאָר אָנגעשריבן (א\"פּ „אַ באַסלאַווער ייד\") פֿאַר צעדערבוימס \"יידישעס פאָלקסבלאט“ 2 אַרטיקלען",
+   "אין „אידישעס פֿאָלקסבלאַט“ (נ' 7, 1889), איז וועגן דער פּיעסע אָפּגעדרוקט פֿאָלגנדיקער פּאָסקווייל",
+   "געשרייבן פעליעטאָנען, לידער, אַרטיקלען, הומאָרעסקעס אין... יידישעס פאָלקסבלאַט"
+  ],
+  "links": [
+   "https://www.difmoe.eu/d/periodical/uuid:864c1e16-2e10-4322-94c8-07df7a712859"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "doubt-ORG-C01890__galron-0486",
+  "section": "doubt",
+  "title": "יידישעס פֿאָלקסבלאַט (no city)  ↔  יידישעס פאָלקסבּלאַטט",
+  "sub": "Galron: בודפשט (הונגריה) · coverage 1891–1893. The judge: Lexicon names Tsederboym as editor; Galron Budapest entry looks like a different paper and is not linked.",
+  "context": [
+   "אין עלטער פֿון 16 יאָר אָנגעשריבן (א\"פּ „אַ באַסלאַווער ייד\") פֿאַר צעדערבוימס \"יידישעס פאָלקסבלאט“ 2 אַרטיקלען",
+   "אין „אידישעס פֿאָלקסבלאַט“ (נ' 7, 1889), איז וועגן דער פּיעסע אָפּגעדרוקט פֿאָלגנדיקער פּאָסקווייל",
+   "געשרייבן פעליעטאָנען, לידער, אַרטיקלען, הומאָרעסקעס אין... יידישעס פאָלקסבלאַט"
+  ],
+  "links": [
+   "https://www.difmoe.eu/d/periodical/uuid:864c1e16-2e10-4322-94c8-07df7a712859"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "doubt-ORG-C00288__galron-0594",
+  "section": "doubt",
+  "title": "פֿרייהייט (New York)  ↔  מאָרגן פרייהייט",
+  "sub": "Galron: ניו־יורק (ארה״ב) · coverage 1930. The judge: All clusters are the New York paper; Galron Krakow entry is a different paper.",
+  "context": [
+   "אין קינדער-ווינקל פֿון „מאָרגן פרעהייט“",
+   "זינט דער גרינדונג פֿון „מאָרגן פרעהייט״ דאָרט פֿאַרעפנטלעכט דערציילונגען און זכרונות",
+   "שרייבט ער שאָפּ-בילדער אין „פֿרייהייט\""
+  ],
+  "links": [
+   "https://libraria.ua/en/all-titles/group/1180/"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "KEEP"
+ },
+ {
+  "id": "doubt-ORG-C01708__galron-0594",
+  "section": "doubt",
+  "title": "פֿרייהייט (New York)  ↔  מאָרגן פרייהייט",
+  "sub": "Galron: ניו־יורק (ארה״ב) · coverage 1930. The judge: All clusters are the New York paper; Galron Krakow entry is a different paper.",
+  "context": [
+   "אין קינדער-ווינקל פֿון „מאָרגן פרעהייט“",
+   "זינט דער גרינדונג פֿון „מאָרגן פרעהייט״ דאָרט פֿאַרעפנטלעכט דערציילונגען און זכרונות",
+   "שרייבט ער שאָפּ-בילדער אין „פֿרייהייט\""
+  ],
+  "links": [
+   "https://libraria.ua/en/all-titles/group/1180/"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "KEEP"
+ },
+ {
+  "id": "doubt-db1844__galron-0878",
+  "section": "doubt",
+  "title": "פֿרייהייט (New York)  ↔  פֿריַיהיַיט",
+  "sub": "Galron: קרקוב (פולין) · coverage 1905. The judge: All clusters are the New York paper; Galron Krakow entry is a different paper.",
+  "context": [
+   "אין קינדער-ווינקל פֿון „מאָרגן פרעהייט“",
+   "זינט דער גרינדונג פֿון „מאָרגן פרעהייט״ דאָרט פֿאַרעפנטלעכט דערציילונגען און זכרונות",
+   "שרייבט ער שאָפּ-בילדער אין „פֿרייהייט\""
+  ],
+  "links": [
+   "https://jbc.bj.uj.edu.pl/dlibra/publication/399446#structure"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "doubt-db1220__galron-0885",
+  "section": "doubt",
+  "title": "דאָס פֿרייע וואָרט (Kyiv)  ↔  דאָס פֿריַיע וואָרט",
+  "sub": "Galron: פלדפינג (גרמניה) · coverage 1945–1946. The judge: Galron Feldafing entry is a different paper and is not linked.",
+  "context": [
+   "1927 — דעביוטירט מיט אַ ליד אין „דאָס פרייע וואָרט\" (קיעוו)"
+  ],
+  "links": [
+   "https://archive.org/details/frayevorfeldafin1011unse_ead"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "doubt-ORG-C02072__galron-1038",
+  "section": "doubt",
+  "title": "שריפֿטן (no city)  ↔  שריפטן <קולטור־ליגע>",
+  "sub": "Galron: קייב (אוקראינה) · coverage 1928. The judge: Galron Kyiv Kultur-Lige Shriftn not linked: different publication.",
+  "context": [
+   "פֿון 1912 ביז (ספּאַראַדיש) 1926... די זמ'ש „שריפֿטן“",
+   "אין זמ״ב „שריפטן\"",
+   "אין די „שריפטן“ VII — דעם איינאַקטער „די האָנט\" און דעם ערשטן און לעצטן אַקט פון אַ סימבאָלישער דראַמע „איבער אַלע בערג\""
+  ],
+  "links": [
+   "https://libraria.ua/en/all-titles/group/1239/"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "KEEP"
+ },
+ {
+  "id": "doubt-ORG-C00865__galron-0599",
+  "section": "doubt",
+  "title": "המבשר (Iași)  ↔  המבשר",
+  "sub": "Galron: לביב (אוקראינה) · coverage 1864. The judge: Galron Lviv entry is a different paper and is not linked.",
+  "context": [
+   "זאָל האָבן געדרוקט שירים אין העברעיש אין... „המבשר“",
+   "האָט אַרויסגעגעבן אין יאָסי דעם „המבשר — בעלעטריסטישע מאָנאַטסשריפט פֿיר ציוניזמוס, קולטור, אינטערעסאַנטע נאָכריכטען, קונסט אונד אונטערהאַלטונג\""
+  ],
+  "links": [
+   "https://catalog.hathitrust.org/Record/100348311"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "doubt-ORG-C04878__galron-0705",
+  "section": "doubt",
+  "title": "נייע וועלט-עמעס (no city)  ↔  נייע וועלט",
+  "sub": "Galron: וילנה (ליטא) · coverage 1906. The judge: Combined title; Galron Vilna Naye Velt not linked.",
+  "context": [
+   "געוואָרן אַ מיטגליד פֿון רעדאַקציעקאָלעגיע פֿון קאָמוניסטישן אָרגאָן „נייע וועלט-עמעס\""
+  ],
+  "links": [
+   "http://www.epaveldas.lt/object/recordDescription/LNB/C10000335281"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "doubt-ORG-C00547__galron-0949",
+  "section": "doubt",
+  "title": "קינדער-וועלט (New York)  ↔  די קינדער וועלט",
+  "sub": "Galron: ווארשה (פולין) · coverage 1927–1933. The judge: Cluster mixes the periodical with a camp of the same name.",
+  "context": [
+   "זי אויפֿגעפֿירט אין „קינדער וועלט\"",
+   "דריי יאָר — דראַמאַטישער דירעקטאָר פֿון „קינדערוועלט“ אין זעלבן קעמפּ",
+   "נ. האָט אין דער ניו יאָרקער „קינדער-וועלט“ (1930-31) פאָרעפנטלעכט אייניקע לידער."
+  ],
+  "links": [
+   "http://www.jpress.nli.org.il/Olive/APA/NLI_heb/?action=tab&amp;tab=browse&amp;pub=DIKINDWLT#panel=browse"
+  ],
+  "options": [
+   [
+    "KEEP",
+    "Keep the confirmation"
+   ],
+   [
+    "REJECT",
+    "Reject — a namesake"
+   ]
+  ],
+  "rec": "REJECT"
+ },
+ {
+  "id": "unsure-G089",
+  "section": "unsure",
+  "title": "סאַציאַל-דעמאָקראַט",
+  "sub": "Gebirtig 1905 organ vs Edlin weekly may be different; settle by lexicon source.",
+  "context": [
+   "געבירטיג, מרדכי [בערטיג] · 1905-12-08 · no place — פֿאַרעפנטלעכט זיינע ערשטע זאַכן אין זייער אָרגאַן „סאַציאַל-דעמאָקראַט“",
+   "עדלין, וויליאַם · n.d. · no place — געווען מיטגרינ דער פֿון וואָכנבלאַט „דער סאָציאַל-דעמאָקראַט\"",
+   "געבירטיג, מרדכי · 1905 · no place — הייבט ער אָן אין 1905 צו דרוקן אין „סאַציאָל-דעמאָקראָט“ טעאַטער-רעצענזיעס און לידער"
+  ],
+  "clusters": [
+   "ORG-C03443"
+  ],
+  "options": [
+   [
+    "mint",
+    "A real periodical: give it its own row"
+   ],
+   [
+    "generic",
+    "Too vague: generic, no row"
+   ],
+   [
+    "link",
+    "Same as an existing row (name it in the note)"
+   ]
+  ],
+  "rec": "generic"
+ },
+ {
+  "id": "unsure-G069",
+  "section": "unsure",
+  "title": "פּרעס",
+  "sub": "Bare \"Pres\" in Gershon Rubin's memory; may be Di Prese (Buenos Aires) or another paper; need Rubin's biography.",
+  "context": [
+   "רובין, גרשון · n.d. · no place — דעם אָנפֿאַנג האָבן זיי, אויב איך געדענק ריכטיק, ביידע געמאַכט אין פּרעס סאַטיריש-ערנסטע פעליעטאָנען"
+  ],
+  "clusters": [
+   "ORG-C07058"
+  ],
+  "options": [
+   [
+    "mint",
+    "A real periodical: give it its own row"
+   ],
+   [
+    "generic",
+    "Too vague: generic, no row"
+   ],
+   [
+    "link",
+    "Same as an existing row (name it in the note)"
+   ]
+  ],
+  "rec": "generic"
+ },
+ {
+  "id": "unsure-G553",
+  "section": "unsure",
+  "title": "העראלד",
+  "sub": "Bare title \"Herald\" with no place or date; Torberg's biography would settle which paper (a city and language).",
+  "context": [
+   "טאָרבערג, סעמיועל (שמואל) · n.d. · no place — ט. האָט אַ לענגערע צייט געשריבן דערציילונגען פֿאָרן „העראלד\""
+  ],
+  "clusters": [
+   "ORG-C03887"
+  ],
+  "options": [
+   [
+    "mint",
+    "A real periodical: give it its own row"
+   ],
+   [
+    "generic",
+    "Too vague: generic, no row"
+   ],
+   [
+    "link",
+    "Same as an existing row (name it in the note)"
+   ]
+  ],
+  "rec": "generic"
+ },
+ {
+  "id": "unsure-G284",
+  "section": "unsure",
+  "title": "טאָנ",
+  "sub": "Bare \"Tog\" without city or date; the Bukshteyn entry's place/year would settle which Tog (or whether it is Der Tog of New York).",
+  "context": [
+   "בוקשטיין, אַברהם · n.d. · no place — באָזונדערס אין „טאָנ“"
+  ],
+  "clusters": [
+   "ORG-C05709"
+  ],
+  "options": [
+   [
+    "mint",
+    "A real periodical: give it its own row"
+   ],
+   [
+    "generic",
+    "Too vague: generic, no row"
+   ],
+   [
+    "link",
+    "Same as an existing row (name it in the note)"
+   ]
+  ],
+  "rec": "generic"
+ },
+ {
+  "id": "conflict-ORG-C03990",
+  "section": "conflict",
+  "title": "דיא וואַרהייט (ORG-C03990)",
+  "sub": "Already decided NOT_AN_ORG by Judith. The press audit proposed: align to db 463  — G222: Existing db 463 (Di Varhayt) is this paper; currently wrongly attached to G318.",
+  "context": [
+   "טענענהאָלץ, אליהוּ · 1916 · no place — 1916 — איז ט. געוואָרן אַ מיטאַרבּעטער אין „דיא וואַרהייט\"",
+   "יאַנאָווסקי, שאוּל-יוסף · n.d. · no place — אין אַמעריקע איזער געווען דער פֿאַקטישער רעדאַקטאָר פֿון דער ערשטער יידישער אַנאַרכיסטישער צייטונג „די ווארהייט“",
+   "יאָנג, בערנאַרד [בועז יונגוויץ] · 1914 · no place — פֿאַרעפנטלעכט אין „דיא וואַרהייט“ אייניקע אַרטיקלען",
+   "ים, א. [יעקב-אברהם יערוכאָמאָוויטש — י.  · 1899 · no place — נאָנטער מיטאַרבעטער און מיטגליד פֿון רעדאַקציע-קאָלעגיע אין „דיא וואַרהייט“ (1899)"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the earlier decision"
+   ],
+   [
+    "apply",
+    "Apply the press-audit proposal"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "conflict-ORG-C00065_Q01",
+  "section": "conflict",
+  "title": "די אידישע צייטונג (ORG-C00065_Q01)",
+  "sub": "Already decided SPLIT_DONE by split_2026_10_04. The press audit proposed: align to db 1830 אידישע צייטונג — G004: Argentine paper db row 1830; Galron Landsberg entry is a different paper and is not linked.",
+  "context": [
+   "זשיטניצקי, ל. [פּנחס-אַליעזר] · n.d. · no place — פֿריער געווען אַ מיטאַרבעטער אין „די אידישע צייטונג\"",
+   "כץ, חבל · 1939-07-14 · ב'אַ — פון 14 יולי 1939 האָט „די אידישע צייטונג\" אין ב'אַ אָנגעהויבן אָפּדרוקן כ.'ס לידלעך",
+   "\"יידישע באַנדע\" · n.d. · no place — פֿאַרעפנטלעכט אין 'די אידישע צייטונג' א צאָל דערציילונגען",
+   "פּינטשעווסקי, מוישע · 1913 · ארגענטינע — צו דרוקן אין „די אידישע צייטונג\" לידער אויף יידיש"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the earlier decision"
+   ],
+   [
+    "apply",
+    "Apply the press-audit proposal"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "conflict-ORG-C02146",
+  "section": "conflict",
+  "title": "פֿאַרלאָג „אַרבעטער וועלט“ (ORG-C02146)",
+  "sub": "Already decided ALIGN → db 3573 by Sinai. The press audit proposed: align to db 3304 אידישע אַרבייטער וועלט — G042: One correct db row; cluster C02146 (farlag Arbeter Velt, aligned 3573) is a publisher mention and may need unlinking.",
+  "context": [
+   "קאַדער, באָריס · 1939 · שיקאָגאָ — פֿאַרלאָג „אַרבעטער וועלט“, שיקאָגאָ, 1939, (108 זז., צווייטע אויפֿגאָבע, 1941)"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the earlier decision"
+   ],
+   [
+    "apply",
+    "Apply the press-audit proposal"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "conflict-ORG-C04447",
+  "section": "conflict",
+  "title": "דער טעגלייכער העראָלד (ORG-C04447)",
+  "sub": "Already decided NEW → db 603 by Sinai. The press audit proposed: align to db 461 יידישער העראָלד — G201: Db row 461; another cluster aligned to 603 belongs to the same title.",
+  "context": [
+   "ליפּצין, קעני [קריינע סאָניעס, סאַכאַר] · n.d. · no place — חתונה געהאַט פֿאַר אַן אַרויסגעבער פֿון אַ טעגלעכער צייטונג [מייקל מינץ פֿון „דער טעגלעכער העראָלד״]",
+   "מינץ, מייקעל (מיכאל) · 1991 · no place — 1991 — האָט מ. אַרויסגעגעבן „דער טעגלייכער העראָלד\"",
+   "עדלין, וויליאַם · n.d. · no place — מיטגעאַרבעט אין „דער טעגליכער העראָלד\""
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the earlier decision"
+   ],
+   [
+    "apply",
+    "Apply the press-audit proposal"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "conflict-ORG-C00320_P01",
+  "section": "conflict",
+  "title": "אַרבעטער-צייטונג (ORG-C00320_P01)",
+  "sub": "Already decided DISCUSS by a reviewer. The press audit proposed: its own new row אַרבעטער-צייטונג (טשערנאָוויץ) — G594 split",
+  "context": [
+   "וויינער, ברכה · n.d. · טשערנאָוויץ — ",
+   "מאַרקס, דאָלף [ראָדקינסאָן] · 1891-11-26 · no place — אויפֿגעפֿירט אין רומעניע אָפּערע-הויז אויף אַ בענעפיס-פֿאַרשטעלונג פֿאַר די \"אַרבעטער-צייטונג\""
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the earlier decision"
+   ],
+   [
+    "apply",
+    "Apply the press-audit proposal"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "conflict-ORG-C05312",
+  "section": "conflict",
+  "title": "לוח אַחיעבר (ORG-C05312)",
+  "sub": "Already decided NOT_AN_ORG by Sinai. The press audit proposed: its own new row לוח אחיעבר — G493: Named yearbook.",
+  "context": [
+   "ערדבערג, שמשון · 1918 · ניו-יאָרק — אין „לוח אַחיעבר“ (נ. י. 1918) האָט ע. פֿאַרעפנטלעכט אַ'פּ ש. רובינזון אַ גרעסערן אַרטיקל",
+   "זייפערט, משה · 1921 · ניו יאָרק — אין „לוח אַחיעבר\" יניו יאָרק תרפּיא) אַ גרעסערן העברעישן אָרטיקל וועגן יידישן טעאַטער"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the earlier decision"
+   ],
+   [
+    "apply",
+    "Apply the press-audit proposal"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "conflict-ORG-C00939",
+  "section": "conflict",
+  "title": "המליץ (ORG-C00939)",
+  "sub": "Already decided DEFER by Judith. The press audit proposed: its own new row המליץ — G383: Well-known title; earlier DEFER; settlement omitted as mentions give no city.",
+  "context": [
+   "שמ\"ר [שייקעוויטש. נחום מאיר] · 1869 · no place — זומער 1869 פֿאַרעפנטלעכט ער אין „המליץ אַן אַרטיקל",
+   "פישעלזאָהן, אפֿרים-פֿישל · 1880 · no place — אין „המליץ“, 1880, נומער 5, ז. 78, איז אָפּגעדרוקט אַ קאָרעספּאַנדענץ מיט דער אינטערשריפט „אפֿרים פֿישל פֿישלזאָן איש זאַמושסץ“",
+   "קיפּניס, מנחם · 1902 · no place — זיין זשורנאַליסטישע טעטיקייט האָט ק. אָנגעהויבן אין 1902 אין 'המליץ'",
+   "ווידרעוויטש, משה דוד · n.d. · no place — געשרייבן פעליעטאָנען, לידער, אַרטיקלען, הומאָרעסקעס אין „המליץ"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the earlier decision"
+   ],
+   [
+    "apply",
+    "Apply the press-audit proposal"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-PS-C01814-2",
+  "section": "low",
+  "title": "דאָס יודישע וואָרט (אַגודה)  ·  Dos Yudishe Vort (Agudah daily)",
+  "sub": "db 3864 · no city · G534 split",
+  "context": [
+   "רייז, בנימין חיים · n.d. · no place — אין דער צייט פֿון דער ערשטער וועלט-מלחמה האָט ער מיטגעאַרבעט אין די טעגלעכע אַגודיסטישע יידישע צייטונגען „דאָס יודישע וואָרט“"
+  ],
+  "db": "3864",
+  "clusters": [
+   "ORG-C01814_P02"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-PS-C00717-2",
+  "section": "low",
+  "title": "די אידישע וואָכענשריפֿט (פּינסקי)  ·  Di Yidishe Vokhnshrift (Pinski)",
+  "sub": "db 3867 · New York · G314 split",
+  "context": [
+   "פּינסקי, דוד · 1912 · no place — אַרויסגעגעבן דעם ליטעראַרישסאַציאָליסטישן זשורנאל „די אידישע וואָכענשריפט“"
+  ],
+  "db": "3867",
+  "clusters": [
+   "ORG-C00717_P02"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-PS-C02957-4",
+  "section": "low",
+  "title": "דער וועקער (בריסק)  ·  Der Veker (Brisk)",
+  "sub": "db 3878 · Brest · G185 split",
+  "context": [
+   "לידין, ב. [אַליהו-ברוך ליוועראַנט] · n.d. · ראַקאָוו — שרייבט אויך גלייכצייטיק אין אָרטיקן 'דער וועקער'",
+   "לידין, בּ. [אליהו-ברוך ליוועראַנט] · n.d. · בריסק — שרייבט אויך גלייכצייטיק אין אָרטיקן „דער וועקער\""
+  ],
+  "db": "3878",
+  "clusters": [
+   "ORG-C02957_P04"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-PS-C01608-4",
+  "section": "low",
+  "title": "די צייט (1871)  ·  Di Tsayt (1871, Romania)",
+  "sub": "db 3883 · no city · G106 split",
+  "context": [
+   "הורוויץ, [האָרוויץ - הורוויטש] משה איש ה · 1871 · no place — אין 1871 אַרויסגעגעבן אין העברעאיש און אין רומעניש אַ צייטונג „די צייט“"
+  ],
+  "db": "3883",
+  "clusters": [
+   "ORG-C01608_P04"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-PS-C04696-2",
+  "section": "low",
+  "title": "די נייע וועלט (1897)  ·  Di Naye Velt (1897 monthly)",
+  "sub": "db 3889 · no city · G520 split",
+  "context": [
+   "שאַרקאַנסקי, אַברהם מיכל · 1897 · no place — אין 1897 האָט ער אַליין אַרויסגעגעבן אַ מאָנאַטשריפט „די נייע וועלט“"
+  ],
+  "db": "3889",
+  "clusters": [
+   "ORG-C04696_P02"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-PS-C00539-4",
+  "section": "low",
+  "title": "דער טאָג (קראָקע)  ·  Der Tog (Kraków)",
+  "sub": "db 3892 · Kraków · G226 split",
+  "context": [
+   "ביקעלס-שפּיצער, צבי דר. · n.d. · קראקע — ב. באטייליקט זיך כמעט אין אלע צייטשריפטן... „דער טאָג“, קראקע"
+  ],
+  "db": "3892",
+  "clusters": [
+   "ORG-C00539_P04"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G386",
+  "section": "low",
+  "title": "באדן  ·  Baden",
+  "sub": "db 3894 · no city · G386: Single attestation of a titled journal; place unknown.",
+  "context": [
+   "קינדמאַן, שרה · 1936 · no place — „צוויי סערבישע זאַגאַס“ (געדרוקט אין זשורנאל \"באדן“, 1936)"
+  ],
+  "db": "3894",
+  "clusters": [
+   "ORG-C01056"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G380",
+  "section": "low",
+  "title": "דער בעזים  ·  Der bezem",
+  "sub": "db 3900 · no city · G380: Real named periodical with no db row.",
+  "context": [
+   "ריוועסמאַן, מרדכי · n.d. · no place — אויך אין די אַנדערע פּעריאָדישע אויסגאָבן ... אין די וויץ-בלעטער ... „דער בעזים\""
+  ],
+  "db": "3900",
+  "clusters": [
+   "ORG-C01736"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G510",
+  "section": "low",
+  "title": "דער ייד  ·  Der yid",
+  "sub": "db 3902 · no city · G510: Title only, no place or date.",
+  "context": [
+   "מלמד, משה · n.d. · no place — געדרוקט קאָרעספּאָנדענציעס אין „דער ייד\""
+  ],
+  "db": "3902",
+  "clusters": [
+   "ORG-C04810"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G100",
+  "section": "low",
+  "title": "די יידישע בערזע  ·  Di yidishe berze",
+  "sub": "db 3906 · no city · G100: Real named periodical with no db row.",
+  "context": [
+   "בזשוסטאָווסקי (בריסטאָווסקי) חיים-יאנקל · 1921 · no place — האָט אַרויסגעגעבן אין 1921 „די יידישע בערזע“"
+  ],
+  "db": "3906",
+  "clusters": [
+   "ORG-C02619"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G180",
+  "section": "low",
+  "title": "אידישען טעלעגראַף  ·  Idishn telegraf",
+  "sub": "db 3918 · no city · G180: Real named periodical with no db row.",
+  "context": [
+   "אייבראַמס, דוד · 1903 · no place — פֿאַרעפענטלעכט א. אין „אידישען טעלעגראָף“ אַ סעריע אָרטיקלען"
+  ],
+  "db": "3918",
+  "clusters": [
+   "ORG-C05425"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G400",
+  "section": "low",
+  "title": "אידישער קאָנגרעס  ·  Idisher kongres",
+  "sub": "db 3920 · no city · G400: Real named periodical with no db row.",
+  "context": [
+   "אַלקאָן, י [יהושע עלקין] · 1916 · no place — און אין „אידישער קאָנגרעס\" זיין איינאַקטער „פֿאַרנאַכט“"
+  ],
+  "db": "3920",
+  "clusters": [
+   "ORG-C07246"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G050",
+  "section": "low",
+  "title": "אידישער סוחר  ·  Idisher sokher",
+  "sub": "db 3923 · no city · G050: Real named periodical with no db row.",
+  "context": [
+   "פריזאַמענט, שלמה · n.d. · אַרגענטינע — וואו ער שרייבט אין „אידישער סוחר\""
+  ],
+  "db": "3923",
+  "clusters": [
+   "ORG-C00870"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G539",
+  "section": "low",
+  "title": "אידישער זשורנאַליסט  ·  Idisher zhurnalist",
+  "sub": "db 3924 · no city · G539: Real named periodical with no db row.",
+  "context": [
+   "ברוינער [בראונער], יצחק, איטשל · 1919 · no place — געדרוקט אַרטיקלען... אין 'אידישער זשורנאַליסט'"
+  ],
+  "db": "3924",
+  "clusters": [
+   "ORG-C03144"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G011",
+  "section": "low",
+  "title": "פֿאַר פֿאָלקלאָר און פֿילאָלאָגיע ביי אונז יודען  ·  Far folklor un filologye bay undz yuden",
+  "sub": "db 3929 · no city · G011: Named miscellany; may be a one-off.",
+  "context": [
+   "קאָוואַ, שלמה-לייב · n.d. · no place — רעדאַקטירט דאָס זאַמלבוך פֿאַר פֿאָלקלאָר און פֿילאָלאָגיע ביי אונז יודען"
+  ],
+  "db": "3929",
+  "clusters": [
+   "ORG-C03405"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G448",
+  "section": "low",
+  "title": "גאָלדענע פֿונקען  ·  Goldene funkn",
+  "sub": "db 522 · Warsaw · G448: Title and place given; nature (periodical vs. series) uncertain.",
+  "context": [
+   "פ.'ס געדרוקטע פּיעסעס: · 1907 · וואַרשא — געדרוקט אין „גאָלדענע פונקען“, וואַרשא 1907"
+  ],
+  "db": "522",
+  "clusters": [
+   "ORG-C00915"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G514",
+  "section": "low",
+  "title": "די געווערקשאַפֿטן  ·  Di gewerkshaftn",
+  "sub": "db 3936 · no city · G514: Real named periodical with no db row.",
+  "context": [
+   "מאָזער בנציון [יעקב הערצאָג] · 1918 · no place — 1918 מיטגעאַרבעט אין... „די געווערקשאַפטן\""
+  ],
+  "db": "3936",
+  "clusters": [
+   "ORG-C07116"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G606",
+  "section": "low",
+  "title": "הנשר  ·  Ha-nesher",
+  "sub": "db 3940 · no city · G606: Real named periodical with no db row.",
+  "context": [
+   "פריזאַמענט, משה · n.d. · no place — זאָל האָבן געדרוקט שירים אין העברעיש אין „הנשר“"
+  ],
+  "db": "3940",
+  "clusters": [
+   "ORG-C00864"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G171",
+  "section": "low",
+  "title": "קולטור און אַרבעט  ·  Kultur un arbet",
+  "sub": "db 3943 · no city · G171: Real named periodical with no db row.",
+  "context": [
+   "קאָזיניץ, ש. י (שמואל יצחק] · 1920-06 · no place — אין יוני 1920 אין „קולטור און אַרבעט זיין דראַמאַטיש בילד"
+  ],
+  "db": "3943",
+  "clusters": [
+   "ORG-C07181"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G322",
+  "section": "low",
+  "title": "על דיאַ  ·  El Dia",
+  "sub": "db 3949 · no city · G322: Real title with Mexico as place; language inferred from the title.",
+  "context": [
+   "ראַבעל, מלכה [ראַבינאָוויטש] · n.d. · מעקסיקע — ר. איז אַ מיטאַרבעטערין אין... \"על דיאַ\""
+  ],
+  "db": "3949",
+  "clusters": [
+   "ORG-C02060"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G436",
+  "section": "low",
+  "title": "אַמעריקען פּרימאַ  ·  Amerikan prima",
+  "sub": "db 3960 · no city · G436: Real named periodical with no db row.",
+  "context": [
+   "גאָלדבערג אייזיק · 1923 · no place — פֿון 1923 ביז 1932 געווען ליטעראַרישער רעדאַקטאָר פֿון „אַמעריקען פֿרימאַ״"
+  ],
+  "db": "3960",
+  "clusters": [
+   "ORG-C02097"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G306",
+  "section": "low",
+  "title": "ניי-ערד  ·  Nay-erd",
+  "sub": "db 3962 · Moscow · G306: Real named periodical with no db row.",
+  "context": [
+   "גראַנאָווסקי, אַלעקסאַנדער [אַברהם אַזאַ · 1925 · מאָסקווע — געדרוקט אין ניי-ערד, מאָסקווע, 1925"
+  ],
+  "db": "3962",
+  "clusters": [
+   "ORG-C06252"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G558",
+  "section": "low",
+  "title": "אונזער פֿאָלק  ·  Unzer folk",
+  "sub": "db 3963 · New York · G558: Real named periodical with no db row.",
+  "context": [
+   "מערקור וואָלף · n.d. · no place — אין ניו-יאָרקער „אונזער פאָלק\" מערערע אַרטיקלען וועגן יידישן טעאַטער"
+  ],
+  "db": "3963",
+  "clusters": [
+   "ORG-C04868",
+   "ORG-C05281"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G583",
+  "section": "low",
+  "title": "נייע וועלט-עמעס  ·  Naye velt-emes",
+  "sub": "db 3964 · no city · G583: Combined title; Galron Vilna Naye Velt not linked.",
+  "context": [
+   "מרמר קאַרל (קלמן-צבי) · n.d. · no place — געוואָרן אַ מיטגליד פֿון רעדאַקציעקאָלעגיע פֿון קאָמוניסטישן אָרגאָן „נייע וועלט-עמעס\""
+  ],
+  "db": "3964",
+  "clusters": [
+   "ORG-C04878"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G071",
+  "section": "low",
+  "title": "ניואַנסן  ·  Nuansn",
+  "sub": "db 3970 · no city · G071: Real named periodical with no db row.",
+  "context": [
+   "שניידער, שלמה · 1921 · no place — אין 1921 דעביוטירט מיט לידער אין \"ניואַנסן\""
+  ],
+  "db": "3970",
+  "clusters": [
+   "ORG-C01958"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G273",
+  "section": "low",
+  "title": "דאָס אידישע פֿאָלק  ·  Dos idishe folk",
+  "sub": "db 3977 · no city · G273: Real named periodical with no db row.",
+  "context": [
+   "אַלקאַן,יהושע · 1914 · no place — דעביוטירט אין 1914 מיט סקיצן און דערציילוננען אין „דאָס אירישע פאָלק“"
+  ],
+  "db": "3977",
+  "clusters": [
+   "ORG-C05471",
+   "ORG-C06302"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G457",
+  "section": "low",
+  "title": "טהעאַטער מאָווינג פּיקטשורס  ·  Theater moving pictures",
+  "sub": "db 3985 · New York · G457: Real named periodical with no db row.",
+  "context": [
+   "פֿרידמאַן, ישראל · 1913-10-17 · ניו יאָרק — פ. האָט רעדאַקטירט „טהעאַטער מאַיוונג פיקטשורס"
+  ],
+  "db": "3985",
+  "clusters": [
+   "ORG-C00256"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G608",
+  "section": "low",
+  "title": "די טריבונע  ·  Di tribune",
+  "sub": "db 3989 · no city · G608: Galron match is Copenhagen; mention gives no place.",
+  "context": [
+   "יוקלסאָן, ראובן · n.d. · no place — י. האָט גלייכצייטיק רעדאַקטירט „די טריבונע“"
+  ],
+  "db": "3989",
+  "clusters": [
+   "ORG-C02033"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G568",
+  "section": "low",
+  "title": "ווילנער וואָכענבלאַט  ·  Vilner vokhnblat",
+  "sub": "db 3991 · Vilnius · G568: Real named periodical with no db row.",
+  "context": [
+   "גערץ, מ. [מאָשקאָוויטש] · n.d. · ווילנע — דעביוטירט דאָרט מיט אַ פעליעטאָן אין „ווילנער וואָכענבלאַט“"
+  ],
+  "db": "3991",
+  "clusters": [
+   "ORG-C06231"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G554",
+  "section": "low",
+  "title": "דאָס וואָרט (פּועלי-ציון)  ·  Dos vort",
+  "sub": "db 3994 · no city · G554: No place; not merged with the Kaunas Dos Vort.",
+  "context": [
+   "שטיין, מ. ב. [משה-בער באַרנשטיין] · n.d. · no place — מיטגעאַרבעט אין דער פּועליציוניסטישער טאָג-צייטונג „דאָס וואָרט“",
+   "בידערמאַן, איטשע וו. · n.d. · no place — די איינאַקטערס „זיי און ער“ (אין זעצערס „דאָס וואָרט\")"
+  ],
+  "db": "3994",
+  "clusters": [
+   "ORG-C01659"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G579",
+  "section": "low",
+  "title": "פֿונקען  ·  Funkn",
+  "sub": "db 3998 · Łódź · G579: Title partly abbreviated in source.",
+  "context": [
+   "הערשעלע [הערשעלע דאָניעלעוויטש] · 1904 · לאָדזש — דעביוטירט אין 1904 אין זמ\"ה פונקן“, לאָדזש"
+  ],
+  "db": "3998",
+  "clusters": [
+   "ORG-C06508"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G562",
+  "section": "low",
+  "title": "בוקאָווינער איזראַעליטישע פֿאַמיליענבלאַט  ·  Bukoviner Izraelitishe Familienblat",
+  "sub": "db 4005 · no city · G562: Named title; Yiddish rendering of a German-language title.",
+  "context": [
+   "ליבּרעסקאָ, יצחק [ליבּער] · n.d. · no place — ל. ווערט אויך דער נישט האָנארירטער אַגענט ... פֿון גאָלדפאַדעןס \"בוקאָווינער איזראַעליטישע פאַמיליענבלאַט\"."
+  ],
+  "db": "4005",
+  "clusters": [
+   "ORG-C04352"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G186",
+  "section": "low",
+  "title": "צופה להמגיד  ·  Tsofe le-Hamagid",
+  "sub": "db 4008 · no city · G186: Named title, single mention.",
+  "context": [
+   "מושקאָט, חיים-אַליעזר · n.d. · no place — געשריבן מאַמרים אין „צופה להמגיד“"
+  ],
+  "db": "4008",
+  "clusters": [
+   "ORG-C04703"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G326",
+  "section": "low",
+  "title": "פֿרייע יוגענד  ·  Fraye Yugend",
+  "sub": "db 4025 · Warsaw · G326: Named organ.",
+  "context": [
+   "דאָרף, מאָריס · n.d. · וואַרשע — זיך באַטייליקט אין זייער אָרגאַן „פרייע יוגענד\""
+  ],
+  "db": "4025",
+  "clusters": [
+   "ORG-C06343"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G475",
+  "section": "low",
+  "title": "פֿאַרשרייט  ·  Farshrayt",
+  "sub": "db 4029 · no city · G475: Named organ; spelling as written.",
+  "context": [
+   "פעלדמאַן, אהרן · n.d. · no place — נעמט שרייבן אין יוניע- אָרגאַן „פֿאַרשרייט\""
+  ],
+  "db": "4029",
+  "clusters": [
+   "ORG-C01915"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G575",
+  "section": "low",
+  "title": "גרויס און קליין  ·  Groys un Kleyn",
+  "sub": "db 4033 · no city · G575: Named title.",
+  "context": [
+   "טאַבאַקשניידער מ. י. · n.d. · no place — ט. האָט אין... „גרויס און קליין“... פֿאַרעפנטלעכט די סצענקעס"
+  ],
+  "db": "4033",
+  "clusters": [
+   "ORG-C03825"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G063",
+  "section": "low",
+  "title": "העברי (בראָדי)  ·  Ha-Ivri",
+  "sub": "db 4036 · Brody · G063: Different city from G161.",
+  "context": [
+   "האָפנער חיים-אהרן · n.d. · בראָדי — געווען אויך מיטרעדאָקטאָר פֿון „העברי“"
+  ],
+  "db": "4036",
+  "clusters": [
+   "ORG-C05662_Q02"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G376",
+  "section": "low",
+  "title": "אַקספֿאָרד דזשוירנאָל  ·  Oxford Journal",
+  "sub": "db 4049 · no city · G376: Named.",
+  "context": [
+   "גאָלדבערג אייזיק · n.d. · no place — געדרוקט אין 1917 אין „אַקספֿאָרד דזשוירנאָל“"
+  ],
+  "db": "4049",
+  "clusters": [
+   "ORG-C02105"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G531",
+  "section": "low",
+  "title": "ליטבל'ט  ·  Litbl't",
+  "sub": "db 4056 · no city · G531: Single named mention.",
+  "context": [
+   "קאָרנטייער ס. · n.d. · no place — אין אַ נאָטיץ אין „ליטבל'ט\" ווערט געזאָגט"
+  ],
+  "db": "4056",
+  "clusters": [
+   "ORG-C03276"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G585",
+  "section": "low",
+  "title": "Новый мир  ·  Novyi Mir",
+  "sub": "db 4068 · no city · G585: Named.",
+  "context": [
+   "דייקסעל, שמואל · 1911 · no place — איז מיטאַרבעטער אין דער רוסישער צייטונג \"נאָווי מיר\""
+  ],
+  "db": "4068",
+  "clusters": [
+   "ORG-C06373"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G444",
+  "section": "low",
+  "title": "Русский голос  ·  Russkiy Golos",
+  "sub": "db 4072 · no city · G444: Named.",
+  "context": [
+   "קאָזיניץ, ש. י (שמואל יצחק] · n.d. · no place — אַרבעט אַלס זעצער אין די צייטונגען רוסקי גאָלאָס“"
+  ],
+  "db": "4072",
+  "clusters": [
+   "ORG-C07182"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G369",
+  "section": "low",
+  "title": "אין דער וועלט פֿון קונסט  ·  V mire iskusstva",
+  "sub": "db 4091 · no city · G369: Named.",
+  "context": [
+   "זשיטניצקי, ל. [פּנחס-אַליעזר] · n.d. · no place — אַ צייט אָנגעפֿירט מיט דער טעאַטער-אָפּטיילונג פֿון רוסישן זשורנאָל „וומיריע איסקוסטווא\""
+  ],
+  "db": "4091",
+  "clusters": [
+   "ORG-C00064"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G058",
+  "section": "low",
+  "title": "יודישער פריינד  ·  Yudisher fraynd",
+  "sub": "db 4116 · no city · G058: Named but no city.",
+  "context": [
+   "דויבער, זכריה-אַברהם · 1927 · no place — און \"יודישער פריינד\""
+  ],
+  "db": "4116",
+  "clusters": [
+   "ORG-C03624"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G302",
+  "section": "low",
+  "title": "פראלעטארישער שטימע  ·  Proletarisher shtime",
+  "sub": "db 4129 · no city · G302: Named, no context.",
+  "context": [
+   "ראַטמאַן, כנימין · n.d. · no place — באַסייליקט זיך אין דער „פּראָלעטאַרישער שטימע“"
+  ],
+  "db": "4129",
+  "clusters": [
+   "ORG-C01085"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G416",
+  "section": "low",
+  "title": "די האפנונג  ·  Di hofnung",
+  "sub": "db 4138 · no city · G416: Named, no city in mention.",
+  "context": [
+   "וויינרייך, מאַקס דר [מאיר] · n.d. · no place — זיין ליטעראָרישע טעטיגקייט האָט וו. אָנגעהויבן מיט קאָרעספּאָנדענציעס אין „די האָפנונג\""
+  ],
+  "db": "4138",
+  "clusters": [
+   "ORG-C06631"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G200",
+  "section": "low",
+  "title": "קאנאדא  ·  Kanade",
+  "sub": "db 4145 · no city · G200: Named periodical, a single mention.",
+  "context": [
+   "ראַבינאָוויטש, ישראל · 1925-07 · no place — געפּרוווט אַרויסגעבן אַן ערנסטן אָרגאָן פֿאַר ליטעראַטור און קונסט „קאַנאַדאָ“"
+  ],
+  "db": "4145",
+  "clusters": [
+   "ORG-C02120"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G481",
+  "section": "low",
+  "title": "קינדער אדלער  ·  Kinder adler",
+  "sub": "db 4146 · no city · G481: Title not same as Kanader Adler; no evidence of connection.",
+  "context": [
+   "מאלאַמוט, יואל-לייב · 1912 · no place — אין 1912 איז אין „קינדער אדלער\" פאַרעפנטלעכט געווארן מ.'ס קינדער-איינאַקטער"
+  ],
+  "db": "4146",
+  "clusters": [
+   "ORG-C04596"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G371",
+  "section": "low",
+  "title": "על נאציאנאל  ·  El nacional",
+  "sub": "db 4149 · Buenos Aires · G371: Named Spanish paper; city from record place field.",
+  "context": [
+   "ראַבעל, מלכה [ראַבינאָוויטש] · n.d. · בוענאָס-אַיירעס — ר. איז אַ מיטאַרבעטערין אין די וויכטיקסטע שפּאַנישע צייטונגען ווי \"על נאַסיאָנאַל\""
+  ],
+  "db": "4149",
+  "clusters": [
+   "ORG-C02059"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G410",
+  "section": "low",
+  "title": "אלמאנאך יידיש  ·  Almanakh yidish",
+  "sub": "db 4152 · no city · G410: Named almanac, little context.",
+  "context": [
+   "קראַטקאַ, שמעון-בער · n.d. · no place — געמאָלט די הילע פֿונעם אַלמאָנאָך \"יידיש\""
+  ],
+  "db": "4152",
+  "clusters": [
+   "ORG-C02021"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G265",
+  "section": "low",
+  "title": "מולדת  ·  Moledet",
+  "sub": "db 4155 · no city · G265: Named, no context.",
+  "context": [
+   "פּינטשעווסקי, מוישע · n.d. · no place — געדרוקט העברעישע לידער אין... \"מולדת\""
+  ],
+  "db": "4155",
+  "clusters": [
+   "ORG-C00712"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G328",
+  "section": "low",
+  "title": "מיניקעס בלעטער  ·  Minikes bleter",
+  "sub": "db 4156 · no city · G328: Named, single mention.",
+  "context": [
+   "בוקשטיין, אַברהם · 1920 · no place — געדרוקט אין „מיניקעס בלעטער“ (פּסח 1920)"
+  ],
+  "db": "4156",
+  "clusters": [
+   "ORG-C05710"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G548",
+  "section": "low",
+  "title": "אין דער האפענונג  ·  In der hofenung",
+  "sub": "db 4163 · Warsaw · G548: Named Warsaw journal.",
+  "context": [
+   "מאַרווייל, שמואל · 1927 · וואַרשע — דעביוטירט אין ווייסענבערגס זשורנאָל „אינדער האָפענינג\" (1927) מיט אַ לעבנסבילד"
+  ],
+  "db": "4163",
+  "clusters": [
+   "ORG-C03561"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G591",
+  "section": "low",
+  "title": "אונזער זשורנאל  ·  Undzer zhurnal",
+  "sub": "db 4170 · no city · G591: Named, no context.",
+  "context": [
+   "פֿאַרבאַ, אַלעקסאַנדער [סענדער זושיע פֿאַר · n.d. · no place — אַרויסגעגעבן עטלעכע נומערן פֿון צווייוועכנטלעכן „אונזער זשורנאַל“"
+  ],
+  "db": "4170",
+  "clusters": [
+   "ORG-C07153"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G374",
+  "section": "low",
+  "title": "סאקאלאווס טעלעגראף  ·  Sokolovs telegraf",
+  "sub": "db 4175 · no city · G374: Named but unclear.",
+  "context": [
+   "קאָוואַ, שלמה-לייב · 1905 · no place — אין 1905 זיך אָנגעהויבן דרוקן אין סאָקאָלאָווס טעלעגראַף"
+  ],
+  "db": "4175",
+  "clusters": [
+   "ORG-C03404"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G335",
+  "section": "low",
+  "title": "טעגליכע וועלט  ·  Tegliche velt",
+  "sub": "db 4180 · no city · G335: Named daily, no city.",
+  "context": [
+   "מרמר קאַרל (קלמן-צבי) · 1917 · no place — טעגלייכע וועלט“ (1917-18)"
+  ],
+  "db": "4180",
+  "clusters": [
+   "ORG-C04880"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G347",
+  "section": "low",
+  "title": "וועגעטארישער געדאנק  ·  Vegetarisher gedank",
+  "sub": "db 4184 · no city · G347: Named journal, one mention.",
+  "context": [
+   "דר. וועלוול אַסטראָווסקי · n.d. · no place — ער האָט אויך רעדאַגירט דעם זשורנאָל „וועגעטאַרישער געדאַנק\""
+  ],
+  "db": "4184",
+  "clusters": [
+   "ORG-C07404"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G496",
+  "section": "low",
+  "title": "אווענטול  ·  Avantul",
+  "sub": "db 4186 · no city · G496: Named Romanian paper.",
+  "context": [
+   "דרוקער, לייב · n.d. · no place — אויף רומעניש אין דער צייטונג „אַווענטול‟"
+  ],
+  "db": "4186",
+  "clusters": [
+   "ORG-C03199"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G525",
+  "section": "low",
+  "title": "די וואך (ניו יארק)  ·  Di vokh",
+  "sub": "db 4189 · New York · G525: Named NY periodical.",
+  "context": [
+   "מנחם (מנחם גאָלדבערג] · n.d. · נ. י. — און דערנאָך אין „די וואָך“"
+  ],
+  "db": "4189",
+  "clusters": [
+   "ORG-C03708_Q03"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G471",
+  "section": "low",
+  "title": "זשידא געפלאץ  ·  Zshida geplats",
+  "sub": "db 4190 · no city · G471: Named paper.",
+  "context": [
+   "סערעני, ב. [דוב טרילאָוויטען] · 1920 · no place — רעדאַקטירט דאָס יידיש-אונגאַרישע בלאַט „זשידאַ געפּלאַץ\""
+  ],
+  "db": "4190",
+  "clusters": [
+   "ORG-C05181"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G603",
+  "section": "low",
+  "title": "יונג יידיש  ·  Yung yidish",
+  "sub": "db 4192 · no city · G603: Named journal.",
+  "context": [
+   "מאַטום, דינה · n.d. · no place — אין זשורנאָל \"יונג יידיש האָט מ. געדרוקט רעפּראָדוקציעס פֿון אירע בילדער"
+  ],
+  "db": "4192",
+  "clusters": [
+   "ORG-C03337"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G398",
+  "section": "low",
+  "title": "די בע צע נאַכריכטען  ·  Di Be-Tse Nakhrikhtn",
+  "sub": "db 4195 · no city · G398: Named periodical with no db row.",
+  "context": [
+   "זינגער יעקב · 1922 · no place — 1922... זיך אָפּגעשטעלט אין דייטשלאַנד, וואו ער דרוקט אַרטיקלען אין „די בע צע נאַכריכטען\""
+  ],
+  "db": "4195",
+  "clusters": [
+   "ORG-C01429"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G598",
+  "section": "low",
+  "title": "ביאַליסטאָקער צייטונג  ·  Bialistoker Tsaytung",
+  "sub": "db 4197 · Białystok · G598: Named periodical with no db row.",
+  "context": [
+   "סעגאַלאָוויטש, זוסמאַן · 1903 · no place — זיין ליטעראַרישע טעטיקייט האָט ס. אָנגעהויבן אין 1903 אין רוסיש אין דער ביאַליסטאָקער צייטונג"
+  ],
+  "db": "4197",
+  "clusters": [
+   "ORG-C05149"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G252",
+  "section": "low",
+  "title": "אָבענד-נייעם  ·  Obend-Neyes",
+  "sub": "db 4198 · no city · G252: Named periodical with no db row.",
+  "context": [
+   "בראָון, קייטי [גיטל באַקאָן] · n.d. · no place — נעמט שרייבן סקיצן, וועלכע ווערן געדרוקט אין ... „אָבענד-נייעם“"
+  ],
+  "db": "4198",
+  "clusters": [
+   "ORG-C05923"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G211",
+  "section": "low",
+  "title": "ביראָבידזשאַנער פאַרפּאַסט  ·  Birobidzhaner Farpast",
+  "sub": "db 4199 · Birobidzhan · G211: Named periodical with no db row.",
+  "context": [
+   "מילער, בוזי · n.d. · no place — גלייכצייטיק אויך פאַרצייכנונגען און קריטישע אָפּהאַנדלונגען אין די ביראָבידזשאַנער „פאַרפּאַסט“"
+  ],
+  "db": "4199",
+  "clusters": [
+   "ORG-C00306"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G208",
+  "section": "low",
+  "title": "ביכער-וועלט  ·  Bikher-velt",
+  "sub": "db 4201 · Warsaw · G208: Named periodical with no db row.",
+  "context": [
+   "צינבערג ישראל · n.d. · וואַרשע — אין "
+  ],
+  "db": "4201",
+  "clusters": [
+   "ORG-C00175"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G357",
+  "section": "low",
+  "title": "צייטנייסט  ·  Tsaytnayst",
+  "sub": "db 4204 · no city · G357: Named periodical with no db row.",
+  "context": [
+   "גילמאַן, בען · n.d. · no place — שפּעטער געדרוקט דערציילונגען און לידער אין „צייטנייסט“"
+  ],
+  "db": "4204",
+  "clusters": [
+   "ORG-C06165"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G072",
+  "section": "low",
+  "title": "אידישען קאָנגרעס  ·  Idishn Kongres",
+  "sub": "db 4212 · no city · G072: Named periodical with no db row.",
+  "context": [
+   "אַלקאַן,יהושע · n.d. · no place — האָט פאָדעפנטלעכט דעם איונאַקטער „הינטער גראָהע ווענט“ נאָכט“ אין „אידישען קאָנגרעס“"
+  ],
+  "db": "4212",
+  "clusters": [
+   "ORG-C05472"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G204",
+  "section": "low",
+  "title": "דער פּיאָנער  ·  Der Pioner",
+  "sub": "db 4218 · no city · G204: Named periodical with no db row.",
+  "context": [
+   "בידערמאַן, איטשע וו. · 1925 · no place — „פרינץ“ („דער פּיאָנער“, 1, 1925)"
+  ],
+  "db": "4218",
+  "clusters": [
+   "ORG-C05720"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G053",
+  "section": "low",
+  "title": "פֿאָרויס  ·  Forois",
+  "sub": "db 4222 · no city · G053: Real title but city not determinable.",
+  "context": [
+   "פּערענסאָן, משה · n.d. · no place — פֿאַרעפנטלעכט אַ גאַנצע ריי רעצענזיעס, אַרטיקלען און אָפּהאַנדלונגען וועגן טעאַטער און שוישפּילער אין ... \"פארויס\"",
+   "באַסטאָמסקי, אהרן · n.d. · no place — ב. האָט אויך געדרוקט אַרטיקלען... אין „פֿאָרויס"
+  ],
+  "db": "4222",
+  "clusters": [
+   "ORG-C00838"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G172",
+  "section": "low",
+  "title": "פרייטאָג  ·  Fraytog",
+  "sub": "db 4223 · no city · G172: Named periodical with no db row.",
+  "context": [
+   "קאַהאַן ישראל [אַברהם] · n.d. · no place — באַטייליקט ער זיך אין מ. ספּעקטאָרס „פרייטאָג\""
+  ],
+  "db": "4223",
+  "clusters": [
+   "ORG-C03414"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G129",
+  "section": "low",
+  "title": "די גלייכהייט  ·  Di Glaykhayt",
+  "sub": "db 4226 · no city · G129: Named periodical with no db row.",
+  "context": [
+   "לינדער, נ. בּ. [נתן בּלינדער] · n.d. · no place — שפּעטער געוואָרן אַ מיטרעדאַקטאָר פֿון „די גלייכהייט\""
+  ],
+  "db": "4226",
+  "clusters": [
+   "ORG-C04433"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G300",
+  "section": "low",
+  "title": "יוגנט-וועקער  ·  Yugnt-vekker",
+  "sub": "db 426 · no city · G300: Named periodical with no db row.",
+  "context": [
+   "פּערענסאָן, משה · n.d. · no place — פֿאַרעפנטלעכט אַ גאַנצע ריי רעצענזיעס, אַרטיקלען און אָפּהאַנדלונגען וועגן טעאַטער און שוישפּילער אין ... \"יוגנט-וועקער\""
+  ],
+  "db": "426",
+  "clusters": [
+   "ORG-C00837"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G446",
+  "section": "low",
+  "title": "גרשם באַדערס קאַלענדאָר  ·  Gershom Baders Kalendar",
+  "sub": "db 4228 · no city · G446: Named periodical with no db row.",
+  "context": [
+   "פריזאַמענט, שלמה · n.d. · no place — דעביוטירנדיק שוין פֿריער איז גרשם באַדערס „קאַלענדאָר“"
+  ],
+  "db": "4228",
+  "clusters": [
+   "ORG-C00867"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G198",
+  "section": "low",
+  "title": "הויז-פֿרײַנד  ·  Hoyz-fraynd",
+  "sub": "db 4229 · no city · G198: Named periodical with no db row.",
+  "context": [
+   "לערנער, מאַריא [מרים ראַבינאָוויטש] · n.d. · no place — וואָס איז צוערשט פאַרעפנטלעכט געוואָרן אין צווייטן באַנד פון „הויפפריינד\""
+  ],
+  "db": "4229",
+  "clusters": [
+   "ORG-C04541"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G361",
+  "section": "low",
+  "title": "יאָהרבוך פּראָגרעס  ·  Yorbukh Progres",
+  "sub": "db 4232 · no city · G361: Named periodical with no db row.",
+  "context": [
+   "מרגלית, ידידיה · 1904 · no place — 1904 — דעביוטירט אין רייזעןס זמ'ה 'יאָהרבוך פּראָגרעס'"
+  ],
+  "db": "4232",
+  "clusters": [
+   "ORG-C04871"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G578",
+  "section": "low",
+  "title": "לייבל טויבישעס וואָכענבלאַט  ·  Leybl Toybishes Vokhnblat",
+  "sub": "db 4239 · no city · G578: Named periodical with no db row.",
+  "context": [
+   "שטערנהיים, נחום · n.d. · no place — געשריבן אַרטיקלען... אין לייבל טויבישעס וואָכענבלאַט"
+  ],
+  "db": "4239",
+  "clusters": [
+   "ORG-C03290"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G545",
+  "section": "low",
+  "title": "סאָוועטיש  ·  Sovetish",
+  "sub": "db 4242 · no city · G545: Named periodical with no db row.",
+  "context": [
+   "מילער, בוזי · n.d. · no place — אין 1935 פאַרעפנטלעכט אין אַלמנאָך „סאָוועטיש“ די גרעסערע דערציילונג „גאָלד“"
+  ],
+  "db": "4242",
+  "clusters": [
+   "ORG-C00304"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G363",
+  "section": "low",
+  "title": "מאַסן  ·  Masn",
+  "sub": "db 4249 · no city · G363: Named periodical with no db row.",
+  "context": [
+   "ביאַלין, א. ה. [אהרן הירש] · 1934 · no place — אין 1934 געשריבן אין זפֿירנאַל „מאַסן“"
+  ],
+  "db": "4249",
+  "clusters": [
+   "ORG-C01197"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G413",
+  "section": "low",
+  "title": "נייע צייט (ווין)  ·  Naye Tsayt",
+  "sub": "db 4250 · Vienna · G413: Named periodical with no db row.",
+  "context": [
+   "גילבערט, שלמה · 1907 · no place — דעביוטירט אין דער ליטעראַטור אין 1907 אין די זמיב „ניי-צייט“",
+   "ראַטמאַן, כנימין · n.d. · no place — שפּעטער פֿון דער \"נייע צייט\", וואו ער שרייבט אָפֿט וועגן יידישן טעאַטער",
+   "קאָוואַ, שלמה-לייב · n.d. · no place — רעדאַקטירט די זאַמלהעפטן \"נייע צייט\"",
+   "גילבערט, שלמה · 1907 · no place — ערשט אין 1907 אָפּגעדרוקט אין די זמ'ב \"נייע צייט\" עטלעכע שטימונג-זאַכן"
+  ],
+  "db": "4250",
+  "clusters": [
+   "ORG-C06162",
+   "ORG-C01088_Q01"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G556",
+  "section": "low",
+  "title": "די נייע וואַרהייט  ·  Di Naye Varhayt",
+  "sub": "db 4252 · no city · G556: Named periodical with no db row.",
+  "context": [
+   "מיללער לואיס ע [ל. באַנדעס] · 1925 · no place — 1925 - האָט מ. אַרויסגעגעבן אָן אַזוי גערופענעם טייבלאָט-בלאַט „די נייע וואַרהייט\""
+  ],
+  "db": "4252",
+  "clusters": [
+   "ORG-C04774"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G537",
+  "section": "low",
+  "title": "נאַציאָנאָל גאַזעטען  ·  National Gazetn",
+  "sub": "db 4253 · London · G537: Named periodical with no db row.",
+  "context": [
+   "שטיפט, הערמאַן (הירש-פּרץ) · 1900~ · לאָנדאָן — ש. זאָל אויך זיין געווען אין לאָנדאָן אַ מיטאַרבעטער פון די „נאַציאָנאָל גאַזעטען\""
+  ],
+  "db": "4253",
+  "clusters": [
+   "ORG-C01930"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G062",
+  "section": "low",
+  "title": "יונגוואלד  ·  Yungvald",
+  "sub": "db 4255 · no city · G062: Named periodical with no db row.",
+  "context": [
+   "ליסאַק, מאַלקע · 1925 · no place — דעביוטירט אין 1925 מיט אַ דערציילונג אין \"יונגוואלד\""
+  ],
+  "db": "4255",
+  "clusters": [
+   "ORG-C04435"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G199",
+  "section": "low",
+  "title": "אונזער טעאַטער  ·  Undzer Teater",
+  "sub": "db 4259 · Paris · G199: Named periodical with no db row.",
+  "context": [
+   "לאַקס, יצחק · 1923-09-19 · פּאַריז — רעדאַקטירט ער דאָרט די קליינע טעאַטער-שריפט „אונזער טעאַטער“ — „אונזער לעבן\""
+  ],
+  "db": "4259",
+  "clusters": [
+   "ORG-C04281"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G394",
+  "section": "low",
+  "title": "אַרבעטער-יוגנט  ·  Arbeter-yugnt",
+  "sub": "db 4261 · no city · G394: Named periodical with no db row.",
+  "context": [
+   "גרודבערג, יצחק [יצחק-בער טורקאָוו] · n.d. · no place — מיטרעדאַקטאָר פֿון זייער חודש-זשורנאָל „אַרבעטער-יוגנט“"
+  ],
+  "db": "4261",
+  "clusters": [
+   "ORG-C06297"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G078",
+  "section": "low",
+  "title": "רויערד  ·  Royerd",
+  "sub": "db 4262 · Montreal · G078: Named periodical with no db row.",
+  "context": [
+   "שניידער, שלמה · n.d. · מאָנטרעאָל — צוזאַמען מיט י. י. סיגאַל און א. שקאָלניקאָוו אַרויסגעגעבן, פֿריער אין מאָנטרעאָל און שפּעטער אין טאַראַנטאָ, די העפטן \"רויערד“"
+  ],
+  "db": "4262",
+  "clusters": [
+   "ORG-C01959"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G160",
+  "section": "low",
+  "title": "סיגנאַל  ·  Signal",
+  "sub": "db 4264 · no city · G160: Named periodical with no db row.",
+  "context": [
+   "יוקלסאָן, ראובן · n.d. · no place — אַ רעדאַקציע-מיטגליד פֿון זשורנאָל „סיגנאַל\""
+  ],
+  "db": "4264",
+  "clusters": [
+   "ORG-C02036"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G344",
+  "section": "low",
+  "title": "שלום-עליכם  ·  Sholem-Aleykhem",
+  "sub": "db 4265 · Odesa · G344: Named periodical with no db row.",
+  "context": [
+   "שאַפֿיר, בערל · n.d. · אָדעס — מיטאַרבעטן אין ... \"שלום-עליכם\""
+  ],
+  "db": "4265",
+  "clusters": [
+   "ORG-C01983"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G367",
+  "section": "low",
+  "title": "שניידער פֿאַרבאַנד  ·  Shnayder Farband",
+  "sub": "db 4266 · no city · G367: Named periodical with no db row.",
+  "context": [
+   "באַרסקי, ישראל · 1890 · no place — 1890 האָט ב. רעדאַקטירט דעם אָרגאָן „שניידער פֿאַרבאַנד“"
+  ],
+  "db": "4266",
+  "clusters": [
+   "ORG-C05658"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G365",
+  "section": "low",
+  "title": "איסט בראָדוויי  ·  East Broadway",
+  "sub": "db 4267 · no city · G365: Named periodical with no db row.",
+  "context": [
+   "אַלקאָן, י [יהושע עלקין] · 1916 · no place — אין 1916 פֿאַרעפנטלעכט ער אין זאַמלבוך „איסט בראָדוויי“ זיין איינאַקטער „דאָרט וועט זיין אַ וואַלד“"
+  ],
+  "db": "4267",
+  "clusters": [
+   "ORG-C07245"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G221",
+  "section": "low",
+  "title": "איסט און וועסט  ·  East and West",
+  "sub": "db 4268 · New York · G221: Named periodical with no db row.",
+  "context": [
+   "גאָלדבערג אייזיק · n.d. · ניו-יאָרק — פֿריער געדרוקט אין „איסט און וועסט״, ניו-יאָרק, 1915"
+  ],
+  "db": "4268",
+  "clusters": [
+   "ORG-C02100"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G511",
+  "section": "low",
+  "title": "דער טעמפּל  ·  Der Tempel",
+  "sub": "db 4275 · no city · G511: Named periodical with no db row.",
+  "context": [
+   "לאַקס, יצחק · n.d. · no place — רעדאַקטירט ער... די חודש-זשורנאלן „דער טעמפּל\""
+  ],
+  "db": "4275",
+  "clusters": [
+   "ORG-C04284"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G508",
+  "section": "low",
+  "title": "וואַרדי-יאַעליט-סטודיאָ-בלעטלאָך  ·  Vardi-Yaelit-Studio-Blatlakh",
+  "sub": "db 4281 · no city · G508: Named periodical with no db row.",
+  "context": [
+   "וואַרדי-יאַעליט-טעאַַטער-סטודיאַ · 1928 · no place — די סטודיע האָט צום יאָר פֿון איר עקזיסטענץ אַרויסגעגעבן אַ טעאַטער-זשורנאָל איט „וואָרדי-יאָעליט-סטודיאָ-בלעטלאָך“"
+  ],
+  "db": "4281",
+  "clusters": [
+   "ORG-C06569"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G574",
+  "section": "low",
+  "title": "אַוועזשאַנעדער שטימע  ·  Avezhaneder Shtime",
+  "sub": "db 4283 · no city · G574: Named periodical with no db row.",
+  "context": [
+   "טאַבאַקשניידער מ. י. · n.d. · אַוועזשאַנעדער — ט. האָט אין... „אַוועזשאַנעדער שטימע\" פֿאַרעפנטלעכט די סצענקעס"
+  ],
+  "db": "4283",
+  "clusters": [
+   "ORG-C03827"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G547",
+  "section": "low",
+  "title": "זעגלען  ·  Zegln",
+  "sub": "db 4284 · no city · G547: Named periodical with no db row.",
+  "context": [
+   "גלאַזערמאַן, שמואל · 1924 · no place — געדרוקט אין „זעגלען“ 1924"
+  ],
+  "db": "4284",
+  "clusters": [
+   "ORG-C06185"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G329",
+  "section": "low",
+  "title": "איזראַעליט  ·  Izraelit",
+  "sub": "db 4286 · Vienna · G329: Named periodical with no db row.",
+  "context": [
+   "מרגליות, יצחק [בראָדער] · n.d. · ווין — מיטאַרבעטער אין דער יידיש-דייטשער „איזראַעליט“ אין ווין"
+  ],
+  "db": "4286",
+  "clusters": [
+   "ORG-C00371"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ },
+ {
+  "id": "low-G592",
+  "section": "low",
+  "title": "שייקאַגאָ  ·  Shaykago",
+  "sub": "db 4288 · no city · G592: Named periodical with no db row.",
+  "context": [
+   "מערקור וואָלף · n.d. · no place — פֿאַרעפנטלעכט אין זשורנאָל „שייקאַגאָ“... מערערע אַרטיקלען וועגן יידישן טעאַטער"
+  ],
+  "db": "4288",
+  "clusters": [
+   "ORG-C04867"
+  ],
+  "options": [
+   [
+    "keep",
+    "Keep the row"
+   ],
+   [
+    "generic",
+    "Generic: remove the row"
+   ],
+   [
+    "notpaper",
+    "Not a periodical"
+   ],
+   [
+    "same",
+    "Same as another row (note which)"
+   ]
+  ],
+  "rec": "keep"
+ }
+]

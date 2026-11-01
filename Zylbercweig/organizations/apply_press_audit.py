@@ -71,8 +71,8 @@ COMMENTS = HERE / "press_comments.tsv"
 
 PRESS_TYPE = "Journals/ Newspapers"
 COMMENT_COLUMNS = ["db_id", "name_yiddish", "name_latin", "settlement",
-                   "years_attested", "language", "periodicity", "comment",
-                   "links", "galron_row_ids", "decision_id", "updated"]
+                   "years_attested", "language", "periodicity", "wikidata_qid",
+                   "comment", "links", "galron_row_ids", "decision_id", "updated"]
 LOG_COLUMNS = ("ts", "reviewer", "view", "action", "target_id", "decision",
                "note", "extra")
 POINTS = re.compile(r"[֑-ׇ]")
