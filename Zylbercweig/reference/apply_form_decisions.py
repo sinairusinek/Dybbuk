@@ -19,6 +19,9 @@ backfill_review_decisions.py uses.
 `reviewer` in the db is the viewer's opaque artifact id, which means nothing to
 the corpus, so --reviewer supplies the name to record (default: Sinai).
 
+--resolve-research lets a decision replace RESEARCH_FURTHER once the research
+has been done (e.g. research_further_2026_11_01.md); nothing else is overwritten.
+
 Idempotent. Line endings preserved per file. Dry run unless --execute.
 """
 from __future__ import annotations
@@ -65,6 +68,9 @@ def main() -> int:
                     help="directory of exported decision JSON files")
     ap.add_argument("--reviewer", default="Sinai")
     ap.add_argument("--execute", action="store_true")
+    ap.add_argument("--resolve-research", action="store_true",
+                    help="let a decision replace an existing RESEARCH_FURTHER "
+                         "(the research has been done); every other clash still refuses")
     a = ap.parse_args()
 
     src = Path(a.src)
@@ -108,7 +114,7 @@ def main() -> int:
         if existing == got["decision"]:
             skipped += 1
             continue
-        if existing:
+        if existing and not (a.resolve_research and existing == "RESEARCH_FURTHER"):
             clash += 1
             notes.append(f"  CLASH {key}: tsv={existing!r} form={got['decision']!r}")
             continue

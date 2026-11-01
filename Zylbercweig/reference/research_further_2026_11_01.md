@@ -6,7 +6,7 @@ the Zylbercweig mention sentence and the source entry around it, checked
 against outside sources where those exist. Galron's `years` field is digitisation
 coverage only and is never used here to date a paper.
 
-**Recommendation: 3 CONFIRM, 15 REJECT.** Nothing is applied until Sinai
+**3 CONFIRM, 14 REJECT — APPLIED 2026-11-01 on Sinai's go-ahead** (`--resolve-research`). Was: nothing applied until Sinai
 agrees; the rows stay `RESEARCH_FURTHER` in the TSV until then.
 
 | Entity | Zylbercweig says | Galron row | Finding | Rec. |
