@@ -36,7 +36,10 @@ Plus org -> place located_in edges from the attestation spine.
 
 Org node-id policy: org:<db_id> when the cluster is linked in core_db, else
 org_cluster:<cluster_id> (ext_ref_type=org_cluster, match_status=unmatched)
-so the review loop can align it later.
+so the review loop can align it later. A cluster the org review ruled GENERIC
+or NOT_AN_ORG (pc.NON_ENTITY_DECISIONS) gets no node and no edge; a SPLIT_DONE
+parent's mention goes to the child for its settlement, and is dropped when it
+names no settlement.
 """
 from __future__ import annotations
 
@@ -75,6 +78,7 @@ C_DESC = "_ - organizations - _ - descriptive_name"
 C_SENT = "_ - organizations - _ - relations - _ - original_sentence"
 C_CID = "cluster_id"
 C_CANON = "canonical_yiddish"
+C_SETTLEMENT = "_ - organizations - _ - locations - _ - settlement"
 
 
 def _n(s) -> str:
@@ -147,18 +151,6 @@ def _load_core_db() -> tuple[dict[str, dict], dict[str, str]]:
     return rows, c2d
 
 
-def _load_cluster_decisions() -> dict[str, tuple[str, str]]:
-    """cluster_id -> (decision, aligned_db_id) from Zalmen's org_alignment_review.
-    Stamped on org_cluster nodes as metadata ONLY: an ALIGN there is not a
-    link until it reaches core_db.linked_cluster_ids (REMOVE decisions and
-    merges override it — several pending ALIGNs are visibly wrong)."""
-    out = {}
-    for r in pc.read_tsv(pc.ORGS_DIR / "org_alignment_review.tsv"):
-        if r.get("cluster_id") and r.get("decision"):
-            out[r["cluster_id"]] = (r["decision"], r.get("aligned_db_id") or "")
-    return out
-
-
 def _load_org_places() -> dict[str, list[dict]]:
     out: dict[str, list[dict]] = defaultdict(list)
     with open(ATTESTATIONS_CSV, encoding="utf-8-sig") as f:
@@ -176,7 +168,10 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
     byk = _load_clustered()
     core, c2d = _load_core_db()
     org_places = _load_org_places()
-    decisions = _load_cluster_decisions()
+    review = pc.load_org_review()
+    decisions = {cid: ((r.get("decision") or "").strip(), (r.get("aligned_db_id") or "").strip())
+                 for cid, r in review.items() if (r.get("decision") or "").strip()}
+    splits = pc.split_children(review)
     by_entry_key = {e["entry_key"]: e for e in entry_index.values()}
     stats: Counter = Counter()
     seen_edges: set[tuple] = set()
@@ -200,9 +195,7 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
         else:
             nid = f"org_cluster:{cid}"
             dec, adb = decisions.get(cid, ("", ""))
-            # DESCRIPTIVE/GENERIC = reviewer says "a kind of thing, not an
-            # entity" (חדר, גימנאַזיע): keep the edges, flag the node
-            status = "not_entity" if dec in ("DESCRIPTIVE", "GENERIC") else "unmatched"
+            status = "unmatched"
             notes = (f"review:{dec}" + (f" aligned_db_id:{adb}" if adb else "")) if dec else ""
             if dec:
                 stats[f"cluster_review:{dec}"] += 1
@@ -237,7 +230,28 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
                     sent = _n(rel.get("original_sentence"))
                     row = next((c for c in cands if _n(c.get(C_SENT)) == sent), cands[0])
                     cid = row[C_CID]
-                    onid = org_node(cid, _n(row.get(C_CANON)) or _n(o.get("title")),
+                    # a place-split parent's mentions belong to that place's child
+                    if cid in splits:
+                        child = splits[cid].get(pc.norm_yiddish(_n(row.get(C_SETTLEMENT))))
+                        if not child:
+                            # a place-split says these are different bodies told
+                            # apart by place; with no place there is no one to
+                            # link to, and the parent node would re-merge them
+                            stats["rel_dropped_split_placeless"] += 1
+                            continue
+                        stats["rel_split_routed"] += 1
+                        cid = child
+                    canon = _n(row.get(C_CANON)) or _n(o.get("title"))
+                    if cid != row[C_CID]:
+                        # the child shares the parent's bare name; the place is
+                        # what tells two of them apart on the canvas
+                        canon = f"{canon} ({_n(row.get(C_SETTLEMENT))})"
+                    # GENERIC / NOT_AN_ORG: a kind of thing, not an entity — no
+                    # node, no edge (the mention stays in organizations_clustered)
+                    if not c2d.get(cid) and decisions.get(cid, ("",))[0] in pc.NON_ENTITY_DECISIONS:
+                        stats[f"rel_dropped_{decisions[cid][0].lower()}"] += 1
+                        continue
+                    onid = org_node(cid, canon,
                                     _n(o.get("org_type")))
                     spec = _n(rel.get("specific_relation"))
                     etype = REL_EDGE.get(spec, "affiliated_with")

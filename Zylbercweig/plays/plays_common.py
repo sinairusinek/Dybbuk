@@ -12,6 +12,7 @@ import pathlib
 import re
 import sys
 import unicodedata
+from collections import defaultdict
 
 csv.field_size_limit(sys.maxsize)
 
@@ -97,6 +98,41 @@ def write_tsv(path: pathlib.Path, rows: list[dict], fields: list[str]) -> None:
         w.writeheader()
         for r in rows:
             w.writerow(r)
+
+
+# Org-review decisions meaning "a kind of thing, not an entity" (חדר, ישיבה,
+# גימנאַזיע) or "not an org at all". Such a cluster gets no KG node: one node
+# for every cheder in the corpus is a hub that ties unrelated people together.
+# DESCRIPTIVE is the pre-2026-10-04 name for GENERIC.
+NON_ENTITY_DECISIONS = {"GENERIC", "DESCRIPTIVE", "NOT_AN_ORG"}
+
+
+def load_org_review() -> dict[str, dict]:
+    """cluster_id -> its org_alignment_review.tsv row."""
+    out = {}
+    for r in read_tsv(ORGS_DIR / "org_alignment_review.tsv"):
+        cid = (r.get("cluster_id") or "").strip()
+        if cid:
+            out[cid] = r
+    return out
+
+
+def split_children(review: dict[str, dict]) -> dict[str, dict[str, str]]:
+    """SPLIT_DONE parent -> {normalized settlement: child cluster_id}.
+
+    A place-split leaves the parent's id on the clustered mentions; the
+    children (<parent>_P01, ...) each carry one settlement."""
+    out: dict[str, dict[str, str]] = defaultdict(dict)
+    for cid, r in review.items():
+        parent, sep, tail = cid.rpartition("_P")
+        if not sep or not tail.isdigit() or parent not in review:
+            continue
+        if (review[parent].get("decision") or "").strip() != "SPLIT_DONE":
+            continue
+        for s in (r.get("extracted_settlements") or "").split("|"):
+            if norm_yiddish(s):
+                out[parent][norm_yiddish(s)] = cid
+    return dict(out)
 
 
 def load_plays_db() -> list[dict]:

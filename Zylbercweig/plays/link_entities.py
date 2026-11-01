@@ -107,17 +107,30 @@ class Linkers:
                 if len(nn) >= 4:
                     self.org_by_norm.setdefault(nn, db)
         self.cluster_by_norm: dict[str, tuple[str, str]] = {}  # norm -> (cluster_id, aligned_db)
-        for r in pc.read_tsv(pc.ORGS_DIR / "org_alignment_review.tsv"):
-            cid = (r.get("cluster_id") or "").strip()
-            if not cid:
+        # names the org review ruled a kind of thing (ישיבה, גימנאַזיע): a
+        # surface matching one is not an entity, so it gets no node at all
+        self.generic_norms: set[str] = set()
+        review = pc.load_org_review()
+        split_kids = {c for kids in pc.split_children(review).values() for c in kids.values()}
+        for cid, r in review.items():
+            dec = (r.get("decision") or "").strip()
+            if dec == "SPLIT_DONE" or cid in split_kids:
+                # a split parent is superseded, and its children share its bare
+                # name — a name with no place cannot choose between them
                 continue
             aligned = ""
-            if (r.get("decision") or "").strip() == "ALIGN":
+            if dec == "ALIGN":
                 aligned = (r.get("aligned_db_id") or "").strip()
             for n in [r.get("canonical_yiddish", "")] + (r.get("name_variants") or "").split(";"):
                 nn = pc.norm_yiddish(n)
-                if len(nn) >= 4:
+                if len(nn) < 4:
+                    continue
+                if dec in pc.NON_ENTITY_DECISIONS and not aligned:
+                    self.generic_norms.add(nn)
+                else:
                     self.cluster_by_norm.setdefault(nn, (cid, aligned))
+        # a name that is also some real cluster's name stays linkable
+        self.generic_norms -= set(self.cluster_by_norm)
         self.org_norms = list(self.org_by_norm)
         self.cluster_norms = list(self.cluster_by_norm)
 
@@ -190,6 +203,8 @@ class Linkers:
         db = self.org_by_norm.get(sn)
         if db:
             return f"org:{db}", "matched", "core_db_exact"
+        if sn in self.generic_norms:
+            return "", "not_entity", "review_generic"
         cl = self.cluster_by_norm.get(sn)
         if cl:
             cid, aligned = cl
@@ -351,6 +366,14 @@ def main() -> None:
         if old:
             for col in ("decision", "decided_link", "reviewer_notes"):
                 r[col] = old.get(col, "")
+    # a decided surface that no longer needs review (it now auto-links, or a
+    # review rule marks it not_entity) keeps its row: build_kg still applies
+    # the decision, and dropping the row would silently discard it
+    fresh = {(r["slot"], r["surface"]) for r in review_rows}
+    kept = [dict(old, n_facts=0) for k, old in prior.items()
+            if k not in fresh and (old.get("decision") or "").strip()]
+    review_rows += kept
+    print(f"kept {len(kept)} decided surfaces no longer under review")
     pc.write_tsv(pc.LINK_REVIEW_TSV, review_rows, list(review_rows[0].keys()))
     print(f"wrote {LINKED_TSV} ({len(linked)}) and {pc.LINK_REVIEW_TSV} ({len(review_rows)})")
 

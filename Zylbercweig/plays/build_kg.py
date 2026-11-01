@@ -85,6 +85,8 @@ class Graph:
         with the plays layer) and queue the surface for review."""
         rv = self.review.get((slot, surface))
         if rv and rv.get("decision") == "ALIGN" and rv.get("decided_link"):
+            if non_entity_cluster(rv["decided_link"]):
+                return ""
             return ensure_endpoint(self, rv["decided_link"], "matched", slot,
                                    surface, self.labels, self.entry_index)
         if rv and rv.get("decision") in ("NOT_ENTITY", "GEMINI_NOT_ENTITY"):
@@ -225,6 +227,25 @@ def _place_label_en(pl: dict) -> str:
     return ""
 
 
+_ORG_REVIEW: dict[str, dict] | None = None
+_SPLIT_PARENTS: set[str] = set()
+
+
+def non_entity_cluster(link: str) -> bool:
+    """True for org_cluster:<id> links the org review has since ruled GENERIC
+    or NOT_AN_ORG, or split by place — a link adjudicated before that ruling
+    must not mint a node (a split parent names several bodies, not one)."""
+    global _ORG_REVIEW, _SPLIT_PARENTS
+    if not link.startswith("org_cluster:"):
+        return False
+    if _ORG_REVIEW is None:
+        _ORG_REVIEW = pc.load_org_review()
+        _SPLIT_PARENTS = set(pc.split_children(_ORG_REVIEW))
+    cid = link.split(":", 1)[1]
+    dec = (_ORG_REVIEW.get(cid, {}).get("decision") or "").strip()
+    return dec in pc.NON_ENTITY_DECISIONS or cid in _SPLIT_PARENTS
+
+
 def resolve_with_adjudication(row: dict, slot: str, review: dict) -> tuple[str, str]:
     """(link, match_status) after applying kg_link_review decisions."""
     link = row.get(f"{slot}_link", "")
@@ -238,6 +259,8 @@ def resolve_with_adjudication(row: dict, slot: str, review: dict) -> tuple[str, 
     d = dec.get("decision", "")
     if d in ("ALIGN", "AUTO_ACCEPT", "AUTO_CLUSTER", "GEMINI_ACCEPT") \
             and dec.get("decided_link"):
+        if non_entity_cluster(dec["decided_link"]):
+            return "", "not_entity"
         return dec["decided_link"], "matched"
     if d in ("REJECT", "GEMINI_REJECT", "GEMINI_NEW_PLAY", "AUTO_NEW"):
         return "", "unmatched"       # mint a new unlinked node
