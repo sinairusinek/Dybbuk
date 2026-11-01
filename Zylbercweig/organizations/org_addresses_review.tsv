@@ -210,7 +210,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 373	Sabsey Troupe		ORG-C05680	2	0																Sinai	2026-05-24T14:07:02Z
 395	Stramer Troupe		ORG-C02954	2	1	בודאָפּעסט			טשעכיע													
 267	ha-Dor⁩ - ⁨הדור		ORG-C01893	2	1	וואַרשע							Warsaw	ווארשע		Warsaw, Poland				"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": ""ווארשע"", ""address"": """", ""address_romanized"": ""Warsaw, Poland"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-01T08:29:22Z
-461	דער יודישער העראלד - The Jewish herald		ORG-C04798 | ORG-C04894	2	0																	
+461	דער יודישער העראלד - The Jewish herald		ORG-C04798 | ORG-C04894 | ORG-C04447	2	0																	
 60	י. לידסקי		ORG-C04534	2	2	וואַרשא | וואַרשע	Nalewki 32, Warsaw | נאַלעווקי 32						Warsaw	ווארשע	נַלעווקי 32	Nalewki 32, Warsaw				"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": ""ווארשע"", ""address"": ""נַלעווקי 32"", ""address_romanized"": ""Nalewki 32, Warsaw"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-02T12:37:23Z
 482	יודישער האַנדעלס קאַלענדאָר		ORG-C00023 | ORG-C02590	2	2	וואַרשע | מעקסיקע		עלדאָראַדאָ					Warsaw						[CITY VERIFIED] Yidisher Handels-Kalendar — pub./ed. Yankev (Jakub) Bernas, Warsaw 1891 | sources: Congress for Jewish Culture (Bernas) + Yiddish Leksikon (Bernas)	"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-02T17:12:03Z
 503	צאָלמאַן	Traveling Company	ORG-C03159 | ORG-C05937	2	1	קראָקע																
@@ -411,7 +411,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 392	Spivakovsky and Sh. Krause Troupe	Traveling Company		0	0																	
 394	Stein Quartet	Musical organization		0	0																	
 396	Synagogue chorus	Musical organization		0	0																	
-399	Teatr i Iskusstvo			0	0																Maaty	2026-05-10T07:05:50Z
+399	Teatr i Iskusstvo		ORG-C05267	0	0																Maaty	2026-05-10T07:05:50Z
 403	The Hebrew Actors' Union (HAU)			0	0								New York			31 East 7th Street, Manhattan, New York, NY 10003, USA	40.728522	-73.989016		"[{""settlement"": ""New York"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""31 East 7th Street, Manhattan, New York, NY 10003, USA"", ""lat"": ""40.728522"", ""lon"": ""-73.989016""}]"	Maaty	2026-05-10T08:07:35Z
 405	The Jewish National Workers' Alliance (Farband-Labor Zionist Order)			0	0								New York			275 7th Avenue, Manhattan, New York, NY 10001, USA	40.745467	-73.994422		"[{""settlement"": ""New York"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""275 7th Avenue, Manhattan, New York, NY 10001, USA"", ""lat"": ""40.745467"", ""lon"": ""-73.994422""}]"	Maaty	2026-05-10T08:09:50Z
 38	The Order of David's Harp			0	0																Maaty	2026-05-10T07:16:24Z
@@ -585,7 +585,6 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 600	פאַרק-טעאַטער		ORG-C06432	0	0																Maaty	2026-05-30T09:11:04Z
 601	סטודיע פֿון יידישן מלוכה-טעאַטער אין ווייס-רוסלאַנד		ORG-C00418	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T10:11:49Z
 602	השומר הצעיר		ORG-C00831	0	0																Sinai	2026-05-11T21:22:54Z
-603	דער טעגלייכער העראָלד		ORG-C04447	0	0																Sinai	2026-05-11T21:27:25Z
 604	לאָדזשער סקאַלאַ-טעאַטער		ORG-C00579	0	0								Lodz			Cegielniana 18 (today 15 Więckowskiego Street), Łódź	51.7686	19.4525	Zylbercweig lexicon: Lodz Scala Theatre (Lodzher Scala), Lodz. Filled empty Settlement = Lodz. Lexicon address: 18 Cegielniana Street (today 15 Wieckowskiego Street). STREET DISCREPANCY: existing Address field reads 'Ceglana 18' (a different street) vs lexicon 'Cegielniana 18' - did NOT overwrite, flagged for review. GEOCODE WARNING: existing Lat/Lon (51.23, 18.54) points to a small village, not central Lodz (~51.77, 19.46) - needs re-geocode. High mention count (35). | FIXED on 2026-05-30: Address corrected from 'Ceglana 18' to 'Cegielniana 18' (today 15 Więckowskiego St). These are DIFFERENT STREETS in Łódź. Lat/Lon set manually after geocoder returned 'not found'. Sources: jewish-lodz.iu.edu + Virtual Shtetl.	"[{""settlement"": ""Lodz"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Cegielniana 18 (today 15 Więckowskiego Street), Łódź"", ""lat"": ""51.7686"", ""lon"": ""19.4525""}]"	Maaty	2026-05-30T18:44:39Z
 605	סאָוויעטישן מלוכה-טעאַטער	Theatre	ORG-C04920	0	0											Malaya Bronnaya 4, Moscow	55.759606	37.5974		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Malaya Bronnaya 4, Moscow"", ""lat"": ""55.759606"", ""lon"": ""37.5974""}, {""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-17T06:37:31Z
 606	ליטעראַריש-דראַמאַטישע געזעלשאַפט	Theatre	ORG-C01452	0	0											Philadelphia, USA	39.952724	-75.163526		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Philadelphia, USA"", ""lat"": ""39.952724"", ""lon"": ""-75.163526""}]"	Maaty	2026-05-17T06:41:06Z
@@ -1616,7 +1615,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1541	אינטערנאַציאָנאָל טעאַטער פֿון קליינע פֿאַרמעס ביים אַלאוקראַאינישן געווערבישן פֿאַרבאַנד פֿון קאָאָפּעראַציע	Theatre	ORG-C04747	1	1	אָדעס																
 1542	ערשטן יידישן קאָמעדיע טאַטער	Theatre	ORG-C05066	1	1	אָדעס																
 1543	אָרטיקע אָפּערע	Theatre	ORG-C06698_Q01	1	1	אָדעס																
-1544	אָדעסקי וויעסטניק	Journals/ Newspapers	ORG-C05188	4	1	אָדעס																
+1544	אָדעסקי וויעסטניק	Journals/ Newspapers	ORG-C05188 | ORG-C04531	4	1	אָדעס																
 1545	אָדעסקיאַ נאָוואָסטי	Journals/ Newspapers	ORG-C01642	2	1	אָדעס																
 1546	גוט מאָרגען	Journals/ Newspapers	ORG-C01982	2	1	אָדעס																
 1547	דאָס נייע לעבן	Journals/ Newspapers	ORG-C04139_Q01	2	1	אָדעס																
@@ -4036,8 +4035,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 4096	חזנים־זשורנאַל	Journals/ Newspapers	ORG-C07279	1	0																	
 4097	זאַמלונגען	Journals/ Newspapers	ORG-C02507	2	1	ניו יאָרק																
 4098	זונלאַנד	Journals/ Newspapers	ORG-C07247	1	0																	
-4099	Новороссийский телеграф	Journals/ Newspapers	ORG-C04539	1	0																	
-4100	Театр и искусство	Journals/ Newspapers	ORG-C05267	1	0																	
+4099	Новороссийский телеграф	Journals/ Newspapers	ORG-C04539 | ORG-C05189	1	0																	
 4101	1925	Journals/ Newspapers	ORG-C05995	1	0																	
 4102	בוקארעשטער פאלקסבלאט	Journals/ Newspapers	ORG-C00075	1	0																	
 4103	דער בלאפער	Journals/ Newspapers	ORG-C04889	2	1	לאָנדאָן																
@@ -4105,7 +4103,6 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 4165	אייניקייט	Journals/ Newspapers	ORG-C01149	1	1	מאָסקווע																
 4166	נייס	Journals/ Newspapers	ORG-C01991	2	1	קאָוונע																
 4167	אינטערעסאנטען בלאט	Journals/ Newspapers	ORG-C04462	1	1	לעמבערג																
-4168	נאוואראסיסקי טעלעגראף	Journals/ Newspapers	ORG-C05189	2	0																	
 4169	אונזער צייטונג	Journals/ Newspapers	ORG-C06587	1	1	ברוקלין																
 4170	אונזער זשורנאל	Journals/ Newspapers	ORG-C07153	1	0																	
 4171	דער אַרבעטער	Journals/ Newspapers	ORG-C03913	1	1	ניו-יאָרק																
@@ -4131,7 +4128,6 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 4191	די זון	Journals/ Newspapers	ORG-C04006	1	0																	
 4192	יונג יידיש	Journals/ Newspapers	ORG-C03337	1	0																	
 4193	Еврейская Летопись	Journals/ Newspapers	ORG-C04048	1	0																	
-4194	Одесский Вѣстник	Journals/ Newspapers	ORG-C04531	1	0																	
 4195	די בע צע נאַכריכטען	Journals/ Newspapers	ORG-C01429	1	0																	
 4196	בוקאַרעסטער טאַגעבלאַט	Journals/ Newspapers	ORG-C03492	2	0																	
 4197	ביאַליסטאָקער צייטונג	Journals/ Newspapers	ORG-C05149	1	0																	

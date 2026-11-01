@@ -101,6 +101,7 @@ _ORG_TYPE_OPTIONS = [
 	"Printer",
 	"Printer/Publisher",
 	"Journals/ Newspapers",
+	"Non-Jewish Journals/ Newspapers",
 	"Media (Radio/ Film/TV)",
 	"Library",
 	"Heritage Institution",

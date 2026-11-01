@@ -36,8 +36,17 @@ Kinds, applied in this order:
   comment     press_comments.tsv row for a db_id, or for a mint's group_id
               (resolved to the minted id).
 
+  parent      core_db parent_db_id set (an edition under its main paper).
+
 Clusters a human has already decided are never overwritten: an existing
-decision other than the one being applied is reported and skipped.
+decision other than the one being applied is reported and skipped -- unless
+the decision says `override` in its confidence, which is reserved for a human
+choosing the audit's proposal over the earlier decision (the open-items form,
+2026-11-01). An overriding align also takes the cluster off the row it was on.
+
+After merges, every core_db parent_db_id that names a merged row is re-pointed
+to its keeper (a parent equal to the row itself is cleared): the 10-31 merge
+of 249 into 692 had left 692's editions, and 692 itself, under 249.
 
 Idempotent: a second --apply changes and logs nothing. Backups are written as
 <file>.pre_press_audit_<TS>. Dry-run by default.
@@ -267,6 +276,14 @@ def main(apply: bool, reviewer: str) -> int:
             say("refused", f"{d['decision_id']}: cluster {cid} not in {ALIGN.name}")
             return
         cur, cur_db = (cl.get("decision") or "").strip(), (cl.get("aligned_db_id") or "").strip()
+        if "override" in d["confidence"].lower() and cur and not (cur in ("ALIGN", "NEW") and resolve(cur_db) == db):
+            for r in core:
+                if r["db_id"] != db and cid in pipe_list(r["linked_cluster_ids"]):
+                    r["linked_cluster_ids"] = " | ".join(c for c in pipe_list(r["linked_cluster_ids"]) if c != cid)
+                    touched["core"] = True
+                    say("override", f"{d['decision_id']}: {cid} taken off db {r['db_id']}")
+            say("override", f"{d['decision_id']}: {cid} {cur} {cur_db} -> ALIGN {db}")
+            cur, cur_db = "", ""
         if cur in ("ALIGN", "NEW") and cur_db and resolve(cur_db) != db:
             say("conflict", f"{d['decision_id']}: {cid} already ALIGNed to {cur_db}; not moved to {db}")
             return
@@ -286,6 +303,28 @@ def main(apply: bool, reviewer: str) -> int:
         if changed:
             log.append(entry(reviewer, "org_review", "alignment", cid, "ALIGN",
                              f"{d['decision_id']}: {why}", aligned_db_id=db))
+
+    # ---------------- 1b. parents ----------------
+    for r in core:
+        p = r.get("parent_db_id", "").strip()
+        if p and p in by_id and not live(by_id[p]):
+            q = resolve(p)
+            r["parent_db_id"] = "" if q == r["db_id"] else q
+            touched["core"] = True
+            say("parent", f"db {r['db_id']}: parent {p} (merged) -> {r['parent_db_id'] or '(none)'}")
+    for d in decisions:
+        if d["kind"] != "parent":
+            continue
+        row, par = by_id.get(d["db_id"].strip()), d["value"].strip()
+        if row is None or par not in by_id or not live(by_id[par]):
+            say("refused", f"{d['decision_id']}: db {d['db_id']} or parent {par} missing/not live")
+            continue
+        if row.get("parent_db_id", "").strip() != par:
+            log.append(entry(reviewer, "org_addresses", "set_parent", row["db_id"], par,
+                             f"{d['decision_id']}: {d['rationale']}", was=row.get("parent_db_id", "")))
+            row["parent_db_id"] = par
+            touched["core"] = True
+            say("parent", f"{d['decision_id']}  db {row['db_id']} parent -> {par}")
 
     # ---------------- 2a. unlinks (a cluster filed under the wrong row) ----------------
     # Never deletes the row, unlike apply_db_audit_decisions.py: a row left
@@ -435,7 +474,9 @@ def main(apply: bool, reviewer: str) -> int:
         _, cm_rows = _load(COMMENTS)
     cm = {r["db_id"]: r for r in cm_rows}
     n_cm = 0
-    commented: set[str] = set()   # the first comment decision for a row wins
+    # the first comment decision for a row wins, unless a later one says
+    # `override` (a rewrite after a merge or split): the last override wins
+    chosen: dict[str, dict] = {}
     for d in decisions:
         if d["kind"] != "comment":
             continue
@@ -443,9 +484,9 @@ def main(apply: bool, reviewer: str) -> int:
         if not db or db not in by_id:
             say("refused", f"{d['decision_id']}: comment target unresolved ({d['group_id']}/{d['db_id']})")
             continue
-        if db in commented:
-            continue
-        commented.add(db)
+        if db not in chosen or "override" in d["confidence"].lower():
+            chosen[db] = d
+    for db, d in chosen.items():
         payload = json.loads(d["value"])
         new = {c: "" for c in COMMENT_COLUMNS}
         new.update({k: v for k, v in payload.items() if k in new})
@@ -457,7 +498,7 @@ def main(apply: bool, reviewer: str) -> int:
         cm[db] = new
         n_cm += 1
 
-    for k in ("merge", "unlink", "mint", "generic", "not_an_org", "retype", "conflict", "refused"):
+    for k in ("merge", "parent", "override", "unlink", "mint", "generic", "not_an_org", "retype", "conflict", "refused"):
         if report.get(k):
             print(f"\n== {k} ({len(report[k])})")
             for m in report[k][:400]:

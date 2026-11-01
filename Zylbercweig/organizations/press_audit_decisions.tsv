@@ -1272,3 +1272,122 @@ PR1270	mint	G582		ORG-C04533	mint_new_org		Записки Гражданина	Z
 PR1271	comment	G582				"{""name_latin"": ""Zapiski grazhdanina"", ""settlement"": ""Bucharest"", ""years_attested"": ""1878"", ""language"": ""Russian"", ""periodicity"": ""daily"", ""comment"": ""Russian-language daily published in Bucharest in 1878 by Yosef-Yehuda Lerner. Cited once."", ""links"": """"}"				medium	LLM-decided 2026-11-01 at Sinai's request (press audit, stages 1-3); G582: comment
 PR1272	mint	G313		ORG-C04152	mint_new_org		Русское Богатство	Russkoe bogatstvo		high	LLM-decided 2026-11-01 at Sinai's request (press audit, stages 1-3); G313: Named periodical with no db row.
 PR1273	comment	G313				"{""name_latin"": ""Russkoe bogatstvo"", ""settlement"": """", ""years_attested"": ""1897"", ""language"": ""Russian"", ""periodicity"": ""monthly"", ""comment"": ""Russian monthly literary journal (title spelled Руское Богатство in source). Semyon Yushkevitsh debuted in it in 1897."", ""links"": """"}"				medium	LLM-decided 2026-11-01 at Sinai's request (press audit, stages 1-3); G313: comment
+PR1274	align		463	ORG-C03990	add_cluster_link					high|override	Sinai on the open-items form 2026-11-01: conflict-ORG-C03990 'apply' over Judith's NOT_AN_ORG: Di Varhayt, db 463 (G222)
+PR1275	align		1830	ORG-C00065_Q01	add_cluster_link					high|override	Sinai on the open-items form 2026-11-01: conflict-ORG-C00065_Q01 'apply' over SPLIT_DONE (the split never moved its 8 mentions): Buenos Aires Idishe tsaytung (G004)
+PR1276	align		3304	ORG-C02146	add_cluster_link					high|override	Sinai on the open-items form 2026-11-01: conflict-ORG-C02146 'apply' over ALIGN 3573: farlag Arbeter Velt goes with the Chicago Idishe arbeter velt (G042)
+PR1277	merge		603		merge_db_rows	461				high	Sinai on the open-items form 2026-11-01: conflict-ORG-C04447 'apply' over NEW 603: Der tegleykher herald is the Yidisher herald, db 461 (G201)
+PR1278	align		3880	ORG-C00320_P01	add_cluster_link					high|override	Sinai on the open-items form 2026-11-01: conflict-ORG-C00320_P01 'apply' over DISCUSS: Arbeter-tsaytung (Czernowitz), minted db 3880 (G594)
+PR1279	align		4058	ORG-C05312	add_cluster_link					high|override	Sinai on the open-items form 2026-11-01: conflict-ORG-C05312 'apply' over NOT_AN_ORG: Luakh Akhiever, minted db 4058 (G493)
+PR1280	retype			ORG-C05312	set_cluster_type	Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: Luakh Akhiever is a yearbook, typed Publisher
+PR1281	align		4230	ORG-C00939	add_cluster_link					high|override	Sinai on the open-items form 2026-11-01: conflict-ORG-C00939 'apply' over Judith's DEFER: Ha-Melits, minted db 4230 (G383)
+PR1282	parent		693		set_parent	692				high	Sinai on the open-items form 2026-11-01: policy-forverts 'children': the Chicago edition of the Forverts
+PR1283	parent		694		set_parent	692				high	Sinai on the open-items form 2026-11-01: policy-forverts 'children': the Philadelphia edition of the Forverts
+PR1284	parent		695		set_parent	692				high	Sinai on the open-items form 2026-11-01: policy-forverts 'children': the Detroit edition of the Forverts
+PR1285	generic			ORG-C07058	set_decision	GENERIC				high	Sinai on the open-items form 2026-11-01: unsure-G069 'generic': bare 'Pres' in Gershon Rubin's memoir
+PR1286	merge		4100		merge_db_rows	399				high	Sinai on the open-items form 2026-11-01: duplicate: Teatr i iskusstvo minted again from its Cyrillic title (G028)
+PR1287	merge		4194		merge_db_rows	1544				high	Sinai on the open-items form 2026-11-01: duplicate: Odesskii vestnik minted again from its Cyrillic title (G618)
+PR1288	merge		4168		merge_db_rows	4099				high	Sinai on the open-items form 2026-11-01: duplicate: Novorossiyskiy telegraf, minted twice (G038, G330)
+PR1289	retype_db		705		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': פינסקי ליסטאָק is general (non-Jewish) press
+PR1290	retype			ORG-C01912	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 705
+PR1291	retype_db		1225		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': קיעווסקיאָ אַוואָסטי is general (non-Jewish) press
+PR1292	retype			ORG-C06077	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 1225
+PR1293	retype_db		1226		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': קיעווליאָנין is general (non-Jewish) press
+PR1294	retype			ORG-C06078	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 1226
+PR1295	retype_db		1295		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': רוס is general (non-Jewish) press
+PR1296	retype			ORG-C01792	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 1295
+PR1297	retype_db		1544		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': אָדעסקי וויעסטניק is general (non-Jewish) press
+PR1298	retype			ORG-C05188	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 1544
+PR1299	retype_db		1545		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': אָדעסקיאַ נאָוואָסטי is general (non-Jewish) press
+PR1300	retype			ORG-C01642	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 1545
+PR1301	retype_db		1550		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': פּראָוודאָ is general (non-Jewish) press
+PR1302	retype			ORG-C06071	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 1550
+PR1303	retype_db		1660		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': בעסאַראָבסקאָיאָ זשיזן is general (non-Jewish) press
+PR1304	retype			ORG-C06372	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 1660
+PR1305	retype_db		3899		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Bessarabskie vedomosti is general (non-Jewish) press
+PR1306	retype			ORG-C07026	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 3899
+PR1307	retype_db		3904		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Den is general (non-Jewish) press
+PR1308	retype			ORG-C05928	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 3904
+PR1309	retype_db		3979		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Solntse Rossii is general (non-Jewish) press
+PR1310	retype			ORG-C01644	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 3979
+PR1311	retype_db		4003		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Russkie vedomosti is general (non-Jewish) press
+PR1312	retype			ORG-C04535	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4003
+PR1313	retype_db		4023		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Polesskaya Pravda is general (non-Jewish) press
+PR1314	retype			ORG-C04381	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4023
+PR1315	retype_db		4026		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Pridunayskiy Krai is general (non-Jewish) press
+PR1316	retype			ORG-C05608	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4026
+PR1317	retype_db		4050		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Kievskaya Mysl is general (non-Jewish) press
+PR1318	retype			ORG-C00279	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4050
+PR1319	retype_db		4053		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Lublinskiye Gubernskiye Vedomosti is general (non-Jewish) press
+PR1320	retype			ORG-C02671	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4053
+PR1321	retype_db		4068		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Novyi Mir is general (non-Jewish) press
+PR1322	retype			ORG-C06373	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4068
+PR1323	retype_db		4072		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Russkiy Golos is general (non-Jewish) press
+PR1324	retype			ORG-C07182	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4072
+PR1325	retype_db		4091		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': V mire iskusstva is general (non-Jewish) press
+PR1326	retype			ORG-C00064	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4091
+PR1327	retype_db		4099		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Novorossiyskiy Telegraf is general (non-Jewish) press
+PR1328	retype			ORG-C04539	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4099
+PR1329	retype_db		4153		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Letopis is general (non-Jewish) press
+PR1330	retype			ORG-C00278	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4153
+PR1331	retype_db		4158		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Moskovskaya gazeta is general (non-Jewish) press
+PR1332	retype			ORG-C00334	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4158
+PR1333	retype_db		4197		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Bialistoker Tsaytung is general (non-Jewish) press
+PR1334	retype			ORG-C05149	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4197
+PR1335	retype_db		4200		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Birzhevye Vedomosti is general (non-Jewish) press
+PR1336	retype			ORG-C01643	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4200
+PR1337	retype_db		4243		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Yelisavetgradskiy vestnik is general (non-Jewish) press
+PR1338	retype			ORG-C06117	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4243
+PR1339	retype_db		4271		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Satirikon is general (non-Jewish) press
+PR1340	retype			ORG-C06378	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4271
+PR1341	retype_db		4285		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Zhizn is general (non-Jewish) press
+PR1342	retype			ORG-C07141	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4285
+PR1343	retype_db		4289		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Zapiski grazhdanina is general (non-Jewish) press
+PR1344	retype			ORG-C04533	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4289
+PR1345	retype_db		4290		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Russkoe bogatstvo is general (non-Jewish) press
+PR1346	retype			ORG-C04152	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4290
+PR1347	retype_db		399		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Teatr i Iskusstvo is general (non-Jewish) press
+PR1348	retype			ORG-C05565	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 399
+PR1349	retype_db		3976		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Rumänischer Lloyd is general (non-Jewish) press
+PR1350	retype			ORG-C04543	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 3976
+PR1351	retype			ORG-C03493	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 3976
+PR1352	retype_db		4009		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Zeitschrift fur Ostforschung is general (non-Jewish) press
+PR1353	retype			ORG-C00134	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4009
+PR1354	retype_db		4046		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Der Kampf is general (non-Jewish) press
+PR1355	retype			ORG-C04451	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4046
+PR1356	retype_db		4110		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Deytsher sotsyalistisher folkstsaytung is general (non-Jewish) press
+PR1357	retype			ORG-C00253	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4110
+PR1358	retype_db		4196		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Bukarester Tageblatt is general (non-Jewish) press
+PR1359	retype			ORG-C03492	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4196
+PR1360	retype_db		351		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Nowa Gazeta is general (non-Jewish) press
+PR1361	retype			ORG-C01816	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 351
+PR1362	retype_db		4263		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Szczutek is general (non-Jewish) press
+PR1363	retype			ORG-C03133	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4263
+PR1364	retype_db		4019		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Adevarul is general (non-Jewish) press
+PR1365	retype			ORG-C05800	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4019
+PR1366	retype_db		3949		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': El Dia is general (non-Jewish) press
+PR1367	retype			ORG-C02060	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 3949
+PR1368	retype_db		4149		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': El nacional is general (non-Jewish) press
+PR1369	retype			ORG-C02059	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4149
+PR1370	retype_db		4258		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Universal Gráfico is general (non-Jewish) press
+PR1371	retype			ORG-C02355	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4258
+PR1372	retype_db		4061		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': American Mercury is general (non-Jewish) press
+PR1373	retype			ORG-C02099	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4061
+PR1374	retype_db		4066		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': New York Journal is general (non-Jewish) press
+PR1375	retype			ORG-C05952	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4066
+PR1376	retype_db		4080		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Stratford Journal is general (non-Jewish) press
+PR1377	retype			ORG-C04137	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4080
+PR1378	retype			ORG-C02103	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4080
+PR1379	retype_db		4105		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Boston Evening Transcript is general (non-Jewish) press
+PR1380	retype			ORG-C02106	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4105
+PR1381	retype_db		4207		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Educational Theatre Journal is general (non-Jewish) press
+PR1382	retype			ORG-C02408	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4207
+PR1383	retype_db		4273		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': The Call is general (non-Jewish) press
+PR1384	retype			ORG-C02078	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4273
+PR1385	retype_db		4279		set_org_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish 'newtype': Evening World is general (non-Jewish) press
+PR1386	retype			ORG-C07109	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to db 4279
+PR1387	retype			ORG-C05267	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to a merged non-Jewish row
+PR1388	retype			ORG-C04531	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to a merged non-Jewish row
+PR1389	retype			ORG-C05189	set_cluster_type	Non-Jewish Journals/ Newspapers				high	Sinai on the open-items form 2026-11-01: policy-nonjewish: linked to a merged non-Jewish row
+PR1390	comment		399			"{""name_latin"": ""Teatr i iskusstvo"", ""settlement"": """", ""years_attested"": """", ""language"": ""Russian"", ""periodicity"": ""unknown"", ""wikidata_qid"": """", ""comment"": ""Russian-language theatre weekly (St Petersburg); existing authority row (db 4100 merged in 2026-11-01)."", ""links"": """", ""galron_row_ids"": """"}"				high|override	comment rewritten after merging db 4100 into 399 (duplicate mint), 2026-11-01
+PR1391	comment		1544			"{""name_latin"": ""Odesskii vestnik"", ""settlement"": ""Odessa"", ""years_attested"": ""1877"", ""language"": ""Russian (originally bilingual Russian/French)"", ""periodicity"": ""unknown"", ""wikidata_qid"": ""Q12135230"", ""comment"": ""Main Odessa Russian-language newspaper of the 19th century, which Odessa theatre reviewers and journalists in the Yiddish theatre's early years worked for or whose reviews are cited as sources. The lexicon cites it for reviews of early Yiddish performances in Odessa (1880) and as employer of Yiddish-theatre figures. Yosef-Yehuda Lerner was a regular contributor for ten years (merged from db 4194, 2026-11-01)."", ""links"": ""https://ru.wikipedia.org/wiki/Одесский_вестник"", ""galron_row_ids"": """"}"				high|override	comment rewritten after merging db 4194 into 1544 (duplicate mint), 2026-11-01
+PR1392	comment		4099			"{""name_latin"": ""Novorossiyskiy Telegraf"", ""settlement"": ""Odesa"", ""years_attested"": """", ""language"": ""Russian"", ""periodicity"": ""daily"", ""wikidata_qid"": """", ""comment"": ""Odesa Russian daily (Novorossiysky Telegraf). It sent Yankev Spivakovski to Bucharest as war correspondent in 1877; the lexicon cites it three times (db 4168 merged in 2026-11-01)."", ""links"": """", ""galron_row_ids"": """"}"				high|override	comment rewritten after merging db 4168 into 4099 (duplicate mint), 2026-11-01

@@ -20,7 +20,9 @@ backfill_review_decisions.py uses.
 the corpus, so --reviewer supplies the name to record (default: Sinai).
 
 --resolve-research lets a decision replace RESEARCH_FURTHER once the research
-has been done (e.g. research_further_2026_11_01.md); nothing else is overwritten.
+has been done (e.g. research_further_2026_11_01.md). --overrule CONFIRM lets the
+reviewer reverse an earlier CONFIRM (the doubted confirmations on the press
+open-items form, 2026-11-01). Nothing else is overwritten.
 
 Idempotent. Line endings preserved per file. Dry run unless --execute.
 """
@@ -41,7 +43,9 @@ VALID = {"CONFIRM", "REJECT", "RESEARCH_FURTHER", "NOT_A_NEWSPAPER"}
 
 def read(path: Path):
     csv.field_size_limit(10 ** 9)
-    raw = path.read_text(encoding="utf-8")
+    # newline="" keeps \r\n; read_text() would translate it and rewrite the file LF
+    with open(path, encoding="utf-8", newline="") as fh:
+        raw = fh.read()
     nl = "\r\n" if "\r\n" in raw[:200000] else "\n"
     rd = csv.DictReader(io.StringIO(raw), delimiter="\t")
     return list(rd.fieldnames), list(rd), nl
@@ -71,6 +75,8 @@ def main() -> int:
     ap.add_argument("--resolve-research", action="store_true",
                     help="let a decision replace an existing RESEARCH_FURTHER "
                          "(the research has been done); every other clash still refuses")
+    ap.add_argument("--overrule", action="append", default=[], metavar="DECISION",
+                    help="let the form replace an existing DECISION (repeatable)")
     a = ap.parse_args()
 
     src = Path(a.src)
@@ -114,7 +120,8 @@ def main() -> int:
         if existing == got["decision"]:
             skipped += 1
             continue
-        if existing and not (a.resolve_research and existing == "RESEARCH_FURTHER"):
+        if existing and not (a.resolve_research and existing == "RESEARCH_FURTHER") \
+                and existing not in a.overrule:
             clash += 1
             notes.append(f"  CLASH {key}: tsv={existing!r} form={got['decision']!r}")
             continue
