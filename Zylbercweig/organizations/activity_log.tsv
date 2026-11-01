@@ -5678,3 +5678,9 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-11-01T06:59:46Z	Sinai	org_review	alignment	ORG-C07368	ALIGN	minted db 3860 הוצאת „יבנה" (תל-אביב): founded 1932 by Joshua Orenstein; not db 74 (P064)	{"aligned_db_id": "3860"}
 2026-11-01T06:59:46Z	Sinai	org_review	mint	3860	NEW	הוצאת „יבנה" (תל-אביב) — founded 1932 by Joshua Orenstein; not db 74 (P064)	{"clusters": ["ORG-C07368"], "org_type": "Publisher", "source": "apply_org_fixes_2026_11_01.py"}
 2026-11-01T06:59:46Z	Sinai	org_review	deprecate	1564	NOT_AN_ORG	db 1564 cancelled: a merchant's rank (סוחר פֿון דריטער גילדע), not an organization	{"cluster_id": "ORG-C02251"}
+2026-11-01T07:05:07Z	Sinai	org_review	mint	3861	NEW	פּוילישער פֿאַרלאַגס-קאָמיטעט פֿון „לעקסיקאָן פֿון יידישן טעאַטער" — the Polish committee for volume 1 (David Lederman, member)	{"clusters": ["ORG-C04471"], "parent_db_id": "310", "source": "apply_lexicon_committees_2026_11_01.py"}
+2026-11-01T07:05:07Z	Sinai	org_review	alignment	ORG-C04471	ALIGN	minted db 3861	{"aligned_db_id": "3861"}
+2026-11-01T07:05:07Z	Sinai	org_review	mint	3862	NEW	רומענישער פֿאַרלאַגס-קאָמיטעט פֿון „לעקסיקאָן פֿון יידישן טעאַטער" — the Romanian committee (Itsikl Goldenberg, Moritz Zigler, members)	{"clusters": ["ORG-C06032"], "parent_db_id": "310", "source": "apply_lexicon_committees_2026_11_01.py"}
+2026-11-01T07:05:07Z	Sinai	org_review	alignment	ORG-C06032	ALIGN	minted db 3862	{"aligned_db_id": "3862"}
+2026-11-01T07:05:07Z	Sinai	org_addresses	set_parent	3593	parent_db_id=310	national Lexicon committee under the Lexicon roof	{"source": "apply_lexicon_committees_2026_11_01.py"}
+2026-11-01T07:05:07Z	Sinai	org_review	alignment	ORG-C02398	ALIGN	'the committee for the Lexicon' (Ari Furman, member) — a committee mention naming no country	{"aligned_db_id": "310", "before": "NOT_AN_ORG"}
