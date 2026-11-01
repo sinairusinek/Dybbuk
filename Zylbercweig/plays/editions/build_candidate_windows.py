@@ -52,6 +52,11 @@ MARKERS = {
     "place_year": r"\(\s*[^()]{2,40},\s*1[89]\d\d\s*\)",
     "pages": r"\d+,?\s*זז?\.",        # page count: "(38 זז.)", "[78 ז.]", "28, ז."
     "bib_item": r"\[\d{1,2}\]\s",     # numbered item in a printed-works list
+    # A work given under another name ("א"נ" = under the name, "א"ט" = under
+    # the title, "the same play ..."): the evidence for WHICH play an edition
+    # is. Mostly in production sentences, which no imprint marker reaches.
+    "alias": r"א[\"'״׳]נ\b|א[\"'״׳]ט\b|אונטער(?:ן|\s+דעם)\s+(?:נאמען|טיטל|טיטעל)"
+             r"|די\s+זעלבע\s+פיעסע|אנדער(?:ן)?\s+נאמען",
 }
 # "X.'s printed plays:" -- the Lexicon's end-of-entry bibliography. Its items
 # carry no marker word and the splitter breaks them on initials, so from the

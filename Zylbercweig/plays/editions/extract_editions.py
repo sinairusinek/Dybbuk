@@ -69,7 +69,15 @@ Copy all Yiddish/Hebrew strings VERBATIM from the passage: same spelling, same
 vowel points, no added or removed diacritics, no transliteration. Leave a field
 "" when the passage does not say it. Never guess a year or a place.
 
-Return JSON: {"records": [ ... ]}, each record:
+WHICH WORK IS IT. The Lexicon often gives one work under several names: staged
+"א"נ" (under the name) another title, printed "א"ט" (under the title) another,
+"the same play ... as", translated from an original, or a double title "X אָדער
+Y". Whenever the passage STATES that two or more titles are the same work --
+whether or not it was printed -- add a "same_work" group. Do not group titles
+merely because they look alike; only what the passage says.
+
+Return JSON: {"records": [ ... ], "same_work": [ ... ]}.
+Each record:
 {
  "title": "work title as printed, without surrounding quotes",
  "genre_phrase": "descriptor printed with it, e.g. דראַמע אין 4 אַקטן",
@@ -80,6 +88,7 @@ Return JSON: {"records": [ ... ]}, each record:
                  | "publisher" | "none",
  "original_title": "for translations/adaptations: title of the source work",
  "original_author": "for translations/adaptations: its author",
+ "alt_titles": ["other titles the passage gives for this same work"],
  "pub_kind": "book" | "periodical" | "collection" | "unknown",
  "container": "newspaper/journal/anthology/collected-works title",
  "publisher": "publishing house as printed",
@@ -88,14 +97,51 @@ Return JSON: {"records": [ ... ]}, each record:
  "evidence": "verbatim span (<= 250 chars) that states the publication",
  "confidence": "high" | "medium" | "low"
 }
-If there is nothing to record, return {"records": []}.
+Each same_work group:
+{
+ "titles": ["every title the passage gives for the work, verbatim"],
+ "author": "author as named in the passage, or 'SUBJECT'",
+ "how": "e.g. staged under another name / translation of / double title",
+ "evidence": "verbatim span (<= 250 chars) that states the identity"
+}
+If there is nothing, return {"records": [], "same_work": []}.
 """
 
 FIELDS = ["xml_id", "part", "person_id", "volume", "heading", "rec_no",
           "title", "genre_phrase", "work_kind", "author", "subject_role",
-          "original_title", "original_author", "pub_kind", "container",
+          "original_title", "original_author", "alt_titles", "pub_kind",
+          "container",
           "publisher", "place", "year", "date_detail", "edition_note",
           "evidence", "confidence"]
+
+
+SW_FIELDS = ["xml_id", "part", "person_id", "heading", "group_no", "titles",
+             "author", "how", "evidence"]
+
+_S = {"type": "string"}
+_ARR = {"type": "array", "items": _S}
+# Enforced output schema. Free-form JSON mode let ~2% of replies through with
+# unescaped quotes from Yiddish abbreviations (ד"ר, תר"פּ, א"נ) -- every one a
+# lost request.
+RESPONSE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "records": {"type": "array", "items": {
+            "type": "object",
+            "properties": {k: (_ARR if k == "alt_titles" else _S) for k in [
+                "title", "genre_phrase", "work_kind", "author", "subject_role",
+                "original_title", "original_author", "alt_titles", "pub_kind",
+                "container", "publisher", "place", "year", "date_detail",
+                "edition_note", "evidence", "confidence"]},
+            "required": ["title", "work_kind", "pub_kind", "evidence"]}},
+        "same_work": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"titles": _ARR, "author": _S, "how": _S,
+                           "evidence": _S},
+            "required": ["titles", "evidence"]}},
+    },
+    "required": ["records", "same_work"],
+}
 
 
 def read_tsv(p):
@@ -145,6 +191,7 @@ def ask(client, heading: str, passage: str) -> tuple[dict, str]:
             max_output_tokens=MAX_OUTPUT_TOKENS,
             temperature=0.0,
             response_mime_type="application/json",
+            response_json_schema=RESPONSE_SCHEMA,
             # Without a client-side deadline a hung socket stalls the run
             # forever (eponym judge, 2026-10-14).
             http_options=types.HttpOptions(timeout=REQUEST_TIMEOUT_MS),
@@ -190,6 +237,8 @@ def flatten(cache: dict, meta: dict, out: pathlib.Path) -> int:
         m = meta.get(xml_id, {})
         for i, r in enumerate(rec["result"].get("records", []) or []):
             row = {k: (r.get(k) or "") for k in FIELDS}
+            if isinstance(row["alt_titles"], list):
+                row["alt_titles"] = " | ".join(row["alt_titles"])
             row.update(xml_id=xml_id, part=part, rec_no=i,
                        person_id=m.get("person_id", ""),
                        volume=m.get("volume", ""), heading=m.get("heading", ""))
@@ -202,6 +251,25 @@ def flatten(cache: dict, meta: dict, out: pathlib.Path) -> int:
                            lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
+
+    groups = []
+    for (xml_id, part), rec in sorted(cache.items()):
+        m = meta.get(xml_id, {})
+        for i, g in enumerate(rec["result"].get("same_work", []) or []):
+            groups.append({
+                "xml_id": xml_id, "part": part, "group_no": i,
+                "person_id": m.get("person_id", ""),
+                "heading": m.get("heading", ""),
+                "titles": " | ".join(g.get("titles") or []),
+                "author": g.get("author") or "", "how": g.get("how") or "",
+                "evidence": (g.get("evidence") or "").replace("\t", " ")
+                .replace("\n", " ")})
+    sw = out.with_name(out.name.replace("editions_", "same_work_"))
+    with sw.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=SW_FIELDS, delimiter="\t",
+                           lineterminator="\n")
+        w.writeheader()
+        w.writerows(groups)
     return len(rows)
 
 
