@@ -1,5 +1,38 @@
 # Galron press matching — handoff
 
+## STATUS 2026-11-01 — stages 0–4 DONE (read this first; the 10-10 text below is history)
+
+LLM-decided at Sinai's request ("minimise the input you need from me").
+
+- **Stage 0, matching:** all 499 rows decided except 3 (`RESEARCH_FURTHER`, with notes):
+  140 CONFIRM, 354 REJECT, 2 NOT_A_NEWSPAPER. WEAK band pre-judged (place
+  conflict = REJECT, as A2). Research notes: `research_further_2026_11_01.md`.
+- **Stages 1–3, core_db** (`e3716ef74`): every Zylbercweig periodical has one
+  live row. Ledger `organizations/press_audit_decisions.tsv` (1273 decisions) →
+  `organizations/apply_press_audit.py` (idempotent; re-run after any core_db
+  loss). 428 mints (db 3863–4290), 4 merges (462→1291, 1848→1527, 1867→1866,
+  249→692), 9 troupes/theatres unlinked from papers (REMOVEs also in
+  `db_audit_decisions.tsv`), 19 clusters split by entry heading
+  (`organizations/split_press_clusters.py` + `press_cluster_splits.tsv`, `_Pnn`),
+  38 GENERIC, 631 periodical clusters linked on both sides.
+- **Comments (stage 3):** sidecar `organizations/press_comments.tsv`, keyed by
+  db_id (545 rows): Latin name, city, years attested, language, periodicity,
+  comment, links (Galron scan URLs where confirmed). core_db has no comment
+  column — the app does not read this file yet.
+- **Stage 4:** the Russian-language papers (Kievlyanin, Odesski Vestnik,
+  Odesskiya Novosti, Bessarabskaya Zhizn, Pinski Listok, Odessa Pravda) are
+  identified in their comments; org_type is NOT changed for non-Jewish papers.
+  פא'ש = Fraye Arbeter Shtime (merged); db 1218 "Teater in Kiev" retyped Theatre.
+
+**Still open:** 3 RESEARCH_FURTHER rows; 4 UNSURE groups (Sotsial-Demokrat,
+bare "Pres", bare "Herald", bare "Tog" — no city in the mention); 8 clusters a
+human had already decided (NOT_AN_ORG/DEFER/DISCUSS/aligned elsewhere) were left
+alone; 9 Galron CONFIRMs the judges doubted (namesakes: G004 Landsberg, G136
+Budapest Folksblat, G207, G247, G366, G453, G583, G047 Warsaw Kinder-Velt) —
+recheck those confirms. Bug found and fixed: `split_tsentral.py`'s `read_text()`
+turns CRLF to LF on rewrite; `split_press_clusters.py` reads with `newline=""`.
+
+
 State as of 2026-10-10. Read this plus `README.md` before touching anything.
 
 **Review doc (the form):** <https://claude.ai/code/artifact/8d2ed99d-4d38-4f82-8e4f-41eab4073e77>
