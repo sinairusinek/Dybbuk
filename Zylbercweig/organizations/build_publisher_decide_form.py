@@ -21,6 +21,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import csv
 import html
 import json
 import re
@@ -30,6 +31,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "publisher_remaining_open.json"
+LEDGER = HERE / "publisher_audit_decisions.tsv"
 OUT = HERE.parent.parent / "docs" / "Visualizations" / "publisher_decide_form.html"
 
 HEBREW = re.compile(r"[֐-׿יִ-ﭏ]")
@@ -172,7 +174,7 @@ shows someone was a <em>member</em> of it.</p>
     if not rows:
         P.append('<p class="hint"><b>Nothing left to decide.</b> Every publisher '
                  'cluster has a ruling in <span class="l">publisher_audit_decisions.tsv'
-                 '</span>; the last 107 were decided 2026-10-26 (P264–P380).</p>')
+                 '</span>; the last 107 were decided 2026-10-26 (P264–P380) and the 10 research flags on 2026-11-01 (P381–P391).</p>')
 
     for rec in order:
         group = by_rec.get(rec, [])
@@ -321,6 +323,22 @@ def main() -> int:
     ap.add_argument("--out", default=str(OUT))
     a = ap.parse_args()
     rows = json.loads(DATA.read_text(encoding="utf-8"))
+    # "Open" means no FINAL ruling. A flag (needs_research / needs_decision)
+    # is a question, not a ruling: ten RESEARCH clusters once vanished because
+    # a flag row was read as decided, and the form said "0 open" over them.
+    by_cluster: dict[str, set[str]] = {}
+    with LEDGER.open(encoding="utf-8") as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            for c in (r.get("cluster_id") or "").split("|"):
+                if c.strip():
+                    by_cluster.setdefault(c.strip(), set()).add((r.get("kind") or "").strip())
+    final = {c for c, kinds in by_cluster.items() if kinds - {"flag"}}
+    flag_only = sorted(c for c, kinds in by_cluster.items() if kinds == {"flag"})
+    rows = [x for x in rows if x["cluster_id"] not in final]
+    missing = [c for c in flag_only if c not in {x["cluster_id"] for x in rows}]
+    if missing:
+        raise SystemExit(f"{len(missing)} flagged cluster(s) are still open but absent from "
+                         f"{DATA.name}: {', '.join(missing)} — add them before building")
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(render(rows), encoding="utf-8")
