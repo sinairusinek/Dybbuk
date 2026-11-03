@@ -1374,6 +1374,10 @@ def render() -> None:
 	pair_index = load_pair_index(_mtime(PAIRS_FILE))
 	addr_db_ids = load_address_db_ids(_mtime(ADDR_FILE))
 	addr_details = load_address_details(_mtime(ADDR_FILE))
+	cluster_settlements = {
+		r.get("cluster_id", "").strip(): r.get("extracted_settlements", "").strip()
+		for r in a_rows
+	}
 	drafts_by_cid = load_drafts(_mtime(DRAFTS_FILE))
 	corro_by_key = load_corroborations(_mtime(CORRO_FILE))
 
@@ -1777,6 +1781,18 @@ def render() -> None:
 								loc_parts.append(loc["confirmed_address"])
 							if loc_parts:
 								hcol1.caption(f"📍 {' · '.join(loc_parts)}")
+							else:
+								# No confirmed place: fall back to what the linked
+								# clusters' mentions say, so same-name orgs in
+								# different cities stay distinguishable.
+								_ext = []
+								for _cid in re.split(r"[|,;\s]+", r.get("linked_cluster_ids", "")):
+									for _s in cluster_settlements.get(_cid, "").split("|"):
+										_s = _s.strip()
+										if _s and _s not in _ext:
+											_ext.append(_s)
+								if _ext:
+									hcol1.caption(f"📍 {' · '.join(_ext)} (from mentions, unconfirmed)")
 							if hcol2.button("Use", key=f"review-manual-{selected['cluster_id']}-{hit_id}"):
 								st.session_state[choice_key] = hit_id
 								st.rerun()
