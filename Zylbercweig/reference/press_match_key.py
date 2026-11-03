@@ -283,6 +283,22 @@ def phonetic_agreement(a_title: str, b_title: str) -> float:
     return score
 
 
+def _onset(token: str) -> str:
+    """K for a plain /k/ onset, X for /x/; "" when neither. The skeleton
+    keeps ק (k) apart from כ/ח (x); Latin Kh-/Ch- comes out as "ks"."""
+    sk = skeleton(token)
+    if HEBREW_RE.search(token):
+        return {"k": "K", "x": "X"}.get(sk[:1], "")
+    return "X" if sk.startswith("ks") else "K" if sk.startswith("k") else ""
+
+
+def _onset_clash(a: str, b: str) -> bool:
+    """Daitch-Mokotoff codes ק, כ and ח alike (5), so Kraków (קרקוב, 595700)
+    and Kharkov (כאַרקאָוו, 595700) got the same code; the onset tells them apart."""
+    oa, ob = _onset(a), _onset(b)
+    return bool(oa and ob and oa != ob)
+
+
 def place_agree(a_place: str, b_place: str) -> bool:
     """Do two place strings name the same settlement, across orthographies?
 
@@ -318,7 +334,7 @@ def place_agree(a_place: str, b_place: str) -> bool:
             if skeleton(ta) and skeleton(ta) == skeleton(tb):
                 return True
             ca, cb = _dm_codes(ta), _dm_codes(tb)
-            if ca and cb:
+            if ca and cb and not _onset_clash(ta, tb):
                 if ca & cb:
                     return True
                 # DM codes are fixed-width and zero-padded, and the digit that
