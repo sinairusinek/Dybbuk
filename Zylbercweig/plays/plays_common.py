@@ -37,6 +37,20 @@ GOLD_DIR = HERE / "gold"
 ENTRY_TEXTS_TSV = PEOPLE_DIR / "entry_texts.tsv"
 PEOPLE_DB_TSV = PEOPLE_DIR / "people_db.tsv"
 
+# Attribution certainty, for a play's ascription (plays_db attribution_status)
+# and for one fact's claim (the `attribution` column of
+# play_fact_attribution.tsv, carried onto KG edges):
+#   certain   — the ascription stands (plays_db: single)
+#   uncertain — never vetted (plays_db: ascription_unvetted)
+#   contested — sources disagree: someone else claimed it, or the claim is
+#               disputed in another source (plays_db: ascription_contested)
+#   false ascription — rejected (plays_db: ascription_rejected)
+ATTRIBUTION_CERTAINTY = ("certain", "uncertain", "contested", "false ascription")
+ATTRIBUTION_STATUS_CERTAINTY = {
+    "single": "certain", "ascription_unvetted": "uncertain",
+    "ascription_contested": "contested", "ascription_rejected": "false ascription",
+}
+
 # Default scope: Lateiner + Hurwitz. --author-db-ids overrides for scale-up.
 DEFAULT_AUTHOR_DB_IDS = ["683", "684"]
 

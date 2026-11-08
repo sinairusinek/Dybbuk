@@ -8,7 +8,7 @@ so by default we show the top-N nodes by degree, mixed across types. Pass
 --all to render everything (slow in browser).
 
 Clicking a play opens a panel with its ascription verdict, its Lexicon fact
-counts, the open questions on it in REVIEW_TASKS.md and a link to the same
+counts, its open questions (Google Doc, mirrored in REVIEW_TASKS.md) and a link to the same
 work in the YiDraCor entity tree (kg_crosslink.py). #node=<node_id> in the
 URL focuses a node, which is how the entity tree links here.
 
@@ -281,7 +281,7 @@ def main():
 <script>
   window._nodeYears = {node_years_js};
   window._playInfo = {play_info_js};
-  const VERDICT = {{single:'ascribed', ascription_unvetted:'ascription not vetted',
+  const VERDICT = {{single:'ascribed', ascription_unvetted:'ascription not vetted', ascription_contested:'ascription contested',
                    ascription_rejected:'ascription rejected (kept out of the L/H graph)'}};
   function esc(s) {{ return String(s==null?'':s).replace(/[&<>"]/g, c => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}})[c]); }}
   function showInfo(id) {{
@@ -294,7 +294,7 @@ def main():
       + esc(id.slice(5)) + ' · ' + esc(p.author) + ' · ' + esc(VERDICT[p.verdict] || p.verdict) + '<br>'
       + p.n_facts + ' Lexicon facts in the graph · ' + p.n_excluded + ' excluded as another play or no play';
     if (p.questions.length) {{
-      h += '<br><b>Open questions</b> (<a href="{xl.REVIEW_TASKS_URL}" target="_blank" rel="noopener">REVIEW_TASKS.md</a>):'
+      h += '<br><b>Open questions</b> (<a href="{xl.REVIEW_TASKS_URL}" target="_blank" rel="noopener">questions doc</a>):'
         + p.questions.map(q => '<br><span class="q">' + esc(q.qid) + '</span> ' + esc(q.summary)
                                 + (q.status !== 'open' ? ' (' + esc(q.status) + ')' : '')).join('');
     }}

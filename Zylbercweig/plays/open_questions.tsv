@@ -1,21 +1,21 @@
 qid	play_ids	edition_tkb	summary	applied
 A1	PL-0174|PL-0175|PL-0240|PL-0215|PL-0106|PL-0260|PL-0209|PL-0177		General rule: when is a production of a translated play the L/H version?	2026-11-08 rule accepted (Sinai); applied per case A3–A9
 A2	PL-0174		Tell: the Lexicon gives it to Joseph and Izela Lateiner (1896), not Hurwitz; Hershele's 1929 translation is a separate text	2026-11-08 PL-0174 -> Lateiner; 5 Hershele facts OTHER
-A3	PL-0175		Wüste Insel: two translations, Hurwitz's and Goldfaden's „די ווילדע אינזל“ (Grodner/Goldshteyn/Mogulesko cast)?	
 A4	PL-0240		Athalie: are all productions (incl. Gimpel 1894, Treitler 1884) Hurwitz's?	2026-11-08 agreed (Sinai); PL-0240 certain
 A5	PL-0215		Monte Cristo: Yarikhovsky's 1889 music predates Hurwitz's 1894 version; Feinman photo unplaced	2026-11-08 agreed (Sinai); 2 facts OTHER; PL-0215 certain
-A6	PL-0106		Kameliendame: catalogue says Lateiner (Windsor 1896, NYPL poster); the Lexicon names Bukansky's and Finkel's translations	
 A7	PL-0260		Kean / „ליבע און ליידנשאַפט“: two Shor plays share the subtitle; Landau 1916 unplaced	2026-11-08 agreed (Sinai); 4 facts OTHER
-A8	PL-0209		Lumpazivagabundus: Grodner claimed Lateiner's translation	
-A9	PL-0177|PL-0176|PL-0163		Virginius (and „דער שטורמווינד“): Lateiner's, or Jacob Bilder's translations?	
-A10	PL-0053		„דאָס לעבן אין ניו-יאָרק“: Lateiner's 1893 lebensbild (Berkovitsh) and Shenkman's 1890 farce — one play or two?	
 P1	PL-0062	828424	Bless the authorship rebuild + curators' verdicts; the 1911 „דאָס יודישע קינד“ printing is Shomer's per Lateiner's entry	2026-11-08 confirmed (Sinai); editions.csv 828424 author_certainty=false ascription
-P2	PL-0223		„משפּט שלמה“: one play (Lateiner's) or two?	
-P3	PL-0059|PL-0094|PL-0115|PL-0119|PL-0189|PL-0235|PL-0267|PL-0141		One of 8 catalogue ascriptions the Lexicon does not confirm (sources given)	
 R1			Is „מאַלווינאַ לאָבעלס ראָיאָל טעאַטער“ the known Royal Theatre org?	2026-11-08 yes (Sinai); kg_link_review venue -> ORG-C04687 (core_db 2250)
-R2	PL-0200		„ייִדעלע“ 1899: Windsor (Lexicon, LOC copyright) or People's (catalogue)?	
-R3	PL-0091		"„די מחותנים“ 1918: the catalogue's ""Thomashefsky Theatre"" = his National Theatre?"	
-R4	PL-0026		Roumanian Opera House = The Roumanian Opera Company (db 33)? db 3622 a duplicate?	
-R5	PL-0019		1895 Bucharest „אליהו הנביא“: Hurwitz's play, a later production?	
-R6	PL-0071|PL-0108|PL-0141		„די אלמנה“ / „די שטילע חתונה“: billed as „פּראָפ. יאַקאָבי“, a pseudonym; „די אלמנה“ is Anshel Shor's per the Lexicon — not Hurwitz's?	
 R7			Optional trust check of ~20 automatic GEMINI_ link decisions	2026-11-08 skipped (Sinai)
+Q1	PL-0106		Di kamelyen dame: was the ascription to Lateiner, as a translation, wrong? (was A6)	
+Q2	PL-0053		Dos lebn in Nyu-York: Lateiner’s, or Shenkman’s (staged as Feinman’s)? (was A10)	
+Q3	PL-0071|PL-0108|PL-0141		Di almone, Di shtile khasene, Der yid in Sobyeskis tsaytn: Hurwitz’s, or plays billed as by “Prof. Yakobi”? (was R6)	
+Q4	PL-0059|PL-0094|PL-0115|PL-0119|PL-0189|PL-0235|PL-0267		One of seven Lateiner ascriptions the Lexicon does not confirm (source of each given) (was P3)	
+Q5	PL-0223		Mishpet Shloyme: one play (Lateiner’s) or two? (was P2)	
+Q6	PL-0175		Vister inzl: Hurwitz’s translation and Goldfaden’s „די ווילדע אינזל“, two texts? (was A3)	
+Q7	PL-0209		Lumpatsyus vagabundus: Lateiner’s translation; Grodner’s claim recorded as contested? (was A8)	
+Q8	PL-0177|PL-0176|PL-0163		Virginius and Der shturmvind: Lateiner’s, or Jacob Bilder’s translations? (was A9)	
+Q9	PL-0200		Yidele 1899: Windsor (Lexicon, LOC copyright) or People’s (catalogue)? (was R2)	
+Q10	PL-0091		Di mekhutonim 1918: “Thomashefsky Theatre” = his National Theatre? (was R3)	
+Q11	PL-0026		Eyshes khayil 1891–92: Roumanian Opera House = The Roumanian Opera Company (db 33); db 3622 a duplicate? (was R4)	
+Q12	PL-0019		Eliyahu hanovi, Bucharest 1895: Hurwitz’s play, or a different Elijah play? (was R5)	

@@ -66,7 +66,7 @@ FIELD_NOTE = {
     "work_id": "the work this node hangs off",
     "play_key": "the song sheet's own play name, before resolution to a work_id",
     "link_status_to_work": "whether the play_key resolved to exactly one work",
-    "attribution": "how firmly the authorship is asserted",
+    "attribution": "how firmly the authorship is asserted: certain, uncertain, contested (sources disagree), false ascription / error",
     "attribution_note": "the wording the catalogue uses for a qualified attribution",
     "counts": "source-catalogue row counts (productions, roles, songs, events) — "
               "not graph edges",
@@ -101,7 +101,7 @@ ATTR_NOTE = {
     "date": "full date, where the source gives one",
     "type": "the performance-event type",
     "shelfmark": "the holding library's call number",
-    "attribution": "how firmly the authorship is asserted",
+    "attribution": "how firmly the authorship is asserted: certain, uncertain, contested (sources disagree), false ascription / error",
 }
 
 STATUS_NOTE = {

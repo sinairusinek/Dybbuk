@@ -44,14 +44,15 @@ REVIEW_TASKS_MD = pc.HERE / "REVIEW_TASKS.md"
 OPEN_QUESTIONS_TSV = pc.HERE / "open_questions.tsv"
 ENTITY_GRAPH_JSON = pc.HERE.parent.parent / "YiDraCor" / "data" / "entity_graph.json"
 EXCLUDED_TSV = pc.KG_DIR / "excluded_play_facts.tsv"
-REVIEW_TASKS_URL = ("https://github.com/sinairusinek/Dybbuk/blob/main/"
-                    "Zylbercweig/plays/REVIEW_TASKS.md")
+# where Ruthie reads and answers the questions (REVIEW_TASKS.md mirrors it)
+REVIEW_TASKS_URL = ("https://docs.google.com/document/d/"
+                    "1NYPJTWdP95GCjXBeSHQBl5bTdqRcvBab8FdmedhJuic/edit")
 
 PLAYWRIGHT_DB_ID = {"Lateiner": "683", "Hurwitz": "684"}
 AUTHOR_NAME = {"683": "Lateiner", "684": "Hurwitz"}
 REJECTED_IN_CATALOGUE = {"false ascription", "error", "uncertain/false?"}
 
-_QHEAD = re.compile(r"^### ([APR]\d+)\.\s*(.*)$")
+_QHEAD = re.compile(r"^### ([A-Z]+\d+)\.\s*(.*)$")
 _ANSWER = re.compile(r"^>\s*Answers?(?:\s*/\s*notes)?\s*:\s*(.*)$", re.M)
 
 

@@ -219,6 +219,17 @@ class Attribution:
                     return best
         return ""
 
+    def attribution(self, r: dict) -> str:
+        """The fact's own attribution certainty (pc.ATTRIBUTION_CERTAINTY),
+        e.g. `contested` for a role someone claimed that another source
+        disputes; empty when nobody has judged it."""
+        ov = self.overrides.get(r.get("fact_id", ""))
+        a = (ov or {}).get("attribution", "").strip()
+        if a and a not in pc.ATTRIBUTION_CERTAINTY:
+            raise SystemExit(f"play_fact_attribution.tsv {r.get('fact_id')}: "
+                             f"attribution {a!r} not in {pc.ATTRIBUTION_CERTAINTY}")
+        return a
+
     def character_ref(self, r: dict) -> str:
         ov = self.overrides.get(r.get("fact_id", ""))
         return (ov or {}).get("character_ref", "")

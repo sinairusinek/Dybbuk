@@ -61,7 +61,7 @@ EDGE_FIELDS = ["edge_id", "source_id", "target_id", "edge_type", "role_detail",
                "event_id", "production_key", "provenance_person_id",
                "provenance_fact_ids", "evidence_sentence", "extraction_model",
                "confidence", "match_status", "review_status", "source_layer",
-               "character_ref"]
+               "character_ref", "attribution"]
 EVENT_FIELDS = ["event_id", "event_type", "play_id", "venue_id", "org_id",
                 "place_id", "date_start", "date_end", "date_precision",
                 "production_key", "provenance_person_id", "provenance_fact_ids",
@@ -419,7 +419,8 @@ def main() -> None:
         g.add_node(pid, node_type="play", label_yiddish=p["title_yiddish"],
                    ext_ref_type="plays_db", ext_ref_id=p["play_id"],
                    match_status="matched",
-                   notes=("disputed_attribution" if p["attribution_status"] == "disputed" else ""))
+                   notes=("contested_attribution"
+                          if p["attribution_status"] == "ascription_contested" else ""))
         if p["attribution_status"] in ("ascription_rejected", "ascription_unvetted"):
             continue  # curators rejected (or never vetted) the L/H ascription
         author_node = f"person:{p['author_db_id']}"
@@ -432,7 +433,8 @@ def main() -> None:
                    extraction_model="registry",
                    provenance_person_id="", confidence="high", match_status="matched",
                    role_detail="", character="", date_start="", date_end="",
-                   date_precision="", event_id="", production_key="")
+                   date_precision="", event_id="", production_key="",
+                   attribution=pc.ATTRIBUTION_STATUS_CERTAINTY.get(p["attribution_status"], ""))
 
     # Play -> YiDraCor edition links (link only; no catalogue facts ingested).
     seg_index: dict[str, list[dict]] = defaultdict(list)
@@ -576,6 +578,7 @@ def main() -> None:
             evidence_sentence=r.get("evidence_quote", ""),
             extraction_model=r.get("model", ""),
             confidence=r.get("confidence", ""), match_status=overall,
+            attribution=att.attribution(r),
         )
         ftype = r.get("fact_type", "")
         role = r.get("person_role", "")
