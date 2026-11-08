@@ -17,7 +17,9 @@ the same verdicts and the same questions:
   questions()      every question in REVIEW_TASKS.md, its status read from the
                    file itself (an empty "> Answer:" = open), joined to the
                    plays in open_questions.tsv (`@unvetted` = every play with
-                   attribution_status=ascription_unvetted)
+                   attribution_status=ascription_unvetted); questions marked
+                   applied there may have left REVIEW_TASKS.md for
+                   REVIEW_DECISIONS.md
   play_summary()   per play: verdict, author, Lexicon facts in the graph and
                    excluded from it, the questions touching it
   disagreements()  where the catalogue and plays_db disagree on the author or
@@ -49,38 +51,29 @@ PLAYWRIGHT_DB_ID = {"Lateiner": "683", "Hurwitz": "684"}
 AUTHOR_NAME = {"683": "Lateiner", "684": "Hurwitz"}
 REJECTED_IN_CATALOGUE = {"false ascription", "error", "uncertain/false?"}
 
-# REVIEW_TASKS.md section heading -> qid prefix
-_SECTIONS = [("## A.", "A", "Ruthie (PI)"),
-             ("## For Ruthie (PI)", "P", "Ruthie (PI)"),
-             ("## For the RA", "R", "RA")]
+_QHEAD = re.compile(r"^### ([APR]\d+)\.\s*(.*)$")
 _ANSWER = re.compile(r"^>\s*Answers?(?:\s*/\s*notes)?\s*:\s*(.*)$", re.M)
 
 
 def _parse_review_tasks() -> dict[str, dict]:
-    """qid -> {title, audience, answered, answer} from REVIEW_TASKS.md."""
+    """qid -> {title, audience, answered, answer} from REVIEW_TASKS.md.
+
+    Questions are headed `### <qid>. <title>`; every question there is for
+    Ruthie. Answered-and-applied questions move to REVIEW_DECISIONS.md."""
     text = REVIEW_TASKS_MD.read_text(encoding="utf-8")
     out: dict[str, dict] = {}
-    prefix = audience = None
-    blocks = re.split(r"^(?=#{2,3} )", text, flags=re.M)
-    for b in blocks:
-        head = b.split("\n", 1)[0]
-        if head.startswith("## "):
-            prefix = audience = None
-            for start, p, aud in _SECTIONS:
-                if head.startswith(start):
-                    prefix, audience = p, aud
+    for b in re.split(r"^(?=#{2,3} )", text, flags=re.M):
+        m = _QHEAD.match(b.split("\n", 1)[0])
+        if not m:
             continue
-        m = re.match(r"### (?:[A-Z])?(\d+)\.\s*(.*)", head)
-        if not (m and prefix):
-            continue
-        qid = f"{prefix}{m.group(1)}"
         am = _ANSWER.search(b)
         answer = ""
         if am:
             tail = (am.group(1) + "\n" + b[am.end():]).strip()
             answer = re.sub(r"^-{3,}\s*$", "", tail, flags=re.M).strip()
-        out[qid] = {"qid": qid, "title": m.group(2).strip(), "audience": audience,
-                    "answered": bool(answer), "answer": answer}
+        out[m.group(1)] = {"qid": m.group(1), "title": m.group(2).strip(),
+                           "audience": "Ruthie (PI)",
+                           "answered": bool(answer), "answer": answer}
     return out
 
 
@@ -89,15 +82,23 @@ def questions(plays: dict[str, dict] | None = None) -> list[dict]:
     plays = plays or {p["play_id"]: p for p in pc.load_plays_db()}
     parsed = _parse_review_tasks()
     mapping = {r["qid"]: r for r in pc.read_tsv(OPEN_QUESTIONS_TSV)}
-    missing = sorted(set(mapping) - set(parsed))
+    missing = sorted(q for q in set(mapping) - set(parsed)
+                     if not (mapping[q].get("applied") or "").strip())
     if missing:
-        raise SystemExit(f"open_questions.tsv names questions not in "
+        raise SystemExit(f"open_questions.tsv names open questions not in "
                          f"REVIEW_TASKS.md: {missing}")
+    unmapped = sorted(set(parsed) - set(mapping))
+    if unmapped:
+        raise SystemExit(f"REVIEW_TASKS.md questions missing from "
+                         f"open_questions.tsv: {unmapped}")
     unvetted = [pid for pid, p in plays.items()
                 if p["attribution_status"] == "ascription_unvetted"]
     out = []
-    for qid, q in parsed.items():
+    for qid in list(parsed) + [q for q in mapping if q not in parsed]:
         m = mapping.get(qid, {})
+        q = parsed.get(qid) or {"qid": qid, "title": m.get("summary", ""),
+                                "audience": "Ruthie (PI)", "answered": True,
+                                "answer": ""}
         pids: list[str] = []
         for tok in (m.get("play_ids") or "").split("|"):
             tok = tok.strip()

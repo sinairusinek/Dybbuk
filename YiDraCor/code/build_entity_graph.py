@@ -282,8 +282,11 @@ def printer_candidates(raw: str, org_exact: dict) -> list:
         return []
     hits = {}
     # org_exact maps a normalised key to a (db_id, label) pair — not a dict.
-    for db_id, label in org_exact.values():
-        for half in str(label or "").split("|"):
+    # Match the indexed name (the key) as well as the label: a printer's
+    # romanised name can survive only as a variant, e.g. "HaTsfira" after
+    # core_db 270 was merged into 68, whose label is „הצפירה".
+    for key, (db_id, label) in org_exact.items():
+        for half in str(label or "").split("|") + [key]:
             got, got_bare = roman_fold(half), roman_fold(half, bare=True)
             if len(got) < 4:
                 continue
@@ -357,27 +360,40 @@ def load_orgs() -> tuple[dict, dict, dict]:
     """
     exact, parts, tokidx = {}, {}, defaultdict(list)
     with CORE_DB.open(encoding="utf-8") as f:
-        for r in csv.DictReader(f, delimiter="\t"):
-            if (r.get("deprecated") or "").strip().lower() in ("y", "yes", "true", "1"):
+        rows = list(csv.DictReader(f, delimiter="\t"))
+    by_id = {r["db_id"]: r for r in rows}
+
+    def is_dep(r: dict) -> bool:
+        return (r.get("deprecated") or "").strip().lower() in ("y", "yes", "true", "1")
+
+    # A deprecated row merged into another still names that body: index its
+    # names under the surviving row (HaTsfira 270 -> 68, merged 2026-11), or
+    # a printer that resolved yesterday drops out of the graph today.
+    live = [r for r in rows if not is_dep(r)]
+    merged = []
+    for r in rows:
+        tgt = (r.get("merged_into") or "").strip()
+        if is_dep(r) and tgt in by_id and not is_dep(by_id[tgt]):
+            merged.append((r, by_id[tgt]))
+    for r, owner in [(r, r) for r in live] + merged:
+        label = (owner.get("name") or owner.get("name_yiddish") or "").strip()
+        fields = [r.get("name"), r.get("name_yiddish"),
+                  r.get("name_yiddish_translit")]
+        fields += (r.get("name_variants") or "").split("|")
+        for n in fields:
+            if not (n or "").strip():
                 continue
-            label = (r.get("name") or r.get("name_yiddish") or "").strip()
-            fields = [r.get("name"), r.get("name_yiddish"),
-                      r.get("name_yiddish_translit")]
-            fields += (r.get("name_variants") or "").split("|")
-            for n in fields:
-                if not (n or "").strip():
-                    continue
-                exact.setdefault(sm(n), (r["db_id"], label))
-                # `A|B` rows name one body two ways; index each half, and each
-                # half's imprint core, so a publisher written out in full still
-                # finds the bare name core_db stores.
-                for half in str(n).split("|"):
-                    if half.strip():
-                        parts.setdefault(sm(half), (r["db_id"], label))
-                        core = sm(imprint_core(half))
-                        if core:
-                            parts.setdefault(core, (r["db_id"], label))
-                        tokidx[toks(half)].append((r["db_id"], label))
+            exact.setdefault(sm(n), (owner["db_id"], label))
+            # `A|B` rows name one body two ways; index each half, and each
+            # half's imprint core, so a publisher written out in full still
+            # finds the bare name core_db stores.
+            for half in str(n).split("|"):
+                if half.strip():
+                    parts.setdefault(sm(half), (owner["db_id"], label))
+                    core = sm(imprint_core(half))
+                    if core:
+                        parts.setdefault(core, (owner["db_id"], label))
+                    tokidx[toks(half)].append((owner["db_id"], label))
     return exact, parts, dict(tokidx)
 
 
