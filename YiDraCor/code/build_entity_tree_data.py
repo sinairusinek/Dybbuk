@@ -31,12 +31,19 @@ The split is clean in the data, and this is the rule the projection follows:
 Entities are deduplicated per work and per bucket: one person credited twice on
 the same work is one row carrying n=2.
 
+Each work also carries the Plays KG's view of it (Zylbercweig/plays,
+joined in kg_crosslink.py): the ascription verdict, the Lexicon facts kept
+in and excluded from the L/H graph, where the catalogue and the Plays KG
+disagree, and the open questions in plays/REVIEW_TASKS.md that touch it.
+Rerun this script after any build_kg.py run or REVIEW_TASKS.md edit.
+
     python3.11 build_entity_tree_data.py        # from YiDraCor/code/
 """
 from __future__ import annotations
 
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -44,6 +51,11 @@ ROOT = Path(__file__).resolve().parent.parent            # YiDraCor/
 REPO = ROOT.parent                                       # Dybbuk/
 GRAPH = ROOT / "data" / "entity_graph.json"
 PAGE = REPO / "docs" / "Visualizations" / "lateiner_hurwitz_entities.html"
+PLAYS_KG_PAGE = REPO / "docs" / "Visualizations" / "plays_kg_graph.html"
+
+sys.path.insert(0, str(REPO / "Zylbercweig" / "plays"))
+import kg_crosslink as xl  # noqa: E402
+import plays_common as pc  # noqa: E402
 
 # The two playwrights the page is about, in the order it lists them.
 PLAYWRIGHTS = ["683", "684"]
@@ -178,6 +190,7 @@ def build_kg(graph: dict) -> dict:
         ed = nodes[ed_id]
         return {
             "label": ed.get("label"),
+            "questions": tkb_q.get(str(ed.get("transkribus_doc_id") or ""), []),
             "folder": ed.get("folder"),
             "year": ed.get("year_printed"),
             "tkb": ed.get("transkribus_doc_id"),
@@ -200,6 +213,29 @@ def build_kg(graph: dict) -> dict:
     by_db = {str(n.get("db_id")): n for n in graph["nodes"]
              if n.get("kind") == "person" and n.get("db_id")}
 
+    # --- the Plays KG's view of each work --------------------------------
+    plays = {p["play_id"]: p for p in pc.load_plays_db()}
+    qs = xl.questions(plays)
+    psum = xl.play_summary(plays, qs)
+    w2p = xl.work_to_play([n for n in graph["nodes"] if n.get("kind") == "work"],
+                          plays)
+    on_graph_page = PLAYS_KG_PAGE.read_text(encoding="utf-8") \
+        if PLAYS_KG_PAGE.exists() else ""
+    tkb_q: dict[str, list[str]] = defaultdict(list)
+    for q in qs:
+        if q["edition_tkb"] and q["status"] != "applied":
+            tkb_q[q["edition_tkb"]].append(q["qid"])
+
+    def kg_of(w: dict) -> dict:
+        pid = w2p.get(w["id"], "")
+        info = dict(psum.get(pid, {})) if pid else {}
+        info["play_id"] = pid
+        info["disagree"] = xl.disagreements(w, plays.get(pid))
+        # the page draws only its top-degree nodes; a vis.js node reads
+        # `"id": "play:PL-…"` (bare ids also appear in the page's lookup tables)
+        info["on_graph_page"] = bool(pid) and f'"id": "play:{pid}"' in on_graph_page
+        return info
+
     authors = []
     for db_id in PLAYWRIGHTS:
         person = by_db.get(db_id)
@@ -221,6 +257,7 @@ def build_kg(graph: dict) -> dict:
                 "genre": w.get("genre") or w.get("tags"),
                 "attribution": w.get("attribution"),
                 "attribution_note": w.get("attribution_note"),
+                "kg": kg_of(w),
                 "editions": [edition_of(i) for i in eds],
                 "events": [event_of(i) for i in evs],
                 "songs": [song_of(i) for i in sgs],
@@ -275,7 +312,25 @@ def build_kg(graph: dict) -> dict:
              "reason": g.get("reason"), "candidates": g.get("candidates") or ""}
             for g in graph.get("gaps", [])]
 
-    return {"summary": summary, "gaps": gaps, "authors": authors}
+    # which works each question touches, for the question list
+    q_works: dict[str, list[dict]] = defaultdict(list)
+    for a in authors:
+        for w in a["works"]:
+            qids = set(w["kg"].get("questions", []))
+            for e in w["editions"]:
+                qids |= set(e["questions"])
+            for qid in sorted(qids):
+                q_works[qid].append({"expression_id": w["expression_id"],
+                                     "label": w["yiddish"] or w["label"]})
+    questions = [{k: q[k] for k in ("qid", "title", "audience", "status",
+                                    "summary", "url")}
+                 | {"works": q_works.get(q["qid"], [])} for q in qs]
+    summary["review_questions"] = dict(Counter(q["status"] for q in qs))
+    summary["disagreements"] = sum(1 for a in authors for w in a["works"]
+                                   if w["kg"]["disagree"])
+
+    return {"summary": summary, "gaps": gaps, "authors": authors,
+            "questions": questions}
 
 
 def main() -> int:

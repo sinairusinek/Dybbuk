@@ -7,6 +7,11 @@ The full graph is too large to render all at once (2.5k nodes / 4.9k edges),
 so by default we show the top-N nodes by degree, mixed across types. Pass
 --all to render everything (slow in browser).
 
+Clicking a play opens a panel with its ascription verdict, its Lexicon fact
+counts, the open questions on it in REVIEW_TASKS.md and a link to the same
+work in the YiDraCor entity tree (kg_crosslink.py). #node=<node_id> in the
+URL focuses a node, which is how the entity tree links here.
+
 Usage:
     python3.11 build_kg_viz.py             # top-500 by degree (default)
     python3.11 build_kg_viz.py --top 1000  # top-1000
@@ -95,6 +100,10 @@ def main():
     if not args.all and len(all_nodes) > args.top:
         chosen_ids = {n["node_id"] for n in
                       sorted(all_nodes, key=lambda x: -deg[x["node_id"]])[:args.top]}
+        # every play is drawn, so the entity tree's links always land on a node
+        # (a play hangs off its author, who is always in the top set)
+        chosen_ids |= {n["node_id"] for n in all_nodes
+                       if n["node_type"] == "play" and deg[n["node_id"]]}
         all_nodes = [n for n in all_nodes if n["node_id"] in chosen_ids]
         edges = [e for e in edges
                  if e["source_id"] in chosen_ids and e["target_id"] in chosen_ids]
@@ -205,6 +214,28 @@ def main():
                               round(-(lat - mlat) * K, 1)]
     place_geo_js = json.dumps(place_geo)
 
+    # --- per-play panel: verdict, facts, questions, link to the entity tree ---
+    import kg_crosslink as xl
+    import plays_common as pc
+    plays = {p["play_id"]: p for p in pc.load_plays_db()}
+    qs = xl.questions(plays)
+    qby = {q["qid"]: q for q in qs}
+    psum = xl.play_summary(plays, qs)
+    p2w = defaultdict(list)
+    for wid, pid in xl.work_to_play(xl.load_entity_works(), plays).items():
+        if pid:
+            p2w[pid].append(wid.split(":", 1)[1])
+    play_info = {f"play:{pid}": {
+        "verdict": d["status"], "author": d["author"],
+        "n_facts": d["n_facts"], "n_excluded": d["n_excluded"],
+        "works": p2w.get(pid, []),
+        "questions": [{"qid": q, "summary": qby[q]["summary"],
+                       "status": qby[q]["status"]} for q in d["questions"]]}
+        for pid, d in psum.items()}
+    play_info_js = json.dumps(play_info, ensure_ascii=False)
+    tree_url = ("https://sinairusinek.github.io/Dybbuk/Visualizations/"
+                "lateiner_hurwitz_entities.html")
+
     header = f"""
 <style>
   body {{ margin:0; font-family: -apple-system, sans-serif; background:#111; color:#eee; }}
@@ -225,10 +256,18 @@ def main():
   #tl b {{ color:#8fd0ff; min-width:78px; text-align:center; }}
   #tl label {{ color:#999; }}
   #mynetwork {{ margin-top:44px; }}
+  #info {{ position:fixed; left:12px; bottom:12px; max-width:380px; z-index:1000;
+           background:rgba(20,20,20,0.95); border:1px solid #444; border-radius:6px;
+           padding:10px 12px; font-size:12px; line-height:1.45; display:none; }}
+  #info h2 {{ margin:0 0 4px; font-size:14px; }}
+  #info a {{ color:#8fd0ff; }}
+  #info .q {{ color:#ffb3b3; }}
+  #info .x {{ float:right; cursor:pointer; color:#888; }}
 </style>
+<div id="info"></div>
 <div id="hdr">
   <h1>Plays Knowledge Graph</h1>
-  <span class="meta">{len(all_nodes)} nodes · {len(edges)} edges · rendering {'all' if args.all else f'top {args.top} by degree'}</span>
+  <span class="meta">{len(all_nodes)} nodes · {len(edges)} edges · rendering {'all' if args.all else f'top {args.top} by degree + every play'}</span>
   <button id="physBtn" onclick="togglePhysics()">⏸ Freeze layout</button>
   <button id="geoBtn" onclick="toggleGeo()" title="Pin place nodes at their real coordinates">🌍 Geo layout</button>
   <span id="tl">🕓
@@ -241,6 +280,39 @@ def main():
 </div>
 <script>
   window._nodeYears = {node_years_js};
+  window._playInfo = {play_info_js};
+  const VERDICT = {{single:'ascribed', ascription_unvetted:'ascription not vetted',
+                   ascription_rejected:'ascription rejected (kept out of the L/H graph)'}};
+  function esc(s) {{ return String(s==null?'':s).replace(/[&<>"]/g, c => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}})[c]); }}
+  function showInfo(id) {{
+    const box = document.getElementById('info');
+    const n = window.nodes && window.nodes.get(id);
+    const p = window._playInfo[id];
+    if (!n || !p) {{ box.style.display = 'none'; return; }}
+    let h = '<span class="x" onclick="hideInfo()">✕</span>'
+      + '<h2>' + esc(n.title || n.label) + '</h2>'
+      + esc(id.slice(5)) + ' · ' + esc(p.author) + ' · ' + esc(VERDICT[p.verdict] || p.verdict) + '<br>'
+      + p.n_facts + ' Lexicon facts in the graph · ' + p.n_excluded + ' excluded as another play or no play';
+    if (p.questions.length) {{
+      h += '<br><b>Open questions</b> (<a href="{xl.REVIEW_TASKS_URL}" target="_blank" rel="noopener">REVIEW_TASKS.md</a>):'
+        + p.questions.map(q => '<br><span class="q">' + esc(q.qid) + '</span> ' + esc(q.summary)
+                                + (q.status !== 'open' ? ' (' + esc(q.status) + ')' : '')).join('');
+    }}
+    if (p.works.length) {{
+      h += '<br>' + p.works.map(w => '<a href="{tree_url}#w-' + esc(w) + '" target="_blank" rel="noopener">open in the entity tree (expr ' + esc(w) + ')</a>').join(' · ');
+    }}
+    box.innerHTML = h; box.style.display = 'block';
+  }}
+  function hideInfo() {{ document.getElementById('info').style.display = 'none'; }}
+  function focusFromHash() {{
+    const m = location.hash.match(/node=([^&]+)/);
+    if (!m || !window.network) return;
+    const id = decodeURIComponent(m[1]);
+    if (!window.nodes.get(id)) return;
+    window.network.selectNodes([id]);
+    window.network.focus(id, {{scale: 1.4, animation: true}});
+    showInfo(id);
+  }}
   window._placeGeo  = {place_geo_js};
   window._typeOn = {{}};
   window._geoOn = false;
@@ -307,8 +379,12 @@ def main():
     const iv = setInterval(() => {{
       if (typeof nodes !== 'undefined' && typeof network !== 'undefined') {{
         window.nodes = nodes; window.network = network; window._physicsOn = true;
+        network.on('selectNode', ev => showInfo(ev.nodes[0]));
+        network.on('deselectNode', () => {{ document.getElementById('info').style.display = 'none'; }});
+        window.addEventListener('hashchange', focusFromHash);
         // Once stabilized, freeze physics so the layout stops drifting
         network.once('stabilizationIterationsDone', () => {{
+          setTimeout(focusFromHash, 300);
           if (window._geoOn) return;   // geo mode manages its own physics
           network.setOptions({{physics: {{enabled: false}}}});
           window._physicsOn = false;

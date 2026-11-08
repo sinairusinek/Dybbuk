@@ -5,6 +5,12 @@ this file, under each question — we transfer answers into the data files.
 Everything that could be resolved mechanically has been; only the questions
 below need you.*
 
+*Every question also shows on the works it concerns in the
+[entity tree](https://sinairusinek.github.io/Dybbuk/Visualizations/lateiner_hurwitz_entities.html)
+(filter "Open questions") and on the play's panel in the
+[Plays KG graph](https://sinairusinek.github.io/Dybbuk/Visualizations/plays_kg_graph.html).
+Writing an answer here marks it answered there after the next rebuild.*
+
 ## What changed since v1 (background, 2 minutes)
 
 The "121 attribution conflicts" from v1 are **gone** — we traced them to a
