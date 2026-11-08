@@ -66,7 +66,7 @@ one in the repertoire.
 Otherwise the production goes to the general graph as a production of the
 original play, with the translator unknown. Agree?
 
-> Answer:
+> Answer: Agreed — the rule is accepted (Sinai, 2026-11-08). Applied case by case through A3–A9.
 
 ### A2. ווילהעלם טעל (Schiller) — Lateiner's, not Hurwitz's?
 Our play list gives it to **Hurwitz** (it came from the corrupt export).
@@ -82,7 +82,7 @@ A separate, later translation:
 **Proposal:** Tell is Joseph and Izela Lateiner's (1896), not Hurwitz's.
 Hershele's 1929 translation is a different text and goes out.
 
-> Answer:
+> Answer: Agreed (Sinai, 2026-11-08). Applied: Tell is now Lateiner's in plays_db; Hershele's 1929 translation (5 facts) is out of the L/H graph.
 
 ### A3. וויסטער אינזעל (Kotzebue) — Hurwitz's and Goldfaden's are two translations?
 - Hurwitz's entry, Bucharest 1877–78: „אַלס דריטע פּיעסע די איבערזעצונג פון רומעניש „די ווייסטע אינזל" [איבערזעצט און אויפגעפירט אויך פון גאָלדפאַדען אין זיין טרופּע]". B. Gorin's list also has „אָפּגעקומענער עושר" (also called „וויסטער אינזעל").
@@ -91,8 +91,11 @@ Hershele's 1929 translation is a different text and goes out.
 
 **Proposal:** these are two translations: Hurwitz's from Romanian, and
 Goldfaden's „די ווילדע אינזל". The Goldfaden translation and its three cast
-lines (Grodner, Goldshteyn, Mogulesko) go out. Please also confirm the
-ascription to Hurwitz (it is one of the 24 unvetted plays in question 3).
+lines (Grodner, Goldshteyn, Mogulesko) go out.
+**Second question:** is the play Hurwitz's at all? The catalogue curators
+never vetted this ascription (it is in the list of 24 under question 3 of
+"For Ruthie (PI)" below). His own entry and Shoengold's both say he staged
+the translation in Bucharest, 1877–78, so we propose: yes, Hurwitz's.
 
 > Answer:
 
@@ -111,7 +114,8 @@ written after Racine.)
 **Proposal:** all of these are Hurwitz's. That includes the Galician
 children's productions (Gimpel 1894, Treitler 1884), unless you know of
 another Yiddish *Athalie* in that repertoire. Please also confirm the
-ascription (one of the 24 unvetted plays).
+ascription: the curators never vetted it (question 3 of "For Ruthie (PI)"
+below).
 
 > Answer:
 
@@ -123,8 +127,8 @@ ascription (one of the 24 unvetted plays).
 
 **Proposal:** keep only Hurwitz's 1894 version. Yarikhovsky's 1889 music
 belongs to an earlier adaptation, so it goes out. The Feinman photo goes out
-unless you know it is Hurwitz's text. Please also confirm the ascription
-(one of the 24 unvetted plays).
+unless you know it is Hurwitz's text. Please also confirm the ascription:
+the curators never vetted it (question 3 of "For Ruthie (PI)" below).
 
 > Answer:
 
