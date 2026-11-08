@@ -38,6 +38,16 @@ Plays: PL-0223 (was P2). Evidence: see Q5 in the Doc.
 
 > Answer:
 
+### Q13. A funk yidishkayt: a Morris Rosenfeld song (and a Shomer subtitle), not a Lateiner play — reject?
+Plays: PL-0009 (added 2026-11-08). Evidence: see Q13 in the Doc.
+
+> Answer:
+
+### Q14. A lustike minut: a song (Lindenfeld, 1909), not a Lateiner play — reject?
+Plays: PL-0006 (added 2026-11-08). Evidence: see Q14 in the Doc.
+
+> Answer:
+
 ## Part 2. Translations and versions
 
 ### Q6. Vister inzl: Hurwitz’s translation and Goldfaden’s „די ווילדע אינזל“, two texts?
