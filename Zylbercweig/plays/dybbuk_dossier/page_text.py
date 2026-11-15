@@ -94,6 +94,7 @@ const map = L.map('map', {scrollWheelZoom:false}).setView([48, 15], 4);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 12,
   attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const bidi = s => esc(s).replace(/(„[^“]*“)/g, '<bdi dir="rtl">$1</bdi>');
 const on = Object.fromEntries(Object.keys(D.works).map(w => [w, true]));
 const layer = L.layerGroup().addTo(map);
 function draw(){
@@ -110,7 +111,7 @@ function draw(){
       color: col, weight: creation ? 2.5 : 1, fillColor: col,
       fillOpacity: creation ? 0.08 : 0.55, dashArray: region ? '3 3' : null});
     items.sort((a,b) => String(a.y||'9').localeCompare(String(b.y||'9')));
-    m.bindPopup('<b>' + esc(p.en) + '</b> · ' + esc(D.works[p.w][0]) + '<br>' + items.map(i =>
+    m.bindPopup('<b>' + esc(p.en) + '</b> · ' + bidi(D.works[p.w][0]) + '<br>' + items.map(i =>
       '<div style="margin-top:.35rem"><b>' + esc(i.y || '—') + '</b> ' + esc(i.ft) +
       (i.tr ? ' · <span dir="rtl">' + esc(i.tr) + '</span>' : '') +
       (i.ve ? ' · <span dir="rtl">' + esc(i.ve) + '</span>' : '') +
@@ -124,7 +125,7 @@ const fl = document.getElementById('filters');
 for (const [w, [name, col]] of Object.entries(D.works)){
   const n = D.pts.filter(p => p.w === w).length;
   const l = document.createElement('label');
-  l.innerHTML = '<input type="checkbox" checked> <span class="dot" style="background:' + col + '"></span>' + esc(name) + ' <span class="count">' + n + '</span>';
+  l.innerHTML = '<input type="checkbox" checked> <span class="dot" style="background:' + col + '"></span>' + bidi(name) + ' <span class="count">' + n + '</span>';
   l.querySelector('input').onchange = e => { on[w] = e.target.checked; draw(); };
   fl.appendChild(l);
 }

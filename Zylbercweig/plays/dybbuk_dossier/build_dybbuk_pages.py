@@ -64,6 +64,11 @@ ROLE_LABEL = {"author": "Author", "translator": "Translator", "adaptor": "Adapto
               "critic": "Critic / witness", "other": "Other"}
 
 
+def bidi(name):
+    """Escape, then isolate each „…“ Yiddish title so it doesn't scramble the English around it."""
+    return re.sub(r"(„[^“]*“)", r'<bdi dir="rtl" class="yi">\1</bdi>', esc(name))
+
+
 def nrm(s):
     s = unicodedata.normalize("NFC", s or "")
     s = POINTS.sub("", s).replace("פֿ", "פ")
@@ -312,7 +317,7 @@ the historical geography of its writing, adaptation and productions.</p>
         titles = Counter(POINTS.sub("", f["work_title"]).strip("„“\"' ") for f in fs)
         alts = Counter(POINTS.sub("", f["alt_title"]).strip("„“\"' ") for f in fs if f["alt_title"])
         tl = " · ".join(f'<span class="yi">{esc(t)}</span>' for t, _ in (titles + alts).most_common(6) if t)
-        a(f'<tr><td><span class="dot" style="background:{col}"></span><a href="#w-{w}">{esc(name)}</a></td>'
+        a(f'<tr><td><span class="dot" style="background:{col}"></span><a href="#w-{w}">{bidi(name)}</a></td>'
           f'<td class="num">{len(ent_by_work[w])}</td><td class="num">{len(fs)}</td>'
           f'<td class="num">{min(ys) if ys else "—"}</td><td>{tl}</td></tr>')
     a('</table></div>')
@@ -339,7 +344,7 @@ not resolve; they are listed in the tables below but not mapped.</p>
         fs = [f for f in good if f["work"] == w]
         if not fs:
             continue
-        a(f'<section id="w-{w}"><h2>{sec} · <span class="dot big" style="background:{col}"></span>{esc(name)}</h2>')
+        a(f'<section id="w-{w}"><h2>{sec} · <span class="dot big" style="background:{col}"></span>{bidi(name)}</h2>')
         a(WORK_TEXT.get(w, ""))
         # chronology
         def row(f):
