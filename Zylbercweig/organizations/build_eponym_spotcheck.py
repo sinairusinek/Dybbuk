@@ -76,6 +76,11 @@ def main() -> int:
     for d in dec:
         if d["decision"].strip() != "CONFIRM":
             continue
+        # auto_resolve_eponyms.py only confirms when the org name spells the
+        # person's full name and the hub's heading agrees -- the very check a
+        # spot-check asks a human to make. Do not queue it back for one.
+        if d["reviewer"].strip() == "auto":
+            continue
         span, heading = d["span"].strip(), d["person_heading"].strip()
         low = d["tier"].strip() == "low"
         # A db-only hub has no heading beyond the minted name; an empty heading
