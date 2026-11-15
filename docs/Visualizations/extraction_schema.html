@@ -79,6 +79,35 @@ footer a{color:var(--teal)}
 footer code,.notes code{overflow-wrap:anywhere}
 html,body{overflow-x:hidden}
 [hidden]{display:none!important}
+.seg{flex-wrap:wrap}
+.cap{color:var(--soft);font-size:.9rem;max-width:56rem;margin:.2rem 0 .8rem}
+.cap b{color:var(--ink)}
+.tog{margin-left:.6rem;font-size:.85rem;white-space:nowrap;color:var(--ink)}
+.dg text{font-family:"IBM Plex Mono",monospace;fill:var(--ink)}
+.dg .box{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+.dg .hd{font:600 14px "Fraunces",serif}
+.dg .st{font-size:10px;fill:var(--soft)}
+.dg .fl{font-size:11px;fill:var(--soft)}
+.dg .lk{stroke:var(--muted);stroke-width:1.6;fill:none}
+.dg .lk.new{stroke:var(--ink);stroke-dasharray:6 4;opacity:.7}
+.dg .ll{font-size:10.5px;fill:var(--soft);paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
+.dg .dia{fill:var(--paper);stroke:var(--ink);stroke-width:1.4}
+.dg .dia.new{stroke-dasharray:5 3}
+.dg .ov{fill:var(--paper);stroke:var(--muted);stroke-width:1}
+.dg .ovt{font-size:9.5px;fill:var(--soft)}
+.dg .cpt{fill:var(--paper);stroke-width:2}
+.dg .cl{font:italic 12px "Spectral",serif;fill:var(--soft);paint-order:stroke;stroke:var(--card);stroke-width:5px;stroke-linejoin:round}
+.dg g.hov{cursor:help}
+.mwrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+table.mx{border-collapse:collapse;font-size:.8rem;min-width:52rem;width:100%}
+.mx th,.mx td{border:1px solid var(--line);padding:.35rem .45rem;vertical-align:top;text-align:left}
+.mx thead th{font:500 .66rem "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);background:var(--paper)}
+.mx tbody th{font:600 .88rem "Fraunces",serif;white-space:nowrap;background:var(--paper)}
+.mx th .sw{margin-right:.35rem;vertical-align:-1px}
+.mx td.empty{background:transparent}
+.mx .r{display:block;margin:.1rem 0;padding:.1rem .3rem;border-radius:3px;border:1px solid var(--muted);background:var(--paper);cursor:help;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
+.mx .r.new{border-style:dashed;border-color:var(--ink)}
+.mx td.diag{background:color-mix(in srgb,var(--line) 35%,transparent)}
 </style></head><body>
 <header>
 <p class="eyebrow"><a href="gate.html">Visualizations</a> · Zylbercweig Leksikon · draft 2026-11-15</p>
@@ -92,6 +121,10 @@ lines are new in this pass. Click any entity or relation for its fields and type
   <div class="seg" role="group" aria-label="View">
     <button type="button" data-view="graph" aria-pressed="true">Ontology graph</button>
     <button type="button" data-view="cards" aria-pressed="false">Entity cards</button>
+    <button type="button" data-view="uml" aria-pressed="false">Class diagram</button>
+    <button type="button" data-view="chen" aria-pressed="false">Chen ER</button>
+    <button type="button" data-view="matrix" aria-pressed="false">Matrix</button>
+    <button type="button" data-view="concept" aria-pressed="false">Concept map</button>
   </div>
   <div class="seg" role="group" aria-label="Show relations" id="filt">
     <button type="button" data-f="all" aria-pressed="true">All relations</button>
@@ -115,7 +148,20 @@ lines are new in this pass. Click any entity or relation for its fields and type
 </div>
 </section>
 
-<section id="v-cards" hidden><div class="cards" id="cards"></div></section>
+<section id="v-cards" hidden><p class="cap"><b>Entity cards</b> — one card per entity kind, with its fields and the relations going out and coming in. The plain-text form of an entity–relationship diagram.</p><div class="cards" id="cards"></div></section>
+
+<section id="v-uml" hidden><p class="cap"><b>Class diagram</b> (UML-style, also called an ERD) — each box is an entity kind: its name, then its fields. Lines are associations, labelled with the relation; arrows point from the subject to the object. «new» marks what this pass adds.</p>
+<div class="stage"><svg id="uml" viewBox="0 0 1080 900" role="img" aria-label="Class diagram of the extraction schema"></svg></div></section>
+
+<section id="v-chen" hidden><p class="cap"><b>Chen notation</b> (the original entity–relationship notation, 1976) — rectangles are entities, diamonds are relationships, ovals are attributes (fields). It puts the relations on a par with the entities, which suits a schema where relations carry their own fields.
+<label class="tog"><input type="checkbox" id="chenAttr" checked> show attributes</label></p>
+<div class="stage"><svg id="chen" viewBox="0 0 1320 1030" role="img" aria-label="Chen entity-relationship diagram of the extraction schema"></svg></div></section>
+
+<section id="v-matrix" hidden><p class="cap"><b>Adjacency matrix</b> — rows are the subject of a relation, columns its object; each cell lists the relation families between the two. The densest form, with no crossing lines. Hover a relation for its types.</p>
+<div class="mwrap"><table class="mx" id="mx"></table></div></section>
+
+<section id="v-concept" hidden><p class="cap"><b>Concept map</b> — concepts in boxes, joined by linking phrases that read as sentences (“a Lexicon entry is about a person”). Less formal, for explaining the schema to people who don’t read diagrams.</p>
+<div class="stage"><svg id="cmap" viewBox="0 0 1040 800" role="img" aria-label="Concept map of the extraction schema"></svg></div></section>
 
 <div class="notes">
 <h2>How to read it</h2>
@@ -280,14 +326,161 @@ $("#cards").innerHTML=Object.entries(N).map(([k,n])=>{
    <h3>Fields</h3><ul>${n.fields.map(([f,v])=>`<li><code>${esc(f)}</code>${v?` — ${esc(v)}`:""}</li>`).join("")}</ul>
    ${out.length?`<h3>Relations out</h3><ul>${out.map(e=>`<li>${esc(e.label)} → ${esc(N[e.b].label)}${e.status==="new"?" <i>(new)</i>":""}</li>`).join("")}</ul>`:""}
    ${inc.length?`<h3>Relations in</h3><ul>${inc.map(e=>`<li>${esc(N[e.a].label)} → ${esc(e.label)}${e.status==="new"?" <i>(new)</i>":""}</li>`).join("")}</ul>`:""}</article>`}).join("");
+// ---------- shared helpers for the extra views ----------
+const KEYS=Object.keys(N);
+function relTip(e){return `<b>${esc(e.label)}</b> · ${e.status==="new"?"new in v2":"existing"}<br>${esc(N[e.a].label)} → ${esc(N[e.b].label)}<br>${e.types.map(([k,v])=>esc(k)+(v?": "+esc(v):"")).join("<br>")}`}
+function entTip(k){const n=N[k];return `<b>${esc(n.label)}</b> · ${n.status==="new"?"new in v2":"already extracted"}<br>${esc(n.desc)}`}
+function hover(g,html){g.classList.add("hov");g.addEventListener("mousemove",ev=>showTip(ev,html));g.addEventListener("mouseleave",hideTip)}
+function markers(svg){const d=el("defs",{},svg);
+  [["mA","var(--muted)",1],["mN","var(--ink)",.75]].forEach(([id,f,o])=>{const m=el("marker",{id:svg.id+id,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},d);el("path",{d:"M0,0 L10,5 L0,10 z",fill:f,opacity:o},m)})}
+function mk(svg,e){return `url(#${svg.id}${e.status==="new"?"mN":"mA"})`}
+// point where the segment from a box's centre towards (tx,ty) leaves the box
+function clipBox(b,tx,ty,pad=0){const cx=b.x+b.w/2,cy=b.y+b.h/2,dx=tx-cx,dy=ty-cy;
+  const sx=dx?(b.w/2+pad)/Math.abs(dx):Infinity,sy=dy?(b.h/2+pad)/Math.abs(dy):Infinity,s=Math.min(sx,sy,1);return [cx+dx*s,cy+dy*s]}
+function txt(p,x,y,s,a={}){const t=el("text",Object.assign({x,y},a),p);t.textContent=s;return t}
+function shortField(f){return f.split(/ \/ |, /)[0]}
+
+// ---------- UML class diagram ----------
+(function(){
+  const svg=$("#uml");svg.classList.add("dg");markers(svg);
+  const P={person:[420,30],source:[790,30],org:[30,250],work:[790,262],event:[420,400],role:[790,575],station:[30,520],place:[420,730]};
+  const W=250,B={};
+  KEYS.forEach(k=>{const n=N[k];B[k]={x:P[k][0],y:P[k][1],w:W,h:36+n.fields.length*17+10}});
+  const gL=el("g",{},svg),gB=el("g",{},svg);
+  const pairs={};E.forEach(e=>{if(e.a===e.b)return;const key=[e.a,e.b].sort().join("|");(pairs[key]=pairs[key]||[]).push(e)});
+  E.forEach(e=>{
+    const g=el("g",{},gL);hover(g,relTip(e));
+    if(e.a===e.b){const b=B[e.a],left=e.a==="person",x=left?b.x:b.x+b.w,y=b.y+24,s=left?-1:1;
+      el("path",{d:`M${x},${y} C${x+48*s},${y-6} ${x+48*s},${y+40} ${x+2*s},${y+36}`,class:"lk "+(e.status==="new"?"new":""),"marker-end":mk(svg,e)},g);
+      txt(g,x+50*s,y+20,e.label,{class:"ll","text-anchor":left?"end":"start"});return}
+    const grp=pairs[[e.a,e.b].sort().join("|")],i=grp.indexOf(e),off=(i-(grp.length-1)/2)*16;
+    const A=B[e.a],Bb=B[e.b],ax=A.x+A.w/2,ay=A.y+A.h/2,bx=Bb.x+Bb.w/2,by=Bb.y+Bb.h/2;
+    const g0=grp[0],P0=B[g0.a],P1=B[g0.b],cdx=P1.x-P0.x,cdy=P1.y-P0.y,L=Math.hypot(cdx,cdy),nx=-cdy/L*off,ny=cdx/L*off,rev=e.a!==g0.a;
+    const [x1,y1]=clipBox({...A,x:A.x+nx,y:A.y+ny},bx+nx,by+ny),[x2,y2]=clipBox({...Bb,x:Bb.x+nx,y:Bb.y+ny},ax+nx,ay+ny,3);
+    el("path",{d:`M${x1},${y1} L${x2},${y2}`,class:"lk "+(e.status==="new"?"new":""),"marker-end":mk(svg,e)},g);
+    el("path",{d:`M${x1},${y1} L${x2},${y2}`,stroke:"transparent","stroke-width":14},g);
+    let lt={opl:0.75,so:0.4}[e.id]||(grp.length>1?0.5+(i-(grp.length-1)/2)*0.36:0.5);if(rev&&grp.length>1)lt=1-lt;
+    txt(g,x1+(x2-x1)*lt,y1+(y2-y1)*lt+4,e.label,{class:"ll","text-anchor":"middle"});
+  });
+  KEYS.forEach(k=>{const n=N[k],b=B[k],g=el("g",{},gB);hover(g,entTip(k));
+    el("rect",{class:"box",x:b.x,y:b.y,width:b.w,height:b.h,rx:3},g);
+    el("rect",{x:b.x,y:b.y,width:b.w,height:5,fill:`var(${COL[k]})`},g);
+    if(n.status==="new")txt(g,b.x+b.w/2,b.y+17,"«new»",{class:"st","text-anchor":"middle"});
+    txt(g,b.x+b.w/2,b.y+(n.status==="new"?31:26),n.label,{class:"hd","text-anchor":"middle"});
+    el("line",{x1:b.x,x2:b.x+b.w,y1:b.y+38,y2:b.y+38,stroke:"var(--line)"},g);
+    n.fields.forEach(([f],i)=>{const s=f.length>32?f.slice(0,31)+"…":f;txt(g,b.x+10,b.y+54+i*17,s,{class:"fl"})});
+  });
+})();
+
+// ---------- Chen ER ----------
+(function(){
+  const svg=$("#chen");svg.classList.add("dg");
+  const V={pp:"relates to",po:"works in",op:"named after",pw:"creates",ww:"derives from",rw:"belongs to",ep:"takes part",ew:"stages",er:"casts",eo:"held at",epl:"happens in",sp:"moves",spl:"stops at",se:"includes",so:"is with",opl:"located in",ppl:"born / died",src:"informs"};
+  const S=1.2,ox=60,oy=110,pt=k=>[N[k].x*S+ox,N[k].y*S+oy],EW=150,EH=46;
+  const gA=el("g",{id:"chenA"},svg),gL=el("g",{},svg),gS=el("g",{},svg);
+  const C=[1000*S/2+ox,700*S/2+oy];
+  const busy={};KEYS.forEach(k=>busy[k]=[]);
+  const DP={};
+  E.forEach(e=>{const [ax,ay]=pt(e.a),[bx,by]=pt(e.b);let dx,dy;
+    if(e.a===e.b){ if(e.loop==="up"){dx=ax;dy=ay-165}else{dx=ax+120;dy=ay+150} }
+    else{const L=Math.hypot(bx-ax,by-ay),c=(e.c||0)*S*0.5,t={ppl:0.3}[e.id]||0.5;
+      dx=ax+(bx-ax)*t-(by-ay)/L*c;dy=ay+(by-ay)*t+(bx-ax)/L*c;}
+    DP[e.id]=[dx,dy];busy[e.a].push(Math.atan2(dy-ay,dx-ax));busy[e.b].push(Math.atan2(dy-by,dx-bx));});
+  // attributes (drawn first so entities/diamonds sit on top), fanned into the widest free gap
+  KEYS.forEach(k=>{const [x,y]=pt(k),fs=N[k].fields.map(f=>shortField(f[0]));
+    const an=busy[k].slice().sort((a,b)=>a-b);let best=0,start=0;
+    an.forEach((a,i)=>{const nx=i+1<an.length?an[i+1]:an[0]+2*Math.PI,gap=nx-a;if(gap>best){best=gap;start=a}});
+    let pad=Math.min(0.45,best*0.15),span=best-2*pad;
+    const FIX={role:[-1.0,1.0]};if(FIX[k]){start=FIX[k][0];pad=0;span=FIX[k][1]-FIX[k][0]}
+    const widths=fs.map(f=>2*Math.max(26,f.length*3.3+10)+10),need=widths.reduce((u,v)=>u+v,0)*0.55;
+    const R0=Math.min(230,Math.max(112,need/Math.max(span,0.3)));
+    fs.forEach((f,i)=>{const a=start+pad+(fs.length>1?span*i/(fs.length-1):span/2),r=R0+(i%3)*20;
+      const ax=x+Math.cos(a)*r,ay=y+Math.sin(a)*r*0.85,rx=Math.max(26,f.length*3.3+10);
+      el("line",{x1:x,y1:y,x2:ax,y2:ay,stroke:"var(--line)","stroke-width":1.2},gA);
+      el("ellipse",{class:"ov",cx:ax,cy:ay,rx,ry:12},gA);txt(gA,ax,ay+3.5,f,{class:"ovt","text-anchor":"middle"})})});
+  E.forEach(e=>{const g=el("g",{},gS);hover(g,relTip(e));const [ax,ay]=pt(e.a),[bx,by]=pt(e.b),[dx,dy]=DP[e.id];
+    if(e.a===e.b){
+      const o=e.loop==="up"?[[-40,0],[40,0]]:[[40,10],[0,20]];
+      o.forEach(([px,py])=>el("line",{x1:ax+px,y1:ay+py,x2:dx+px*0.5,y2:dy+py*0.5,class:"lk "+(e.status==="new"?"new":"")},gL));}
+    else{
+      el("line",{x1:ax,y1:ay,x2:dx,y2:dy,class:"lk "+(e.status==="new"?"new":"")},gL);
+      el("line",{x1:dx,y1:dy,x2:bx,y2:by,class:"lk "+(e.status==="new"?"new":"")},gL);}
+    const w=Math.max(52,V[e.id].length*3.4+18),h=22;
+    el("path",{class:"dia "+(e.status==="new"?"new":""),d:`M${dx-w},${dy} L${dx},${dy-h} L${dx+w},${dy} L${dx},${dy+h} Z`},g);
+    txt(g,dx,dy+3.5,V[e.id],{class:"fl","text-anchor":"middle",style:"fill:var(--ink)"});
+  });
+  KEYS.forEach(k=>{const [x,y]=pt(k),g=el("g",{},gS);hover(g,entTip(k));
+    el("rect",{class:"box",x:x-EW/2,y:y-EH/2,width:EW,height:EH,style:`stroke:var(${COL[k]});stroke-width:2.5`},g);
+    if(N[k].status==="new")el("rect",{x:x-EW/2+4,y:y-EH/2+4,width:EW-8,height:EH-8,fill:"none",stroke:`var(${COL[k]})`,"stroke-dasharray":"4 3"},g);
+    txt(g,x,y+5,N[k].label,{class:"hd","text-anchor":"middle"});});
+  $("#chenAttr").addEventListener("change",ev=>{gA.style.display=ev.target.checked?"":"none"});
+})();
+
+// ---------- adjacency matrix ----------
+(function(){
+  const t=$("#mx");
+  let h=`<thead><tr><th>subject ↓ · object →</th>${KEYS.map(k=>`<th><i class="sw" style="background:var(${COL[k]})"></i>${esc(N[k].label)}</th>`).join("")}</tr></thead><tbody>`;
+  KEYS.forEach(r=>{h+=`<tr><th><i class="sw" style="background:var(${COL[r]})"></i>${esc(N[r].label)}</th>`;
+    KEYS.forEach(c=>{const es=E.filter(e=>e.a===r&&e.b===c);
+      h+=`<td class="${es.length?"":"empty"} ${r===c?"diag":""}">${es.map(e=>`<span class="r ${e.status==="new"?"new":""}" data-e="${e.id}">${esc(e.label)}</span>`).join("")}</td>`});
+    h+="</tr>"});
+  t.innerHTML=h+"</tbody>";
+  t.querySelectorAll(".r").forEach(s=>{const e=E.find(x=>x.id===s.dataset.e);s.addEventListener("mousemove",ev=>showTip(ev,relTip(e)));s.addEventListener("mouseleave",hideTip)});
+})();
+
+// ---------- concept map ----------
+(function(){
+  const svg=$("#cmap");svg.classList.add("dg");markers(svg);
+  const C={entry:{label:"Lexicon entry",x:500,y:45,col:"--soft"},source:{x:845,y:140},person:{x:500,y:175},org:{x:160,y:335},work:{x:840,y:335},
+           station:{x:225,y:540},event:{x:565,y:490},role:{x:845,y:575},place:{x:430,y:735}};
+  Object.entries(C).forEach(([k,c])=>{c.label=c.label||N[k].label;c.col=c.col||COL[k];c.w=c.label.length*8.6+34;c.h=40});
+  const L=[["entry","person","is about","old"],["entry","source","draws on","new"],["source","person","informs about","new"],
+    ["person","person","is kin, colleague, teacher or friend of","new"],["person","org","performs in, leads, studies at","old"],
+    ["org","person","is named after","old"],["person","work","writes, translates, composes, performs","new"],
+    ["work","work","is a translation or adaptation of","new"],["work","role","has the character","new"],
+    ["person","station","moves through","new"],["station","place","stops at","new"],["station","event","includes","new"],
+    ["event","work","stages","new"],["event","role","casts someone as","new"],["person","event","takes part in","new"],
+    ["event","org","is held at","new"],["event","place","happens in","new"],["org","place","is located in","old"],
+    ["person","place","was born, died, buried in","old"]];
+  const box=k=>({x:C[k].x-C[k].w/2,y:C[k].y-C[k].h/2,w:C[k].w,h:C[k].h});
+  const gL=el("g",{},svg),gC=el("g",{},svg);
+  L.forEach(([a,b,ph,st])=>{const g=el("g",{},gL),cls="lk "+(st==="new"?"new":""),m=`url(#cmap${st==="new"?"mN":"mA"})`;
+    hover(g,`<b>${esc(C[a].label)}</b> ${esc(ph)} <b>${esc(C[b].label)}</b> · ${st==="new"?"new in v2":"existing"}`);
+    if(a===b){const bb=box(a);
+      if(a==="person"){const x=bb.x,y=bb.y+6;
+        el("path",{d:`M${x},${y} C${x-70},${y-40} ${x-70},${y+60} ${x-2},${y+30}`,class:cls,"marker-end":m},g);
+        txt(g,x-62,y-14,ph,{class:"cl","text-anchor":"end"});}
+      else{const x=bb.x+bb.w/2,y=bb.y;
+        el("path",{d:`M${x-14},${y} C${x-40},${y-60} ${x+40},${y-60} ${x+14},${y-2}`,class:cls,"marker-end":m},g);
+        const words=ph.split(" "),h=Math.ceil(words.length/2);
+        txt(g,x,y-64,words.slice(0,h).join(" "),{class:"cl","text-anchor":"middle"});
+        txt(g,x,y-50,words.slice(h).join(" "),{class:"cl","text-anchor":"middle"});}
+      return}
+    const par=L.filter(l=>(l[0]===a&&l[1]===b)||(l[0]===b&&l[1]===a)),pi=par.findIndex(l=>l[0]===a&&l[1]===b&&l[2]===ph);
+    const off=par.length>1?(pi===0?-9:9):0,dx0=C[b].x-C[a].x,dy0=C[b].y-C[a].y,Ln=Math.hypot(dx0,dy0),nx=-dy0/Ln*off,ny=dx0/Ln*off;
+    const sh=bb=>({...bb,x:bb.x+nx,y:bb.y+ny});
+    const [x1,y1]=clipBox(sh(box(a)),C[b].x+nx,C[b].y+ny),[x2,y2]=clipBox(sh(box(b)),C[a].x+nx,C[a].y+ny,3);
+    el("path",{d:`M${x1},${y1} L${x2},${y2}`,class:cls,"marker-end":m},g);
+    el("path",{d:`M${x1},${y1} L${x2},${y2}`,stroke:"transparent","stroke-width":14},g);
+    const lt={"is located in":0.64,"is named after":0.3,"performs in, leads, studies at":0.62,"was born, died, buried in":0.22,"writes, translates, composes, performs":0.4}[ph]||0.5;
+    txt(g,x1+(x2-x1)*lt,y1+(y2-y1)*lt+(off?off*1.6:4),ph,{class:"cl","text-anchor":"middle"});});
+  Object.entries(C).forEach(([k,c])=>{const g=el("g",{},gC);if(N[k])hover(g,entTip(k));
+    el("rect",{class:"cpt",x:c.x-c.w/2,y:c.y-c.h/2,width:c.w,height:c.h,rx:20,style:`stroke:var(${c.col})`},g);
+    txt(g,c.x,c.y+5,c.label,{class:"hd","text-anchor":"middle"});});
+})();
+
 // controls
+const VIEWS=["graph","cards","uml","chen","matrix","concept"];
 document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll("[data-view]").forEach(x=>x.setAttribute("aria-pressed",x===b));
-  $("#v-graph").hidden=b.dataset.view!=="graph";$("#v-cards").hidden=b.dataset.view!=="cards";
-  $("#filt").style.visibility=b.dataset.view==="graph"?"visible":"hidden";}));
+  VIEWS.forEach(v=>$("#v-"+v).hidden=b.dataset.view!==v);hideTip();
+  $("#filt").style.display=b.dataset.view==="graph"?"":"none";
+  try{history.replaceState(null,"","#view-"+b.dataset.view)}catch(_){}}));
+const hashView=location.hash.replace(/^#view-/,"");
 document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));filt=b.dataset.f;select(sel)}));
 select(null);
-if(innerWidth<600) document.querySelector('[data-view="cards"]').click();
+if(VIEWS.includes(hashView)) document.querySelector(`[data-view="${hashView}"]`).click();
+else if(innerWidth<600) document.querySelector('[data-view="cards"]').click();
 </script>
 </body></html>
