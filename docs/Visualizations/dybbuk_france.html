@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dybbuk in France</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#faf7f0; --ink:#272219; --ink-soft:#5c554a; --line:#e2dcce; --card:#f2eddf;
+  --accent:#0e6f8a; --accent-ink:#0b5a70; --mono-bg:#ece7d8; --chip:#e4ecec;
+  --played:#a1462e; --tour:#b7791f; --french:#6b4fa3; --stay:#0e6f8a; --elsewhere:#8a8274;
+  --r-vilna:#a1462e; --r-habima:#2f7d4f; --r-madiokat:#b7791f; --r-vilna2:#c0587e; --r-yat:#8a8274;
+  --work:#272219; --troupe:#b7791f; --place:#3d6fb4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#161a1e; --ink:#e7e1d3; --ink-soft:#a49c8c; --line:#2c333a; --card:#1d2329;
+    --accent:#5cb6cd; --accent-ink:#7fc6d8; --mono-bg:#20272d; --chip:#223034;
+    --played:#e08a6a; --tour:#e2b04a; --french:#a98ee0; --stay:#5cb6cd; --elsewhere:#8f897d;
+    --r-vilna:#e08a6a; --r-habima:#6cc08f; --r-madiokat:#e2b04a; --r-vilna2:#e58bb0; --r-yat:#8f897d;
+    --work:#e7e1d3; --troupe:#e2b04a; --place:#7fa6e6;
+  }
+}
+:root[data-theme="dark"]{
+    --paper:#161a1e; --ink:#e7e1d3; --ink-soft:#a49c8c; --line:#2c333a; --card:#1d2329;
+    --accent:#5cb6cd; --accent-ink:#7fc6d8; --mono-bg:#20272d; --chip:#223034;
+    --played:#e08a6a; --tour:#e2b04a; --french:#a98ee0; --stay:#5cb6cd; --elsewhere:#8f897d;
+    --r-vilna:#e08a6a; --r-habima:#6cc08f; --r-madiokat:#e2b04a; --r-vilna2:#e58bb0; --r-yat:#8f897d;
+    --work:#e7e1d3; --troupe:#e2b04a; --place:#7fa6e6;
+}
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink); font-family:"Spectral",Georgia,serif; font-size:1.02rem;
+  line-height:1.6; margin:0; padding:2.6rem 16px 5rem}
+main{max-width:68rem; margin:0 auto}
+h1,h2,h3{font-family:"Fraunces","Spectral",Georgia,serif; line-height:1.15; font-weight:600; text-wrap:balance}
+h1{font-size:clamp(2rem,6vw,2.8rem); margin:.3rem 0 .5rem}
+h2{font-size:1.4rem; margin:0 0 .3rem}
+p{max-width:44rem}
+a{color:var(--accent-ink)}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); margin:0}
+.lede{font-size:1.1rem; color:var(--ink-soft); max-width:44rem; margin-top:0}
+.yi{font-family:"Frank Ruhl Libre","Spectral",serif; unicode-bidi:isolate}
+section{border-top:1px solid var(--line); padding-top:1.5rem; margin-top:2.2rem}
+.sub{color:var(--ink-soft); font-size:.92rem; margin:.1rem 0 1rem}
+.statrow{display:flex; flex-wrap:wrap; gap:.7rem; margin:1.4rem 0 .6rem}
+.stat{background:var(--card); border:1px solid var(--line); border-radius:4px; padding:.5rem .85rem; min-width:6.6rem}
+.stat b{display:block; font-family:"Fraunces",serif; font-size:1.45rem; font-weight:600; color:var(--accent-ink); font-variant-numeric:tabular-nums}
+.stat span{font-size:.76rem; color:var(--ink-soft)}
+.legend{display:flex; flex-wrap:wrap; gap:.4rem 1rem; font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-soft); margin:.4rem 0 .8rem}
+.legend i{display:inline-block; width:.8rem; height:.8rem; border-radius:2px; vertical-align:-.1rem; margin-right:.35rem}
+.legend i.hollow{background:transparent!important; border:2px solid var(--elsewhere)}
+.panel{background:var(--card); border:1px solid var(--line); border-radius:6px}
+#tl{overflow-x:auto; -webkit-overflow-scrolling:touch}
+#tl svg{display:block}
+#tl text{font-family:"Spectral",serif; fill:var(--ink)}
+#tl .ax{font-family:"IBM Plex Mono",monospace; font-size:10px; fill:var(--ink-soft)}
+#tl .mk{cursor:pointer}
+#tl .rowlab{cursor:pointer}
+#tl .rowlab:hover{fill:var(--accent-ink)}
+#map{height:min(70vh,560px); border-radius:6px; border:1px solid var(--line)}
+.leaflet-container{background:var(--card); font-family:"Spectral",serif}
+.leaflet-popup-content{font-size:.9rem; line-height:1.4}
+.maptools{display:flex; flex-wrap:wrap; gap:.5rem; margin:.6rem 0}
+button,.btn{font-family:"IBM Plex Mono",monospace; font-size:.74rem; background:var(--card); color:var(--ink);
+  border:1px solid var(--line); border-radius:3px; padding:.3rem .6rem; cursor:pointer}
+button:hover{border-color:var(--accent)}
+button[aria-pressed="false"]{opacity:.5}
+#net{height:min(78vh,640px)}
+#tip{position:fixed; pointer-events:none; background:var(--paper); color:var(--ink); border:1px solid var(--line);
+  border-radius:4px; padding:.35rem .55rem; font-size:.82rem; max-width:20rem; box-shadow:0 2px 10px rgba(0,0,0,.15); display:none; z-index:2000}
+/* drawer */
+#drawer{position:fixed; top:0; right:0; height:100%; width:min(30rem,100%); background:var(--paper); border-left:1px solid var(--line);
+  box-shadow:-6px 0 24px rgba(0,0,0,.18); transform:translateX(105%); transition:transform .22s ease; z-index:3000; display:flex; flex-direction:column}
+#drawer.open{transform:none}
+#drawer header{display:flex; justify-content:space-between; align-items:flex-start; gap:.6rem; padding:1rem 1rem .6rem; border-bottom:1px solid var(--line)}
+#drawer header h3{margin:0; font-size:1.15rem}
+#dbody{overflow-y:auto; padding:.4rem 1rem 2rem}
+.card{border:1px solid var(--line); border-radius:5px; background:var(--card); padding:.7rem .85rem; margin:.8rem 0}
+.card .top{display:flex; flex-wrap:wrap; gap:.3rem .6rem; align-items:baseline; font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-soft)}
+.card h4{font-family:"Fraunces",serif; font-weight:500; font-size:1rem; margin:.25rem 0 .35rem}
+.chip{display:inline-block; border-radius:3px; padding:.02em .45em; font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:#fff; letter-spacing:.03em}
+.who{font-size:.85rem; color:var(--ink-soft); margin:.2rem 0}
+blockquote{border-inline-start:3px solid var(--accent); margin:.5rem 0; padding:.45rem .7rem; direction:rtl; text-align:right;
+  font-family:"Frank Ruhl Libre",serif; font-size:1rem; line-height:1.75; background:var(--paper); border-radius:3px 0 0 3px}
+.src{font-family:"IBM Plex Mono",monospace; font-size:.72rem}
+.note{font-size:.84rem; color:var(--ink-soft); font-style:italic; margin:.2rem 0}
+.entrytext{direction:rtl; text-align:right; font-family:"Frank Ruhl Libre",serif; line-height:1.85; white-space:pre-wrap; font-size:1.02rem}
+mark{background:color-mix(in srgb, var(--tour) 30%, transparent); color:inherit; padding:0 .1em}
+.record{columns:2 22rem; column-gap:1.2rem}
+.record .card{break-inside:avoid; margin-top:0}
+.tiergroup h3{font-size:1.05rem; margin:1.2rem 0 .5rem}
+.method{font-size:.88rem; color:var(--ink-soft)}
+.method li{margin:.25rem 0}
+.mono{font-family:"IBM Plex Mono",monospace; font-size:.82em; background:var(--mono-bg); padding:.05em .35em; border-radius:3px}
+@media (max-width:560px){ body{padding-top:1.6rem} .record{columns:1} }
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Play × place dossier · Leksikon fun yidishn teater</p>
+<h1>The Dybbuk in France</h1>
+<p class="lede">An-ski's play and its offshoots in France, as the Leksikon records them: who brought them there, where they played,
+how the play reached French, and the Dybbuk people whose lives passed through Paris.
+Click any mark, line or node to see the source passage.</p>
+
+<div class="statrow">
+  <div class="stat"><b>3</b><span>stagings in France</span></div>
+  <div class="stat"><b>3</b><span>tours carrying it</span></div>
+  <div class="stat"><b>4</b><span>French towns</span></div>
+  <div class="stat"><b>30</b><span>people</span></div>
+  <div class="stat"><b>44</b><span>facts, each quoted</span></div>
+  <div class="stat"><b>25</b><span>Leksikon entries</span></div>
+</div>
+<div class="legend" id="legend"></div>
+
+<section id="s-time">
+<h2>Lifelines</h2>
+<p class="sub">One row per person or company. Bars show time in France; marks show Dybbuk events in France and, in grey, the same people's Dybbuk work elsewhere.
+Dashed bars are approximate. Undated facts sit in the right-hand column.</p>
+<div id="tl" class="panel"></div>
+</section>
+
+<section id="s-map">
+<h2>Map</h2>
+<p class="sub">The routes that brought the Dybbuk to France, as the entries list their stops, and where it played there.
+The grey dashed route is the Yiddish Art Theatre's 1924 tour, which came to Paris without it.</p>
+<div class="maptools" id="maptools"></div>
+<div id="map"></div>
+</section>
+
+<section id="s-net">
+<h2>Network</h2>
+<p class="sub">People (circles), companies (boxes), works (diamonds) and French places (triangles). A line joins two of them when one fact names both.
+Red people played the Dybbuk in France; blue ones were in France, but the Leksikon does not say they played it there.</p>
+<div class="maptools"><button id="netfit">fit</button><button id="netphys" aria-pressed="true">physics</button></div>
+<div id="net" class="panel"></div>
+</section>
+
+<section id="s-rec">
+<h2>The record</h2>
+<p class="sub">Every fact behind the charts, with the passage it rests on.</p>
+<div id="record"></div>
+</section>
+
+<section>
+<h2>How this was made</h2>
+<ul class="method">
+<li><b>Corpus.</b> The 68 entries of the Leksikon that mention a Dybbuk and a French place or the French language.</li>
+<li><b>Extraction.</b> Gemini 3 Flash read each entry for Dybbuk–France facts. Its draft was the starting point only: every fact here was checked against the entry by hand, and about two thirds of the drafted rows were dropped.</li>
+<li><b>Evidence.</b> Each fact quotes the entry verbatim and links to its volume, columns and the archive.org scan (vols. 1–6).</li>
+<li><b>Tiers.</b> “Played in France” requires the text to place a Dybbuk performance in France. “Tour” means a company carried the Dybbuk in its repertoire on a tour that reached France. “In French” covers translations, reported French stagings and French reviews. “In France” means a Dybbuk person or company was in France without, as far as the Leksikon says, playing it there.</li>
+<li>See also: <a href="dybbuk_dossier.html">The Dybbuks</a> (every work of that name) and the <a href="france_dossier.html">France dossier</a>.</li>
+</ul>
+</section>
+</main>
+
+<aside id="drawer" aria-hidden="true"><header><div><p class="eyebrow" id="dkind"></p><h3 id="dtitle"></h3></div>
+<button id="dclose" aria-label="close">✕</button></header><div id="dbody"></div></aside>
+<div id="tip"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/vis-network@9.1.2/standalone/umd/vis-network.min.js"></script>
+<script>
+const D = {"facts": [{"id": "shneour_paris", "tier": "played", "work": "ansky", "label": "Shneour's Miropolyer Tsadik in Paris", "places": ["paris"], "y0": 1922, "y1": 1923, "approx": true, "date": "1921–23 tour", "troupe": "vilna", "people": [{"k": "shneour", "role": "actor", "ch": "Miropolyer Tsadik"}], "src": [{"pid": "P-4-facs_401_tr_1755030076", "segs": ["חיים שניאורס „מיראָפּאָלער צדיק' אין אַנסקיס „דיבוק'— אַ בלום, וואָס האָט געמאַכט אַ רושם איבער דער גאָרער וועלט: וואַרשע, בערלין, אַנטווערפן, לאָנדאָן, פּאַריז און ניו יאָרק"], "vol": 4, "cols": "cols. 3207–3208", "url": "https://archive.org/details/nybc201092/page/n401/mode/1up"}], "note": "Paris is one of the cities of the Vilna Troupe's 1921–23 European tour.", "row": "shneour", "wnode": "w:ansky", "venue": null}, {"id": "libert", "tier": "played", "work": "ansky", "label": "Leah in Metz, Strasbourg and Nancy", "places": ["metz", "strasbourg", "nancy"], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": "vilna", "people": [{"k": "libert", "role": "actor", "ch": "Leah"}, {"k": "weide", "role": "actor", "ch": "Leah"}], "src": [{"pid": "P-6-facs_467_tr_1747930274", "segs": ["באַטייליקט זיך אויך אין זייער טורנעע איבער דייטשלאַנד (פֿראַנקפורט ביים מיין, קעלן). עלזאַס-לאַטרינגען (מעץ, שטראָסבורג, נאַנסי) און בעלגיע (אַנטווערפן און בריסל), שפּילנדיק „אַברהם יעקב\" אין הירשביינס „גרינע פעלדער“, \"נחמהלע\" אין אַשס „מאָטקע גנב\", \"בעטי\" אין שלום-עליכמס \"שווער צו זיין אַ ייד\" און דובלירט מיט מרים וויידע אַלס „לאַה\" אין אַנסקיס „דיבוק\""], "vol": 6, "cols": "cols. 5767–5768", "url": "https://archive.org/details/nybc201094/page/n466/mode/1up"}], "note": "Libert-Lubotski and Miriam Weide alternated as Leah.", "row": "libert", "wnode": "w:ansky", "venue": null}, {"id": "shoshana_1924", "tier": "played", "work": "ansky", "label": "Shoshana as Leah, guest tour to Belgium and Paris", "places": ["paris"], "y0": 1924, "y1": 1924, "approx": false, "date": "1924", "troupe": null, "people": [{"k": "shoshana", "role": "actor", "ch": "Leah"}, {"k": "friedman", "role": "director", "ch": ""}], "src": [{"pid": "P-3-facs_334_tr_1756105641", "segs": ["1924 — אויפֿגעטראָטן אַלס „לאה\" אין אַנסקיס „דבוק\" בעת אירע גאַסטראָלן אין בעלגיע און פאַריז (דיר. רובין פֿרידמאַן)"], "vol": 3, "cols": "cols. 2245–2246", "url": "https://archive.org/details/nybc201091/page/n336/mode/1up"}], "row": "shoshana", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "vilna_tour", "tier": "tour", "work": "ansky", "label": "Vilna Troupe tours Germany, Holland, Belgium, France, England", "places": ["france"], "y0": 1922, "y1": 1923, "approx": false, "date": "after Sept. 1921 – Feb. 1923", "troupe": "vilna", "people": [{"k": "shneour", "role": "actor", "ch": ""}], "src": [{"pid": "P-1-facs_368_TextRegion_1710163037685_362", "segs": ["האָט אָנגעהויבן שפּילן אין בערלין אין סעפּטעמבער 1921 און האָט אין משך פֿון 8 חדשים אויפֿגעפֿירט הירשבייןס „די פוסטע קרעטשמע“, אַנסקיס „דער דיבוק\" און נאָך אייניקע פּיעסען פֿון הירשביין, פינסקי, א. א. נאָך בערלין האָט די טרופּע געמאַכט אָ גרעסערן טורנעע איבער דייטשלאַנד (לייפּציג, האַמבורג, קעלן, פֿראַנקפורט, כעמניץ א. א.), האָלאַנד, בעלגיע, פֿראַנקרייך און ענגלאַנד, וואו זיי האָט געשפּילט ביז פעברואר 1923"], "vol": 1, "cols": "cols. 709–710", "url": "https://archive.org/details/nybc201089/page/n370/mode/1up"}], "note": "The Dybbuk was in the 8-month Berlin programme that preceded the tour.", "row": "t:vilna", "wnode": "w:ansky", "venue": null}, {"id": "habima_1926", "tier": "tour", "work": "ansky", "label": "Habima's European tour ends in Paris", "places": ["paris"], "y0": 1926, "y1": 1926, "approx": false, "date": "1926", "troupe": "habima", "people": [{"k": "benari", "role": "actor", "ch": "Beggar; First Batlon"}], "src": [{"pid": "P-4-facs_635_tr_1755030182", "segs": ["דעביוטירט ער אַלס בעטלער“ אין צווייטן אַקט פֿון „דיבוק\"", "אין 1926 האָט ב. מיטגעמאַכט מיט דער „הבימה\"-טרופּע דעם אייראָפּעאישן טורנעע איבער ריגע, וואַרשע, לעמבערג, קראָקע, ווילנע, לאָדזש, קאָוונע, בערלין, ברעסלוי, פֿראַנקפורט ביים מיין, פאַריז"], "vol": 4, "cols": "cols. 3675–3676", "url": "https://archive.org/details/nybc201092/page/n635/mode/1up"}], "row": "t:habima", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "madiokat_1929", "tier": "tour", "work": "parody", "label": "Modicot's puppet parody of the Dybbuk in Paris", "places": ["paris"], "y0": 1929, "y1": 1929, "approx": false, "date": "Oct. 1929", "troupe": "madiokat", "people": [{"k": "maud", "role": "author", "ch": ""}, {"k": "kotler", "role": "author", "ch": ""}], "src": [{"pid": "P-2-facs_213_r_27", "segs": ["דאָס דריטע פּראָגראַם איז געגעבן געוואָרן דעם 22 סעפּטעמבער 1926 „דער דיבוק\", אַ פּאַראדיע פֿון זוני מאַנד", "אין 1929 איז „מאַדיאָקאַט“ אַרויסגעפֿאָרן קיין אייראָפּע און אויפֿגעטראָטן אין פּאַריז, לאָנדאָן און אַנטווערפּען (אָקטאָבער 1929)"], "vol": 2, "cols": "cols. 1209–1210", "url": "https://archive.org/details/nybc201090/page/n212/mode/1up"}, {"pid": "P-6-facs_187_tr_1747825092", "segs": ["אין 1929 א'א פֿון ב. רייטמאַן האָבן זיי דורכגעפֿירט אַ טורניי איבער פּאַריז, לאָנדאָן, ווידער פּאַריז, בעלגיע און וואַרשע, דערנאָך אין סאָוויעט-רוסלאַנד"], "vol": 6, "cols": "cols. 5209–5210", "url": "https://archive.org/details/nybc201094/page/n187/mode/1up"}], "note": "The parody was the third programme, first given 22 Sept. 1926 in New York.", "row": "t:madiokat", "wnode": "w:parody_maud", "venue": null}, {"id": "koerner", "tier": "french", "work": "ansky", "label": "Le Dibbouk, French version by Marie-Thérèse Koerner, preface by Edmond Fleg", "places": [], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": null, "people": [{"k": "koerner", "role": "translator", "ch": ""}, {"k": "fleg", "role": "preface", "ch": ""}, {"k": "ansky", "role": "author", "ch": ""}], "src": [{"pid": "P-1-facs_52_tr_1740521031", "segs": ["אויף פֿראַנצויזיש: Le Dibbouk, legende dramatioque en trois actes per An-ski, version Francaise de Marie-Therese Koerner. (מיט אַ הקדמה פֿון עדמאַנד פלעג. 140 ז. 24)"], "vol": 1, "cols": "cols. 77–78", "url": "https://archive.org/details/nybc201089/page/n54/mode/1up"}], "row": "koerner", "wnode": "w:french", "venue": null, "note": ""}, {"id": "blumenfeld", "tier": "french", "work": "ansky", "label": "Unconfirmed reports of Dybbuk stagings in French (tr. L. Blumenfeld)", "places": [], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": null, "people": [{"k": "blumenfeld", "role": "translator", "ch": ""}], "src": [{"pid": "P-1-facs_52_tr_1740521031", "segs": ["נישט קאָנטראָלירטע ידיעות זיינען פֿאַראַן וועגן „דיבוק\"-אויפפֿירוננען אויף סערביש, (איבערזעצט דורך טאפּס], פֿראָנצויזיש (איבערזעצט דורך ל. בלומענפעלד)"], "vol": 1, "cols": "cols. 75–76", "url": "https://archive.org/details/nybc201089/page/n53/mode/1up"}], "row": "blumenfeld", "wnode": "w:french", "venue": null, "note": ""}, {"id": "shneour_press", "tier": "french", "work": "ansky", "label": "The French press on Shneour's Tsadik", "places": ["france"], "y0": 1922, "y1": 1923, "approx": true, "date": "1921–23 tour", "troupe": "vilna", "people": [{"k": "shneour", "role": "actor", "ch": "Miropolyer Tsadik"}], "src": [{"pid": "P-4-facs_401_tr_1755030076", "segs": ["די פּרעסע אין דייטשלאַנד, האָלאַנד, בעלגיע, פֿראַנקרייך און ענגלאַנד איז געווען באַגייסטערט פֿון זיין שפּילן די ראָלן „מיראָפּאָלער צדיק\" אין „דיבוק\""], "vol": 4, "cols": "cols. 3207–3208", "url": "https://archive.org/details/nybc201092/page/n401/mode/1up"}], "row": "shneour", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "ansky_paris", "tier": "stay", "work": "ansky", "label": "An-ski in Paris: bookbinder, then Lavrov's secretary", "places": ["paris"], "y0": 1894, "y1": 1900, "approx": false, "date": "1894–1900", "troupe": null, "people": [{"k": "ansky", "role": "author", "ch": ""}], "src": [{"pid": "P-1-facs_52_tr_1740521031", "segs": ["דאָן אין פּאַריז, וואו ער אַרבעט אַלס איינבינדער, און פֿון 1894 ביז 1900 געוואָרן דער פּריוואָט-סעקרעטאַר פֿון רוסישן סאָציאָליסטן-פֿירער פּ. לאַווראָוו"], "vol": 1, "cols": "cols. 71–72", "url": "https://archive.org/details/nybc201089/page/n51/mode/1up"}], "note": "Paris before 1894 too; the entry dates the secretaryship 1894–1900.", "row": "ansky", "wnode": "w:ansky", "venue": null}, {"id": "vilna_premiere", "tier": "elsewhere", "work": "ansky", "label": "Vilna Troupe premiere, Warsaw (shloshim for An-ski)", "places": [], "y0": 1920, "y1": 1920, "approx": false, "date": "9 Dec. 1920", "troupe": "vilna", "people": [{"k": "herman", "role": "director", "ch": ""}, {"k": "ansky", "role": "author", "ch": ""}], "src": [{"pid": "P-1-facs_368_TextRegion_1710163037685_362", "segs": ["אין טאָג פֿון די שלושים נאָך ש. אַנסקי (9 דעצעמבער 1920) ווערט אויפֿגעפֿירט זיין פּיעסע „דער דיבוק\" (רעזשי — דוד הערמאַן)"], "vol": 1, "cols": "cols. 707–708", "url": "https://archive.org/details/nybc201089/page/n369/mode/1up"}], "row": "t:vilna", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "altman_paris", "tier": "stay", "work": "ansky", "label": "Altman in Paris, meets the new art movements", "places": ["paris"], "y0": 1910, "y1": 1912, "approx": false, "date": "1910–12", "troupe": null, "people": [{"k": "altman", "role": "set_designer", "ch": ""}], "src": [{"pid": "P-1-facs_47_tr_1740521066", "segs": ["1910 געפאָרן קיין פּאָריז און זיך דאָרט באַקענט מיט די נייע קונסט-ריכטונגען. 1912 זיך באָזעצט אין פּעטערבורג"], "vol": 1, "cols": "cols. 61–62", "url": "https://archive.org/details/nybc201089/page/n46/mode/1up"}], "row": "altman", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "altman_sets", "tier": "elsewhere", "work": "ansky", "label": "Altman's sets for Habima's Hebrew Dybbuk, Moscow", "places": [], "y0": 1921, "y1": 1922, "approx": true, "date": "from 1921", "troupe": "habima", "people": [{"k": "altman", "role": "set_designer", "ch": ""}], "src": [{"pid": "P-1-facs_47_tr_1740521066", "segs": ["1921 אַריבער קיין מאָסקווע און דאָרט געמאָלן דעקאַראַציעס פֿאָר מאָיאָקאָווסקיס „מיסטעריע בוף\" (פֿאָרן 3טן קאָנגרעס פון קאָמינטערן) „חדבוק\" אין „הבימה\""], "vol": 1, "cols": "cols. 61–62", "url": "https://archive.org/details/nybc201089/page/n46/mode/1up"}], "row": "altman", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "weintraub_paris", "tier": "stay", "work": "opera", "label": "Weintraub studies in Paris; four years on the Western Front with the Polish Legion in France", "places": ["paris"], "y0": 1910, "y1": 1918, "approx": true, "date": "after 1909 – WWI", "troupe": null, "people": [{"k": "weintraub", "role": "set_designer", "ch": ""}], "src": [{"pid": "P-5-facs_326_tr_1739221462", "segs": ["אַ סטיפּענדיע צו שטודירן אין פֿראַנקרייך. אין אָנהייב איז אים אין פאַריז געווען שווער", "אינם פּוילישן לעגיאָן, וואָס האָט זיך פאַרמירט אין פראַנקרייך און וועלכער האָט געקעמפט אויפֿן מערב-פּראָנט קעגן דער דייטשער אַרמיי. 4 יאָר צייט האָט דער קינסטלער געקעמפט אויפֿן פֿראַנט"], "vol": 5, "cols": "cols. 4319–4320", "url": "https://archive.org/details/nybc201093/page/n325/mode/1up"}], "row": "weintraub", "wnode": "w:opera", "venue": null, "note": ""}, {"id": "weintraub_opera", "tier": "elsewhere", "work": "opera", "label": "Weintraub designs Rocca's Dybbuk opera for the Warsaw Opera", "places": [], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": null, "people": [{"k": "weintraub", "role": "set_designer", "ch": ""}], "src": [{"pid": "P-5-facs_326_tr_1739221462", "segs": ["די דירעקציע פֿון דער וואַרשעווער אָפּערע האָט איינגעלאָדן וויינטרויבן מיטצואַרבעטן ביים רעאַליזירן די דעקאָר: טיווע ראָס פונם 'דיבוק' מיט דער מוזיק פונם איטאַלייענישן קאָמפּאָזיטאָר ראַק"], "vol": 5, "cols": "cols. 4325–4326", "url": "https://archive.org/details/nybc201093/page/n328/mode/1up"}], "row": "weintraub", "wnode": "w:opera", "venue": null, "note": ""}, {"id": "joepaul_paris", "tier": "stay", "work": "ansky", "label": "Joe Paul wrestles in Paris", "places": ["paris"], "y0": 1910, "y1": 1913, "approx": true, "date": "before 1914", "troupe": null, "people": [{"k": "joepaul", "role": "actor", "ch": ""}], "src": [{"pid": "P-4-facs_665_tr_1755029919", "segs": ["טרעט ער אַרויס ווי אַ \"רעסלער\" אין פּאַריז", "אין 1914 ווערט ער דורך צוויי ציקליסטן-פֿירמעס געשיקט קיין אַמעריקע"], "vol": 4, "cols": "scan p. 665", "url": "https://archive.org/details/nybc201092/page/n664/mode/1up"}], "row": "joepaul", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "joepaul_sender", "tier": "elsewhere", "work": "ansky", "label": "Joe Paul as Sender, amateur stage, Philadelphia", "places": [], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": null, "people": [{"k": "joepaul", "role": "actor", "ch": "Sender Brinitser"}], "src": [{"pid": "P-4-facs_665_tr_1755029919", "segs": ["\"סענדער בריניצער“ אין אַנסקיס „דיבוק\""], "vol": 4, "cols": "scan p. 665", "url": "https://archive.org/details/nybc201092/page/n664/mode/1up"}], "row": "joepaul", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "kessler_london", "tier": "elsewhere", "work": "ansky", "label": "Kessler's London Dybbuk, the first there; he plays the Messenger", "places": [], "y0": 1922, "y1": 1922, "approx": false, "date": "1922", "troupe": null, "people": [{"k": "kessler", "role": "producer", "ch": "Messenger"}], "src": [{"pid": "P-4-facs_261_tr_1754998424", "segs": ["ק. האָט אויך דער ערשטער, אין 1922, אויפֿגעפֿירט אין לאָנדאָן אַנסקיס „דבוק\" (געשפּילט די ראָל פון „משולח“)"], "vol": 4, "cols": "cols. 2927–2928", "url": "https://archive.org/details/nybc201092/page/n261/mode/1up"}], "row": "kessler", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "kessler_paris", "tier": "stay", "work": "ansky", "label": "Kessler's Yiddish performances in Paris; summer tour with his repertoire", "places": ["paris"], "y0": 1924, "y1": 1928, "approx": false, "date": "Jan. 1924; summer 1928", "troupe": null, "people": [{"k": "kessler", "role": "producer", "ch": ""}], "src": [{"pid": "P-4-facs_261_tr_1754998424", "segs": ["אין יאַנואַר 1924 האָט ק. געגעבן אַ ריי יידישע פֿאָרשטעלונגען אין פּאַריז", "זומער צייט גאַסטראָלירט ער אין זיין רעפּערטואַר אין פאַריז"], "vol": 4, "cols": "cols. 2927–2928", "url": "https://archive.org/details/nybc201092/page/n261/mode/1up"}], "row": "kessler", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "lampe_paris", "tier": "stay", "work": "parody", "label": "Lampe plays five months in Paris with Kessler", "places": ["paris"], "y0": 1928, "y1": 1928, "approx": true, "date": "before 1929", "troupe": null, "people": [{"k": "lampe", "role": "actor", "ch": ""}, {"k": "kessler", "role": "producer", "ch": ""}], "src": [{"pid": "P-5-facs_360_tr_1739221936", "segs": ["געפֿאָרן קיין פאַריז צו יאָזעף קעסלער, וואו ער האָט געשפּילט 5 חדשים, אויפֿפֿירנדיק אַ ריי שלום-עליכם-פּיעסעס. 1929"], "vol": 5, "cols": "cols. 4389–4390", "url": "https://archive.org/details/nybc201093/page/n360/mode/1up"}], "row": "lampe", "wnode": "w:parody_three", "venue": null, "note": ""}, {"id": "three_dybbuks", "tier": "elsewhere", "work": "parody", "label": "'Di dray dibukim' (The Three Dybbuks), Scala, Warsaw", "places": [], "y0": 1931, "y1": 1931, "approx": false, "date": "1931", "troupe": null, "people": [{"k": "lampe", "role": "director", "ch": ""}, {"k": "shoshana", "role": "actor", "ch": ""}], "src": [{"pid": "P-5-facs_360_tr_1739221936", "segs": ["אין 1931 האָט ל. צוזאַמען מיט ר. שושנה און איר מאַן לאַזאַר קאַהאַן, אָנגעפֿירט מיטן 'סקאַלאַ'-טעאַטער אין וואַרשע, וואו ל. האָט אויפֿגעפֿירט שושנהס פּיעסע 'באַשקע', אַ דראַמאַטיזאַציע פֿון איר ראָמאַן, די פאַראַדיע 'די דריי דבוקים'"], "vol": 5, "cols": "cols. 4393–4394", "url": "https://archive.org/details/nybc201093/page/n362/mode/1up"}], "row": "lampe", "wnode": "w:parody_three", "venue": null, "note": ""}, {"id": "shoshana_1935", "tier": "stay", "work": "ansky", "label": "Shoshana plays Paris again", "places": ["paris"], "y0": 1935, "y1": 1935, "approx": false, "date": "1935", "troupe": null, "people": [{"k": "shoshana", "role": "actor", "ch": ""}], "src": [{"pid": "P-3-facs_334_tr_1756105641", "segs": ["אין זעלבן יאָר שפּילט זי אויך אין פּאַריז וואו זיי טרעט אויף אין „ציאַנקאַלי“, „יאַשיוואַראַ“ און „01 פֿון פּאָוויאַק\" מיט פּאָלאַ וואַלטער און מתתיהו קאָוואַלסקי"], "vol": 3, "cols": "cols. 2245–2246", "url": "https://archive.org/details/nybc201091/page/n336/mode/1up"}], "row": "shoshana", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "friedman_belgium", "tier": "elsewhere", "work": "ansky", "label": "Friedman stages the Dybbuk in Belgium with Shoshana", "places": [], "y0": 1929, "y1": 1929, "approx": false, "date": "1929", "troupe": null, "people": [{"k": "friedman", "role": "director", "ch": ""}, {"k": "shoshana", "role": "actor", "ch": ""}], "src": [{"pid": "P-3-facs_400_tr_1755856074", "segs": ["וואו ער פֿירט אויף אין 1929, מיט דער גאַסטראָלירנדער שושנה, אַנכקיס „דבוק\""], "vol": 3, "cols": "cols. 2377–2378", "url": "https://archive.org/details/nybc201091/page/n402/mode/1up"}], "row": "friedman", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "friedman_paris", "tier": "stay", "work": "ansky", "label": "Friedman's last letter from occupied Paris; killed by the Nazis", "places": ["paris"], "y0": 1943, "y1": 1943, "approx": false, "date": "1943", "troupe": null, "people": [{"k": "friedman", "role": "director", "ch": ""}], "src": [{"pid": "P-3-facs_400_tr_1755856074", "segs": ["אין 1943, בעת דער דייטשער אָקופּאַציע פֿון פּאַריז, באַקומען פֿון אים אַ בריוו, און זינט דאַמאָלט מער פֿון אים ניט געהערט. פ. איז אומגעבראַכט געוואָרן פֿון די נאַציס בערך אין 1943"], "vol": 3, "cols": "cols. 2379–2380", "url": "https://archive.org/details/nybc201091/page/n403/mode/1up"}], "row": "friedman", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "fishzon_dybbuk", "tier": "elsewhere", "work": "ansky", "label": "Fishzon's Dybbuk in Bessarabia and Bucharest (75+ performances)", "places": [], "y0": 1921, "y1": 1922, "approx": true, "date": "before 1922–23", "troupe": null, "people": [{"k": "fishzon", "role": "director", "ch": ""}], "src": [{"pid": "P-4-facs_439_tr_1755030088", "segs": ["„דער דיבוק\" (אויפֿגעפֿירט דורך הערמאַן פעניגשטיין, לויט דער קאָנצעפּציע פֿון דוד הערמאַן, אונטער דער השגחה פֿון רעזשיסער מישאַ פישזאָן) איז געווען אַ רייזיקער דערפֿאָלג", "צו דער 75-טער אויפֿפֿירונג פֿון „דיבוק\" קומט אין טעאַטער דער זון פֿון דירעקטאָר פֿון דער רומענישער נאַציאָנאַלער באַנק אין בוקאַרעסט און אָנגאַזשירט די טרופּע אויף 15 פֿאַרשטעלונגען אין „טעאַטער עפאַריאַ\""], "vol": 4, "cols": "cols. 3289–3290", "url": "https://archive.org/details/nybc201092/page/n442/mode/1up"}], "row": "fishzon", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "fishzon_paris", "tier": "stay", "work": "ansky", "label": "Fishzon plays two months in Paris and settles a permanent theatre in Belleville; back in 1927", "places": ["paris"], "y0": 1923, "y1": 1927, "approx": true, "date": "c. 1923–24; May 1927", "troupe": null, "venue": "belleville", "people": [{"k": "fishzon", "role": "actor", "ch": ""}], "src": [{"pid": "P-4-facs_439_tr_1755030088", "segs": ["פֿון דאָרט פֿאָרט ער קיין פּאַריז, וואו ער שפּילט 2 חדשים, און עטאַבלירט דאָס טעאַטער אויף די בעלווייל אַלס אַ שטענדיק טעאַטער", "אין מאי 1927 פֿאָרט ער אָפּ קיין פּאַריז, וואו ער שפּילט ביי לאַכטיגער"], "vol": 4, "cols": "cols. 3289–3290", "url": "https://archive.org/details/nybc201092/page/n442/mode/1up"}], "row": "fishzon", "wnode": "w:ansky", "note": ""}, {"id": "yat_1924", "tier": "stay", "work": "ansky", "label": "Yiddish Art Theatre: two weeks in Paris — a 12-play repertoire without the Dybbuk", "places": ["paris"], "y0": 1924, "y1": 1924, "approx": false, "date": "summer 1924", "troupe": "yat", "venue": "edouard7", "people": [{"k": "schwartz", "role": "director", "ch": ""}, {"k": "keshir", "role": "actor", "ch": ""}], "src": [{"pid": "P-3-facs_375_tr_1755856142", "segs": ["אין פּאַריז האָט די טרופּע געשפּילט אין \"עדוואַרד סעט\"-טעאַטער 2 וואַכן, און געהאַט אַ פֿאָרשלאָג צו פֿאַרבלייבן שפּילן אין „סאַראַ בערנאַרד\"-טעאַטער"], "vol": 3, "cols": "cols. 2340–2341", "url": "https://archive.org/details/nybc201091/page/n383/mode/1up"}, {"pid": "P-3-facs_289_tr_1755803006", "segs": ["אין זומער 1924 האָט ק. מיטגעמאַכט דעם טורנע פֿון יידישן קונסטטעאַטער אין אייראָפּע (לאָנדאָן, פאַריז און ווין) און שפּילט דערנאָך (1924-1925) אין זעלבן טעאַטער אין דער באַנייטער אויפֿפֿירונג פֿין אַנסקיס „דיביק\""], "vol": 3, "cols": "cols. 2157–2158", "url": "https://archive.org/details/nybc201091/page/n292/mode/1up"}], "row": "t:yat", "wnode": "w:ansky", "note": ""}, {"id": "yat_dybbuk", "tier": "elsewhere", "work": "ansky", "label": "Keshir in the renewed Dybbuk at the Yiddish Art Theatre, New York", "places": [], "y0": 1924, "y1": 1925, "approx": false, "date": "1924–25", "troupe": "yat", "people": [{"k": "keshir", "role": "actor", "ch": "Sender Brinitser"}, {"k": "schwartz", "role": "director", "ch": ""}], "src": [{"pid": "P-3-facs_289_tr_1755803006", "segs": ["אין זומער 1924 האָט ק. מיטגעמאַכט דעם טורנע פֿון יידישן קונסטטעאַטער אין אייראָפּע (לאָנדאָן, פאַריז און ווין) און שפּילט דערנאָך (1924-1925) אין זעלבן טעאַטער אין דער באַנייטער אויפֿפֿירונג פֿין אַנסקיס „דיביק\"", "זיין „סענדער בריניצער' (אין „דיבוק') צאַפּלען זיך צאָרטע פֿערים פֿון פֿאָטערלעכער באַזאָרגטקייט"], "vol": 3, "cols": "cols. 2157–2158", "url": "https://archive.org/details/nybc201091/page/n292/mode/1up"}], "row": "t:yat", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "schwartz_spanish", "tier": "elsewhere", "work": "ansky", "label": "Schwartz stages the Dybbuk in Spanish, Buenos Aires", "places": [], "y0": 1942, "y1": 1942, "approx": false, "date": "20 Nov. 1942", "troupe": null, "people": [{"k": "schwartz", "role": "director", "ch": ""}], "src": [{"pid": "P-3-facs_375_tr_1755856142", "segs": ["דעם 20 נאָוועמבער 1942 פֿירט ש. אויף, אין שפּאַניש. אין טאַטער „נאַציאָנאַל“, אַנסקיס „דבוק\" מיט די אַרגענטינער שוישפּילער אַניטאָ לאַסאָל און עדוואַרדאָ קויטיניאַ בראש"], "vol": 3, "cols": "cols. 2349–2350", "url": "https://archive.org/details/nybc201091/page/n388/mode/1up"}], "row": "t:yat", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "witler_paris", "tier": "stay", "work": "ansky", "label": "Witler appears in Paris, London, South Africa, France, Vienna", "places": ["paris"], "y0": 1928, "y1": 1930, "approx": false, "date": "Sept. 1928 – 1930", "troupe": null, "people": [{"k": "witler", "role": "actor", "ch": ""}], "src": [{"pid": "P-3-facs_341_tr_1756106968", "segs": ["ער טרעט אויף פֿון סעפּט. 1928 ביז 1930 אין פאַריז, לאָנדאָן, דרום-אפריקע און צוריק אין ענגלאַנד, פֿראַנקרייך און ווין"], "vol": 3, "cols": "cols. 2259–2260", "url": "https://archive.org/details/nybc201091/page/n343/mode/1up"}], "row": "witler", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "witler_dybbuk", "tier": "elsewhere", "work": "ansky", "label": "Witler's Riga repertoire includes the Dybbuk", "places": [], "y0": 1937, "y1": 1937, "approx": false, "date": "1937", "troupe": null, "people": [{"k": "witler", "role": "actor", "ch": ""}], "src": [{"pid": "P-3-facs_341_tr_1756106968", "segs": ["אין 1937 גאַסטראָלירט ער (צוזאַמען מיט עטאַ טאָפּאָל) אין ריגע, לעטלאַנד", "אַנסקיס „דיבוק\""], "vol": 3, "cols": "cols. 2259–2260", "url": "https://archive.org/details/nybc201091/page/n343/mode/1up"}], "row": "witler", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "kompaneets_krakow", "tier": "elsewhere", "work": "ansky", "label": "The Kompaneets family brings the Dybbuk to Krakow, directed by Rabinovitsh", "places": [], "y0": 1923, "y1": 1925, "approx": true, "date": "1920s", "troupe": "kompaneets_tr", "people": [{"k": "kompaneets", "role": "producer", "ch": ""}, {"k": "rabinovitsh", "role": "director", "ch": "Khonen"}], "src": [{"pid": "P-6-facs_291_tr_1747928923", "segs": ["אין די 20ער-יאָרן האָט ק. אַריבערגעבראַכט זיין משפּחה שפּילן „דער דיבוק\" אין קראָקע"], "vol": 6, "cols": "cols. 5425–5426", "url": "https://archive.org/details/nybc201094/page/n295/mode/1up"}, {"pid": "P-4-facs_141_tr_1754377600", "segs": ["קרעאירט אין די ראָלן „חנן\" אין „דבוק\", „איציק\" אין „די פוסטע קרעטשמע\" און \"יודל“ אין „דער אוצר\". אין די צוואַנציקער יאָרן קומט די טרופּע גאַסטראָלירן אין קראָקע צום דירעקטאָר יאַקאָב, און וועגן דעם שרייבט דער אַקטיאָר בנציון פּאַלעפּאַדע: \"...ראבינאָוויטש האָט זי [די פּיעסע] „דער דבוק\" אויפגעפֿירט לויט הערמאַנס רעזשי"], "vol": 4, "cols": "cols. 2685–2686", "url": "https://archive.org/details/nybc201092/page/n140/mode/1up"}], "row": "kompaneets", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "kompaneets_paris", "tier": "stay", "work": "ansky", "label": "Kompaneets settles in Paris; hides through the war; dies there", "places": ["paris"], "y0": 1929, "y1": 1946, "approx": false, "date": "1929 – 13 Aug. 1946", "troupe": "kompaneets_tr", "people": [{"k": "kompaneets", "role": "producer", "ch": ""}], "src": [{"pid": "P-6-facs_291_tr_1747928923", "segs": ["אין 1929 האָט ק. זיך באַזעצט אין פּאַריז און דאָרט געשפּילט. אין די מלחמה-יאָרן", "דעם 13 אויגוסט 1946 איז ק. געשטאָרבן אין פאַריז"], "vol": 6, "cols": "cols. 5415–5416", "url": "https://archive.org/details/nybc201094/page/n290/mode/1up"}], "row": "kompaneets", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "rabinovitsh_paris", "tier": "stay", "work": "ansky", "label": "Rabinovitsh conducts school choirs in Paris (later Mexico)", "places": ["paris"], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": null, "people": [{"k": "rabinovitsh", "role": "director", "ch": ""}], "src": [{"pid": "P-4-facs_141_tr_1754377600", "segs": ["און איז אין פּאַריז און דערנאָך אין מעקסיקאָ געווען כאָר-דיריגענט"], "vol": 4, "cols": "cols. 2687–2688", "url": "https://archive.org/details/nybc201092/page/n141/mode/1up"}], "row": "rabinovitsh", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "halpern_film", "tier": "elsewhere", "work": "film", "label": "Dina Halpern as Frade in the Dybbuk film", "places": [], "y0": 1937, "y1": 1937, "approx": false, "date": "1937", "troupe": null, "people": [{"k": "halpern", "role": "actor", "ch": "Frade"}], "src": [{"pid": "P-4-facs_382_tr_1755030077", "segs": ["אַנסקיס „דיבוק\" (ראָל „פריידע“), רעזשיסירט פֿון מיכאָל וואַשינסקי"], "vol": 4, "cols": "cols. 3167–3168", "url": "https://archive.org/details/nybc201092/page/n381/mode/1up"}], "row": "halpern", "wnode": "w:film", "venue": null, "note": ""}, {"id": "halpern_paris", "tier": "stay", "work": "film", "label": "Halpern plays seven weeks in Paris with the She'erit ha-Pleyte actors", "places": ["paris"], "y0": 1946, "y1": 1946, "approx": false, "date": "summer 1946", "troupe": null, "venue": "sarah", "people": [{"k": "halpern", "role": "actor", "ch": ""}], "src": [{"pid": "P-4-facs_382_tr_1755030077", "segs": ["זומער 1946 — אָפּגעפאָרן קיין אייראָפּע שפּילן מיט די שאַרית הפּליטה יידישע שוישפּילער, און נאָך שפּילן 7 וואָכן אין פאַריז אין „אַנטיפּע טעאַטער“ און „סאַראַ בערנאַר טעאַטער“"], "vol": 4, "cols": "cols. 3169–3170", "url": "https://archive.org/details/nybc201092/page/n382/mode/1up"}], "row": "halpern", "wnode": "w:film", "note": ""}, {"id": "zucker_dybbuk", "tier": "elsewhere", "work": "ansky", "label": "Zucker's troupe plays the Dybbuk in Czechoslovakia; the Munkács dynasty fights the actors", "places": [], "y0": null, "y1": null, "approx": false, "date": "1920s", "troupe": null, "people": [{"k": "zucker", "role": "actor", "ch": ""}], "src": [{"pid": "P-5-facs_143_tr_1733832807", "segs": ["אַמשטאַרקסטן האָבן זיך אויסגעצייכנט אין קאַמף קעגן די יידישע אַקטיאָרן די מונקאַטשער דינאַסטיע נאָכדעם ווי די אַקטיאָרן האָבן אויפגעפירט ש. אַנסקיס 'דיבוק'"], "vol": 5, "cols": "cols. 3955–3956", "url": "https://archive.org/details/nybc201093/page/n143/mode/1up"}], "row": "zucker", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "zucker_paris", "tier": "stay", "work": "ansky", "label": "Zucker engaged by the Paris director N. Blumenthal for France, Belgium, England", "places": ["france"], "y0": null, "y1": null, "approx": false, "date": "before 1926", "troupe": null, "people": [{"k": "zucker", "role": "actor", "ch": ""}, {"k": "blumenthal", "role": "producer", "ch": ""}], "src": [{"pid": "P-5-facs_143_tr_1733832807", "segs": ["פֿון דייטשלאַנד איז צוקער אַנגאַזשירט געוואָרן דורך דעם פאַרייזער טעאַטער-דירעקטאָר נ. בלומענטאַל קיין פראַנקרייך, בעלגיע און ענגלאַנד, וואו ער האָט געשפּילט עטלעכע סעזאָנען"], "vol": 5, "cols": "cols. 3955–3956", "url": "https://archive.org/details/nybc201093/page/n143/mode/1up"}], "row": "zucker", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "sandler_batlon", "tier": "elsewhere", "work": "ansky", "label": "Sandler as the Second Batlon (Warsaw)", "places": [], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": null, "people": [{"k": "sandler", "role": "actor", "ch": "Second Batlon"}], "src": [{"pid": "P-5-facs_432_r", "segs": ["אַלס צווייטער בטלן אין ש. אַנסקיס „דבוק\""], "vol": 5, "cols": "cols. 4531–4532", "url": "https://archive.org/details/nybc201093/page/n431/mode/1up"}], "row": "sandler", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "sandler_paris", "tier": "stay", "work": "ansky", "label": "Sandler guest-stars in South Africa, Paris, Belgium, Germany", "places": ["paris"], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": null, "people": [{"k": "sandler", "role": "actor", "ch": ""}], "src": [{"pid": "P-5-facs_432_r", "segs": ["ס. גאַסטראָלירט דערנאָך אין דרום אפריקע, פאַריז, בעלגיע, דייטשלאַנד"], "vol": 5, "cols": "cols. 4531–4532", "url": "https://archive.org/details/nybc201093/page/n431/mode/1up"}], "row": "sandler", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "kadish_dybbuk", "tier": "elsewhere", "work": "ansky", "label": "The Vilna Yiddish Operetta Troupe stages the Dybbuk", "places": [], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": "kadish_tr", "people": [{"k": "kadish", "role": "producer", "ch": ""}], "src": [{"pid": "P-5-facs_100_tr_1733059460", "segs": ["אַזוי איז דורך זיין טרופּע געשפּילט געוואָרן אַנ-סקיס 'דיבוק' און לייוויקס 'גולם'"], "vol": 5, "cols": "cols. 3771–3772", "url": "https://archive.org/details/nybc201093/page/n101/mode/1up"}], "row": "kadish", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "kadish_france", "tier": "stay", "work": "ansky", "label": "The Vilna Yiddish Operetta Troupe visits France", "places": ["france"], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": "kadish_tr", "people": [{"k": "kadish", "role": "producer", "ch": ""}], "src": [{"pid": "P-5-facs_100_tr_1733059460", "segs": ["האָט אויסער גאַנץ פּוילן, באַזוכט אַ ריי אייראָפּעישע לענדער, ווי רומעניע, פראַנקרייך, בעלגיע, ליטע, לעטלאַנד, דייטשלאַנד"], "vol": 5, "cols": "cols. 3869–3870", "url": "https://archive.org/details/nybc201093/page/n100/mode/1up"}], "row": "kadish", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "klinger_messenger", "tier": "elsewhere", "work": "ansky", "label": "Klinger's Messenger, one of the roles he was proudest of", "places": [], "y0": null, "y1": null, "approx": false, "date": "undated", "troupe": null, "people": [{"k": "klinger", "role": "actor", "ch": "Messenger"}], "src": [{"pid": "P-7-facs_43_tr_1756359812", "segs": ["„משולח\" אין ש. אַנסקיס „דיבוק"], "vol": 7, "cols": "cols. 6127–6128", "url": ""}], "row": "klinger", "wnode": "w:ansky", "venue": null, "note": ""}, {"id": "klinger_paris", "tier": "stay", "work": "ansky", "label": "Klinger tours France; founds the Paris Yiddish Art Theatre (1961–62)", "places": ["paris"], "y0": 1954, "y1": 1962, "approx": false, "date": "1954–61; 1961–62", "troupe": null, "people": [{"k": "klinger", "role": "actor", "ch": ""}], "src": [{"pid": "P-7-facs_43_tr_1756359812", "segs": ["פֿון 1954 ביז 1961 גאַסטראָלירט ק. עטלעכע מאָל אין מדינת ישראל, בעלניע, האָלאַנד, דענעמאַרק, שוועדן, נאַרוועגן, פינלאַנד, דייטשלאַנד און פֿראַנקרייך", "1961-62 גרינדעט ק. דאָס פּאַריזער יידישע קונסט-טעאַטער אויף געזעלשאַפֿטלעכע יסודות מיט י. שיין אַלס רעזשיסער"], "vol": 7, "cols": "cols. 6223–6224", "url": ""}], "row": "klinger", "wnode": "w:ansky", "venue": null, "note": ""}], "heads": {"P-3-facs_400_tr_1755856074": "פֿרידמאן, רובין (מאיר רובין]", "P-5-facs_326_tr_1739221462": "וויינטרויב, וולאדיסלאוו", "P-6-facs_187_tr_1747825092": "קאטלער יאסל", "P-4-facs_439_tr_1755030088": "פישזאן, מישא [משה כאסידמאן]", "P-5-facs_432_r": "סאנדלער חיים", "P-3-facs_341_tr_1756106968": "וויטלער, בן ציון", "P-7-facs_43_tr_1756359812": "קלינגער, נתן", "P-5-facs_100_tr_1733059460": "קדיש [ק. כאש]", "P-4-facs_141_tr_1754377600": "ראבינאוויטש, לעאן [לייבל]", "P-4-facs_665_tr_1755029919": "דזשאו פאול", "P-6-facs_467_tr_1747930274": "ליבערט-לובאצקי, אליא", "P-1-facs_52_tr_1740521031": "אנ-סקי ש. [שלמה-זאנוול ראפאפארט]", "P-6-facs_291_tr_1747928923": "קאמפאנעעץ, אבא", "P-5-facs_143_tr_1733832807": "צוקער, שלום", "P-1-facs_47_tr_1740521066": "אלטמאן, נאטאן", "P-4-facs_635_tr_1755030182": "בן-ארי ר [חיים-זאב רייקין]", "P-3-facs_375_tr_1755856142": "שווארץ, מאריס [אברהם משה]", "P-4-facs_401_tr_1755030076": "שניאור, חיים [שניאור-היים גאמעראוו]", "P-4-facs_382_tr_1755030077": "האלפערן, דינה", "P-4-facs_261_tr_1754998424": "קעסלער יאזעף", "P-3-facs_334_tr_1756105641": "שושנה, ר", "P-3-facs_289_tr_1755803006": "קעשיר איזידאר [זישע קאסירער]", "P-1-facs_368_TextRegion_1710163037685_362": "''ווילנער טרופע,,", "P-5-facs_360_tr_1739221936": "לאמפע, מאריס", "P-2-facs_213_r_27": "„מאדיאקאט\""}, "people": {"ansky": {"en": "An-ski, S.", "yi": "אַנ-סקי", "pid": "P-1-facs_52_tr_1740521031"}, "herman": {"en": "Herman, David", "yi": "דוד הערמאַן", "pid": null}, "shneour": {"en": "Shneour, Chaim", "yi": "חיים שניאור", "pid": "P-4-facs_401_tr_1755030076"}, "libert": {"en": "Libert-Lubotski, Olia", "yi": "אָליא ליבערט-לובאָצקי", "pid": "P-6-facs_467_tr_1747930274"}, "weide": {"en": "Weide, Miriam", "yi": "מרים ווייַדע", "pid": null}, "shoshana": {"en": "Shoshana, R.", "yi": "ר. שושנה", "pid": "P-3-facs_334_tr_1756105641"}, "friedman": {"en": "Friedman, Rubin", "yi": "רובין פֿרידמאַן", "pid": "P-3-facs_400_tr_1755856074"}, "benari": {"en": "Ben-Ari, R.", "yi": "ר. בן-אָרי", "pid": "P-4-facs_635_tr_1755030182"}, "maud": {"en": "Maud, Zuni", "yi": "זוני מאָד", "pid": null}, "kotler": {"en": "Kotler, Yosl", "yi": "יאָסל קאָטלער", "pid": "P-6-facs_187_tr_1747825092"}, "koerner": {"en": "Koerner, Marie-Thérèse", "yi": "Marie-Thérèse Koerner", "pid": null}, "fleg": {"en": "Fleg, Edmond", "yi": "עדמאָנד פֿלעג", "pid": null}, "blumenfeld": {"en": "Blumenfeld, L.", "yi": "ל. בלומענפֿעלד", "pid": null}, "altman": {"en": "Altman, Nathan", "yi": "נתן אַלטמאַן", "pid": "P-1-facs_47_tr_1740521066"}, "weintraub": {"en": "Weintraub, Władysław", "yi": "וולאַדיסלאָוו ווייַנטרויב", "pid": "P-5-facs_326_tr_1739221462"}, "joepaul": {"en": "Paul, Joe", "yi": "דזשאָו פּאָול", "pid": "P-4-facs_665_tr_1755029919"}, "kessler": {"en": "Kessler, Joseph", "yi": "יאָזעף קעסלער", "pid": "P-4-facs_261_tr_1754998424"}, "lampe": {"en": "Lampe, Maurice", "yi": "מאָריס לאַמפּע", "pid": "P-5-facs_360_tr_1739221936"}, "fishzon": {"en": "Fishzon, Misha", "yi": "מישאַ פֿישזאָן", "pid": "P-4-facs_439_tr_1755030088"}, "schwartz": {"en": "Schwartz, Maurice", "yi": "מאָריס שוואַרץ", "pid": "P-3-facs_375_tr_1755856142"}, "keshir": {"en": "Keshir, Isidor", "yi": "איזידאָר קעשיר", "pid": "P-3-facs_289_tr_1755803006"}, "witler": {"en": "Witler, Ben-Zion", "yi": "בן-ציון וויטלער", "pid": "P-3-facs_341_tr_1756106968"}, "kompaneets": {"en": "Kompaneets, Aba", "yi": "אַבאַ קאָמפּאַנעעץ", "pid": "P-6-facs_291_tr_1747928923"}, "rabinovitsh": {"en": "Rabinovitsh, Leon", "yi": "לעאָן ראַבינאָוויטש", "pid": "P-4-facs_141_tr_1754377600"}, "halpern": {"en": "Halpern, Dina", "yi": "דינה האַלפּערן", "pid": "P-4-facs_382_tr_1755030077"}, "zucker": {"en": "Zucker, Sholem", "yi": "שלום צוקער", "pid": "P-5-facs_143_tr_1733832807"}, "blumenthal": {"en": "Blumenthal, N.", "yi": "נ. בלומענטאַל", "pid": null}, "sandler": {"en": "Sandler, Chaim", "yi": "חיים סאַנדלער", "pid": "P-5-facs_432_r"}, "kadish": {"en": "Kadish (K. Khash)", "yi": "קדיש", "pid": "P-5-facs_100_tr_1733059460"}, "klinger": {"en": "Klinger, Nathan", "yi": "נתן קלינגער", "pid": "P-7-facs_43_tr_1756359812"}}, "troupes": {"vilna": {"en": "Vilna Troupe", "yi": "ווילנער טרופּע", "pid": "P-1-facs_368_TextRegion_1710163037685_362"}, "habima": {"en": "Habima", "yi": "הבימה", "pid": null}, "madiokat": {"en": "Modicot (Madiokat)", "yi": "מאַדיאָקאַט", "pid": "P-2-facs_213_r_27"}, "yat": {"en": "Yiddish Art Theatre (New York)", "yi": "יידיש קונסט-טעאַטער", "pid": null}, "kompaneets_tr": {"en": "Kompaneets family troupe", "yi": "קאָמפּאַנעעץ-טרופּע", "pid": null}, "kadish_tr": {"en": "Vilna Yiddish Operetta Troupe", "yi": "ווילנער יידישע אָפּערעטן-טרופּע", "pid": null}}, "places": {"paris": {"en": "Paris", "lat": 48.8566, "lon": 2.3522}, "metz": {"en": "Metz", "lat": 49.1193, "lon": 6.1757}, "strasbourg": {"en": "Strasbourg", "lat": 48.5734, "lon": 7.7521}, "nancy": {"en": "Nancy", "lat": 48.6921, "lon": 6.1844}, "france": {"en": "France (no town named)", "lat": 46.6, "lon": 2.2}}, "venues": {"edouard7": {"en": "Théâtre Édouard VII", "lat": 48.8716, "lon": 2.3275}, "sarah": {"en": "Théâtre Sarah-Bernhardt", "lat": 48.8572, "lon": 2.3478}, "belleville": {"en": "Belleville", "lat": 48.8721, "lon": 2.377}}, "routes": [{"k": "vilna", "label": "Vilna Troupe (Berlin company), 1921–23", "fact": "vilna_tour", "note": "Berlin, then Germany (Leipzig, Hamburg, Cologne, Frankfurt, Chemnitz), Holland, Belgium, France, England — city order within a country is not given", "pts": [["Berlin", 52.52, 13.405], ["Leipzig", 51.34, 12.375], ["Hamburg", 53.55, 9.99], ["Cologne", 50.94, 6.96], ["Frankfurt", 50.11, 8.68], ["Chemnitz", 50.83, 12.92], ["Amsterdam", 52.37, 4.9], ["Antwerp", 51.22, 4.4], ["Paris", 48.8566, 2.3522], ["London", 51.507, -0.128]]}, {"k": "habima", "label": "Habima, 1926", "fact": "habima_1926", "note": "in the order the entry lists them", "pts": [["Riga", 56.95, 24.11], ["Warsaw", 52.23, 21.01], ["Lemberg", 49.84, 24.03], ["Krakow", 50.06, 19.94], ["Vilna", 54.69, 25.28], ["Lodz", 51.76, 19.46], ["Kovno", 54.9, 23.9], ["Berlin", 52.52, 13.405], ["Breslau", 51.11, 17.03], ["Frankfurt", 50.11, 8.68], ["Paris", 48.8566, 2.3522]]}, {"k": "madiokat", "label": "Modicot, 1929", "fact": "madiokat_1929", "note": "Paris, London, Paris again, Belgium, Warsaw, Vilna (Kotler's entry); Oct. 1929 – Feb. 1930", "pts": [["Paris", 48.8566, 2.3522], ["London", 51.507, -0.128], ["Antwerp", 51.22, 4.4], ["Paris", 48.8566, 2.3522], ["Warsaw", 52.23, 21.01], ["Vilna", 54.69, 25.28]]}, {"k": "vilna2", "label": "Vilna Troupe with Libert-Lubotski (undated)", "fact": "libert", "note": "Germany, Alsace-Lorraine, Belgium, as listed", "pts": [["Frankfurt", 50.11, 8.68], ["Cologne", 50.94, 6.96], ["Metz", 49.1193, 6.1757], ["Strasbourg", 48.5734, 7.7521], ["Nancy", 48.6921, 6.1844], ["Antwerp", 51.22, 4.4], ["Brussels", 50.85, 4.35]]}, {"k": "yat", "label": "Yiddish Art Theatre, summer 1924 (no Dybbuk)", "fact": "yat_1924", "note": "the 12-play repertoire did not include the Dybbuk", "pts": [["London", 51.507, -0.128], ["Paris", 48.8566, 2.3522], ["Vienna", 48.21, 16.37]]}]};
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const TIERS = {played:"Played in France", tour:"Tour carrying it", french:"In French", stay:"In France", elsewhere:"Dybbuk elsewhere"};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const nameOf = k => k.startsWith("t:") ? D.troupes[k.slice(2)].en : (D.people[k] ? D.people[k].en : k);
+const WORKS = {"w:ansky":"An-ski's Dybbuk","w:parody_maud":"Maud's puppet parody","w:parody_three":"The Three Dybbuks (parody)",
+  "w:film":"The Dybbuk film (1937)","w:opera":"Rocca's Dybbuk opera","w:french":"Le Dibbouk (French)"};
+
+// ---------- legend ----------
+document.getElementById("legend").innerHTML = Object.entries(TIERS).map(([k,v]) =>
+  `<span><i style="background:var(--${k})" class="${k==="elsewhere"?"hollow":""}"></i>${v}</span>`).join("");
+
+// ---------- drawer ----------
+const drawer = document.getElementById("drawer");
+document.getElementById("dclose").onclick = () => { drawer.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") document.getElementById("dclose").click(); });
+function cardHTML(f){
+  const who = f.people.map(p => `${esc(nameOf(p.k))}${p.role?` <span class="src">${esc(p.role.replace("_"," "))}</span>`:""}${p.ch?` as ${esc(p.ch)}`:""}`).join(" · ");
+  const where = f.places.map(p => D.places[p].en).join(", ");
+  const src = f.src.map(s => `<blockquote>${s.segs.map(esc).join(" … ")}</blockquote>
+    <div class="src"><bdi class="yi" dir="rtl">${esc(D.heads[s.pid])}</bdi> · ${s.url?`<a href="${s.url}" target="_blank" rel="noopener">vol. ${s.vol}, ${esc(s.cols)}</a>`:`vol. ${s.vol}, ${esc(s.cols)}`}
+    · <a href="#" data-entry="${s.pid}">read the entry</a></div>`).join("");
+  return `<div class="card"><div class="top"><span class="chip" style="background:var(--${f.tier})">${TIERS[f.tier]}</span>
+    <span>${esc(f.date)}</span>${where?`<span>${esc(where)}</span>`:""}</div>
+    <h4>${esc(f.label)}</h4><div class="who">${who}</div>${f.note?`<p class="note">${esc(f.note)}</p>`:""}${src}</div>`;
+}
+function openDrawer(kind, title, facts){
+  document.getElementById("dkind").textContent = kind;
+  document.getElementById("dtitle").textContent = title;
+  document.getElementById("dbody").innerHTML = facts.map(cardHTML).join("") || "<p>No facts.</p>";
+  drawer.classList.add("open"); drawer.setAttribute("aria-hidden","false");
+  document.getElementById("dbody").scrollTop = 0;
+}
+let ENT = null;
+async function openEntry(pid){
+  if (!ENT) { try { ENT = await (await fetch("dybbuk_france_entries.json")).json(); } catch(e) { ENT = {}; } }
+  const e = ENT[pid]; if (!e) return;
+  const rx = /דיבוק|דבוק|פאריז|פראנקרייך|פראנצויז|מעץ|שטראסבורג/;
+  const strip = w => w.replace(/[\u0591-\u05C7]/g, "").normalize("NFD").replace(/[\u0591-\u05C7]/g, "");
+  const html = esc(e.t).replace(/[^\s]+/g, w => rx.test(strip(w)) ? `<mark>${w}</mark>` : w);
+  document.getElementById("dkind").textContent = `Leksikon vol. ${e.v}` + (e.x ? " · excerpts" : "");
+  document.getElementById("dtitle").innerHTML = `<span class="yi" dir="rtl">${esc(e.h)}</span>`;
+  document.getElementById("dbody").innerHTML = `<p class="src">${e.x ? "Passages around each Dybbuk or French mention." : "Full entry."}</p><div class="entrytext">${html}</div>`;
+  drawer.classList.add("open");
+}
+document.addEventListener("click", ev => {
+  const a = ev.target.closest("[data-entry]"); if (!a) return;
+  ev.preventDefault(); openEntry(a.dataset.entry);
+});
+const tip = document.getElementById("tip");
+function showTip(ev, html){ tip.innerHTML = html; tip.style.display = "block";
+  const x = Math.min(ev.clientX + 14, innerWidth - tip.offsetWidth - 8), y = Math.min(ev.clientY + 14, innerHeight - tip.offsetHeight - 8);
+  tip.style.left = x + "px"; tip.style.top = y + "px"; }
+const hideTip = () => tip.style.display = "none";
+
+// ---------- timeline ----------
+(function(){
+  const rows = {};
+  for (const f of D.facts) (rows[f.row] ??= []).push(f);
+  const frYear = fs => Math.min(...fs.filter(f => f.tier !== "elsewhere" && f.y0).map(f => f.y0), 9999);
+  const keys = Object.keys(rows).sort((a,b) => frYear(rows[a]) - frYear(rows[b]) || nameOf(a).localeCompare(nameOf(b)));
+  const Y0 = 1890, Y1 = 1970, LW = 215, UW = 110, RH = 26, TOP = 28;
+  const W = Math.max(760, Math.floor(document.getElementById("tl").getBoundingClientRect().width) - 4);
+  const PW = W - LW - UW - 20;
+  const x = y => LW + (y - Y0) / (Y1 - Y0) * PW;
+  const H = TOP + keys.length * RH + 16;
+  let s = `<svg style="width:100%;min-width:760px;height:auto" viewBox="0 0 ${W} ${H}" role="img" aria-label="Lifelines timeline">`;
+  for (let y = Y0; y <= Y1; y += 10) s += `<line x1="${x(y)}" x2="${x(y)}" y1="${TOP-6}" y2="${H-10}" stroke="var(--line)"/><text class="ax" x="${x(y)}" y="${TOP-12}" text-anchor="middle">${y}</text>`;
+  const ux = LW + PW + 20;
+  s += `<line x1="${ux-10}" x2="${ux-10}" y1="${TOP-6}" y2="${H-10}" stroke="var(--line)"/><text class="ax" x="${ux + UW/2 - 10}" y="${TOP-12}" text-anchor="middle">undated</text>`;
+  keys.forEach((k, i) => {
+    const cy = TOP + i * RH + RH/2;
+    if (i % 2 === 0) s += `<rect x="0" y="${cy-RH/2}" width="${W}" height="${RH}" fill="var(--card)" opacity=".55"/>`;
+    s += `<text class="rowlab" data-row="${k}" x="${LW-10}" y="${cy+4}" text-anchor="end" font-size="12.5">${esc(nameOf(k))}</text>`;
+    let ui = 0; const used = [];
+    const fs = rows[k].slice().sort((a,b) => (a.tier==="stay"?0:1) - (b.tier==="stay"?0:1));
+    for (const f of fs) {
+      const col = `var(--${f.tier})`;
+      let cx;
+      if (!f.y0) { cx = ux + 8 + (ui++) * 16; }
+      if (f.tier === "stay" && f.y0) {
+        const a = x(f.y0), b = Math.max(x(f.y1 + 1), a + 6);
+        s += `<rect class="mk" data-f="${f.id}" x="${a}" y="${cy-5}" width="${b-a}" height="10" rx="3" fill="${col}" opacity=".85" ${f.approx?'stroke-dasharray="3 2" stroke="var(--ink-soft)" fill-opacity=".45"':''}/>`;
+        continue;
+      }
+      if (f.y0) { cx = x((f.y0 + (f.y1 || f.y0) + 1) / 2); while (used.some(u => Math.abs(u - cx) < 13)) cx += 13; used.push(cx); }
+      const t = f.tier;
+      if (t === "stay") s += `<rect class="mk" data-f="${f.id}" x="${cx-5}" y="${cy-5}" width="10" height="10" rx="3" fill="${col}"/>`;
+      else if (t === "played") s += `<path class="mk" data-f="${f.id}" d="M${cx} ${cy-8}L${cx+8} ${cy}L${cx} ${cy+8}L${cx-8} ${cy}Z" fill="${col}" stroke="var(--paper)" stroke-width="1.5"/>`;
+      else if (t === "tour") s += `<circle class="mk" data-f="${f.id}" cx="${cx}" cy="${cy}" r="7" fill="${col}" stroke="var(--paper)" stroke-width="1.5"/>`;
+      else if (t === "french") s += `<rect class="mk" data-f="${f.id}" x="${cx-6}" y="${cy-6}" width="12" height="12" fill="${col}" stroke="var(--paper)" stroke-width="1.5"/>`;
+      else s += `<path class="mk" data-f="${f.id}" d="M${cx} ${cy-6}L${cx+6} ${cy}L${cx} ${cy+6}L${cx-6} ${cy}Z" fill="var(--paper)" stroke="${col}" stroke-width="2"/>`;
+    }
+  });
+  s += "</svg>";
+  const el = document.getElementById("tl"); el.innerHTML = s;
+  const byId = Object.fromEntries(D.facts.map(f => [f.id, f]));
+  el.querySelectorAll(".mk").forEach(m => {
+    const f = byId[m.dataset.f];
+    m.addEventListener("mousemove", ev => showTip(ev, `<b>${esc(f.label)}</b><br>${esc(f.date)} · ${TIERS[f.tier]}`));
+    m.addEventListener("mouseleave", hideTip);
+    m.addEventListener("click", () => { hideTip(); openDrawer(TIERS[f.tier], nameOf(f.row), [f]); });
+  });
+  el.querySelectorAll(".rowlab").forEach(t => t.addEventListener("click", () =>
+    openDrawer("Lifeline", nameOf(t.dataset.row), rows[t.dataset.row].slice().sort((a,b) => (a.y0||9999) - (b.y0||9999)))));
+})();
+
+// ---------- map ----------
+(function(){
+  const map = L.map("map", {scrollWheelZoom:false}).fitBounds([[43,-3],[57,26]]);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 17,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
+  const byId = Object.fromEntries(D.facts.map(f => [f.id, f]));
+  const groups = {};
+  const tools = document.getElementById("maptools");
+  function toggle(name, layer, color, dashed){
+    layer.addTo(map); groups[name] = layer;
+    const b = document.createElement("button"); b.setAttribute("aria-pressed","true");
+    b.innerHTML = `<span style="display:inline-block;width:1.2rem;border-top:3px ${dashed?"dashed":"solid"} ${color};vertical-align:middle;margin-right:.35rem"></span>${esc(name)}`;
+    b.onclick = () => { const on = b.getAttribute("aria-pressed") === "true"; b.setAttribute("aria-pressed", String(!on)); on ? map.removeLayer(layer) : layer.addTo(map); };
+    tools.appendChild(b);
+  }
+  for (const r of D.routes) {
+    const color = css("--r-" + r.k), dashed = r.k === "yat";
+    const g = L.layerGroup();
+    const ll = r.pts.map(p => [p[1], p[2]]);
+    L.polyline(ll, {color, weight: dashed ? 2.5 : 3.5, opacity: .85, dashArray: dashed ? "6 6" : null})
+      .bindTooltip(r.label, {sticky:true}).on("click", () => openDrawer("Route", r.label, [byId[r.fact]])).addTo(g);
+    r.pts.forEach(p => L.circleMarker([p[1], p[2]], {radius:3.5, color, weight:1, fillColor:color, fillOpacity:1})
+      .bindTooltip(`${p[0]} — ${r.label}`).addTo(g));
+    toggle(r.label, g, color, dashed);
+  }
+  // French places
+  const fr = L.layerGroup();
+  const at = {};
+  for (const f of D.facts) for (const p of f.places) (at[p] ??= []).push(f);
+  const rank = {played:0, tour:1, french:2, stay:3, elsewhere:4};
+  for (const [k, fs] of Object.entries(at)) {
+    const pl = D.places[k], top = fs.slice().sort((a,b) => rank[a.tier]-rank[b.tier])[0].tier;
+    const n = fs.length;
+    L.circleMarker([pl.lat, pl.lon], {radius: 6 + Math.sqrt(n) * 4, color: css("--paper"), weight: 2,
+      fillColor: css("--" + top), fillOpacity: .9, dashArray: k === "france" ? "4 3" : null})
+      .bindTooltip(`<b>${esc(pl.en)}</b><br>${n} fact${n>1?"s":""}`)
+      .on("click", () => openDrawer("Place", pl.en, fs.slice().sort((a,b) => rank[a.tier]-rank[b.tier] || (a.y0||9999)-(b.y0||9999))))
+      .addTo(fr);
+  }
+  toggle("French places", fr, css("--played"), false);
+  const vg = L.layerGroup();
+  for (const f of D.facts) if (f.venue) {
+    const v = D.venues[f.venue];
+    L.circleMarker([v.lat, v.lon], {radius:5, color: css("--stay"), weight:2, fillColor: css("--paper"), fillOpacity:1})
+      .bindTooltip(`${esc(v.en)} — ${esc(f.date)}`).on("click", () => openDrawer("Paris venue", v.en, [f])).addTo(vg);
+  }
+  toggle("Paris venues (zoom in)", vg, css("--stay"), false);
+  const b = document.createElement("button"); b.textContent = "zoom to Paris";
+  b.onclick = () => map.setView([48.862, 2.35], 13); tools.appendChild(b);
+  const b2 = document.createElement("button"); b2.textContent = "Europe";
+  b2.onclick = () => map.fitBounds([[43,-3],[57,26]]); tools.appendChild(b2);
+})();
+
+// ---------- network ----------
+(function(){
+  const nodes = new Map(), edges = new Map(), touch = {};
+  const add = (id, o) => { if (!nodes.has(id)) nodes.set(id, o); };
+  const link = (a, b, label, color, f) => {
+    const k = [a,b].sort().join("|");
+    if (!edges.has(k)) edges.set(k, {from:a, to:b, labels:new Set(), color, facts:new Set()});
+    const e = edges.get(k); if (label) e.labels.add(label); e.facts.add(f.id);
+    if (color === css("--played")) e.color = color;
+  };
+  const note = (id, f) => (touch[id] ??= new Set()).add(f.id);
+  const playedIn = new Set(D.facts.filter(f => f.tier === "played").flatMap(f => f.people.map(p => p.k)));
+  for (const f of D.facts) {
+    const w = f.wnode;
+    if (f.tier !== "stay") { add(w, {label: WORKS[w] || w, kind:"work"}); note(w, f); }
+    if (w === "w:french") { add("w:ansky", {label: WORKS["w:ansky"], kind:"work"}); link("w:french","w:ansky","translation of", css("--french"), f); }
+    if (f.troupe) { const t = "t:" + f.troupe; add(t, {label: D.troupes[f.troupe].en, kind:"troupe"}); note(t, f);
+      if (f.tier !== "stay") link(t, w, "", css("--elsewhere"), f);
+      for (const p of f.places) { add("p:"+p, {label: D.places[p].en, kind:"place"}); note("p:"+p, f); link(t, "p:"+p, f.date, css("--"+f.tier), f); } }
+    for (const p of f.people) {
+      const id = p.k; add(id, {label: D.people[id].en, kind:"person"}); note(id, f);
+      if (f.tier !== "stay") link(id, w, p.ch || p.role.replace("_"," "), css(f.tier==="elsewhere"?"--elsewhere":"--"+f.tier), f);
+      if (f.troupe) link(id, "t:" + f.troupe, "", css("--elsewhere"), f);
+      if (!f.troupe || f.tier === "played") for (const pl of f.places) {
+        add("p:"+pl, {label: D.places[pl].en, kind:"place"}); note("p:"+pl, f);
+        link(id, "p:"+pl, f.y0 ? String(f.y0) + (f.y1 && f.y1 !== f.y0 ? "–" + String(f.y1).slice(2) : "") : "", css("--"+f.tier), f);
+      }
+    }
+  }
+  const ink = css("--ink"), paper = css("--paper");
+  const V = [...nodes].map(([id, o]) => {
+    const n = (touch[id] || new Set()).size;
+    const base = {id, label:o.label, font:{color:ink, face:"Spectral", size:16, strokeWidth:3, strokeColor:paper}};
+    if (o.kind === "work") return {...base, shape:"diamond", size: id === "w:ansky" ? 30 : 16, color:{background:css("--work"), border:css("--work")}, font:{...base.font, size: id==="w:ansky"?17:14, bold:true}};
+    if (o.kind === "troupe") return {...base, shape:"box", color:{background:css("--troupe"), border:css("--troupe")}, font:{...base.font, color:"#1d1a14", strokeWidth:0}, margin:6};
+    if (o.kind === "place") return {...base, shape:"triangle", size: 14 + n * 1.2, color:{background:css("--place"), border:css("--place")}};
+    const c = playedIn.has(id) ? css("--played") : css("--stay");
+    return {...base, shape:"dot", size: 8 + n * 2.2, color:{background:c, border:c}};
+  });
+  const E = [...edges.values()].map((e, i) => ({id:i, from:e.from, to:e.to, color:{color:e.color, opacity:.75},
+    width: 1 + e.facts.size, title: [...e.labels].join(", "), facts:[...e.facts]}));
+  const net = new vis.Network(document.getElementById("net"), {nodes: new vis.DataSet(V), edges: new vis.DataSet(E)}, {
+    physics:{solver:"forceAtlas2Based", forceAtlas2Based:{gravitationalConstant:-110, springLength:130, avoidOverlap:.7}, stabilization:{iterations:400}},
+    interaction:{hover:true, tooltipDelay:120, navigationButtons:false}, edges:{smooth:{type:"continuous"}}});
+  net.once("stabilizationIterationsDone", () => { net.setOptions({physics:false}); document.getElementById("netphys").setAttribute("aria-pressed","false"); net.fit(); });
+  const byId = Object.fromEntries(D.facts.map(f => [f.id, f]));
+  const kindName = {work:"Work", troupe:"Company", place:"Place", person:"Person"};
+  net.on("click", p => {
+    if (p.nodes.length) { const id = p.nodes[0], o = nodes.get(id);
+      openDrawer(kindName[o.kind], o.label, [...(touch[id]||[])].map(i => byId[i]).sort((a,b) => (a.y0||9999)-(b.y0||9999))); }
+    else if (p.edges.length) { const e = E[p.edges[0]];
+      openDrawer("Link", `${nodes.get(e.from).label} — ${nodes.get(e.to).label}`, e.facts.map(i => byId[i])); }
+  });
+  document.getElementById("netfit").onclick = () => net.fit({animation:true});
+  const ph = document.getElementById("netphys");
+  ph.onclick = () => { const on = ph.getAttribute("aria-pressed") === "true"; ph.setAttribute("aria-pressed", String(!on)); net.setOptions({physics: !on}); };
+})();
+
+// ---------- record ----------
+(function(){
+  const el = document.getElementById("record");
+  el.innerHTML = Object.keys(TIERS).map(t => {
+    const fs = D.facts.filter(f => f.tier === t).sort((a,b) => (a.y0||9999)-(b.y0||9999));
+    return `<details class="tiergroup" ${t==="played"||t==="tour"||t==="french"?"open":""}><summary><h3 style="display:inline">${TIERS[t]} <span class="src">(${fs.length})</span></h3></summary>
+      <div class="record">${fs.map(cardHTML).join("")}</div></details>`;
+  }).join("");
+})();
+</script>
+</body>
+</html>
