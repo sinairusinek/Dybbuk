@@ -63,3 +63,16 @@ python3 export_from_openrefine.py     # reads ~/Library/Application Support/Open
 ```
 `projects.py` holds the project list: for each family, the smallest set of projects that
 together hold every value not found elsewhere in the repo (recomputed 2026-11-15).
+
+## Open items (2026-11-15)
+
+- [ ] **Back up `private/`.** The 15 Lasky-text files exist only on Sinai's machine (and in
+  OpenRefine). A private Drive folder would do.
+- [ ] **Merge the DiJeSt dates** (`dijest_db_export/`: 436 birth, 150 death dates) into the people
+  data. `people_db` has 5.
+- [ ] **Decide how much pilot data enters the main data.** Candidates: the person facts from
+  the 400- and 100-entry pilots, and the T-Migrants ↔ DiJeSt org crosswalk.
+- **Parked (Sinai, 11-15):** checking the Wikidata QIDs in `people/people_wikidata_qids.tsv`
+  (331 auto-matched, unchecked).
+- The `no_hub` names that turned up while linking those QIDs are tracked separately in
+  `people/TODO_hub_reachability.md`.

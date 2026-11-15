@@ -194,3 +194,6 @@ Everything is idempotent and writes to fixed paths in `Zylbercweig/people/`.
 - 29 validated surfaces skipped as cross-hub ambiguous (duplicate headings in
   different hubs) — they double as dedup leads; see person_hub_conflicts.tsv.
 - Mentions with empty host_xml_id (~NOXID rows) resolve without host features.
+- **(2026-11-15) 1,113 of 2,900 hubs have NO validated surface**, so their full-name
+  mentions can't attach (surfaces come only from RA-validated spellings). See
+  `TODO_hub_reachability.md` and re-run `audit_hub_reachability.py` after hub builds.
