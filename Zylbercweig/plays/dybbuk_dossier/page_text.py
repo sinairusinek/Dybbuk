@@ -94,7 +94,7 @@ const map = L.map('map', {scrollWheelZoom:false}).setView([48, 15], 4);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 12,
   attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const bidi = s => esc(s).replace(/(„[^“]*“)/g, '<bdi dir="rtl">$1</bdi>');
+const bidi = s => esc(s).replace(/„([^“]*)“/g, '„<bdi dir="rtl">$1</bdi>“');
 const on = Object.fromEntries(Object.keys(D.works).map(w => [w, true]));
 const layer = L.layerGroup().addTo(map);
 function draw(){

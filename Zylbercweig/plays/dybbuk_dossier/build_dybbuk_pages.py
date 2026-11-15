@@ -66,7 +66,7 @@ ROLE_LABEL = {"author": "Author", "translator": "Translator", "adaptor": "Adapto
 
 def bidi(name):
     """Escape, then isolate each „…“ Yiddish title so it doesn't scramble the English around it."""
-    return re.sub(r"(„[^“]*“)", r'<bdi dir="rtl" class="yi">\1</bdi>', esc(name))
+    return re.sub(r"„([^“]*)“", r'„<bdi dir="rtl" class="yi">\1</bdi>“', esc(name))
 
 
 def nrm(s):
