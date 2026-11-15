@@ -1,9 +1,9 @@
 db_id	name	type_2026_11_08	audit_verdict	proposed	status_2026_11_15	note
 2278	לעמבערגער חברים-טרופּע	Amateur	RETYPE	Company on Tour	APPLIED_RETYPE	Amateur → Company on Tour (Rule 5)
 228	Dramatic Arts	Amateur	RETYPE	Not an organization	FOR_NOA	name only
-2292	פֿאַרווערטסקלאָב	Amateur	RETYPE	OTHER - elaborate!	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-4620	"ליבאָווער ליטעראַרישן קלוב ""קדימה"""	Amateur	RETYPE	OTHER - elaborate!	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-4683	„פֿאָלקסהויז“	Amateur	RETYPE	OTHER - elaborate!	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+2292	פֿאַרווערטסקלאָב	Amateur	RETYPE	OTHER - elaborate!	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+4620	"ליבאָווער ליטעראַרישן קלוב ""קדימה"""	Amateur	RETYPE	OTHER - elaborate!	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+4683	„פֿאָלקסהויז“	Amateur	RETYPE	OTHER - elaborate!	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 384	Shlifershteyn Troupe	Amateur	RETYPE	Traveling Company	APPLIED_RETYPE	Amateur → Traveling Company (Rule 5)
 2298	די מאַהיליווער טרופּע	Amateur	RETYPE	Traveling Company	APPLIED_RETYPE	Amateur → Traveling Company (Rule 5)
 331	Mendl Elkin's Children Theatre Studio	Company on Tour	RETYPE	Theatre education	APPLIED_RETYPE	Company on Tour → Theatre education (Q5)
@@ -157,40 +157,40 @@ db_id	name	type_2026_11_08	audit_verdict	proposed	status_2026_11_15	note
 3193	דראָמאַטישע סעקציע	Welfare/Aid organization	RETYPE	Amateur	FOR_NOA	Bergen-Belsen drama section
 3194	דראָמאַטישע סעקציע	Welfare/Aid organization	RETYPE	Amateur	FOR_NOA	Bergen-Belsen drama section (duplicate)
 2313	החבר	Amateur	HOST_AS_UNIT	Jewish political bodies	FOR_NOA	HaChaver Lisbon: no circle, host type?
-4631	האַרפע	Amateur	HOST_AS_UNIT	Musical organization	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-914	ש. אַנסקי-קולטור-קלוב	Amateur	HOST_AS_UNIT	OTHER - elaborate!	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-2277	נייע יידיש אַמעריקאַנער	Amateur	HOST_AS_UNIT	OTHER - elaborate!	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-2284	לאָס אַנדזשעלאָס יידיש קלאָבּ	Amateur	HOST_AS_UNIT	OTHER - elaborate!	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-915	זשיטאָמירער יידישן אַרבעטער-קלוב	Amateur	HOST_AS_UNIT	Sports/Recreation	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-918	כאַרקאָווער יידישן אַרבעטער-קלוב	Amateur	HOST_AS_UNIT	Trade Union / Professional Association	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+4631	האַרפע	Amateur	HOST_AS_UNIT	Musical organization	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+914	ש. אַנסקי-קולטור-קלוב	Amateur	HOST_AS_UNIT	OTHER - elaborate!	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+2277	נייע יידיש אַמעריקאַנער	Amateur	HOST_AS_UNIT	OTHER - elaborate!	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+2284	לאָס אַנדזשעלאָס יידיש קלאָבּ	Amateur	HOST_AS_UNIT	OTHER - elaborate!	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+915	זשיטאָמירער יידישן אַרבעטער-קלוב	Amateur	HOST_AS_UNIT	Sports/Recreation	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+918	כאַרקאָווער יידישן אַרבעטער-קלוב	Amateur	HOST_AS_UNIT	Trade Union / Professional Association	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 2305	פּרעסערס לאָקאָל פֿון דער אינטערנעשאָנאַל	Amateur	HOST_AS_UNIT	Trade Union / Professional Association	APPLIED_RETYPE	Amateur → Trade Union / Professional Association (Rule 3)
-4434	the Cultural Palace	Theatre	HOST_AS_UNIT	Trade Union / Professional Association	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-2730	אַרבעטער-קלוב פֿון קוסטאַרן	Theatre-related Society/ Union	HOST_AS_UNIT	Trade Union / Professional Association	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+4434	the Cultural Palace	Theatre	HOST_AS_UNIT	Trade Union / Professional Association	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+2730	אַרבעטער-קלוב פֿון קוסטאַרן	Theatre-related Society/ Union	HOST_AS_UNIT	Trade Union / Professional Association	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 1947	תפֿאַרת בחורים	Education	UNIT_ON_HOST	Education	NO_CHANGE_DECIDED	no child: the host's own members staged a play; the text names no circle (Rule 1 analogue). Host type unchanged
 3773	פערדינאַנד לאַסאַל	Education	UNIT_ON_HOST	Education	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
 3805	מאָסקווער מערבא-אוניווערסיטעט	Education	UNIT_ON_HOST	Education	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
-1134	מינסקער אַרבעטער-קלובן	Education	UNIT_ON_HOST	Trade Union / Professional Association	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+1134	מינסקער אַרבעטער-קלובן	Education	UNIT_ON_HOST	Trade Union / Professional Association	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 997	בונד	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
 2435	צעירי יהודה	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
 2436	צעירי ציון	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
 2446	"יוגנט-אָרגאַניזאַציע ""צוקונפט"""	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
 2496	קאָמ. צוקונפט	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
 2573	גורדוניה	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
-2588	"אַרבעטער-קלוב „ספּאַרטאַק"""	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-2642	יידישן אַרבעטער-קלוב „דער דריטער אינטערנאַציאָנאַל“	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+2588	"אַרבעטער-קלוב „ספּאַרטאַק"""	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+2642	יידישן אַרבעטער-קלוב „דער דריטער אינטערנאַציאָנאַל“	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 3229	"פֿאַריין ""ציון"""	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
 4602	התאַחדות	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
-4606	ראַדיקאַלן אַרבעטער-סענטער	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+4606	ראַדיקאַלן אַרבעטער-סענטער	Jewish political bodies	UNIT_ON_HOST	Jewish political bodies	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 1796	הזמיר (לאָדזש)	Musical organization	UNIT_ON_HOST	Musical organization	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
 1872	פֿאַראיין „הזמיר“	Musical organization	UNIT_ON_HOST	Musical organization	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
-2140	בילדונג	Theatre-related Society/ Union	UNIT_ON_HOST	OTHER - elaborate!	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+2140	בילדונג	Theatre-related Society/ Union	UNIT_ON_HOST	OTHER - elaborate!	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 720	"יעקאַטערינאָסלאַווער פֿאַראיין פֿון ""סצענישע קונסט-טוער"""	Theatre-related Society/ Union	UNIT_ON_HOST	Theatre-related Society/ Union	APPLIED_CHILD	drama-unit mentions moved to a child record (Rule 3)
-732	פּרץ-פאַראיין	Theatre-related Society/ Union	UNIT_ON_HOST	Theatre-related Society/ Union	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+732	פּרץ-פאַראיין	Theatre-related Society/ Union	UNIT_ON_HOST	Theatre-related Society/ Union	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 1080	יידישער טעאַטער-געזעלשאַפט (ווילנע)	Theatre-related Society/ Union	UNIT_ON_HOST	Theatre-related Society/ Union	FOR_NOA	Vilna Theatre Society: studio + troupe children
-2713	קאָלאָמעער קולטור-פֿאַראיין	Theatre-related Society/ Union	UNIT_ON_HOST	Theatre-related Society/ Union	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+2713	קאָלאָמעער קולטור-פֿאַראיין	Theatre-related Society/ Union	UNIT_ON_HOST	Theatre-related Society/ Union	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 3033	האַרפע	Theatre-related Society/ Union	UNIT_ON_HOST	Theatre-related Society/ Union	FOR_NOA	Harfe: song society with performances
-2710	קלוב פֿון די קוסטארן	Theatre-related Society/ Union	UNIT_ON_HOST	Trade Union / Professional Association	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
-3490	"קלוב פון די מעטאַליסטן א""נ טאָמסקי"	Trade Union / Professional Association	UNIT_ON_HOST	Trade Union / Professional Association	PENDING_SINAI	club / culture-society: answer 4 (club = Amateur subtype) contradicts Rule 3
+2710	קלוב פֿון די קוסטארן	Theatre-related Society/ Union	UNIT_ON_HOST	Trade Union / Professional Association	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
+3490	"קלוב פון די מעטאַליסטן א""נ טאָמסקי"	Trade Union / Professional Association	UNIT_ON_HOST	Trade Union / Professional Association	APPLIED_CLUB	Sinai 11-15: hosting club → Cultural/workers' club (new type); drama unit minted as child where named (apply_club_hosts_2026_11_15.py)
 3273	במעלה	Welfare/Aid organization	UNIT_ON_HOST	Jewish political bodies	NO_CHANGE_DECIDED	no child: the host's own members staged a play; the text names no circle (Rule 1 analogue). Host type unchanged
 1085	ווילנער יידישער דראַמאַטישער סטודיע	Education	SPLIT	Theatre education	FOR_NOA	split; type applied Theatre education
 404	The Hebrew Dramatic Club	Theatre	SPLIT	Theatre	FOR_NOA	split

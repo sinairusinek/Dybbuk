@@ -4,7 +4,7 @@ This document is the canonical specification for mapping the free-text `org_type
 
 > **Consumers to check when the list changes.** The live cascade is `map_canonical_types_v3.py`; `map_canonical_types_v2.py` is superseded and referenced only by docs. The app's dropdowns are `_ORG_TYPE_OPTIONS` in **both** `zalmen/views/org_review.py` and `zalmen/views/org_addresses.py`, and `org_review.py` also holds `_ORG_TYPE_CANON` / `_canonical_org_type()`, the casefold→canonical-spelling map that keeps a stored value from being re-lowercased on save. `map_canonical_types_v2.py` does **not** know `Non-Yiddish Theatre`; v2 is dead. `llm_review_sample.py`'s prompt learned it on 2026-11-01.
 
-## Canonical types (32)
+## Canonical types (33)
 
 The list below is exhaustive. Any classification not on this list is invalid.
 
@@ -44,6 +44,9 @@ Types are matched **exactly**, including case and internal spacing. A value that
 ### Fraternal orders *(new — added 2026-05-12 by PI decision)*
 31. **Fraternal order** — Lodges, fraternal/benevolent orders, mutual-aid fraternal societies that are NOT specifically Jewish-labour-political (those go to **Jewish political bodies** as the Arbeter Ring class). Examples: Knights of Pythias (`נייטס אָוו פּיטיס`), Masonic lodges (`מעסאניק לאָדזש`), B'nai B'rith, Independent Order Brith Abraham. Previously routed to Welfare/Aid with a PI-dilemma flag; PI chose to give fraternal orders their own type since their primary identity is fraternal-ceremonial-social, not welfare per se.
     - **Note (PI 2026-05-12)**: **Grand Street Boys** (`גרענד סטריט-באָיס`) is an *informal street-based youth association*, not a formal fraternal order. Route to **Education** instead.
+
+### Cultural and workers' clubs *(new — added 2026-11-15 by PI decision)*
+33. **Cultural/workers' club** — a general culture club, workers' club, culture house or culture palace, or culture society (`קולטור-קלוב`, `אַרבעטער-קלוב`, `קולטור-הויז`, `קולטור-פּאַלאַץ`, `קולטור-פֿאַראיין`, `פֿאָלקסהויז`, Perets-fareyn, literary club) whose identity is a social-cultural centre with several activities (lectures, choir, library, drama circle). Examples: the An-ski culture club (914), the Zhitomir/Kharkov/Minsk workers' clubs, Spartak in Buenos Aires, the metalworkers' club named after Tomsky, Bildung in Kraków. **It is a host**: its drama circle or section is a separate **Amateur** child (Rule 3), never a reason to type the club Amateur. **Not this type:** an American *dramatic club* (`דראַמאַטיק קלאָב` — Kessler, Gordin, Progressive Dramatic Club), which is the performing group itself → **Amateur** (Sinai 2026-11-15: "club" as an Amateur subtype means these, not the hosting clubs); a union's own local → Trade Union; a party branch → Jewish political bodies; Kultur-Lige-type cultural-research institutes → Heritage Institution.
 
 ### General trade unions and professional associations *(added 2026-05-12 after Gemini verification surfaced 80+ rows with no canonical home)*
 28. **Trade Union / Professional Association** *(added 2026-05-12)* — occupational unions, trade unions, professional associations, employer associations, scientific/professional societies, guilds, and chambers that are NOT theatre-industry. Examples: printers' unions, garment-trade unions, cigarmakers' union, tailors' union, fur workers union, shoe workers union, butchers union (Yiddish: `געווערקשאַפט`, `דרוקער-פאַריין`, `אַרבעטער-פֿאַריין` when context is a specific trade), State Bar of Michigan and other bar associations, gardeners' associations, handelskammer (chambers of commerce — note: when explicitly a *business* chamber, Business also acceptable), professional scientific societies, employer trade associations.

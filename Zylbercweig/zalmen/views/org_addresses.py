@@ -120,6 +120,7 @@ _ORG_TYPE_OPTIONS = [
 	"Judenrat",
 	"Sports/Recreation",
 	"Fraternal order",
+	"Cultural/workers' club",
 	"Not an organization",
 	"OTHER - elaborate!",
 	"",

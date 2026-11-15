@@ -45,6 +45,7 @@ CANONICAL_TYPES = [
 	"Welfare/Aid organization",
 	"Business", "Labour (factory/workshop)", "Health institutions",
 	"Military", "Not an organization", "OTHER - elaborate!",
+	"Cultural/workers' club",
 ]
 
 SYSTEM_PROMPT = """You are reviewing automated classification of Yiddish theatre-lexicon (Zalmen Zylbercweig) organization mentions into a fixed canonical typology of 27 types.
