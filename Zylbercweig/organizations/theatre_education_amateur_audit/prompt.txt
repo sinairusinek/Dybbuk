@@ -1,0 +1,37 @@
+You are auditing organization records extracted from Zalmen Zylbercweig's Lexicon of the Yiddish Theatre (Yiddish). Each record is one organization in our database, with a current type and the mentions (sentences from biographical entries) linked to it.
+
+The question is the boundary between two types, which reviewers find overlapping:
+- "Theatre education": an institution whose PURPOSE is training people for the stage — drama schools, theatre/drama studios with pupils, acting courses, theatre institutes/technikums, drama classes at a conservatory. It may stage student productions; that does not change its type.
+- "Amateur": a PERFORMING group of non-professionals — drama circles (דראַמקרייז), dramatic sections (דראַמ.-סעקציע) of a club/party/union/society, ליבהאָבער groups and troupes, "dramatic clubs" (דראַמאַטיק קלאָב), amateur theatre groups. Members may learn by doing; that does not make it a school.
+Neighbouring types: "Education" (general schools, universities, rabbinical schools, art/painting/sculpture schools, music conservatories without a drama programme, Yiddish folk schools — NOT drama training); "Theatre" (established professional theatre with a venue); "Traveling Company"/"Company on Tour" (professional troupes); "Theatre-related Society/ Union" (actors' unions, societies that support, coordinate or patronise theatre but do not themselves perform as a group); "Musical organization"; "Jewish political bodies"; and the others in the canonical list.
+
+PRINCIPLE: the type says what the organization IS, never the person's relation to it. A person who "learned to act" in a drama circle does not make the circle a school; a person who "performed" in a studio's production does not make the studio an amateur group.
+
+Label EVERY mention with one code:
+ T = describes training: the person studied, was a pupil, entered/graduated, took exams, taught classes in it
+ A = describes non-professional performing: amateur performance, drama circle/section activity, ליבהאָבער
+ R = describes a professional performing company/theatre
+ H = the sentence is really about a HOST body (a club, party, school, society, choir like הזמיר) and the drama unit inside it is a different, smaller thing — or the drama unit is not mentioned at all
+ G = general (non-theatre) education
+ X = other / unrelated / cannot tell
+
+Then give ONE record verdict:
+ KEEP — current type is right
+ RETYPE — the record is one coherent organization but has the wrong type; give proposed_type
+ HOST_AS_UNIT — the record is a host body (club, party, union, choir, school) typed as if it were its drama circle/studio; the drama unit should be its own child record; give the HOST's correct type as proposed_type
+ UNIT_ON_HOST — a host record (club, party, choir, school …) carries mentions that are really about its drama circle/section/studio; those mentions should move to a child record; proposed_type = the host's correct type (usually its current one); unit_type = type of the drama unit
+ SPLIT — the record conflates two or more different organizations (e.g. a studio and the professional company that grew out of it; different schools in different cities under one generic name); explain
+ GENERIC — the name is a bare generic label ("דראַמאַטישער קרייז", "דראַמאַטישע שול") and the mentions are about different, unrelated units
+ OUT_OF_SCOPE — nothing about drama training or amateur performing; current type fine
+
+Also say for the drama unit (if any) whether it is a STUDIO-HYBRID: an institution described both as training pupils AND as performing publicly as a company (e.g. a studio that gives productions or becomes a theatre). hybrid=true/false.
+
+Quote: give 1–3 short quotes copied EXACTLY from the mention sentences that support the verdict.
+
+Return strict JSON:
+{"labels": {"<mention index>": "T|A|R|H|G|X", ...},
+ "verdict": "...", "proposed_type": "<canonical type or empty>", "unit_type": "<type or empty>",
+ "hybrid": true|false, "confidence": "high|medium|low",
+ "reason": "<one or two sentences, English>", "quotes": ["...", "..."]}
+
+Canonical types: Theatre, Non-Yiddish Theatre, Traveling Company, Company on Tour, Amateur, Kleinkunst, Circus, Theatre education, Publisher, Printer, Printer/Publisher, Journals/ Newspapers, Media (Radio/ Film/TV), Library, Heritage Institution, Education, Musical organization, Theatre-related Society/ Union, Sports/Recreation, Fraternal order, Trade Union / Professional Association, Religious institutions/organizations, Jewish political bodies, Non-Jewish political bodies, Welfare/Aid organization, Health institutions, Business, Labour (factory/workshop), Military, Judenrat, Not an organization, OTHER - elaborate!

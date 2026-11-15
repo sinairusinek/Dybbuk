@@ -34,7 +34,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 476	בוף		ORG-C00008	2	1	וואַרשע		בוף					Warsaw			Warsaw	52.233374	21.071149	[CITY-ONLY] City from source: וואַרשע → Warsaw	"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Warsaw"", ""lat"": ""52.233374"", ""lon"": ""21.071149""}]"	Maaty	2026-05-30T12:09:02Z
 475	גאָרטן-טעאַטער „אַלהאַמבראַ“		ORG-C00026 | ORG-C01072	2	1	וואַרשע		טעאַטער אַלהאַמבראַ	פּוילן				Warsaw			Miodowa street, warsaw	52.24595	21.013139		"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Miodowa, warsaw"", ""lat"": ""52.24595"", ""lon"": ""21.013139""}]"	Maaty	2026-05-30T12:10:13Z
 513	"""49טע סטריט""-טעאַטער"		ORG-C06913	1	0			"""49טע סטריט""-טעאַטער"					New York	ניו-יאָרק	49טע סטריט	49th Street, New York, NY				"[{""settlement"": ""New York"", ""settlement_yiddish"": ""ניו-יאָרק"", ""address"": ""49טע סטריט"", ""address_romanized"": ""49th Street, New York, NY"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T12:42:08Z
-512	"""ייד. דראָמ. ליט. געזעל."""		ORG-C05585	1	1	שיקאגאָ							Chicago	שיקאגאָ		Chicago, USA				"[{""settlement"": ""Chicago"", ""settlement_yiddish"": ""שיקאגאָ"", ""address"": """", ""address_romanized"": ""Chicago, USA"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T12:55:26Z
+512	"""ייד. דראָמ. ליט. געזעל."""	Amateur	ORG-C05585	1	1	שיקאגאָ							Chicago	שיקאגאָ		Chicago, USA				"[{""settlement"": ""Chicago"", ""settlement_yiddish"": ""שיקאגאָ"", ""address"": """", ""address_romanized"": ""Chicago, USA"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T12:55:26Z
 173	Teater Ermitage		ORG-C05081	1	1	וואַרשע	Bonifraterska street 14, Muranow, Warsaw	טעאַטער ערמיטאַזש					Warsaw	וואַרשע		Bonifraterska 14, Warsaw			Zylbercweig lexicon source: Bonifraterska 14, Muranow district, Warsaw (pre-WWII Yiddish venue; the area later became part of the Warsaw Ghetto). Existing Address/Settlement match lexicon.	"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": ""וואַרשע"", ""address"": """", ""address_romanized"": ""Bonifraterska 14, Warsaw"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T17:01:01Z
 504	העבראיקאַ		ORG-C00058	1	0			העבראיקאַ					Warsaw							"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T12:56:08Z
 505	יאָסער יידישן מלוכה-טעאַטער			1	1	יאָס							Iași,	גאַנדו 2, יאַס, רומעניע	Str. Gându nr. 2,	Str. Gându nr. 2, Iași, Romania.	47.179896	27.62038		"[{""settlement"": ""Iași,"", ""settlement_yiddish"": ""גאַנדו 2, יאַס, רומעניע"", ""address"": ""Str. Gându nr. 2,"", ""address_romanized"": ""Str. Gându nr. 2, Iași, Romania."", ""lat"": ""47.179896"", ""lon"": ""27.62038""}]"	Maaty	2026-05-30T12:10:55Z
@@ -173,7 +173,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 469	ראַפּעלס טרופּע	Traveling Company	ORG-C00010 | ORG-C00248	23	3	אָדעם | אָדעס | וואַרשע	קאַראָוואַ גאַס	עליזעום | קאַראָוואַ גאַס | ראָפּעלן	פּוילן | רוסלאַנד													
 52	היברו פּאַבלישינג קאָמפאני		ORG-C01098 | ORG-C04737 | ORG-C05215	20	6	נ. י. | ניו יאָרק | ניו יארק | ניו יאָרק | ניו-יאָרק | ניו-יאָרק	185-3 קאנאל סט.	היברו פאַבלישינג קאָ | היברן פּאָבלישינג קאַמפּאַני | נ. י. | ניו יאָרק	אַמעריקע | אמעריקע	TRUE			New York	50–52 עלדרידזש סטריט, ניו־יאָרק	50–52 Eldridge Street,	183-185 canal street NY	40.725421	-74.010299	[merged from db_id 101, 2026-10-31] second address on 101's card: 77 Delancey Street, Manhattan, New York, NY 10002 (40.718862, -73.990261); kept as a note because 52 already had 183-185 Canal St.	"[{""settlement"": ""New York"", ""settlement_yiddish"": ""50–52 עלדרידזש סטריט, ניו־יאָרק"", ""address"": ""50–52 Eldridge Street,"", ""address_romanized"": ""50–52 Eldridge Street, New York"", ""lat"": ""40.725421"", ""lon"": ""-74.010299""}]"	Maaty	2026-06-02T12:35:53Z
 486	טרופּע פֿון גוזיק	Traveling Company	ORG-C00033 | ORG-C00034 | ORG-C01591 | ORG-C02330 | ORG-C05624 | ORG-C06413 | ORG-C00751 | ORG-C01489 | ORG-C05620	20	5	אָדעס | האָמעל | כערסאָן | מינסק | פּערם				TRUE												
-306	Kunst-Ring		ORG-C00179 | ORG-C06375	17	2	ניו יאָרק | ניו-יאָרק		אַמעריקע | יידישן קונסט-טעאַטער	אַמעריקע				New-York	189 צווייטע אַוועניו, ניו יאָרק	שדרה שנייה 189 (פינת רחוב 12), ניו יורק	189 Second Avenue , New York, NY	40.691395	-73.993663		"[{""settlement"": ""New-York"", ""settlement_yiddish"": ""189 צווייטע אַוועניו, ניו יאָרק"", ""address"": ""שדרה שנייה 189 (פינת רחוב 12), ניו יורק"", ""address_romanized"": ""189 Second Avenue , New York, NY"", ""lat"": ""40.691395"", ""lon"": ""-73.993663""}]"	Maaty	2026-04-11T18:51:42Z
+306	Kunst-Ring	Amateur	ORG-C00179 | ORG-C06375	17	2	ניו יאָרק | ניו-יאָרק		אַמעריקע | יידישן קונסט-טעאַטער	אַמעריקע				New-York	189 צווייטע אַוועניו, ניו יאָרק	שדרה שנייה 189 (פינת רחוב 12), ניו יורק	189 Second Avenue , New York, NY	40.691395	-73.993663		"[{""settlement"": ""New-York"", ""settlement_yiddish"": ""189 צווייטע אַוועניו, ניו יאָרק"", ""address"": ""שדרה שנייה 189 (פינת רחוב 12), ניו יורק"", ""address_romanized"": ""189 Second Avenue , New York, NY"", ""lat"": ""40.691395"", ""lon"": ""-73.993663""}]"	Maaty	2026-04-11T18:51:42Z
 68	הצפירה		ORG-C00210 | ORG-C02207	17	0		פייַנסקא 40, וורשה						Warsaw	פּאַנסקאַ 40, וואַרשע	פאנסקה 40, וורשה	40 Pańska , Warsaw	52.230336	20.987748		"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": ""פּאַנסקאַ 40, וואַרשע"", ""address"": ""פאנסקה 40, וורשה"", ""address_romanized"": ""40 Pańska , Warsaw"", ""lat"": ""52.230336"", ""lon"": ""20.987748""}]"	Maaty	2026-04-11T19:07:58Z
 254	Genfer Troupe		ORG-C00577 | ORG-C04024 | ORG-C05551	16	6	בענדער | וויטעבסק | ווילנע | לובני | נאָווגאָראָד | פינסק			רוסלאַנד	TRUE												
 323	Literarisze Bleter⁩ - ⁨ליטערארישע בלעטער		ORG-C01640	16	1	וואַרשע							Warsaw	ווארשע	טלאמאצקיע 13	Tlomackie 13, Warsaw				"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": ""ווארשע"", ""address"": ""טלאמאצקיע 13"", ""address_romanized"": ""Tlomackie 13, Warsaw"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-01T08:12:16Z
@@ -192,7 +192,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 261	Goldene pave		ORG-C01001 | ORG-C06365	5	1	ווין		קליינקונסט-טעאַטער	דייטשלאַנד													
 459	Ziegler Troupe		ORG-C02610 | ORG-C06137	5	2	ווין | יאָס'							Vienna	ווין		Vienna, Austria				"[{""settlement"": ""Vienna"", ""settlement_yiddish"": ""ווין"", ""address"": """", ""address_romanized"": ""Vienna, Austria"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-01T08:17:39Z
 42	גאָלדפאדעןס טרופּע -Avraham Goldfaden Troupe		ORG-C00047 | ORG-C06643	5	2	לובלין | פּאַריז		פּראָווינץ	פּוילן | רושלאַנד													
-206	Camp Kinderland		ORG-C02384	4	1	ניו-יאָרק		קעמפּ קינדערלאַנד														
+206	Camp Kinderland	Education	ORG-C02384	4	1	ניו-יאָרק		קעמפּ קינדערלאַנד														
 57	Progres		ORG-C01415	4	2	וואַרשע | נ. י.	Nalewki 32, Warsaw		פּוילן												Maaty	2026-06-02T12:07:20Z
 369	Remeslengi Club		ORG-C05191 | ORG-C06639	4	1	אָדעס	יידישער גאָס	דעמעסלענני קלוב | רעמעסלעגני קלוב | רעמעסלעני קלוב | רעמעסלענני קלוב	רוסלאַנד													
 455	Zandberg Troupe		ORG-C03019	4	1	לאָדזש			פּוילן													
@@ -303,7 +303,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 247	Folk Singer Troupe	Kleinkunst		0	0																	
 108	Folḳsbildung			0	0								New York						"[CITY VERIFIED] Folksbildung — NY Yiddish people's-education publisher c.1915-1922 (Natur un mensh; Yudishe neshomes 1916-17) | sources: Internet Archive (""Nyuork: Folksbildung"" 1915) + Yiddish Book Center (Yudishe neshomes, NY 1916-17) | NOTE: distinct from a Warsaw Tushiyah firm of the same name"	"[{""settlement"": ""New York"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-02T18:07:20Z
 250	Fraye Yidishe Folks-Bine			0	0								paris				48.85889	2.320041		"[{""settlement"": ""paris"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": ""48.85889"", ""lon"": ""2.320041""}]"	Bella	2026-05-31T09:17:25Z
-251	Free Dramatic Studio	Education		0	0																	
+251	Free Dramatic Studio	Theatre education		0	0																	
 253	Gardetski Quartet	Musical organization		0	0																	
 84	Garland Pub.	Printer/Publisher		0	0																	
 255	George Beker Troupe	Traveling Company		0	0																	
@@ -360,13 +360,13 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 315	Liberesco Troupe	Traveling Company		0	0																	
 29	Library of Congress			0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T08:55:14Z
 317	Lidia Potocka's Tour	Company on Tour		0	0																	
-320	Lira (as drama school)			0	0																Maaty	2026-06-06T10:13:47Z
+320	Lira (as drama school)	Theatre education		0	0																Maaty	2026-06-06T10:13:47Z
 319	Lira (as drama society)			0	0																Maaty	2026-05-10T07:15:14Z
 324	Literary Drama Club	Kleinkunst		0	0																	
 327	M.D. Waxman Troupe	Traveling Company	ORG-C01604 | ORG-C01852 | ORG-C05197	0	0																	
 328	Max Gabel Theatre			0	0																Sinai	2026-10-04T09:43:00Z
 329	Meerson and Sam Adler Troupe	Traveling Company		0	0																	
-331	Mendl Elkin's Children Theatre Studio	Company on Tour		0	0																	
+331	Mendl Elkin's Children Theatre Studio	Theatre education		0	0																	
 79	Meyer Levin	Printer/Publisher		0	0																	
 333	Michalesko guest-starring Troupe	Company on Tour		0	0																	
 334	Mike Thomashefsky Troupe	Traveling Company		0	0																	
@@ -385,11 +385,11 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 351	Nowa Gazeta			0	0																Maaty	2026-05-10T07:05:28Z
 352	Nowy Dziennik			0	0								Krakow			Orzeszkowej 7, Kraków, Poland	50.049677	19.938389		"[{""settlement"": ""Krakow"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Orzeszkowej 7, Kraków, Poland"", ""lat"": ""50.049677"", ""lon"": ""19.938389""}]"	Maaty	2026-05-10T08:28:51Z
 355	Oriental Operetta Society	Traveling Company		0	0																	
-358	Peretz Society Drama studio	Education		0	0																	
+358	Peretz Society Drama studio	Theatre education		0	0																	
 360	Petrograd Theatre Society			0	0																Maaty	2026-05-10T07:15:25Z
 75	Pimelt and Y.Shvabe	Printer		0	0		Sierakowska 4, Warsaw															
 362	"Poale Zion (""Workers of Zion"")"			0	0																Maaty	2026-05-10T07:15:36Z
-363	Progresiv dramatik klub (Progressive Drama Club)		ORG-C00155_Q05	0	0																Maaty	2026-05-10T07:15:48Z
+363	Progresiv dramatik klub (Progressive Drama Club)	Amateur	ORG-C00155_Q05	0	0																Maaty	2026-05-10T07:15:48Z
 88	Rapaporṭ's Prinṭing | ראפאפארט'ס פרינטינג	Printer/Publisher		0	0																	
 367	Rappel Troupe	Traveling Company		0	0																	
 368	Rappo Circus	Circus		0	0																	
@@ -403,7 +403,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 380	Sarah Adler Troupe	Traveling Company		0	0																	
 382	Serotsky and Weissman Troupe	Traveling Company		0	0																	
 383	Shaari tsion choral school	Education		0	0																	
-384	Shlifershteyn Troupe	Amateur	ORG-C05131	0	0																	
+384	Shlifershteyn Troupe	Traveling Company	ORG-C05131	0	0																	
 386	Sidney M. Goldin Productions	Media (Radio/ Film/TV)		0	0																	
 388	Sniegoff Troupe	Traveling Company		0	0																	
 390	Spivakovski and Weinstock Troupe	Traveling Company		0	0																	
@@ -443,7 +443,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 444	Yiddish Dramatic Circle	Amateur		0	0																	
 447	Yiddish Theatre Society			0	0																Maaty	2026-05-10T07:17:01Z
 442	Yiddish artists union			0	0																Maaty	2026-05-10T07:17:17Z
-445	Yiddish dramatic school	Education		0	0																	
+445	Yiddish dramatic school	Theatre education		0	0																	
 448	Yidishe Natsionale Radikale Shul			0	0																Maaty	2026-06-06T10:12:45Z
 71	Yosef Fischer			0	0		62 Grodzka, Krakow						Kraków			Grodzka 62, Kraków, Poland	50.055231	19.938471		"[{""settlement"": ""Kraków"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Grodzka 62, Kraków, Poland"", ""lat"": ""50.055231"", ""lon"": ""19.938471""}]"	Maaty	2026-05-10T08:49:49Z
 451	Yosef Goldshmidt Troupe	Traveling Company		0	0																	
@@ -582,12 +582,12 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 598	יידישן מלוכה-טעאַטער א'פ פֿון אַזראַ	Theatre	ORG-C05296	0	0											Khreshchatyk St 36, Kiev	50.446247	30.520873		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Khreshchatyk St 36, Kiev"", ""lat"": ""50.446247"", ""lon"": ""30.520873""}]"	Maaty	2026-05-17T06:46:20Z
 599	יידישער מלוכה-טעאַטער אויפֿן נאָמען פֿון אסתר-רחל קאמינסקאַ		ORG-C02264	0	0								Warsaw			Plac Grzybowski 12/16, Warsaw	52.2388	21.0010	Zylbercweig lexicon: Esther-Rachel Kaminska State Yiddish Theatre, Warsaw. Filled empty Settlement = Warsaw. ADDRESS CONFLICT: existing confirmed Address is 'Senatorska 35' (did NOT overwrite), but the lexicon/known address for this theatre is Plac Grzybowski 12/16 (the postwar Yiddish State Theatre building) - flagged for review. (Removed one spurious empty location slot accidentally added.) | FIXED on 2026-05-30: Address corrected from 'Senatorska 35' (temporary 2016+) to 'Plac Grzybowski 12/16' (1970-2016 main location) per Wikipedia Jewish_Theatre_Warsaw + teatr-zydowski.art.pl. Earlier 13 Krolewska St 1955-1970. Lat/Lon set manually to 52.2388, 21.0010 (geocoder returned 'not found').	"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Plac Grzybowski 12/16, Warsaw"", ""lat"": ""52.2388"", ""lon"": ""21.0010""}]"	Maaty	2026-05-30T18:23:34Z
 600	פאַרק-טעאַטער		ORG-C06432	0	0																Maaty	2026-05-30T09:11:04Z
-601	סטודיע פֿון יידישן מלוכה-טעאַטער אין ווייס-רוסלאַנד		ORG-C00418	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T10:11:49Z
+601	סטודיע פֿון יידישן מלוכה-טעאַטער אין ווייס-רוסלאַנד	Theatre education	ORG-C00418	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T10:11:49Z
 602	השומר הצעיר		ORG-C00831	0	0																Sinai	2026-05-11T21:22:54Z
 604	לאָדזשער סקאַלאַ-טעאַטער		ORG-C00579	0	0								Lodz			Cegielniana 18 (today 15 Więckowskiego Street), Łódź	51.7686	19.4525	Zylbercweig lexicon: Lodz Scala Theatre (Lodzher Scala), Lodz. Filled empty Settlement = Lodz. Lexicon address: 18 Cegielniana Street (today 15 Wieckowskiego Street). STREET DISCREPANCY: existing Address field reads 'Ceglana 18' (a different street) vs lexicon 'Cegielniana 18' - did NOT overwrite, flagged for review. GEOCODE WARNING: existing Lat/Lon (51.23, 18.54) points to a small village, not central Lodz (~51.77, 19.46) - needs re-geocode. High mention count (35). | FIXED on 2026-05-30: Address corrected from 'Ceglana 18' to 'Cegielniana 18' (today 15 Więckowskiego St). These are DIFFERENT STREETS in Łódź. Lat/Lon set manually after geocoder returned 'not found'. Sources: jewish-lodz.iu.edu + Virtual Shtetl.	"[{""settlement"": ""Lodz"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Cegielniana 18 (today 15 Więckowskiego Street), Łódź"", ""lat"": ""51.7686"", ""lon"": ""19.4525""}]"	Maaty	2026-05-30T18:44:39Z
 605	סאָוויעטישן מלוכה-טעאַטער	Theatre		0	0											Malaya Bronnaya 4, Moscow	55.759606	37.5974		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Malaya Bronnaya 4, Moscow"", ""lat"": ""55.759606"", ""lon"": ""37.5974""}, {""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-17T06:37:31Z
 606	ליטעראַריש-דראַמאַטישע געזעלשאַפט	Theatre	ORG-C01452	0	0											Philadelphia, USA	39.952724	-75.163526		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Philadelphia, USA"", ""lat"": ""39.952724"", ""lon"": ""-75.163526""}]"	Maaty	2026-05-17T06:41:06Z
-607	שיקאַגער יידישע דראַמאַטישע געזעלשאַפט		ORG-C01827	0	0											West Roosevelt Road, Chicago	41.867246	-87.636705		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""West Roosevelt Road, Chicago"", ""lat"": ""41.867246"", ""lon"": ""-87.636705""}]"	Maaty	2026-07-18T18:48:57Z
+607	שיקאַגער יידישע דראַמאַטישע געזעלשאַפט	Amateur	ORG-C01827	0	0											West Roosevelt Road, Chicago	41.867246	-87.636705		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""West Roosevelt Road, Chicago"", ""lat"": ""41.867246"", ""lon"": ""-87.636705""}]"	Maaty	2026-07-18T18:48:57Z
 608	פּוילישן פאָלקס-טעאַטער	Theatre	ORG-C02897	0	0											Stalowa, Praga, Warsaw	52.261151	21.043312		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Stalowa, Praga, Warsaw"", ""lat"": ""52.261151"", ""lon"": ""21.043312""}]"	Maaty	2026-05-16T18:24:38Z
 609	אָדעסער יידישער טעאַטער	Theatre	ORG-C01768	0	0										Grecheskaya Street 48a	Hrets'ka ,Odesa,  Ukraine,				"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": ""Grecheskaya Street 48a"", ""address_romanized"": ""Hrets'ka ,Odesa,  Ukraine,"", ""lat"": """", ""lon"": """"}, {""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-16T17:20:45Z
 610	בעקערס טרופּע	Traveling Company	ORG-C02431 | ORG-C04428 | ORG-C04667	0	0																Bella	2026-05-15T10:08:14Z
@@ -601,7 +601,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 618	לעטישן מלוכה-טעאַטער	Theatre	ORG-C07378	0	0											Kronvalda bulvāris 2, Riga, Latvia	56.953755	24.104761		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Kronvalda bulvāris 2, Riga, Latvia"", ""lat"": ""56.953755"", ""lon"": ""24.104761""}]"	Maaty	2026-05-16T18:11:38Z
 619	לעטישן מלוכה-טעאַטער	Theatre		0	0											Kronvalda bulvāris 2, Riga, Latvia	56.953755	24.104761		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Kronvalda bulvāris 2, Riga, Latvia"", ""lat"": ""56.953755"", ""lon"": ""24.104761""}, {""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-16T18:10:23Z
 620	יידישן אַרבעטער-טעאַטער „יעווקאַמבער“	Theatre	ORG-C01601	0	0											Tbilisi 	41.693459	44.801449		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Tbilisi "", ""lat"": ""41.693459"", ""lon"": ""44.801449""}]"	Maaty	2026-05-17T07:16:05Z
-621	די דאָרטיקע יידישע דראַמאַטישע געזעלשאַפט	Theatre	ORG-C06838	0	0											Ploiești	44.941747	26.02365		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Ploiești"", ""lat"": ""44.941747"", ""lon"": ""26.02365""}]"	Maaty	2026-05-17T07:44:19Z
+621	די דאָרטיקע יידישע דראַמאַטישע געזעלשאַפט	Amateur	ORG-C06838	0	0											Ploiești	44.941747	26.02365		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Ploiești"", ""lat"": ""44.941747"", ""lon"": ""26.02365""}]"	Maaty	2026-05-17T07:44:19Z
 622	פּערעגן-טעאָטער	Theatre	ORG-C06355	0	0											Mile End Road, Whitechapel, London, UK	51.520225	-0.054243		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Mile End Road, Whitechapel, London, UK"", ""lat"": ""51.520225"", ""lon"": ""-0.054243""}]"	Maaty	2026-05-16T17:36:33Z
 623	פּאַריזער יידישע קונסט-טעאַטער	Theatre	ORG-C00193	0	0								Paris			10 rue de Lancry, Paris	48.869213	2.36034	[VERIFIED-2SRC] 10 rue de Lancry, 10e arr., Paris	"[{""settlement"": ""Paris"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""10 rue de Lancry, Paris"", ""lat"": ""48.869213"", ""lon"": ""2.36034""}]"	Maaty	2026-05-16T12:59:18Z
 624	ווילנער יידישן געטאָ-טעאַטער		ORG-C02916	0	0								Vilnius			Žemaitijos g. 4, Vilnius, Lithuania	54.677965	25.280559	Vilna Ghetto Theatre 1942-1943: 111 performances, ~35,000 tickets sold. Yiddish memorial plaque on building commemorates the Vilnius Ghetto Theatre operating 1942-1943 by the artists of the Jerusalem of Lithuania. Sources: Yad Vashem Vilna Ghetto + LRT.lt + CJA HUJI Memorial Plaque + Holocaust Music ORT. Possible duplicate of org 628 (same Zemaitijos g. 4 / Vilna Ghetto) -- flag for merge review. address_conflict: existing Address 'Zemaitijos g. 4, Vilnius, Lithuania' kept (not overwritten); research source suggests '8 Rudninku Street (entrance through Judenrat courtyard), Vilnius'. Existing Lat/Lon (54.6780/25.2806) kept.	"[{""settlement"": ""Vilnius"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Žemaitijos g. 4, Vilnius, Lithuania"", ""lat"": ""54.677965"", ""lon"": ""25.280559""}]"	Maaty	2026-05-30T21:21:20Z
@@ -614,7 +614,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 631	צירק-טעאַטער	Theatre	ORG-C02939	0	0										‏ul. Południowa 18, Łódź, Poland	‏ul. Rewolucji 1905 roku 18, Łódź				"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": ""‏ul. Południowa 18, Łódź, Poland"", ""address_romanized"": ""‏ul. Rewolucji 1905 roku 18, Łódź"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-16T17:24:11Z
 632	דער פרייער פויגל	Journals/ Newspapers	ORG-C03033	0	0																Bella	2026-05-16T07:54:38Z
 633	ערשטן יידישן מלוכהשן טעאַטער	Theatre	ORG-C04308	0	0											‏Khreshchatyk Street 29, Kyiv, Ukraine	50.442977	30.521279		"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""‏Khreshchatyk Street 29, Kyiv, Ukraine"", ""lat"": ""50.442977"", ""lon"": ""30.521279""}]"	Maaty	2026-05-16T17:26:22Z
-634	סטודיע פון מאָסקווער יידישן קאַמער-טעאַטער		ORG-C05258	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T10:09:46Z
+634	סטודיע פון מאָסקווער יידישן קאַמער-טעאַטער	Theatre education	ORG-C05258	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T10:09:46Z
 635	דער יודישער שפּינעל		ORG-C05836	0	0																Maaty	2026-06-02T12:49:40Z
 636	אַזאַזעל		ORG-C00105	0	0								Warsaw			Dluga 50, Warsaw			Zylbercweig lexicon: Teatr Azazel (Yiddish kleinkunst/cabaret), Warsaw. Addresses: Simon's Passage (Pasaz Simonsa) at Dluga 50 / Nalewki 2; later moved to Elizeum at Karowa 18. Set primary geocode address to Dluga 50; full address history recorded here. High mention count (28) in lexicon.	"[{""settlement"": ""Warsaw"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Dluga 50, Warsaw"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T16:51:09Z
 637	די צייט		ORG-C01608_P01	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T09:15:58Z
@@ -654,7 +654,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 671	לאָנדאָנער יידישן פּאַוויליאָן-טעאַטער		ORG-C03967	0	0								London			191-193 Whitechapel Road, London E1			Zylbercweig lexicon: London Yiddish Pavilion Theatre, London. Address 191-193 Whitechapel Road, E1 (East End / Whitechapel Jewish quarter). Added Settlement + Address (card had no confirmed location). Has 4 lexicon mentions.	"[{""settlement"": ""London"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""191-193 Whitechapel Road, London E1"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T16:50:15Z
 672	מאָסקווער יידישער טעאַטער		ORG-C07293	0	0								Moscow			Malaya Bronnaya Street 4, Moscow			Zylbercweig lexicon: Moscow State Yiddish Theatre (GOSET), Moscow. Address Malaya Bronnaya Street 4. Added Settlement + Address (card had no confirmed location). DUPLICATE: org 543 (Moscow GOSET) is the same theatre - merge candidate.	"[{""settlement"": ""Moscow"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Malaya Bronnaya Street 4, Moscow"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T16:45:39Z
 673	ניו יאָרקער יידישן קונסט-טעאַטער		ORG-C04319	0	0								New York			189 Second Avenue, Manhattan, New York			Zylbercweig lexicon: New York Yiddish Art Theatre (Maurice Schwartz). Address 189 Second Avenue at E 12th Street, Manhattan. Added Settlement + Address (card had no confirmed location). DUPLICATE GROUP: orgs 673, 713, 416 all = Yiddish Art Theatre at 189 Second Avenue - merge candidates.	"[{""settlement"": ""New York"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""189 Second Avenue, Manhattan, New York"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T16:47:39Z
-674	קאָוונער יידישער דראָמאַטישער געזעלשאַפֿט		ORG-C01994	0	0																Maaty	2026-05-30T10:17:10Z
+674	קאָוונער יידישער דראָמאַטישער געזעלשאַפֿט	Amateur	ORG-C01994	0	0																Maaty	2026-05-30T10:17:10Z
 675	קראָקעווער יידישער טעאַטער		ORG-C04665	0	0								Krakow			Bochenska Street, Kazimierz, Krakow			Zylbercweig lexicon: Krakow Yiddish Theatre, Krakow. Address Bochenska Street in the Kazimierz Jewish quarter. Added Settlement + Address (card had no confirmed location). Has 1 lexicon mention.	"[{""settlement"": ""Krakow"", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": ""Bochenska Street, Kazimierz, Krakow"", ""lat"": """", ""lon"": """"}]"	Maaty	2026-05-30T16:49:18Z
 676	אַרט טעאַטער		ORG-C00363	0	0																Maaty	2026-05-30T10:17:14Z
 677	אָדעסער אוניווערזיטעט		ORG-C03867	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T10:07:49Z
@@ -719,11 +719,11 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 794	משה ליפּמאָןס טרופּע	traveling company	ORG-C04966 | ORG-C02053 | ORG-C02732 | ORG-C07147	0	0																Ruthie	2026-05-28T11:48:46Z
 795	טעאַטער-סטודיע „קולטור-ליגע“		ORG-C00345	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T08:59:46Z
 796	די מאַסקע		ORG-C03131	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T10:20:48Z
-797	יידישע טעאַטער-סטודיע ביים לאָדזשער „הזמיר“		ORG-C02624	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T08:59:12Z
+797	יידישע טעאַטער-סטודיע ביים לאָדזשער „הזמיר“		ORG-C02624 | ORG-C00114_Q02_P03	0	0							1796								"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T08:59:12Z
 798	סאָרדזשענט בעלאַסקאַ סקול אָף אָרט		ORG-C05373	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T10:19:09Z
 799	די וויטעבּסקער סטוּדיע		ORG-C03973	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T08:58:33Z
-800	דוד הערמאָןס יידישער דראָמאָטישער סטודיע ביים „הזמיר“		ORG-C04954	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T09:00:52Z
-801	דראַמאַטישער סטודיע באַגינען ביים בונד		ORG-C03260	0	0															"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T09:04:52Z
+800	דוד הערמאָןס יידישער דראָמאָטישער סטודיע ביים „הזמיר“		ORG-C04954	0	0							1872								"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T09:00:52Z
+801	דראַמאַטישער סטודיע באַגינען ביים בונד		ORG-C03260	0	0							997								"[{""settlement"": """", ""settlement_yiddish"": """", ""address"": """", ""address_romanized"": """", ""lat"": """", ""lon"": """"}]"	Maaty	2026-06-06T09:04:52Z
 802	מאַרעניאָףס טרופּע	traveling company	ORG-C04907	0	0																Ruthie	2026-05-28T13:18:15Z
 803	י. קעסלערס טרופּע	traveling company	ORG-C04102	0	0																Ruthie	2026-05-28T13:24:36Z
 804	לאַרגמאַןס טרופּע	traveling company	ORG-C04641	0	0																Ruthie	2026-05-28T13:26:30Z
@@ -793,7 +793,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 868	טרופּע פֿון מאָריס גאָלדבערג	traveling company	ORG-C01459	0	0																Ruthie	2026-06-03T06:16:24Z
 869	טרופּע פֿון גראָדנער און הורוויטש	traveling company	ORG-C01952	0	0																Ruthie	2026-06-03T06:17:28Z
 870	ביי יעקב שטערנבערגן	traveling company	ORG-C03255	0	0																Ruthie	2026-06-03T06:18:09Z
-872	יידישן דראַמאַטישן קרייז	theatre	ORG-C02913_Q01	0	0																Sinai	2026-06-07T07:14:07Z
+872	יידישן דראַמאַטישן קרייז	Amateur	ORG-C02913_Q01	0	0																Sinai	2026-06-07T07:14:07Z
 873	ליריק-טעאַטער	theatre	ORG-C00338_Q06	0	0																Sinai	2026-06-07T09:16:14Z
 874	ליריק-טעאַטער	theatre	ORG-C00338_Q07	0	0																Sinai	2026-06-07T09:17:59Z
 875	ליריק-טעאַטער	theatre	ORG-C00338_Q02	0	0																Maaty	2026-06-07T09:31:30Z
@@ -832,11 +832,11 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 910	טרופּע זשאָרזש אוּן בּעקער	traveling company	ORG-C04222	0	0																Ruthie	2026-06-10T05:55:27Z
 911	טרופּע קאַמינסקי, הערמאַן בערמאַן און טרילינג	traveling company	ORG-C04295	0	0																Ruthie	2026-06-10T05:56:33Z
 912	טרופּע פֿון דער גאַסטראָלירנדיקער רעגינע צוקער	traveling company	ORG-C03369	0	0																Ruthie	2026-06-10T05:57:23Z
-913	דראָמאַטישער סעקציע ביים „הזמיר“	amateur	ORG-C00588	0	0																Ruthie	2026-06-10T06:02:48Z
+913	דראָמאַטישער סעקציע ביים „הזמיר“	amateur	ORG-C00588 | ORG-C01900_P02	0	0							1872									Ruthie	2026-06-10T06:02:48Z
 914	ש. אַנסקי-קולטור-קלוב	amateur	ORG-C07232	0	0																Ruthie	2026-06-10T06:03:06Z
 915	זשיטאָמירער יידישן אַרבעטער-קלוב	amateur	ORG-C03859	0	0																Ruthie	2026-06-10T06:03:59Z
 916	"דראַמאַטיישן קרייז ביי דער „קולטור-ליגע"""	amateur	ORG-C03273	0	0																Ruthie	2026-06-10T06:04:19Z
-917	„אַרטיסטיש ווינקעלע“ ביים „הזמיר“	amateur	ORG-C03544	0	0																Ruthie	2026-06-10T06:04:30Z
+917	„אַרטיסטיש ווינקעלע“ ביים „הזמיר“	amateur	ORG-C03544	0	0							1872									Ruthie	2026-06-10T06:04:30Z
 918	כאַרקאָווער יידישן אַרבעטער-קלוב	amateur	ORG-C00451	0	0																Ruthie	2026-06-10T06:05:14Z
 919	חזנים-פֿאַרבאַנד	religious institutions/organizations	ORG-C01180_Q01	0	0																Ruthie	2026-06-10T06:06:14Z
 920	ספּיוואָקאָווסקי און שאַראַוונער	traveling company	ORG-C05492	0	0																Ruthie	2026-06-10T07:47:49Z
@@ -870,7 +870,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 969	טרופּע פֿון פּנחס טאָמאָשעווסקי	traveling company	ORG-C06474	0	0																Ruthie	2026-06-14T12:31:27Z
 970	זיבעל און שילינג	traveling company	ORG-C04829	0	0																Ruthie	2026-06-14T12:33:33Z
 971	טרופּע  פון מאָרק אַרענשטיין	traveling company	ORG-C06411	0	0																Ruthie	2026-06-14T12:42:34Z
-972	מאָריס מאָריסאָנס דראַמאַטיק קלוב	traveling company	ORG-C07062	0	0																Ruthie	2026-06-14T12:45:11Z
+972	מאָריס מאָריסאָנס דראַמאַטיק קלוב	Amateur	ORG-C07062	0	0																Ruthie	2026-06-14T12:45:11Z
 973	שעכטער און לאַסקי	traveling company	ORG-C06974	0	0																Ruthie	2026-06-14T12:46:12Z
 974	זילבערצווייגס טרופּע	traveling company	ORG-C05494	0	0																Ruthie	2026-06-14T12:58:25Z
 975	טרופּע פון ירמיהו אַדלער און מישאַ שיין	traveling company	ORG-C02716	0	0																Ruthie	2026-06-14T13:04:13Z
@@ -1273,7 +1273,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1742	[אָפּערעטעס-טרופּע אונטער דער מוזיקאַלישער לייטונג פֿון משה טשיזשיק [בונעם בדחןס זון	traveling company	ORG-C04670	0	0																Ruthie	2026-07-08T08:36:20Z
 1743	מ. רייש	traveling company	ORG-C03681	0	0																Ruthie	2026-07-08T08:37:45Z
 1744	אָדעסער קאָלעקטיוו	traveling company	ORG-C03621	0	0																Ruthie	2026-07-08T08:53:20Z
-1745	נייער דראַמאַטישער שטערן	traveling company	ORG-C07233	0	0																Ruthie	2026-07-08T08:54:09Z
+1745	נייער דראַמאַטישער שטערן	Amateur	ORG-C07233	0	0																Ruthie	2026-07-08T08:54:09Z
 1746	יידישע קינסטלער-שפּילע	traveling company	ORG-C02787	0	0																Ruthie	2026-07-08T08:56:06Z
 1747	ייִדישער דראַמאַטישער טעאַטער קאָלעקטיוו / גרופּע) אידטעג	traveling company	ORG-C01774	0	0																Ruthie	2026-07-08T09:06:40Z
 1748	קאָאָפּעראַטיווער אייראָפּעאישער [ניט-יוניע] טרופּע	traveling company	ORG-C05514	0	0																Ruthie	2026-07-08T09:09:06Z
@@ -1306,14 +1306,14 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 711	יידישן טעאַטער אין מאָנטרעאל	Theatre	ORG-C01387_Q12 | ORG-C01496	0	0																	
 714	ביבליאָטעק אין יעליסאַוועטגראָד	Library	ORG-C06748	1	1	יעליסאַוועטגראָד																
 715	ערשטע קאָאָפּעראַטיווע דראָמע	Theatre	ORG-C06515	1	1	יעקאַטערינאָסלאַוו																
-717	קינדער-ליבהאָבער-קרייז	Theatre	ORG-C05168	1	1	יעקאַטערינאָסלאָוו																
+717	קינדער-ליבהאָבער-קרייז	Amateur	ORG-C05168	1	1	יעקאַטערינאָסלאָוו																
 718	יעקאַטערינאָסלאָווער זומער-טעאַטער „אָבטשעסטוועננאַיע סאָבראניע“	Theatre	ORG-C04915	1	1	יעקאַטערינאָסלאָוו																
 719	וויסנשאַפט	Publisher	ORG-C04872	1	1	יעקאַטערינאָסלאַוו																
-720	"יעקאַטערינאָסלאַווער פֿאַראיין פֿון ""סצענישע קונסט-טוער"""	Theatre-Related Society/ Union	ORG-C04860	1	1	יעקאַטערינאָסלאַוו																
+720	"יעקאַטערינאָסלאַווער פֿאַראיין פֿון ""סצענישע קונסט-טוער"""	Theatre-Related Society/ Union		1	1	יעקאַטערינאָסלאַוו																
 721	„דער קעמפער“	Journals/ Newspapers	ORG-C04676	1	1	יעקאַטערינאָסלאָוו																
 722	יעקאַטערינאָסלאַווער מוזיק-שול	Education	ORG-C01999	1	1	יעקאַטערינאָסלאַוו																
 723	כאָר פון חזן יוסף העלער	Musical Organization	ORG-C04562	1	1	זלאטאָפּאָליע																
-724	יידישן דראַמאַטישן קרייז	Theatre	ORG-C02913_Q02	1	1	רעזשיצע																
+724	יידישן דראַמאַטישן קרייז	Amateur	ORG-C02913_Q02	1	1	רעזשיצע																
 725	דאָס יידישע באַוועגלעכע דראַמאַטישע טעאַטער	Theatre	ORG-C01787 | ORG-C02772_Q02	0	0																	
 726	דאַנציגער יידישן טעאַטער	Theatre	ORG-C03385	1	1	דאַנציג																
 730	דאַנציגער לעבען	Journals/ Newspapers	ORG-C01784	1	1	דאַנציג																
@@ -1327,7 +1327,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 739	ביקור חולים (ירושלים)	Health Institutions	ORG-C00792_Q01	1	1	ירושלים																
 741	יתומים-היים פֿאַר מיידלעך	Welfare/Aid Organization	ORG-C03738	1	1	ירושלים																
 742	נאַציאָנאַלן מוזיי		ORG-C00560 | ORG-C02427	2	1	ירושלים															Sinai	2026-08-16T07:10:34Z
-743	"„דראַמקרייז מ. ווינטשעווסקי"""	Theatre	ORG-C00575	1	1	מאָנטעווידעאָ																
+743	"„דראַמקרייז מ. ווינטשעווסקי"""	Amateur	ORG-C00575	1	1	מאָנטעווידעאָ																
 745	מינסקער מעלוכעשער יידישער טעאַטער	Theatre	ORG-C00596_Q03 | ORG-C01160 | ORG-C01387_Q38 | ORG-C04693_Q01	5	1	מינסק																
 749	זשיגניצע	Theatre	ORG-C00325 | ORG-C00663 | ORG-C00668 | ORG-C03004 | ORG-C03539 | ORG-C04337 | ORG-C05325	36	4	בוקאַרעסט | בוקאַרעשט | בוקאָרעסט | בוקאַרעסטער																
 750	די גרויסע שול אין בּוקאַרעסט	Religious Institutions/Organizations	ORG-C04564_Q03 | ORG-C06669	2	2	בּוקאַרעסט | בוקאַרעסט																
@@ -1342,7 +1342,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 939	אוניווערזיטעט פון ווילנע	Education	ORG-C00912 | ORG-C03238_Q02	3	1	ווילנע																
 940	טרעסקיןס מוזיק-שול	Education	ORG-C01492 | ORG-C05553	3	1	ווילנע																
 941	ראמיילעס ישיבה	Education	ORG-C01607 | ORG-C01805 | ORG-C03201	7	1	ווילנע																
-942	דראַמאַטישער סטודיע ביי דער ווילנער „קונסט געזעלשאַפט“	Education	ORG-C01807 | ORG-C05782	2	1	ווילנע																
+942	דראַמאַטישער סטודיע ביי דער ווילנער „קונסט געזעלשאַפט“	Theatre education	ORG-C01807 | ORG-C05782	2	1	ווילנע																
 943	יידישן לערער-אינסטיטוט	Education	ORG-C00756 | ORG-C03954 | ORG-C04873 | ORG-C05683 | ORG-C07139	8	2	ווילנע | ווילנער																
 945	פּאַלאַס-טעאַטער (ווילנע)	Theatre	ORG-C01241_Q01 | ORG-C02809 | ORG-C03707	7	1	ווילנע																
 946	נחום ליפּאָווסקיס 'פאָלקס-טעאַטער'	Theatre	ORG-C02816 | ORG-C02948 | ORG-C04986	3	1	ווילנע																
@@ -1362,7 +1362,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1025	כאַרקאָווער פאַרלאָג „ליטעראַטור און קונסט“	Publisher	ORG-C00301 | ORG-C04820	2	1	כאַרקאָוו																
 1026	נייער יידישער טעאַטער	Theatre	ORG-C00178_Q01 | ORG-C00804 | ORG-C01003_Q01	24	2	ריגע | ריגער																
 1027	ריגער קאָמעדיע און אָפּערעטן-טעאַטער	Theatre	ORG-C02704 | ORG-C04472 | ORG-C06786	4	1	ריגע																
-1028	אָרטיקן רוסישן דראַמאַטישן טעאַטער	Theatre	ORG-C00413_Q02 | ORG-C03136	2	1	ריגע																
+1028	אָרטיקן רוסישן דראַמאַטישן טעאַטער	Non-Yiddish Theatre	ORG-C00413_Q02 | ORG-C03136	2	1	ריגע																
 1032	ריגער רעאַל-שול	Education	ORG-C00839_Q05 | ORG-C04756	2	1	ריגע																
 1077	"ייוו""אָ"	Heritage Institution		30	1	ווילנע																
 1078	טעאַטער-מוזיי א'נ פֿון אסתר רחל קאמינסקי	Heritage Institution	ORG-C02960 | ORG-C03930	2	1	ווילנע																
@@ -1372,7 +1372,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1082	ווילנער יידישע רעאַל-גימנאַזיע	Education	ORG-C00839_Q01 | ORG-C01246 | ORG-C01366_Q01 | ORG-C02723 | ORG-C03248 | ORG-C07158	14	1	ווילנע																
 1083	יידישן לערער-סעמינאר (ווילנע)	Education	ORG-C01188_Q02 | ORG-C03106	5	1	ווילנע																
 1084	יידישן מוזיקאַלישן אינסטיטוט	Education	ORG-C02736 | ORG-C03089	3	1	ווילנע																
-1085	ווילנער יידישער דראַמאַטישער סטודיע	Education	ORG-C00562 | ORG-C01811 | ORG-C03316	6	1	ווילנע																
+1085	ווילנער יידישער דראַמאַטישער סטודיע	Theatre education	ORG-C00562 | ORG-C01811 | ORG-C03316	6	1	ווילנע																
 1086	דרוקעריי פֿון שריפֿטזעצער און ראָזענקראַנץ	Publisher	ORG-C03609 | ORG-C07183	2	1	ווילנע																
 1087	שטערן	Journals/ Newspapers	ORG-C02290 | ORG-C03636	6	1	מינסק																
 1088	שטאָטישע שול	Education	ORG-C00271_Q05 | ORG-C01418	2	1	מינסק																
@@ -1381,7 +1381,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1091	קיעווער קאָנסערוואַטאָריע	Education	ORG-C00091_Q03 | ORG-C00094_Q03 | ORG-C03907	5	1	קיעוו																
 1092	קיעווער „קונסט-ווינקל“	Theatre	ORG-C00247 | ORG-C00332 | ORG-C04016	11	2	קיעוו | קיעווער																
 1093	קיעווער יידישן מלוכה-טעאַטער פֿון יונגען צושויער	Theatre	ORG-C03431 | ORG-C03525	10	1	קיעוו																
-1094	"קיעווער טעאַטער-סטודיע ""אָנהייב"""	Theatre	ORG-C00331 | ORG-C00454 | ORG-C05559	3	1	קיעוו																
+1094	"קיעווער טעאַטער-סטודיע ""אָנהייב"""	Theatre education	ORG-C00331 | ORG-C00454 | ORG-C05559	3	1	קיעוו																
 1095	יידישן קינדער-טעאַטער (קיעוו)	Theatre	ORG-C01333_Q02 | ORG-C03604 | ORG-C04321	3	1	קיעוו																
 1096	צוזאַמענפֿאָר פֿון די יידישע אַקטיאָרן	Theatre-Related Society/ Union	ORG-C00204 | ORG-C01485 | ORG-C01845	3	1	קיעוו																
 1097	קיעווער „פאַראיין פֿון קונסט-טוער“	Theatre-Related Society/ Union	ORG-C04750 | ORG-C07317	2	2	קיעווער | קיעוו																
@@ -1391,7 +1391,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1101	מאָסקווער אוניווערזיטעט	Education	ORG-C03694_Q09 | ORG-C04620	4	2	מאָסקווע | מאָסקווער																
 1103	פּעטערבורגער קאָנסערוואַטאָריע	Education	ORG-C00001_Q05 | ORG-C00094_Q06 | ORG-C00695 | ORG-C01551 | ORG-C01553_Q02 | ORG-C04022	13	2	פּעטערבורג | פּעטערבּורגער																
 1104	פּעטערבורגער אוניווערזיטעט	Education	ORG-C00906 | ORG-C03694_Q04	7	2	פּעטערבורג | לענינגראַד																
-1105	גראַנאָווסקיס סטודיע	Education	ORG-C01617 | ORG-C04613_Q01	6	3	לענינגראָד | פּעטראָגראַד | פּעטראָגראָד																
+1105	גראַנאָווסקיס סטודיע	Theatre education	ORG-C01617 | ORG-C04613_Q01	6	3	לענינגראָד | פּעטראָגראַד | פּעטראָגראָד																
 1106	טעאַטער פֿון וו. פֿ. קאָמיסאַר-זשעווסקי	Theatre	ORG-C01791 | ORG-C02263	2	1	פּעטערבורג																
 1107	קאָנסערוואַטאָריע	Education	ORG-C00001_Q08 | ORG-C00091_Q02 | ORG-C00094_Q02	3	2	אָדעס | אָדעם																
 1108	טעאַטער נאָווי	Theatre	ORG-C01937_Q01 | ORG-C04084	4	2	אָדעם | אָדעס																
@@ -1402,10 +1402,10 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1113	ווילנער כאָר-שול	Education	ORG-C01101	2	1	ווילנע																
 1114	ערשטער יידישער אַוונט שול	Education	ORG-C03486	2	1	ווילנע																
 1115	כהןס גימנאַזיע	Education	ORG-C04291	2	1	ווילנע																
-1119	דראַמקרייז ביים מינסקער קלוב „רויטער בויער“	Theatre	ORG-C03959	1	1	מינסק																
+1119	דראַמקרייז ביים מינסקער קלוב „רויטער בויער“	Amateur	ORG-C03959	1	1	מינסק																
 1120	קולטור-קרייז א'נ פֿון טורגעניעוו	Theatre	ORG-C04373	1	1	מינסק																
-1121	דראַמסטודיע ראָבפאַק	Theatre	ORG-C04374	1	1	מינסק																
-1122	ראפֿאלסקיס יידישער סטודיע	Theatre	ORG-C04375 | ORG-C06725	2	1	מינסק																
+1121	דראַמסטודיע ראָבפאַק	Theatre education	ORG-C04374	1	1	מינסק																
+1122	ראפֿאלסקיס יידישער סטודיע	Theatre education	ORG-C04375 | ORG-C06725	2	1	מינסק																
 1123	צענטראָלן יידישן אַרבעטער-קלוב אין פֿון נ. לענין	Theatre	ORG-C04956	1	1	מינסק																
 1124	גובערנאַטאָרס גאַרטן	Theatre	ORG-C05195	1	1	מינסק																
 1127	שפּינוועבס	Theatre	ORG-C00754	1	1	מינסקער																
@@ -1413,7 +1413,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1129	מיטל-שול	Education	ORG-C00768	2	1	מינסק																
 1130	אָרטיקע גימנאַזיע	Education	ORG-C03042_Q01	2	1	מינסק																
 1131	יידישע פֿאָלקס-שולן	Education	ORG-C02254_Q03	1	1	מינסק																
-1132	יידישער סטודיע אין ווייסרוסלאַנד	Education	ORG-C04165_Q02	1	1	מינסק																
+1132	יידישער סטודיע אין ווייסרוסלאַנד	Theatre education	ORG-C04165_Q02	1	1	מינסק																
 1133	ישיבה פֿון דער „טאָטערשער קלויז“	Education	ORG-C04987	1	1	מינסק																
 1134	מינסקער אַרבעטער-קלובן	Education	ORG-C06359	1	1	מינסק																
 1135	ווייס-רוסישער וויסנשאָפֿטלעכער אָקאָדעמיע	Education	ORG-C06360	1	1	מינסק																
@@ -1441,29 +1441,29 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1157	מינסקער ראַדיאָ	Media (Radio/ Film/Tv)	ORG-C03476	1	1	מינסק																
 1158	קיעווער גימנאַזיע	Education	ORG-C00059 | ORG-C03694_Q06	3	1	קיעוו																
 1159	קונסט-שול	Education	ORG-C02016 | ORG-C02040_Q02 | ORG-C03509 | ORG-C05537	6	1	קיעוו																
-1161	רוסישע דראַמאַטישע שול	Education	ORG-C01439_Q03 | ORG-C04232 | ORG-C07363	4	1	קיעוו																
+1161	רוסישע דראַמאַטישע שול	Theatre education	ORG-C01439_Q03 | ORG-C04232 | ORG-C07363	4	1	קיעוו																
 1162	קיעווער אַלעקסייעוו מיליטער-שול	Education	ORG-C00061	1	1	קיעוו																
 1163	אַן אייגענע שולע	Education	ORG-C00088	1	1	קיעוו																
 1165	קיעווער כעמיש-פֿאַרמאַצעווטישן אינסטיטוט	Education	ORG-C00241	1	1	קיעוו																
 1166	יידישע שול אויף דעמיעווקע אין קיעוו	Education	ORG-C00329	1	1	קיעוו																
-1167	קיעווער מוזיקאַלישער סטודייע אויפֿן נאָמען פֿון ליסיענקאָ	Education	ORG-C00330 | ORG-C02288 | ORG-C03603 | ORG-C03632 | ORG-C03724 | ORG-C04269 | ORG-C04976	7	1	קיעוו																
-1168	צענטראָ סטודיע	Education	ORG-C00453	1	1	קיעוו																
+1167	קיעווער מוזיקאַלישער סטודייע אויפֿן נאָמען פֿון ליסיענקאָ	Theatre education	ORG-C00330 | ORG-C02288 | ORG-C03603 | ORG-C03632 | ORG-C03724 | ORG-C04269 | ORG-C04976	7	1	קיעוו																
+1168	צענטראָ סטודיע	Theatre education	ORG-C00453	1	1	קיעוו																
 1169	האַנטווערקער-שול	Education	ORG-C00626_Q04	1	1	קיעוו																
-1170	אָרלאָווסקי'ס וואָקאַלדראַמאַטישע קורסן	Education	ORG-C00687	1	1	קיעוו																
+1170	אָרלאָווסקי'ס וואָקאַלדראַמאַטישע קורסן	Theatre education	ORG-C00687	1	1	קיעוו																
 1171	קיעווער מלוכהשער מוזיקאַלישער שול	Education	ORG-C02218 | ORG-C04669 | ORG-C05021 | ORG-C06348	4	2	קיעוו | קיעווער																
 1174	קיעווער 3-יאָריקע מלוכה-קורסן פֿאַר פרעמדע לשונות	Education	ORG-C04268	1	1	קיעוו																
 1175	קיעווער פּריוואַטער האַנדלס-שול	Education	ORG-C04757	1	1	קיעוו																
 1176	קונסט-סטודיע פֿון אַלעקסאַנדער מוראַשקאָ	Education	ORG-C04946	1	1	קיעוו																
-1177	סטודיע ביים סאָלאָווצאָוו-טעאַטער	Education	ORG-C04948	1	1	קיעוו																
+1177	סטודיע ביים סאָלאָווצאָוו-טעאַטער	Theatre education	ORG-C04948	1	1	קיעוו																
 1178	רוסישער קאָמערץ-שול	Education	ORG-C04949	1	1	קיעוו																
-1179	קיעווער דראַמסטודיע ביי דער „קולטורליגע“	Education	ORG-C04951	1	1	קיעוו																
+1179	קיעווער דראַמסטודיע ביי דער „קולטורליגע“	Theatre education	ORG-C04951	1	1	קיעוו						1233										
 1182	קיעווער קונסט-שול פֿאַר סקולפּטור	Education	ORG-C05306	1	1	קיעוו																
 1184	קיעווער פּעטשערסקער גימנאָזיע	Education	ORG-C06180	1	1	קיעוו																
 1185	קיעוו די רעגירונגס-גימנאָזיע	Education	ORG-C06860	1	1	קיעוו																
 1187	קיעווער פּאָליטעכניקום	Education	ORG-C07382	1	1	קיעוו																
 1188	יידישע טעאַטער-סטודיע	Theatre	ORG-C02283_Q01	4	1	קיעוו																
 1189	שניידערישער שול	Theatre	ORG-C00077	2	1	קיעוו																
-1190	קיעווער דראַמסטודיע	Theatre	ORG-C00472	2	1	קיעוו																
+1190	קיעווער דראַמסטודיע	Theatre education	ORG-C00472	2	1	קיעוו																
 1192	קיעווער אָפּערע-הויז	Theatre	ORG-C00087	1	1	קיעוו																
 1193	טעאַטער א'נ „בעזקער“	Theatre	ORG-C00121	1	1	קיעוו																
 1194	שטאָט-טעאַטער קיעוו		ORG-C00422_Q04 | ORG-C05048	2	1	קיעוו															Sinai	2026-08-16T07:19:51Z
@@ -1502,7 +1502,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1232	קיעווער פֿאַרלאָג	Publisher	ORG-C06320	1	1	קיעוו																
 1233	קולטור-ליגע (קיעוו)	Heritage Institution	ORG-C00246_Q01	19	3	קייעוו | קיעוו | קיעווער																
 1234	אינסטיטוט פֿאַר יידישער קולטור ביי דער אַלאַוקראַנישער ווייסנשאַפֿטלעכער אַקאַדעמיע	Heritage Institution	ORG-C02252	1	1	קיעוו																
-1235	יידישער קונסט-סטודיע ביי דער קיעווער „קולטור-ליגע“	Heritage Institution	ORG-C05539	1	1	קיעוו																
+1235	יידישער קונסט-סטודיע ביי דער קיעווער „קולטור-ליגע“	Education	ORG-C05539	1	1	קיעוו						1233										
 1236	איסקראגרופּע פֿון דער רוסישער ס'ד-פּאַרטיי	Non-Jewish Political Bodies	ORG-C02068	1	1	קיעוו																
 1237	יידישן מיניסטעריום	Non-Jewish Political Bodies	ORG-C03957	1	1	קיעוו																
 1238	עסיג-ברויז	Business	ORG-C03851	1	1	קיעוו																
@@ -1512,10 +1512,10 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1243	קיעווער יידישן פּעדאַגאָגישן אינסטיטוט	Education	ORG-C03639	1	1	קיעוו																
 1245	העכערע פּעדאַגאָגישע קורסן	Education	ORG-C03631	1	1	קיעוו																
 1246	קיעווער קינאָ-פֿאַבריק	Education	ORG-C03548	1	1	קיעוו																
-1247	יידישן פֿאַקולטעט פֿון טעאַטער-אינסטיטוט	Education	ORG-C03524	1	1	קיעוו																
-1248	קיעווער יידישער טעאַטראַלער סטודיע	Education	ORG-C03482	1	1	קיעוו																
+1247	יידישן פֿאַקולטעט פֿון טעאַטער-אינסטיטוט	Theatre education	ORG-C03524	1	1	קיעוו																
+1248	קיעווער יידישער טעאַטראַלער סטודיע	Theatre education	ORG-C03482	1	1	קיעוו																
 1249	צאָן-אַרצטלעכן אינסטיטוט	Education	ORG-C02685	1	1	קיעוו																
-1250	יידישער דראָמאַטישער סטודיע	Education	ORG-C02576_Q03	1	1	קיעוו																
+1250	יידישער דראָמאַטישער סטודיע	Theatre education	ORG-C02576_Q03	1	1	קיעוו																
 1252	קיעווער קאָמערץ-אינסטיטוט		ORG-C02281	1	1	קיעוו															Maaty	2026-09-26T14:57:27Z
 1254	מעדיצינישן פאַקולטעט אין קיעוו	Education	ORG-C01535_Q01	1	1	קיעוו																
 1255	גימנאַזיעס אין קיעוו	Education	ORG-C01534	1	1	קיעוו																
@@ -1523,7 +1523,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1258	משוגעים-הויז אויף קירילאָווקע	Health Institutions	ORG-C06973	1	1	קיעוו																
 1259	חברה מפיצי השכלה	Education	ORG-C01732_Q01	3	1	פּעטערבורג																
 1260	מעדיציניש-כירורגישער אַקאַדעמיע	Education	ORG-C02696	2	1	פּעטערבורג																
-1261	דראַמאַטישע שול ביים קייזערלעכן אָלעקסאַנדער טעאַטער	Education	ORG-C00146	1	1	פּעטערבורג																
+1261	דראַמאַטישע שול ביים קייזערלעכן אָלעקסאַנדער טעאַטער	Theatre education	ORG-C00146	1	1	פּעטערבורג																
 1262	מוזיק-שול אין פּעטערבורג	Education	ORG-C00208_Q06	1	1	פּעטערבורג																
 1263	יורידישן פֿאַקולטעט פון אינסטיטוט אין פּעטערבורג	Education	ORG-C01120	1	1	פּעטערבורג																
 1264	האַנדלס-שול	Education	ORG-C01903_Q05	1	1	פּעטערבורג																
@@ -1531,9 +1531,9 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1266	ליטעראַטור-היסטאָרישע קורסן פֿון פּראָפ. ראַיעוו	Education	ORG-C02002	1	1	פּעטערבורג																
 1267	אַרכעאָלאָגישן אינסטיטוט אין פּעטערבורג	Education	ORG-C02139	1	1	פּעטערבורג																
 1268	טעכנאָלאָגישן אינסטיטוט	Education	ORG-C02238	1	1	פּעטערבורג																
-1269	פּעטערבורגער טעאַטער-שול	Education	ORG-C03086	1	1	פּעטערבורג																
-1271	טעאַטער-שול אויפֿן נאָמען פֿון א. ס. סובאָרין	Education	ORG-C04662	1	1	פּעטערבורג																
-1272	פּעטערבורגער דראַמאַטישער שול פֿון ניקאָליי פּאָפּאָוו	Education	ORG-C06064	1	1	פּעטערבורג																
+1269	פּעטערבורגער טעאַטער-שול	Theatre education	ORG-C03086	1	1	פּעטערבורג																
+1271	טעאַטער-שול אויפֿן נאָמען פֿון א. ס. סובאָרין	Theatre education	ORG-C04662	1	1	פּעטערבורג																
+1272	פּעטערבורגער דראַמאַטישער שול פֿון ניקאָליי פּאָפּאָוו	Theatre education	ORG-C06064	1	1	פּעטערבורג																
 1273	וואָלד-אינסטיטוט	Education	ORG-C06377	1	1	פּעטערבורג																
 1274	ראַיעווס יורידישע קורסן	Education	ORG-C06767	1	1	פּעטערבורג																
 1275	טעאַטער פון סאַבוראָוו	Theatre	ORG-C00147	1	1	פּעטערבורג																
@@ -1546,7 +1546,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1282	"רוסישן אָפּערעטן-טעאַטער ""בוף"""	Theatre	ORG-C00993	1	1	פּעטערבורג																
 1283	יידישע טעאַטער געזעלשאַפֿט	Theatre	ORG-C01387_Q46	1	1	פּעטערבורג																
 1284	טעאַטער פֿון קרעסטאָווסקיס גאָרטן	Theatre	ORG-C02265	1	1	פּעטערבורג																
-1285	יידישע טעאַטער-סטודיע	Theatre	ORG-C02283_Q04	1	1	פּעטראָגראָד																
+1285	יידישע טעאַטער-סטודיע	Theatre education	ORG-C02283_Q04	1	1	פּעטראָגראָד																
 1286	יידישן מלוכה-טעאַטער	Theatre	ORG-C02849_Q21	1	1	פּעטראָגראָד																
 1287	קייזערלעכן טעאַטער	Theatre	ORG-C04649	1	1	פּעטערבורג																
 1288	גרויסן דראַמאַטישן טעאַטער		ORG-C04783	1	1	פּעטערבורג															Sinai	2026-08-16T14:22:17Z
@@ -1577,7 +1577,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1316	קאָנסערוואַטאָריע	Education	ORG-C00001_Q09 | ORG-C02983	2	1	ווילנע																
 1317	מוזיק-שול		ORG-C00208_Q05 | ORG-C00311 | ORG-C06697	3	1	מאָסקווע															Sinai	2026-08-16T07:22:16Z
 1319	באַלעט-שול א'ל פֿון העלענאַ לאַשקאָוויטש	Education	ORG-C02086 | ORG-C03374	2	1	ווילנע																
-1320	מלוכישן העכסטן רעזשיסאַרישן וואַרשטאָט	Education	ORG-C04309 | ORG-C05259	2	1	מאָסקווע																
+1320	מלוכישן העכסטן רעזשיסאַרישן וואַרשטאָט	Theatre education	ORG-C04309 | ORG-C05259	2	1	מאָסקווע																
 1321	ווייסרוסישן הויך אינסטיטוט פֿון טעאַטראַלער קונסט	Education	ORG-C04527 | ORG-C04575 | ORG-C05993	3	1	מאָסקווע																
 1322	י. ל. מץ	Publisher	ORG-C05665 | ORG-C06346	2	1	ווילנע																
 1323	יידן-פֿאַרוואַלטונג	Jewish Political Bodies	ORG-C03045 | ORG-C03109	2	1	ווילנע																
@@ -1587,13 +1587,13 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1372	„די מוזע“	Theatre	ORG-C01620	1	1	בענדין																
 1460	צימבאַליסט-צוקער	traveling company		0	0																	
 1500	אַזאַזעל-סמבטיון	Theatre	ORG-C00878 | ORG-C05137	3	1	ווילנע																
-1501	ליטערארישדראַמאַטישן קרייז א'אַ פון י. פּיראָזשניקאָוו	Theatre	ORG-C04940 | ORG-C06145	2	1	ווילנע																
-1502	ווייסרוסלענדיש-יידישער מלוכה-סטודיע	Theatre	ORG-C00566 | ORG-C06401	3	1	מאָסקווע																
+1501	ליטערארישדראַמאַטישן קרייז א'אַ פון י. פּיראָזשניקאָוו	Amateur	ORG-C04940 | ORG-C06145	2	1	ווילנע																
+1502	ווייסרוסלענדיש-יידישער מלוכה-סטודיע	Theatre education	ORG-C00566 | ORG-C06401	3	1	מאָסקווע																
 1503	שלום-עליכם-טעאַטער	Theatre	ORG-C00119 | ORG-C00120 | ORG-C04017_Q01	5	1	מאָסקווע																
-1504	יידישע דראַמאַטישע שול	Education	ORG-C02576_Q05 | ORG-C03137 | ORG-C03138	3	1	ווילנע																
-1505	מאָסקווער יידישע טעאַטראַלע שול	Education	ORG-C03400 | ORG-C03618 | ORG-C03731 | ORG-C04315	14	2	מאָסקווע | מאָסקווער																
-1506	יידישער מלוכה-סטודיע פֿון ווייס-רוסלאַנד	Education	ORG-C00423 | ORG-C04377 | ORG-C05544 | ORG-C06544	6	1	מאָסקווע																
-1507	שלום-עליכם-סטוּדיע	Education	ORG-C00753 | ORG-C05933	4	2	מאָסקווע | מאָסקווער																
+1504	יידישע דראַמאַטישע שול	Theatre education	ORG-C02576_Q05 | ORG-C03137 | ORG-C03138	3	1	ווילנע																
+1505	מאָסקווער יידישע טעאַטראַלע שול	Theatre education	ORG-C03400 | ORG-C03618 | ORG-C03731 | ORG-C04315	14	2	מאָסקווע | מאָסקווער																
+1506	יידישער מלוכה-סטודיע פֿון ווייס-רוסלאַנד	Theatre education	ORG-C00423 | ORG-C04377 | ORG-C05544 | ORG-C06544	6	1	מאָסקווע																
+1507	שלום-עליכם-סטוּדיע	Theatre education	ORG-C00753 | ORG-C05933	4	2	מאָסקווע | מאָסקווער																
 1508	מיניאַטור-טעאַטער	Theatre	ORG-C00873_Q01 | ORG-C02276	7	4	ביאַליסטאָק | סאָוויעטןפֿאַרבאַנד | פּוילישער פּראָווינץ | קאָנסטאַנטינאָווקע																
 1509	רוסישן טעאַטער	Theatre	ORG-C00036_Q01 | ORG-C00761	10	4	גראָזני | וויטעבסק | נאָוואָסיבירסק | רעוועל																
 1510	באָברויסקער סאָוויעטישן מלוכה-טעאַטער	Theatre	ORG-C02901 | ORG-C03207	3	1	באָברויסק																
@@ -1639,7 +1639,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1566	צאָל-אַמט	Non-Jewish Political Bodies	ORG-C05354	1	1	אָדעס																
 1567	הילפס-קאָמיטעט	Welfare/Aid Organization	ORG-C06479	1	1	אָדעס																
 1568	אָדעסער ישיבה	Education	ORG-C00709	4	1	אָדעס																
-1569	רוסישער דראָמאַטישער שול	Education	ORG-C00202_Q01	2	1	אָדעס																
+1569	רוסישער דראָמאַטישער שול	Theatre education	ORG-C00202_Q01	2	1	אָדעס																
 1570	4-קלאַסיקע רעגירונגס-שול	Education	ORG-C02679	2	1	אָדעם																
 1571	אָדעסער תלמוד תורה	Education	ORG-C02919 | ORG-C03712 | ORG-C06664	4	1	אָדעס																
 1572	חברה מפיצי השכלה	Education	ORG-C01732_Q02	1	1	אָדעס																
@@ -1656,8 +1656,8 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1604	יידישער אָפּטיילונג ביים אָדעסער פֿאָלקס-אוניווערזיטעט	Education	ORG-C04307	1	1	אָדעס																
 1606	שטאָטישער גימנאַזיע	Education	ORG-C04003	2	1	אָדעס																
 1608	רוסישע גימנאַזיע	Education	ORG-C02022_Q03	1	1	אָדעס																
-1610	אָדעסער מוז דראַמשול	Education	ORG-C03435	1	1	אָדעס																
-1611	אָדעסער מוזיק-דראַמשול	Education	ORG-C03475	1	1	אָדעס																
+1610	אָדעסער מוז דראַמשול	Theatre education	ORG-C03435	1	1	אָדעס																
+1611	אָדעסער מוזיק-דראַמשול	Theatre education	ORG-C03475	1	1	אָדעס																
 1612	האַנדלס-שול פֿון פּראָפּ. האָכמאַן	Education	ORG-C04480	1	1	אָדעס																
 1613	ניי-רוסישן אוניווערזיטעט	Education	ORG-C04530	1	1	אָדעס																
 1615	מעדיצינישן פֿאַקולטעט פֿון אָדעסער אוניווערזיטעט	Education	ORG-C05223	1	1	אָדעס																
@@ -1665,7 +1665,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1617	„אָדעסער קינסטלערישער שול“	Education	ORG-C05462	1	1	אָדעס																
 1620	אָדעסער תלמוד-תורה א'אַ פֿון מענדעלע מוכר ספרים און מ. קליינמאַן	Education	ORG-C04883	1	1	אָדעס																
 1621	אָדעסער גימנאַזיע פֿון ראַשקאָווסקי	Education	ORG-C04477	1	1	אָדעס																
-1623	לאָרענצאָס רוסישער דראָמאַטישער שול	Education	ORG-C06107	1	1	אָדעס																
+1623	לאָרענצאָס רוסישער דראָמאַטישער שול	Theatre education	ORG-C06107	1	1	אָדעס																
 1625	ריינהאָלדס פֿאַרבערייטונגס-קונסט-שול	Education	ORG-C06435	1	1	אָדעס																
 1626	אַלטן טיפּ טעאָטער	Theatre	ORG-C05457	1	1	אָדעם																
 1639	2טער רעגידונגס-שול	Education	ORG-C05486	1	1	אָדעם																
@@ -1728,7 +1728,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1785	אונזער ווינקל (כאַרקאָוו)	Theatre	ORG-C00752_Q01 | ORG-C04372 | ORG-C04513 | ORG-C05083	14	2	כאַרקאָוו | כאָרקאָוו																
 1786	אונזער ווינקל (קיעוו)		ORG-C00504 | ORG-C00752_Q02	6	1	קיעוו															Sinai	2026-07-26T11:12:38Z
 1787	אונזער ווינקל (מינסק)	Theatre	ORG-C00752_Q03 | ORG-C04174 | ORG-C04763	3	1	מינסק																
-1788	אונזער ווינקל (ארץ-ישראל)	Theatre	ORG-C00752_PAL	2	2	חיפה | תל-אביב																
+1788	אונזער ווינקל (ארץ-ישראל)	Amateur	ORG-C00752_PAL	2	2	חיפה | תל-אביב																
 1789	אונזער ווינקעל (גראָדנע)	Journals/ Newspapers	ORG-C00752_PUB	1	1	גראָדנע																
 1933	"„אוהל""-טרופּע"	company on tour	ORG-C00574	0	0																Sinai	2026-08-23T09:26:15Z
 1934	מאַרהאַלם-טרופּע	non-yiddish theatre	ORG-C00892	0	0																Sinai	2026-08-23T09:40:34Z
@@ -1771,7 +1771,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1974	גרויסער יידישער שול אין מעקסיקע	education	ORG-C03734	0	0																Maaty	2026-09-04T19:05:51Z
 1975	שלום-עליכם-שול (כאָרבין)	education	ORG-C00793_Q01	0	0																Maaty	2026-09-04T19:07:03Z
 1976	דוד הערמאַנס סטודיע	education	ORG-C03521	0	0								ווארשע								Maaty	2026-09-04T19:14:08Z
-1977	דוד הערמאַנס טעאַטער-סטודיע	education	ORG-C03172	0	0																Maaty	2026-09-04T19:17:11Z
+1977	דוד הערמאַנס טעאַטער-סטודיע	Theatre education	ORG-C03172	0	0																Maaty	2026-09-04T19:17:11Z
 1978	יידישער ראָדיקאָלער שולע, אַרבעטער רינג, בראנטש נומ' 3	education	ORG-C00611	0	0								לאנדאן								Maaty	2026-09-04T19:19:31Z
 1979	'אַרבעטער פֿריינטקלוב'	theatre	ORG-C03202	0	0																Maaty	2026-09-04T19:42:33Z
 1980	'מיידים'	theatre	ORG-C03111	0	0																Maaty	2026-09-04T19:45:18Z
@@ -1795,15 +1795,15 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1998	מאַנהעטן סקול און מוזיק	education	ORG-C00391	0	0								New York								Maaty	2026-09-04T22:42:07Z
 1999	סט. דזשאָנס יוניוווירסיטי	education	ORG-C00700	0	0																Maaty	2026-09-04T23:06:04Z
 2000	אָדעסער קייזערלעכער מוזיקאַלישער שול	education	ORG-C05475	0	0																Maaty	2026-09-04T23:13:02Z
-2001	פּוילישער דראמ. שול ביי דער לעמבערגער קאָנסערוואַטאָריע	education	ORG-C04404	0	0																Maaty	2026-09-04T23:16:58Z
-2002	שטערןס דראַמאַטישע שול	education	ORG-C05255	0	0																Maaty	2026-09-04T23:48:29Z
-2003	פֿיינמאָזס דראָמאַטישער שול	education	ORG-C06620	0	0																Maaty	2026-09-04T23:50:12Z
-2004	גאָלדפֿאַדעןם דראָמאַטישער שול	education	ORG-C06540	0	0																Maaty	2026-09-04T23:51:54Z
-2005	גאָלדפֿאַדעןם דראָמאַטישער שול		ORG-C06540	0	0																Maaty	2026-10-23T17:27:00Z
+2001	פּוילישער דראמ. שול ביי דער לעמבערגער קאָנסערוואַטאָריע	Theatre education	ORG-C04404	0	0																Maaty	2026-09-04T23:16:58Z
+2002	שטערןס דראַמאַטישע שול	Theatre education	ORG-C05255	0	0																Maaty	2026-09-04T23:48:29Z
+2003	פֿיינמאָזס דראָמאַטישער שול	Theatre education	ORG-C06620	0	0																Maaty	2026-09-04T23:50:12Z
+2004	גאָלדפֿאַדעןם דראָמאַטישער שול	Theatre education	ORG-C06540	0	0																Maaty	2026-09-04T23:51:54Z
+2005	גאָלדפֿאַדעןם דראָמאַטישער שול	Theatre education	ORG-C06540	0	0																Maaty	2026-10-23T17:27:00Z
 2006	גראָדנער ישיבה	education	ORG-C02366	0	0																Maaty	2026-09-05T00:16:19Z
 2007	יידיש טעאַלאָגישן סעמינאָר	education	ORG-C01189	0	0																Maaty	2026-09-05T00:17:07Z
 2008	סלאָנימער ישיבה	education	ORG-C04939	0	0																Maaty	2026-09-05T00:20:08Z
-2009	סטודענטן-אָרקעסטער	theatre education	ORG-C07029	0	0																Judith	2026-09-08T08:08:25Z
+2009	סטודענטן-אָרקעסטער	Musical organization	ORG-C07029	0	0																Judith	2026-09-08T08:08:25Z
 2010	יוניע	theatre-related society/ union	ORG-C04072_Q01	0	0																Noa	2026-09-10T06:38:01Z
 2038	טעבענסעס 'שאַפּ'	other - elaborate!	ORG-C02842	0	0																Judith	2026-09-14T08:09:09Z
 2070	University of California, Los Angeles (UCLA)	education	ORG-C02406	0	0																Maaty	2026-09-22T13:06:24Z
@@ -1825,7 +1825,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2086	Camp Kinder Ring (Workmen’s Circle)	education	ORG-C01321	0	0								Hopewell Junction, New York								Maaty	2026-09-22T16:23:13Z
 2087	Workmen’s Circle Camp, South Haven, Michigan	education	ORG-C03897_Q02	0	0								South Haven, Michigan								Maaty	2026-09-22T16:27:05Z
 2088	Art Students League (Detroit context)	education	ORG-C02200	0	0								Detroit								Maaty	2026-09-22T16:28:49Z
-2089	פּוילישע דראַמאַטישע שול פֿון קרייזשיזשאַנאָווסקי און פֿראַנטשקאָווסקי (לעמבערג)	education	ORG-C01396	0	0								לעמבערג								Maaty	2026-09-22T16:30:19Z
+2089	פּוילישע דראַמאַטישע שול פֿון קרייזשיזשאַנאָווסקי און פֿראַנטשקאָווסקי (לעמבערג)	Theatre education	ORG-C01396	0	0								לעמבערג								Maaty	2026-09-22T16:30:19Z
 2090	אַרלער בית־המדרש	education	ORG-C00859	0	0								אָרלע								Maaty	2026-09-22T16:31:14Z
 2091	אָגראַר-שול פֿון טשענסטאָכאָוו	education	ORG-C06295	0	0								Częstochowa								Maaty	2026-09-22T16:50:54Z
 2092	אינסטיטוט פֿאַר מוזיקאַלישער קונסט	education	ORG-C07341	0	0								New York								Maaty	2026-09-22T16:58:41Z
@@ -1842,7 +1842,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2103	"ביבליאָטעק אין ""בית בערל“"	library	ORG-C07495	0	0																Maaty	2026-09-22T17:07:58Z
 2104	איזידאַראַ דונקאָן-שול	education	ORG-C01173	0	0																Maaty	2026-09-22T17:22:59Z
 2105	באַראַן הירש-שול	education	ORG-C00369_Q02	0	0																Maaty	2026-09-22T17:23:37Z
-2106	באָגראָגאָווס דראַמאַטישער שול	education	ORG-C05358	0	0																Maaty	2026-09-22T17:24:33Z
+2106	באָגראָגאָווס דראַמאַטישער שול	Theatre education	ORG-C05358	0	0																Maaty	2026-09-22T17:24:33Z
 2107	בית עם (לאָדזש)	education	ORG-C02294_Q02	0	0																Maaty	2026-09-22T17:24:51Z
 2108	בית המדרש ביים אייזערנעם טויער	education	ORG-C01832	0	0																Maaty	2026-09-22T17:25:08Z
 2109	בריוסאָווס ליטעראַרישן אינסטיטוט	education	ORG-C03670	0	0																Maaty	2026-09-22T17:25:34Z
@@ -1867,31 +1867,31 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2128	די שטאָטישע שול פֿון זאָמענהאָף	education	ORG-C06328	0	0																Maaty	2026-09-22T17:54:27Z
 2129	דייטש-עוואָנגעלישע שול	education	ORG-C02305	0	0																Maaty	2026-09-22T17:56:19Z
 2130	גרענד סטריט-באָיס	fraternal order	ORG-C02192	0	0								New York								Maaty	2026-09-22T17:58:44Z
-2131	דראַמאַטישע שול ביים פּוילישן טעאַטער ״רעדוטאָ״	education	ORG-C02087	0	0																Maaty	2026-09-22T18:00:10Z
-2132	דראַמאַטישער שול א'פ פֿון פֿראַנטשישעק וויסאָצקי	education	ORG-C02943	0	0																Maaty	2026-09-22T18:00:39Z
+2131	דראַמאַטישע שול ביים פּוילישן טעאַטער ״רעדוטאָ״	Theatre education	ORG-C02087	0	0																Maaty	2026-09-22T18:00:10Z
+2132	דראַמאַטישער שול א'פ פֿון פֿראַנטשישעק וויסאָצקי	Theatre education	ORG-C02943	0	0																Maaty	2026-09-22T18:00:39Z
 2133	דיקשטיין-מייזלערס פּריוואַט גימנאַזיע	education	ORG-C03423	0	0																Maaty	2026-09-22T18:01:00Z
-2134	דראַמאַטישער שול פֿון איוואַן מיכיילאָוויטש שובאַלאָוו	education	ORG-C05138	0	0																Maaty	2026-09-22T18:01:51Z
-2135	דראַמאַטישע שול פֿון דיר. ווילאַנד	education	ORG-C03102	0	0																Maaty	2026-09-22T18:02:13Z
+2134	דראַמאַטישער שול פֿון איוואַן מיכיילאָוויטש שובאַלאָוו	Theatre education	ORG-C05138	0	0																Maaty	2026-09-22T18:01:51Z
+2135	דראַמאַטישע שול פֿון דיר. ווילאַנד	Theatre education	ORG-C03102	0	0																Maaty	2026-09-22T18:02:13Z
 2136	דראַנזשיקס שול	education	ORG-C07402	0	0																Maaty	2026-09-22T18:02:38Z
-2137	דראַמאַטישער שול פֿון ראָכמאַנינאָי	education	ORG-C00342	0	0																Maaty	2026-09-22T18:03:04Z
-2138	דראַמאַטישע סטודיע אין ניו סקול און סאָשל ריסווירטש	education	ORG-C01439_Q08	0	0																Maaty	2026-09-22T18:10:49Z
+2137	דראַמאַטישער שול פֿון ראָכמאַנינאָי	Theatre education	ORG-C00342	0	0																Maaty	2026-09-22T18:03:04Z
+2138	דראַמאַטישע סטודיע אין ניו סקול און סאָשל ריסווירטש	Theatre education	ORG-C01439_Q08	0	0																Maaty	2026-09-22T18:10:49Z
 2139	גאָרדין ליטעראָרי-סוירקל	theatre-related society/ union	ORG-C06164	0	0																Maaty	2026-09-22T18:12:04Z
 2140	בילדונג	theatre-related society/ union	ORG-C03446	0	0																Maaty	2026-09-22T18:23:09Z
-2141	אידישע דראַמאַטישע געזעלשאַפט	theatre-related society/ union	ORG-C02576_Q06	0	0																Maaty	2026-09-22T18:26:17Z
-2142	דראַמאַטישע קורסן פֿון אַנדרעעוו-פּעטראָווסקי	education	ORG-C03420	0	0																Maaty	2026-09-22T18:27:21Z
-2143	דראַמאַטישע קורסן פֿון רוסישן רעזשיסער טראַגאַנאַוו-באַבראָוו	education	ORG-C04292	0	0								Vilna								Maaty	2026-09-22T18:27:48Z
-2144	דראָמאַטישער סטודיע פֿון רעזשיסער אַטיאַנאָוו	education	ORG-C04107	0	0																Maaty	2026-09-22T18:30:56Z
-2145	דראָמאַטישער שול פון פּראָפ. מאָריאָן	education	ORG-C06323	0	0								Leipzig								Maaty	2026-09-22T18:31:15Z
-2146	דראָמאַטישער שול פֿון סעלעוואָנאָוו	education	ORG-C06773	0	0																Maaty	2026-09-22T18:31:33Z
-2147	דראַמאַטישער שול	education	ORG-C01439_Q04	0	0								Vilna								Maaty	2026-09-22T18:47:56Z
-2148	דראַמאַטישע שול	education	ORG-C01439_Q05	0	0								Warsaw								Maaty	2026-09-22T18:48:22Z
-2149	דראַמאַטישער שול	education	ORG-C01439_Q06	0	0								Kharkov								Maaty	2026-09-22T18:48:49Z
-2150	דראָמאָטישער סטודיע ביים קונסט-טעאַטער	education	ORG-C06029	0	0								New York								Maaty	2026-09-22T18:49:25Z
-2151	דראָמשולע ביים פוילישן שטאָט-טעאַטער	education	ORG-C05731	0	0								Lemberg								Maaty	2026-09-22T18:49:50Z
-2152	דראָמאַטישע שול פֿון ליסינקאַ	education	ORG-C05558	0	0																Maaty	2026-09-22T18:51:41Z
-2153	דראָמאַטישע שול פֿון דאָלינאָוו	education	ORG-C06330	0	0																Maaty	2026-09-22T18:52:09Z
-2154	דראָמאָטישער שול פֿון אַקטיאָר סקוראַטאָוו	education	ORG-C06349	0	0																Maaty	2026-09-22T18:52:26Z
-2155	דראָמאָטישער שול פֿון דייטשן טעאַטער-דירעקטאָר וואָלטער וואַסערמאַן	education	ORG-C06305	0	0																Maaty	2026-09-22T18:52:54Z
+2141	אידישע דראַמאַטישע געזעלשאַפט	Amateur	ORG-C02576_Q06	0	0																Maaty	2026-09-22T18:26:17Z
+2142	דראַמאַטישע קורסן פֿון אַנדרעעוו-פּעטראָווסקי	Theatre education	ORG-C03420	0	0																Maaty	2026-09-22T18:27:21Z
+2143	דראַמאַטישע קורסן פֿון רוסישן רעזשיסער טראַגאַנאַוו-באַבראָוו	Theatre education	ORG-C04292	0	0								Vilna								Maaty	2026-09-22T18:27:48Z
+2144	דראָמאַטישער סטודיע פֿון רעזשיסער אַטיאַנאָוו	Theatre education	ORG-C04107	0	0																Maaty	2026-09-22T18:30:56Z
+2145	דראָמאַטישער שול פון פּראָפ. מאָריאָן	Theatre education	ORG-C06323	0	0								Leipzig								Maaty	2026-09-22T18:31:15Z
+2146	דראָמאַטישער שול פֿון סעלעוואָנאָוו	Theatre education	ORG-C06773	0	0																Maaty	2026-09-22T18:31:33Z
+2147	דראַמאַטישער שול	Theatre education	ORG-C01439_Q04	0	0								Vilna								Maaty	2026-09-22T18:47:56Z
+2148	דראַמאַטישע שול	Theatre education	ORG-C01439_Q05	0	0								Warsaw								Maaty	2026-09-22T18:48:22Z
+2149	דראַמאַטישער שול	Theatre education	ORG-C01439_Q06	0	0								Kharkov								Maaty	2026-09-22T18:48:49Z
+2150	דראָמאָטישער סטודיע ביים קונסט-טעאַטער	Theatre education	ORG-C06029	0	0								New York								Maaty	2026-09-22T18:49:25Z
+2151	דראָמשולע ביים פוילישן שטאָט-טעאַטער	Theatre education	ORG-C05731	0	0								Lemberg								Maaty	2026-09-22T18:49:50Z
+2152	דראָמאַטישע שול פֿון ליסינקאַ	Theatre education	ORG-C05558	0	0																Maaty	2026-09-22T18:51:41Z
+2153	דראָמאַטישע שול פֿון דאָלינאָוו	Theatre education	ORG-C06330	0	0																Maaty	2026-09-22T18:52:09Z
+2154	דראָמאָטישער שול פֿון אַקטיאָר סקוראַטאָוו	Theatre education	ORG-C06349	0	0																Maaty	2026-09-22T18:52:26Z
+2155	דראָמאָטישער שול פֿון דייטשן טעאַטער-דירעקטאָר וואָלטער וואַסערמאַן	Theatre education	ORG-C06305	0	0																Maaty	2026-09-22T18:52:54Z
 2156	הירן יוניאָן קאלעדזש	education	ORG-C05008	0	0								Cincinnati								Maaty	2026-09-22T18:55:39Z
 2157	היברו עדיוקעישאָנאָל סאָסייעטי	education	ORG-C00952	0	0								Brownsville, Brooklyn, New York								Maaty	2026-09-22T19:00:17Z
 2158	הויכשול פֿון יוריספּרודענץ און פּאָליטישער עקאָנאָמיע	education	ORG-C00407	0	0																Maaty	2026-09-22T19:00:54Z
@@ -1900,7 +1900,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2161	העבּרעיש-רוּסישע שוּל	education	ORG-C04004	0	0																Maaty	2026-09-22T19:09:22Z
 2162	העברעאישער גימנאַזיע	education	ORG-C02591_Q01	0	0																Maaty	2026-09-22T19:09:36Z
 2163	הרצליה	education	ORG-C01228	0	0																Maaty	2026-09-22T19:09:59Z
-2164	וואַרדי יאָעליט-טעאַטער-סטודיע	education	ORG-C04114	0	0																Maaty	2026-09-22T19:10:33Z
+2164	וואַרדי יאָעליט-טעאַטער-סטודיע	Theatre education	ORG-C04114	0	0																Maaty	2026-09-22T19:10:33Z
 2165	העכערער קרוינישער יידישער שול	education	ORG-C06902	0	0																Maaty	2026-09-22T19:10:52Z
 2166	העברעיש. פּוילישער שול	education	ORG-C04804	0	0																Maaty	2026-09-22T19:11:30Z
 2167	הויכשולע דער מוזיק	education	ORG-C03532	0	0																Maaty	2026-09-22T19:11:54Z
@@ -1924,7 +1924,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2185	זאַרכינס יידיש-רוסישע שול	education	ORG-C01116	0	0																Maaty	2026-09-22T19:58:05Z
 2186	חדר פון רי שלמהלע	education	ORG-C05644	0	0								יאָס								Maaty	2026-09-22T19:58:24Z
 2187	וועטערינאָר-אינסטיטוט	education	ORG-C05981	0	0								וואַרשע								Maaty	2026-09-22T19:59:33Z
-2188	זוחר	education	ORG-C07192	0	0								קליוולאַנד								Maaty	2026-09-22T19:59:51Z
+2188	זוחר	Theatre education	ORG-C07192	0	0								קליוולאַנד								Maaty	2026-09-22T19:59:51Z
 2189	ועד החינוך — בוענאָס איירעס	education	ORG-C00056	0	0								בוענאָס איירעס								Maaty	2026-09-22T20:00:07Z
 2190	ווינער אינסטיטוט פֿאַר סאָציאַלע וויסנשאַפטן	other - elaborate!	ORG-C03702	0	0								ווין								Maaty	2026-09-22T20:06:16Z
 2191	ווילנער יידישער סקויטןאָרגאַניזאַציע 'די בין'	other - elaborate!	ORG-C03178	0	0								ווילנע								Maaty	2026-09-22T20:06:32Z
@@ -1947,15 +1947,15 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2208	יוגנט-קלוב אין ווילנער געטאָ	other - elaborate!	ORG-C03110	0	0								ווילנע								Maaty	2026-09-22T20:43:27Z
 2209	יהודה בלייך מעמאָריאָל אינסטיטוט פֿאַרן לעבעדיקן טעאַטער	other - elaborate!	ORG-C07288	0	0								מילוואַקי								Maaty	2026-09-22T20:43:57Z
 2210	Young Judaea (USA)	other - elaborate!	ORG-C07295	0	0																Maaty	2026-09-22T20:44:13Z
-2211	יונג אַרגענטינע — דראַמאַטישע שול	education	ORG-C04264_Q02	0	0																Maaty	2026-09-22T20:46:30Z
+2211	יונג אַרגענטינע — דראַמאַטישע שול	Theatre education	ORG-C04264_Q02	0	0																Maaty	2026-09-22T20:46:30Z
 2212	יידישן אַרבעטער אוניווערזיטעט	education	ORG-C01432	0	0								ניו יאָרק								Maaty	2026-09-22T20:48:37Z
 2213	Jews’ College, London	education	ORG-C05950	0	0								London								Maaty	2026-09-22T20:55:59Z
 2214	Jewish Academic House, Warsaw (student residence)	other - elaborate!	ORG-C03705	0	0								Warsaw								Maaty	2026-09-22T20:56:56Z
 2215	Shimon Frug Jewish Folk School, Vilna	education	ORG-C02084	0	0								Vilna								Maaty	2026-09-22T20:58:57Z
-2216	Folks Party Yiddish Theatre Studio (Moyshe Broderzon), Lodz	education	ORG-C02275	0	0								Lodz								Maaty	2026-09-22T20:59:20Z
+2216	Folks Party Yiddish Theatre Studio (Moyshe Broderzon), Lodz	Theatre education	ORG-C02275	0	0								Lodz								Maaty	2026-09-22T20:59:20Z
 2217	Sholem Aleichem Jewish Gymnasium, Kaunas	education	ORG-C03558	0	0								Kaunas								Maaty	2026-09-22T20:59:52Z
-2218	Rotbaum–Wiskind Yiddish Dramatic School, Warsaw	education	ORG-C01479	0	0								Warsaw								Maaty	2026-09-22T21:00:19Z
-2219	Jewish Theatre Studio at the National Council / Kultur-Lige, Kaunas	education	ORG-C05543	0	0								Kaunas								Maaty	2026-09-22T21:01:06Z
+2218	Rotbaum–Wiskind Yiddish Dramatic School, Warsaw	Theatre education	ORG-C01479	0	0								Warsaw								Maaty	2026-09-22T21:00:19Z
+2219	Jewish Theatre Studio at the National Council / Kultur-Lige, Kaunas	Theatre education	ORG-C05543	0	0								Kaunas								Maaty	2026-09-22T21:01:06Z
 2220	Jewish Department, Kharkiv Pedagogical Institute	education	ORG-C00302	0	0								Kharkiv								Maaty	2026-09-22T21:01:37Z
 2221	Jewish Department, Moscow State Pedagogical Institute	education	ORG-C00303	0	0								Moscow								Maaty	2026-09-22T21:02:02Z
 2222	Junimea Jewish School, Iasi	education	ORG-C01612	0	0								Iasi								Maaty	2026-09-22T21:02:21Z
@@ -1971,7 +1971,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2232	Yeshiva of R. Shmuel Kalish, Lemberg	education	ORG-C02603	0	0								Lemberg								Maaty	2026-09-26T08:10:32Z
 2233	Chofetz Chaim Yeshiva, Baltimore	education	ORG-C02271	0	0								Baltimore								Maaty	2026-09-26T08:12:03Z
 2234	Yeshiva College, New York	education	ORG-C01264	0	0								New York								Maaty	2026-09-26T08:14:49Z
-2252	דראַמאַטישע קונסט	theatre-related society/ union	ORG-C00726	0	0																Noa	2026-10-03T18:56:59Z
+2252	דראַמאַטישע קונסט	Amateur	ORG-C00726	0	0																Noa	2026-10-03T18:56:59Z
 2253	אַרטיסטן-פאַריין (וואַרשע)	theatre-related society/ union	ORG-C00727_Q01	0	0																Noa	2026-10-03T18:58:26Z
 2254	יידישע אַקטיאָרן-יוניאָן	theatre-related society/ union	ORG-C00199_Q01	0	0																Noa	2026-10-03T19:02:35Z
 2255	וואַרשעווער יידישן אַרטיסטן-פֿאַריין	theatre-related society/ union	ORG-C01509	0	0																Noa	2026-10-03T19:04:07Z
@@ -1996,15 +1996,15 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2275	פּערהיפט	amateur	ORG-C02322	0	0																Bella	2026-10-05T18:16:37Z
 2276	גרופּע „ליבהאָבער“	amateur	ORG-C02956	0	0																Bella	2026-10-05T18:23:49Z
 2277	נייע יידיש אַמעריקאַנער	amateur	ORG-C02391	0	0																Bella	2026-10-05T18:25:40Z
-2278	לעמבערגער חברים-טרופּע	amateur	ORG-C03688	0	0																Bella	2026-10-05T18:26:25Z
+2278	לעמבערגער חברים-טרופּע	Company on Tour	ORG-C03688	0	0																Bella	2026-10-05T18:26:25Z
 2279	דראַמ.-סעקציע ביים ראַדאָמער גראָסער-קלוב א'נ 'אַרבעטערווינקל'	amateur	ORG-C02740	0	0																Bella	2026-10-05T18:34:17Z
 2280	דראַמ'-קרייז ביי דער גאָסטינינער ביבליאָטעק	amateur	ORG-C03204	0	0																Bella	2026-10-05T18:35:43Z
 2281	אַרטער שפּילער-קאָלעקטיוו	amateur	ORG-C07234	0	0																Bella	2026-10-05T18:36:21Z
 2282	וויניצער דראַמקרייז	amateur	ORG-C00437	0	0																Bella	2026-10-05T18:41:09Z
-2283	"ליטעראַריש-דראַמאַטישן קרייז ביים ""בונד"""	amateur	ORG-C00759	0	0																Bella	2026-10-05T18:41:54Z
+2283	"ליטעראַריש-דראַמאַטישן קרייז ביים ""בונד"""	amateur	ORG-C00759	0	0							997									Bella	2026-10-05T18:41:54Z
 2284	לאָס אַנדזשעלאָס יידיש קלאָבּ	amateur	ORG-C03987	0	0																Bella	2026-10-05T18:42:30Z
 2285	דראָמקרייז אויפֿן נאָמען פֿון קאַלינין	amateur	ORG-C00465	0	0																Bella	2026-10-05T18:44:52Z
-2286	דראַמסעקציע ביים „הזמיר“	amateur	ORG-C00583	0	0																Bella	2026-10-05T18:45:11Z
+2286	דראַמסעקציע ביים „הזמיר“	amateur	ORG-C00583	0	0							1925									Bella	2026-10-05T18:45:11Z
 2287	"„לאָזשאַ לומינא"""	amateur	ORG-C02470	0	0																Bella	2026-10-05T18:46:51Z
 2288	סטאַר פּלעיערס-קלוב	amateur	ORG-C03809	0	0																Bella	2026-10-05T18:47:22Z
 2289	"העברעישער ליבהאָבער-גרופּע „הבמה"""	amateur	ORG-C03927	0	0																Bella	2026-10-05T18:47:50Z
@@ -2016,14 +2016,14 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2295	אַרבעטער טעאַטער גרופּע	amateur	ORG-C07219	0	0																Bella	2026-10-05T19:35:19Z
 2296	טעאַטער-גרופּע ביי דער קהלה	amateur	ORG-C07012	0	0																Bella	2026-10-05T19:36:27Z
 2297	דראַמקרייז ביים אַרבעטער-היים	amateur	ORG-C07180	0	0																Bella	2026-10-05T19:37:24Z
-2298	די מאַהיליווער טרופּע	amateur	ORG-C03893	0	0																Bella	2026-10-05T19:38:20Z
+2298	די מאַהיליווער טרופּע	Traveling Company	ORG-C03893	0	0																Bella	2026-10-05T19:38:20Z
 2299	"ליבהאָבער-גרופּע א""ר פון אַדאַם דאָמב"	amateur	ORG-C07130	0	0																Bella	2026-10-05T19:50:51Z
 2300	דראָמקרייז ביים אַרבעטער-רינג	amateur	ORG-C06626	0	0																Bella	2026-10-05T19:51:46Z
 2301	ווילנער אַמאַטאָרן-אַנסאַמבלען	amateur	ORG-C03035	0	0																Bella	2026-10-05T19:52:08Z
 2302	ביעלאָצערקאָווער דראַמקרייז	amateur	ORG-C03473	0	0																Bella	2026-10-05T19:52:31Z
 2303	דראָמאַטישער סעקציע פּועלי ציון	amateur	ORG-C02532	0	0																Bella	2026-10-05T19:53:08Z
 2304	נואַרקער דראַמאַטישן קרייז	amateur	ORG-C00853	0	0																Bella	2026-10-05T19:53:33Z
-2305	פּרעסערס לאָקאָל פֿון דער אינטערנעשאָנאַל	amateur	ORG-C07228	0	0																Bella	2026-10-05T19:54:00Z
+2305	פּרעסערס לאָקאָל פֿון דער אינטערנעשאָנאַל	Trade Union / Professional Association		0	0																Bella	2026-10-05T19:54:00Z
 2306	לאָדזשער העברעישער ליבהאָבער-טרופע	amateur	ORG-C01293	0	0																Bella	2026-10-05T19:54:32Z
 2307	דראַמאַטישע סעקציע ביים „השומר הצעיר“	amateur	ORG-C01269	0	0																Bella	2026-10-05T19:54:57Z
 2308	דראַמקאָלעקטיוו „דאָווקע“	amateur	ORG-C03585	0	0																Bella	2026-10-05T19:55:24Z
@@ -2191,7 +2191,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2493	יוגנט-אָרגאַניזאַצע „השומר“	jewish political bodies	ORG-C00426	0	0																Maaty	2026-10-09T13:38:34Z
 2494	טשעקא	non-jewish political bodies	ORG-C00463	0	0																Maaty	2026-10-09T13:38:57Z
 2495	קונסטקאָמיסיע אין דער אָפּטיילונג פֿאַר „פֿאָלקס-בילדונג“	non-jewish political bodies	ORG-C00473	0	0																Maaty	2026-10-09T13:39:08Z
-2496	קאָמ. צוקונפט	jewish political bodies	ORG-C00526	0	0																Maaty	2026-10-09T13:39:25Z
+2496	קאָמ. צוקונפט	jewish political bodies		0	0																Maaty	2026-10-09T13:39:25Z
 2497	יידישן אַרבעטער קאָמיטעט	jewish political bodies	ORG-C00548_Q02	0	0																Maaty	2026-10-09T13:39:36Z
 2498	יידישן אַרבעטער קאָמיטעט	jewish political bodies	ORG-C00548_Q03	0	0																Maaty	2026-10-09T13:39:47Z
 2499	סאַציאָליסטישער פּאַרטיי	non-jewish political bodies	ORG-C00621_Q02	0	0																Maaty	2026-10-09T13:40:14Z
@@ -2268,7 +2268,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2570	קולטור-אָפּטיילונג	jewish political bodies	ORG-C02988	0	0																Maaty	2026-10-09T14:02:49Z
 2571	פלייש-רעזאָרט	jewish political bodies	ORG-C03066	0	0																Maaty	2026-10-09T14:02:59Z
 2572	אומאָפּהענגיקע סאַציאַליסטישע פאַרטיי	non-jewish political bodies	ORG-C03206	0	0																Maaty	2026-10-09T14:03:24Z
-2573	גורדוניה	jewish political bodies	ORG-C03223	0	0																Maaty	2026-10-09T14:03:34Z
+2573	גורדוניה	jewish political bodies		0	0																Maaty	2026-10-09T14:03:34Z
 2574	ציוניסטישן קלוב	jewish political bodies	ORG-C03296	0	0																Maaty	2026-10-09T14:04:35Z
 2575	יידישער פּאָליציי	jewish political bodies	ORG-C03353	0	0																Maaty	2026-10-09T14:04:54Z
 2576	קונסט-פֿאַרוואַלטונג פֿון קיעווער געגנט	non-jewish political bodies	ORG-C03437	0	0																Maaty	2026-10-09T14:05:19Z
@@ -2414,7 +2414,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2717	עקטאָר-ליג	theatre-related society/ union	ORG-C04202	0	0																Noa	2026-10-11T07:54:44Z
 2718	יידישן קולטור-פֿאַראיין	theatre-related society/ union	ORG-C04259_Q02	0	0																Noa	2026-10-11T07:55:48Z
 2719	אַקטיאָרן-יוניאָן לאָקל 18 (2)	theatre-related society/ union	ORG-C04386	0	0																Noa	2026-10-11T07:57:20Z
-2720	סטאַניסלאַווער גאָלדפֿאַדען-פאַראיין	theatre-related society/ union	ORG-C04506	0	0																Noa	2026-10-11T07:58:24Z
+2720	סטאַניסלאַווער גאָלדפֿאַדען-פאַראיין	Amateur	ORG-C04506	0	0																Noa	2026-10-11T07:58:24Z
 2721	טעאַטריקל טרייד-קאָנסול	theatre-related society/ union	ORG-C04616	0	0																Noa	2026-10-11T07:58:43Z
 2722	יידישער אַקטיאָרן-ליג	theatre-related society/ union	ORG-C04646	0	0																Noa	2026-10-11T08:00:13Z
 2723	אינדעפּענדענט עקטאָרס ליג	theatre-related society/ union	ORG-C04668	0	0																Noa	2026-10-11T08:01:29Z
@@ -2454,8 +2454,8 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2757	יידישן אָרטיסטן-צוזאַמענפֿאָר	theatre-related society/ union	ORG-C06638	0	0																Noa	2026-10-11T08:57:08Z
 2758	פֿאַריין	theatre-related society/ union	ORG-C06648	0	0																Noa	2026-10-11T08:58:50Z
 2759	קאָמיטעט צו פאַראייניקן ביידע יוניעם	theatre-related society/ union	ORG-C06650	0	0																Noa	2026-10-11T08:59:08Z
-2760	קאָוונער יידישער דראַמאַטישער געזעלשאַפט	theatre-related society/ union	ORG-C06683	0	0																Noa	2026-10-11T09:07:00Z
-2761	יידישער דראַמאַטישער געזעלשאַפט אין ליבאַווע	theatre-related society/ union	ORG-C06684	0	0																Noa	2026-10-11T09:07:35Z
+2760	קאָוונער יידישער דראַמאַטישער געזעלשאַפט	Amateur	ORG-C06683	0	0																Noa	2026-10-11T09:07:00Z
+2761	יידישער דראַמאַטישער געזעלשאַפט אין ליבאַווע	Amateur	ORG-C06684	0	0																Noa	2026-10-11T09:07:35Z
 2762	פֿריינט פֿון יידישן טעאַטער אין ווילנע	theatre-related society/ union	ORG-C06688	0	0																Noa	2026-10-11T09:08:02Z
 2763	פּעטערבורגער יידישער ליטעראָרישער געזעלשאַפט	theatre-related society/ union	ORG-C06792	0	0																Noa	2026-10-11T09:08:46Z
 2764	ערשטער יידישער אַרטיסטן-פאַריין	theatre-related society/ union	ORG-C06816	0	0																Noa	2026-10-11T09:09:34Z
@@ -2662,7 +2662,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3043	חסד של אמת	welfare/aid organization	ORG-C03512	0	0																Noa	2026-10-18T06:45:38Z
 3044	וויצאָ	welfare/aid organization	ORG-C02587	0	0																Noa	2026-10-18T06:45:57Z
 3045	גאָלדפאַדען-פאַריין	theatre-related society/ union	ORG-C02661_Q02	0	0																Noa	2026-10-18T06:46:31Z
-3046	יעקב גאָרדין דראַמאַטישע געזעלשאַפט	theatre-related society/ union	ORG-C03952	0	0																Noa	2026-10-18T06:47:00Z
+3046	יעקב גאָרדין דראַמאַטישע געזעלשאַפט	Amateur	ORG-C03952	0	0																Noa	2026-10-18T06:47:00Z
 3047	דראַמאַטישער געזעלשאַפֿט	theatre-related society/ union	ORG-C00721	0	0																Noa	2026-10-18T06:47:55Z
 3048	הדסה	welfare/aid organization	ORG-C00966_Q01	0	0																Noa	2026-10-18T06:48:23Z
 3049	אונראַ	welfare/aid organization	ORG-C01754	0	0																Noa	2026-10-18T06:48:59Z
@@ -2670,8 +2670,8 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3051	וועלטפֿאַרבאַנד פֿון די בערגען כעלזענער	welfare/aid organization	ORG-C03806	0	0																Noa	2026-10-18T06:49:30Z
 3052	גראָדנער יידישע טעאַטער-געזעלשאַפט	theatre-related society/ union	ORG-C01683	0	0																Noa	2026-10-18T06:50:51Z
 3053	געזעלשאַפט דער פרוינדע	welfare/aid organization	ORG-C05442	0	0																Noa	2026-10-18T06:51:20Z
-3054	סילווערס דראַמאַטיק קלאָב	theatre-related society/ union	ORG-C00947	0	0																Noa	2026-10-18T06:54:23Z
-3055	אָרטיקער דראַמאַטישער געזעלשאַפט	theatre-related society/ union	ORG-C00987	0	0																Noa	2026-10-18T06:55:23Z
+3054	סילווערס דראַמאַטיק קלאָב	Amateur	ORG-C00947	0	0																Noa	2026-10-18T06:54:23Z
+3055	אָרטיקער דראַמאַטישער געזעלשאַפט	Amateur	ORG-C00987	0	0																Noa	2026-10-18T06:55:23Z
 3056	"וואַרשעווער „לינת הצדק"""	welfare/aid organization	ORG-C02063	0	0																Noa	2026-10-18T06:55:53Z
 3057	יידישן קאָמיוניטי סענטער אין מילוואָקי	welfare/aid organization	ORG-C02323	0	0																Noa	2026-10-18T06:56:13Z
 3058	פרויען-דיוויזיע	welfare/aid organization	ORG-C02529	0	0																Noa	2026-10-18T06:56:49Z
@@ -2681,9 +2681,9 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3062	טאָז	welfare/aid organization	ORG-C03269_Q01	0	0																Noa	2026-10-18T06:59:52Z
 3063	יאָנג מען חבר אַסאַסייישן	welfare/aid organization	ORG-C03732	0	0																Noa	2026-10-18T07:00:08Z
 3064	נאָשעלקעס און אומגעגענד הילפס סאָסייעטי	welfare/aid organization	ORG-C03790	0	0																Noa	2026-10-18T07:00:24Z
-3065	פּיפּלס קראָן דראַמאָטיק סאָסייטי	theatre-related society/ union	ORG-C05303	0	0																Noa	2026-10-18T07:00:49Z
+3065	פּיפּלס קראָן דראַמאָטיק סאָסייטי	Amateur	ORG-C05303	0	0																Noa	2026-10-18T07:00:49Z
 3066	פּוילישן פֿאַרבאַנד אין קאַנאַדע	welfare/aid organization	ORG-C06953	0	0																Noa	2026-10-18T07:02:07Z
-3067	אינדעפּענדענט דראָמאָטיק סאָסיועטי	theatre-related society/ union	ORG-C05771	0	0																Noa	2026-10-18T07:05:25Z
+3067	אינדעפּענדענט דראָמאָטיק סאָסיועטי	Amateur	ORG-C05771	0	0																Noa	2026-10-18T07:05:25Z
 3068	יידישן נאַציאָנאַלן בית יתומים	welfare/aid organization	ORG-C07065	0	0																Noa	2026-10-18T07:07:25Z
 3069	געזעלשאַפֿט „מיר שיקאַגער“	welfare/aid organization	ORG-C07184	0	0																Noa	2026-10-18T07:07:46Z
 3070	קאַלישער אומפּאַרטייאישער רעליף קאָמיטעט	welfare/aid organization	ORG-C07411	0	0																Noa	2026-10-18T07:08:01Z
@@ -2716,7 +2716,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3097	אינדעפּענדענט מאָגעלניצער בענעוואָלענט סאָסייעטי	welfare/aid organization	ORG-C01207	0	0																Noa	2026-10-18T07:18:40Z
 3098	פֿאַרבאַנד פֿון די גאַליציאַנער און בוקאָווינער יידן אין אַמעריקע	welfare/aid organization	ORG-C01221	0	0																Noa	2026-10-18T07:19:35Z
 3100	טעמפּל	religious institutions/organizations	ORG-C01278_Q02	0	0																Noa	2026-10-18T07:19:54Z
-3101	דראַמאַטישער געזעלשאַפֿט „מוזאָ“	theatre-related society/ union	ORG-C01339	0	0																Noa	2026-10-18T07:20:15Z
+3101	דראַמאַטישער געזעלשאַפֿט „מוזאָ“	Amateur	ORG-C01339	0	0																Noa	2026-10-18T07:20:15Z
 3102	אסתר הירשביין-שומיאַטשער בוך-קאָמיטעט	theatre-related society/ union	ORG-C01357	0	0																Noa	2026-10-18T07:20:31Z
 3103	אַסטיודענפֿאַרבאַנד	welfare/aid organization	ORG-C01400	0	0																Noa	2026-10-18T07:20:52Z
 3104	"לאָדזש 510 פֿון די ""נייטס אָוו פּיטהיאָס"""	welfare/aid organization	ORG-C01989	0	0																Noa	2026-10-18T07:21:20Z
@@ -2764,7 +2764,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3146	קאָמיוניטי טשעסט	welfare/aid organization	ORG-C02588	0	0																Noa	2026-10-18T07:40:54Z
 3147	למען החייל	welfare/aid organization	ORG-C02594	0	0																Noa	2026-10-18T07:41:13Z
 3148	שלום-עליכם צווייג 305	welfare/aid organization	ORG-C02597	0	0																Noa	2026-10-18T07:41:31Z
-3149	מאָהילעווער דראַמאַטישן קרייז	theatre-related society/ union	ORG-C02937	0	0																Noa	2026-10-18T07:41:53Z
+3149	מאָהילעווער דראַמאַטישן קרייז	Amateur	ORG-C02937	0	0																Noa	2026-10-18T07:41:53Z
 3150	אַליינהילף	welfare/aid organization	ORG-C02995	0	0																Noa	2026-10-18T07:42:08Z
 3151	ראָטשילדס מושב זקנים	welfare/aid organization	ORG-C03030	0	0																Noa	2026-10-18T07:42:24Z
 3152	נשרפים- סעקציע	welfare/aid organization	ORG-C03038	0	0																Noa	2026-10-18T07:42:38Z
@@ -2843,7 +2843,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3226	ניישאַץס 'תומים-הויז	welfare/aid organization	ORG-C05740	0	0																Noa	2026-10-18T10:13:39Z
 3227	בריטישער געזעלשאָפֿט צו פֿאָרשפּרייטן דאָס קריסטענטום צווישן יידן	religious institutions/organizations	ORG-C05808	0	0																Noa	2026-10-18T10:13:59Z
 3228	רייטשער כאָר-שול	religious institutions/organizations	ORG-C05841	0	0																Noa	2026-10-18T10:14:49Z
-3229	"פֿאַריין ""ציון"""	jewish political bodies	ORG-C02784	0	0																Judith	2026-10-18T10:15:03Z
+3229	"פֿאַריין ""ציון"""	jewish political bodies		0	0																Judith	2026-10-18T10:15:03Z
 3230	בראָדסקי-קאָמיטעט	welfare/aid organization	ORG-C05895	0	0																Noa	2026-10-18T10:15:10Z
 3231	"טעאַטער „פרייע יידישע פֿאָלקס-בינע"""	traveling company	ORG-C06661	0	0																Judith	2026-10-18T10:16:02Z
 3232	לעמבערגער מושב-זקנים	welfare/aid organization	ORG-C05920	0	0																Noa	2026-10-18T10:20:36Z
@@ -3064,7 +3064,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3449	קינאָ-הויז 'פּאַלאַס'	theatre	ORG-C01658	0	0																Ruthie	2026-10-24T09:29:59Z
 3450	"טעאַטער „פּעל מעל"""	theatre	ORG-C02142	0	0																Ruthie	2026-10-24T09:32:33Z
 3451	לובלינער גרויסן טעאַטער	theatre	ORG-C02261	0	0																Ruthie	2026-10-24T09:35:15Z
-3452	דראַמאַטישער שול פֿון לאָרענצאָ און מיכיילאָווסקי	education	ORG-C02369	0	0																Maaty	2026-10-24T17:57:41Z
+3452	דראַמאַטישער שול פֿון לאָרענצאָ און מיכיילאָווסקי	Theatre education	ORG-C02369	0	0																Maaty	2026-10-24T17:57:41Z
 3453	קאָוונער מאריאנסקי-גימנאַזיע	education	ORG-C00786	0	0																Maaty	2026-10-24T18:01:50Z
 3454	מאָהילעוו-פּאָדאָלסקער קאָמערץ-שול	education	ORG-C00917	0	0																Maaty	2026-10-24T18:05:43Z
 3455	לובלינער יידישן טעאַטער: Lublin's Pantheon Theater	theatre	ORG-C03418	0	0																Ruthie	2026-10-25T06:23:24Z
@@ -3120,7 +3120,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3507	טעאַליג	Trade Union / Professional Association	ORG-C03978	0	0																Maaty	2026-10-25T11:57:23Z
 3508	טימסטערס אינטערנעשאָנאל יוניאָן	Trade Union / Professional Association	ORG-C02545	0	0																Maaty	2026-10-25T11:57:45Z
 3509	רומענישער אָפּערעטע פֿון ניקאַ פּאַיענאָרו	Non-Yiddish Theatre	ORG-C02689	0	0																Sinai	2026-10-25T12:42:26Z
-3510	רוסישער מיליטערישער דראַמאַטישער קרייז	Non-Yiddish Theatre	ORG-C02910	0	0																Sinai	2026-10-25T12:42:44Z
+3510	רוסישער מיליטערישער דראַמאַטישער קרייז	Amateur	ORG-C02910	0	0																Sinai	2026-10-25T12:42:44Z
 3511	"פּויליש טעאַטער ""פּאָפּולאַרני"""	Non-Yiddish Theatre	ORG-C01941	0	0																Sinai	2026-10-25T12:43:06Z
 3512	מעקסיקאַנער בילדונגס-מיניסטעריום	Non-Jewish political bodies	ORG-C02058	0	0																Sinai	2026-10-25T12:44:03Z
 3513	"שול ""עדת ישורון"""	Religious institutions/organizations	ORG-C07339	0	0																Sinai	2026-10-25T12:50:12Z
@@ -3208,7 +3208,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3675	סטינסאָן רעקאָרד קאָמפּאַני	Media (Radio/ Film/TV)	ORG-C00386	0	0																Bella	2026-10-29T19:21:29Z
 3676	מייזלערס שול	Education	ORG-C02822	0	0																Judith	2026-10-30T04:11:41Z
 3677	דער קיביצער	Journals/ Newspapers	ORG-C01216	0	0																Judith	2026-10-30T04:44:29Z
-3678	דוד הערמאַנס טעאַטער-סטודיע	Education	ORG-C03172	0	0																Judith	2026-10-30T04:44:56Z
+3678	דוד הערמאַנס טעאַטער-סטודיע	Theatre education	ORG-C03172	0	0																Judith	2026-10-30T04:44:56Z
 3679	גאָרטן „לעשניטשוווקאַ“	Theatre	ORG-C04767	0	0																Ruthie	2026-10-30T06:32:50Z
 3680	וואַרשעווער טעאַטער לעטני	Theatre	ORG-C06500	0	0																Ruthie	2026-10-30T06:35:01Z
 3681	"יידישער אַרבעטער-בינע ""יעקב גאָרדין"""	Theatre	ORG-C06637	0	0																Ruthie	2026-10-30T06:36:54Z
@@ -3257,7 +3257,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3726	שול סקולפּטור, אַרכיטעקטור און מאָלעריי	Education	ORG-C01155	0	0																Maaty	2026-10-31T17:06:31Z
 3727	לאָבאַן טאַנץשול	Education	ORG-C01260	0	0																Maaty	2026-10-31T17:07:26Z
 3728	מאָנטרעאָלער „קינדערלאַנד“	Education	ORG-C01709	0	0																Maaty	2026-10-31T17:10:56Z
-3729	עדוואַרד ר. גלענס סטודיאָ	Education	ORG-C02199	0	0																Maaty	2026-10-31T17:11:07Z
+3729	עדוואַרד ר. גלענס סטודיאָ	Theatre education	ORG-C02199	0	0																Maaty	2026-10-31T17:11:07Z
 3730	קאמינערס פּראָגימנאַזיע	Education	ORG-C02336	0	0																Maaty	2026-10-31T17:11:17Z
 3731	שטערנס קאָנסערוואַטאָריום	Education	ORG-C01920	0	0																Maaty	2026-10-31T17:12:05Z
 3732	שול פֿון פּוטמאַן	Education	ORG-C02262	0	0																Maaty	2026-10-31T17:12:34Z
@@ -3275,13 +3275,13 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3744	פֿאַך-שול „הילף דורך אַרבעט“	Education	ORG-C03584	0	0																Maaty	2026-10-31T17:28:19Z
 3745	רוסישער שול פֿון מוראַוולאַוו	Education	ORG-C03921	0	0																Maaty	2026-10-31T17:28:37Z
 3746	ערשטע פּוילישע אַקאַדעמיע פֿאַר קינאָמאַטאָגראַפֿישער קונסט	Education	ORG-C03936	0	0																Maaty	2026-10-31T17:28:48Z
-3747	פּריוואַטער דראַמאַטישער שוּל פֿוּן מאַדאַם מאָרגענראָט	Education	ORG-C03981	0	0																Maaty	2026-10-31T17:29:10Z
+3747	פּריוואַטער דראַמאַטישער שוּל פֿוּן מאַדאַם מאָרגענראָט	Theatre education	ORG-C03981	0	0																Maaty	2026-10-31T17:29:10Z
 3748	מאָנטעפיאָרע תּלמוּד-תּורה	Education	ORG-C04005	0	0																Maaty	2026-10-31T17:29:22Z
 3749	פּעטראָווסקער-ראָזאַמאָווסקער אַקאַדעמיע	Education	ORG-C04113	0	0																Maaty	2026-10-31T17:29:41Z
-3750	רוסישער דראַמסטוריע א'פ פֿון אונגערן	Education	ORG-C04525	0	0																Maaty	2026-10-31T17:30:07Z
+3750	רוסישער דראַמסטוריע א'פ פֿון אונגערן	Theatre education	ORG-C04525	0	0																Maaty	2026-10-31T17:30:07Z
 3751	קרינסקי שולע	Education	ORG-C03772	0	0																Maaty	2026-10-31T17:31:00Z
 3752	פֿאַך שול אין ינחלת נאָשעלסק	Education	ORG-C03794	0	0																Maaty	2026-10-31T17:31:11Z
-3753	"סטודיע ביים כאַרקאָווער „אונזער ווינקל"""	Education	ORG-C04371	0	0																Maaty	2026-10-31T17:31:46Z
+3753	"סטודיע ביים כאַרקאָווער „אונזער ווינקל"""	Theatre education	ORG-C04371	0	0																Maaty	2026-10-31T17:31:46Z
 3754	קונסט-מאָלעריי-שול	Education	ORG-C04044	0	0																Maaty	2026-10-31T17:35:32Z
 3755	University of London	Education	ORG-C03694_Q10	0	0														2026-10-31 Maaty: Display name clarified as University of London from Partisan Review 51:1 (1984), contributors p.6, https://www.bu.edu/partisanreview/books/PR1984V51N1/HTML/files/assets/basic-html/page8.html . Source ORG-C03694_Q10 retains the original generic Yiddish extraction; no constituent college or degree is inferred. Core source-name field remains original because Cards name edits affect this display record only.		Maaty	2026-10-31T17:53:03Z
 3756	דראַמאַטישע קורסן אין פֿילהאַרמאָניע א״ל פון שעסטאַקאָוו (מאָסקווע)	Education	ORG-C04438	0	0														2026-10-31 Maaty: Display title clarifies the dramatic courses, not the whole Philharmonic organization. Nahum Lipovsky, vol2/facs_157_tr_1744279097, Moscow before 1891; preserve source spelling Shestakov. GITIS institutional history gives Shostakovsky as a historical candidate, not a silent correction or individual enrollment proof. Original core source name is retained; Cards name saving affects the display record.		Maaty	2026-10-31T17:53:39Z
@@ -3301,13 +3301,13 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3770	"סעמינאַר פון ""יידיש-קענטניש"""	Education	ORG-C03411	0	0																Maaty	2026-10-31T17:50:17Z
 3771	קאַצענעלבויגעןס שול	Education	ORG-C04874	0	0																Maaty	2026-10-31T17:58:27Z
 3772	מארגאָליןס דענטיסטישער שול	Education	ORG-C05143	0	0																Maaty	2026-10-31T17:58:37Z
-3773	פערדינאַנד לאַסאַל	Education	ORG-C04738	0	0																Maaty	2026-10-31T17:58:46Z
-3774	סטודיע ביים קאָוונער „קינדער הויז“	Education	ORG-C03679	0	0																Maaty	2026-10-31T18:01:18Z
+3773	פערדינאַנד לאַסאַל	Education		0	0																Maaty	2026-10-31T17:58:46Z
+3774	סטודיע ביים קאָוונער „קינדער הויז“	Theatre education	ORG-C03679	0	0																Maaty	2026-10-31T18:01:18Z
 3775	"שול ""יהודיה"""	Education	ORG-C05279	0	0																Maaty	2026-10-31T18:02:33Z
 3776	שול „בלאַט'	Education	ORG-C05324	0	0																Maaty	2026-10-31T18:02:45Z
 3777	מלבום-שול	Education	ORG-C05326	0	0																Maaty	2026-10-31T18:02:57Z
 3778	רי הערשלס ישיבה	Education	ORG-C05420	0	0																Maaty	2026-10-31T18:03:42Z
-3779	"יידישער דראָמאַטישער סטודיע א""פ פֿון אַברהם סלאַבאָדסקי"	Education	ORG-C05468	0	0																Maaty	2026-10-31T18:04:01Z
+3779	"יידישער דראָמאַטישער סטודיע א""פ פֿון אַברהם סלאַבאָדסקי"	Theatre education	ORG-C05468	0	0																Maaty	2026-10-31T18:04:01Z
 3780	פּטאשניקס שול	Education	ORG-C06884	0	0																Maaty	2026-10-31T18:09:28Z
 3781	פּריוואַט שול פון פראָמאַן	Education	ORG-C07023	0	0																Maaty	2026-10-31T18:09:40Z
 3782	ערנבערגערס גימנאַזיע	Education	ORG-C07122	0	0																Maaty	2026-10-31T18:09:52Z
@@ -3315,7 +3315,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3784	יידישן מוזיק-פאַראיין	Musical organization	ORG-C00385	0	0																Bella	2026-10-31T18:21:09Z
 3785	איזראַליטיש-דייטשער פֿאָלקס-שול	Education	ORG-C03196	0	0																Maaty	2026-10-31T18:22:34Z
 3786	שווייגערס וואָקאָלער שול	Education	ORG-C07231	0	0																Maaty	2026-10-31T18:23:11Z
-3787	פּראָפעסאָר האַקסיס סקול אָוו מיוזיק ענד דראַמאַ	Education	ORG-C07277	0	0																Maaty	2026-10-31T18:23:23Z
+3787	פּראָפעסאָר האַקסיס סקול אָוו מיוזיק ענד דראַמאַ	Theatre education	ORG-C07277	0	0																Maaty	2026-10-31T18:23:23Z
 3788	יידישער פֿאָלקס אינסטיטוט	Education	ORG-C07258	0	0																Maaty	2026-10-31T18:23:35Z
 3789	"רעגירונגס-סעמינאַר א""ל פֿון דר. פּאָזנאַנסקי"	Education	ORG-C07349	0	0																Maaty	2026-10-31T18:24:51Z
 3790	יידישע דערציאונגס-ביוראָ	Education	ORG-C07352	0	0																Maaty	2026-10-31T18:25:05Z
@@ -3324,7 +3324,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3793	איראַן פּריפּעריטאָרי סקול	Education	ORG-C07403	0	0																Maaty	2026-10-31T18:27:43Z
 3794	רוסישע קרייז-שול	Education	ORG-C07290	0	0																Maaty	2026-10-31T18:28:00Z
 3795	"א""ר קעמפּ"	Education	ORG-C07449	0	0																Maaty	2026-10-31T18:32:23Z
-3796	ביאַליסטאָקער פּוילישער דראַמאַטישער שול	Education	ORG-C04456	0	0																Maaty	2026-10-31T18:32:42Z
+3796	ביאַליסטאָקער פּוילישער דראַמאַטישער שול	Theatre education	ORG-C04456	0	0																Maaty	2026-10-31T18:32:42Z
 3797	העברעישער גימנאָזיע אין ביאַליסטאָק	Education	ORG-C02591_Q03	0	0																Maaty	2026-10-31T18:33:00Z
 3798	קעשעניעווער ישיבה פֿון רי שלום פּערלמוטער	Education	ORG-C05768	0	0																Maaty	2026-10-31T18:34:50Z
 3799	רוימער אוגיווערזיטעט	Education	ORG-C05787	0	0																Maaty	2026-10-31T18:35:04Z
@@ -3333,10 +3333,10 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3802	עדיוקיישאָנאַל ליג	Education	ORG-C06120	0	0																Maaty	2026-10-31T18:36:41Z
 3803	קיבוץ פֿון די פּרושים	Education	ORG-C06016	0	0																Maaty	2026-10-31T18:37:07Z
 3804	אוזבעקישער מלוכהשער פילהאַרמאָניע	Musical organization	ORG-C00233	0	0																Bella	2026-10-31T18:37:12Z
-3805	מאָסקווער מערבא-אוניווערסיטעט	Education	ORG-C06013	0	0																Maaty	2026-10-31T18:37:24Z
-3806	פֿאָן מייערס דראָמאַטישע קורסן	Education	ORG-C06146	0	0																Maaty	2026-10-31T18:40:11Z
+3805	מאָסקווער מערבא-אוניווערסיטעט	Education		0	0																Maaty	2026-10-31T18:37:24Z
+3806	פֿאָן מייערס דראָמאַטישע קורסן	Theatre education	ORG-C06146	0	0																Maaty	2026-10-31T18:40:11Z
 3807	קינדער-שול ביים טעאַטער	Education	ORG-C06153	0	0																Maaty	2026-10-31T18:40:26Z
-3808	פֿראַנצויזישער דראָמאַטישער סטודיע פֿון רענע מויבעל	Education	ORG-C06158	0	0																Maaty	2026-10-31T18:40:40Z
+3808	פֿראַנצויזישער דראָמאַטישער סטודיע פֿון רענע מויבעל	Theatre education	ORG-C06158	0	0																Maaty	2026-10-31T18:40:40Z
 3809	פּערמינאָווס העכערע טעכנישע קורסן	Education	ORG-C06181	0	0																Maaty	2026-10-31T18:41:21Z
 3810	ישיבת עץ-חיים	Education	ORG-C06187	0	0																Maaty	2026-10-31T18:41:35Z
 3811	ראָזענפעלדס גימנאָזיע	Education	ORG-C06294	0	0																Maaty	2026-10-31T18:41:49Z
@@ -3344,22 +3344,22 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3813	קאָמבס קאָנסערוואַטאָריע	Education	ORG-C06713	0	0																Maaty	2026-10-31T18:45:00Z
 3814	מאָסקווער באָרג-אָקאָדעמיע	Education	ORG-C06790	0	0																Maaty	2026-10-31T18:45:15Z
 3815	מעדיקאַל-כירורגישן קאָלעדזש	Education	ORG-C06457	0	0																Maaty	2026-10-31T18:48:01Z
-3816	פּוילישער דראַמאַטישער שול ביים שטאָט-טעאַטער	Education	ORG-C06485	0	0																Maaty	2026-10-31T18:48:15Z
+3816	פּוילישער דראַמאַטישער שול ביים שטאָט-טעאַטער	Theatre education	ORG-C06485	0	0																Maaty	2026-10-31T18:48:15Z
 3817	שוואָרצמאָזס שטאָטישער שול	Education	ORG-C06605	0	0																Maaty	2026-10-31T18:49:06Z
 3818	ראָסטאָווער געוו. קייזערליכער קאָנסערוואַטאָריע	Education	ORG-C06758	0	0																Maaty	2026-10-31T18:49:21Z
 3819	מעדיצינישן פֿאַקולטעט פֿון ניו יאָרקער אוניווערזיטעט	Education	ORG-C06744	0	0																Maaty	2026-10-31T18:49:36Z
 3820	רוסישער פּריוואָט-גימנאַזיע גענעראָל וואָסילעווסקי	Education	ORG-C05479	0	0																Maaty	2026-10-31T18:50:28Z
-3821	כענטשינסקיס פּוילישע דראָמאָטישע שול	Education	ORG-C05506	0	0																Maaty	2026-10-31T18:50:39Z
+3821	כענטשינסקיס פּוילישע דראָמאָטישע שול	Theatre education	ORG-C05506	0	0																Maaty	2026-10-31T18:50:39Z
 3822	קונסט-סטודיע פון דער קינסטלערין עקסטער	Education	ORG-C05538	0	0																Maaty	2026-10-31T18:50:49Z
 3823	University of Fribourg (Switzerland)	Education	ORG-C04876	0	0																Maaty	2026-10-31T18:53:38Z
 3824	Royal College of Music, London	Education	ORG-C05465	0	0																Maaty	2026-10-31T18:54:01Z
 3825	Faculty of Law, University of Wroclaw	Education	ORG-C01575_Q02	0	0																Maaty	2026-10-31T18:54:22Z
 3826	Studiobühne, University of Münster	Education	ORG-C01574	0	0																Maaty	2026-10-31T18:57:01Z
 3827	ר' יצחק אַלחנן׳ס ישיבה	Education	ORG-C00602	0	0																Maaty	2026-10-31T18:57:44Z
-3828	קאָוונער דראַמאַטישער סטודיע	Education	ORG-C00788	0	0																Maaty	2026-10-31T18:57:55Z
+3828	קאָוונער דראַמאַטישער סטודיע	Theatre education	ORG-C00788	0	0																Maaty	2026-10-31T18:57:55Z
 3829	אוניווערזיטעט	Education	ORG-C03694_Q07	0	0																Maaty	2026-10-31T18:58:26Z
 3830	תלמוד-תורה כלליי	Education	ORG-C05605	0	0																Maaty	2026-10-31T18:58:35Z
-3831	ערשטע יידישע מעלוכישע טעאַטער-סטודיע	Education	ORG-C06581	0	0																Maaty	2026-10-31T18:58:46Z
+3831	ערשטע יידישע מעלוכישע טעאַטער-סטודיע	Theatre education	ORG-C06581	0	0																Maaty	2026-10-31T18:58:46Z
 3832	University of Utah, Salt Lake City	Education	ORG-C01522	0	0																Maaty	2026-10-31T18:59:28Z
 3833	פּאָליטעכניקום פֿון ברוקלין	Education	ORG-C05696	0	0																Maaty	2026-10-31T18:59:47Z
 3834	רוסישע גימנאַזיע פֿון אָלעקסאָנדראָוו	Education	ORG-C05735	0	0																Maaty	2026-10-31T19:00:26Z
@@ -3371,8 +3371,8 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 3840	Technische Hochschule Berlin, Charlottenburg	Education	ORG-C05383	0	0																Maaty	2026-10-31T19:05:16Z
 3841	ווילקער ביתאמדרש	Education	ORG-C06445	0	0																Maaty	2026-10-31T19:05:38Z
 3842	אַרבעטער-קולטור צענטר מ. ווינטשעווסקי	Heritage Institution	ORG-C04488	0	0																Maaty	2026-10-31T19:07:19Z
-3843	רוסיש-פּוילישער דראַמאַטישער מלוכה-שול ביי די וואַרשעווער רעגירונגס-טעאַטערס	Education	ORG-C03923	0	0																Maaty	2026-10-31T19:11:15Z
-3844	"פּוילישע דראַמאַטישע שול א""ד פֿון קאַזשימיזש קאַמינסקי"	Education	ORG-C03823	0	0																Maaty	2026-10-31T19:11:47Z
+3843	רוסיש-פּוילישער דראַמאַטישער מלוכה-שול ביי די וואַרשעווער רעגירונגס-טעאַטערס	Theatre education	ORG-C03923	0	0																Maaty	2026-10-31T19:11:15Z
+3844	"פּוילישע דראַמאַטישע שול א""ד פֿון קאַזשימיזש קאַמינסקי"	Theatre education	ORG-C03823	0	0																Maaty	2026-10-31T19:11:47Z
 3845	טעאַטער-גרופּע פֿון ברוקלין קאָלעדזש	Amateur	ORG-C01527	0	0																Maaty	2026-10-31T19:13:43Z
 3846	פרץ-דראַמקרייז	Amateur	ORG-C00115	0	0																Maaty	2026-10-31T19:14:22Z
 3847	סטודיע פֿון 18 מאָלער	OTHER - elaborate!	ORG-C02466	0	0																Maaty	2026-10-31T19:15:13Z
@@ -3415,7 +3415,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1820	קונסט-אָקאָדעמיע	Education	ORG-C01969_Q02 | ORG-C01970	3	2	פּאַריז | פאַריז																
 1821	קראָקעווער יידישן געזעלשאַפֿטלעכן טעאַטער	Theatre	ORG-C00531 | ORG-C02802_Q01 | ORG-C03934	12	2	קראָקע | קראָקעוו																
 1822	קראָקעווער יידישן דראַמאַטישן טעאַטער	Theatre	ORG-C00564 | ORG-C00596_Q04 | ORG-C01021 | ORG-C05778	7	1	קראָקע																
-1823	פּוילישע דראַמאַטישע שול	Education	ORG-C04206	2	1	קראָקע																
+1823	פּוילישע דראַמאַטישע שול	Theatre education	ORG-C04206	2	1	קראָקע																
 1824	קראָקעווער 'יידישער טעאַטער-געזעלשאַפֿט'	Theatre-related Society/ Union	ORG-C02946 | ORG-C05073	2	1	קראָקע																
 1826	טעאַטער מיטרע	Theatre	ORG-C00194 | ORG-C00351	9	2	בוענאָס איירעס | בוענאָס-אַיירעס																
 1827	טעאַטער אַמבו	Theatre	ORG-C00084 | ORG-C00800 | ORG-C02316_Q01	6	2	בוענאָס איירעס | בוענאָס-אַיירעס																
@@ -3423,7 +3423,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1829	טעאַטער אַרגענטינע	Theatre	ORG-C00773 | ORG-C02008	4	3	בוענאָס איירעס | בוענאָס-איירעס | בוענאָס-אַיירעס																
 1830	אידישע צייטונג	Journals/ Newspapers	ORG-C00065_Q02 | ORG-C06186	3	2	ב. א. | בוענאָס-איירעס																
 1831	יידיש דראַמאַטישן טעאַטער	Theatre	ORG-C00596_Q01 | ORG-C01020_Q02	5	1	קאָוונע																
-1832	קאָוונער יידישן דראַמאַטישן פֿאַראיין	Theatre	ORG-C00787 | ORG-C03869 | ORG-C07171	3	1	קאָוונע																
+1832	קאָוונער יידישן דראַמאַטישן פֿאַראיין	Amateur	ORG-C00787 | ORG-C03869 | ORG-C07171	3	1	קאָוונע																
 1833	פאָלקס-הויז	Theatre	ORG-C00897 | ORG-C02631	2	1	קאָוונע																
 1834	מתנות	Publisher	ORG-C01962	4	2	ניו יאָרק | ניו-יאָרק																
 1835	לעמבערגער פּוילישער אָפּערע	Theatre	ORG-C03503 | ORG-C06614 | ORG-C06778	5	1	לעמבערג																
@@ -3451,7 +3451,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1858	סקאַלאַ-טעאַטער	Theatre	ORG-C00409_Q02 | ORG-C01423_Q01 | ORG-C03009 | ORG-C06267	30	2	וואַרשע | וואַרשעווער																
 1859	"וואַרשעווער טעאַטער ""נאָוואָסטשי"""	Theatre	ORG-C01281 | ORG-C01284 | ORG-C03173 | ORG-C07199	19	2	וואַרשע | וואַרשעווער																
 1860	וואַרשעווער יידישן ליטעראַטן-פאַריין	Theatre-related Society/ Union	ORG-C00558 | ORG-C02164 | ORG-C02640_Q01 | ORG-C02881_Q01 | ORG-C03143 | ORG-C03333_Q01 | ORG-C03348 | ORG-C03628	23	1	וואַרשע																
-1861	פּוילישער דראַמאַטישער שול	Education	ORG-C01843 | ORG-C06499	7	1	וואַרשע																
+1861	פּוילישער דראַמאַטישער שול	Theatre education	ORG-C01843 | ORG-C06499	7	1	וואַרשע																
 1862	איטשעס ישיבה	Education	ORG-C04909 | ORG-C07155	2	1	וואַרשע																
 1863	יידיש-פּוילישע גימנאַזיע	Education	ORG-C01478 | ORG-C03614	5	1	וואַרשע																
 1864	פֿאָלקס שטימע	Journals/ Newspapers	ORG-C00132 | ORG-C02387_Q02	3	1	וואַרשע																
@@ -3474,7 +3474,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1882	נאָוועלטי-טעאַטער	Theatre	ORG-C01111 | ORG-C04256	5	1	ברוקלין																
 1883	ברוקלינער סינגער-האָל	Theatre	ORG-C04500 | ORG-C06006_Q01	3	1	ברוקלין																
 1884	"ברוקלינער „געטי""-טעאַטער"	Theatre	ORG-C03589 | ORG-C05040	2	1	ברוקלין																
-1885	מאַקס ריינהאָרדס דראַמאַטישער שול	Education	ORG-C02438 | ORG-C05788 | ORG-C06254 | ORG-C06332	4	1	בערלין																
+1885	מאַקס ריינהאָרדס דראַמאַטישער שול	Theatre education	ORG-C02438 | ORG-C05788 | ORG-C06254 | ORG-C06332	4	1	בערלין																
 1886	יידישער קינסטלער-טעאַטער	Theatre	ORG-C02686 | ORG-C05265 | ORG-C06265	5	1	בערלין																
 1887	דייטש-יידיש	Theatre	ORG-C00578_Q02 | ORG-C04355	2	1	בערלין																
 1888	לעסינג טעאַטער	Theatre	ORG-C04740 | ORG-C06421	2	1	בערלין																
@@ -3510,14 +3510,14 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 1918	ווערטהיימ'ס וואַריעטע	Theatre	ORG-C00617 | ORG-C04546	3	3	בודאַפּעשט | בודאָפּעסט | בודאפּעסט																
 1919	קווינטטעאַטער	Theatre	ORG-C04599 | ORG-C05535	2	1	וויניפּעג																
 1920	יידישן קולטור-פֿאַראיין	Theatre-related Society/ Union	ORG-C04259_Q01 | ORG-C06532	2	1	מעץ																
-1921	דראַמע-קרייז 'די בינע'	Theatre	ORG-C02860 | ORG-C03567	2	1	ריישע																
+1921	דראַמע-קרייז 'די בינע'	Amateur	ORG-C02860 | ORG-C03567	2	1	ריישע																
 1922	גאָלדפֿאַדען-פֿאַריין	Theatre	ORG-C02661_Q01 | ORG-C03244 | ORG-C04510	9	5	סטאַניסלאַוו | סטאַניסלאַוואָוו | סטאָניסלאָוו | סטאָניסלאָוואָוו | סטאָניסלאוו																
 1923	'ראָזמאַאיטאָשטשי' (ראַדאָם)	Theatre	ORG-C00744_Q01 | ORG-C00930_Q01	2	1	ראַדאָם																
 1924	העבראישע גימנאַזיע	Education	ORG-C02984_Q01 | ORG-C04111	3	1	יפו																
 1925	הזמיר (סאָסנאָוויץ)	Musical organization	ORG-C00114_Q04 | ORG-C00258	3	1	סאָסנאָוויץ																
 1926	הרב ריינעסעס ישיבה	Education	ORG-C01243 | ORG-C06828	3	1	לידע																
 1927	פּעטערסאַנער יידישן געזאַנגס-פֿאַראיין	Theatre	ORG-C04330 | ORG-C07345	2	2	פּעטערסאַן | פּעטערסאָן																
-1928	ביעלאַצערקאָווער טעאַטראַלער סטודיע „רויטע בליטן“	Education	ORG-C04821 | ORG-C04840	2	2	ביעלאַצערקאָוו | ביעלאַ-צערקאָוו																
+1928	ביעלאַצערקאָווער טעאַטראַלער סטודיע „רויטע בליטן“	Theatre education	ORG-C04821 | ORG-C04840	2	2	ביעלאַצערקאָוו | ביעלאַ-צערקאָוו																
 1929	שלום-עליכם פֿאָלקס-אינסטיטוט	Education	ORG-C00197_Q01	6	2	ניו יאָרק | ניו-יאָרק																
 1930	קאָלאָמביאַ אוניווערזיטעט	Education	ORG-C00918 | ORG-C05278	14	3	נ. י. | ניו יאָרק | ניו-יאָרק																
 1931	דער האַמער	Journals/ Newspapers	ORG-C01741	7	3	נ. י. | ניו יאָרק | ניו-יאָרק																
@@ -3529,7 +3529,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2012	"לערער-סעמינאָר פֿון דייטש-יידישן הילפס-פֿאַריין ""עזרה"""	Education	ORG-C00123 | ORG-C05318	2	0																	
 2013	העברעישער מיידל-שול 'יהודית'	Education	ORG-C03489 | ORG-C04707	2	0																	
 2014	קופּער יוניאָן	Education	ORG-C00964 | ORG-C07107	3	1	ניו יאָרק																
-2015	צעזאָר גרינבערג'ס יידישער דראַמאַטישער שול	Education	ORG-C00674 | ORG-C01437 | ORG-C06313	3	0																	
+2015	צעזאָר גרינבערג'ס יידישער דראַמאַטישער שול	Theatre education	ORG-C00674 | ORG-C01437 | ORG-C06313	3	0																	
 2016	קופּער יוניאָן אָרט סקול	Education	ORG-C01202 | ORG-C04578	2	1	ניו יאָרק																
 2017	סאָפיאַ מאַרקאָוונאַס יידישע גימנאַזיע	Education	ORG-C02085 | ORG-C03014	2	1	ווילנע																
 2018	טעכנישער שול פֿון וואַוועלבערג און ראָטוואַנד	Education	ORG-C02775 | ORG-C02823	3	1	וואַרשע																
@@ -3538,20 +3538,20 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 2021	דזשול-יאָרד	Education	ORG-C01175 | ORG-C07300	2	1	ניו-יאָרק																
 2022	זונטיק-האַנדלס-שול	Education	ORG-C02632 | ORG-C05872	2	0																	
 2023	פּעדאַגאָגישן אינסטיטוט	Education	ORG-C00405_Q01 | ORG-C05557	2	1	וואַרשע																
-2024	פּוילישע דראַמאַטישע שול פֿון הריניעוויעצקא	Education	ORG-C02714_Q01 | ORG-C02714_Q02 | ORG-C03925	5	1	וואַרשע																
-2025	יידישע דראַמאַטישע שול	Education	ORG-C02576_Q02 | ORG-C02785 | ORG-C05965	4	1	ווין																
-2026	אַרטעף-סטודיא	Education	ORG-C00981 | ORG-C02376 | ORG-C04881	4	1	ניו יאָרק																
+2024	פּוילישע דראַמאַטישע שול פֿון הריניעוויעצקא	Theatre education	ORG-C02714_Q01 | ORG-C02714_Q02 | ORG-C03925	5	1	וואַרשע																
+2025	יידישע דראַמאַטישע שול	Theatre education	ORG-C02576_Q02 | ORG-C02785 | ORG-C05965	4	1	ווין																
+2026	אַרטעף-סטודיא	Theatre education	ORG-C00981 | ORG-C02376 | ORG-C04881	4	1	ניו יאָרק																
 2027	פֿאַרברייטונגס-שול	Education	ORG-C00796 | ORG-C02318	2	0																	
 2028	יידיש-פּוילישער שול	Education	ORG-C02745 | ORG-C04608	2	0																	
 2029	נאַציאָנאַלער אַקאַדעמיע	Education	ORG-C02117 | ORG-C04580	2	1	ניו-יאָרק																
 2030	מעדעם סאַניטאַריום	Health institutions	ORG-C03107 | ORG-C03179	2	1	מיעדזשעשין																
 2031	העברעיש-פּוילישע גימנאַזיע פֿון דר. ברוידע	Education	ORG-C02591_Q02 | ORG-C03407 | ORG-C06483	3	1	לאָדזש																
-2032	טעאַליט-דראַמשול	Education	ORG-C04701 | ORG-C06888	2	1	ניו יאָרק																
-2033	"דראַמשול א""ל פֿון דר. מ. ווייכערט און דוד הערמאַן"	Education	ORG-C00528 | ORG-C03286 | ORG-C03520 | ORG-C04828 | ORG-C06484 | ORG-C06503 | ORG-C07123 | ORG-C07220	9	1	וואַרשע																
+2032	טעאַליט-דראַמשול	Theatre education	ORG-C04701 | ORG-C06888	2	1	ניו יאָרק																
+2033	"דראַמשול א""ל פֿון דר. מ. ווייכערט און דוד הערמאַן"	Theatre education	ORG-C00528 | ORG-C03286 | ORG-C03520 | ORG-C04828 | ORG-C06484 | ORG-C06503 | ORG-C07123 | ORG-C07220	9	1	וואַרשע																
 2034	ערשטע יידישע נאַציאָנאַל-ראדיקאלע פאָלקסשול	Education	ORG-C05243 | ORG-C06909 | ORG-C07305	3	1	איסט סייד																
 2035	"וואַרשעווער קונסט-אַקאַדעמיע ""שקאָלאַ שטוק פּיענקניך"""	Education	ORG-C01968 | ORG-C02014 | ORG-C03322	4	1	וואַרשע																
-2036	פּוילישן דראמאטישן קלאָס ביי דער מוזיקאַלישער געזעלשאַפֿט	Education	ORG-C03924 | ORG-C04953	2	1	וואַרשע																
-2037	יידישער טעאַטער-סטודיע א'א פון דר. מ. ווייכערט	Education	ORG-C01817 | ORG-C02864 | ORG-C03183	3	1	וואַרשע																
+2036	פּוילישן דראמאטישן קלאָס ביי דער מוזיקאַלישער געזעלשאַפֿט	Theatre education	ORG-C03924 | ORG-C04953	2	1	וואַרשע																
+2037	יידישער טעאַטער-סטודיע א'א פון דר. מ. ווייכערט	Theatre education	ORG-C01817 | ORG-C02864 | ORG-C03183	3	1	וואַרשע																
 2039	"קונסט-שול ""בצלאַל"""	Education	ORG-C02015	1	0																	
 2040	מירער ישיבה	Education	ORG-C06124	2	0																	
 2041	טעלזער ישיבה	Education	ORG-C02247	2	1	טעלז																
@@ -4277,7 +4277,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 4357	קולטור-הויז	Theatre	ORG-C02626	0	0																Ruthie	2026-11-03T13:10:56Z
 4358	ניו-יאָרקער פאַרקוועי טעאַטער	Theatre	ORG-C02273	0	0																Ruthie	2026-11-03T13:12:59Z
 4359	ווילנער צירק	Theatre	ORG-C02167	0	0																Ruthie	2026-11-03T13:16:50Z
-4360	אַרטיקער אַרבעטער-סטודיע ביים צענטראָלן יידישן קולטור-הויז	Theatre	ORG-C04817	0	0																Ruthie	2026-11-03T13:21:34Z
+4360	אַרטיקער אַרבעטער-סטודיע ביים צענטראָלן יידישן קולטור-הויז	Amateur	ORG-C04817	0	0																Ruthie	2026-11-03T13:21:34Z
 4361	יאָסער טעאַטער „סקאַלא“	Theatre	ORG-C02472	0	0																Ruthie	2026-11-03T13:23:48Z
 4362	ברעמהאָל פליי-הויז	Theatre	ORG-C05398	0	0																Ruthie	2026-11-03T13:43:41Z
 4363	מאַרטין בעק טעאַטער	Theatre	ORG-C01262	0	0																Ruthie	2026-11-03T13:44:45Z
@@ -4364,7 +4364,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 4445	מלוכה'ש דראַמאַטיש טעאַטער	Theatre	ORG-C00728	0	0																Ruthie	2026-11-05T09:44:47Z
 4446	פֿעמינאַ	Theatre	ORG-C03513	0	0																Ruthie	2026-11-05T09:58:47Z
 4447	טעאַטער פֿאַר דער אַרבעטער-יוגנט	Theatre	ORG-C03617	0	0																Ruthie	2026-11-05T09:59:44Z
-4448	ליטעראַריש דראַמאַטישן קונסט-ווינקל	Theatre	ORG-C07457	0	0																Ruthie	2026-11-05T10:01:06Z
+4448	ליטעראַריש דראַמאַטישן קונסט-ווינקל	Amateur	ORG-C07457	0	0																Ruthie	2026-11-05T10:01:06Z
 4449	פעלטמאַנס	Theatre	ORG-C01031	0	0																Ruthie	2026-11-05T10:01:50Z
 4450	סאָלעיל טעאַסער	Theatre	ORG-C01283	0	0																Ruthie	2026-11-05T10:02:53Z
 4451	פרענקלין	Theatre	ORG-C03847	0	0																Ruthie	2026-11-05T10:04:35Z
@@ -4401,7 +4401,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 4482	קינדער-טעאַטער ביים יידישן ספּאָרט-סענטער	Sports/Recreation	ORG-C07493	0	0																Ruthie	2026-11-05T11:50:09Z
 4483	קלאָב גימנאַסטיק	Sports/Recreation	ORG-C02301	0	0																Ruthie	2026-11-05T11:50:25Z
 4484	יאָשע שענקערס בירשענק	Theatre	ORG-C01702	0	0																Ruthie	2026-11-05T11:51:20Z
-4485	סילווער דראָמאָטיק סאַסייעט'	Theatre	ORG-C05628	0	0																Ruthie	2026-11-05T11:52:45Z
+4485	סילווער דראָמאָטיק סאַסייעט'	Amateur	ORG-C05628	0	0																Ruthie	2026-11-05T11:52:45Z
 4486	קעמברידזשער טעאַטער	Theatre	ORG-C06354	0	0																Ruthie	2026-11-05T11:54:17Z
 4487	כאַרקאָווער פאָלקס-הויז	Theatre	ORG-C04847	0	0																Ruthie	2026-11-05T11:55:02Z
 4488	קעניגלעכן טעאַטער	Theatre	ORG-C04288	0	0																Ruthie	2026-11-05T11:56:41Z
@@ -4517,7 +4517,7 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 4599	טעאַטער לענינסקי קאָמסאָמאָל	Theatre	ORG-C07322	0	0																Ruthie	2026-11-07T17:59:35Z
 4600	חברת שוחרי הטוב ותושיה בקינינסברג וברלין	Jewish political bodies	ORG-C05438	0	0																Ruthie	2026-11-08T06:40:20Z
 4601	חברת ציון	Jewish political bodies	ORG-C04836	0	0																Ruthie	2026-11-08T06:40:59Z
-4602	התאַחדות	Jewish political bodies	ORG-C00571	0	0																Ruthie	2026-11-08T06:41:30Z
+4602	התאַחדות	Jewish political bodies		0	0																Ruthie	2026-11-08T06:41:30Z
 4603	עברי	Jewish political bodies	ORG-C00820	0	0																Ruthie	2026-11-08T06:41:54Z
 4604	דראַמאַטיק קלוב	Amateur	ORG-C07057	0	0																Noa	2026-11-08T06:42:08Z
 4605	אַרבעטער אינסטיטוט	Jewish political bodies	ORG-C06946	0	0																Ruthie	2026-11-08T06:42:21Z
@@ -4653,3 +4653,38 @@ db_id	canonical_yiddish	org_type	linked_cluster_ids	mentions	n_settlements	extra
 4747	טשערנאָוויצער פילהאַרמאָניע	Musical organization	ORG-C03363	0	0																Bella	2026-11-15T11:46:16Z
 4748	חזן קאַהאַן אין ווילנע	Musical organization	ORG-C01107	0	0																Bella	2026-11-15T11:50:27Z
 4749	הזמיר (פּאַריז)	Musical organization	ORG-C00114_Q03	0	0																Sinai	2026-11-15T12:11:47Z
+4291	ניו-יאָרקער יודישע אילוסטרירטע צייטונג	Journals/ Newspapers	ORG-C03858	3	1	ניו יאָרק																
+4292	דאָס וואָרט (זעצער)	Journals/ Newspapers	ORG-C01659_P02	1	0																	
+4293	סאָציאַל-דעמאָקראַט (קראָקע)	Journals/ Newspapers	ORG-C03443_P01	2	0																	
+4294	דער סאָציאַל-דעמאָקראַט (ניו-יאָרק)	Journals/ Newspapers	ORG-C03443_P02	1	0																	
+4295	די פֿאָלקסצייטונג (ניו-יאָרק 1899)	Journals/ Newspapers	ORG-C00544_Q01_P02	2	1	וואַרשע																
+4296	פאָלקסצייטונג (לעווי)	Journals/ Newspapers	ORG-C00544_Q01_P03	1	1	וואַרשע																
+4297	קעמפּ קינדער-וועלט	Education	ORG-C00547_P02	2	1	ניו יאָרק																
+4300	צירק סאַראַסאָני	Circus		0	0																	
+4407	טעאַטער אויף דער אַריאַנ בורגער שטראַסע	Theatre		0	0																	
+4511	„רוסאָלקאַ“	Theatre		0	0																	
+4692	יידישן היסטאָרישן אינסטיטוט	Heritage Institution	ORG-C03150	1	1	וואַרשע																
+4701	איקוף	Heritage Institution	ORG-C00970_Q02	3	3	לאָס אַנדזשעלעס | לאָס אָנדזשעלעס | לאָס-אַנדזשעלעס																
+4702	איקוף	Heritage Institution	ORG-C00970_Q03	2	2	בוענאָס איירעס | בוענאָס-אַיירעס																
+4703	יידישער הייסטאָריש-עטנאָגראַפישער געזעלשאַפֿט	Heritage Institution	ORG-C01417_Q01	1	1	ווילנע																
+4704	בעלצער קולטור-ליגע	Heritage Institution	ORG-C01949	1	1	בעלץ																
+4705	"גאַלעריי ""קרעס"""	Heritage Institution	ORG-C01975	1	1	פאַריז																
+4706	"„פּאַלעי דע לאַ דעקואַווערט"""	Heritage Institution	ORG-C01976	1	1	פּאַריז																
+4709	פֿאָלקלאָר-קאָמיסיע	Heritage Institution	ORG-C02416	1	1	ווילנע																
+4710	יידישער מוזיי אין ניו-יאָרק	Heritage Institution	ORG-C02426	1	1	ניו-יאָרק																
+4711	גאַלערעע פון רענעסאַנס	Heritage Institution	ORG-C02458	1	1	פאַריז																
+4719	פאָדען	Kleinkunst	ORG-C05342	1	1	ניו יאָרק																
+4739	מאילאַם	Musical organization		0	0																	
+4750	דראַמקרייז ביים בילדונגס-פֿאַראיין „פערדינאַנד לאַסאַל“ (ווין)	Amateur	ORG-C04738	1	1	ווין																
+4751	דראַמאַטישער קרייז אין מאָסקווער מערבֿ-אוניווערסיטעט	Amateur	ORG-C06013	1	1	מאָסקווע																
+4752	דראָמאָטישע קרייזן ביים „בונד“ (ריגע)	Amateur	ORG-C00154_Q01_P02	1	1	ריגע																
+4753	דראַמאַטישער קרייז ביים „צעירי יהודה“ (לעמבערג)	Amateur	ORG-C00099_P02	1	1	לעמבערג																
+4754	דראַמקרייז ביי „צעירי ציון“ (וואַרשע)	Amateur	ORG-C00570_P02	1	1	וואַרשע																
+4755	דראַמקרייז ביי „התאַחדות“ (וואַרשע)	Amateur	ORG-C00571	1	0																	
+4756	דראַמקרייז ביי דער יוגנט-אָרגאַניזאַציע „צוקונפֿט“ (וואַרשע)	Amateur	ORG-C03285_P02	1	0																	
+4757	דראַמסעקציע ביי דער „קאָמ. צוקונפֿט“	Amateur	ORG-C00526	1	0																	
+4758	דראַמאַטישע סעקציע ביים ריגער „גורדוניה“ (ביאַליק-קלוב)	Amateur	ORG-C03223	1	1	ריגע																
+4759	דראַמאַטישער קלוב פֿון פֿאַריין „ציון“ (ווין)	Amateur	ORG-C02784	3	0																	
+4760	„ליבהאָבער“-קאָלעקטיוו ביים יעקאַטערינאָסלאַווער פֿאַראיין פֿון „סצענישע קונסט-טוער“	Amateur	ORG-C04860	1	1	יעקאַטערינאָסלאַוו																
+4761	דראַמאַטישער קרייז ביים פּרעסערס לאָקאָל (ניו יאָרק)	Amateur	ORG-C07228	1	1	ניו יאָרק																
+4762	דראַמאַטישער קרייז ביים לאָדזשער „הזמיר“	Amateur	ORG-C00114_Q02_P02	1	2	לאָדזש | לאָדזש																

@@ -56,10 +56,10 @@ PERFORMANCE
 - Non-Yiddish Theatre — a Latvian / Russian / Ukrainian / Polish / Belarusian / Romanian national or state theatre a Yiddish actor passed through (רוסישער / לעטיש / אוקראיניש / פוילישער / ווייסרוסיש / ראומעניש ... מלוכה-טעאַטער). Never a Yiddish state theatre. Theatres only.
 - Traveling Company — touring is the core operational identity; no permanent home stage. Yiddish "X's troupe" / Vilner Trupe / Lodzer Trupe etc.
 - Company on Tour — has home venue, currently on tour (temporary state). Use only when text makes this explicit.
-- Amateur — amateur theatre groups, drama circles, theatre clubs.
+- Amateur — a performing group of non-professionals: drama circles, dramatic sections, liebhaber groups, dramatic clubs, and a dramatic society that stages its own plays. A circle AT a host (party, club, choir, school) is a child of the host; never type the host Amateur. 'ליבהאָבער-ראָלן' means lover roles, not amateur.
 - Kleinkunst — vaudeville, cabaret, variety theatre.
 - Circus
-- Theatre education — drama schools, theatre studios, acting studios for training performers.
+- Theatre education — drama schools, theatre studios, acting studios, drama courses for training performers (NOT Education). A studio is Theatre education unless the text shows a performing group with no pupils.
 
 PRINT / MEDIA
 - Publisher (incl. lexicons, almanacs)
@@ -77,7 +77,7 @@ MUSIC
 - Musical organization — orchestras, secular choirs, choral societies, music ensembles/associations (e.g. מוזיק-פאַראיין, געזאַנגס-פאַריין, Hazomir/הזמיר). SYNAGOGUE CHOIRS are RELIGIOUS, not musical.
 
 THEATRE-INDUSTRY MEMBERSHIP
-- Theatre-related Society/ Union — actors/artists/writers/musicians unions, theatre associations, dramatic societies, theatre committees. Tag "society"/"union" alone does NOT qualify — must have theatre/arts/writers/musicians cue.
+- Theatre-related Society/ Union — actors/artists/writers/musicians unions, theatre associations, theatre committees, societies that support or coordinate theatre (a dramatic society that stages its own plays is Amateur). Tag "society"/"union" alone does NOT qualify — must have theatre/arts/writers/musicians cue.
 
 RELIGION
 - Religious institutions/organizations — synagogues, yeshivot, hasidic courts, religious choirs, churches, religious courts, kehilot (when religious-communal).
