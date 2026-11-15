@@ -66,7 +66,9 @@ REVIEW_ORG = WORK / "kima" / "review_applied_org_qids.tsv"
 # Hand-verified QID corrections (2026-11-15, France dossier audit): spelling (or
 # record+spelling) -> QID for person/org attestations, and forced labels/coords for
 # QIDs whose derived label is wrong. Highest priority; non-positional, so it survives
-# regenerations. corpus ∈ person | org | label; record_id "*" = every record.
+# regenerations. corpus ∈ person | org | label | qid; record_id "*" = every record.
+# corpus "qid": source_value holds a WRONG QID, remapped to `qid` wherever it occurs
+# (deleted Wikidata items, off-by-a-few QIDs; audit 2026-11-15).
 OVERRIDES = HERE.parent / "data" / "reference" / "place_qid_overrides.tsv"
 
 ATT_OUT = WORK / "toponyms_attestations.csv"
@@ -317,6 +319,7 @@ def main() -> None:
 
     # ---- hand overrides (highest priority) ----
     ov_att: dict[tuple, str] = {}   # (corpus, record_id|"*", source_value) -> qid
+    qid_remap: dict[str, str] = {}  # wrong QID -> right QID
     if OVERRIDES.exists():
         for r in rd(OVERRIDES):
             q = r["qid"].strip()
@@ -326,10 +329,13 @@ def main() -> None:
             if new_lab and label_en.get(q, "") != new_lab:
                 label_en[q] = new_lab
                 ptype[q] = ""   # the derived type came with the wrong label ("commune of France")
-            if r.get("lat", "").strip():
-                coords_by_qid[q] = (r["lat"].strip(), r["lon"].strip())
+            if r.get("lat", "").strip() and not (coords_by_qid.get(q) or ("",))[0]:
+                coords_by_qid[q] = (r["lat"].strip(), r["lon"].strip())   # fill only, never overwrite
             category.setdefault(q, "settlement")
             nonplace_qids.pop(q, None)
+            if r["corpus"] == "qid" and is_qid(r["source_value"].strip()):
+                qid_remap[r["source_value"].strip()] = q
+                nonplace_qids.pop(r["source_value"].strip(), None)
             if r["corpus"] in ("person", "org"):
                 ov_att[(r["corpus"], r["record_id"].strip(), r["source_value"].strip())] = q
 
@@ -338,6 +344,9 @@ def main() -> None:
 
     def enrich(row: dict, q: str) -> None:
         """Attach QID-keyed resolution columns to an attestation row."""
+        if q in qid_remap:
+            row.update(rejected_qid=q, relink_source="hand_override")
+            q = qid_remap[q]
         k = kima_by_qid.get(q, {})
         lat, lon = coords_by_qid.get(q, ("", ""))
         row.update(qid=q, label_en=label_en.get(q, ""), label_yi=label_yi.get(q, ""),

@@ -43,6 +43,8 @@ _DISAMB   = _WORKING / "kima" / "review_disambiguation.tsv"
 _PUNCH    = _WORKING / "kima" / "audit_translit_review_punchlist.tsv"
 _NAMEAMB  = _WORKING / "kima" / "audit_name_exact_ambiguous.tsv"
 _AMBALL   = _WORKING / "kima" / "audit_ambiguity_all.tsv"
+# 2026-11-15 gazetteer QID audit: the cases text + Wikidata could not settle
+_GAZRES   = _WORKING / "kima" / "audit_gazetteer_qid_residue_2026-11-15.tsv"
 _ATTEST   = _WORKING / "toponyms_attestations.csv"
 _CLUSTERS = _ZYLB / "organizations" / "organizations_clustered.tsv"
 _LEXICON  = _ZYLB / "The Lexicon"
@@ -365,12 +367,14 @@ def build_ambiguity_rows(path, options_col, clusters, lex, attest, places) -> li
         label = r.get("linked_label", "").strip()
         lqid  = r.get("linked_qid", "").strip()
         entry_ids, ctxs = resolve_contexts(attest.get(yi, []), yi, clusters, lex)
-        note = (f"{yi}: currently linked to {lqid}/{label}; "
+        note = (r.get("note") or "").strip() or (
+                f"{yi}: currently linked to {lqid}/{label}; "
                 f"{len(cands)} Kima places share this name — pick the right one.")
         rows.append({
             "source_value":      yi,
             "wikidata_yi":        "",
-            "english_name":       f"{label} — ambiguous: pick the right Kima place",
+            "english_name":       (f"{label} — gazetteer audit: identify the place" if r.get("note")
+                                   else f"{label} — ambiguous: pick the right Kima place"),
             "wikidata_qid":       lqid,
             "resolved_category":  "settlement",
             "match_status":       "ambiguous",
@@ -435,6 +439,8 @@ def main() -> None:
         + build_punchlist_rows(clusters, lex, attest, places)
         + build_ambiguity_rows(_NAMEAMB, "kima_options", clusters, lex, attest, places)
         + build_ambiguity_rows(_AMBALL, "options", clusters, lex, attest, places)
+        + (build_ambiguity_rows(_GAZRES, "options", clusters, lex, attest, places)
+           if _GAZRES.exists() else [])
     )
     new_rows = merge_by_source_value(source_rows)
     # Bake per-mention breakdown (feature A) — grouped by source_record_id.

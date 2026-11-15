@@ -200,6 +200,10 @@ This is a gap in what the KG extracts, not a wrong fact. Closing it means adding
       '"edges now" counts KG edges on the corrected QID after the rebuild.</p>')
     a('<div class="tablewrap"><table><tr><th>spelling</th><th>scope</th><th>now</th><th class="num">edges now</th><th>was</th></tr>')
     ov = list(csv.DictReader(open(PLAYS.parent / "zibn-shtern/data/reference/place_qid_overrides.tsv"), delimiter="\t"))
+    # only the France-related rows (the table also holds the wider gazetteer audit fixes)
+    FR_NOTE = re.compile(r"France|Vosges|Pas-de-Calais|Côtes|Aisne|Meurthe|canton of Ay|Strasburg|"
+                         r"La Pernelle|Roussent|Vic-sur-Aisne|Thièvres")
+    ov = [r for r in ov if FR_NOTE.search(r["note"])]
     tcount = Counter(e["target_id"] for e in E)
     for r in ov:
         sv = r["source_value"] or "(label fix)"
