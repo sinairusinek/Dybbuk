@@ -69,6 +69,9 @@ REVIEW_ORG = WORK / "kima" / "review_applied_org_qids.tsv"
 # regenerations. corpus ∈ person | org | label | qid; record_id "*" = every record.
 # corpus "qid": source_value holds a WRONG QID, remapped to `qid` wherever it occurs
 # (deleted Wikidata items, off-by-a-few QIDs; audit 2026-11-15).
+# corpus "nonplace": source_value holds a junk QID with no known replacement -> its
+# attestations become misresolved. corpus "unlink": a person spelling (record_id or "*")
+# -> misresolved, when its QID is right for other spellings.
 OVERRIDES = HERE.parent / "data" / "reference" / "place_qid_overrides.tsv"
 
 ATT_OUT = WORK / "toponyms_attestations.csv"
@@ -320,9 +323,21 @@ def main() -> None:
     # ---- hand overrides (highest priority) ----
     ov_att: dict[tuple, str] = {}   # (corpus, record_id|"*", source_value) -> qid
     qid_remap: dict[str, str] = {}  # wrong QID -> right QID
+    unlink_att: set[tuple] = set()  # (corpus, record_id|"*", source_value) -> force misresolved
+    hand_nonplace: set[str] = set()
     if OVERRIDES.exists():
         for r in rd(OVERRIDES):
             q = r["qid"].strip()
+            # corpus "nonplace": source_value is a QID that is not a place (or a wrong place
+            # no attestation means) and has no known replacement -> its attestations become
+            # misresolved (Yiddish kept for re-linking). corpus "unlink": one spelling (record_id
+            # or "*") -> misresolved, for a QID that is right elsewhere. Dodgy-QID audit 2026-11-15.
+            if r["corpus"] == "nonplace" and is_qid(r["source_value"].strip()):
+                hand_nonplace.add(r["source_value"].strip())
+                continue
+            if r["corpus"] == "unlink":
+                unlink_att.add(("person", r["record_id"].strip(), r["source_value"].strip()))
+                continue
             if not is_qid(q):
                 continue
             new_lab = r.get("label_en", "").strip()
@@ -339,8 +354,14 @@ def main() -> None:
             if r["corpus"] in ("person", "org"):
                 ov_att[(r["corpus"], r["record_id"].strip(), r["source_value"].strip())] = q
 
+    for q in hand_nonplace:
+        nonplace_qids[q] = "hand_nonplace"
+
     def override(corpus: str, rec: str, val: str) -> str:
         return ov_att.get((corpus, rec, val)) or ov_att.get((corpus, "*", val), "")
+
+    def unlinked_by_hand(corpus: str, rec: str, val: str) -> bool:
+        return (corpus, rec, val) in unlink_att or (corpus, "*", val) in unlink_att
 
     def enrich(row: dict, q: str) -> None:
         """Attach QID-keyed resolution columns to an attestation row."""
@@ -385,7 +406,9 @@ def main() -> None:
                    maaty_qid=mq, maaty_qid_conflict="True" if (mq and is_qid(q) and mq != q) else "",
                    is_descriptor="True" if is_descriptor(val) else "",
                    review_flags=r.get("review_flags", ""))
-        if is_qid(q) and q in nonplace_qids:
+        if is_qid(q) and not oq and unlinked_by_hand("person", eid, val):
+            row.update(link_status="misresolved", rejected_qid=q, relink_source="hand_override")
+        elif is_qid(q) and q in nonplace_qids:
             if mq in relink_ok and mq not in nonplace_qids:
                 # rescue via Maaty's validated place QID; keep the bad one for audit
                 enrich(row, mq)
