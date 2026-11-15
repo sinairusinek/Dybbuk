@@ -35,6 +35,18 @@ PLACES = {
             {"P-1-facs_50_tr_1740521040", "P-5-facs_568_r_2"},                # Sonia Amatin
         ],
     },
+    "france": {
+        "name": "France", "qid": "Q142", "coords": "48.857,2.352",
+        "label": "France / פֿראַנקרייך",
+        "country": "France",
+        "qids": {"Q90", "Q142", "Q201348", "Q22690", "Q40898", "Q456", "Q23482", "Q33959"},
+        "stems": ["פאריז", "פראנקרייך", "דראנסי", "גורס", "פיטיוויע", "ווישי"],
+        "n_entries": 391, "eyebrow": "Dybbuk · France dossier", "only_focus": True,
+        "view": "[47,8],4", "years": (1850, 1975), "pxy": 7.0,
+        "waves": (1914, 1940, "first in France before 1914", "1914–1939",
+                  "1940+ (war and after)"),
+        "dup_groups": [],
+    },
     "danzig": {
         "name": "Danzig", "qid": "Q1792", "coords": "54.348,18.654",
         "label": "Danzig / דאַנציג",
@@ -56,6 +68,11 @@ IST_RE = re.compile("(" + "|".join(P["stems"]) + ")")
 
 
 def is_ist(st):
+    # a country dossier (France) also matches by extracted country + a QID set
+    if P.get("country") and st.get("country") == P["country"]:
+        return True
+    if st.get("qid") in P.get("qids", ()):
+        return True
     return st.get("qid") == P["qid"] or bool(IST_RE.search(POINTS.sub("", st.get("place", ""))))
 
 
@@ -96,6 +113,8 @@ for group in DUP_GROUPS:
 
 for i in itins:
     i["hasIst"] = any(s["ist"] for s in i["stations"])
+if P.get("only_focus"):  # big corpora (France): ship only itineraries that touch the place
+    itins = [i for i in itins if i["hasIst"]]
 
 payload = json.dumps(itins, ensure_ascii=False)
 

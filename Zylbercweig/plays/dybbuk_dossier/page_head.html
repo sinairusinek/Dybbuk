@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dybbuks</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#faf7f0; --ink:#272219; --ink-soft:#5c554a; --line:#e2dcce;
+  --card:#f2eddf; --accent:#0e6f8a; --accent-ink:#0b5a70; --brick:#a1462e;
+  --chip:#e4ecec; --mono-bg:#ece7d8;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#161a1e; --ink:#e7e1d3; --ink-soft:#a49c8c; --line:#2c333a;
+    --card:#1d2329; --accent:#5cb6cd; --accent-ink:#7fc6d8; --brick:#d98868;
+    --chip:#223034; --mono-bg:#20272d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161a1e; --ink:#e7e1d3; --ink-soft:#a49c8c; --line:#2c333a;
+  --card:#1d2329; --accent:#5cb6cd; --accent-ink:#7fc6d8; --brick:#d98868;
+  --chip:#223034; --mono-bg:#20272d;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Spectral", Georgia, serif; font-size:1.02rem; line-height:1.62;
+  margin:0; padding:3.2rem 1.4rem 5rem;
+}
+main{max-width:56rem; margin:0 auto}
+h1,h2,h3{font-family:"Fraunces","Spectral",Georgia,serif; line-height:1.15; text-wrap:balance; font-weight:600}
+h1{font-size:2.6rem; margin:.4rem 0 .6rem}
+h2{font-size:1.45rem; margin:0 0 .9rem; color:var(--ink)}
+h3{font-size:1.08rem; margin:1.4rem 0 .4rem}
+p{max-width:44rem}
+a{color:var(--accent-ink)}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent-ink); margin:0 0 .2rem;
+}
+.lede{font-size:1.12rem; color:var(--ink-soft); max-width:42rem; margin-top:0}
+.yi{font-family:"Frank Ruhl Libre","Spectral",serif; font-size:1.06em; unicode-bidi:isolate}
+q.yi{quotes:"„" "“"}
+section{border-top:1px solid var(--line); padding-top:1.6rem; margin-top:2.4rem}
+.statrow{display:flex; flex-wrap:wrap; gap:.9rem; margin:1.8rem 0 .4rem}
+.stat{
+  background:var(--card); border:1px solid var(--line); border-radius:4px;
+  padding:.55rem .95rem .5rem; min-width:7.4rem;
+}
+.stat b{display:block; font-family:"Fraunces",serif; font-size:1.5rem; font-weight:600; color:var(--accent-ink); font-variant-numeric:tabular-nums}
+.stat span{font-size:.78rem; color:var(--ink-soft); letter-spacing:.02em}
+.tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:4px; margin:.8rem 0 1.2rem}
+table{border-collapse:collapse; width:100%; font-size:.92rem}
+th{
+  font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-soft); text-align:left; padding:.55rem .8rem; border-bottom:1px solid var(--line);
+  background:var(--card); white-space:nowrap;
+}
+td{padding:.5rem .8rem; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums; text-align:right}
+.mono{font-family:"IBM Plex Mono",monospace; font-size:.82em; background:var(--mono-bg); padding:.06em .35em; border-radius:3px; white-space:nowrap}
+td .yi, th .yi{display:inline-block; direction:rtl; text-align:right}
+.rtlcell{direction:rtl; text-align:right; font-family:"Frank Ruhl Libre",serif; font-size:1.02rem}
+.chip{
+  display:inline-block; background:var(--chip); border-radius:3px; padding:.05em .5em;
+  font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.04em; color:var(--accent-ink); white-space:nowrap;
+}
+.flag{color:var(--brick); font-weight:600}
+blockquote{
+  border-inline-start:3px solid var(--accent); background:var(--card);
+  margin:1rem 0; padding:.8rem 1.1rem; direction:rtl; text-align:right;
+  font-family:"Frank Ruhl Libre",serif; font-size:1.05rem; line-height:1.8; border-radius:0 4px 4px 0;
+}
+blockquote footer{direction:ltr; text-align:left; font-family:"Spectral",serif; font-size:.82rem; color:var(--ink-soft); margin-top:.5rem}
+.note{
+  background:var(--card); border:1px solid var(--line); border-radius:4px;
+  padding:.8rem 1.1rem; font-size:.92rem; color:var(--ink-soft); max-width:46rem;
+}
+.cols{column-width:16rem; column-gap:2rem}
+ul{padding-inline-start:1.2rem}
+li{margin-bottom:.35rem}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+#map{height:520px; border:1px solid var(--line); border-radius:4px; margin:.6rem 0 1rem}
+.filters{display:flex; flex-wrap:wrap; gap:.4rem 1rem; font-size:.85rem}
+.filters label{cursor:pointer; white-space:nowrap}
+.dot{display:inline-block; width:.7rem; height:.7rem; border-radius:50%; margin-inline-end:.4rem; vertical-align:baseline}
+.dot.big{width:.9rem; height:.9rem}
+.count{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-soft); font-weight:400}
+.role{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-soft)}
+.src{font-family:"IBM Plex Mono",monospace; font-size:.72rem; white-space:nowrap}
+.small{font-size:.85rem; color:var(--ink-soft)}
+td{font-size:.88rem}
+.leaflet-popup-content{font-family:"Spectral",serif; font-size:.85rem; max-height:260px; overflow:auto}
+@media (max-width:600px){ body{padding:2rem 1rem 4rem} h1{font-size:2rem} #map{height:380px} }
+</style>
+</head>
+<body>

@@ -212,6 +212,7 @@ def main():
                         "t_start": s.get("t_start"), "t_end": s.get("t_end"),
                         "t_inferred": s.get("t_inferred"),
                         "res_status": status, "qid": qid, "label_en": en,
+                        "country": s.get("country", ""),
                         "lat": lat, "lon": lon,
                         "events": s.get("events") or [],
                         "evidence": s.get("evidence_quote", ""),
