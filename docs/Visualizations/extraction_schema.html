@@ -1,0 +1,293 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extraction Schema v2</title>
+<meta name="description" content="Draft schema for the next all-volume extraction of the Zylbercweig Lexicon: entity types, relations, events and movements.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#faf7f0;--ink:#272219;--soft:#5c554a;--muted:#8a8274;--line:#e2dcce;--card:#f2eddf;
+--teal:#0e6f8a;--halo:#faf7f0;
+--c-person:#2a78d6;--c-org:#eb6834;--c-place:#1baf7a;--c-work:#eda100;--c-role:#e87ba4;
+--c-event:#008300;--c-station:#6250d6;--c-source:#8a8274}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--paper:#1c1a16;--ink:#ece6d8;--soft:#b9b1a1;--muted:#8f8778;--line:#3a352c;--card:#25221d;
+--teal:#6fb7cc;--halo:#1c1a16;
+--c-person:#3987e5;--c-org:#d95926;--c-place:#199e70;--c-work:#c98500;--c-role:#d55181;
+--c-event:#0ca30c;--c-station:#9085e9;--c-source:#8f8778}}
+:root[data-theme="dark"]{--paper:#1c1a16;--ink:#ece6d8;--soft:#b9b1a1;--muted:#8f8778;--line:#3a352c;--card:#25221d;
+--teal:#6fb7cc;--halo:#1c1a16;
+--c-person:#3987e5;--c-org:#d95926;--c-place:#199e70;--c-work:#c98500;--c-role:#d55181;
+--c-event:#0ca30c;--c-station:#9085e9;--c-source:#8f8778}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Spectral",Georgia,serif;font-size:15px;line-height:1.55}
+header,main,footer{max-width:76rem;margin:0 auto;padding-left:16px;padding-right:16px}
+header{padding-top:2rem}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin:0}
+.eyebrow a{color:inherit}
+h1{font-family:"Fraunces",serif;font-weight:600;font-size:2.1rem;margin:.1rem 0 .4rem}
+.lede{color:var(--soft);max-width:46rem;margin:.2rem 0 .6rem}
+.controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:1rem 0 .6rem}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.seg button{font:500 .72rem "IBM Plex Mono",monospace;letter-spacing:.05em;text-transform:uppercase;
+background:var(--paper);color:var(--soft);border:0;padding:.42rem .7rem;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:.35rem .9rem;font-size:.82rem;color:var(--soft);margin:.2rem 0 .8rem}
+.legend span{display:inline-flex;align-items:center;gap:.35rem}
+.sw{width:11px;height:11px;border-radius:50%;display:inline-block}
+.ln{width:26px;height:0;border-top:2px solid var(--muted);display:inline-block}
+.ln.new{border-top-style:dashed;border-top-color:var(--ink)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 21rem;gap:1.2rem;align-items:start}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.4rem}
+svg{display:block;width:100%;height:auto}
+.edge path{fill:none;stroke:var(--muted);stroke-width:2}
+.edge.new path{stroke:var(--ink);stroke-dasharray:6 5;opacity:.75}
+.edge path.hit{stroke:transparent!important;stroke-width:16;stroke-dasharray:none;fill:none;cursor:pointer}
+.edge text{font:500 11.5px "IBM Plex Mono",monospace;fill:var(--soft);paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
+.edge.on path{stroke:var(--teal);stroke-width:3;opacity:1}
+.edge.on text{fill:var(--ink)}
+.node{cursor:pointer}
+.node circle.dot{stroke:var(--paper);stroke-width:2}
+.node text.nm{font:600 15px "Fraunces",serif;fill:var(--ink);paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+.node text.sub{font:400 11px "IBM Plex Mono",monospace;fill:var(--soft);paint-order:stroke;stroke:var(--halo);stroke-width:4px}
+.node .ring{fill:none;stroke:var(--teal);stroke-width:3;opacity:0}
+.node.on .ring,.node:focus-visible .ring{opacity:1}
+.node:focus{outline:none}
+.dim{opacity:.18}
+.badge{font:500 .62rem "IBM Plex Mono",monospace;letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--line);border-radius:3px;padding:.08rem .4rem;color:var(--soft);background:var(--paper)}
+.badge.new{color:var(--ink);border-color:var(--ink)}
+aside.panel{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.9rem 1rem 1rem;position:sticky;top:12px}
+aside.panel h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;margin:.1rem 0 .3rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+aside.panel p{margin:.3rem 0 .6rem;color:var(--soft);font-size:.9rem}
+aside.panel h3{font:500 .66rem "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:.9rem 0 .25rem}
+ul.f{margin:0;padding:0;list-style:none;font-size:.86rem}
+ul.f li{padding:.18rem 0;border-bottom:1px dotted var(--line)}
+ul.f code,.cards code{font:400 .8rem "IBM Plex Mono",monospace;color:var(--ink)}
+ul.f .d{color:var(--soft)}
+.yi{font-family:"Frank Ruhl Libre",serif;unicode-bidi:isolate}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1rem}
+.cards article{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--k);border-radius:6px;padding:.8rem .95rem .9rem}
+.cards h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.1rem;margin:0 0 .2rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.cards p{margin:.2rem 0 .5rem;color:var(--soft);font-size:.87rem}
+.cards h3{font:500 .64rem "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:.7rem 0 .2rem}
+.cards ul{margin:0;padding:0 0 0 1rem;font-size:.85rem}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--paper);font-size:.8rem;padding:.35rem .55rem;border-radius:4px;max-width:18rem;opacity:0;transition:opacity .08s;z-index:5}
+.notes{margin:2rem 0 0;color:var(--soft);font-size:.88rem;max-width:50rem}
+.notes h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;color:var(--ink);margin:1.6rem 0 .3rem}
+footer{color:var(--soft);font-size:.82rem;border-top:1px solid var(--line);padding-top:1rem;padding-bottom:3rem;margin-top:2.5rem}
+footer a{color:var(--teal)}
+footer code,.notes code{overflow-wrap:anywhere}
+html,body{overflow-x:hidden}
+[hidden]{display:none!important}
+</style></head><body>
+<header>
+<p class="eyebrow"><a href="gate.html">Visualizations</a> · Zylbercweig Leksikon · draft 2026-11-15</p>
+<h1>Extraction schema, v2</h1>
+<p class="lede">What the next pass over all seven volumes of the Lexicon will extract: eight kinds of
+entity and the relations between them. Solid lines are already in the knowledge graph; dashed
+lines are new in this pass. Click any entity or relation for its fields and types.</p>
+</header>
+<main>
+<div class="controls">
+  <div class="seg" role="group" aria-label="View">
+    <button type="button" data-view="graph" aria-pressed="true">Ontology graph</button>
+    <button type="button" data-view="cards" aria-pressed="false">Entity cards</button>
+  </div>
+  <div class="seg" role="group" aria-label="Show relations" id="filt">
+    <button type="button" data-f="all" aria-pressed="true">All relations</button>
+    <button type="button" data-f="new" aria-pressed="false">New in v2</button>
+    <button type="button" data-f="old" aria-pressed="false">Existing</button>
+  </div>
+</div>
+<div class="legend" id="legend"></div>
+
+<section id="v-graph">
+<div class="layout">
+  <div class="stage"><svg id="g" viewBox="0 0 1000 700" role="img" aria-labelledby="gtitle">
+    <title id="gtitle">Ontology graph of the extraction schema</title>
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+      <marker id="arrN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink)" opacity=".75"/></marker>
+    </defs>
+    <g id="edges"></g><g id="nodes"></g>
+  </svg></div>
+  <aside class="panel" id="panel" aria-live="polite"></aside>
+</div>
+</section>
+
+<section id="v-cards" hidden><div class="cards" id="cards"></div></section>
+
+<div class="notes">
+<h2>How to read it</h2>
+<p>Everything is extracted <b>as written</b>: names as they appear, with a short verbatim quote as
+evidence. Within one entry the extractor resolves <bdi class="yi">פּ.</bdi>, <bdi class="yi">ער</bdi> and short surnames to the fullest form in
+that entry. Which person a name refers to across the Lexicon is decided afterwards, in entity
+resolution, which uses these relations as evidence.</p>
+<p><b>Person → organization</b> relations (18.5k edges, aligned through core_db) are not re-extracted.
+“X played in Y’s troupe” becomes two such edges — Y leads the troupe, X performed in it — not a
+person-to-person link.</p>
+<p>Where the text rarely decides a distinction (theatre building vs company, hall vs theatre),
+the schema has no field for it; what the text does state is recorded as dated facts instead.</p>
+<p>Anything that does not fit the schema goes to <code>schema_issues</code>, with a question.</p>
+<p>Full text of the schema: <a href="https://github.com/sinairusinek/Dybbuk/blob/main/Zylbercweig/extraction_v2/SCHEMA_DRAFT.md" style="color:var(--teal)">SCHEMA_DRAFT.md</a>.</p>
+</div>
+</main>
+<footer>Draft for review. Built from <code>Zylbercweig/extraction_v2/SCHEMA_DRAFT.md</code> in the
+<a href="https://github.com/sinairusinek/Dybbuk">Dybbuk</a> repository. Funded by the ISF project
+“Historical Digital Analysis of Zalmen Zylbercweig’s Lexicon of Yiddish Theatre” (grant 284/24, PI Ruthie Abeliovich).</footer>
+<div class="tip" id="tip"></div>
+
+<script>
+const N = {
+ person:{label:"Person",x:500,y:110,status:"old",sub:"actor, playwright, kin…",
+  desc:"Anyone the entry names, including the entry's subject and unnamed kin (“his father”).",
+  fields:[["surface","name as written"],["full_form","fullest form in the same entry"],["is_subject","the entry's own subject?"],["gender","if stated"],["occupation[]","controlled list: actor, prompter, cashier, agent, impresario…"],["description","short phrase from the text"]]},
+ org:{label:"Organization",x:150,y:270,status:"old",sub:"troupe, theatre, union…",
+  desc:"Named as written. Its type lives in core_db, not in the extraction. Eponyms keep the person they are named after.",
+  fields:[["surface","as written"],["full_form","fullest form in the entry"],["named_after","person, for “Fishzon’s troupe”"]]},
+ place:{label:"Place",x:420,y:620,status:"old",sub:"settlement, region…",
+  desc:"Resolved later through the gazetteer (Kima / Wikidata).",
+  fields:[["surface","as written"],["place_kind","settlement · region · country · venue_only · unknown"]]},
+ work:{label:"Work",x:850,y:300,status:"new",sub:"play, operetta, song…",
+  desc:"Works performed, written, translated or composed. Publication data stays with the editions pipeline.",
+  fields:[["surface","title, verbatim"],["work_kind","play · operetta · opera · musical comedy · melodrama · sketch · revue · song · score · film · radio play · book · memoir · article · periodical"],["language","if stated"],["based_on","source work or author, if stated"]]},
+ role:{label:"Dramatic role",x:860,y:590,status:"new",sub:"character in a work",
+  desc:"A character, linked to its work: Ben Hador, the Queen in Shulamis.",
+  fields:[["surface","character name, verbatim"],["work","title of the work it belongs to"]]},
+ event:{label:"Event",x:660,y:460,status:"new",sub:"performance, founding, strike…",
+  desc:"Something that happened, with participants and their roles. Venue is a role on the event, not a type: a café or a hotel can be a venue.",
+  fields:[["event_type","performance · premiere · debut · guest_appearance · season · benefit · jubilee · honor · memorial · founding · strike · conflict · marriage · divorce · arrest · imprisonment · death · burial"],["date_start / date_end",""],["date_certainty","explicit · approximate · none"],["place, venue, work","mentions"],["participants[]","person + role (performer, director, organizer, honoree, victim…) + dramatic role"]]},
+ station:{label:"Movement",x:230,y:470,status:"new",sub:"migration, tour, deportation",
+  desc:"An itinerary station: a stay of a person (or a touring troupe) at a place, in narrative order, with the events that happened there.",
+  fields:[["verb_class","born · settled · stay · pass_through · tour · flight · emigration · return · visit · death · deportation · evacuation · expulsion · conscription"],["reason","work_engagement · tour_or_guest_appearance · family · education · emigration · forced · health · other · unstated"],["reason_stated","false when the text gives no reason"],["org, role","who the subject was with, as what"],["date_start / date_end / date_certainty",""],["events[]","events at this station"]]},
+ source:{label:"Source",x:840,y:95,status:"new",sub:"how the Lexicon knows",
+  desc:"The informant or text an entry draws on. Provenance, not a social tie.",
+  fields:[["surface","person or text, as written"],["source_kind","informant · cited_text · memoir · interview · correspondence · other"]]}
+};
+const COL = {person:"--c-person",org:"--c-org",place:"--c-place",work:"--c-work",role:"--c-role",event:"--c-event",station:"--c-station",source:"--c-source"};
+// curve: c = perpendicular offset of the control point; loop = self-loop direction
+const E = [
+ {id:"pp",a:"person",b:"person",loop:"up",status:"new",label:"person ↔ person",
+  desc:"Six categories; friendship and source are categories of their own.",
+  types:[["family","parent · child · spouse · sibling · extended — qualifiers foster/raised_by, ancestor, divorced, widowed"],["collaboration","co_performer · partner · co_founder · colleague"],["hierarchy","employer/director → employee · teacher → student · agent/impresario → client; role_title required (prompter, conductor, choreographer, meshorer…)"],["creative","creator → interpreter · translator_of · adapter_of · influence"],["social","friend · acquaintance · supporter/advocate · conflict"],["source","informant_about · wrote_about · quoted_in_entry · corrected"]]},
+ {id:"po",a:"person",b:"org",c:-40,status:"old",label:"member, performer, leader…",
+  desc:"Already extracted for all volumes (18.5k edges); not redone. “Y’s troupe” sentences add leader + performer edges here.",
+  types:[["Employment_Performance","performer · artistic staff · employee"],["Leadership_Ownership","founder · owner/manager · executive"],["Education_Formation","student · graduate"],["Affiliation_Membership","member · delegate/official"],["Production_Distribution","published by · produced by"]]},
+ {id:"op",a:"org",b:"person",c:-40,status:"old",label:"named after",
+  desc:"Eponymous organizations: the person a troupe or theatre is named after (eponym links).",types:[["named_after","“Fishzon’s troupe” → Avrom Fishzon"]]},
+ {id:"pw",a:"person",b:"work",c:40,status:"new",label:"author, composer, performer…",
+  desc:"Exists only for Lateiner/Hurwitz today; v2 covers every entry.",
+  types:[["roles","author · translator · adapter · composer · lyricist · director · designer · choreographer · performer (+ dramatic role) · producer"]]},
+ {id:"ww",a:"work",b:"work",loop:"right",status:"new",label:"translation of…",
+  desc:"Links between works, only as the text states them.",types:[["types","translation_of · adaptation_of · based_on · same_as"]]},
+ {id:"rw",a:"role",b:"work",c:30,status:"new",label:"character in",desc:"Each dramatic role belongs to a work.",types:[["character_in","Ben Hador → Shulamis"]]},
+ {id:"ep",a:"event",b:"person",c:30,status:"new",label:"participant (+ role)",
+  desc:"Who took part and as what; performers can carry the dramatic role they played.",types:[["participant","performer · director · organizer · speaker · honoree · victim · … + dramatic role"]]},
+ {id:"ew",a:"event",b:"work",c:-30,status:"new",label:"of work",desc:"The work performed or premiered.",types:[["work","play, operetta, song…"]]},
+ {id:"er",a:"event",b:"role",c:-20,status:"new",label:"role played",desc:"The dramatic roles performed at this event.",types:[["role","via participants[]"]]},
+ {id:"eo",a:"event",b:"org",c:25,lt:0.14,status:"new",label:"venue, organizer",desc:"Venue is a role: any organization (or a place) can be one.",types:[["venue","theatre · café · hotel · hall · synagogue…"],["organizer","troupe, society, union…"]]},
+ {id:"epl",a:"event",b:"place",c:-25,status:"new",label:"took place in",desc:"Settlement or region of the event.",types:[["place","as written; resolved later"]]},
+ {id:"sp",a:"station",b:"person",c:-30,status:"new",label:"subject",desc:"Whose itinerary: a person, or an organization when a troupe tours.",types:[["subject","person · organization"]]},
+ {id:"spl",a:"station",b:"place",c:25,status:"new",label:"at",desc:"Where the stay happened.",types:[["place","settlement · region (for a tour) · country"]]},
+ {id:"se",a:"station",b:"event",c:0,status:"new",label:"events there",desc:"Events are nested inside the station where they happened; never emitted twice.",types:[["events[]",""]]},
+ {id:"so",a:"station",b:"org",c:-20,status:"new",label:"with",desc:"The troupe or organization the subject was with at that station.",types:[["org","+ the subject's role there"]]},
+ {id:"opl",a:"org",b:"place",c:-25,status:"old",label:"located in",desc:"Already in the graph (6,220 org → place edges).",types:[["located_in",""]]},
+ {id:"ppl",a:"person",b:"place",c:-30,status:"old",label:"born, died, buried",desc:"Already in the graph for the 3,083 entry subjects (bio layer).",types:[["born_in · died_in · buried_in",""]]},
+ {id:"src",a:"source",b:"person",c:-20,status:"new",label:"informs about",desc:"The Lexicon’s informants and cited texts.",types:[["source relations","informant_about · wrote_about · quoted_in_entry · corrected_or_contradicted"]]}
+];
+const R = 38, svgNS="http://www.w3.org/2000/svg";
+const $ = s=>document.querySelector(s);
+function el(t,a={},p){const e=document.createElementNS(svgNS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+function geom(e){
+  const A=N[e.a],B=N[e.b];
+  if(e.loop){
+    const s=60, x=A.x, y=A.y;
+    if(e.loop==="up") return {d:`M${x-22},${y-R+4} C${x-70},${y-R-s} ${x+70},${y-R-s} ${x+22},${y-R+4}`,lx:x,ly:y-R-s*0.62};
+    return {d:`M${x+R-4},${y-22} C${x+R+s},${y-70} ${x+R+s},${y+70} ${x+R-4},${y+22}`,lx:x+R+s*0.85,ly:y};
+  }
+  const dx=B.x-A.x,dy=B.y-A.y,L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L,nx=-uy,ny=ux,c=e.c||0;
+  const mx=(A.x+B.x)/2+nx*c,my=(A.y+B.y)/2+ny*c;
+  // start/end on circle edges, aimed toward control point
+  const sa=Math.atan2(my-A.y,mx-A.x),ea=Math.atan2(my-B.y,mx-B.x);
+  const x1=A.x+Math.cos(sa)*(R+2),y1=A.y+Math.sin(sa)*(R+2),x2=B.x+Math.cos(ea)*(R+5),y2=B.y+Math.sin(ea)*(R+5);
+  const t=e.lt||0.5,q=(a,m,b)=>(1-t)*(1-t)*a+2*(1-t)*t*m+t*t*b;
+  return {d:`M${x1},${y1} Q${mx},${my} ${x2},${y2}`,lx:q(x1,mx,x2),ly:q(y1,my,y2)};
+}
+const gE=$("#edges"),gN=$("#nodes"),tip=$("#tip");
+let sel=null, filt="all";
+E.forEach(e=>{
+  const g=el("g",{class:"edge "+(e.status==="new"?"new":"old"),"data-id":e.id},gE);
+  const {d,lx,ly}=geom(e);
+  el("path",{d,"marker-end":`url(#${e.status==="new"?"arrN":"arr"})`},g);
+  const hit=el("path",{d,class:"hit"},g);
+  const t=el("text",{x:lx,y:ly+4,"text-anchor":"middle"},g); t.textContent=e.label;
+  hit.addEventListener("click",ev=>{ev.stopPropagation();select({edge:e.id})});
+  hit.addEventListener("mousemove",ev=>showTip(ev,`<b>${esc(e.label)}</b><br>${esc(N[e.a].label)} → ${esc(N[e.b].label)} · ${e.status==="new"?"new in v2":"existing"}`));
+  hit.addEventListener("mouseleave",hideTip);
+  e.g=g;
+});
+Object.entries(N).forEach(([k,n])=>{
+  const g=el("g",{class:"node","data-id":k,tabindex:0,role:"button","aria-label":`${n.label}: ${n.sub}`},gN);
+  el("circle",{class:"ring",cx:n.x,cy:n.y,r:R+6},g);
+  const c=el("circle",{class:"dot",cx:n.x,cy:n.y,r:R,fill:`var(${COL[k]})`},g);
+  if(n.status==="new") el("circle",{cx:n.x,cy:n.y,r:R-7,fill:"none",stroke:"var(--paper)","stroke-width":1.5,"stroke-dasharray":"4 4"},g);
+  const t=el("text",{class:"nm",x:n.x,y:n.y+R+19,"text-anchor":"middle"},g); t.textContent=n.label;
+  const s=el("text",{class:"sub",x:n.x,y:n.y+R+34,"text-anchor":"middle"},g); s.textContent=n.sub;
+  g.addEventListener("click",ev=>{ev.stopPropagation();select({node:k})});
+  g.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();select({node:k})}});
+  g.addEventListener("mousemove",ev=>showTip(ev,`<b>${esc(n.label)}</b> · ${n.status==="new"?"new in v2":"already extracted"}<br>${esc(n.desc)}`));
+  g.addEventListener("mouseleave",hideTip);
+  n.g=g;
+});
+$("#g").addEventListener("click",()=>select(null));
+function showTip(ev,h){tip.innerHTML=h;tip.style.opacity=1;const x=Math.min(ev.clientX+14,innerWidth-300);tip.style.left=x+"px";tip.style.top=(ev.clientY+14)+"px"}
+function hideTip(){tip.style.opacity=0}
+function badge(s){return `<span class="badge ${s==="new"?"new":""}">${s==="new"?"new in v2":"existing"}</span>`}
+function fieldList(arr){return `<ul class="f">${arr.map(([k,v])=>`<li><code>${esc(k)}</code>${v?` <span class="d">— ${esc(v)}</span>`:""}</li>`).join("")}</ul>`}
+function select(s){
+  sel=s;
+  const on=new Set(),onN=new Set();
+  if(s&&s.node){onN.add(s.node);E.forEach(e=>{if(e.a===s.node||e.b===s.node){on.add(e.id);onN.add(e.a);onN.add(e.b)}})}
+  if(s&&s.edge){const e=E.find(x=>x.id===s.edge);on.add(e.id);onN.add(e.a);onN.add(e.b)}
+  E.forEach(e=>{const vis=filt==="all"||(filt==="new")===(e.status==="new");
+    e.g.style.display=vis?"":"none";
+    e.g.classList.toggle("on",on.has(e.id));e.g.classList.toggle("dim",!!s&&!on.has(e.id))});
+  Object.entries(N).forEach(([k,n])=>{n.g.classList.toggle("on",!!s&&s.node===k);n.g.classList.toggle("dim",!!s&&!onN.has(k))});
+  renderPanel();
+}
+function renderPanel(){
+  const p=$("#panel");
+  if(!sel){p.innerHTML=`<h2>Eight kinds of entity</h2><p>Click an entity to see its fields and the relations it takes part in, or a relation to see its types.</p>
+   <h3>In numbers</h3><ul class="f"><li><code>8</code> <span class="d">entity kinds, 5 of them new</span></li><li><code>${E.length}</code> <span class="d">relation families, ${E.filter(e=>e.status==="new").length} new</span></li><li><code>6</code> <span class="d">person ↔ person categories</span></li><li><code>18</code> <span class="d">event types</span></li></ul>`;return}
+  if(sel.node){const n=N[sel.node];
+    const rel=E.filter(e=>e.a===sel.node||e.b===sel.node);
+    p.innerHTML=`<h2><span class="sw" style="background:var(${COL[sel.node]})"></span>${esc(n.label)} ${badge(n.status)}</h2><p>${esc(n.desc)}</p><h3>Fields</h3>${fieldList(n.fields)}
+     <h3>Relations</h3><ul class="f">${rel.map(e=>`<li><a href="#" data-e="${e.id}" style="color:var(--teal)">${esc(e.label)}</a> <span class="d">${esc(N[e.a].label)} → ${esc(N[e.b].label)}</span></li>`).join("")}</ul>`;
+    p.querySelectorAll("a[data-e]").forEach(a=>a.addEventListener("click",ev=>{ev.preventDefault();select({edge:a.dataset.e})}));
+    return}
+  const e=E.find(x=>x.id===sel.edge);
+  p.innerHTML=`<h2>${esc(e.label)} ${badge(e.status)}</h2><p><b>${esc(N[e.a].label)} → ${esc(N[e.b].label)}</b>. ${esc(e.desc)}</p><h3>Types</h3>${fieldList(e.types)}`;
+}
+// legend
+$("#legend").innerHTML=Object.entries(N).map(([k,n])=>`<span><i class="sw" style="background:var(${COL[k]})"></i>${esc(n.label)}</span>`).join("")+
+ `<span><i class="ln"></i>existing</span><span><i class="ln new"></i>new in v2</span>`;
+// cards view
+$("#cards").innerHTML=Object.entries(N).map(([k,n])=>{
+  const out=E.filter(e=>e.a===k), inc=E.filter(e=>e.b===k&&e.a!==k);
+  return `<article style="--k:var(${COL[k]})"><h2>${esc(n.label)} ${badge(n.status)}</h2><p>${esc(n.desc)}</p>
+   <h3>Fields</h3><ul>${n.fields.map(([f,v])=>`<li><code>${esc(f)}</code>${v?` — ${esc(v)}`:""}</li>`).join("")}</ul>
+   ${out.length?`<h3>Relations out</h3><ul>${out.map(e=>`<li>${esc(e.label)} → ${esc(N[e.b].label)}${e.status==="new"?" <i>(new)</i>":""}</li>`).join("")}</ul>`:""}
+   ${inc.length?`<h3>Relations in</h3><ul>${inc.map(e=>`<li>${esc(N[e.a].label)} → ${esc(e.label)}${e.status==="new"?" <i>(new)</i>":""}</li>`).join("")}</ul>`:""}</article>`}).join("");
+// controls
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("[data-view]").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  $("#v-graph").hidden=b.dataset.view!=="graph";$("#v-cards").hidden=b.dataset.view!=="cards";
+  $("#filt").style.visibility=b.dataset.view==="graph"?"visible":"hidden";}));
+document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));filt=b.dataset.f;select(sel)}));
+select(null);
+if(innerWidth<600) document.querySelector('[data-view="cards"]').click();
+</script>
+</body></html>
