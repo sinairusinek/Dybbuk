@@ -19,6 +19,8 @@ Nothing has been normalised, deduplicated or merged into `people_db` / `core_db`
 | `100entries_munich_tmigrants/` | 100 entries prepared for T-Migrants (Munich): the same layers plus T-Migrants ids (`AbrBin-742`, `USA-Bost-00`), Wikidata QIDs for places and countries, Ruthie's comments, "add as / DONT ADD" decisions, and external-source links for colleagues. Many near-duplicate versions; each one kept here holds something the others don't. | `private/…/2024-12-28_…Sept29_1_xlsx…` 🔒 (the 122-column merge); public:  `…Colleagues_2…`, `…Personal_Information_2…`, `…Professional_Life_1…`, `…places_1…` |
 | `tmigrants_orgs/` | The T-Migrants organisation list (`IDOrganisation`, `inst_name`, `InstType`, `IDLocation`) aligned to DiJeSt org ids (`DiJeSt-ID`). 485 rows are starred. What the star meant was not recorded. | `2025-06-12_organisation_Tmig_zyl_merge_update…` |
 | `dijest_db_export/` | The DiJeSt "Persons + Organisations Report" export of 2025-07-06: 436 birth dates, 150 death dates and 87 "Author of Work" lists that `people_db` lacks. | the one file |
+| `drive_2024_25/migrations/` (+ 🔒 `private/drive_2024_25/migrations/`) | Files that were only in Google Drive, not OpenRefine (added 2026-11-15). **Migrations2025-3-18**: 919 hand-curated moves of 158 people in T-Migrants format: start → destination place (T-Migrants, DiJeSt and Wikidata ids), fuzzy date, `reason` + `reason validation` (Labour 806, Family 37, Education 23, Forced 23, Immigration 9, other), and `target table`, which separates **Migration** from **Work table (labor migration)**, i.e. touring for work. The file named 3-19 is a 14-row draft; 3-18 was edited later (July 2025). 🔒 `long_articles_100_migration` (2 versions): 301 stations from 11 long Lasky entries; the `_1` version adds settlement/country validation. | `Migrations2025_3_18__…` |
+| `drive_2024_25/performance_events/` | **People in Performance Events** (DiJeSt assertions report 2024-07-28): 852 person-in-performance assertions with **professional role** (actor, manager and lessee, director, composer, régisseur…) and **dramatic role** (Ben Hador, the Queen, Leah's angel in *Der dibek*…), date, venue, source link (mostly JPRESS) and checks against DiJeSt and the Lexicon. The other sheets are the name lists used for those checks, and a short explanation (`Sheet3`). | `…Assertions_Report_20240728_0950.tsv` |
 
 `manifest.tsv` lists every file with its visibility, OpenRefine project id and name,
 created/modified dates, row count and starred/flagged counts. 🔒 = under the git-ignored `private/`.
@@ -60,6 +62,7 @@ can't be seen. Regenerating restores `private/` from OpenRefine.
 
 ```
 python3 export_from_openrefine.py     # reads ~/Library/Application Support/OpenRefine, read-only
+python3 export_drive_files.py <dir>   # <dir> = the Drive files, downloaded by id (ids in drive_2024_25/manifest.tsv)
 ```
 `projects.py` holds the project list: for each family, the smallest set of projects that
 together hold every value not found elsewhere in the repo (recomputed 2026-11-15).
