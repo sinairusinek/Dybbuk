@@ -42,6 +42,16 @@ OVERRIDES = [
      "„טאָג און נאַכט“ — Ansky's OTHER play, completed from his fragments by Dogim and Buzgan"),
 ]
 
+# (person_id, mention, fact) -> field fixes, reason. Checked against the entry text 2026-11-15.
+FACT_FIXES = {
+    ("P-2-facs_112_tr_1744279063", 0, 0): ({"date_start": ""}, "1915 is when Lares joined the Vilna Troupe; the entry dates no Dybbuk performance"),
+    ("P-2-facs_310_tr_1744365749", 0, 0): ({"place": "", "place_en": "", "points": [], "label_en": "", "lat": None, "lon": None},
+                                           "the entry names no place for the premiere; 'Vilna' came from the troupe's name (it opened in Warsaw)"),
+    ("P-2-facs_310_tr_1744365749", 0, 1): ({"date_start": ""}, "1916 is the start of Nachbush's touring with the Vilna Troupe, not of the Dybbuk"),
+    ("P-2-facs_330_tr_1744365791", 0, 0): ({"date_start": ""}, "1914 belongs to Summerson's Argentine career in general; no Dybbuk date is given"),
+    ("P-6-facs_105_tr_1747825152", 0, 0): ({"date_start": ""}, "1914 is when Fridman joined Kompaneyets's troupe in Melitopol; the Dybbuk came later, undated"),
+}
+
 ROLE_ORDER = ["author", "translator", "adaptor", "director", "assistant_director", "composer",
               "set_designer", "costume_designer", "choreographer", "conductor", "actor",
               "producer", "manager", "prompter", "reader", "critic", "other"]
@@ -192,6 +202,12 @@ def main():
     applied = []
     for f in facts:
         f["flags"] = []
+        fx = FACT_FIXES.get((f["person_id"], f["mention"], f["fact"]))
+        if fx:
+            old = {k: f.get(k) for k in fx[0] if k != "points"}
+            f.update(fx[0])
+            applied.append((f["heading"], ", ".join(f"{k}={v}" for k, v in old.items() if v and k in ("date_start", "place_en")),
+                            "cleared", fx[1], f))
         for h, ev, new, why in OVERRIDES:
             if h in f["heading"] and nrm(ev) in nrm(f["evidence"]):
                 applied.append((f["heading"], f["work"], new, why, f))
@@ -415,8 +431,7 @@ that everything in §3, and the parody, opera and film sections, exists only in 
     a(f'<h3>Ansky stagings dated before the 1920 premiere <span class="count">{len(date_flags)}</span></h3>')
     a('<p>The play was finished in 1916–17 and first staged on 9 December 1920; the Habima studio rehearsed it '
       'in Moscow from 1918. A staging dated earlier usually means the extractor took the date of the '
-      'actor\'s engagement with the troupe, not of the Dybbuk. They are flagged ⚑ in the tables above '
-      'and left as extracted.</p>')
+      'actor\'s engagement with the troupe, not of the Dybbuk. Any left after the hand corrections below are flagged ⚑ in the tables above.</p>')
     a('<div class="tablewrap"><table><tr><th>date</th><th>step</th><th>place</th><th>troupe</th><th>source</th></tr>')
     for f in sorted(date_flags, key=lambda f: f["date_start"]):
         a(f'<tr><td class="num">{esc(f["date_start"])}</td><td>{esc(f["fact_type"])}</td>'

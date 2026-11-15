@@ -19,7 +19,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ENTRY_TEXTS = HERE.parent.parent / "people" / "entry_texts.tsv"
-DOCS = HERE.parent.parent.parent / "docs"
+DOCS = HERE.parent.parent.parent / "docs" / "Visualizations"
 
 csv.field_size_limit(10**8)
 POINTS = re.compile(r"[֑-ׇ]")
@@ -33,9 +33,11 @@ GAP = "\n\n   · · ·\n\n"
 
 
 def excerpt(text, rx, window):
-    """Merged +/-window-char windows around every match; GAP marks elisions."""
+    """Merged +/-window-char windows around every match; GAP marks elisions.
+    rx is points-tolerant, so it matches the ORIGINAL text — offsets found in a
+    points-stripped copy would drift on pointed entries (fixed 2026-11-15)."""
     spans = []
-    for m in rx.finditer(strip_points(text)):
+    for m in rx.finditer(text):
         a, b = max(0, m.start() - window), min(len(text), m.end() + window)
         if spans and a <= spans[-1][1]:
             spans[-1] = (spans[-1][0], max(spans[-1][1], b))

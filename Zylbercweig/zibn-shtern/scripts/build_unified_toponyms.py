@@ -63,6 +63,11 @@ UNLINKED_CONFIRMED = WORK / "kima" / "unlinked_confirmed.tsv"
 # downstream). source_value/record_id -> qid; record_id "*" = flat (all org
 # occurrences of the spelling). Takes precedence over auto org resolution.
 REVIEW_ORG = WORK / "kima" / "review_applied_org_qids.tsv"
+# Hand-verified QID corrections (2026-11-15, France dossier audit): spelling (or
+# record+spelling) -> QID for person/org attestations, and forced labels/coords for
+# QIDs whose derived label is wrong. Highest priority; non-positional, so it survives
+# regenerations. corpus ∈ person | org | label; record_id "*" = every record.
+OVERRIDES = HERE.parent / "data" / "reference" / "place_qid_overrides.tsv"
 
 ATT_OUT = WORK / "toponyms_attestations.csv"
 GAZ_OUT = WORK / "toponyms_gazetteer.csv"
@@ -310,6 +315,27 @@ def main() -> None:
                     review_by_record[(rid, v)] = q
                 category.setdefault(q, "settlement")
 
+    # ---- hand overrides (highest priority) ----
+    ov_att: dict[tuple, str] = {}   # (corpus, record_id|"*", source_value) -> qid
+    if OVERRIDES.exists():
+        for r in rd(OVERRIDES):
+            q = r["qid"].strip()
+            if not is_qid(q):
+                continue
+            new_lab = r.get("label_en", "").strip()
+            if new_lab and label_en.get(q, "") != new_lab:
+                label_en[q] = new_lab
+                ptype[q] = ""   # the derived type came with the wrong label ("commune of France")
+            if r.get("lat", "").strip():
+                coords_by_qid[q] = (r["lat"].strip(), r["lon"].strip())
+            category.setdefault(q, "settlement")
+            nonplace_qids.pop(q, None)
+            if r["corpus"] in ("person", "org"):
+                ov_att[(r["corpus"], r["record_id"].strip(), r["source_value"].strip())] = q
+
+    def override(corpus: str, rec: str, val: str) -> str:
+        return ov_att.get((corpus, rec, val)) or ov_att.get((corpus, "*", val), "")
+
     def enrich(row: dict, q: str) -> None:
         """Attach QID-keyed resolution columns to an attestation row."""
         k = kima_by_qid.get(q, {})
@@ -336,6 +362,13 @@ def main() -> None:
         linked_person_keys.add((eid, val))
         mq, _ = maaty_by_key.get((eid, role, val), ("", ""))
         nr = str(r.get("needs_review", "")).strip().lower() == "true"
+        oq = override("person", eid, val)
+        if oq:
+            if is_qid(q) and q != oq:
+                rejected = q
+            q, nr = oq, False
+        else:
+            rejected = ""
         row = {c: "" for c in ATT_COLS}
         row.update(attestation_id=new_id("P", eid, role), source_corpus="person",
                    source_record_id=eid, source_field=role, context=r.get("context", ""),
@@ -354,6 +387,9 @@ def main() -> None:
         elif is_qid(q):
             enrich(row, q)
             row["link_status"] = "needs_review" if nr else "linked"
+            if oq:
+                row.update(relink_source="hand_override", rejected_qid=rejected,
+                           maaty_qid_conflict="True" if (mq and mq != q) else "")
         else:
             row["link_status"] = "unlinked"
         att.append(row)
@@ -377,7 +413,7 @@ def main() -> None:
                        source_value=val, source_value_script=script_of(val),
                        link_status="unlinked", suggested_qid=sq, suggested_english=se,
                        is_descriptor="True" if is_descriptor(val) else "")
-            cq = confirmed_by_variant.get(val)
+            cq = override("person", eid, val) or confirmed_by_variant.get(val)
             if cq and cq not in nonplace_qids:
                 enrich(row, cq)
                 row.update(link_status="linked", relink_source="kima_unlinked",
@@ -402,6 +438,13 @@ def main() -> None:
                            source_record_id=cid, org_db_id=dbid, source_field=fname,
                            source_value=val, source_value_script=script_of(val),
                            is_descriptor="True" if is_descriptor(val) else "")
+                oq = override("org", cid, val)
+                if oq:
+                    enrich(row, oq)
+                    row.update(link_status="linked", relink_source="hand_override",
+                               rejected_qid=(resolved or ("",))[0] if resolved and resolved[0] != oq else "")
+                    att.append(row)
+                    continue
                 if (cid, val) in review_unlink_record or val in review_unlink_value:
                     row.update(link_status="unlinked", relink_source="kimatch_review")
                     att.append(row)

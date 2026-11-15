@@ -17,7 +17,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 KG = HERE.parent / "kg"
-DOCS = HERE.parent.parent.parent / "docs"
+DOCS = HERE.parent.parent.parent / "docs" / "Visualizations"
 
 csv.field_size_limit(10**8)
 POINTS = re.compile(r"[֑-ׇ]")
@@ -55,7 +55,7 @@ def main():
     # org -> located_in place label (for tooltips)
     org_place = {}
     for e in edges:
-        if e["edge_type"] == "located_in" and e["target_id"].startswith("place:"):
+        if e["edge_type"] in ("located_in", "toured_in") and e["target_id"].startswith("place:"):
             tgt = nodes.get(e["target_id"], {})
             org_place.setdefault(
                 e["source_id"],

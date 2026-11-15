@@ -8,7 +8,9 @@ KG = H.parent / "kg"
 N = {r["node_id"]: r for r in csv.DictReader(open(KG / "nodes.tsv"), delimiter="\t")}
 FR = {"place:Q90": "Paris", "place:Q142": "France", "place:Q201348": "Drancy",
       "place:Q22690": "Metz", "place:Q40898": "Nancy", "place:Q6602": "Strasbourg",
-      "place:Q1724334": "Ay (canton)"}
+      "place:Q1724334": "Ay (canton)", "place:Q456": "Lyon", "place:Q23482": "Marseille",
+      "place:Q33959": "Nice"}
+FR = {k: v for k, v in FR.items() if k in N}   # nodes that exist in this build
 lab = lambda i: (N.get(i, {}).get("label_english") or N.get(i, {}).get("label_yiddish") or i)
 yi = lambda i: N.get(i, {}).get("label_yiddish", "")
 edges = []
@@ -18,7 +20,7 @@ for e in csv.DictReader(open(KG / "edges.tsv"), delimiter="\t"):
                       "date_start", "provenance_person_id", "evidence_sentence", "source_layer")}
                      | {"src_en": lab(e["source_id"]), "src_yi": yi(e["source_id"]),
                         "src_type": N.get(e["source_id"], {}).get("node_type", "")})
-orgs = {e["source_id"] for e in edges if e["edge_type"] == "located_in"}
+orgs = {e["source_id"] for e in edges if e["edge_type"] in ("located_in", "toured_in")}
 org_edges = []
 for e in csv.DictReader(open(KG / "edges.tsv"), delimiter="\t"):
     if e["target_id"] in orgs and e["source_id"].startswith("person:"):

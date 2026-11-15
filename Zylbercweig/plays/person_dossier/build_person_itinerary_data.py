@@ -168,7 +168,7 @@ def build_anchors(cfg, lut):
 
     org_place = {}
     for e in edges:
-        if e["edge_type"] == "located_in" and e["target_id"].startswith("place:"):
+        if e["edge_type"] in ("located_in", "toured_in") and e["target_id"].startswith("place:"):
             org_place.setdefault(e["source_id"], e["target_id"])
 
     def place_of(node_id):

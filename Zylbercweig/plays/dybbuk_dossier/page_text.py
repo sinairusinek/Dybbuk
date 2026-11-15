@@ -1,21 +1,25 @@
 # prose + map script for build_dybbuk_pages.py (exec'd there)
 INTRO = """
 <section>
-<h2>Data problems found</h2>
-<p>Recorded here for review. This dossier changes no data. Details in §9–§10.</p>
+<h2>Data problems found — and fixed</h2>
+<p>All four problems this dossier first reported were fixed on 2026-11-15 (details in §9–§10).</p>
 <ol>
-<li><span class="flag">Lateiner's comedy is credited to his wife.</span> <span class="mono">E-00953</span> makes
-<span class="mono">person:927</span> Izela Lateiner an author of <span class="mono">PL-0133</span>. The evidence
-(Mogulesko's entry) reads <span class="yi">לאַטיינערס קאָמעדיע</span>, and the surname was linked to the wrong Lateiner.</li>
-<li><span class="flag">The Odessa date of Lateiner's Dybbuk contradicts itself.</span> <span class="mono">EV-0194</span>
-is dated 1880, but its evidence sentence says <span class="yi">אין אָדעס אין 1889</span>. Blank's entry also says 1889.
-Lateiner and Mogulesko were both in New York by the mid-1880s (external knowledge, not from the Leksikon), so
-"1889" may be a slip for 1880. This needs checking against the scan.</li>
-<li><span class="flag">The Danzig dossier cites a deleted event.</span> Its §3 names
-<span class="mono">event:EV-0576</span> „דבוק" (Zaslavsky, 1933–34). Since the 11-01 attribution fix, the KG excludes
-that Ansky staging and the event id no longer exists. The page should be regenerated or annotated.</li>
-<li><span class="flag">Where was the 1920 premiere?</span> Five entries put the Vilna Troupe premiere in Warsaw on
-9 December 1920. Nachbush's entry has the extractor place it in Vilna, probably from the troupe's name.</li>
+<li><span class="flag">Lateiner's comedy was credited to his wife.</span> The possessive „לאַטיינערס" had auto-linked to
+Izela Lateiner (<span class="mono">person:927</span>), so she "authored" ten of his plays, the Dybbuk among them. Five
+more spellings (<span class="yi">יוסף לאַטיינער</span>, <span class="yi">י. לאטיינער</span> …) had minted stray "unmatched" authors.
+<b>Fixed:</b> all six spellings are ALIGNed to Joseph Lateiner (<span class="mono">person:683</span>) in
+<span class="mono">kg_link_review.tsv</span>, and 26 author edges moved.</li>
+<li><span class="flag">The Odessa date was an OCR error, not a KG error.</span> The transcription of Mogulesko's entry read
+<span class="yi">אין אָדעס אין 1889</span>; the printed page (<a href="https://archive.org/details/nybc201090/page/n199/mode/1up">vol. 2,
+cols. 1183–1184</a>) reads <b>1880</b>, as the KG event <span class="mono">EV-0194</span> already had it. <b>Fixed</b> in the vol. 2
+TEI and <span class="mono">entry_texts.tsv</span>. Blank's entry (<a href="https://archive.org/details/nybc201089/page/n101/mode/1up">vol. 1,
+cols. 171–172</a>) really does print 1889 for the Lateiner–Mogulesko troupe in Odessa. That is the Leksikon's own claim and
+it stands as such.</li>
+<li><span class="flag">The Danzig dossier cited deleted events.</span> <b>Fixed:</b> the page now explains that both Danzig events
+(the Dybbuk and „גרינע פֿעלדער") left the L/H KG with the 11-01 attribution guard, and links here.</li>
+<li><span class="flag">Premiere place and four impossible dates.</span> Nachbush's entry made the Vilna Troupe premiere happen
+"in Vilna", and four stagings were dated 1914–16, before the play existed. In each case the extractor took the actor's
+engagement date or the troupe's name. <b>Fixed</b> by hand corrections in <span class="mono">build_dybbuk_pages.py</span>, listed in §10.</li>
 </ol>
 </section>
 """
@@ -30,7 +34,7 @@ film is Waszyński's, from Alter Kacyzne's screenplay. Ansky's other play, <span
 listed in §10 but is not a Dybbuk.</p>
 """
 PROBLEMS = """
-<p>The four problems listed at the top of the page come first. The automatic checks follow.</p>
+<p>The automatic checks and hand corrections behind the list at the top.</p>
 <ul>
 <li><b>Names are merged for display only.</b> Spellings such as Herman / Hermann, Morewski / Morevski / Morevsky,
 Arnstein / Marek Arnstein and Ben-Ari / R. Ben-Ari are grouped by surname and first initial. People with the

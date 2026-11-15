@@ -45,7 +45,7 @@ with open(edges_path, encoding="utf-8") as f:
         layer = row.get("source_layer", "")
         if tgt in org_cluster_nodes and layer == "orgrel":
             person_edges[tgt].append((etype, src))
-        if src in org_cluster_nodes and etype == "located_in":
+        if src in org_cluster_nodes and etype in ("located_in", "toured_in"):
             located_in[src].append(tgt)
 
 # --- load organizations_clustered.tsv for cluster_size ---

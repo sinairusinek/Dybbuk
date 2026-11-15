@@ -105,15 +105,9 @@ def main():
     # ---- KG facts ----
     places = K["places"]
     bio = [e for e in K["edges"] if e["edge_type"] in ("born_in", "died_in", "buried_in")]
-    located = [e for e in K["edges"] if e["edge_type"] == "located_in"]
+    located = [e for e in K["edges"] if e["edge_type"] in ("located_in", "toured_in")]
     org_people = Counter(e["org"] for e in K["org_edges"])
-    false_rows = []
-    for q in FALSE_FR:
-        nid = f"place:{q}"
-        es = [e for e in E if nid in (e["source_id"], e["target_id"])]
-        false_rows.append((q, N.get(nid, {}), es))
-    n_false_edges = sum(len(x[2]) for x in false_rows)
-    touring = [(o, v) for o, v in K["orgs"].items() if v["type"] in TOURING]
+    touring = sorted({e["source_id"] for e in K["edges"] if e["edge_type"] == "toured_in"})
     deaths_x = [(it, s) for it, s in S if s["verb"] == "death" or any(
         e.get("event_type") in ("death", "burial") for e in s["events"])]
 
@@ -168,49 +162,50 @@ city to a country.</p>
 </div>
 
 <section>
-<h2>Data problems found</h2>
-<p>Recorded here for review. This dossier changes no data.</p>
+<h2>Data problems found — and fixed</h2>
+<p>Five problems surfaced while building this dossier. Four are fixed (2026-11-15). The fifth is a coverage gap, not an error.</p>
 <ol>
-<li><span class="flag">Ten Eastern European towns sit on French communes.</span> The gazetteer resolved
-Grodzisk, Komarno, Terespol, Rava-Ruska, Slavuta, Olomouc and four other towns to Wikidata items for French villages
-(Gugney-aux-Aulx, Sombrin, Saint-Carné, Vitrimont…). All ten are KG place nodes, with
-<b>{n_false_edges} edges</b>. Any map of the KG puts those births in Lorraine and Picardy (§1).</li>
-<li><span class="flag">Left Poale Zion is "in" a French canton.</span> <span class="mono">org:2608</span> (<span class="yi">לינקע
-פּ'צ</span>) is <span class="mono">located_in</span> <span class="mono">place:Q1724334</span> "Ay (France : Canton)" because
-<span class="yi">א'י</span>, the abbreviation for Eretz-Israel, was matched as a place name (<span class="mono">E-27562</span>).</li>
-<li><span class="flag">Sammy Gronemann was not born in Strasbourg.</span> <span class="mono">E-03483</span> puts his birth in
-<span class="mono">place:Q6602</span> (Strasbourg, Alsace). The entry says <span class="yi">שטראָסבורג / מערב-פּרייסן</span>:
-Strasburg in West Prussia, today Brodnica.</li>
-<li><span class="flag">{len(touring)} touring companies are recorded as resident.</span> The Vilna Troupe, Habima, Maurice
-Schwartz's company, Goldfadn's and Tomashevsky's troupes and others are <span class="mono">located_in</span> Paris or France
-because they once played there. This is the same problem the Danzig and Rumshinsky dossiers found (§4).</li>
-<li><span class="flag">The war is nearly absent from the KG.</span> The bio layer has {sum(1 for e in bio if e['target_id']=='place:Q201348')}
-death in Drancy and no deportation edges. The itineraries hold {len(per_st[2])} French stations for 1939–45: flight,
-internment, deportation and theatre in the camps (§7). Drancy itself is an org typed "Not an organization"
-(<span class="mono">org:3358</span>).</li>
+<li><span class="flag">Ten Eastern European towns sat on French communes.</span> Grodzisk, Nowo-Minsk, Terespol, Komarno,
+Szczerzec, Novyi Buh and Rava-Ruska were resolved to Wikidata items for French villages (Gugney-aux-Aulx, Saint-Carné,
+Sombrin…). Olomouc, Slavuta and two Galician villages had the right QID but a French village's label. Together that put
+23 births in Lorraine, Picardy and Brittany. <b>Fixed</b> through a new hand-override table that the gazetteer build applies
+first (<span class="mono">zibn-shtern/data/reference/place_qid_overrides.tsv</span>). The gazetteer and the KG were rebuilt (§1).</li>
+<li><span class="flag">Left Poale Zion was "in" a French canton.</span> <span class="yi">א'י</span>, the abbreviation for
+Eretz-Israel, had been matched to the canton of Ay. <b>Fixed:</b> <span class="mono">org:2608</span> is now
+<span class="mono">located_in</span> Land of Israel (<span class="mono">Q155321</span>).</li>
+<li><span class="flag">Sammy Gronemann was "born in Strasbourg".</span> The entry says <span class="yi">שטראָסבורג / מערב-פּרייסן</span>,
+Strasburg in West Prussia. <b>Fixed:</b> his birth now points to Brodnica (<span class="mono">Q690030</span>). The override is
+scoped to his record only, since the same spelling elsewhere is Strasbourg.</li>
+<li><span class="flag">Touring companies were recorded as resident.</span> <b>Fixed for the whole KG:</b> orgs typed
+Traveling Company or Company on Tour now get <span class="mono">toured_in</span> instead of <span class="mono">located_in</span>
+(733 edges). Orgs typed "Not an organization", such as Drancy camp and the Vladek children's home, no longer become org
+nodes (34 relations dropped) (§4).</li>
+<li><span class="flag">The war is nearly absent from the KG.</span> The bio layer records "died in X" only. Deportation,
+internment and flight never become edges, while the itineraries hold {len(per_st[2])} French stations for 1939–45 (§7).
+This is a gap in what the KG extracts, not a wrong fact. Closing it means adding itinerary edges
+(<span class="mono">stayed_in / toured_in / deported_from</span>) as a KG layer, which three place dossiers now support.</li>
 </ol>
 </section>
 """)
     # §1 place nodes
-    a('<section><h2>1 · The place nodes</h2><p>Seven KG place nodes are French, or claim to be:</p>')
+    a(f'<section><h2>1 · The place nodes</h2><p>{len(places)} KG place nodes are French:</p>')
     a('<div class="tablewrap"><table><tr><th>node</th><th>Yiddish</th><th>English</th><th>edges</th><th>note</th></tr>')
-    notes = {"place:Q6602": "its only edge is Gronemann's West-Prussian Strasburg — wrong",
-             "place:Q1724334": "its only edge is א'י = Eretz-Israel — wrong",
-             "place:Q40898": "no edges yet"}
+    notes = {"place:Q40898": "no edges yet"}
     cnt = Counter(e["target_id"] for e in K["edges"])
     for k, v in places.items():
         a(f'<tr><td><span class="mono">{esc(k)}</span></td><td class="rtlcell">{esc(sp(v["yi"]))}</td>'
           f'<td>{esc(v["en"])}</td><td class="num">{cnt.get(k, 0)}</td><td>{esc(notes.get(k, ""))}</td></tr>')
     a('</table></div>')
-    a('<h3>France in the KG that is not France</h3><p>These place nodes carry a Yiddish spelling of an Eastern '
-      'European town and the Wikidata id of a French commune (typed "commune of France" in '
-      '<span class="mono">toponyms_gazetteer.csv</span>). The fix belongs in the gazetteer, followed by a KG rebuild.</p>')
-    a('<div class="tablewrap"><table><tr><th>node</th><th>Yiddish</th><th>resolved to</th><th>edges</th><th>example</th></tr>')
-    for q, n, es in false_rows:
-        ex = es[0] if es else None
-        exs = f'{esc(lab(ex["source_id"]))} {esc(ex["edge_type"])}' if ex else ""
-        a(f'<tr><td><span class="mono">place:{q}</span></td><td class="rtlcell">{esc(sp(n.get("label_yiddish","")))}</td>'
-          f'<td>{esc(n.get("label_english",""))}</td><td class="num">{len(es)}</td><td>{exs}</td></tr>')
+    a('<h3>France in the KG that was not France (fixed)</h3><p>The hand overrides now applied by the gazetteer build. '
+      '"edges now" counts KG edges on the corrected QID after the rebuild.</p>')
+    a('<div class="tablewrap"><table><tr><th>spelling</th><th>scope</th><th>now</th><th class="num">edges now</th><th>was</th></tr>')
+    ov = list(csv.DictReader(open(PLAYS.parent / "zibn-shtern/data/reference/place_qid_overrides.tsv"), delimiter="\t"))
+    tcount = Counter(e["target_id"] for e in E)
+    for r in ov:
+        sv = r["source_value"] or "(label fix)"
+        a(f'<tr><td class="rtlcell">{esc(sv)}</td><td>{esc(r["corpus"])}{"" if r["record_id"] == "*" else " · " + esc(r["record_id"])}</td>'
+          f'<td>{esc(r["label_en"])} <span class="mono">{esc(r["qid"])}</span></td><td class="num">{tcount.get("place:" + r["qid"], 0)}</td>'
+          f'<td class="small">{esc(r["note"])}</td></tr>')
     a('</table></div></section>')
 
     # §2 bio
@@ -249,14 +244,14 @@ internment, deportation and theatre in the camps (§7). Drancy itself is an org 
 
     # §4 orgs
     a(f'<section><h2>4 · Organizations located in France</h2><p>{len(K["orgs"])} orgs carry a KG '
-      '<span class="mono">located_in</span> edge to Paris, France, Metz or Drancy. "People" counts the person edges into each org. '
-      '<span class="flag">⚑</span> marks a touring company recorded as resident.</p>')
-    a('<div class="tablewrap"><table><tr><th>node</th><th>organization</th><th>type</th><th>located in</th><th class="num">people</th></tr>')
+      '<span class="mono">located_in</span> or <span class="mono">toured_in</span> edge to Paris, France, Metz or Drancy. "People" counts the person edges into each org. '
+      'Touring companies get <span class="mono">toured_in</span> since the 2026-11-15 fix.</p>')
+    a('<div class="tablewrap"><table><tr><th>node</th><th>organization</th><th>type</th><th>relation</th><th class="num">people</th></tr>')
     loc_of = defaultdict(set)
     for e in located:
-        loc_of[e["source_id"]].add(places[e["target_id"]]["en"])
+        loc_of[e["source_id"]].add(f'{e["edge_type"]} {places[e["target_id"]]["en"]}')
     for o, v in sorted(K["orgs"].items(), key=lambda x: (-org_people.get(x[0], 0), x[1]["yi"])):
-        fl = ' <span class="flag">⚑</span>' if v["type"] in TOURING else ""
+        fl = ""
         a(f'<tr><td><span class="mono">{esc(o)}</span></td><td class="rtlcell">{esc(sp(v["yi"]))}</td>'
           f'<td>{esc(v["type"])}{fl}</td><td>{esc(", ".join(sorted(loc_of[o])))}</td><td class="num">{org_people.get(o, 0)}</td></tr>')
     a('</table></div>')
@@ -313,7 +308,7 @@ internment, deportation and theatre in the camps (§7). Drancy itself is an org 
 <tr><td>KG (bio + org + events)</td><td class="num">{len(K['edges'])}</td><td class="num">{len(kg_src)}</td></tr>
 <tr><td>itineraries (this dossier)</td><td class="num">{len(S)} stations, {sum(len(s['events']) for _, s in S)} events</td><td class="num">{len(ents)}</td></tr>
 </table></div>
-<p>Most KG France edges are <span class="mono">located_in</span> edges from orgs ({len(located)} of {len(K['edges'])}).
+<p>Most KG France edges are org→place edges ({len(located)} of {len(K['edges'])}).
 The KG has no person→place edge for "played in Paris". The itinerary extraction has been run three times now
 (Istanbul, Danzig, France) and is the obvious source for <span class="mono">stayed_in / toured_in</span> edges.</p>
 </section>
@@ -336,7 +331,7 @@ when Gemini says so or its QID is French.</li>
     p = DOCS / "france_dossier.html"
     p.write_text("".join(out), encoding="utf-8")
     print(f"wrote {p} ({p.stat().st_size:,} bytes); stations {len(S)}, entries {len(ents)}, "
-          f"perf {len(perf)}, false-FR edges {n_false_edges}, failed {len(failed)}; "
+          f"perf {len(perf)}, failed {len(failed)}; "
           f"panel {len(panel)} entries, {(DOCS / 'france_entries.json').stat().st_size:,} bytes")
 
 

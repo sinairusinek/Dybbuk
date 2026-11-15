@@ -32,7 +32,12 @@ Edges (source_layer=orgrel), person -> org, typed from specific_relation:
   produced_by  -> work_produced_by   published_by   -> work_published_by
   (blank)   -> affiliated_with
 role_detail = role_title; evidence_sentence = original_sentence.
-Plus org -> place located_in edges from the attestation spine.
+Plus org -> place edges from the attestation spine: located_in, except for touring
+companies (core_db type Traveling Company / Company on Tour, or extractor hint
+"troupe"), which get toured_in — a troupe's settlements are stations, not a home
+base (found by the Danzig, Rumshinsky and France dossiers, 2026-11-15).
+An org whose core_db type is "Not an organization" gets no node and no edge,
+like a NOT_AN_ORG review decision.
 
 Org node-id policy: org:<db_id> when the cluster is linked in core_db, else
 org_cluster:<cluster_id> (ext_ref_type=org_cluster, match_status=unmatched)
@@ -55,6 +60,9 @@ import plays_common as pc
 from kg_bio import norm_date, EXTRACTION_MODEL as _BIO_MODEL
 
 EXTRACTION_MODEL = "colab_extraction_IIIorg"
+TOURING_TYPES = {"Traveling Company", "Company on Tour"}
+TOURING_HINTS = {"troupe", "traveling company", "company on tour", "touring company"}
+NOT_AN_ORG_TYPE = "Not an organization"
 EXTRACTION_DIR = pc.HERE.parent / "Zylbercweig_extraction"
 CLUSTERED_TSV = pc.ORGS_DIR / "organizations_clustered.tsv"
 CORE_DB_TSV = pc.ORGS_DIR / "core_db.tsv"
@@ -176,6 +184,7 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
     stats: Counter = Counter()
     seen_edges: set[tuple] = set()
     org_nodes_touched: dict[str, str] = {}  # node_id -> cluster_id
+    touring_nodes: set[str] = set()
 
     def org_node(cid: str, canon: str, org_type_hint: str) -> str:
         db_id = c2d.get(cid)
@@ -192,6 +201,8 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
                        match_status="matched", source_layer="orgrel",
                        attrs=json.dumps(attrs, ensure_ascii=False))
             stats["org_nodes_db"] += 1
+            if o.get("org_type", "") in TOURING_TYPES:
+                touring_nodes.add(nid)
         else:
             nid = f"org_cluster:{cid}"
             dec, adb = decisions.get(cid, ("", ""))
@@ -205,6 +216,8 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
                        attrs=json.dumps({"org_type": org_type_hint},
                                         ensure_ascii=False) if org_type_hint else "")
             stats["org_nodes_cluster_only"] += 1
+            if org_type_hint.lower() in TOURING_HINTS:
+                touring_nodes.add(nid)
         org_nodes_touched.setdefault(nid, cid)
         return nid
 
@@ -246,6 +259,9 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
                     # node, no edge (the mention stays in organizations_clustered)
                     if not c2d.get(cid) and decisions.get(cid, ("",))[0] in pc.NON_ENTITY_DECISIONS:
                         stats[f"rel_dropped_{decisions[cid][0].lower()}"] += 1
+                        continue
+                    if core.get(c2d.get(cid) or "", {}).get("org_type", "") == NOT_AN_ORG_TYPE:
+                        stats["rel_dropped_not_an_org_type"] += 1
                         continue
                     onid = org_node(cid, canon,
                                     _n(o.get("org_type")))
@@ -295,7 +311,8 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
                        ext_ref_type="wikidata_qid", ext_ref_id=qid,
                        secondary_ids=sec, match_status="matched",
                        source_layer="orgrel")
-            g.add_edge(source_id=nid, target_id=f"place:{qid}", edge_type="located_in",
+            etype = "toured_in" if nid in touring_nodes else "located_in"
+            g.add_edge(source_id=nid, target_id=f"place:{qid}", edge_type=etype,
                        role_detail=a.get("source_field", ""), character="",
                        date_start="", date_end="", date_precision="",
                        event_id="", production_key="", provenance_person_id="",
@@ -304,5 +321,5 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
                        extraction_model=EXTRACTION_MODEL, confidence="high",
                        match_status="matched", review_status="auto",
                        source_layer="orgrel")
-            stats["edge:located_in"] += 1
+            stats[f"edge:{etype}"] += 1
     return dict(sorted(stats.items()))
