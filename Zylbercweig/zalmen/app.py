@@ -50,6 +50,7 @@ VIEWS = {
     "B1 · Person Dedup":       ("person_dedup",   "b1"),
     "B2 · Person → DB":        ("person_alignment", "b2"),
     "B3 · Mentions by surname": ("surname_review", "b3"),
+    "People · family cards":   ("family_cards",   "fam"),
     "Person Hub":              ("person_hub",     "hub"),
     "YiDraCor · Annotation flags": ("yidracor_flags", "yd"),
     "Plays KG · Explorer":         ("plays_kg", "kg"),
@@ -81,6 +82,7 @@ VIEW_STATUS = {
     "B1 · Person Dedup":       "✅ Ready",
     "B2 · Person → DB":        "✅ Ready",
     "B3 · Mentions by surname": "✅ Ready",
+    "People · family cards":   "👪 Pilot",
     "Person Hub":              "🧑",
     "YiDraCor · Annotation flags": "✅ Ready",
     "Plays KG · Explorer":         "📊",
@@ -274,6 +276,9 @@ elif view_module == "eponym_mint":
     render()
 elif view_module == "eponym_troupes":
     from views.eponym_troupes import render
+    render()
+elif view_module == "family_cards":
+    from views.family_cards import render
     render()
 else:
     st.info(f"**{selected}** is not yet implemented.")
