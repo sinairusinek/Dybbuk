@@ -156,7 +156,14 @@ def main():
             return org_id("", best[0]), best[1], round(bscore, 2)
         return "", "", round(bscore, 2)
 
-    out, n_cmap = [], 0
+    # curated rejections (people/mention_surface_rejections.tsv): a rejected surface must not
+    # survive as gold / resolver answer for the hub it was wrongly aligned to
+    rej = {}
+    for rr in tsv(ZYL / "people" / "mention_surface_rejections.tsv"):
+        heads = {h for h, hr in hubs.items() if normalize_person_name(hr["canonical_heading"]) == normalize_person_name(rr["as_heading"])}
+        rej[normalize_person_name(rr["mention_surface"])] = (rr["action"], heads)
+
+    out, n_cmap, n_rej = [], 0, 0
     for m in load_mentions_with_host():
         mid = m["mention_id"]
         if mid not in A:
@@ -203,14 +210,24 @@ def main():
             "candidate_features": " ;; ".join(feats),
             "resolver_verdict": res["verdict"] if res else "", "resolver_hub_id": res["resolved_hub_id"] if res else "",
             "gold_hub_id": res["gold_hub_id"] if res else "",
+            "flag": "",
         })
+        rj = rej.get(normalize_person_name(m["mention_name"]))
+        if rj:
+            o = out[-1]
+            if rj[0] == "reject_not_a_person":
+                o["flag"] = "not_a_person"; o["gold_hub_id"] = o["resolver_hub_id"] = ""; n_rej += 1
+            else:
+                for k in ("gold_hub_id", "resolver_hub_id"):
+                    if o[k] in rj[1]:
+                        o[k] = ""; o["flag"] = "rejected_alignment"; n_rej += 1
     mcols = list(out[0].keys())
     with open(HERE / "er_mention_context.tsv", "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, mcols, delimiter="\t"); w.writeheader(); w.writerows(out)
     print(f"er_mention_context.tsv: {len(out)} mentions; host hub found {sum(1 for o in out if o['host_hub_id'])}; "
           f"with candidates {sum(1 for o in out if o['n_candidates'])}; gold {sum(1 for o in out if o['gold_hub_id'])}; "
           f"C org → core_db/cluster {n_cmap}/{sum(1 for o in out if o['c_org_surface'])}; "
-          f"rel place {sum(1 for o in out if o['rel_settlement'])}; rel date {sum(1 for o in out if o['rel_date_start'])}")
+          f"rejection fixes {n_rej}; rel place {sum(1 for o in out if o['rel_settlement'])}; rel date {sum(1 for o in out if o['rel_date_start'])}")
 
 
 if __name__ == "__main__":
