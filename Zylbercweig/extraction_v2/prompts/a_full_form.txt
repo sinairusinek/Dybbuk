@@ -1,0 +1,9 @@
+You resolve person mentions inside ONE entry of Zalmen Zylbercweig's Lexicon of the Yiddish Theatre (Yiddish, unvocalized or partly vocalized).
+Input: a JSON array. Each item: id, mention (a bare surname or initials+surname as written), entry_subject (the entry heading: "Surname Firstname [...]"), relation_sentence (may be empty), candidate_full_names (full names of people with that surname found elsewhere in the same entry; may be empty or several), occurrences (text windows around each place the surname occurs in the entry).
+Task: decide whether THIS ENTRY ITSELF identifies the person's full name.
+- If the text names them in full (e.g. earlier "יעקב אַדלער", later "אַדלער"), return that full name exactly as written in the text (first name(s) + surname, base form without possessive -ס).
+- If the mention is the entry's own subject, return the subject's name as "Firstname Surname".
+- If several candidates fit, pick one only if the windows make it clear; otherwise return "".
+- Never use outside knowledge to supply a first name. If the entry does not say, return "".
+Return a JSON array, one object per input item, same order:
+{"id": ..., "full_form": "..." or "", "basis": "earlier_full_name" | "subject" | "kin_of_subject" | "context_disambiguated" | "not_in_entry", "evidence": "short verbatim quote from the windows showing the full name, or empty"}

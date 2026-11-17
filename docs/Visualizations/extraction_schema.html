@@ -1,20 +1,20 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Extraction Schema v2</title>
-<meta name="description" content="Draft schema for the next all-volume extraction of the Zylbercweig Lexicon: entity types, relations, events and movements.">
+<meta name="description" content="Draft schema for the Zylbercweig Lexicon extraction v2 (delta pass): what already exists, and jobs A–G that add entity types, relations, events and movements.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{--paper:#faf7f0;--ink:#272219;--soft:#5c554a;--muted:#8a8274;--line:#e2dcce;--card:#f2eddf;
---teal:#0e6f8a;--halo:#faf7f0;
+--teal:#0e6f8a;--halo:#faf7f0;--accent:#b8321f;
 --c-person:#2a78d6;--c-org:#eb6834;--c-place:#1baf7a;--c-work:#eda100;--c-role:#e87ba4;
 --c-event:#008300;--c-station:#6250d6;--c-source:#8a8274}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
 --paper:#1c1a16;--ink:#ece6d8;--soft:#b9b1a1;--muted:#8f8778;--line:#3a352c;--card:#25221d;
---teal:#6fb7cc;--halo:#1c1a16;
+--teal:#6fb7cc;--halo:#1c1a16;--accent:#f0745e;
 --c-person:#3987e5;--c-org:#d95926;--c-place:#199e70;--c-work:#c98500;--c-role:#d55181;
 --c-event:#0ca30c;--c-station:#9085e9;--c-source:#8f8778}}
 :root[data-theme="dark"]{--paper:#1c1a16;--ink:#ece6d8;--soft:#b9b1a1;--muted:#8f8778;--line:#3a352c;--card:#25221d;
---teal:#6fb7cc;--halo:#1c1a16;
+--teal:#6fb7cc;--halo:#1c1a16;--accent:#f0745e;
 --c-person:#3987e5;--c-org:#d95926;--c-place:#199e70;--c-work:#c98500;--c-role:#d55181;
 --c-event:#0ca30c;--c-station:#9085e9;--c-source:#8f8778}
 *{box-sizing:border-box}
@@ -35,13 +35,20 @@ background:var(--paper);color:var(--soft);border:0;padding:.42rem .7rem;cursor:p
 .legend span{display:inline-flex;align-items:center;gap:.35rem}
 .sw{width:11px;height:11px;border-radius:50%;display:inline-block}
 .ln{width:26px;height:0;border-top:2px solid var(--muted);display:inline-block}
-.ln.new{border-top-style:dashed;border-top-color:var(--ink)}
+.ln.new{border-top-style:dashed;border-top-color:var(--accent)}
+.ln.fill{border-top-color:var(--ink);border-top-width:3px}
+.jbl{font:600 .66rem "IBM Plex Mono",monospace;font-style:normal;width:17px;height:17px;border-radius:50%;display:inline-grid;place-items:center;background:var(--ink);color:var(--paper)}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 21rem;gap:1.2rem;align-items:start}
 @media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}}
 .stage{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.4rem}
 svg{display:block;width:100%;height:auto}
 .edge path{fill:none;stroke:var(--muted);stroke-width:2}
-.edge.new path{stroke:var(--ink);stroke-dasharray:6 5;opacity:.75}
+.edge.old path{opacity:.6}
+.edge.fill path{stroke:var(--ink);stroke-width:3}
+.edge.new path{stroke:var(--accent);stroke-dasharray:6 5;stroke-width:2.4}
+.node .jb{stroke:var(--paper);stroke-width:2;fill:var(--ink)}
+.node .jb.new{fill:var(--accent)}
+.node .jbt{font:600 11px "IBM Plex Mono",monospace;fill:var(--paper);pointer-events:none}
 .edge path.hit{stroke:transparent!important;stroke-width:16;stroke-dasharray:none;fill:none;cursor:pointer}
 .edge text{font:500 11.5px "IBM Plex Mono",monospace;fill:var(--soft);paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
 .edge.on path{stroke:var(--teal);stroke-width:3;opacity:1}
@@ -55,7 +62,25 @@ svg{display:block;width:100%;height:auto}
 .node:focus{outline:none}
 .dim{opacity:.18}
 .badge{font:500 .62rem "IBM Plex Mono",monospace;letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--line);border-radius:3px;padding:.08rem .4rem;color:var(--soft);background:var(--paper)}
-.badge.new{color:var(--ink);border-color:var(--ink)}
+.badge.new{color:var(--accent);border-color:var(--accent)}
+.badge.job{color:var(--paper);background:var(--ink);border-color:var(--ink)}
+.badge.job.new{background:var(--accent);border-color:var(--accent)}
+p.have{font-size:.85rem!important;color:var(--ink)!important;margin:.15rem 0 .4rem!important}
+.cards p.have{margin:.1rem 0 .3rem}
+table.inv{border-collapse:collapse;width:100%;font-size:.85rem;margin:.3rem 0 1.4rem}
+.inv th,.inv td{border:1px solid var(--line);padding:.4rem .5rem;vertical-align:top;text-align:left}
+.inv thead th{font:500 .66rem "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);background:var(--paper)}
+.inv tbody{background:var(--card)}
+.inv code{font:400 .76rem "IBM Plex Mono",monospace;overflow-wrap:anywhere}
+.inv td.jl{font:600 1rem "IBM Plex Mono",monospace;text-align:center;width:2.6rem}
+.inv tr.cheap td.jl{color:var(--ink)} .inv tr.full td.jl{color:var(--accent)}
+.jobs h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;margin:.6rem 0 .2rem}
+.iwrap{overflow-x:auto}
+.pill{display:inline-block;white-space:nowrap;font:500 .66rem "IBM Plex Mono",monospace;letter-spacing:.05em;text-transform:uppercase;border-radius:10px;padding:.12rem .55rem;border:1px solid var(--line);color:var(--soft);background:var(--paper)}
+.pill.done{background:var(--c-place);border-color:var(--c-place);color:#fff}
+.pill.running{background:var(--accent);border-color:var(--accent);color:#fff}
+.pill.waiting{border-color:var(--c-work);color:var(--ink);background:color-mix(in srgb,var(--c-work) 22%,var(--paper))}
+.pill.not-decided{border-style:dashed}
 aside.panel{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.9rem 1rem 1rem;position:sticky;top:12px}
 aside.panel h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;margin:.1rem 0 .3rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
 aside.panel p{margin:.3rem 0 .6rem;color:var(--soft);font-size:.9rem}
@@ -89,10 +114,13 @@ html,body{overflow-x:hidden}
 .dg .st{font-size:10px;fill:var(--soft)}
 .dg .fl{font-size:11px;fill:var(--soft)}
 .dg .lk{stroke:var(--muted);stroke-width:1.6;fill:none}
-.dg .lk.new{stroke:var(--ink);stroke-dasharray:6 4;opacity:.7}
+.dg .lk.old{opacity:.7}
+.dg .lk.fill{stroke:var(--ink);stroke-width:2.4}
+.dg .lk.new{stroke:var(--accent);stroke-dasharray:6 4}
 .dg .ll{font-size:10.5px;fill:var(--soft);paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
 .dg .dia{fill:var(--paper);stroke:var(--ink);stroke-width:1.4}
-.dg .dia.new{stroke-dasharray:5 3}
+.dg .dia.new{stroke-dasharray:5 3;stroke:var(--accent)}
+.dg .dia.fill{stroke-width:2.4}
 .dg .ov{fill:var(--paper);stroke:var(--muted);stroke-width:1}
 .dg .ovt{font-size:9.5px;fill:var(--soft)}
 .dg .cpt{fill:var(--paper);stroke-width:2}
@@ -106,15 +134,17 @@ table.mx{border-collapse:collapse;font-size:.8rem;min-width:52rem;width:100%}
 .mx th .sw{margin-right:.35rem;vertical-align:-1px}
 .mx td.empty{background:transparent}
 .mx .r{display:block;margin:.1rem 0;padding:.1rem .3rem;border-radius:3px;border:1px solid var(--muted);background:var(--paper);cursor:help;font-family:"IBM Plex Mono",monospace;font-size:.72rem}
-.mx .r.new{border-style:dashed;border-color:var(--ink)}
+.mx .r.new{border-style:dashed;border-color:var(--accent)}
+.mx .r.fill{border-color:var(--ink);border-width:2px}
 .mx td.diag{background:color-mix(in srgb,var(--line) 35%,transparent)}
 </style></head><body>
 <header>
-<p class="eyebrow"><a href="gate.html">Visualizations</a> · Zylbercweig Leksikon · draft 2026-11-15</p>
+<p class="eyebrow"><a href="gate.html">Visualizations</a> · Zylbercweig Leksikon · draft 2026-11-15 · revised 2026-11-17 (delta pass)</p>
 <h1>Extraction schema, v2</h1>
-<p class="lede">What the next pass over all seven volumes of the Lexicon will extract: eight kinds of
-entity and the relations between them. Solid lines are already in the knowledge graph; dashed
-lines are new in this pass. Click any entity or relation for its fields and types.</p>
+<p class="lede">The full schema of the Lexicon extraction (eight kinds of entity and the relations between them), marked by
+what <b>already exists</b> from earlier runs and what the v2 <b>delta pass</b> adds. Faint lines are already
+extracted and untouched; heavy lines are already extracted with gaps filled by a cheap sentence-level job (A–C);
+dashed red lines are new, from one full-text pass (D–G). Click any entity or relation for its source, coverage and job.</p>
 </header>
 <main>
 <div class="controls">
@@ -125,6 +155,7 @@ lines are new in this pass. Click any entity or relation for its fields and type
     <button type="button" data-view="chen" aria-pressed="false">Chen ER</button>
     <button type="button" data-view="matrix" aria-pressed="false">Matrix</button>
     <button type="button" data-view="concept" aria-pressed="false">Concept map</button>
+    <button type="button" data-view="jobs" aria-pressed="false">Inventory &amp; jobs</button>
   </div>
   <div class="seg" role="group" aria-label="Show relations" id="filt">
     <button type="button" data-f="all" aria-pressed="true">All relations</button>
@@ -140,7 +171,7 @@ lines are new in this pass. Click any entity or relation for its fields and type
     <title id="gtitle">Ontology graph of the extraction schema</title>
     <defs>
       <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
-      <marker id="arrN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink)" opacity=".75"/></marker>
+      <marker id="arrN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
     </defs>
     <g id="edges"></g><g id="nodes"></g>
   </svg></div>
@@ -150,7 +181,7 @@ lines are new in this pass. Click any entity or relation for its fields and type
 
 <section id="v-cards" hidden><p class="cap"><b>Entity cards</b> — one card per entity kind, with its fields and the relations going out and coming in. The plain-text form of an entity–relationship diagram.</p><div class="cards" id="cards"></div></section>
 
-<section id="v-uml" hidden><p class="cap"><b>Class diagram</b> (UML-style, also called an ERD) — each box is an entity kind: its name, then its fields. Lines are associations, labelled with the relation; arrows point from the subject to the object. «new» marks what this pass adds.</p>
+<section id="v-uml" hidden><p class="cap"><b>Class diagram</b> (UML-style, also called an ERD) — each box is an entity kind: its name, then its fields. Lines are associations, labelled with the relation; arrows point from the subject to the object. The stereotype line says «existing», «existing · fill X» or «new · X», where X is the v2 job.</p>
 <div class="stage"><svg id="uml" viewBox="0 0 1080 900" role="img" aria-label="Class diagram of the extraction schema"></svg></div></section>
 
 <section id="v-chen" hidden><p class="cap"><b>Chen notation</b> (the original entity–relationship notation, 1976) — rectangles are entities, diamonds are relationships, ovals are attributes (fields). It puts the relations on a par with the entities, which suits a schema where relations carry their own fields.
@@ -163,10 +194,17 @@ lines are new in this pass. Click any entity or relation for its fields and type
 <section id="v-concept" hidden><p class="cap"><b>Concept map</b> — concepts in boxes, joined by linking phrases that read as sentences (“a Lexicon entry is about a person”). Less formal, for explaining the schema to people who don’t read diagrams.</p>
 <div class="stage"><svg id="cmap" viewBox="0 0 1040 800" role="img" aria-label="Concept map of the extraction schema"></svg></div></section>
 
+<section id="v-jobs" class="jobs" hidden><p class="cap"><b>Inventory &amp; work list</b>: what earlier extraction runs already produced (do not re-extract), and the seven v2 jobs.
+Jobs A–C work on sentences or fields already extracted and need no re-read; D–G share one full-text pass over the entries not yet covered, whose output omits everything in the inventory.</p>
+<h2>What already exists</h2><div class="iwrap"><table class="inv" id="invT"></table></div>
+<h2>v2 work list</h2><div class="iwrap"><table class="inv" id="jobT"></table></div>
+<h2>Planned sequence</h2><p class="cap">Status after each run (mirrors SCHEMA_DRAFT.md §0).</p><div class="iwrap"><table class="inv" id="seqT"></table></div></section>
+
 <div class="notes">
 <h2>How to read it</h2>
 <p>Everything is extracted <b>as written</b>: names as they appear, with a short verbatim quote as
-evidence. Within one entry the extractor resolves <bdi class="yi">פּ.</bdi>, <bdi class="yi">ער</bdi> and short surnames to the fullest form in
+evidence. <b>Person mentions and person ↔ person relations already exist for all seven volumes</b>
+(<code>people/mentions_all.tsv</code>) and are not re-extracted. Within one entry, job A resolves <bdi class="yi">פּ.</bdi>, <bdi class="yi">ער</bdi> and short surnames to the fullest form in
 that entry. Which person a name refers to across the Lexicon is decided afterwards, in entity
 resolution, which uses these relations as evidence.</p>
 <p><b>Person → organization</b> relations (18.5k edges, aligned through core_db) are not re-extracted.
@@ -184,63 +222,101 @@ the schema has no field for it; what the text does state is recorded as dated fa
 <div class="tip" id="tip"></div>
 
 <script>
+// Planned sequence: mirror of SCHEMA_DRAFT.md §0 "Planned sequence: status". UPDATE AFTER EVERY RUN.
+// status: done | running | waiting | not started | not decided
+const SEQUENCE=[
+ {step:"1",what:"Inventory of earlier extractions (§0)",status:"done",when:"11-17",out:"SCHEMA_DRAFT.md",counts:"—"},
+ {step:"2",what:"A: in-entry full form",status:"done",when:"11-17",out:"a_full_form.tsv (+ a_full_form_llm.jsonl)",counts:"12,942 real targets (5,931 empty-name artifact rows excluded); 1,136 resolved in-entry (kin_of_subject 604 = inferred surname, earlier_full_name 249, det 175, subject 57, context 51); 11.8k need cross-entry ER · ~$8"},
+ {step:"3",what:"B: blank / Other relation categories",status:"done",when:"11-17",out:"b_recategorized.tsv",counts:"6,565 rows: None 4,187 · Family 1,329 · Source 611 (wrote_about 483, informant 119) · Hierarchy 213 · Social 111 · Collab 66 · Creative 48; 148 role_titles · ~$4"},
+ {step:"4",what:"C: eponym org-mediated ties",status:"done",when:"11-17",out:"c_eponym_orgs.tsv",counts:"3,843 rows: org-mediated 3,745; named after the mention 1,883; mention = leader 2,033 / director 559 / owner 496; 579 also a direct tie; 2,264 distinct org surfaces · ~$2"},
+ {step:"5",what:"Sinai reviews the schema (§1–§9 vs §0)",status:"waiting",when:"",out:"—",counts:"—"},
+ {step:"6",what:"Prompt for the D–G full-text pass",status:"not started",when:"",out:"prompts/defg.txt",counts:"—"},
+ {step:"7",what:"D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries)",status:"not started",when:"",out:"—",counts:"est. $3–5"},
+ {step:"8",what:"D–G all volumes, skipping ~500 itinerary-done entries",status:"not started",when:"",out:"—",counts:"est. $15–30, overnight"},
+ {step:"9",what:"Resolution (surname ER, incl. MEHDIE students) on A–C + mentions_all",status:"not started",when:"",out:"mention → entity links",counts:"—"},
+ {step:"10",what:"Graph assembly + review loop",status:"not started",when:"",out:"—",counts:"—"},
+ {step:"—",what:"Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows)",status:"not decided",when:"",out:"—",counts:"est. ~$10"}
+];
 const N = {
- person:{label:"Person",x:500,y:110,status:"old",sub:"actor, playwright, kin…",
+ person:{label:"Person",x:500,y:110,status:"old",job:"A",have:"people/mentions_all.tsv (Drive ZylbercweigMentionedPeople20260228): 38,269 mentions in 3,079 entries, all 7 volumes; gender, description. Missing: full_form (18,873 surname-only / initial targets, job A).",sub:"actor, playwright, kin…",
   desc:"Anyone the entry names, including the entry's subject and unnamed kin (“his father”).",
-  fields:[["surface","name as written"],["full_form","fullest form in the same entry"],["is_subject","the entry's own subject?"],["gender","if stated"],["occupation[]","controlled list: actor, prompter, cashier, agent, impresario…"],["description","short phrase from the text"]]},
- org:{label:"Organization",x:150,y:270,status:"old",sub:"troupe, theatre, union…",
+  fields:[["surface","name as written"],["full_form","fullest form in the same entry — NEW, job A"],["is_subject","the entry's own subject?"],["gender","if stated"],["occupation[]","controlled list: actor, prompter, cashier, agent, impresario…"],["description","short phrase from the text"]]},
+ org:{label:"Organization",x:150,y:270,status:"old",job:"C",have:"Zylbercweig_extraction/*IIIorg.json → core_db: 21,266 organization items in 2,924 entries. Missing: named_after for “Y’s troupe” sentences.",sub:"troupe, theatre, union…",
   desc:"Named as written. Its type lives in core_db, not in the extraction. Eponyms keep the person they are named after.",
-  fields:[["surface","as written"],["full_form","fullest form in the entry"],["named_after","person, for “Fishzon’s troupe”"]]},
- place:{label:"Place",x:420,y:620,status:"old",sub:"settlement, region…",
+  fields:[["surface","as written"],["full_form","fullest form in the entry"],["named_after","person, for “Fishzon’s troupe” — job C"]]},
+ place:{label:"Place",x:420,y:620,status:"old",job:"",have:"Toponym gazetteer (Kima / Wikidata) + places on vitals, org locations and person relations.",sub:"settlement, region…",
   desc:"Resolved later through the gazetteer (Kima / Wikidata).",
   fields:[["surface","as written"],["place_kind","settlement · region · country · venue_only · unknown"]]},
- work:{label:"Work",x:850,y:300,status:"new",sub:"play, operetta, song…",
-  desc:"Works performed, written, translated or composed. Publication data stays with the editions pipeline.",
+ work:{label:"Work",x:850,y:300,status:"old",job:"F",have:"plays/editions works_full2.tsv: 3,525 works / 5,059 editions, all of the Lexicon (publication). Performed works only for Lateiner/Hurwitz (669 entries).",sub:"play, operetta, song…",
+  desc:"Works performed, written, translated or composed. Titles and publication data already exist (editions pipeline); v2 adds works performed outside Lateiner/Hurwitz.",
   fields:[["surface","title, verbatim"],["work_kind","play · operetta · opera · musical comedy · melodrama · sketch · revue · song · score · film · radio play · book · memoir · article · periodical"],["language","if stated"],["based_on","source work or author, if stated"]]},
- role:{label:"Dramatic role",x:860,y:590,status:"new",sub:"character in a work",
+ role:{label:"Dramatic role",x:860,y:590,status:"new",job:"F",have:"Only for Lateiner/Hurwitz (plays/kg_extraction_drafts_pass2.tsv, 669 entries) + DiJeSt “People in Performance Events” (852 assertions, gold).",sub:"character in a work",
   desc:"A character, linked to its work: Ben Hador, the Queen in Shulamis.",
   fields:[["surface","character name, verbatim"],["work","title of the work it belongs to"]]},
- event:{label:"Event",x:660,y:460,status:"new",sub:"performance, founding, strike…",
+ event:{label:"Event",x:660,y:460,status:"new",job:"E",have:"Performance / premiere only: Lateiner/Hurwitz plays KG (399 + 6) and events embedded in ~500 itinerary entries.",sub:"performance, founding, strike…",
   desc:"Something that happened, with participants and their roles. Venue is a role on the event, not a type: a café or a hotel can be a venue.",
   fields:[["event_type","performance · premiere · debut · guest_appearance · season · benefit · jubilee · honor · memorial · founding · strike · conflict · marriage · divorce · arrest · imprisonment · death · burial"],["date_start / date_end",""],["date_certainty","explicit · approximate · none"],["place, venue, work","mentions"],["participants[]","person + role (performer, director, organizer, honoree, victim…) + dramatic role"]]},
- station:{label:"Movement",x:230,y:470,status:"new",sub:"migration, tour, deportation",
+ station:{label:"Movement",x:230,y:470,status:"new",job:"D",have:"~500 entries already done (Istanbul 79, Danzig 28, France ~400, Dybbuk, Rumshinsky) + Migrations2025 (919 moves, gold). v2 skips them.",sub:"migration, tour, deportation",
   desc:"An itinerary station: a stay of a person (or a touring troupe) at a place, in narrative order, with the events that happened there.",
   fields:[["verb_class","born · settled · stay · pass_through · tour · flight · emigration · return · visit · death · deportation · evacuation · expulsion · conscription"],["reason","work_engagement · tour_or_guest_appearance · family · education · emigration · forced · health · other · unstated"],["reason_stated","false when the text gives no reason"],["org, role","who the subject was with, as what"],["date_start / date_end / date_certainty",""],["events[]","events at this station"]]},
- source:{label:"Source",x:840,y:95,status:"new",sub:"how the Lexicon knows",
+ source:{label:"Source",x:840,y:95,status:"new",job:"G",have:"Nothing extracted yet.",sub:"how the Lexicon knows",
   desc:"The informant or text an entry draws on. Provenance, not a social tie.",
   fields:[["surface","person or text, as written"],["source_kind","informant · cited_text · memoir · interview · correspondence · other"]]}
 };
 const COL = {person:"--c-person",org:"--c-org",place:"--c-place",work:"--c-work",role:"--c-role",event:"--c-event",station:"--c-station",source:"--c-source"};
 // curve: c = perpendicular offset of the control point; loop = self-loop direction
 const E = [
- {id:"pp",a:"person",b:"person",loop:"up",status:"new",label:"person ↔ person",
-  desc:"Six categories; friendship and source are categories of their own.",
+ {id:"pp",a:"person",b:"person",loop:"up",status:"old",job:"B",have:"people/mentions_all.tsv: 32,130 relations with category, specific type, evidence sentence, place (7.3k), dates (6.7k), all 7 volumes. Gaps: 6,565 blank / Other category rows (job B). Re-typing the 26k categorized rows to the 11-15 types is NOT done (optional, not decided).",label:"person ↔ person",
+  desc:"Already extracted for all 7 volumes (Feb 2026, five categories). v2 does NOT re-read entries for it: job B classifies only the 6,565 blank / Other rows with the 11-15 scheme (+ Source, + None), using text windows around the mention. The 26k already-categorized rows keep their February types.",
   types:[["family","parent · child · spouse · sibling · extended — qualifiers foster/raised_by, ancestor, divorced, widowed"],["collaboration","co_performer · partner · co_founder · colleague"],["hierarchy","employer/director → employee · teacher → student · agent/impresario → client; role_title required (prompter, conductor, choreographer, meshorer…)"],["creative","creator → interpreter · translator_of · adapter_of · influence"],["social","friend · acquaintance · supporter/advocate · conflict"],["source","informant_about · wrote_about · quoted_in_entry · corrected"]]},
- {id:"po",a:"person",b:"org",c:-40,status:"old",label:"member, performer, leader…",
+ {id:"po",a:"person",b:"org",c:-40,status:"old",job:"C",have:"Zylbercweig_extraction/*IIIorg.json → core_db (21,266 items). Job C adds leader / owner + subject-role edges from the 3,844 employer_director / employee_student sentences naming a troupe, theatre or company.",label:"member, performer, leader…",
   desc:"Already extracted for all volumes (18.5k edges); not redone. “Y’s troupe” sentences add leader + performer edges here.",
   types:[["Employment_Performance","performer · artistic staff · employee"],["Leadership_Ownership","founder · owner/manager · executive"],["Education_Formation","student · graduate"],["Affiliation_Membership","member · delegate/official"],["Production_Distribution","published by · produced by"]]},
- {id:"op",a:"org",b:"person",c:-40,status:"old",label:"named after",
+ {id:"op",a:"org",b:"person",c:-40,status:"old",job:"C",have:"Eponym links: 301 edges live from 414 decisions. Job C adds named_after from sentences.",label:"named after",
   desc:"Eponymous organizations: the person a troupe or theatre is named after (eponym links).",types:[["named_after","“Fishzon’s troupe” → Avrom Fishzon"]]},
- {id:"pw",a:"person",b:"work",c:40,status:"new",label:"author, composer, performer…",
-  desc:"Exists only for Lateiner/Hurwitz today; v2 covers every entry.",
+ {id:"pw",a:"person",b:"work",c:40,status:"new",job:"F",have:"Authorship for all of the Lexicon (editions pipeline); production / music / translation facts only for Lateiner/Hurwitz (669 entries).",label:"author, composer, performer…",
+  desc:"Authorship exists for every entry (editions); performer / director / composer facts only for Lateiner/Hurwitz. v2 (job F) covers the rest.",
   types:[["roles","author · translator · adapter · composer · lyricist · director · designer · choreographer · performer (+ dramatic role) · producer"]]},
- {id:"ww",a:"work",b:"work",loop:"right",status:"new",label:"translation of…",
+ {id:"ww",a:"work",b:"work",loop:"right",status:"new",job:"F",have:"Only same-work links from the editions pipeline.",label:"translation of…",
   desc:"Links between works, only as the text states them.",types:[["types","translation_of · adaptation_of · based_on · same_as"]]},
- {id:"rw",a:"role",b:"work",c:30,status:"new",label:"character in",desc:"Each dramatic role belongs to a work.",types:[["character_in","Ben Hador → Shulamis"]]},
- {id:"ep",a:"event",b:"person",c:30,status:"new",label:"participant (+ role)",
+ {id:"rw",a:"role",b:"work",c:30,status:"new",job:"F",have:"Lateiner/Hurwitz only (character column in the plays-KG facts).",label:"character in",desc:"Each dramatic role belongs to a work.",types:[["character_in","Ben Hador → Shulamis"]]},
+ {id:"ep",a:"event",b:"person",c:30,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"participant (+ role)",
   desc:"Who took part and as what; performers can carry the dramatic role they played.",types:[["participant","performer · director · organizer · speaker · honoree · victim · … + dramatic role"]]},
- {id:"ew",a:"event",b:"work",c:-30,status:"new",label:"of work",desc:"The work performed or premiered.",types:[["work","play, operetta, song…"]]},
- {id:"er",a:"event",b:"role",c:-20,status:"new",label:"role played",desc:"The dramatic roles performed at this event.",types:[["role","via participants[]"]]},
- {id:"eo",a:"event",b:"org",c:25,lt:0.14,status:"new",label:"venue, organizer",desc:"Venue is a role: any organization (or a place) can be one.",types:[["venue","theatre · café · hotel · hall · synagogue…"],["organizer","troupe, society, union…"]]},
- {id:"epl",a:"event",b:"place",c:-25,status:"new",label:"took place in",desc:"Settlement or region of the event.",types:[["place","as written; resolved later"]]},
- {id:"sp",a:"station",b:"person",c:-30,status:"new",label:"subject",desc:"Whose itinerary: a person, or an organization when a troupe tours.",types:[["subject","person · organization"]]},
- {id:"spl",a:"station",b:"place",c:25,status:"new",label:"at",desc:"Where the stay happened.",types:[["place","settlement · region (for a tour) · country"]]},
- {id:"se",a:"station",b:"event",c:0,status:"new",label:"events there",desc:"Events are nested inside the station where they happened; never emitted twice.",types:[["events[]",""]]},
- {id:"so",a:"station",b:"org",c:-20,status:"new",label:"with",desc:"The troupe or organization the subject was with at that station.",types:[["org","+ the subject's role there"]]},
- {id:"opl",a:"org",b:"place",c:-25,status:"old",label:"located in",desc:"Already in the graph (6,220 org → place edges).",types:[["located_in",""]]},
- {id:"ppl",a:"person",b:"place",c:-30,status:"old",label:"born, died, buried",desc:"Already in the graph for the 3,083 entry subjects (bio layer).",types:[["born_in · died_in · buried_in",""]]},
- {id:"src",a:"source",b:"person",c:-20,status:"new",label:"informs about",desc:"The Lexicon’s informants and cited texts.",types:[["source relations","informant_about · wrote_about · quoted_in_entry · corrected_or_contradicted"]]}
+ {id:"ew",a:"event",b:"work",c:-30,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG only.",label:"of work",desc:"The work performed or premiered.",types:[["work","play, operetta, song…"]]},
+ {id:"er",a:"event",b:"role",c:-20,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG + DiJeSt (gold) only.",label:"role played",desc:"The dramatic roles performed at this event.",types:[["role","via participants[]"]]},
+ {id:"eo",a:"event",b:"org",c:25,lt:0.14,status:"new",job:"E",have:"Venues for Lateiner/Hurwitz productions (venue:UV-* nodes) only.",label:"venue, organizer",desc:"Venue is a role: any organization (or a place) can be one.",types:[["venue","theatre · café · hotel · hall · synagogue…"],["organizer","troupe, society, union…"]]},
+ {id:"epl",a:"event",b:"place",c:-25,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"took place in",desc:"Settlement or region of the event.",types:[["place","as written; resolved later"]]},
+ {id:"sp",a:"station",b:"person",c:-30,status:"new",job:"D",have:"~500 entries (itinerary + dossier pilots).",label:"subject",desc:"Whose itinerary: a person, or an organization when a troupe tours.",types:[["subject","person · organization"]]},
+ {id:"spl",a:"station",b:"place",c:25,status:"new",job:"D",have:"~500 entries (itinerary + dossier pilots).",label:"at",desc:"Where the stay happened.",types:[["place","settlement · region (for a tour) · country"]]},
+ {id:"se",a:"station",b:"event",c:0,status:"new",job:"D",have:"Itinerary pilots embed performance/premiere/debut events.",label:"events there",desc:"Events are nested inside the station where they happened; never emitted twice.",types:[["events[]",""]]},
+ {id:"so",a:"station",b:"org",c:-20,status:"new",job:"D",have:"Itinerary pilots record the org per station.",label:"with",desc:"The troupe or organization the subject was with at that station.",types:[["org","+ the subject's role there"]]},
+ {id:"opl",a:"org",b:"place",c:-25,status:"old",job:"",have:"6,220 org → place edges in the graph.",label:"located in",desc:"Already in the graph (6,220 org → place edges).",types:[["located_in",""]]},
+ {id:"ppl",a:"person",b:"place",c:-30,status:"old",job:"",have:"Zylbercweig_extraction/*III.json vitals: ~2,400 entries (birth date 2,129, birth place 2,416, death place 1,064, burial 231).",label:"born, died, buried",desc:"Already in the graph for the 3,083 entry subjects (bio layer).",types:[["born_in · died_in · buried_in",""]]},
+ {id:"src",a:"source",b:"person",c:-20,status:"new",job:"G",have:"Nothing extracted yet.",label:"informs about",desc:"The Lexicon’s informants and cited texts.",types:[["source relations","informant_about · wrote_about · quoted_in_entry · corrected_or_contradicted"]]}
 ];
+const JOBS={
+ A:{t:"In-entry full_form",kind:"cheap",inp:"18,873 surname-only / initial mentions in mentions_all + entry_texts.tsv (joined by filled-down heading)",how:"Deterministic first (175 resolved), then Gemini on the residue with text windows.",why:"New field; no relations re-extracted."},
+ B:{t:"Blank / Other relation categories",kind:"cheap",inp:"the 6,565 blank / Other relation_category rows (no sentence, so text windows around the mention)",how:"Gemini classifies with the 11-15 scheme (+ Source, + None). Re-typing the 26k categorized rows is NOT done.",why:"The 26k categorized rows were already extracted."},
+ C:{t:"Eponym organizations",kind:"cheap",inp:"3,844 employer_director / employee_student sentences naming a troupe, theatre or company",how:"Gemini on sentences: org_surface, named_after_mention, leader / owner role, subject role.",why:"Tiny."},
+ D:{t:"Stations / movements",kind:"full",inp:"~2,500 entries not in the itinerary / dossier sets",how:"One full-text pass (D–G together).",why:"Genuinely new."},
+ E:{t:"Events beyond performance",kind:"full",inp:"same pass as D",how:"Jubilee, founding, strike, arrest, death with others…",why:"Genuinely new."},
+ F:{t:"Works performed + dramatic roles",kind:"full",inp:"entries outside the Lateiner/Hurwitz 669",how:"Same pass as D; authorship stays with editions.",why:"New outside Lateiner/Hurwitz."},
+ G:{t:"Sources / informants",kind:"full",inp:"same pass as D",how:"Informant, cited text, memoir, interview…",why:"New."}
+};
+const INV=[
+ ["Person mentions + person ↔ person relations","people/mentions_all.tsv ← Drive ZylbercweigMentionedPeople20260228.tsv","all 7 vols: 38,269 mentions / 3,079 entries; 32k with a relation; 6.1k blank category; 15.6k surname-only"],
+ ["Vitals: names, birth / death / burial, education","Zylbercweig_extraction/*III.json","~2,400 entries; education 5,066 items"],
+ ["Family background","*IIIorg.json family_background","2,563 entries"],
+ ["Person → organization (+ role, dates, locations, org type)","*IIIorg.json organizations → core_db","2,924 entries, 21,266 org items"],
+ ["Editions / works (author, title, publication)","plays/editions/editions_full2.tsv, works_full2.tsv","all Lexicon: 5,059 editions / 3,525 works / 662 entries"],
+ ["Production / premiere / authorship / music facts + dramatic character","plays/kg_extraction_drafts_pass2.tsv","Lateiner/Hurwitz only: 669 entries, 2,154 facts"],
+ ["Itinerary stations (+ embedded performance events)","plays/itinerary/, france_dossier/, dybbuk_*, person_dossier/","~500 entries"],
+ ["Migrations with reason (gold)","pilot_2024/drive_2024_25/ Migrations2025","919 moves, Lasky 400-entry pilot"],
+ ["Performance-event assertions with dramatic role (gold)","People in Performance Events.xlsx (DiJeSt)","852 assertions"]
+];
+// status helpers: old = already extracted, not re-read; fill = already extracted, gaps filled by a cheap sentence-level job (A–C); new = full-text pass (D–G)
+const tier=x=>x.status==="new"?"new":(x.job&&"ABC".includes(x.job)?"fill":"old");
+const stTxt=x=>({new:"new in v2",fill:"existing · gap-fill",old:"existing"}[tier(x)])+(x.job?` · job ${x.job}`:"");
 const R = 38, svgNS="http://www.w3.org/2000/svg";
 const $ = s=>document.querySelector(s);
 function el(t,a={},p){const e=document.createElementNS(svgNS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
@@ -264,13 +340,13 @@ function geom(e){
 const gE=$("#edges"),gN=$("#nodes"),tip=$("#tip");
 let sel=null, filt="all";
 E.forEach(e=>{
-  const g=el("g",{class:"edge "+(e.status==="new"?"new":"old"),"data-id":e.id},gE);
+  const g=el("g",{class:"edge "+tier(e),"data-id":e.id},gE);
   const {d,lx,ly}=geom(e);
   el("path",{d,"marker-end":`url(#${e.status==="new"?"arrN":"arr"})`},g);
   const hit=el("path",{d,class:"hit"},g);
-  const t=el("text",{x:lx,y:ly+4,"text-anchor":"middle"},g); t.textContent=e.label;
+  const t=el("text",{x:lx,y:ly+4,"text-anchor":"middle"},g); t.textContent=e.label+(e.job?`  [${e.job}]`:"");
   hit.addEventListener("click",ev=>{ev.stopPropagation();select({edge:e.id})});
-  hit.addEventListener("mousemove",ev=>showTip(ev,`<b>${esc(e.label)}</b><br>${esc(N[e.a].label)} → ${esc(N[e.b].label)} · ${e.status==="new"?"new in v2":"existing"}`));
+  hit.addEventListener("mousemove",ev=>showTip(ev,`<b>${esc(e.label)}</b><br>${esc(N[e.a].label)} → ${esc(N[e.b].label)} · ${stTxt(e)}`));
   hit.addEventListener("mouseleave",hideTip);
   e.g=g;
 });
@@ -279,18 +355,20 @@ Object.entries(N).forEach(([k,n])=>{
   el("circle",{class:"ring",cx:n.x,cy:n.y,r:R+6},g);
   const c=el("circle",{class:"dot",cx:n.x,cy:n.y,r:R,fill:`var(${COL[k]})`},g);
   if(n.status==="new") el("circle",{cx:n.x,cy:n.y,r:R-7,fill:"none",stroke:"var(--paper)","stroke-width":1.5,"stroke-dasharray":"4 4"},g);
+  if(n.job){el("circle",{class:"jb "+tier(n),cx:n.x+R*0.72,cy:n.y-R*0.72,r:11},g);const jt=el("text",{class:"jbt",x:n.x+R*0.72,y:n.y-R*0.72+4,"text-anchor":"middle"},g);jt.textContent=n.job}
   const t=el("text",{class:"nm",x:n.x,y:n.y+R+19,"text-anchor":"middle"},g); t.textContent=n.label;
   const s=el("text",{class:"sub",x:n.x,y:n.y+R+34,"text-anchor":"middle"},g); s.textContent=n.sub;
   g.addEventListener("click",ev=>{ev.stopPropagation();select({node:k})});
   g.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();select({node:k})}});
-  g.addEventListener("mousemove",ev=>showTip(ev,`<b>${esc(n.label)}</b> · ${n.status==="new"?"new in v2":"already extracted"}<br>${esc(n.desc)}`));
+  g.addEventListener("mousemove",ev=>showTip(ev,`<b>${esc(n.label)}</b> · ${stTxt(n)}<br>${esc(n.desc)}`));
   g.addEventListener("mouseleave",hideTip);
   n.g=g;
 });
 $("#g").addEventListener("click",()=>select(null));
 function showTip(ev,h){tip.innerHTML=h;tip.style.opacity=1;const x=Math.min(ev.clientX+14,innerWidth-300);tip.style.left=x+"px";tip.style.top=(ev.clientY+14)+"px"}
 function hideTip(){tip.style.opacity=0}
-function badge(s){return `<span class="badge ${s==="new"?"new":""}">${s==="new"?"new in v2":"existing"}</span>`}
+function badge(x){const t=tier(x);return `<span class="badge ${t}">${t==="new"?"new in v2":"existing"}</span>`+(x.job?` <span class="badge job ${t}">job ${x.job}</span>`:"")}
+function haveBlock(x){return `<h3>Already extracted</h3><p class="have">${esc(x.have||"—")}</p>`+(x.job?`<h3>v2 job ${x.job}${JOBS[x.job].kind==="cheap"?" · sentence-level, no re-read":" · full-text pass"}</h3><p class="have"><b>${esc(JOBS[x.job].t)}.</b> ${esc(JOBS[x.job].inp)}. ${esc(JOBS[x.job].how)}</p>`:`<h3>v2</h3><p class="have">Not touched by v2.</p>`)}
 function fieldList(arr){return `<ul class="f">${arr.map(([k,v])=>`<li><code>${esc(k)}</code>${v?` <span class="d">— ${esc(v)}</span>`:""}</li>`).join("")}</ul>`}
 function select(s){
   sel=s;
@@ -305,34 +383,36 @@ function select(s){
 }
 function renderPanel(){
   const p=$("#panel");
-  if(!sel){p.innerHTML=`<h2>Eight kinds of entity</h2><p>Click an entity to see its fields and the relations it takes part in, or a relation to see its types.</p>
-   <h3>In numbers</h3><ul class="f"><li><code>8</code> <span class="d">entity kinds, 5 of them new</span></li><li><code>${E.length}</code> <span class="d">relation families, ${E.filter(e=>e.status==="new").length} new</span></li><li><code>6</code> <span class="d">person ↔ person categories</span></li><li><code>18</code> <span class="d">event types</span></li></ul>`;return}
+  if(!sel){const nN=Object.values(N).filter(n=>n.status==="new").length,nE=E.filter(e=>e.status==="new").length,nF=E.filter(e=>tier(e)==="fill").length;
+   p.innerHTML=`<h2>Eight kinds of entity</h2><p>v2 is a <b>delta pass</b>: it extracts only what no earlier run produced. Click an entity or relation to see what already exists and which job (A–G) adds to it.</p>
+   <h3>In numbers</h3><ul class="f"><li><code>8</code> <span class="d">entity kinds, ${nN} of them new</span></li><li><code>${E.length}</code> <span class="d">relation families: ${nE} new, ${nF} gap-filled, ${E.length-nE-nF} untouched</span></li><li><code>A–C</code> <span class="d">cheap sentence-level jobs (no re-read)</span></li><li><code>D–G</code> <span class="d">one full-text pass, ~2,500 entries</span></li></ul><p><a href="#view-jobs" data-goto="jobs" style="color:var(--teal)">Inventory &amp; work list →</a></p>`;
+   p.querySelector("[data-goto]").addEventListener("click",ev=>{ev.preventDefault();document.querySelector('[data-view="jobs"]').click()});return}
   if(sel.node){const n=N[sel.node];
     const rel=E.filter(e=>e.a===sel.node||e.b===sel.node);
-    p.innerHTML=`<h2><span class="sw" style="background:var(${COL[sel.node]})"></span>${esc(n.label)} ${badge(n.status)}</h2><p>${esc(n.desc)}</p><h3>Fields</h3>${fieldList(n.fields)}
+    p.innerHTML=`<h2><span class="sw" style="background:var(${COL[sel.node]})"></span>${esc(n.label)} ${badge(n)}</h2><p>${esc(n.desc)}</p>${haveBlock(n)}<h3>Fields</h3>${fieldList(n.fields)}
      <h3>Relations</h3><ul class="f">${rel.map(e=>`<li><a href="#" data-e="${e.id}" style="color:var(--teal)">${esc(e.label)}</a> <span class="d">${esc(N[e.a].label)} → ${esc(N[e.b].label)}</span></li>`).join("")}</ul>`;
     p.querySelectorAll("a[data-e]").forEach(a=>a.addEventListener("click",ev=>{ev.preventDefault();select({edge:a.dataset.e})}));
     return}
   const e=E.find(x=>x.id===sel.edge);
-  p.innerHTML=`<h2>${esc(e.label)} ${badge(e.status)}</h2><p><b>${esc(N[e.a].label)} → ${esc(N[e.b].label)}</b>. ${esc(e.desc)}</p><h3>Types</h3>${fieldList(e.types)}`;
+  p.innerHTML=`<h2>${esc(e.label)} ${badge(e)}</h2><p><b>${esc(N[e.a].label)} → ${esc(N[e.b].label)}</b>. ${esc(e.desc)}</p>${haveBlock(e)}<h3>Types</h3>${fieldList(e.types)}`;
 }
 // legend
 $("#legend").innerHTML=Object.entries(N).map(([k,n])=>`<span><i class="sw" style="background:var(${COL[k]})"></i>${esc(n.label)}</span>`).join("")+
- `<span><i class="ln"></i>existing</span><span><i class="ln new"></i>new in v2</span>`;
+ `<span><i class="ln"></i>existing, untouched</span><span><i class="ln fill"></i>existing, gap-filled (jobs A–C)</span><span><i class="ln new"></i>new in v2 (jobs D–G)</span><span><i class="jbl">A</i>job letter</span>`;
 // cards view
 $("#cards").innerHTML=Object.entries(N).map(([k,n])=>{
   const out=E.filter(e=>e.a===k), inc=E.filter(e=>e.b===k&&e.a!==k);
-  return `<article style="--k:var(${COL[k]})"><h2>${esc(n.label)} ${badge(n.status)}</h2><p>${esc(n.desc)}</p>
+  return `<article style="--k:var(${COL[k]})"><h2>${esc(n.label)} ${badge(n)}</h2><p>${esc(n.desc)}</p>${haveBlock(n)}
    <h3>Fields</h3><ul>${n.fields.map(([f,v])=>`<li><code>${esc(f)}</code>${v?` — ${esc(v)}`:""}</li>`).join("")}</ul>
-   ${out.length?`<h3>Relations out</h3><ul>${out.map(e=>`<li>${esc(e.label)} → ${esc(N[e.b].label)}${e.status==="new"?" <i>(new)</i>":""}</li>`).join("")}</ul>`:""}
-   ${inc.length?`<h3>Relations in</h3><ul>${inc.map(e=>`<li>${esc(N[e.a].label)} → ${esc(e.label)}${e.status==="new"?" <i>(new)</i>":""}</li>`).join("")}</ul>`:""}</article>`}).join("");
+   ${out.length?`<h3>Relations out</h3><ul>${out.map(e=>`<li>${esc(e.label)} → ${esc(N[e.b].label)} <i>(${stTxt(e)})</i></li>`).join("")}</ul>`:""}
+   ${inc.length?`<h3>Relations in</h3><ul>${inc.map(e=>`<li>${esc(N[e.a].label)} → ${esc(e.label)} <i>(${stTxt(e)})</i></li>`).join("")}</ul>`:""}</article>`}).join("");
 // ---------- shared helpers for the extra views ----------
 const KEYS=Object.keys(N);
-function relTip(e){return `<b>${esc(e.label)}</b> · ${e.status==="new"?"new in v2":"existing"}<br>${esc(N[e.a].label)} → ${esc(N[e.b].label)}<br>${e.types.map(([k,v])=>esc(k)+(v?": "+esc(v):"")).join("<br>")}`}
-function entTip(k){const n=N[k];return `<b>${esc(n.label)}</b> · ${n.status==="new"?"new in v2":"already extracted"}<br>${esc(n.desc)}`}
+function relTip(e){return `<b>${esc(e.label)}</b> · ${stTxt(e)}<br>${esc(N[e.a].label)} → ${esc(N[e.b].label)}<br>${e.types.map(([k,v])=>esc(k)+(v?": "+esc(v):"")).join("<br>")}`}
+function entTip(k){const n=N[k];return `<b>${esc(n.label)}</b> · ${stTxt(n)}<br>${esc(n.desc)}<br><i>Have:</i> ${esc(n.have)}`}
 function hover(g,html){g.classList.add("hov");g.addEventListener("mousemove",ev=>showTip(ev,html));g.addEventListener("mouseleave",hideTip)}
 function markers(svg){const d=el("defs",{},svg);
-  [["mA","var(--muted)",1],["mN","var(--ink)",.75]].forEach(([id,f,o])=>{const m=el("marker",{id:svg.id+id,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},d);el("path",{d:"M0,0 L10,5 L0,10 z",fill:f,opacity:o},m)})}
+  [["mA","var(--muted)",1],["mN","var(--accent)",1]].forEach(([id,f,o])=>{const m=el("marker",{id:svg.id+id,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},d);el("path",{d:"M0,0 L10,5 L0,10 z",fill:f,opacity:o},m)})}
 function mk(svg,e){return `url(#${svg.id}${e.status==="new"?"mN":"mA"})`}
 // point where the segment from a box's centre towards (tx,ty) leaves the box
 function clipBox(b,tx,ty,pad=0){const cx=b.x+b.w/2,cy=b.y+b.h/2,dx=tx-cx,dy=ty-cy;
@@ -351,13 +431,13 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
   E.forEach(e=>{
     const g=el("g",{},gL);hover(g,relTip(e));
     if(e.a===e.b){const b=B[e.a],left=e.a==="person",x=left?b.x:b.x+b.w,y=b.y+24,s=left?-1:1;
-      el("path",{d:`M${x},${y} C${x+48*s},${y-6} ${x+48*s},${y+40} ${x+2*s},${y+36}`,class:"lk "+(e.status==="new"?"new":""),"marker-end":mk(svg,e)},g);
+      el("path",{d:`M${x},${y} C${x+48*s},${y-6} ${x+48*s},${y+40} ${x+2*s},${y+36}`,class:"lk "+tier(e),"marker-end":mk(svg,e)},g);
       txt(g,x+50*s,y+20,e.label,{class:"ll","text-anchor":left?"end":"start"});return}
     const grp=pairs[[e.a,e.b].sort().join("|")],i=grp.indexOf(e),off=(i-(grp.length-1)/2)*16;
     const A=B[e.a],Bb=B[e.b],ax=A.x+A.w/2,ay=A.y+A.h/2,bx=Bb.x+Bb.w/2,by=Bb.y+Bb.h/2;
     const g0=grp[0],P0=B[g0.a],P1=B[g0.b],cdx=P1.x-P0.x,cdy=P1.y-P0.y,L=Math.hypot(cdx,cdy),nx=-cdy/L*off,ny=cdx/L*off,rev=e.a!==g0.a;
     const [x1,y1]=clipBox({...A,x:A.x+nx,y:A.y+ny},bx+nx,by+ny),[x2,y2]=clipBox({...Bb,x:Bb.x+nx,y:Bb.y+ny},ax+nx,ay+ny,3);
-    el("path",{d:`M${x1},${y1} L${x2},${y2}`,class:"lk "+(e.status==="new"?"new":""),"marker-end":mk(svg,e)},g);
+    el("path",{d:`M${x1},${y1} L${x2},${y2}`,class:"lk "+tier(e),"marker-end":mk(svg,e)},g);
     el("path",{d:`M${x1},${y1} L${x2},${y2}`,stroke:"transparent","stroke-width":14},g);
     let lt={opl:0.75,so:0.4}[e.id]||(grp.length>1?0.5+(i-(grp.length-1)/2)*0.36:0.5);if(rev&&grp.length>1)lt=1-lt;
     txt(g,x1+(x2-x1)*lt,y1+(y2-y1)*lt+4,e.label,{class:"ll","text-anchor":"middle"});
@@ -365,8 +445,8 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
   KEYS.forEach(k=>{const n=N[k],b=B[k],g=el("g",{},gB);hover(g,entTip(k));
     el("rect",{class:"box",x:b.x,y:b.y,width:b.w,height:b.h,rx:3},g);
     el("rect",{x:b.x,y:b.y,width:b.w,height:5,fill:`var(${COL[k]})`},g);
-    if(n.status==="new")txt(g,b.x+b.w/2,b.y+17,"«new»",{class:"st","text-anchor":"middle"});
-    txt(g,b.x+b.w/2,b.y+(n.status==="new"?31:26),n.label,{class:"hd","text-anchor":"middle"});
+    txt(g,b.x+b.w/2,b.y+17,n.status==="new"?`«new · ${n.job}»`:(n.job?`«existing · ${tier(n)==="fill"?"fill":"+"} ${n.job}»`:"«existing»"),{class:"st","text-anchor":"middle"});
+    txt(g,b.x+b.w/2,b.y+31,n.label,{class:"hd","text-anchor":"middle"});
     el("line",{x1:b.x,x2:b.x+b.w,y1:b.y+38,y2:b.y+38,stroke:"var(--line)"},g);
     n.fields.forEach(([f],i)=>{const s=f.length>32?f.slice(0,31)+"…":f;txt(g,b.x+10,b.y+54+i*17,s,{class:"fl"})});
   });
@@ -401,13 +481,13 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
   E.forEach(e=>{const g=el("g",{},gS);hover(g,relTip(e));const [ax,ay]=pt(e.a),[bx,by]=pt(e.b),[dx,dy]=DP[e.id];
     if(e.a===e.b){
       const o=e.loop==="up"?[[-40,0],[40,0]]:[[40,10],[0,20]];
-      o.forEach(([px,py])=>el("line",{x1:ax+px,y1:ay+py,x2:dx+px*0.5,y2:dy+py*0.5,class:"lk "+(e.status==="new"?"new":"")},gL));}
+      o.forEach(([px,py])=>el("line",{x1:ax+px,y1:ay+py,x2:dx+px*0.5,y2:dy+py*0.5,class:"lk "+tier(e)},gL));}
     else{
-      el("line",{x1:ax,y1:ay,x2:dx,y2:dy,class:"lk "+(e.status==="new"?"new":"")},gL);
-      el("line",{x1:dx,y1:dy,x2:bx,y2:by,class:"lk "+(e.status==="new"?"new":"")},gL);}
+      el("line",{x1:ax,y1:ay,x2:dx,y2:dy,class:"lk "+tier(e)},gL);
+      el("line",{x1:dx,y1:dy,x2:bx,y2:by,class:"lk "+tier(e)},gL);}
     const w=Math.max(52,V[e.id].length*3.4+18),h=22;
-    el("path",{class:"dia "+(e.status==="new"?"new":""),d:`M${dx-w},${dy} L${dx},${dy-h} L${dx+w},${dy} L${dx},${dy+h} Z`},g);
-    txt(g,dx,dy+3.5,V[e.id],{class:"fl","text-anchor":"middle",style:"fill:var(--ink)"});
+    el("path",{class:"dia "+tier(e),d:`M${dx-w},${dy} L${dx},${dy-h} L${dx+w},${dy} L${dx},${dy+h} Z`},g);
+    txt(g,dx,dy+3.5,V[e.id]+(e.job?` [${e.job}]`:""),{class:"fl","text-anchor":"middle",style:"fill:var(--ink)"});
   });
   KEYS.forEach(k=>{const [x,y]=pt(k),g=el("g",{},gS);hover(g,entTip(k));
     el("rect",{class:"box",x:x-EW/2,y:y-EH/2,width:EW,height:EH,style:`stroke:var(${COL[k]});stroke-width:2.5`},g);
@@ -422,7 +502,7 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
   let h=`<thead><tr><th>subject ↓ · object →</th>${KEYS.map(k=>`<th><i class="sw" style="background:var(${COL[k]})"></i>${esc(N[k].label)}</th>`).join("")}</tr></thead><tbody>`;
   KEYS.forEach(r=>{h+=`<tr><th><i class="sw" style="background:var(${COL[r]})"></i>${esc(N[r].label)}</th>`;
     KEYS.forEach(c=>{const es=E.filter(e=>e.a===r&&e.b===c);
-      h+=`<td class="${es.length?"":"empty"} ${r===c?"diag":""}">${es.map(e=>`<span class="r ${e.status==="new"?"new":""}" data-e="${e.id}">${esc(e.label)}</span>`).join("")}</td>`});
+      h+=`<td class="${es.length?"":"empty"} ${r===c?"diag":""}">${es.map(e=>`<span class="r ${tier(e)}" data-e="${e.id}">${esc(e.label)}${e.job?` <b>[${e.job}]</b>`:""}</span>`).join("")}</td>`});
     h+="</tr>"});
   t.innerHTML=h+"</tbody>";
   t.querySelectorAll(".r").forEach(s=>{const e=E.find(x=>x.id===s.dataset.e);s.addEventListener("mousemove",ev=>showTip(ev,relTip(e)));s.addEventListener("mouseleave",hideTip)});
@@ -435,8 +515,8 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
            station:{x:225,y:540},event:{x:565,y:490},role:{x:845,y:575},place:{x:430,y:735}};
   Object.entries(C).forEach(([k,c])=>{c.label=c.label||N[k].label;c.col=c.col||COL[k];c.w=c.label.length*8.6+34;c.h=40});
   const L=[["entry","person","is about","old"],["entry","source","draws on","new"],["source","person","informs about","new"],
-    ["person","person","is kin, colleague, teacher or friend of","new"],["person","org","performs in, leads, studies at","old"],
-    ["org","person","is named after","old"],["person","work","writes, translates, composes, performs","new"],
+    ["person","person","is kin, colleague, teacher or friend of","fill"],["person","org","performs in, leads, studies at","fill"],
+    ["org","person","is named after","fill"],["person","work","writes, translates, composes, performs","new"],
     ["work","work","is a translation or adaptation of","new"],["work","role","has the character","new"],
     ["person","station","moves through","new"],["station","place","stops at","new"],["station","event","includes","new"],
     ["event","work","stages","new"],["event","role","casts someone as","new"],["person","event","takes part in","new"],
@@ -444,8 +524,8 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
     ["person","place","was born, died, buried in","old"]];
   const box=k=>({x:C[k].x-C[k].w/2,y:C[k].y-C[k].h/2,w:C[k].w,h:C[k].h});
   const gL=el("g",{},svg),gC=el("g",{},svg);
-  L.forEach(([a,b,ph,st])=>{const g=el("g",{},gL),cls="lk "+(st==="new"?"new":""),m=`url(#cmap${st==="new"?"mN":"mA"})`;
-    hover(g,`<b>${esc(C[a].label)}</b> ${esc(ph)} <b>${esc(C[b].label)}</b> · ${st==="new"?"new in v2":"existing"}`);
+  L.forEach(([a,b,ph,st])=>{const g=el("g",{},gL),cls="lk "+st,m=`url(#cmap${st==="new"?"mN":"mA"})`;
+    hover(g,`<b>${esc(C[a].label)}</b> ${esc(ph)} <b>${esc(C[b].label)}</b> · ${{new:"new in v2",fill:"existing, gap-filled",old:"existing"}[st]}`);
     if(a===b){const bb=box(a);
       if(a==="person"){const x=bb.x,y=bb.y+6;
         el("path",{d:`M${x},${y} C${x-70},${y-40} ${x-70},${y+60} ${x-2},${y+30}`,class:cls,"marker-end":m},g);
@@ -469,8 +549,16 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
     txt(g,c.x,c.y+5,c.label,{class:"hd","text-anchor":"middle"});});
 })();
 
+// ---------- inventory & jobs ----------
+(function(){
+  $("#invT").innerHTML=`<thead><tr><th>Layer</th><th>Where</th><th>Coverage</th></tr></thead><tbody>${INV.map(([a,b,c])=>`<tr><td>${esc(a)}</td><td><code>${esc(b)}</code></td><td>${esc(c)}</td></tr>`).join("")}</tbody>`;
+  $("#seqT").innerHTML=`<thead><tr><th>Step</th><th>What</th><th>Status</th><th>Output</th><th>Counts / cost</th></tr></thead><tbody>${SEQUENCE.map(r=>`<tr><td class="jl">${esc(r.step)}</td><td>${esc(r.what)}</td><td><span class="pill ${r.status.replace(/ /g,"-")}">${esc(r.status)}${r.when?" "+esc(r.when):""}</span></td><td><code>${esc(r.out)}</code></td><td>${esc(r.counts)}</td></tr>`).join("")}</tbody>`;
+  const touches=j=>[...Object.values(N).filter(n=>n.job===j).map(n=>n.label),...E.filter(e=>e.job===j).map(e=>e.label)].join(" · ");
+  $("#jobT").innerHTML=`<thead><tr><th>Job</th><th>What</th><th>Input</th><th>Method</th><th>Schema items</th></tr></thead><tbody>${Object.entries(JOBS).map(([k,j])=>`<tr class="${j.kind}"><td class="jl">${k}</td><td><b>${esc(j.t)}</b><br><span style="color:var(--soft)">${j.kind==="cheap"?"sentence-level, no re-read":"full-text pass"}</span></td><td>${esc(j.inp)}</td><td>${esc(j.how)} ${esc(j.why)}</td><td>${esc(touches(k))}</td></tr>`).join("")}</tbody>`;
+})();
+
 // controls
-const VIEWS=["graph","cards","uml","chen","matrix","concept"];
+const VIEWS=["graph","cards","uml","chen","matrix","concept","jobs"];
 document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll("[data-view]").forEach(x=>x.setAttribute("aria-pressed",x===b));
   VIEWS.forEach(v=>$("#v-"+v).hidden=b.dataset.view!==v);hideTip();

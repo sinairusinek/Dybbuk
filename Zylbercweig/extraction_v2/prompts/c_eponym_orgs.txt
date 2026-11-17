@@ -1,0 +1,14 @@
+You read sentences from Zalmen Zylbercweig's Lexicon of the Yiddish Theatre (Yiddish) in which a mentioned person is the employer/director/teacher of the entry's SUBJECT and the sentence names a troupe, theatre, company or ensemble.
+Goal: when the tie runs THROUGH an organization ("he played in Kessler's troupe", "in Shor's theatre in Baltimore"), model it as an organization, not a person-to-person tie.
+Input: a JSON array. Each item: id, entry_subject, mention (the person as written), relation (old label), sentence.
+For each item return:
+{"id": ..., "org_mediated": true|false (true if the subject's tie to the mention is through an organization named in the sentence),
+ "org_surface": "the organization phrase exactly as written in the sentence (e.g. 'קעסלערס טרופּע', 'דעם טאַליע-טעאַטער'), empty if none",
+ "named_after_mention": true|false (the org is named after / designated by the mention's name, e.g. possessive 'X-ס טרופּע' or 'X-טרופּע'),
+ "mention_role": "leader" | "owner" | "manager" | "director" | "lessee" | "member" | "unclear",
+ "subject_role": "performer" | "member" | "employee" | "director" | "prompter" | "other" | "unclear",
+ "place": "settlement as written, if stated, else empty",
+ "date": "as stated, else empty",
+ "direct_tie_too": true|false (the sentence ALSO states a direct person tie not via the org, e.g. 'studied with him', 'under his direction'),
+ "evidence": "short verbatim quote"}
+Only use what the sentence says. Return a JSON array in input order.

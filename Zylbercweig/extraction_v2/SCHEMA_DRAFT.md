@@ -1,5 +1,6 @@
 # Zylbercweig extraction v2: draft schema (2026-11-15)
 
+Costs are estimates from token counts at assumed Gemini Flash prices ($0.50/M in, $3/M out).
 **Status:** draft, for Sinai's review before the extraction prompt is written.
 **REVISED 2026-11-17:** the 11-15 scope wrongly said person↔person relations were
 missing. They exist for all 7 volumes (see §0). v2 is now a **delta pass**: it extracts
@@ -17,7 +18,7 @@ person↔person relation, and links them later by the same resolution path.
 
 | layer | where | coverage |
 |---|---|---|
-| Person mentions + person↔person relations (category, specific type, evidence sentence, place, dates, gender, description) | `people/mentions_all.tsv` ← Drive `ZylbercweigMentionedPeople20260228.tsv` | **all 7 vols**, 38,269 mentions / 3,079 entries; 32k with a relation; 6.1k blank category; 15.6k single-word (surname-only) |
+| Person mentions + person↔person relations (category, specific type, evidence sentence, place, dates, gender, description) | `people/mentions_all.tsv` ← Drive `ZylbercweigMentionedPeople20260228.tsv` | **all 7 vols**, 38,269 mentions / 3,079 entries; 32k with a relation; 6.1k blank category; 15.6k flagged single-word, of which **5,931 have an empty name** (entry-level artifacts) → ~9.7k real surname-only + 3.2k initials. ⚠ `host_xml_id` / `host_entry_text` are filled only on an entry's first row: group by `host_heading_fill` |
 | Vitals: names, birth/death/burial date+place, education | `Zylbercweig_extraction/*III.json` | ~2,400 entries; education 5,066 items |
 | Family background (description, religion, financial, theatre connection) | `*IIIorg.json` `family_background` | 2,563 entries |
 | Person→organization relations (+ role_title, dates, locations, org_type) | `*IIIorg.json` `organizations` → core_db | 2,924 entries, 21,266 org items |
@@ -31,9 +32,9 @@ person↔person relation, and links them later by the same resolution path.
 
 | # | job | input | method | why not a full re-read |
 |---|---|---|---|---|
-| A | In-entry `full_form` for surname-only / initial mentions | `mentions_all` + `entry_texts.tsv` | **deterministic first** (≥5,861 of 15,645 have a same-entry full name, exact-match lower bound), Gemini only on the residue, sending the entry window | new field; no relations re-extracted |
-| B | Fill 6.1k blank `relation_category` + apply 11-15 types (craft `role_title`, source/informant, influence) | existing `relation_sentence` | Gemini on **sentences** only | the sentences were already extracted |
-| C | Eponym orgs: `named_after` + leads/owns | the 249 "his troupe" sentences (+ `employer_director` rows whose sentence has a possessive troupe/theatre) | Gemini on sentences | tiny |
+| A | In-entry `full_form` for surname-only / initial mentions (18,873 targets) | `mentions_all` + `entry_texts.tsv` (joined by filled-down heading) | deterministic first (175 resolved), Gemini on the residue with text windows | new field; no relations re-extracted. The 11-17 "≥5,861" estimate was WRONG: `host_xml_id` is filled only on an entry's first row, so it pooled entries |
+| B | Classify the 6,565 blank/`Other` `relation_category` rows with the 11-15 scheme (+ Source, + None). Re-typing the 26k already-categorized rows to the new types is NOT done | blank rows have no sentence, so text windows around the mention | Gemini on windows/sentences | the 26k categorized rows were already extracted |
+| C | Eponym orgs: `org_surface`, `named_after_mention`, leader/owner role, subject role | the 3,844 `employer_director`/`employee_student` sentences naming a troupe/theatre/company (supersedes the "249 his troupe" set, which was never saved as a file) | Gemini on sentences | tiny |
 | D | Stations / movements (§5) | entries **not** in the itinerary/dossier sets, ~2,500 | full entry text | genuinely new |
 | E | Events beyond performance (§4: jubilee, founding, strike, arrest, death-with-others…) | same pass as D | full entry text | genuinely new |
 | F | Person→work performed/directed + dramatic roles (§3b) | entries outside the L/H 669 | same pass as D | new outside L/H; authorship stays with editions |
@@ -43,6 +44,22 @@ D–G share one full-text pass, but its output **omits** person mentions, person
 relations, vitals, family and person→org. Those are referenced by name only where an
 event, station or work needs a participant. A–C are cheap sentence-level jobs and do not
 wait for the schema review. They are what the MEHDIE surname-ER students need.
+
+### Planned sequence: status (update after EVERY extraction run)
+
+| step | what | status | output | counts / cost |
+|---|---|---|---|---|
+| 1 | Inventory of earlier extractions (§0) | done 11-17 | this file | — |
+| 2 | A: in-entry full form | done 11-17 | `a_full_form.tsv` (+ `a_full_form_llm.jsonl`) | 12,942 real targets (5,931 empty-name artifact rows excluded); 1,136 resolved in-entry (kin_of_subject 604 = inferred surname, earlier_full_name 249, det 175, subject 57, context 51); 11.8k need cross-entry ER · ~$8 |
+| 3 | B: blank/Other relation categories | done 11-17 | `b_recategorized.tsv` | 6,565 rows: None 4,187 · Family 1,329 · Source 611 (wrote_about 483, informant 119) · Hierarchy 213 · Social 111 · Collab 66 · Creative 48; 148 role_titles · ~$4 |
+| 4 | C: eponym org-mediated ties | done 11-17 | `c_eponym_orgs.tsv` | 3,843 rows: org-mediated 3,745; named after the mention 1,883; mention = leader 2,033 / director 559 / owner 496; 579 also a direct tie; 2,264 distinct org surfaces · ~$2 |
+| 5 | Sinai reviews this schema (§1–§9 vs §0) | waiting | — | — |
+| 6 | Prompt for the D–G full-text pass | not started | `prompts/defg.txt` | — |
+| 7 | D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries) | not started | — | est. $3–5 |
+| 8 | D–G all volumes, skipping ~500 itinerary-done entries | not started | — | est. $15–30, overnight |
+| 9 | Resolution (surname ER, incl. MEHDIE students) on A–C + `mentions_all` | not started | mention→entity links | — |
+| 10 | Graph assembly + review loop | not started | — | — |
+| — | Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows) | not decided | — | est. ~$10 |
 
 ## 1. Principles
 
