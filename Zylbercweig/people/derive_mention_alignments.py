@@ -32,6 +32,10 @@ from people_common import (  # noqa: E402
 from people_similarity import normalize_person_name  # noqa: E402
 
 OUT_TSV = HERE / "derived_mention_alignments.tsv"
+# curated rejections of RA-validated surfaces (e.g. a placename aligned to a person).
+# The RA sheets stay untouched as the decision ledger; a rejected row is kept here
+# with db_status=rejected and NO matched_person_ids, so build_person_hub drops it.
+REJECTIONS_TSV = HERE / "mention_surface_rejections.tsv"
 
 SHEETS = {
     "full": HERE / "mention_validations_full.tsv",
@@ -54,6 +58,11 @@ def main() -> None:
     for h, pids in heading_idx.items():
         norm_idx.setdefault(normalize_person_name(h), []).extend(pids)
     person_db, db_report = build_person_db_map(extracted)
+
+    rejected = set()
+    if REJECTIONS_TSV.exists():
+        for rr in read_tsv(REJECTIONS_TSV):
+            rejected.add(((rr.get("mention_surface") or "").strip(), (rr.get("as_heading") or "").strip()))
 
     out: list[dict] = []
     stats: dict[str, list[int]] = {}
@@ -83,6 +92,8 @@ def main() -> None:
                 db_id, db_status = "", "no_db_alignment"
             else:
                 db_id, db_status = "", "no_entry_match"
+            if ((r.get("mention") or "").strip(), heading) in rejected:
+                pids, db_id, db_status, method = [], "", "rejected", "curated_rejection"
             out.append({
                 "mention_surface": (r.get("mention") or "").strip(),
                 "source_sheet": sheet,

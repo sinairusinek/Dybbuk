@@ -49,3 +49,17 @@ These 236 are only the names that went through Wikidata. The real extent is set 
 - `audit_hub_reachability.py`: read-only. Re-run after any `build_person_hub.py` run.
 - `hub_reachability_empty_surface_hubs.tsv`: surface-less hubs, with an estimate of the mentions each misses.
 - `hub_reachability_reconciled_names.tsv`: the 236, with category, db_ids and candidate hubs.
+
+## 2026-11-17: a full `build_person_hub.py` rerun is NOT safe yet (drift found)
+
+Rerunning derive + build today, after adding `mention_surface_rejections.tsv`, changed
+11 hub rows beyond the intended fix. They were NOT committed; only the HUB-D1247 row was
+applied, surgically. Review these before the next full rebuild:
+- **`אידא קאַמינסקאַ` (×56) would attach to HUB-D3612 = Regina Kaminska.** This is wrong. Ida's own hub HUB-D3832 still has no surfaces (group A above).
+- `מאיר אייזענבערג` now matches two entries (P-1-facs_42… and P-6-facs_123…), so HUB-D1554 would lose its surface.
+- HUB-P-5-facs_604… would gain `חיהלע פֿרידמאַן`.
+
+New mechanism: `people/mention_surface_rejections.tsv` (surface + as_heading + reason)
+is honoured by `derive_mention_alignments.py` (db_status=rejected, no matched ids), so a
+bad RA-validated surface can be dropped without editing the RA sheets. First entry:
+ביעלאָצערקאָוו (= Bila Tserkva) wrongly aligned to Tsile Bel, HUB-D1247 (Sinai, 11-17).

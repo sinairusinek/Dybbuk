@@ -82,7 +82,10 @@ def main():
             continue
         h = pid2hub.get(r["entry_id"])
         if h and (r["wikidata_qid"] or r["place_as_written"]):
-            label = f"{r['name_en'] or r['place_as_written']}" + (f" ({r['wikidata_qid']})" if r["wikidata_qid"] else "")
+            st = r["link_status"]
+            qid = r["wikidata_qid"] if st in ("linked", "needs_review") else ""  # never misresolved/unlinked
+            name = r["name_en"] if qid else r["place_as_written"]
+            label = f"{name}" + (f" ({qid}{'?' if st == 'needs_review' else ''})" if qid else "")
             hub_places[h][r["event_or_relation"]].add(label)
 
     # ---- people_db ----
