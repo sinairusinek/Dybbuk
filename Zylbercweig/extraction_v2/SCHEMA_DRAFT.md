@@ -57,6 +57,7 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 | 6 | Prompt for the D–G full-text pass | not started | `prompts/defg.txt` | — |
 | 7 | D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries) | not started | — | est. $3–5 |
 | 8 | D–G all volumes, skipping ~500 itinerary-done entries | not started | — | est. $15–30, overnight |
+| 8a | **ER context from ALREADY-STRUCTURED data (no LLM)**: candidate profiles per hub (core_db orgs via `organizations/graph/person_org_edges.tsv`: 2,640 hubs, median 5 orgs; QID-linked vital places 2,572; birth date 2,009; all three 1,895/2,900; `people_db` born_in/died_in/roles) + mention-side context (host entry's orgs/places/dates, mention's rel_place/rel_date, C's org mapped to core_db by joining its sentence to the Feb person→org relations) | not started; can run before D–G | `er_candidate_profiles.tsv`, `er_mention_context.tsv` | — |
 | 9 | Resolution (surname ER, incl. MEHDIE students) on A–C + `mentions_all` | not started | mention→entity links | — |
 | 10 | Graph assembly + review loop | not started | — | — |
 | — | Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows) | not decided | — | est. ~$10 |
