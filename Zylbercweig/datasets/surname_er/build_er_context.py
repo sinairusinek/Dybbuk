@@ -129,6 +129,17 @@ def main():
     A = {r["mention_id"]: r for r in tsv(V2 / "a_full_form.tsv")}
     B = {r["mention_id"]: r for r in tsv(V2 / "b_recategorized.tsv")}
     C = {r["mention_id"]: r for r in tsv(V2 / "c_eponym_orgs.tsv")}
+    import json
+    def verdicts(name):
+        f = V2 / f"verify_{name}.jsonl"
+        out = {}
+        if f.exists():
+            for line in f.open(encoding="utf-8"):
+                rec = json.loads(line)
+                if "error" not in rec:
+                    out[rec["id"]] = rec
+        return out
+    VC, VA, VB = verdicts("c_org"), verdicts("a_kin"), verdicts("b_src")
     RES = {r["mention_id"]: r for r in tsv(ZYL / "people" / "mention_surname_resolutions.tsv")}
 
     # Feb person→org relation rows per host, for mapping job-C organizations to core_db
@@ -179,6 +190,8 @@ def main():
         c_oid = c_name = c_score = ""
         if c and c["org_mediated"] == "True":
             c_oid, c_name, c_score = map_c_org(m, c)
+            if c_oid and VC.get(mid, {}).get("ok") is False:  # Gemini check: not the same organization
+                c_oid, c_name, c_score = "", "", f"{c_score}|check_failed"
             n_cmap += bool(c_oid)
         # overlap features between mention context and each candidate (cheap baseline signals)
         host_orgs = set(hp.get("org_ids", "").split("|")) - {""}
@@ -198,11 +211,12 @@ def main():
             "host_org_ids": hp.get("org_ids", ""), "host_active_settlements": hp.get("active_settlements", ""),
             "relation_category": (b["category"] if b else m["relation_category"]),
             "relation_type": (b["type"] if b else m["relation_specific"]),
-            "relation_source": "v2_job_B" if b else "feb_2026",
+            "relation_source": ("v2_job_B" + ({True: "|checked_ok", False: "|check_failed"}.get(VB.get(mid, {}).get("ok"), ""))) if b else "feb_2026",
             "relation_sentence": m["relation_sentence"][:400],
             "rel_settlement": m["rel_place_settlement"], "rel_country": m["rel_place_country"],
             "rel_venue": m["rel_place_venue"], "rel_date_start": m["rel_date_start"], "rel_date_end": m["rel_date_end"],
-            "in_entry_full_form": a["full_form"], "in_entry_method": a["method"],
+            "in_entry_full_form": "" if VA.get(mid, {}).get("ok") is False else a["full_form"],
+            "in_entry_method": a["method"] + ("|check_failed" if VA.get(mid, {}).get("ok") is False else ""),
             "c_org_surface": c["org_surface"] if c else "", "c_named_after_mention": c["named_after_mention"] if c else "",
             "c_mention_role": c["mention_role"] if c else "", "c_org_id": c_oid, "c_org_name": c_name,
             "c_org_match_score": c_score,

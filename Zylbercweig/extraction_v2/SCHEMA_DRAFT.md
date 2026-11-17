@@ -45,19 +45,29 @@ relations, vitals, family and person→org. Those are referenced by name only wh
 event, station or work needs a participant. A–C are cheap sentence-level jobs and do not
 wait for the schema review. They are what the MEHDIE surname-ER students need.
 
+### Decisions needed from Sinai (step 5 and around it)
+
+1. Keep person→org OUT of the D–G pass (current draft), or re-extract it?
+2. New core_db org types **Hospitality** and **Theatre/concert agency**: OK to add to the dropdown?
+3. D–G: skip the ~500 entries that already have itineraries, or re-run them for uniform output?
+4. Optional: re-type the 26k already-categorized relations to the 11-15 types (~$10)?
+5. Meir Eisenberg: are Vol 1 (b. 1894 Ozorków) and Vol 6 (b. 1896 Gowarczów, d. 1966 Miami) the same person? Until decided, HUB-D1554 has no surface.
+6. Job A relatives: accept "first name + the family's surname" as the full form of a wife or child (604 cases, 96% passed the check)?
+
 ### Planned sequence: status (update after EVERY extraction run)
 
 | step | what | status | output | counts / cost |
 |---|---|---|---|---|
 | 1 | Inventory of earlier extractions (§0) | done 11-17 | this file | — |
 | 2 | A: in-entry full form | done 11-17 | `a_full_form.tsv` (+ `a_full_form_llm.jsonl`) | 12,942 real targets (5,931 empty-name artifact rows excluded); 1,136 resolved in-entry (kin_of_subject 604 = inferred surname, earlier_full_name 249, det 175, subject 57, context 51); 11.8k need cross-entry ER · ~$8 |
-| 3 | B: blank/Other relation categories | done 11-17 | `b_recategorized.tsv` | 6,565 rows: None 4,187 · Family 1,329 · Source 611 (wrote_about 483, informant 119) · Hierarchy 213 · Social 111 · Collab 66 · Creative 48; 148 role_titles · ~$4 |
+| 3 | B: blank/Other relation categories | done 11-17, corrected | `b_recategorized.tsv` | 634 real rows (5,931 empty-name artifact rows dropped; the first report counted them, wrongly): None 279 · Social 108 · Hierarchy 101 · Creative 45 · Family 36 · Collab 36 · Source 29 · ~$4 |
 | 4 | C: eponym org-mediated ties | done 11-17 | `c_eponym_orgs.tsv` | 3,843 rows: org-mediated 3,745; named after the mention 1,883; mention = leader 2,033 / director 559 / owner 496; 579 also a direct tie; 2,264 distinct org surfaces · ~$2 |
 | 5 | Sinai reviews this schema (§1–§9 vs §0) | waiting | — | — |
 | 6 | Prompt for the D–G full-text pass | not started | `prompts/defg.txt` | — |
 | 7 | D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries) | not started | — | est. $3–5 |
 | 8 | D–G all volumes, skipping ~500 itinerary-done entries | not started | — | est. $15–30, overnight |
 | 8a | ER context from ALREADY-STRUCTURED data (no LLM) | done 11-17 | `datasets/surname_er/er_mention_context.tsv`, `er_candidate_profiles.tsv` (+ README) | 12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong |
+| 8b | Gemini verification of C org matches, A relatives, B Sources + hub-surface rejections (Bila Tserkva, Ida→Regina, א. ר.→Regina, Fridman→Ash) | done 11-17 | `verify_*.jsonl`, `people/mention_surface_rejections.tsv` | C 1,596/1,746 ok (142 removed) · A-kin 580/604 · B-src 26/29 real · <$1 |
 | 9 | Resolution (surname ER, incl. MEHDIE students) on A–C + `mentions_all` | not started | mention→entity links | — |
 | 10 | Graph assembly + review loop | not started | — | — |
 | — | Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows) | not decided | — | est. ~$10 |

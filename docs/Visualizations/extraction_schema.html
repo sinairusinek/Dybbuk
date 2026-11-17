@@ -227,13 +227,14 @@ the schema has no field for it; what the text does state is recorded as dated fa
 const SEQUENCE=[
  {step:"1",what:"Inventory of earlier extractions (§0)",status:"done",when:"11-17",out:"SCHEMA_DRAFT.md",counts:"—"},
  {step:"2",what:"A: in-entry full form",status:"done",when:"11-17",out:"a_full_form.tsv (+ a_full_form_llm.jsonl)",counts:"12,942 real targets (5,931 empty-name artifact rows excluded); 1,136 resolved in-entry (kin_of_subject 604 = inferred surname, earlier_full_name 249, det 175, subject 57, context 51); 11.8k need cross-entry ER · ~$8"},
- {step:"3",what:"B: blank / Other relation categories",status:"done",when:"11-17",out:"b_recategorized.tsv",counts:"6,565 rows: None 4,187 · Family 1,329 · Source 611 (wrote_about 483, informant 119) · Hierarchy 213 · Social 111 · Collab 66 · Creative 48; 148 role_titles · ~$4"},
+ {step:"3",what:"B: blank / Other relation categories (corrected)",status:"done",when:"11-17",out:"b_recategorized.tsv",counts:"634 real rows (5,931 empty-name artifact rows dropped; the first report counted them, wrongly): None 279 · Social 108 · Hierarchy 101 · Creative 45 · Family 36 · Collab 36 · Source 29 · ~$4"},
  {step:"4",what:"C: eponym org-mediated ties",status:"done",when:"11-17",out:"c_eponym_orgs.tsv",counts:"3,843 rows: org-mediated 3,745; named after the mention 1,883; mention = leader 2,033 / director 559 / owner 496; 579 also a direct tie; 2,264 distinct org surfaces · ~$2"},
  {step:"5",what:"Sinai reviews the schema (§1–§9 vs §0)",status:"waiting",when:"",out:"—",counts:"—"},
  {step:"6",what:"Prompt for the D–G full-text pass",status:"not started",when:"",out:"prompts/defg.txt",counts:"—"},
  {step:"7",what:"D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries)",status:"not started",when:"",out:"—",counts:"est. $3–5"},
  {step:"8",what:"D–G all volumes, skipping ~500 itinerary-done entries",status:"not started",when:"",out:"—",counts:"est. $15–30, overnight"},
  {step:"8a",what:"ER context from ALREADY-STRUCTURED data (no LLM): candidate profiles + mention context",status:"done",when:"11-17",out:"datasets/surname_er/ (er_mention_context.tsv, er_candidate_profiles.tsv, README)",counts:"12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong"},
+ {step:"8b",what:"Gemini verification (C orgs, A relatives, B Sources) + hub-surface rejections",status:"done",when:"11-17",out:"verify_*.jsonl, people/mention_surface_rejections.tsv",counts:"C 1,596/1,746 ok (142 removed) · A-kin 580/604 · B-src 26/29 · <$1"},
  {step:"9",what:"Resolution (surname ER, incl. MEHDIE students) on A–C + mentions_all",status:"not started",when:"",out:"mention → entity links",counts:"—"},
  {step:"10",what:"Graph assembly + review loop",status:"not started",when:"",out:"—",counts:"—"},
  {step:"—",what:"Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows)",status:"not decided",when:"",out:"—",counts:"est. ~$10"}

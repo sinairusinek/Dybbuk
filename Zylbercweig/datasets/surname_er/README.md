@@ -37,7 +37,7 @@ University.
   (`det:` = string match, `llm:` = Gemini; `kin_of_subject` = a relative, with the surname inferred).
 - **Candidates:** `candidate_hub_ids` (surname lookup, incl. spelling variants; the host
   is excluded). `candidate_features` gives simple per-candidate overlap counts as a starting point.
-- **Labels:** `gold_hub_id` is a human-validated answer for 5,727 mentions; use it for
+- **Labels:** `gold_hub_id` is a human-validated answer for 5,726 mentions; use it for
   train/test. `resolver_verdict` / `resolver_hub_id` are the current rule-based resolver's output, as a baseline.
 
 ### `er_candidate_profiles.tsv`
@@ -60,6 +60,9 @@ date?), place, the shared organization, gender, and relation type.
 ## Known issues
 
 - About 11.8k of the mentions are **not** resolvable inside their own entry; that is the point of the task.
-- `c_org_id` is matched by sentence overlap (`c_org_match_score`); below about 0.6 it is sometimes wrong.
+- `c_org_id` is matched by sentence overlap (`c_org_match_score`) and then checked by a Gemini judge; the 142 matches it rejected are removed (`|check_failed` in the score). Expect a few residual errors.
+- `in_entry_method` ending in `|check_failed` = a relative's inferred full name the check rejected (24); the full form is blanked.
+- `relation_source = v2_job_B` rows (634) were classified by Gemini from text windows; `|checked_ok` / `|check_failed` marks the 29 'Source' relations that were checked.
+- `flag = not_a_person`: the "mention" is a placename (e.g. ביעלאָצערקאָוו = Bila Tserkva); `rejected_alignment`: a curated rejection removed a wrong gold/resolver answer.
 - 110 gold answers are not among the candidates (spelling variants the lookup misses): a recall problem to study.
 - Hubs are not a closed world: some mentioned people have no Lexicon entry.

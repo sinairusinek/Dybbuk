@@ -59,6 +59,8 @@ def items_b(rows):
     for r in rows:
         if r["relation_category"] not in ("", "Other"):
             continue
+        if not r["mention_name"].strip():
+            continue  # 5,931 fully empty artifact rows (no name/gender/sentence) -- not mentions
         out.append({"id": r["mention_id"], "entry_subject": r["host_heading_fill"],
                     "mention": r["mention_name"], "description": r["person_description"][:200],
                     "sentence": r["relation_sentence"][:400],
@@ -94,7 +96,7 @@ def flatten(rows):
         recs = {}
         for line in src.open(encoding="utf-8"):
             rec = json.loads(line)
-            if "error" not in rec:
+            if "error" not in rec and rec["id"] in meta and meta[rec["id"]]["mention_name"].strip():
                 recs[rec["id"]] = rec
         head = ["mention_id", "host_xml_id", "host_heading", "mention_name",
                 "old_category", "old_specific", "old_sentence"] + cols + ["model"]
