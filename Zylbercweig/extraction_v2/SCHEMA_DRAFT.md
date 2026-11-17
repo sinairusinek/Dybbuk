@@ -1,12 +1,48 @@
 # Zylbercweig extraction v2: draft schema (2026-11-15)
 
 **Status:** draft, for Sinai's review before the extraction prompt is written.
-**Scope:** one new pass over every Lexicon entry (all 7 volumes) that adds what the
+**REVISED 2026-11-17:** the 11-15 scope wrongly said person↔person relations were
+missing. They exist for all 7 volumes (see §0). v2 is now a **delta pass**: it extracts
+only what no earlier run produced, and fills gaps in old output from the extracted
+sentences, not by re-reading whole entries. Where §2–§5 below conflict with §0, §0 wins.
+
+**Original scope (11-15, superseded in part):** one new pass over every Lexicon entry (all 7 volumes) that adds what the
 2026-03 extraction lacks: person↔person relations, works, dramatic roles, events,
 movements (migration, touring, deportation…), and sources. It does **not** redo
 person→organization relations (18.5k edges, already aligned through core_db). The new
 pass only names organizations where they take part in an event, a movement or a
 person↔person relation, and links them later by the same resolution path.
+
+## 0. What already exists: do NOT re-extract (inventory 2026-11-17)
+
+| layer | where | coverage |
+|---|---|---|
+| Person mentions + person↔person relations (category, specific type, evidence sentence, place, dates, gender, description) | `people/mentions_all.tsv` ← Drive `ZylbercweigMentionedPeople20260228.tsv` | **all 7 vols**, 38,269 mentions / 3,079 entries; 32k with a relation; 6.1k blank category; 15.6k single-word (surname-only) |
+| Vitals: names, birth/death/burial date+place, education | `Zylbercweig_extraction/*III.json` | ~2,400 entries; education 5,066 items |
+| Family background (description, religion, financial, theatre connection) | `*IIIorg.json` `family_background` | 2,563 entries |
+| Person→organization relations (+ role_title, dates, locations, org_type) | `*IIIorg.json` `organizations` → core_db | 2,924 entries, 21,266 org items |
+| Editions / works (author, title, publication) | `plays/editions/editions_full2.tsv`, `works_full2.tsv` | all Lexicon; 5,059 editions / 3,525 works / 662 entries |
+| Production / premiere / authorship / music / translation facts, with person role + **dramatic character** | `plays/kg_extraction_drafts_pass2.tsv` | **L/H scope only**: 669 entries, 2,154 facts |
+| Itinerary stations (+ embedded performance events) | `plays/itinerary/`, `france_dossier/`, `dybbuk_*`, `person_dossier/` | ~500 entries (Istanbul 79, Danzig 28, France ~400, Dybbuk, Rumshinsky) |
+| Migrations with reason (gold) | `pilot_2024/drive_2024_25/` Migrations2025 | 919 moves, Lasky 400-entry pilot |
+| Performance-event assertions w/ dramatic role (gold) | `People in Performance Events.xlsx` (DiJeSt) | 852 assertions |
+
+### Revised v2 work list
+
+| # | job | input | method | why not a full re-read |
+|---|---|---|---|---|
+| A | In-entry `full_form` for surname-only / initial mentions | `mentions_all` + `entry_texts.tsv` | **deterministic first** (≥5,861 of 15,645 have a same-entry full name, exact-match lower bound), Gemini only on the residue, sending the entry window | new field; no relations re-extracted |
+| B | Fill 6.1k blank `relation_category` + apply 11-15 types (craft `role_title`, source/informant, influence) | existing `relation_sentence` | Gemini on **sentences** only | the sentences were already extracted |
+| C | Eponym orgs: `named_after` + leads/owns | the 249 "his troupe" sentences (+ `employer_director` rows whose sentence has a possessive troupe/theatre) | Gemini on sentences | tiny |
+| D | Stations / movements (§5) | entries **not** in the itinerary/dossier sets, ~2,500 | full entry text | genuinely new |
+| E | Events beyond performance (§4: jubilee, founding, strike, arrest, death-with-others…) | same pass as D | full entry text | genuinely new |
+| F | Person→work performed/directed + dramatic roles (§3b) | entries outside the L/H 669 | same pass as D | new outside L/H; authorship stays with editions |
+| G | Sources / informants (§2 `source`) | same pass as D | full entry text | new |
+
+D–G share one full-text pass, but its output **omits** person mentions, person↔person
+relations, vitals, family and person→org. Those are referenced by name only where an
+event, station or work needs a participant. A–C are cheap sentence-level jobs and do not
+wait for the schema review. They are what the MEHDIE surname-ER students need.
 
 ## 1. Principles
 
