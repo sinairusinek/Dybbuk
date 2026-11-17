@@ -233,7 +233,7 @@ const SEQUENCE=[
  {step:"6",what:"Prompt for the D–G full-text pass",status:"not started",when:"",out:"prompts/defg.txt",counts:"—"},
  {step:"7",what:"D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries)",status:"not started",when:"",out:"—",counts:"est. $3–5"},
  {step:"8",what:"D–G all volumes, skipping ~500 itinerary-done entries",status:"not started",when:"",out:"—",counts:"est. $15–30, overnight"},
- {step:"8a",what:"ER context from ALREADY-STRUCTURED data (no LLM): candidate profiles per hub (core_db orgs 2,640 hubs; QID-linked vital places 2,572; birth date 2,009; all three 1,895/2,900; people_db) + mention-side context (host entry orgs/places/dates, rel_place/rel_date, C orgs → core_db via sentence join)",status:"not started",when:"",out:"er_candidate_profiles.tsv, er_mention_context.tsv",counts:"no LLM cost"},
+ {step:"8a",what:"ER context from ALREADY-STRUCTURED data (no LLM): candidate profiles + mention context",status:"done",when:"11-17",out:"datasets/surname_er/ (er_mention_context.tsv, er_candidate_profiles.tsv, README)",counts:"12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong"},
  {step:"9",what:"Resolution (surname ER, incl. MEHDIE students) on A–C + mentions_all",status:"not started",when:"",out:"mention → entity links",counts:"—"},
  {step:"10",what:"Graph assembly + review loop",status:"not started",when:"",out:"—",counts:"—"},
  {step:"—",what:"Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows)",status:"not decided",when:"",out:"—",counts:"est. ~$10"}
