@@ -62,7 +62,7 @@ def main() -> None:
     rejected = set()
     if REJECTIONS_TSV.exists():
         for rr in read_tsv(REJECTIONS_TSV):
-            rejected.add(((rr.get("mention_surface") or "").strip(), (rr.get("as_heading") or "").strip()))
+            rejected.add((normalize_person_name(rr.get("mention_surface") or ""), normalize_person_name(rr.get("as_heading") or "")))  # precomposed/decomposed-safe
 
     out: list[dict] = []
     stats: dict[str, list[int]] = {}
@@ -92,7 +92,7 @@ def main() -> None:
                 db_id, db_status = "", "no_db_alignment"
             else:
                 db_id, db_status = "", "no_entry_match"
-            if ((r.get("mention") or "").strip(), heading) in rejected:
+            if (normalize_person_name(r.get("mention") or ""), normalize_person_name(heading)) in rejected:
                 pids, db_id, db_status, method = [], "", "rejected", "curated_rejection"
             out.append({
                 "mention_surface": (r.get("mention") or "").strip(),

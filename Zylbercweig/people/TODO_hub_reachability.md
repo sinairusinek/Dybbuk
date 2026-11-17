@@ -50,16 +50,16 @@ These 236 are only the names that went through Wikidata. The real extent is set 
 - `hub_reachability_empty_surface_hubs.tsv`: surface-less hubs, with an estimate of the mentions each misses.
 - `hub_reachability_reconciled_names.tsv`: the 236, with category, db_ids and candidate hubs.
 
-## 2026-11-17: a full `build_person_hub.py` rerun is NOT safe yet (drift found)
+## 2026-11-17: full hub rebuild is SAFE again (derive → build → add_dbonly_hubs)
 
-Rerunning derive + build today, after adding `mention_surface_rejections.tsv`, changed
-11 hub rows beyond the intended fix. They were NOT committed; only the HUB-D1247 row was
-applied, surgically. Review these before the next full rebuild:
-- **`אידא קאַמינסקאַ` (×56) would attach to HUB-D3612 = Regina Kaminska.** This is wrong. Ida's own hub HUB-D3832 still has no surfaces (group A above).
-- `מאיר אייזענבערג` now matches two entries (P-1-facs_42… and P-6-facs_123…), so HUB-D1554 would lose its surface.
-- HUB-P-5-facs_604… would gain `חיהלע פֿרידמאַן`.
+Pipeline order: `derive_mention_alignments.py` → `build_person_hub.py` →
+`add_dbonly_hubs.py --db-ids 3832,3833,3837 --reviewer Sinai --apply` (the build drops db-only hubs).
+`mention_surface_rejections.tsv` (Unicode-normalized match) now rejects 4 RA-validated surfaces:
+- ביעלאָצערקאָוו → Tsile Bel: it is the placename Bila Tserkva (Sinai)
+- אידא קאַמינסקאַ ×56 → Regina Kaminska: it is Ida (HUB-D3832, still surfaceless, group A)
+- א. ר. קאַמינסקאַ → Regina: it is Esther-Rokhl, the mother (decided from text)
+- חיהלע פֿרידמאַן → Khayele Ash: contradicts Sinai's 10-15 decision in names_not_minted.tsv
 
-New mechanism: `people/mention_surface_rejections.tsv` (surface + as_heading + reason)
-is honoured by `derive_mention_alignments.py` (db_status=rejected, no matched ids), so a
-bad RA-validated surface can be dropped without editing the RA sheets. First entry:
-ביעלאָצערקאָוו (= Bila Tserkva) wrongly aligned to Tsile Bel, HUB-D1247 (Sinai, 11-17).
+**OPEN, for Sinai:** מאיר אייזענבערג is now ambiguous. Vol 1 `P-1-facs_42…`: b. Apr 1894 Ozorków, prompter/actor.
+Vol 6 `P-6-facs_123…`: b. 1896 Gowarczów, d. 8 May 1966 Miami Beach, director (ARTEF).
+Same person (merge the hubs) or two people (leave as is)? Until decided, HUB-D1554 has no surface.
