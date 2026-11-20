@@ -55,6 +55,7 @@ VIEWS = {
     "YiDraCor · Annotation flags": ("yidracor_flags", "yd"),
     "Plays KG · Explorer":         ("plays_kg", "kg"),
     "KG link review":              ("kg_link_review", "klr"),
+    "Typed link review (blind)":   ("lp_review", "lpr"),
 }
 
 def _remember_view() -> None:
@@ -87,6 +88,7 @@ VIEW_STATUS = {
     "YiDraCor · Annotation flags": "✅ Ready",
     "Plays KG · Explorer":         "📊",
     "KG link review":              "🔗",
+    "Typed link review (blind)":   "🆕 New",
 }
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -276,6 +278,9 @@ elif view_module == "eponym_mint":
     render()
 elif view_module == "eponym_troupes":
     from views.eponym_troupes import render
+    render()
+elif view_module == "lp_review":
+    from views.lp_review import render
     render()
 elif view_module == "family_cards":
     from views.family_cards import render
