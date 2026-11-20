@@ -139,9 +139,9 @@ table.mx{border-collapse:collapse;font-size:.8rem;min-width:52rem;width:100%}
 .mx td.diag{background:color-mix(in srgb,var(--line) 35%,transparent)}
 </style></head><body>
 <header>
-<p class="eyebrow"><a href="gate.html">Visualizations</a> · Zylbercweig Leksikon · draft 2026-11-15 · revised 2026-11-17 (delta pass)</p>
+<p class="eyebrow"><a href="gate.html">Visualizations</a> · Zylbercweig Leksikon · draft 2026-11-15 · revised 2026-11-17 (delta pass) · 2026-11-20 (production, event status)</p>
 <h1>Extraction schema, v2</h1>
-<p class="lede">The full schema of the Lexicon extraction (eight kinds of entity and the relations between them), marked by
+<p class="lede">The full schema of the Lexicon extraction (nine kinds of entity and the relations between them), marked by
 what <b>already exists</b> from earlier runs and what the v2 <b>delta pass</b> adds. Faint lines are already
 extracted and untouched; heavy lines are already extracted with gaps filled by a cheap sentence-level job (A–C);
 dashed red lines are new, from one full-text pass (D–G). Click any entity or relation for its source, coverage and job.</p>
@@ -235,6 +235,8 @@ const SEQUENCE=[
  {step:"8",what:"D–G all volumes, skipping ~500 itinerary-done entries",status:"not started",when:"",out:"—",counts:"est. $15–30, overnight"},
  {step:"8a",what:"ER context from ALREADY-STRUCTURED data (no LLM): candidate profiles + mention context",status:"done",when:"11-17",out:"datasets/surname_er/ (er_mention_context.tsv, er_candidate_profiles.tsv, README)",counts:"12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong"},
  {step:"8b",what:"Gemini verification (C orgs, A relatives, B Sources) + hub-surface rejections",status:"done",when:"11-17",out:"verify_*.jsonl, people/mention_surface_rejections.tsv",counts:"C 1,596/1,746 ok (142 removed) · A-kin 580/604 · B-src 26/29 · <$1"},
+ {step:"8c",what:"Schema check against external models (Linked Art PA v0.9, SAPA): performance facts + production resolution, event status / language / org_role, mapping table (SCHEMA_DRAFT §3b, §4, §10)",status:"done",when:"11-20",out:"SCHEMA_DRAFT.md",counts:"—"},
+ {step:"9b",what:"Production resolution: group performance facts (D–G + plays-KG facts) into productions; fact → production links with reasons",status:"not started",when:"",out:"production_links.tsv",counts:"no LLM for the rule pass"},
  {step:"9",what:"Resolution (surname ER, incl. MEHDIE students) on A–C + mentions_all",status:"not started",when:"",out:"mention → entity links",counts:"—"},
  {step:"10",what:"Graph assembly + review loop",status:"not started",when:"",out:"—",counts:"—"},
  {step:"—",what:"Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows)",status:"not decided",when:"",out:"—",counts:"est. ~$10"}
@@ -257,7 +259,10 @@ const N = {
   fields:[["surface","character name, verbatim"],["work","title of the work it belongs to"]]},
  event:{label:"Event",x:660,y:460,status:"new",job:"E",have:"Performance / premiere only: Lateiner/Hurwitz plays KG (399 + 6) and events embedded in ~500 itinerary entries.",sub:"performance, founding, strike…",
   desc:"Something that happened, with participants and their roles. Venue is a role on the event, not a type: a café or a hotel can be a venue.",
-  fields:[["event_type","performance · premiere · debut · guest_appearance · season · benefit · jubilee · honor · memorial · founding · strike · conflict · marriage · divorce · arrest · imprisonment · death · burial"],["date_start / date_end",""],["date_certainty","explicit · approximate · none"],["place, venue, work","mentions"],["participants[]","person + role (performer, director, organizer, honoree, victim…) + dramatic role"]]},
+  fields:[["event_type","performance · premiere · debut · guest_appearance · season · benefit · jubilee · honor · memorial · founding · strike · conflict · marriage · divorce · arrest · imprisonment · death · burial"],["status","performed · planned · banned · cancelled · unstated — NEW 11-20 (after LA-PA Projected Event)"],["language","of the performance/staging, only if stated — NEW 11-20"],["org_role","per organization: producer · presenter_or_host · venue · touring_company — NEW 11-20 (after AusStage)"],["date_start / date_end",""],["date_certainty","explicit · approximate · none"],["place, venue, work","mentions"],["participants[]","person + role (performer, director, organizer, honoree, victim…) + dramatic role"]]},
+ production:{label:"Production",x:690,y:265,status:"new",job:"",have:"Not extracted. Built AFTER extraction by the production-resolution step (sequence 9b): performance facts grouped by same work + same org + compatible dates/place, each grouping stored as a fact → production link with its reason. Plays KG today keys productions on an exact (play, venue, org, place, date) match.",sub:"a staging (resolved, not extracted)",
+  desc:"A staging of a work by a company in a place and season (Linked Art PA / SAPA level between work and performance). The Lexicon often names a role with no production, so the extractor never creates one: facts with no anchor stay on the work as “production unspecified”; on export to models that require a production they get a stub typed “unspecified”.",
+  fields:[["work","the play staged"],["org","producing troupe / company"],["place, venue","where"],["date_start, date_end","run, as far as the grouped facts say"],["language","of the staging, if stated"],["fact_ids[]","the performance facts grouped into it, each with a grouping reason"]]},
  station:{label:"Movement",x:230,y:470,status:"new",job:"D",have:"~500 entries already done (Istanbul 79, Danzig 28, France ~400, Dybbuk, Rumshinsky) + Migrations2025 (919 moves, gold). v2 skips them.",sub:"migration, tour, deportation",
   desc:"An itinerary station: a stay of a person (or a touring troupe) at a place, in narrative order, with the events that happened there.",
   fields:[["verb_class","born · settled · stay · pass_through · tour · flight · emigration · return · visit · death · deportation · evacuation · expulsion · conscription"],["reason","work_engagement · tour_or_guest_appearance · family · education · emigration · forced · health · other · unstated"],["reason_stated","false when the text gives no reason"],["org, role","who the subject was with, as what"],["date_start / date_end / date_certainty",""],["events[]","events at this station"]]},
@@ -265,7 +270,7 @@ const N = {
   desc:"The informant or text an entry draws on. Provenance, not a social tie.",
   fields:[["surface","person or text, as written"],["source_kind","informant · cited_text · memoir · interview · correspondence · other"]]}
 };
-const COL = {person:"--c-person",org:"--c-org",place:"--c-place",work:"--c-work",role:"--c-role",event:"--c-event",station:"--c-station",source:"--c-source"};
+const COL = {person:"--c-person",org:"--c-org",place:"--c-place",work:"--c-work",role:"--c-role",event:"--c-event",station:"--c-station",source:"--c-source",production:"--teal"};
 // curve: c = perpendicular offset of the control point; loop = self-loop direction
 const E = [
  {id:"pp",a:"person",b:"person",loop:"up",status:"old",job:"B",have:"people/mentions_all.tsv: 32,130 relations with category, specific type, evidence sentence, place (7.3k), dates (6.7k), all 7 volumes. Gaps: 6,565 blank / Other category rows (job B). Re-typing the 26k categorized rows to the 11-15 types is NOT done (optional, not decided).",label:"person ↔ person",
@@ -277,7 +282,7 @@ const E = [
  {id:"op",a:"org",b:"person",c:-40,status:"old",job:"C",have:"Eponym links: 301 edges live from 414 decisions. Job C adds named_after from sentences.",label:"named after",
   desc:"Eponymous organizations: the person a troupe or theatre is named after (eponym links).",types:[["named_after","“Fishzon’s troupe” → Avrom Fishzon"]]},
  {id:"pw",a:"person",b:"work",c:40,status:"new",job:"F",have:"Authorship for all of the Lexicon (editions pipeline); production / music / translation facts only for Lateiner/Hurwitz (669 entries).",label:"author, composer, performer…",
-  desc:"Authorship exists for every entry (editions); performer / director / composer facts only for Lateiner/Hurwitz. v2 (job F) covers the rest.",
+  desc:"Authorship exists for every entry (editions); performer / director / composer facts only for Lateiner/Hurwitz. v2 (job F) covers the rest. REVISED 11-20: each performance fact = person + function + character + work + optional context (org, venue, place, dates, language, status). The extractor never creates a production.",
   types:[["roles","author · translator · adapter · composer · lyricist · director · designer · choreographer · performer (+ dramatic role) · producer"]]},
  {id:"ww",a:"work",b:"work",loop:"right",status:"new",job:"F",have:"Only same-work links from the editions pipeline.",label:"translation of…",
   desc:"Links between works, only as the text states them.",types:[["types","translation_of · adaptation_of · based_on · same_as"]]},
@@ -288,6 +293,9 @@ const E = [
  {id:"er",a:"event",b:"role",c:-20,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG + DiJeSt (gold) only.",label:"role played",desc:"The dramatic roles performed at this event.",types:[["role","via participants[]"]]},
  {id:"eo",a:"event",b:"org",c:25,lt:0.14,status:"new",job:"E",have:"Venues for Lateiner/Hurwitz productions (venue:UV-* nodes) only.",label:"venue, organizer",desc:"Venue is a role: any organization (or a place) can be one.",types:[["venue","theatre · café · hotel · hall · synagogue…"],["organizer","troupe, society, union…"]]},
  {id:"epl",a:"event",b:"place",c:-25,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"took place in",desc:"Settlement or region of the event.",types:[["place","as written; resolved later"]]},
+ {id:"epr",a:"event",b:"production",c:20,status:"new",job:"",have:"Resolution step 9b (not extracted).",label:"part of",desc:"A performance belongs to a production only when the text or the grouping step says so; otherwise the link is absent.",types:[["part_of","Performance ⊂ Production (LA-PA, SAPA)"]]},
+ {id:"prw",a:"production",b:"work",c:-20,status:"new",job:"",have:"Resolution step 9b (not extracted).",label:"staging of",desc:"The play a production stages. Our work = Linked Art PA’s Textual Work (the play), not its Work (the director’s staging concept), which the Lexicon rarely decides.",types:[["staging_of","Production → play"]]},
+ {id:"pro",a:"production",b:"org",c:-30,status:"new",job:"",have:"Resolution step 9b, from the org named in the grouped facts.",label:"produced by",desc:"The troupe or company that mounted the production (org_role = producer).",types:[["produced_by","troupe · theatre company"]]},
  {id:"sp",a:"station",b:"person",c:-30,status:"new",job:"D",have:"~500 entries (itinerary + dossier pilots).",label:"subject",desc:"Whose itinerary: a person, or an organization when a troupe tours.",types:[["subject","person · organization"]]},
  {id:"spl",a:"station",b:"place",c:25,status:"new",job:"D",have:"~500 entries (itinerary + dossier pilots).",label:"at",desc:"Where the stay happened.",types:[["place","settlement · region (for a tour) · country"]]},
  {id:"se",a:"station",b:"event",c:0,status:"new",job:"D",have:"Itinerary pilots embed performance/premiere/debut events.",label:"events there",desc:"Events are nested inside the station where they happened; never emitted twice.",types:[["events[]",""]]},
@@ -386,8 +394,8 @@ function select(s){
 function renderPanel(){
   const p=$("#panel");
   if(!sel){const nN=Object.values(N).filter(n=>n.status==="new").length,nE=E.filter(e=>e.status==="new").length,nF=E.filter(e=>tier(e)==="fill").length;
-   p.innerHTML=`<h2>Eight kinds of entity</h2><p>v2 is a <b>delta pass</b>: it extracts only what no earlier run produced. Click an entity or relation to see what already exists and which job (A–G) adds to it.</p>
-   <h3>In numbers</h3><ul class="f"><li><code>8</code> <span class="d">entity kinds, ${nN} of them new</span></li><li><code>${E.length}</code> <span class="d">relation families: ${nE} new, ${nF} gap-filled, ${E.length-nE-nF} untouched</span></li><li><code>A–C</code> <span class="d">cheap sentence-level jobs (no re-read)</span></li><li><code>D–G</code> <span class="d">one full-text pass, ~2,500 entries</span></li></ul><p><a href="#view-jobs" data-goto="jobs" style="color:var(--teal)">Inventory &amp; work list →</a></p>`;
+   p.innerHTML=`<h2>Nine kinds of entity</h2><p>v2 is a <b>delta pass</b>: it extracts only what no earlier run produced. Click an entity or relation to see what already exists and which job (A–G) adds to it.</p>
+   <h3>In numbers</h3><ul class="f"><li><code>9</code> <span class="d">entity kinds, ${nN} of them new</span></li><li><code>${E.length}</code> <span class="d">relation families: ${nE} new, ${nF} gap-filled, ${E.length-nE-nF} untouched</span></li><li><code>A–C</code> <span class="d">cheap sentence-level jobs (no re-read)</span></li><li><code>D–G</code> <span class="d">one full-text pass, ~2,500 entries</span></li></ul><p><a href="#view-jobs" data-goto="jobs" style="color:var(--teal)">Inventory &amp; work list →</a></p>`;
    p.querySelector("[data-goto]").addEventListener("click",ev=>{ev.preventDefault();document.querySelector('[data-view="jobs"]').click()});return}
   if(sel.node){const n=N[sel.node];
     const rel=E.filter(e=>e.a===sel.node||e.b===sel.node);
@@ -425,7 +433,7 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
 // ---------- UML class diagram ----------
 (function(){
   const svg=$("#uml");svg.classList.add("dg");markers(svg);
-  const P={person:[420,30],source:[790,30],org:[30,250],work:[790,262],event:[420,400],role:[790,575],station:[30,520],place:[420,730]};
+  const P={person:[420,30],source:[790,30],org:[30,250],work:[790,262],event:[420,400],role:[790,605],station:[30,520],place:[420,730],production:[790,425]};
   const W=250,B={};
   KEYS.forEach(k=>{const n=N[k];B[k]={x:P[k][0],y:P[k][1],w:W,h:36+n.fields.length*17+10}});
   const gL=el("g",{},svg),gB=el("g",{},svg);
@@ -447,7 +455,7 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
   KEYS.forEach(k=>{const n=N[k],b=B[k],g=el("g",{},gB);hover(g,entTip(k));
     el("rect",{class:"box",x:b.x,y:b.y,width:b.w,height:b.h,rx:3},g);
     el("rect",{x:b.x,y:b.y,width:b.w,height:5,fill:`var(${COL[k]})`},g);
-    txt(g,b.x+b.w/2,b.y+17,n.status==="new"?`«new · ${n.job}»`:(n.job?`«existing · ${tier(n)==="fill"?"fill":"+"} ${n.job}»`:"«existing»"),{class:"st","text-anchor":"middle"});
+    txt(g,b.x+b.w/2,b.y+17,n.status==="new"?(n.job?`«new · ${n.job}»`:"«resolved, not extracted»"):(n.job?`«existing · ${tier(n)==="fill"?"fill":"+"} ${n.job}»`:"«existing»"),{class:"st","text-anchor":"middle"});
     txt(g,b.x+b.w/2,b.y+31,n.label,{class:"hd","text-anchor":"middle"});
     el("line",{x1:b.x,x2:b.x+b.w,y1:b.y+38,y2:b.y+38,stroke:"var(--line)"},g);
     n.fields.forEach(([f],i)=>{const s=f.length>32?f.slice(0,31)+"…":f;txt(g,b.x+10,b.y+54+i*17,s,{class:"fl"})});
@@ -457,7 +465,7 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
 // ---------- Chen ER ----------
 (function(){
   const svg=$("#chen");svg.classList.add("dg");
-  const V={pp:"relates to",po:"works in",op:"named after",pw:"creates",ww:"derives from",rw:"belongs to",ep:"takes part",ew:"stages",er:"casts",eo:"held at",epl:"happens in",sp:"moves",spl:"stops at",se:"includes",so:"is with",opl:"located in",ppl:"born / died",src:"informs"};
+  const V={epr:"part of",prw:"stages",pro:"produced by",pp:"relates to",po:"works in",op:"named after",pw:"creates",ww:"derives from",rw:"belongs to",ep:"takes part",ew:"stages",er:"casts",eo:"held at",epl:"happens in",sp:"moves",spl:"stops at",se:"includes",so:"is with",opl:"located in",ppl:"born / died",src:"informs"};
   const S=1.2,ox=60,oy=110,pt=k=>[N[k].x*S+ox,N[k].y*S+oy],EW=150,EH=46;
   const gA=el("g",{id:"chenA"},svg),gL=el("g",{},svg),gS=el("g",{},svg);
   const C=[1000*S/2+ox,700*S/2+oy];
@@ -514,9 +522,9 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
 (function(){
   const svg=$("#cmap");svg.classList.add("dg");markers(svg);
   const C={entry:{label:"Lexicon entry",x:500,y:45,col:"--soft"},source:{x:845,y:140},person:{x:500,y:175},org:{x:160,y:335},work:{x:840,y:335},
-           station:{x:225,y:540},event:{x:565,y:490},role:{x:845,y:575},place:{x:430,y:735}};
+           station:{x:225,y:540},event:{x:565,y:490},role:{x:845,y:575},place:{x:430,y:735},production:{x:745,y:420}};
   Object.entries(C).forEach(([k,c])=>{c.label=c.label||N[k].label;c.col=c.col||COL[k];c.w=c.label.length*8.6+34;c.h=40});
-  const L=[["entry","person","is about","old"],["entry","source","draws on","new"],["source","person","informs about","new"],
+  const L=[["event","production","is part of","new"],["production","work","stages","new"],["production","org","is produced by","new"],["entry","person","is about","old"],["entry","source","draws on","new"],["source","person","informs about","new"],
     ["person","person","is kin, colleague, teacher or friend of","fill"],["person","org","performs in, leads, studies at","fill"],
     ["org","person","is named after","fill"],["person","work","writes, translates, composes, performs","new"],
     ["work","work","is a translation or adaptation of","new"],["work","role","has the character","new"],

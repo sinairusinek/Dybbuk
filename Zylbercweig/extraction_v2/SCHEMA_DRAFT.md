@@ -53,6 +53,8 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 4. Optional: re-type the 26k already-categorized relations to the 11-15 types (~$10)?
 5. Meir Eisenberg: are Vol 1 (b. 1894 Ozorków) and Vol 6 (b. 1896 Gowarczów, d. 1966 Miami) the same person? Until decided, HUB-D1554 has no surface.
 6. Job A relatives: accept "first name + the family's surname" as the full form of a wife or child (604 cases, 96% passed the check)?
+7. **Performance facts + production resolution (§3b, added 11-20):** the extractor never creates productions; a later grouping step clusters facts into productions, and unanchored facts stay on the work. OK?
+8. **New event fields (§4):** `status` (performed / planned / banned / cancelled), staging `language`, `org_role` (producer / presenter / venue / touring company). OK, or drop any?
 
 ### Planned sequence: status (update after EVERY extraction run)
 
@@ -68,6 +70,8 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 | 8 | D–G all volumes, skipping ~500 itinerary-done entries | not started | — | est. $15–30, overnight |
 | 8a | ER context from ALREADY-STRUCTURED data (no LLM) | done 11-17 | `datasets/surname_er/er_mention_context.tsv`, `er_candidate_profiles.tsv` (+ README) | 12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong |
 | 8b | Gemini verification of C org matches, A relatives, B Sources + hub-surface rejections (Bila Tserkva, Ida→Regina, א. ר.→Regina, Fridman→Ash) | done 11-17 | `verify_*.jsonl`, `people/mention_surface_rejections.tsv` | C 1,596/1,746 ok (142 removed) · A-kin 580/604 · B-src 26/29 real · <$1 |
+| 8c | Schema check against external models (LA-PA v0.9, SAPA; §10): performance facts + production resolution, event status/language/org_role, mapping table | done 11-20 | SCHEMA_DRAFT §3b, §4, §10 | — |
+| 9b | **Production resolution**: group performance facts (D–G + plays-KG facts) into productions; fact → production links with reasons | not started (after D–G) | `production_links.tsv` | no LLM for the rule pass |
 | 9 | Resolution (surname ER, incl. MEHDIE students) on A–C + `mentions_all` | not started | mention→entity links | — |
 | 10 | Graph assembly + review loop | not started | — | — |
 | — | Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows) | not decided | — | est. ~$10 |
@@ -127,6 +131,25 @@ needed, `role_title`, `via_work`, `via_org`, `date_start`, `date_end`, `place`,
 - person → work: `author`, `translator`, `adapter`, `composer`, `lyricist`, `director`
   (of a production), `designer` (sets, costumes), `choreographer`, `performer`
   (+ `role` when the character is named), `producer`.
+- **Performance facts (revised 11-20, after Linked Art PA / SAPA / Linked Stage Graph, §10).**
+  The extractor writes each "X played/directed/designed … in W" as ONE fact with
+  everything the text gives and nothing more: `person`, `function` (actor, director,
+  prompter… §6), `character` (verbatim, if named), `work`, and **optional context**:
+  `org` (troupe/company), `venue`, `place`, `date_start`/`date_end`, `language`
+  (of the staging, if stated and different from the play's), `status` (§4), `evidence`.
+  **The extractor never creates a production.** "Played Ben Hador in *Shulamis*" with no
+  troupe, place or year is a complete, valid fact.
+- **Productions are a resolution target, not an extracted field.** After extraction, a
+  grouping step (like person ER) clusters facts into productions: same work + same org
+  + compatible dates or place, plus facts from other entries describing the same
+  staging. Each grouping is stored as a fact → production link with its rule and
+  reason, so it can be audited and undone. Facts with no anchor stay attached to the
+  work with `production: unspecified`. This fixes the plays-KG weakness where
+  `build_kg.py` keys events on an exact (play, venue, org, place, date) match, so
+  "Kessler's troupe, 1912" and "Kessler's troupe" become two productions.
+- **Export rule.** Models that require a production (Linked Art PA, SAPA) get a minimal
+  stub production for an unspecified fact, typed "production, unspecified", never
+  presented as a known staging.
 - work → work: `translation_of`, `adaptation_of`, `based_on`, `same_as` (alternative title
   stated in the text).
 
@@ -144,6 +167,17 @@ An event has: `event_type`, `date_start`, `date_end`, `date_certainty`
 (explicit / approximate / none), `place`, `venue` (organization or place mention),
 `work` (if any), `participants[]` (person mention + role: performer / director /
 organizer / speaker / honoree / victim…, + dramatic `role` if named), `evidence`.
+
+Added 11-20 (§10):
+- `status`: **performed** (default) / **planned** (announced, rehearsed, "prepared") /
+  **banned** (censor, police) / **cancelled** / **unstated**. After Linked Art PA's
+  Projected Event: an announced or banned play must not become a performance.
+- `language`: of the performance/staging, only when stated (e.g. a Polish-language
+  staging by a Yiddish actor; a Yiddish staging of a translated play). Neither Linked Art
+  PA nor SAPA handles staging language vs work language well, so we define it ourselves.
+- `org_role` for each organization in an event: **producer** / **presenter_or_host** /
+  **venue** / **touring_company** / **other**, after AusStage's organisation involvement
+  (production, presenting, touring…). Only when the text decides it.
 
 | event_type | examples |
 |---|---|
@@ -208,6 +242,49 @@ A station: `seq`, `subject` (person or organization mention; a troupe can tour),
 
 Mentions get local ids (`p1`, `o2`, `w3`…) that relations point to. These ids are
 local to the entry and are never used outside it.
+
+## 10. External models consulted (11-20) and how ours maps to them
+
+Read 2026-11-20: **Linked Art performing-arts extension** (LA-PA v0.9, Bardiot /
+Bruseker / Eide, CIDOC SIG March 2026, in community review; github.com/stage-to-data/linked-art-pa:
+Models + CookBook); **SAPA Swiss Performing Arts** spec (sapa.github.io/spa-specifications;
+the 2017 data-model PDF was not readable); from search summaries only: LRMoo F31,
+Linked Stage Graph 2.0, Wikidata WikiProject Performing arts, AusStage, DOREMUS,
+Bio CRM, the KCL factoid model.
+
+**What we take**
+- Production as a level between work and performance (LA-PA, SAPA, LSG), but as a
+  **resolution target** (§3b), because the Lexicon often names a role without a production.
+- Planned vs performed (LA-PA Projected Event, DOREMUS) → event `status` (§4).
+- Organisation involvement role (AusStage) → `org_role` (§4).
+- Statement-level evidence: LA-PA's `attributed_by` (source) + `referred_to_by` (literal
+  transcription) = our `evidence` + `surface`. Our extraction is the factoid model
+  (name as written, source, assertion), which Bio CRM and LA-PA also follow.
+- **Date of the statement**, after the factoid model: every fact inherits the year of its
+  Lexicon volume (vol 1 1931 … vol 7 1969), joined from metadata, not extracted. "Now
+  plays in…" means "as of that volume".
+- Function ≠ character ≠ occupation (Wikidata, LA-PA `technique` vs `portrayed`): already ours.
+
+**What we do not take**
+- LA-PA's *Work* = the director's staging concept (Chéreau's Hamlet). The Lexicon rarely
+  decides it (§1.4), so we don't model it.
+- Full CRM reification inside the extraction (too heavy for an LLM to fill reliably);
+  music-specific DOREMUS casting / medium vocabularies; Overall Event (festival edition)
+  unless the text names one.
+
+**Mapping (for export; the extraction format stays flat)**
+
+| ours | Linked Art PA | SAPA | LRMoo / CRM | Wikidata |
+|---|---|---|---|---|
+| `work` (the play) | Textual Work (`LinguisticObject`), source text of a Work | F22 Self-Contained Expression / F20 | F1 Work / F2 Expression | play item; `representation of` (P4646) from a production |
+| production (resolved) | Production (`Activity` typed Production), `influenced_by` → Work | F25 Performance Plan | F25 / E7 | theatrical production item |
+| performance event | Performance (`Activity`), part of Production | F31 Performance (part of the default F31) | F31 Performance, P80 performed | performance item |
+| event `status: planned/banned/cancelled` | Projected Event (CC12, CRMpro) + `CP4_projects` | — | — | — |
+| performance fact: person + function | `produced_by` → part, `technique` (LoC/BnF role), `carried_out_by` | E7 Activity typed by SPA vocabulary, P14 carried out by | E7 + P14.1 in the role of | cast member (P161) / director (P57)… |
+| `character` | `portrayed` | (no class found) | — | character role (P453) qualifier; `notable role` (P10606) |
+| `org` + `org_role` | Group, contribution via `technique` (producer, funder…) | E40 Legal Body as P14 actor | E74 Group | production company (P272) |
+| `venue` | Place (E27 Site), `took_place_at` | E22 typed venue, P8 took place on or within | E27 / E53 | location (P276) |
+| `evidence` / `surface` | `attributed_by` / `referred_to_by` (literal transcription) | F29 Recording Event | E13 Attribute Assignment | reference (S248/S1683 quote) |
 
 ## 8. Not in this pass
 
