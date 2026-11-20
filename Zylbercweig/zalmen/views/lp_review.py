@@ -52,7 +52,7 @@ FIELDS = ["item", "mention_id", "mention_name", "host_hub_id", "decision",
           "reviewed_at", "notes"]
 KIN_LABELS = {"parent": "parent of", "child": "child of", "spouse": "spouse of",
               "sibling": "sibling of", "other_kin": "other relative of"}
-MARKS = "①②③④⑤⑥⑦⑧⑨⑩"
+MARKS = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
 
 
 def _mtime(p: pathlib.Path) -> float:
@@ -114,6 +114,10 @@ def _save(row: dict) -> None:
                    resolved_hub_id=row.get("target_hub_id", ""))
     except Exception:
         pass
+
+
+def _m(i: int) -> str:
+    return MARKS[i] if i < len(MARKS) else f"({i + 1})"
 
 
 # ---------------------------------------------------------------- display helpers
@@ -268,7 +272,7 @@ def render() -> None:
         p, h = data["prof"].get(hid, {}), data["hubs"].get(hid, {})
         with cols[i % len(cols)]:
             with st.container(border=True):
-                st.markdown(f"**{MARKS[i]}** `{hid}`")
+                st.markdown(f"**{_m(i)}** `{hid}`")
                 st.markdown(_rtl(html.escape(p.get("heading") or h.get("canonical_heading", "?")), 1.15, 600),
                             unsafe_allow_html=True)
                 if data["english"].get(hid):
@@ -293,9 +297,9 @@ def render() -> None:
 
     def fmt(o: str) -> str:
         if o.startswith("same:"):
-            return f"is {MARKS[cands.index(o[5:])]} (same person)"
+            return f"is {_m(cands.index(o[5:]))} (same person)"
         if o.startswith("kin:"):
-            return f"is a relative of {MARKS[cands.index(o[4:])]}"
+            return f"is a relative of {_m(cands.index(o[4:]))}"
         return {"new": "a person with no entry (none of these, no known relation)",
                 "not_person": "not a person", "unsure": "can't tell"}[o]
 
