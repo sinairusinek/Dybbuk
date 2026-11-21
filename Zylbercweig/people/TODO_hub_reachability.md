@@ -60,6 +60,9 @@ Pipeline order: `derive_mention_alignments.py` → `build_person_hub.py` →
 - א. ר. קאַמינסקאַ → Regina: it is Esther-Rokhl, the mother (decided from text)
 - חיהלע פֿרידמאַן → Khayele Ash: contradicts Sinai's 10-15 decision in names_not_minted.tsv
 
-**OPEN, for Sinai:** מאיר אייזענבערג is now ambiguous. Vol 1 `P-1-facs_42…`: b. Apr 1894 Ozorków, prompter/actor.
-Vol 6 `P-6-facs_123…`: b. 1896 Gowarczów, d. 8 May 1966 Miami Beach, director (ARTEF).
-Same person (merge the hubs) or two people (leave as is)? Until decided, HUB-D1554 has no surface.
+**DECIDED 11-21 (Sinai): מאיר אייזענבערג = TWO people.** Vol 1 `P-1-facs_42…` (b. 1894 Ozorków, prompter, = HUB-D1554)
+and Vol 6 `P-6-facs_123…` (b. 1896 Gowarczów, ARTEF director, d. 1966 Miami Beach). Recorded as `different` in
+person_dedup_decisions.tsv. Three mentions assigned in mention_resolution_decisions.tsv: Barzel (Vol 3, brother) → D1554;
+Liuba (Vol 6, husband) and Khaver-Paver (Vol 4, director 1956) → the Vol 6 hub. The full-name surface stays
+cross-hub ambiguous BY DESIGN (two people share it), so HUB-D1554 still gets no surface from the name alone.
+Evidence: Google Doc "Meir Eisenberg: one person or two?" (sent to Ruthie).

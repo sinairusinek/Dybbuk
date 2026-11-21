@@ -121,6 +121,8 @@ _ORG_TYPE_OPTIONS = [
 	"Sports/Recreation",
 	"Fraternal order",
 	"Cultural/workers' club",
+	"Hospitality",  # Sinai 2026-11-21: hotel, restaurant, café, tavern
+	"Theatre/concert agency",  # Sinai 2026-11-21: theatre/concert bureau, agency, management
 	"Not an organization",
 	"OTHER - elaborate!",
 	"",
