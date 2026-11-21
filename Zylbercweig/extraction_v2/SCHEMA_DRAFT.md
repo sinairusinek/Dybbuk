@@ -47,18 +47,18 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 
 ### Decisions (asked 11-17/20/21; Sinai's answers 11-21)
 
-1. Keep person→org OUT of the D–G pass? **OPEN**: elaborated in chat 11-21.
-2. New core_db org types **Hospitality** and **Theatre/concert agency**: **YES** (11-21). Re-classification candidates (7 hospitality, ~6–8 agency) to be listed and confirmed before writing core_db.
+1. Person→org: **kept OUT of D–G** (11-21). The existing 21k person→org items will be **enriched later** with the new fields (`org_role`, dates, event context) by a cheap sentence-level pass over their own evidence sentences (step 8g).
+2. New core_db org types **Hospitality** and **Theatre/concert agency**: **YES** (11-21). Re-classification: a name search over all 16k org mentions finds **~20 hospitality orgs** (hotels, taverns, cafés, restaurants, beer halls; only 7 are in core_db yet) and **~10 agencies / managements** (concert and theatre bureaus, Relkin's theatre agency, Edelstein's management, Filip & Wachtel management, a publicity bureau, 2 lecture bureaus; 6 in core_db). Orgs whose name doesn't say "hotel" (e.g. resorts known by proper name) are not caught. Summer camps (Arbeter-ring, Boiberik, Kinderland, Lakeland: 21) are NOT hospitality. **Not needed before D–G**: extraction never assigns org types (§2).
 3. D–G: **re-run the ~500 itinerary entries too** and use the comparison with the old itineraries as QA (11-21).
-4. Re-type the already-categorized relations: **YES in principle** (11-21). Measured pilot 11-21: **31,704 rows, not 26k**, ~$13 at full output, above the ~$10 approved. **Awaiting approval of the measured amount** or of the trimmed variant.
+4. Re-type the already-categorized relations (a Gemini 3 Flash run, not Claude): **YES in principle** (11-21). Measured pilot 11-21: **31,704 rows, not 26k**, ~$13 at full output, above the ~$10 approved. **Awaiting approval of the measured amount** or of the trimmed variant.
 5. Meir Eisenberg: Google Doc prepared 11-21 ("Meir Eisenberg: one person or two?"). Recommendation: two people. **Awaiting Sinai.**
-6. Job A relatives ("first name + the family's surname"): **OPEN**: elaborated in chat 11-21.
+6. Job A relatives: **ACCEPTED as inferred** (11-21). 580 passed the check → `in_entry_status = inferred` in the ER dataset (a candidate or feature, never gold); 24 rejected stay blank.
 7. **Performance facts + production resolution (§3b):** **ACCEPTED** 11-21.
 8. **New event fields (§4)** `status`, `language`, `org_role`: **ACCEPTED** 11-21.
 9. **Vocabulary additions:** **ACCEPTED** 11-21. `librettist` added to occupation and function; `comedy`, `tragedy`, `farce`, `Purim play` added to work_kind; `vocab_alignment.tsv` updated.
 10. **Genre as stated, per mention:** **ACCEPTED** 11-21.
 11. Wikidata contribution + publication: **LATER** (11-21).
-12. **NEW 11-21: Amateur subtypes** (§6b): proposal awaiting Sinai.
+12. **NEW 11-21: Amateur subtypes** (§6b): proposal awaiting Sinai. **Not needed before D–G** (core_db only).
 
 ### Planned sequence: status (update after EVERY extraction run)
 
@@ -68,7 +68,7 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 | 2 | A: in-entry full form | done 11-17 | `a_full_form.tsv` (+ `a_full_form_llm.jsonl`) | 12,942 real targets (5,931 empty-name artifact rows excluded); 1,136 resolved in-entry (kin_of_subject 604 = inferred surname, earlier_full_name 249, det 175, subject 57, context 51); 11.8k need cross-entry ER · ~$8 |
 | 3 | B: blank/Other relation categories | done 11-17, corrected | `b_recategorized.tsv` | 634 real rows (5,931 empty-name artifact rows dropped; the first report counted them, wrongly): None 279 · Social 108 · Hierarchy 101 · Creative 45 · Family 36 · Collab 36 · Source 29 · ~$4 |
 | 4 | C: eponym org-mediated ties | done 11-17 | `c_eponym_orgs.tsv` | 3,843 rows: org-mediated 3,745; named after the mention 1,883; mention = leader 2,033 / director 559 / owner 496; 579 also a direct tie; 2,264 distinct org surfaces · ~$2 |
-| 5 | Sinai reviews this schema (§1–§9 vs §0) | partly done 11-21: decisions 2, 3, 7–10 answered; 1, 4, 5, 6, 12 open | — | — |
+| 5 | Sinai reviews this schema (§1–§9 vs §0) | nearly done 11-21: decisions 1–3, 6–10 answered; open: 4 (cost), 5 (Eisenberg Doc), 12 (amateur subtypes, not blocking) | — | — |
 | 6 | Prompt for the D–G full-text pass | not started | `prompts/defg.txt` | — |
 | 7 | D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries) | not started | — | est. $3–5 |
 | 8 | D–G all volumes, **including** the ~500 itinerary-done entries (decision 3: re-run, compare as QA) | not started | — | est. $15–30 before the scope grew; re-measure after the step-7 pilot |
@@ -81,6 +81,7 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 | 9 | Resolution (surname ER, incl. MEHDIE students) on A–C + `mentions_all` | not started | mention→entity links | — |
 | 10 | Graph assembly + review loop | not started | — | — |
 | 11 | Publication of the schema + vocabulary choices **with statistics** (per term / fact type / volume, external coverage, verification precision); Wikidata items for the §6a gaps | not started (after D–G) | paper + `vocab_alignment.tsv` + a stats script | — |
+| 8g | Person→org enrichment: add `org_role`, dates, event context to the existing person→org items from their own evidence sentences (decision 1) | not started | — | sentence-level Gemini; pilot first |
 | 8f | R: re-type the already-categorized relations to the 11-15 types (decision 4) | pilot done 11-21; full run awaiting approval of the measured cost | `r_pilot.jsonl` (300 random rows), `prompts/r_retype.txt`, `bc_jobs.py r` | **31,704 rows** (not 26k). Pilot: 156 tokens in / 113 out per row, thinking off → full run ≈ $2.5 in + $10.8 out = **≈ $13** at $0.50/$3 per M. Pilot cost $0.13. Category unchanged in ~91%; main gains: chronicler → Source (wrote_about / informant_about), employer → teacher, finer types, `via_org` |
 
 ## 1. Principles

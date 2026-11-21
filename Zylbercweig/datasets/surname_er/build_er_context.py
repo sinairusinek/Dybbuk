@@ -217,6 +217,11 @@ def main():
             "rel_venue": m["rel_place_venue"], "rel_date_start": m["rel_date_start"], "rel_date_end": m["rel_date_end"],
             "in_entry_full_form": "" if VA.get(mid, {}).get("ok") is False else a["full_form"],
             "in_entry_method": a["method"] + ("|check_failed" if VA.get(mid, {}).get("ok") is False else ""),
+            # Sinai 11-21 (decision 6): a relative's full form built from the family's surname is an
+            # INFERENCE (stage names, married names), never a stated name and never gold.
+            "in_entry_status": ("" if not a.get("full_form") else
+                                "rejected" if VA.get(mid, {}).get("ok") is False else
+                                "inferred" if "kin_of_subject" in a.get("method", "") else "stated"),
             "c_org_surface": c["org_surface"] if c else "", "c_named_after_mention": c["named_after_mention"] if c else "",
             "c_mention_role": c["mention_role"] if c else "", "c_org_id": c_oid, "c_org_name": c_name,
             "c_org_match_score": c_score,

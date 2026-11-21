@@ -34,7 +34,7 @@ University.
   `org_ids` contains `c_org_id`, that is strong evidence.
 - **Already resolved inside the entry** (`in_entry_full_form`): about 9% of mentions are
   named in full elsewhere in the same entry. `in_entry_method` says how this was found
-  (`det:` = string match, `llm:` = Gemini; `kin_of_subject` = a relative, with the surname inferred).
+  (`det:` = string match, `llm:` = Gemini; `kin_of_subject` = a relative, with the surname inferred). `in_entry_status`: `stated` = the full name is in the entry; **`inferred`** = first name + the family's surname (580 relatives); usable as a candidate or feature, but **not** a verified answer: stage names and married names make it wrong sometimes; `rejected` = the check failed, full form blanked.
 - **Candidates:** `candidate_hub_ids` (surname lookup, incl. spelling variants; the host
   is excluded). `candidate_features` gives simple per-candidate overlap counts as a starting point.
 - **Labels:** `gold_hub_id` is a human-validated answer for 5,726 mentions; use it for
