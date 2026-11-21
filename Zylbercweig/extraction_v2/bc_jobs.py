@@ -96,6 +96,42 @@ def items_c(rows):
     return out
 
 
+R_TYPES = {  # r_retype.txt vocabulary: type -> category
+    **{t: "Family" for t in ("parent", "child", "spouse", "sibling", "extended")},
+    **{t: "Professional_Collaboration" for t in ("co_performer", "partner", "co_founder", "colleague")},
+    **{t: "Professional_Hierarchy" for t in ("employer_director", "employee", "teacher", "student",
+                                             "agent_impresario", "client")},
+    **{t: "Creative_Intellectual" for t in ("creator", "interpreter", "translator_of", "adapter_of",
+                                            "influence")},
+    **{t: "Social_Personal" for t in ("friend", "acquaintance", "supporter_advocate", "conflict")},
+    **{t: "Source" for t in ("informant_about", "wrote_about", "quoted_in_entry",
+                             "corrected_or_contradicted")},
+}
+EXTENDED_SUB = {"in-law", "in_law", "cousin", "uncle_aunt", "grandparent", "ancestor"}
+
+
+def normalize_r(rec):
+    """Deterministic repair of off-vocabulary (category, type) pairs (QA 11-21: 119 rows).
+    Family sub-relations given as type move to qualifier under `extended`; a valid type under
+    the wrong category takes its own category. Every repair is noted in schema_issue."""
+    cat, typ = rec.get("category", ""), rec.get("type", "")
+    if cat == "None" or R_TYPES.get(typ) == cat:
+        return rec
+    rec = dict(rec)
+    if cat == "Family" and typ in EXTENDED_SUB:
+        rec["type"] = "extended"
+        rec["qualifier"] = ", ".join(x for x in (typ, rec.get("qualifier", "")) if x)
+    elif typ in R_TYPES:
+        rec["category"] = R_TYPES[typ]
+    elif cat == "Professional_Hierarchy" and typ == "director":
+        rec["type"] = "employer_director"
+    else:
+        return rec  # left for reading; still off-vocabulary
+    note = f"[norm {cat}/{typ}]"
+    rec["schema_issue"] = " ".join(x for x in (note, rec.get("schema_issue", "")) if x)
+    return rec
+
+
 def flatten(rows):
     meta = {r["mention_id"]: r for r in rows}
     bcols = ["category", "type", "qualifier", "role_title", "via_work", "via_org", "evidence", "schema_issue"]
@@ -110,7 +146,7 @@ def flatten(rows):
         for line in src.open(encoding="utf-8"):
             rec = json.loads(line)
             if "error" not in rec and rec["id"] in meta and meta[rec["id"]]["mention_name"].strip():
-                recs[rec["id"]] = rec
+                recs[rec["id"]] = normalize_r(rec) if job == "r_retyped" else rec
         head = ["mention_id", "host_xml_id", "host_heading", "mention_name",
                 "old_category", "old_specific", "old_sentence"] + cols + ["model"]
         with (HERE / f"{job}.tsv").open("w", encoding="utf-8", newline="") as fh:
