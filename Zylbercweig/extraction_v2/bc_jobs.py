@@ -98,8 +98,8 @@ def items_c(rows):
 
 def flatten(rows):
     meta = {r["mention_id"]: r for r in rows}
-    for job, cols in (("b_recategorized", ["category", "type", "qualifier", "role_title", "via_work",
-                                           "via_org", "evidence", "schema_issue"]),
+    bcols = ["category", "type", "qualifier", "role_title", "via_work", "via_org", "evidence", "schema_issue"]
+    for job, cols in (("b_recategorized", bcols), ("r_retyped", bcols),
                       ("c_eponym_orgs", ["org_mediated", "org_surface", "named_after_mention",
                                          "mention_role", "subject_role", "place", "date",
                                          "direct_tie_too", "evidence"])):
