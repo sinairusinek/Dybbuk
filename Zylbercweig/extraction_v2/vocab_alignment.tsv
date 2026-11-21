@@ -121,7 +121,10 @@ relation	collaboration/*	co_performer, partner, co_founder, colleague	P1327 (par
 relation	hierarchy/teacher → student		P1066 / P802	none	none	none	none	
 relation	hierarchy/employer_or_director → employee		P108 (to an org, not a person)	none	none	none	none	person→person employment has no standard property
 relation	hierarchy/agent_or_impresario → client		none	none	none	none	none	
+relation	hierarchy/publisher	the mention published or printed the subject's work	via the work: P123 (publisher)	exact:pbl	none	none	none	added 2026-11-21
+relation	hierarchy/award_recipient	the mention received a prize that is the entry's subject	P166 (award received)	none	none	none	none	added 2026-11-21
 relation	creative/influence		P737	none	none	none	none	
+relation	creative/subject_of	the subject made a work about or depicting the mention (biography, review, elegy, play about a real person)	via the work: P921 (main subject)	none	none	none	none	added 2026-11-21; reverse of source/wrote_about
 relation	creative/creator → interpreter, translator_of, adapter_of		via the work: P50 / P655 / P5202 + P161	none	none	none	none	
 relation	social/*	friend, acquaintance, supporter, conflict	none	none	none	none	none	ours (2026-02 five-category scheme)
 relation	source/*	informant_about, wrote_about, quoted_in_entry, corrected	none	none	none	none	none	provenance tie; ours

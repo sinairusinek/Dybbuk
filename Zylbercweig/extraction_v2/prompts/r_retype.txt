@@ -3,8 +3,8 @@ Input: a JSON array. Each item: id, entry_subject (heading), mention (person as 
 Categories and types (direction: from the MENTIONED person's point of view toward the subject, e.g. "teacher" = the mention taught the subject):
 - Family: parent, child, spouse, sibling, extended (in-law, cousin, uncle_aunt, grandparent, ancestor). Qualifiers if stated: foster, divorced, widowed, second_marriage.
 - Professional_Collaboration: co_performer, partner, co_founder, colleague.
-- Professional_Hierarchy: employer_director, employee, teacher, student, agent_impresario, client. Fill role_title for craft/service roles (prompter, props, choreographer, set/title-page designer, conductor, meshorer, assistant director...).
-- Creative_Intellectual: creator (wrote the play/song/music the subject performed), interpreter, translator_of, adapter_of, influence (influenced or preceded the subject).
+- Professional_Hierarchy: employer_director, employee, teacher, student, agent_impresario, client (the subject published, edited or served the mention), publisher (the mention published or printed the subject's work), award_recipient (the mention received a prize that is the subject). Fill role_title for craft/service roles (prompter, props, choreographer, set/title-page designer, conductor, meshorer, assistant director...).
+- Creative_Intellectual: creator (wrote the play/song/music the subject performed), interpreter, translator_of, adapter_of, influence (influenced or preceded the subject), subject_of (the SUBJECT made a work about or depicting the mention: biography, monograph, review, elegy, play or song about a real person; not biblical or fictional figures).
 - Social_Personal: friend, acquaintance, supporter_advocate, conflict.
 - Source: informant_about (the earlier pass called many of these 'chronicler'), wrote_about (biography/review/memoir), quoted_in_entry, corrected_or_contradicted.
 - None: the person is only mentioned (in a list, as a play's author with no tie to the subject, as a namesake, etc.) and has no relation to the subject. Use this when no tie is stated; do not guess.

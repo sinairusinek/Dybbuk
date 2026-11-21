@@ -100,14 +100,60 @@ R_TYPES = {  # r_retype.txt vocabulary: type -> category
     **{t: "Family" for t in ("parent", "child", "spouse", "sibling", "extended")},
     **{t: "Professional_Collaboration" for t in ("co_performer", "partner", "co_founder", "colleague")},
     **{t: "Professional_Hierarchy" for t in ("employer_director", "employee", "teacher", "student",
-                                             "agent_impresario", "client")},
+                                             "agent_impresario", "client", "publisher",
+                                             "award_recipient")},
     **{t: "Creative_Intellectual" for t in ("creator", "interpreter", "translator_of", "adapter_of",
-                                            "influence")},
+                                            "influence", "subject_of")},
     **{t: "Social_Personal" for t in ("friend", "acquaintance", "supporter_advocate", "conflict")},
     **{t: "Source" for t in ("informant_about", "wrote_about", "quoted_in_entry",
                              "corrected_or_contradicted")},
 }
 EXTENDED_SUB = {"in-law", "in_law", "cousin", "uncle_aunt", "grandparent", "ancestor"}
+
+
+PUB_ROLE = re.compile(r"publish|printer|bookseller|פֿאַרלעג|פאַרלעג|דרוקער|דרוקעריי|בוכהענדלער", re.I)
+AWARD_ROLE = re.compile(r"award|prize|recipient|פּרעמיע", re.I)
+OVERRIDES = HERE / "qa" / "r_overrides.tsv"  # rows read by hand (QA 11-21): mention_id -> fix
+
+
+def _overrides():
+    if not OVERRIDES.exists():
+        return {}
+    with OVERRIDES.open(encoding="utf-8") as f:
+        return {r["mention_id"]: r for r in csv.DictReader(f, delimiter="\t")}
+
+
+def rule_types_r(rec):
+    """Types added 11-21 (Sinai): publisher, award_recipient. Set from role_title, which
+    describes the mention. A co-publisher WITH the subject stays partner; a print-shop
+    worker stays employee."""
+    role, typ = rec.get("role_title", ""), rec.get("type", "")
+    new = None
+    if PUB_ROLE.search(role) and typ in ("agent_impresario", "client", "employer_director", "employee") \
+            and "אַרבעטער" not in role and "worker" not in role.lower():
+        new = "publisher"
+    elif AWARD_ROLE.search(role) and typ == "client":
+        new = "award_recipient"
+    if new is None:
+        return rec
+    rec = dict(rec)
+    note = f"[rule {rec.get('category')}/{typ}]"
+    rec["category"], rec["type"] = "Professional_Hierarchy", new
+    rec["schema_issue"] = " ".join(x for x in (note, rec.get("schema_issue", "")) if x)
+    return rec
+
+
+def apply_override(rec, ov):
+    o = ov.get(rec["id"])
+    if not o:
+        return rec
+    rec = dict(rec)
+    note = f"[read {rec.get('category')}/{rec.get('type')}: {o['note']}]"
+    rec["category"], rec["type"] = o["category"], o["type"]
+    if rec["category"] == "None":
+        rec["type"] = ""
+    rec["schema_issue"] = " ".join(x for x in (note, rec.get("schema_issue", "")) if x)
+    return rec
 
 
 def normalize_r(rec):
@@ -134,6 +180,7 @@ def normalize_r(rec):
 
 def flatten(rows):
     meta = {r["mention_id"]: r for r in rows}
+    ov = _overrides()
     bcols = ["category", "type", "qualifier", "role_title", "via_work", "via_org", "evidence", "schema_issue"]
     for job, cols in (("b_recategorized", bcols), ("r_retyped", bcols),
                       ("c_eponym_orgs", ["org_mediated", "org_surface", "named_after_mention",
@@ -146,7 +193,8 @@ def flatten(rows):
         for line in src.open(encoding="utf-8"):
             rec = json.loads(line)
             if "error" not in rec and rec["id"] in meta and meta[rec["id"]]["mention_name"].strip():
-                recs[rec["id"]] = normalize_r(rec) if job == "r_retyped" else rec
+                recs[rec["id"]] = (apply_override(rule_types_r(normalize_r(rec)), ov)
+                                   if job == "r_retyped" else rec)
         head = ["mention_id", "host_xml_id", "host_heading", "mention_name",
                 "old_category", "old_specific", "old_sentence"] + cols + ["model"]
         with (HERE / f"{job}.tsv").open("w", encoding="utf-8", newline="") as fh:
