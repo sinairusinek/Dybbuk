@@ -55,6 +55,9 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 6. Job A relatives: accept "first name + the family's surname" as the full form of a wife or child (604 cases, 96% passed the check)?
 7. **Performance facts + production resolution (§3b, added 11-20):** the extractor never creates productions; a later grouping step clusters facts into productions, and unanchored facts stay on the work. OK?
 8. **New event fields (§4):** `status` (performed / planned / banned / cancelled), staging `language`, `org_role` (producer / presenter / venue / touring company). OK, or drop any?
+9. **Vocabulary additions (§6a, 11-21):** add `librettist` to occupation/function; add `comedy`, `tragedy`, `farce`, `Purim play` to work_kind?
+10. **Genre as stated (§6a):** store `work_kind` per mention as the entry states it (LA-PA's rule), not as one fixed property of the work?
+11. **Wikidata contribution + publication:** create items for the gaps in §6a (meshorer, broder singer, theatre lessee, theatrical agent, stage jubilee, landsmanshaft) and publish the schema + vocabulary choices with statistics after D–G? Who creates the items, and when?
 
 ### Planned sequence: status (update after EVERY extraction run)
 
@@ -71,9 +74,11 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 | 8a | ER context from ALREADY-STRUCTURED data (no LLM) | done 11-17 | `datasets/surname_er/er_mention_context.tsv`, `er_candidate_profiles.tsv` (+ README) | 12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong |
 | 8b | Gemini verification of C org matches, A relatives, B Sources + hub-surface rejections (Bila Tserkva, Ida→Regina, א. ר.→Regina, Fridman→Ash) | done 11-17 | `verify_*.jsonl`, `people/mention_surface_rejections.tsv` | C 1,596/1,746 ok (142 removed) · A-kin 580/604 · B-src 26/29 real · <$1 |
 | 8c | Schema check against external models (LA-PA v0.9, SAPA; §10): performance facts + production resolution, event status/language/org_role, mapping table | done 11-20 | SCHEMA_DRAFT §3b, §4, §10 | — |
+| 8d | Vocabulary alignment: our terms → Wikidata, LoC relators, BnF roles, Getty AAT, SAPA (SKOS exact/close/broad/none) | done 11-21 | `vocab_alignment.tsv`, SCHEMA_DRAFT §6a | 161 rows; occupations: WD 34/35, AAT 27, BnF 25, LoC 23, SAPA 22; 6 gaps (meshorer, broder singer, lessee, theatrical agent, stage jubilee, landsmanshaft) · no LLM |
 | 9b | **Production resolution**: group performance facts (D–G + plays-KG facts) into productions; fact → production links with reasons | not started (after D–G) | `production_links.tsv` | no LLM for the rule pass |
 | 9 | Resolution (surname ER, incl. MEHDIE students) on A–C + `mentions_all` | not started | mention→entity links | — |
 | 10 | Graph assembly + review loop | not started | — | — |
+| 11 | Publication of the schema + vocabulary choices **with statistics** (per term / fact type / volume, external coverage, verification precision); Wikidata items for the §6a gaps | not started (after D–G) | paper + `vocab_alignment.tsv` + a stats script | — |
 | — | Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows) | not decided | — | est. ~$10 |
 
 ## 1. Principles
@@ -228,6 +233,62 @@ A station: `seq`, `subject` (person or organization mention; a troupe can tour),
 - **work_kind:** play, operetta, opera, musical comedy, melodrama, sketch, one-act,
   revue, song, music (score), film, radio play, book, memoir, article, periodical, other.
 - **source_kind:** see §2.
+
+### 6a. Alignment to external vocabularies (11-21): `vocab_alignment.tsv`
+
+Our terms stay the extraction labels, because they are what the text decides. Each term
+also gets a SKOS-style match (`exact:` / `close:` / `broad:` / `none`) to five outside
+vocabularies:
+- **Wikidata**: items, plus properties for functions and relations.
+- **LoC relator terms**: id.loc.gov, 306 codes.
+- **BnF roles**: data.bnf.fr, 525 codes, the vocabulary LA-PA uses for gaps.
+- **Getty AAT**: what LA-PA uses for genres.
+- **SAPA**: vocab.performing-arts.ch. Activity `mu/`, performance type `hl/`, genre
+  `mn/`, group type `vr/`.
+
+The table has 161 rows. Every code was checked against the downloaded list or a live
+query; nothing comes from memory.
+
+**Coverage of the 35 named occupations** (any match, with exact matches in brackets):
+
+| Wikidata | LoC | BnF | AAT | SAPA |
+|---|---|---|---|---|
+| 34 (26) | 23 (18) | 25 (12) | 27 (22) | 22 (12) |
+
+- **Function** (person → work): LoC, BnF, SAPA and Wikidata properties (P50, P57, P86,
+  P161, P162, P655, P676, P1809, P2515, P4608, P5202) cover all of it. The **character**
+  exists only as WD P453 / LA-PA `portrayed`.
+- **work_kind**: Wikidata 19/21, AAT 13, SAPA 12. LoC and BnF have no genres.
+- **event_type**: Wikidata covers all 19. AAT 7, SAPA 4 (SAPA splits premieres by
+  scope: world, national, language).
+- **event status, migration reason, source/social relations**: no outside vocabulary.
+  These stay ours. "Planned/banned/cancelled" maps only to the LA-PA Projected Event.
+- **org types**: no outside standard. 33/36 have a Wikidata class (mostly close), 16 a
+  SAPA group type.
+
+**Gaps: terms nobody has**, and candidates for Wikidata items:
+- **meshorer** (none anywhere).
+- **broder singer** (only broad "singer"; BnF *Chansonnier* is nearest).
+- **theatre lessee**.
+- **theatrical agent** (only "talent agent").
+- **jubilee**: the actor's stage jubilee; Wikidata's items are religious.
+- **landsmanshaft**.
+- Partly: theatre administrator (Q28054726 has 0 sitelinks).
+
+**Traps found** (written into the table's notes):
+- Yiddish *regisseur* = stage **director** (sgd / BnF 500), not French *régisseur*
+  (= stage manager, BnF 2260).
+- cantor = hazzan **Q1067977**, not Q330679 (church cantor). AAT 300136390 is correct.
+- informant ≠ Q1364673 (police informant). Use Q118869598.
+- AAT "melodramas" exists only as a film genre.
+- core_db "Theatre" mixes company and building, so it maps only *close*.
+
+**Vocabulary changes this suggests** (see decisions 9–11):
+- add **librettist**: every outside vocabulary has it (Q8178443, lbt, BnF 470, AAT
+  300025674, SAPA mu/jmh).
+- add genre terms the Lexicon actually uses (**comedy, tragedy, farce, Purim play**).
+- record genre **as stated, per mention**: LA-PA's rule. The same play is called
+  "drama" in one entry and "melodrama" in another.
 
 ## 7. Output envelope (one JSON object per entry)
 

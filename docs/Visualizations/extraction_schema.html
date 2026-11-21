@@ -198,7 +198,17 @@ dashed red lines are new, from one full-text pass (D–G). Click any entity or r
 Jobs A–C work on sentences or fields already extracted and need no re-read; D–G share one full-text pass over the entries not yet covered, whose output omits everything in the inventory.</p>
 <h2>What already exists</h2><div class="iwrap"><table class="inv" id="invT"></table></div>
 <h2>v2 work list</h2><div class="iwrap"><table class="inv" id="jobT"></table></div>
-<h2>Planned sequence</h2><p class="cap">Status after each run (mirrors SCHEMA_DRAFT.md §0).</p><div class="iwrap"><table class="inv" id="seqT"></table></div></section>
+<h2>Planned sequence</h2><p class="cap">Status after each run (mirrors SCHEMA_DRAFT.md §0).</p><div class="iwrap"><table class="inv" id="seqT"></table></div>
+<h2>Vocabularies: how far outside standards reach</h2><p class="cap">Our terms stay the extraction labels; each is matched (exact / close / broad / none) to five outside vocabularies in <code>extraction_v2/vocab_alignment.tsv</code> (161 rows, every code checked against the source list, 11-21). Cells: terms with any match (exact in brackets).</p>
+<div class="iwrap"><table class="inv"><thead><tr><th>Our vocabulary</th><th>terms</th><th>Wikidata</th><th>LoC relators</th><th>BnF roles</th><th>Getty AAT</th><th>SAPA</th></tr></thead><tbody>
+<tr><td><b>occupation</b></td><td>35</td><td>34 (26)</td><td>23 (18)</td><td>25 (12)</td><td>27 (22)</td><td>22 (12)</td></tr>
+<tr><td><b>function (person → work)</b></td><td>10</td><td>10 (properties)</td><td>10</td><td>10</td><td>—</td><td>10</td></tr>
+<tr><td><b>work_kind</b></td><td>21</td><td>19</td><td>—</td><td>—</td><td>13</td><td>12</td></tr>
+<tr><td><b>event_type</b></td><td>19</td><td>19</td><td>2</td><td>—</td><td>7</td><td>4</td></tr>
+<tr><td><b>org_type (core_db)</b></td><td>36</td><td>33 (mostly close)</td><td>—</td><td>—</td><td>—</td><td>16</td></tr>
+<tr><td><b>event status · migration reason · social / source relations</b></td><td></td><td colspan="5">no outside vocabulary: ours (status ≈ Linked Art PA Projected Event)</td></tr>
+</tbody></table></div>
+<p class="cap"><b>Gaps</b> (candidates for new Wikidata items): meshorer · broder singer · theatre lessee · theatrical agent · actor’s stage jubilee · landsmanshaft. <b>Traps</b>: Yiddish <i>regisseur</i> = stage director, not French <i>régisseur</i> (stage manager); cantor = hazzan Q1067977, not the church cantor Q330679; informant ≠ police informant Q1364673.</p></section>
 
 <div class="notes">
 <h2>How to read it</h2>
@@ -236,9 +246,11 @@ const SEQUENCE=[
  {step:"8a",what:"ER context from ALREADY-STRUCTURED data (no LLM): candidate profiles + mention context",status:"done",when:"11-17",out:"datasets/surname_er/ (er_mention_context.tsv, er_candidate_profiles.tsv, README)",counts:"12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong"},
  {step:"8b",what:"Gemini verification (C orgs, A relatives, B Sources) + hub-surface rejections",status:"done",when:"11-17",out:"verify_*.jsonl, people/mention_surface_rejections.tsv",counts:"C 1,596/1,746 ok (142 removed) · A-kin 580/604 · B-src 26/29 · <$1"},
  {step:"8c",what:"Schema check against external models (Linked Art PA v0.9, SAPA): performance facts + production resolution, event status / language / org_role, mapping table (SCHEMA_DRAFT §3b, §4, §10)",status:"done",when:"11-20",out:"SCHEMA_DRAFT.md",counts:"—"},
+ {step:"8d",what:"Vocabulary alignment: our terms → Wikidata, LoC relators, BnF roles, Getty AAT, SAPA (SKOS exact / close / broad / none; SCHEMA_DRAFT §6a)",status:"done",when:"11-21",out:"vocab_alignment.tsv",counts:"161 rows; occupations: WD 34/35, AAT 27, BnF 25, LoC 23, SAPA 22; 6 gaps · no LLM"},
  {step:"9b",what:"Production resolution: group performance facts (D–G + plays-KG facts) into productions; fact → production links with reasons",status:"not started",when:"",out:"production_links.tsv",counts:"no LLM for the rule pass"},
  {step:"9",what:"Resolution (surname ER, incl. MEHDIE students) on A–C + mentions_all",status:"not started",when:"",out:"mention → entity links",counts:"—"},
  {step:"10",what:"Graph assembly + review loop",status:"not started",when:"",out:"—",counts:"—"},
+ {step:"11",what:"Publication of the schema + vocabulary choices with statistics (per term, fact type, volume; external coverage; verification precision) + Wikidata items for the gaps",status:"not started",when:"",out:"paper · vocab_alignment.tsv · stats script",counts:"after D–G"},
  {step:"—",what:"Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows)",status:"not decided",when:"",out:"—",counts:"est. ~$10"}
 ];
 const N = {
