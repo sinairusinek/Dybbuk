@@ -1,0 +1,49 @@
+db_id	current_type	proposed	kind	why
+3756	Education	Theatre education	retype	drama courses at the Shestakov Philharmonic (Rule 1, 11-15; Maaty typed it 10-31, before the rule)
+1951	Education	Theatre education	retype	'dramatic school', all mentions are drama training (Rule 1)
+2179	Education	Theatre education	retype+rename	drama courses of Julius Halle (Vienna); name_yiddish wrongly says ווילנער שטאָט-טעאַטער → דראַמאַטישע קורסן ביי יוליוס האַללע (ווין)
+2202	Education	Theatre education	retype	youth theatre studio (Rule 2: a studio is Theatre education by default)
+1188	Theatre	Theatre education	retype	Kiev theatre studio, pupils 'studied theatre art' (Rule 2)
+4832	Theatre	Theatre education	retype	drama studio at the Warsaw State Yiddish Theatre, entered as a student (Rule 2)
+4841	Theatre	Theatre education	retype	Moscow Yiddish theatre studio 1918 = Granovsky's studio (Rule 2a: the studio is its own Theatre-education record)
+4825	Theatre	Theatre education	retype	theatre studio 'Maske' (Rule 2 default; no context against)
+4840	Theatre	merge → 4781	merge	duplicate of 4781 (same sentence: Naumov's workers' theatre studio at club Spartak, Buenos Aires); 4781 is Theatre education with parent 2588
+1128	Theatre	Musical organization	retype	orchestra of the Russian theatre (he played in it 3 winters)
+2804	Theatre	Musical organization	retype	Sverdlovsk Philharmonic
+4891	Musical organization	Religious institutions/organizations	retype	choir of the Tłomackie synagogue (policy: synagogue choirs → Religious)
+396	Musical organization	Religious institutions/organizations	retype	'Synagogue chorus' (same rule)
+1189	Theatre	Religious institutions/organizations	retype	tailors' synagogue (שניידערשע שול) in Kiev, sang in its choir under cantor Salominker
+4700	Heritage Institution	Cultural/workers' club	retype	Jüdisches Kulturhaus, Vienna: recitations (קולטור-הויז)
+2617	Jewish political bodies	Cultural/workers' club	retype	Russian-Jewish workers' club where Uriel Acosta was staged, 1885
+1123	Theatre	Cultural/workers' club	retype	Minsk central Jewish workers' club named after Lenin; its drama circle is the child
+707	Theatre	Cultural/workers' club	retype	Berdichev workers' club named after Lozovsky; the play was staged by its drama section
+4322	Theatre	Cultural/workers' club	retype	São Paulo Folks-hoyz: theatre collectives AT the folks-hoyz (host)
+4357	Theatre	Cultural/workers' club	retype	Kultur-hoyz with a symphony orchestra (host)
+3459	Theatre	Cultural/workers' club + merge	merge	Los Angeles Yiddish Kultur-klub; same club as 1902 (both: Jacob Newman worked there)
+1902	Theatre-related Society/ Union	Cultural/workers' club	retype	Los Angeles Yiddish Kultur-klub (keep this one; 3459 merges in)
+2778	Theatre-related Society/ Union	Cultural/workers' club	retype	'Yidisher kultur-klub' (Panitz appearances); possibly also the LA club
+4849	Theatre	Amateur	retype	drama circle 'Drame un muzik', founded with friends 1913
+4884	Theatre	Amateur	retype	independent drama circle 'Yung yidish', 1929
+404	Theatre	Amateur	retype	Hebrew Dramatic Club, NY (policy: an American 'dramatic club' is Amateur)
+1922	Theatre	Amateur	retype	Stanisławów Goldfaden-fareyn: she began there as an amateur; it staged plays (Rule 4)
+3193	Welfare/Aid organization	Amateur + merge	merge	drama section of the Bergen-Belsen survivors' federation; 3194 is the same row twice
+4482	Sports/Recreation	Amateur	retype	children's theatre AT the Jewish sport center (Rule 3: the host keeps its own type)
+301	Theatre	Journals/ Newspapers	retype	Kinder Zhurnal (edited, published in)
+522		Journals/ Newspapers	retype	Goldene funken (Warsaw 1907), empty type
+564		Journals/ Newspapers	retype	Der yudisher pak (humour weekly), empty type
+572		Journals/ Newspapers	retype	Der yudisher telegraf (Bucharest 1877), empty type
+3628	Theatre	Media (Radio/ Film/TV)	retype	film company 'Palace Film', Athens
+4863	Theatre-related Society/ Union	Media (Radio/ Film/TV)	retype	Lubin film company (he was an extra)
+1246	Education	merge → 1239	merge	duplicate of 1239 Kiev film factory (same Leiptsiker sentence); Media
+3848	Military	Education	retype	Zeitungswissenschaftliches Institut, Warsaw; Military came from the person's conscript status (type = what the org IS)
+2331	Heritage Institution	Library	retype	National Library of Poland
+2334	Heritage Institution	Library	retype	St Petersburg State Theatre Library
+123	Publisher	Theatre	retype	Poole's Theatre, NY (all mentions: performances)
+4359	Theatre	Circus	retype	Vilna circus (policy: circus venues → Circus); doubtful, Yiddish was played there
+3489	Trade Union / Professional Association	Publisher	retype	literature fund of the Warsaw writers' union that published a book (parent = the union)
+2181	OTHER - elaborate!	Cultural/workers' club	retype	Beit Am, Jerusalem (types added since OTHER was chosen)
+2208	OTHER - elaborate!	Cultural/workers' club	retype	youth club in the Vilna ghetto
+2190	OTHER - elaborate!	Education	retype	Vienna Institute for Social Sciences (non-theatre research institute)
+2204	OTHER - elaborate!	Education	retype	J. G. Herder Institute, Riga
+2191	OTHER - elaborate!	Education	retype	Vilna Jewish scout organization 'Di bin' (youth-educational)
+2210	OTHER - elaborate!	Jewish political bodies	retype	Young Judaea (Zionist youth movement)

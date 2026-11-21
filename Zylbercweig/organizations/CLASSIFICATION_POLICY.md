@@ -4,7 +4,7 @@ This document is the canonical specification for mapping the free-text `org_type
 
 > **Consumers to check when the list changes.** The live cascade is `map_canonical_types_v3.py`; `map_canonical_types_v2.py` is superseded and referenced only by docs. The app's dropdowns are `_ORG_TYPE_OPTIONS` in **both** `zalmen/views/org_review.py` and `zalmen/views/org_addresses.py`, and `org_review.py` also holds `_ORG_TYPE_CANON` / `_canonical_org_type()`, the casefold→canonical-spelling map that keeps a stored value from being re-lowercased on save. `map_canonical_types_v2.py` does **not** know `Non-Yiddish Theatre`; v2 is dead. `llm_review_sample.py`'s prompt learned it on 2026-11-01.
 
-## Canonical types (33)
+## Canonical types (35)
 
 The list below is exhaustive. Any classification not on this list is invalid.
 
@@ -30,7 +30,7 @@ Types are matched **exactly**, including case and internal spacing. A value that
 ### Knowledge / Memory institutions
 13. **Library** — public, communal, or institutional libraries proper.
 14. **Heritage Institution** — archives, museums, galleries (when functioning as museum/exhibition space), Yiddish cultural-research institutes (YIVO, Kultur-Lige, Sholem-Aleichem Institute, IKUF, Leivick House), exhibitions when treated as standing institutions.
-15. **Education** — schools, universities, gymnasia, non-theatre research institutes, secular educational/recreational camps (Camp Boiberik, Camp Kinderland, Camp Lakeland), youth-educational orgs (when primarily educational). **Drama training is not Education** (→ Theatre education, Rule 1). General schools stay Education even when their pupils put on a play (the Zhitomir Rabbinical School, Workmen's Circle schools, the Peretz school, the Vilna teachers' seminary); so do art and sculpture schools (Bezalel, the Kiev art school, Exter's studio) and conservatories without a drama programme. A drama circle *at* a school is a child record (Rule 3), not a reason to retype the school.
+15. **Education** — schools, universities, gymnasia, non-theatre research institutes, children's educational camps (Camp Boiberik, Camp Kinderland); adult vacation camps (Lakeland, Nit Gedayget, Unity) are **Hospitality** (2026-11-21), youth-educational orgs (when primarily educational). **Drama training is not Education** (→ Theatre education, Rule 1). General schools stay Education even when their pupils put on a play (the Zhitomir Rabbinical School, Workmen's Circle schools, the Peretz school, the Vilna teachers' seminary); so do art and sculpture schools (Bezalel, the Kiev art school, Exter's studio) and conservatories without a drama programme. A drama circle *at* a school is a child record (Rule 3), not a reason to retype the school.
 
 ### Music
 16. **Musical organization** — orchestras, choirs (secular), choral societies, music ensembles, music associations (`מוזיק-פאַראיין`, `געזאַנגס-פאַריין`), `Hazomir`/`הזמיר`, philharmonics, bands. **Excludes** synagogue choirs (→ Religious).
@@ -77,7 +77,11 @@ Types are matched **exactly**, including case and internal spacing. A value that
     - **UJA / Federation** = welfare fundraising → here, not Jewish political.
 
 ### Business & labour & health
-22. **Business** — **commerce and services** with a profit motive: banks, insurance companies, hotels, restaurants, cafés, saloons, taverns, shops, stores, trading companies, law firms, telegraph and telephone companies, railways, financial corporations, booking offices, galleries (when commercial art-dealer), pharmacies.
+22. **Business** — **commerce and services** with a profit motive: banks, insurance companies, shops, stores, trading companies, law firms, telegraph and telephone companies, railways, financial corporations, galleries (when commercial art-dealer), pharmacies, publicity bureaus. Hotels, restaurants, cafés, taverns and vacation camps → **Hospitality**; theatre and concert bureaus → **Theatre/concert agency** (both 2026-11-21).
+
+### Hospitality and agencies *(new — added 2026-11-21 by PI decision)*
+34. **Hospitality** — hotels, resorts, taverns, cafés, restaurants, wine cellars, and adult vacation camps (Lakeland, Nit Gedayget, Unity; Unzer Kemp, 4946, parent Farband). A venue where troupes played keeps this type; the performances are carried by the mention. Children's educational camps stay **Education**.
+35. **Theatre/concert agency** — theatre bureaus, concert bureaus, booking and impresario agencies that place performers (`טעאַטער-ביוראָ`, `קאָנצערט-ביוראָ`, `טעאַטער-אַגענטור`). A publicity bureau is **Business**; a manager's touring company is a company type.
 23. **Labour (factory/workshop)** *(renamed from Labour)* — **places of production**: factories, mills, sweatshops, workshops, breweries, bakeries, tailor shops, farms and orchards, printing works when not typed Printer. A manufacturing *firm* is typed here by what it makes, even when the text calls it a פֿירמע. **Excludes** labour movements and workers' fraternal/political organizations (those go to Jewish political bodies or Non-Jewish political bodies).
 
 > **The type describes the organization, never a person's relation to it** *(PI 2026-11-01)*. Until then a brewery was Business "when ownership-relation" and Labour "when employment-relation", which would split one brewery into two rows as soon as it was mentioned both ways. Whether someone owned, managed or worked at a place is carried by the **relation** on the mention (`Leadership_Ownership`, `Employment_Performance`, …) and so by the edge in the person–org graph and the KG — the org type does not repeat it. Production site → Labour; commerce and services → Business.
@@ -131,7 +135,7 @@ At cluster/DB level, the same physical entity can carry both labels across diffe
 
 ### `Camp`, `concentration camp`, `labor camp`, `refugee_camp`
 - **Not an organization** (places).
-- Exception: **Educational/recreational camps** (Camp Boiberik, Camp Kinderland — Yiddish summer camps with cultural-educational mission) → **Education**.
+- Exception: **children's educational camps** (Camp Boiberik, Camp Kinderland — Yiddish summer camps with a cultural-educational mission) → **Education**; **adult vacation camps** (Lakeland, Nit Gedayget, Unity) → **Hospitality** (2026-11-21).
 
 ### `Park`, `colony`, `ghetto`, `residence`, `home` (when meaning dwelling)
 - **Not an organization**.
