@@ -81,6 +81,7 @@ table.inv{border-collapse:collapse;width:100%;font-size:.85rem;margin:.3rem 0 1.
 .pill.running{background:var(--accent);border-color:var(--accent);color:#fff}
 .pill.waiting{border-color:var(--c-work);color:var(--ink);background:color-mix(in srgb,var(--c-work) 22%,var(--paper))}
 .pill.not-decided{border-style:dashed}
+.pill.in-progress,.pill.pilot-done{border-color:var(--c-work);color:var(--ink);background:color-mix(in srgb,var(--c-work) 22%,var(--paper))}
 aside.panel{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.9rem 1rem 1rem;position:sticky;top:12px}
 aside.panel h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;margin:.1rem 0 .3rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
 aside.panel p{margin:.3rem 0 .6rem;color:var(--soft);font-size:.9rem}
@@ -199,10 +200,10 @@ Jobs A–C work on sentences or fields already extracted and need no re-read; D�
 <h2>What already exists</h2><div class="iwrap"><table class="inv" id="invT"></table></div>
 <h2>v2 work list</h2><div class="iwrap"><table class="inv" id="jobT"></table></div>
 <h2>Planned sequence</h2><p class="cap">Status after each run (mirrors SCHEMA_DRAFT.md §0).</p><div class="iwrap"><table class="inv" id="seqT"></table></div>
-<h2>Vocabularies: how far outside standards reach</h2><p class="cap">Our terms stay the extraction labels; each is matched (exact / close / broad / none) to five outside vocabularies in <code>extraction_v2/vocab_alignment.tsv</code> (161 rows, every code checked against the source list, 11-21). Cells: terms with any match (exact in brackets).</p>
+<h2>Vocabularies: how far outside standards reach</h2><p class="cap">Our terms stay the extraction labels; each is matched (exact / close / broad / none) to five outside vocabularies in <code>extraction_v2/vocab_alignment.tsv</code> (163 rows, every code checked against the source list, 11-21). Cells: terms with any match (exact in brackets).</p>
 <div class="iwrap"><table class="inv"><thead><tr><th>Our vocabulary</th><th>terms</th><th>Wikidata</th><th>LoC relators</th><th>BnF roles</th><th>Getty AAT</th><th>SAPA</th></tr></thead><tbody>
-<tr><td><b>occupation</b></td><td>35</td><td>34 (26)</td><td>23 (18)</td><td>25 (12)</td><td>27 (22)</td><td>22 (12)</td></tr>
-<tr><td><b>function (person → work)</b></td><td>10</td><td>10 (properties)</td><td>10</td><td>10</td><td>—</td><td>10</td></tr>
+<tr><td><b>occupation</b></td><td>36</td><td>35 (27)</td><td>24 (19)</td><td>26 (13)</td><td>28 (23)</td><td>23 (13)</td></tr>
+<tr><td><b>function (person → work)</b></td><td>11</td><td>11 (properties)</td><td>11</td><td>11</td><td>—</td><td>11</td></tr>
 <tr><td><b>work_kind</b></td><td>21</td><td>19</td><td>—</td><td>—</td><td>13</td><td>12</td></tr>
 <tr><td><b>event_type</b></td><td>19</td><td>19</td><td>2</td><td>—</td><td>7</td><td>4</td></tr>
 <tr><td><b>org_type (core_db)</b></td><td>36</td><td>33 (mostly close)</td><td>—</td><td>—</td><td>—</td><td>16</td></tr>
@@ -239,19 +240,20 @@ const SEQUENCE=[
  {step:"2",what:"A: in-entry full form",status:"done",when:"11-17",out:"a_full_form.tsv (+ a_full_form_llm.jsonl)",counts:"12,942 real targets (5,931 empty-name artifact rows excluded); 1,136 resolved in-entry (kin_of_subject 604 = inferred surname, earlier_full_name 249, det 175, subject 57, context 51); 11.8k need cross-entry ER · ~$8"},
  {step:"3",what:"B: blank / Other relation categories (corrected)",status:"done",when:"11-17",out:"b_recategorized.tsv",counts:"634 real rows (5,931 empty-name artifact rows dropped; the first report counted them, wrongly): None 279 · Social 108 · Hierarchy 101 · Creative 45 · Family 36 · Collab 36 · Source 29 · ~$4"},
  {step:"4",what:"C: eponym org-mediated ties",status:"done",when:"11-17",out:"c_eponym_orgs.tsv",counts:"3,843 rows: org-mediated 3,745; named after the mention 1,883; mention = leader 2,033 / director 559 / owner 496; 579 also a direct tie; 2,264 distinct org surfaces · ~$2"},
- {step:"5",what:"Sinai reviews the schema (§1–§9 vs §0)",status:"waiting",when:"",out:"—",counts:"—"},
+ {step:"5",what:"Sinai reviews this schema (§1–§9 vs §0)",status:"in progress",when:"11-21",out:"—",counts:"answered: 2 (new org types), 3 (re-run itinerary entries, compare as QA), 7–10; open: 1, 4 (cost), 5 (Eisenberg doc), 6, 12 (amateur subtypes)"},
  {step:"6",what:"Prompt for the D–G full-text pass",status:"not started",when:"",out:"prompts/defg.txt",counts:"—"},
  {step:"7",what:"D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries)",status:"not started",when:"",out:"—",counts:"est. $3–5"},
- {step:"8",what:"D–G all volumes, skipping ~500 itinerary-done entries",status:"not started",when:"",out:"—",counts:"est. $15–30, overnight"},
+ {step:"8",what:"D–G all volumes, INCLUDING the ~500 itinerary-done entries (decision 3)",status:"not started",when:"",out:"—",counts:"est. $15–30 before scope grew; re-measure after the step-7 pilot"},
+ {step:"8e",what:"QA: D–G stations/events vs old itinerary, dossier and France outputs for the same ~500 entries",status:"not started",when:"",out:"qa_itinerary_compare.tsv",counts:"no LLM"},
  {step:"8a",what:"ER context from ALREADY-STRUCTURED data (no LLM): candidate profiles + mention context",status:"done",when:"11-17",out:"datasets/surname_er/ (er_mention_context.tsv, er_candidate_profiles.tsv, README)",counts:"12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong"},
  {step:"8b",what:"Gemini verification (C orgs, A relatives, B Sources) + hub-surface rejections",status:"done",when:"11-17",out:"verify_*.jsonl, people/mention_surface_rejections.tsv",counts:"C 1,596/1,746 ok (142 removed) · A-kin 580/604 · B-src 26/29 · <$1"},
  {step:"8c",what:"Schema check against external models (Linked Art PA v0.9, SAPA): performance facts + production resolution, event status / language / org_role, mapping table (SCHEMA_DRAFT §3b, §4, §10)",status:"done",when:"11-20",out:"SCHEMA_DRAFT.md",counts:"—"},
- {step:"8d",what:"Vocabulary alignment: our terms → Wikidata, LoC relators, BnF roles, Getty AAT, SAPA (SKOS exact / close / broad / none; SCHEMA_DRAFT §6a)",status:"done",when:"11-21",out:"vocab_alignment.tsv",counts:"161 rows; occupations: WD 34/35, AAT 27, BnF 25, LoC 23, SAPA 22; 6 gaps · no LLM"},
+ {step:"8d",what:"Vocabulary alignment: our terms → Wikidata, LoC relators, BnF roles, Getty AAT, SAPA (SKOS exact / close / broad / none; SCHEMA_DRAFT §6a)",status:"done",when:"11-21",out:"vocab_alignment.tsv",counts:"163 rows; occupations: WD 35/36, AAT 28, BnF 26, LoC 24, SAPA 23; 6 gaps · no LLM"},
+ {step:"8f",what:"R: re-type the already-categorized relations to the 11-15 types (decision 4)",status:"pilot done",when:"11-21",out:"r_pilot.jsonl · prompts/r_retype.txt",counts:"31,704 rows (not 26k); 156 in / 113 out tokens per row → full run ≈ $13 at $0.50/$3 per M; awaiting approval · pilot $0.13"},
  {step:"9b",what:"Production resolution: group performance facts (D–G + plays-KG facts) into productions; fact → production links with reasons",status:"not started",when:"",out:"production_links.tsv",counts:"no LLM for the rule pass"},
  {step:"9",what:"Resolution (surname ER, incl. MEHDIE students) on A–C + mentions_all",status:"not started",when:"",out:"mention → entity links",counts:"—"},
  {step:"10",what:"Graph assembly + review loop",status:"not started",when:"",out:"—",counts:"—"},
  {step:"11",what:"Publication of the schema + vocabulary choices with statistics (per term, fact type, volume; external coverage; verification precision) + Wikidata items for the gaps",status:"not started",when:"",out:"paper · vocab_alignment.tsv · stats script",counts:"after D–G"},
- {step:"—",what:"Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows)",status:"not decided",when:"",out:"—",counts:"est. ~$10"}
 ];
 const N = {
  person:{label:"Person",x:500,y:110,status:"old",job:"A",have:"people/mentions_all.tsv (Drive ZylbercweigMentionedPeople20260228): 38,269 mentions in 3,079 entries, all 7 volumes; gender, description. Missing: full_form (18,873 surname-only / initial targets, job A).",sub:"actor, playwright, kin…",

@@ -69,6 +69,19 @@ def items_b(rows):
     return out
 
 
+def items_r(rows):
+    """R (11-21): re-type the already-categorized rows to the 11-15 scheme (decision 4)."""
+    out = []
+    for r in rows:
+        if r["relation_category"] in ("", "Other") or not r["mention_name"].strip():
+            continue
+        out.append({"id": r["mention_id"], "entry_subject": r["host_heading_fill"],
+                    "mention": r["mention_name"], "description": r["person_description"][:200],
+                    "sentence": r["relation_sentence"][:400],
+                    "old": r["relation_category"] + "/" + r["relation_specific"]})
+    return out
+
+
 def items_c(rows):
     out = []
     for r in rows:
@@ -114,9 +127,11 @@ def flatten(rows):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("job", choices=["b", "c", "flatten", "count"])
+    ap.add_argument("job", choices=["b", "c", "r", "flatten", "count"])
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=12)
+    ap.add_argument("--offset", type=int, default=0)
+    ap.add_argument("--out", default="")
     a = ap.parse_args()
     rows = load()
     if a.job == "flatten":
@@ -124,12 +139,16 @@ def main():
     if a.job == "count":
         print("B", len(items_b(rows)), "C", len(items_c(rows)))
         return
-    items = items_b(rows) if a.job == "b" else items_c(rows)
+    items = {"b": items_b, "c": items_c, "r": items_r}[a.job](rows)
+    if a.offset:
+        items = items[a.offset:]
     if a.limit:
         items = items[: a.limit]
-    name = "b_recategorized" if a.job == "b" else "c_eponym_orgs"
-    prompt = (HERE / "prompts" / ("b_recategorize.txt" if a.job == "b" else "c_eponym_orgs.txt")
-              ).read_text(encoding="utf-8")
+    name = {"b": "b_recategorized", "c": "c_eponym_orgs", "r": "r_retyped"}[a.job]
+    if a.out:
+        name = a.out
+    pf = {"b": "b_recategorize.txt", "c": "c_eponym_orgs.txt", "r": "r_retype.txt"}[a.job]
+    prompt = (HERE / "prompts" / pf).read_text(encoding="utf-8")
     gemini_batch.run(items, prompt, HERE / f"{name}.jsonl", batch_size=25, workers=a.workers)
 
 

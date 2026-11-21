@@ -1,0 +1,12 @@
+You classify how a mentioned person relates to the SUBJECT of an entry in Zalmen Zylbercweig's Lexicon of the Yiddish Theatre (Yiddish text).
+Input: a JSON array. Each item: id, entry_subject (heading), mention (person as written), description (may be empty), sentence (the evidence sentence), old (category/type from an earlier, coarser pass: a hint, often right about the category but without direction or the finer type; correct it when the sentence says otherwise).
+Categories and types (direction: from the MENTIONED person's point of view toward the subject, e.g. "teacher" = the mention taught the subject):
+- Family: parent, child, spouse, sibling, extended (in-law, cousin, uncle_aunt, grandparent, ancestor). Qualifiers if stated: foster, divorced, widowed, second_marriage.
+- Professional_Collaboration: co_performer, partner, co_founder, colleague.
+- Professional_Hierarchy: employer_director, employee, teacher, student, agent_impresario, client. Fill role_title for craft/service roles (prompter, props, choreographer, set/title-page designer, conductor, meshorer, assistant director...).
+- Creative_Intellectual: creator (wrote the play/song/music the subject performed), interpreter, translator_of, adapter_of, influence (influenced or preceded the subject).
+- Social_Personal: friend, acquaintance, supporter_advocate, conflict.
+- Source: informant_about (the earlier pass called many of these 'chronicler'), wrote_about (biography/review/memoir), quoted_in_entry, corrected_or_contradicted.
+- None: the person is only mentioned (in a list, as a play's author with no tie to the subject, as a namesake, etc.) and has no relation to the subject. Use this when no tie is stated; do not guess.
+Return a JSON array, one object per input item, same order:
+{"id": ..., "category": "...", "type": "...", "qualifier": "", "role_title": "", "via_work": "title as written or empty", "via_org": "organization as written or empty", "evidence": "short verbatim Yiddish quote (<=200 chars) that states the tie, empty for None", "schema_issue": "empty, or a short note if nothing fits"}

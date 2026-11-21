@@ -45,19 +45,20 @@ relations, vitals, family and person→org. Those are referenced by name only wh
 event, station or work needs a participant. A–C are cheap sentence-level jobs and do not
 wait for the schema review. They are what the MEHDIE surname-ER students need.
 
-### Decisions needed from Sinai (step 5 and around it)
+### Decisions (asked 11-17/20/21; Sinai's answers 11-21)
 
-1. Keep person→org OUT of the D–G pass (current draft), or re-extract it?
-2. New core_db org types **Hospitality** and **Theatre/concert agency**: OK to add to the dropdown?
-3. D–G: skip the ~500 entries that already have itineraries, or re-run them for uniform output?
-4. Optional: re-type the 26k already-categorized relations to the 11-15 types (~$10)?
-5. Meir Eisenberg: are Vol 1 (b. 1894 Ozorków) and Vol 6 (b. 1896 Gowarczów, d. 1966 Miami) the same person? Until decided, HUB-D1554 has no surface.
-6. Job A relatives: accept "first name + the family's surname" as the full form of a wife or child (604 cases, 96% passed the check)?
-7. **Performance facts + production resolution (§3b, added 11-20):** the extractor never creates productions; a later grouping step clusters facts into productions, and unanchored facts stay on the work. OK?
-8. **New event fields (§4):** `status` (performed / planned / banned / cancelled), staging `language`, `org_role` (producer / presenter / venue / touring company). OK, or drop any?
-9. **Vocabulary additions (§6a, 11-21):** add `librettist` to occupation/function; add `comedy`, `tragedy`, `farce`, `Purim play` to work_kind?
-10. **Genre as stated (§6a):** store `work_kind` per mention as the entry states it (LA-PA's rule), not as one fixed property of the work?
-11. **Wikidata contribution + publication:** create items for the gaps in §6a (meshorer, broder singer, theatre lessee, theatrical agent, stage jubilee, landsmanshaft) and publish the schema + vocabulary choices with statistics after D–G? Who creates the items, and when?
+1. Keep person→org OUT of the D–G pass? **OPEN**: elaborated in chat 11-21.
+2. New core_db org types **Hospitality** and **Theatre/concert agency**: **YES** (11-21). Re-classification candidates (7 hospitality, ~6–8 agency) to be listed and confirmed before writing core_db.
+3. D–G: **re-run the ~500 itinerary entries too** and use the comparison with the old itineraries as QA (11-21).
+4. Re-type the already-categorized relations: **YES in principle** (11-21). Measured pilot 11-21: **31,704 rows, not 26k**, ~$13 at full output, above the ~$10 approved. **Awaiting approval of the measured amount** or of the trimmed variant.
+5. Meir Eisenberg: Google Doc prepared 11-21 ("Meir Eisenberg: one person or two?"). Recommendation: two people. **Awaiting Sinai.**
+6. Job A relatives ("first name + the family's surname"): **OPEN**: elaborated in chat 11-21.
+7. **Performance facts + production resolution (§3b):** **ACCEPTED** 11-21.
+8. **New event fields (§4)** `status`, `language`, `org_role`: **ACCEPTED** 11-21.
+9. **Vocabulary additions:** **ACCEPTED** 11-21. `librettist` added to occupation and function; `comedy`, `tragedy`, `farce`, `Purim play` added to work_kind; `vocab_alignment.tsv` updated.
+10. **Genre as stated, per mention:** **ACCEPTED** 11-21.
+11. Wikidata contribution + publication: **LATER** (11-21).
+12. **NEW 11-21: Amateur subtypes** (§6b): proposal awaiting Sinai.
 
 ### Planned sequence: status (update after EVERY extraction run)
 
@@ -67,19 +68,20 @@ wait for the schema review. They are what the MEHDIE surname-ER students need.
 | 2 | A: in-entry full form | done 11-17 | `a_full_form.tsv` (+ `a_full_form_llm.jsonl`) | 12,942 real targets (5,931 empty-name artifact rows excluded); 1,136 resolved in-entry (kin_of_subject 604 = inferred surname, earlier_full_name 249, det 175, subject 57, context 51); 11.8k need cross-entry ER · ~$8 |
 | 3 | B: blank/Other relation categories | done 11-17, corrected | `b_recategorized.tsv` | 634 real rows (5,931 empty-name artifact rows dropped; the first report counted them, wrongly): None 279 · Social 108 · Hierarchy 101 · Creative 45 · Family 36 · Collab 36 · Source 29 · ~$4 |
 | 4 | C: eponym org-mediated ties | done 11-17 | `c_eponym_orgs.tsv` | 3,843 rows: org-mediated 3,745; named after the mention 1,883; mention = leader 2,033 / director 559 / owner 496; 579 also a direct tie; 2,264 distinct org surfaces · ~$2 |
-| 5 | Sinai reviews this schema (§1–§9 vs §0) | waiting | — | — |
+| 5 | Sinai reviews this schema (§1–§9 vs §0) | partly done 11-21: decisions 2, 3, 7–10 answered; 1, 4, 5, 6, 12 open | — | — |
 | 6 | Prompt for the D–G full-text pass | not started | `prompts/defg.txt` | — |
 | 7 | D–G Volume-3 pilot vs gold (Lasky migrations, DiJeSt, old itineraries) | not started | — | est. $3–5 |
-| 8 | D–G all volumes, skipping ~500 itinerary-done entries | not started | — | est. $15–30, overnight |
+| 8 | D–G all volumes, **including** the ~500 itinerary-done entries (decision 3: re-run, compare as QA) | not started | — | est. $15–30 before the scope grew; re-measure after the step-7 pilot |
+| 8e | QA: D–G stations/events vs the old itinerary, dossier and France outputs for the same ~500 entries | not started (after 8) | `qa_itinerary_compare.tsv` | no LLM |
 | 8a | ER context from ALREADY-STRUCTURED data (no LLM) | done 11-17 | `datasets/surname_er/er_mention_context.tsv`, `er_candidate_profiles.tsv` (+ README) | 12,942 mentions × 2,900 hub profiles; 5,727 gold; C orgs → core_db/cluster 1,746/2,191; baseline: resolver 1,282/3,401 ambiguous gold, org-overlap alone 437 right / 851 wrong |
 | 8b | Gemini verification of C org matches, A relatives, B Sources + hub-surface rejections (Bila Tserkva, Ida→Regina, א. ר.→Regina, Fridman→Ash) | done 11-17 | `verify_*.jsonl`, `people/mention_surface_rejections.tsv` | C 1,596/1,746 ok (142 removed) · A-kin 580/604 · B-src 26/29 real · <$1 |
 | 8c | Schema check against external models (LA-PA v0.9, SAPA; §10): performance facts + production resolution, event status/language/org_role, mapping table | done 11-20 | SCHEMA_DRAFT §3b, §4, §10 | — |
-| 8d | Vocabulary alignment: our terms → Wikidata, LoC relators, BnF roles, Getty AAT, SAPA (SKOS exact/close/broad/none) | done 11-21 | `vocab_alignment.tsv`, SCHEMA_DRAFT §6a | 161 rows; occupations: WD 34/35, AAT 27, BnF 25, LoC 23, SAPA 22; 6 gaps (meshorer, broder singer, lessee, theatrical agent, stage jubilee, landsmanshaft) · no LLM |
+| 8d | Vocabulary alignment: our terms → Wikidata, LoC relators, BnF roles, Getty AAT, SAPA (SKOS exact/close/broad/none) | done 11-21 | `vocab_alignment.tsv`, SCHEMA_DRAFT §6a | 163 rows; occupations: WD 35/36, AAT 28, BnF 26, LoC 24, SAPA 23; 6 gaps (meshorer, broder singer, lessee, theatrical agent, stage jubilee, landsmanshaft) · no LLM |
 | 9b | **Production resolution**: group performance facts (D–G + plays-KG facts) into productions; fact → production links with reasons | not started (after D–G) | `production_links.tsv` | no LLM for the rule pass |
 | 9 | Resolution (surname ER, incl. MEHDIE students) on A–C + `mentions_all` | not started | mention→entity links | — |
 | 10 | Graph assembly + review loop | not started | — | — |
 | 11 | Publication of the schema + vocabulary choices **with statistics** (per term / fact type / volume, external coverage, verification precision); Wikidata items for the §6a gaps | not started (after D–G) | paper + `vocab_alignment.tsv` + a stats script | — |
-| — | Optional: re-type the 26k categorized relations to the 11-15 types (B on all rows) | not decided | — | est. ~$10 |
+| 8f | R: re-type the already-categorized relations to the 11-15 types (decision 4) | pilot done 11-21; full run awaiting approval of the measured cost | `r_pilot.jsonl` (300 random rows), `prompts/r_retype.txt`, `bc_jobs.py r` | **31,704 rows** (not 26k). Pilot: 156 tokens in / 113 out per row, thinking off → full run ≈ $2.5 in + $10.8 out = **≈ $13** at $0.50/$3 per M. Pilot cost $0.13. Category unchanged in ~91%; main gains: chronicler → Source (wrote_about / informant_about), employer → teacher, finer types, `via_org` |
 
 ## 1. Principles
 
@@ -133,7 +135,7 @@ needed, `role_title`, `via_work`, `via_org`, `date_start`, `date_end`, `place`,
 
 ### 3b. Person → work and work → work
 
-- person → work: `author`, `translator`, `adapter`, `composer`, `lyricist`, `director`
+- person → work: `author`, `translator`, `adapter`, `composer`, `lyricist`, `librettist` (11-21), `director`
   (of a production), `designer` (sets, costumes), `choreographer`, `performer`
   (+ `role` when the character is named), `producer`.
 - **Performance facts (revised 11-20, after Linked Art PA / SAPA / Linked Stage Graph, §10).**
@@ -225,13 +227,16 @@ A station: `seq`, `subject` (person or organization mention; a troupe can tour),
 
 - **occupation** (on persons, from the text): actor, actress, singer, chorister, dancer,
   comedian, prompter, director (regisseur), stage manager, conductor, composer, lyricist,
-  playwright, translator, critic, journalist, editor, publisher, teacher, cantor,
+  librettist (added 11-21), playwright, translator, critic, journalist, editor, publisher, teacher, cantor,
   meshorer, badkhn, folk singer (broder singer), manager, lessee, impresario, agent,
   cashier, administrator, publicist, set designer, costume designer, choreographer,
   photographer, film director, radio announcer, other (+ text). The DiJeSt
   "People in Performance Events" professional roles are the starting list.
 - **work_kind:** play, operetta, opera, musical comedy, melodrama, sketch, one-act,
-  revue, song, music (score), film, radio play, book, memoir, article, periodical, other.
+  revue, song, music (score), film, radio play, book, memoir, article, periodical,
+  comedy, tragedy, farce, Purim play (the last four added 11-21), other.
+  **Recorded as stated, per mention** (decision 10): the same work may be called
+  "drama" in one entry and "melodrama" in another; both are kept, with their evidence.
 - **source_kind:** see §2.
 
 ### 6a. Alignment to external vocabularies (11-21): `vocab_alignment.tsv`
@@ -246,14 +251,14 @@ vocabularies:
 - **SAPA**: vocab.performing-arts.ch. Activity `mu/`, performance type `hl/`, genre
   `mn/`, group type `vr/`.
 
-The table has 161 rows. Every code was checked against the downloaded list or a live
+The table has 163 rows (librettist added 11-21). Every code was checked against the downloaded list or a live
 query; nothing comes from memory.
 
-**Coverage of the 35 named occupations** (any match, with exact matches in brackets):
+**Coverage of the 36 named occupations** (any match, with exact matches in brackets):
 
 | Wikidata | LoC | BnF | AAT | SAPA |
 |---|---|---|---|---|
-| 34 (26) | 23 (18) | 25 (12) | 27 (22) | 22 (12) |
+| 35 (27) | 24 (19) | 26 (13) | 28 (23) | 23 (13) |
 
 - **Function** (person → work): LoC, BnF, SAPA and Wikidata properties (P50, P57, P86,
   P161, P162, P655, P676, P1809, P2515, P4608, P5202) cover all of it. The **character**
@@ -289,6 +294,50 @@ query; nothing comes from memory.
 - add genre terms the Lexicon actually uses (**comedy, tragedy, farce, Purim play**).
 - record genre **as stated, per mention**: LA-PA's rule. The same play is called
   "drama" in one entry and "melodrama" in another.
+
+### 6b. PROPOSAL 11-21: subtypes of `Amateur` organizations (decision 12)
+
+Based on the 167 active core_db rows typed `Amateur`: their names, plus `parent_db_id`
+where it is set (33 rows). The counts come from a name-pattern pass, so expect ±10%.
+A subtype is assigned only when the name or the parent decides it (§1.4). Otherwise it
+stays plain `Amateur`.
+
+**Facet 1: how the group is constituted** (one value per org)
+
+| subtype | what decides it | ≈ n | examples |
+|---|---|---|---|
+| `amateur_section` | drama section / circle **of** a host org: "דראַמקרייז ביים …", "דראַמאַטישע סעקציע ביי …", or `parent_db_id` set | ~50 | Bund, Poale Zion, Hazomir, Arbeter-heym, Kultur-lige, Pressers' Local |
+| `amateur_society` | a free-standing dramatic society / club / circle / *liebhober* group | ~95 | Chicago Yiddish Dramatic Society, Kovno Yiddish Dramatic Society, "Unzer Vinkl" |
+| `amateur_personal` | a group led by, or formed around, a named person (א"ר / א"א / א"ל פֿון X = under the direction of X) | ~7 | Ben-Ami's Vilna circle, Adam Domb's group, Zylbercweig's *liebhober* troupe |
+| `amateur_studio` | a workers' theatre studio, between amateur and training | ~3 | ARTES (Chicago), "Arbeter-studio", the workers' studio at the Central Yiddish Culture House |
+
+- **Eponyms are not a subtype.** In "Jacob Gordin Dramatic Club" or "David Kessler
+  Dramatic Club" (~17) the person is an honorific, not the leader. Store it in
+  `named_after`, as for troupes (§2).
+- **Read the abbreviations carefully.** א"נ = *oyfn nomen* ("named after") is an eponym.
+  א"ר / א"א / א"ל ("directed / led by") is `amateur_personal`.
+
+**Facet 2: host type, only for `amateur_section`.** Derived from the parent org's
+core_db type, not a new field.
+
+| host type | ≈ n |
+|---|---|
+| workers' / cultural club (Cultural/workers' club) | 23 |
+| party or youth movement (Jewish political bodies: Bund, Poale Zion, Tseirei Zion, Hashomer Hatsair, Gordonia, Tsukunft) | 12 |
+| music / choral society (Musical organization: Hazomir ×7, Harfe) | 8 |
+| school / university / student body (Education) | 2–4 |
+| trade union (Pressers' Local; craftsmen's union) | 2 |
+| Jewish community (kehile), cooperative colony, sports center, military | 1 each |
+
+**Optional attributes, only when stated:**
+- membership: workers 17, youth/children 7, students 4, soldiers 1.
+- language: Hebrew 4, Russian 5, English 1. The default Yiddish is not written.
+- `literary_dramatic` flag: 7 combined literary + drama circles.
+
+**Clean-up the pass surfaced:**
+- 11 rows have generic names with no place ("Dramatic Circle", "דראַמאַטישן קרייז"). These are candidates for the GENERIC decision.
+- ~20 `amateur_section` rows still lack `parent_db_id` even though the host is named.
+- Hebrew amateur groups (Habima Lwów, "Habama") stay `Amateur` + language Hebrew, not Non-Yiddish Theatre, unless Sinai prefers otherwise.
 
 ## 7. Output envelope (one JSON object per entry)
 
