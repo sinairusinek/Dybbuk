@@ -369,7 +369,8 @@ def build_ambiguity_rows(path, options_col, clusters, lex, attest, places) -> li
         label = r.get("linked_label", "").strip()
         lqid  = r.get("linked_qid", "").strip()
         entry_ids, ctxs = resolve_contexts(attest.get(yi, []), yi, clusters, lex)
-        note = (r.get("note") or "").strip() or (
+        # the review page shows a context as a note only if it starts with "<spelling>:"
+        note = (f"{yi}: {r['note'].strip()}" if (r.get("note") or "").strip() else
                 f"{yi}: currently linked to {lqid}/{label}; "
                 f"{len(cands)} Kima places share this name — pick the right one.")
         rows.append({
