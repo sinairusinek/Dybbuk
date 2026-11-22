@@ -8629,3 +8629,15 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-11-22T08:36:53Z	Sinai	org_review	alignment	ORG-C01185	NEW	REOPENED 11-21 (Sinai): was DEFER by Judith; new type Hospitality — align or mint	"{""aligned_db_id"": ""4990""}"
 2026-11-22T08:37:28Z	Sinai	org_review	alignment	ORG-C01565	NEW	REOPENED 11-21 (Sinai): was NOT_AN_ORG by Judith; new type Hospitality — align or mint	"{""aligned_db_id"": ""4991""}"
 2026-11-22T08:37:47Z	Sinai	org_review	alignment	ORG-C01804	NEW	REOPENED 11-21 (Sinai): was DEFER by Judith; new type Hospitality — align or mint	"{""aligned_db_id"": ""4992""}"
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C01565	NEW	Hospitality candidates 11-22: own entity, db 4991	{"aligned_db_id": "4991", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C01826	NEW	Hospitality candidates 11-22: own entity, db 4993	{"aligned_db_id": "4993", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C02081	NEW	Hospitality candidates 11-22: own entity, db 4994	{"aligned_db_id": "4994", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C02428	NEW	Hospitality candidates 11-22: own entity, db 4995	{"aligned_db_id": "4995", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C04985	NEW	Hospitality candidates 11-22: own entity, db 4996	{"aligned_db_id": "4996", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C05339	NEW	Hospitality candidates 11-22: own entity, db 4997	{"aligned_db_id": "4997", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C05916	NEW	Hospitality candidates 11-22: own entity, db 4998	{"aligned_db_id": "4998", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C06042	NEW	Hospitality candidates 11-22: own entity, db 4999	{"aligned_db_id": "4999", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	alignment	ORG-C07046	NEW	Hospitality candidates 11-22: own entity, db 5000	{"aligned_db_id": "5000", "was": ["", ""], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	unmint	4946	deprecated	Unzer Kemp unminted (Sinai 11-22); cluster ORG-C01414 left undecided	{"cluster": "ORG-C01414", "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_review	reopen	ORG-C01414	decision=	was NEW db 4946: Unzer Kemp unminted, left undecided	{"was": ["NEW", "4946", "Sinai"], "source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T08:41:39Z	Sinai	org_addresses	set_parent	4297	parent_db_id=	parent Unzer Kemp 4946 unminted	{"source": "apply_hospitality_mints_2026_11_22.py"}
