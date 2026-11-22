@@ -6,6 +6,8 @@
              in Warsaw at age 10; a different body from the conservatory.
   C01713 'ברייטענער שול 4' -> NEW: Leib A. staged a play there; the number individuates.
              Parent network (Arbeter Ring? SA Folk Institute?) asked in the team Doc.
+  C00069 'צווישאָ' -> NEW: Zhitnitsky's entry is set in Buenos Aires, so the Argentine
+             TsVISHO, not the Polish TsIShO (1111).
 
 Idempotent. Usage: python3.11 apply_individuated_generics_2026_11_22.py [--apply --reviewer Sinai]
 """
@@ -19,12 +21,16 @@ m.MINTS = {
     "shulamit_tlv": ("Shulamit Conservatory, Tel Aviv", "קאָנסערוואַטאָריע „שולמית“ (תל-אביב)", "תל-אביב", ""),
     "shulamit_waw": ("Shulamit choir, Warsaw", "כאָר „שולמית“ (וואַרשע)", "וואַרשע", ""),
     "brighton4": ("Brighton School 4", "ברייטענער שול 4", "", ""),
+    "tsvisho_ar": ("TsVISHO (Central Secular Yiddish School Organization), Argentina",
+                   "צווישאָ (אַרגענטינע)", "אַרגענטינע", ""),
 }
 TYPES = {"כאָר „שולמית“ (וואַרשע)": "Musical organization"}
 m.ALIGN = {
     "ORG-C07166_Q01": ("MINT:shulamit_tlv", "music studies at 'Shulamit' in Eretz-Israel = the Shulamit Conservatory, Tel Aviv"),
     "ORG-C07166_Q02": ("MINT:shulamit_waw", "the Polish-language 'Shulamit' choir, Warsaw (König, age 10)"),
     "ORG-C01713": ("MINT:brighton4", "'Brighton school 4': the number individuates"),
+    "ORG-C00069": ("MINT:tsvisho_ar", "Zhitnitsky (Buenos Aires: Di prese, YIVO Argentina, IFT) was president of "
+                   "the TsVISHO and the Sholem Aleichem schools: the Argentine school organization, not the Polish TsIShO 1111"),
 }
 m.PARENTS = {}
 
