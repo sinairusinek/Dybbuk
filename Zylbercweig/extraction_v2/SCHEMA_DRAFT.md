@@ -194,6 +194,7 @@ Added 11-20 (§10):
 | `founding` | of any organization, theatre or not (school, union, party, newspaper) |
 | `strike`, `conflict` | actors' strikes, lawsuits, boycotts |
 | `marriage`, `divorce`, `birth_of_child` | when dated or placed |
+| `retirement`, `illness` (added 11-22, Sinai) | "left the stage", "became paralysed" |
 | `arrest`, `imprisonment`, `death`, `burial` | incl. Holocaust deaths: "perished with him in Klooga" = one `death` event, two participants |
 
 **Venue is a role, not a type:** a café, a hotel, a synagogue or a park can each be the
@@ -235,7 +236,7 @@ A station: `seq`, `subject` (person or organization mention; a troupe can tour),
   "People in Performance Events" professional roles are the starting list.
 - **work_kind:** play, operetta, opera, musical comedy, melodrama, sketch, one-act,
   revue, song, music (score), film, radio play, book, memoir, article, periodical,
-  comedy, tragedy, farce, Purim play (the last four added 11-21), other.
+  comedy, tragedy, farce, Purim play (the last four added 11-21), lebnsbild, dramatic poem, dialogue, shadow play (added 11-22, Sinai, from the shard-1 schema issues), other.
   **Recorded as stated, per mention** (decision 10): the same work may be called
   "drama" in one entry and "melodrama" in another; both are kept, with their evidence.
 - **source_kind:** see §2.

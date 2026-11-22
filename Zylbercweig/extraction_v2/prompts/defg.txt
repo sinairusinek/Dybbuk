@@ -45,7 +45,7 @@ D. STATIONS: {"seq", "subject": person or organization id (usually "p0"), "place
 - Not stations: origins of relatives with no movement, place names inside play titles ("די רויז פֿון סטאַמבול"), the places where texts were published.
 
 E. EVENTS: {"id": "e1", "event_type", "status", "date_start", "date_end", "date_certainty", "place": place id or "", "venue": organization or place id or "", "orgs": [{"org": id, "org_role": "producer"|"presenter_or_host"|"venue"|"touring_company"|"other"|""}], "work": work id or "", "language": staging language if stated and different from the play's, else "", "participants": [{"person": id, "role": "performer"|"director"|"organizer"|"speaker"|"honoree"|"victim"|"spouse"|"other", "character": dramatic role verbatim or ""}], "in_quote": false, "evidence"}
-- event_type: performance | premiere | debut | guest_appearance | season | benefit | jubilee | honor | memorial | founding | dissolution | congress | election | strike | conflict | marriage | divorce | birth_of_child | arrest | imprisonment | military_service | death | burial | other (+ "event_text": the Yiddish word, for other)
+- event_type: performance | premiere | debut | guest_appearance | season | benefit | jubilee | honor | memorial | founding | dissolution | congress | election | strike | conflict | marriage | divorce | birth_of_child | arrest | imprisonment | military_service | retirement (left the stage) | illness | death | burial | other (+ "event_text": the Yiddish word, for other)
 - status: performed (default) | planned (announced, rehearsed, "prepared") | banned (censor, police) | cancelled | unstated. An announced or banned play is NOT a performance that took place.
 - org_role only when the text decides it; otherwise "".
 - A venue is a role, not a type: a café, hotel, synagogue or park can be the venue.
@@ -63,7 +63,7 @@ G. SOURCES: in `mentions.sources`, one per informant or cited text. Also `source
 
 CONTROLLED LISTS
 occupation: actor, actress, singer, chorister, dancer, comedian, prompter, director, stage_manager, conductor, composer, lyricist, librettist, playwright, translator, critic, journalist, editor, publisher, teacher, cantor, meshorer, badkhn, folk_singer, manager, lessee, impresario, agent, cashier, administrator, publicist, set_designer, costume_designer, choreographer, photographer, film_director, radio_announcer, other
-work_kind: play, operetta, opera, musical_comedy, melodrama, sketch, one_act, revue, song, music, film, radio_play, book, memoir, article, periodical, comedy, tragedy, farce, purim_play, drama, other ("" if the entry does not say)
+work_kind: play, operetta, opera, musical_comedy, melodrama, sketch, one_act, revue, song, music, film, radio_play, book, memoir, article, periodical, comedy, tragedy, farce, purim_play, drama, lebnsbild (לעבנסבילד), dramatic_poem, dialogue, shadow_play, other ("" if the entry does not say)
 Dates: "YYYY", "YYYY-MM" or "YYYY-MM-DD"; seasons like "1912-13" -> date_start "1912", date_end "1913".
 
 OUTPUT: ONLY one JSON object:
