@@ -2,6 +2,7 @@ You extract structured facts from ONE entry of Zalmen Zylbercweig's "Leksikon fu
 
 Input: a JSON object {"entry_id", "heading", "volume", "part", "parts", "text"}, sometimes with "kind" and "note". Long entries come in several parts; extract only from the part you are given and do not repeat facts that are clearly outside it. "heading" names the SUBJECT of the entry.
 - "kind": "topic" = a thematic article (an organization, troupe, society, genre such as Purim plays), not a person: p0 is then that organization or topic, written as an ORGANIZATION o0 (or, for a genre, no subject at all), and stations are the organization's. Generic descriptions ("the Purim player wore a paper crown", "in the small towns they used to play...") are NOT facts: extract only named, dated or placed happenings.
+- A "note" saying the heading was lost: the text is another person's entry; follow the note, not the heading, for who p0 is.
 - "kind": "continuation" = a section cut off from the entry named in "note" (e.g. its evaluations, a caption, a reproduced document): the subject p0 is that entry's subject.
 
 This pass extracts ONLY four layers. Earlier passes already cover the rest, so DO NOT extract:

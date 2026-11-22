@@ -8,7 +8,7 @@ One entry (or one part of a long entry) per call; output is append-only JSONL ke
   python3.11 defg_job.py dump --ids-file ... --dir <dir>   # same inputs as files, for a Claude reference run
   python3.11 defg_job.py stats defg_pilot.jsonl            # tokens per entry / per 1k chars, cost
 """
-import argparse, csv, json, os, random, re, sys, time, threading
+import argparse, csv, json, os, random, re, sys, time, threading, unicodedata
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -48,7 +48,51 @@ def seg_fixes():
     return fx
 
 
+GLUED = HERE / "qa" / "glued_entry_fixes.tsv"  # 11-22: a second person's entry, heading lost (Claude read 98 candidates)
+
+
+def glued_fixes():
+    if not GLUED.exists():
+        return {}
+    g = {}
+    for r in csv.DictReader(GLUED.open(encoding="utf-8"), delimiter="\t"):
+        if r["kind"] == "glued_entry" and r["split_marker"]:
+            g.setdefault(r["person_id"], []).append(r)
+    return g
+
+
+def glued_split(pid, segs, gl):
+    """Cut each segment at a glued-entry marker (NFC). The second part is its own person entry
+    `pid~gN`; its name is given only when the text states it (else the initial the text uses)."""
+    rows = gl.get(pid)
+    if not rows:
+        return segs
+    out = []
+    for eid, head, kind, note, text in segs:
+        t = unicodedata.normalize("NFC", text)
+        cuts = sorted((t.find(unicodedata.normalize("NFC", r["split_marker"])), r) for r in rows
+                      if t.count(unicodedata.normalize("NFC", r["split_marker"])) == 1)
+        if not cuts:
+            out.append((eid, head, kind, note, text)); continue
+        start = 0; cur = (eid, head, kind, note)
+        for k, (pos, r) in enumerate(cuts, 1):
+            out.append((*cur, t[start:pos]))
+            name = r["second_person"].strip()
+            named = bool(name) and not re.fullmatch(r"\S{1,3}\.?", name)
+            cur = (f"{pid}~g{k}", name if named else f"(unknown; heading lost after {head})", "",
+                   "This text is a separate person's entry whose heading was lost in digitization"
+                   + (f"; the subject is {name}" if named else f"; the subject p0 is the person the text calls {name or 'he/she'}")
+                   + f". It is NOT {head}.")
+            start = pos
+        out.append((*cur, t[start:]))
+    return [o for o in out if o[4].strip()]
+
+
 def segments(pid, e, fx):
+    return glued_split(pid, _segments(pid, e, fx), glued_fixes())
+
+
+def _segments(pid, e, fx):
     """-> [(entry_id, heading, kind, note, text)]. A merged_article row cuts the text at its
     verbatim split_marker; the part after it becomes its own pseudo-entry `pid~a1`..., kind topic.
     split_section -> kind continuation of its parent; ok_topic -> kind topic."""
@@ -199,8 +243,10 @@ def stats(path, ents):
           f"({allc:,} chars) ≈ ${est:.2f} at ${PRICE_IN}/${PRICE_OUT} per M")
     lay = {k: 0 for k in ("stations", "events", "performance_facts", "source_uses", "schema_issues")}
     for r in ok:
+        res = r["result"]
+        res = next((y for y in res if isinstance(y, dict)), {}) if isinstance(res, list) else res
         for k in lay:
-            lay[k] += len(r["result"].get(k, []) or [])
+            lay[k] += len(res.get(k, []) or [])
     print(lay)
 
 
