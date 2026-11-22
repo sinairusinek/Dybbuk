@@ -8645,3 +8645,4 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-11-22T09:23:14Z	Sinai	org_addresses	db_merge	4992	MERGE_INTO	merged db_id 4997 into 4992: Bombach's inn, Lemberg: the hotel (Aned) and the tavern (Strudler, Podzamche) are one establishment	"{""loser_id"": ""4997"", ""survivor_id"": ""4992"", ""clusters_moved"": [""ORG-C05339""], ""source"": ""apply_dup_merges_2026_11_22.py""}"
 2026-11-22T09:23:14Z	Sinai	org_review	add_mention	ORG-C01804		Podzamche: Bombach's tavern on the Broad Street, Lemberg (missed by extraction)	{"xml_id": "facs_12_tr_1752652594", "db_id": "4992", "source": "apply_bombach_mention_2026_11_22.py"}
 2026-11-22T09:23:14Z	Sinai	org_addresses	set_address	4992	address=ברייטע גאַס	Bombach's inn: Szeroka / Broad Street (Podzamche)	{"source": "apply_bombach_mention_2026_11_22.py"}
+2026-11-22T09:46:34Z	Bella	org_review	alignment	ORG-C00818	NEW		"{""aligned_db_id"": ""5001""}"
