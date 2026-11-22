@@ -36,14 +36,56 @@ def split_text(t, n=PART_CHARS):
     return [p for p in parts if p]
 
 
+SEG_FIXES = HERE / "qa" / "segment_fixes.tsv"  # 11-22: glued articles + cut-off sections (Claude read 686 candidates)
+
+
+def seg_fixes():
+    if not SEG_FIXES.exists():
+        return {}
+    fx = {}
+    for r in csv.DictReader(SEG_FIXES.open(encoding="utf-8"), delimiter="\t"):
+        fx.setdefault(r["person_id"], []).append(r)
+    return fx
+
+
+def segments(pid, e, fx):
+    """-> [(entry_id, heading, kind, note, text)]. A merged_article row cuts the text at its
+    verbatim split_marker; the part after it becomes its own pseudo-entry `pid~a1`..., kind topic.
+    split_section -> kind continuation of its parent; ok_topic -> kind topic."""
+    rows, t = fx.get(pid, []), e["entry_text"]
+    kinds = {r["kind"] for r in rows}
+    if "merged_article" in kinds:
+        cuts = sorted((t.find(r["split_marker"]), r) for r in rows
+                      if r["kind"] == "merged_article" and r["split_marker"] and t.count(r["split_marker"]) == 1)
+        out, start, head, kind = [], 0, e["heading"], ""
+        for k, (pos, r) in enumerate(cuts, 1):
+            out.append((pid if k == 1 else f"{pid}~a{k - 1}", head, kind, "", t[start:pos]))
+            start, head, kind = pos, r["second_heading"], "topic"
+        out.append((f"{pid}~a{len(cuts)}" if cuts else pid, head, kind, "", t[start:]))
+        return [o for o in out if o[4].strip()]
+    if "split_section" in kinds:
+        r = next(r for r in rows if r["kind"] == "split_section")
+        return [(pid, r["parent_heading"] or e["heading"], "continuation",
+                 f"continuation of the entry {r['parent_heading']} (cut off under the heading {e['heading']})", t)]
+    if "ok_topic" in kinds:
+        return [(pid, e["heading"], "topic", "", t)]
+    return [(pid, e["heading"], "", "", t)]
+
+
 def items(ids, ents, n=PART_CHARS):
-    out = []
+    out, fx = [], seg_fixes()
     for pid in ids:
         e = ents[pid]
-        ps = split_text(e["entry_text"], n)
-        for k, p in enumerate(ps, 1):
-            out.append({"id": f"{pid}#{k}", "entry_id": pid, "heading": e["heading"],
-                        "volume": e["volume"], "part": k, "parts": len(ps), "text": p})
+        for eid, head, kind, note, text in segments(pid, e, fx):
+            ps = split_text(text, n)
+            for k, p in enumerate(ps, 1):
+                it = {"id": f"{eid}#{k}", "entry_id": eid, "heading": head,
+                      "volume": e["volume"], "part": k, "parts": len(ps), "text": p}
+                if kind:
+                    it["kind"] = kind
+                if note:
+                    it["note"] = note
+                out.append(it)
     return out
 
 

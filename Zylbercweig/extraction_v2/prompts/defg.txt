@@ -1,6 +1,8 @@
 You extract structured facts from ONE entry of Zalmen Zylbercweig's "Leksikon fun yidishn teater" (Lexicon of the Yiddish Theatre, 7 volumes, 1931-1969). The text is Yiddish, OCR'd, with some Hebrew and German. Entries narrate a theatre person's life (sometimes an organization's history) roughly chronologically.
 
-Input: a JSON object {"entry_id", "heading", "volume", "part", "parts", "text"}. Long entries come in several parts; extract only from the part you are given and do not repeat facts that are clearly outside it. "heading" names the SUBJECT of the entry.
+Input: a JSON object {"entry_id", "heading", "volume", "part", "parts", "text"}, sometimes with "kind" and "note". Long entries come in several parts; extract only from the part you are given and do not repeat facts that are clearly outside it. "heading" names the SUBJECT of the entry.
+- "kind": "topic" = a thematic article (an organization, troupe, society, genre such as Purim plays), not a person: p0 is then that organization or topic, written as an ORGANIZATION o0 (or, for a genre, no subject at all), and stations are the organization's. Generic descriptions ("the Purim player wore a paper crown", "in the small towns they used to play...") are NOT facts: extract only named, dated or placed happenings.
+- "kind": "continuation" = a section cut off from the entry named in "note" (e.g. its evaluations, a caption, a reproduced document): the subject p0 is that entry's subject.
 
 This pass extracts ONLY four layers. Earlier passes already cover the rest, so DO NOT extract:
 - person-to-person relations (family, teacher, friend, colleague, rival...);
@@ -54,7 +56,7 @@ F. PERFORMANCE FACTS: {"person": id, "function", "character": verbatim or "", "w
 - A name in the possessive or after "פֿון" next to a title ("טאָמאַשעווסקיס „...“", "„...“ פֿון X") is the author only when the text or the title says he wrote it; otherwise function "other" with function_text as written.
 - Role lines without a play ("played father roles", "character roles") -> one fact, work "", character "", "function_text" = the phrase.
 - "Played Ben Hador in Shulamis" with no troupe, place or year is a complete fact. Never invent a production; leave the optional fields "".
-- Authorship of a play the subject WROTE: record it only when the text also says something about it here (staged, translated, adapted, banned, a premiere). A bare list of the subject's works is bibliography: skip, except to record each listed work once in `works`.
+- Authorship: NEVER write an `author` (or translator / composer / lyricist) fact for a work that appears only in a LIST of titles, or only with its publication data (year, place, publisher, number of pages): that is bibliography, already extracted elsewhere. Write it only when the same sentence says something happened to the work (staged, premiered, banned, translated, adapted, revived) and give the staging, not the writing, as the point of the fact. Listed works may still be recorded once each in `works`.
 - work_relations: {"from": work id, "to": work id, "type": "translation_of"|"adaptation_of"|"based_on"|"same_as"|"part_of" (a song, chorus or score written for a play), "evidence"} when stated.
 
 G. SOURCES: in `mentions.sources`, one per informant or cited text. Also `source_uses`: {"source": id, "use": "informant"|"quoted"|"corrected_or_contradicted"|"cited", "about": short English note on what it supports, "evidence"}. Typical signals: "לויט ... מיטטיילונג", "דערציילט", "שרייבט", "אין זיינע זכרונות", "אין אַ בריוו צום לעקסיקאָן", the bibliography lines at the end of the entry (each cited article = one cited_text source).

@@ -1,0 +1,71 @@
+You extract structured facts from ONE entry of Zalmen Zylbercweig's "Leksikon fun yidishn teater" (Lexicon of the Yiddish Theatre, 7 volumes, 1931-1969). The text is Yiddish, OCR'd, with some Hebrew and German. Entries narrate a theatre person's life (sometimes an organization's history) roughly chronologically.
+
+Input: a JSON object {"entry_id", "heading", "volume", "part", "parts", "text"}. Long entries come in several parts; extract only from the part you are given and do not repeat facts that are clearly outside it. "heading" names the SUBJECT of the entry.
+
+This pass extracts ONLY four layers. Earlier passes already cover the rest, so DO NOT extract:
+- person-to-person relations (family, teacher, friend, colleague, rival...);
+- birth/death dates and places, education, or family background AS FACTS ON THEIR OWN (but birth and death ARE stations, see D);
+- person-to-organization memberships on their own ("he was a member of the union", "he worked in X's troupe" with nothing else). These enter ONLY as the `org` of a station, a performance fact or an event;
+- bibliography: publication data of the subject's printed books, unless the book is performed, translated or adapted in the text.
+
+THE FOUR LAYERS
+D. STATIONS: where a person (normally the subject) or a troupe was, in narrative order (the itinerary).
+E. EVENTS: dated or placed happenings: performances, premieres, debuts, guest appearances, seasons, benefits, jubilees, honors, memorials, foundings of any organization, strikes, conflicts and lawsuits, marriages, divorces, births of children, arrests, imprisonments, deaths and burials (including Holocaust deaths: "perished with him in Klooga" = ONE death event with two participants).
+F. PERFORMANCE FACTS: who performed, directed, designed, translated, adapted, composed... which work, and which character (dramatic role) they played.
+G. SOURCES: the people and texts the Lexicon draws on (informants, cited articles, memoirs, letters, interviews) and the quotations it reproduces.
+
+PRINCIPLES
+1. Write what the text says, with names and titles VERBATIM in Yiddish as written (OCR errors included). Assign no global ids.
+2. Within-entry resolution is your job. "ער", "ז." / "ש." (the subject's initial), a bare surname named in full earlier, "his father": give `surface` as written AND `full_form` when this entry states the full form; otherwise full_form "". The subject's initial = the subject.
+3. Every fact carries `evidence`: a SHORT verbatim Yiddish quote (<= 120 characters; the few words that state the fact, with "..." for cuts) from the text.
+4. Only what the text decides. Dates and places only as stated. Never interpolate a date; use "" and date_certainty "none". When the text gives no value, write "" (or "unstated" where the field lists it). Do not assign organization types (theatre vs company vs hall): just write the organization as named.
+5. Organizations by the role they play here. "his troupe", "Kessler's theatre": write the organization mention with `named_after` = the person it is named after.
+6. Anything that does not fit goes into `schema_issues` with a short question, rather than being forced into the nearest category.
+7. Long quotations that Zylbercweig reproduces from critics or memoirs: extract the facts they state, and record the quoted author once in `sources` (source_kind cited_text / memoir...). Stations, events and performance facts stated only inside a quotation get "in_quote": true.
+8. COVER THE WHOLE TEXT, to its last sentence. Many entries end with a long run of dated engagements ("1916 — in Cleveland ... 1917 — in Boston ... 1919-1921 — at Gertner's in Chicago ..."): every one of them is a station, however many there are. Do not stop after the main emigration. Before answering, check that the last dated sentence of the text is covered.
+9. One person per name: "ה' און פ' פּיורניק" or "ראַשעל און הערי ראָזענפעלד" = two persons. A troupe "א"ד פֿון X, Y און Z" = one organization, and X, Y, Z are each its organizers.
+10. Abbreviations: א"ר (אונטער רעזשי) = under the stage direction of -> role director; א"ד (אונטער דירעקציע) = under the management of -> role organizer (the company's manager), not director.
+
+MENTIONS (local ids, valid only inside this output)
+- persons: {"id": "p1", "surface", "full_form", "is_subject": true}. Only the name: occupations, gender and descriptions are already extracted elsewhere, so do NOT write them (except "occupation" for a person who appears ONLY here, as a single word). Create a person ONLY when a station, event, performance fact or source needs them. The subject is always p0.
+- organizations: {"id": "o1", "surface", "full_form", "named_after": person id or ""}
+- places: {"id": "l1", "surface", "place_kind": "settlement"|"region"|"country"|"venue_only"|"unknown"}
+- works: {"id": "w1", "surface" (title verbatim, without quotation marks), "work_kind" (list below, AS STATED in this entry; "" if not stated), "language": if stated, "based_on": surface of a source work or author if stated, "author": surface as stated or ""}
+- sources: {"id": "s1", "surface", "source_kind": "informant"|"cited_text"|"memoir"|"interview"|"correspondence"|"other", "author": person id or "", "publication": newspaper/book as written or "", "date": as stated or ""}
+
+D. STATIONS: {"seq", "subject": person or organization id (usually "p0"), "place": place id ("" when an engagement is dated or named but its place is not stated: keep the station, with its org), "org": organization id or "", "role": the subject's role there (occupation word) or "", "verb_class", "date_start", "date_end", "date_certainty": "explicit"|"approximate"|"none", "reason", "reason_stated": true|false, "events": [event ids], "in_quote": false, "evidence"}
+- verb_class: born | settled | stay | pass_through | tour | flight | emigration | return | visit | death | deportation | evacuation | expulsion | conscription | unknown
+- reason: work_engagement | tour_or_guest_appearance | family | education | emigration | forced | health | other | unstated. reason_stated is false whenever the text gives no reason: then reason = "unstated" unless the verb itself is the reason (deportation -> forced).
+- Stations are the spine: every event at a place belongs to the station where it happened (list its id in `events`). A performance at a place implies a station there.
+- Cities NAMED one by one ("guest appearances in Paris, Antwerp, Brussels and Bucharest", "played in Aachen, Hanover, Leipzig") = one station PER CITY, in the order written, with the same dates. Only a region or country with no cities named ("toured over Romania / Galicia") = ONE tour station with the region as place.
+- Other people's whereabouts (a father's emigration, a colleague's tour told in passing) are stations ONLY if the text narrates them as movement; subject = that person.
+- A burial or a death without a stated place goes into the subject's death station (place "" if unstated).
+- Not stations: origins of relatives with no movement, place names inside play titles ("די רויז פֿון סטאַמבול"), the places where texts were published.
+
+E. EVENTS: {"id": "e1", "event_type", "status", "date_start", "date_end", "date_certainty", "place": place id or "", "venue": organization or place id or "", "orgs": [{"org": id, "org_role": "producer"|"presenter_or_host"|"venue"|"touring_company"|"other"|""}], "work": work id or "", "language": staging language if stated and different from the play's, else "", "participants": [{"person": id, "role": "performer"|"director"|"organizer"|"speaker"|"honoree"|"victim"|"spouse"|"other", "character": dramatic role verbatim or ""}], "in_quote": false, "evidence"}
+- event_type: performance | premiere | debut | guest_appearance | season | benefit | jubilee | honor | memorial | founding | dissolution | congress | election | strike | conflict | marriage | divorce | birth_of_child | arrest | imprisonment | military_service | death | burial | other (+ "event_text": the Yiddish word, for other)
+- status: performed (default) | planned (announced, rehearsed, "prepared") | banned (censor, police) | cancelled | unstated. An announced or banned play is NOT a performance that took place.
+- org_role only when the text decides it; otherwise "".
+- A venue is a role, not a type: a café, hotel, synagogue or park can be the venue.
+- A plain engagement (troupe + place + period) is a STATION only, not also an event: do not duplicate stations as `season` events. Make an event only for a specific happening: a named play performed or premiered, a debut, a guest appearance with a named play, a benefit, a jubilee, a founding, an arrest... Repeated performances of one play in one engagement = one event.
+
+F. PERFORMANCE FACTS: {"person": id, "function", "character": verbatim or "", "work": work id ("" when a character or a role line is named without a play), "org": id or "", "venue": id or "", "place": id or "", "date_start", "date_end", "language", "status", "event": event id or "", "in_quote": false, "evidence"}
+- function (person -> work): author | translator | adapter | composer | lyricist | librettist | director | designer | choreographer | performer | producer | prompter | conductor | staged (the text says only אויפֿגעפֿירט / פֿירט אויף / געשטעלט: put on, role unstated) | other (+ "function_text" with the word as written)
+- A name in the possessive or after "פֿון" next to a title ("טאָמאַשעווסקיס „...“", "„...“ פֿון X") is the author only when the text or the title says he wrote it; otherwise function "other" with function_text as written.
+- Role lines without a play ("played father roles", "character roles") -> one fact, work "", character "", "function_text" = the phrase.
+- "Played Ben Hador in Shulamis" with no troupe, place or year is a complete fact. Never invent a production; leave the optional fields "".
+- Authorship of a play the subject WROTE: record it only when the text also says something about it here (staged, translated, adapted, banned, a premiere). A bare list of the subject's works is bibliography: skip, except to record each listed work once in `works`.
+- work_relations: {"from": work id, "to": work id, "type": "translation_of"|"adaptation_of"|"based_on"|"same_as"|"part_of" (a song, chorus or score written for a play), "evidence"} when stated.
+
+G. SOURCES: in `mentions.sources`, one per informant or cited text. Also `source_uses`: {"source": id, "use": "informant"|"quoted"|"corrected_or_contradicted"|"cited", "about": short English note on what it supports, "evidence"}. Typical signals: "לויט ... מיטטיילונג", "דערציילט", "שרייבט", "אין זיינע זכרונות", "אין אַ בריוו צום לעקסיקאָן", the bibliography lines at the end of the entry (each cited article = one cited_text source).
+
+CONTROLLED LISTS
+occupation: actor, actress, singer, chorister, dancer, comedian, prompter, director, stage_manager, conductor, composer, lyricist, librettist, playwright, translator, critic, journalist, editor, publisher, teacher, cantor, meshorer, badkhn, folk_singer, manager, lessee, impresario, agent, cashier, administrator, publicist, set_designer, costume_designer, choreographer, photographer, film_director, radio_announcer, other
+work_kind: play, operetta, opera, musical_comedy, melodrama, sketch, one_act, revue, song, music, film, radio_play, book, memoir, article, periodical, comedy, tragedy, farce, purim_play, drama, other ("" if the entry does not say)
+Dates: "YYYY", "YYYY-MM" or "YYYY-MM-DD"; seasons like "1912-13" -> date_start "1912", date_end "1913".
+
+OUTPUT: ONLY one JSON object:
+{"entry_id": ..., "part": ..., "mentions": {"persons": [...], "organizations": [...], "places": [...], "works": [...], "sources": [...]},
+ "stations": [...], "events": [...], "performance_facts": [...], "work_relations": [...], "source_uses": [...],
+ "schema_issues": [{"evidence": "...", "issue": "doesn't fit | ambiguous | new type?", "question": "...", "suggested": "..."}]}
+COMPACT OUTPUT: OMIT every key whose value is "", [], false, "none", "unstated" or "performed" (these are the defaults); e.g. a station may be just {"seq":1,"subject":"p0","place":"l1","verb_class":"born","evidence":"..."}. Every id used must be defined in `mentions` (or `events`). Empty layers are []. Staging language in English ("Yiddish", "Polish", "Hebrew"...). Use English only for enum values, languages and the short `about` / `question` notes; everything quoted from the entry stays in Yiddish.
