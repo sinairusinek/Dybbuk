@@ -42,9 +42,17 @@ like a NOT_AN_ORG review decision.
 Org node-id policy: org:<db_id> when the cluster is linked in core_db, else
 org_cluster:<cluster_id> (ext_ref_type=org_cluster, match_status=unmatched)
 so the review loop can align it later. A cluster the org review ruled GENERIC
-or NOT_AN_ORG (pc.NON_ENTITY_DECISIONS) gets no node and no edge; a SPLIT_DONE
+or NOT_AN_ORG (pc.NON_ENTITY_DECISIONS) gets no node and no org edge; a SPLIT_DONE
 parent's mention goes to the child for its settlement, and is dropped when it
 names no settlement.
+
+GENERIC mentions keep their KIND and PLACE (Sinai 2026-11-22, "kind as a
+property"; organizations/generic_kind.py): every one goes to
+kg/generic_mentions.tsv (g.generic_mentions), and one whose settlement resolves
+to a QID also gets a person -> place edge `generic_org_in`, role_detail = kind
+(yeshiva, gymnasium, theatre ...), provenance_fact_ids = cluster|category/relation.
+A kind is never a node, so no person -> person path can run through one; the
+place node only says what any born_in / located_in edge says: same town.
 """
 from __future__ import annotations
 
@@ -58,6 +66,9 @@ from glob import glob
 
 import plays_common as pc
 from kg_bio import norm_date, EXTRACTION_MODEL as _BIO_MODEL
+
+sys.path.insert(0, str(pc.ORGS_DIR))
+import generic_kind  # noqa: E402
 
 EXTRACTION_MODEL = "colab_extraction_IIIorg"
 TOURING_TYPES = {"Traveling Company", "Company on Tour"}
@@ -168,6 +179,50 @@ def _load_org_places() -> dict[str, list[dict]]:
     return out
 
 
+# ---------------------------------------------------------------- generic
+GENERIC_FIELDS = ["person_id", "person_node", "entry_key", "cluster_id", "canonical_yiddish",
+                  "kind", "relation", "role_title", "settlement", "place_qid",
+                  "date_start", "date_end", "evidence_sentence"]
+
+
+def _generic(g, stats, host, cid, canon, kind, rel, row, qids, places, sent) -> None:
+    """Record a GENERIC mention (kind + place), and a person -> place edge if placed."""
+    from build_kg import _place_label_yi, _place_label_en
+    settlement = _n(row.get(C_SETTLEMENT))
+    qid = qids.get(pc.norm_yiddish(settlement), "") if settlement else ""
+    spec = _n(rel.get("specific_relation"))
+    d0, d1, prec = norm_date(_n((rel.get("date_start") or {}).get("date")
+                                if isinstance(rel.get("date_start"), dict) else rel.get("date_start")))
+    e1, _, _ = norm_date(_n((rel.get("date_end") or {}).get("date")
+                            if isinstance(rel.get("date_end"), dict) else rel.get("date_end")))
+    d1 = e1 or d1
+    g.generic_mentions.append({
+        "person_id": host["person_id"], "person_node": host["node_id"],
+        "entry_key": host.get("entry_key", ""), "cluster_id": cid, "canonical_yiddish": canon,
+        "kind": kind, "relation": spec, "role_title": _n(rel.get("role_title")),
+        "settlement": settlement, "place_qid": qid, "date_start": d0, "date_end": d1,
+        "evidence_sentence": sent})
+    stats["generic_mention"] += 1
+    if not qid:
+        stats["generic_mention_unplaced"] += 1
+        return
+    pl = places.get(qid, {})
+    sec = json.dumps({k: pl.get(k, "") for k in ("kima_id", "lat", "lon")},
+                     ensure_ascii=False) if pl else ""
+    g.add_node(f"place:{qid}", node_type="place",
+               label_yiddish=_place_label_yi(pl, settlement),
+               label_english=_place_label_en(pl),
+               ext_ref_type="wikidata_qid", ext_ref_id=qid,
+               secondary_ids=sec, match_status="matched", source_layer="orgrel")
+    g.add_edge(source_id=host["node_id"], target_id=f"place:{qid}", edge_type="generic_org_in",
+               role_detail=kind, character="", date_start=d0, date_end=d1, date_precision=prec,
+               event_id="", production_key="", provenance_person_id=host["person_id"],
+               provenance_fact_ids=f"{cid}|{_n(rel.get('category'))}/{spec}",
+               evidence_sentence=sent, extraction_model=EXTRACTION_MODEL, confidence="medium",
+               match_status="matched", review_status="auto", source_layer="orgrel")
+    stats["edge:generic_org_in"] += 1
+
+
 # ---------------------------------------------------------------- layer
 def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
     from build_kg import _place_label_yi, _place_label_en
@@ -180,6 +235,14 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
     decisions = {cid: ((r.get("decision") or "").strip(), (r.get("aligned_db_id") or "").strip())
                  for cid, r in review.items() if (r.get("decision") or "").strip()}
     splits = pc.split_children(review)
+    kinds = generic_kind.kinds_for(review.values())
+    g.generic_mentions = []
+    # per-cluster settlement string -> QID, from the linked attestations
+    att_qid: dict[str, dict[str, str]] = defaultdict(dict)
+    for cid_, atts in org_places.items():
+        for a in atts:
+            if a.get("source_field") == "settlements":
+                att_qid[cid_].setdefault(pc.norm_yiddish(a["source_value"]), a["qid"])
     by_entry_key = {e["entry_key"]: e for e in entry_index.values()}
     stats: Counter = Counter()
     seen_edges: set[tuple] = set()
@@ -259,6 +322,9 @@ def add_orgrel_layer(g, labels, entry_index: dict[str, dict]) -> dict:
                     # node, no edge (the mention stays in organizations_clustered)
                     if not c2d.get(cid) and decisions.get(cid, ("",))[0] in pc.NON_ENTITY_DECISIONS:
                         stats[f"rel_dropped_{decisions[cid][0].lower()}"] += 1
+                        if cid in kinds:
+                            _generic(g, stats, host, cid, canon, kinds[cid], rel, row,
+                                     att_qid.get(cid, {}), places, sent)
                         continue
                     if core.get(c2d.get(cid) or "", {}).get("org_type", "") == NOT_AN_ORG_TYPE:
                         stats["rel_dropped_not_an_org_type"] += 1

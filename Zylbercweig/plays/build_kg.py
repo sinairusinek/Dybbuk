@@ -714,6 +714,9 @@ def main() -> None:
     pc.write_tsv(EDGES_TSV, g.edges, EDGE_FIELDS)
     pc.write_tsv(EVENTS_TSV, g.events, EVENT_FIELDS)
     pc.write_tsv(EXCLUDED_TSV, excluded, EXCLUDED_FIELDS)
+    if getattr(g, "generic_mentions", None) is not None:
+        import kg_orgrel
+        pc.write_tsv(pc.KG_DIR / "generic_mentions.tsv", g.generic_mentions, kg_orgrel.GENERIC_FIELDS)
     kg_bio.write_entry_index(bio_index)
     # layers review sheet: keep prior decisions, refresh counts/examples
     prior = {(r["slot"], r["surface"]): r for r in pc.read_tsv(LAYERS_REVIEW_TSV)}

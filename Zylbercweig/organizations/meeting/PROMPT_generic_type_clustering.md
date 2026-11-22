@@ -1,5 +1,42 @@
 # Session prompt — how should generic organization clusters be modelled?
 
+## STATUS 2026-11-22 — DECIDED and IMPLEMENTED (read this first; the 10-04 text below is history)
+
+**Decision (Sinai 11-22): kind as a property, not a node.** Neither (a) nor (b) as posed:
+- A GENERIC cluster never becomes a node of any kind (the KG has done this since `e716b891e`, 11-01).
+- Its mentions keep **kind + place**. `Zylbercweig/organizations/generic_kind.py` gives each
+  GENERIC row a kind: a fine kind for Education (yeshiva, kheyder, talmud-torah, gymnasium,
+  realschule, high-school, government-school, conservatory, drama-school, ...), the org_type
+  slug otherwise (theatre, traveling-company, military, press, ...). Corrections go in
+  `generic_kind_overrides.tsv` (cluster_id, kind, note), which wins over the rules.
+- `kg_orgrel.py` writes every GENERIC mention to `plays/kg/generic_mentions.tsv` (person, kind,
+  relation, settlement, QID, dates, sentence) and, when the settlement resolves, a
+  person -> place edge `generic_org_in` (role_detail = kind). There are no type nodes, so no
+  person -> person path can run through a kind. The place says "same town" and no more.
+- The city goes on the mention/edge, never on a (type, city) node.
+- Troupe tags: two schemes, by design. Troupe tags describe MINTED troupes; a generic troupe
+  cluster gets kind `traveling-company` (its org_type) and no tags.
+- First build: 1,878 GENERIC mentions, 1,170 people, 869 placed (e.g. yeshiva: 60 mentions,
+  55 people, 31 placed). Counts have grown since 10-04: 912 GENERIC rows, not 374.
+
+**Arbeter Ring / Tarbut / TsIShO defect: FIXED 11-22** (`apply_network_parents_2026_11_22.py`).
+Rule: a network sub-unit that does not individuate gets ALIGN to the network parent; one that
+does gets its own row with `parent_db_id` = the network. 11 GENERIC rows -> ALIGN (AR 189,
+TsIShO 1111, Tarbut minted 5077; Tarbut school Otaci 5078). The main AR cluster `ORG-C00198_Q01`
+(26 mentions, wrongly place-split and swept) was un-split -> ALIGN 189. 15 sub-units were
+parented. AR 189 went from 0 to 41 KG edges.
+
+**Still open** (flagged, nothing applied):
+- `ORG-C00069` 'צווישאָ' (Zhitnitsky, president): probably the Argentine TsVISHO, not 1111.
+- Sholem Aleichem school network is the same shape as AR: 'שלום עליכם שול 3' (numbered),
+  'שלום עליכם פאָלקשולן', 'שלום-עליכם-מיטלשול', and 'שלום עליכם פאָלקס אינסטיטוט' itself, all GENERIC.
+- 'ברייטענער שול 4' (numbered) and 'שולמית' x2 (perhaps the Shulamit conservatory, Tel Aviv) are GENERIC.
+- core_db 3073 / 3184: probably one AR old-age home, twice.
+
+---
+
+*Original prompt (2026-10-04):*
+
 Paste this into a new session. Everything below is current as of 2026-10-04.
 
 ## The question
