@@ -173,7 +173,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 186	Amphion Theatre		אַמפֿיאָן טעאַטער	Theatre		ORG-C06795 | ORG-C01027_Q02 | ORG-C03985 | ORG-C01027_Q01					
 187	Anshel Schorr's Troupe		אַנשעל שאָררס טרופּע	Traveling Company		ORG-C00676 | ORG-C05879 | ORG-C06149					
 188	Aquarium Theatre		אַקוואַריום טעאַטער	Theatre							
-189	Arbeter Ring (Workmen's Circle)		אַרבעטער רינג (וואָרקמענס קירקלע)	Jewish political bodies		ORG-C00198_Q03					
+189	Arbeter Ring (Workmen's Circle)		אַרבעטער רינג (וואָרקמענס קירקלע)	Jewish political bodies		ORG-C00198_Q03 | ORG-C00272_Q02 | ORG-C01520 | ORG-C01704 | ORG-C01705 | ORG-C02444 | ORG-C00198_Q01 | ORG-C00198_Q01_P01 | ORG-C00198_Q01_P02					
 190	Arch Street Theatre		אַרטש סטריט טעאַטער	Theatre		ORG-C00293 | ORG-C00378 | ORG-C04082 | ORG-C06339 | ORG-C01229					
 191	Arthur Hopkins' Theatre		אַרטור האָפּקינס טעאַטער	Theatre							
 193	Bagatela Theatre		באַגאַטעלאַ טעאַטער	Theatre		ORG-C01507 | ORG-C04911 | ORG-C05135_Q01 | ORG-C05875					
@@ -670,7 +670,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 698	Hashomer Hatzair (Chełm)	השומר הצעיר		Jewish political bodies	Chełm		602				
 699	פּראָגרעסיוו דראַמאַטיק קלוב	פּראָגרעסיוו דראַמאַטיק קלוב		Theatre				true	363		
 700		מאָזגאָוואָיס פֿארשטעלונגען		Theatre		ORG-C02465					
-701		נעסוויזשער צישאַ-שול		Education		ORG-C02812					
+701		נעסוויזשער צישאַ-שול		Education		ORG-C02812	1111				
 702		מאַגיסטראַט		Non-Jewish political bodies		ORG-C02813_Q01					
 703		באַראָכאָוו-שול (פינסק)		Education		ORG-C02814_Q01					
 704		ניי-געגרינדעטן יידישן מלוכה-טעאַטער		Theatre		ORG-C01823					
@@ -1076,7 +1076,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1108		טעאַטער נאָווי		Theatre		ORG-C01937_Q01 | ORG-C04084					
 1109		מיניאַטור-טעאַטער „קאָמעטא“		Theatre		ORG-C00644 | ORG-C03360_Q01					
 1110		יידישן קונסט-טעאַטער		Theatre		ORG-C00180_Q05 | ORG-C03191_Q01					
-1111		"ציש""אָ"		Education		ORG-C00545					
+1111		"ציש""אָ"		Education		ORG-C00545 | ORG-C01477 | ORG-C03665					
 1112		רוסישן טעאַטער		Theatre		ORG-C00036_Q05 | ORG-C00422_Q05 | ORG-C05869					
 1113		ווילנער כאָר-שול		Religious institutions/organizations		ORG-C01101 | ORG-C01232_P04					
 1114		ערשטער יידישער אַוונט שול		Education		ORG-C03486					
@@ -1914,11 +1914,11 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1975	שלום-עליכם-שול (כאָרבין)	שלום-עליכם-שול (כאָרבין)		Education		ORG-C00793_Q01					
 1976	דוד הערמאַנס סטודיע	דוד הערמאַנס סטודיע		Education		ORG-C03521					
 1977	דוד הערמאַנס טעאַטער-סטודיע	דוד הערמאַנס טעאַטער-סטודיע		Theatre education		ORG-C03172					
-1978	יידישער ראָדיקאָלער שולע, אַרבעטער רינג, בראנטש נומ' 3	יידישער ראָדיקאָלער שולע, אַרבעטער רינג, בראנטש נומ' 3		Education		ORG-C00611					
+1978	יידישער ראָדיקאָלער שולע, אַרבעטער רינג, בראנטש נומ' 3	יידישער ראָדיקאָלער שולע, אַרבעטער רינג, בראנטש נומ' 3		Education		ORG-C00611	2478				
 1979	'אַרבעטער פֿריינטקלוב'	'אַרבעטער פֿריינטקלוב'		Theatre		ORG-C03202					
 1980	'מיידים'	'מיידים'		Theatre		ORG-C03111					
 1981	אָרטיקע גימנאַזיע	אָרטיקע גימנאַזיע		Education				1		Deprecated 2026-11-22: re-applied Sinai's 2026-10-04 unmint (943cecb95), lost to the stale app save 020c0d4ac: a gymnasium/yeshiva named only by its town is a kind, not one school	
-1982	אַרבעטער רינג לערער-סעמינאַר	אַרבעטער רינג לערער-סעמינאַר		Education		ORG-C01431 | ORG-C02506					
+1982	אַרבעטער רינג לערער-סעמינאַר	אַרבעטער רינג לערער-סעמינאַר		Education		ORG-C01431 | ORG-C02506	189				
 1983	מייזלערס רעאַל-גימנאַזיע	מייזלערס רעאַל-גימנאַזיע		Education		ORG-C04916					
 1984	"""באראָן הירש""-פֿאָלקס-שול"	"""באראָן הירש""-פֿאָלקס-שול"		Education		ORG-C04262					
 1985	ישיבה ר' יצחק אַלחנן	ישיבה ר' יצחק אַלחנן		Education		ORG-C01057 | ORG-C04552					
@@ -1930,7 +1930,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 1991	"""אָרט""-שול פֿון אָדעס"	"""אָרט""-שול פֿון אָדעס"		Education		ORG-C02419					
 1992	"""אָרט""-שול פֿון אָדעס"	"""אָרט""-שול פֿון אָדעס"		Education		ORG-C02419					
 1993	אַקאַדעמיע זשולען	אַקאַדעמיע זשולען		Education		ORG-C02456					
-1994	אַרבעטער רינג-שול (פּיטסבורג)	אַרבעטער רינג-שול (פּיטסבורג)		Education		ORG-C00272_Q01					
+1994	אַרבעטער רינג-שול (פּיטסבורג)	אַרבעטער רינג-שול (פּיטסבורג)		Education		ORG-C00272_Q01	189				
 1995	אַראָנסאַנס יידישער שול	אַראָנסאַנס יידישער שול		Education		ORG-C02335					
 1996	"""אָרט""-שול פֿון אָדעס"	"""אָרט""-שול פֿון אָדעס"		Education		ORG-C02419					
 1997	"""אָרט""-שול פֿון אָדעס"	"""אָרט""-שול פֿון אָדעס"		Education		ORG-C02419					
@@ -2111,7 +2111,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2172	האַנטווערקער-שול בײַ דער וואַרשעווער יידישער מינע	וואַרשעווער יידישער מינע		Education		ORG-C00830					
 2173	אינטערנאַציאָנאַלער אַרבעטער-בילדונגס-קלאָב	אינטערנאַציאָנאַלער אַרבעטער-בילדונגס-קלאָב		Education		ORG-C00843					
 2174	וויטעבסקער יידישער אַרבעטס-שול	וויטעבסקער יידישער אַרבעטס-שול		Education		ORG-C04573					
-2175	וויליאַמסבורגער יידישע אַרבעטער רינג שול 1	וויליאַמסבורגער יידישע אַרבעטער רינג שול 1		Education		ORG-C01714					
+2175	וויליאַמסבורגער יידישע אַרבעטער רינג שול 1	וויליאַמסבורגער יידישע אַרבעטער רינג שול 1		Education		ORG-C01714	189				
 2176	ווילנער יידישער קאָנסערוואַטאָריע	ווילנער יידישער קאָנסערוואַטאָריע		Education		ORG-C03383					
 2177	ווילנער צייכן-שול	ווילנער צייכן-שול		Education		ORG-C03911					
 2178	ווילקאָמירער יידישע רעאַל-שול	ווילקאָמירער יידישע רעאַל-שול		Education		ORG-C02155					
@@ -2278,7 +2278,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2340	פּוילישן טעאַטער	פּוילישן טעאַטער		Theatre		ORG-C00441_Q01					
 2341	יאַסער יידישן שפּיטאָל	יאַסער יידישן שפּיטאָל		Health institutions		ORG-C01951					
 2342	לבנון-האָספּיטאָל	לבנון-האָספּיטאָל		Health institutions		ORG-C02190					
-2343	אַרבעטער רינג סאַנאַטאָריע	אַרבעטער רינג סאַנאַטאָריע		Health institutions		ORG-C07003					
+2343	אַרבעטער רינג סאַנאַטאָריע	אַרבעטער רינג סאַנאַטאָריע		Health institutions		ORG-C07003	189				
 2344	ראובן בריינין קליניק	ראובן בריינין קליניק		Health institutions		ORG-C03793					
 2345	דעבאַראַ	דעבאַראַ		Health institutions		ORG-C07455					
 2346	סיטי אָוו האָופּ	סיטי אָוו האָופּ		Health institutions		ORG-C07454					
@@ -2462,7 +2462,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2524	נאָראָאָבראַז	נאָראָאָבראַז		Non-Jewish political bodies		ORG-C01763					
 2525	דאַנציגער מאַגיסטראַט	דאַנציגער מאַגיסטראַט		Non-Jewish political bodies		ORG-C01788					
 2526	דייטשער פּרעס-פאַרוואַלטונג	דייטשער פּרעס-פאַרוואַלטונג		Non-Jewish political bodies		ORG-C01815					
-2527	ברענטש 6 אַרבעטער רינג	ברענטש 6 אַרבעטער רינג		Jewish political bodies		ORG-C01824					
+2527	ברענטש 6 אַרבעטער רינג	ברענטש 6 אַרבעטער רינג		Jewish political bodies		ORG-C01824	189				
 2528	צ'ק פֿון ווייסרוסלאַנד און פּוילן	צ'ק פֿון ווייסרוסלאַנד און פּוילן		Non-Jewish political bodies		ORG-C01883					
 2529	פֿאַרייניקטער פּאַרטיי רעכטע פּ'צ	פֿאַרייניקטער פּאַרטיי רעכטע פּ'צ		Jewish political bodies		ORG-C01884					
 2530	ליגע פֿאַרן אַרבעטנדיקן א'י	ליגע פֿאַרן אַרבעטנדיקן א'י		Jewish political bodies		ORG-C01885					
@@ -2471,8 +2471,8 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2533	ענגלישער ציוניסטישער פעדעראַציע	ענגלישער ציוניסטישער פעדעראַציע		Jewish political bodies		ORG-C02026					
 2534	פֿאַראייניקטע יידישע געווערקשאַפטן	פֿאַראייניקטע יידישע געווערקשאַפטן		Jewish political bodies		ORG-C02030_Q02					
 2535	פֿאַראייניקטע יידישע געווערקשאַפטן	פֿאַראייניקטע יידישע געווערקשאַפטן		Jewish political bodies		ORG-C02030_Q03					
-2536	בילדונגס-קאָמיטעט פֿון אַרבעטער רינג	בילדונגס-קאָמיטעט פֿון אַרבעטער רינג		Jewish political bodies		ORG-C02092					
-2537	אַרבעטער רינג יוגנט צענטער	אַרבעטער רינג יוגנט צענטער		Jewish political bodies	22 איסט 15סטע גאַס	ORG-C02135					
+2536	בילדונגס-קאָמיטעט פֿון אַרבעטער רינג	בילדונגס-קאָמיטעט פֿון אַרבעטער רינג		Jewish political bodies		ORG-C02092	189				
+2537	אַרבעטער רינג יוגנט צענטער	אַרבעטער רינג יוגנט צענטער		Jewish political bodies	22 איסט 15סטע גאַס	ORG-C02135	189				
 2538	בילדונגס-דעפּאָרטמענט ביים אַרבייטער רינג	בילדונגס-דעפּאָרטמענט ביים אַרבייטער רינג		Jewish political bodies		ORG-C02136					
 2539	טיפליסער סאָוויעט פֿון אַרבעטער און סאָלדאָטן-דעפּוטאָטן	טיפליסער סאָוויעט פֿון אַרבעטער און סאָלדאָטן-דעפּוטאָטן		Non-Jewish political bodies		ORG-C02141					
 2540	טעאָדאָר רוזוועלטס פּראָגרעסיווער פּאַרטיי	טעאָדאָר רוזוועלטס פּראָגרעסיווער פּאַרטיי		Non-Jewish political bodies		ORG-C02193					
@@ -2531,7 +2531,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2593	סטעיט קאָמישאַן פֿאַר עלטערע מענטשן	סטעיט קאָמישאַן פֿאַר עלטערע מענטשן		Non-Jewish political bodies		ORG-C03755					
 2594	שלמה מענדעלסאָן ברענטש 683	שלמה מענדעלסאָן ברענטש 683		Jewish political bodies		ORG-C03784					
 2595	אָרטור זיגעלבוים ברענטש	אָרטור זיגעלבוים ברענטש		Jewish political bodies		ORG-C03785					
-2596	אַרבעטער רינג כרענטש 324	אַרבעטער רינג כרענטש 324		Jewish political bodies		ORG-C03799					
+2596	אַרבעטער רינג כרענטש 324	אַרבעטער רינג כרענטש 324		Jewish political bodies		ORG-C03799	189				
 2597	אַמעריקאַנער רעגירונג	אַמעריקאַנער רעגירונג		Non-Jewish political bodies		ORG-C03805					
 2598	צ. ק. פֿון דער יידישער סעקציע אין דער קאָמוניסטישער פּאַרטיי	צ. ק. פֿון דער יידישער סעקציע אין דער קאָמוניסטישער פּאַרטיי		Jewish political bodies		ORG-C03889					
 2599	בונדישער אַקאַדעמישער אָרגאַניזאַציע	בונדישער אַקאַדעמישער אָרגאַניזאַציע		Jewish political bodies		ORG-C04144					
@@ -2579,7 +2579,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2641	ציוניסטישער אָרגאַניזאַציע אין סינסינעטי	ציוניסטישער אָרגאַניזאַציע אין סינסינעטי		Jewish political bodies		ORG-C06742					
 2642	יידישן אַרבעטער-קלוב „דער דריטער אינטערנאַציאָנאַל“	יידישן אַרבעטער-קלוב „דער דריטער אינטערנאַציאָנאַל“		Cultural/workers' club							
 2643	מיניסטעריום פֿאַר אויסלענדישע ענינים	מיניסטעריום פֿאַר אויסלענדישע ענינים		Non-Jewish political bodies		ORG-C06886					
-2644	ברענטש 597 אַרבעטער רינג	ברענטש 597 אַרבעטער רינג		Jewish political bodies		ORG-C06929					
+2644	ברענטש 597 אַרבעטער רינג	ברענטש 597 אַרבעטער רינג		Jewish political bodies		ORG-C06929	189				
 2645	אנאַרכיסטישן בערנער סטריט קלוב	אנאַרכיסטישן בערנער סטריט קלוב		Jewish political bodies		ORG-C06933					
 2646	יידישער פֿאָלקס-ליגע	יידישער פֿאָלקס-ליגע		Jewish political bodies		ORG-C07020					
 2647	יידישער קאָמיטעט אין מינכען	יידישער קאָמיטעט אין מינכען		Jewish political bodies		ORG-C07120					
@@ -2591,7 +2591,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2653	חורבי שפת עבר	חורבי שפת עבר		Jewish political bodies		ORG-C07420					
 2654	יחיעם-קלוב פֿון דער פּיאָנערן פרויען אָרגאַניזאַציע	יחיעם-קלוב פֿון דער פּיאָנערן פרויען אָרגאַניזאַציע		Jewish political bodies		ORG-C07438					
 2655	"מעדעם ברענטש א""ר"	"מעדעם ברענטש א""ר"		Jewish political bodies		ORG-C07448					
-2656	אַרבעטער-רינג דיוויזיע	אַרבעטער-רינג דיוויזיע		Jewish political bodies		ORG-C07450					
+2656	אַרבעטער-רינג דיוויזיע	אַרבעטער-רינג דיוויזיע		Jewish political bodies		ORG-C07450	189				
 2657	קאָמבונד	קאָמבונד		Jewish political bodies		ORG-C07477					
 2658	בן-גוריון-צווייג פֿון יידיש-נאַציאָנאַלן אַרבעטער-פֿאַרבאַנד	בן-גוריון-צווייג פֿון יידיש-נאַציאָנאַלן אַרבעטער-פֿאַרבאַנד		Jewish political bodies		ORG-C07481					
 2659	"„הצפֿירה""-גרופּע פֿון דער פּיאָנערן פרויען אָרגאַניזאַציע"	"„הצפֿירה""-גרופּע פֿון דער פּיאָנערן פרויען אָרגאַניזאַציע"		Jewish political bodies		ORG-C07489					
@@ -2894,7 +2894,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 2956		ציקאָ ביכער פֿאַרלאָג		Publisher		ORG-C02076					
 2957		בערטהאָלד לעווי פֿאַרלאָג		Publisher		ORG-C02145					
 2958		בּיכער פֿאַר אַלע		Publisher		ORG-C02154					
-2959		אַרבעטער רינג קינדער ביבליאָטעק		Publisher		ORG-C02183					
+2959		אַרבעטער רינג קינדער ביבליאָטעק		Publisher		ORG-C02183	189				
 2960		שטיבל-פֿאַרלאַג		Publisher		ORG-C02231 | ORG-C01894					
 2961		מאָלערמאַנס ליטעראַרישע פּאָבלישינג קאָמפּאָני		Publisher		ORG-C02311					
 2962		פאַרלאַג פון ווילנער געטאָ		Publisher		ORG-C02962					
@@ -3008,7 +3008,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 3070	קאַלישער אומפּאַרטייאישער רעליף קאָמיטעט	קאַלישער אומפּאַרטייאישער רעליף קאָמיטעט		Welfare/Aid organization		ORG-C07411					
 3071	מלאַווער סאָסייעטי	מלאַווער סאָסייעטי		Welfare/Aid organization		ORG-C07422					
 3072	פֿאַראייניקטער לאָדזשער רעליף קאָמיטעט	פֿאַראייניקטער לאָדזשער רעליף קאָמיטעט		Welfare/Aid organization		ORG-C07433					
-3073	היים פֿאַר עלטערע מיטגלידער ביים 'אַרבעטער-רינג'	היים פֿאַר עלטערע מיטגלידער ביים 'אַרבעטער-רינג'		Welfare/Aid organization		ORG-C07434					
+3073	היים פֿאַר עלטערע מיטגלידער ביים 'אַרבעטער-רינג'	היים פֿאַר עלטערע מיטגלידער ביים 'אַרבעטער-רינג'		Welfare/Aid organization		ORG-C07434	189				
 3074	ערשטן פעלשטיינער אונטערשטיצונגס פאַראיין	ערשטן פעלשטיינער אונטערשטיצונגס פאַראיין		Welfare/Aid organization		ORG-C07463					
 3075	סטאַרס אָוו טהי סיטי אָוו האָופּ	סטאַרס אָוו טהי סיטי אָוו האָופּ		Welfare/Aid organization		ORG-C07476					
 3076	קולטור-אָפּטיילונג ביי דער קהלה איז בוענאָס איירעס	קולטור-אָפּטיילונג ביי דער קהלה איז בוענאָס איירעס		Religious institutions/organizations		ORG-C00277					
@@ -3119,7 +3119,7 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 3181	קולטור-דעפּאָרטאָמענט	קולטור-דעפּאָרטאָמענט		Religious institutions/organizations		ORG-C03779					
 3182	זאָגלעמביא קלוב	זאָגלעמביא קלוב		Welfare/Aid organization		ORG-C03786					
 3183	נאַשעלסקער אָרגאַניזאַציע	נאַשעלסקער אָרגאַניזאַציע		Welfare/Aid organization		ORG-C03792					
-3184	„היים פֿאַר עלטערע“ ביים אַרבעטער רינג	„היים פֿאַר עלטערע“ ביים אַרבעטער רינג		Welfare/Aid organization		ORG-C03795					
+3184	„היים פֿאַר עלטערע“ ביים אַרבעטער רינג	„היים פֿאַר עלטערע“ ביים אַרבעטער רינג		Welfare/Aid organization		ORG-C03795	189				
 3185	לאָדזשער יאָנג לעידיס	לאָדזשער יאָנג לעידיס		Welfare/Aid organization		ORG-C03796					
 3186	אַסאָשיעיד לאָדזשער לעידיס	אַסאָשיעיד לאָדזשער לעידיס		Welfare/Aid organization		ORG-C03797					
 3187	אַסאָשיעיד לאָדזשער לעידיס	אַסאָשיעיד לאָדזשער לעידיס		Welfare/Aid organization		ORG-C03797					
@@ -5009,3 +5009,5 @@ db_id	name	name_yiddish	name_yiddish_translit	org_type	address	linked_cluster_id
 5074	American Cloak and Suit Manufacturers' Association	אַמעריקען קלאַוק ענד סוט מאַנופֿעקטשורערס אַסאָסיאיישאָן		Trade Union / Professional Association		ORG-C07435					
 5075	Education Commissariat for Lithuania	בילדונגס-קאָמיסאַריאַט פֿאַר ליטע		Non-Jewish political bodies		ORG-C04163					
 5076	ציב (Poale Zion bureau), Vienna 1919	ציב		Jewish political bodies	ווין	ORG-C01082					
+5077	Tarbut (Hebrew-language school network)	תרבות		Education		ORG-C03388 | ORG-C07185					
+5078	Tarbut elementary school, Otaci	תרבות עלעמענטאַר שול (אָטאַקיי)		Education	אָטאַקיי	ORG-C07186	5077				
