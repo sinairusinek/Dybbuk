@@ -60,9 +60,11 @@ def segments(pid, e, fx):
         out, start, head, kind = [], 0, e["heading"], ""
         for k, (pos, r) in enumerate(cuts, 1):
             out.append((pid if k == 1 else f"{pid}~a{k - 1}", head, kind, "", t[start:pos]))
-            start, head, kind = pos, r["second_heading"], "topic"
+            # a glued PERSON entry (heading "surname, first") stays a person; a donor list is skipped
+            start, head = pos, r["second_heading"]
+            kind = "skip" if "תורמים" in head else ("" if "," in head else "topic")
         out.append((f"{pid}~a{len(cuts)}" if cuts else pid, head, kind, "", t[start:]))
-        return [o for o in out if o[4].strip()]
+        return [o for o in out if o[4].strip() and o[2] != "skip"]
     if "split_section" in kinds:
         r = next(r for r in rows if r["kind"] == "split_section")
         return [(pid, r["parent_heading"] or e["heading"], "continuation",
