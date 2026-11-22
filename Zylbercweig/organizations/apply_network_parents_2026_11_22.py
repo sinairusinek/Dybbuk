@@ -76,6 +76,7 @@ ALIGN = {  # cluster_id -> (target, why)
     "ORG-C00198_Q01_P01": (AR, "child of the un-split C00198_Q01 (Waldheim cemetery mention)"),
     "ORG-C00198_Q01_P02": (AR, "child of the un-split C00198_Q01 (New York)"),
 }
+NETWORK_MINTS = {"tarbut"}
 PARENTS = {d: AR for d in "1982 1994 2175 2343 2527 2536 2537 2596 2644 2656 2959 3073 3184".split()}
 PARENTS.update({"1978": AR_LONDON, "701": TSISHO})
 
@@ -148,7 +149,10 @@ def main(apply: bool, reviewer: str) -> None:
         if r is None:
             print(f"  ERROR missing {cid}"); continue
         d = resolve(t)
-        if r["decision"].strip() == "ALIGN" and r["aligned_db_id"].strip() == d:
+        # a cluster that is the sole source of a row minted here is NEW; a network
+        # parent minted here (NETWORK_MINTS) collects several clusters, so ALIGN
+        want = "NEW" if t.startswith("MINT:") and t[5:] not in NETWORK_MINTS else "ALIGN"
+        if r["decision"].strip() == want and r["aligned_db_id"].strip() == d:
             continue
         was = f"{r['decision']} {r['aligned_db_id']}".strip()
         # unlink from any other db row; link to the target
@@ -160,11 +164,12 @@ def main(apply: bool, reviewer: str) -> None:
         if cid not in pipes(by[d]["linked_cluster_ids"]):
             by[d]["linked_cluster_ids"] = " | ".join(pipes(by[d]["linked_cluster_ids"]) + [cid])
         prev = r["reviewer_notes"].strip()
-        r["decision"], r["aligned_db_id"] = "ALIGN", d
-        r["reviewer_notes"] = f"{TAG}: {why} (was {was})" + (" | " + prev if prev else "")
+        r["decision"], r["aligned_db_id"] = want, d
+        if TAG not in prev:
+            r["reviewer_notes"] = f"{TAG}: {why} (was {was})" + (" | " + prev if prev else "")
         r["reviewer"], r["reviewed_at"] = reviewer, now
-        L("org_review", "alignment", cid, "ALIGN", why, {"aligned_db_id": d, "was": was})
-        print(f"  {cid:20s} {was:12s} -> ALIGN {d}   {r['canonical_yiddish']}")
+        L("org_review", "alignment", cid, want, why, {"aligned_db_id": d, "was": was})
+        print(f"  {cid:20s} {was:12s} -> {want} {d}   {r['canonical_yiddish']}")
 
     for d, p in PARENTS.items():
         r = by[d]
