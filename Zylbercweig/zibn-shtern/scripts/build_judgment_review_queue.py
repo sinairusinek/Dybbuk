@@ -45,6 +45,8 @@ _NAMEAMB  = _WORKING / "kima" / "audit_name_exact_ambiguous.tsv"
 _AMBALL   = _WORKING / "kima" / "audit_ambiguity_all.tsv"
 # 2026-11-15 gazetteer QID audit: the cases text + Wikidata could not settle
 _GAZRES   = _WORKING / "kima" / "audit_gazetteer_qid_residue_2026-11-15.tsv"
+# every dated residue file (11-15 audit, 11-22 no-QID dodgy rows, later rounds)
+_GAZRES_ALL = sorted((_WORKING / "kima").glob("audit_gazetteer_qid_residue_*.tsv"))
 _ATTEST   = _WORKING / "toponyms_attestations.csv"
 _CLUSTERS = _ZYLB / "organizations" / "organizations_clustered.tsv"
 _LEXICON  = _ZYLB / "The Lexicon"
@@ -439,8 +441,8 @@ def main() -> None:
         + build_punchlist_rows(clusters, lex, attest, places)
         + build_ambiguity_rows(_NAMEAMB, "kima_options", clusters, lex, attest, places)
         + build_ambiguity_rows(_AMBALL, "options", clusters, lex, attest, places)
-        + (build_ambiguity_rows(_GAZRES, "options", clusters, lex, attest, places)
-           if _GAZRES.exists() else [])
+        + [row for f in _GAZRES_ALL
+           for row in build_ambiguity_rows(f, "options", clusters, lex, attest, places)]
     )
     new_rows = merge_by_source_value(source_rows)
     # Bake per-mention breakdown (feature A) — grouped by source_record_id.
