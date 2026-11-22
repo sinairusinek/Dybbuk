@@ -8642,3 +8642,6 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-11-22T08:41:39Z	Sinai	org_review	reopen	ORG-C01414	decision=	was NEW db 4946: Unzer Kemp unminted, left undecided	{"was": ["NEW", "4946", "Sinai"], "source": "apply_hospitality_mints_2026_11_22.py"}
 2026-11-22T08:41:39Z	Sinai	org_addresses	set_parent	4297	parent_db_id=	parent Unzer Kemp 4946 unminted	{"source": "apply_hospitality_mints_2026_11_22.py"}
 2026-11-22T09:16:13Z	Sinai	org_addresses	set_parent	4297	parent_db_id=405	Camp Kinder-Velt under the Farband (Sinai 11-22), after Unzer Kemp 4946 was unminted	{"source": "manual 11-22"}
+2026-11-22T09:23:14Z	Sinai	org_addresses	db_merge	4992	MERGE_INTO	merged db_id 4997 into 4992: Bombach's inn, Lemberg: the hotel (Aned) and the tavern (Strudler, Podzamche) are one establishment	"{""loser_id"": ""4997"", ""survivor_id"": ""4992"", ""clusters_moved"": [""ORG-C05339""], ""source"": ""apply_dup_merges_2026_11_22.py""}"
+2026-11-22T09:23:14Z	Sinai	org_review	add_mention	ORG-C01804		Podzamche: Bombach's tavern on the Broad Street, Lemberg (missed by extraction)	{"xml_id": "facs_12_tr_1752652594", "db_id": "4992", "source": "apply_bombach_mention_2026_11_22.py"}
+2026-11-22T09:23:14Z	Sinai	org_addresses	set_address	4992	address=ברייטע גאַס	Bombach's inn: Szeroka / Broad Street (Podzamche)	{"source": "apply_bombach_mention_2026_11_22.py"}
