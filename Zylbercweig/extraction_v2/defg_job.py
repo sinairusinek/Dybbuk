@@ -17,7 +17,7 @@ ENTRY_TEXTS = HERE.parent / "people" / "entry_texts.tsv"
 PROMPT = HERE / "prompts" / "defg.txt"
 MODEL = "gemini-3-flash-preview"
 PRICE_IN, PRICE_OUT = 0.50, 3.00  # $ per M tokens assumed for gemini-3-flash-preview (as in 8f)
-PART_CHARS = 24000
+PART_CHARS = 3000  # 11-22 pilot: 24k parts lost most facts on entries > ~5k chars; 3k matches the Claude reference
 csv.field_size_limit(10**9)
 
 
@@ -36,11 +36,11 @@ def split_text(t, n=PART_CHARS):
     return [p for p in parts if p]
 
 
-def items(ids, ents):
+def items(ids, ents, n=PART_CHARS):
     out = []
     for pid in ids:
         e = ents[pid]
-        ps = split_text(e["entry_text"])
+        ps = split_text(e["entry_text"], n)
         for k, p in enumerate(ps, 1):
             out.append({"id": f"{pid}#{k}", "entry_id": pid, "heading": e["heading"],
                         "volume": e["volume"], "part": k, "parts": len(ps), "text": p})
@@ -170,6 +170,7 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--thinking", type=int, default=0)
+    ap.add_argument("--part-chars", type=int, default=PART_CHARS)
     a = ap.parse_args()
     ents = entries()
     if a.cmd == "pilot-ids":
@@ -183,7 +184,7 @@ def main():
     ids = [l.strip() for l in Path(a.ids_file).read_text(encoding="utf-8").splitlines() if l.strip()]
     if a.limit:
         ids = ids[: a.limit]
-    its = items(ids, ents)
+    its = items(ids, ents, a.part_chars)
     if a.cmd == "dump":
         d = Path(a.dir); d.mkdir(parents=True, exist_ok=True)
         for it in its:
