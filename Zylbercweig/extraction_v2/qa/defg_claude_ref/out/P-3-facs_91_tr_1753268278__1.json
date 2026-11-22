@@ -1,0 +1,218 @@
+{
+ "entry_id": "P-3-facs_91_tr_1753268278",
+ "part": 1,
+ "mentions": {
+  "persons": [
+   {
+    "surface": "פּ.",
+    "full_form": "פּינטשיק, פּ. [פּנחס סגל]",
+    "is_subject": true,
+    "id": "p0"
+   },
+   {
+    "surface": "ווינאָקור",
+    "id": "p1"
+   }
+  ],
+  "organizations": [
+   {
+    "surface": "אינטימען טעאַטער",
+    "id": "o1"
+   },
+   {
+    "surface": "יידישן טעאַטער",
+    "id": "o2"
+   },
+   {
+    "surface": "שיקאַגער קאָנצערט-ביוראָ",
+    "id": "o3"
+   }
+  ],
+  "places": [
+   {
+    "surface": "זיוויטיוו",
+    "place_kind": "settlement",
+    "id": "l1"
+   },
+   {
+    "surface": "קיעוו",
+    "place_kind": "settlement",
+    "id": "l2"
+   },
+   {
+    "surface": "פּעטערבורג",
+    "place_kind": "settlement",
+    "id": "l3"
+   },
+   {
+    "surface": "פֿאַראייניקטע שטאַטן פֿון אַמעריקע",
+    "place_kind": "country",
+    "id": "l4"
+   },
+   {
+    "surface": "אייראָפּע",
+    "place_kind": "region",
+    "id": "l5"
+   },
+   {
+    "surface": "ארץ-ישראל",
+    "place_kind": "country",
+    "id": "l6"
+   },
+   {
+    "surface": "צענטראַל-אַמעריקע",
+    "place_kind": "region",
+    "id": "l7"
+   },
+   {
+    "surface": "דרום-אַמעריקע",
+    "place_kind": "region",
+    "id": "l8"
+   }
+  ],
+  "works": [],
+  "sources": []
+ },
+ "stations": [
+  {
+   "seq": 1,
+   "subject": "p0",
+   "place": "l1",
+   "verb_class": "born",
+   "date_start": "1897-03-16",
+   "date_certainty": "explicit",
+   "evidence": "געבוירן 16 מערץ 1897 אין זיוויטיוו, קיעווער גוב., אוקראַאינע"
+  },
+  {
+   "seq": 2,
+   "subject": "p0",
+   "place": "l2",
+   "verb_class": "settled",
+   "reason": "family",
+   "reason_stated": true,
+   "events": [
+    "e1",
+    "e2",
+    "e3"
+   ],
+   "evidence": "געוואָרן אַ יתום און אַוועק צו זיין זיידן אין קיעוו"
+  },
+  {
+   "seq": 3,
+   "subject": "p0",
+   "place": "l3",
+   "role": "cantor",
+   "verb_class": "stay",
+   "evidence": "דאוונט דערנאָך דריי יאָר אַלס אויבער-קאנטאָר אין כאָר-שול אין פּעטערבורג"
+  },
+  {
+   "seq": 4,
+   "subject": "p0",
+   "place": "l4",
+   "org": "o3",
+   "role": "cantor",
+   "verb_class": "emigration",
+   "date_start": "1928",
+   "date_certainty": "explicit",
+   "reason": "work_engagement",
+   "reason_stated": true,
+   "evidence": "איינגעלאדן פֿון אַ שיקאַגער קאָנצערט-ביוראָ, קומט פּ. אין 1928 אין די פֿאַראייניקטע שטאטן פֿון אַמעריקע"
+  },
+  {
+   "seq": 5,
+   "subject": "p0",
+   "place": "l5",
+   "verb_class": "visit",
+   "reason": "tour_or_guest_appearance",
+   "evidence": "באַזוכנדיק דורך דער צייט אייראָפּע, ארץ-ישראל, ווי אויך צענטראַל- און דרום-אַמעריקע"
+  },
+  {
+   "seq": 6,
+   "subject": "p0",
+   "place": "l6",
+   "verb_class": "visit",
+   "reason": "tour_or_guest_appearance",
+   "evidence": "באַזוכנדיק דורך דער צייט אייראָפּע, ארץ-ישראל, ווי אויך צענטראַל- און דרום-אַמעריקע"
+  },
+  {
+   "seq": 7,
+   "subject": "p0",
+   "place": "l7",
+   "verb_class": "visit",
+   "reason": "tour_or_guest_appearance",
+   "evidence": "באַזוכנדיק דורך דער צייט אייראָפּע, ארץ-ישראל, ווי אויך צענטראַל- און דרום-אַמעריקע"
+  },
+  {
+   "seq": 8,
+   "subject": "p0",
+   "place": "l8",
+   "verb_class": "visit",
+   "reason": "tour_or_guest_appearance",
+   "evidence": "באַזוכנדיק דורך דער צייט אייראָפּע, ארץ-ישראל, ווי אויך צענטראַל- און דרום-אַמעריקע"
+  }
+ ],
+ "events": [
+  {
+   "id": "e1",
+   "event_type": "other",
+   "place": "l2",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    }
+   ],
+   "evidence": "נאָכן אָפּגעבן דעם ערשטן קאָנצערט אין דער שול"
+  },
+  {
+   "id": "e2",
+   "event_type": "season",
+   "place": "l2",
+   "venue": "o1",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    }
+   ],
+   "evidence": "ווערט ער אָנגאַזשירט אַלס כאָריסט אין רוסישן „אינטימען טעאַטער“, וואו ער זינגט זעקס חדשים"
+  },
+  {
+   "id": "e3",
+   "event_type": "season",
+   "place": "l2",
+   "venue": "o2",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    },
+    {
+     "person": "p1",
+     "role": "organizer"
+    }
+   ],
+   "evidence": "איינגעלאדן דורך דעם דיריגענט ווינאָקור אין יידישן...סאָליסט אינם כאָר און ווי אַן עפּיזאָדן-ראָליסט"
+  }
+ ],
+ "schema_issues": [
+  {
+   "evidence": "איינגעלאדן דורך דעם דיריגענט ווינאָקור אין יידישן טעאַטער",
+   "issue": "ambiguous",
+   "question": "Is the \"Yiddish theatre\" (unnamed) in Kiev? Place assumed from the narrative (still in Kiev); not stated explicitly. Also his exclusion from the singers' union and the expulsion are not recorded (membership)."
+  },
+  {
+   "evidence": "באַזוכנדיק דורך דער צייט אייראָפּע, ארץ-ישראל, ווי אויך צענטראַל- און דרום-אַמעריקע",
+   "issue": "ambiguous",
+   "question": "Four visit stations from one summary phrase; dates and order unstated."
+  },
+  {
+   "evidence": "פֿאָרט אַרום אַלס זינגער פֿון יידישע פֿאָלקס-לידער",
+   "issue": "ambiguous",
+   "question": "Travelling after leaving Kiev: no place stated, so no station."
+  }
+ ],
+ "performance_facts": [],
+ "work_relations": [],
+ "source_uses": []
+}

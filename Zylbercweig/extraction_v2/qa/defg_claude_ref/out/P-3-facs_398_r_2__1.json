@@ -1,0 +1,414 @@
+{
+ "entry_id": "P-3-facs_398_r_2",
+ "part": 1,
+ "mentions": {
+  "persons": [
+   {
+    "surface": "פ.",
+    "full_form": "פישביין, כנימין",
+    "is_subject": true,
+    "id": "p0"
+   },
+   {
+    "surface": "גליקמאַן",
+    "id": "p1"
+   },
+   {
+    "surface": "יוסף בולאָוו",
+    "id": "p2"
+   },
+   {
+    "surface": "מאָריס שוואַרץ",
+    "id": "p3"
+   },
+   {
+    "surface": "עלע מינץ",
+    "id": "p4"
+   },
+   {
+    "surface": "דוד פינסקי",
+    "id": "p5"
+   },
+   {
+    "surface": "משה אוישער",
+    "id": "p6"
+   }
+  ],
+  "organizations": [
+   {
+    "surface": "גליקמאַנס פּאַלאַס-טעאַטער",
+    "named_after": "p1",
+    "id": "o1"
+   },
+   {
+    "surface": "שיקאַגער יידישער דראַמאַטישער געזעלטאַפט",
+    "id": "o2"
+   },
+   {
+    "surface": "יידישן קונסט-טעאַטער",
+    "id": "o3"
+   },
+   {
+    "surface": "פֿאַרווערטס-ראַדיאָ שעה",
+    "id": "o4"
+   },
+   {
+    "surface": "קאָלאַמביאַ בראָדקעסטינג קאָמפֿאָני",
+    "id": "o5"
+   },
+   {
+    "surface": "דיומאָנט טעלעוויזשאָן-קאָמפֿאָני",
+    "id": "o6"
+   }
+  ],
+  "places": [
+   {
+    "surface": "וואַרשע",
+    "place_kind": "settlement",
+    "id": "l1"
+   },
+   {
+    "surface": "רוסלאַנד",
+    "place_kind": "country",
+    "id": "l2"
+   },
+   {
+    "surface": "אַמעריקע",
+    "place_kind": "country",
+    "id": "l3"
+   }
+  ],
+  "works": [
+   {
+    "surface": "גאַט, מענטש און טייוול",
+    "author": "גאָרדין",
+    "id": "w1"
+   },
+   {
+    "surface": "שבתי צבי",
+    "work_kind": "play",
+    "author": "זשולאווסקי",
+    "id": "w2"
+   },
+   {
+    "surface": "דער זינגער פֿון זיין טרויער",
+    "work_kind": "play",
+    "author": "אָסיפּ דימאָוו",
+    "id": "w3"
+   },
+   {
+    "surface": "שאַפּ",
+    "work_kind": "play",
+    "author": "ה. לייוויק",
+    "id": "w4"
+   },
+   {
+    "surface": "דער קאַרגער",
+    "work_kind": "play",
+    "author": "מאָליער",
+    "id": "w5"
+   },
+   {
+    "surface": "יאָשע קאַלב",
+    "id": "w6"
+   },
+   {
+    "surface": "אַ לאָדזעען מיטינג",
+    "work_kind": "other",
+    "id": "w7"
+   },
+   {
+    "surface": "באַזוכן אַ קראַנקן",
+    "work_kind": "other",
+    "id": "w8"
+   },
+   {
+    "surface": "ראדיא מיקס אָפּ",
+    "work_kind": "other",
+    "id": "w9"
+   },
+   {
+    "surface": "שדכנים-ביוראָ",
+    "work_kind": "other",
+    "id": "w10"
+   },
+   {
+    "surface": "יאַנקל דער שמיד",
+    "work_kind": "film",
+    "author": "דוד פינסקי",
+    "id": "w11"
+   },
+   {
+    "surface": "דער ווילנער באַלעבעסל",
+    "work_kind": "film",
+    "id": "w12"
+   },
+   {
+    "surface": "די גאָלדבערגס",
+    "work_kind": "other",
+    "language": "English",
+    "id": "w13"
+   },
+   {
+    "surface": "די א'ניעלס",
+    "work_kind": "other",
+    "language": "English",
+    "id": "w14"
+   }
+  ],
+  "sources": []
+ },
+ "stations": [
+  {
+   "seq": 1,
+   "subject": "p0",
+   "place": "l1",
+   "verb_class": "born",
+   "date_start": "1902-06-14",
+   "date_certainty": "explicit",
+   "evidence": "געבוירן 14 יוני 1902 אין וואַרשע, פּוילן"
+  },
+  {
+   "seq": 2,
+   "subject": "p0",
+   "place": "l2",
+   "role": "actor",
+   "verb_class": "stay",
+   "date_start": "1923",
+   "date_certainty": "explicit",
+   "evidence": "נאָך אין 1923 געוואָרן אַ פּראָפעסיאנעלער יידישער אַקטיאָר אין רוסלאַנד"
+  },
+  {
+   "seq": 3,
+   "subject": "p0",
+   "place": "l3",
+   "verb_class": "emigration",
+   "date_start": "1924",
+   "date_certainty": "explicit",
+   "events": [
+    "e1"
+   ],
+   "evidence": "אין 1924 געקומען אין אַמעריקע"
+  }
+ ],
+ "events": [
+  {
+   "id": "e1",
+   "event_type": "performance",
+   "date_start": "1924",
+   "date_certainty": "explicit",
+   "venue": "o1",
+   "work": "w1",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer",
+     "character": "לייזער בדחן"
+    }
+   ],
+   "evidence": "אין 1924 געקומען אין אַמעריקע און אויפֿגעטראָטן...מענטש און טייוול\" אין גליקמאַנס „פּאַלאַס“-טעאַטער"
+  },
+  {
+   "id": "e2",
+   "event_type": "performance",
+   "date_start": "1928",
+   "date_certainty": "explicit",
+   "orgs": [
+    {
+     "org": "o2"
+    }
+   ],
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    },
+    {
+     "person": "p2",
+     "role": "director"
+    }
+   ],
+   "evidence": "אין 1928 זיך באַטייליקט אין דער „שיקאַגער יידישער דראַמאַטישער געזעלטאַפט\" א\"ר און אָנטייל פֿון יוסף בולאָוו"
+  },
+  {
+   "id": "e3",
+   "event_type": "performance",
+   "date_start": "1923",
+   "date_certainty": "explicit",
+   "orgs": [
+    {
+     "org": "o3"
+    }
+   ],
+   "work": "w6",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    },
+    {
+     "person": "p3",
+     "role": "director"
+    }
+   ],
+   "evidence": "אין 1923 זיך באַטייליקט אין \"יידישן קונסט-טעאַטער“ א\"ר פֿון מאָריס שוואַרץ אין „יאָשע קאַלב"
+  },
+  {
+   "id": "e4",
+   "event_type": "other",
+   "orgs": [
+    {
+     "org": "o4",
+     "org_role": "presenter_or_host"
+    }
+   ],
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    }
+   ],
+   "evidence": "פֿאַר די לעצטע 20 יאָר יעדן זונסיק אויף דער „פֿאַרווערטס\"-ראַדיאָ שעה"
+  },
+  {
+   "id": "e5",
+   "event_type": "other",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "organizer"
+    }
+   ],
+   "evidence": "דורכגעפֿירט אַ ריי ספּעציעלע קאָנצערטן מיט דער...יידישע שוישפּילער אין \"בנימין פישביינס לאָך-נאַכט"
+  }
+ ],
+ "performance_facts": [
+  {
+   "person": "p0",
+   "function": "performer",
+   "character": "לייזער בדחן",
+   "work": "w1",
+   "venue": "o1",
+   "date_start": "1924",
+   "event": "e1",
+   "evidence": "אויפֿגעטראָטן אַלס „לייזער בדחן“ אין גאָרדינס „גאַט, מענטש און טייוול"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w2",
+   "org": "o2",
+   "date_start": "1928",
+   "event": "e2",
+   "evidence": "פּיעסן \"שבתי צבי\" פֿון זשולאווסקי"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w3",
+   "org": "o2",
+   "date_start": "1928",
+   "event": "e2",
+   "evidence": "דער זינגער פֿון זיין טרויער\" פֿון אָסיפּ דימאָוו"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w4",
+   "org": "o2",
+   "date_start": "1928",
+   "event": "e2",
+   "evidence": "שאַפּ\" פֿין ה. לייוויק"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w5",
+   "org": "o2",
+   "date_start": "1928",
+   "event": "e2",
+   "evidence": "דער קאַרגער\" פֿון מאָליער"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w6",
+   "org": "o3",
+   "date_start": "1923",
+   "event": "e3",
+   "evidence": "אין \"יידישן קונסט-טעאַטער“ א\"ר פֿון מאָריס שוואַרץ אין „יאָשע קאַלב"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "function_text": "רעקאָרדירט",
+   "work": "w7",
+   "evidence": "רעקאָרדירט די הומאָרעסקעס"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "function_text": "רעקאָרדירט",
+   "work": "w8",
+   "evidence": "רעקאָרדירט די הומאָרעסקעס"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "function_text": "רעקאָרדירט",
+   "work": "w9",
+   "evidence": "רעקאָרדירט די הומאָרעסקעס"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "function_text": "רעקאָרדירט",
+   "work": "w10",
+   "evidence": "רעקאָרדירט די הומאָרעסקעס"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w11",
+   "date_start": "1938",
+   "evidence": "אין 1938 זיך באַטייליקט אין פֿילם „יאַנקל דער שמיד\" פֿון דוד פינסקי (מיט משה אוישער)"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w12",
+   "date_start": "1939",
+   "evidence": "אין 1939 — אין פֿילם „דער ווילנער באַלעבעסל\" (מיט משה אוישער)"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w13",
+   "org": "o5",
+   "language": "English",
+   "evidence": "אויפֿגעטראָטן אויף טעלעוויזיע. אין ענגליש, אין די פּראָגראַמכען „די גאָלדבערגס“, קאַלאַמביאַ בראָדקעסטינג קאָמפֿאָני"
+  },
+  {
+   "person": "p0",
+   "function": "performer",
+   "work": "w14",
+   "org": "o6",
+   "language": "English",
+   "evidence": "אין דער סעריע „די א'ניעלס\" אויף דער דיומאָנט טעלעוויזשאָן-קאָמפֿאָני"
+  }
+ ],
+ "schema_issues": [
+  {
+   "evidence": "אין 1928 זיך באַטייליקט אין דער „שיקאַגער יידישער דראַמאַטישער געזעלטאַפט",
+   "issue": "ambiguous",
+   "question": "City of the \"Chicago Jewish Dramatic Society\" engagement is only implied by the society's name; no station created. Also unclear whether he performed in all four plays (text: \"participated in the plays\")."
+  },
+  {
+   "evidence": "אין 1923 זיך באַטייליקט אין \"יידישן קונסט-טעאַטער",
+   "issue": "ambiguous",
+   "question": "Year 1923 for Yosche Kalb at the Yiddish Art Theatre conflicts with his arrival in 1924 and the narrative order (after 1928); recorded as stated, probably an OCR/typo (1928/1929?)."
+  }
+ ],
+ "work_relations": [],
+ "source_uses": []
+}

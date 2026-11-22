@@ -1,0 +1,562 @@
+{
+ "entry_id": "P-3-facs_126_tr_1754820323",
+ "part": 1,
+ "mentions": {
+  "persons": [
+   {
+    "surface": "ער",
+    "full_form": "פּעלץ, מרדכי",
+    "is_subject": true,
+    "id": "p0"
+   },
+   {
+    "surface": "אַלטער אָרלעווסקי",
+    "id": "p1"
+   },
+   {
+    "surface": "שערמאַן",
+    "id": "p2"
+   },
+   {
+    "surface": "סיראָטאַ",
+    "id": "p3"
+   },
+   {
+    "surface": "מאָריס מאָשקאָוויטש",
+    "id": "p4"
+   },
+   {
+    "surface": "בינע אַבראַמאָוויטש",
+    "id": "p5"
+   },
+   {
+    "surface": "קלמן יאווילער",
+    "id": "p6"
+   },
+   {
+    "surface": "בערטא און קאַרל גוטענטאג",
+    "id": "p7"
+   },
+   {
+    "surface": "גאָלדענבורג",
+    "id": "p8"
+   },
+   {
+    "surface": "קרעמער",
+    "id": "p9"
+   },
+   {
+    "surface": "מאָרעווסקי",
+    "id": "p10"
+   },
+   {
+    "surface": "סאָקאָלאָוו",
+    "id": "p11"
+   },
+   {
+    "surface": "וואָלערשטיין",
+    "id": "p12"
+   },
+   {
+    "surface": "טייטעלבוים",
+    "id": "p13"
+   },
+   {
+    "surface": "לאָבעל",
+    "id": "p14"
+   },
+   {
+    "surface": "מאָריס שוואַרץ",
+    "id": "p15"
+   },
+   {
+    "surface": "יעקב בן-עמי",
+    "id": "p16"
+   },
+   {
+    "surface": "לעאָן ברעסט",
+    "id": "p17"
+   },
+   {
+    "surface": "ראָזענבערג",
+    "id": "p18"
+   }
+  ],
+  "organizations": [
+   {
+    "surface": "פּראַגער כאָר-שול",
+    "id": "o1"
+   },
+   {
+    "surface": "וואַרשעווער כאָרשול אויף טלאָמאצקע",
+    "id": "o2"
+   },
+   {
+    "surface": "טעאַטער אָלימפּיאַ",
+    "id": "o3"
+   },
+   {
+    "surface": "טעאַטער אַרגענטינא",
+    "id": "o4"
+   },
+   {
+    "surface": "טעאַטער אַמבא",
+    "id": "o5"
+   },
+   {
+    "surface": "טעאַטער קאָלאָסעאום",
+    "id": "o6"
+   },
+   {
+    "surface": "חברים-טרופּע",
+    "id": "o7"
+   },
+   {
+    "surface": "טעאַטער עקסעלסיאָר",
+    "id": "o8"
+   },
+   {
+    "surface": "טעאַטער מיטרע",
+    "id": "o9"
+   },
+   {
+    "surface": "יידישער אַקטיאָרן-פֿאַראיין אין אַרגענטינע",
+    "id": "o10"
+   }
+  ],
+  "places": [
+   {
+    "surface": "וואַרשע",
+    "place_kind": "settlement",
+    "id": "l1"
+   },
+   {
+    "surface": "פּראַגער",
+    "place_kind": "unknown",
+    "id": "l2"
+   },
+   {
+    "surface": "בוענאָס-איירעס",
+    "place_kind": "settlement",
+    "id": "l3"
+   },
+   {
+    "surface": "אַרגענטינע",
+    "place_kind": "country",
+    "id": "l4"
+   }
+  ],
+  "works": [
+   {
+    "surface": "דאָס לעבן בייט זיך",
+    "work_kind": "play",
+    "author": "p0",
+    "id": "w1"
+   }
+  ],
+  "sources": []
+ },
+ "stations": [
+  {
+   "seq": 1,
+   "subject": "p0",
+   "place": "l1",
+   "verb_class": "born",
+   "evidence": "געבוירן אין וואַרשע, פּוילן"
+  },
+  {
+   "seq": 2,
+   "subject": "p0",
+   "place": "l2",
+   "org": "o1",
+   "role": "chorister",
+   "verb_class": "stay",
+   "evidence": "אַלס בחור פֿון 12 יאָר געזונגען „אַלט\" אין דער פּראַגער כאָר-שול ביים חזן אַלטער אָרלעווסקי"
+  },
+  {
+   "seq": 3,
+   "subject": "p0",
+   "place": "l1",
+   "org": "o2",
+   "role": "chorister",
+   "verb_class": "stay",
+   "evidence": "אין עלטער פֿון 18 יאָר געוואָרן אַ כאָריסט אין...ביים חזן שערמאַן און שפּעטער ביי חזן סיראָטאַ"
+  },
+  {
+   "seq": 4,
+   "subject": "p0",
+   "place": "l3",
+   "org": "o3",
+   "role": "chorister",
+   "verb_class": "emigration",
+   "events": [
+    "e1",
+    "e2",
+    "e3"
+   ],
+   "evidence": "עמיגרירט קיין אַרגענטינע, וואו ער איז אַריינגעטראָטן אין בוענאָס-איירעסער יידישן „טעאַטער אָלימפּיאַ"
+  },
+  {
+   "seq": 5,
+   "subject": "p0",
+   "place": "l4",
+   "org": "o4",
+   "role": "manager",
+   "verb_class": "stay",
+   "date_start": "1931",
+   "date_certainty": "explicit",
+   "events": [
+    "e4"
+   ],
+   "evidence": "1931 איז אַ דאַנק דער איניציאָטיוו פֿון פ. געלונגען צו פֿאַרוואַנדלען דאָס טעאַטער „אַרגענטינא“ אין אַ יידיש טעאַטער"
+  },
+  {
+   "seq": 6,
+   "subject": "p0",
+   "place": "l4",
+   "org": "o5",
+   "verb_class": "stay",
+   "date_start": "1932",
+   "date_certainty": "explicit",
+   "events": [
+    "e5"
+   ],
+   "evidence": "1932 — אָנגעפֿירט מיטן טעאַטער „אַמבא"
+  },
+  {
+   "seq": 7,
+   "subject": "p0",
+   "place": "l4",
+   "org": "o4",
+   "verb_class": "stay",
+   "date_start": "1933",
+   "date_certainty": "explicit",
+   "events": [
+    "e6",
+    "e7"
+   ],
+   "evidence": "1933 — ווידער איבערגענומען דאָס טעאַטער „אַרגענטינא“ פֿאַר אַ חברים-טרופּע"
+  },
+  {
+   "seq": 8,
+   "subject": "p0",
+   "place": "l4",
+   "org": "o8",
+   "role": "actor",
+   "verb_class": "stay",
+   "date_start": "1933",
+   "date_end": "1942",
+   "date_certainty": "approximate",
+   "events": [
+    "e8"
+   ],
+   "evidence": "זייט דעמאָלט ביז 1942 געווען אַ מיטגליד אין דער חברים-טרופּע אין „טעאַטער עקסעלסיאָר"
+  },
+  {
+   "seq": 9,
+   "subject": "p0",
+   "place": "l4",
+   "org": "o8",
+   "role": "administrator",
+   "verb_class": "stay",
+   "date_start": "1943",
+   "date_certainty": "explicit",
+   "events": [
+    "e9"
+   ],
+   "evidence": "1943 — אונטערן מענעדזשמענט פֿון ראָזענבערג, געווען דער געשעפטספֿירער פון „טעאַטער עקסעלסיאָר"
+  },
+  {
+   "seq": 10,
+   "subject": "p0",
+   "place": "l4",
+   "org": "o9",
+   "verb_class": "stay",
+   "date_start": "1944-11-07",
+   "date_certainty": "explicit",
+   "events": [
+    "e10"
+   ],
+   "evidence": "דעם 7 נאָוו. 1944 האָט ער אויפֿגעפֿירט אין טעאַטער „מיטרע"
+  }
+ ],
+ "events": [
+  {
+   "id": "e1",
+   "event_type": "season",
+   "place": "l3",
+   "venue": "o3",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    }
+   ],
+   "evidence": "אַריינגעטראָטן אין בוענאָס-איירעסער יידישן „טעאַטער אָלימפּיאַ\" אַלס כאָריסט"
+  },
+  {
+   "id": "e2",
+   "event_type": "guest_appearance",
+   "place": "l3",
+   "venue": "o3",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    },
+    {
+     "person": "p4",
+     "role": "performer"
+    },
+    {
+     "person": "p5",
+     "role": "performer"
+    },
+    {
+     "person": "p6",
+     "role": "performer"
+    },
+    {
+     "person": "p7",
+     "role": "performer"
+    }
+   ],
+   "evidence": "בעת די גאַסטראָלן פֿון מאָריס מאָשקאָוויטש, בינע...גענומען שפּילן קלענערע און גרעסערע ראָלן"
+  },
+  {
+   "id": "e3",
+   "event_type": "guest_appearance",
+   "place": "l3",
+   "venue": "o3",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    },
+    {
+     "person": "p8",
+     "role": "performer"
+    },
+    {
+     "person": "p9",
+     "role": "performer"
+    },
+    {
+     "person": "p10",
+     "role": "performer"
+    },
+    {
+     "person": "p11",
+     "role": "performer"
+    },
+    {
+     "person": "p12",
+     "role": "performer"
+    },
+    {
+     "person": "p13",
+     "role": "performer"
+    },
+    {
+     "person": "p14",
+     "role": "performer"
+    },
+    {
+     "person": "p15",
+     "role": "performer"
+    },
+    {
+     "person": "p16",
+     "role": "performer"
+    }
+   ],
+   "evidence": "האָבנדיק אויך די געלעגנהייט צו באַטייליקן זיך אין...מיט די גאַסטראָלערן פֿון פון אמעריקע און אייראָפּע"
+  },
+  {
+   "id": "e4",
+   "event_type": "other",
+   "date_start": "1931",
+   "date_certainty": "explicit",
+   "place": "l4",
+   "venue": "o4",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "organizer"
+    },
+    {
+     "person": "p17",
+     "role": "organizer"
+    }
+   ],
+   "evidence": "געלונגען צו פֿאַרוואַנדלען דאָס טעאַטער „אַרגענטינא“ אין אַ יידיש טעאַטער...לעאָן ברעסטס אָנפֿירונג"
+  },
+  {
+   "id": "e5",
+   "event_type": "season",
+   "date_start": "1932",
+   "date_certainty": "explicit",
+   "place": "l4",
+   "venue": "o5",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "organizer"
+    }
+   ],
+   "evidence": "1932 — אָנגעפֿירט מיטן טעאַטער „אַמבא"
+  },
+  {
+   "id": "e6",
+   "event_type": "season",
+   "date_start": "1933",
+   "date_certainty": "explicit",
+   "place": "l4",
+   "venue": "o4",
+   "orgs": [
+    {
+     "org": "o7"
+    }
+   ],
+   "participants": [
+    {
+     "person": "p0",
+     "role": "organizer"
+    }
+   ],
+   "evidence": "1933 — ווידער איבערגענומען דאָס טעאַטער „אַרגענטינא“ פֿאַר אַ חברים-טרופּע"
+  },
+  {
+   "id": "e7",
+   "event_type": "season",
+   "place": "l4",
+   "venue": "o6",
+   "orgs": [
+    {
+     "org": "o7"
+    }
+   ],
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    },
+    {
+     "person": "p15",
+     "role": "performer"
+    }
+   ],
+   "evidence": "צו שפּילן 6 וואָכן צוזאַמען מיט מאָריס שוואַרץ אין טעאַטער „קאָלאָסעאום"
+  },
+  {
+   "id": "e8",
+   "event_type": "season",
+   "date_start": "1933",
+   "date_end": "1942",
+   "date_certainty": "approximate",
+   "place": "l4",
+   "venue": "o8",
+   "orgs": [
+    {
+     "org": "o7"
+    }
+   ],
+   "participants": [
+    {
+     "person": "p0",
+     "role": "performer"
+    }
+   ],
+   "evidence": "זייט דעמאָלט ביז 1942 געווען אַ מיטגליד אין דער חברים-טרופּע אין „טעאַטער עקסעלסיאָר"
+  },
+  {
+   "id": "e9",
+   "event_type": "season",
+   "date_start": "1943",
+   "date_certainty": "explicit",
+   "place": "l4",
+   "venue": "o8",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "organizer"
+    },
+    {
+     "person": "p18",
+     "role": "organizer"
+    }
+   ],
+   "evidence": "1943 — אונטערן מענעדזשמענט פֿון ראָזענבערג, געווען דער געשעפטספֿירער פון „טעאַטער עקסעלסיאָר"
+  },
+  {
+   "id": "e10",
+   "event_type": "premiere",
+   "date_start": "1944-11-07",
+   "date_certainty": "explicit",
+   "place": "l4",
+   "venue": "o9",
+   "work": "w1",
+   "participants": [
+    {
+     "person": "p0",
+     "role": "organizer"
+    }
+   ],
+   "evidence": "דעם 7 נאָוו. 1944 האָט ער אויפֿגעפֿירט אין טעאַטער „מיטרע\" זיין פּיעסע „דאָס לעבן בייט זיך"
+  },
+  {
+   "id": "e11",
+   "event_type": "other",
+   "place": "l4",
+   "orgs": [
+    {
+     "org": "o10"
+    }
+   ],
+   "participants": [
+    {
+     "person": "p0",
+     "role": "organizer"
+    }
+   ],
+   "evidence": "האָט געשאַפן 10,000 פּעזאָס פֿאַר דער ארטיקער יידישער אַקטיאָרן-היים"
+  }
+ ],
+ "performance_facts": [
+  {
+   "person": "p0",
+   "function": "author",
+   "work": "w1",
+   "venue": "o9",
+   "place": "l4",
+   "date_start": "1944-11-07",
+   "event": "e10",
+   "evidence": "האָט ער אויפֿגעפֿירט אין טעאַטער „מיטרע\" זיין פּיעסע „דאָס לעבן בייט זיך"
+  }
+ ],
+ "schema_issues": [
+  {
+   "evidence": "אין דער פּראַגער כאָר-שול",
+   "issue": "ambiguous",
+   "question": "Is \"פּראַגער\" the Praga district of Warsaw? City not stated; place_kind unknown."
+  },
+  {
+   "evidence": "צו פֿאַרוואַנדלען דאָס טעאַטער „אַרגענטינא“ אין אַ יידיש טעאַטער",
+   "issue": "doesn't fit",
+   "question": "Converting a theatre into a Yiddish theatre is recorded as an event of type other (no \"conversion/opening\" type); place given as Argentina (city not stated here).",
+   "suggested": "other"
+  },
+  {
+   "evidence": "זייט דעמאָלט ביז 1942",
+   "issue": "ambiguous",
+   "question": "Start year of the Excelsior membership is inferred only as \"since then\" (after 1933); date_start 1933 marked approximate."
+  },
+  {
+   "evidence": "האָט ער אויפֿגעפֿירט אין טעאַטער „מיטרע\" זיין פּיעסע",
+   "issue": "ambiguous",
+   "question": "\"אויפֿגעפֿירט\" - was he also director or performer of his own play? Only authorship recorded; event type premiere assumed from \"אויפֿגעפֿירט\" (first staging not stated)."
+  }
+ ],
+ "work_relations": [],
+ "source_uses": []
+}
