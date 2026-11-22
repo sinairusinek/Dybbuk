@@ -13,7 +13,7 @@ named camp) -> its own row, with parent_db_id = the network.
 1. ALIGN (were GENERIC by rule_2026_10_04, or swept with them):
      Arbeter Ring 189: C00272_Q02 (Boston school, teacher 1921-26), C01520 (alumni clubs),
        C01704 (teachers' courses; possibly = seminary 1982, not asserted), C01705
-       ("non-partisan AR school"), C02444 ("an AR school")
+       ("non-partisan AR school"), C02444 ("an AR school"), C05136 (Chicago, added same day)
      TsIShO 1111: C01477, C03665 (Warsaw TsIShO school, graduated)
      Tarbut (minted here): C03388 (Warsaw Tarbut school), C07185 (Tarbut gymnasium, no city)
 2. MINT: Tarbut (network parent); Tarbut elementary school, Otaci (C07186: a small town's
@@ -35,7 +35,10 @@ named camp) -> its own row, with parent_db_id = the network.
    Not parented: 2610 'Hamler socialist AR of Harlem' (a co-founding; may predate or not
    be the Workmen's Circle).
 
-Flagged, not changed: 3073 and 3184 look like the same old-age home (both Troy family
+Flagged, not changed: C00069 'צווישאָ' (Zhitnitsky, president of it and the Sholem
+Aleichem schools) is likely the Argentine TsVISHO, not 1111; C04158 'Jewish school
+organization' too vague to place.
+Also flagged: 3073 and 3184 look like the same old-age home (both Troy family
 mentions); 1994 Pittsburgh also holds Koplan's indefinite "an AR school" mention.
 
 Idempotent. Usage: python3.11 apply_network_parents_2026_11_22.py [--apply --reviewer Sinai]
@@ -61,6 +64,7 @@ ALIGN = {  # cluster_id -> (target, why)
     "ORG-C01704": (AR, "Arbeter Ring teachers' courses; perhaps = the seminary 1982, not asserted"),
     "ORG-C01705": (AR, "'non-partisan Arbeter Ring school', no place: the network"),
     "ORG-C02444": (AR, "'an Arbeter Ring school' (indefinite): the network"),
+    "ORG-C05136": (AR, "manager of the local Arbeter Ring school, Chicago (spelled ארבייטער): the network"),
     "ORG-C01477": (TSISHO, "graduated the TsIShO school, Warsaw: TsIShO ran many there"),
     "ORG-C03665": (TSISHO, "graduated a TsIShO school, Warsaw: TsIShO ran many there"),
     "ORG-C03388": ("MINT:tarbut", "rhythmics lessons at the Tarbut school, Warsaw: Tarbut ran several there"),
