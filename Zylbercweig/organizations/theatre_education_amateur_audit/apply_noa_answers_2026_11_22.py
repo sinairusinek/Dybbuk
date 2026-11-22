@@ -395,7 +395,6 @@ def main():
                 errors.append(f"link check {c}: GENERIC but linked from {owners}")
 
     print("\n".join(report))
-    (HERE / "applied_noa_answers_2026_11_22.json").write_text(json.dumps(report, ensure_ascii=False, indent=1))
     print(f"\n{len(log)} log rows; {len(errors)} errors")
     for e in errors:
         print("ERROR", e)
@@ -404,6 +403,7 @@ def main():
     if not apply:
         print("DRY RUN — re-run with --apply")
         return 0
+    (HERE / "applied_noa_answers_2026_11_22.json").write_text(json.dumps(report, ensure_ascii=False, indent=1))
     write(ORG / "core_db.tsv", kf, core, knl)
     write(ORG / "org_alignment_review.tsv", af, al, anl)
     write(ORG / "organizations_clustered.tsv", cf, cl, cnl)
