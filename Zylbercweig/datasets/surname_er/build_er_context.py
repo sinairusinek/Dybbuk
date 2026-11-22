@@ -88,6 +88,40 @@ def main():
             label = f"{name}" + (f" ({qid}{'?' if st == 'needs_review' else ''})" if qid else "")
             hub_places[h][r["event_or_relation"]].add(label)
 
+    # ---- D–G (11-22): the entry subject's own stations / years / performance facts ----
+    import re as _re
+    D = V2 / "defg"
+    def base(eid):
+        return eid if "~" not in eid else ""  # ~aN / ~gN are other subjects (split articles, glued entries)
+    ent_places, ent_years, ent_works = defaultdict(list), defaultdict(set), defaultdict(list)
+    if (D / "stations.tsv").exists():
+        for r in tsv(D / "stations.tsv"):
+            e = base(r["entry_id"])
+            if not e or not r["subject_key"].endswith(":p0") or r["in_quote"]:
+                continue
+            y = (_re.match(r"1[6-9]\d\d", r["date_start"] or "") or [""])[0]
+            if r["place"]:
+                ent_places[e].append(f"{r['place']}{':' + y if y else ''}")
+            for d in (r["date_start"], r["date_end"]):
+                m_ = _re.match(r"1[6-9]\d\d", d or "")
+                if m_:
+                    ent_years[e].add(int(m_.group(0)))
+        for r in tsv(D / "performance_facts.tsv"):
+            e = base(r["entry_id"])
+            if not e or not r["person_key"].endswith(":p0") or r["in_quote"] or not r["work"]:
+                continue
+            ent_works[e].append(f"{r['function']}:{r['work']}" + (f" ({r['character']})" if r["character"] else ""))
+
+    def defg_of(entry_ids):
+        es = [x for x in (entry_ids or "").split("|") if x]
+        pl, ys, wk = [], set(), []
+        for e in es:
+            pl += ent_places.get(e, []); ys |= ent_years.get(e, set()); wk += ent_works.get(e, [])
+        uniq = lambda xs: list(dict.fromkeys(xs))
+        return {"defg_places": "|".join(uniq(pl))[:1500],
+                "defg_years": f"{min(ys)}-{max(ys)}" if ys else "",
+                "defg_works": " ;; ".join(uniq(wk)[:60])}
+
     # ---- people_db ----
     pdb = {r["db_id"]: r for r in tsv(ZYL / "people" / "people_db.tsv")}
 
@@ -117,6 +151,7 @@ def main():
                                           + d.get("professional_role_org", "")).split("|") if x.strip()}))[:300],
             "wikidata": "|".join(wd),
             "lexicon_entries": r["entry_person_ids"],
+            **defg_of(r["entry_person_ids"]),
         })
     pcols = list(prof_rows[0].keys())
     with open(HERE / "er_candidate_profiles.tsv", "w", encoding="utf-8", newline="") as fh:
@@ -129,6 +164,15 @@ def main():
     A = {r["mention_id"]: r for r in tsv(V2 / "a_full_form.tsv")}
     B = {r["mention_id"]: r for r in tsv(V2 / "b_recategorized.tsv")}
     C = {r["mention_id"]: r for r in tsv(V2 / "c_eponym_orgs.tsv")}
+    RT = {r["mention_id"]: r for r in tsv(V2 / "r_retyped.tsv")} if (V2 / "r_retyped.tsv").exists() else {}
+    # entries whose segmentation was repaired 11-22: a mention's host may be wrong for part of the text
+    SEG = {}
+    for f, kinds in (("segment_fixes.tsv", ("merged_article", "split_section")), ("glued_entry_fixes.tsv", ("glued_entry",))):
+        pth = V2 / "qa" / f
+        if pth.exists():
+            for r in tsv(pth):
+                if r["kind"] in kinds:
+                    SEG[r["person_id"]] = r["kind"]
     import json
     def verdicts(name):
         f = V2 / f"verify_{name}.jsonl"
@@ -209,9 +253,12 @@ def main():
             "host_hub_id": host_hub, "host_heading": m["host_heading_filled"],
             "host_birth_year": hp.get("birth_year", ""), "host_birth_place": hp.get("birth_place", ""),
             "host_org_ids": hp.get("org_ids", ""), "host_active_settlements": hp.get("active_settlements", ""),
-            "relation_category": (b["category"] if b else m["relation_category"]),
-            "relation_type": (b["type"] if b else m["relation_specific"]),
-            "relation_source": ("v2_job_B" + ({True: "|checked_ok", False: "|check_failed"}.get(VB.get(mid, {}).get("ok"), ""))) if b else "feb_2026",
+            "relation_category": (b["category"] if b else RT[mid]["category"] if mid in RT else m["relation_category"]),
+            "relation_type": (b["type"] if b else RT[mid]["type"] if mid in RT else m["relation_specific"]),
+            "relation_source": ("v2_job_B" + ({True: "|checked_ok", False: "|check_failed"}.get(VB.get(mid, {}).get("ok"), ""))) if b
+                               else ("v2_8f_retyped" + ("|hand_read" if "[read" in RT[mid].get("schema_issue", "") else "")) if mid in RT else "feb_2026",
+            "relation_old": f"{m['relation_category']}/{m['relation_specific']}" if (b or mid in RT) else "",
+            "host_defg_places": hp.get("defg_places", "")[:600], "host_defg_years": hp.get("defg_years", ""),
             "relation_sentence": m["relation_sentence"][:400],
             "rel_settlement": m["rel_place_settlement"], "rel_country": m["rel_place_country"],
             "rel_venue": m["rel_place_venue"], "rel_date_start": m["rel_date_start"], "rel_date_end": m["rel_date_end"],
@@ -229,7 +276,7 @@ def main():
             "candidate_features": " ;; ".join(feats),
             "resolver_verdict": res["verdict"] if res else "", "resolver_hub_id": res["resolved_hub_id"] if res else "",
             "gold_hub_id": res["gold_hub_id"] if res else "",
-            "flag": "",
+            "flag": ("host_segmentation:" + SEG[m["host_person_id"]]) if m.get("host_person_id") in SEG else "",
         })
         rj = rej.get(normalize_person_name(m["mention_name"]))
         if rj:

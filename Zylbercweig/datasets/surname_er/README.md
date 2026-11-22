@@ -28,6 +28,11 @@ University.
   mention colleagues from that world.
 - **How it relates to the host:** `relation_category`, `relation_type` (e.g. Family/spouse,
   Professional_Hierarchy/employer_director), `relation_sentence`, `rel_settlement`, `rel_date_start`…
+  Since 2026-11-22 every categorized relation comes from the re-typing pass (`relation_source =
+  v2_8f_retyped`, `|hand_read` = read and corrected by hand), with direction and finer types
+  (new: `publisher`, `award_recipient`, `subject_of`); the earlier value is in `relation_old`.
+- **The host's own itinerary** (new 2026-11-22): `host_defg_places`, `host_defg_years`, the same
+  as the candidates' `defg_places` / `defg_years`: compare them with each candidate's.
 - **Organization in the sentence** (`c_*`): e.g. "Kessler's troupe". `c_org_id` is that
   organization's id (`db:` = curated organization, `cl:` = org cluster), and
   `c_named_after_mention` says the troupe bears the mention's name. If a candidate's
@@ -47,6 +52,12 @@ University.
 `orgs_detail` (organization, relation category, dates, settlement), `active_settlements`,
 `org_years`, `roles_db`, `wikidata`.
 
+New 2026-11-22, from the person's **own** Lexicon entry (full-text extraction, steps D–G):
+`defg_places` (the stations of their life and career in order, `place:year` when a year is
+stated; 2,710 hubs), `defg_years` (first–last year stated; 2,526), `defg_works` (works they
+performed, directed, composed, translated…, as `function:title (character)`; 1,729). Facts
+stated only inside quotations are left out.
+
 ## Baselines (on the 3,401 gold mentions with ≥2 candidates)
 
 | method | correct |
@@ -56,6 +67,16 @@ University.
 
 The signals need combining: time (are the birth years compatible with the relation
 date?), place, the shared organization, gender, and relation type.
+
+## What changed (tag `datasets-2026-11-22`)
+
+- Relations re-typed (3,290 mentions changed category or type); `relation_old` keeps the previous value.
+- New D–G features on candidates (`defg_places`, `defg_years`, `defg_works`) and on the host (`host_defg_places`, `host_defg_years`).
+- `flag = host_segmentation:*` on 375 mentions whose host entry had digitization errors that were
+  repaired in the full-text pass: another article glued onto it (`merged_article`), another
+  person's entry glued on with its heading lost (`glued_entry`), or a section cut off from its
+  parent entry (`split_section`). For these, the "host" may be wrong for part of the text.
+- Gold labels, candidates and organization links are unchanged.
 
 ## Known issues
 
