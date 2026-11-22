@@ -8641,3 +8641,4 @@ ts	reviewer	view	action	target_id	decision	note	extra
 2026-11-22T08:41:39Z	Sinai	org_review	unmint	4946	deprecated	Unzer Kemp unminted (Sinai 11-22); cluster ORG-C01414 left undecided	{"cluster": "ORG-C01414", "source": "apply_hospitality_mints_2026_11_22.py"}
 2026-11-22T08:41:39Z	Sinai	org_review	reopen	ORG-C01414	decision=	was NEW db 4946: Unzer Kemp unminted, left undecided	{"was": ["NEW", "4946", "Sinai"], "source": "apply_hospitality_mints_2026_11_22.py"}
 2026-11-22T08:41:39Z	Sinai	org_addresses	set_parent	4297	parent_db_id=	parent Unzer Kemp 4946 unminted	{"source": "apply_hospitality_mints_2026_11_22.py"}
+2026-11-22T09:16:13Z	Sinai	org_addresses	set_parent	4297	parent_db_id=405	Camp Kinder-Velt under the Farband (Sinai 11-22), after Unzer Kemp 4946 was unminted	{"source": "manual 11-22"}
