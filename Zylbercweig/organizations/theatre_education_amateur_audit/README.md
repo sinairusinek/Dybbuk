@@ -19,3 +19,13 @@ Sinai answered the Doc's open questions on 2026-11-15 (Rules 1–6 accepted; chi
 7. `decisions_2026_11_15.tsv` — status of all 397 records: APPLIED_* / FOR_NOA (cases in Noa's review Doc) /
    PENDING_SINAI (culture & workers' clubs — answer 4 "subtype of amateur" contradicts Rule 3) / NO_CHANGE.
 Human type decisions were re-checked against the rules, not accepted automatically (3735 consistent; 2179 and 2277 contradict).
+
+## 2026-11-22 — Noa's answers to Part C applied
+Noa answered C1–C20 in the review Doc (https://docs.google.com/document/d/1uP0p68o3nOwzMynFTxMITeWP81N0abOjsAsITcAfJsg/edit).
+8. `apply_noa_answers_2026_11_22.py --apply` → 24 mints (db 5079–5102), 15 retypes, 4 merges (1976/1977/3678 → 800, 1951 → 2211),
+   7 bare labels retired (2276, 4316, 4604, 4607, 4609, 1188, 3047; leftover mentions GENERIC), 35 mention moves. Report:
+   `applied_noa_answers_2026_11_22.json`. Then `../sync_address_cards.py`.
+   Where the entry text contradicted a proposal, the text won (stamp Sinai, marked TEXT in the script): C7 Ruskin's studio is
+   New York; C15 795 Kiev+Moscow is one studio (only Warsaw → 5064 and Kovno → 5084 split off); C15 Kaminski's united troupe = 239;
+   C16 1951 = Yung-Argentine school 2211; 1188's heading mentions = Weichert's studio 2037.
+   Policy: ballet/dance schools → Theatre education; DP-camp studios → Amateur; university line (C6) — CLASSIFICATION_POLICY type 7.
