@@ -2,7 +2,7 @@
 
 Source: `defg_full.jsonl`. Keys: `{part_id}:{local_id}`.
 
-- `mentions.tsv`: 137,035 rows; 143 with flags
+- `mentions.tsv`: 137,035 rows; 161 with flags
 - `stations.tsv`: 34,091 rows; evidence exact 92.2%, near 6.9%, not found 0.9%; 834 with flags
 - `events.tsv`: 17,687 rows; evidence exact 87.6%, near 11.1%, not found 1.3%; 69 with flags
 - `event_participants.tsv`: 25,769 rows; 5 with flags

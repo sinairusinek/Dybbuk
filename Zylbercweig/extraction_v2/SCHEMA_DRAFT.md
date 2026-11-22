@@ -237,7 +237,7 @@ A station: `seq`, `subject` (person or organization mention; a troupe can tour),
   "People in Performance Events" professional roles are the starting list.
 - **work_kind:** play, operetta, opera, musical comedy, melodrama, sketch, one-act,
   revue, song, music (score), film, radio play, book, memoir, article, periodical,
-  comedy, tragedy, farce, Purim play (the last four added 11-21), lebnsbild, dramatic poem, dialogue, shadow play (added 11-22, Sinai, from the shard-1 schema issues), other.
+  comedy, tragedy, farce, Purim play (the last four added 11-21), lebnsbild, dramatic poem, dialogue, shadow play (added 11-22, Sinai, from the shard-1 schema issues),; and **all further labels the D–G run used** (Sinai 11-22): poem, oratorio, comedy_drama, monologue, vaudeville, tragicomedy, satire, parody, dance, ballet, grotesque, historical_operetta, pantomime, libretto, prologue, romantic_comedy, scene, burlesque, comic_opera, comedy_vaudeville, grotesque_comedy, musical_folk_play, story, buffonade, monodrama, humoresque, farce_comedy, musical_burlesque, folk_comedy, fable, folk_operetta (comedy_drama and tragicomedy = merged spellings; part_of / adaptation / fragment are not genres → other), other.
   **Recorded as stated, per mention** (decision 10): the same work may be called
   "drama" in one entry and "melodrama" in another; both are kept, with their evidence.
 - **source_kind:** see §2.

@@ -38,7 +38,15 @@ FUNC_MAP = {"playwright": "author", "costume_designer": "designer", "stage_manag
 KIND_SPELL = {"comedy drama": "comedy_drama", "comedy-drama": "comedy_drama", "tragi-comedy": "tragicomedy",
               "tragi_comedy": "tragicomedy", "tragedy_comedy": "tragicomedy", "vodevil": "vaudeville",
               "vodvil": "vaudeville", "dramatic poem": "dramatic_poem", "lebensbild": "lebnsbild",
-              "קאָמעדיע": "comedy"}  # spelling only; genres stay as stated (decision 10)
+              "קאָמעדיע": "comedy", "comic opera": "comic_opera", "operette": "operetta",
+              "historical operetta": "historical_operetta", "musical burlesque": "musical_burlesque",
+              "comedy-vaudeville": "comedy_vaudeville", "grotesque-comedy": "grotesque_comedy",
+              "farce-comedy": "farce_comedy", "tragedy-comedy": "tragicomedy",
+              "מוזיקאַלישער קאָמעדיע": "musical_comedy", "מוזיקאַלישע פֿאָלקסשפּיל": "musical_folk_play",
+              "메לאָדראַמע": "melodrama",  # garbled script in one output
+              "part_of": "other", "adaptation": "other", "fragment": "other"}  # last 3: not genres
+# spelling only; genres stay as stated (decision 10). All other labels that came up were added
+# to the vocabulary by Sinai 11-22 (comedy_drama and tragicomedy kept as merged spellings).
 # Sinai 11-22: new work kinds; earlier parts wrote them as `other` -> recover from the words next to the title
 NEW_KINDS = [("lebnsbild", re.compile("לעב[ע]?נס[-]?בילד")), ("dramatic_poem", re.compile("דראַמאַטיש[ע]? פּאָעמע")),
              ("dialogue", re.compile("דיאַלאָג")), ("shadow_play", re.compile("שאָטן[-]?(טעאַטער|שפּיל)"))]
