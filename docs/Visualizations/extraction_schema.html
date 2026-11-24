@@ -339,7 +339,7 @@ const N = {
  work:{label:"Work",x:850,y:300,status:"built",job:"F",have:"D–G extracted 23,856 work mentions and 1,843 work→work relations: same_as 674, adaptation_of 557, based_on 230, part_of 207, translation_of 175. Earlier runs: 3,525 works / 5,059 editions from the publication side, all of the Lexicon.",sub:"play, operetta, song…",
   desc:"Works performed, written, translated or composed. Titles and publication data already exist (editions pipeline); v2 adds works performed outside Lateiner/Hurwitz.",
   fields:[["surface","title, verbatim"],["work_kind","play · operetta · opera · musical comedy · melodrama · sketch · revue · song · score · film · radio play · book · memoir · article · periodical"],["language","if stated"],["based_on","source work or author, if stated"]]},
- role:{label:"Dramatic role",x:860,y:590,status:"built",job:"F",have:"D–G named a dramatic character in 5,503 of the performance facts, across all seven volumes. Before the run this existed only for Lateiner/Hurwitz (669 entries) and the DiJeSt gold set (852 assertions).",sub:"character in a work",
+ role:{label:"Dramatic role",x:860,y:590,status:"built",job:"F",have:"5,503 performance facts name a dramatic character — 3,199 distinct roles played by 1,734 people, all seven volumes. The role belongs to the WORK (4,953 of those facts name one); only 1,017 also name a dated staging, so `played` is work-level and carries the event when the text gives it. Before the run this existed only for Lateiner/Hurwitz (669 entries) and the DiJeSt gold set (852 assertions).",sub:"character in a work",
   desc:"A character, linked to its work: Ben Hador, the Queen in Shulamis.",
   fields:[["surface","character name, verbatim"],["work","title of the work it belongs to"]]},
  event:{label:"Event",x:660,y:460,status:"built",job:"E",have:"D–G extracted 17,687 events: performance 9,606, founding 1,610, death 1,315, marriage 732, debut 616, guest_appearance 451, conflict 307, season 285, burial 279, premiere 269, honor 253, other 846. Status: performed 17,313, planned 212, banned 82, cancelled 67. 25,769 participant rows.",sub:"performance, founding, strike…",
@@ -372,10 +372,10 @@ const E = [
  {id:"ww",a:"work",b:"work",loop:"right",status:"built",job:"F",have:"D–G extracted 1,843 work→work relations: same_as 674, adaptation_of 557, based_on 230, part_of 207, translation_of 175. Before the run, only same-work links from the editions pipeline.",label:"translation of…",
   desc:"Links between works, only as the text states them.",types:[["types","translation_of · adaptation_of · based_on · same_as"]]},
  {id:"rw",a:"role",b:"work",c:30,status:"built",job:"F",have:"D–G gives a dramatic character on 5,503 of the performance-fact rows, all volumes. Before: Lateiner/Hurwitz only.",label:"character in",desc:"Each dramatic role belongs to a work.",types:[["character_in","Ben Hador → Shulamis"]]},
- {id:"ep",a:"event",b:"person",c:30,status:"built",job:"E",have:"D–G extracted 25,769 event-participant rows. Before: Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"participant (+ role)",
-  desc:"Who took part and as what; performers can carry the dramatic role they played.",types:[["participant","performer · director · organizer · speaker · honoree · victim · … + dramatic role"]]},
+ {id:"ep",a:"event",b:"person",c:30,status:"built",job:"E",have:"D–G extracted 25,769 event-participant rows. Before: Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"participant",
+  desc:"Who took part in this event, and in what capacity. A performer's dramatic role is not here but on `played` (person → dramatic role), which is work-level: most role facts name no event.",types:[["participant","performer 11,334 · director 3,618 · organizer 3,240 · victim 2,125 · spouse 1,453 · honoree 707 · speaker 304…"]]},
  {id:"ew",a:"event",b:"work",c:-30,status:"built",job:"E",have:"D–G linked events to a work where the text names one (work_key on the events table). Before: Lateiner/Hurwitz plays KG only.",label:"of work",desc:"The work performed or premiered.",types:[["work","play, operetta, song…"]]},
- {id:"er",a:"event",b:"role",c:-20,status:"built",job:"E",have:"D–G carries the character on the participant row where the text gives it. Before: Lateiner/Hurwitz plays KG + DiJeSt (gold) only.",label:"role played",desc:"The dramatic roles performed at this event.",types:[["role","via participants[]"]]},
+ {id:"pr",a:"person",b:"role",c:260,status:"built",job:"F",have:"5,503 performance facts name a dramatic character: 1,734 people in 3,199 distinct roles. The claim is work-level — 4,953 of them name the work, only 1,017 a dated event — so the role is tied to the play, and the staging is carried on the fact when the text gives one.",label:"played",desc:"The person performed this character. One fact, not two: the row holds person + character together, with the work, and with the event, org, place and date where the text states them. The Lexicon usually says only “she played Mirele in Mirele Efros”, so anchoring this to a dated staging would lose 4 of every 5 such facts.",types:[["played","function=performer + character"]]},
  {id:"eo",a:"event",b:"org",c:25,lt:0.14,status:"built",job:"E",have:"D–G extracted 5,410 event→org rows, each with an org_role. Before: venues for Lateiner/Hurwitz productions only.",label:"venue, organizer",desc:"Venue is a role: any organization (or a place) can be one.",types:[["venue","theatre · café · hotel · hall · synagogue…"],["organizer","troupe, society, union…"]]},
  {id:"epl",a:"event",b:"place",c:-25,status:"built",job:"E",have:"D–G fills place and venue on the events table where the text states them. Before: Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"took place in",desc:"Settlement or region of the event.",types:[["place","as written; resolved later"]]},
  {id:"epr",a:"event",b:"production",c:20,status:"todo",job:"",have:"Resolution step 9b (not extracted).",label:"part of",desc:"A performance belongs to a production only when the text or the grouping step says so; otherwise the link is absent.",types:[["part_of","Performance ⊂ Production (LA-PA, SAPA)"]]},
@@ -652,7 +652,7 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
 // ---------- Chen ER ----------
 (function(){
   const svg=$("#chen");svg.classList.add("dg");
-  const V={epr:"part of",prw:"stages",pro:"produced by",pp:"relates to",po:"works in",op:"named after",pw:"creates",ww:"derives from",rw:"belongs to",ep:"takes part",ew:"stages",er:"casts",eo:"held at",epl:"happens in",sp:"moves",spl:"stops at",se:"includes",so:"is with",opl:"located in",ppl:"born / died",src:"informs"};
+  const V={epr:"part of",prw:"stages",pro:"produced by",pp:"relates to",po:"works in",op:"named after",pw:"creates",ww:"derives from",rw:"belongs to",ep:"takes part",ew:"stages",pr:"plays",eo:"held at",epl:"happens in",sp:"moves",spl:"stops at",se:"includes",so:"is with",opl:"located in",ppl:"born / died",src:"informs"};
   const S=1.2,ox=60,oy=110,pt=k=>[N[k].x*S+ox,N[k].y*S+oy],EW=150,EH=46;
   const gA=el("g",{id:"chenA"},svg),gL=el("g",{},svg),gS=el("g",{},svg);
   const C=[1000*S/2+ox,700*S/2+oy];
@@ -716,7 +716,7 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
     ["org","person","is named after","built"],["person","work","writes, translates, composes, performs","built"],
     ["work","work","is a translation or adaptation of","built"],["work","role","has the character","built"],
     ["person","station","moves through","built"],["station","place","stops at","built"],["station","event","includes","built"],
-    ["event","work","stages","built"],["event","role","casts someone as","built"],["person","event","takes part in","built"],
+    ["event","work","stages","built"],["person","role","plays","built"],["person","event","takes part in","built"],
     ["event","org","is held at","built"],["event","place","happens in","built"],["org","place","is located in","built"],
     ["person","place","was born, died, buried in","built"]];
   const box=k=>({x:C[k].x-C[k].w/2,y:C[k].y-C[k].h/2,w:C[k].w,h:C[k].h});

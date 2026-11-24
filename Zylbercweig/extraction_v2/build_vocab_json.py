@@ -59,9 +59,17 @@ RELATION_VOCABS = {
     "ww": [],
     "src": ["source_kind"],
     "sp": ["verb_class", "reason"],
+    # `played` uses the same `performer` term as the rest of the function list
+    "pr": ["function"],
     "ep": ["function"],
     "eo": ["org_role"],
 }
+# NOTE: the event-participant role list is WIDER than the `function` vocabulary.
+# honoree, victim, organizer, spouse, speaker, teacher, conductor, prompter,
+# staged and other appear on participant rows but have no `function` term, so
+# `ep` shows an alignment table that does not cover all of its own values.
+# Either extend the function vocabulary or give participants one of their own —
+# worth settling before the vocabulary is published.
 
 
 def strength(cell: str) -> tuple[str, str]:
