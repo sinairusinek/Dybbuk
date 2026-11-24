@@ -36,6 +36,20 @@ background:var(--paper);color:var(--soft);border:0;padding:.42rem .7rem;cursor:p
 .sw{width:11px;height:11px;border-radius:50%;display:inline-block}
 .ln{width:26px;height:0;border-top:2px solid var(--ink);opacity:.75;display:inline-block}
 .ln.todo{border-top-style:dotted;border-color:var(--muted);opacity:1}
+/* shape swatches: each view draws entities with a different outline, so the
+   legend shows the form as well as the colour. Sized to sit on the text baseline. */
+.shp{display:inline-block;width:19px;height:13px;border:1.6px solid var(--ink);
+  opacity:.8;flex:none}
+.shp.circ{width:13px;border-radius:50%}
+.shp.ell{border-radius:50%}
+.shp.rect{border-radius:1px}
+.shp.round{border-radius:7px}
+.shp.diam{width:14px;height:14px;border:0;background:var(--ink);opacity:.8;
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.shp.bar{border-radius:1px;position:relative;overflow:hidden}
+.shp.bar::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;
+  background:var(--c-person)}
+.shp.dash{border-style:dashed;border-color:var(--muted);opacity:1}
 .jbl{font:600 .66rem "IBM Plex Mono",monospace;font-style:normal;width:17px;height:17px;border-radius:50%;display:inline-grid;place-items:center;background:var(--ink);color:var(--paper)}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 21rem;gap:1.2rem;align-items:start}
 @media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}}
@@ -556,8 +570,32 @@ function renderPanel(){
   p.innerHTML=`<h2>${esc(e.label)} ${badge(e)}</h2><p><b>${esc(N[e.a].label)} → ${esc(N[e.b].label)}</b>. ${esc(e.desc)}</p>${haveBlock(e)}<h3>Types</h3>${fieldList(e.types)}${alignBlock("edge",e.id)}`;
 }
 // legend
-$("#legend").innerHTML=Object.entries(N).map(([k,n])=>`<span><i class="sw" style="background:var(${COL[k]})"></i>${esc(n.label)}</span>`).join("")+
- `<span><i class="ln"></i>in the data</span><span><i class="ln todo"></i>still to be built</span>`;
+// The legend is shared by every diagram, but each notation draws its entities
+// with a different form, so the shape half of it is rebuilt per view.
+const COLOUR_KEY=Object.entries(N).map(([k,n])=>
+  `<span><i class="sw" style="background:var(${COL[k]})"></i>${esc(n.label)}</span>`).join("");
+const LINE_KEY=`<span><i class="ln"></i>in the data</span>`+
+  `<span><i class="ln todo"></i>still to be built</span>`;
+const SHAPE_KEY={
+  graph:`<span><i class="shp circ"></i>entity</span>`,
+  uml:`<span><i class="shp bar"></i>class: colour bar, then its fields</span>`,
+  chen:`<span><i class="shp rect"></i>entity</span>`+
+       `<span><i class="shp diam"></i>relationship</span>`+
+       `<span><i class="shp ell"></i>attribute (field)</span>`,
+  // this view adds one box that is not an entity kind: the entry the facts
+  // were read from, drawn in the neutral --soft rather than an entity colour
+  concept:`<span><i class="shp round"></i>concept</span>`+
+          `<span><i class="sw" style="background:var(--soft)"></i>Lexicon entry (the source text, not an entity)</span>`,
+  matrix:`<span><i class="shp rect"></i>relation, in the subject's row</span>`,
+};
+function drawLegend(view){
+  const shapes=SHAPE_KEY[view]||"";
+  // the todo form is only worth naming where a shape can carry it
+  const todoShape=(view==="chen"||view==="concept"||view==="uml")
+    ? `<span><i class="shp rect dash"></i>not built yet</span>` : "";
+  $("#legend").innerHTML=COLOUR_KEY+shapes+todoShape+LINE_KEY;
+}
+drawLegend("graph");
 // cards view
 $("#cards").innerHTML=Object.entries(N).map(([k,n])=>{
   const out=E.filter(e=>e.a===k), inc=E.filter(e=>e.b===k&&e.a!==k);
@@ -721,6 +759,10 @@ const VIEWS=["graph","cards","uml","chen","matrix","concept","jobs"];
 document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll("[data-view]").forEach(x=>x.setAttribute("aria-pressed",x===b));
   VIEWS.forEach(v=>$("#v-"+v).hidden=b.dataset.view!==v);hideTip();
+  // cards and the run record draw no diagram, so they get no key
+  const v=b.dataset.view, keyed=v in SHAPE_KEY;
+  $("#legend").style.display=keyed?"":"none";
+  if(keyed)drawLegend(v);
   try{history.replaceState(null,"","#view-"+b.dataset.view)}catch(_){}}));
 const hashView=location.hash.replace(/^#view-/,"");
 select(null);
