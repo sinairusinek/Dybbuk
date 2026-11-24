@@ -392,6 +392,8 @@ def main() -> None:
                     help="skip the lexicon bio layer (kg_bio.py)")
     ap.add_argument("--no-orgrel", action="store_true",
                     help="skip the person<->org relations layer (kg_orgrel.py)")
+    ap.add_argument("--no-vitals-events", action="store_true",
+                    help="skip step 9c (keep born_in/died_in/buried_in as edges)")
     ap.add_argument("--no-mentions", action="store_true",
                     help="skip the vol-3 person mentions layer (kg_mentions.py)")
     args = ap.parse_args()
@@ -691,6 +693,12 @@ def main() -> None:
     if not args.no_mentions:
         import kg_mentions
         print(f"mentions layer: {kg_mentions.add_mentions_layer(g, labels, bio_index)}")
+    # ---- step 9c: the vitals become birth/death/burial events. Runs after the
+    # bio layer because it rewrites what that layer emitted; skipped with
+    # --no-bio, since there would be no vitals edges to convert.
+    if not args.no_bio and not args.no_vitals_events:
+        import kg_vitals_events
+        print(f"vitals events: {dict(kg_vitals_events.add_vitals_events(g))}")
 
     for i, e in enumerate(g.edges, 1):
         e["edge_id"] = f"E-{i:05d}"

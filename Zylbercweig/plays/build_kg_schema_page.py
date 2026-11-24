@@ -60,8 +60,13 @@ KIND_NOTE = {
     "play": "A play as plays_db records it. The unit an ascription verdict "
             "attaches to — see the attribution guard below.",
     "edition": "A printed or manuscript witness of a play, joined by title.",
-    "production_event": "One staging, identified by a production_key. Carries "
-                        "the date when the source gives one.",
+    "production_event": "An event: a staging (identified by a production_key), "
+                        "or a person's birth, death or burial. The vitals "
+                        "became events in step 9c — an event holds the date, "
+                        "the place and the other people involved, which the "
+                        "born_in / died_in / buried_in edges could not. The "
+                        "167 edges that survive are the ones where the two "
+                        "sources disagree, held for review.",
     "org": "A company, troupe, theatre, school, publisher or institution, "
            "resolved against core_db. An unresolved cluster stays an "
            "`org_cluster:` node carrying its review decision.",
@@ -130,7 +135,13 @@ REL_NOTE = {
                "relation asserted",
     "of_play": "ties a staging to the play it staged",
     "published_as": "play->edition: this witness realises that play",
-    "held_in": "where a staging took place (a place, not a building)",
+    "held_in": "where an event took place (a place, not a building) — a "
+               "staging, or a birth, death or burial",
+    "participant": "event->person: who the event involves and in what "
+                   "capacity (role_detail). On a vital event the role is "
+                   "`subject` — the person whose birth, death or burial it "
+                   "is. Not `victim`: that was applied to every death, while "
+                   "fewer than half show any violence in the text",
     "staged_at": "the building or company a staging played at",
     "family_of": "any kinship; the specific tie is in role_detail",
     "work_produced_by": "a work of this person's was produced by that org",
