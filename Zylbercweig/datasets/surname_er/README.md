@@ -44,10 +44,10 @@ University.
 - **Candidates:** `candidate_hub_ids` (surname lookup, incl. spelling variants; the host
   is excluded). `candidate_features` gives simple per-candidate overlap counts as a starting point.
 - **Labels (changed 2026-11-24, tag `datasets-2026-11-24f`; read [Labels](#labels-read-this-before-training-or-scoring) below):**
-  - `checked_verdict` / `checked_hub_id` is a **per-mention** answer, read in context, for **all 5,396 ambiguous mentions** (two or more candidates).
-    - `checked_verdict = hub`: `checked_hub_id` is the person (4,220), and `checked_confidence` is `high`, `medium` or `low`.
-    - `checked_verdict = none`: none of the candidates is this person (622), for example the host's brother "אַברהם", or the Russian playwright Ostrovsky.
-    - `checked_verdict = unsure`: the text leaves it open (554). `checked_alternatives` lists the plausible hubs.
+  - `checked_verdict` / `checked_hub_id` is a **per-mention** answer, read in context, for **all 5,400 mentions that were ambiguous** (two or more candidates; after the 11-24g hub fixes, 43 of them have only one candidate left).
+    - `checked_verdict = hub`: `checked_hub_id` is the person (4,283), and `checked_confidence` is `high`, `medium` or `low`.
+    - `checked_verdict = none`: none of the candidates is this person (618), for example the host's brother "אַברהם", or the Russian playwright Ostrovsky.
+    - `checked_verdict = unsure`: the text leaves it open (499). `checked_alternatives` lists the plausible hubs.
     - `checked_how` names the reading pass.
   - `surname_prior_hub_id` (formerly `gold_hub_id`) is one research assistant's pick **per surname**, the same for every mention of that surname (5,726 mentions). It is **not** a per-mention answer.
   - `surname_prior_alt_hub_ids` lists the other person(s) the assistant named for that surname.
@@ -113,7 +113,7 @@ then copied onto every mention of the surname. The consequences:
 - Some priors are simply wrong. "הירשביין" points to A. Glanz instead of Peretz Hirshbein (29 mentions)
   and "לייוויק" to Leivick Khanukov instead of H. Leivick (24).
 
-**`checked_*` is the per-mention label.** Every one of the 5,396 ambiguous mentions was read in
+**`checked_*` is the per-mention label.** Every one of the 5,400 ambiguous mentions was read in
 context, using the host entry's text, the relation sentence, dates, roles, works, places and
 gender, against the profile of every candidate. Three passes did this:
 
@@ -131,8 +131,8 @@ each confidence level is, we checked random samples by hand:
 | `checked_confidence` | answers | checked by hand | right |
 |---|---|---|---|
 | high | 1,915 | 34 | 34 |
-| medium | 1,908 | 40 | 35 (1 wrong, 4 doubtful) |
-| low | 397 | – | treat as a guess |
+| medium | 1,970 | 40 | 35 (1 wrong, 4 doubtful) |
+| low | 398 | – | treat as a guess |
 
 The samples are small, so read these as rough figures: high-confidence answers are very likely right, and
 medium about 85–90%. Use the `high` answers as a strict test set, and `high` + `medium` for training or a
@@ -145,31 +145,41 @@ The bare "Fishzon" mentions were also split between Avrom and Misha mainly by da
 Reasons for every answer are in
 [`people/er_mention_checks_2026_11_24.tsv`](../../people/er_mention_checks_2026_11_24.tsv).
 
-**What the check showed about the old labels.** Of the 2,751 mentions with a prior and a checked
-person, the surname prior was right on only 1,129 (41%). On 309 more it named a person when the
+**What the check showed about the old labels.** Of the 2,758 mentions with a prior and a checked
+person, the surname prior was right on only 1,177 (43%). On 305 more it named a person when the
 mention is someone with no candidate at all: relatives named by first name, or outsiders like Ostrovsky.
 
 **Split by surname.** Even when read mention by mention, most surnames do refer to one person:
-predicting each surname's most frequent checked person gets 3,955 of the 4,220 right. 98 of
-the 446 surnames have mentions that point to different people. If train and test share surnames,
+predicting each surname's most frequent checked person gets 4,017 of the 4,283 right. 98 of
+the 447 surnames have mentions that point to different people. If train and test share surnames,
 a model can memorize the surname. Split by `surname_key` and report results on unseen surnames,
 with the 98 mixed surnames as a separate, harder subset.
 
-**Hub defects the reading found** (not fixed in this version; a model may see them as two people):
-- Avrom Goldfaden has a second hub made from a picture caption, "drawn by Avrom Goldfaden"
-  (`HUB-P-1-facs_174_region_1715799875093_402`). Several Goldfaden mentions are `unsure` between the two.
-- `HUB-P-4-facs_672_r_1` is a memorial caption for the Michaleskos, not a person.
-- Several people have two hubs each: Nekhama Lipshits-Kadish (HUB-D2299 / HUB-D2550), the designer
-  W. Weintraub (HUB-D3238 / HUB-D3450) and Shmuel Goldfarb.
-- A. Y. Kaminski's profile (HUB-D3613) gives a birth year of 1887, which contradicts his troupe in the 1890s.
-- Boris Tomashefsky is missing from the candidates on 4 mentions.
+**Hub defects the reading found, fixed in 11-24g.** These were corrected in the project's source
+data (decision files and `people_extracted.tsv`), and the hubs were rebuilt:
+- Avrom Goldfaden's vol-1 entry had been cut into 6 hubs. Five sections are headed by image captions
+  ("drawn by Avrom Goldfaden", posters, a memorial plaque, the manuscript of his autobiography). All six
+  are now `HUB-D804`. Their caption headings no longer feed the surname index, so Goldfaden is not a
+  candidate for, say, "Perlmutter".
+- People with two hubs are merged: Nekhama Lipshits-Kadish (`HUB-D2550` → `HUB-D2299`),
+  the painter W. Weintraub (`HUB-D3450` → `HUB-D3238`) and Shmuel Goldfarb (→ `HUB-D1835`).
+- `HUB-D3177` had merged three people, through shifted rows in an alignment sheet. It is now only
+  Aneta Veltman. Klara Vetshteyn is `HUB-D3179`, and Eli Pesakh the jester is `HUB-D3812`;
+  `HUB-D3812` was previously a Goldfaden poster section.
+- Not people: the Michalesko memorial page and the Zvi Kessel literary prize are flagged
+  `non_person` and are no longer candidates. The 35 mentions that sit inside those pages have no
+  `host_hub_id` and carry `flag = host_not_a_person`.
+- Birth years: Boris Tomashefsky 1886 → 1868 (a misprint; Zylbercweig's own note says so). Because of
+  the old date, the resolver had dropped him from 1880s mentions. A. Y. Kaminski's printed 1887 cannot be
+  right (his entry has him leading a troupe in 1887), so it is now blank. The 14 checked mentions whose candidates
+  changed were read again.
 
 ## Baselines (on the checked labels)
 
-| method | high (1,915) | high + medium (3,823) |
+| method | high (1,915) | high + medium (3,885) |
 |---|---|---|
-| surname prior | 524 right | 1,048 right |
-| existing rule-based resolver | 437 right (it answers 536) | 804 right (it answers 1,140) |
+| surname prior | 557 right | 1,096 right |
+| existing rule-based resolver | 515 right (it answers 614) | 910 right (it answers 1,244) |
 
 The surname prior and the resolver rarely answer the mentions that have no prior, so their counts
 over all mentions are low.
@@ -180,7 +190,14 @@ agreement with the surname prior, not correctness.
 The signals need combining: time (are the birth years compatible with the relation
 date?), place, the shared organization, gender, and relation type.
 
-## What changed (tag `datasets-2026-11-24f`)
+## What changed (tag `datasets-2026-11-24g`)
+
+- Hub defects fixed at source and hubs rebuilt (see the list above): Goldfaden's sections merged into one
+  hub, 3 duplicate pairs merged, one hub that had merged three people split, 2 non-person pages flagged,
+  2 birth years corrected. Candidate lists changed on about 400 mentions. Reading results were remapped to
+  the new hub ids, and the 14 mentions that gained a candidate were read again. New flag: `host_not_a_person`.
+
+## Earlier change (tag `datasets-2026-11-24f`)
 
 - The 1,950 ambiguous mentions without a prior are now read too, so all 5,396 ambiguous mentions
   have a `checked_*` reading. The reliability table, baselines and surname-split figures are updated,
@@ -228,7 +245,7 @@ date?), place, the shared organization, gender, and relation type.
 - `c_org_id` is matched by sentence overlap (`c_org_match_score`) and then checked by a Gemini judge; the 142 matches it rejected are removed (`|check_failed` in the score). Expect a few residual errors.
 - `in_entry_method` ending in `|check_failed` = a relative's inferred full name the check rejected (24); the full form is blanked.
 - `relation_source = v2_job_B` rows (634) were classified by Gemini from text windows; `|checked_ok` / `|check_failed` marks the 29 'Source' relations that were checked.
-- `flag = not_a_person`: the "mention" is a placename (e.g. ביעלאָצערקאָוו = Bila Tserkva); `rejected_alignment`: a curated rejection removed a wrong surname-prior or resolver answer.
+- `flag = not_a_person`: the "mention" is a placename (e.g. ביעלאָצערקאָוו = Bila Tserkva); `rejected_alignment`: a curated rejection removed a wrong surname-prior or resolver answer; `host_not_a_person`: the host entry is a prize or memorial page, so there is no host person.
 - 110 surname-prior answers are not among the candidates (spelling variants the lookup misses): a recall problem to study.
 - Hubs are not a closed world: some mentioned people have no Lexicon entry.
 - Place links in `defg_places_en` not covered by a reviewed link (about 13%) go by spelling plus the

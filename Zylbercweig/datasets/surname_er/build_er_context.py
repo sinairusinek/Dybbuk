@@ -344,6 +344,8 @@ def main():
         o["checked_alternatives"] = ch.get("alternatives", "")
         o["checked_confidence"] = ch.get("confidence", "") if ch.get("verdict") == "hub" else ""
         o["checked_how"] = ch.get("pass", "")
+        if not o["host_hub_id"]:  # host entry is a curated non-person (prize page, memorial page)
+            flag = "|".join(x for x in (flag, "host_not_a_person") if x)
         o["flag"] = flag
     mcols = list(out[0].keys())
     with open(HERE / "er_mention_context.tsv", "w", encoding="utf-8", newline="") as fh:

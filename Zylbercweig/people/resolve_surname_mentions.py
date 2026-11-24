@@ -30,6 +30,7 @@ if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
 
 from people_common import (  # noqa: E402
+    caption_heading_person_ids,
     load_db_rows,
     load_extracted,
     load_mentions_with_host,
@@ -150,6 +151,7 @@ class HubIndex:
         self.hub_death: dict[str, int | None] = {}
         self._variants_cache: dict[str, set[str]] = {}
 
+        caption_pids = caption_heading_person_ids()
         for h in self.hubs.values():
             hid = h["hub_id"]
             if h.get("non_person") == "1":
@@ -157,6 +159,8 @@ class HubIndex:
             pids = [p for p in h["entry_person_ids"].split("|") if p]
             for p in pids:
                 self.hub_of_pid[p] = hid
+                if p in caption_pids:   # caption-headed section: its heading names others
+                    continue
                 e = self.entry_by_pid.get(p, {})
                 for t in heading_surname_tokens(e.get("heading", ""), given_counts):
                     self.surname_to_hubs[t].add(hid)

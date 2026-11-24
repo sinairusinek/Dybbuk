@@ -84,7 +84,7 @@ db_id	org_name_yiddish	org_name	org_type	pattern	span	hub_id	person_heading	pers
 254	גענפערס טרופּע	Genfer Troupe	Traveling Company	possessive	גענפער	HUB-D1742	גענפֿער סאָלאָמאָן	1742	1	medium	unique surname match
 302	קאָמפּאַניעיעצ'ס טרופּע	Kompaneyets Troupe		possessive	קאמפאניעיעצ	HUB-D1156	אַניעלאַ [חנה קאמפּאנעיעץ-פּאָליאַקאָוו]	1156	1	medium	unique surname match
 330	מעערסאָנס טרופּע	Meerson Troupe		possessive	מעערסאנ	HUB-D3814	מייערסאָן, מ. ל.	3814	1	medium	unique surname match
-531		טרופּע פֿון קאַדיש-כאַש		trupe_fun	קאדיש	HUB-D2550	נחמה (ליפּשיץ-קאַדיש]	2550	1	medium	unique surname match
+531		טרופּע פֿון קאַדיש-כאַש		trupe_fun	קאדיש	HUB-D2299	נחמה (ליפּשיץ-קאַדיש]	2550	1	medium	unique surname match
 542		טרופּע פֿון געליס	Traveling Company	trupe_fun	געליס	HUB-D1739	געליס, לעאָן	1739	1	medium	unique surname match
 661	בערנשטייןס טרופּע	בערנשטייןס טרופּע	traveling company	possessive	בערנשטיין	HUB-D859	בערנשטיין, בערל [בורשטין]	859	1	medium	unique surname match
 678	טרופּע פֿון אַטלאַס	טרופּע פֿון אַטלאַס	traveling company	trupe_fun	אטלאס	HUB-D1192	אַטלאַס, דזשעני	1192	1	medium	unique surname match
@@ -200,11 +200,11 @@ db_id	org_name_yiddish	org_name	org_type	pattern	span	hub_id	person_heading	pers
 459	זייגלערס טרופּע	Ziegler Troupe		possessive	זייגלער	HUB-D3389	זיגלער, מאָריץ [משה בעלזער]	3389	2	low	ambiguous: 2 hubs share this surname
 459	זייגלערס טרופּע	Ziegler Troupe		possessive	זייגלער	HUB-D3390	זיגלער ערנא	3390	2	low	ambiguous: 2 hubs share this surname
 492	יידל גאָלדפאַדנס טרופּע	יידל גאָלדפאַדנס טרופּע	Traveling Company	possessive	גאלדפאדנ	HUB-D1830	גאָלדפֿאַדען, נפתלי [גאָלדענפֿאָדים]	1830	2	low	ambiguous: 2 hubs share this surname
-492	יידל גאָלדפאַדנס טרופּע	יידל גאָלדפאַדנס טרופּע	Traveling Company	possessive	גאלדפאדנ	HUB-P-1-facs_174_region_1715799875093_402	געצייכנט פון אברהם גאָלדפאַדען		2	low	ambiguous: 2 hubs share this surname
+492	יידל גאָלדפאַדנס טרופּע	יידל גאָלדפאַדנס טרופּע	Traveling Company	possessive	גאלדפאדנ	HUB-D804	געצייכנט פון אברהם גאָלדפאַדען		2	low	ambiguous: 2 hubs share this surname
 523		טרופּע פֿון טרילינג	Traveling Company	trupe_fun	טרילינג	HUB-D3092	טרילינג, איליאַ (סימאָן)	3092	2	low	ambiguous: 2 hubs share this surname
 523		טרופּע פֿון טרילינג	Traveling Company	trupe_fun	טרילינג	HUB-D3093	טרילינג, מאַניע (מרים)	3093	2	low	ambiguous: 2 hubs share this surname
 531		טרופּע פֿון קאַדיש-כאַש		trupe_fun	כאש	HUB-D2109	חאַש, יוסף	2109	3	low	ambiguous: 3 hubs share this surname
-531		טרופּע פֿון קאַדיש-כאַש		trupe_fun	כאש	HUB-D2550	נחמה (ליפּשיץ-קאַדיש]	2550	3	low	ambiguous: 3 hubs share this surname
+531		טרופּע פֿון קאַדיש-כאַש		trupe_fun	כאש	HUB-D2299	נחמה (ליפּשיץ-קאַדיש]	2550	3	low	ambiguous: 3 hubs share this surname
 531		טרופּע פֿון קאַדיש-כאַש		trupe_fun	כאש	HUB-D3550	קדיש [ק. כאַש]	3550	3	low	ambiguous: 3 hubs share this surname
 533		מעלצערס טרופּע	Traveling Company	possessive	מעלצער	HUB-D2436	מעלצער, עני	2436	4	low	ambiguous: 4 hubs share this surname
 533		מעלצערס טרופּע	Traveling Company	possessive	מעלצער	HUB-D2437	מעלצער, איזידאָר	2437	4	low	ambiguous: 4 hubs share this surname
@@ -519,7 +519,7 @@ db_id	org_name_yiddish	org_name	org_type	pattern	span	hub_id	person_heading	pers
 931	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	traveling company	namelist	ראזענבערג	HUB-P-6-facs_108_r	ראָזענבערג, שרה (-שיינדל) [הערמאַן]		9	low	ambiguous: 9 hubs share this surname
 931	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	traveling company	namelist	נפתלי	HUB-D2943	שראַגע, אַדאָלף [נפתלי-יהושע]	2943	1	low	unique surname match
 931	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	traveling company	namelist	גאלדפאדעןס	HUB-D804	גאָלדפֿאַדען, אַברהם [גאָלדענפֿאָדים]	804	2	low	ambiguous: 2 hubs share this surname
-931	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	traveling company	namelist	גאלדפאדעןס	HUB-P-1-facs_174_region_1715799875093_402	געצייכנט פון אברהם גאָלדפאַדען		2	low	ambiguous: 2 hubs share this surname
+931	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	ראָזענבערג און נפתלי גאָלדפֿאַדעןס וואָנדערטרופּע	traveling company	namelist	גאלדפאדעןס	HUB-D804	געצייכנט פון אברהם גאָלדפאַדען		2	low	ambiguous: 2 hubs share this surname
 937	טרופּע פֿון אַברהם פישזאָן און זון	טרופּע פֿון אַברהם פישזאָן און זון	traveling company	trupe_fun	אברהם	HUB-D1321	בלאַנק, אַברהם	1321	2	low	ambiguous: 2 hubs share this surname
 937	טרופּע פֿון אַברהם פישזאָן און זון	טרופּע פֿון אַברהם פישזאָן און זון	traveling company	trupe_fun	אברהם	HUB-P-4-facs_664_tr_1755030050	אַברהם עדעלמאַן		2	low	ambiguous: 2 hubs share this surname
 956	אַבראַמאָווס טרופּע	אַבראַמאָווס טרופּע	traveling company	possessive	אבראמאוו	HUB-D1102	אַבראַמאָוו, א. [אַברהם קאַגאָן]	1102	5	low	ambiguous: 5 hubs share this surname

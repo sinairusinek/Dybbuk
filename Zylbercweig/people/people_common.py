@@ -28,7 +28,9 @@ EXTRACTED_TSV = HERE / "people_extracted.tsv"
 REVIEW_TSV = HERE / "people_alignment_review.tsv"
 DISAGREEMENTS_TSV = HERE / "alignment_disagreements.tsv"
 DB_TSV = HERE / "people_db.tsv"
-NON_PERSON_TSV = HERE / "non_person_entries_phaseA.tsv"
+NON_PERSON_TSV = HERE / "non_person_entries_phaseA.tsv"  # heading-regex LOG of find_dedup_candidates.py; not a decision list
+NON_PERSON_CURATED_TSV = HERE / "non_person_entries_curated.tsv"  # hand-decided non-person entries (person_id)
+CAPTION_HEADINGS_TSV = HERE / "entry_caption_headings.tsv"  # entry sections whose heading is an image caption
 
 
 def read_tsv(path: pathlib.Path) -> list[dict]:
@@ -54,8 +56,22 @@ def load_db_rows() -> list[dict]:
     return read_tsv(DB_TSV)
 
 
+def caption_heading_person_ids() -> set[str]:
+    """Entry sections (merged into a person's hub) whose heading is an image caption, e.g.
+    "the manuscript of G.'s autobiography, owned by Shalom Perlmutter". Their headings must not
+    feed surname indexes, or the hub becomes a candidate for every name in the caption."""
+    return {r["person_id"] for r in read_tsv(CAPTION_HEADINGS_TSV) if r.get("person_id")}
+
+
 def non_person_person_ids() -> set[str]:
-    return {r["person_id"] for r in read_tsv(NON_PERSON_TSV) if r.get("person_id")}
+    """Entries that are not people (memorial pages, prizes...), from the CURATED list.
+
+    The phaseA file is NOT used: it has no person_id column (so this function used to
+    return an empty set and no hub was ever flagged), and its heading regex also caught
+    real people (the Borisov and Zembin badkhonim) and sections of Goldfaden's entry
+    whose headings are image captions (those are merged into his hub instead).
+    """
+    return {r["person_id"] for r in read_tsv(NON_PERSON_CURATED_TSV) if r.get("person_id")}
 
 
 def volume_of_person_id(person_id: str) -> str:
