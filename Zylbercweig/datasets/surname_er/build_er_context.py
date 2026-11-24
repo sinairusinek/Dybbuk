@@ -112,13 +112,65 @@ def main():
                 continue
             ent_works[e].append(f"{r['function']}:{r['work']}" + (f" ({r['character']})" if r["character"] else ""))
 
+    # ---- 11-24: link each D–G station place: itinerary gazetteer first, then the 11-22 place decisions ----
+    sys.path.insert(0, str(ZYL / "plays" / "itinerary"))
+    import build_itinerary_data as bid  # noqa: E402
+    lut = bid.load_gazetteer()
+    PDEC = {}
+    for r in tsv(V2 / "qa" / "kima" / "defg_place_decisions_2026_11_22.tsv"):
+        PDEC[bid.norm(r["yiddish"])] = r
+    _link_cache = {}
+
+    def place_link(p):
+        """Yiddish place -> 'English (Qnnn / Kima N)'; '?' when not linked."""
+        if p in _link_cache:
+            return _link_cache[p]
+        st, q, en, *_ = bid.resolve(p, lut)
+        if st in ("settlement_partial", "settlement_first_of_list", "region_first_of_list"):
+            # the resolver's word/part fallbacks misfire (Seattle, Washington -> Washington D.C.;
+            # Alexandria (Egypt) -> Oleksandriia): accept only the FIRST part of "Town, Region" / "Town (Country)"
+            first = _re.split(r"[,(]", p)[0].strip()
+            st, q, en, *_ = bid.resolve(first, lut) if first and first != p else ("unresolved", "", "")
+            if st not in ("settlement", "region"):
+                st = "unresolved"
+        if st == "settlement":
+            out = f"{en} ({q})" if q else en
+        elif st == "region":
+            out = en
+        else:
+            d = PDEC.get(bid.norm(p))
+            dec = d["decision"] if d else ""
+            if dec == "KIMA":
+                ids = " / ".join(x for x in (d["qid"], f"Kima {d['kima_id']}") if x)
+                out = f"{d['english'] or d['kima_name']} ({ids})"
+            elif dec == "QID":
+                out = f"{d['english']} ({d['qid']})"
+            elif dec == "IDENTIFIED":
+                out = d["english"]
+            else:  # UNLINKED / UNCERTAIN / never queued
+                out = "?"
+        _link_cache[p] = out
+        return out
+
     def defg_of(entry_ids):
         es = [x for x in (entry_ids or "").split("|") if x]
         pl, ys, wk = [], set(), []
         for e in es:
             pl += ent_places.get(e, []); ys |= ent_years.get(e, set()); wk += ent_works.get(e, [])
         uniq = lambda xs: list(dict.fromkeys(xs))
-        return {"defg_places": "|".join(uniq(pl))[:1500],
+        upl = uniq(pl)
+        def en_of(x):
+            place, _, y = x.rpartition(":") if _re.search(r":1[6-9]\d\d$", x) else (x, "", "")
+            return place_link(place) + (f":{y}" if y else "")
+        # truncate both lists at the same station so position i means the same station in each
+        keep, n = [], 0
+        for x in upl:
+            n += len(x) + 1
+            if n > 1500:
+                break
+            keep.append(x)
+        return {"defg_places": "|".join(keep),
+                "defg_places_en": "|".join(en_of(x) for x in keep),
                 "defg_years": f"{min(ys)}-{max(ys)}" if ys else "",
                 "defg_works": " ;; ".join(uniq(wk)[:60])}
 
@@ -258,7 +310,8 @@ def main():
             "relation_source": ("v2_job_B" + ({True: "|checked_ok", False: "|check_failed"}.get(VB.get(mid, {}).get("ok"), ""))) if b
                                else ("v2_8f_retyped" + ("|hand_read" if "[read" in RT[mid].get("schema_issue", "") else "")) if mid in RT else "feb_2026",
             "relation_old": f"{m['relation_category']}/{m['relation_specific']}" if (b or mid in RT) else "",
-            "host_defg_places": hp.get("defg_places", "")[:600], "host_defg_years": hp.get("defg_years", ""),
+            "host_defg_places": hp.get("defg_places", ""), "host_defg_places_en": hp.get("defg_places_en", ""),
+            "host_defg_years": hp.get("defg_years", ""),
             "relation_sentence": m["relation_sentence"][:400],
             "rel_settlement": m["rel_place_settlement"], "rel_country": m["rel_place_country"],
             "rel_venue": m["rel_place_venue"], "rel_date_start": m["rel_date_start"], "rel_date_end": m["rel_date_end"],

@@ -33,6 +33,7 @@ University.
   (new: `publisher`, `award_recipient`, `subject_of`); the earlier value is in `relation_old`.
 - **The host's own itinerary** (new 2026-11-22): `host_defg_places`, `host_defg_years`, the same
   as the candidates' `defg_places` / `defg_years`: compare them with each candidate's.
+  `host_defg_places_en` (new 2026-11-24) is the same list in English with Wikidata ids (see below).
 - **Organization in the sentence** (`c_*`): e.g. "Kessler's troupe". `c_org_id` is that
   organization's id (`db:` = curated organization, `cl:` = org cluster), and
   `c_named_after_mention` says the troupe bears the mention's name. If a candidate's
@@ -58,6 +59,13 @@ stated; 2,710 hubs), `defg_years` (first–last year stated; 2,526), `defg_works
 performed, directed, composed, translated…, as `function:title (character)`; 1,729). Facts
 stated only inside quotations are left out.
 
+New 2026-11-24: `defg_places_en` is `defg_places` linked, station by station (position *i* in
+one list is position *i* in the other): `Daugavpils (Q80021):1866|United States (Q30):1901`.
+Each Yiddish spelling is looked up in the project's place gazetteer, then in the 2026-11-22
+place decisions (Kima gazetteer ids as `Kima N`, Wikidata `Qnnn`). `?` = not linked (unclear
+spelling, not a place, or still with the human reviewer). **91% of the 23,073 stations are
+linked, 80% with a Wikidata QID.** Compare QIDs, not names, across host and candidates.
+
 ## Baselines (on the 3,401 gold mentions with ≥2 candidates)
 
 | method | correct |
@@ -68,7 +76,16 @@ stated only inside quotations are left out.
 The signals need combining: time (are the birth years compatible with the relation
 date?), place, the shared organization, gender, and relation type.
 
-## What changed (tag `datasets-2026-11-22`)
+## What changed (tag `datasets-2026-11-24`)
+
+- New `defg_places_en` (candidates) and `host_defg_places_en` (mentions): the D–G stations in English
+  with Wikidata / Kima ids. `host_defg_places` is no longer cut at 600 characters (same 1,500 limit
+  as the candidates', so the two lists line up).
+- Organization links refreshed after the 11-22 organization review rounds (merges, new organizations,
+  network parents): `org_ids` / `orgs_detail` changed on 457 hubs, `host_org_ids` on 2,757 mentions,
+  `c_org_id` on 26. Gold labels, candidates and relations are unchanged.
+
+## Earlier change (tag `datasets-2026-11-22`)
 
 - Relations re-typed (3,290 mentions changed category or type); `relation_old` keeps the previous value.
 - New D–G features on candidates (`defg_places`, `defg_years`, `defg_works`) and on the host (`host_defg_places`, `host_defg_years`).
@@ -87,3 +104,5 @@ date?), place, the shared organization, gender, and relation type.
 - `flag = not_a_person`: the "mention" is a placename (e.g. ביעלאָצערקאָוו = Bila Tserkva); `rejected_alignment`: a curated rejection removed a wrong gold/resolver answer.
 - 110 gold answers are not among the candidates (spelling variants the lookup misses): a recall problem to study.
 - Hubs are not a closed world: some mentioned people have no Lexicon entry.
+- Place links in `defg_places_en` go by spelling, so a few homonyms are wrong: אַלעקסאַנדריע is linked to
+  Oleksandriia (Ukraine) even where the entry says Egypt. Treat a single place disagreement as weak evidence.
