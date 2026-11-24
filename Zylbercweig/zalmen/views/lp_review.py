@@ -21,6 +21,8 @@ Differences from B3 (surname review), on purpose:
   * About 10% of items are hidden controls with existing gold (agreement check).
 
 Queue:     Zylbercweig/people/lp_review_queue.tsv      (item, mention_id, candidate_order)
+           v2 (2026-11-24): candidates from a phonetic/edit-distance + graph retriever (top 8),
+           so the true person can appear even when the surname lookup misses them.
 Decisions: Zylbercweig/people/lp_review_decisions.tsv  (pushed like B3 decisions)
 """
 from __future__ import annotations
@@ -79,7 +81,27 @@ def _load_static(_m: tuple) -> dict:
     p = PEOPLE / "entry_texts.tsv"
     if p.exists():
         texts = {r["person_id"]: r["entry_text"] for r in _read(p)}
-    return {"er": er, "prof": prof, "hubs": hubs, "english": english, "texts": texts}
+    # D-G full-text extraction (datasets-2026-11-24c+): what the host entry says the mention did
+    facts = {}
+    d = ER_DIR / "defg"
+    if (d / "er_mention_defg_links.tsv").exists():
+        links = {}
+        for r in _read(d / "er_mention_defg_links.tsv"):
+            links.setdefault(r["mkey"], []).append(r["mention_id"])
+        events = {r["ekey"]: r for r in _read(d / "defg_events.tsv")}
+        for r in _read(d / "defg_event_participants.tsv"):
+            for mid in links.get(r["person_key"], ()):
+                e = events.get(r["ekey"], {})
+                facts.setdefault(mid, []).append(" ".join(x for x in (
+                    e.get("event_type", "") + ":", e.get("event_text", "")[:140],
+                    f"(role: {r['role']})" if r.get("role") else "", e.get("place_en", ""), e.get("date_start", "")) if x))
+        for r in _read(d / "defg_performance_facts.tsv"):
+            for mid in links.get(r["person_key"], ()):
+                facts.setdefault(mid, []).append(" ".join(x for x in (
+                    r.get("function", ""), f"as {r['character']}" if r.get("character") else "",
+                    f"in {r['work']}" if r.get("work") else "", r.get("org", ""), r.get("venue", ""),
+                    r.get("place_en", ""), r.get("date_start", "")) if x))
+    return {"er": er, "prof": prof, "hubs": hubs, "english": english, "texts": texts, "facts": facts}
 
 
 def _load_queue() -> list[dict]:
@@ -181,6 +203,20 @@ def _evidence(m: dict, p: dict) -> list[str]:
     d = _year(m.get("rel_date_start")) or _year(m.get("rel_date_end"))
     if d and pb:
         chips.append(f"🎂 aged ~{d - pb} at the relation date ({d})")
+    hq = set(re.findall(r"Q\d+", m.get("host_defg_places_en") or ""))
+    shared_st = []
+    for st_ in (p.get("defg_places_en") or "").split("|"):
+        if set(re.findall(r"Q\d+", st_)) & hq:
+            nm = re.sub(r"\s*\(.*?\)", "", st_.rsplit(":", 1)[0] if re.search(r":\d{4}$", st_) else st_).strip()
+            if nm and nm not in shared_st:
+                shared_st.append(nm)
+    if shared_st:
+        chips.append("🗺 life stations shared with host: " + " · ".join(shared_st[:5]))
+    yy = re.findall(r"\d{4}", p.get("defg_years") or "")
+    if d and len(yy) == 2:
+        inside = int(yy[0]) <= d <= int(yy[1])
+        chips.append(f"{'✅' if inside else '⚠'} relation date {d} is {'within' if inside else 'outside'} "
+                     f"this person's documented years {yy[0]}–{yy[1]}")
     pd_ = _year(p.get("death_year"))
     if d and pd_ and pd_ < d - 1:
         chips.append(f"⚠ died {pd_}, before the relation date ({d})")
@@ -259,6 +295,17 @@ def render() -> None:
     hb = host.get("birth_date") or m.get("host_birth_year") or "?"
     st.markdown(_rtl(f"<b>Host entry:</b> {html.escape(host.get('canonical_heading', m['host_heading']))} "
                      f"({hb} – {host.get('death_date', '') or '?'})", 1.05), unsafe_allow_html=True)
+    if m.get("host_defg_places_en"):
+        stations = [re.sub(r"\s*\(.*?\)", "", x) for x in m["host_defg_places_en"].split("|") if x and not x.startswith("?")]
+        st.markdown("**Host's life stations:** " + " → ".join(stations[:14]))
+    if m.get("in_entry_full_form"):
+        st.markdown(_rtl(f"<b>The entry's own expansion of the name</b> "
+                         f"<span style='color:#888'>({html.escape(m.get('in_entry_status') or '')}; a model's reading, may be wrong)</span>: "
+                         f"{html.escape(m['in_entry_full_form'])}"), unsafe_allow_html=True)
+    fx = data["facts"].get(q["mention_id"], [])
+    if fx:
+        st.markdown("**What the host's entry says this person did:**")
+        st.markdown(_rtl("<br>".join(html.escape(f) for f in fx[:8])), unsafe_allow_html=True)
     with st.expander("📜 Host entry (full text, mention highlighted)", expanded=False):
         _entry_block(_entry_text(host, data["texts"], m.get("volume", "")), m["mention_name"])
 
@@ -283,6 +330,13 @@ def render() -> None:
                            + (f" · roles {p['roles_db']}" if p.get("roles_db") else ""))
                 for chip in _evidence(m, p):
                     st.markdown(f"- {chip}")
+                if p.get("defg_places_en"):
+                    stn = [re.sub(r"\s*\(.*?\)", "", x) for x in p["defg_places_en"].split("|") if x and not x.startswith("?")]
+                    st.caption("🗺 " + " → ".join(stn[:12]) + (f"  ({p['defg_years']})" if p.get("defg_years") else ""))
+                works = [w for w in (p.get("defg_works") or "").split(" ;; ") if w]
+                if works:
+                    with st.expander(f"🎭 works ({len(works)})"):
+                        st.markdown(_rtl("<br>".join(html.escape(w) for w in works[:40])), unsafe_allow_html=True)
                 orgs = list(_orgs(p).values())
                 if orgs:
                     with st.expander(f"🏛 organisations ({len(orgs)})"):
