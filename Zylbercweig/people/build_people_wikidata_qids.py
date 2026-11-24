@@ -68,12 +68,19 @@ for r in csv.DictReader(open(os.path.join(HERE, 'mentions_all.tsv')), delimiter=
         n_ment[t] += 1
         ment_names[t].add(r['mention_name'].strip())
 
+# curated: OpenRefine PersonDBID values known to be wrong for a towd name (OpenRefine is read-only here)
+excl = collections.defaultdict(set)
+_ex = os.path.join(HERE, 'people_wikidata_dbid_exclusions.tsv')
+if os.path.exists(_ex):
+    for r in csv.DictReader(open(_ex, encoding='utf-8'), delimiter='\t'):
+        excl[r['towd_name'].strip()].add(r['db_id'].strip())
+
 out = []
 for t, (qid, label, judg) in sorted(qid_of.items(), key=lambda x: x[1][1]):
     hubs = set(surf_hubs.get(t.strip(), set()))
     for n in ment_names[t]:
         hubs |= surf_hubs.get(n, set())
-    dbs = set(or_dbids[t])
+    dbs = set(or_dbids[t]) - excl.get(t.strip(), set())
     for hb in hubs:
         dbs.update(hub_db.get(hb, []))
     out.append({'towd_name': t, 'qid': qid, 'wikidata_label': label,
