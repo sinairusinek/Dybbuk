@@ -18,8 +18,7 @@ GRAPH = Path(__file__).resolve().parent.parent / "data" / "entity_graph.json"
 # layer exists to fix: it made the graph claim Mishke Mashke was performed in
 # 1889 by a book printed in 1911.
 WORK_RELS = {"wrote", "composer", "lyrics", "arranger", "choreographer",
-             "actor", "actress", "performed_at", "premiered_in",
-             "composer (txt fr composer)"}
+             "actor", "actress", "performed_at", "premiered_in"}
 # A fact about the physical book.
 ITEM_RELS = {"published", "printed_in", "holds"}
 

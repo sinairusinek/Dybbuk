@@ -590,6 +590,27 @@ def split_venues(v) -> list[str]:
     return [p.strip() for p in str(v or "").split("|") if p.strip()]
 
 
+_ROLE_NOTE = re.compile(r"\s*\(([^)]*)\)\s*")
+
+
+def _split_role_note(rel: str) -> tuple[str, str | None]:
+    """Split a Role cell's parenthetical note off the relation itself.
+
+    The catalogue's Role column is free text, so an RA's clarification can end
+    up fused to the relation: `composer (txt fr composer)` means Russotto also
+    wrote the text. Keeping the parenthetical in `rel` mints a relation type
+    that exists for a single edge and would be published as part of the
+    vocabulary, so the relation is reduced to its bare verb and the note is
+    carried on the edge's `role_note` instead. Returns (relation, note|None);
+    a role with no parenthetical is returned unchanged with note None.
+    """
+    note = "; ".join(m.strip() for m in _ROLE_NOTE.findall(rel) if m.strip())
+    bare = _ROLE_NOTE.sub(" ", rel).strip()
+    # Never return an empty relation: a cell that is *only* a parenthetical
+    # keeps its original text rather than collapsing to "".
+    return (bare or rel.strip()), (note or None)
+
+
 def main() -> int:
     editions = json.loads(EDITIONS.read_text(encoding="utf-8"))["editions"]
     ppl_exact, ppl_tok = load_people()
@@ -807,6 +828,12 @@ def main() -> int:
             # keep the relation clean and move the character to its own field.
             role_raw = str(r.get("Role") or "credited").strip()
             rel, _, character = role_raw.partition(":")
+            # A Role cell may also carry a parenthetical qualifier that is a
+            # note, not a relation ("composer (txt fr composer)" = Russotto
+            # also wrote the text). Left in place it becomes a one-off
+            # relation type in the published vocabulary, so strip it to the
+            # bare relation and keep the note on the edge.
+            rel, role_note = _split_role_note(rel)
             nid = node("person", raw, res, role=rel.strip().lower())
             # Coarse granularity: the Leksikon attests that this person played
             # this role in this play, with no event named. That claim stands on
@@ -814,6 +841,7 @@ def main() -> int:
             # work_layer.coarse_to_fine.
             edges.append({"src": nid, "dst": wl, "rel": rel.strip().lower(),
                           "character": character.strip() or None,
+                          "role_note": role_note,
                           "level": "work" if work_target else "edition",
                           "source": r.get("source"), "context": r.get("context")})
 

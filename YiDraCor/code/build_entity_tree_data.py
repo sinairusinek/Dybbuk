@@ -62,7 +62,7 @@ PLAYWRIGHTS = ["683", "684"]
 
 # Credits and venues that belong to the WORK.
 WORK_BUCKET = {
-    "composer": "people", "composer (txt fr composer)": "people",
+    "composer": "people",
     "actor": "people", "actress": "people", "lyrics": "people",
     "arranger": "people", "choreographer": "people",
     "performed_at": "venues",
