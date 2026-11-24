@@ -1,0 +1,3739 @@
+{
+ "generated_from": "Zylbercweig/extraction_v2/vocab_alignment.tsv",
+ "n_terms": 201,
+ "n_vocabs": 12,
+ "n_gaps": 50,
+ "sources": [
+  {
+   "key": "wikidata",
+   "label": "Wikidata"
+  },
+  {
+   "key": "loc_relator",
+   "label": "LoC relator"
+  },
+  {
+   "key": "bnf_role",
+   "label": "BnF role"
+  },
+  {
+   "key": "getty_aat",
+   "label": "Getty AAT"
+  },
+  {
+   "key": "sapa",
+   "label": "SAPA"
+  }
+ ],
+ "coverage": {
+  "wikidata": {
+   "label": "Wikidata",
+   "n": 144,
+   "pct": 72
+  },
+  "loc_relator": {
+   "label": "LoC relator",
+   "n": 48,
+   "pct": 24
+  },
+  "bnf_role": {
+   "label": "BnF role",
+   "n": 46,
+   "pct": 23
+  },
+  "getty_aat": {
+   "label": "Getty AAT",
+   "n": 56,
+   "pct": 28
+  },
+  "sapa": {
+   "label": "SAPA",
+   "n": 72,
+   "pct": 36
+  }
+ },
+ "entity_vocabs": {
+  "person": [
+   "occupation"
+  ],
+  "org": [
+   "org_type",
+   "org_role"
+  ],
+  "place": [],
+  "work": [
+   "work_kind",
+   "language"
+  ],
+  "role": [],
+  "event": [
+   "event_type",
+   "event_status"
+  ],
+  "production": [
+   "function",
+   "org_role"
+  ],
+  "station": [
+   "verb_class",
+   "reason"
+  ],
+  "source": [
+   "source_kind"
+  ]
+ },
+ "relation_vocabs": {
+  "pp": [
+   "relation"
+  ],
+  "pw": [
+   "function"
+  ],
+  "po": [
+   "relation"
+  ],
+  "ww": [],
+  "src": [
+   "source_kind"
+  ],
+  "sp": [
+   "verb_class",
+   "reason"
+  ],
+  "ep": [
+   "function"
+  ],
+  "eo": [
+   "org_role"
+  ]
+ },
+ "by_vocab": {
+  "occupation": [
+   {
+    "vocab": "occupation",
+    "term": "actor",
+    "scope_note": "performs roles on stage (incl. actress; gender is on the person)",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q33999",
+      "url": "https://www.wikidata.org/wiki/Q33999"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "act",
+      "url": "https://id.loc.gov/vocabulary/relators/act.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "1010",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025658",
+      "url": "https://vocab.getty.edu/aat/300025658"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/nib",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "actress",
+    "scope_note": "= actor + gender female",
+    "note": "kept as a surface label only; export as actor",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q33999",
+      "url": "https://www.wikidata.org/wiki/Q33999"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "act",
+      "url": "https://id.loc.gov/vocabulary/relators/act.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "1010",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025658",
+      "url": "https://vocab.getty.edu/aat/300025658"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/nib",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "singer",
+    "scope_note": "sings as a performer (concert, stage, recordings)",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q177220",
+      "url": "https://www.wikidata.org/wiki/Q177220"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "sng",
+      "url": "https://id.loc.gov/vocabulary/relators/sng.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "1030",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025684",
+      "url": "https://vocab.getty.edu/aat/300025684"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/ygg",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "chorister",
+    "scope_note": "sings in a theatre or synagogue choir",
+    "note": "AAT has only choirs (the group, 300389787)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q106625143",
+      "url": "https://www.wikidata.org/wiki/Q106625143"
+     },
+     "loc_relator": {
+      "strength": "broad",
+      "id": "voc",
+      "url": "https://id.loc.gov/vocabulary/relators/voc.html"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "dancer",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q5716684",
+      "url": "https://www.wikidata.org/wiki/Q5716684"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "dnc",
+      "url": "https://id.loc.gov/vocabulary/relators/dnc.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "1060",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025653",
+      "url": "https://vocab.getty.edu/aat/300025653"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/lcp",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "comedian",
+    "scope_note": "comic actor / humorist",
+    "note": "BnF \"Humoriste\"",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q245068",
+      "url": "https://www.wikidata.org/wiki/Q245068"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "1017",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025661",
+      "url": "https://vocab.getty.edu/aat/300025661"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "prompter",
+    "scope_note": "souffleur",
+    "note": "Q28454909 = opera prompter (narrower)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1126281",
+      "url": "https://www.wikidata.org/wiki/Q1126281"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "director",
+    "scope_note": "regisseur (רעזשיסאָר): directs a staging",
+    "note": "Yiddish \"regisseur\" = stage director, not French régisseur (= stage manager)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q3387717",
+      "url": "https://www.wikidata.org/wiki/Q3387717"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "sgd",
+      "url": "https://id.loc.gov/vocabulary/relators/sgd.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "500",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300312210",
+      "url": "https://vocab.getty.edu/aat/300312210"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/tnt",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "stage manager",
+    "scope_note": "runs the stage during performance",
+    "note": "BnF \"Régisseur\"",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q19375711",
+      "url": "https://www.wikidata.org/wiki/Q19375711"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "stm",
+      "url": "https://id.loc.gov/vocabulary/relators/stm.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "2260",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "conductor",
+    "scope_note": "(Kapellmeister / music director)",
+    "note": "LoC msd / BnF 2120 = musical director, if distinguished",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q158852",
+      "url": "https://www.wikidata.org/wiki/Q158852"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "cnd",
+      "url": "https://id.loc.gov/vocabulary/relators/cnd.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "1040",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025672",
+      "url": "https://vocab.getty.edu/aat/300025672"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/qfg",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "composer",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q36834",
+      "url": "https://www.wikidata.org/wiki/Q36834"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "cmp",
+      "url": "https://id.loc.gov/vocabulary/relators/cmp.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "220",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025671",
+      "url": "https://vocab.getty.edu/aat/300025671"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/fbo",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "lyricist",
+    "scope_note": "writes song texts",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q822146",
+      "url": "https://www.wikidata.org/wiki/Q822146"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "lyr",
+      "url": "https://id.loc.gov/vocabulary/relators/lyr.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "510",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025675",
+      "url": "https://vocab.getty.edu/aat/300025675"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/vhj",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "librettist",
+    "scope_note": "writes the text of an operetta / opera (added 11-21)",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q8178443",
+      "url": "https://www.wikidata.org/wiki/Q8178443"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "lbt",
+      "url": "https://id.loc.gov/vocabulary/relators/lbt.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "470",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025674",
+      "url": "https://vocab.getty.edu/aat/300025674"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/jmh",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "playwright",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q214917",
+      "url": "https://www.wikidata.org/wiki/Q214917"
+     },
+     "loc_relator": {
+      "strength": "broad",
+      "id": "aut",
+      "url": "https://id.loc.gov/vocabulary/relators/aut.html"
+     },
+     "bnf_role": {
+      "strength": "broad",
+      "id": "70",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025511",
+      "url": "https://vocab.getty.edu/aat/300025511"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mu/iuk",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "translator",
+    "scope_note": "of plays, songs or books",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q333634",
+      "url": "https://www.wikidata.org/wiki/Q333634"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "trl",
+      "url": "https://id.loc.gov/vocabulary/relators/trl.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "680",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025601",
+      "url": "https://vocab.getty.edu/aat/300025601"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/wyo",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "critic",
+    "scope_note": "theatre / music / literary critic",
+    "note": "narrower in WD: theatre critic Q17337766, music critic Q1350157",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q6430706",
+      "url": "https://www.wikidata.org/wiki/Q6430706"
+     },
+     "loc_relator": {
+      "strength": "close",
+      "id": "rev",
+      "url": "https://id.loc.gov/vocabulary/relators/rev.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "720",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025519",
+      "url": "https://vocab.getty.edu/aat/300025519"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "journalist",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1930187",
+      "url": "https://www.wikidata.org/wiki/Q1930187"
+     },
+     "loc_relator": {
+      "strength": "close",
+      "id": "rpt",
+      "url": "https://id.loc.gov/vocabulary/relators/rpt.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "460",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025501",
+      "url": "https://vocab.getty.edu/aat/300025501"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "editor",
+    "scope_note": "of a newspaper, journal or anthology",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1607826",
+      "url": "https://www.wikidata.org/wiki/Q1607826"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "edt",
+      "url": "https://id.loc.gov/vocabulary/relators/edt.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "330",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025526",
+      "url": "https://vocab.getty.edu/aat/300025526"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "publisher",
+    "scope_note": "",
+    "note": "SAPA: publisher as group type",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q2516866",
+      "url": "https://www.wikidata.org/wiki/Q2516866"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "pbl",
+      "url": "https://id.loc.gov/vocabulary/relators/pbl.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "3250",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025574",
+      "url": "https://vocab.getty.edu/aat/300025574"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/orh",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "teacher",
+    "scope_note": "incl. drama and music teachers",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q37226",
+      "url": "https://www.wikidata.org/wiki/Q37226"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "tch",
+      "url": "https://id.loc.gov/vocabulary/relators/tch.html"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025529",
+      "url": "https://vocab.getty.edu/aat/300025529"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mu/gup",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "cantor",
+    "scope_note": "hazzan (synagogue)",
+    "note": "NOT Q330679 (church cantor)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1067977",
+      "url": "https://www.wikidata.org/wiki/Q1067977"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300136390",
+      "url": "https://vocab.getty.edu/aat/300136390"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "meshorer",
+    "scope_note": "boy/man singing with a hazzan",
+    "note": "GAP everywhere → Wikidata candidate; broader: chorister",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "occupation",
+    "term": "badkhn",
+    "scope_note": "wedding jester",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q798834",
+      "url": "https://www.wikidata.org/wiki/Q798834"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "folk singer",
+    "scope_note": "incl. broder singer (בראָדער זינגער)",
+    "note": "GAP: no item for broder singers → Wikidata candidate; BnF \"Chansonnier\" is the nearest",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q177220",
+      "url": "https://www.wikidata.org/wiki/Q177220"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "1018",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "manager",
+    "scope_note": "runs a theatre or troupe (no lease stated)",
+    "note": "WD theatre manager; BnF \"Directeur de salle de spectacle\"",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q1776724",
+      "url": "https://www.wikidata.org/wiki/Q1776724"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "3200",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "broad",
+      "id": "300025435",
+      "url": "https://vocab.getty.edu/aat/300025435"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mu/jfv",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "lessee",
+    "scope_note": "holds the lease of a theatre (אַרענדאַטאָר)",
+    "note": "GAP for the theatre-business sense → Wikidata candidate",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q25505059",
+      "url": "https://www.wikidata.org/wiki/Q25505059"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mu/loc",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "impresario",
+    "scope_note": "organizes and finances tours, concerts",
+    "note": "SAPA \"promoter\"",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q943995",
+      "url": "https://www.wikidata.org/wiki/Q943995"
+     },
+     "loc_relator": {
+      "strength": "close",
+      "id": "pro",
+      "url": "https://id.loc.gov/vocabulary/relators/pro.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "3150",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300236867",
+      "url": "https://vocab.getty.edu/aat/300236867"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/ctx",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "agent",
+    "scope_note": "theatrical agent / booking agent",
+    "note": "GAP for theatrical agent → Wikidata candidate; SAPA \"artist agency\" is a group",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q1344174",
+      "url": "https://www.wikidata.org/wiki/Q1344174"
+     },
+     "bnf_role": {
+      "strength": "broad",
+      "id": "4220",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "broad",
+      "id": "300025213",
+      "url": "https://vocab.getty.edu/aat/300025213"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/byg",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "cashier",
+    "scope_note": "box office",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1735282",
+      "url": "https://www.wikidata.org/wiki/Q1735282"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "administrator",
+    "scope_note": "theatre administration, secretary of a troupe",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q28054726",
+      "url": "https://www.wikidata.org/wiki/Q28054726"
+     },
+     "getty_aat": {
+      "strength": "broad",
+      "id": "300025427",
+      "url": "https://vocab.getty.edu/aat/300025427"
+     },
+     "sapa": {
+      "strength": "broad",
+      "id": "mu/jfv",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "publicist",
+    "scope_note": "press agent",
+    "note": "press agent Q2358549 / AAT 300456657",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q4178004",
+      "url": "https://www.wikidata.org/wiki/Q4178004"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300237376",
+      "url": "https://vocab.getty.edu/aat/300237376"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "set designer",
+    "scope_note": "designs scenery",
+    "note": "scenographer is broader than set designer in WD/AAT",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q2707485",
+      "url": "https://www.wikidata.org/wiki/Q2707485"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "std",
+      "url": "https://id.loc.gov/vocabulary/relators/std.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "2280",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "close",
+      "id": "300025681",
+      "url": "https://vocab.getty.edu/aat/300025681"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mu/qjb",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "costume designer",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1323191",
+      "url": "https://www.wikidata.org/wiki/Q1323191"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "cst",
+      "url": "https://id.loc.gov/vocabulary/relators/cst.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "2080",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300163428",
+      "url": "https://vocab.getty.edu/aat/300163428"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/ecs",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "choreographer",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q2490358",
+      "url": "https://www.wikidata.org/wiki/Q2490358"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "chr",
+      "url": "https://id.loc.gov/vocabulary/relators/chr.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "160",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025649",
+      "url": "https://vocab.getty.edu/aat/300025649"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/bbv",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "photographer",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q33231",
+      "url": "https://www.wikidata.org/wiki/Q33231"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "pht",
+      "url": "https://id.loc.gov/vocabulary/relators/pht.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "530",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025687",
+      "url": "https://vocab.getty.edu/aat/300025687"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/byr",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "film director",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q2526255",
+      "url": "https://www.wikidata.org/wiki/Q2526255"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "fmd",
+      "url": "https://id.loc.gov/vocabulary/relators/fmd.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "610",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300312209",
+      "url": "https://vocab.getty.edu/aat/300312209"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/ctj",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "radio announcer",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q1371925",
+      "url": "https://www.wikidata.org/wiki/Q1371925"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "anc",
+      "url": "https://id.loc.gov/vocabulary/relators/anc.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "560",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "close",
+      "id": "300025503",
+      "url": "https://vocab.getty.edu/aat/300025503"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mu/mnc",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "occupation",
+    "term": "other",
+    "scope_note": "+ verbatim text",
+    "note": "",
+    "maps": {
+     "loc_relator": {
+      "strength": "exact",
+      "id": "oth",
+      "url": "https://id.loc.gov/vocabulary/relators/oth.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "9990",
+      "url": null
+     }
+    },
+    "gap": false
+   }
+  ],
+  "function": [
+   {
+    "vocab": "function",
+    "term": "author",
+    "scope_note": "wrote the work",
+    "note": "function = what a person did in THIS fact; occupation = what they were",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P50",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "aut",
+      "url": "https://id.loc.gov/vocabulary/relators/aut.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "70",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/iuk",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "translator",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P655",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "trl",
+      "url": "https://id.loc.gov/vocabulary/relators/trl.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "680",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/wyo",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "adapter",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P5202",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "adp",
+      "url": "https://id.loc.gov/vocabulary/relators/adp.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "10",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/dcw",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "composer",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P86",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "cmp",
+      "url": "https://id.loc.gov/vocabulary/relators/cmp.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "220",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/fbo",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "lyricist",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P676",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "lyr",
+      "url": "https://id.loc.gov/vocabulary/relators/lyr.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "510",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/vhj",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "librettist",
+    "scope_note": "(added 11-21)",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P87",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "lbt",
+      "url": "https://id.loc.gov/vocabulary/relators/lbt.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "470",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/jmh",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "director",
+    "scope_note": "directed a staging",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P57",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "sgd",
+      "url": "https://id.loc.gov/vocabulary/relators/sgd.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "500",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/tnt",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "designer",
+    "scope_note": "sets or costumes (say which in role_title)",
+    "note": "sets: std / 2280 / mu/qjb; costumes: cst / 2080 / mu/ecs",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P4608 / P2515",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "dsr",
+      "url": "https://id.loc.gov/vocabulary/relators/dsr.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "230",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/gja",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "choreographer",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P1809",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "chr",
+      "url": "https://id.loc.gov/vocabulary/relators/chr.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "160",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/bbv",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "performer",
+    "scope_note": "acted, sang or danced in it (+ character)",
+    "note": "character → WD qualifier P453; LA-PA `portrayed`; no LoC/BnF/SAPA equivalent",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P161",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "prf",
+      "url": "https://id.loc.gov/vocabulary/relators/prf.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "1990",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/awx",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "producer",
+    "scope_note": "staged/financed the production",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P162",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "pro",
+      "url": "https://id.loc.gov/vocabulary/relators/pro.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "3150",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/wgo",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "prompter / conductor / stage manager…",
+    "scope_note": "any §6 occupation used as the function",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "—",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "note",
+      "id": "see occupation",
+      "url": null
+     },
+     "bnf_role": {
+      "strength": "note",
+      "id": "see occupation",
+      "url": null
+     },
+     "sapa": {
+      "strength": "note",
+      "id": "see occupation",
+      "url": null
+     }
+    },
+    "gap": false
+   }
+  ],
+  "work_kind": [
+   {
+    "vocab": "work_kind",
+    "term": "play",
+    "scope_note": "spoken drama (incl. \"drama\")",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q25379",
+      "url": "https://www.wikidata.org/wiki/Q25379"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300451696",
+      "url": "https://vocab.getty.edu/aat/300451696"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mn/eyg",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "operetta",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q170384",
+      "url": "https://www.wikidata.org/wiki/Q170384"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300417594",
+      "url": "https://vocab.getty.edu/aat/300417594"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mn/ols",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "opera",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1344",
+      "url": "https://www.wikidata.org/wiki/Q1344"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300417587",
+      "url": "https://vocab.getty.edu/aat/300417587"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mn/bfm",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "musical comedy",
+    "scope_note": "Yiddish \"musikalishe komedye\"",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1548170",
+      "url": "https://www.wikidata.org/wiki/Q1548170"
+     },
+     "getty_aat": {
+      "strength": "broad",
+      "id": "300417617",
+      "url": "https://vocab.getty.edu/aat/300417617"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mn/wna",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "melodrama",
+    "scope_note": "",
+    "note": "AAT has only the film genre (300375153)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q191489",
+      "url": "https://www.wikidata.org/wiki/Q191489"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mn/bcj",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "sketch",
+    "scope_note": "short comic scene",
+    "note": "sketch comedy (Q743934) = the form, not one sketch",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q55760865",
+      "url": "https://www.wikidata.org/wiki/Q55760865"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "one-act",
+    "scope_note": "one-act play",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1194583",
+      "url": "https://www.wikidata.org/wiki/Q1194583"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "revue",
+    "scope_note": "",
+    "note": "SAPA \"cabaret\"",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q918727",
+      "url": "https://www.wikidata.org/wiki/Q918727"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mn/vyr",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "song",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q7366",
+      "url": "https://www.wikidata.org/wiki/Q7366"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300167056",
+      "url": "https://vocab.getty.edu/aat/300167056"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mn/nmd",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "music (score)",
+    "scope_note": "incidental music, score",
+    "note": "SAPA \"stage music\"",
+    "maps": {
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300026427",
+      "url": "https://vocab.getty.edu/aat/300026427"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mu/stm",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "film",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q11424",
+      "url": "https://www.wikidata.org/wiki/Q11424"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300136900",
+      "url": "https://vocab.getty.edu/aat/300136900"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "radio play",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q2635894",
+      "url": "https://www.wikidata.org/wiki/Q2635894"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mn/jva",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "book",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q571",
+      "url": "https://www.wikidata.org/wiki/Q571"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300028051",
+      "url": "https://vocab.getty.edu/aat/300028051"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "memoir",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q112983",
+      "url": "https://www.wikidata.org/wiki/Q112983"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300202559",
+      "url": "https://vocab.getty.edu/aat/300202559"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "article",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q191067",
+      "url": "https://www.wikidata.org/wiki/Q191067"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300048715",
+      "url": "https://vocab.getty.edu/aat/300048715"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "periodical",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1002697",
+      "url": "https://www.wikidata.org/wiki/Q1002697"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300026657",
+      "url": "https://vocab.getty.edu/aat/300026657"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "other",
+    "scope_note": "+ verbatim",
+    "note": "",
+    "maps": {
+     "sapa": {
+      "strength": "exact",
+      "id": "mn/nvd",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "comedy",
+    "scope_note": "genre as stated (\"קאָמעדיע\")",
+    "note": "added 11-21 (decision 9)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q5151421",
+      "url": "https://www.wikidata.org/wiki/Q5151421"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300201014",
+      "url": "https://vocab.getty.edu/aat/300201014"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mn/ggs",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "tragedy",
+    "scope_note": "",
+    "note": "added 11-21 (decision 9)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q80930",
+      "url": "https://www.wikidata.org/wiki/Q80930"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300201026",
+      "url": "https://vocab.getty.edu/aat/300201026"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mn/lxt",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "farce",
+    "scope_note": "",
+    "note": "added 11-21 (decision 9)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q193979",
+      "url": "https://www.wikidata.org/wiki/Q193979"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "Purim play",
+    "scope_note": "purimshpil",
+    "note": "added 11-21 (decision 9)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q7261254",
+      "url": "https://www.wikidata.org/wiki/Q7261254"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "work_kind",
+    "term": "lebnsbild",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "dramatic_poem",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "dialogue",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "shadow_play",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "poem",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "oratorio",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "comedy_drama",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "monologue",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "vaudeville",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "tragicomedy",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "satire",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "parody",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "dance",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "ballet",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "grotesque",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "historical_operetta",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "pantomime",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "libretto",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "prologue",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "romantic_comedy",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "scene",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "burlesque",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "comic_opera",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "comedy_vaudeville",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "grotesque_comedy",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "musical_folk_play",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "story",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "buffonade",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "monodrama",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "humoresque",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "farce_comedy",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "musical_burlesque",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "folk_comedy",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "fable",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "work_kind",
+    "term": "folk_operetta",
+    "scope_note": "added 11-22 (Sinai); alignment pending",
+    "note": "",
+    "maps": {},
+    "gap": true
+   }
+  ],
+  "event_type": [
+   {
+    "vocab": "event_type",
+    "term": "performance",
+    "scope_note": "",
+    "note": "LA-PA Performance; LRMoo F31",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q35140",
+      "url": "https://www.wikidata.org/wiki/Q35140"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "hl/sin",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "premiere",
+    "scope_note": "",
+    "note": "SAPA also distinguishes world / language / national premiere (hl/hey, hl/osp…)",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q204854",
+      "url": "https://www.wikidata.org/wiki/Q204854"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300069101",
+      "url": "https://vocab.getty.edu/aat/300069101"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "hl/amu",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "debut",
+    "scope_note": "a performer's first appearance",
+    "note": "WD only (generic 'first public appearance'); no AAT/SAPA term",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1181693",
+      "url": "https://www.wikidata.org/wiki/Q1181693"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "guest_appearance",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q40249767",
+      "url": "https://www.wikidata.org/wiki/Q40249767"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "hl/epi",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "season",
+    "scope_note": "",
+    "note": "SAPA \"performance series\"",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q2310376",
+      "url": "https://www.wikidata.org/wiki/Q2310376"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "hl/ser",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "benefit",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q4887449",
+      "url": "https://www.wikidata.org/wiki/Q4887449"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "jubilee",
+    "scope_note": "an artist's 10/25/50-year stage jubilee",
+    "note": "GAP: WD \"jubilee\" items are religious → Wikidata candidate",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q1062856",
+      "url": "https://www.wikidata.org/wiki/Q1062856"
+     },
+     "getty_aat": {
+      "strength": "broad",
+      "id": "300069026",
+      "url": "https://vocab.getty.edu/aat/300069026"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "honor",
+    "scope_note": "award, title, honorary membership",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q618779",
+      "url": "https://www.wikidata.org/wiki/Q618779"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "hnr (honoree, participant role)",
+      "url": "https://id.loc.gov/vocabulary/relators/hnr (honoree, participant role).html"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "memorial",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q110041043",
+      "url": "https://www.wikidata.org/wiki/Q110041043"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300379015",
+      "url": "https://vocab.getty.edu/aat/300379015"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "founding",
+    "scope_note": "of any organization",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q3075355",
+      "url": "https://www.wikidata.org/wiki/Q3075355"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "fon (founder, participant role)",
+      "url": "https://id.loc.gov/vocabulary/relators/fon (founder, participant role).html"
+     },
+     "getty_aat": {
+      "strength": "broad",
+      "id": "300393213",
+      "url": "https://vocab.getty.edu/aat/300393213"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "strike",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q49776",
+      "url": "https://www.wikidata.org/wiki/Q49776"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300137885",
+      "url": "https://vocab.getty.edu/aat/300137885"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "conflict",
+    "scope_note": "lawsuit, boycott, rivalry",
+    "note": "Q697327 = lawsuit only",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q697327",
+      "url": "https://www.wikidata.org/wiki/Q697327"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "marriage",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q8445",
+      "url": "https://www.wikidata.org/wiki/Q8445"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "divorce",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q93190",
+      "url": "https://www.wikidata.org/wiki/Q93190"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "birth_of_child",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q14819852",
+      "url": "https://www.wikidata.org/wiki/Q14819852"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "arrest",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1403016",
+      "url": "https://www.wikidata.org/wiki/Q1403016"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300379187",
+      "url": "https://vocab.getty.edu/aat/300379187"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "imprisonment",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q841236",
+      "url": "https://www.wikidata.org/wiki/Q841236"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300137572",
+      "url": "https://vocab.getty.edu/aat/300137572"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "death",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q4",
+      "url": "https://www.wikidata.org/wiki/Q4"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "event_type",
+    "term": "burial",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q331055",
+      "url": "https://www.wikidata.org/wiki/Q331055"
+     }
+    },
+    "gap": false
+   }
+  ],
+  "event_status": [
+   {
+    "vocab": "event_status",
+    "term": "performed",
+    "scope_note": "default",
+    "note": "LA-PA: Performance (actual)",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "event_status",
+    "term": "planned",
+    "scope_note": "announced, rehearsed, \"prepared\"",
+    "note": "LA-PA: Projected Event (CRMpro CC12) + CP4_projects",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "event_status",
+    "term": "banned",
+    "scope_note": "by censor or police",
+    "note": "LA-PA: Projected Event, never realized; no standard term for \"banned\"",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "event_status",
+    "term": "cancelled",
+    "scope_note": "",
+    "note": "LA-PA: Projected Event, never realized",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "event_status",
+    "term": "unstated",
+    "scope_note": "",
+    "note": "",
+    "maps": {},
+    "gap": true
+   }
+  ],
+  "org_role": [
+   {
+    "vocab": "org_role",
+    "term": "producer",
+    "scope_note": "the company that made the production",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P272",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "prn",
+      "url": "https://id.loc.gov/vocabulary/relators/prn.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "3150",
+      "url": null
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/xbs",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_role",
+    "term": "presenter_or_host",
+    "scope_note": "theatre or society that hosted a guest production",
+    "note": "SAPA \"guest performance host\"; also vr/xrs organizer",
+    "maps": {
+     "loc_relator": {
+      "strength": "close",
+      "id": "his",
+      "url": "https://id.loc.gov/vocabulary/relators/his.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "3190",
+      "url": null
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "vr/fcm",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_role",
+    "term": "venue",
+    "scope_note": "where it took place",
+    "note": "LA-PA took_place_at",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P276",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "evp",
+      "url": "https://id.loc.gov/vocabulary/relators/evp.html"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_role",
+    "term": "touring_company",
+    "scope_note": "visiting troupe",
+    "note": "AusStage \"touring\"",
+    "maps": {
+     "sapa": {
+      "strength": "close",
+      "id": "hl/epi",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_role",
+    "term": "other",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "loc_relator": {
+      "strength": "exact",
+      "id": "oth",
+      "url": "https://id.loc.gov/vocabulary/relators/oth.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "9990",
+      "url": null
+     }
+    },
+    "gap": false
+   }
+  ],
+  "verb_class": [
+   {
+    "vocab": "verb_class",
+    "term": "born",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q14819852",
+      "url": "https://www.wikidata.org/wiki/Q14819852"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "verb_class",
+    "term": "settled",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q177626",
+      "url": "https://www.wikidata.org/wiki/Q177626"
+     },
+     "getty_aat": {
+      "strength": "broad",
+      "id": "300263931",
+      "url": "https://vocab.getty.edu/aat/300263931"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "verb_class",
+    "term": "tour",
+    "scope_note": "",
+    "note": "WD concert tour; AAT tours (journeys)",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q1573906",
+      "url": "https://www.wikidata.org/wiki/Q1573906"
+     },
+     "getty_aat": {
+      "strength": "close",
+      "id": "300054795",
+      "url": "https://vocab.getty.edu/aat/300054795"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "verb_class",
+    "term": "emigration",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q187668",
+      "url": "https://www.wikidata.org/wiki/Q187668"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300055406",
+      "url": "https://vocab.getty.edu/aat/300055406"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "verb_class",
+    "term": "deportation",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q379693",
+      "url": "https://www.wikidata.org/wiki/Q379693"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "verb_class",
+    "term": "evacuation",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q606332",
+      "url": "https://www.wikidata.org/wiki/Q606332"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "verb_class",
+    "term": "expulsion",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q136914502",
+      "url": "https://www.wikidata.org/wiki/Q136914502"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "verb_class",
+    "term": "conscription",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q580750",
+      "url": "https://www.wikidata.org/wiki/Q580750"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "verb_class",
+    "term": "stay / pass_through / visit / return / flight / death / unknown",
+    "scope_note": "",
+    "note": "itinerary-model terms; no standard equivalent",
+    "maps": {},
+    "gap": true
+   }
+  ],
+  "reason": [
+   {
+    "vocab": "reason",
+    "term": "work_engagement / tour_or_guest_appearance / family / education / emigration / forced / health / other / unstated",
+    "scope_note": "from the 2025 Migrations sheet",
+    "note": "no standard vocabulary for migration reasons found; ours",
+    "maps": {},
+    "gap": true
+   }
+  ],
+  "source_kind": [
+   {
+    "vocab": "source_kind",
+    "term": "informant",
+    "scope_note": "person the Lexicon got information from",
+    "note": "NOT Q1364673 (police informant)",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q118869598",
+      "url": "https://www.wikidata.org/wiki/Q118869598"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300262519",
+      "url": "https://vocab.getty.edu/aat/300262519"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "source_kind",
+    "term": "cited_text",
+    "scope_note": "a book or article quoted",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "source_kind",
+    "term": "memoir",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q112983",
+      "url": "https://www.wikidata.org/wiki/Q112983"
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300202559",
+      "url": "https://vocab.getty.edu/aat/300202559"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "source_kind",
+    "term": "interview",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q178651",
+      "url": "https://www.wikidata.org/wiki/Q178651"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "ive / ivr",
+      "url": "https://id.loc.gov/vocabulary/relators/ive / ivr.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "450",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300026392",
+      "url": "https://vocab.getty.edu/aat/300026392"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "source_kind",
+    "term": "correspondence",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1277575",
+      "url": "https://www.wikidata.org/wiki/Q1277575"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "crp",
+      "url": "https://id.loc.gov/vocabulary/relators/crp.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "110",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300026877",
+      "url": "https://vocab.getty.edu/aat/300026877"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "source_kind",
+    "term": "other",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "loc_relator": {
+      "strength": "exact",
+      "id": "oth",
+      "url": "https://id.loc.gov/vocabulary/relators/oth.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "9990",
+      "url": null
+     }
+    },
+    "gap": false
+   }
+  ],
+  "relation": [
+   {
+    "vocab": "relation",
+    "term": "family/parent · child · spouse · sibling",
+    "scope_note": "person ↔ person",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P22·P25 / P40 / P26 / P3373",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "family/extended",
+    "scope_note": "in-law, cousin, uncle, grandparent…",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P1038 + qualifier kinship",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "collaboration/*",
+    "scope_note": "co_performer, partner, co_founder, colleague",
+    "note": "no standard property for stage colleague",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P1327 (partner, close)",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "hierarchy/teacher → student",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P1066 / P802",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "hierarchy/employer_or_director → employee",
+    "scope_note": "",
+    "note": "person→person employment has no standard property",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P108 (to an org, not a person)",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "hierarchy/agent_or_impresario → client",
+    "scope_note": "",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "relation",
+    "term": "hierarchy/publisher",
+    "scope_note": "the mention published or printed the subject's work",
+    "note": "added 2026-11-21",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "via the work: P123 (publisher)",
+      "url": null
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "pbl",
+      "url": "https://id.loc.gov/vocabulary/relators/pbl.html"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "hierarchy/award_recipient",
+    "scope_note": "the mention received a prize that is the entry's subject",
+    "note": "added 2026-11-21",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P166 (award received)",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "creative/influence",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "P737",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "creative/subject_of",
+    "scope_note": "the subject made a work about or depicting the mention (biography, review, elegy, play about a real person)",
+    "note": "added 2026-11-21; reverse of source/wrote_about",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "via the work: P921 (main subject)",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "creative/creator → interpreter, translator_of, adapter_of",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "via the work: P50 / P655 / P5202 + P161",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "relation",
+    "term": "social/*",
+    "scope_note": "friend, acquaintance, supporter, conflict",
+    "note": "ours (2026-02 five-category scheme)",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "relation",
+    "term": "source/*",
+    "scope_note": "informant_about, wrote_about, quoted_in_entry, corrected",
+    "note": "provenance tie; ours",
+    "maps": {},
+    "gap": true
+   }
+  ],
+  "org_type": [
+   {
+    "vocab": "org_type",
+    "term": "Theatre",
+    "scope_note": "company or house presenting professional Yiddish theatre",
+    "note": "core_db type mixes company and building (§1.4: not decidable); WD theatre company Q742421",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q742421 / Q24354",
+      "url": "https://www.wikidata.org/wiki/Q742421 / Q24354"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Traveling Company",
+    "scope_note": "troupe without a fixed house",
+    "note": "WD theatre troupe; no 'touring company' item",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q2416217",
+      "url": "https://www.wikidata.org/wiki/Q2416217"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "hl/epi",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Company on Tour",
+    "scope_note": "a resident company while touring",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q2416217",
+      "url": "https://www.wikidata.org/wiki/Q2416217"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "hl/epi",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Non-Yiddish Theatre",
+    "scope_note": "theatre in another language",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q742421",
+      "url": "https://www.wikidata.org/wiki/Q742421"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Amateur",
+    "scope_note": "amateur troupe or drama circle",
+    "note": "SAPA 'artistic amateur producer'",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q455695",
+      "url": "https://www.wikidata.org/wiki/Q455695"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/dat",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Kleinkunst",
+    "scope_note": "cabaret / small-forms theatre",
+    "note": "WD Kleinkunst = genre item",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q1746926",
+      "url": "https://www.wikidata.org/wiki/Q1746926"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "mn/vyr",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Circus",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q47928",
+      "url": "https://www.wikidata.org/wiki/Q47928"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mn/nhz",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Musical organization",
+    "scope_note": "choir, orchestra, music society",
+    "note": "choir / orchestra",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q131186 / Q42998",
+      "url": "https://www.wikidata.org/wiki/Q131186 / Q42998"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Media (Radio/ Film/TV)",
+    "scope_note": "",
+    "note": "radio station / film studio; SAPA 'media producer'",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q14350 / Q375336",
+      "url": "https://www.wikidata.org/wiki/Q14350 / Q375336"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/nmd",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Journals/ Newspapers",
+    "scope_note": "Jewish press",
+    "note": "newspaper / magazine",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q11032 / Q41298",
+      "url": "https://www.wikidata.org/wiki/Q11032 / Q41298"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Non-Jewish Journals/ Newspapers",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q11032 / Q41298",
+      "url": "https://www.wikidata.org/wiki/Q11032 / Q41298"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Publisher",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q2085381",
+      "url": "https://www.wikidata.org/wiki/Q2085381"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "vr/orh",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Printer",
+    "scope_note": "",
+    "note": "no 'printing house' label match in WD",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "org_type",
+    "term": "Printer/Publisher",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "broad",
+      "id": "Q2085381",
+      "url": "https://www.wikidata.org/wiki/Q2085381"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/orh",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Education",
+    "scope_note": "school (general)",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q3914",
+      "url": "https://www.wikidata.org/wiki/Q3914"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "vr/mjk",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Theatre education",
+    "scope_note": "drama school / studio",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q2143781",
+      "url": "https://www.wikidata.org/wiki/Q2143781"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/mjk",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Theatre-related Society/ Union",
+    "scope_note": "actors' union, dramatic society, Yiddish theatre society",
+    "note": "no 'actors union' item; professional association / association",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q829080",
+      "url": "https://www.wikidata.org/wiki/Q829080"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/jhq",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Trade Union / Professional Association",
+    "scope_note": "",
+    "note": "trade-union class not matched by label; check manually",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q829080",
+      "url": "https://www.wikidata.org/wiki/Q829080"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/jhq",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Cultural/workers' club",
+    "scope_note": "new 11-15",
+    "note": "no workers'-club item",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q141507421",
+      "url": "https://www.wikidata.org/wiki/Q141507421"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/jhq",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Welfare/Aid organization",
+    "scope_note": "incl. landsmanshaftn, aid societies",
+    "note": "no 'landsmanshaft' item → Wikidata candidate",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q708676",
+      "url": "https://www.wikidata.org/wiki/Q708676"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Jewish political bodies",
+    "scope_note": "parties, Zionist bodies",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q7278",
+      "url": "https://www.wikidata.org/wiki/Q7278"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Non-Jewish political bodies",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q7278",
+      "url": "https://www.wikidata.org/wiki/Q7278"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Religious institutions/organizations",
+    "scope_note": "synagogue, yeshiva, community",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q1530022 / Q34627",
+      "url": "https://www.wikidata.org/wiki/Q1530022 / Q34627"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Heritage Institution",
+    "scope_note": "museum, archive",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q33506",
+      "url": "https://www.wikidata.org/wiki/Q33506"
+     },
+     "sapa": {
+      "strength": "close",
+      "id": "vr/sjj / vr/ggs",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Library",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q7075",
+      "url": "https://www.wikidata.org/wiki/Q7075"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "vr/iqe",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Health institutions",
+    "scope_note": "",
+    "note": "hospital",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q16917",
+      "url": "https://www.wikidata.org/wiki/Q16917"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Business",
+    "scope_note": "commercial firm (PI 11-01: what the org IS)",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q4830453",
+      "url": "https://www.wikidata.org/wiki/Q4830453"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Labour (factory/workshop)",
+    "scope_note": "production site",
+    "note": "factory / workshop",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q83405 / Q656720",
+      "url": "https://www.wikidata.org/wiki/Q83405 / Q656720"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Military",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q176799",
+      "url": "https://www.wikidata.org/wiki/Q176799"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Sports/Recreation",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q847017",
+      "url": "https://www.wikidata.org/wiki/Q847017"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Fraternal order",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q21772656",
+      "url": "https://www.wikidata.org/wiki/Q21772656"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Judenrat",
+    "scope_note": "",
+    "note": "",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q833941",
+      "url": "https://www.wikidata.org/wiki/Q833941"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Hospitality",
+    "scope_note": "hotel, restaurant, café",
+    "note": "added 11-21 (decision 2)",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q27686",
+      "url": "https://www.wikidata.org/wiki/Q27686"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Theatre/concert agency",
+    "scope_note": "",
+    "note": "added 11-21 (decision 2); SAPA 'agency'",
+    "maps": {
+     "wikidata": {
+      "strength": "close",
+      "id": "Q5354754",
+      "url": "https://www.wikidata.org/wiki/Q5354754"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "vr/iuw",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "org_type",
+    "term": "Not an organization",
+    "scope_note": "core_db flag, not a type",
+    "note": "",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "org_type",
+    "term": "OTHER - elaborate!",
+    "scope_note": "",
+    "note": "",
+    "maps": {},
+    "gap": true
+   }
+  ],
+  "language": [
+   {
+    "vocab": "language",
+    "term": "(any)",
+    "scope_note": "",
+    "note": "use ISO 639-3 codes (yid, heb, pol, rus, deu, eng…) as LA-PA does",
+    "maps": {
+     "wikidata": {
+      "strength": "note",
+      "id": "Wikidata language items",
+      "url": null
+     },
+     "sapa": {
+      "strength": "note",
+      "id": "partial:lg",
+      "url": null
+     }
+    },
+    "gap": false
+   }
+  ]
+ },
+ "vocab_order": [
+  "work_kind",
+  "occupation",
+  "org_type",
+  "event_type",
+  "relation",
+  "function",
+  "verb_class",
+  "source_kind",
+  "event_status",
+  "org_role",
+  "reason",
+  "language"
+ ]
+}

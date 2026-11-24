@@ -74,6 +74,22 @@ CHECKS: list[tuple[str, str, str, callable]] = [
     ("8",  "schema issues",           "defg/schema_issues.tsv", _tsv_rows),
 ]
 
+# The entity and relation cards state what the D–G pass yielded. Those figures
+# come straight off the flattened tables, so they are checked the same way:
+# (label, phrase the card writes the number against, file, counter).
+# `None` as the phrase means "the file's row count", matched anywhere in the
+# hand-kept block rather than inside one step's `counts:` string.
+CARD_CHECKS: list[tuple[str, str, str, callable]] = [
+    ("mentions",            "mentions:",          "defg/mentions.tsv",      _tsv_rows),
+    ("stations",            "stations",           "defg/stations.tsv",      _tsv_rows),
+    ("events",              "events:",            "defg/events.tsv",        _tsv_rows),
+    ("performance facts",   "performance facts",  "defg/performance_facts.tsv", _tsv_rows),
+    ("source uses",         "source uses",        "defg/source_uses.tsv",   _tsv_rows),
+    ("work relations",      "work→work relations", "defg/work_relations.tsv", _tsv_rows),
+    ("event participants",  "event-participant rows", "defg/event_participants.tsv", _tsv_rows),
+    ("event orgs",          "event→org rows",     "defg/event_orgs.tsv",    _tsv_rows),
+]
+
 
 def _page_block() -> str:
     """The hand-kept block, or the whole page when the markers are gone."""
@@ -92,9 +108,28 @@ def _steps() -> dict[str, str]:
     return out
 
 
+def _claims(text: str, phrase: str) -> list[int]:
+    """EVERY number written against `phrase`, in document order.
+
+    A figure is often stated more than once — the D–G row counts appear both
+    in step 8's summary and on the entity card. Returning only the first match
+    would let a stale copy hide behind a correct one, so each occurrence is
+    checked and any that disagrees is reported.
+    """
+    pat = r"([\d,]+)\s*(?:</?[a-z][^>]*>\s*){0,4}" + re.escape(phrase)
+    return [int(m.group(1).replace(",", "")) for m in re.finditer(pat, text)]
+
+
 def _claim(counts: str, phrase: str) -> int | None:
-    """The number the page writes immediately before `phrase`."""
-    m = re.search(r"([\d,]+)\s+" + re.escape(phrase), counts)
+    """The number the page writes immediately before `phrase`.
+
+    Markup may sit between the two — the summary list puts the figure in a
+    <code> and its label in the following <span> — so a short run of tags and
+    whitespace is allowed between the number and the phrase, but no other
+    text, which would mean the number belongs to something else.
+    """
+    m = re.search(r"([\d,]+)\s*(?:</?[a-z][^>]*>\s*){0,4}" + re.escape(phrase),
+                  counts)
     return int(m.group(1).replace(",", "")) if m else None
 
 
@@ -130,6 +165,29 @@ def check_counts() -> tuple[list[tuple], list[str]]:
             notes.append(f"step {step} {phrase}: {rel} not on disk")
         elif actual != claimed:
             drift.append((f"{step}: {phrase}", rel, claimed, actual))
+    # The entity/relation cards and the summary list state these figures in
+    # running prose. The summary list sits OUTSIDE the hand-kept markers (it is
+    # rendered from the same data lower down), so these are matched against the
+    # whole page rather than the marked block: a stale figure is worth catching
+    # wherever on the page it is written.
+    block = PAGE.read_text(encoding="utf-8")
+    for label, phrase, rel, counter in CARD_CHECKS:
+        claimed = _claims(block, phrase)
+        if not claimed:
+            notes.append(f"card {label!r}: no number stated for {phrase!r} "
+                         f"(wording changed — update CARD_CHECKS)")
+            continue
+        actual = counter(HERE / rel)
+        if actual is None:
+            notes.append(f"card {label}: {rel} not on disk")
+            continue
+        # every place the figure is written must agree with the file
+        for i, c in enumerate(dict.fromkeys(claimed)):
+            if c != actual:
+                where = (f"card: {label}" if len(set(claimed)) == 1
+                         else f"card: {label} (copy {i + 1} of "
+                              f"{len(set(claimed))})")
+                drift.append((where, rel, c, actual))
     return drift, notes
 
 
@@ -172,7 +230,9 @@ def main() -> int:
               "\n  quoting the figure a run reported at the time. Decide per "
               "row,\n  and update the page and SCHEMA_DRAFT.md §0 together.")
     else:
-        print(f"counts: all {len(CHECKS)} checks agree with the files")
+        print(f"counts: all {len(CHECKS) + len(CARD_CHECKS)} checks agree "
+              f"with the files ({len(CHECKS)} step figures, "
+              f"{len(CARD_CHECKS)} entity-card figures)")
 
     for m in missing:
         print(f"ABSENT   {m}")

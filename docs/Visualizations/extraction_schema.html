@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Extraction Schema v2</title>
-<meta name="description" content="Draft schema for the Zylbercweig Lexicon extraction v2 (delta pass): what already exists, and jobs A–G that add entity types, relations, events and movements.">
+<meta name="description" content="The schema of the Zylbercweig Lexicon extraction v2, as extracted: nine entity kinds, their relations, and what the D–G full-text pass over all seven volumes yielded.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Spectral:wght@400;600&family=Frank+Ruhl+Libre:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{--paper:#faf7f0;--ink:#272219;--soft:#5c554a;--muted:#8a8274;--line:#e2dcce;--card:#f2eddf;
@@ -138,14 +138,59 @@ table.mx{border-collapse:collapse;font-size:.8rem;min-width:52rem;width:100%}
 .mx .r.new{border-style:dashed;border-color:var(--accent)}
 .mx .r.fill{border-color:var(--ink);border-width:2px}
 .mx td.diag{background:color-mix(in srgb,var(--line) 35%,transparent)}
+/* --- vocabulary alignments (detail panel) --- */
+.align{margin:.3em 0 .6em;border-collapse:collapse;width:100%;font-size:.84rem;
+  table-layout:fixed}
+.align td{padding:3px 6px;border-bottom:1px solid var(--line);vertical-align:top;
+  overflow-wrap:anywhere}
+.align td.t{width:8.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+.align td.m{width:auto}
+/* chips wrap as a row of their own so a long id cannot push the table wide */
+.sk{display:inline-block;border-radius:10px;padding:0 7px;margin:1px 4px 1px 0;font-size:.78rem;
+    border:1px solid var(--line);max-width:100%;overflow-wrap:anywhere}
+.sk.exact{border-color:var(--teal);color:var(--teal)}
+.sk.close{opacity:.85}
+.sk.broad{opacity:.65;font-style:italic}
+.sk.gap{border-style:dashed;opacity:.7}
+.sk a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+/* --- vocabularies side panel --- */
+#vocBtn{position:fixed;right:14px;bottom:14px;z-index:40;border:1px solid var(--line);
+  background:var(--card);color:inherit;border-radius:22px;padding:8px 15px;cursor:pointer;
+  font:inherit;font-size:.85rem;box-shadow:0 2px 12px rgba(0,0,0,.14)}
+#vocBtn:hover{border-color:var(--teal);color:var(--teal)}
+#voc{position:fixed;top:0;right:0;width:min(430px,94vw);height:100%;z-index:50;overflow-y:auto;
+  background:var(--paper);border-left:1px solid var(--line);transform:translateX(102%);
+  transition:transform .22s ease;box-shadow:-4px 0 22px rgba(0,0,0,.13);padding:18px 20px 60px}
+#voc.open{transform:none}
+#voc h2{margin:0 0 2px;font-size:1.1rem}
+#voc .cap{margin:0 0 12px}
+#vocClose{position:absolute;top:12px;right:14px;border:0;background:none;font-size:1.5rem;
+  line-height:1;cursor:pointer;color:inherit;opacity:.6}
+#vocClose:hover{opacity:1}
+#voc details{border:1px solid var(--line);border-radius:7px;margin:0 0 7px;padding:0}
+#voc details[open]{padding-bottom:5px}
+#voc summary{cursor:pointer;padding:7px 10px;font-weight:600;font-size:.9rem;list-style:none;
+  display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+#voc summary::-webkit-details-marker{display:none}
+#voc summary:hover{color:var(--teal)}
+#voc summary .n{font-weight:400;opacity:.6;font-size:.8rem}
+#voc .vb{padding:0 10px}
+#voc .vt{border-top:1px solid var(--line);padding:6px 0}
+#voc .vt:first-child{border-top:0}
+#voc .vn{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86rem}
+#voc .vs{display:block;opacity:.72;font-size:.8rem;margin:1px 0 3px}
+@media (max-width:620px){#voc{width:100%}}
 </style></head><body>
 <header>
-<p class="eyebrow"><a href="gate.html">Visualizations</a> · Zylbercweig Leksikon · draft 2026-11-15 · revised 2026-11-17 (delta pass) · 2026-11-20 (production, event status)</p>
+<p class="eyebrow"><a href="gate.html">Visualizations</a> · Zylbercweig Leksikon · drafted 2026-11-15 · <b>extracted 2026-11-22</b> · revised 2026-11-24</p>
 <h1>Extraction schema, v2</h1>
-<p class="lede">The full schema of the Lexicon extraction (nine kinds of entity and the relations between them), marked by
-what <b>already exists</b> from earlier runs and what the v2 <b>delta pass</b> adds. Faint lines are already
-extracted and untouched; heavy lines are already extracted with gaps filled by a cheap sentence-level job (A–C);
-dashed red lines are new, from one full-text pass (D–G). Click any entity or relation for its source, coverage and job.</p>
+<p class="lede">The schema of the Lexicon extraction: nine kinds of entity and the relations between them,
+as <b>extracted</b>. The v2 delta pass has run — all seven volumes, 7,003 parts over 3,071 entries —
+so each entity below carries what it actually yielded, not what it was expected to. Faint lines come from
+the earlier runs untouched; heavy lines were gap-filled by the sentence-level jobs (A–C); red lines were
+produced by the full-text pass (D–G). Click any entity or relation for its source, coverage and counts.</p>
+<p class="lede" style="margin-top:.5em"><b>What is still open is resolution, not extraction:</b> surname ER
+(step&nbsp;9), production grouping (9b), person→org enrichment (8g), graph assembly (10) and publication (11).</p>
 </header>
 <main>
 <div class="controls">
@@ -160,8 +205,8 @@ dashed red lines are new, from one full-text pass (D–G). Click any entity or r
   </div>
   <div class="seg" role="group" aria-label="Show relations" id="filt">
     <button type="button" data-f="all" aria-pressed="true">All relations</button>
-    <button type="button" data-f="new" aria-pressed="false">New in v2</button>
-    <button type="button" data-f="old" aria-pressed="false">Existing</button>
+    <button type="button" data-f="new" aria-pressed="false">From D–G</button>
+    <button type="button" data-f="old" aria-pressed="false">From earlier runs</button>
   </div>
 </div>
 <div class="legend" id="legend"></div>
@@ -197,8 +242,8 @@ dashed red lines are new, from one full-text pass (D–G). Click any entity or r
 
 <section id="v-jobs" class="jobs" hidden><p class="cap"><b>Inventory &amp; work list</b>: what earlier extraction runs already produced (do not re-extract), and the seven v2 jobs.
 Jobs A–C work on sentences or fields already extracted and need no re-read; D–G share one full-text pass over the entries not yet covered, whose output omits everything in the inventory.</p>
-<h2>What already exists</h2><div class="iwrap"><table class="inv" id="invT"></table></div>
-<h2>v2 work list</h2><div class="iwrap"><table class="inv" id="jobT"></table></div>
+<h2>What each layer holds</h2><div class="iwrap"><table class="inv" id="invT"></table></div>
+<h2>v2 jobs, and what they produced</h2><div class="iwrap"><table class="inv" id="jobT"></table></div>
 <h2>Planned sequence</h2><p class="cap">Status after each run (mirrors SCHEMA_DRAFT.md §0).</p><div class="iwrap"><table class="inv" id="seqT"></table></div>
 <h2>Vocabularies: how far outside standards reach</h2><p class="cap">Our terms stay the extraction labels; each is matched (exact / close / broad / none) to five outside vocabularies in <code>extraction_v2/vocab_alignment.tsv</code> (163 rows, every code checked against the source list, 11-21). Cells: terms with any match (exact in brackets).</p>
 <div class="iwrap"><table class="inv"><thead><tr><th>Our vocabulary</th><th>terms</th><th>Wikidata</th><th>LoC relators</th><th>BnF roles</th><th>Getty AAT</th><th>SAPA</th></tr></thead><tbody>
@@ -227,9 +272,16 @@ the schema has no field for it; what the text does state is recorded as dated fa
 <p>Full text of the schema: <a href="https://github.com/sinairusinek/Dybbuk/blob/main/Zylbercweig/extraction_v2/SCHEMA_DRAFT.md" style="color:var(--teal)">SCHEMA_DRAFT.md</a>.</p>
 </div>
 </main>
-<footer>Draft for review. Built from <code>Zylbercweig/extraction_v2/SCHEMA_DRAFT.md</code> in the
+<footer>The extraction has run (D–G, 2026-11-22); what remains open is resolution and assembly. Hand-kept, mirroring <code>Zylbercweig/extraction_v2/SCHEMA_DRAFT.md</code> &sect;0 &mdash; the counts are checked against the output files by <code>check_schema_page.py</code>. In the
 <a href="https://github.com/sinairusinek/Dybbuk">Dybbuk</a> repository. Funded by the ISF project
 “Historical Digital Analysis of Zalmen Zylbercweig’s Lexicon of Yiddish Theatre” (grant 284/24, PI Ruthie Abeliovich).</footer>
+<button id="vocBtn" type="button" aria-expanded="false" aria-controls="voc">Vocabularies</button>
+<aside id="voc" aria-hidden="true" aria-label="Controlled vocabularies and their alignments">
+  <button id="vocClose" type="button" aria-label="Close">&times;</button>
+  <h2>Vocabularies</h2>
+  <p class="cap" id="vocCap">loading&hellip;</p>
+  <div id="vocList"></div>
+</aside>
 <div class="tip" id="tip"></div>
 
 <script>
@@ -273,31 +325,31 @@ const SEQUENCE=[
  {step:"11",what:"Publication of the schema + vocabulary choices with statistics (per term, fact type, volume; external coverage; verification precision) + Wikidata items for the gaps",status:"not started",when:"",out:"paper · vocab_alignment.tsv · stats script",counts:"after D–G"},
 ];
 const N = {
- person:{label:"Person",x:500,y:110,status:"old",job:"A",have:"people/mentions_all.tsv (Drive ZylbercweigMentionedPeople20260228): 38,269 mentions in 3,079 entries, all 7 volumes; gender, description. Missing: full_form (18,873 surname-only / initial targets, job A).",sub:"actor, playwright, kin…",
+ person:{label:"Person",x:500,y:110,status:"old",job:"A",have:"D–G extracted 55,347 person mentions (6,729 of them the entry's own subject; 55,781 rows carry a full_form). Earlier runs: people/mentions_all.tsv, 38,269 mentions in 3,079 entries, all 7 volumes. Job A resolved 1,136 surname-only / initial mentions in-entry; the remaining ~11.8k need cross-entry ER (step 9).",sub:"actor, playwright, kin…",
   desc:"Anyone the entry names, including the entry's subject and unnamed kin (“his father”).",
-  fields:[["surface","name as written"],["full_form","fullest form in the same entry — NEW, job A"],["is_subject","the entry's own subject?"],["gender","if stated"],["occupation[]","controlled list: actor, prompter, cashier, agent, impresario…"],["description","short phrase from the text"]]},
- org:{label:"Organization",x:150,y:270,status:"old",job:"C",have:"Zylbercweig_extraction/*IIIorg.json → core_db: 21,266 organization items in 2,924 entries. Missing: named_after for “Y’s troupe” sentences.",sub:"troupe, theatre, union…",
+  fields:[["surface","name as written"],["full_form","fullest form in the same entry — added by job A"],["is_subject","the entry's own subject?"],["gender","if stated"],["occupation[]","controlled list: actor, prompter, cashier, agent, impresario…"],["description","short phrase from the text"]]},
+ org:{label:"Organization",x:150,y:270,status:"old",job:"C",have:"D–G extracted 22,762 organization mentions; 13,246 of the 34,091 stations name an org, and 5,410 event–org links carry an org_role. Earlier runs: 21,266 organization items in 2,924 entries (*IIIorg.json → core_db). Job C added named_after for 3,843 eponym sentences.",sub:"troupe, theatre, union…",
   desc:"Named as written. Its type lives in core_db, not in the extraction. Eponyms keep the person they are named after.",
   fields:[["surface","as written"],["full_form","fullest form in the entry"],["named_after","person, for “Fishzon’s troupe” — job C"]]},
- place:{label:"Place",x:420,y:620,status:"old",job:"",have:"Toponym gazetteer (Kima / Wikidata) + places on vitals, org locations and person relations.",sub:"settlement, region…",
+ place:{label:"Place",x:420,y:620,status:"old",job:"",have:"D–G extracted 26,918 place mentions; 30,325 of the 34,091 stations resolved to a place_key (89%). Resolution against the Kima / Wikidata gazetteer: 1,160 of the 1,522 queued new names decided, 320 left for Maaty.",sub:"settlement, region…",
   desc:"Resolved later through the gazetteer (Kima / Wikidata).",
   fields:[["surface","as written"],["place_kind","settlement · region · country · venue_only · unknown"]]},
- work:{label:"Work",x:850,y:300,status:"old",job:"F",have:"plays/editions works_full2.tsv: 3,525 works / 5,059 editions, all of the Lexicon (publication). Performed works only for Lateiner/Hurwitz (669 entries).",sub:"play, operetta, song…",
+ work:{label:"Work",x:850,y:300,status:"old",job:"F",have:"D–G extracted 23,856 work mentions and 1,843 work→work relations: same_as 674, adaptation_of 557, based_on 230, part_of 207, translation_of 175. Earlier runs: 3,525 works / 5,059 editions from the publication side, all of the Lexicon.",sub:"play, operetta, song…",
   desc:"Works performed, written, translated or composed. Titles and publication data already exist (editions pipeline); v2 adds works performed outside Lateiner/Hurwitz.",
   fields:[["surface","title, verbatim"],["work_kind","play · operetta · opera · musical comedy · melodrama · sketch · revue · song · score · film · radio play · book · memoir · article · periodical"],["language","if stated"],["based_on","source work or author, if stated"]]},
- role:{label:"Dramatic role",x:860,y:590,status:"new",job:"F",have:"Only for Lateiner/Hurwitz (plays/kg_extraction_drafts_pass2.tsv, 669 entries) + DiJeSt “People in Performance Events” (852 assertions, gold).",sub:"character in a work",
+ role:{label:"Dramatic role",x:860,y:590,status:"new",job:"F",have:"D–G named a dramatic character in 5,503 of the performance facts, across all seven volumes. Before the run this existed only for Lateiner/Hurwitz (669 entries) and the DiJeSt gold set (852 assertions).",sub:"character in a work",
   desc:"A character, linked to its work: Ben Hador, the Queen in Shulamis.",
   fields:[["surface","character name, verbatim"],["work","title of the work it belongs to"]]},
- event:{label:"Event",x:660,y:460,status:"new",job:"E",have:"Performance / premiere only: Lateiner/Hurwitz plays KG (399 + 6) and events embedded in ~500 itinerary entries.",sub:"performance, founding, strike…",
+ event:{label:"Event",x:660,y:460,status:"new",job:"E",have:"D–G extracted 17,687 events: performance 9,606, founding 1,610, death 1,315, marriage 732, debut 616, guest_appearance 451, conflict 307, season 285, burial 279, premiere 269, honor 253, other 846. Status: performed 17,313, planned 212, banned 82, cancelled 67. 25,769 participant rows.",sub:"performance, founding, strike…",
   desc:"Something that happened, with participants and their roles. Venue is a role on the event, not a type: a café or a hotel can be a venue.",
   fields:[["event_type","performance · premiere · debut · guest_appearance · season · benefit · jubilee · honor · memorial · founding · strike · conflict · marriage · divorce · arrest · imprisonment · death · burial"],["status","performed · planned · banned · cancelled · unstated — NEW 11-20 (after LA-PA Projected Event)"],["language","of the performance/staging, only if stated — NEW 11-20"],["org_role","per organization: producer · presenter_or_host · venue · touring_company — NEW 11-20 (after AusStage)"],["date_start / date_end",""],["date_certainty","explicit · approximate · none"],["place, venue, work","mentions"],["participants[]","person + role (performer, director, organizer, honoree, victim…) + dramatic role"]]},
- production:{label:"Production",x:690,y:265,status:"new",job:"",have:"Not extracted. Built AFTER extraction by the production-resolution step (sequence 9b): performance facts grouped by same work + same org + compatible dates/place, each grouping stored as a fact → production link with its reason. Plays KG today keys productions on an exact (play, venue, org, place, date) match.",sub:"a staging (resolved, not extracted)",
+ production:{label:"Production",x:690,y:265,status:"new",job:"",have:"Not an extracted entity: it is RESOLVED from the 27,391 performance facts D–G produced (function performer 13,612, author 2,687, director 2,544, composer 1,895, translator 1,558, adapter 1,398, designer 714…). The grouping step (sequence 9b) is still to run — facts grouped by same work + same org + compatible date/place, each link stored with its reason.",sub:"a staging (resolved, not extracted)",
   desc:"A staging of a work by a company in a place and season (Linked Art PA / SAPA level between work and performance). The Lexicon often names a role with no production, so the extractor never creates one: facts with no anchor stay on the work as “production unspecified”; on export to models that require a production they get a stub typed “unspecified”.",
   fields:[["work","the play staged"],["org","producing troupe / company"],["place, venue","where"],["date_start, date_end","run, as far as the grouped facts say"],["language","of the staging, if stated"],["fact_ids[]","the performance facts grouped into it, each with a grouping reason"]]},
- station:{label:"Movement",x:230,y:470,status:"new",job:"D",have:"~500 entries already done (Istanbul 79, Danzig 28, France ~400, Dybbuk, Rumshinsky) + Migrations2025 (919 moves, gold). v2 skips them.",sub:"migration, tour, deportation",
+ station:{label:"Movement",x:230,y:470,status:"new",job:"D",have:"D–G extracted 34,091 stations across all seven volumes. verb_class: stay 15,169, tour 6,609, born 2,647, settled 2,399, emigration 1,889, return 1,586, death 1,531, visit 606, flight 429. reason: work_engagement 16,348, unstated 8,842, tour_or_guest 3,172, forced 1,705, family 1,301, education 1,021. Evidence exact 92.2%.",sub:"migration, tour, deportation",
   desc:"An itinerary station: a stay of a person (or a touring troupe) at a place, in narrative order, with the events that happened there.",
   fields:[["verb_class","born · settled · stay · pass_through · tour · flight · emigration · return · visit · death · deportation · evacuation · expulsion · conscription"],["reason","work_engagement · tour_or_guest_appearance · family · education · emigration · forced · health · other · unstated"],["reason_stated","false when the text gives no reason"],["org, role","who the subject was with, as what"],["date_start / date_end / date_certainty",""],["events[]","events at this station"]]},
- source:{label:"Source",x:840,y:95,status:"new",job:"G",have:"Nothing extracted yet.",sub:"how the Lexicon knows",
+ source:{label:"Source",x:840,y:95,status:"new",job:"G",have:"D–G extracted 8,093 source uses (8,152 source mentions): quoted 5,932, informant 1,280, cited 823, corrected_or_contradicted 58. Nothing existed before the run.",sub:"how the Lexicon knows",
   desc:"The informant or text an entry draws on. Provenance, not a social tie.",
   fields:[["surface","person or text, as written"],["source_kind","informant · cited_text · memoir · interview · correspondence · other"]]}
 };
@@ -315,25 +367,25 @@ const E = [
  {id:"pw",a:"person",b:"work",c:40,status:"new",job:"F",have:"Authorship for all of the Lexicon (editions pipeline); production / music / translation facts only for Lateiner/Hurwitz (669 entries).",label:"author, composer, performer…",
   desc:"Authorship exists for every entry (editions); performer / director / composer facts only for Lateiner/Hurwitz. v2 (job F) covers the rest. REVISED 11-20: each performance fact = person + function + character + work + optional context (org, venue, place, dates, language, status). The extractor never creates a production.",
   types:[["roles","author · translator · adapter · composer · lyricist · director · designer · choreographer · performer (+ dramatic role) · producer"]]},
- {id:"ww",a:"work",b:"work",loop:"right",status:"new",job:"F",have:"Only same-work links from the editions pipeline.",label:"translation of…",
+ {id:"ww",a:"work",b:"work",loop:"right",status:"new",job:"F",have:"D–G extracted 1,843 work→work relations: same_as 674, adaptation_of 557, based_on 230, part_of 207, translation_of 175. Before the run, only same-work links from the editions pipeline.",label:"translation of…",
   desc:"Links between works, only as the text states them.",types:[["types","translation_of · adaptation_of · based_on · same_as"]]},
- {id:"rw",a:"role",b:"work",c:30,status:"new",job:"F",have:"Lateiner/Hurwitz only (character column in the plays-KG facts).",label:"character in",desc:"Each dramatic role belongs to a work.",types:[["character_in","Ben Hador → Shulamis"]]},
- {id:"ep",a:"event",b:"person",c:30,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"participant (+ role)",
+ {id:"rw",a:"role",b:"work",c:30,status:"new",job:"F",have:"D–G gives a dramatic character on 5,503 of the performance-fact rows, all volumes. Before: Lateiner/Hurwitz only.",label:"character in",desc:"Each dramatic role belongs to a work.",types:[["character_in","Ben Hador → Shulamis"]]},
+ {id:"ep",a:"event",b:"person",c:30,status:"new",job:"E",have:"D–G extracted 25,769 event-participant rows. Before: Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"participant (+ role)",
   desc:"Who took part and as what; performers can carry the dramatic role they played.",types:[["participant","performer · director · organizer · speaker · honoree · victim · … + dramatic role"]]},
- {id:"ew",a:"event",b:"work",c:-30,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG only.",label:"of work",desc:"The work performed or premiered.",types:[["work","play, operetta, song…"]]},
- {id:"er",a:"event",b:"role",c:-20,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG + DiJeSt (gold) only.",label:"role played",desc:"The dramatic roles performed at this event.",types:[["role","via participants[]"]]},
- {id:"eo",a:"event",b:"org",c:25,lt:0.14,status:"new",job:"E",have:"Venues for Lateiner/Hurwitz productions (venue:UV-* nodes) only.",label:"venue, organizer",desc:"Venue is a role: any organization (or a place) can be one.",types:[["venue","theatre · café · hotel · hall · synagogue…"],["organizer","troupe, society, union…"]]},
- {id:"epl",a:"event",b:"place",c:-25,status:"new",job:"E",have:"Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"took place in",desc:"Settlement or region of the event.",types:[["place","as written; resolved later"]]},
+ {id:"ew",a:"event",b:"work",c:-30,status:"new",job:"E",have:"D–G linked events to a work where the text names one (work_key on the events table). Before: Lateiner/Hurwitz plays KG only.",label:"of work",desc:"The work performed or premiered.",types:[["work","play, operetta, song…"]]},
+ {id:"er",a:"event",b:"role",c:-20,status:"new",job:"E",have:"D–G carries the character on the participant row where the text gives it. Before: Lateiner/Hurwitz plays KG + DiJeSt (gold) only.",label:"role played",desc:"The dramatic roles performed at this event.",types:[["role","via participants[]"]]},
+ {id:"eo",a:"event",b:"org",c:25,lt:0.14,status:"new",job:"E",have:"D–G extracted 5,410 event→org rows, each with an org_role. Before: venues for Lateiner/Hurwitz productions only.",label:"venue, organizer",desc:"Venue is a role: any organization (or a place) can be one.",types:[["venue","theatre · café · hotel · hall · synagogue…"],["organizer","troupe, society, union…"]]},
+ {id:"epl",a:"event",b:"place",c:-25,status:"new",job:"E",have:"D–G fills place and venue on the events table where the text states them. Before: Lateiner/Hurwitz plays KG + itinerary pilots only.",label:"took place in",desc:"Settlement or region of the event.",types:[["place","as written; resolved later"]]},
  {id:"epr",a:"event",b:"production",c:20,status:"new",job:"",have:"Resolution step 9b (not extracted).",label:"part of",desc:"A performance belongs to a production only when the text or the grouping step says so; otherwise the link is absent.",types:[["part_of","Performance ⊂ Production (LA-PA, SAPA)"]]},
  {id:"prw",a:"production",b:"work",c:-20,status:"new",job:"",have:"Resolution step 9b (not extracted).",label:"staging of",desc:"The play a production stages. Our work = Linked Art PA’s Textual Work (the play), not its Work (the director’s staging concept), which the Lexicon rarely decides.",types:[["staging_of","Production → play"]]},
  {id:"pro",a:"production",b:"org",c:-30,status:"new",job:"",have:"Resolution step 9b, from the org named in the grouped facts.",label:"produced by",desc:"The troupe or company that mounted the production (org_role = producer).",types:[["produced_by","troupe · theatre company"]]},
- {id:"sp",a:"station",b:"person",c:-30,status:"new",job:"D",have:"~500 entries (itinerary + dossier pilots).",label:"subject",desc:"Whose itinerary: a person, or an organization when a troupe tours.",types:[["subject","person · organization"]]},
- {id:"spl",a:"station",b:"place",c:25,status:"new",job:"D",have:"~500 entries (itinerary + dossier pilots).",label:"at",desc:"Where the stay happened.",types:[["place","settlement · region (for a tour) · country"]]},
- {id:"se",a:"station",b:"event",c:0,status:"new",job:"D",have:"Itinerary pilots embed performance/premiere/debut events.",label:"events there",desc:"Events are nested inside the station where they happened; never emitted twice.",types:[["events[]",""]]},
- {id:"so",a:"station",b:"org",c:-20,status:"new",job:"D",have:"Itinerary pilots record the org per station.",label:"with",desc:"The troupe or organization the subject was with at that station.",types:[["org","+ the subject's role there"]]},
+ {id:"sp",a:"station",b:"person",c:-30,status:"new",job:"D",have:"D–G extracted 34,091 stations over all seven volumes, each tied to its subject. Before: ~500 entries (itinerary + dossier pilots).",label:"subject",desc:"Whose itinerary: a person, or an organization when a troupe tours.",types:[["subject","person · organization"]]},
+ {id:"spl",a:"station",b:"place",c:25,status:"new",job:"D",have:"30,325 of the 34,091 stations resolved to a place_key (89%); the rest carry the surface only. Before: ~500 entries.",label:"at",desc:"Where the stay happened.",types:[["place","settlement · region (for a tour) · country"]]},
+ {id:"se",a:"station",b:"event",c:0,status:"new",job:"D",have:"D–G links stations to the events at them (event_keys on the stations table). Before: itinerary pilots only.",label:"events there",desc:"Events are nested inside the station where they happened; never emitted twice.",types:[["events[]",""]]},
+ {id:"so",a:"station",b:"org",c:-20,status:"new",job:"D",have:"13,246 of the 34,091 stations name an org. Before: itinerary pilots only.",label:"with",desc:"The troupe or organization the subject was with at that station.",types:[["org","+ the subject's role there"]]},
  {id:"opl",a:"org",b:"place",c:-25,status:"old",job:"",have:"6,220 org → place edges in the graph.",label:"located in",desc:"Already in the graph (6,220 org → place edges).",types:[["located_in",""]]},
  {id:"ppl",a:"person",b:"place",c:-30,status:"old",job:"",have:"Zylbercweig_extraction/*III.json vitals: ~2,400 entries (birth date 2,129, birth place 2,416, death place 1,064, burial 231).",label:"born, died, buried",desc:"Already in the graph for the 3,083 entry subjects (bio layer).",types:[["born_in · died_in · buried_in",""]]},
- {id:"src",a:"source",b:"person",c:-20,status:"new",job:"G",have:"Nothing extracted yet.",label:"informs about",desc:"The Lexicon’s informants and cited texts.",types:[["source relations","informant_about · wrote_about · quoted_in_entry · corrected_or_contradicted"]]}
+ {id:"src",a:"source",b:"person",c:-20,status:"new",job:"G",have:"D–G extracted 8,093 source uses: quoted 5,932, informant 1,280, cited 823, corrected_or_contradicted 58. Nothing existed before the run.",label:"informs about",desc:"The Lexicon’s informants and cited texts.",types:[["source relations","informant_about · wrote_about · quoted_in_entry · corrected_or_contradicted"]]}
 ];
 const JOBS={
  A:{t:"In-entry full_form",kind:"cheap",inp:"18,873 surname-only / initial mentions in mentions_all + entry_texts.tsv (joined by filled-down heading)",how:"Deterministic first (175 resolved), then Gemini on the residue with text windows.",why:"New field; no relations re-extracted."},
@@ -358,7 +410,7 @@ const INV=[
 // <!-- SCHEMA-DATA:END -->
 // status helpers: old = already extracted, not re-read; fill = already extracted, gaps filled by a cheap sentence-level job (A–C); new = full-text pass (D–G)
 const tier=x=>x.status==="new"?"new":(x.job&&"ABC".includes(x.job)?"fill":"old");
-const stTxt=x=>({new:"new in v2",fill:"existing · gap-fill",old:"existing"}[tier(x)])+(x.job?` · job ${x.job}`:"");
+const stTxt=x=>({new:"extracted by D–G",fill:"gap-filled · jobs A–C",old:"from earlier runs"}[tier(x)])+(x.job?` · job ${x.job}`:"");
 const R = 38, svgNS="http://www.w3.org/2000/svg";
 const $ = s=>document.querySelector(s);
 function el(t,a={},p){const e=document.createElementNS(svgNS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
@@ -409,8 +461,76 @@ Object.entries(N).forEach(([k,n])=>{
 $("#g").addEventListener("click",()=>select(null));
 function showTip(ev,h){tip.innerHTML=h;tip.style.opacity=1;const x=Math.min(ev.clientX+14,innerWidth-300);tip.style.left=x+"px";tip.style.top=(ev.clientY+14)+"px"}
 function hideTip(){tip.style.opacity=0}
-function badge(x){const t=tier(x);return `<span class="badge ${t}">${t==="new"?"new in v2":"existing"}</span>`+(x.job?` <span class="badge job ${t}">job ${x.job}</span>`:"")}
-function haveBlock(x){return `<h3>Already extracted</h3><p class="have">${esc(x.have||"—")}</p>`+(x.job?`<h3>v2 job ${x.job}${JOBS[x.job].kind==="cheap"?" · sentence-level, no re-read":" · full-text pass"}</h3><p class="have"><b>${esc(JOBS[x.job].t)}.</b> ${esc(JOBS[x.job].inp)}. ${esc(JOBS[x.job].how)}</p>`:`<h3>v2</h3><p class="have">Not touched by v2.</p>`)}
+function badge(x){const t=tier(x);return `<span class="badge ${t}">${t==="new"?"D–G":"earlier runs"}</span>`+(x.job?` <span class="badge job ${t}">job ${x.job}</span>`:"")}
+function haveBlock(x){return `<h3>What it holds</h3><p class="have">${esc(x.have||"—")}</p>`+(x.job?`<h3>v2 job ${x.job}${JOBS[x.job].kind==="cheap"?" · sentence-level, no re-read":" · full-text pass"}</h3><p class="have"><b>${esc(JOBS[x.job].t)}.</b> ${esc(JOBS[x.job].inp)}. ${esc(JOBS[x.job].how)}</p>`:`<h3>v2</h3><p class="have">Not touched by the v2 pass.</p>`)}
+// ---- controlled vocabularies + their alignments to external ontologies.
+// Loaded from extraction_vocab.json (built by extraction_v2/build_vocab_json.py
+// out of vocab_alignment.tsv) so the page and the study cannot disagree.
+let VOC=null;
+const SKLABEL={exact:"exact",close:"close",broad:"broad",note:"see"};
+function vocLoad(){
+  return fetch("extraction_vocab.json").then(r=>r.ok?r.json():Promise.reject(r.status))
+    .then(j=>{VOC=j;vocFill();if(sel!==undefined)renderPanel();return j})
+    .catch(err=>{
+      // A file:// open has no fetch access; say so rather than failing silently.
+      const c=$("#vocCap");
+      if(c)c.textContent="Could not load extraction_vocab.json ("+err+"). Serve the page over http to see the alignments.";
+      console.warn("vocab alignments unavailable:",err);
+    });
+}
+function skChip(src,m){
+  const lab=SKLABEL[m.strength]||m.strength;
+  const body=m.id?`${esc(src)} <b>${esc(m.id)}</b>`:esc(src);
+  const inner=m.url?`<a href="${esc(m.url)}" target="_blank" rel="noopener">${body}</a>`:body;
+  return `<span class="sk ${esc(m.strength)}" title="${esc(lab)} match">${inner}</span>`;
+}
+// The alignment table for one vocabulary, as shown inside a detail panel.
+function alignTable(vname){
+  const terms=(VOC.by_vocab||{})[vname]||[];
+  if(!terms.length)return "";
+  const rows=terms.map(t=>{
+    const chips=VOC.sources.map(s=>t.maps[s.key]?skChip(s.label,t.maps[s.key]):"").join("");
+    return `<tr><td class="t">${esc(t.term)}</td><td class="m">${
+      chips||'<span class="sk gap">no external match</span>'}${
+      t.scope_note?`<span class="vs">${esc(t.scope_note)}</span>`:""}</td></tr>`;
+  }).join("");
+  const gaps=terms.filter(t=>t.gap).length;
+  return `<h3>Aligned concepts <span class="d">· <code>${esc(vname)}</code>, ${
+    terms.length} term${terms.length===1?"":"s"}${gaps?`, ${gaps} with no match`:""}</span></h3>`+
+    `<table class="align">${rows}</table>`;
+}
+// Every vocabulary an entity or relation draws on.
+function alignBlock(kind,key){
+  if(!VOC)return "";
+  const names=((kind==="node"?VOC.entity_vocabs:VOC.relation_vocabs)||{})[key]||[];
+  return names.map(alignTable).join("");
+}
+function vocFill(){
+  if(!VOC)return;
+  $("#vocCap").innerHTML=`${VOC.n_terms} terms in ${VOC.n_vocabs} vocabularies, aligned to `+
+    VOC.sources.map(s=>esc(s.label)).join(", ")+`. <b>${VOC.n_gaps}</b> have no match in any of them — `+
+    `those are the terms the project would contribute. Coverage: `+
+    VOC.sources.map(s=>`${esc(VOC.coverage[s.key].label)} ${VOC.coverage[s.key].n}`).join(" · ")+".";
+  $("#vocList").innerHTML=VOC.vocab_order.map(v=>{
+    const terms=VOC.by_vocab[v],gaps=terms.filter(t=>t.gap).length;
+    return `<details><summary>${esc(v)} <span class="n">${terms.length}${
+      gaps?` · ${gaps} gap${gaps===1?"":"s"}`:""}</span></summary><div class="vb">`+
+      terms.map(t=>`<div class="vt"><span class="vn">${esc(t.term)}</span>`+
+        (t.scope_note?`<span class="vs">${esc(t.scope_note)}</span>`:"")+
+        `<div>${VOC.sources.map(sc=>t.maps[sc.key]?skChip(sc.label,t.maps[sc.key]):"").join("")||
+          '<span class="sk gap">no external match</span>'}</div>`+
+        (t.note?`<span class="vs">${esc(t.note)}</span>`:"")+`</div>`).join("")+
+      `</div></details>`;
+  }).join("");
+}
+(function vocWire(){
+  const d=$("#voc"),b=$("#vocBtn");
+  function open(v){d.classList.toggle("open",v);d.setAttribute("aria-hidden",v?"false":"true");
+    b.setAttribute("aria-expanded",v?"true":"false")}
+  b.addEventListener("click",()=>open(!d.classList.contains("open")));
+  $("#vocClose").addEventListener("click",()=>open(false));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")open(false)});
+})();
 function fieldList(arr){return `<ul class="f">${arr.map(([k,v])=>`<li><code>${esc(k)}</code>${v?` <span class="d">— ${esc(v)}</span>`:""}</li>`).join("")}</ul>`}
 function select(s){
   sel=s;
@@ -426,21 +546,21 @@ function select(s){
 function renderPanel(){
   const p=$("#panel");
   if(!sel){const nN=Object.values(N).filter(n=>n.status==="new").length,nE=E.filter(e=>e.status==="new").length,nF=E.filter(e=>tier(e)==="fill").length;
-   p.innerHTML=`<h2>Nine kinds of entity</h2><p>v2 is a <b>delta pass</b>: it extracts only what no earlier run produced. Click an entity or relation to see what already exists and which job (A–G) adds to it.</p>
-   <h3>In numbers</h3><ul class="f"><li><code>9</code> <span class="d">entity kinds, ${nN} of them new</span></li><li><code>${E.length}</code> <span class="d">relation families: ${nE} new, ${nF} gap-filled, ${E.length-nE-nF} untouched</span></li><li><code>A–C</code> <span class="d">cheap sentence-level jobs (no re-read)</span></li><li><code>D–G</code> <span class="d">one full-text pass, ~2,500 entries</span></li></ul><p><a href="#view-jobs" data-goto="jobs" style="color:var(--teal)">Inventory &amp; work list →</a></p>`;
+   p.innerHTML=`<h2>Nine kinds of entity</h2><p>v2 was a <b>delta pass</b>: it extracted only what no earlier run had produced. The pass has run — all seven volumes, 7,003 parts over 3,071 entries. Click an entity or relation to see what it yielded and which job produced it.</p>
+   <h3>In numbers</h3><ul class="f"><li><code>9</code> <span class="d">entity kinds, ${nN} first extracted by D–G</span></li><li><code>${E.length}</code> <span class="d">relation families: ${nE} from D–G, ${nF} gap-filled, ${E.length-nE-nF} from earlier runs</span></li><li><code>7,003</code> <span class="d">parts extracted, over 3,071 entries</span></li><li><code>89,105</code> <span class="d">rows: 34,091 stations · 27,391 performance facts · 17,687 events · 8,093 source uses · 1,843 work relations</span></li><li><code>137,035</code> <span class="d">mentions: person 55,347 · place 26,918 · work 23,856 · org 22,762 · source 8,152</span></li></ul><p><a href="#view-jobs" data-goto="jobs" style="color:var(--teal)">Inventory &amp; work list →</a></p>`;
    p.querySelector("[data-goto]").addEventListener("click",ev=>{ev.preventDefault();document.querySelector('[data-view="jobs"]').click()});return}
   if(sel.node){const n=N[sel.node];
     const rel=E.filter(e=>e.a===sel.node||e.b===sel.node);
-    p.innerHTML=`<h2><span class="sw" style="background:var(${COL[sel.node]})"></span>${esc(n.label)} ${badge(n)}</h2><p>${esc(n.desc)}</p>${haveBlock(n)}<h3>Fields</h3>${fieldList(n.fields)}
+    p.innerHTML=`<h2><span class="sw" style="background:var(${COL[sel.node]})"></span>${esc(n.label)} ${badge(n)}</h2><p>${esc(n.desc)}</p>${haveBlock(n)}<h3>Fields</h3>${fieldList(n.fields)}${alignBlock("node",sel.node)}
      <h3>Relations</h3><ul class="f">${rel.map(e=>`<li><a href="#" data-e="${e.id}" style="color:var(--teal)">${esc(e.label)}</a> <span class="d">${esc(N[e.a].label)} → ${esc(N[e.b].label)}</span></li>`).join("")}</ul>`;
     p.querySelectorAll("a[data-e]").forEach(a=>a.addEventListener("click",ev=>{ev.preventDefault();select({edge:a.dataset.e})}));
     return}
   const e=E.find(x=>x.id===sel.edge);
-  p.innerHTML=`<h2>${esc(e.label)} ${badge(e)}</h2><p><b>${esc(N[e.a].label)} → ${esc(N[e.b].label)}</b>. ${esc(e.desc)}</p>${haveBlock(e)}<h3>Types</h3>${fieldList(e.types)}`;
+  p.innerHTML=`<h2>${esc(e.label)} ${badge(e)}</h2><p><b>${esc(N[e.a].label)} → ${esc(N[e.b].label)}</b>. ${esc(e.desc)}</p>${haveBlock(e)}<h3>Types</h3>${fieldList(e.types)}${alignBlock("edge",e.id)}`;
 }
 // legend
 $("#legend").innerHTML=Object.entries(N).map(([k,n])=>`<span><i class="sw" style="background:var(${COL[k]})"></i>${esc(n.label)}</span>`).join("")+
- `<span><i class="ln"></i>existing, untouched</span><span><i class="ln fill"></i>existing, gap-filled (jobs A–C)</span><span><i class="ln new"></i>new in v2 (jobs D–G)</span><span><i class="jbl">A</i>job letter</span>`;
+ `<span><i class="ln"></i>from earlier runs</span><span><i class="ln fill"></i>gap-filled (jobs A–C)</span><span><i class="ln new"></i>extracted by D–G</span><span><i class="jbl">A</i>job letter</span>`;
 // cards view
 $("#cards").innerHTML=Object.entries(N).map(([k,n])=>{
   const out=E.filter(e=>e.a===k), inc=E.filter(e=>e.b===k&&e.a!==k);
@@ -487,7 +607,7 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
   KEYS.forEach(k=>{const n=N[k],b=B[k],g=el("g",{},gB);hover(g,entTip(k));
     el("rect",{class:"box",x:b.x,y:b.y,width:b.w,height:b.h,rx:3},g);
     el("rect",{x:b.x,y:b.y,width:b.w,height:5,fill:`var(${COL[k]})`},g);
-    txt(g,b.x+b.w/2,b.y+17,n.status==="new"?(n.job?`«new · ${n.job}»`:"«resolved, not extracted»"):(n.job?`«existing · ${tier(n)==="fill"?"fill":"+"} ${n.job}»`:"«existing»"),{class:"st","text-anchor":"middle"});
+    txt(g,b.x+b.w/2,b.y+17,n.status==="new"?(n.job?`«D–G · ${n.job}»`:"«resolved, not extracted»"):(n.job?`«existing · ${tier(n)==="fill"?"fill":"+"} ${n.job}»`:"«existing»"),{class:"st","text-anchor":"middle"});
     txt(g,b.x+b.w/2,b.y+31,n.label,{class:"hd","text-anchor":"middle"});
     el("line",{x1:b.x,x2:b.x+b.w,y1:b.y+38,y2:b.y+38,stroke:"var(--line)"},g);
     n.fields.forEach(([f],i)=>{const s=f.length>32?f.slice(0,31)+"…":f;txt(g,b.x+10,b.y+54+i*17,s,{class:"fl"})});
@@ -567,7 +687,7 @@ function shortField(f){return f.split(/ \/ |, /)[0]}
   const box=k=>({x:C[k].x-C[k].w/2,y:C[k].y-C[k].h/2,w:C[k].w,h:C[k].h});
   const gL=el("g",{},svg),gC=el("g",{},svg);
   L.forEach(([a,b,ph,st])=>{const g=el("g",{},gL),cls="lk "+st,m=`url(#cmap${st==="new"?"mN":"mA"})`;
-    hover(g,`<b>${esc(C[a].label)}</b> ${esc(ph)} <b>${esc(C[b].label)}</b> · ${{new:"new in v2",fill:"existing, gap-filled",old:"existing"}[st]}`);
+    hover(g,`<b>${esc(C[a].label)}</b> ${esc(ph)} <b>${esc(C[b].label)}</b> · ${{new:"extracted by D–G",fill:"gap-filled · A–C",old:"from earlier runs"}[st]}`);
     if(a===b){const bb=box(a);
       if(a==="person"){const x=bb.x,y=bb.y+6;
         el("path",{d:`M${x},${y} C${x-70},${y-40} ${x-70},${y+60} ${x-2},${y+30}`,class:cls,"marker-end":m},g);
@@ -610,6 +730,7 @@ const hashView=location.hash.replace(/^#view-/,"");
 document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));filt=b.dataset.f;select(sel)}));
 select(null);
+vocLoad();   // async: refreshes the open panel and fills the drawer when it lands
 if(VIEWS.includes(hashView)) document.querySelector(`[data-view="${hashView}"]`).click();
 else if(innerWidth<600) document.querySelector('[data-view="cards"]').click();
 </script>
