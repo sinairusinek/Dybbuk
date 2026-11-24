@@ -16,7 +16,7 @@ Usage:
     python3.11 build_kg_viz.py             # top-500 by degree (default)
     python3.11 build_kg_viz.py --top 1000  # top-1000
     python3.11 build_kg_viz.py --all       # everything
-    python3.11 build_kg_viz.py --types play,person,production_event
+    python3.11 build_kg_viz.py --types play,person,event
 """
 from __future__ import annotations
 import argparse, csv, json, math
@@ -34,7 +34,7 @@ OUT_HTML = KG / "graph.html"
 TYPE_COLOR = {
     "play":             "#e6194B",
     "person":           "#4363d8",
-    "production_event": "#3cb44b",
+    "event":            "#3cb44b",
     "org":              "#f58231",
     "place":            "#911eb4",
     "venue":            "#42d4f4",
@@ -43,7 +43,7 @@ TYPE_COLOR = {
 TYPE_SHAPE = {
     "play":             "dot",
     "person":           "dot",
-    "production_event": "triangle",
+    "event":            "triangle",
     "org":              "square",
     "place":            "diamond",
     "venue":            "star",

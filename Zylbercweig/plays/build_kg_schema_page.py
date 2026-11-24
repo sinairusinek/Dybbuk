@@ -51,7 +51,7 @@ GRAPH_URL = "plays_kg_graph.html"
 SISTER_URL = "lateiner_hurwitz_entities.html"
 
 # Reading order: the spine first, then what hangs off it.
-KIND_ORDER = ["person", "play", "edition", "production_event",
+KIND_ORDER = ["person", "play", "edition", "event",
               "org", "venue", "place"]
 
 KIND_NOTE = {
@@ -60,7 +60,7 @@ KIND_NOTE = {
     "play": "A play as plays_db records it. The unit an ascription verdict "
             "attaches to — see the attribution guard below.",
     "edition": "A printed or manuscript witness of a play, joined by title.",
-    "production_event": "An event: a staging (identified by a production_key), "
+    "event": "An event: a staging (identified by a production_key), "
                         "or a person's birth, death or burial. The vitals "
                         "became events in step 9c — an event holds the date, "
                         "the place and the other people involved, which the "
@@ -103,7 +103,7 @@ EDGE_FIELD_NOTE = {
     "date_start": "start or point date",
     "date_end": "end date on a span",
     "date_precision": "how exact the date is (see vocabulary)",
-    "event_id": "the production_event this fact belongs to",
+    "event_id": "the event this fact belongs to",
     "production_key": "groups facts belonging to one staging",
     "provenance_person_id": "the Lexicon entry the fact was read from",
     "provenance_fact_ids": "the extracted fact rows behind this edge",
@@ -392,7 +392,7 @@ def build_block(nodes: list[dict], edges: list[dict]) -> str:
     a("<tr><td>shared kinds</td><td colspan='2'><code>person</code>, "
       "<code>org</code>, <code>place</code>, <code>edition</code></td></tr>")
     a("<tr><td>only here</td><td colspan='2'><code>play</code>, "
-      "<code>production_event</code>, <code>venue</code></td></tr>")
+      "<code>event</code>, <code>venue</code></td></tr>")
     a("<tr><td>only there</td><td colspan='2'><code>work</code>, "
       "<code>song</code>, <code>event</code></td></tr>")
     a("<tr><td>provenance</td><td>per-edge evidence sentence, extraction "

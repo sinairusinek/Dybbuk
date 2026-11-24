@@ -674,9 +674,16 @@ def main() -> None:
             if ev[col]:
                 g.add_edge(source_id=ev["event_id"], target_id=ev[col],
                            edge_type=etype, **base)
-        g.add_node(ev["event_id"], node_type="production_event",
+        # node_type is the generic `event`; the kind lives in attrs.event_type.
+        # It used to be `production_event`, which stopped being true in step 9c
+        # when births, deaths and burials became events too — they are now the
+        # majority of them. label_english stays the human label ("premiere
+        # 1877"); readers that need the kind must use attrs.event_type.
+        g.add_node(ev["event_id"], node_type="event",
                    label_english=f"{ev['event_type']} {ev['date_start'][:4]}",
-                   match_status="matched")
+                   match_status="matched",
+                   attrs=json.dumps({"event_type": ev["event_type"]},
+                                    ensure_ascii=False))
 
     # ---- bio layer: every lexicon subject + birth/death/burial places
     import kg_bio

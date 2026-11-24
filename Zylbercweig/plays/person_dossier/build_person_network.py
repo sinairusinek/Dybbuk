@@ -221,9 +221,9 @@ A halo marks an edge re-attributed here from a name-variant node.</p>
 <script>
 const P = __PAYLOAD__;
 const TYPE_COLOR={person:'#0e6f8a',play:'#a1462e',org:'#b07d2b',org_cluster:'#b07d2b',
-  place:'#6b5b95',production_event:'#2f8f7f',venue:'#42a4b4',edition:'#8a8577'};
+  place:'#6b5b95',event:'#2f8f7f',venue:'#42a4b4',edition:'#8a8577'};
 const TYPE_SHAPE={person:'dot',play:'diamond',org:'square',org_cluster:'square',
-  place:'triangle',production_event:'star',venue:'star',edition:'box'};
+  place:'triangle',event:'star',venue:'star',edition:'box'};
 const CLS=P.classes, CLSNAMES=Object.keys(CLS);
 const clsCount={};
 P.edges.forEach(e=>clsCount[e.cls]=(clsCount[e.cls]||0)+1);

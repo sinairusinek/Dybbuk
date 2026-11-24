@@ -26,7 +26,7 @@ KG_DIR = REPO_ROOT / "Zylbercweig" / "plays" / "kg"
 TYPE_COLOR = {
     "play":             "#e6194B",
     "person":           "#4363d8",
-    "production_event": "#3cb44b",
+    "event":            "#3cb44b",
     "org":              "#f58231",
     "place":            "#911eb4",
     "venue":            "#42d4f4",
@@ -35,7 +35,7 @@ TYPE_COLOR = {
 TYPE_SHAPE = {
     "play":             "dot",
     "person":           "dot",
-    "production_event": "triangle",
+    "event":            "triangle",
     "org":              "square",
     "place":            "diamond",
     "venue":            "star",
@@ -179,7 +179,7 @@ def render():
     nodes, edges, by_id, adj_out, adj_in = load_kg()
 
     st.caption(f"Full KG: {len(nodes)} nodes / {len(edges)} edges · "
-               f"types: play · person · production_event · org · place · venue · edition")
+               f"types: play · person · event · org · place · venue · edition")
 
     # --- Controls ---
     col1, col2, col3 = st.columns([3, 1, 1])

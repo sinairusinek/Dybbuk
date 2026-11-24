@@ -166,7 +166,7 @@ def main() -> None:
             cluster_to_db[r["cluster_id"]] = resolve(r["aligned_db_id"])
 
     # --- typed person->org edges derived from the plays KG (pilot scope) ----
-    # person -cast_in-> production_event -produced_by/staged_at-> org(_cluster)
+    # person -cast_in-> event -produced_by/staged_at-> org(_cluster)
     # These are kept out of the overlap computation (different host keyspace);
     # they enrich the edge file with performance-typed relations. The KG scale-up
     # to all playwrights will grow this layer with no change here.

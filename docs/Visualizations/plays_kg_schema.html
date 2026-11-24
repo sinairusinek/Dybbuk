@@ -105,7 +105,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <tr><td><code>person</code></td><td>4,983</td><td>A real person, resolved against people_db. Carries a db id when aligned; an unaligned subject keeps its Lexicon entry id.</td></tr>
 <tr><td><code>play</code></td><td>273</td><td>A play as plays_db records it. The unit an ascription verdict attaches to — see the attribution guard below.</td></tr>
 <tr><td><code>edition</code></td><td>27</td><td>A printed or manuscript witness of a play, joined by title.</td></tr>
-<tr><td><code>production_event</code></td><td>4,119</td><td>An event: a staging (identified by a production_key), or a person&#x27;s birth, death or burial. The vitals became events in step 9c — an event holds the date, the place and the other people involved, which the born_in / died_in / buried_in edges could not. The 167 edges that survive are the ones where the two sources disagree, held for review.</td></tr>
+<tr><td><code>event</code></td><td>4,119</td><td>An event: a staging (identified by a production_key), or a person&#x27;s birth, death or burial. The vitals became events in step 9c — an event holds the date, the place and the other people involved, which the born_in / died_in / buried_in edges could not. The 167 edges that survive are the ones where the two sources disagree, held for review.</td></tr>
 <tr><td><code>org</code></td><td>5,564</td><td>A company, troupe, theatre, school, publisher or institution, resolved against core_db. An unresolved cluster stays an `org_cluster:` node carrying its review decision.</td></tr>
 <tr><td><code>venue</code></td><td>31</td><td>A building named as a performance site but not resolved to an org row.</td></tr>
 <tr><td><code>place</code></td><td>1,376</td><td>A settlement, resolved against the toponyms gazetteer (Wikidata qid in ext_ref_id).</td></tr>
@@ -123,7 +123,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <tr><td><code>match_status</code></td><td>16,373 <span class='c'>100%</span></td><td>matched / candidate / unmatched (see vocabulary)</td></tr>
 <tr><td><code>notes</code></td><td>5,547 <span class='c'>34%</span></td><td>free text, incl. the org cluster&#x27;s review decision</td></tr>
 <tr><td><code>source_layer</code></td><td>16,373 <span class='c'>100%</span></td><td>which layer module emitted the node</td></tr>
-<tr><td><code>attrs</code></td><td>14,047 <span class='c'>86%</span></td><td>JSON bag of per-kind attributes (vitals, education, family background, multi-entry `entries` list and `*_alt` variants)</td></tr>
+<tr><td><code>attrs</code></td><td>14,452 <span class='c'>88%</span></td><td>JSON bag of per-kind attributes (vitals, education, family background, multi-entry `entries` list and `*_alt` variants)</td></tr>
 </tbody></table>
 </section>
 <section class="s">
@@ -132,8 +132,8 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <table><thead><tr><th>relation</th><th>n</th><th>endpoints</th><th>what it asserts</th></tr></thead><tbody>
 <tr><td><code>performed_with</code></td><td>7,652</td><td>person&nbsp;&rarr;&nbsp;org <span class='c'>6,922</span> · person&nbsp;&rarr;&nbsp;person <span class='c'>730</span></td><td>appeared alongside — person-&gt;org for a company, person-&gt;person for a named colleague</td></tr>
 <tr><td><code>located_in</code></td><td>4,063</td><td>org&nbsp;&rarr;&nbsp;place <span class='c'>4,063</span></td><td>org-&gt;place: the org&#x27;s seat</td></tr>
-<tr><td><code>held_in</code></td><td>3,896</td><td>production_event&nbsp;&rarr;&nbsp;place <span class='c'>3,896</span></td><td>where an event took place (a place, not a building) — a staging, or a birth, death or burial</td></tr>
-<tr><td><code>participant</code></td><td>3,780</td><td>production_event&nbsp;&rarr;&nbsp;person <span class='c'>3,780</span></td><td>event-&gt;person: who the event involves and in what capacity (role_detail). On a vital event the role is `subject` — the person whose birth, death or burial it is. Not `victim`: that was applied to every death, while fewer than half show any violence in the text</td></tr>
+<tr><td><code>held_in</code></td><td>3,896</td><td>event&nbsp;&rarr;&nbsp;place <span class='c'>3,896</span></td><td>where an event took place (a place, not a building) — a staging, or a birth, death or burial</td></tr>
+<tr><td><code>participant</code></td><td>3,780</td><td>event&nbsp;&rarr;&nbsp;person <span class='c'>3,780</span></td><td>event-&gt;person: who the event involves and in what capacity (role_detail). On a vital event the role is `subject` — the person whose birth, death or burial it is. Not `victim`: that was applied to every death, while fewer than half show any violence in the text</td></tr>
 <tr><td><code>associated_with</code></td><td>2,380</td><td>person&nbsp;&rarr;&nbsp;person <span class='c'>2,380</span></td><td>the residue type: a person↔person mention whose relation the keyword rules could not type. Not a claim of any particular tie</td></tr>
 <tr><td><code>staff_of</code></td><td>1,355</td><td>person&nbsp;&rarr;&nbsp;org <span class='c'>1,355</span></td><td></td></tr>
 <tr><td><code>employed_by</code></td><td>1,250</td><td>person&nbsp;&rarr;&nbsp;org <span class='c'>1,250</span></td><td></td></tr>
@@ -147,15 +147,15 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <tr><td><code>toured_in</code></td><td>710</td><td>org&nbsp;&rarr;&nbsp;place <span class='c'>710</span></td><td>org-&gt;place: the company travelled there</td></tr>
 <tr><td><code>family_of</code></td><td>622</td><td>person&nbsp;&rarr;&nbsp;person <span class='c'>622</span></td><td>any kinship; the specific tie is in role_detail</td></tr>
 <tr><td><code>executive_of</code></td><td>588</td><td>person&nbsp;&rarr;&nbsp;org <span class='c'>588</span></td><td></td></tr>
-<tr><td><code>cast_in</code></td><td>522</td><td>person&nbsp;&rarr;&nbsp;production_event <span class='c'>522</span></td><td></td></tr>
-<tr><td><code>of_play</code></td><td>405</td><td>production_event&nbsp;&rarr;&nbsp;play <span class='c'>405</span></td><td>ties a staging to the play it staged</td></tr>
+<tr><td><code>cast_in</code></td><td>522</td><td>person&nbsp;&rarr;&nbsp;event <span class='c'>522</span></td><td></td></tr>
+<tr><td><code>of_play</code></td><td>405</td><td>event&nbsp;&rarr;&nbsp;play <span class='c'>405</span></td><td>ties a staging to the play it staged</td></tr>
 <tr><td><code>performed_in</code></td><td>336</td><td>person&nbsp;&rarr;&nbsp;play <span class='c'>336</span></td><td></td></tr>
 <tr><td><code>authored</code></td><td>333</td><td>person&nbsp;&rarr;&nbsp;play <span class='c'>333</span></td><td>person-&gt;play, from a Lexicon fact</td></tr>
 <tr><td><code>graduated_from</code></td><td>313</td><td>person&nbsp;&rarr;&nbsp;org <span class='c'>313</span></td><td></td></tr>
 <tr><td><code>delegate_of</code></td><td>289</td><td>person&nbsp;&rarr;&nbsp;org <span class='c'>289</span></td><td></td></tr>
 <tr><td><code>authored_by</code></td><td>247</td><td>play&nbsp;&rarr;&nbsp;person <span class='c'>247</span></td><td>play-&gt;person, from the plays registry — the SAME claim as `authored` in the opposite direction, from a different source. Both are kept so each source stays auditable</td></tr>
 <tr><td><code>mention</code></td><td>197</td><td>person&nbsp;&rarr;&nbsp;play <span class='c'>197</span></td><td>the play is named in this person&#x27;s entry, with no stronger relation asserted</td></tr>
-<tr><td><code>staged_at</code></td><td>173</td><td>production_event&nbsp;&rarr;&nbsp;org <span class='c'>149</span> · production_event&nbsp;&rarr;&nbsp;venue <span class='c'>24</span></td><td>the building or company a staging played at</td></tr>
+<tr><td><code>staged_at</code></td><td>173</td><td>event&nbsp;&rarr;&nbsp;org <span class='c'>149</span> · event&nbsp;&rarr;&nbsp;venue <span class='c'>24</span></td><td>the building or company a staging played at</td></tr>
 <tr><td><code>directed_by</code></td><td>161</td><td>person&nbsp;&rarr;&nbsp;person <span class='c'>161</span></td><td>person-&gt;person: was directed by</td></tr>
 <tr><td><code>co_member_of</code></td><td>148</td><td>person&nbsp;&rarr;&nbsp;person <span class='c'>148</span></td><td>shared membership of an unnamed body</td></tr>
 <tr><td><code>died_in</code></td><td>147</td><td>person&nbsp;&rarr;&nbsp;place <span class='c'>147</span></td><td></td></tr>
@@ -164,7 +164,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <tr><td><code>wrote_about</code></td><td>106</td><td>person&nbsp;&rarr;&nbsp;person <span class='c'>106</span></td><td></td></tr>
 <tr><td><code>directed</code></td><td>100</td><td>person&nbsp;&rarr;&nbsp;play <span class='c'>100</span></td><td></td></tr>
 <tr><td><code>composed_music</code></td><td>93</td><td>person&nbsp;&rarr;&nbsp;play <span class='c'>93</span></td><td></td></tr>
-<tr><td><code>produced_by</code></td><td>86</td><td>production_event&nbsp;&rarr;&nbsp;org <span class='c'>86</span></td><td></td></tr>
+<tr><td><code>produced_by</code></td><td>86</td><td>event&nbsp;&rarr;&nbsp;org <span class='c'>86</span></td><td></td></tr>
 <tr><td><code>colleague_of</code></td><td>58</td><td>person&nbsp;&rarr;&nbsp;person <span class='c'>58</span></td><td></td></tr>
 <tr><td><code>translated_adapted</code></td><td>49</td><td>person&nbsp;&rarr;&nbsp;play <span class='c'>49</span></td><td></td></tr>
 <tr><td><code>studied_with</code></td><td>39</td><td>person&nbsp;&rarr;&nbsp;person <span class='c'>39</span></td><td></td></tr>
@@ -184,7 +184,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <tr><td><code>date_start</code></td><td>15,009 <span class='c'>41%</span></td><td>start or point date</td></tr>
 <tr><td><code>date_end</code></td><td>2,811 <span class='c'>8%</span></td><td>end date on a span</td></tr>
 <tr><td><code>date_precision</code></td><td>14,641 <span class='c'>40%</span></td><td>how exact the date is (see vocabulary)</td></tr>
-<tr><td><code>event_id</code></td><td>1,978 <span class='c'>5%</span></td><td>the production_event this fact belongs to</td></tr>
+<tr><td><code>event_id</code></td><td>1,978 <span class='c'>5%</span></td><td>the event this fact belongs to</td></tr>
 <tr><td><code>production_key</code></td><td>1,978 <span class='c'>5%</span></td><td>groups facts belonging to one staging</td></tr>
 <tr><td><code>provenance_person_id</code></td><td>31,661 <span class='c'>86%</span></td><td>the Lexicon entry the fact was read from</td></tr>
 <tr><td><code>provenance_fact_ids</code></td><td>34,346 <span class='c'>94%</span></td><td>the extracted fact rows behind this edge</td></tr>
@@ -202,7 +202,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <h2>Vocabularies</h2>
 <p class="note">Read off the data, so a newly introduced value appears here on its own.</p>
 <h3><code>node_type</code></h3>
-<p class="vals"><span class='pill'><code>org</code> 5,564</span> <span class='pill'><code>person</code> 4,983</span> <span class='pill'><code>production_event</code> 4,119</span> <span class='pill'><code>place</code> 1,376</span> <span class='pill'><code>play</code> 273</span> <span class='pill'><code>venue</code> 31</span> <span class='pill'><code>edition</code> 27</span></p>
+<p class="vals"><span class='pill'><code>org</code> 5,564</span> <span class='pill'><code>person</code> 4,983</span> <span class='pill'><code>event</code> 4,119</span> <span class='pill'><code>place</code> 1,376</span> <span class='pill'><code>play</code> 273</span> <span class='pill'><code>venue</code> 31</span> <span class='pill'><code>edition</code> 27</span></p>
 <h3><code>ext_ref_type</code></h3>
 <p class="vals"><span class='pill'><code>org_core_db</code> 4,587</span> <span class='pill'><code>people_db</code> 2,600</span> <span class='pill'><code>org_cluster</code> 953</span> <span class='pill'><code>wikidata_qid</code> 828</span> <span class='pill'><code>entry_person_id</code> 332</span> <span class='pill'><code>plays_db</code> 273</span> <span class='pill'><code>transkribus_doc</code> 27</span></p>
 <h3><code>match_status</code></h3>
@@ -249,7 +249,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <tr><td>relations</td><td>42</td><td>17</td></tr>
 <tr><td>the play unit</td><td><code>play</code></td><td><code>work</code> + <code>edition</code></td></tr>
 <tr><td>shared kinds</td><td colspan='2'><code>person</code>, <code>org</code>, <code>place</code>, <code>edition</code></td></tr>
-<tr><td>only here</td><td colspan='2'><code>play</code>, <code>production_event</code>, <code>venue</code></td></tr>
+<tr><td>only here</td><td colspan='2'><code>play</code>, <code>event</code>, <code>venue</code></td></tr>
 <tr><td>only there</td><td colspan='2'><code>work</code>, <code>song</code>, <code>event</code></td></tr>
 <tr><td>provenance</td><td>per-edge evidence sentence, extraction model, confidence</td><td>per-node status / method / reviewer</td></tr>
 </tbody></table>

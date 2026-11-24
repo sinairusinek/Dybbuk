@@ -103,7 +103,7 @@ def _emit_event(g, ev_id, kind, person, *, place_surface="", place_id="",
                 evidence="", model="", confidence="", note="",
                 fact_ids="", match_status="", extra_people=()):
     """One vital event: the node, its subject, its place, anyone else named."""
-    g.add_node(ev_id, node_type="production_event", label_english=kind,
+    g.add_node(ev_id, node_type="event", label_english=kind,
                match_status=match_status or "matched", notes=note,
                source_layer="bio",
                attrs=json.dumps({"event_type": kind}, ensure_ascii=False))
