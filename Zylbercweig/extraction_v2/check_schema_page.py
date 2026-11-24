@@ -79,8 +79,10 @@ CHECKS: list[tuple[str, str, str, callable]] = [
 # (label, phrase the card writes the number against, file, counter).
 # `None` as the phrase means "the file's row count", matched anywhere in the
 # hand-kept block rather than inside one step's `counts:` string.
+# (`mentions.tsv`'s 137,035 total had a check here until the summary list that
+# stated it was removed; a check for a figure the page does not state can only
+# report a false absence, so it went with it. Restore both together.)
 CARD_CHECKS: list[tuple[str, str, str, callable]] = [
-    ("mentions",            "mentions:",          "defg/mentions.tsv",      _tsv_rows),
     ("stations",            "stations",           "defg/stations.tsv",      _tsv_rows),
     ("events",              "events:",            "defg/events.tsv",        _tsv_rows),
     ("performance facts",   "performance facts",  "defg/performance_facts.tsv", _tsv_rows),
