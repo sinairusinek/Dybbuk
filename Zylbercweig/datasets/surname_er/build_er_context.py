@@ -94,6 +94,7 @@ def main():
     def base(eid):
         return eid if "~" not in eid else ""  # ~aN / ~gN are other subjects (split articles, glued entries)
     ent_places, ent_years, ent_works = defaultdict(list), defaultdict(set), defaultdict(list)
+    ent_evid = defaultdict(list)
     if (D / "stations.tsv").exists():
         for r in tsv(D / "stations.tsv"):
             e = base(r["entry_id"])
@@ -102,6 +103,7 @@ def main():
             y = (_re.match(r"1[6-9]\d\d", r["date_start"] or "") or [""])[0]
             if r["place"]:
                 ent_places[e].append(f"{r['place']}{':' + y if y else ''}")
+                ent_evid[(e, r["place"])].append(r["evidence"] or "")
             for d in (r["date_start"], r["date_end"]):
                 m_ = _re.match(r"1[6-9]\d\d", d or "")
                 if m_:
@@ -112,45 +114,11 @@ def main():
                 continue
             ent_works[e].append(f"{r['function']}:{r['work']}" + (f" ({r['character']})" if r["character"] else ""))
 
-    # ---- 11-24: link each D–G station place: itinerary gazetteer first, then the 11-22 place decisions ----
-    sys.path.insert(0, str(ZYL / "plays" / "itinerary"))
-    import build_itinerary_data as bid  # noqa: E402
-    lut = bid.load_gazetteer()
-    PDEC = {}
-    for r in tsv(V2 / "qa" / "kima" / "defg_place_decisions_2026_11_22.tsv"):
-        PDEC[bid.norm(r["yiddish"])] = r
-    _link_cache = {}
-
-    def place_link(p):
-        """Yiddish place -> 'English (Qnnn / Kima N)'; '?' when not linked."""
-        if p in _link_cache:
-            return _link_cache[p]
-        st, q, en, *_ = bid.resolve(p, lut)
-        if st in ("settlement_partial", "settlement_first_of_list", "region_first_of_list"):
-            # the resolver's word/part fallbacks misfire (Seattle, Washington -> Washington D.C.;
-            # Alexandria (Egypt) -> Oleksandriia): accept only the FIRST part of "Town, Region" / "Town (Country)"
-            first = _re.split(r"[,(]", p)[0].strip()
-            st, q, en, *_ = bid.resolve(first, lut) if first and first != p else ("unresolved", "", "")
-            if st not in ("settlement", "region"):
-                st = "unresolved"
-        if st == "settlement":
-            out = f"{en} ({q})" if q else en
-        elif st == "region":
-            out = en
-        else:
-            d = PDEC.get(bid.norm(p))
-            dec = d["decision"] if d else ""
-            if dec == "KIMA":
-                ids = " / ".join(x for x in (d["qid"], f"Kima {d['kima_id']}") if x)
-                out = f"{d['english'] or d['kima_name']} ({ids})"
-            elif dec == "QID":
-                out = f"{d['english']} ({d['qid']})"
-            elif dec == "IDENTIFIED":
-                out = d["english"]
-            else:  # UNLINKED / UNCERTAIN / never queued
-                out = "?"
-        _link_cache[p] = out
-        return out
+    # ---- 11-24: link each D–G station place, context-checked (place_linker.py) ----
+    sys.path.insert(0, str(HERE))
+    from place_linker import Linker  # noqa: E402
+    linker = Linker()
+    link_how = Counter()
 
     def defg_of(entry_ids):
         es = [x for x in (entry_ids or "").split("|") if x]
@@ -159,9 +127,17 @@ def main():
             pl += ent_places.get(e, []); ys |= ent_years.get(e, set()); wk += ent_works.get(e, [])
         uniq = lambda xs: list(dict.fromkeys(xs))
         upl = uniq(pl)
+        split = lambda x: (x.rpartition(":")[0], x.rpartition(":")[2]) if _re.search(r":1[6-9]\d\d$", x) else (x, "")
+        # centroid of this person's unambiguous stations, for homonym choice
+        pts = [c for c in (linker.coords(split(x)[0]) for x in upl) if c]
+        cen = (sum(c[0] for c in pts) / len(pts), sum(c[1] for c in pts) / len(pts)) if pts else None
         def en_of(x):
-            place, _, y = x.rpartition(":") if _re.search(r":1[6-9]\d\d$", x) else (x, "", "")
-            return place_link(place) + (f":{y}" if y else "")
+            place, y = split(x)
+            ev = " ".join(v for e in es for v in ent_evid.get((e, place), []))
+            own = next((e for e in es if (e, place) in ent_evid), "")
+            lab, how = linker.link(place, ev, cen, own)
+            link_how[how] += 1
+            return (lab or "?") + (f":{y}" if y else "")
         # truncate both lists at the same station so position i means the same station in each
         keep, n = [], 0
         for x in upl:
@@ -209,6 +185,7 @@ def main():
     with open(HERE / "er_candidate_profiles.tsv", "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, pcols, delimiter="\t"); w.writeheader(); w.writerows(prof_rows)
     prof = {p["hub_id"]: p for p in prof_rows}
+    print("place links:", dict(link_how.most_common()))
     print(f"er_candidate_profiles.tsv: {len(prof_rows)} hubs; with orgs {sum(1 for p in prof_rows if p['n_orgs'])}; "
           f"with birth place {sum(1 for p in prof_rows if p['birth_place'])}")
 

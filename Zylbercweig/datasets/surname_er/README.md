@@ -61,10 +61,13 @@ stated only inside quotations are left out.
 
 New 2026-11-24: `defg_places_en` is `defg_places` linked, station by station (position *i* in
 one list is position *i* in the other): `Daugavpils (Q80021):1866|United States (Q30):1901`.
-Each Yiddish spelling is looked up in the project's place gazetteer, then in the 2026-11-22
-place decisions (Kima gazetteer ids as `Kima N`, Wikidata `Qnnn`). `?` = not linked (unclear
-spelling, not a place, or still with the human reviewer). **91% of the 23,073 stations are
-linked, 80% with a Wikidata QID.** Compare QIDs, not names, across host and candidates.
+Links come, in order, from (1) the project's reviewed place links for the same entry and spelling
+(hand-checked, e.g. אוישוויץ = the Auschwitz camp, not the town), (2) the same spelling where every
+reviewed occurrence agrees, (3) the place gazetteer and the 2026-11-22 place decisions (Kima ids as
+`Kima N`, Wikidata `Qnnn`), checked against any qualifier in the name ("X, Volhynia", "X (Egypt)")
+and, for spellings shared by several places, against the country in the sentence or the person's
+other stations. `?` = not linked (unclear spelling, not a place, an undecided homonym, or still with
+the human reviewer). **92% of the 23,073 stations are linked, 91% with a Wikidata QID.** Compare QIDs, not names, across host and candidates.
 
 ## Baselines (on the 3,401 gold mentions with ≥2 candidates)
 
@@ -104,5 +107,6 @@ date?), place, the shared organization, gender, and relation type.
 - `flag = not_a_person`: the "mention" is a placename (e.g. ביעלאָצערקאָוו = Bila Tserkva); `rejected_alignment`: a curated rejection removed a wrong gold/resolver answer.
 - 110 gold answers are not among the candidates (spelling variants the lookup misses): a recall problem to study.
 - Hubs are not a closed world: some mentioned people have no Lexicon entry.
-- Place links in `defg_places_en` go by spelling, so a few homonyms are wrong: אַלעקסאַנדריע is linked to
-  Oleksandriia (Ukraine) even where the entry says Egypt. Treat a single place disagreement as weak evidence.
+- Place links in `defg_places_en` not covered by a reviewed link (about 13%) go by spelling plus the
+  context checks above; homonyms without a qualifier or a clear itinerary are left `?` rather than guessed.
+  Treat a single place disagreement as weak evidence.
