@@ -36,6 +36,10 @@ OUT_TSV = HERE / "derived_mention_alignments.tsv"
 # The RA sheets stay untouched as the decision ledger; a rejected row is kept here
 # with db_status=rejected and NO matched_person_ids, so build_person_hub drops it.
 REJECTIONS_TSV = HERE / "mention_surface_rejections.tsv"
+# curated reassignments: the RA aligned a surface to the WRONG heading and the right one is known
+# (e.g. יעקב גלאַטשטיין → "גאָלדשטיין, יעקב"). The row keeps the RA's heading in `notes` and is
+# resolved against `reassign_to_heading` instead.
+REASSIGN_TSV = HERE / "mention_surface_reassignments.tsv"
 
 SHEETS = {
     "full": HERE / "mention_validations_full.tsv",
@@ -64,6 +68,11 @@ def main() -> None:
         for rr in read_tsv(REJECTIONS_TSV):
             rejected.add((normalize_person_name(rr.get("mention_surface") or ""), normalize_person_name(rr.get("as_heading") or "")))  # precomposed/decomposed-safe
 
+    reassign = {}
+    if REASSIGN_TSV.exists():
+        for rr in read_tsv(REASSIGN_TSV):
+            reassign[(normalize_person_name(rr.get("mention_surface") or ""), normalize_person_name(rr.get("as_heading") or ""))] = (rr.get("reassign_to_heading") or "").strip()
+
     out: list[dict] = []
     stats: dict[str, list[int]] = {}
     for sheet, path in SHEETS.items():
@@ -74,6 +83,10 @@ def main() -> None:
             if not heading:
                 continue
             n_heading += 1
+            ra_note = ""
+            new_heading = reassign.get((normalize_person_name(r.get("mention") or ""), normalize_person_name(heading)))
+            if new_heading:
+                ra_note, heading = f"curated reassignment; RA as_heading was: {heading}", new_heading
             pids = heading_idx.get(heading, [])
             method = "exact"
             if not pids:
@@ -94,13 +107,15 @@ def main() -> None:
                 db_id, db_status = "", "no_entry_match"
             if (normalize_person_name(r.get("mention") or ""), normalize_person_name(heading)) in rejected:
                 pids, db_id, db_status, method = [], "", "rejected", "curated_rejection"
+            if ra_note:
+                method = "curated_reassign"
             out.append({
                 "mention_surface": (r.get("mention") or "").strip(),
                 "source_sheet": sheet,
                 "occurrences": (r.get("occurrences") or "").strip(),
                 "as_heading": heading,
                 "alternative_heading": (r.get("alternative_heading") or "").strip(),
-                "notes": (r.get("notes") or "").strip(),
+                "notes": "; ".join(x for x in ((r.get("notes") or "").strip(), ra_note) if x),
                 "match_method": method,
                 "matched_person_ids": "|".join(pids),
                 "n_matched": len(pids),

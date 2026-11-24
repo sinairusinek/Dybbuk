@@ -206,7 +206,12 @@ agreement with the surname prior, not correctness.
 The signals need combining: time (are the birth years compatible with the relation
 date?), place, the shared organization, gender, and relation type.
 
-## What changed (tag `datasets-2026-11-24h`)
+## What changed (tag `datasets-2026-11-24i`)
+
+- The full-name form "יעקב גלאַטשטיין" had been validated as the actor Yakov Goldshteyn (`HUB-D1851`). It is
+  the poet Yakov Glatstein (`HUB-D1782`), so `name_surfaces` changed on those two profiles. Nothing else changed.
+
+## Earlier change (tag `datasets-2026-11-24h`)
 
 - 46 wrong alignments from shifted review-sheet rows fixed at source (see above): 27 merged hubs split,
   13 entries with another person's database id corrected, 12 non-person entries flagged. Candidate lists
