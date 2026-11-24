@@ -43,11 +43,11 @@ University.
   (`det:` = string match, `llm:` = Gemini; `kin_of_subject` = a relative, with the surname inferred). `in_entry_status`: `stated` = the full name is in the entry; **`inferred`** = first name + the family's surname (580 relatives); usable as a candidate or feature, but **not** a verified answer: stage names and married names make it wrong sometimes; `rejected` = the check failed, full form blanked.
 - **Candidates:** `candidate_hub_ids` (surname lookup, incl. spelling variants; the host
   is excluded). `candidate_features` gives simple per-candidate overlap counts as a starting point.
-- **Labels (changed 2026-11-24, tag `datasets-2026-11-24e`; read [Labels](#labels-read-this-before-training-or-scoring) below):**
-  - `checked_verdict` / `checked_hub_id` is a **per-mention** answer, read in context, for all 3,446 ambiguous mentions that have a surname prior.
-    - `checked_verdict = hub`: `checked_hub_id` is the person (2,751), and `checked_confidence` is `high`, `medium` or `low`.
-    - `checked_verdict = none`: none of the candidates is this person (309), for example the host's brother "אַברהם", or the Russian playwright Ostrovsky.
-    - `checked_verdict = unsure`: the text leaves it open (386). `checked_alternatives` lists the plausible hubs.
+- **Labels (changed 2026-11-24, tag `datasets-2026-11-24f`; read [Labels](#labels-read-this-before-training-or-scoring) below):**
+  - `checked_verdict` / `checked_hub_id` is a **per-mention** answer, read in context, for **all 5,396 ambiguous mentions** (two or more candidates).
+    - `checked_verdict = hub`: `checked_hub_id` is the person (4,220), and `checked_confidence` is `high`, `medium` or `low`.
+    - `checked_verdict = none`: none of the candidates is this person (622), for example the host's brother "אַברהם", or the Russian playwright Ostrovsky.
+    - `checked_verdict = unsure`: the text leaves it open (554). `checked_alternatives` lists the plausible hubs.
     - `checked_how` names the reading pass.
   - `surname_prior_hub_id` (formerly `gold_hub_id`) is one research assistant's pick **per surname**, the same for every mention of that surname (5,726 mentions). It is **not** a per-mention answer.
   - `surname_prior_alt_hub_ids` lists the other person(s) the assistant named for that surname.
@@ -113,48 +113,66 @@ then copied onto every mention of the surname. The consequences:
 - Some priors are simply wrong. "הירשביין" points to A. Glanz instead of Peretz Hirshbein (29 mentions)
   and "לייוויק" to Leivick Khanukov instead of H. Leivick (24).
 
-**`checked_*` is the per-mention label.** Every one of the 3,446 ambiguous mentions with a prior
-was read in context, using the host entry's text, the relation sentence, dates, roles, works,
-places and gender, against the profile of every candidate. Two passes did this:
+**`checked_*` is the per-mention label.** Every one of the 5,396 ambiguous mentions was read in
+context, using the host entry's text, the relation sentence, dates, roles, works, places and
+gender, against the profile of every candidate. Three passes did this:
 
 - `two_way_fullform_vs_prior` (312 mentions): the mentions where the entry's own full form named a
   different candidate from the prior, judged as a two-way choice. The full form was right in 302
   of these, the prior in 7, and someone else in 3.
-- `blind_all_candidates` (3,134, including 8 the first pass left undecided): the rest, judged among all candidates, **without being told
-  which one was the prior**.
+- `blind_all_candidates` (3,134, including 8 the first pass left undecided): the other mentions
+  with a prior, judged among all candidates, **without being told which one was the prior**.
+- `blind_all_candidates_noprior` (1,950): the ambiguous mentions that never had a prior, judged
+  in the same way.
 
 The readers were a language model (Claude Sonnet) working under our instructions. To estimate how reliable
 each confidence level is, we checked random samples by hand:
 
 | `checked_confidence` | answers | checked by hand | right |
 |---|---|---|---|
-| high | 1,039 | 20 | 20 |
-| medium | 1,425 | 25 | 21 (1 wrong, 3 doubtful) |
-| low | 287 | – | treat as a guess |
+| high | 1,915 | 34 | 34 |
+| medium | 1,908 | 40 | 35 (1 wrong, 4 doubtful) |
+| low | 397 | – | treat as a guess |
 
 The samples are small, so read these as rough figures: high-confidence answers are very likely right, and
-medium about 85%. Use the `high` answers as a strict test set, and `high` + `medium` for training or a
-larger, noisier test. Two cases are weaker than their level suggests: Kaminski troupe mentions,
-where Avrom-Yitskhok and Ester-Rokhl are hard to tell apart, have been set to `low`, and
-bare "Fishzon" mentions were split between Avrom and Misha mainly by date. Reasons for every answer are in
+medium about 85–90%. Use the `high` answers as a strict test set, and `high` + `medium` for training or a
+larger, noisier test. Some answers have been deliberately set to `low` because they are weaker than they look:
+- the Kaminski troupe mentions, where Avrom-Yitskhok and Ester-Rokhl are hard to tell apart;
+- the "ש. בליאַכער" mentions, which were matched to Shabtai Bliakher on the initial alone, although the
+  entries spell out Shmuel or Shlomo.
+
+The bare "Fishzon" mentions were also split between Avrom and Misha mainly by date.
+Reasons for every answer are in
 [`people/er_mention_checks_2026_11_24.tsv`](../../people/er_mention_checks_2026_11_24.tsv).
 
-**What the check showed about the old labels.** Of the 2,751 mentions with a checked person,
-the surname prior was right on only 1,129 (41%). On 309 more it named a person when the mention is
-someone with no candidate at all: relatives named by first name, or outsiders like Ostrovsky.
+**What the check showed about the old labels.** Of the 2,751 mentions with a prior and a checked
+person, the surname prior was right on only 1,129 (41%). On 309 more it named a person when the
+mention is someone with no candidate at all: relatives named by first name, or outsiders like Ostrovsky.
 
 **Split by surname.** Even when read mention by mention, most surnames do refer to one person:
-predicting each surname's most frequent checked person gets 2,632 of the 2,751 right. 54
-surnames have mentions that point to different people. If train and test share surnames, a model
-can memorize the surname. Split by `surname_key` and report results on unseen surnames, with the
-54 mixed surnames as a separate, harder subset.
+predicting each surname's most frequent checked person gets 3,955 of the 4,220 right. 98 of
+the 446 surnames have mentions that point to different people. If train and test share surnames,
+a model can memorize the surname. Split by `surname_key` and report results on unseen surnames,
+with the 98 mixed surnames as a separate, harder subset.
+
+**Hub defects the reading found** (not fixed in this version; a model may see them as two people):
+- Avrom Goldfaden has a second hub made from a picture caption, "drawn by Avrom Goldfaden"
+  (`HUB-P-1-facs_174_region_1715799875093_402`). Several Goldfaden mentions are `unsure` between the two.
+- `HUB-P-4-facs_672_r_1` is a memorial caption for the Michaleskos, not a person.
+- Several people have two hubs each: Nekhama Lipshits-Kadish (HUB-D2299 / HUB-D2550), the designer
+  W. Weintraub (HUB-D3238 / HUB-D3450) and Shmuel Goldfarb.
+- A. Y. Kaminski's profile (HUB-D3613) gives a birth year of 1887, which contradicts his troupe in the 1890s.
+- Boris Tomashefsky is missing from the candidates on 4 mentions.
 
 ## Baselines (on the checked labels)
 
-| method | high (1,039) | high + medium (2,464) |
+| method | high (1,915) | high + medium (3,823) |
 |---|---|---|
 | surname prior | 524 right | 1,048 right |
-| existing rule-based resolver | 433 right (it answers 528) | 776 right (it answers 1,095) |
+| existing rule-based resolver | 437 right (it answers 536) | 804 right (it answers 1,140) |
+
+The surname prior and the resolver rarely answer the mentions that have no prior, so their counts
+over all mentions are low.
 
 Earlier versions of this README reported "38% correct" for the resolver. That figure was its
 agreement with the surname prior, not correctness.
@@ -162,11 +180,16 @@ agreement with the surname prior, not correctness.
 The signals need combining: time (are the birth years compatible with the relation
 date?), place, the shared organization, gender, and relation type.
 
-## What changed (tag `datasets-2026-11-24e`)
+## What changed (tag `datasets-2026-11-24f`)
 
-- All 3,446 ambiguous mentions with a prior now have a per-mention reading: `checked_verdict`,
-  `checked_hub_id`, `checked_alternatives`, `checked_confidence`, `checked_how`. In 11-24d only
-  312 did. The baselines and the reliability check are above. All other columns and rows are unchanged.
+- The 1,950 ambiguous mentions without a prior are now read too, so all 5,396 ambiguous mentions
+  have a `checked_*` reading. The reliability table, baselines and surname-split figures are updated,
+  and a list of hub defects has been added. All other columns and rows are unchanged.
+
+## Earlier change (tag `datasets-2026-11-24e`)
+
+- All 3,446 ambiguous mentions with a prior got a per-mention reading: `checked_verdict`,
+  `checked_hub_id`, `checked_alternatives`, `checked_confidence`, `checked_how` (11-24d had 312).
 
 ## Earlier change (tag `datasets-2026-11-24d`)
 
