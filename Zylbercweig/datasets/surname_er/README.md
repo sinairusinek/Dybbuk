@@ -43,8 +43,11 @@ University.
   (`det:` = string match, `llm:` = Gemini; `kin_of_subject` = a relative, with the surname inferred). `in_entry_status`: `stated` = the full name is in the entry; **`inferred`** = first name + the family's surname (580 relatives); usable as a candidate or feature, but **not** a verified answer: stage names and married names make it wrong sometimes; `rejected` = the check failed, full form blanked.
 - **Candidates:** `candidate_hub_ids` (surname lookup, incl. spelling variants; the host
   is excluded). `candidate_features` gives simple per-candidate overlap counts as a starting point.
-- **Labels:** `gold_hub_id` is a human-validated answer for 5,726 mentions; use it for
-  train/test. `resolver_verdict` / `resolver_hub_id` are the current rule-based resolver's output, as a baseline.
+- **Labels (changed 2026-11-24, tag `datasets-2026-11-24d`; read [Labels](#labels-read-this-before-training-or-scoring) below):**
+  - `checked_hub_id` is a **per-mention** answer, read in context, for 312 mentions. `checked_how` gives the method and confidence (`high` / `medium` / `low`).
+  - `surname_prior_hub_id` (formerly `gold_hub_id`) is one research assistant's pick **per surname**, the same for every mention of that surname (5,726 mentions). It is **not** a per-mention answer.
+  - `surname_prior_alt_hub_ids` lists the other person(s) the assistant named for that surname.
+  - `resolver_verdict` / `resolver_hub_id` are the output of the current rule-based resolver.
 
 ### `er_candidate_profiles.tsv`
 
@@ -88,20 +91,59 @@ quotations are left out. Places carry `place_en`, linked as in `defg_places_en`.
 Use: through `er_mention_defg_links` an ER mention reaches the events and performances the host's
 entry puts it in (co-performers, works, dates, places), which can be compared with each candidate's
 own `defg_*` rows. **`full_form_in_entry` is a model's reading of the entry, not a label**: on the
-ambiguous gold mentions it names exactly one candidate 714 times, the gold one in 394. The surname
+ambiguous mentions that have a surname prior, it names exactly one candidate 714 times, and that candidate is the prior in 394 of them. The surname
 link is loose (every same-surname person in the host entry), so a mention can link to a relative.
 
-## Baselines (on the 3,401 gold mentions with ≥2 candidates)
+## Labels: read this before training or scoring
 
-| method | correct |
-|---|---|
-| existing rule-based resolver | 1,282 (38%) |
-| "most shared organizations with the host" alone | 437 right, 851 wrong, 2,113 undecided |
+**The earlier `gold_hub_id` was not a per-mention answer, and it has been renamed to
+`surname_prior_hub_id`.** It comes from a review sheet on which a research assistant chose
+*one* person per bare surface form, for example "קעסלער" → Joseph Kessler. That one choice was
+then copied onto every mention of the surname. The consequences:
+
+- All 3,446 ambiguous mentions that have a prior share 429 surnames, and no surname has more than
+  one label. A model that only learns "surname → its usual person" would score 100% against it,
+  and splitting train and test by mention leaks the answer.
+- The sheet often names a second person (`alternative_heading`), and this was dropped.
+  It is now `surname_prior_alt_hub_ids` (on 2,588 of the 3,446).
+- Some priors are simply wrong. "הירשביין" points to A. Glanz instead of Peretz Hirshbein (29 mentions)
+  and "לייוויק" to Leivick Khanukov instead of H. Leivick (24).
+
+**`checked_hub_id` (312 mentions) is the per-mention label.** These are the mentions where the
+entry's own full form named a different candidate from the prior. Each one was read in context,
+using the entry text, the works and roles named, dates, gender and both candidates' profiles. In
+302 cases the full form was right, in 7 the prior was right, and in 3 it was someone else; 8
+were left undecided and have no label. Reasons are in
+[`people/er_gold_vs_defg_fullform_2026_11_24.tsv`](../../people/er_gold_vs_defg_fullform_2026_11_24.tsv).
+The checker was a language model working under our instructions, so check `checked_how`
+and treat `low` with care.
+
+**This is a hard, biased test set, not a random sample.** It covers 54 surnames, all chosen because
+two signals disagreed, and the prior is wrong on 305 of the 312 by construction. Use it to test
+whether a method reads context. Do not report it as general accuracy, and do not train on the
+surname prior and then test on the same surnames.
+
+## Baselines
+
+| method | on what | result |
+|---|---|---|
+| existing rule-based resolver | 312 checked mentions | 43 right; it answers only 66 |
+| surname prior | 312 checked mentions | 7 right (by construction, see above) |
+| existing rule-based resolver | 3,446 ambiguous mentions with a prior | agrees with the prior on 1,284 (agreement, **not accuracy**) |
+
+Earlier versions of this README reported the last row as "38% correct". It is agreement with the
+surname prior, not correctness.
 
 The signals need combining: time (are the birth years compatible with the relation
 date?), place, the shared organization, gender, and relation type.
 
-## What changed (tag `datasets-2026-11-24c`)
+## What changed (tag `datasets-2026-11-24d`)
+
+- `gold_hub_id` renamed to `surname_prior_hub_id`, plus new `surname_prior_alt_hub_ids`,
+  `checked_hub_id` and `checked_how` (see Labels above). All other columns and rows are unchanged.
+- The baselines are restated (see above).
+
+## Earlier change (tag `datasets-2026-11-24c`)
 
 - New `defg/` folder: the D–G events, participants, performance facts, work relations and people,
   joined to hubs and to the ER mentions (see above). Built by `build_defg_tables.py`.
@@ -133,8 +175,8 @@ date?), place, the shared organization, gender, and relation type.
 - `c_org_id` is matched by sentence overlap (`c_org_match_score`) and then checked by a Gemini judge; the 142 matches it rejected are removed (`|check_failed` in the score). Expect a few residual errors.
 - `in_entry_method` ending in `|check_failed` = a relative's inferred full name the check rejected (24); the full form is blanked.
 - `relation_source = v2_job_B` rows (634) were classified by Gemini from text windows; `|checked_ok` / `|check_failed` marks the 29 'Source' relations that were checked.
-- `flag = not_a_person`: the "mention" is a placename (e.g. ביעלאָצערקאָוו = Bila Tserkva); `rejected_alignment`: a curated rejection removed a wrong gold/resolver answer.
-- 110 gold answers are not among the candidates (spelling variants the lookup misses): a recall problem to study.
+- `flag = not_a_person`: the "mention" is a placename (e.g. ביעלאָצערקאָוו = Bila Tserkva); `rejected_alignment`: a curated rejection removed a wrong surname-prior or resolver answer.
+- 110 surname-prior answers are not among the candidates (spelling variants the lookup misses): a recall problem to study.
 - Hubs are not a closed world: some mentioned people have no Lexicon entry.
 - Place links in `defg_places_en` not covered by a reviewed link (about 13%) go by spelling plus the
   context checks above; homonyms without a qualifier or a clear itinerary are left `?` rather than guessed.

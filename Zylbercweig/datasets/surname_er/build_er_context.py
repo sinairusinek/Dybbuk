@@ -317,11 +317,41 @@ def main():
                 for k in ("gold_hub_id", "resolver_hub_id"):
                     if o[k] in rj[1]:
                         o[k] = ""; o["flag"] = "rejected_alignment"; n_rej += 1
+    # 2026-11-24 gold check: the old "gold_hub_id" is ONE research-assistant pick per bare surname
+    # (surnames sheet `as_heading`), copied to every mention -- a surname prior, not a per-mention
+    # answer. Rename it, add the sheet's listed alternative(s), and add per-mention answers only
+    # where a mention was actually read in context.
+    head2hub = defaultdict(set)
+    for h, hr in hubs.items():
+        head2hub[normalize_person_name(hr["canonical_heading"])].add(h)
+    alts = defaultdict(set)
+    for r in tsv(ZYL / "people" / "derived_mention_alignments.tsv"):
+        if r["source_sheet"] == "surnames":
+            for a in (r["alternative_heading"] or "").split("|"):
+                alts[normalize_person_name(r["mention_surface"])] |= head2hub.get(normalize_person_name(a), set())
+    OTHER = {"M-volume_1IIIorg-NOXID-לינעצקי-001": "HUB-D2311",       # Yitskhok-Yoel Linetski (with Goldfaden)
+             "M-Volume_4IIIorg-NOXID-גראַדנער-002": "HUB-D900",        # Israel Grodner, 1880s troupe
+             "M-volume_2IIIorg-NOXID-גראדנער-003": "HUB-D900"}
+    checked = {}
+    for r in tsv(ZYL / "people" / "er_gold_vs_defg_fullform_2026_11_24.tsv"):
+        v = r["verdict"]
+        h = {"defg_right": r["defg_points_to"], "gold_right": r["gold_hub_id"]}.get(v) or OTHER.get(r["mention_id"], "")
+        if h:
+            checked[r["mention_id"]] = (h, f"read_in_context_2026-11-24:{r['confidence']}")
+    for o in out:
+        prior = o.pop("gold_hub_id")
+        flag = o.pop("flag")
+        cset = set(o["candidate_hub_ids"].split("|"))
+        o["surname_prior_hub_id"] = prior
+        o["surname_prior_alt_hub_ids"] = "|".join(sorted((alts.get(o["surname_key"], set()) & cset) - {prior})) if prior else ""
+        ch = checked.get(o["mention_id"])
+        o["checked_hub_id"], o["checked_how"] = ch if ch else ("", "")
+        o["flag"] = flag
     mcols = list(out[0].keys())
     with open(HERE / "er_mention_context.tsv", "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, mcols, delimiter="\t"); w.writeheader(); w.writerows(out)
     print(f"er_mention_context.tsv: {len(out)} mentions; host hub found {sum(1 for o in out if o['host_hub_id'])}; "
-          f"with candidates {sum(1 for o in out if o['n_candidates'])}; gold {sum(1 for o in out if o['gold_hub_id'])}; "
+          f"with candidates {sum(1 for o in out if o['n_candidates'])}; surname prior {sum(1 for o in out if o['surname_prior_hub_id'])}; checked {sum(1 for o in out if o['checked_hub_id'])}; "
           f"C org → core_db/cluster {n_cmap}/{sum(1 for o in out if o['c_org_surface'])}; "
           f"rejection fixes {n_rej}; rel place {sum(1 for o in out if o['rel_settlement'])}; rel date {sum(1 for o in out if o['rel_date_start'])}")
 
