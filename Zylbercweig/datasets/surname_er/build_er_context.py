@@ -329,23 +329,21 @@ def main():
         if r["source_sheet"] == "surnames":
             for a in (r["alternative_heading"] or "").split("|"):
                 alts[normalize_person_name(r["mention_surface"])] |= head2hub.get(normalize_person_name(a), set())
-    OTHER = {"M-volume_1IIIorg-NOXID-לינעצקי-001": "HUB-D2311",       # Yitskhok-Yoel Linetski (with Goldfaden)
-             "M-Volume_4IIIorg-NOXID-גראַדנער-002": "HUB-D900",        # Israel Grodner, 1880s troupe
-             "M-volume_2IIIorg-NOXID-גראדנער-003": "HUB-D900"}
-    checked = {}
-    for r in tsv(ZYL / "people" / "er_gold_vs_defg_fullform_2026_11_24.tsv"):
-        v = r["verdict"]
-        h = {"defg_right": r["defg_points_to"], "gold_right": r["gold_hub_id"]}.get(v) or OTHER.get(r["mention_id"], "")
-        if h:
-            checked[r["mention_id"]] = (h, f"read_in_context_2026-11-24:{r['confidence']}")
+    # per-mention reads of every ambiguous mention with a prior (people/er_mention_checks_2026_11_24.tsv):
+    # verdict hub / none (no candidate is this person) / unsure (alternatives listed)
+    checked = {r["mention_id"]: r for r in tsv(ZYL / "people" / "er_mention_checks_2026_11_24.tsv")}
     for o in out:
         prior = o.pop("gold_hub_id")
         flag = o.pop("flag")
         cset = set(o["candidate_hub_ids"].split("|"))
         o["surname_prior_hub_id"] = prior
         o["surname_prior_alt_hub_ids"] = "|".join(sorted((alts.get(o["surname_key"], set()) & cset) - {prior})) if prior else ""
-        ch = checked.get(o["mention_id"])
-        o["checked_hub_id"], o["checked_how"] = ch if ch else ("", "")
+        ch = checked.get(o["mention_id"]) or {}
+        o["checked_verdict"] = ch.get("verdict", "")
+        o["checked_hub_id"] = ch.get("hub_id", "")
+        o["checked_alternatives"] = ch.get("alternatives", "")
+        o["checked_confidence"] = ch.get("confidence", "") if ch.get("verdict") == "hub" else ""
+        o["checked_how"] = ch.get("pass", "")
         o["flag"] = flag
     mcols = list(out[0].keys())
     with open(HERE / "er_mention_context.tsv", "w", encoding="utf-8", newline="") as fh:
