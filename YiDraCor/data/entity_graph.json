@@ -14294,7 +14294,7 @@
       }
     },
     {
-      "id": "person:מאגולעסקאזיגמונט",
+      "id": "person:db685",
       "kind": "person",
       "label": "מאָגוּלעסקאָ, זיגמוּנט",
       "status": "LINKED",
@@ -14305,14 +14305,18 @@
       "role": "actor"
     },
     {
-      "id": "org:poolestheatre",
+      "id": "org:db123",
       "kind": "org",
       "label": "Poole's Theatre",
       "status": "LINKED",
       "db_id": "123",
       "matched": "Poole's Theatre",
-      "method": "exact",
-      "org_role": "venue"
+      "method": "reviewed",
+      "org_role": "venue",
+      "name_variants": [
+        "Pool's Theatre"
+      ],
+      "reviewer": "Sinai 2026-10-05"
     },
     {
       "id": "event:3838-04031889-poolestheatre",
@@ -14325,7 +14329,7 @@
       "work_id": "work:3838"
     },
     {
-      "id": "org:farlagkulturdzika13",
+      "id": "org:db2864",
       "kind": "org",
       "label": "Farlag \"Kultur\" (Dzika 13)",
       "status": "LINKED",
@@ -14335,7 +14339,7 @@
       "org_role": "publisher"
     },
     {
-      "id": "place:warsaw",
+      "id": "place:dbQ270",
       "kind": "place",
       "label": "Warsaw",
       "status": "LINKED",
@@ -14344,7 +14348,7 @@
       "method": "exact"
     },
     {
-      "id": "org:fbaumritterwarsaw",
+      "id": "org:db157",
       "kind": "org",
       "label": "F. Baumritter (Warsaw)",
       "status": "LINKED",
@@ -14354,7 +14358,7 @@
       "org_role": "printer"
     },
     {
-      "id": "org:bibliotekanarodowapolona",
+      "id": "org:db2331",
       "kind": "org",
       "label": "Biblioteka Narodowa (Polona)",
       "status": "LINKED",
@@ -14391,7 +14395,7 @@
       "work_id": "work:3817"
     },
     {
-      "id": "org:teaterbibliyotek",
+      "id": "org:db158",
       "kind": "org",
       "label": "\"Teater bibliyotek\"",
       "status": "LINKED",
@@ -14401,7 +14405,7 @@
       "org_role": "publisher"
     },
     {
-      "id": "org:drukhatsfirapanska40",
+      "id": "org:db68",
       "kind": "org",
       "label": "Druk ha-Tsfira (Panska 40)",
       "status": "LINKED",
@@ -14428,7 +14432,7 @@
       }
     },
     {
-      "id": "person:וואהלהערמאןצבי9361",
+      "id": "person:db906",
       "kind": "person",
       "label": "וואָהל, הערמאַן )צבי( 936:1",
       "status": "LINKED",
@@ -14439,7 +14443,7 @@
       "role": "composer"
     },
     {
-      "id": "person:פרידזעללואיס64123",
+      "id": "person:db695",
       "kind": "person",
       "label": "פרידזעל, לואיס 6412:3",
       "status": "LINKED",
@@ -14450,14 +14454,18 @@
       "role": "composer"
     },
     {
-      "id": "org:peoplestheatreny",
+      "id": "org:db120",
       "kind": "org",
       "label": "People's Theatre NY",
       "status": "LINKED",
       "db_id": "120",
       "matched": "People's Theatre NY",
-      "method": "exact",
-      "org_role": "venue"
+      "method": "reviewed",
+      "org_role": "venue",
+      "name_variants": [
+        "People's Theatre"
+      ],
+      "reviewer": "Sinai 2026-10-05"
     },
     {
       "id": "event:3927-18091899-peoplestheatreny",
@@ -14470,17 +14478,22 @@
       "work_id": "work:3927"
     },
     {
-      "id": "org:amkroytunfraynd",
+      "id": "org:db63",
       "kind": "org",
       "label": "Amkroyt un Fraynd",
       "status": "LINKED",
       "db_id": "63",
       "matched": "אַמקרויט עט פריינד| Amkroyt un Fraynd",
-      "method": "composite-half",
-      "org_role": "publisher"
+      "method": "reviewed",
+      "org_role": "publisher",
+      "name_variants": [
+        "Amkroyt et Freund Buchhandlung",
+        "Amkraut & Freund Buchhandlung"
+      ],
+      "reviewer": "Sinai 2026-10-05"
     },
     {
-      "id": "place:przemysl",
+      "id": "place:dbQ208473",
       "kind": "place",
       "label": "Przemyśl",
       "status": "LINKED",
@@ -14506,7 +14519,7 @@
       }
     },
     {
-      "id": "org:grandtheatre",
+      "id": "org:db115",
       "kind": "org",
       "label": "Grand Theatre",
       "status": "LINKED",
@@ -14526,17 +14539,6 @@
       "work_id": "work:3847"
     },
     {
-      "id": "org:amkroytetfreundbuchhandlung",
-      "kind": "org",
-      "label": "Amkroyt et Freund Buchhandlung",
-      "status": "LINKED",
-      "db_id": "63",
-      "matched": "אַמקרויט עט פריינד| Amkroyt un Fraynd",
-      "method": "reviewed",
-      "reviewer": "Sinai 2026-10-05",
-      "org_role": "publisher"
-    },
-    {
       "id": "edition:Ezra-Emkroyt1908",
       "kind": "edition",
       "label": "Ezra",
@@ -14554,7 +14556,7 @@
       }
     },
     {
-      "id": "person:אבראמאוויטשמאקסמענדל61",
+      "id": "person:db694",
       "kind": "person",
       "label": "אַבּראַמאָוויטש, מאַקס )מענדל( 6:1",
       "status": "LINKED",
@@ -14565,7 +14567,7 @@
       "role": "composer"
     },
     {
-      "id": "person:סענדלעריעקבקאפל41512",
+      "id": "person:db880",
       "kind": "person",
       "label": "סענדלער, יעקב קאָפּל 4151:2",
       "status": "LINKED",
@@ -14576,7 +14578,7 @@
       "role": "composer"
     },
     {
-      "id": "org:roumanianoperahouse",
+      "id": "org:db33",
       "kind": "org",
       "label": "Roumanian Opera House",
       "status": "LINKED",
@@ -14584,38 +14586,25 @@
       "matched": "The Roumanian Opera Company",
       "method": "reviewed",
       "reviewer": "Bella 2026-09-30",
-      "org_role": "venue"
+      "org_role": "venue",
+      "name_variants": [
+        "Central Theatre"
+      ]
     },
     {
-      "id": "org:centraltheatre",
-      "kind": "org",
-      "label": "Central Theatre",
-      "status": "LINKED",
-      "db_id": "33",
-      "matched": "The Roumanian Opera Company",
-      "method": "reviewed",
-      "reviewer": "Bella 2026-09-30",
-      "org_role": "venue"
-    },
-    {
-      "id": "org:thaliatheatre",
+      "id": "org:db130",
       "kind": "org",
       "label": "Thalia Theatre",
       "status": "LINKED",
       "db_id": "130",
       "matched": "Thalia Theatre|Bowery Theatre",
-      "method": "composite-half",
-      "org_role": "venue"
-    },
-    {
-      "id": "org:bowerytheatre",
-      "kind": "org",
-      "label": "Bowery Theatre",
-      "status": "LINKED",
-      "db_id": "130",
-      "matched": "Thalia Theatre|Bowery Theatre",
-      "method": "composite-half",
-      "org_role": "venue"
+      "method": "reviewed",
+      "org_role": "venue",
+      "name_variants": [
+        "Bowery Theatre",
+        "Kessler's Thalia Theatre"
+      ],
+      "reviewer": "Sinai 2026-10-05"
     },
     {
       "id": "event:3875-03031893-thaliatheatre",
@@ -14655,7 +14644,7 @@
       }
     },
     {
-      "id": "person:איימיסימאוויטש",
+      "id": "person:db3823",
       "kind": "person",
       "label": "איימי סימאוויטש",
       "status": "LINKED",
@@ -14666,7 +14655,7 @@
       "role": "actress"
     },
     {
-      "id": "person:ווילענסקימערימריםקאץ0271",
+      "id": "person:db3264",
       "kind": "person",
       "label": "ווילענסקי, מערי )מרים קאץ( 027:1",
       "status": "LINKED",
@@ -14677,7 +14666,7 @@
       "role": "actress"
     },
     {
-      "id": "person:ראזענפעלדמאריס",
+      "id": "person:db878",
       "kind": "person",
       "label": "ראָזענפעלד, מאָריס",
       "status": "LINKED",
@@ -14688,7 +14677,7 @@
       "role": "actor"
     },
     {
-      "id": "org:windsortheater",
+      "id": "org:db134",
       "kind": "org",
       "label": "Windsor Theater",
       "status": "LINKED",
@@ -14696,7 +14685,10 @@
       "matched": "Windsor Theatre",
       "method": "reviewed",
       "reviewer": "Sinai 2026-10-05",
-      "org_role": "venue"
+      "org_role": "venue",
+      "name_variants": [
+        "Windsor Theatre"
+      ]
     },
     {
       "id": "event:3801-18101894-windsortheatre",
@@ -14709,17 +14701,7 @@
       "work_id": "work:3801"
     },
     {
-      "id": "org:windsortheatre",
-      "kind": "org",
-      "label": "Windsor Theatre",
-      "status": "LINKED",
-      "db_id": "134",
-      "matched": "Windsor Theatre",
-      "method": "exact",
-      "org_role": "venue"
-    },
-    {
-      "id": "org:afaust",
+      "id": "org:db62",
       "kind": "org",
       "label": "A. Faust",
       "status": "LINKED",
@@ -14729,7 +14711,7 @@
       "org_role": "publisher"
     },
     {
-      "id": "place:podgorze",
+      "id": "place:dbQ2553877",
       "kind": "place",
       "label": "Podgórze",
       "status": "LINKED",
@@ -14755,7 +14737,7 @@
       }
     },
     {
-      "id": "person:מינקאווסקי",
+      "id": "person:db3822",
       "kind": "person",
       "label": "מינקאָווסקי",
       "status": "LINKED",
@@ -14763,7 +14745,10 @@
       "matched": "גיאַקאָמאָ מינקאָווסקי / Giacomo Minkowski",
       "method": "reviewed",
       "reviewer": "Sinai 2026-10-05",
-      "role": "composer"
+      "role": "composer",
+      "name_variants": [
+        "מינקאווסקי"
+      ]
     },
     {
       "id": "event:3798-06041893-thaliatheatre",
@@ -14793,7 +14778,7 @@
       }
     },
     {
-      "id": "person:רומשינסקייוסף18323",
+      "id": "person:db916",
       "kind": "person",
       "label": "רומשינסקי, יוסף 1832:3",
       "status": "LINKED",
@@ -14821,7 +14806,7 @@
       }
     },
     {
-      "id": "person:ברוידייוסף0421",
+      "id": "person:db852",
       "kind": "person",
       "label": "בּרוידי, יוסף 042:1",
       "status": "LINKED",
@@ -14842,7 +14827,7 @@
       "work_id": "work:3884"
     },
     {
-      "id": "org:verlagvonbenjaminmunkbuchhandlung",
+      "id": "org:db64",
       "kind": "org",
       "label": "Verlag von Benjamin Munk Buchhandlung",
       "status": "LINKED",
@@ -14852,7 +14837,7 @@
       "org_role": "publisher"
     },
     {
-      "id": "org:druckvonsldeitscher",
+      "id": "org:db66",
       "kind": "org",
       "label": "Druck von S.L. Deitscher",
       "status": "LINKED",
@@ -14889,17 +14874,6 @@
       "work_id": "work:3915"
     },
     {
-      "id": "org:amkrautfreundbuchhandlung",
-      "kind": "org",
-      "label": "Amkraut & Freund Buchhandlung",
-      "status": "LINKED",
-      "db_id": "63",
-      "matched": "אַמקרויט עט פריינד| Amkroyt un Fraynd",
-      "method": "reviewed",
-      "reviewer": "Sinai 2026-10-05",
-      "org_role": "publisher"
-    },
-    {
       "id": "edition:HinkePinke",
       "kind": "edition",
       "label": "Hinke Pinke",
@@ -14917,7 +14891,7 @@
       }
     },
     {
-      "id": "person:ליבאראבאן",
+      "id": "person:db3824",
       "kind": "person",
       "label": "ל. י. באראבאן",
       "status": "LINKED",
@@ -14928,7 +14902,7 @@
       "role": "choreographer"
     },
     {
-      "id": "org:metropolitantheatre",
+      "id": "org:db146",
       "kind": "org",
       "label": "Metropolitan Theatre",
       "status": "LINKED",
@@ -14938,7 +14912,7 @@
       "org_role": "venue"
     },
     {
-      "id": "org:perrytheatre",
+      "id": "org:db122",
       "kind": "org",
       "label": "Perry Theatre",
       "status": "LINKED",
@@ -14948,13 +14922,16 @@
       "org_role": "venue"
     },
     {
-      "id": "place:clevelandohio",
+      "id": "place:dbQ37320",
       "kind": "place",
       "label": "Cleveland Ohio",
       "status": "LINKED",
       "db_id": "Q37320",
       "matched": "Cleveland",
-      "method": "exact"
+      "method": "exact",
+      "name_variants": [
+        "Cleveland Ohaio"
+      ]
     },
     {
       "id": "event:3877-27091901-peoplestheatreny",
@@ -14997,7 +14974,7 @@
       "work_id": "work:3877"
     },
     {
-      "id": "org:nstarowolskiwarsaw",
+      "id": "org:db58",
       "kind": "org",
       "label": "N. Starowolski (Warsaw)",
       "status": "LINKED",
@@ -15024,7 +15001,7 @@
       }
     },
     {
-      "id": "person:אידאקאמינסקא",
+      "id": "person:db3826",
       "kind": "person",
       "label": "אידא קאמינסקא",
       "status": "LINKED",
@@ -15035,7 +15012,7 @@
       "role": "actress"
     },
     {
-      "id": "person:שאיעוויטשישראל07545",
+      "id": "person:db2907",
       "kind": "person",
       "label": "שאַיעוויטש, ישראל 0754:5",
       "status": "LINKED",
@@ -15046,7 +15023,7 @@
       "role": "composer"
     },
     {
-      "id": "org:kaminskistheatre",
+      "id": "org:db147",
       "kind": "org",
       "label": "Kaminski's Theatre",
       "status": "LINKED",
@@ -15056,7 +15033,7 @@
       "org_role": "venue"
     },
     {
-      "id": "place:vilna",
+      "id": "place:dbQ216",
       "kind": "place",
       "label": "Vilna",
       "status": "LINKED",
@@ -15095,7 +15072,7 @@
       "work_id": "work:3833"
     },
     {
-      "id": "org:diyudishebihne",
+      "id": "org:db1849",
       "kind": "org",
       "label": "\"Di yudishe bihne\"",
       "status": "LINKED",
@@ -15106,7 +15083,7 @@
       "org_role": "publisher"
     },
     {
-      "id": "org:bturswarsaw",
+      "id": "org:db76",
       "kind": "org",
       "label": "B. Turš (Warsaw)",
       "status": "LINKED",
@@ -15133,7 +15110,7 @@
       }
     },
     {
-      "id": "person:גימפעלאדאלף974161045",
+      "id": "person:db1766",
       "kind": "person",
       "label": "גימפּעל, אַדאָלף 974:1, 6104:5",
       "status": "LINKED",
@@ -15144,7 +15121,7 @@
       "role": "composer"
     },
     {
-      "id": "org:academyofmusic",
+      "id": "org:db155",
       "kind": "org",
       "label": "Academy of Music",
       "status": "LINKED",
@@ -15154,7 +15131,7 @@
       "org_role": "venue"
     },
     {
-      "id": "place:philadelphia",
+      "id": "place:dbQ1345",
       "kind": "place",
       "label": "Philadelphia",
       "status": "LINKED",
@@ -15183,7 +15160,7 @@
       "work_id": "work:3892"
     },
     {
-      "id": "org:verlagvondrothbuchhandlung",
+      "id": "org:db1021",
       "kind": "org",
       "label": "Verlag von D. Roth Buchhandlung",
       "status": "LINKED",
@@ -15193,7 +15170,7 @@
       "org_role": "publisher"
     },
     {
-      "id": "place:lemberg",
+      "id": "place:dbQ36036",
       "kind": "place",
       "label": "Lemberg",
       "status": "LINKED",
@@ -15202,7 +15179,7 @@
       "method": "exonym"
     },
     {
-      "id": "org:druckvonesalat",
+      "id": "org:db70",
       "kind": "org",
       "label": "Druck von E. Salat",
       "status": "LINKED",
@@ -15229,7 +15206,7 @@
       }
     },
     {
-      "id": "person:שלאסבערגיצחק05123",
+      "id": "person:db925",
       "kind": "person",
       "label": "שלאָסבּערג, יצחק 0512:3",
       "status": "LINKED",
@@ -15240,7 +15217,7 @@
       "role": "composer"
     },
     {
-      "id": "person:henryrussotto",
+      "id": "person:db850",
       "kind": "person",
       "label": "Henry Russotto",
       "status": "LINKED",
@@ -15278,7 +15255,7 @@
       }
     },
     {
-      "id": "person:קעסלערדוד98624",
+      "id": "person:db721",
       "kind": "person",
       "label": "קעסלער, דוד 9862:4",
       "status": "LINKED",
@@ -15299,7 +15276,7 @@
       "work_id": "work:3866"
     },
     {
-      "id": "org:kunst",
+      "id": "org:db61",
       "kind": "org",
       "label": "\"Kunst\"",
       "status": "LINKED",
@@ -15346,7 +15323,7 @@
       "work_id": "work:4014"
     },
     {
-      "id": "org:yivoinstituteforjewishresearch",
+      "id": "org:db27",
       "kind": "org",
       "label": "YIVO Institute for Jewish Research",
       "status": "LINKED",
@@ -15373,7 +15350,7 @@
       }
     },
     {
-      "id": "person:קארפסאפיע",
+      "id": "person:db723",
       "kind": "person",
       "label": "קאַרפּ, סאָפיע",
       "status": "LINKED",
@@ -15384,7 +15361,7 @@
       "role": "actress"
     },
     {
-      "id": "person:מאדאםליפצין",
+      "id": "person:db762",
       "kind": "person",
       "label": "מאדאם ליפצין",
       "status": "LINKED",
@@ -15395,7 +15372,7 @@
       "role": "actress"
     },
     {
-      "id": "person:קארפ",
+      "id": "person:db703",
       "kind": "person",
       "label": "קארפ",
       "status": "LINKED",
@@ -15406,7 +15383,7 @@
       "role": "actor"
     },
     {
-      "id": "person:טאמאשעוופסקיבאריסברוךאהרן4082",
+      "id": "person:db693",
       "kind": "person",
       "label": "טאָמאַשעוו]פ[סקי, בּאָריס )בּרוך-אהרן( 408:2",
       "status": "LINKED",
@@ -15434,7 +15411,7 @@
       }
     },
     {
-      "id": "person:פערלמוטערארנאלד83813",
+      "id": "person:db2645",
       "kind": "person",
       "label": "פּערלמוטער, אַרנאָלד 8381:3",
       "status": "LINKED",
@@ -15445,7 +15422,7 @@
       "role": "composer"
     },
     {
-      "id": "person:יאוועלירקלמן9092",
+      "id": "person:db2061",
       "kind": "person",
       "label": "יאָוועליר, קלמן 909:2",
       "status": "LINKED",
@@ -15456,7 +15433,7 @@
       "role": "actor"
     },
     {
-      "id": "person:פראגעררעגינע05813",
+      "id": "person:db2695",
       "kind": "person",
       "label": "פּראַגער, רעגינע 0581:3",
       "status": "LINKED",
@@ -15467,7 +15444,7 @@
       "role": "actress"
     },
     {
-      "id": "org:newstartheatre",
+      "id": "org:db167",
       "kind": "org",
       "label": "New Star Theatre",
       "status": "LINKED",
@@ -15477,7 +15454,7 @@
       "org_role": "venue"
     },
     {
-      "id": "org:kalichtheatre",
+      "id": "org:db160",
       "kind": "org",
       "label": "Kalich Theatre",
       "status": "LINKED",
@@ -15487,7 +15464,7 @@
       "org_role": "venue"
     },
     {
-      "id": "org:theinternationalbiblioteque",
+      "id": "org:db2332",
       "kind": "org",
       "label": "The International Biblioteque",
       "status": "LINKED",
@@ -15495,17 +15472,6 @@
       "matched": "The International Biblioteque (Internatsionale Bibliotek)",
       "method": "exact",
       "org_role": "publisher"
-    },
-    {
-      "id": "org:kesslersthaliatheatre",
-      "kind": "org",
-      "label": "Kessler's Thalia Theatre",
-      "status": "LINKED",
-      "db_id": "130",
-      "matched": "Thalia Theatre|Bowery Theatre",
-      "method": "reviewed",
-      "reviewer": "Sinai 2026-10-05",
-      "org_role": "venue"
     },
     {
       "id": "event:4043-25091903-windsortheatre",
@@ -15608,7 +15574,7 @@
       "work_id": "work:4043"
     },
     {
-      "id": "org:stpetersburgstatetheatrelibrary",
+      "id": "org:db2334",
       "kind": "org",
       "label": "St Petersburg State Theatre Library",
       "status": "LINKED",
@@ -15635,7 +15601,7 @@
       }
     },
     {
-      "id": "person:סאנדלערפרץ64412",
+      "id": "person:db857",
       "kind": "person",
       "label": "סאַנדלער, פּרץ 6441:2",
       "status": "LINKED",
@@ -15646,7 +15612,7 @@
       "role": "composer"
     },
     {
-      "id": "org:orientaltheatre",
+      "id": "org:db119",
       "kind": "org",
       "label": "Oriental Theatre",
       "status": "LINKED",
@@ -15693,7 +15659,7 @@
       }
     },
     {
-      "id": "org:royaltheatreharrybernstein",
+      "id": "org:db163",
       "kind": "org",
       "label": "Royal Theatre (Harry Bernstein)",
       "status": "LINKED",
@@ -15703,16 +15669,7 @@
       "org_role": "venue"
     },
     {
-      "id": "place:clevelandohaio",
-      "kind": "place",
-      "label": "Cleveland Ohaio",
-      "status": "LINKED",
-      "db_id": "Q37320",
-      "matched": "Cleveland",
-      "method": "exonym"
-    },
-    {
-      "id": "org:glickmansyiddishplayers",
+      "id": "org:db153",
       "kind": "org",
       "label": "Glickman's Yiddish Players",
       "status": "LINKED",
@@ -15722,7 +15679,7 @@
       "org_role": "venue"
     },
     {
-      "id": "place:california",
+      "id": "place:dbQ99",
       "kind": "place",
       "label": "California",
       "status": "LINKED",
@@ -15731,7 +15688,7 @@
       "method": "exact"
     },
     {
-      "id": "org:olimpictheatre",
+      "id": "org:db171",
       "kind": "org",
       "label": "Olimpic Theatre",
       "status": "LINKED",
@@ -15741,7 +15698,7 @@
       "org_role": "venue"
     },
     {
-      "id": "org:jignitatheatre",
+      "id": "org:db113",
       "kind": "org",
       "label": "Jignita Theatre",
       "status": "LINKED",
@@ -15752,7 +15709,7 @@
       "org_role": "venue"
     },
     {
-      "id": "place:bucharest",
+      "id": "place:dbQ19660",
       "kind": "place",
       "label": "Bucharest",
       "status": "LINKED",
@@ -15761,7 +15718,7 @@
       "method": "exact"
     },
     {
-      "id": "org:thomashefskyspeopletheatre",
+      "id": "org:db156",
       "kind": "org",
       "label": "Thomashefsky's People Theatre",
       "status": "LINKED",
@@ -15872,7 +15829,7 @@
       "work_id": "work:4010"
     },
     {
-      "id": "org:americanjewisharchivesjacobradermarcuscenter",
+      "id": "org:db2333",
       "kind": "org",
       "label": "American Jewish Archives (Jacob Rader Marcus Center)",
       "status": "LINKED",
@@ -15882,7 +15839,7 @@
       "org_role": "library"
     },
     {
-      "id": "person:אדאלףליאנסקיadolfliansky",
+      "id": "person:db3827",
       "kind": "person",
       "label": "אַדאָלף ליאַנסקי / Adolf Liansky",
       "status": "LINKED",
@@ -15937,7 +15894,7 @@
       }
     },
     {
-      "id": "person:ליאוולעאמשהלייב22012",
+      "id": "person:db932",
       "kind": "person",
       "label": "ליאָוו, לעאָ )משה-לייבּ( 2201:2",
       "status": "LINKED",
@@ -15948,7 +15905,7 @@
       "role": "composer"
     },
     {
-      "id": "person:פיינמאןזיגמונד44524",
+      "id": "person:db714",
       "kind": "person",
       "label": "פיינמאַן, זיגמונד 4452:4",
       "status": "LINKED",
@@ -15959,7 +15916,7 @@
       "role": "actor"
     },
     {
-      "id": "person:בערנשטייןבערלבורשטין7021",
+      "id": "person:db859",
       "kind": "person",
       "label": "בּערנשטיין, בּערל )בּורשטין( 702:1",
       "status": "LINKED",
@@ -15970,7 +15927,7 @@
       "role": "actor"
     },
     {
-      "id": "person:שמואלטאבאטשניקאוו2082",
+      "id": "person:db3079",
       "kind": "person",
       "label": ")שמואל טאַבּאַטשניקאָוו( 208:2",
       "status": "LINKED",
@@ -15981,7 +15938,7 @@
       "role": "actor"
     },
     {
-      "id": "person:קאנארד",
+      "id": "person:db1464",
       "kind": "person",
       "label": "קאנארד",
       "status": "LINKED",
@@ -15992,7 +15949,7 @@
       "role": "actor"
     },
     {
-      "id": "org:nationaltheatre",
+      "id": "org:db118",
       "kind": "org",
       "label": "National Theatre",
       "status": "LINKED",
@@ -16029,7 +15986,7 @@
       }
     },
     {
-      "id": "org:tsentraltheatre",
+      "id": "org:db151",
       "kind": "org",
       "label": "Tsentral Theatre",
       "status": "LINKED",
@@ -16087,7 +16044,7 @@
       }
     },
     {
-      "id": "person:שמולעוויטששלמה14756",
+      "id": "person:db3611",
       "kind": "person",
       "label": "שמולעוויטש, שלמה 1475:6",
       "status": "LINKED",
@@ -16125,18 +16082,7 @@
       }
     },
     {
-      "id": "org:peoplestheatre",
-      "kind": "org",
-      "label": "People's Theatre",
-      "status": "LINKED",
-      "db_id": "120",
-      "matched": "People's Theatre NY",
-      "method": "reviewed",
-      "reviewer": "Sinai 2026-10-05",
-      "org_role": "venue"
-    },
-    {
-      "id": "org:folkstheatre",
+      "id": "org:db365",
       "kind": "org",
       "label": "Folks Theatre",
       "status": "LINKED",
@@ -16147,18 +16093,7 @@
       "org_role": "venue"
     },
     {
-      "id": "org:poolstheatre",
-      "kind": "org",
-      "label": "Pool's Theatre",
-      "status": "LINKED",
-      "db_id": "123",
-      "matched": "Poole's Theatre",
-      "method": "reviewed",
-      "reviewer": "Sinai 2026-10-05",
-      "org_role": "venue"
-    },
-    {
-      "id": "org:pamolverdi",
+      "id": "org:db137",
       "kind": "org",
       "label": "Pamol Verdi",
       "status": "LINKED",
@@ -16169,7 +16104,7 @@
       "org_role": "venue"
     },
     {
-      "id": "place:iasirumenia",
+      "id": "place:dbQ46852",
       "kind": "place",
       "label": "Iași (Rumenia)",
       "status": "LINKED",
@@ -16275,7 +16210,7 @@
       }
     },
     {
-      "id": "person:joachimkurantman",
+      "id": "person:db3825",
       "kind": "person",
       "label": "Joachim Kurantman",
       "status": "LINKED",
@@ -16286,7 +16221,7 @@
       "role": "composer"
     },
     {
-      "id": "org:turnerhall",
+      "id": "org:db149",
       "kind": "org",
       "label": "Turner Hall",
       "status": "LINKED",
@@ -16296,7 +16231,7 @@
       "org_role": "venue"
     },
     {
-      "id": "place:chicago",
+      "id": "place:dbQ1297",
       "kind": "place",
       "label": "Chicago",
       "status": "LINKED",
@@ -16335,7 +16270,7 @@
       "work_id": "work:3830"
     },
     {
-      "id": "person:לואיסצוויבעלlouiszwiebel",
+      "id": "person:db814",
       "kind": "person",
       "label": "לואיס צוויבעל / Louis Zwiebel",
       "status": "LINKED",
@@ -19177,7 +19112,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3838",
       "rel": "actor",
       "character": null,
@@ -19187,7 +19122,7 @@
       "context": "National Theatre"
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3838",
       "rel": "actor",
       "character": "mishke",
@@ -19198,7 +19133,7 @@
     },
     {
       "src": "work:3838",
-      "dst": "org:poolestheatre",
+      "dst": "org:db123",
       "rel": "performed_at",
       "year": 1889.0,
       "type": "Premiere"
@@ -19210,29 +19145,29 @@
     },
     {
       "src": "event:3838-04031889-poolestheatre",
-      "dst": "org:poolestheatre",
+      "dst": "org:db123",
       "rel": "performed_at",
       "date": "04/03/1889",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "org:farlagkulturdzika13",
+      "src": "org:db2864",
       "dst": "edition:MishkeMashke-Kultur1910",
       "rel": "published"
     },
     {
       "src": "edition:MishkeMashke-Kultur1910",
-      "dst": "place:warsaw",
+      "dst": "place:dbQ270",
       "rel": "printed_in"
     },
     {
-      "src": "org:fbaumritterwarsaw",
+      "src": "org:db157",
       "dst": "edition:MishkeMashke-Kultur1910",
       "rel": "printed_by"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:MishkeMashke-Kultur1910",
       "rel": "holds",
       "shelfmark": "II 65.675"
@@ -19248,22 +19183,22 @@
       "rel": "of_work"
     },
     {
-      "src": "org:teaterbibliyotek",
+      "src": "org:db158",
       "dst": "edition:DerManUnterTiff",
       "rel": "published"
     },
     {
       "src": "edition:DerManUnterTiff",
-      "dst": "place:warsaw",
+      "dst": "place:dbQ270",
       "rel": "printed_in"
     },
     {
-      "src": "org:drukhatsfirapanska40",
+      "src": "org:db68",
       "dst": "edition:DerManUnterTiff",
       "rel": "printed_by"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:DerManUnterTiff",
       "rel": "holds",
       "shelfmark": "45.590"
@@ -19274,7 +19209,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:וואהלהערמאןצבי9361",
+      "src": "person:db906",
       "dst": "work:3927",
       "rel": "composer",
       "character": null,
@@ -19284,7 +19219,7 @@
       "context": null
     },
     {
-      "src": "person:וואהלהערמאןצבי9361",
+      "src": "person:db906",
       "dst": "work:3927",
       "rel": "composer",
       "character": null,
@@ -19294,7 +19229,7 @@
       "context": null
     },
     {
-      "src": "person:פרידזעללואיס64123",
+      "src": "person:db695",
       "dst": "work:3927",
       "rel": "composer",
       "character": null,
@@ -19305,7 +19240,7 @@
     },
     {
       "src": "work:3927",
-      "dst": "org:peoplestheatreny",
+      "dst": "org:db120",
       "rel": "performed_at",
       "year": 1899.0,
       "type": "Premiere"
@@ -19317,24 +19252,24 @@
     },
     {
       "src": "event:3927-18091899-peoplestheatreny",
-      "dst": "org:peoplestheatreny",
+      "dst": "org:db120",
       "rel": "performed_at",
       "date": "18/09/1899",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "org:amkroytunfraynd",
+      "src": "org:db63",
       "dst": "edition:Yudale_der_blinder,_Emkroyt1908",
       "rel": "published"
     },
     {
       "src": "edition:Yudale_der_blinder,_Emkroyt1908",
-      "dst": "place:przemysl",
+      "dst": "place:dbQ208473",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:Yudale_der_blinder,_Emkroyt1908",
       "rel": "holds",
       "shelfmark": "63.347"
@@ -19345,7 +19280,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:פרידזעללואיס64123",
+      "src": "person:db695",
       "dst": "work:3847",
       "rel": "composer",
       "character": null,
@@ -19356,7 +19291,7 @@
     },
     {
       "src": "work:3847",
-      "dst": "org:grandtheatre",
+      "dst": "org:db115",
       "rel": "performed_at",
       "year": 1903.0,
       "type": "Premiere"
@@ -19368,24 +19303,24 @@
     },
     {
       "src": "event:3847-25121903-grandtheatre",
-      "dst": "org:grandtheatre",
+      "dst": "org:db115",
       "rel": "performed_at",
       "date": "25/12/1903",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "org:amkroytetfreundbuchhandlung",
+      "src": "org:db63",
       "dst": "edition:Di_seyder_nakht_Emkroyt_1908",
       "rel": "published"
     },
     {
       "src": "edition:Di_seyder_nakht_Emkroyt_1908",
-      "dst": "place:przemysl",
+      "dst": "place:dbQ208473",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:Di_seyder_nakht_Emkroyt_1908",
       "rel": "holds",
       "shelfmark": "63.166"
@@ -19396,7 +19331,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:אבראמאוויטשמאקסמענדל61",
+      "src": "person:db694",
       "dst": "work:3875",
       "rel": "composer",
       "character": null,
@@ -19406,7 +19341,7 @@
       "context": null
     },
     {
-      "src": "person:סענדלעריעקבקאפל41512",
+      "src": "person:db880",
       "dst": "work:3875",
       "rel": "composer",
       "character": null,
@@ -19417,28 +19352,14 @@
     },
     {
       "src": "work:3875",
-      "dst": "org:roumanianoperahouse",
+      "dst": "org:db33",
       "rel": "performed_at",
       "year": 1891.0,
       "type": "Premiere"
     },
     {
       "src": "work:3875",
-      "dst": "org:centraltheatre",
-      "rel": "performed_at",
-      "year": 1891.0,
-      "type": "Premiere"
-    },
-    {
-      "src": "work:3875",
-      "dst": "org:thaliatheatre",
-      "rel": "performed_at",
-      "year": 1893.0,
-      "type": "Production"
-    },
-    {
-      "src": "work:3875",
-      "dst": "org:bowerytheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1893.0,
       "type": "Production"
@@ -19450,15 +19371,7 @@
     },
     {
       "src": "event:3875-03031893-thaliatheatre",
-      "dst": "org:thaliatheatre",
-      "rel": "performed_at",
-      "date": "03/03/1893",
-      "type": "Show",
-      "level": "event"
-    },
-    {
-      "src": "event:3875-03031893-thaliatheatre",
-      "dst": "org:bowerytheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "03/03/1893",
       "type": "Show",
@@ -19471,32 +19384,24 @@
     },
     {
       "src": "event:3875-25121891-roumanianoperahouse",
-      "dst": "org:roumanianoperahouse",
+      "dst": "org:db33",
       "rel": "performed_at",
       "date": "25/12/1891",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "event:3875-25121891-roumanianoperahouse",
-      "dst": "org:centraltheatre",
-      "rel": "performed_at",
-      "date": "25/12/1891",
-      "type": "Premiere",
-      "level": "event"
-    },
-    {
-      "src": "org:amkroytunfraynd",
+      "src": "org:db63",
       "dst": "edition:Ezra-Emkroyt1908",
       "rel": "published"
     },
     {
       "src": "edition:Ezra-Emkroyt1908",
-      "dst": "place:przemysl",
+      "dst": "place:dbQ208473",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:Ezra-Emkroyt1908",
       "rel": "holds",
       "shelfmark": "II 63.171"
@@ -19507,7 +19412,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:אבראמאוויטשמאקסמענדל61",
+      "src": "person:db694",
       "dst": "work:3801",
       "rel": "composer",
       "character": null,
@@ -19517,7 +19422,7 @@
       "context": null
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3801",
       "rel": "actor",
       "character": "Zeligl der menagen",
@@ -19527,7 +19432,7 @@
       "context": "Windsor Theatre"
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3801",
       "rel": "composer",
       "character": null,
@@ -19537,7 +19442,7 @@
       "context": "Windsor Theatre"
     },
     {
-      "src": "person:איימיסימאוויטש",
+      "src": "person:db3823",
       "dst": "work:3801",
       "rel": "actress",
       "character": null,
@@ -19547,7 +19452,7 @@
       "context": "Thalia Theatre"
     },
     {
-      "src": "person:ווילענסקימערימריםקאץ0271",
+      "src": "person:db3264",
       "dst": "work:3801",
       "rel": "actress",
       "character": null,
@@ -19557,7 +19462,7 @@
       "context": "Thalia Theatre"
     },
     {
-      "src": "person:ראזענפעלדמאריס",
+      "src": "person:db878",
       "dst": "work:3801",
       "rel": "actor",
       "character": null,
@@ -19568,7 +19473,7 @@
     },
     {
       "src": "work:3801",
-      "dst": "org:windsortheater",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1894.0,
       "type": "Premiere"
@@ -19580,32 +19485,24 @@
     },
     {
       "src": "event:3801-18101894-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "18/10/1894",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "event:3801-18101894-windsortheatre",
-      "dst": "org:windsortheater",
-      "rel": "performed_at",
-      "date": "18/10/1894",
-      "type": "Premiere",
-      "level": "event"
-    },
-    {
-      "src": "org:afaust",
+      "src": "org:db62",
       "dst": "edition:Blimele-AhronFaust1903",
       "rel": "published"
     },
     {
       "src": "edition:Blimele-AhronFaust1903",
-      "dst": "place:podgorze",
+      "dst": "place:dbQ2553877",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:Blimele-AhronFaust1903",
       "rel": "holds",
       "shelfmark": "II 63.206"
@@ -19616,7 +19513,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:מינקאווסקי",
+      "src": "person:db3822",
       "dst": "work:3798",
       "rel": "composer",
       "character": null,
@@ -19627,14 +19524,7 @@
     },
     {
       "src": "work:3798",
-      "dst": "org:thaliatheatre",
-      "rel": "performed_at",
-      "year": 1893.0,
-      "type": "Premiere"
-    },
-    {
-      "src": "work:3798",
-      "dst": "org:bowerytheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1893.0,
       "type": "Premiere"
@@ -19646,32 +19536,24 @@
     },
     {
       "src": "event:3798-06041893-thaliatheatre",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "06/04/1893",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "event:3798-06041893-thaliatheatre",
-      "dst": "org:bowerytheatre",
-      "rel": "performed_at",
-      "date": "06/04/1893",
-      "type": "Premiere",
-      "level": "event"
-    },
-    {
-      "src": "org:amkroytunfraynd",
+      "src": "org:db63",
       "dst": "edition:BasSheva",
       "rel": "published"
     },
     {
       "src": "edition:BasSheva",
-      "dst": "place:przemysl",
+      "dst": "place:dbQ208473",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:BasSheva",
       "rel": "holds",
       "shelfmark": "66.584"
@@ -19682,7 +19564,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:רומשינסקייוסף18323",
+      "src": "person:db916",
       "dst": "work:3867",
       "rel": "composer",
       "character": null,
@@ -19692,17 +19574,17 @@
       "context": "Thalia Theatre"
     },
     {
-      "src": "org:farlagkulturdzika13",
+      "src": "org:db2864",
       "dst": "edition:דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete",
       "rel": "published"
     },
     {
       "src": "edition:דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete",
-      "dst": "place:warsaw",
+      "dst": "place:dbQ270",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:דאס_יידישע_קינד_Dos_yudishe_kind_a_komishe_operete",
       "rel": "holds",
       "shelfmark": "II 63.395"
@@ -19713,7 +19595,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:ברוידייוסף0421",
+      "src": "person:db852",
       "dst": "work:3884",
       "rel": "composer",
       "character": null,
@@ -19724,14 +19606,7 @@
     },
     {
       "src": "work:3884",
-      "dst": "org:thaliatheatre",
-      "rel": "performed_at",
-      "year": 1894.0,
-      "type": "Premiere"
-    },
-    {
-      "src": "work:3884",
-      "dst": "org:bowerytheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1894.0,
       "type": "Premiere"
@@ -19743,37 +19618,29 @@
     },
     {
       "src": "event:3884-21041894-thaliatheatre",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "21/04/1894",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "event:3884-21041894-thaliatheatre",
-      "dst": "org:bowerytheatre",
-      "rel": "performed_at",
-      "date": "21/04/1894",
-      "type": "Premiere",
-      "level": "event"
-    },
-    {
-      "src": "org:verlagvonbenjaminmunkbuchhandlung",
+      "src": "org:db64",
       "dst": "edition:IshahRaah",
       "rel": "published"
     },
     {
       "src": "edition:IshahRaah",
-      "dst": "place:podgorze",
+      "dst": "place:dbQ2553877",
       "rel": "printed_in"
     },
     {
-      "src": "org:druckvonsldeitscher",
+      "src": "org:db66",
       "dst": "edition:IshahRaah",
       "rel": "printed_by"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:IshahRaah",
       "rel": "holds",
       "shelfmark": "63.344"
@@ -19784,7 +19651,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:פרידזעללואיס64123",
+      "src": "person:db695",
       "dst": "work:3915",
       "rel": "composer",
       "character": null,
@@ -19794,7 +19661,7 @@
       "context": "LC Marwick Coll"
     },
     {
-      "src": "person:פרידזעללואיס64123",
+      "src": "person:db695",
       "dst": "work:3915",
       "rel": "lyrics",
       "character": null,
@@ -19805,7 +19672,7 @@
     },
     {
       "src": "work:3915",
-      "dst": "org:grandtheatre",
+      "dst": "org:db115",
       "rel": "performed_at",
       "year": 1903.0,
       "type": "Premiere"
@@ -19817,24 +19684,24 @@
     },
     {
       "src": "event:3915-02051903-grandtheatre",
-      "dst": "org:grandtheatre",
+      "dst": "org:db115",
       "rel": "performed_at",
       "date": "02/05/1903",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "org:amkrautfreundbuchhandlung",
+      "src": "org:db63",
       "dst": "edition:AlNaharotBavel-Amkreut&Freund1909",
       "rel": "published"
     },
     {
       "src": "edition:AlNaharotBavel-Amkreut&Freund1909",
-      "dst": "place:przemysl",
+      "dst": "place:dbQ208473",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:AlNaharotBavel-Amkreut&Freund1909",
       "rel": "holds",
       "shelfmark": "II 63.436"
@@ -19845,7 +19712,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:ליבאראבאן",
+      "src": "person:db3824",
       "dst": "work:3877",
       "rel": "choreographer",
       "character": null,
@@ -19856,34 +19723,34 @@
     },
     {
       "src": "work:3877",
-      "dst": "org:peoplestheatreny",
+      "dst": "org:db120",
       "rel": "performed_at",
       "year": 1901.0,
       "type": "Premiere"
     },
     {
       "src": "work:3877",
-      "dst": "org:metropolitantheatre",
+      "dst": "org:db146",
       "rel": "performed_at",
       "year": 1926.0,
       "type": "production"
     },
     {
       "src": "work:3877",
-      "dst": "org:perrytheatre",
+      "dst": "org:db122",
       "rel": "performed_at",
       "year": 1908.0,
       "type": "production"
     },
     {
       "src": "work:3877",
-      "dst": "place:clevelandohio",
+      "dst": "place:dbQ37320",
       "rel": "premiered_in",
       "year": 1908.0
     },
     {
       "src": "work:3877",
-      "dst": "org:peoplestheatreny",
+      "dst": "org:db120",
       "rel": "performed_at",
       "year": 1918.0,
       "type": "production"
@@ -19895,7 +19762,7 @@
     },
     {
       "src": "event:3877-27091901-peoplestheatreny",
-      "dst": "org:peoplestheatreny",
+      "dst": "org:db120",
       "rel": "performed_at",
       "date": "27/09/1901",
       "type": "Premiere",
@@ -19908,7 +19775,7 @@
     },
     {
       "src": "event:3877-10031926-metropolitantheatre",
-      "dst": "org:metropolitantheatre",
+      "dst": "org:db146",
       "rel": "performed_at",
       "date": "10/03/1926",
       "type": "Show",
@@ -19921,7 +19788,7 @@
     },
     {
       "src": "event:3877-28101908-perrytheatre",
-      "dst": "org:perrytheatre",
+      "dst": "org:db122",
       "rel": "performed_at",
       "date": "28/10/1908",
       "type": "Show",
@@ -19934,29 +19801,29 @@
     },
     {
       "src": "event:3877-06011918-peoplestheatreny",
-      "dst": "org:peoplestheatreny",
+      "dst": "org:db120",
       "rel": "performed_at",
       "date": "06/01/1918",
       "type": "Show",
       "level": "event"
     },
     {
-      "src": "org:teaterbibliyotek",
+      "src": "org:db158",
       "dst": "edition:HinkePinke",
       "rel": "published"
     },
     {
       "src": "edition:HinkePinke",
-      "dst": "place:warsaw",
+      "dst": "place:dbQ270",
       "rel": "printed_in"
     },
     {
-      "src": "org:nstarowolskiwarsaw",
+      "src": "org:db58",
       "dst": "edition:HinkePinke",
       "rel": "printed_by"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:HinkePinke",
       "rel": "holds",
       "shelfmark": "II 1.401.629 A"
@@ -19967,7 +19834,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:אידאקאמינסקא",
+      "src": "person:db3826",
       "dst": "work:3833",
       "rel": "actress",
       "character": "Soreh Sheindel",
@@ -19977,7 +19844,7 @@
       "context": "Warsaw performance"
     },
     {
-      "src": "person:שאיעוויטשישראל07545",
+      "src": "person:db2907",
       "dst": "work:3833",
       "rel": "composer",
       "character": null,
@@ -19987,7 +19854,7 @@
       "context": "Warsaw performance"
     },
     {
-      "src": "person:ברוידייוסף0421",
+      "src": "person:db852",
       "dst": "work:3833",
       "rel": "composer",
       "character": null,
@@ -19998,34 +19865,27 @@
     },
     {
       "src": "work:3833",
-      "dst": "org:roumanianoperahouse",
+      "dst": "org:db33",
       "rel": "performed_at",
       "year": 1891.0,
       "type": "Premiere"
     },
     {
       "src": "work:3833",
-      "dst": "org:centraltheatre",
-      "rel": "performed_at",
-      "year": 1891.0,
-      "type": "Premiere"
-    },
-    {
-      "src": "work:3833",
-      "dst": "org:kaminskistheatre",
+      "dst": "org:db147",
       "rel": "performed_at",
       "year": 1938.0,
       "type": "production"
     },
     {
       "src": "work:3833",
-      "dst": "place:warsaw",
+      "dst": "place:dbQ270",
       "rel": "premiered_in",
       "year": 1938.0
     },
     {
       "src": "work:3833",
-      "dst": "place:vilna",
+      "dst": "place:dbQ216",
       "rel": "premiered_in",
       "year": 1909.0
     },
@@ -20036,7 +19896,7 @@
     },
     {
       "src": "event:3833-18111938-kaminskistheatre",
-      "dst": "org:kaminskistheatre",
+      "dst": "org:db147",
       "rel": "performed_at",
       "date": "18/11/1938",
       "type": "Show",
@@ -20053,22 +19913,22 @@
       "rel": "of_work"
     },
     {
-      "src": "org:diyudishebihne",
+      "src": "org:db1849",
       "dst": "edition:SoreSheyndel",
       "rel": "published"
     },
     {
       "src": "edition:SoreSheyndel",
-      "dst": "place:warsaw",
+      "dst": "place:dbQ270",
       "rel": "printed_in"
     },
     {
-      "src": "org:bturswarsaw",
+      "src": "org:db76",
       "dst": "edition:SoreSheyndel",
       "rel": "printed_by"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:SoreSheyndel",
       "rel": "holds",
       "shelfmark": "I 1.469.230 A"
@@ -20079,7 +19939,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:סענדלעריעקבקאפל41512",
+      "src": "person:db880",
       "dst": "work:3892",
       "rel": "composer",
       "character": null,
@@ -20089,7 +19949,7 @@
       "context": "Windsor Theatre"
     },
     {
-      "src": "person:פרידזעללואיס64123",
+      "src": "person:db695",
       "dst": "work:3892",
       "rel": "composer",
       "character": null,
@@ -20099,7 +19959,7 @@
       "context": null
     },
     {
-      "src": "person:גימפעלאדאלף974161045",
+      "src": "person:db1766",
       "dst": "work:3892",
       "rel": "composer",
       "character": null,
@@ -20110,20 +19970,20 @@
     },
     {
       "src": "work:3892",
-      "dst": "org:academyofmusic",
+      "dst": "org:db155",
       "rel": "performed_at",
       "year": 1897.0,
       "type": "Production"
     },
     {
       "src": "work:3892",
-      "dst": "place:philadelphia",
+      "dst": "place:dbQ1345",
       "rel": "premiered_in",
       "year": 1897.0
     },
     {
       "src": "work:3892",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1896.0,
       "type": "Premiere"
@@ -20135,7 +19995,7 @@
     },
     {
       "src": "event:3892-28011897-academyofmusic",
-      "dst": "org:academyofmusic",
+      "dst": "org:db155",
       "rel": "performed_at",
       "date": "28/01/1897",
       "type": "Show",
@@ -20148,29 +20008,29 @@
     },
     {
       "src": "event:3892-21091896-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "21/09/1896",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "org:verlagvondrothbuchhandlung",
+      "src": "org:db1021",
       "dst": "edition:KidushHashem",
       "rel": "published"
     },
     {
       "src": "edition:KidushHashem",
-      "dst": "place:lemberg",
+      "dst": "place:dbQ36036",
       "rel": "printed_in"
     },
     {
-      "src": "org:druckvonesalat",
+      "src": "org:db70",
       "dst": "edition:KidushHashem",
       "rel": "printed_by"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:KidushHashem",
       "rel": "holds",
       "shelfmark": "63.390"
@@ -20181,7 +20041,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:שלאסבערגיצחק05123",
+      "src": "person:db925",
       "dst": "work:3869",
       "rel": "composer",
       "character": null,
@@ -20191,7 +20051,7 @@
       "context": "New York"
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3869",
       "rel": "composer",
       "character": null,
@@ -20201,7 +20061,7 @@
       "context": null
     },
     {
-      "src": "person:henryrussotto",
+      "src": "person:db850",
       "dst": "work:3869",
       "rel": "arranger",
       "character": null,
@@ -20212,7 +20072,7 @@
     },
     {
       "src": "work:3869",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1897.0,
       "type": "Premiere"
@@ -20224,24 +20084,24 @@
     },
     {
       "src": "event:3869-04121897-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "04/12/1897",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "org:afaust",
+      "src": "org:db62",
       "dst": "edition:DovidsFidele-1904",
       "rel": "published"
     },
     {
       "src": "edition:DovidsFidele-1904",
-      "dst": "place:podgorze",
+      "dst": "place:dbQ2553877",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:DovidsFidele-1904",
       "rel": "holds",
       "shelfmark": "II 63.397"
@@ -20252,7 +20112,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3866",
       "rel": "composer",
       "character": null,
@@ -20262,7 +20122,7 @@
       "context": null
     },
     {
-      "src": "person:ברוידייוסף0421",
+      "src": "person:db852",
       "dst": "work:3866",
       "rel": "composer",
       "character": null,
@@ -20272,7 +20132,7 @@
       "context": "Thalia Theatre"
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3866",
       "rel": "actor",
       "character": "Lemekh",
@@ -20282,7 +20142,7 @@
       "context": "Thalia Theatre"
     },
     {
-      "src": "person:קעסלערדוד98624",
+      "src": "person:db721",
       "dst": "work:3866",
       "rel": "actor",
       "character": null,
@@ -20293,14 +20153,7 @@
     },
     {
       "src": "work:3866",
-      "dst": "org:thaliatheatre",
-      "rel": "performed_at",
-      "year": 1908.0,
-      "type": "Premiere"
-    },
-    {
-      "src": "work:3866",
-      "dst": "org:bowerytheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1908.0,
       "type": "Premiere"
@@ -20312,32 +20165,24 @@
     },
     {
       "src": "event:3866-10101908-thaliatheatre",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "10/10/1908",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "event:3866-10101908-thaliatheatre",
-      "dst": "org:bowerytheatre",
-      "rel": "performed_at",
-      "date": "10/10/1908",
-      "type": "Premiere",
-      "level": "event"
-    },
-    {
-      "src": "org:kunst",
+      "src": "org:db61",
       "dst": "edition:DosYudisheHerts-1910",
       "rel": "published"
     },
     {
       "src": "edition:DosYudisheHerts-1910",
-      "dst": "place:warsaw",
+      "dst": "place:dbQ270",
       "rel": "printed_in"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:DosYudisheHerts-1910",
       "rel": "holds",
       "shelfmark": "44.631"
@@ -20349,14 +20194,14 @@
     },
     {
       "src": "work:4014",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1902.0,
       "type": "production"
     },
     {
       "src": "work:4014",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1903.0,
       "type": "production"
@@ -20368,7 +20213,7 @@
     },
     {
       "src": "event:4014-27111902-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "27/11/1902",
       "type": "Show",
@@ -20381,14 +20226,14 @@
     },
     {
       "src": "event:4014-01011903-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "01/01/1903",
       "type": "Show",
       "level": "event"
     },
     {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:MS_YaakovEsav",
       "rel": "holds",
       "shelfmark": "RG 8.1, folder 4143"
@@ -20399,7 +20244,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:קארפסאפיע",
+      "src": "person:db723",
       "dst": "work:3879",
       "rel": "actress",
       "character": null,
@@ -20409,7 +20254,7 @@
       "context": null
     },
     {
-      "src": "person:מאדאםליפצין",
+      "src": "person:db762",
       "dst": "work:3879",
       "rel": "actress",
       "character": null,
@@ -20419,7 +20264,7 @@
       "context": null
     },
     {
-      "src": "person:קארפ",
+      "src": "person:db703",
       "dst": "work:3879",
       "rel": "actor",
       "character": null,
@@ -20429,7 +20274,7 @@
       "context": null
     },
     {
-      "src": "person:טאמאשעוופסקיבאריסברוךאהרן4082",
+      "src": "person:db693",
       "dst": "work:3879",
       "rel": "actor",
       "character": null,
@@ -20440,36 +20285,21 @@
     },
     {
       "src": "work:3879",
-      "dst": "org:roumanianoperahouse",
+      "dst": "org:db33",
       "rel": "performed_at",
       "year": 1891.0,
       "type": "Premiere?"
     },
     {
       "src": "work:3879",
-      "dst": "org:centraltheatre",
-      "rel": "performed_at",
-      "year": 1891.0,
-      "type": "Premiere?"
-    },
-    {
-      "src": "work:3879",
-      "dst": "org:roumanianoperahouse",
+      "dst": "org:db33",
       "rel": "performed_at",
       "date": "",
       "type": "Show",
       "level": "work"
     },
     {
-      "src": "work:3879",
-      "dst": "org:centraltheatre",
-      "rel": "performed_at",
-      "date": "",
-      "type": "Show",
-      "level": "work"
-    },
-    {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:Lateiner_Meshumed",
       "rel": "holds",
       "shelfmark": "RG 8.1, folder 4182"
@@ -20480,7 +20310,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:וואהלהערמאןצבי9361",
+      "src": "person:db906",
       "dst": "work:4043",
       "rel": "composer",
       "character": null,
@@ -20490,7 +20320,7 @@
       "context": "With A. Perlmutter"
     },
     {
-      "src": "person:פערלמוטערארנאלד83813",
+      "src": "person:db2645",
       "dst": "work:4043",
       "rel": "composer",
       "character": null,
@@ -20500,7 +20330,7 @@
       "context": "With H. Wohl"
     },
     {
-      "src": "person:יאוועלירקלמן9092",
+      "src": "person:db2061",
       "dst": "work:4043",
       "rel": "actor",
       "character": null,
@@ -20510,7 +20340,7 @@
       "context": "Star theatre"
     },
     {
-      "src": "person:פראגעררעגינע05813",
+      "src": "person:db2695",
       "dst": "work:4043",
       "rel": "actress",
       "character": null,
@@ -20521,27 +20351,27 @@
     },
     {
       "src": "work:4043",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1909.0,
       "type": "production"
     },
     {
       "src": "work:4043",
-      "dst": "org:newstartheatre",
+      "dst": "org:db167",
       "rel": "performed_at",
       "year": 1908.0,
       "type": "production"
     },
     {
       "src": "work:4043",
-      "dst": "org:kalichtheatre",
+      "dst": "org:db160",
       "rel": "performed_at",
       "year": 1907.0,
       "type": "production"
     },
     {
-      "src": "org:theinternationalbiblioteque",
+      "src": "org:db2332",
       "dst": "edition:MS_YetsiasMitsrayim",
       "rel": "published",
       "year": 1903.0,
@@ -20549,21 +20379,21 @@
     },
     {
       "src": "work:4043",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1903.0,
       "type": "production"
     },
     {
       "src": "work:4043",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1904.0,
       "type": "production"
     },
     {
       "src": "work:4043",
-      "dst": "org:kesslersthaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1910.0,
       "type": "production"
@@ -20575,7 +20405,7 @@
     },
     {
       "src": "event:4043-25091903-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "25/09/1903",
       "type": "Show",
@@ -20588,7 +20418,7 @@
     },
     {
       "src": "event:4043-16021903-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "16/02/1903",
       "type": "Show",
@@ -20601,7 +20431,7 @@
     },
     {
       "src": "event:4043-08101903-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "08/10/1903",
       "type": "Show",
@@ -20614,7 +20444,7 @@
     },
     {
       "src": "event:4043-06111903-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "06/11/1903",
       "type": "Show",
@@ -20627,7 +20457,7 @@
     },
     {
       "src": "event:4043-12121903-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "12/12/1903",
       "type": "Show",
@@ -20640,7 +20470,7 @@
     },
     {
       "src": "event:4043-29011904-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "29/01/1904",
       "type": "Show",
@@ -20653,7 +20483,7 @@
     },
     {
       "src": "event:4043-05011907-kalichtheatre",
-      "dst": "org:kalichtheatre",
+      "dst": "org:db160",
       "rel": "performed_at",
       "date": "05/01/1907",
       "type": "Show",
@@ -20666,7 +20496,7 @@
     },
     {
       "src": "event:4043-13091908-newstartheatre",
-      "dst": "org:newstartheatre",
+      "dst": "org:db167",
       "rel": "performed_at",
       "date": "13/09/1908",
       "type": "Show",
@@ -20679,7 +20509,7 @@
     },
     {
       "src": "event:4043-19031909-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "19/03/1909",
       "type": "Show",
@@ -20692,14 +20522,14 @@
     },
     {
       "src": "event:4043-12031910-kesslersthaliatheatre",
-      "dst": "org:kesslersthaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "12/03/1910",
       "type": "Show",
       "level": "event"
     },
     {
-      "src": "org:stpetersburgstatetheatrelibrary",
+      "src": "org:db2334",
       "dst": "edition:MS_YetsiasMitsrayim",
       "rel": "holds",
       "shelfmark": "ЛГТБ № 6246 (Рукописный отдел)"
@@ -20710,7 +20540,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:אבראמאוויטשמאקסמענדל61",
+      "src": "person:db694",
       "dst": "work:3933",
       "rel": "composer",
       "character": null,
@@ -20720,7 +20550,7 @@
       "context": "Max Abramowitz and Zigmund Mogulesco"
     },
     {
-      "src": "person:סאנדלערפרץ64412",
+      "src": "person:db857",
       "dst": "work:3933",
       "rel": "composer",
       "character": null,
@@ -20730,7 +20560,7 @@
       "context": "European music"
     },
     {
-      "src": "person:סענדלעריעקבקאפל41512",
+      "src": "person:db880",
       "dst": "work:3933",
       "rel": "composer",
       "character": null,
@@ -20740,7 +20570,7 @@
       "context": null
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3933",
       "rel": "composer",
       "character": null,
@@ -20750,7 +20580,7 @@
       "context": "Max Abramowitz and Zigmund Mogulesco"
     },
     {
-      "src": "person:henryrussotto",
+      "src": "person:db850",
       "dst": "work:3933",
       "rel": "arranger",
       "character": null,
@@ -20761,14 +20591,14 @@
     },
     {
       "src": "work:3933",
-      "dst": "org:orientaltheatre",
+      "dst": "org:db119",
       "rel": "performed_at",
       "year": 1884.0,
       "type": "Premiere"
     },
     {
       "src": "work:3933",
-      "dst": "org:orientaltheatre",
+      "dst": "org:db119",
       "rel": "performed_at",
       "year": 1885.0,
       "type": "Production"
@@ -20780,7 +20610,7 @@
     },
     {
       "src": "event:3933-02111885-orientaltheatre",
-      "dst": "org:orientaltheatre",
+      "dst": "org:db119",
       "rel": "performed_at",
       "date": "02/11/1885",
       "type": "Show",
@@ -20793,14 +20623,14 @@
     },
     {
       "src": "event:3933-11021885-orientaltheatre",
-      "dst": "org:orientaltheatre",
+      "dst": "org:db119",
       "rel": "performed_at",
       "date": "11/02/1885",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:MS_YoysefInEgipten",
       "rel": "holds",
       "shelfmark": "YIVO rg8-1-f4179"
@@ -20811,7 +20641,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:וואהלהערמאןצבי9361",
+      "src": "person:db906",
       "dst": "work:4010",
       "rel": "composer",
       "character": null,
@@ -20821,7 +20651,7 @@
       "context": "With A. Perlmutter"
     },
     {
-      "src": "person:פערלמוטערארנאלד83813",
+      "src": "person:db2645",
       "dst": "work:4010",
       "rel": "composer",
       "character": null,
@@ -20832,95 +20662,95 @@
     },
     {
       "src": "work:4010",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1903.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1904.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "org:royaltheatreharrybernstein",
+      "dst": "org:db163",
       "rel": "performed_at",
       "year": 1915.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "place:clevelandohaio",
+      "dst": "place:dbQ37320",
       "rel": "premiered_in",
       "year": 1915.0
     },
     {
       "src": "work:4010",
-      "dst": "org:glickmansyiddishplayers",
+      "dst": "org:db153",
       "rel": "performed_at",
       "year": 1905.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "place:california",
+      "dst": "place:dbQ99",
       "rel": "premiered_in",
       "year": 1905.0
     },
     {
       "src": "work:4010",
-      "dst": "org:olimpictheatre",
+      "dst": "org:db171",
       "rel": "performed_at",
       "year": 1908.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "org:jignitatheatre",
+      "dst": "org:db113",
       "rel": "performed_at",
       "year": 1907.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "place:bucharest",
+      "dst": "place:dbQ19660",
       "rel": "premiered_in",
       "year": 1907.0
     },
     {
       "src": "work:4010",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1901.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1902.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "org:thomashefskyspeopletheatre",
+      "dst": "org:db156",
       "rel": "performed_at",
       "year": 1910.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "org:kalichtheatre",
+      "dst": "org:db160",
       "rel": "performed_at",
       "year": 1906.0,
       "type": "production"
     },
     {
       "src": "work:4010",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1901.0,
       "type": "premier"
@@ -20932,7 +20762,7 @@
     },
     {
       "src": "event:4010-22121901-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "22/12/1901",
       "type": "Show",
@@ -20940,7 +20770,7 @@
     },
     {
       "src": "work:4010",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": null,
       "type": "Premiere",
@@ -20953,7 +20783,7 @@
     },
     {
       "src": "event:4010-23111902-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "23/11/1902",
       "type": "Show",
@@ -20966,7 +20796,7 @@
     },
     {
       "src": "event:4010-08031903-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "08/03/1903",
       "type": "Show",
@@ -20979,7 +20809,7 @@
     },
     {
       "src": "event:4010-31011904-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "31/01/1904",
       "type": "Show",
@@ -20992,7 +20822,7 @@
     },
     {
       "src": "event:4010-01091905-glickmansyiddishplayers",
-      "dst": "org:glickmansyiddishplayers",
+      "dst": "org:db153",
       "rel": "performed_at",
       "date": "01/09/1905",
       "type": "Show",
@@ -21005,7 +20835,7 @@
     },
     {
       "src": "event:4010-21041906-kalichtheatre",
-      "dst": "org:kalichtheatre",
+      "dst": "org:db160",
       "rel": "performed_at",
       "date": "21/04/1906",
       "type": "Show",
@@ -21018,7 +20848,7 @@
     },
     {
       "src": "event:4010-16121907-jignitatheatre",
-      "dst": "org:jignitatheatre",
+      "dst": "org:db113",
       "rel": "performed_at",
       "date": "16/12/1907",
       "type": "Show",
@@ -21031,7 +20861,7 @@
     },
     {
       "src": "event:4010-02091908-olimpictheatre",
-      "dst": "org:olimpictheatre",
+      "dst": "org:db171",
       "rel": "performed_at",
       "date": "02/09/1908",
       "type": "Show",
@@ -21044,7 +20874,7 @@
     },
     {
       "src": "event:4010-27011910-thomashefskyspeopletheatre",
-      "dst": "org:thomashefskyspeopletheatre",
+      "dst": "org:db156",
       "rel": "performed_at",
       "date": "27/01/1910",
       "type": "Show",
@@ -21057,20 +20887,20 @@
     },
     {
       "src": "event:4010-14021915-royaltheatreharrybernstein",
-      "dst": "org:royaltheatreharrybernstein",
+      "dst": "org:db163",
       "rel": "performed_at",
       "date": "14/02/1915",
       "type": "Show",
       "level": "event"
     },
     {
-      "src": "org:americanjewisharchivesjacobradermarcuscenter",
+      "src": "org:db2333",
       "dst": "edition:MS_BenHaDor",
       "rel": "holds",
       "shelfmark": "MS-499, Box 3, Folder 4"
     },
     {
-      "src": "person:אדאלףליאנסקיadolfliansky",
+      "src": "person:db3827",
       "dst": "edition:MS_BenHaDor",
       "rel": "owned",
       "inscription": "Eigentum A. Liansky, New-Jork, 7. October 1904",
@@ -21083,7 +20913,7 @@
     },
     {
       "src": "work:3959",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1890.0,
       "type": "premier"
@@ -21095,14 +20925,14 @@
     },
     {
       "src": "event:3959-09261890-thaliatheatre",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "09/26/1890",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:YIVO_ShimshonHagibor",
       "rel": "holds",
       "shelfmark": "YIVO RG8-f4142A."
@@ -21113,7 +20943,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:מינקאווסקי",
+      "src": "person:db3822",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21123,7 +20953,7 @@
       "context": "original music"
     },
     {
-      "src": "person:ליאוולעאמשהלייב22012",
+      "src": "person:db932",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21133,7 +20963,7 @@
       "context": "Leo Low and Shlusberg, European production (according to Zylberzweig Lexicon)"
     },
     {
-      "src": "person:שלאסבערגיצחק05123",
+      "src": "person:db925",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21143,7 +20973,7 @@
       "context": "European music"
     },
     {
-      "src": "person:מינקאווסקי",
+      "src": "person:db3822",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21153,7 +20983,7 @@
       "context": null
     },
     {
-      "src": "person:פרידזעללואיס64123",
+      "src": "person:db695",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21163,7 +20993,7 @@
       "context": "Mogulesco and Friedsell"
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21173,7 +21003,7 @@
       "context": "Mogulesco and Friedsell"
     },
     {
-      "src": "person:אבראמאוויטשמאקסמענדל61",
+      "src": "person:db694",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21183,7 +21013,7 @@
       "context": "original music"
     },
     {
-      "src": "person:ברוידייוסף0421",
+      "src": "person:db852",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21193,7 +21023,7 @@
       "context": "European music"
     },
     {
-      "src": "person:קעסלערדוד98624",
+      "src": "person:db721",
       "dst": "work:3891",
       "rel": "actor",
       "character": "Gdalyahu",
@@ -21203,7 +21033,7 @@
       "context": null
     },
     {
-      "src": "person:פיינמאןזיגמונד44524",
+      "src": "person:db714",
       "dst": "work:3891",
       "rel": "actor",
       "character": "Yermiyahu",
@@ -21213,7 +21043,7 @@
       "context": null
     },
     {
-      "src": "person:בערנשטייןבערלבורשטין7021",
+      "src": "person:db859",
       "dst": "work:3891",
       "rel": "actor",
       "character": "Tsfanya",
@@ -21223,7 +21053,7 @@
       "context": null
     },
     {
-      "src": "person:שמואלטאבאטשניקאוו2082",
+      "src": "person:db3079",
       "dst": "work:3891",
       "rel": "actor",
       "character": "Tsidkiyahu",
@@ -21233,7 +21063,7 @@
       "context": null
     },
     {
-      "src": "person:קאנארד",
+      "src": "person:db1464",
       "dst": "work:3891",
       "rel": "actor",
       "character": "Ishmael",
@@ -21243,7 +21073,7 @@
       "context": null
     },
     {
-      "src": "person:וואהלהערמאןצבי9361",
+      "src": "person:db906",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21253,7 +21083,7 @@
       "context": "European music"
     },
     {
-      "src": "person:henryrussotto",
+      "src": "person:db850",
       "dst": "work:3891",
       "rel": "composer",
       "character": null,
@@ -21264,49 +21094,28 @@
     },
     {
       "src": "work:3891",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1889.0,
       "type": "Premiere"
     },
     {
       "src": "work:3891",
-      "dst": "org:bowerytheatre",
-      "rel": "performed_at",
-      "year": 1889.0,
-      "type": "Premiere"
-    },
-    {
-      "src": "work:3891",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1890.0,
       "type": "Premiere"
     },
     {
       "src": "work:3891",
-      "dst": "org:bowerytheatre",
-      "rel": "performed_at",
-      "year": 1890.0,
-      "type": "Premiere"
-    },
-    {
-      "src": "work:3891",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1898.0,
       "type": "production"
     },
     {
       "src": "work:3891",
-      "dst": "org:bowerytheatre",
-      "rel": "performed_at",
-      "year": 1898.0,
-      "type": "production"
-    },
-    {
-      "src": "work:3891",
-      "dst": "org:nationaltheatre",
+      "dst": "org:db118",
       "rel": "performed_at",
       "year": 1913.0,
       "type": "Production"
@@ -21318,22 +21127,14 @@
     },
     {
       "src": "event:3891-09101889-thaliatheatre",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "09/10/1889",
       "type": "Premiere",
       "level": "event"
     },
     {
-      "src": "event:3891-09101889-thaliatheatre",
-      "dst": "org:bowerytheatre",
-      "rel": "performed_at",
-      "date": "09/10/1889",
-      "type": "Premiere",
-      "level": "event"
-    },
-    {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:MS_KhurbnYerusholaim",
       "rel": "holds",
       "shelfmark": "YIVO rg8-1-f4176"
@@ -21345,21 +21146,21 @@
     },
     {
       "src": "work:3963",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "year": 1896.0,
       "type": "production"
     },
     {
       "src": "work:3963",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1896.0,
       "type": "production"
     },
     {
       "src": "work:3963",
-      "dst": "org:tsentraltheatre",
+      "dst": "org:db151",
       "rel": "performed_at",
       "year": 1893.0,
       "type": "production"
@@ -21371,7 +21172,7 @@
     },
     {
       "src": "event:3963-25121896-thaliatheatre",
-      "dst": "org:thaliatheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "25/12/1896",
       "type": "Show",
@@ -21384,7 +21185,7 @@
     },
     {
       "src": "event:3963-01111896-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "01/11/1896",
       "type": "Show",
@@ -21397,14 +21198,14 @@
     },
     {
       "src": "event:3963-08261898-tsentraltheatre",
-      "dst": "org:tsentraltheatre",
+      "dst": "org:db151",
       "rel": "performed_at",
       "date": "08/26/1898",
       "type": "Show",
       "level": "event"
     },
     {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:MS_BasKoyen",
       "rel": "holds",
       "shelfmark": "YIVO RG8-f4140."
@@ -21415,7 +21216,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:שמולעוויטששלמה14756",
+      "src": "person:db3611",
       "dst": "work:4012",
       "rel": "lyrics",
       "character": null,
@@ -21425,7 +21226,7 @@
       "context": "NYC"
     },
     {
-      "src": "person:גימפעלאדאלף974161045",
+      "src": "person:db1766",
       "dst": "work:4012",
       "rel": "composer",
       "character": null,
@@ -21435,7 +21236,7 @@
       "context": "1st performance in Pinsk 1911"
     },
     {
-      "src": "person:וואהלהערמאןצבי9361",
+      "src": "person:db906",
       "dst": "work:4012",
       "rel": "composer",
       "character": null,
@@ -21445,7 +21246,7 @@
       "context": "With A. Perlmutter"
     },
     {
-      "src": "person:פערלמוטערארנאלד83813",
+      "src": "person:db2645",
       "dst": "work:4012",
       "rel": "composer",
       "character": null,
@@ -21455,7 +21256,7 @@
       "context": "With H. Wohl"
     },
     {
-      "src": "person:גימפעלאדאלף974161045",
+      "src": "person:db1766",
       "dst": "work:4012",
       "rel": "arranger",
       "character": null,
@@ -21466,7 +21267,7 @@
     },
     {
       "src": "work:4012",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1902.0,
       "type": "production"
@@ -21478,14 +21279,14 @@
     },
     {
       "src": "event:4012-19041902-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "19/04/1902",
       "type": "Show",
       "level": "event"
     },
     {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:MS_DiTsveyTnoim",
       "rel": "holds",
       "shelfmark": "YIVO RG8-f4141."
@@ -21496,7 +21297,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3944",
       "rel": "composer",
       "character": null,
@@ -21506,7 +21307,7 @@
       "context": null
     },
     {
-      "src": "person:מאגולעסקאזיגמונט",
+      "src": "person:db685",
       "dst": "work:3944",
       "rel": "actor",
       "character": null,
@@ -21516,7 +21317,7 @@
       "context": "Kalish theatre NYC"
     },
     {
-      "src": "person:פיינמאןזיגמונד44524",
+      "src": "person:db714",
       "dst": "work:3944",
       "rel": "actor",
       "character": null,
@@ -21526,7 +21327,7 @@
       "context": "Kalish theatre NYC"
     },
     {
-      "src": "person:יאוועלירקלמן9092",
+      "src": "person:db2061",
       "dst": "work:3944",
       "rel": "actor",
       "character": null,
@@ -21537,62 +21338,62 @@
     },
     {
       "src": "work:3944",
-      "dst": "org:peoplestheatre",
+      "dst": "org:db120",
       "rel": "performed_at",
       "year": 1907.0,
       "type": "production"
     },
     {
       "src": "work:3944",
-      "dst": "org:kalichtheatre",
+      "dst": "org:db160",
       "rel": "performed_at",
       "year": 1906.0,
       "type": "production"
     },
     {
       "src": "work:3944",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "year": 1901.0,
       "type": "production"
     },
     {
       "src": "work:3944",
-      "dst": "org:kalichtheatre",
+      "dst": "org:db160",
       "rel": "performed_at",
       "year": 1905.0,
       "type": "production"
     },
     {
       "src": "work:3944",
-      "dst": "org:folkstheatre",
+      "dst": "org:db365",
       "rel": "performed_at",
       "year": 1897.0,
       "type": "production"
     },
     {
       "src": "work:3944",
-      "dst": "org:poolstheatre",
+      "dst": "org:db123",
       "rel": "performed_at",
       "year": 1888.0,
       "type": "production"
     },
     {
       "src": "work:3944",
-      "dst": "org:pamolverdi",
+      "dst": "org:db137",
       "rel": "performed_at",
       "year": 1913.0,
       "type": "production"
     },
     {
       "src": "work:3944",
-      "dst": "place:iasirumenia",
+      "dst": "place:dbQ46852",
       "rel": "premiered_in",
       "year": 1913.0
     },
     {
       "src": "work:3944",
-      "dst": "org:roumanianoperahouse",
+      "dst": "org:db33",
       "rel": "performed_at",
       "year": 1887.0,
       "type": "premier"
@@ -21604,7 +21405,7 @@
     },
     {
       "src": "event:3944-02071887-roumanianoperahouse",
-      "dst": "org:roumanianoperahouse",
+      "dst": "org:db33",
       "rel": "performed_at",
       "date": "02/07/1887",
       "type": "Premiere",
@@ -21617,7 +21418,7 @@
     },
     {
       "src": "event:3944-09241888-poolstheatre",
-      "dst": "org:poolstheatre",
+      "dst": "org:db123",
       "rel": "performed_at",
       "date": "09/24/1888",
       "type": "Show",
@@ -21630,7 +21431,7 @@
     },
     {
       "src": "event:3944-10101888-poolstheatre",
-      "dst": "org:poolstheatre",
+      "dst": "org:db123",
       "rel": "performed_at",
       "date": "10/10/1888",
       "type": "Show",
@@ -21643,7 +21444,7 @@
     },
     {
       "src": "event:3944-261897-folkstheatre",
-      "dst": "org:folkstheatre",
+      "dst": "org:db365",
       "rel": "performed_at",
       "date": "2/6/1897",
       "type": "Show",
@@ -21656,7 +21457,7 @@
     },
     {
       "src": "event:3944-24021901-windsortheatre",
-      "dst": "org:windsortheatre",
+      "dst": "org:db134",
       "rel": "performed_at",
       "date": "24/02/1901",
       "type": "Show",
@@ -21669,7 +21470,7 @@
     },
     {
       "src": "event:3944-28101905-kalichtheatre",
-      "dst": "org:kalichtheatre",
+      "dst": "org:db160",
       "rel": "performed_at",
       "date": "28/10/1905",
       "type": "Show",
@@ -21682,7 +21483,7 @@
     },
     {
       "src": "event:3944-02031906-kalichtheatre",
-      "dst": "org:kalichtheatre",
+      "dst": "org:db160",
       "rel": "performed_at",
       "date": "02/03/1906",
       "type": "Show",
@@ -21695,7 +21496,7 @@
     },
     {
       "src": "event:3944-02111907-peoplestheatre",
-      "dst": "org:peoplestheatre",
+      "dst": "org:db120",
       "rel": "performed_at",
       "date": "02/11/1907",
       "type": "Show",
@@ -21703,14 +21504,14 @@
     },
     {
       "src": "work:3944",
-      "dst": "org:pamolverdi",
+      "dst": "org:db137",
       "rel": "performed_at",
       "date": null,
       "type": "Show",
       "level": "work"
     },
     {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:MS_TissaEssler",
       "rel": "holds",
       "shelfmark": "RG 289, 333A-333C"
@@ -21721,7 +21522,7 @@
       "rel": "realised_as"
     },
     {
-      "src": "person:joachimkurantman",
+      "src": "person:db3825",
       "dst": "work:3830",
       "rel": "composer",
       "character": null,
@@ -21732,28 +21533,28 @@
     },
     {
       "src": "work:3830",
-      "dst": "org:orientaltheatre",
+      "dst": "org:db119",
       "rel": "performed_at",
       "year": 1886.0,
       "type": "Premiere"
     },
     {
       "src": "work:3830",
-      "dst": "org:orientaltheatre",
+      "dst": "org:db119",
       "rel": "performed_at",
       "year": 1886.0,
       "type": "Production"
     },
     {
       "src": "work:3830",
-      "dst": "org:turnerhall",
+      "dst": "org:db149",
       "rel": "performed_at",
       "year": 1889.0,
       "type": "Production"
     },
     {
       "src": "work:3830",
-      "dst": "place:chicago",
+      "dst": "place:dbQ1297",
       "rel": "premiered_in",
       "year": 1889.0
     },
@@ -21764,7 +21565,7 @@
     },
     {
       "src": "event:3830-01071886-orientaltheatre",
-      "dst": "org:orientaltheatre",
+      "dst": "org:db119",
       "rel": "performed_at",
       "date": "01/07/1886",
       "type": "Premiere",
@@ -21777,7 +21578,7 @@
     },
     {
       "src": "event:3830-13101886-orientaltheatre",
-      "dst": "org:orientaltheatre",
+      "dst": "org:db119",
       "rel": "performed_at",
       "date": "13/10/1886",
       "type": "Show",
@@ -21790,20 +21591,20 @@
     },
     {
       "src": "event:3830-19041889-turnerhall",
-      "dst": "org:turnerhall",
+      "dst": "org:db149",
       "rel": "performed_at",
       "date": "19/04/1889",
       "type": "Show",
       "level": "event"
     },
     {
-      "src": "org:yivoinstituteforjewishresearch",
+      "src": "org:db27",
       "dst": "edition:MS_Emigration",
       "rel": "holds",
       "shelfmark": "Perlmutter 628"
     },
     {
-      "src": "person:לואיסצוויבעלlouiszwiebel",
+      "src": "person:db814",
       "dst": "edition:MS_Emigration",
       "rel": "owned",
       "inscription": "LOUIS ZWIEBEL · NEW YORK (owner's stamp, Oct 189?)",
@@ -21821,15 +21622,7 @@
     },
     {
       "src": "event:3891-23041898-thaliatheatre",
-      "dst": "org:thaliatheatre",
-      "rel": "performed_at",
-      "date": "23/04/1898",
-      "type": "Show",
-      "level": "event"
-    },
-    {
-      "src": "event:3891-23041898-thaliatheatre",
-      "dst": "org:bowerytheatre",
+      "dst": "org:db130",
       "rel": "performed_at",
       "date": "23/04/1898",
       "type": "Show",
@@ -21842,7 +21635,7 @@
     },
     {
       "src": "event:3891-20021913-nationaltheatre",
-      "dst": "org:nationaltheatre",
+      "dst": "org:db118",
       "rel": "performed_at",
       "date": "20/02/1913",
       "type": "Show",
@@ -21850,16 +21643,16 @@
     },
     {
       "src": "edition:KhurbnYerusholaim-BN1908",
-      "dst": "place:warsaw",
+      "dst": "place:dbQ270",
       "rel": "printed_in"
     },
     {
-      "src": "org:nstarowolskiwarsaw",
+      "src": "org:db58",
       "dst": "edition:KhurbnYerusholaim-BN1908",
       "rel": "printed_by"
     },
     {
-      "src": "org:bibliotekanarodowapolona",
+      "src": "org:db2331",
       "dst": "edition:KhurbnYerusholaim-BN1908",
       "rel": "holds",
       "shelfmark": "63.433"
@@ -21873,15 +21666,15 @@
       "person": 37,
       "song": 225,
       "edition": 27,
-      "org": 50,
+      "org": 42,
       "event": 64,
-      "place": 12
+      "place": 11
     },
     "by_status": {
-      "LINKED": 690,
+      "LINKED": 681,
       "MERGED": 2
     },
-    "edges": 887,
+    "edges": 868,
     "gaps": 0,
     "gaps_by_reason": {}
   }

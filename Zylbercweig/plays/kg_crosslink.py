@@ -42,6 +42,7 @@ csv.field_size_limit(sys.maxsize)
 
 REVIEW_TASKS_MD = pc.HERE / "REVIEW_TASKS.md"
 OPEN_QUESTIONS_TSV = pc.HERE / "open_questions.tsv"
+WORK_PLAY_MAP_TSV = pc.HERE / "work_play_map.tsv"
 ENTITY_GRAPH_JSON = pc.HERE.parent.parent / "YiDraCor" / "data" / "entity_graph.json"
 EXCLUDED_TSV = pc.KG_DIR / "excluded_play_facts.tsv"
 # where Ruthie reads and answers the questions (REVIEW_TASKS.md mirrors it)
@@ -119,25 +120,29 @@ def questions(plays: dict[str, dict] | None = None) -> list[dict]:
 
 
 def work_to_play(works: list[dict], plays: dict[str, dict]) -> dict[str, str]:
-    """catalogue work node id -> play_id ('' when plays_db has no such play)."""
-    by_eid: dict[str, str] = {}
-    by_title: dict[str, set[str]] = defaultdict(set)
-    for p in plays.values():
-        m = re.search(r"\beid (\d+)", p.get("notes", ""))
-        if m:
-            by_eid[m.group(1)] = p["play_id"]
-        by_title[pc.norm_yiddish(p["title_yiddish"])].add(p["play_id"])
-    out = {}
-    for w in works:
-        pid = by_eid.get(str(w.get("expression_id") or ""))
-        if not pid:
-            cands = by_title.get(pc.norm_yiddish(w.get("yiddish_title") or ""), set())
-            if len(cands) > 1:
-                aid = PLAYWRIGHT_DB_ID.get(w.get("playwright", ""))
-                cands = {c for c in cands if plays[c]["author_db_id"] == aid} or cands
-            pid = next(iter(cands)) if len(cands) == 1 else ""
-        out[w["id"]] = pid
-    return out
+    """catalogue work node id -> play_id ('' when plays_db has no such play).
+
+    Read from `work_play_map.tsv`, which is the persisted join: one row per
+    expression id, with the `basis` on which it was made. It replaces matching
+    on the normalised title at every call, which was fragile in two ways —
+    the key was `eid <N>` scraped out of plays_db's free-text `notes` (only 51
+    of 273 rows have one), and the title fallback silently collapsed two
+    catalogue works that share a Yiddish title into one play. Those are now
+    recorded as `AMBIGUOUS` rather than resolved by coin-flip; see
+    `work_play_map_open.md`.
+
+    Regenerate with `python3.11 build_work_play_map.py` after plays_db or the
+    catalogue changes.
+    """
+    by_expr: dict[str, str] = {}
+    for r in pc.read_tsv(WORK_PLAY_MAP_TSV):
+        pid = (r.get("play_id") or "").strip()
+        if pid and pid not in plays:
+            raise SystemExit(f"work_play_map.tsv: unknown play {pid}")
+        if r.get("status") != "AMBIGUOUS":
+            by_expr[(r.get("expression_id") or "").strip()] = pid
+    return {w["id"]: by_expr.get(str(w.get("expression_id") or ""), "")
+            for w in works}
 
 
 def _fact_counts() -> tuple[Counter, Counter]:

@@ -675,7 +675,16 @@ def main() -> int:
                          "candidates": ""})
 
     def node(kind: str, raw: str, res: dict, **extra) -> str:
-        nid = f"{kind}:{sm(raw) or 'blank'}"
+        # The id is keyed on the AUTHORITY id whenever resolution found one, so
+        # one people_db / core_db row (or one QID) is one node however many ways
+        # the sources spell it. Keying on the surface string instead split one
+        # org across 2-3 nodes — Bowery / Thalia / Kessler's Thalia Theatre are
+        # all core_db 130 — which inflated every degree count and would have
+        # imported the same org several times over into the Zylbercweig KG.
+        # Unresolved surfaces keep the slug: there is no better key for them.
+        db_id = res.get("db_id")
+        nid = (f"{kind}:db{db_id}" if db_id not in (None, "")
+               else f"{kind}:{sm(raw) or 'blank'}")
         if nid not in nodes:
             nodes[nid] = {"id": nid, "kind": kind, "label": raw, **res, **extra}
             if res.get("status") == "GAP":
@@ -683,6 +692,22 @@ def main() -> int:
                 gaps.append({"kind": kind, "label": raw,
                              "reason": res.get("reason", ""),
                              "candidates": cands or res.get("note", "")})
+        else:
+            # Same authority id reached under another spelling. Keep every
+            # surface form as a variant (Bowery -> Thalia is a real renaming,
+            # not noise) and never let an unreviewed pass overwrite a reviewed
+            # one: a human stamp outranks `exact`/`composite-half`.
+            cur = nodes[nid]
+            if raw and raw != cur.get("label"):
+                variants = cur.setdefault("name_variants", [])
+                if raw not in variants:
+                    variants.append(raw)
+            if res.get("reviewer") and not cur.get("reviewer"):
+                cur["method"] = res.get("method", cur.get("method"))
+                cur["reviewer"] = res["reviewer"]
+                cur["matched"] = res.get("matched", cur.get("matched"))
+            for k, v in extra.items():
+                cur.setdefault(k, v)
         return nid
 
     for e in editions:
