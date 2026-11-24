@@ -69,6 +69,28 @@ and, for spellings shared by several places, against the country in the sentence
 other stations. `?` = not linked (unclear spelling, not a place, an undecided homonym, or still with
 the human reviewer). **92% of the 23,073 stations are linked, 91% with a Wikidata QID.** Compare QIDs, not names, across host and candidates.
 
+### D–G relation tables (`defg/`, new 2026-11-24)
+
+The full-text extraction of every Lexicon entry (steps D–G), as tables that join to the two files
+above. `entry_hub_id` = the person whose entry it is (a hub in `er_candidate_profiles.tsv`; empty for
+the ~1% of parts that are another person's article glued into the entry). Facts stated only inside
+quotations are left out. Places carry `place_en`, linked as in `defg_places_en`.
+
+| file | one row per | rows |
+|---|---|---|
+| `defg/defg_people.tsv` | person named in an entry (`mkey`), with the entry's own expansion of the name (`full_form_in_entry`); `hub_id` only for the entry's subject | 55,347 |
+| `defg/defg_events.tsv` | event (performance, founding, death, marriage, debut, guest appearance, arrest…) with date, place, venue, work | 16,587 |
+| `defg/defg_event_participants.tsv` | person in an event (`ekey` + `person_key` = an `mkey`) with role: performer, director, organizer, victim, spouse, honoree… | 24,146 |
+| `defg/defg_performance_facts.tsv` | "person did function F on work W (as character C) with org O at venue V, place P, date D" | 25,595 |
+| `defg/defg_work_relations.tsv` | work ↔ work: same_as, adaptation_of, based_on, translation_of, part_of | 1,843 |
+| `defg/er_mention_defg_links.tsv` | ER mention ↔ a D–G person mention in its host entry with the same surname | 12,957 (10,279 mentions) |
+
+Use: through `er_mention_defg_links` an ER mention reaches the events and performances the host's
+entry puts it in (co-performers, works, dates, places), which can be compared with each candidate's
+own `defg_*` rows. **`full_form_in_entry` is a model's reading of the entry, not a label**: on the
+ambiguous gold mentions it names exactly one candidate 714 times, the gold one in 394. The surname
+link is loose (every same-surname person in the host entry), so a mention can link to a relative.
+
 ## Baselines (on the 3,401 gold mentions with ≥2 candidates)
 
 | method | correct |
@@ -79,7 +101,14 @@ the human reviewer). **92% of the 23,073 stations are linked, 91% with a Wikidat
 The signals need combining: time (are the birth years compatible with the relation
 date?), place, the shared organization, gender, and relation type.
 
-## What changed (tag `datasets-2026-11-24`)
+## What changed (tag `datasets-2026-11-24c`)
+
+- New `defg/` folder: the D–G events, participants, performance facts, work relations and people,
+  joined to hubs and to the ER mentions (see above). Built by `build_defg_tables.py`.
+- Place links (`defg_places_en`, `place_en`) now use the project's reviewed place links first, then
+  context checks (`place_linker.py`): 92% of stations linked, 91% with a Wikidata QID.
+
+## Earlier change (tag `datasets-2026-11-24`)
 
 - New `defg_places_en` (candidates) and `host_defg_places_en` (mentions): the D–G stations in English
   with Wikidata / Kima ids. `host_defg_places` is no longer cut at 600 characters (same 1,500 limit
