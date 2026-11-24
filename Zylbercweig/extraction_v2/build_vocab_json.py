@@ -61,15 +61,16 @@ RELATION_VOCABS = {
     "sp": ["verb_class", "reason"],
     # `played` uses the same `performer` term as the rest of the function list
     "pr": ["function"],
-    "ep": ["function"],
+    # an event participation is a capacity, not a creative credit, so it has a
+    # vocabulary of its own (2026-11-24). The three terms that ARE credits —
+    # conductor, prompter, stage manager — went into `function`, where they had
+    # been hidden inside an unalignable "prompter / conductor / stage manager…"
+    # catch-all; each aligns exactly, and `function` grew 12 -> 14 terms.
+    "ep": ["participant_role"],
     "eo": ["org_role"],
+    # vitals as events: the birth/death/burial edges are being replaced
+    "ppl": ["event_type"],
 }
-# NOTE: the event-participant role list is WIDER than the `function` vocabulary.
-# honoree, victim, organizer, spouse, speaker, teacher, conductor, prompter,
-# staged and other appear on participant rows but have no `function` term, so
-# `ep` shows an alignment table that does not cover all of its own values.
-# Either extend the function vocabulary or give participants one of their own —
-# worth settling before the vocabulary is published.
 
 
 def strength(cell: str) -> tuple[str, str]:

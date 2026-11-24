@@ -1,8 +1,8 @@
 {
  "generated_from": "Zylbercweig/extraction_v2/vocab_alignment.tsv",
- "n_terms": 201,
- "n_vocabs": 12,
- "n_gaps": 50,
+ "n_terms": 212,
+ "n_vocabs": 13,
+ "n_gaps": 52,
  "sources": [
   {
    "key": "wikidata",
@@ -28,28 +28,28 @@
  "coverage": {
   "wikidata": {
    "label": "Wikidata",
-   "n": 144,
+   "n": 153,
    "pct": 72
   },
   "loc_relator": {
    "label": "LoC relator",
-   "n": 48,
-   "pct": 24
+   "n": 55,
+   "pct": 26
   },
   "bnf_role": {
    "label": "BnF role",
-   "n": 46,
+   "n": 49,
    "pct": 23
   },
   "getty_aat": {
    "label": "Getty AAT",
-   "n": 56,
+   "n": 59,
    "pct": 28
   },
   "sapa": {
    "label": "SAPA",
-   "n": 72,
-   "pct": 36
+   "n": 74,
+   "pct": 35
   }
  },
  "entity_vocabs": {
@@ -104,10 +104,13 @@
    "function"
   ],
   "ep": [
-   "function"
+   "participant_role"
   ],
   "eo": [
    "org_role"
+  ],
+  "ppl": [
+   "event_type"
   ]
  },
  "by_vocab": {
@@ -1491,28 +1494,71 @@
    },
    {
     "vocab": "function",
-    "term": "prompter / conductor / stage manager…",
-    "scope_note": "any §6 occupation used as the function",
-    "note": "",
+    "term": "conductor",
+    "scope_note": "(Kapellmeister / music director)",
+    "note": "split out of the former \"prompter / conductor / stage manager…\" catch-all, which matched nothing; 24 participant rows, all at performances",
     "maps": {
      "wikidata": {
-      "strength": "note",
-      "id": "—",
-      "url": null
+      "strength": "exact",
+      "id": "Q158852",
+      "url": "https://www.wikidata.org/wiki/Q158852"
      },
      "loc_relator": {
-      "strength": "note",
-      "id": "see occupation",
-      "url": null
+      "strength": "exact",
+      "id": "cnd",
+      "url": "https://id.loc.gov/vocabulary/relators/cnd.html"
      },
      "bnf_role": {
-      "strength": "note",
-      "id": "see occupation",
+      "strength": "exact",
+      "id": "1040",
       "url": null
      },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025672",
+      "url": "https://vocab.getty.edu/aat/300025672"
+     },
      "sapa": {
-      "strength": "note",
-      "id": "see occupation",
+      "strength": "exact",
+      "id": "mu/qfg",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "prompter",
+    "scope_note": "souffleur",
+    "note": "split out of the former \"prompter / conductor / stage manager…\" catch-all, which matched nothing; 5 participant rows",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1126281",
+      "url": "https://www.wikidata.org/wiki/Q1126281"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "function",
+    "term": "stage manager",
+    "scope_note": "runs the stage during performance",
+    "note": "split out of the former \"prompter / conductor / stage manager…\" catch-all, which matched nothing; `staged` in the data, 39 rows; near-duplicate of director — merge or keep as a distinct credit",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q19375711",
+      "url": "https://www.wikidata.org/wiki/Q19375711"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "stm",
+      "url": "https://id.loc.gov/vocabulary/relators/stm.html"
+     },
+     "bnf_role": {
+      "strength": "close",
+      "id": "2260",
       "url": null
      }
     },
@@ -3723,6 +3769,182 @@
     },
     "gap": false
    }
+  ],
+  "participant_role": [
+   {
+    "vocab": "participant_role",
+    "term": "performer",
+    "scope_note": "took part by performing; the dramatic role, if named, is on `played`",
+    "note": "same term as function/performer; a participant row may carry it",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q33999",
+      "url": "https://www.wikidata.org/wiki/Q33999"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "prf",
+      "url": "https://id.loc.gov/vocabulary/relators/prf.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "1010",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300025658",
+      "url": "https://vocab.getty.edu/aat/300025658"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/nib",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "participant_role",
+    "term": "director",
+    "scope_note": "directed the staging",
+    "note": "= function/director",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q3387717",
+      "url": "https://www.wikidata.org/wiki/Q3387717"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "sgd",
+      "url": "https://id.loc.gov/vocabulary/relators/sgd.html"
+     },
+     "bnf_role": {
+      "strength": "exact",
+      "id": "500",
+      "url": null
+     },
+     "getty_aat": {
+      "strength": "exact",
+      "id": "300312210",
+      "url": "https://vocab.getty.edu/aat/300312210"
+     },
+     "sapa": {
+      "strength": "exact",
+      "id": "mu/tnt",
+      "url": null
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "participant_role",
+    "term": "organizer",
+    "scope_note": "convened or founded the thing the event is about",
+    "note": "3,240 rows, mostly at foundings",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q2066131",
+      "url": "https://www.wikidata.org/wiki/Q2066131"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "orm",
+      "url": "https://id.loc.gov/vocabulary/relators/orm.html"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "participant_role",
+    "term": "subject",
+    "scope_note": "the person the event is ABOUT — whose death, burial, arrest, illness or military service it is",
+    "note": "REPLACES `victim` (2,125 rows). `victim` was applied to every death, but only ~44% show violence in the text, and it also reached arrest, illness and military_service. Violence is a property of the event, not of the person's role. GAP: no external vocabulary has this sense",
+    "maps": {},
+    "gap": true
+   },
+   {
+    "vocab": "participant_role",
+    "term": "spouse",
+    "scope_note": "married at this event",
+    "note": "1,453 rows, at marriages",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q1196129",
+      "url": "https://www.wikidata.org/wiki/Q1196129"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "participant_role",
+    "term": "honoree",
+    "scope_note": "the person honoured",
+    "note": "707 rows, at honours and jubilees",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q89900696",
+      "url": "https://www.wikidata.org/wiki/Q89900696"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "hnr",
+      "url": "https://id.loc.gov/vocabulary/relators/hnr.html"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "participant_role",
+    "term": "speaker",
+    "scope_note": "spoke at the event",
+    "note": "304 rows, often at burials and jubilees",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q13590141",
+      "url": "https://www.wikidata.org/wiki/Q13590141"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "spk",
+      "url": "https://id.loc.gov/vocabulary/relators/spk.html"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "participant_role",
+    "term": "teacher",
+    "scope_note": "taught at or through the event",
+    "note": "1 row; keep for the vocabulary, not for its frequency",
+    "maps": {
+     "wikidata": {
+      "strength": "exact",
+      "id": "Q37226",
+      "url": "https://www.wikidata.org/wiki/Q37226"
+     },
+     "loc_relator": {
+      "strength": "exact",
+      "id": "tch",
+      "url": "https://id.loc.gov/vocabulary/relators/tch.html"
+     }
+    },
+    "gap": false
+   },
+   {
+    "vocab": "participant_role",
+    "term": "other",
+    "scope_note": "a capacity the text states but the list does not cover",
+    "note": "2,391 rows — large enough to be worth re-reading before publication",
+    "maps": {},
+    "gap": true
+   }
   ]
  },
  "vocab_order": [
@@ -3730,9 +3952,10 @@
   "occupation",
   "org_type",
   "event_type",
-  "relation",
   "function",
+  "relation",
   "verb_class",
+  "participant_role",
   "source_kind",
   "event_status",
   "org_role",

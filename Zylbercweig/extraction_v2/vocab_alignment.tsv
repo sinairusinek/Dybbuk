@@ -4,10 +4,10 @@ occupation	actress	= actor + gender female	exact:Q33999	exact:act	exact:1010	exa
 occupation	singer	sings as a performer (concert, stage, recordings)	exact:Q177220	exact:sng	exact:1030	exact:300025684	exact:mu/ygg	
 occupation	chorister	sings in a theatre or synagogue choir	exact:Q106625143	broad:voc	none	none	none	AAT has only choirs (the group, 300389787)
 occupation	dancer		exact:Q5716684	exact:dnc	exact:1060	exact:300025653	exact:mu/lcp	
-occupation	comedian	comic actor / humorist	exact:Q245068	none	close:1017	exact:300025661	none	BnF "Humoriste"
+occupation	comedian	comic actor / humorist	exact:Q245068	none	close:1017	exact:300025661	none	"BnF ""Humoriste"""
 occupation	prompter	souffleur	exact:Q1126281	none	none	none	none	Q28454909 = opera prompter (narrower)
-occupation	director	regisseur (רעזשיסאָר): directs a staging	exact:Q3387717	exact:sgd	exact:500	exact:300312210	exact:mu/tnt	Yiddish "regisseur" = stage director, not French régisseur (= stage manager)
-occupation	stage manager	runs the stage during performance	exact:Q19375711	exact:stm	close:2260	none	none	BnF "Régisseur"
+occupation	director	regisseur (רעזשיסאָר): directs a staging	exact:Q3387717	exact:sgd	exact:500	exact:300312210	exact:mu/tnt	"Yiddish ""regisseur"" = stage director, not French régisseur (= stage manager)"
+occupation	stage manager	runs the stage during performance	exact:Q19375711	exact:stm	close:2260	none	none	"BnF ""Régisseur"""
 occupation	conductor	(Kapellmeister / music director)	exact:Q158852	exact:cnd	exact:1040	exact:300025672	exact:mu/qfg	LoC msd / BnF 2120 = musical director, if distinguished
 occupation	composer		exact:Q36834	exact:cmp	exact:220	exact:300025671	exact:mu/fbo	
 occupation	lyricist	writes song texts	exact:Q822146	exact:lyr	exact:510	exact:300025675	exact:mu/vhj	
@@ -22,11 +22,11 @@ occupation	teacher	incl. drama and music teachers	exact:Q37226	exact:tch	none	ex
 occupation	cantor	hazzan (synagogue)	exact:Q1067977	none	none	exact:300136390	none	NOT Q330679 (church cantor)
 occupation	meshorer	boy/man singing with a hazzan	none	none	none	none	none	GAP everywhere → Wikidata candidate; broader: chorister
 occupation	badkhn	wedding jester	exact:Q798834	none	none	none	none	
-occupation	folk singer	incl. broder singer (בראָדער זינגער)	broad:Q177220	none	close:1018	none	none	GAP: no item for broder singers → Wikidata candidate; BnF "Chansonnier" is the nearest
-occupation	manager	runs a theatre or troupe (no lease stated)	close:Q1776724	none	close:3200	broad:300025435	close:mu/jfv	WD theatre manager; BnF "Directeur de salle de spectacle"
+occupation	folk singer	incl. broder singer (בראָדער זינגער)	broad:Q177220	none	close:1018	none	none	"GAP: no item for broder singers → Wikidata candidate; BnF ""Chansonnier"" is the nearest"
+occupation	manager	runs a theatre or troupe (no lease stated)	close:Q1776724	none	close:3200	broad:300025435	close:mu/jfv	"WD theatre manager; BnF ""Directeur de salle de spectacle"""
 occupation	lessee	holds the lease of a theatre (אַרענדאַטאָר)	broad:Q25505059	none	none	none	close:mu/loc	GAP for the theatre-business sense → Wikidata candidate
-occupation	impresario	organizes and finances tours, concerts	exact:Q943995	close:pro	close:3150	exact:300236867	close:vr/ctx	SAPA "promoter"
-occupation	agent	theatrical agent / booking agent	close:Q1344174	none	broad:4220	broad:300025213	close:vr/byg	GAP for theatrical agent → Wikidata candidate; SAPA "artist agency" is a group
+occupation	impresario	organizes and finances tours, concerts	exact:Q943995	close:pro	close:3150	exact:300236867	close:vr/ctx	"SAPA ""promoter"""
+occupation	agent	theatrical agent / booking agent	close:Q1344174	none	broad:4220	broad:300025213	close:vr/byg	"GAP for theatrical agent → Wikidata candidate; SAPA ""artist agency"" is a group"
 occupation	cashier	box office	exact:Q1735282	none	none	none	none	
 occupation	administrator	theatre administration, secretary of a troupe	close:Q28054726	none	none	broad:300025427	broad:mu/jfv	
 occupation	publicist	press agent	exact:Q4178004	none	none	exact:300237376	none	press agent Q2358549 / AAT 300456657
@@ -48,17 +48,19 @@ function	designer	sets or costumes (say which in role_title)	P4608 / P2515	exact
 function	choreographer		P1809	exact:chr	exact:160	none	exact:mu/bbv	
 function	performer	acted, sang or danced in it (+ character)	P161	exact:prf	exact:1990	none	exact:mu/awx	character → WD qualifier P453; LA-PA `portrayed`; no LoC/BnF/SAPA equivalent
 function	producer	staged/financed the production	P162	exact:pro	exact:3150	none	exact:mu/wgo	
-function	prompter / conductor / stage manager…	any §6 occupation used as the function	—	see occupation	see occupation	none	see occupation	
-work_kind	play	spoken drama (incl. "drama")	exact:Q25379	none	none	exact:300451696	close:mn/eyg	
+function	conductor	(Kapellmeister / music director)	exact:Q158852	exact:cnd	exact:1040	exact:300025672	exact:mu/qfg	"split out of the former ""prompter / conductor / stage manager…"" catch-all, which matched nothing; 24 participant rows, all at performances"
+function	prompter	souffleur	exact:Q1126281	none	none	none	none	"split out of the former ""prompter / conductor / stage manager…"" catch-all, which matched nothing; 5 participant rows"
+function	stage manager	runs the stage during performance	exact:Q19375711	exact:stm	close:2260	none	none	"split out of the former ""prompter / conductor / stage manager…"" catch-all, which matched nothing; `staged` in the data, 39 rows; near-duplicate of director — merge or keep as a distinct credit"
+work_kind	play	"spoken drama (incl. ""drama"")"	exact:Q25379	none	none	exact:300451696	close:mn/eyg	
 work_kind	operetta		exact:Q170384	none	none	exact:300417594	exact:mn/ols	
 work_kind	opera		exact:Q1344	none	none	exact:300417587	exact:mn/bfm	
-work_kind	musical comedy	Yiddish "musikalishe komedye"	exact:Q1548170	none	none	broad:300417617	close:mn/wna	
+work_kind	musical comedy	"Yiddish ""musikalishe komedye"""	exact:Q1548170	none	none	broad:300417617	close:mn/wna	
 work_kind	melodrama		exact:Q191489	none	none	none	exact:mn/bcj	AAT has only the film genre (300375153)
 work_kind	sketch	short comic scene	exact:Q55760865	none	none	none	none	sketch comedy (Q743934) = the form, not one sketch
 work_kind	one-act	one-act play	exact:Q1194583	none	none	none	none	
-work_kind	revue		exact:Q918727	none	none	none	close:mn/vyr	SAPA "cabaret"
+work_kind	revue		exact:Q918727	none	none	none	close:mn/vyr	"SAPA ""cabaret"""
 work_kind	song		exact:Q7366	none	none	exact:300167056	close:mn/nmd	
-work_kind	music (score)	incidental music, score	none	none	none	exact:300026427	close:mu/stm	SAPA "stage music"
+work_kind	music (score)	incidental music, score	none	none	none	exact:300026427	close:mu/stm	"SAPA ""stage music"""
 work_kind	film		exact:Q11424	none	none	exact:300136900	none	
 work_kind	radio play		exact:Q2635894	none	none	none	exact:mn/jva	
 work_kind	book		exact:Q571	none	none	exact:300028051	none	
@@ -66,7 +68,7 @@ work_kind	memoir		exact:Q112983	none	none	exact:300202559	none
 work_kind	article		exact:Q191067	none	none	exact:300048715	none	
 work_kind	periodical		exact:Q1002697	none	none	exact:300026657	none	
 work_kind	other	+ verbatim	none	none	none	none	exact:mn/nvd	
-work_kind	comedy	genre as stated ("קאָמעדיע")	exact:Q5151421	none	none	exact:300201014	exact:mn/ggs	added 11-21 (decision 9)
+work_kind	comedy	"genre as stated (""קאָמעדיע"")"	exact:Q5151421	none	none	exact:300201014	exact:mn/ggs	added 11-21 (decision 9)
 work_kind	tragedy		exact:Q80930	none	none	exact:300201026	exact:mn/lxt	added 11-21 (decision 9)
 work_kind	farce		exact:Q193979	none	none	none	none	added 11-21 (decision 9)
 work_kind	Purim play	purimshpil	exact:Q7261254	none	none	none	none	added 11-21 (decision 9)
@@ -74,9 +76,9 @@ event_type	performance		exact:Q35140	none	none	none	exact:hl/sin	LA-PA Performan
 event_type	premiere		exact:Q204854	none	none	exact:300069101	exact:hl/amu	SAPA also distinguishes world / language / national premiere (hl/hey, hl/osp…)
 event_type	debut	a performer's first appearance	exact:Q1181693	none	none	none	none	WD only (generic 'first public appearance'); no AAT/SAPA term
 event_type	guest_appearance		exact:Q40249767	none	none	none	exact:hl/epi	
-event_type	season		exact:Q2310376	none	none	none	close:hl/ser	SAPA "performance series"
+event_type	season		exact:Q2310376	none	none	none	close:hl/ser	"SAPA ""performance series"""
 event_type	benefit		exact:Q4887449	none	none	none	none	
-event_type	jubilee	an artist's 10/25/50-year stage jubilee	broad:Q1062856	none	none	broad:300069026	none	GAP: WD "jubilee" items are religious → Wikidata candidate
+event_type	jubilee	an artist's 10/25/50-year stage jubilee	broad:Q1062856	none	none	broad:300069026	none	"GAP: WD ""jubilee"" items are religious → Wikidata candidate"
 event_type	honor	award, title, honorary membership	broad:Q618779	exact:hnr (honoree, participant role)	none	none	none	
 event_type	memorial		exact:Q110041043	none	none	exact:300379015	none	
 event_type	founding	of any organization	exact:Q3075355	exact:fon (founder, participant role)	none	broad:300393213	none	
@@ -90,14 +92,14 @@ event_type	imprisonment		exact:Q841236	none	none	exact:300137572	none
 event_type	death		exact:Q4	none	none	none	none	
 event_type	burial		exact:Q331055	none	none	none	none	
 event_status	performed	default	none	none	none	none	none	LA-PA: Performance (actual)
-event_status	planned	announced, rehearsed, "prepared"	none	none	none	none	none	LA-PA: Projected Event (CRMpro CC12) + CP4_projects
-event_status	banned	by censor or police	none	none	none	none	none	LA-PA: Projected Event, never realized; no standard term for "banned"
+event_status	planned	"announced, rehearsed, ""prepared"""	none	none	none	none	none	LA-PA: Projected Event (CRMpro CC12) + CP4_projects
+event_status	banned	by censor or police	none	none	none	none	none	"LA-PA: Projected Event, never realized; no standard term for ""banned"""
 event_status	cancelled		none	none	none	none	none	LA-PA: Projected Event, never realized
 event_status	unstated		none	none	none	none	none	
 org_role	producer	the company that made the production	P272	exact:prn	exact:3150	none	close:vr/xbs	
-org_role	presenter_or_host	theatre or society that hosted a guest production	none	close:his	close:3190	none	exact:vr/fcm	SAPA "guest performance host"; also vr/xrs organizer
+org_role	presenter_or_host	theatre or society that hosted a guest production	none	close:his	close:3190	none	exact:vr/fcm	"SAPA ""guest performance host""; also vr/xrs organizer"
 org_role	venue	where it took place	P276	exact:evp	none	none	none	LA-PA took_place_at
-org_role	touring_company	visiting troupe	none	none	none	none	close:hl/epi	AusStage "touring"
+org_role	touring_company	visiting troupe	none	none	none	none	close:hl/epi	"AusStage ""touring"""
 org_role	other		none	exact:oth	exact:9990	none	none	
 verb_class	born		broad:Q14819852	none	none	none	none	
 verb_class	settled		close:Q177626	none	none	broad:300263931	none	
@@ -200,3 +202,12 @@ work_kind	musical_burlesque	added 11-22 (Sinai); alignment pending
 work_kind	folk_comedy	added 11-22 (Sinai); alignment pending						
 work_kind	fable	added 11-22 (Sinai); alignment pending						
 work_kind	folk_operetta	added 11-22 (Sinai); alignment pending						
+participant_role	performer	took part by performing; the dramatic role, if named, is on `played`	exact:Q33999	exact:prf	exact:1010	exact:300025658	exact:mu/nib	same term as function/performer; a participant row may carry it
+participant_role	director	directed the staging	exact:Q3387717	exact:sgd	exact:500	exact:300312210	exact:mu/tnt	= function/director
+participant_role	organizer	convened or founded the thing the event is about	exact:Q2066131	exact:orm	none	none	none	3,240 rows, mostly at foundings
+participant_role	subject	the person the event is ABOUT — whose death, burial, arrest, illness or military service it is	none	none	none	none	none	REPLACES `victim` (2,125 rows). `victim` was applied to every death, but only ~44% show violence in the text, and it also reached arrest, illness and military_service. Violence is a property of the event, not of the person's role. GAP: no external vocabulary has this sense
+participant_role	spouse	married at this event	exact:Q1196129	none	none	none	none	1,453 rows, at marriages
+participant_role	honoree	the person honoured	exact:Q89900696	exact:hnr	none	none	none	707 rows, at honours and jubilees
+participant_role	speaker	spoke at the event	exact:Q13590141	exact:spk	none	none	none	304 rows, often at burials and jubilees
+participant_role	teacher	taught at or through the event	exact:Q37226	exact:tch	none	none	none	1 row; keep for the vocabulary, not for its frequency
+participant_role	other	a capacity the text states but the list does not cover	none	none	none	none	none	2,391 rows — large enough to be worth re-reading before publication
