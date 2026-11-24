@@ -69,6 +69,12 @@ CHECKS: list[tuple[str, str, str, callable]] = [
     ("8",  "parts",                   "defg_full.jsonl",      _jsonl_rows),
     ("8",  "stations",                "defg/stations.tsv",    _tsv_rows),
     ("8",  "events",                  "defg/events.tsv",      _tsv_rows),
+    # "N performance facts" must mean the TABLE TOTAL. The 5,503 subset that
+    # names a dramatic character has twice been written with this same phrase
+    # and twice been reported as drift, so the subset is worded "on N of the
+    # performance-fact rows" instead. If this check fires on a number far
+    # below the total, that is the collision again — reword the subset, do not
+    # loosen the check.
     ("8",  "performance facts",       "defg/performance_facts.tsv", _tsv_rows),
     ("8",  "source uses",             "defg/source_uses.tsv", _tsv_rows),
     ("8",  "schema issues",           "defg/schema_issues.tsv", _tsv_rows),
