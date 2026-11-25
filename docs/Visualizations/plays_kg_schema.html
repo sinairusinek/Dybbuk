@@ -84,7 +84,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <h2>In numbers</h2>
 <p class="note">Everything on this page is read off <code>kg/nodes.tsv</code> and <code>kg/edges.tsv</code> by <code>build_kg_schema_page.py</code>. If a figure here is wrong, the graph says so too.</p>
 <div class="stats">
-<div class="stat"><b>16,373</b><span>nodes</span></div>
+<div class="stat"><b>16,201</b><span>nodes</span></div>
 <div class="stat"><b>36,708</b><span>edges</span></div>
 <div class="stat"><b>7</b><span>node types</span></div>
 <div class="stat"><b>42</b><span>relations</span></div>
@@ -93,10 +93,10 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <h3>Layers</h3>
 <p class="note">Four layer modules share one graph; every row carries its <code>source_layer</code>, so a layer can be rebuilt or viewed alone.</p>
 <table><thead><tr><th>layer</th><th>nodes</th><th>edges</th><th>module</th></tr></thead><tbody>
-<tr><td><code>bio</code></td><td>7,407</td><td>7,573</td><td>kg_bio.py</td></tr>
+<tr><td><code>bio</code></td><td>7,232</td><td>7,573</td><td>kg_bio.py</td></tr>
 <tr><td><code>orgrel</code></td><td>5,546</td><td>21,869</td><td>kg_orgrel.py</td></tr>
 <tr><td><code>mentions</code></td><td>1,892</td><td>4,382</td><td>kg_mentions.py</td></tr>
-<tr><td><code>plays</code></td><td>1,528</td><td>2,884</td><td>build_kg.py (play facts)</td></tr>
+<tr><td><code>plays</code></td><td>1,531</td><td>2,884</td><td>build_kg.py (play facts)</td></tr>
 </tbody></table>
 </section>
 <section class="s">
@@ -108,22 +108,22 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <tr><td><code>event</code></td><td>4,119</td><td>An event: a staging (identified by a production_key), or a person&#x27;s birth, death or burial. The vitals became events in step 9c — an event holds the date, the place and the other people involved, which the born_in / died_in / buried_in edges could not. The 167 edges that survive are the ones where the two sources disagree, held for review.</td></tr>
 <tr><td><code>org</code></td><td>5,564</td><td>A company, troupe, theatre, school, publisher or institution, resolved against core_db. An unresolved cluster stays an `org_cluster:` node carrying its review decision.</td></tr>
 <tr><td><code>venue</code></td><td>31</td><td>A building named as a performance site but not resolved to an org row.</td></tr>
-<tr><td><code>place</code></td><td>1,376</td><td>A settlement, resolved against the toponyms gazetteer (Wikidata qid in ext_ref_id).</td></tr>
+<tr><td><code>place</code></td><td>1,204</td><td>A settlement, resolved against the toponyms gazetteer (Wikidata qid in ext_ref_id).</td></tr>
 </tbody></table>
 <h3>Node columns</h3>
 <p class="note">“filled” counts rows where the column is non-empty. A sparse column is normal: the schema is one table for seven kinds.</p>
 <table><thead><tr><th>column</th><th>filled</th><th>meaning</th></tr></thead><tbody>
-<tr><td><code>node_id</code></td><td>16,373 <span class='c'>100%</span></td><td>kind-prefixed id — see conventions below</td></tr>
-<tr><td><code>node_type</code></td><td>16,373 <span class='c'>100%</span></td><td>one of the seven kinds</td></tr>
-<tr><td><code>label_yiddish</code></td><td>12,227 <span class='c'>75%</span></td><td>the name as the Lexicon writes it (precomposed Hebrew)</td></tr>
-<tr><td><code>label_english</code></td><td>11,185 <span class='c'>68%</span></td><td>romanised or English name where one is known</td></tr>
-<tr><td><code>ext_ref_type</code></td><td>9,600 <span class='c'>59%</span></td><td>which authority ext_ref_id points into</td></tr>
-<tr><td><code>ext_ref_id</code></td><td>9,600 <span class='c'>59%</span></td><td>the id in that authority</td></tr>
-<tr><td><code>secondary_ids</code></td><td>8,013 <span class='c'>49%</span></td><td>further ids for the same entity (merged rows, cluster ids)</td></tr>
-<tr><td><code>match_status</code></td><td>16,373 <span class='c'>100%</span></td><td>matched / candidate / unmatched (see vocabulary)</td></tr>
-<tr><td><code>notes</code></td><td>5,547 <span class='c'>34%</span></td><td>free text, incl. the org cluster&#x27;s review decision</td></tr>
-<tr><td><code>source_layer</code></td><td>16,373 <span class='c'>100%</span></td><td>which layer module emitted the node</td></tr>
-<tr><td><code>attrs</code></td><td>14,452 <span class='c'>88%</span></td><td>JSON bag of per-kind attributes (vitals, education, family background, multi-entry `entries` list and `*_alt` variants)</td></tr>
+<tr><td><code>node_id</code></td><td>16,201 <span class='c'>100%</span></td><td>kind-prefixed id — see conventions below</td></tr>
+<tr><td><code>node_type</code></td><td>16,201 <span class='c'>100%</span></td><td>one of the seven kinds</td></tr>
+<tr><td><code>label_yiddish</code></td><td>12,055 <span class='c'>74%</span></td><td>the name as the Lexicon writes it (precomposed Hebrew)</td></tr>
+<tr><td><code>label_english</code></td><td>11,188 <span class='c'>69%</span></td><td>romanised or English name where one is known</td></tr>
+<tr><td><code>ext_ref_type</code></td><td>9,603 <span class='c'>59%</span></td><td>which authority ext_ref_id points into</td></tr>
+<tr><td><code>ext_ref_id</code></td><td>9,603 <span class='c'>59%</span></td><td>the id in that authority</td></tr>
+<tr><td><code>secondary_ids</code></td><td>8,016 <span class='c'>49%</span></td><td>further ids for the same entity (merged rows, cluster ids)</td></tr>
+<tr><td><code>match_status</code></td><td>16,201 <span class='c'>100%</span></td><td>matched / candidate / unmatched (see vocabulary)</td></tr>
+<tr><td><code>notes</code></td><td>5,372 <span class='c'>33%</span></td><td>free text, incl. the org cluster&#x27;s review decision</td></tr>
+<tr><td><code>source_layer</code></td><td>16,201 <span class='c'>100%</span></td><td>which layer module emitted the node</td></tr>
+<tr><td><code>attrs</code></td><td>14,452 <span class='c'>89%</span></td><td>JSON bag of per-kind attributes (vitals, education, family background, multi-entry `entries` list and `*_alt` variants)</td></tr>
 </tbody></table>
 </section>
 <section class="s">
@@ -175,7 +175,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 </tbody></table>
 <h3>Edge columns</h3>
 <table><thead><tr><th>column</th><th>filled</th><th>meaning</th></tr></thead><tbody>
-<tr><td><code>edge_id</code></td><td>36,708 <span class='c'>100%</span></td><td>stable within a build only — edge ids RENUMBER on every build_kg.py run, so never store one as a reference</td></tr>
+<tr><td><code>edge_id</code></td><td>36,708 <span class='c'>100%</span></td><td>`E-` + a hash of the edge&#x27;s content, so it is STABLE across rebuilds and safe to store as a reference. It changes only if the assertion itself changes (endpoints, relation, date, provenance or evidence sentence); our handling of it (review_status, reviewer, confidence) is deliberately not in the hash, so reviewing an edge does not move it</td></tr>
 <tr><td><code>source_id</code></td><td>36,708 <span class='c'>100%</span></td><td>node_id of the subject</td></tr>
 <tr><td><code>target_id</code></td><td>36,708 <span class='c'>100%</span></td><td>node_id of the object</td></tr>
 <tr><td><code>edge_type</code></td><td>36,708 <span class='c'>100%</span></td><td>the relation (see the relation table)</td></tr>
@@ -196,15 +196,17 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <tr><td><code>source_layer</code></td><td>36,708 <span class='c'>100%</span></td><td>which layer module emitted the edge</td></tr>
 <tr><td><code>character_ref</code></td><td>8 <span class='c'>0%</span></td><td>the character resolved to an id, where possible</td></tr>
 <tr><td><code>attribution</code></td><td>247 <span class='c'>1%</span></td><td>ascription verdict carried from the attribution guard</td></tr>
+<tr><td><code>reviewer</code></td><td>0 <span class='c'>0%</span></td><td>who decided this edge, where a human did. Empty when the review sheet records a decision but no name</td></tr>
+<tr><td><code>method</code></td><td>756 <span class='c'>2%</span></td><td>how the edge&#x27;s endpoints were decided, per slot (`play:gemini_accept`, `org:auto_cluster`, ...)</td></tr>
 </tbody></table>
 </section>
 <section class="s">
 <h2>Vocabularies</h2>
 <p class="note">Read off the data, so a newly introduced value appears here on its own.</p>
 <h3><code>node_type</code></h3>
-<p class="vals"><span class='pill'><code>org</code> 5,564</span> <span class='pill'><code>person</code> 4,983</span> <span class='pill'><code>event</code> 4,119</span> <span class='pill'><code>place</code> 1,376</span> <span class='pill'><code>play</code> 273</span> <span class='pill'><code>venue</code> 31</span> <span class='pill'><code>edition</code> 27</span></p>
+<p class="vals"><span class='pill'><code>org</code> 5,564</span> <span class='pill'><code>person</code> 4,983</span> <span class='pill'><code>event</code> 4,119</span> <span class='pill'><code>place</code> 1,204</span> <span class='pill'><code>play</code> 273</span> <span class='pill'><code>venue</code> 31</span> <span class='pill'><code>edition</code> 27</span></p>
 <h3><code>ext_ref_type</code></h3>
-<p class="vals"><span class='pill'><code>org_core_db</code> 4,587</span> <span class='pill'><code>people_db</code> 2,600</span> <span class='pill'><code>org_cluster</code> 953</span> <span class='pill'><code>wikidata_qid</code> 828</span> <span class='pill'><code>entry_person_id</code> 332</span> <span class='pill'><code>plays_db</code> 273</span> <span class='pill'><code>transkribus_doc</code> 27</span></p>
+<p class="vals"><span class='pill'><code>org_core_db</code> 4,587</span> <span class='pill'><code>people_db</code> 2,600</span> <span class='pill'><code>org_cluster</code> 953</span> <span class='pill'><code>wikidata_qid</code> 831</span> <span class='pill'><code>entry_person_id</code> 332</span> <span class='pill'><code>plays_db</code> 273</span> <span class='pill'><code>transkribus_doc</code> 27</span></p>
 <h3><code>match_status</code></h3>
 <p class='note'>Whether the endpoint(s) resolved to an authority row. `unmatched` is not an error — it is an open question.</p>
 <p class="vals"><span class='pill'><code>matched</code> 31,573</span> <span class='pill'><code>unmatched</code> 4,672</span> <span class='pill'><code>candidate</code> 463</span></p>
@@ -221,8 +223,8 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <p class='note'>What produced the fact. The `colab_extraction_*` values are the 2026-03 Colab run; `registry` and `title_join` are deterministic joins, not extractions.</p>
 <p class="vals"><span class='pill'><code>colab_extraction_IIIorg</code> 21,869</span> <span class='pill'><code>colab_extraction_III</code> 5,545</span> <span class='pill'><code>colab_extraction_III_mentions</code> 4,382</span> <span class='pill'><code>gemini-3-flash-preview</code> 2,610</span> <span class='pill'><code>defg</code> 2,028</span> <span class='pill'><code>registry</code> 247</span> <span class='pill'><code>title_join</code> 27</span></p>
 <h3><code>review_status</code></h3>
-<p class='note'>`auto` until a human decision is stamped. A logged decision is not an applied decision — see the review sheets.</p>
-<p class="vals"><span class='pill'><code>auto</code> 36,708</span></p>
+<p class='note'>`auto`, or `reviewed` once a human decision (ALIGN / REJECT) on one of the edge&#x27;s surfaces has been applied — machine decisions (GEMINI_*, AUTO_*) stay `auto`, since recording them as reviewed would claim a confirmation nobody gave. A logged decision is not an applied decision — see the review sheets.</p>
+<p class="vals"><span class='pill'><code>auto</code> 36,674</span> <span class='pill'><code>reviewed</code> 34</span></p>
 <h3><code>attribution</code></h3>
 <p class='note'>The ascription verdict from the attribution guard.</p>
 <p class="vals"><span class='pill'><code>certain</code> 247</span></p>
@@ -245,7 +247,7 @@ footer { color: var(--muted); font-size: .82rem; margin-top: 28px;
 <h2>Relation to the Lateiner/Hurwitz graph</h2>
 <p class="note">The project keeps two graphs over overlapping material. They are joined, not merged, and they share <b>no relation names at all</b> &mdash; the join is <code>Zylbercweig/plays/kg_crosslink.py</code>, which maps catalogue <code>work</code> ids to <code>plays_db</code> play ids and carries the ascription verdicts and open questions both ways.</p>
 <table><thead><tr><th></th><th>this graph</th><th>Lateiner/Hurwitz</th></tr></thead><tbody>
-<tr><td>size</td><td>16,373 nodes / 36,708 edges</td><td>692 nodes / 887 edges</td></tr>
+<tr><td>size</td><td>16,201 nodes / 36,708 edges</td><td>692 nodes / 887 edges</td></tr>
 <tr><td>relations</td><td>42</td><td>17</td></tr>
 <tr><td>the play unit</td><td><code>play</code></td><td><code>work</code> + <code>edition</code></td></tr>
 <tr><td>shared kinds</td><td colspan='2'><code>person</code>, <code>org</code>, <code>place</code>, <code>edition</code></td></tr>

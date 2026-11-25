@@ -61,7 +61,14 @@ EDGE_FIELDS = ["edge_id", "source_id", "target_id", "edge_type", "role_detail",
                "event_id", "production_key", "provenance_person_id",
                "provenance_fact_ids", "evidence_sentence", "extraction_model",
                "confidence", "match_status", "review_status", "source_layer",
-               "character_ref", "attribution"]
+               "character_ref", "attribution",
+               # Phase 2: who decided this edge and how. `review_status=auto`
+               # on its own cannot say that a human confirmed an assertion, so
+               # a reviewed claim imported from the L/H graph (where 35/37
+               # persons and 8 songs carry a reviewer) had nowhere to land.
+               # reviewer = a person or a named process; method = how it was
+               # decided (gazetteer_exact, fuzzy_92, heading, manual...).
+               "reviewer", "method"]
 EVENT_FIELDS = ["event_id", "event_type", "play_id", "venue_id", "org_id",
                 "place_id", "date_start", "date_end", "date_precision",
                 "production_key", "provenance_person_id", "provenance_fact_ids",
@@ -88,12 +95,33 @@ class Graph:
         # unmatched surfaces minted by the non-plays layers, for the
         # layers review sheet: (slot, surface) -> row
         self.pending: dict[tuple[str, str], dict] = {}
+        self._linkers = None
+
+    def linkers(self):
+        """The plays layer's resolver, built on first use (its constructor
+        loads people_db, core_db, the org review and the gazetteer)."""
+        if self._linkers is None:
+            import link_entities
+            self._linkers = link_entities.Linkers()
+        return self._linkers
 
     def resolve_surface(self, slot: str, surface: str, layer: str,
-                        fact_id: str, evidence: str, **mint_kw) -> str:
+                        fact_id: str, evidence: str, try_gazetteer: bool = False,
+                        **mint_kw) -> str:
         """Node id for an unmatched surface in a non-plays layer: an ALIGN
         decision in either review sheet wins; otherwise mint (shared prefix
-        with the plays layer) and queue the surface for review."""
+        with the plays layer) and queue the surface for review.
+
+        try_gazetteer: first put the surface through the same linker the plays
+        layer uses. Pass it only where the caller has NOT already run its own
+        authority check. kg_bio.py must not: it reaches this function precisely
+        when a place attestation came back `unlinked`/`misresolved`, and
+        `misresolved` means a human REJECTED a QID for this surface — relinking
+        it here would silently overrule that decision. Callers with no such
+        check (kg_vitals_events.py, importing D–G place surfaces raw) were
+        minting place:UPL- duplicates of places already in the graph under
+        their QID: 204 nodes / 848 edges, e.g. a second New York beside
+        place:Q60 because nothing ever consulted the gazetteer."""
         rv = self.review.get((slot, surface))
         if rv and rv.get("decision") == "ALIGN" and rv.get("decided_link"):
             if non_entity_cluster(rv["decided_link"]):
@@ -102,6 +130,13 @@ class Graph:
                                    surface, self.labels, self.entry_index)
         if rv and rv.get("decision") in ("NOT_ENTITY", "GEMINI_NOT_ENTITY"):
             return ""
+        if try_gazetteer and slot == "place":
+            link, status, method = self.linkers().link_place(surface)
+            # exact only: a fuzzy hit on a place name is how one shtetl becomes
+            # another, and those stay minted for review
+            if link and status == "matched":
+                return ensure_endpoint(self, link, "matched", slot, surface,
+                                       self.labels, self.entry_index)
         prefix = {"person": "person:UP", "org": "org:UO", "venue": "venue:UV",
                   "place": "place:UPL", "play": "play:NEW"}[slot]
         nid = self.mint(prefix, pc.norm_yiddish(surface) or surface, **mint_kw)
@@ -137,6 +172,8 @@ class Graph:
     def add_edge(self, **kw) -> None:
         kw.setdefault("review_status", "auto")
         kw.setdefault("source_layer", "plays")
+        kw.setdefault("reviewer", "")
+        kw.setdefault("method", "")
         self.edges.append(kw)
 
 
@@ -284,6 +321,42 @@ def resolve_with_adjudication(row: dict, slot: str, review: dict) -> tuple[str, 
     return link, status
 
 
+# A decision value -> whether it was a human call, and what to record as the
+# method. GEMINI_*/AUTO_* are machine decisions: recording them as `reviewer`
+# would claim a human confirmation that never happened.
+HUMAN_DECISIONS = {"ALIGN", "REJECT"}
+
+
+def edge_provenance(row: dict, review: dict, slots=("person", "play", "org",
+                                                    "venue", "place")) -> dict:
+    """`reviewer` / `method` for an edge built from this fact row.
+
+    A fact becomes a reviewed edge when a human adjudicated one of its
+    surfaces. The reviewer name comes from the sheet and is left empty when the
+    sheet does not carry one — the point of the column is to record who
+    decided, so guessing defeats it.
+    """
+    surf_cols = {"person": "person_surface", "org": "org_surface",
+                 "venue": "venue_surface", "place": "settlement_surface",
+                 "play": "play_title_surface"}
+    human, methods, reviewers = False, [], []
+    for slot in slots:
+        dec = review.get((slot, row.get(surf_cols[slot], "")))
+        if not dec or not dec.get("decision"):
+            continue
+        d = dec["decision"]
+        methods.append(f"{slot}:{d.lower()}")
+        if d in HUMAN_DECISIONS:
+            human = True
+            if dec.get("reviewer"):
+                reviewers.append(dec["reviewer"])
+    if not methods:
+        return {"reviewer": "", "method": ""}
+    return {"reviewer": ";".join(sorted(set(reviewers))),
+            "method": ";".join(methods),
+            "review_status": "reviewed" if human else "auto"}
+
+
 def ensure_endpoint(g: Graph, link: str, status: str, slot: str, surface: str,
                     labels, entry_index=None) -> str:
     """Return a node_id for this slot (minting an unlinked node if needed).
@@ -377,6 +450,53 @@ def ensure_endpoint(g: Graph, link: str, status: str, slot: str, surface: str,
     return g.mint(prefix, pc.norm_yiddish(surface) or surface,
                   node_type=node_type, label_yiddish=surface,
                   match_status="unmatched", notes=notes)
+
+
+# The columns that make an edge the assertion it is. An edge_id is a hash of
+# these, so it is STABLE across rebuilds: a review stamped on an edge today is
+# still on that edge after the next build. The old `E-{i:05d}` was assigned by
+# enumeration, so inserting one edge anywhere renumbered every edge after it
+# and orphaned every stamp (see feedback_kg_rebuild_hazards).
+#
+# evidence_sentence is in the key because it has to be: 95 groups of edges
+# (210 edges) agree on every other column and differ only in the sentence they
+# came from — "5 years with Ber Hart touring Galicia" vs "another year with
+# Hartn in Lemberg" are two assertions, not one row twice. Verified injective:
+# 36,708 distinct keys for 36,708 edges, no 12-hex collision.
+#
+# Deliberately EXCLUDED: confidence, match_status, review_status, reviewer,
+# method, attribution. Those describe our handling of the assertion, not the
+# assertion; if they were in the key, reviewing an edge would change its id,
+# which is the exact failure this replaces.
+EDGE_ID_COLS = ["source_id", "target_id", "edge_type", "role_detail",
+                "character", "date_start", "date_end", "date_precision",
+                "event_id", "provenance_person_id", "provenance_fact_ids",
+                "evidence_sentence", "source_layer"]
+
+
+def assign_edge_ids(edges: list[dict]) -> None:
+    """Stamp each edge with a content-derived stable id (E-<12 hex>).
+
+    Any residual collision gets a #n suffix rather than silently sharing an id,
+    and the suffix is assigned in sorted-key order so it does not depend on the
+    order the layers happened to emit edges in.
+    """
+    def key(e: dict) -> str:
+        return "\x1f".join(str(e.get(c, "") or "") for c in EDGE_ID_COLS)
+
+    groups: dict[str, list[dict]] = defaultdict(list)
+    for e in edges:
+        groups[hashlib.sha1(key(e).encode()).hexdigest()[:12]].append(e)
+    n_suffixed = 0
+    for h, group in groups.items():
+        if len(group) == 1:
+            group[0]["edge_id"] = f"E-{h}"
+            continue
+        for i, e in enumerate(sorted(group, key=key), 1):
+            e["edge_id"] = f"E-{h}#{i}"
+            n_suffixed += 1
+    if n_suffixed:
+        print(f"edge_id: {n_suffixed} edges needed a collision suffix")
 
 
 def event_key(play: str, venue: str, org: str, place: str, date: str) -> str:
@@ -581,6 +701,7 @@ def main() -> None:
             extraction_model=r.get("model", ""),
             confidence=r.get("confidence", ""), match_status=overall,
             attribution=att.attribution(r),
+            **edge_provenance(r, review),
         )
         ftype = r.get("fact_type", "")
         role = r.get("person_role", "")
@@ -707,8 +828,7 @@ def main() -> None:
         import kg_vitals_events
         print(f"vitals events: {dict(kg_vitals_events.add_vitals_events(g))}")
 
-    for i, e in enumerate(g.edges, 1):
-        e["edge_id"] = f"E-{i:05d}"
+    assign_edge_ids(g.edges)
 
     nodes = list(g.nodes.values())
     print(f"nodes: {len(nodes)}  by type: {dict(Counter(n['node_type'] for n in nodes))}")

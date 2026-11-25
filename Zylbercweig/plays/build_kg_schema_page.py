@@ -92,8 +92,12 @@ NODE_FIELD_NOTE = {
 }
 
 EDGE_FIELD_NOTE = {
-    "edge_id": "stable within a build only — edge ids RENUMBER on every "
-               "build_kg.py run, so never store one as a reference",
+    "edge_id": "`E-` + a hash of the edge's content, so it is STABLE across "
+               "rebuilds and safe to store as a reference. It changes only if "
+               "the assertion itself changes (endpoints, relation, date, "
+               "provenance or evidence sentence); our handling of it "
+               "(review_status, reviewer, confidence) is deliberately not in "
+               "the hash, so reviewing an edge does not move it",
     "source_id": "node_id of the subject",
     "target_id": "node_id of the object",
     "edge_type": "the relation (see the relation table)",
@@ -114,6 +118,10 @@ EDGE_FIELD_NOTE = {
     "review_status": "`auto` until a human decision is stamped on it",
     "source_layer": "which layer module emitted the edge",
     "attribution": "ascription verdict carried from the attribution guard",
+    "reviewer": "who decided this edge, where a human did. Empty when the "
+                "review sheet records a decision but no name",
+    "method": "how the edge's endpoints were decided, per slot "
+              "(`play:gemini_accept`, `org:auto_cluster`, ...)",
 }
 
 # What a relation asserts, where the name alone is ambiguous or the direction
@@ -165,9 +173,12 @@ VOCAB_NOTE = {
     "extraction_model": "What produced the fact. The `colab_extraction_*` "
                         "values are the 2026-03 Colab run; `registry` and "
                         "`title_join` are deterministic joins, not extractions.",
-    "review_status": "`auto` until a human decision is stamped. A logged "
-                     "decision is not an applied decision — see the review "
-                     "sheets.",
+    "review_status": "`auto`, or `reviewed` once a human decision (ALIGN / "
+                     "REJECT) on one of the edge's surfaces has been applied — "
+                     "machine decisions (GEMINI_*, AUTO_*) stay `auto`, since "
+                     "recording them as reviewed would claim a confirmation "
+                     "nobody gave. A logged decision is not an applied "
+                     "decision — see the review sheets.",
     "attribution": "The ascription verdict from the attribution guard.",
 }
 

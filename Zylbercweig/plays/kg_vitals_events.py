@@ -114,12 +114,15 @@ def _emit_event(g, ev_id, kind, person, *, place_surface="", place_id="",
     g.add_edge(source_id=ev_id, target_id=person, edge_type="participant",
                role_detail=SUBJECT_ROLE, date_start=date_start,
                date_end=date_end, date_precision=date_precision, **common)
-    # the place: an id when the edge already had one, else the D–G surface,
-    # resolved through the same mint path every other layer uses
+    # the place: an id when the edge already had one, else the D–G surface.
+    # D–G place surfaces are raw text that nothing has resolved yet, so they go
+    # through the gazetteer first (try_gazetteer) — without it this minted a
+    # place:UPL- twin of every place already in the graph under its QID.
     target = place_id
     if not target and place_surface:
         target = g.resolve_surface("place", place_surface, "bio",
-                                   entry, evidence, node_type="place",
+                                   entry, evidence, try_gazetteer=True,
+                                   node_type="place",
                                    label_yiddish=place_surface,
                                    match_status="unmatched",
                                    notes="vitals event place",
