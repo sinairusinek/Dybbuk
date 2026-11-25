@@ -137,7 +137,7 @@ def entry_text(hub, volume=""):
     pids.sort(key=lambda x: not x.startswith(f"P-{volume}-"))
     return next((texts[x] for x in pids if texts.get(x)), "")
 
-CAP = 9000
+CAP = 60_000
 items = []
 for q in queue:
     m = er.get(q["mention_id"])
