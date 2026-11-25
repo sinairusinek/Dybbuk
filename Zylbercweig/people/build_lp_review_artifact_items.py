@@ -150,6 +150,7 @@ for q in queue:
                 if x and not x.startswith("?")]
     it = {
         "item": q["item"], "mention_id": q["mention_id"], "name": m["mention_name"],
+        "surname_key": m.get("surname_key", ""),
         "sentence": m["relation_sentence"], "host_hub_id": m["host_hub_id"],
         "relation": (m.get("relation_category","") + " / " + m.get("relation_type","")).strip(" /"),
         "described": m.get("person_description",""),
@@ -186,5 +187,27 @@ for q in queue:
 
 OUT.write_text(json.dumps(items, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 print(f"{len(items)} items -> {OUT} ({OUT.stat().st_size/1e6:.2f} MB)")
+
+# Shard as JSON-lines for the published page: one published file must stay under
+# the artifact tool's 16 MB cap, and the full 300 items run to ~17 MB.
+SHARD_BYTES = 5_500_000
+lines = [json.dumps(it, ensure_ascii=False, separators=(",", ":")) for it in items]
+shards, cur, sz = [], [], 0
+for ln in lines:
+    b = len(ln.encode()) + 1
+    if cur and sz + b > SHARD_BYTES:
+        shards.append(cur); cur, sz = [], 0
+    cur.append(ln); sz += b
+if cur:
+    shards.append(cur)
+for old_shard in OUT.parent.glob("items[0-9]*.txt"):
+    old_shard.unlink()
+written = []
+for i, sh in enumerate(shards):
+    q = OUT.parent / f"items{i}.txt"
+    q.write_text("\n".join(sh) + "\n", encoding="utf-8")
+    written.append(q.name)
+    print(f"  {q.name}: {len(sh)} items, {q.stat().st_size/1e6:.2f} MB")
+print("SHARDS =", json.dumps(written), "<- keep in sync with the page's SHARDS const")
 print("candidates per item:", sorted({len(i['cands']) for i in items}))
 print("items with host entry text:", sum(1 for i in items if i["host_entry"]))
