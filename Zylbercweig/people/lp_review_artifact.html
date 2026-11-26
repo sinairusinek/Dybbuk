@@ -1,0 +1,641 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Typed Link Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap">
+<style>
+/* Layout: single-column reading stack — mention, host, candidate grid, decision bar pinned bottom. */
+:root{
+  --bg:#f7f6f3; --surface:#ffffff; --surface-2:#f0eeea;
+  --fg:#1c1a17; --fg-2:#5d574e; --fg-3:#8d8579;
+  --line:#ddd8d0; --line-2:#c8c1b6;
+  --accent:#8a4b2a; --accent-soft:#f3e6de;
+  --ok:#2f6b4a; --warn:#9a6a10; --bad:#9c3330;
+  --font-ui:'Inter',system-ui,-apple-system,sans-serif;
+  --font-heb:'Frank Ruhl Libre','Times New Roman',serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171614; --surface:#211f1c; --surface-2:#2a2724;
+  --fg:#efebe4; --fg-2:#b3aca1; --fg-3:#847d72;
+  --line:#35312c; --line-2:#474137;
+  --accent:#d9926a; --accent-soft:#3a2a20;
+  --ok:#6fbf8f; --warn:#d9ae53; --bad:#e08b86;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#171614; --surface:#211f1c; --surface-2:#2a2724;
+  --fg:#efebe4; --fg-2:#b3aca1; --fg-3:#847d72;
+  --line:#35312c; --line-2:#474137;
+  --accent:#d9926a; --accent-soft:#3a2a20;
+  --ok:#6fbf8f; --warn:#d9ae53; --bad:#e08b86;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-ui);font-size:15px;line-height:1.55;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 180px}
+.cols{display:grid;grid-template-columns:232px minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:860px){.cols{grid-template-columns:1fr}}
+h1,h2,h3{font-family:var(--font-ui);text-wrap:balance;margin:0}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar-in{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.bar h1{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.bar .sub{color:var(--fg-3);font-size:12.5px}
+.spacer{flex:1 1 auto;min-width:0}
+.prog{flex:0 0 160px;height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.count{font-size:12.5px;color:var(--fg-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+button{font:inherit;font-size:13.5px;color:var(--fg);background:var(--surface);border:1px solid var(--line-2);border-radius:7px;padding:6px 11px;cursor:pointer}
+button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+button:disabled{opacity:.4;cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ghost{background:transparent;border-color:transparent;color:var(--fg-2);padding:6px 8px}
+input[type=text]{font:inherit;font-size:13.5px;background:var(--surface);color:var(--fg);border:1px solid var(--line-2);border-radius:7px;padding:6px 9px;min-width:0}
+
+/* sections */
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:14px}
+.eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);margin-bottom:8px}
+.heb{font-family:var(--font-heb);direction:rtl;text-align:right;line-height:1.75}
+.sentence{font-size:1.22rem;font-family:var(--font-heb);direction:rtl;text-align:right;line-height:1.8}
+.sentence mark{background:var(--accent-soft);color:var(--fg);padding:0 .12em;border-radius:3px;font-weight:700}
+.sentence strong{color:var(--accent)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:12px;font-size:13px;color:var(--fg-2)}
+.meta b{color:var(--fg);font-weight:600}
+.host{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.stations{font-size:12.5px;color:var(--fg-2);margin-top:6px}
+details{margin-top:10px}
+details>summary{cursor:pointer;font-size:12.5px;color:var(--accent);font-weight:500;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"▸ ";font-size:10px}
+details[open]>summary::before{content:"▾ "}
+.entry{margin-top:10px;max-height:340px;overflow-y:auto;background:var(--surface-2);border-radius:8px;padding:12px;font-size:14.5px}
+.entry mark{background:var(--accent-soft);font-weight:700;border-radius:3px;padding:0 .1em}
+.did{margin-top:10px;font-size:13px}
+.did li{margin:2px 0}
+
+/* candidates */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-top:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:13px;display:flex;flex-direction:column;gap:7px;min-width:0;cursor:pointer}
+.card:hover{border-color:var(--line-2)}
+.card.pick{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.card .no{display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;border-radius:50%;background:var(--surface-2);color:var(--fg-2);font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums;flex:0 0 auto}
+.card.pick .no{background:var(--accent);color:#fff}
+.card .top{display:flex;align-items:center;gap:8px}
+.card .hid{font-size:10.5px;color:var(--fg-3);font-family:ui-monospace,monospace}
+.card .name{font-family:var(--font-heb);direction:rtl;text-align:right;font-size:1.08rem;font-weight:700;line-height:1.4}
+.card .en{font-size:12.5px;color:var(--fg-2);font-style:italic}
+.card .dt{font-size:12px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.chips{list-style:none;margin:2px 0 0;padding:0;font-size:12.5px;display:flex;flex-direction:column;gap:3px}
+.chips li{color:var(--fg-2)}
+.chips li.none{color:var(--fg-3);font-style:italic}
+.card details>summary{font-size:11.5px}
+.card .entry{max-height:240px;font-size:14px}
+.cbtns{display:flex;gap:6px;margin-top:auto;padding-top:8px}
+.cbtns button{flex:1 1 0;font-size:12.5px;padding:6px 4px;min-width:0}
+.cbtns button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* decision bar */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line-2);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:11px;padding-bottom:calc(11px + env(safe-area-inset-bottom,0px))}
+.dock-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.chosen{font-size:13px;color:var(--fg-2);flex:1 1 180px;min-width:0}
+.chosen b{color:var(--accent)}
+.save{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;padding:8px 16px}
+.save:hover:not(:disabled){background:var(--accent);color:#fff;filter:brightness(1.08)}
+select{font:inherit;font-size:13px;background:var(--surface);color:var(--fg);border:1px solid var(--line-2);border-radius:7px;padding:6px 8px}
+.alt{display:flex;gap:6px;flex-wrap:wrap}
+.alt button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.note{display:flex;align-items:center;gap:6px;flex:1 1 200px;min-width:0}
+.note input{flex:1 1 auto}
+.msg{font-size:12.5px;color:var(--fg-3);flex-basis:100%}
+.msg.err{color:var(--bad)}
+.msg.ok{color:var(--ok)}
+.conf{display:flex;gap:4px}
+.conf button{padding:6px 10px}
+.conf button.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+/* name filter sidebar */
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:14px;max-height:calc(100vh - 150px);display:flex;flex-direction:column;gap:9px}
+@media (max-width:860px){.side{position:static;max-height:none}}
+.side .srch{display:flex;gap:6px}
+.side .srch input{flex:1 1 auto}
+.names{overflow-y:auto;display:flex;flex-direction:column;gap:1px;margin:0;padding:0;list-style:none;min-height:0}
+.names li>button{display:flex;align-items:baseline;gap:7px;width:100%;text-align:start;border:none;background:transparent;border-radius:6px;padding:5px 7px;font-size:13px}
+.names li>button:hover{background:var(--surface-2);color:var(--fg)}
+.names li>button.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.names li>button.done{color:var(--fg-3)}
+.names .nm{font-family:var(--font-heb);direction:rtl;flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:1.02rem}
+.names .tally{font-size:11px;color:var(--fg-3);font-variant-numeric:tabular-nums;flex:0 0 auto}
+.names li>button.on .tally{color:var(--accent)}
+.side .allbtn{font-size:12.5px;width:100%}
+.side .hint{font-size:11.5px;color:var(--fg-3);line-height:1.4}
+.scopebar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--accent-soft);border-radius:9px;padding:7px 11px;margin-top:14px;font-size:13px}
+.scopebar .who{font-family:var(--font-heb);direction:rtl;font-size:1.08rem;font-weight:700;color:var(--accent)}
+.scopebar button{padding:3px 9px;font-size:12px}
+.boot{padding:60px 0;text-align:center;color:var(--fg-3)}
+kbd{font-family:ui-monospace,monospace;font-size:11px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:1px 4px;color:var(--fg-2)}
+.help{font-size:12px;color:var(--fg-3);margin-top:14px;display:flex;gap:14px;flex-wrap:wrap}
+@media (max-width:560px){.prog{flex-basis:84px}.entry{max-height:260px}}
+</style>
+
+<div class="bar"><div class="bar-in">
+  <h1>Typed link review</h1>
+  <span class="sub" id="pos">—</span>
+  <span class="spacer"></span>
+  <button class="ghost" id="prev" title="Previous (←)">◀</button>
+  <button class="ghost" id="next" title="Next (→)">▶</button>
+  <div class="prog"><i id="progbar"></i></div>
+  <span class="count" id="cnt">0 / 100</span>
+</div></div>
+
+<div class="wrap">
+
+
+  <div id="boot" class="boot">Loading the queue…</div>
+  <div id="app" class="cols" hidden>
+   <aside class="side">
+     <div class="eyebrow" style="margin:0">Names in the batch</div>
+     <div class="srch"><input type="text" id="namesearch" placeholder="Find a name"></div>
+     <button class="allbtn" id="allnames">All 100 items</button>
+     <ul class="names" id="nameslist"></ul>
+     <label class="hint" style="display:flex;align-items:center;gap:6px;cursor:pointer">
+       <input type="checkbox" id="showdone"> Include items already answered
+     </label>
+     <div class="hint">The deck holds what still needs deciding — an item leaves it once any reviewer has answered. Pick a surname to revisit answered ones.</div>
+     <div class="hint">Spelling variants and inflected forms of one surname are grouped together.</div>
+   </aside>
+   <div>
+    <div class="scopebar" id="scopebar" hidden>
+      <span>Working through</span><span class="who" id="scopename"></span>
+      <span id="scopetally" class="tally" style="color:var(--accent)"></span>
+      <span class="spacer"></span>
+      <button id="clearscope">Show all items</button>
+    </div>
+    <div class="sec">
+      <div class="eyebrow">The mention in context</div>
+      <div class="sentence" id="sentence"></div>
+      <div class="meta" id="meta"></div>
+      <div class="host">
+        <div class="eyebrow">Host entry</div>
+        <div class="heb" id="hostname" style="font-size:1.05rem"></div>
+        <div class="stations" id="hoststations"></div>
+        <div id="expansion" class="heb" style="font-size:.95rem;margin-top:8px"></div>
+        <div class="did" id="did"></div>
+        <details id="hostdet"><summary>Host entry — full text, mention highlighted</summary>
+          <div class="entry heb" id="hostentry"></div></details>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:20px">Candidates — pick one, or none of them</div>
+    <div class="grid" id="cands"></div>
+
+    <div class="help">
+      <span><kbd>1</kbd>–<kbd>8</kbd> same as candidate</span>
+      <span><kbd>N</kbd> no entry</span>
+      <span><kbd>X</kbd> not a person</span>
+      <span><kbd>?</kbd> can't tell</span>
+      <span><kbd>Enter</kbd> save</span>
+      <span><kbd>←</kbd> <kbd>→</kbd> move</span>
+    </div>
+   </div>
+  </div>
+</div>
+
+<div class="dock" id="dock" hidden><div class="dock-in">
+  <span class="chosen" id="chosen">No decision yet.</span>
+  <select id="kin" hidden>
+    <option value="parent">parent</option><option value="child">child</option>
+    <option value="spouse">spouse</option><option value="sibling">sibling</option>
+    <option value="other_kin">other relative</option>
+  </select>
+  <div class="alt">
+    <button data-d="new" title="A person with no entry (N)">no entry</button>
+    <button data-d="not_person" title="Not a person (X)">not a person</button>
+    <button data-d="unsure" title="Can't tell (?)">can't tell</button>
+  </div>
+  <div class="conf"><button data-c="sure" class="on">sure</button><button data-c="likely">likely</button></div>
+  <div class="note"><input type="text" id="noteinput" placeholder="Note (optional)"><input type="text" id="who" placeholder="Your name — required" required aria-required="true" style="flex:0 0 150px"></div>
+  <button class="save" id="save" disabled>Save &amp; next</button>
+  <div class="msg" id="msg"></div>
+</div></div>
+
+<script>
+const MARKS="①②③④⑤⑥⑦⑧⑨⑩";
+const KIN={parent:"parent of",child:"child of",spouse:"spouse of",sibling:"sibling of",other_kin:"other relative of"};
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const el=id=>document.getElementById(id);
+
+const SHARDS=["items0.txt","items1.txt","items2.txt","items3.txt","items4.txt","items5.txt"];
+const TEXT_CAP=60000;   // must match CAP in build_lp_review_artifact_items.py
+let ALL=[], ITEMS=[], idx=0, db=null, me="", choice=null, kin="parent", conf="sure", onlyOpen=true;
+/* Every reviewer's answers are kept: one document per item+reviewer, so two
+   people deciding the same item never overwrite each other and their
+   disagreement stays visible (that is what the agreement number measures).
+   `decisions` holds only MY answers, keyed by item, and drives my progress;
+   `others` counts everyone else's, per item. */
+let decisions={}, others={}, ROWS=[], done={};
+/* Re-split the stored rows into mine and everyone else's.
+
+   `done` = every item ANYONE has answered. The deck shows only what is still
+   open (Sinai, 2026-11-26): an item leaves the deck as soon as the first
+   reviewer answers it, so the queue is shared and nobody re-does another
+   reviewer's work. Answered items stay reachable through the surname sidebar,
+   so a mistaken answer can still be corrected.
+
+   Identity: match on `reviewer_uid` (the signed-in account) and fall back to
+   the typed name only when a row has no uid. Matching on the typed name alone
+   meant a reviewer's own progress vanished whenever the name box came back
+   empty -- a different device or browser, a private window, cleared site data,
+   or iOS evicting localStorage. Ruthie's 83 answers all carry one stable uid,
+   so her progress now follows her account instead of a text box. */
+function partition(){
+  const mine=slug(who());
+  decisions={}; others={}; done={};
+  ROWS.forEach(v=>{
+    done[v.item]=(done[v.item]||0)+1;
+    const isMine = (v.reviewer_uid && me) ? v.reviewer_uid===me
+                                          : (mine && slug(v.reviewer)===mine);
+    if(isMine) decisions[v.item]=v;
+    else others[v.item]=(others[v.item]||0)+1;
+  });
+}
+/* The deck: items nobody has answered yet, plus the one being looked at (so a
+   card does not vanish under the reader the moment it is saved) and anything
+   reached deliberately from the sidebar. */
+function isOpen(it){return !done[it.item]}
+const slug=s=>(s||"").trim().toLowerCase().replace(/[^a-z0-9א-ת]+/g,"-").replace(/^-|-$/g,"").slice(0,60);
+function who(){return (el("who").value||"").trim()}
+function docIdFor(item,reviewer){const r=slug(reviewer)||"anon";return item+"__"+r}
+let scope=null, groups=[];   /* scope = the stem key being worked through, or null for all */
+
+/* Group the batch by surname: one entry per surname, gathering its spelling
+   variants and inflected forms (גימפּעלן with גימפּעל, אָדלער with אַדלער). */
+function stemKey(k){
+  k=(k||"").trim();
+  k=k.replace(/^(?:דר\.|פּרא?פֿ?\.|ה'|מר\.)\s*/,"");        // drop titles
+  k=k.replace(/^(?:[א-ת]\.\s*)+/,"");             // drop leading initials
+  k=k.replace(/[֑-ׇ'"׳״]/g,"").trim();            // drop points and geresh
+  // Strip the possessive/plural endings that only mark inflection
+  // (גימפּעלן → גימפּעל, שלום-עליכמס → שלום-עליכם). A bare ן or ס counts as an
+  // ending only after a consonant: after א ע ו י it belongs to the name
+  // itself (פֿרידמאַן, פישזאָן, זוסקין, ליבין all keep it).
+  let m=k.match(/^(.{4,})(?:ען|עס)$/);
+  if(m) return m[1];
+  m=k.match(/^(.{4,}[^אעויןס])(?:ן|ס)$/);
+  return m?m[1]:k;
+}
+function buildGroups(){
+  const by=new Map();
+  ALL.forEach(it=>{
+    const k=stemKey(it.surname_key)||it.name;
+    if(!by.has(k)) by.set(k,{key:k,labels:new Set(),items:[]});
+    const g=by.get(k); g.labels.add(it.name); g.items.push(it);
+  });
+  const bare=s=>!/^(?:[א-ת]\.|דר\.|ה'|אָב\.|פּראָפֿ\.)/.test(s);
+  groups=[...by.values()].map(g=>{
+    const v=[...g.labels];
+    // Label the group with a plain surname where one is attested: prefer a
+    // variant carrying no initial or title, then the shortest.
+    const pick=v.filter(bare).sort((a,b)=>a.length-b.length)[0]
+             || v.slice().sort((a,b)=>a.length-b.length)[0];
+    return {key:g.key, label:pick, variants:v.sort(), items:g.items};
+  }).sort((a,b)=> b.items.length-a.items.length || a.label.localeCompare(b.label,"he"));
+}
+/* Counted against everyone's answers, not just mine: the queue is shared, so
+   a name is finished when every item under it has an answer from someone. */
+function groupDone(g){return g.items.filter(it=>done[it.item]).length}
+
+function applyScope(){
+  const g=scope?groups.find(x=>x.key===scope):null;
+  /* Picking a surname is a deliberate request for that name, answered items
+     included -- that is how a wrong answer gets corrected. The unscoped deck
+     shows only what is still open. */
+  const keep=el("showdone").checked;
+  ITEMS = g ? g.items : (keep?ALL:ALL.filter(isOpen));
+  if(!ITEMS.length) ITEMS = g?g.items:ALL;   // never leave an empty deck
+  el("scopebar").hidden=!g;
+  if(g){
+    el("scopename").textContent=g.label;
+    el("scopetally").textContent=groupDone(g)+" of "+g.items.length+" decided"
+      +(g.variants.length>1?" · "+g.variants.join(" / "):"");
+  }
+  const open=ITEMS.findIndex(it=>!done[it.item]);
+  idx = open>=0?open:0;
+  renderNames(); render();
+}
+function renderNames(){
+  const q=(el("namesearch").value||"").trim();
+  const qs=q?stemKey(q).replace(/[֑-ׇ]/g,""):"";
+  const vis=groups.filter(g=>!q||g.variants.some(v=>v.replace(/[֑-ׇ]/g,"").includes(qs))||g.key.includes(qs));
+  el("nameslist").innerHTML=vis.map(g=>{
+    const done=groupDone(g), all=done===g.items.length;
+    return "<li><button data-key='"+esc(g.key)+"'"+(scope===g.key?" class='on'":(all?" class='done'":""))
+      +" title='"+esc(g.variants.join(" / "))+"'>"
+      +"<span class='nm'>"+esc(g.label)+"</span>"
+      +"<span class='tally'>"+(all?"✓ ":"")+done+"/"+g.items.length+"</span></button></li>";
+  }).join("") || "<li class='hint' style='padding:6px'>No name matches.</li>";
+  el("allnames").textContent="All "+ALL.length+" items"+(scope?"":" ✓");
+}
+
+/* --- Hebrew surface highlighting: strip points, prefix match, allow inflection --- */
+function stripPts(s){return (s||"").normalize("NFD").replace(/[֑-ׇ]/g,"")}
+function markSurface(text,surface,tag){
+  text=(text||"").normalize("NFD");
+  const base=stripPts(surface).trim();
+  if(!base) return esc(text);
+  const pat=base.split("").map(ch=>ch.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"[\\u0591-\\u05C7]*").join("")+"[\\u0591-\\u05C7\\u05D0-\\u05EA]*";
+  let re; try{re=new RegExp(pat,"g")}catch(e){return esc(text)}
+  let out="",pos=0,m;
+  while((m=re.exec(text))!==null){
+    if(m[0]==="" ){re.lastIndex++;continue}
+    out+=esc(text.slice(pos,m.index))+"<"+tag+">"+esc(m[0])+"</"+tag+">";
+    pos=m.index+m[0].length;
+  }
+  return out+esc(text.slice(pos));
+}
+
+/* A cut entry must say so: a silently truncated entry once hid the very
+   sentence that identified a mention (R2-0148, the שוואָגער passage). */
+function capNote(t){
+  return (t&&t.length>=TEXT_CAP)
+    ? "<div style='margin-top:10px;padding:7px 9px;border-radius:6px;background:var(--accent-soft);"
+      +"color:var(--accent);font-size:12.5px;font-family:var(--font-ui);direction:ltr;text-align:start'>"
+      +"⚠ This entry is longer than "+TEXT_CAP.toLocaleString()+" characters and is cut here. "
+      +"If the answer might be further down, say so in the note."
+      +"</div>"
+    : "";
+}
+
+/* --- rendering --- */
+function render(){
+  const it=ITEMS[idx]; if(!it) return;
+  const prior=decisions[it.item]||null;
+  choice = prior ? (prior.decision==="same"||prior.decision==="kin" ? prior.decision+":"+prior.target_hub_id : prior.decision) : null;
+  kin = (prior&&prior.kin_relation)||"parent";
+  conf = (prior&&prior.confidence)||"sure";
+  el("noteinput").value = (prior&&prior.notes)||"";
+
+  el("pos").textContent = it.item+" · item "+(idx+1)+" of "+ITEMS.length;
+  el("sentence").innerHTML = markSurface(it.sentence,it.name,"mark") || "<span style='color:var(--fg-3)'>No sentence on file.</span>";
+
+  const mm=[];
+  mm.push("<span><b>Mention:</b> "+esc(it.name)+"</span>");
+  if(it.relation) mm.push("<span><b>Relation to host:</b> "+esc(it.relation)+"</span>");
+  if(it.described) mm.push("<span><b>Described as:</b> "+esc(it.described)+"</span>");
+  if(it.where) mm.push("<span><b>Where:</b> "+esc(it.where)+"</span>");
+  if(it.when) mm.push("<span><b>When:</b> "+esc(it.when)+"</span>");
+  if(it.sent_org) mm.push("<span><b>Organisation in the sentence:</b> "+esc(it.sent_org)+"</span>");
+  if(it.gender) mm.push("<span><b>Gender (extracted):</b> "+esc(it.gender)+"</span>");
+  el("meta").innerHTML=mm.join("");
+
+  el("hostname").innerHTML="<b>"+esc(it.host_heading)+"</b> <span style='color:var(--fg-3);font-size:.9em'>("+esc(it.host_dates)+")</span>";
+  el("hoststations").textContent = it.host_stations&&it.host_stations.length ? "Life stations: "+it.host_stations.join(" → ") : "";
+  el("expansion").innerHTML = it.expansion ? "<b>The entry's own expansion of the name</b> <span style='color:var(--fg-3);font-size:.85em'>("+esc(it.expansion_status)+"; a model's reading, may be wrong)</span>: "+esc(it.expansion) : "";
+  el("did").innerHTML = (it.did&&it.did.length) ? "<div class='eyebrow' style='margin-top:4px'>What the host's entry says this person did</div><ul style='margin:4px 0 0;padding-inline-start:18px'>"+it.did.map(f=>"<li>"+esc(f)+"</li>").join("")+"</ul>" : "";
+  el("hostdet").hidden = !it.host_entry;
+  el("hostentry").innerHTML = it.host_entry
+    ? markSurface(it.host_entry,it.name,"mark").replace(/⏎/g,"<br>")+capNote(it.host_entry)
+    : "";
+
+  el("cands").innerHTML = it.cands.map((c,i)=>{
+    const chips=(c.chips||[]).map(ch=>"<li"+(ch.indexOf("no overlapping")===0?" class='none'":"")+">"+esc(ch)+"</li>").join("");
+    const stn=(c.stations&&c.stations.length)?"<div class='dt'>🗺 "+esc(c.stations.join(" → "))+(c.years?"  ("+esc(c.years)+")":"")+"</div>":"";
+    const works=(c.works&&c.works.length)?"<details><summary>works ("+c.works.length+")</summary><div class='entry heb'>"+c.works.map(esc).join("<br>")+"</div></details>":"";
+    const orgs=(c.orgs&&c.orgs.length)?"<details><summary>organisations ("+c.orgs.length+")</summary><div class='entry heb'>"+c.orgs.map(esc).join("<br>")+"</div></details>":"";
+    const ent=c.entry?"<details><summary>own entry</summary><div class='entry heb'>"+markSurface(c.entry,it.name,"mark").replace(/⏎/g,"<br>")+capNote(c.entry)+"</div></details>":"";
+    const sub=[c.dates,c.birth_place?"born "+c.birth_place:"",c.roles?"roles "+c.roles:""].filter(Boolean).join(" · ");
+    const picked = choice==="same:"+c.hub_id||choice==="kin:"+c.hub_id;
+    return "<div class='card"+(picked?" pick":"")+"' data-hub='"+esc(c.hub_id)+"' tabindex='0'>"
+      +"<div class='top'><span class='no'>"+(i+1)+"</span><span class='hid'>"+esc(c.hub_id)+"</span></div>"
+      +"<div class='name'>"+esc(c.heading)+"</div>"
+      +(c.english?"<div class='en'>"+esc(c.english)+"</div>":"")
+      +"<div class='dt'>"+esc(sub)+"</div>"
+      +"<ul class='chips'>"+chips+"</ul>"+stn+works+orgs+ent
+      +"<div class='cbtns'><button data-act='same' data-hub='"+esc(c.hub_id)+"'"+(choice==="same:"+c.hub_id?" class='on'":"")+">is this person</button>"
+      +"<button data-act='kin' data-hub='"+esc(c.hub_id)+"'"+(choice==="kin:"+c.hub_id?" class='on'":"")+">is a relative</button></div>"
+      +"</div>";
+  }).join("");
+
+  syncDock();
+  tally();
+  el("prev").disabled = idx<=0;
+  el("next").disabled = idx>=ITEMS.length-1;
+  window.scrollTo({top:0});
+}
+
+function syncDock(){
+  const it=ITEMS[idx]; if(!it) return;
+  const isKin = choice&&choice.indexOf("kin:")===0;
+  el("kin").hidden=!isKin; el("kin").value=kin;
+  let label="No decision yet.";
+  if(choice){
+    if(choice.indexOf("same:")===0){
+      const i=it.cands.findIndex(c=>c.hub_id===choice.slice(5));
+      label="This mention <b>is candidate "+(i+1)+"</b> — "+esc(it.cands[i].heading);
+    } else if(isKin){
+      const i=it.cands.findIndex(c=>c.hub_id===choice.slice(4));
+      label="This mention is the <b>"+KIN[kin].replace(" of","")+"</b> of <b>candidate "+(i+1)+"</b> — "+esc(it.cands[i].heading);
+    } else label={new:"A person with <b>no entry</b>",not_person:"<b>Not a person</b>",unsure:"<b>Can't tell</b>"}[choice];
+  }
+  el("chosen").innerHTML=label;
+  document.querySelectorAll(".alt button").forEach(b=>b.classList.toggle("on",b.dataset.d===choice));
+  document.querySelectorAll(".conf button").forEach(b=>b.classList.toggle("on",b.dataset.c===conf));
+  document.querySelectorAll(".card").forEach(card=>{
+    const h=card.dataset.hub;
+    card.classList.toggle("pick",choice==="same:"+h||choice==="kin:"+h);
+    card.querySelectorAll(".cbtns button").forEach(b=>b.classList.toggle("on",choice===b.dataset.act+":"+h));
+  });
+  const named=!!who();
+  el("save").disabled = !(choice&&db&&named);
+  el("who").style.borderColor = named ? "" : "var(--bad)";
+  const it2=ITEMS[idx];
+  if(!db) msg("Decisions cannot be saved in this view — open the artifact while signed in.","err");
+  else if(!named) msg("Type your name in the box on the right before you can save — it is what keeps your answers yours.","err");
+  else if(it2&&others[it2.item]) msg(others[it2.item]+" other reviewer"+(others[it2.item]>1?"s have":" has")
+      +" also decided this item. Their answer is deliberately not shown — decide it yourself.","");
+  else if(!choice) msg("");
+}
+function msg(t,cls){const m=el("msg");m.innerHTML=t||"";m.className="msg"+(cls?" "+cls:"")}
+
+/* Progress is the whole batch's, counting every reviewer's answers, since the
+   queue is shared. `mine` is shown alongside so a reviewer can still see their
+   own contribution. */
+function tally(){
+  const all=ALL.filter(it=>done[it.item]).length;
+  const mine=ALL.filter(it=>decisions[it.item]).length;
+  el("cnt").textContent=all+" / "+ALL.length+(mine?" · "+mine+" by you":"");
+  el("progbar").style.width=(ALL.length?100*all/ALL.length:0)+"%";
+  if(scope){
+    const g=groups.find(x=>x.key===scope);
+    if(g) el("scopetally").textContent=groupDone(g)+" of "+g.items.length+" decided"
+      +(g.variants.length>1?" · "+g.variants.join(" / "):"");
+  }
+}
+
+function pick(c){choice=c;syncDock()}
+
+/* --- events --- */
+el("cands").addEventListener("click",e=>{
+  const b=e.target.closest(".cbtns button");
+  if(b){pick(b.dataset.act+":"+b.dataset.hub);e.stopPropagation();return}
+  if(e.target.closest("summary")) return;
+  const card=e.target.closest(".card");
+  if(card) pick("same:"+card.dataset.hub);
+});
+document.querySelectorAll(".alt button").forEach(b=>b.onclick=()=>pick(b.dataset.d));
+document.querySelectorAll(".conf button").forEach(b=>b.onclick=()=>{conf=b.dataset.c;syncDock()});
+el("kin").onchange=()=>{kin=el("kin").value;syncDock()};
+el("prev").onclick=()=>{if(idx>0){idx--;render()}};
+el("next").onclick=()=>{if(idx<ITEMS.length-1){idx++;render()}};
+el("save").onclick=save;
+el("nameslist").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-key]"); if(!b) return;
+  scope = scope===b.dataset.key ? null : b.dataset.key;
+  applyScope();
+});
+el("allnames").onclick=()=>{scope=null;applyScope()};
+el("clearscope").onclick=()=>{scope=null;applyScope()};
+el("showdone").onchange=()=>applyScope();
+el("namesearch").addEventListener("input",renderNames);
+
+document.addEventListener("keydown",e=>{
+  if(e.target.matches("input,select,textarea")){ if(e.key==="Enter"&&!el("save").disabled) save(); return }
+  if(e.metaKey||e.ctrlKey||e.altKey) return;
+  const it=ITEMS[idx]; if(!it) return;
+  if(/^[1-8]$/.test(e.key)){const c=it.cands[+e.key-1];if(c){pick("same:"+c.hub_id);e.preventDefault()}return}
+  const k=e.key.toLowerCase();
+  if(k==="n"){pick("new");e.preventDefault()}
+  else if(k==="x"){pick("not_person");e.preventDefault()}
+  else if(e.key==="?"||k==="u"){pick("unsure");e.preventDefault()}
+  else if(e.key==="ArrowLeft"){el("prev").click();e.preventDefault()}
+  else if(e.key==="ArrowRight"){el("next").click();e.preventDefault()}
+  else if(e.key==="Enter"&&!el("save").disabled){save();e.preventDefault()}
+});
+
+/* The live listener can die for good (a terminal error ends it; only a fresh
+   onSnapshot recovers). When that happened the counter silently froze while
+   saves still worked, so: re-subscribe on a terminal error, and never let the
+   listener's health gate saving. */
+let unsub=null, listenerDead=false;
+function subscribe(firstTime){
+  if(!db) return;
+  try{ if(unsub) unsub() }catch(e){}
+  let settled=false;
+  try{
+    unsub=db.collection("decisions").limit(1000).onSnapshot(snap=>{
+      listenerDead=false;
+      ROWS=snap.docs.map(d=>d.data()).filter(v=>v&&v.item);
+      /* A reviewer on a new device has an empty name box but the same account.
+         Recover the name they used before from their own stored rows, so their
+         answers stay under one name and they need not retype it. */
+      if(!who() && me){
+        const prior=ROWS.filter(v=>v.reviewer_uid===me&&v.reviewer)
+                        .sort((a,b)=>(b.reviewed_at||"").localeCompare(a.reviewed_at||""))[0];
+        if(prior){
+          el("who").value=prior.reviewer;
+          try{localStorage.setItem("lp_reviewer",prior.reviewer)}catch(e){}
+        }
+      }
+      partition(); tally(); renderNames();
+      if(!settled&&!snap.metadata.fromCache){
+        settled=true;
+        /* The rows have arrived, so `done` is known for the first time: build
+           the open deck now rather than leaving all 300 cards on screen. */
+        if(firstTime) applyScope(); else { renderNames(); render(); }
+      } else if(settled){ renderNames(); }
+    },e=>{
+      listenerDead=true;
+      if(e&&e.code==="revoked"){
+        msg("Your access to the saved decisions ended. Reload the page.","err");
+        return;
+      }
+      msg("Lost the live connection ("+(e&&e.code||"error")+"). Reconnecting — your saves still work.","err");
+      setTimeout(()=>subscribe(false),3000);   // a dead listener only recovers by resubscribing
+    });
+  }catch(e){listenerDead=true}
+}
+
+/* Pull the stored rows once, without a subscription. Used after a save so the
+   counter is right even when the live listener is down. */
+async function refresh(){
+  if(!db) return;
+  try{
+    const snap=await db.collection("decisions").limit(1000).get();
+    ROWS=snap.docs.map(d=>d.data()).filter(v=>v&&v.item);
+    partition(); tally(); renderNames();
+  }catch(e){}
+}
+
+async function save(){
+  const it=ITEMS[idx]; if(!it||!choice||!db) return;
+  const name=who();
+  if(!name){msg("Enter your name before saving, so your answers stay yours.","err");el("who").focus();return}
+  const [dec,target]=choice.indexOf(":")>0?[choice.split(":")[0],choice.slice(choice.indexOf(":")+1)]:[choice,""];
+  const row={item:it.item,mention_id:it.mention_id,mention_name:it.name,host_hub_id:it.host_hub_id,
+    decision:dec,target_hub_id:target,kin_relation:dec==="kin"?kin:"",confidence:conf,
+    reviewer:name,reviewer_uid:me,
+    reviewed_at:new Date().toISOString().replace(/\.\d+Z$/,""),notes:el("noteinput").value||""};
+  el("save").disabled=true; msg("Saving…");
+  try{
+    await db.collection("decisions").doc(docIdFor(it.item,name)).set(row);
+    ROWS=ROWS.filter(v=>!(v.item===row.item&&slug(v.reviewer)===slug(row.reviewer))).concat(row);
+    partition();
+    msg("Saved "+it.item+".","ok");
+    /* The deck holds only unanswered items, so the card just saved leaves it.
+       Rebuild the deck and land on the next open item, keeping position rather
+       than jumping back to the top. */
+    const keep=el("showdone").checked, g=scope?groups.find(x=>x.key===scope):null;
+    if(!g && !keep){
+      const after=ALL.filter(isOpen);
+      ITEMS = after.length?after:ALL;
+      const at=ITEMS.findIndex(x=>!done[x.item]);
+      idx = at>=0?at:0;
+    } else {
+      const nextOpen = onlyOpen ? ITEMS.findIndex((x,i)=>i>idx&&!done[x.item]) : -1;
+      idx = nextOpen>=0 ? nextOpen : Math.min(idx+1,ITEMS.length-1);
+    }
+    renderNames(); render();
+    if(scope){
+      const g=groups.find(x=>x.key===scope);
+      if(g&&groupDone(g)===g.items.length)
+        msg(g.label+" is complete — pick the next name, or show all items.","ok");
+    }
+    if(ALL.every(x=>done[x.item])) msg("All "+ALL.length+" items decided. Thank you!","ok");
+    if(listenerDead){ refresh(); subscribe(false) }   // keep the count honest without the listener
+  }catch(err){
+    const code=(err&&err.code)||err;
+    msg("Could not save ("+code+") — your choice is still on screen. Try again.","err");
+    el("save").disabled=false;
+  }
+}
+
+/* --- boot --- */
+(async function(){
+  try{
+    const parts=await Promise.all(SHARDS.map(s=>fetch(s).then(r=>{
+      if(!r.ok) throw new Error(s+": "+r.status); return r.text()})));
+    ALL=parts.flatMap(t=>t.split("\n").filter(Boolean).map(l=>JSON.parse(l)));
+    ITEMS=ALL;
+  }catch(e){el("boot").textContent="Could not load the queue data: "+e.message;return}
+  buildGroups();
+  el("boot").hidden=true; el("app").hidden=false; el("dock").hidden=false;
+  try{el("who").value=localStorage.getItem("lp_reviewer")||""}catch(e){}
+  el("who").addEventListener("change",()=>{
+    try{localStorage.setItem("lp_reviewer",el("who").value)}catch(e){}
+    partition(); tally(); renderNames(); render();   // progress follows whoever is named
+  });
+  renderNames(); render();
+
+  const t=setTimeout(()=>{if(!db)syncDock()},10000);
+  try{
+    const u=await window.claude?.use?.("user");
+    if(u){ me=(await u.id())||""; }
+    db=await window.claude?.use?.("db")||null;
+  }catch(e){}
+  clearTimeout(t);
+  if(db) subscribe(true);
+  syncDock();
+})();
+</script>
+
+</body></html>
