@@ -1,0 +1,83 @@
+kind	where	id	label	field	value	problem
+EARLY	edge	E-2b1686b05fe1	event:birth:3508:P-5-facs_438_r_22 -participant-> person:3508	date_start	1020	year 1020 before 1700
+EARLY	edge	E-83be39598985	event:birth:3508:P-5-facs_438_r_22 -held_in-> place:Q9248	date_start	1020	year 1020 before 1700
+EARLY	node_attrs	person:3508	מאַניאַ דוליצקאיא	birth_date	1020~	year 1020 before 1700
+LATE	edge	E-5dd3dff59f72	person:2971 -managed-> org:3884	date_end	1984	year 1984 after 1971
+LATE	edge	E-5dd3dff59f72	person:2971 -managed-> org:3884	date_start	1983	year 1983 after 1971
+LATE	edge	E-67346ef56093	person:715 -died_in-> place:Q60	date_end	1999	year 1999 after 1971
+LATE	edge	E-6afd8cf1bad8	person_entry:P-5-facs_595_r -executive_of-> org:5150	date_end	2024	year 2024 after 1971
+LATE	edge	E-6c41eade7720	event:death:2358:P-2-facs_118_r_6 -participant-> person:2358	date_end	1999	year 1999 after 1971
+LATE	edge	E-7ed37d7c3579	person:859 -died_in-> place:Q60	date_start	1992-08-29	year 1992 after 1971
+LATE	edge	E-da10ec01fa92	person:2488 -managed-> org:461	date_start	1991	year 1991 after 1971
+LATE	node_attrs	person:859	Berl Bernstein	death_date	1992-08-29	year 1992 after vol 1 ceiling 1950
+LIFESPAN	node_attrs	person:3508	מאַניאַ דוליצקאיא	lifespan	1020~ -> 1942	age 922 > 105
+LIFESPAN	node_attrs	person:859	Berl Bernstein	lifespan	1860 -> 1992-08-29	age 132 > 105
+OUTSIDE_LIFE	edge_vs_life	E-01445a10d3a8	ישראל אַקסענפעלד (person:3810)	mention	1881	after death 1866
+OUTSIDE_LIFE	edge_vs_life	E-04e1bd77d93e	Yosef Norflus (person:2574)	work_published_by	1831	before birth 1894
+OUTSIDE_LIFE	edge_vs_life	E-07d3956c2b23	Ignatsi Migdalski (person:2468)	performed_with	1922	after death 1909-09-25
+OUTSIDE_LIFE	edge_vs_life	E-0f3dd15d0da3	Abba Kampanietz (person:1019)	participant	1949-01-06	after death 1946-08-13
+OUTSIDE_LIFE	edge_vs_life	E-1757166d562b	Itzhak Nusinov (person:2583)	employed_by	1928	after death 1831-11-29
+OUTSIDE_LIFE	edge_vs_life	E-19c46200054a	Henryk Grinberg (person:1900)	founded	1929	before birth 1936-07-04
+OUTSIDE_LIFE	edge_vs_life	E-1a1b6858f17d	David Brown (person:1409)	participant	1967-09-07	after death 1945-09-08
+OUTSIDE_LIFE	edge_vs_life	E-1da8c61846da	Hersh Amasia (person:1151)	participant	1827	before birth 1864
+OUTSIDE_LIFE	edge_vs_life	E-1e2a5fa276eb	Sofia Apteiker (person:1168)	performed_with	1911	after death 1908
+OUTSIDE_LIFE	edge_vs_life	E-230f7a5d46eb	Hersh Amasia (person:1151)	performed_with	1878	after death 1827
+OUTSIDE_LIFE	edge_vs_life	E-2445857679e0	Henryk Grinberg (person:1900)	performed_with	1934	before birth 1936-07-04
+OUTSIDE_LIFE	edge_vs_life	E-25d7d311f46e	Hersh Amasia (person:1151)	performed_with	1891	after death 1827
+OUTSIDE_LIFE	edge_vs_life	E-2aeb540412a2	Meir Mestel (person:984)	work_produced_by	1890	before birth 1902-03
+OUTSIDE_LIFE	edge_vs_life	E-33d89c007607	Meir Mestel (person:984)	work_produced_by	1897	before birth 1902-03
+OUTSIDE_LIFE	edge_vs_life	E-38cdc4ff2809	אַברהם פישקינד (person:3593)	performed_with	1940	before birth 1962-08-26
+OUTSIDE_LIFE	edge_vs_life	E-3c290e9a9785	אַברהם פישקינד (person:3593)	participant	1940-05-09	before birth 1962-08-26
+OUTSIDE_LIFE	edge_vs_life	E-3ee054f86bb7	Ber Horowitz (person:2032)	participant	1892-07-17	before birth 1895-07-17
+OUTSIDE_LIFE	edge_vs_life	E-4096c90248b4	אַברהם פישקינד (person:3593)	performed_in	1887	before birth 1962-08-26
+OUTSIDE_LIFE	edge_vs_life	E-46fa4af88e51	יצחק שיפּער (איגנאַץ) (person:3567)	mention	1880	before birth 1884-12-02
+OUTSIDE_LIFE	edge_vs_life	E-4bc840814a77	Mordechai Gebirtig (person:1733)	participant	1945-01-03	after death 1942-06-04
+OUTSIDE_LIFE	edge_vs_life	E-5533b4e88507	Jakob Wasserman (person:3210)	participant	1880	before birth 189
+OUTSIDE_LIFE	edge_vs_life	E-5a44a4310b67	Sofia Apteiker (person:1168)	performed_with	1915	after death 1908
+OUTSIDE_LIFE	edge_vs_life	E-5ccc9051d3f9	Yakov Vaksman (person:3139)	participant	1866-10-22	before birth 1874-07-25
+OUTSIDE_LIFE	edge_vs_life	E-5dbe8154a76a	אַברהם פישקינד (person:3593)	generic_org_in	1881	before birth 1962-08-26
+OUTSIDE_LIFE	edge_vs_life	E-5f8355db998f	Ignatsi Migdalski (person:2468)	performed_with	1912	after death 1909-09-25
+OUTSIDE_LIFE	edge_vs_life	E-5fb1d0dbb761	Hersh Amasia (person:1151)	performed_with	1884	after death 1827
+OUTSIDE_LIFE	edge_vs_life	E-613fe47c3a02	אַברהם פישקינד (person:3593)	participant	1962-08-26	after death 1940-05-09
+OUTSIDE_LIFE	edge_vs_life	E-68d19b53fb67	Izidor Grinblat (person:1902)	managed	1928	after death 1923
+OUTSIDE_LIFE	edge_vs_life	E-6b84119263e7	Yozef Dibek (person:1498)	managed	1883	before birth 1924-08
+OUTSIDE_LIFE	edge_vs_life	E-6c91c416da01	Itzhak Nusinov (person:2583)	member_of	1919	after death 1831-11-29
+OUTSIDE_LIFE	edge_vs_life	E-70f520deaefc	Izidor Grinblat (person:1902)	managed	1929	after death 1923
+OUTSIDE_LIFE	edge_vs_life	E-799973059aa5	Sofia Apteiker (person:1168)	performed_with	1915	after death 1908
+OUTSIDE_LIFE	edge_vs_life	E-7e9ed844c6e1	Shimeon Ernst (person:1593)	participant	1898-07-28	before birth 1900-08-04
+OUTSIDE_LIFE	edge_vs_life	E-8554e2a171da	G.A. Karlos (person:2085)	translated_adapted	1877	before birth 1888-07-20
+OUTSIDE_LIFE	edge_vs_life	E-85f821fb0376	Itzhak Nusinov (person:2583)	participant	1889-07-14	after death 1831-11-29
+OUTSIDE_LIFE	edge_vs_life	E-87bf0133bc10	Meir Mestel (person:984)	employed_by	1887	before birth 1902-03
+OUTSIDE_LIFE	edge_vs_life	E-89a33e264a01	Ignatsi Migdalski (person:2468)	founded	1922-05-05	after death 1909-09-25
+OUTSIDE_LIFE	edge_vs_life	E-9047ebe964df	Leon Gold (person:1804)	member_of	1897	before birth 1900-01-01
+OUTSIDE_LIFE	edge_vs_life	E-935eca012ea3	Shimeon Ernst (person:1593)	participant	1892-03-17	before birth 1900-08-04
+OUTSIDE_LIFE	edge_vs_life	E-a1ec07f1e903	Leon Gold (person:1804)	performed_with	1897	before birth 1900-01-01
+OUTSIDE_LIFE	edge_vs_life	E-a400cf348649	Henryk Grinberg (person:1900)	founded	1934	before birth 1936-07-04
+OUTSIDE_LIFE	edge_vs_life	E-a4932a8d335a	Tsila Gold (person:1807)	performed_with	1929	after death 1916
+OUTSIDE_LIFE	edge_vs_life	E-a56c1f65e3c4	Henryk Grinberg (person:1900)	performed_with	1913	before birth 1936-07-04
+OUTSIDE_LIFE	edge_vs_life	E-a62a60669c6d	David Brown (person:1409)	employed_by	1914-03-28	before birth 1967-09-07
+OUTSIDE_LIFE	edge_vs_life	E-a774d8db58e9	Itzhak Nusinov (person:2583)	employed_by	1927	after death 1831-11-29
+OUTSIDE_LIFE	edge_vs_life	E-aaed48fbde40	אלחנן צייטלין (person:3541)	participant	1945-07-22	after death 1942-12-04
+OUTSIDE_LIFE	edge_vs_life	E-ae25f733a7cf	Hersh Amasia (person:1151)	generic_org_in	1927	after death 1827
+OUTSIDE_LIFE	edge_vs_life	E-ae275396aef0	Itzhak Nusinov (person:2583)	member_of	1906	after death 1831-11-29
+OUTSIDE_LIFE	edge_vs_life	E-b8676651be78	Yosef Norflus (person:2574)	work_published_by	1839	before birth 1894
+OUTSIDE_LIFE	edge_vs_life	E-b91f6ca135b2	אַברהם פישקינד (person:3593)	performed_with	1888	before birth 1962-08-26
+OUTSIDE_LIFE	edge_vs_life	E-bcf3e4b0736a	Yehoshua Mezach (person:2461)	employed_by	1862	before birth 1884
+OUTSIDE_LIFE	edge_vs_life	E-d6fa47f358a5	אַברהם פישקינד (person:3593)	cast_in	1887	before birth 1962-08-26
+OUTSIDE_LIFE	edge_vs_life	E-d97115056f6c	Yehoshua Mezach (person:2461)	employed_by	1862	before birth 1884
+OUTSIDE_LIFE	edge_vs_life	E-da10ec01fa92	Michael Mintz (person:2488)	managed	1991	after death 1912-04-14
+OUTSIDE_LIFE	edge_vs_life	E-ddf0b671ad4f	Henryk Grinberg (person:1900)	performed_with	1918	before birth 1936-07-04
+OUTSIDE_LIFE	edge_vs_life	E-e03064c36ef5	Morris Silberman (person:701)	performed_with	1877	before birth 1881
+OUTSIDE_LIFE	edge_vs_life	E-e1c7cafd7a80	Sholem-Aleykhem (person:383)	mention	1928	after death 1916
+OUTSIDE_LIFE	edge_vs_life	E-e47c252a869b	אַברהם פישקינד (person:3593)	performed_with	1926	before birth 1962-08-26
+OUTSIDE_LIFE	edge_vs_life	E-e568891f90cc	G.A. Karlos (person:2085)	directed	1883-02	before birth 1888-07-20
+OUTSIDE_LIFE	edge_vs_life	E-e7279aeab9ac	Itzhak Nusinov (person:2583)	participant	1831-11-29	before birth 1889-07-14
+OUTSIDE_LIFE	edge_vs_life	E-ead180ed2485	Avraham Goldknopf (person:1838)	performed_with	1928	after death 1920
+OUTSIDE_LIFE	edge_vs_life	E-ec554b1171a0	Meir Mestel (person:984)	work_produced_by	1893	before birth 1902-03
+OUTSIDE_LIFE	edge_vs_life	E-f3afc8824680	Max Wilner (person:3266)	participant	1881-12-25	before birth 1895-12-18
+OUTSIDE_LIFE	edge_vs_life	E-f8bd64ff8110	G.A. Karlos (person:2085)	cast_in	1883-02	before birth 1888-07-20
+OUTSIDE_LIFE	edge_vs_life	E-fd7d4448e487	Hersh Amasia (person:1151)	participant	1864	after death 1827
+REVERSED	node_attrs	person:1151	Hersh Amasia	lifespan	1864 -> 1827	death -37 years before birth
+REVERSED	node_attrs	person:1409	David Brown	lifespan	1967-09-07 -> 1945-09-08	death -22 years before birth
+REVERSED	node_attrs	person:2583	Itzhak Nusinov	lifespan	1889-07-14 -> 1831-11-29	death -58 years before birth
+REVERSED	node_attrs	person:3593	אַברהם פישקינד	lifespan	1962-08-26 -> 1940-05-09	death -22 years before birth
