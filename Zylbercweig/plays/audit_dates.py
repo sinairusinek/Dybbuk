@@ -52,6 +52,12 @@ DEFAULT_CEILING = 1971          # unknown volume: the latest the work can go
 MAX_AGE = 105
 MIN_YEAR = 1700
 
+# A bound that its own precision already marks as approximate is not a claim
+# about an exact year: `19XX` -> 1900/1999 precision=century says "sometime in
+# the 1900s", which is what the source says. Flagging the 1999 would be
+# flagging the notation, not an error.
+RANGE_PRECISION = {"decade", "century", "range", "circa"}
+
 # Relations that legitimately outlive the person: the work keeps circulating.
 POSTHUMOUS_OK = {"work_published_by", "work_produced_by", "authored",
                  "of_play", "involved_in", "staged_at", "cast_in",
@@ -152,11 +158,12 @@ def main():
     # ---- 2. dated edges ----------------------------------------------------
     for r in rows("edges.tsv"):
         desc = f'{r["source_id"]} -{r["edge_type"]}-> {r["target_id"]}'
+        approx = r.get("date_precision", "") in RANGE_PRECISION
         for col in ("date_start", "date_end"):
             year, _ = decade_floor(r.get(col))
             if year is None:
                 continue
-            if year > DEFAULT_CEILING:
+            if year > DEFAULT_CEILING and not approx:
                 add("edge", r["edge_id"], desc, col, r.get(col),
                     f"year {year} after {DEFAULT_CEILING}", "LATE")
             elif year < MIN_YEAR:
@@ -191,14 +198,16 @@ def main():
 
     # ---- 3. events ---------------------------------------------------------
     for r in rows("events.tsv"):
+        approx = r.get("date_precision", "") in RANGE_PRECISION
         for col in ("date_start", "date_end"):
             year, _ = decade_floor(r.get(col))
             if year is None:
                 continue
-            if year > DEFAULT_CEILING or year < MIN_YEAR:
+            late = year > DEFAULT_CEILING and not approx
+            if late or year < MIN_YEAR:
                 add("event", r["event_id"], r.get("event_type", ""), col,
                     r.get(col), f"year {year} outside [{MIN_YEAR},{DEFAULT_CEILING}]",
-                    "LATE" if year > DEFAULT_CEILING else "EARLY")
+                    "LATE" if late else "EARLY")
 
     # ---- report -----------------------------------------------------------
     print(f"vitals: {len(births)} birth dates, {len(deaths)} death dates")

@@ -33,6 +33,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 import sys
 from collections import Counter, defaultdict
 
@@ -79,6 +80,39 @@ ROLE_EDGE = {"actor": "performed_in", "director": "directed",
              "translator": "translated_adapted", "adapter": "translated_adapted",
              "producer": "produced", "author": "authored", "other": "involved_in",
              "": "involved_in"}
+
+
+# ---------------------------------------------------------------- date guard
+# The Lexicon closed in 1971, so no date in it can be later. Two ways a later
+# year gets in, both seen in the data:
+#
+#   * An LLM reads "to the present day" (ביזן היינטיקן טאָג) and stamps the
+#     year it was RUN -- 2024 on a 1930s sentence. Open-ended is the fact;
+#     a hard end date is an invention, so the value is dropped.
+#   * A century/decade placeholder's upper bound (`19XX` -> 1999) is written
+#     into a column that reads as exact. The RANGE is right and keeps its
+#     `date_precision`; it is only the bare `1999`, with no precision to warn
+#     a reader, that misleads.
+#
+# Anything past the cutoff and not explained by its own precision is dropped
+# rather than guessed at: a missing date is recoverable, a wrong one is not.
+LEXICON_CUTOFF = 1971
+_RANGE_PRECISION = {"decade", "century", "range", "circa"}
+
+
+def scrub_date(value: str, precision: str = "") -> str:
+    """Drop an impossible date; keep a legitimately open or approximate one."""
+    s = str(value or "").strip()
+    if not s:
+        return s
+    m = re.match(r"^(\d{4})", s)
+    if not m or int(m.group(1)) <= LEXICON_CUTOFF:
+        return s
+    # A range's upper bound is meaningful only while its precision survives
+    # alongside it to say so.
+    if precision in _RANGE_PRECISION:
+        return s
+    return ""
 
 
 class Graph:
@@ -174,6 +208,8 @@ class Graph:
         kw.setdefault("source_layer", "plays")
         kw.setdefault("reviewer", "")
         kw.setdefault("method", "")
+        for col in ("date_start", "date_end"):
+            kw[col] = scrub_date(kw.get(col, ""), kw.get("date_precision", ""))
         self.edges.append(kw)
 
 

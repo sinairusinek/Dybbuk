@@ -111,6 +111,19 @@ def norm_date(raw: str) -> tuple[str, str, str]:
     m = re.fullmatch(r"(\d{2})[xX.]{2}", s)
     if m:
         return m.group(1) + "00", m.group(1) + "99", "century"
+    # Forms the editors also use, which used to fall through to "unparsed"
+    # and silently lose the date even though the decade is legible:
+    #   188.. / 189~ / 188?  -> the decade      18 -> the century
+    #   1889? / ..1914       -> the year, uncertain
+    m = re.fullmatch(r"(\d{3})[.~?]+", s)
+    if m:
+        return m.group(1) + "0", m.group(1) + "9", "decade"
+    m = re.fullmatch(r"(\d{2})", s)
+    if m:
+        return m.group(1) + "00", m.group(1) + "99", "century"
+    m = re.fullmatch(r"[.?~]*(\d{4})[.?~]*", s)
+    if m:
+        return m.group(1), "", "year_uncertain"
     return "", "", "unparsed"
 
 
